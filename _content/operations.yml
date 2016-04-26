@@ -1,0 +1,63 @@
+- name: Monitoring
+  sections:
+    - name: Monitoring
+      sites:
+        - name: Icinga
+          url: https://alert.publishing.service.gov.uk
+          description: Alerting
+
+        - name: Kibana
+          url: https://kibana.publishing.service.gov.uk
+          description: Analyse the GOV.UK log files
+
+        - name: Errbit
+          url: https://errbit.publishing.service.gov.uk
+          description: Centralised exception reporting
+
+        - name: Graphite
+          url: https://graphite.publishing.service.gov.uk
+          description: Graphing
+
+        - name: Grafana
+          url: https://grafana.publishing.service.gov.uk
+          description: Graphing
+
+- name: Repos
+  sections:
+    - name: Monitoring repos
+      repos:
+        - errbit
+        - kibana-gds
+        - sidekiq-monitoring
+
+    - name: Configuration
+      repos:
+        - govuk-puppet
+        - ci-puppet
+        - fabric-scripts
+
+    - name: Deployment
+      sites:
+        - name: gds/alphagov-deployment
+          url: https://github.gds/gsd/alphagov-deployment
+          description: Capistrano scripts for deploying GOV.UK apps
+        - name: gds/deployment
+          url: https://github.gds/gsd/deployment
+          description: Encrypted secrets for GOV.UK infrastucture
+
+      repos:
+        - release
+
+- name: Tools
+  sections:
+    - name: Team tools
+      repos:
+        - binaryberry/seal
+        - gds-hubot
+        - dsingleton/deploy-lag-radiator
+
+    - name: Verification
+      repos:
+        - email-alert-monitoring
+        - govuk-cdn-logs-monitor
+        - tagging-migration-verifier

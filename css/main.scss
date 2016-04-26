@@ -1,0 +1,41 @@
+---
+---
+
+@import 'toolkit/grid_layout';
+
+#page-container {
+  @extend %site-width-container;
+}
+
+.navigation {
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+h1 {
+  padding: 20px 0;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.entry {
+  margin-bottom: 10px;
+
+  small {
+    display: block;
+    line-height: 1.3em;
+  }
+}
+
+.grid-row {
+  @extend %grid-row;
+
+  .column-third {
+    @include grid-column( 1/3 );
+  }
+}
