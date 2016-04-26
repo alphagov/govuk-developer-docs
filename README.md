@@ -2,9 +2,9 @@
 
 Useful links to the repos and tools that are part of GOV.UK development.
 
-Live at:
+Live at: [alphagov.github.com/govuk-developers](https://alphagov.github.com/govuk-developers)
 
-[alphagov.github.com/govuk-developers](https://alphagov.github.com/govuk-developers)
+![Screenshot of the docs](screenshot.png)
 
 ## Technical documentation
 
