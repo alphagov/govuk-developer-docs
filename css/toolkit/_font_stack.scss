@@ -1,0 +1,36 @@
+//  GOV.UK font stacks, referred to in typography.scss
+
+//  Font stack weirdness
+//
+//  To ensure embedded fonts fall back to appropriate
+//  system fonts (eg, bold embedded font falls back to
+//  bold system font, without anyone getting horrible
+//  artificially emboldened weights) we're setting
+//  the font-stack in a font-face declaration rather
+//  than with the usual font-family.
+
+// Allow uppercase letters in font stack variable names
+// scss-lint:disable NameFormat
+
+// New Transport Light
+$NTA-Light: "nta", Arial, sans-serif;
+$NTA-Light-Tabular: "ntatabularnumbers", $NTA-Light;
+
+// Allow font stack to be overridden
+// Not all apps using toolkit use New Transport
+$toolkit-font-stack: $NTA-Light !default;
+$toolkit-font-stack-tabular: $NTA-Light-Tabular !default;
+
+// Helvetica Regular
+@font-face {
+  font-family: GDS-Logo;
+  src: local("HelveticaNeue"),
+       local("Helvetica Neue"),
+       local("Arial"),
+       local("Helvetica");
+}
+
+$Helvetica-Regular: "GDS-Logo", sans-serif;
+
+// Font reset for print
+$Print-reset: sans-serif;
