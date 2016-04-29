@@ -32,7 +32,7 @@ To run the app locally:
 bundle exec jekyll serve --watch --baseurl ''
 ```
 
-The app will appear at http://127.0.0.1:4567/.
+The app will appear at http://127.0.0.1:4000/
 
 ### Data generation
 
