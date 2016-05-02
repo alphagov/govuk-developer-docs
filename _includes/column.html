@@ -1,0 +1,14 @@
+<div class='column-third'>
+  <h2>{{ column.name }}</h2>
+
+  {% for section in column.sections %}
+    <h3>{{ section.name }}</h3>
+
+    {% for entry in section.entries %}
+      <div class='entry'>
+        <a href='{{ entry.url }}'>{{ entry.name }}</a>
+        <small>{{ entry.description }}</small>
+      </div>
+    {% endfor %}
+  {% endfor %}
+</div>
