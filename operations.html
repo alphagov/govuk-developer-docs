@@ -1,28 +1,10 @@
 ---
 layout: default
-title: GOV.UK Operations
+title: Operations
 ---
-
-<div class='navigation'>
-  <a href='index.html'>Applications &amp; development</a> |
-  <strong>Operations</strong>
-</div>
 
 <div class='grid-row'>
   {% for column in site.data.content.operations.columns %}
-    <div class='column-third'>
-      <h2>{{ column.name }}</h2>
-
-      {% for section in column.sections %}
-        <h3>{{ section.name }}</h3>
-
-        {% for entry in section.entries %}
-          <div class='entry'>
-            <a href='{{ entry.url }}'>{{ entry.name }}</a>
-            <small>{{ entry.description }}</small>
-          </div>
-        {% endfor %}
-      {% endfor %}
-    </div>
+    {% include column.html %}
   {% endfor %}
 </div>

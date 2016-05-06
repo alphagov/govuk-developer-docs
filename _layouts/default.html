@@ -19,7 +19,20 @@
     <div class="container">
       <main id="page-container" role="main">
         <div class="column-full-width">
-          <h1 class="page-title">{{ page.title }}</h1>
+          <h1 class="page-title">GOV.UK: {{ page.title }}</h1>
+
+          <ul class='navigation'>
+            {% for p in site.pages %}
+              {% if p.title != nil %}
+              <li>
+                <a {% if p.url == page.url %}class="active"{% endif %} href="{{ p.url }}">
+                  {{ p.title }}
+                </a>
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+
           {{ content }}
         </div>
       </main>
