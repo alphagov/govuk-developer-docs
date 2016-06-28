@@ -25,7 +25,7 @@
             {% for p in site.pages %}
               {% if p.title != nil %}
               <li>
-                <a {% if p.url == page.url %}class="active"{% endif %} href="{{ p.url }}">
+                <a {% if p.url == page.url %}class="active"{% endif %} href="{{ p.path }}">
                   {{ p.title }}
                 </a>
               </li>
