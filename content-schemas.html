@@ -1,0 +1,8 @@
+---
+layout: default
+title: GOV.UK Content schemas
+---
+
+{% for content_format in site.content_schemas %}
+  <a href='{{ content_format.url }}'>{{ content_format.title }}</a><br/>
+{% endfor %}
