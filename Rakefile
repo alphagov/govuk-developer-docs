@@ -9,6 +9,12 @@ task :build_overview_pages do
   end
 end
 
+desc "Regenerate schema documentation"
+task :generate_schema_docs do
+  require_relative './lib/content_schemas/generator'
+  Generator.generate_markdown_for_all_schemas
+end
+
 desc "Regenerate all static data for the site (default)"
-task :build_data => [:build_overview_pages]
+task :build_data => [:build_overview_pages, :generate_schema_docs]
 task :default => [:build_data]

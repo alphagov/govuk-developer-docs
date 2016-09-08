@@ -1,0 +1,16 @@
+---
+layout: main
+---
+
+<h1 class="page-title">Content schema: {{ page.title }}</h1>
+
+<div class='grid-row'>
+  <div class='column-third'>
+    {% for content_format in site.content_schemas %}
+      <a href='{{ content_format.url }}'>{{ content_format.title }}</a><br/>
+    {% endfor %}
+  </div>
+  <div class='column-two-thirds'>
+    {{ content }}
+  </div>
+</div>
