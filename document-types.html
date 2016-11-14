@@ -1,0 +1,28 @@
+---
+layout: default
+title: GOV.UK Document Types
+---
+
+{% assign document_types = site.data.content_stats.document_types | sort: 'name' %}
+{% for document_type in document_types %}
+  <div class='document-type'>
+    <h3>{{ document_type.name }}</h3>
+    {{ document_type.count }} items<br/>
+    Rendered by: {{ document_type.rendering_apps || join: ", " }}<br/>
+    Published by: {{ document_type.publishing_apps || join: ", " }}<br/>
+
+    Schema(s):
+    <ul>
+    {% for schema_name in document_type.schema_names %}
+      <li><a href='https://github.com/alphagov/govuk-content-schemas/tree/master/dist/formats/contact{{ schema_name }}'>{{ schema_name }}</a></li>
+    {% endfor %}
+    </ul>
+
+    Examples:
+    <ul>
+    {% for example in document_type.examples %}
+      <li><a href='https://www.gov.uk{{ example }}'>{{ example }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endfor %}
