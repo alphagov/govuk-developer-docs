@@ -4,8 +4,19 @@ title: GOV.UK Document Types
 ---
 
 {% assign document_types = site.data.content_stats.document_types | sort: 'name' %}
+<table>
 {% for document_type in document_types %}
-  <div class='document-type'>
+  <tr>
+    <td><a href='#{{document_type.name}}'>{{document_type.name}}</a></td>
+    <td>{{ document_type.count }}</td>
+  </tr>
+{% endfor %}
+</table>
+
+<hr/>
+
+{% for document_type in document_types %}
+  <div class='document-type' id='{{ document_type.name }}'>
     <h3>{{ document_type.name }}</h3>
     {{ document_type.count }} items<br/>
     Rendered by: {{ document_type.rendering_apps || join: ", " }}<br/>
