@@ -4,6 +4,7 @@ git clone git@github.com:alphagov/govuk-content-schemas.git /tmp/govuk-content-s
 export GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas
 
 # Recreate docs for gds-api-adapters
+rm -rf /tmp/gds-api-adapters
 git clone git@github.com:alphagov/gds-api-adapters.git /tmp/gds-api-adapters
 export GDS_API_PATH=/tmp/gds-api-adapters
 (
