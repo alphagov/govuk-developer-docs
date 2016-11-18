@@ -13,6 +13,16 @@ export GDS_API_PATH=/tmp/gds-api-adapters
   bundle exec yard doc --one-file
 )
 
+# Recreate docs for slimmer
+rm -rf /tmp/slimmer
+git clone git@github.com:alphagov/slimmer.git /tmp/slimmer
+export SLIMMER_PATH=/tmp/slimmer
+(
+  cd /tmp/slimmer
+  bundle install --path "${HOME}/bundles/${JOB_NAME}"
+  bundle exec yard doc --one-file
+)
+
 # Run the build
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
 bundle exec rake build
