@@ -1,0 +1,22 @@
+---
+layout: main
+---
+
+<div class="app-pane__toc">
+  <nav class="toc">
+    <ul>
+      {% for schema_name in site.content_schemas %}
+        <li>
+          <a href='{{ site.baseurl }}{{ schema_name.url }}'>{{ schema_name.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <h1 class="page-title">{{ page.title }}</h1>
+    {{ content }}
+  </div>
+</div>

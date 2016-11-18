@@ -1,0 +1,33 @@
+---
+layout: main
+---
+
+<div class="app-pane__toc">
+  <nav class="toc">
+    <ul>
+      {% for guide in site.styleguides %}
+        <li>
+          <a href='{{ site.baseurl }}{{ guide.url }}'>{{ guide.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <h1 class="page-title">{{ page.title }}</h1>
+
+    <p>
+    {% if page.source_url %}
+      <a href='{{ page.source_url }}'>page source</a>
+    {% endif %}
+
+    {% if page.edit_url %}
+      <a href='{{ page.edit_url }}'>edit page</a>
+    {% endif %}
+    </p>
+
+    {{ content }}
+  </div>
+</div>

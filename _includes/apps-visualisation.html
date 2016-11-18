@@ -1,0 +1,120 @@
+<!-- http://bl.ocks.org/NPashaP/cd80ab54c52f80c4d84cad0ba9da72c2 -->
+
+<style>
+  text{
+    font-size:12px;
+  }
+  .mainBars rect{
+    shape-rendering: auto;
+    fill-opacity: 0;
+    stroke-width: 0.5px;
+    stroke: rgb(0, 0, 0);
+    stroke-opacity: 0;
+  }
+  .subBars{
+    shape-rendering:crispEdges;
+  }
+  .edges{
+    stroke:none;
+    fill-opacity:0.5;
+  }
+  .header{
+    text-anchor:middle;
+    font-size:16px;
+  }
+  line{
+    stroke:grey;
+  }
+</style>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="{{ site.baseurl }}/assets/js/viz.js"></script>
+
+<script>
+function hashCode(str) {
+    var hash = 0;
+    for (var i = 0; i < str.length; i++) {
+       hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    return hash;
+}
+
+function intToRGB(i){
+    var c = (i & 0x00FFFFFF)
+        .toString(16)
+        .toUpperCase();
+
+    return "00000".substring(0, 6 - c.length) + c;
+}
+
+var color = function (name) {
+  var x = '#' + intToRGB(hashCode(name) + 100000);
+  return x;
+}
+
+var HEIGHT = 500,
+    WIDTH = 1000;
+
+d3.json('{{ site.baseurl }}/assets/data/publishing-app-connections.json', function(error, data) {
+  var svg = d3.select("#vizza").append("svg").attr("width", WIDTH).attr("height", HEIGHT);
+
+  var g =[
+    svg.append("g").attr("transform", "translate(200,0)"), // margin left
+    svg.append("g").attr("transform", "translate(650,0)")
+  ];
+
+  var data = data.filter(function (p) {
+    return p[2] > 100
+  })
+
+  var bp=[ viz.bP()
+      .data(data)
+      .min(15)
+      .pad(0)
+      .height(HEIGHT)
+      .width(400)
+      .barSize(35) // size of the darker shaded bars on the left and the right
+      .fill(d=>color(d.primary))
+  ];
+
+  [0,1].forEach(function(i){
+    g[i].call(bp[i])
+
+    g[i].append("text").attr("x", -90).attr("y", -8).style("text-anchor","right").text("Publishing App");
+    g[i].append("text").attr("x", 410).attr("y", -8).style("text-anchor","left").text("Rendering App");
+
+    g[i].selectAll(".mainBars")
+      .on("mouseover",mouseover)
+      .on("mouseout",mouseout);
+
+    g[i].selectAll(".mainBars").append("text").attr("class","label")
+      .attr("x",d=>(d.part=="primary"? -20: 30))
+      .attr("y",d=>+6)
+      .text(function(d) {
+        if (d.key == "null") {
+          return "No app (redirect/gone) - " + d.value;
+        } else {
+          return d.key + " - " + d.value;
+        }
+      })
+      .attr("text-anchor",d=>(d.part=="primary"? "end": "start"));
+  });
+
+  function mouseover(d){
+    [0,1].forEach(function(i){
+      bp[i].mouseover(d);
+
+      g[i].selectAll(".mainBars").select(".label")
+    });
+  }
+  function mouseout(d){
+    [0,1].forEach(function(i){
+      bp[i].mouseout(d);
+
+      g[i].selectAll(".mainBars").select(".label")
+    });
+  }
+});
+</script>
+
+<div id='vizza'></div>

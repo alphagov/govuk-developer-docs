@@ -1,0 +1,79 @@
+---
+layout: main
+title: Document types
+navigation_weight: 35
+source_url: https://github.com/alphagov/content-store
+permalink: document-types.html
+---
+
+{% assign document_types = site.data.content_stats.document_types | sort: 'name' %}
+
+<div class="app-pane__toc">
+  <nav class="toc">
+    <ul>
+      {% for document_type in document_types %}
+        <li>
+          <a href='#{{document_type.name}}'>{{document_type.name}}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <h1 class="page-title">{{ page.title }}</h1>
+
+    <p>
+    {% if page.source_url %}
+      <a href='{{ page.source_url }}'>page source</a>
+    {% endif %}
+
+    {% if page.edit_url %}
+      <a href='{{ page.edit_url }}'>edit page</a>
+    {% endif %}
+    </p>
+
+    <p class="lead">
+      This is a automatically generated list of all document types
+      (`document_type`) in the content-store.
+      It was generated at {{ site.data.content_stats.generated_at }}
+    </p>
+
+    <hr/>
+
+    {% for document_type in document_types %}
+      <div class='document-type' id='{{ document_type.name }}'>
+        <h2>{{ document_type.name }}</h2>
+        {{ document_type.count }} items<br/>
+
+        Rendered by:
+        {% for app in document_type.rendering_apps %}
+          <a href='apps.html#{{app}}'>{{app}}</a>
+        {% endfor %}
+
+        <br/>
+
+        Published by:
+        {% for app in document_type.publishing_apps %}
+          <a href='apps.html#{{app}}'>{{app}}</a>
+        {% endfor %}
+
+        <br/>
+        Schema(s):
+        <ul>
+        {% for schema_name in document_type.schema_names %}
+          <li><a href='{{site.baseurl}}/content-schemas/{{ schema_name }}/'>{{ schema_name }}</a></li>
+        {% endfor %}
+        </ul>
+
+        Examples:
+        <ul>
+        {% for example in document_type.examples %}
+          <li><a href='https://www.gov.uk{{ example.base_path }}'>{{ example.title }}</a> (<a href='https://www.gov.uk/api/content{{ example.base_path }}'>content store</a>)</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</div>

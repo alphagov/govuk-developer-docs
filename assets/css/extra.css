@@ -1,0 +1,32 @@
+table.schema-table {
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: none;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+table.schema-table th,
+table.schema-table td {
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+table.schema-table td {
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+table.schema-table td:first-child {
+  width: 200px;
+
+  strong {
+    display: block;
+  }
+}
+
+table.schema-table tr:nth-child(odd)>td {
+  // background-color: lighten(#DDD, 4.2%);
+}

@@ -1,0 +1,55 @@
+---
+layout: main
+title: Apps
+navigation_weight: 20
+source_url: https://github.com/alphagov/content-store
+permalink: apps.html
+---
+
+{% assign apps = site.data.content_stats.apps | sort: 'name' %}
+
+<div class="app-pane__toc">
+  <nav class="toc">
+    <ul>
+      {% for app in apps %}
+        <li>
+          <a href='#{{app.name}}'>{{app.name}}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <h1 class="page-title">{{ page.title }}</h1>
+
+    <p class="lead">
+      This is a automatically generated list of all publishing and rendering apps in
+      the content-store. It was generated at {{ site.data.content_stats.generated_at }}
+    </p>
+
+    {% include apps-visualisation.html %}
+
+    {% for app in apps %}
+      <div class='app' id='{{ app.name }}'>
+        <h2>{{ app.name }}</h2>
+        Renders {{ app.rendering_count }} items<br/>
+        Examples:
+        <ul>
+        {% for example in app.rendering_examples %}
+          <li><a href='https://www.gov.uk{{ example.base_path }}'>{{ example.title }}</a> (<a href='https://www.gov.uk/api/content{{ example.base_path }}'>content store</a>)</li>
+        {% endfor %}
+        </ul>
+
+        Publishes {{ app.publishing_count }} items<br/>
+        Examples:
+        <ul>
+        {% for example in app.publishes_examples %}
+          <li><a href='https://www.gov.uk{{ example.base_path }}'>{{ example.title }}</a> (<a href='https://www.gov.uk/api/content{{ example.base_path }}'>content store</a>)</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endfor %}
+  </div>
+</div>

@@ -2,6 +2,20 @@
 layout: main
 ---
 
-<h1 class="page-title">{{ page.title }}</h1>
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <h1 class="page-title">{{ page.title }}</h1>
 
-{{ content }}
+    <p>
+    {% if page.source_url %}
+      <a href='{{ page.source_url }}'>page source</a>
+    {% endif %}
+
+    {% if page.edit_url %}
+      <a href='{{ page.edit_url }}'>edit page</a>
+    {% endif %}
+    </p>
+
+    {{ content }}
+  </div>
+</div>
