@@ -20,20 +20,26 @@ class GemDocumentationFetcher
 
     actual_content.search('#label-GDS+API+Adapters').remove
     actual_content.search('.source_code').remove
+    actual_content.search('small').remove
+    # remove "Documentation by YARD" & "Top Level Namespace"
+    actual_content.search('h1').first(2).map(&:remove)
+    actual_content.search('.clear').remove
+    actual_content.search('dl.box').remove
 
     actual_content.search('h1').each do |h1|
       h1.name = 'h2'
     end
 
     frontmatter = Utils.frontmatter(
-      layout: 'default',
-      title: 'APIs',
-      navigation_weight: 75,
+      layout: 'gem_layout',
+      title: 'GDS API Adapters',
       permalink: 'gds-api-adapters.html'
     )
 
+    actual_content = actual_content.to_s.gsub("\n\n", " ")
+    actual_content = actual_content.to_s.gsub("\n ", " ")
     actual_content = actual_content.to_s.gsub("  ", " ")
 
-    File.write("_generated_pages/gds-api-adapters.html", "#{frontmatter} #{Utils::DO_NOT_EDIT} #{actual_content}")
+    File.write("_gems/gds-api-adapters.html", "#{frontmatter} #{Utils::DO_NOT_EDIT} #{actual_content}")
   end
 end
