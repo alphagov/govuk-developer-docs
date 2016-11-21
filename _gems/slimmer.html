@@ -1,0 +1,461 @@
+---
+layout: gem_layout
+title: Slimmer
+permalink: slimmer.html
+---
+ <!-- This file was automatically generated. DO NOT EDIT DIRECTLY. --> <div id="content">
+      
+      <div id="readme">
+  
+
+
+<p>Slimmer provides Rack middleware for applying a standard header and footer
+around pages returned by a Ruby (Rack) application.</p>
+
+<p>It does this by taking the page rendered by the application, extracting the
+contents of a <code>div</code> with id 'wrapper' and inserting that
+into a <code>div</code> with the same id in one of its templates. It also
+transfers various other details, such as <code>meta</code>,
+<code>script</code>, and <code>style</code> tags.</p>
+
+<p><a href="http://www.rubydoc.info/gems/slimmer">View documentation</a></p>
+
+<h2 id="label-Use+in+a+Rails+app">Use in a Rails app</h2>
+
+<p>Slimmer provides a Railtie so no configuration is necessary.</p>
+
+<h2 id="label-Asset+tag+helpers">Asset tag helpers</h2>
+
+<p>To get asset tag helpers to point to your external asset server, add</p>
+
+<pre class="code ruby"><code class="ruby"><span class="id identifier rubyid_config">config</span><span class="period">.</span><span class="id identifier rubyid_action_controller">action_controller</span><span class="period">.</span><span class="id identifier rubyid_asset_host">asset_host</span> <span class="op">=</span> <span class="tstring"><span class="tstring_beg">"</span><span class="tstring_content">http://my.alternative.host</span><span class="tstring_end">"</span></span>
+</code></pre>
+
+<p>to <code>application.rb</code>.</p>
+
+<h2 id="label-Specifying+a+template">Specifying a template</h2>
+
+<p>A specific template can be requested by giving its name in the
+<code>X-Slimmer-Template</code> HTTP header.</p>
+
+<p>In a controller action, you can do this by calling
+<code>slimmer_template</code>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class="kw">class</span> <span class="const">MyController</span> <span class="op">&lt;</span> <span class="const">ApplicationController</span>
+  <span class="kw">def</span> <span class="id identifier rubyid_index">index</span>
+    <span class="id identifier rubyid_slimmer_template">slimmer_template</span> <span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">homepage</span><span class="tstring_end">'</span></span>
+  <span class="kw">end</span>
+<span class="kw">end</span>
+</code></pre>
+
+<p>There's also a macro style method which will affect all actions:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="kw">class</span> <span class="const">YourController</span> <span class="op">&lt;</span> <span class="const">ApplicationController</span>
+  <span class="id identifier rubyid_slimmer_template">slimmer_template</span> <span class="symbol">:admin</span>
+<span class="kw">end</span>
+</code></pre>
+
+<p>To get this, include Slimmer::Template in your ApplicationController:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="kw">class</span> <span class="const">ApplicationController</span> <span class="op">&lt;</span> <span class="const">ActionController</span><span class="op">::</span><span class="const">Base</span>
+  <span class="id identifier rubyid_include">include</span> <span class="const">Slimmer</span><span class="op">::</span><span class="const">Template</span>
+<span class="kw">end</span>
+</code></pre>
+
+<h2 id="label-Logging">Logging</h2>
+
+<p>Slimmer can be configured with a logger by passing in a logger instance
+(anything that quacks like an instance of <code>Logger</code>). For
+example, to log to the Rails log, put the following in an initializer:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="const">YourApp</span><span class="op">::</span><span class="const">Application</span><span class="period">.</span><span class="id identifier rubyid_configure">configure</span> <span class="kw">do</span>
+  <span class="id identifier rubyid_config">config</span><span class="period">.</span><span class="id identifier rubyid_slimmer">slimmer</span><span class="period">.</span><span class="id identifier rubyid_logger">logger</span> <span class="op">=</span> <span class="const">Rails</span><span class="period">.</span><span class="id identifier rubyid_logger">logger</span>
+<span class="kw">end</span>
+</code></pre>
+
+<p><strong>Note:</strong> This can't be in <code>application.rb</code>
+because the Rails logger hasn't been initialized by then.</p>
+
+<p><strong>Debug logging</strong></p>
+
+<p>By default if you pass in a logger with its log level set to
+<code>debug</code>, slimmer will dup this logger and reduce the level to
+<code>info</code>. (Slimmer's debug logging is very noisy). To prevent
+this, set the <code>enable_debugging</code> option to true. e.g. for Rails:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="const">YourApp</span><span class="op">::</span><span class="const">Application</span><span class="period">.</span><span class="id identifier rubyid_configure">configure</span> <span class="kw">do</span>
+  <span class="id identifier rubyid_config">config</span><span class="period">.</span><span class="id identifier rubyid_slimmer">slimmer</span><span class="period">.</span><span class="id identifier rubyid_enable_debugging">enable_debugging</span> <span class="op">=</span> <span class="kw">true</span>
+<span class="kw">end</span>
+</code></pre>
+
+<h2 id="label-GOV.UK+Components">GOV.UK Components</h2>
+
+<p>To use <a href="https://govuk-component-guide.herokuapp.com/">shared
+template components</a> you need to include the GOV.UK component module:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="kw">class</span> <span class="const">ApplicationController</span> <span class="op">&lt;</span> <span class="const">ActionController</span><span class="op">::</span><span class="const">Base</span>
+  <span class="id identifier rubyid_include">include</span> <span class="const">Slimmer</span><span class="op">::</span><span class="const">GovukComponents</span>
+<span class="kw">end</span>
+</code></pre>
+
+<p>This will make calls out to static when you try and render a partial
+prefixed with <code>govuk_component</code>:</p>
+
+<pre class="code ruby"><code class="ruby">&lt;%= render partial: 'govuk_component/example_component' %&gt;</code></pre>
+
+<p>You will need a copy of static running for the templates to be loaded from.</p>
+
+<h3 id="label-Testing+components">Testing components</h3>
+
+<p>In test mode (when <code>Rails.env.test?</code> returns <code>true</code>),
+shared components are not fetched from Static. Instead they are rendered as
+a dummy tag which contains a JSON dump of the <code>locals</code> - the
+arguments passed to the component.</p>
+
+<p>A test helper is included which returns a CSS selector for finding a given
+component to assert that it was used. You can make it available in your
+tests with:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="id identifier rubyid_require">require</span> <span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">slimmer/test_helpers/govuk_components</span><span class="tstring_end">'</span></span>
+<span class="id identifier rubyid_include">include</span> <span class="const">Slimmer</span><span class="op">::</span><span class="const">TestHelpers</span><span class="op">::</span><span class="const">GovukComponents</span>
+</code></pre>
+
+<p>And then assert that the component has been used:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="id identifier rubyid_page">page</span><span class="period">.</span><span class="id identifier rubyid_should">should</span> <span class="id identifier rubyid_have_css">have_css</span><span class="lparen">(</span><span class="id identifier rubyid_shared_component_selector">shared_component_selector</span><span class="lparen">(</span><span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">metadata</span><span class="tstring_end">'</span></span><span class="rparen">)</span><span class="rparen">)</span>
+</code></pre>
+
+<p>Or look for one of the arguments to the component which will have been
+<code>JSON.dump</code>ed inside the tag:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="id identifier rubyid_within">within</span><span class="lparen">(</span><span class="id identifier rubyid_shared_component_selector">shared_component_selector</span><span class="lparen">(</span><span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">title</span><span class="tstring_end">'</span></span><span class="rparen">)</span><span class="rparen">)</span> <span class="kw">do</span>
+  <span class="id identifier rubyid_expect">expect</span><span class="lparen">(</span><span class="id identifier rubyid_page">page</span><span class="rparen">)</span><span class="period">.</span><span class="id identifier rubyid_to">to</span> <span class="id identifier rubyid_have_content">have_content</span><span class="lparen">(</span><span class="id identifier rubyid_expected_title_text">expected_title_text</span><span class="rparen">)</span>
+<span class="kw">end</span>
+</code></pre>
+
+<h3 id="label-Cucumber">Cucumber</h3>
+
+<p>Add the following code to features/support:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="id identifier rubyid_require">require</span> <span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">slimmer/cucumber</span><span class="tstring_end">'</span></span>
+</code></pre>
+
+<h3 id="label-RSpec">RSpec</h3>
+
+<p>Add the following code to spec/spec_helper:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="id identifier rubyid_require">require</span> <span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">slimmer/rspec</span><span class="tstring_end">'</span></span>
+</code></pre>
+
+</div>
+<h2>Top Level Namespace
+  
+  
+  
+</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Module: Slimmer::Headers
+  
+  
+  
+</h2>
+
+
+
+
+<div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#set_slimmer_headers-instance_method" title="#set_slimmer_headers (instance method)">- (Object) <strong>set_slimmer_headers</strong>(hash) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class="inline">
+<p>Set the “slimmer headers” to configure the page.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="set_slimmer_headers-instance_method">
+  
+    - (<tt>Object</tt>) <strong>set_slimmer_headers</strong>(hash) 
+  
+
+  
+
+  
+</h3>
+<div class="docstring">
+  <div class="discussion">
+    
+<p>Set the “slimmer headers” to configure the page</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class="name">hash</span>
+      
+      
+        <span class="type">(<tt>Hash</tt>)</span>
+      
+      
+      
+        —
+        <div class="inline">
+<p>the options</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+  
+    
+    
+    <p class="tag_title">Options Hash (<tt>hash</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">application_name</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">format</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">organisations</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">page_owner</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">remove_search</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">report_a_problem</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">result_count</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">search_parameters</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">section</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">skip</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">template</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+        <li>
+          <span class="name">world_locations</span>
+          <span class="type">(<tt>String</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+        </li>
+      
+    </ul>
+  
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class="type">(<tt><span class="object_link">InvalidHeader</span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
+</div>
+    
+  </div>
+
+
+<h2>Module: Slimmer::GovukComponents
+  
+  
+  
+</h2>
+
+
+
+
+<h2>Overview</h2>
+<div class="docstring">
+  <div class="discussion">
+    
+<p>Include this module to add the GOV.UK Components to your app.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <p class="tag_title">Examples:</p>
+    
+      
+      <pre class="example code"><code>class ApplicationController &lt; ActionController::Base
+  include Slimmer::GovukComponents
+end
+
+# In your views:
+
+&lt;%= render partial: 'govuk_component/example_component' %&gt;</code></pre>
+    
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+    </div>
