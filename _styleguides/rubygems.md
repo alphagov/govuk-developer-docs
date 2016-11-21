@@ -2,10 +2,12 @@
 layout: guide
 source_url: https://github.com/alphagov/styleguides/blob/master/rubygems.md
 edit_url: https://github.com/alphagov/styleguides/edit/master/rubygems.md
-title: Naming
+title: Rubygems
 ---
 
 <!-- This file was automatically generated. DO NOT EDIT DIRECTLY. -->
+
+## Naming
 
 In general, the gem name should be the same as the thing you require when using
 it.  This means using `_`, and not `-` to separate multi-word gem names.  See

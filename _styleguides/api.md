@@ -2,12 +2,12 @@
 layout: guide
 source_url: https://github.com/alphagov/styleguides/blob/master/api.md
 edit_url: https://github.com/alphagov/styleguides/edit/master/api.md
-title: API styleguide
+title: API style guide
 ---
 
 <!-- This file was automatically generated. DO NOT EDIT DIRECTLY. -->
 
-### RESTful behaviour and HTTP status codes
+## RESTful behaviour and HTTP status codes
 
 - Use `202` for times when the data is valid, but we've queued the persistence for background processing, as described in [RFC 7231](http://tools.ietf.org/html/rfc7231#section-6.3.3):
 
