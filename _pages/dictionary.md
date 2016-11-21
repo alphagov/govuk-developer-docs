@@ -3,8 +3,8 @@ layout: default
 title: Dictionary
 navigation_weight: 16
 permalink: dictionary.html
-source_url: https://github.com/alphagov/govuk-developers/blob/master/_config/dictionary.md
-edit_url: https://github.com/alphagov/govuk-developers/edit/master/_config/dictionary.md
+source_url: https://github.com/alphagov/govuk-developers/blob/master/_config/dictionary.yml
+edit_url: https://github.com/alphagov/govuk-developers/edit/master/_config/dictionary.yml
 ---
 
 (Originally from [the Wiki](https://gov-uk.atlassian.net/wiki/display/TECH/Publishing+Platform))
