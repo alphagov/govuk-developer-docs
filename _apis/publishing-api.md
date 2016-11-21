@@ -1,4 +1,10 @@
-<!-- This file was automatically generated. DO NOT EDIT DIRECTLY. --> This is the primary interface from publishing apps to the publishing pipeline.
+---
+layout: api_layout
+title: Publishing API
+source_url: https://github.com/alphagov/publishing-api/blob/master/doc/api.md
+edit_url: https://github.com/alphagov/publishing-api/edit/master/doc/api.md
+---
+ <!-- This file was automatically generated. DO NOT EDIT DIRECTLY. --> This is the primary interface from publishing apps to the publishing pipeline.
 Applications PUT items as JSON conforming to a schema specified in
 [govuk-content-schemas][govuk-content-schemas-repo]
 

@@ -24,19 +24,33 @@ end
 
 task :fetch_publishing_api_docs do
   puts "Generating publishing-api docs"
-  markdown = Doc.new("publishing-api", "doc/api.md").fetch
-  markdown = Utils.remove_first_line(markdown)
+  doc = Doc.new("publishing-api", "doc/api.md")
+  markdown = Utils.remove_first_line(doc.fetch)
 
   # keep current links working
   markdown.gsub!('model.md#', 'publishing-api-model.html#')
 
-  markdown = "#{Utils::DO_NOT_EDIT} #{markdown}"
-  File.write('_includes/publishing-api.md', markdown)
+  frontmatter = Utils.frontmatter(
+    layout: 'api_layout',
+    title: 'Publishing API',
+    source_url: doc.source_url,
+    edit_url: doc.edit_url,
+  )
 
-  markdown = Doc.new("publishing-api", "doc/model.md").fetch
-  markdown = Utils.remove_first_line(markdown)
+  markdown = "#{frontmatter} #{Utils::DO_NOT_EDIT} #{markdown}"
+  File.write('_apis/publishing-api.md', markdown)
+
+  doc = Doc.new("publishing-api", "doc/model.md")
+  markdown = Utils.remove_first_line(doc.fetch)
+  frontmatter = Utils.frontmatter(
+    layout: 'api_layout',
+    title: 'Publishing API Model',
+    source_url: doc.source_url,
+    edit_url: doc.edit_url,
+  )
+
   markdown = "#{Utils::DO_NOT_EDIT} #{markdown}"
-  File.write('_includes/publishing-api-model.md', markdown)
+  File.write('_apis/publishing-api-model.md', markdown)
 end
 
 task :fetch_rummager_docs do
@@ -48,15 +62,15 @@ task :fetch_rummager_docs do
   markdown = Utils.remove_frontmatter(markdown)
 
   frontmatter = Utils.frontmatter(
-    layout: 'default',
-    title: 'Search API',
+    layout: 'api_layout',
+    title: 'Search API (Rummager)',
     navigation_weight: 75,
     source_url: doc.source_url,
     edit_url: doc.edit_url,
   )
 
   markdown = "#{frontmatter} #{Utils::DO_NOT_EDIT} #{markdown}"
-  File.write('_includes/search-api.md', markdown)
+  File.write('_apis/search-api.md', markdown)
 end
 
 task :fetch_gem_documentation do

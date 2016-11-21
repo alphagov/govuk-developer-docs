@@ -1,6 +1,6 @@
 ---
-layout: default
-title: Search API
+layout: api_layout
+title: Search API (Rummager)
 navigation_weight: 75
 source_url: https://github.com/alphagov/rummager/blob/master/docs/search-api.md
 edit_url: https://github.com/alphagov/rummager/edit/master/docs/search-api.md
