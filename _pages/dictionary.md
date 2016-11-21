@@ -16,3 +16,5 @@ edit_url: https://github.com/alphagov/govuk-developers/edit/master/_config/dicti
   <p>{{word.description}}</p>
 </div>
 {% endfor %}
+
+<img src='assets/images/words.png' style='width:100%'/>
