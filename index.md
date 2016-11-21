@@ -4,6 +4,7 @@ title: Dashboard
 navigation_weight: 1
 source_url: https://github.com/alphagov/govuk-developers/blob/master/_config/dashboard.yml
 edit_url: https://github.com/alphagov/govuk-developers/edit/master/_config/dashboard.yml
+permalink: index.html
 ---
 
 <div class="app-pane__toc">
