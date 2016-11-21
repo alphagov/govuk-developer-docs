@@ -33,6 +33,35 @@ transfers various other details, such as <code>meta</code>,
 
 <p>to <code>application.rb</code>.</p>
 
+<h2 id="label-Specifying+a+template">Specifying a template</h2>
+
+<p>A specific template can be requested by giving its name in the
+<code>X-Slimmer-Template</code> HTTP header.</p>
+
+<p>In a controller action, you can do this by calling
+<code>slimmer_template</code>.</p>
+
+<pre class="code ruby"><code class="ruby"><span class="kw">class</span> <span class="const">MyController</span> <span class="op">&lt;</span> <span class="const">ApplicationController</span>
+  <span class="kw">def</span> <span class="id identifier rubyid_index">index</span>
+    <span class="id identifier rubyid_slimmer_template">slimmer_template</span> <span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">homepage</span><span class="tstring_end">'</span></span>
+  <span class="kw">end</span>
+<span class="kw">end</span>
+</code></pre>
+
+<p>There's also a macro style method which will affect all actions:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="kw">class</span> <span class="const">YourController</span> <span class="op">&lt;</span> <span class="const">ApplicationController</span>
+  <span class="id identifier rubyid_slimmer_template">slimmer_template</span> <span class="symbol">:admin</span>
+<span class="kw">end</span>
+</code></pre>
+
+<p>To get this, include Slimmer::Template in your ApplicationController:</p>
+
+<pre class="code ruby"><code class="ruby"><span class="kw">class</span> <span class="const">ApplicationController</span> <span class="op">&lt;</span> <span class="const">ActionController</span><span class="op">::</span><span class="const">Base</span>
+  <span class="id identifier rubyid_include">include</span> <span class="const">Slimmer</span><span class="op">::</span><span class="const">Template</span>
+<span class="kw">end</span>
+</code></pre>
+
 <h2 id="label-Logging">Logging</h2>
 
 <p>Slimmer can be configured with a logger by passing in a logger instance
@@ -377,284 +406,6 @@ tests with:</p>
     </li>
   
 </ul>
-
-</div>
-</div>
-    
-  </div>
-
-
-<h2>Module: Slimmer::Template
-  
-  
-  
-</h2>
-
-
-
-
-<div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-<h2>Defined Under Namespace</h2>
-<p class="children">
-  
-    
-      <strong class="modules">Modules:</strong> <span class="object_link"><a href="" title="Slimmer::Template::ClassMethods (module)">ClassMethods</a></span>
-    
-  
-    
-  
-</p>
-
-
-
-
-
-
-
-  
-    <h2>
-      Instance Method Summary
-      
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#slimmer_template-instance_method" title="#slimmer_template (instance method)">- (Object) <strong>slimmer_template</strong>(template_name) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class="inline">
-<p>Set the template to use.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-
-
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="slimmer_template-instance_method">
-  
-    - (<tt>Object</tt>) <strong>slimmer_template</strong>(template_name) 
-  
-
-  
-
-  
-</h3>
-<div class="docstring">
-  <div class="discussion">
-    
-<p>Set the template to use</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>
-<span class="kw">class</span> <span class="const">MyController</span> <span class="op">&lt;</span> <span class="const">ApplicationController</span>
-  <span class="id identifier rubyid_include">include</span> <span class="const">Slimmer</span><span class="op">::</span><span class="const">Template</span>
-
-  <span class="kw">def</span> <span class="id identifier rubyid_index">index</span>
-    <span class="id identifier rubyid_slimmer_template">slimmer_template</span> <span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">header_footer_only</span><span class="tstring_end">'</span></span>
-  <span class="kw">end</span>
-<span class="kw">end</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class="name">template_name</span>
-      
-      
-        <span class="type">(<tt>String</tt>)</span>
-      
-      
-      
-        —
-        <div class="inline">
-<p>the template in <code>static</code> to use</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-  <p class="tag_title">See Also:</p>
-  <ul class="see">
-    
-      <li><a href="https://github.com/alphagov/static/blob/master/doc/slimmer_templates.md" target="_parent" title="https://github.com/alphagov/static/blob/master/doc/slimmer_templates.md">https://github.com/alphagov/static/blob/master/doc/slimmer_templates.md</a></li>
-    
-  </ul>
-
-</div>
-</div>
-    
-  </div>
-
-
-<h2>Module: Slimmer::Template::ClassMethods
-  
-  
-  
-</h2>
-
-
-
-
-<div class="docstring">
-  <div class="discussion">
-    
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-
-
-
-
-
-
-  
-    <h2>
-      Instance Method Summary
-      
-    </h2>
-
-    <ul class="summary">
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#slimmer_template-instance_method" title="#slimmer_template (instance method)">- (Object) <strong>slimmer_template</strong>(template_name) </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class="inline">
-<p>Set the template to use.</p>
-</div></span>
-  
-</li>
-
-      
-    </ul>
-  
-
-
-
-  <div id="instance_method_details" class="method_details_list">
-    <h2>Instance Method Details</h2>
-
-    
-      <div class="method_details first">
-  <h3 class="signature first" id="slimmer_template-instance_method">
-  
-    - (<tt>Object</tt>) <strong>slimmer_template</strong>(template_name) 
-  
-
-  
-
-  
-</h3>
-<div class="docstring">
-  <div class="discussion">
-    
-<p>Set the template to use</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-  <div class="examples">
-    <p class="tag_title">Examples:</p>
-    
-      
-      <pre class="example code"><code>
-<span class="kw">class</span> <span class="const">MyController</span> <span class="op">&lt;</span> <span class="const">ApplicationController</span>
-  <span class="id identifier rubyid_include">include</span> <span class="const">Slimmer</span><span class="op">::</span><span class="const">Template</span>
-  <span class="id identifier rubyid_slimmer_template">slimmer_template</span> <span class="tstring"><span class="tstring_beg">'</span><span class="tstring_content">header_footer_only</span><span class="tstring_end">'</span></span>
-<span class="kw">end</span></code></pre>
-    
-  </div>
-<p class="tag_title">Parameters:</p>
-<ul class="param">
-  
-    <li>
-      
-        <span class="name">template_name</span>
-      
-      
-        <span class="type">(<tt>String</tt>)</span>
-      
-      
-      
-        —
-        <div class="inline">
-<p>the template in <code>static</code> to use</p>
-</div>
-      
-    </li>
-  
-</ul>
-
-
-  <p class="tag_title">See Also:</p>
-  <ul class="see">
-    
-      <li><a href="https://github.com/alphagov/static/blob/master/doc/slimmer_templates.md" target="_parent" title="https://github.com/alphagov/static/blob/master/doc/slimmer_templates.md">https://github.com/alphagov/static/blob/master/doc/slimmer_templates.md</a></li>
-    
-  </ul>
 
 </div>
 </div>
