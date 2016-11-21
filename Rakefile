@@ -105,6 +105,11 @@ task :generate_pinfile_graph_data do
   end
 end
 
+task :dictionary do
+  json = JSON.pretty_generate(YAML.load_file('_config/dictionary.yml'))
+  File.write("_data/dictionary.json", json)
+end
+
 task :build => [
   :build_dashboard,
   :generate_schema_docs,
@@ -114,4 +119,5 @@ task :build => [
   :fetch_gem_documentation,
   :generate_word_graph,
   :generate_pinfile_graph_data,
+  :dictionary,
 ]
