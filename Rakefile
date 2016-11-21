@@ -81,6 +81,16 @@ task :fetch_styleguides do
   StyleGuideFetcher.new.fetch_guides
 end
 
+task :generate_pinfile_graph_data do
+  begin
+    puts "Generating dependency data for apps"
+    require_relative './lib/bowler_graph'
+    BowlerGraph.new.generate
+  rescue => e
+    puts "Couldn't generate data: #{e.message}"
+  end
+end
+
 task :build => [
   :build_dashboard,
   :generate_schema_docs,
@@ -88,5 +98,6 @@ task :build => [
   :fetch_rummager_docs,
   :fetch_styleguides,
   :fetch_gem_documentation,
-  :generate_word_graph
+  :generate_word_graph,
+  :generate_pinfile_graph_data,
 ]
