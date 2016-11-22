@@ -1,4 +1,10 @@
-<!-- This file was automatically generated. DO NOT EDIT DIRECTLY. --> This document outlines the Publishing API's model in moderate detail and
+---
+layout: api_layout
+title: Publishing API Model
+source_url: https://github.com/alphagov/publishing-api/blob/master/doc/model.md
+edit_url: https://github.com/alphagov/publishing-api/edit/master/doc/model.md
+---
+ <!-- This file was automatically generated. DO NOT EDIT DIRECTLY. --> This document outlines the Publishing API's model in moderate detail and
 explains some of the design decisions and business needs for it.
 
 Index:

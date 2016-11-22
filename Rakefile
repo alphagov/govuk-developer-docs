@@ -28,7 +28,7 @@ task :fetch_publishing_api_docs do
   markdown = Utils.remove_first_line(doc.fetch)
 
   # keep current links working
-  markdown.gsub!('model.md#', 'publishing-api-model.html#')
+  markdown.gsub!('model.md#', '{{ site.baseurl }}/apis/publishing-api-model/#')
 
   frontmatter = Utils.frontmatter(
     layout: 'api_layout',
@@ -49,7 +49,7 @@ task :fetch_publishing_api_docs do
     edit_url: doc.edit_url,
   )
 
-  markdown = "#{Utils::DO_NOT_EDIT} #{markdown}"
+  markdown = "#{frontmatter} #{Utils::DO_NOT_EDIT} #{markdown}"
   File.write('_apis/publishing-api-model.md', markdown)
 end
 

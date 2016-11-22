@@ -81,29 +81,29 @@ If the request is successful, this endpoint will respond with the
 presented content item and [warnings](#warnings).
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Specifies the `content_id` of the content to be created or updated.
 
 ### JSON attributes
-- [`access_limited`](publishing-api-model.html#access_limited) *(optional)*
+- [`access_limited`]({{ site.baseurl }}/apis/publishing-api-model/#access_limited) *(optional)*
   - A JSON object with a key of "users" the value of which is a array of UUIDs
     identifying users.
   - If provided, only the specified users will be able to view the content item
     on the draft frontend applications. It has no effect on live content.
-- [`analytics_identifier`](publishing-api-model.html#analytics_identifier) *(optional)*
+- [`analytics_identifier`]({{ site.baseurl }}/apis/publishing-api-model/#analytics_identifier) *(optional)*
   - An identifier to track the content item in analytics software.
-- [`base_path`](publishing-api-model.html#base_path) *(conditionally required)*
+- [`base_path`]({{ site.baseurl }}/apis/publishing-api-model/#base_path) *(conditionally required)*
   - Required if `schema_name` (or `format`) is not one of "contact" or
     "government".
   - The path that this item will use on [GOV.UK](https://www.gov.uk).
 - `change_note` *(optional)*
-  - Specifies the [change note](publishing-api-model.html#change_notes).
+  - Specifies the [change note]({{ site.baseurl }}/apis/publishing-api-model/#change_notes).
   - Ignored if the `update_type` is not major.
 - `description` *(optional)*
   - A description of the content that can be displayed publicly.
   - TODO: verify what this is meant for and does, and if this is a string or a
     JSON object. Validations appear to differ with database.
-- [`details`](publishing-api-model.html#details) *(conditionally required, default: {})*
+- [`details`]({{ site.baseurl }}/apis/publishing-api-model/#details) *(conditionally required, default: {})*
   - JSON object representing data specific to the `document_type`.
   - Validation for this can occur through the schema referenced in
     `schema_name`.
@@ -117,10 +117,10 @@ presented content item and [warnings](#warnings).
       `change_history`, then the `note` with the latest coresponding
       `public_timestamp` is used.
   - TODO: verify the validation on this field.
-- [`document_type`](publishing-api-model.html#document_type) *(conditionally required)*
+- [`document_type`]({{ site.baseurl }}/apis/publishing-api-model/#document_type) *(conditionally required)*
   - TODO: Add description.
   - Required if `format` is not provided.
-- [`format`](publishing-api-model.html#format) **Deprecated** *(conditionally required)*
+- [`format`]({{ site.baseurl }}/apis/publishing-api-model/#format) **Deprecated** *(conditionally required)*
   - Superseded by the `document_type` and `schema_name` fields.
   - This is required if either `document_type` or `schema_name` is not
     specified.
@@ -131,44 +131,44 @@ presented content item and [warnings](#warnings).
   - If omitted and `update_type` is "major" or "minor" `last_edited_at` will be
     set to the current time.
   - TODO: What should happen if the update_type is changed in a later request?
-- [`locale`](publishing-api-model.html#locale) *(optional, default: "en")*
+- [`locale`]({{ site.baseurl }}/apis/publishing-api-model/#locale) *(optional, default: "en")*
   - Accepts: An available locale from the [Rails I18n gem][i18n-gem]
   - Specifies the locale of the content item.
-- [`need_ids`](publishing-api-model.html#need_ids) *(optional)*
+- [`need_ids`]({{ site.baseurl }}/apis/publishing-api-model/#need_ids) *(optional)*
   - An array of user need ids from the [Maslow application][maslow-repo]
-- [`phase`](publishing-api-model.html#phase) *(optional, default: "live")*
+- [`phase`]({{ site.baseurl }}/apis/publishing-api-model/#phase) *(optional, default: "live")*
   - Accepts: "alpha", "beta", "live"
   - TODO: What is this for?
-- [`previous_version`](publishing-api-model.html#previous_version) *(optional, recommended)*
+- [`previous_version`]({{ site.baseurl }}/apis/publishing-api-model/#previous_version) *(optional, recommended)*
   - Used to ensure that the most recent version of the draft is being updated.
-- [`public_updated_at`](publishing-api-model.html#public_updated_at) *(conditionally required)*
+- [`public_updated_at`]({{ site.baseurl }}/apis/publishing-api-model/#public_updated_at) *(conditionally required)*
   - Required if `document_type` (or `format`) is not "contact" or "government".
   - An [ISO 8601][iso-8601] formatted timestamp should be provided, although
     [other formats][to-time-docs] may be accepted.
   - The publicly shown date that this content item was last edited at.
   - TODO: Check whether this validation is enforced in the API.
-- [`publishing_app`](publishing-api-model.html#publishing_app) *(required)*
+- [`publishing_app`]({{ site.baseurl }}/apis/publishing-api-model/#publishing_app) *(required)*
   - The name of the application making this request, words separated with
     hyphens.
-- [`redirects`](publishing-api-model.html#redirects) *(conditionally required)*
+- [`redirects`]({{ site.baseurl }}/apis/publishing-api-model/#redirects) *(conditionally required)*
   - Required for a `document_type` (or `format`) of "redirect".
   - An array of redirect values. (TODO: link directly to example)
-- [`rendering_app`](publishing-api-model.html#rendering_app) *(conditionally required)*
+- [`rendering_app`]({{ site.baseurl }}/apis/publishing-api-model/#rendering_app) *(conditionally required)*
   - Required for a `document_type` (or `format`) that is not "redirect" or
     "gone".
   - The hostname for the frontend application that will render this content
     item.
-- [`routes`](publishing-api-model.html#routes) *(conditionally required)*
+- [`routes`]({{ site.baseurl }}/apis/publishing-api-model/#routes) *(conditionally required)*
   - Required for a `document_type` (or `format`) that is not "redirect".
   - An array of route values. (TODO: link directly to example)
-- [`schema_name`](publishing-api-model.html#schema_name) *(conditionally required)*
+- [`schema_name`]({{ site.baseurl }}/apis/publishing-api-model/#schema_name) *(conditionally required)*
   - Required if `format` is not provided.
   - The name of the [GOV.UK content schema][govuk-content-schemas-repo]
     that the request body will be validated against.
-- [`title`](publishing-api-model.html#title) *(conditionally required)*
+- [`title`]({{ site.baseurl }}/apis/publishing-api-model/#title) *(conditionally required)*
   - Required for a `document_type` (or `format`) that is not "redirect" or
     "gone".
-- [`update_type`](publishing-api-model.html#update_type) *(optional)*
+- [`update_type`]({{ site.baseurl }}/apis/publishing-api-model/#update_type) *(optional)*
   - Accepts: "major", "minor", "republish"
   - TODO: Check this is validated against.
 
@@ -201,15 +201,15 @@ item will be sent to the live content store. Uses
 [optimistic-locking](#optimistic-locking-previous_version).
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the draft content item to publish.
 
 ### JSON attributes
-- [`update_type`](publishing-api-model.html#update_type) *(conditionally required)*
+- [`update_type`]({{ site.baseurl }}/apis/publishing-api-model/#update_type) *(conditionally required)*
   - Accepts: "major", "minor", "republish"
   - Will fallback to the `update_type` set when the draft was created if not
     specified in the request.
-- [`locale`](publishing-api-model.html#locale) *(optional, default: "en")*
+- [`locale`]({{ site.baseurl }}/apis/publishing-api-model/#locale) *(optional, default: "en")*
   - Accepts: An available locale from the [Rails I18n gem][i18n-gem]
   - Specifies the locale of the content item to be published.
 - `previous_version` *(optional, recommended)*
@@ -224,7 +224,7 @@ item will be sent to the live content store. Uses
 - For an `update_type` of "major" the `public_updated_at` field will be updated
   to the current time.
 - For an `update_type` other than "major":
-  - If it exists, the [change note](publishing-api-model.html#change-notes) will be
+  - If it exists, the [change note]({{ site.baseurl }}/apis/publishing-api-model/#change-notes) will be
     deleted, as change notes are only for major updates.
 - If the content item has a non-blank `base_path`:
   - If the `base_path` of the draft item differs to the published version of
@@ -248,7 +248,7 @@ updated or removed from the live content store depending on the unpublishing
 type. Uses [optimistic-locking](#optimistic-locking-previous_version).
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item to unpublish.
 
 ### JSON attributes
@@ -257,14 +257,14 @@ type. Uses [optimistic-locking](#optimistic-locking-previous_version).
   - Specifies that only a draft content item will be unpublished.
 - `alternative_path` *(conditionally required)*
   - Required for a `type` of "redirect", Optional for a `type` of "gone".
-  - If specified, this should be [`base_path`](publishing-api-model.html#base_path).
+  - If specified, this should be [`base_path`]({{ site.baseurl }}/apis/publishing-api-model/#base_path).
 - `discard_drafts` *(optional)*
   - Boolean value, cannot be `true` if `allow_drafts` is also `true`.
   - Specifies that if a draft exists, it will be discarded.
 - `explanation` *(conditionally required)*
   - Required for a `type` of "withdrawal", Optional for a type of "gone".
   - Message that will be displayed publicly on the page that has been unpublished.
-- [`locale`](publishing-api-model.html#locale) *(optional, default: "en")*
+- [`locale`]({{ site.baseurl }}/apis/publishing-api-model/#locale) *(optional, default: "en")*
   - Accepts: An available locale from the [Rails I18n gem][i18n-gem]
   - Specifies the locale of the content item to unpublish.
 - `previous_version` *(optional, recommended)*
@@ -312,11 +312,11 @@ the draft content store with the published item, if one exists. Uses
 [optimistic-locking](#optimistic-locking-previous_version).
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item with a draft state.
 
 ### JSON attributes
-- [`locale`](publishing-api-model.html#locale) *(optional, default: "en")*
+- [`locale`]({{ site.baseurl }}/apis/publishing-api-model/#locale) *(optional, default: "en")*
   - Accepts: An available locale from the [Rails I18n gem][i18n-gem]
   - Specifies which locale of the draft content item to delete.
 - `previous_version` *(optional, recommended)*
@@ -336,7 +336,7 @@ parameters. If content items exists in both a published and a draft state, the
 draft is returned.
 
 ### Query string parameters
-- [`document_type`](publishing-api-model.html#document_type) *(required)*
+- [`document_type`]({{ site.baseurl }}/apis/publishing-api-model/#document_type) *(required)*
   - The type of content item to return.
 - `fields[]` *(optional)*
   - Accepts an array of: "analytics_identifier", "base_path",
@@ -344,7 +344,7 @@ draft is returned.
     "public_updated_at", "schema_name", "title"
   - Determines which fields will be returned in the response, if omitted all
     fields will be returned.
-- [`locale`](publishing-api-model.html#locale) *(optional, default "en")*
+- [`locale`]({{ site.baseurl }}/apis/publishing-api-model/#locale) *(optional, default "en")*
   - Accepts: An available locale from the [Rails I18n gem][i18n-gem]
   - Used to restrict content items to a given locale.
 - `order` *(optional, default: "-public_updated_at")*
@@ -356,8 +356,8 @@ draft is returned.
 - `per_page` *(optional, default: 50)*
   - The number of results to be shown on a given page.
 - `q` *(optional)*
-  - Search term to match against [`title`](publishing-api-model.html#title) and
-    [`base_path`](publishing-api-model.html#base_path) fields.
+  - Search term to match against [`title`]({{ site.baseurl }}/apis/publishing-api-model/#title) and
+    [`base_path`]({{ site.baseurl }}/apis/publishing-api-model/#base_path) fields.
 - `publishing_app` *(optional)*
   - Used to restrict content items to those for a given publishing app.
 - `states` *(optional)*
@@ -374,11 +374,11 @@ If the returned item is in the draft state, [warnings](#warnings) may be
 included within the response.
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item to be returned.
 
 ### Query string parameters
-- [`locale`](publishing-api-model.html#locale) *(optional, default "en")*
+- [`locale`]({{ site.baseurl }}/apis/publishing-api-model/#locale) *(optional, default "en")*
   - Accepts: An available locale from the [Rails I18n gem][i18n-gem]
   - Used to return a specific locale.
 - `version` *(optional)*
@@ -397,7 +397,7 @@ targeting a draft version of the content item but can be specified to target
 live version. Uses [optimistic-locking](#optimistic-locking-previous_version).
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies a content item.
 
 ### JSON attributes
@@ -407,7 +407,7 @@ live version. Uses [optimistic-locking](#optimistic-locking-previous_version).
   - Provided in CamelCase
 - `draft` (optional, default: "true")
   - Whether to target the live or draft version of a content item.
-- [`locale`](publishing-api-model.html#locale) *(optional, default: "en")*
+- [`locale`]({{ site.baseurl }}/apis/publishing-api-model/#locale) *(optional, default: "en")*
   - Accepts: An available locale from the [Rails I18n gem][i18n-gem]
   - Specifies which locale of the draft content item to delete.
 - `previous_version` *(optional, recommended)*
@@ -428,12 +428,12 @@ and they are not associated with a content item's locale or version. The
 ordering of links in the request is preserved.
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item the links are for.
 
 ### JSON attributes
 - `links` *(required)*
-  - A JSON object containing arrays of [`content_id`](publishing-api-model.html#content_id)s for
+  - A JSON object containing arrays of [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)s for
     each `link_type`.
   - An empty array for a `link_type` will delete that `link_type`.
 
@@ -464,7 +464,7 @@ Retrieves the link set for the given `content_id`. Returns arrays of
 The ordering of the returned links matches the ordering when they were created.
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item links will be retrieved for.
 
 ## `GET /v2/expanded-links/:content_id`
@@ -475,7 +475,7 @@ Retrieves the expanded link set for the given `content_id`. Returns arrays of
 details for each linked content item in groupings of `link_type`.
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item links will be retrieved for.
 
 ## `GET /v2/linked/:content_id`
@@ -486,7 +486,7 @@ Retrieves all content items that link to the given `content_id` for some
 `link_type`.
 
 ### Path parameters
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item that may have been linked to.
 
 ### Query string parameters
@@ -520,14 +520,14 @@ a mapping of `base_path` to `content_id`.
 
 ### POST parameters:
 - `base_paths[]` *(required)*
-  - An array of [`base_path`](publishing-api-model.html#base_path)s to query by.
+  - An array of [`base_path`]({{ site.baseurl }}/apis/publishing-api-model/#base_path)s to query by.
 
 ## `GET /debug/:content_id`
 
 Displays debug information for `content_id`.
 
 ### Path parameters:
-- [`content_id`](publishing-api-model.html#content_id)
+- [`content_id`]({{ site.baseurl }}/apis/publishing-api-model/#content_id)
   - Identifies the content item to debug.
 
 ### Usage:
@@ -552,11 +552,11 @@ http://publishing-api.integration.publishing.service.gov.uk:8888/debug/f141fa95-
 Reserves a path for a publishing application. Returns success or failure only.
 
 ### Path parameters
-- [`base_path`](publishing-api-model.html#base_path)
+- [`base_path`]({{ site.baseurl }}/apis/publishing-api-model/#base_path)
   - Identifies the path that will be reserved
 
 ### JSON parameters:
-- [`publishing_app`](publishing-api-model.html#publishing_app) *(required)*
+- [`publishing_app`]({{ site.baseurl }}/apis/publishing-api-model/#publishing_app) *(required)*
   - The name of the application making this request, words separated with hyphens.
 - `override_existing` (optional)
   - Explicitly claim a path that has already been reserved by a different
