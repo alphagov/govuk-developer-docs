@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta name="viewport" content="width=device-width">
+
+    <title>
+      {% if page.title == null %}
+        {{ site.name }}
+      {% else %}
+        {{ page.title }} - {{ site.name }}
+      {% endif %}
+    </title>
+
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/stolen-from-docs.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/syntax.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/extra.css">
+
+    <script src="{{ site.baseurl }}/assets/js/application.js"></script>
+  </head>
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+          <div class="header__container">
+            <div class="header__brand">
+              <a href="{{ site.baseurl }}/">
+                <span class="govuk-logo">
+                  <img class="govuk-logo__printable-crown" src="{{ site.baseurl }}/assets/images/gov.uk_logotype_crown_invert_trans.png" height="32" width="36">
+                  GOV.UK
+                </span>
+                <span class="header__title">
+                  Publishing <span class="phase-banner">Alpha Documentation</span>
+                </span>
+              </a>
+            </div>
+
+            <input class="header__navigation-toggle-checkbox" type="checkbox" id="show-menu" />
+            <label class="header__navigation-toggle" for="show-menu">
+              Menu
+            </label>
+
+            <nav id="navigation" class="header__navigation">
+              <ul>
+                {% assign navigation_pages = site.html_pages | sort: 'navigation_weight' %}
+                {% for p in navigation_pages %}
+                  {% if p.navigation_weight %}
+                    <li {% if p.url == page.url %}class="active"{% endif %}>
+                      <a href="{{site.baseurl}}{{ p.url }}">
+                        {{ p.title }}
+                      </a>
+                    </li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </nav>
+          </div>
+        </header>
+      </div>
+
+      <div class="app-pane__body">
+        {{ content }}
+      </div>
+    </div>
+  </body>
+</html>

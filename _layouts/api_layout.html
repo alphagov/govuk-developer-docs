@@ -1,0 +1,22 @@
+---
+layout: main
+---
+
+<div class="app-pane__toc">
+  <nav class="toc">
+    <ul>
+      {% for api in site.apis %}
+        <li>
+          <a href='{{ site.baseurl }}{{ api.url }}'>{{ api.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</div>
+
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <h1 class="page-title">{{ page.title }}</h1>
+    {{ content }}
+  </div>
+</div>

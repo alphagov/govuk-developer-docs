@@ -1,0 +1,46 @@
+---
+layout: content_schema
+title: <%= schema_name %>
+---
+
+<%= Utils::DO_NOT_EDIT %>
+
+## Details hash
+
+What makes this schema special.
+
+<%= table_of_properties(publisher_properties.dig('details', 'properties')) %>
+
+<% if renderable? %>
+
+---
+
+## Links
+
+The links for this item.
+
+[Schema on GitHub](https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/dist/formats/<%= schema_name %>/publisher_v2/links.json)
+
+<%= table_of_properties((links_properties || {}).dig('links', 'properties')) %>
+
+---
+
+## Frontend schema
+
+This is the schema for the payload from the content-store.
+
+[Schema on GitHub](https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/dist/formats/<%= schema_name %>/frontend/schema.json)
+
+<%= table_of_properties(frontend_properties) %>
+
+---
+
+<% end %>
+
+## Full payload
+
+This is what publisher apps send to the publishing-api.
+
+[Schema on GitHub](https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/dist/formats/<%= schema_name %>/publisher_v2/schema.json)
+
+<%= table_of_properties(publisher_properties) %>

@@ -1,0 +1,110 @@
+[
+  {
+    "word": "Content Item",
+    "synonyms": "an edition",
+    "implementation_detail": "Yes",
+    "description": "Captures a version of a document, or representation of some entity required to render GOV.UK."
+  },
+  {
+    "word": "Content",
+    "synonyms": "",
+    "implementation_detail": "No",
+    "description": "The data, generally words, that an editor has written and wants to eventually publish for users"
+  },
+  {
+    "word": "Content ID",
+    "synonyms": "Artefact",
+    "implementation_detail": "Yes",
+    "description": "A unique identifier shared by content items which represent the same content. A content id may have content items in different states, locations and translations."
+  },
+  {
+    "word": "Base path",
+    "synonyms": "Slug, \"location",
+    "implementation_detail": "No",
+    "description": "A reserved URL on www.gov.uk that is associated with a content item."
+  },
+  {
+    "word": "Publishing",
+    "synonyms": "",
+    "implementation_detail": "No",
+    "description": "Putting content live on GOV.UK"
+  },
+  {
+    "word": "Republishing",
+    "synonyms": "",
+    "implementation_detail": "Yes",
+    "description": "Sending content through the publishing platform again to fix something or change its content store representation."
+  },
+  {
+    "word": "Unpublishing",
+    "synonyms": "",
+    "implementation_detail": "No",
+    "description": "Taking content off the live site, because it was published in error, or is being redirected to a better form of the content."
+  },
+  {
+    "word": "Withdrawing",
+    "synonyms": "",
+    "implementation_detail": "No",
+    "description": "Putting a big notice on a page because it's no longer current/accurate"
+  },
+  {
+    "word": "Tagging",
+    "synonyms": "",
+    "implementation_detail": "No",
+    "description": "Lets editors to capture how a piece of content relates to another piece of content"
+  },
+  {
+    "word": "Document Type",
+    "synonyms": "Format, Content Type",
+    "implementation_detail": "No",
+    "description": "A way to classify content items in publishing applications. Sometimes displayed to the end user."
+  },
+  {
+    "word": "Schema",
+    "synonyms": "",
+    "implementation_detail": "Yes",
+    "description": "A JSON schema representation of a kind of document. Usually maps one to one with document type."
+  },
+  {
+    "word": "Details",
+    "synonyms": "Details hash",
+    "implementation_detail": "Yes",
+    "description": "Part of the schema that captures content-y data in a way that is opaque to the publishing platform, but understandable by a rendering application."
+  },
+  {
+    "word": "Links",
+    "synonyms": "Links hash",
+    "implementation_detail": "Yes",
+    "description": "Part of the schema that captures to other content that has been tagged to the content."
+  },
+  {
+    "word": "Expanded links",
+    "synonyms": "",
+    "implementation_detail": "Yes",
+    "description": "Allows rendering applications to see titles and descriptions of linked documents, and follow links recursively, without having to make multiple content store requests."
+  },
+  {
+    "word": "Dependency Resolution",
+    "synonyms": "",
+    "implementation_detail": "Yes",
+    "description": "The process of recursively following dependencies (links) between documents to work out which expanded links need updating."
+  },
+  {
+    "word": "Publishing Application",
+    "synonyms": "Backend application",
+    "implementation_detail": "No",
+    "description": "Associates a document with the application that was used to publish it."
+  },
+  {
+    "word": "Rendering Application",
+    "synonyms": "Frontend application",
+    "implementation_detail": "Yes",
+    "description": "Associates a document with the application that was used to render it"
+  },
+  {
+    "word": "Route",
+    "synonyms": "",
+    "implementation_detail": "Yes",
+    "description": "A record that describes how the router should hand control rendering over to a rendering application based on URL"
+  }
+]

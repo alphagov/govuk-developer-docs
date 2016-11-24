@@ -1,41 +1,21 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <title>
-      {% if page.title == null %}
-        {{ site.name }}
-      {% else %}
-        {{ page.title }} - {{ site.name }}
-      {% endif %}
-    </title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/fonts.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/govuk-template.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css">
-  </head>
-  <body>
-    <div class="container">
-      <main id="page-container" role="main">
-        <div class="column-full-width">
-          <h1 class="page-title">GOV.UK: {{ page.title }}</h1>
+---
+layout: main
+---
 
-          <ul class='navigation'>
-            {% for p in site.pages %}
-              {% if p.title != nil %}
-              <li>
-                <a {% if p.url == page.url %}class="active"{% endif %} href="{{ p.path }}">
-                  {{ p.title }}
-                </a>
-              </li>
-              {% endif %}
-            {% endfor %}
-          </ul>
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <h1 class="page-title">{{ page.title }}</h1>
 
-          {{ content }}
-        </div>
-      </main>
-    </div>
-    </body>
-</html>
+    <p>
+    {% if page.source_url %}
+      <a href='{{ page.source_url }}'>page source</a>
+    {% endif %}
+
+    {% if page.edit_url %}
+      <a href='{{ page.edit_url }}'>edit page</a>
+    {% endif %}
+    </p>
+
+    {{ content }}
+  </div>
+</div>
