@@ -3,7 +3,7 @@
 > ⚠️ This project is being rebuilt and is undergoing rapid change. File an issue before opening a PR.
 
 
-Live at: [alphagov.github.com/govuk-developers](https://alphagov.github.com/govuk-developers)
+Live at: https://govuk-tech-docs.herokuapp.com (normal GDS username/password)
 
 ## Technical documentation
 
