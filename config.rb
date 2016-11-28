@@ -14,9 +14,6 @@ activate :sprockets
 configure :build do
 end
 
-# Set the directory to /docs so GitHub can serve it
-set :build_dir, 'docs'
-
 require_relative './lib/dashboard/dashboard'
 
 helpers do

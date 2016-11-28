@@ -15,3 +15,6 @@ gem 'redcarpet', '~> 3.3.2'
 # GitHub API
 gem 'octokit'
 gem 'faraday-http-cache'
+
+# For hosting on Heroku
+gem 'rack-contrib'
