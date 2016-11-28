@@ -1,11 +1,13 @@
 - name: "Applications"
   sections:
-    - name: Publisher applications
+    - name: Publishing applications
       repos:
         - collections-publisher
         - contacts-admin
         - content-tagger
         - hmrc-manuals-api
+        - local-links-manager
+        - manuals-publisher
         - maslow
         - panopticon
         - policy-publisher
@@ -25,30 +27,17 @@
         - imminence
         - publishing-api
         - rummager
-
-    - name: Infrastructure
-      repos:
-        - router
+        - asset-manager
         - router-api
+        - support-api
 
-    - name: Utility apps
+    - name: Admin applications
       repos:
         - search-admin
         - signonotron2
-        - recommended-links
-      sites:
-        - name: gds/router-data
-          url: https://github.gds/gds/router-data
-          description: Send routes directly to the router-api (deprecated)
-
-    - name: Support
-      repos:
         - support
-        - support-api
 
-- name: Front end applications
-  sections:
-    - name: Frontend Applications
+    - name: Frontend applications
       repos:
         - business-support-finder
         - calculators
@@ -68,10 +57,6 @@
         - smart-answers
         - specialist-frontend
         - whitehall
-
-    - name: For assets
-      repos:
-        - asset-manager
         - static
 
 - name: Developing
@@ -80,10 +65,12 @@
       repos:
         - govuk-rails-app-template
         - govuk_admin_template
-        - govuk_prototype_kit
 
     - name: Running on the VM
       sites:
+        - name: Using the GOV.UK Development VM
+          url: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
+          description: How to get your development environment running
         - name: gds/development
           url: https://github.gds/gds/development
           description: Tools to run GOV.UK apps in the VM
@@ -91,32 +78,82 @@
       repos:
         - gds-boxen
 
-    - name: Testing
+    - name: Schemas
       repos:
-        - govuk-content-schemas
+        - govuk_schemas_gem
         - govuk-content-schema-test-helpers
+        - govuk-content-schemas
 
     - name: Gems &amp; Libraries
       repos:
         - gds-api-adapters
-        - govuk_message_queue_consumer
-        - govuk_content_models
         - gds-sso
         - govspeak
+        - govuk_content_models
+        - govuk_message_queue_consumer
+        - govuk_sidekiq
+        - govuk-component-guide
         - plek
         - slimmer
 
-    - name: Quality
+    - name: Ensuring quality
       repos:
         - govuk_security_audit
         - govuk-lint
         - styleguides
 
-    - name: Frontend libraries
+- name: Infrastructure
+  sections:
+    - name: Routing
       repos:
-        - govuk-component-guide
+        - router
+        - authenticating-proxy
+      sites:
+        - name: gds/router-data
+          url: https://github.gds/gds/router-data
+          description: Send routes directly to the router-api (deprecated)
+
+    - name: Configuration
+      repos:
+        - govuk-puppet
+        - ci-puppet
+        - fabric-scripts
+
+    - name: Monitoring
+      repos:
+        - errbit
+        - kibana-gds
+        - sidekiq-monitoring
+
+    - name: Deployment
+      sites:
+        - name: gds/alphagov-deployment
+          url: https://github.gds/gds/alphagov-deployment
+          description: Capistrano scripts for deploying GOV.UK apps
+        - name: gds/deployment
+          url: https://github.gds/gds/deployment
+          description: Encrypted secrets for GOV.UK infrastucture
+
+      repos:
+        - release
+        - govuk-app-deployment
+
+- name: Team tools
+  sections:
+    - name: Team tools
+      repos:
+        - gds-hubot
+        - binaryberry/seal
+        - emmabeynon/github-trello-poster
+        - dsingleton/deploy-lag-radiator
+        - govuk-toolkit-chrome
+
+- name: Not GOV.UK (but GDS)
+  sections:
+    - name: Frontend toolkit
+      repos:
+        - govuk_prototype_kit
         - govuk_template
         - govuk_elements
         - govuk_frontend_toolkit
         - govuk_frontend_toolkit_gem
-        - govuk_frontend_toolkit_npm

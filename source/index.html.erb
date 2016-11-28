@@ -1,0 +1,49 @@
+---
+layout: default
+title: Dashboard
+navigation_weight: 1
+source_url: https://github.com/alphagov/govuk-developers/blob/master/data/dashboard.yml
+edit_url: https://github.com/alphagov/govuk-developers/edit/master/data/dashboard.yml
+---
+
+<div class="app-pane__toc">
+  <nav class="toc">
+    <ul>
+      <% dashboard.chapters.each do |chapter| %>
+        <li>
+          <a href='#<%= chapter.id %>'><%= chapter.name %></a>
+          <ul>
+            <% chapter.sections.each do |section| %>
+              <li>
+                <a href='#<%= section.id %>'><%= section.name %></a>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+
+<div class="app-pane__content">
+  <div id="content" class="technical-documentation">
+    <%= partial 'partials/header' %>
+
+    <% dashboard.chapters.each do |chapter| %>
+      <h2 id='<%= chapter.id %>'><%= chapter.name %></h2>
+
+      <% chapter.sections.each do |section| %>
+        <h3 id='<%= section.id %>'><%= section.name %></h3>
+
+        <% section.entries.each do |entry| %>
+          <div class='entry'>
+            <a href='<%= entry.url %>'><%= entry.name %></a>
+            <small><%= entry.description %></small>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+
+    <%= partial 'partials/source' %>
+  </div>
+</div>

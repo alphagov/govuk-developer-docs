@@ -17,6 +17,10 @@ class GitHub
     end
   end
 
+  def self.client
+    @client ||= GitHub.new
+  end
+
 private
 
   def all_alphagov_repos
@@ -25,8 +29,16 @@ private
 
   def client
     @_github_client ||= begin
+      stack = Faraday::RackBuilder.new do |builder|
+        builder.response :logger
+        builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
+        builder.use Octokit::Response::RaiseError
+        builder.adapter Faraday.default_adapter
+      end
+
+      Octokit.middleware = stack
+
       github_client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
-      github_client.login
       github_client.auto_paginate = true
       github_client
     end
