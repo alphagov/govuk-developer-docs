@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby File.read('.ruby-version').chomp
+
 gem 'rake'
 gem 'rspec', '~> 3.5'
 gem 'webmock', '~> 2.1'
