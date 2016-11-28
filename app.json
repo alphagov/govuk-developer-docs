@@ -1,0 +1,35 @@
+{
+  "name": "govuk-developers",
+  "scripts": {
+  },
+  "env": {
+    "AUTH_PASSWORD": {
+      "required": true
+    },
+    "AUTH_USERNAME": {
+      "required": true
+    },
+    "GITHUB_TOKEN": {
+      "required": true
+    },
+    "LANG": {
+      "required": true
+    },
+    "RACK_ENV": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/ruby"
+    }
+  ]
+}
