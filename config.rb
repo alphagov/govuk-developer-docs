@@ -15,6 +15,7 @@ configure :build do
 end
 
 require_relative './lib/dashboard/dashboard'
+require_relative './lib/external_doc'
 
 helpers do
   def dashboard
