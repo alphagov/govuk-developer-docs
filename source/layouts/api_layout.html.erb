@@ -1,0 +1,17 @@
+<% wrap_layout :default do %>
+  <div class="app-pane__toc">
+    <nav class="toc">
+      <ul>
+        <li><%= link_to 'Search API', '/apis/search-api.html' %></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="app-pane__content">
+    <div id="content" class="technical-documentation">
+      <%= partial 'partials/header' %>
+      <%= yield %>
+      <%= partial 'partials/source' %>
+    </div>
+  </div>
+<% end %>
