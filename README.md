@@ -27,7 +27,7 @@ To run the app locally:
 ./startup.sh
 ```
 
-The app will appear at http://localhost:4567/
+The app will appear at [http://localhost:4567/](http://localhost:4567/)
 
 You may need a GitHub auth token if you find yourself rate limited. You can create one here:
 
