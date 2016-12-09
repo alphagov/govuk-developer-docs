@@ -3,6 +3,14 @@
     <nav class="toc">
       <ul>
         <li><%= link_to 'Search API', '/apis/search-api.html' %></li>
+        <li>
+          <%= link_to 'Publishing API', '/apis/publishing-api.html' %>
+          <ul>
+            <% publishing_api_pages.each do |page| %>
+              <li><%= link_to page.title, "/apis/publishing-api/#{page.filename}.html" %></li>
+            <% end %>
+          </ul>
+        </li>
       </ul>
     </nav>
   </div>
@@ -10,8 +18,15 @@
   <div class="app-pane__content">
     <div id="content" class="technical-documentation">
       <%= partial 'partials/header' %>
+      <% if locals.key?(:page) %>
+        <%= partial 'partials/source', page: page %>
+      <% end %>
+
       <%= yield %>
-      <%= partial 'partials/source' %>
+
+      <% if locals.key?(:page) %>
+        <%= partial 'partials/source', page: page %>
+      <% end %>
     </div>
   </div>
 <% end %>

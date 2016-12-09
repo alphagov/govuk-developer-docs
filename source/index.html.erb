@@ -44,6 +44,6 @@ edit_url: https://github.com/alphagov/govuk-developers/edit/master/data/dashboar
       <% end %>
     <% end %>
 
-    <%= partial 'partials/source' %>
+    <%= partial 'partials/source', locals: { page: current_page.data } %>
   </div>
 </div>
