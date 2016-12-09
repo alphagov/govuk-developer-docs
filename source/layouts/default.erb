@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width">
 
     <title>
-      <%= current_page.data.title %> - GOV.UK Developers Documentation
+      <%= locals.key?(:page_title) ? page_title : current_page.data.title %> - GOV.UK Developer Documentation
     </title>
 
     <link rel="stylesheet" href="/assets/css/stolen-from-docs.css">
@@ -41,7 +41,7 @@
             <nav id="navigation" class="header__navigation">
               <ul>
                 <% sitemap.resources.select { |p| p.data.navigation_weight }.sort_by { |p| p.data.navigation_weight }.each do |page| %>
-                  <li class="<%= current_page.path.start_with?(page.path) ? "active" : "" %>">
+                  <li class="<%= active_page?(page.path) ? "active" : "" %>">
                     <a href="<%= page.url %>">
                       <%= page.data.title %>
                     </a>
