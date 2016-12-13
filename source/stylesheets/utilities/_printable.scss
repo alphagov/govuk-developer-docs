@@ -1,0 +1,13 @@
+$is-print: false !default;
+
+@mixin screen {
+  @if not $is-print {
+    @content;
+  }
+}
+
+@mixin print {
+  @if $is-print {
+    @content;
+  }
+}

@@ -1,32 +1,44 @@
-<% wrap_layout :default do %>
-  <div class="app-pane__toc">
-    <nav class="toc">
-      <ul>
-        <li><%= link_to 'Search API', '/apis/search-api.html' %></li>
-        <li>
-          <%= link_to 'Publishing API', '/apis/publishing-api.html' %>
-          <ul>
-            <% publishing_api_pages.each do |page| %>
-              <li><%= link_to page.title, "/apis/publishing-api/#{page.filename}.html" %></li>
-            <% end %>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+<% wrap_layout :header_footer_only do %>
+  <div id="toc-heading" class="toc-show fixedsticky">
+    <a href="#toc" class="toc-show__label js-toc-show">
+      Table of contents <span class="toc-show__icon"></span>
+    </a>
   </div>
 
-  <div class="app-pane__content">
-    <div id="content" class="technical-documentation">
-      <%= partial 'partials/header' %>
-      <% if locals.key?(:page) %>
-        <%= partial 'partials/source', page: page %>
-      <% end %>
 
-      <%= yield %>
+  <div class="app-pane__body" data-module="highlighted-nav">
+    <div class="app-pane__toc">
+      <div class="toc" data-module="table-of-contents">
+        <a href="#" class="toc__close js-toc-close">Close</a>
+        <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+          <ul>
+            <li><%= link_to 'Search API', '/apis/search-api.html' %></li>
+            <li>
+              <%= link_to 'Publishing API', '/apis/publishing-api.html' %>
+              <ul>
+                <% publishing_api_pages.each do |page| %>
+                  <li><%= link_to page.title, "/apis/publishing-api/#{page.filename}.html" %></li>
+                <% end %>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
 
-      <% if locals.key?(:page) %>
-        <%= partial 'partials/source', page: page %>
-      <% end %>
+    <div class="app-pane__content">
+      <main id="content" class="technical-documentation" data-module="anchored-headings">
+        <%= partial 'partials/header' %>
+        <% if locals.key?(:page) %>
+          <%= partial 'partials/source', page: page %>
+        <% end %>
+
+        <%= yield %>
+
+        <% if locals.key?(:page) %>
+          <%= partial 'partials/source', page: page %>
+        <% end %>
+      </main>
     </div>
   </div>
 <% end %>

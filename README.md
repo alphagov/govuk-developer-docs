@@ -9,6 +9,19 @@ Live at: https://govuk-tech-docs.herokuapp.com (normal GDS username/password)
 
 This is a static site generated with Middleman.
 
+## Tech docs template
+
+This project uses the [tech-docs-template](https://github.com/alphagov/tech-docs-template).
+
+This means that some of the files (like the CSS, javascripts and layouts) are
+managed in the template and are not supposed to be modified here.
+
+You can pull down the latest version of the template by running:
+
+```
+bin/update
+```
+
 ### Dependencies
 
 - Ruby

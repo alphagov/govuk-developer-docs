@@ -1,0 +1,19 @@
+//  GOV.UK font stacks, referred to in typography.scss
+
+// Allow uppercase letters in font stack variable names
+// scss-lint:disable NameFormat
+
+// New Transport Light
+$NTA-Light: "nta", Arial, sans-serif;
+$NTA-Light-Tabular: "ntatabularnumbers", $NTA-Light;
+
+// Helvetica Regular
+$Helvetica-Regular: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+
+// Allow font stack to be overridden
+// Not all apps using toolkit use New Transport
+$toolkit-font-stack: $NTA-Light !default;
+$toolkit-font-stack-tabular: $NTA-Light-Tabular !default;
+
+// Font reset for print
+$Print-reset: sans-serif;

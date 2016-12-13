@@ -1,49 +1,60 @@
 ---
-layout: default
+layout: header_footer_only
 title: Dashboard
 navigation_weight: 1
 source_url: https://github.com/alphagov/govuk-developers/blob/master/data/dashboard.yml
 edit_url: https://github.com/alphagov/govuk-developers/edit/master/data/dashboard.yml
 ---
 
-<div class="app-pane__toc">
-  <nav class="toc">
-    <ul>
-      <% dashboard.chapters.each do |chapter| %>
-        <li>
-          <a href='#<%= chapter.id %>'><%= chapter.name %></a>
-          <ul>
-            <% chapter.sections.each do |section| %>
-              <li>
-                <a href='#<%= section.id %>'><%= section.name %></a>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-      <% end %>
-    </ul>
-  </nav>
+<div id="toc-heading" class="toc-show fixedsticky">
+  <a href="#toc" class="toc-show__label js-toc-show">
+    Table of contents <span class="toc-show__icon"></span>
+  </a>
 </div>
 
-<div class="app-pane__content">
-  <div id="content" class="technical-documentation">
-    <%= partial 'partials/header' %>
+<div class="app-pane__body" data-module="highlighted-nav">
+  <div class="app-pane__toc">
+    <div class="toc" data-module="table-of-contents">
+      <a href="#" class="toc__close js-toc-close">Close</a>
+      <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+        <ul>
+          <% dashboard.chapters.each do |chapter| %>
+            <li>
+              <a href='#<%= chapter.id %>'><%= chapter.name %></a>
+              <ul>
+                <% chapter.sections.each do |section| %>
+                  <li>
+                    <a href='#<%= section.id %>'><%= section.name %></a>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
+  </div>
 
-    <% dashboard.chapters.each do |chapter| %>
-      <h2 id='<%= chapter.id %>'><%= chapter.name %></h2>
+  <div class="app-pane__content">
+    <main id="content" class="technical-documentation" data-module="anchored-headings">
+      <%= partial 'partials/header' %>
 
-      <% chapter.sections.each do |section| %>
-        <h3 id='<%= section.id %>'><%= section.name %></h3>
+      <% dashboard.chapters.each do |chapter| %>
+        <h2 id='<%= chapter.id %>'><%= chapter.name %></h2>
 
-        <% section.entries.each do |entry| %>
-          <div class='entry'>
-            <a href='<%= entry.url %>'><%= entry.name %></a>
-            <small><%= entry.description %></small>
-          </div>
+        <% chapter.sections.each do |section| %>
+          <h3 id='<%= section.id %>'><%= section.name %></h3>
+
+          <% section.entries.each do |entry| %>
+            <div class='entry'>
+              <a href='<%= entry.url %>'><%= entry.name %></a>
+              <small><%= entry.description %></small>
+            </div>
+          <% end %>
         <% end %>
       <% end %>
-    <% end %>
 
-    <%= partial 'partials/source', locals: { page: current_page.data } %>
+      <%= partial 'partials/source', locals: { page: current_page.data } %>
+    </main>
   </div>
 </div>

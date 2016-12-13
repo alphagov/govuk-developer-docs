@@ -1,0 +1,129 @@
+.technical-documentation {
+  // Required for IE11 to render <main> correctly
+  display: block;
+  margin: 0 $gutter-half 10px;
+  max-width: 40em;
+
+  line-height: 1.6;
+
+  @include media(tablet) {
+    // We add 2 pixels to the gutter here to ensure there's sufficient spacing between
+    // an anchor link (see _anchored-heading.scss) on a heading and the left-hand pane.
+    margin: 0 ($gutter + 2px) $gutter;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    padding-top: $gutter-half;
+  }
+
+  img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+  }
+
+  ol, ul {
+    padding-left: $gutter-half;
+
+    @include media(desktop) {
+      padding-left: $gutter;
+    }
+  }
+
+  h1 {
+    border-top: 5px solid $text-colour;
+    margin-top: $gutter * 2;
+  }
+
+  h1:first-child {
+    border-top: none;
+    margin-top: 0;
+  }
+
+  blockquote {
+    background: $grey-4;
+    padding: $gutter-half;
+    margin: $gutter-half;
+    border-left: 5px solid $grey-3;
+  }
+
+  pre {
+    background: $code-00;
+    padding: 15px;
+    overflow: auto;
+    position: relative;
+    border: 1px solid $code-02;
+  }
+
+  pre code {
+    background: none;
+  }
+
+  code {
+    background: $code-01;
+    padding: 3px 3px;
+    border-radius: 3px;
+
+    // Handle long strings (URLs, long variable names, etc) by allowing them
+    // to break anywhere if required.
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+  }
+
+  .table-container {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  table {    
+    width: 100%;
+
+    margin-bottom: $gutter * 2;
+
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  th, td {
+    padding: $gutter-one-third $gutter-two-thirds $gutter-one-third 0;
+
+    background-color: transparent;
+    border-bottom: 1px solid $grey-2;
+    border-width: 0 0 1px 0;
+
+    @include core-16;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  th {
+    font-weight: bold;
+  }
+
+  td {
+    p, ul, ol {
+      margin: 0;
+    }
+    p+p, p+ul, p+ol,
+    ul+p, ul+ol,
+    ol+p {
+      margin-top: $gutter-one-third;
+    }
+  }
+
+  hr {
+    height: 1px;
+    border: none;
+    margin-top: $gutter - 1px;
+    margin-bottom: $gutter;
+    background-color: $border-colour;
+    color: $border-colour;
+  }
+}

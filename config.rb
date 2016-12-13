@@ -36,3 +36,6 @@ PublishingApiDocs.pages.each do |page|
     page: page,
   }
 end
+
+config[:tech_docs] = YAML.load_file('config/tech-docs.yml')
+                         .with_indifferent_access
