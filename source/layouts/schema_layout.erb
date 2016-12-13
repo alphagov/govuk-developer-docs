@@ -1,0 +1,42 @@
+<% wrap_layout :header_footer_only do %>
+  <div id="toc-heading" class="toc-show fixedsticky">
+    <a href="#toc" class="toc-show__label js-toc-show">
+      Table of contents <span class="toc-show__icon"></span>
+    </a>
+  </div>
+
+  <div class="app-pane__body">
+    <div class="app-pane__toc">
+      <div class="toc" data-module="table-of-contents">
+        <a href="#" class="toc__close js-toc-close">Close</a>
+        <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+          <ul>
+            <% ContentSchema.schema_names.each do |schema_name| %>
+              <li><%= link_to schema_name, "/content-schemas/#{schema_name}.html" %></li>
+              <% if current_page.path.include?("content-schemas/#{schema_name}.html") %>
+                <ul>
+                  <li><%= link_to 'Frontend schema', '#frontend-schema' %>
+                  <li><%= link_to 'Publisher content schema', '#publisher-content-schema' %>
+                  <li><%= link_to 'Publisher links schema', '#publisher-links-schema' %>
+                </ul>
+              <% end %>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="app-pane__content">
+      <main id="content" class="technical-documentation" data-module="anchored-headings">
+        <%= partial 'partials/header' %>
+        <%= yield %>
+      </main>
+    </div>
+  </div>
+
+  <style media="screen">
+    .technical-documentation pre {
+      max-height: 400px;
+    }
+  </style>
+<% end %>
