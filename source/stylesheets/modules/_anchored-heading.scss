@@ -1,0 +1,40 @@
+.anchored-heading {
+  $icon-width: 23px;
+  $icon-height: 14px;
+  $icon-spacing: 3px;
+
+  position: relative;
+
+  &__icon {
+    position: absolute;
+    width: $icon-width;
+    left: -($icon-width + $icon-spacing);
+    padding-right: $icon-spacing;
+    margin-top: -1px;
+
+    opacity: 0;
+    display: none;
+
+    text-decoration: none;
+    text-indent: -9999em;
+
+    background-image: file-url('anchored-heading-icon.png');
+    background-repeat: no-repeat;
+    background-position: left center;
+
+    @include device-pixel-ratio {
+      background-image: file-url('anchored-heading-icon-2x.png');
+      background-size: $icon-width $icon-height;
+    }
+
+    @include media(tablet) {
+      display: block;
+    }
+  }
+
+  &:hover &__icon {
+    @include media(tablet) {
+      opacity: 1;
+    }
+  }
+}

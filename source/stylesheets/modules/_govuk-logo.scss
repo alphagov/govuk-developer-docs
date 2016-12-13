@@ -1,0 +1,25 @@
+.govuk-logo {
+  font-weight: bold;
+
+  @include screen {
+    background-image: file-url('/images/gov.uk_logotype_crown.png');
+    background-repeat: no-repeat;
+    
+    @include device-pixel-ratio {
+      background-image: file-url('/images/gov.uk_logotype_crown-2x.png');
+      background-size: 36px 32px;
+    }
+
+    @include media(tablet) {
+      background-position: 0 1px;
+    }
+  }
+}
+
+.govuk-logo__printable-crown {
+  vertical-align: middle;
+  
+  @include screen {
+    visibility: hidden;
+  }
+}

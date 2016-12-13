@@ -1,0 +1,213 @@
+$active-nav-color: #1d8feb;
+
+.header {
+  @extend %contain-floats;
+
+  @include screen {
+    background: $black;
+    color: $white;
+    border-bottom: 10px solid $white;
+  }
+}
+
+.header__container {
+  @extend %site-width-container;
+  @extend %contain-floats;
+  zoom: 1;
+  
+  padding: 8px 0;
+
+  @include screen {
+    border-bottom: 10px solid $mainstream-brand;
+    margin-bottom: -10px;
+  }
+}
+
+.header.header--full-width {
+  margin-bottom: 0;
+  
+  @include screen {
+    border-bottom: 10px solid $mainstream-brand;
+  }
+  
+  .header__container {
+    border-bottom: none;
+    width: auto;
+    max-width: none;
+    margin: 0 $gutter-half;
+    
+    @include media(tablet) {
+      margin: 0 $gutter;
+    }
+  }
+}
+
+.header--without-border {
+  border-bottom: none;
+  margin-bottom: 0;
+  
+  .header__container {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+}
+
+.header__brand {
+  font-size: 30px;
+  
+  a:link, a:visited {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .govuk-logo {
+    float: left;
+  }
+  
+  @include screen {
+    a:link, a:visited {
+      color: $white;
+    }
+
+    @include media(tablet) {
+      float: left;
+      
+      .govuk-logo {
+        float: none;
+      }
+      
+      a:hover {
+        text-decoration: none;
+        border-bottom: 1px solid $white;
+      }
+    }
+  }
+
+  @include print {
+    a:link, a:visited {
+      color: $black;
+    }
+  }
+}
+
+.header__title {
+  @include core-24;
+  display: block;
+  float: left;
+  clear: left;
+  
+  @include media(tablet) {
+    display: inherit;
+    float: none;
+    clear: none;
+    padding-left: 5px;
+  }
+
+  .phase-banner {
+    margin-left: 5px;
+  }
+}
+
+.header__navigation {
+  @include screen {
+    @include bold-16;
+    
+    display: none;
+    clear: both;
+
+    padding-top: 10px;
+
+    a:link, a:visited {
+      color: $white;
+      text-decoration: none;
+    }
+
+    li.active a:link, li.active a:visited {
+      color: $active-nav-color;
+    }
+
+    a:hover, a:active {
+      text-decoration: underline;
+    }
+
+    ul {
+      border-top: 1px solid $grey-1;
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    @include media(tablet) {
+      display: block;
+      clear: none;
+      padding-top: 2px;
+      border-top: none;
+      float: right;
+
+      ul {
+        border-top: none;
+      }
+
+      li {
+        float: left;
+        margin-left: $gutter-half;
+      }
+    }
+  }
+
+  @include print {
+    display: none;
+  }
+}
+
+.header__navigation-toggle {
+  float: right;
+  color: $white;
+  text-decoration: none;
+  border: 1px solid $grey-1;
+  border-radius: 3px;
+  padding: 2px 6px 1px;
+  font-size: 80%;
+  font-weight: bold;
+  
+  input {
+    display: none;
+  }
+  
+  @include media(tablet) {
+    display: none;
+  }
+  
+  &:after {
+    display: inline-block;
+    font-size: 8px;
+    height: 8px;
+    padding-left: 5px;
+    vertical-align: middle;
+    content: " \25BC";
+  }
+}
+
+.header__navigation-toggle-checkbox {
+  position: absolute;
+  left: -9999em;
+
+  @include media(tablet) {
+    display: none;
+  }
+}
+
+.header__navigation-toggle-checkbox:checked ~ .header__navigation-toggle:after {
+  content: "\25B2";
+}
+
+.header__navigation-toggle-checkbox:checked ~ .header__navigation {
+  display: block;
+}

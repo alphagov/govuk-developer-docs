@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title><%= current_page.data.title || "GOV.UK Documentation" %></title>
+
+    <!--[if gt IE 8]><!--><%= stylesheet_link_tag :screen, media: 'screen' %><!--<![endif]-->
+    <!--[if lte IE 8]><%= stylesheet_link_tag 'screen-old-ie', media: 'screen' %><![endif]-->
+
+    <link rel="canonical" href="<%= config[:tech_docs][:host] %><%= current_page.url %>">
+
+    <%= stylesheet_link_tag :print, media: 'print' %>
+
+    <%= javascript_include_tag :application %>
+  </head>
+
+  <body>
+    <div class="app-pane">
+      <div class="app-pane__header">
+        <a href="#content" class="skip-link">Skip to main content</a>
+
+        <header class="header header--full-width">
+          <div class="header__container">
+            <div class="header__brand">
+              <% if config[:tech_docs][:service_link] %>
+                <a href="<%= config[:tech_docs][:service_link] %>">
+              <% else %>
+                <span>
+              <% end %>
+                <% if config[:tech_docs][:show_govuk_logo] %>
+                  <span class="govuk-logo">
+                    <img class="govuk-logo__printable-crown" src="/images/gov.uk_logotype_crown_invert_trans.png" height="32" width="36">
+                    GOV.UK
+                  </span>
+                <% end %>
+                <span class="header__title">
+                  <%= config[:tech_docs][:service_name] %>
+                  <% if config[:tech_docs][:phase] %>
+                    <span class="phase-banner"><%= config[:tech_docs][:phase] %></span>
+                  <% end %>
+                </span>
+              <% if config[:tech_docs][:service_link] %>
+                </a>
+              <% else %>
+                </span>
+              <% end %>
+            </div>
+
+            <input class="header__navigation-toggle-checkbox" type="checkbox" id="show-menu" />
+            <label class="header__navigation-toggle" for="show-menu">
+              Menu
+            </label>
+
+            <% if config[:tech_docs][:header_links] %>
+              <nav id="navigation" class="header__navigation" aria-label="Top Level Navigation">
+                <ul>
+                  <% config[:tech_docs][:header_links].each do |title, url| %>
+                    <li<% if url == current_page.url %> class="active"<% end %>>
+                      <a href="<%= url %>">
+                        <%= title %>
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </nav>
+            <% end %>
+          </div>
+        </header>
+      </div>
+
+      <%= yield %>
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,58 @@
+@charset "utf-8";
+
+$tablet-breakpoint: 768px !default;
+$desktop-breakpoint: 992px !default;
+
+@import "utilities/fonts";
+@import "utilities/printable";
+
+@import "govuk_frontend_toolkit/colours";
+@import "govuk_frontend_toolkit/conditionals";
+@import "govuk_frontend_toolkit/css3";
+@import "govuk_frontend_toolkit/device-pixels";
+@import "govuk_frontend_toolkit/font_stack";
+@import "govuk_frontend_toolkit/grid_layout";
+@import "govuk_frontend_toolkit/helpers";
+@import "govuk_frontend_toolkit/measurements";
+@import "govuk_frontend_toolkit/typography";
+
+@import "palette/syntax-highlighting";
+@import "syntax-highlighting";
+
+@import "modules/anchored-heading";
+@import "modules/app-pane";
+@import "modules/govuk-logo";
+@import "modules/header";
+@import "modules/phase-banner";
+@import "modules/skip-link";
+@import "modules/technical-documentation";
+@import "modules/toc";
+
+html, body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  @include core-19;
+}
+
+// basic styles for HTML5 and other elements
+html, body, div, h1, h2, h3, h4, h5, h6, article, aside, footer, header, hgroup, nav, section {
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+a:link {
+  color: $link-colour;
+}
+
+a:visited {
+  color: $link-visited-colour;
+}
+
+a:hover {
+  color: $link-hover-colour;
+}
+
+a:active {
+  color: $link-active-colour;
+}
