@@ -11,7 +11,7 @@
         <a href="#" class="toc__close js-toc-close">Close</a>
         <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
           <ul>
-            <% ContentSchema.schema_names.each do |schema_name| %>
+            <% GovukSchemas::Schema.schema_names.sort.each do |schema_name| %>
               <li><%= link_to schema_name, "/content-schemas/#{schema_name}.html" %></li>
               <% if current_page.path.include?("content-schemas/#{schema_name}.html") %>
                 <ul>

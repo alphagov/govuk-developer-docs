@@ -5,6 +5,8 @@
 
 Live at: https://govuk-tech-docs.herokuapp.com (normal GDS username/password)
 
+We're in the process of moving this to docs.publishing.service.gov.uk so it can be open.
+
 ## Technical documentation
 
 This is a static site generated with Middleman.
@@ -54,13 +56,6 @@ Use it like this:
 export GITHUB_TOKEN=somethingsomething
 ./startup.sh
 ```
-
-### Deployment
-
-This site is currently hosted on https://alphagov.github.io/govuk-developers/
-
-GitHub is configured to host the `/docs` directory. A Jenkins job rebuilds the
-site every hour during work hours on weekdays.
 
 ### Building the project
 

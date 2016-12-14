@@ -19,7 +19,7 @@ gem 'table_of_contents', github: 'alphagov/table_of_contents'
 
 gem 'redcarpet', '~> 3.3.2'
 
-gem 'govuk_schemas', '~> 2.0.0'
+gem 'govuk_schemas', '~> 2.1.0'
 
 # GitHub API
 gem 'octokit'
