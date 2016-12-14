@@ -1,0 +1,75 @@
+---
+layout: schema_layout
+parent: content-schemas.html
+---
+
+## Frontend schema
+
+<% if schema.frontend_schema %>
+
+This schema describes the content item that is returned from the
+[content store](https://github.com/alphagov/content-store).
+
+<%= table_of_properties(schema.frontend_schema.properties) %>
+
+[View this schema on GitHub](<%= schema.frontend_schema.link_to_github %>)
+
+### Random example
+
+```json
+<%= JSON.pretty_generate(schema.frontend_schema.random_example) %>
+```
+
+<% else %>
+This schema doesn't have a frontend schema. This means that it should not be
+used by rendering applications.
+<% end %>
+
+---
+
+<% if schema.publisher_content_schema %>
+
+## Publisher content schema
+
+This is what publisher apps should send to the publishing-api in This is what
+a publishing application sends to the publishing-api in a
+[`put_content`](http://www.rubydoc.info/github/alphagov/gds-api-adapters/GdsApi/PublishingApiV2#put_content-instance_method) call.
+
+### Attributes
+
+<%= table_of_properties(schema.publisher_content_schema.properties) %>
+
+[View this schema on GitHub](<%= schema.publisher_content_schema.link_to_github %>)
+
+### Random example
+
+```json
+<%= JSON.pretty_generate(schema.publisher_content_schema.random_example) %>
+```
+
+<% end %>
+
+---
+
+## Publisher links schema
+
+<% if schema.publisher_links_schema %>
+
+The links for this item. This is what a publishing application sends in a
+[`patch_links`](http://www.rubydoc.info/github/alphagov/gds-api-adapters/GdsApi/PublishingApiV2#patch_links-instance_method) call.
+
+### Attributes
+
+<%= table_of_properties(schema.publisher_links_schema.properties) %>
+
+[View this schema on GitHub](<%= schema.publisher_links_schema.link_to_github %>)
+
+### Random example
+
+```json
+<%= JSON.pretty_generate(schema.publisher_links_schema.random_example) %>
+```
+
+<% else %>
+This schema does not allow for setting of links.
+<% end %>

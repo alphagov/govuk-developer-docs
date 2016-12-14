@@ -10,6 +10,7 @@ configure :development do
 end
 
 activate :sprockets
+activate :syntax
 
 configure :build do
 end
@@ -17,6 +18,7 @@ end
 require_relative './lib/dashboard/dashboard'
 require_relative './lib/external_doc'
 require_relative './lib/publishing_api_docs'
+require_relative './lib/content_schemas/content_schema'
 
 helpers do
   def dashboard
@@ -29,11 +31,21 @@ helpers do
 end
 
 ignore 'publishing_api_template.html.md.erb'
+ignore 'schema_template.html.md.erb'
 
 PublishingApiDocs.pages.each do |page|
   proxy "/apis/publishing-api/#{page.filename}.html", "publishing_api_template.html", locals: {
     page_title: page.title,
     page: page,
+  }
+end
+
+ContentSchema.schema_names.each do |schema_name|
+  schema = ContentSchema.new(schema_name)
+
+  proxy "/content-schemas/#{schema_name}.html", "schema_template.html", locals: {
+    schema: schema,
+    page_title: "Schema: #{schema.schema_name}",
   }
 end
 
