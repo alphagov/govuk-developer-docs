@@ -3,13 +3,6 @@ require 'active_support/core_ext/string'
 require 'govuk_schemas'
 
 class ContentSchema
-  # TODO: Move this method into the govuk_schemas gem.
-  def self.schema_names
-    Dir.glob("#{GovukSchemas::CONTENT_SCHEMA_DIR}/dist/formats/*").map do |directory|
-      File.basename(directory)
-    end
-  end
-
   attr_reader :schema_name
 
   def initialize(schema_name)

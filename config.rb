@@ -44,7 +44,7 @@ PublishingApiDocs.pages.each do |page|
   }
 end
 
-ContentSchema.schema_names.each do |schema_name|
+GovukSchemas::Schema.schema_names.each do |schema_name|
   schema = ContentSchema.new(schema_name)
 
   proxy "/content-schemas/#{schema_name}.html", "schema_template.html", locals: {
