@@ -1,0 +1,45 @@
+<% wrap_layout :header_footer_only do %>
+  <div id="toc-heading" class="toc-show fixedsticky">
+    <a href="#toc" class="toc-show__label js-toc-show">
+      Table of contents <span class="toc-show__icon"></span>
+    </a>
+  </div>
+
+  <% html = yield %>
+
+  <div class="app-pane__body">
+    <div class="app-pane__toc">
+      <div class="toc" data-module="table-of-contents">
+        <a href="#" class="toc__close js-toc-close">Close</a>
+        <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+          <ul>
+          <% app_pages.group_by(&:type).each do |name, apps| %>
+            <li><%= link_to name, '#' %></li>
+
+            <ul>
+            <% apps.each do |app| %>
+              <li><%= link_to app.title, "/apps/#{app.app_name}.html" %></li>
+            <% end %>
+            </ul>
+          <% end %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="app-pane__content">
+      <main id="content" class="technical-documentation" data-module="anchored-headings">
+        <%= partial 'partials/header' %>
+        <% if locals.key?(:page) %>
+          <%= partial 'partials/source', page: page %>
+        <% end %>
+
+        <%= yield %>
+
+        <% if locals.key?(:page) %>
+          <%= partial 'partials/source', page: page %>
+        <% end %>
+      </main>
+    </div>
+  </div>
+<% end %>

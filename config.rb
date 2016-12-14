@@ -1,9 +1,13 @@
+require_relative './lib/requires'
+
 set :markdown_engine, :redcarpet
 
 set :markdown,
-  fenced_code_blocks: true,
-  smartypants: true,
-  with_toc_data: true
+    renderer: TechDocsHTMLRenderer.new(
+      with_toc_data: true
+    ),
+    fenced_code_blocks: true,
+    tables: true
 
 configure :development do
   activate :livereload
@@ -15,11 +19,6 @@ activate :syntax
 configure :build do
 end
 
-require_relative './lib/dashboard/dashboard'
-require_relative './lib/external_doc'
-require_relative './lib/publishing_api_docs'
-require_relative './lib/content_schemas/content_schema'
-
 helpers do
   def dashboard
     Dashboard.new
@@ -28,10 +27,15 @@ helpers do
   def publishing_api_pages
     PublishingApiDocs.pages
   end
+
+  def app_pages
+    AppDocs.pages.sort_by(&:title)
+  end
 end
 
 ignore 'publishing_api_template.html.md.erb'
 ignore 'schema_template.html.md.erb'
+ignore 'application_template.html.md.erb'
 
 PublishingApiDocs.pages.each do |page|
   proxy "/apis/publishing-api/#{page.filename}.html", "publishing_api_template.html", locals: {
@@ -46,6 +50,13 @@ ContentSchema.schema_names.each do |schema_name|
   proxy "/content-schemas/#{schema_name}.html", "schema_template.html", locals: {
     schema: schema,
     page_title: "Schema: #{schema.schema_name}",
+  }
+end
+
+AppDocs.pages.each do |application|
+  proxy "/apps/#{application.app_name}.html", "application_template.html", locals: {
+    page_title: application.title,
+    application: application,
   }
 end
 

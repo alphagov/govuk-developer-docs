@@ -1,0 +1,29 @@
+---
+layout: application_layout
+parent: applications.html
+source_url: https://github.com/alphagov/govuk-developers/blob/master/data/applications.yml
+edit_url: https://github.com/alphagov/govuk-developers/edit/master/data/applications.yml
+---
+
+<%= application.description %>
+
+<% if application.team %>
+Owned by team **<%= application.team %>**.
+<% else %>
+The team that owns this application isn't specified. Help out by
+[adding a team name to the YAML configuration][app-yaml].
+<% end %>
+
+<ul>
+  <li><%= link_to "GitHub repo", application.repo_url %></li>
+  <li><%= link_to "Puppet configuration", application.puppet_url %></li>
+  <li><%= link_to "Deploy scripts", application.deploy_url %></li>
+
+  <% if application.production_url %>
+    <li><%= link_to application.production_url.gsub('https://', ''), application.production_url %></li>
+  <% end %>
+</ul>
+
+<%= partial 'partials/source', locals: { page: current_page.data } %>
+
+[app-yaml]: https://github.com/alphagov/govuk-developers/edit/master/data/applications.yml
