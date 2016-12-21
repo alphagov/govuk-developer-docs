@@ -1,4 +1,4 @@
-<% layout :header_footer_only do %>
+<% wrap_layout :header_footer_only do %>
   <div id="toc-heading" class="toc-show fixedsticky">
     <a href="#toc" class="toc-show__label js-toc-show">
       Table of contents <span class="toc-show__icon"></span>
@@ -7,7 +7,7 @@
 
   <% html = yield %>
 
-  <div class="app-pane__body">
+  <div class="app-pane__body" data-module="highlighted-nav">
     <div class="app-pane__toc">
       <div class="toc" data-module="table-of-contents">
         <a href="#" class="toc__close js-toc-close">Close</a>
