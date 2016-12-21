@@ -41,10 +41,21 @@ private
 
   class Section < Thing
     def entries
-      repos + sites
+      from_application_page + repos + sites
     end
 
   private
+
+    # Pull the the applications from applications.yml into the first categories
+    def from_application_page
+      app_data = YAML.load_file("data/applications.yml")
+      applications_in_this_section = app_data.select { |a| a['type'] == name }
+
+      applications_in_this_section.map do |a|
+        repo = GitHub.client.repo(a['github_repo_name'])
+        App.new("name" => a['github_repo_name'], "description" => repo["description"])
+      end
+    end
 
     def repos
       data['repos'].to_a.map do |app_name|
@@ -73,6 +84,12 @@ private
 
     def url
       data.html_url
+    end
+  end
+
+  class App < Thing
+    def url
+      "/apps/#{id}.html"
     end
   end
 end
