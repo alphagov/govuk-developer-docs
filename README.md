@@ -1,11 +1,6 @@
 # GOV.UK Developer Docs
 
-> ⚠️ This project is being rebuilt and is undergoing rapid change. File an issue before opening a PR.
-
-
-Live at: https://govuk-tech-docs.herokuapp.com (normal GDS username/password)
-
-We're in the process of moving this to docs.publishing.service.gov.uk so it can be open.
+👉 https://docs.publishing.service.gov.uk
 
 ## Technical documentation
 
@@ -13,7 +8,7 @@ This is a static site generated with Middleman.
 
 ## Tech docs template
 
-This project uses the [tech-docs-template](https://github.com/alphagov/tech-docs-template).
+This project uses [alphagov/tech-docs-template](https://github.com/alphagov/tech-docs-template).
 
 This means that some of the files (like the CSS, javascripts and layouts) are
 managed in the template and are not supposed to be modified here.
@@ -67,6 +62,13 @@ bundle exec middleman build
 
 This will create a bunch of static files in `/build`.
 
+### Deployment
+
+This project is re-deployed by a Jenkins task every hour (to pick up external
+changes). It is [hosted on S3][terraform].
+
 ## Licence
 
 [MIT License](LICENCE.md)
+
+[terraform]: https://github.com/alphagov/govuk-terraform-provisioning/tree/master/projects/developer_docs/resources
