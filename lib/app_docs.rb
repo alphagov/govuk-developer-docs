@@ -16,6 +16,10 @@ class AppDocs
       app_data["app_name"] || github_repo_name
     end
 
+    def github_repo_name
+      app_data.fetch("github_repo_name")
+    end
+
     def title
       app_name
     end
@@ -50,10 +54,6 @@ class AppDocs
     end
 
   private
-
-    def github_repo_name
-      app_data.fetch("github_repo_name")
-    end
 
     def puppet_name
       app_data["puppet_name"] || app_name.underscore

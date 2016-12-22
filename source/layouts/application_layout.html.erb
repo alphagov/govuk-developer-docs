@@ -14,7 +14,7 @@
         <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
           <ul>
           <% app_pages.group_by(&:type).each do |name, apps| %>
-            <li><%= link_to name, '#' %></li>
+            <li><%= link_to name, '/apps.html' %></li>
 
             <ul>
             <% apps.each do |app| %>
