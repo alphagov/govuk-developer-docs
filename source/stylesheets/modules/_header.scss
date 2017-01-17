@@ -72,6 +72,10 @@ $active-nav-color: #1d8feb;
       color: $white;
     }
 
+    a:focus {
+      color: $black;
+    }
+
     @include media(tablet) {
       float: left;
       
@@ -125,8 +129,12 @@ $active-nav-color: #1d8feb;
       text-decoration: none;
     }
 
-    li.active a:link, li.active a:visited {
+    .active a:link, .active a:visited {
       color: $active-nav-color;
+    }
+
+    a:focus, .active a:focus {
+      color: $black;
     }
 
     a:hover, a:active {

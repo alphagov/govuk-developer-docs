@@ -13,6 +13,7 @@ configure :development do
   activate :livereload
 end
 
+activate :autoprefixer
 activate :sprockets
 activate :syntax
 
