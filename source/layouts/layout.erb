@@ -7,12 +7,17 @@
 
   <% html = yield %>
 
-  <div class="app-pane__body" data-module="highlighted-nav">
+  <div class="app-pane__body" data-module="in-page-navigation">
     <div class="app-pane__toc">
       <div class="toc" data-module="table-of-contents">
         <a href="#" class="toc__close js-toc-close">Close</a>
         <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-          <%= table_of_contents(html) %>
+          <%=
+            table_of_contents(
+              html,
+              max_level: config[:tech_docs][:max_toc_heading_level]
+            )
+          %>
         </nav>
       </div>
     </div>
