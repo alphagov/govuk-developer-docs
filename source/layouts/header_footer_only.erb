@@ -56,7 +56,7 @@
             </label>
 
             <% if config[:tech_docs][:header_links] %>
-              <nav id="navigation" class="header__navigation" aria-label="Top Level Navigation">
+              <nav id="navigation" class="header__navigation" aria-label="Top level">
                 <ul>
                   <% config[:tech_docs][:header_links].each do |title, url| %>
                     <li<% if url == current_page.url %> class="active"<% end %>>
