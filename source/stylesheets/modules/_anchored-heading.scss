@@ -8,8 +8,8 @@
   &__icon {
     position: absolute;
     width: $icon-width;
-    left: -($icon-width + $icon-spacing);
-    padding-right: $icon-spacing;
+    left: -($icon-width + ($icon-spacing * 2));
+    padding: 0 $icon-spacing;
     margin-top: -1px;
 
     opacity: 0;
@@ -20,7 +20,7 @@
 
     background-image: file-url('anchored-heading-icon.png');
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: center center;
 
     @include device-pixel-ratio {
       background-image: file-url('anchored-heading-icon-2x.png');
@@ -35,6 +35,14 @@
   &:hover &__icon {
     @include media(tablet) {
       opacity: 1;
+    }
+  }
+
+  &__icon:focus {
+    @include media(tablet) {
+      opacity: 1;
+      outline-width: 1px;
+      padding: 0 ($icon-spacing - 1);
     }
   }
 }
