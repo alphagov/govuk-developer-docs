@@ -17,9 +17,6 @@ activate :autoprefixer
 activate :sprockets
 activate :syntax
 
-configure :build do
-end
-
 helpers do
   def dashboard
     Dashboard.new
