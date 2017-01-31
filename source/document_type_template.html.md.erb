@@ -1,0 +1,15 @@
+---
+layout: document_type_layout
+---
+
+There are <strong><%= page.total_count %></strong> pages with document type '<%= page.name %>' on GOV.UK.
+
+<h2>Most popular pages</h2>
+
+<ul>
+<% page.examples.each do |example| %>
+  <li><%= link_to example['title'], "https://www.gov.uk/#{example['link']}" %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Source query from Search API', page.search_url %>
