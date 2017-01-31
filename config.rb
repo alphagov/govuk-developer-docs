@@ -37,6 +37,7 @@ end
 ignore 'publishing_api_template.html.md.erb'
 ignore 'schema_template.html.md.erb'
 ignore 'application_template.html.md.erb'
+ignore 'document_type_template.html.md.erb'
 
 PublishingApiDocs.pages.each do |page|
   proxy "/apis/publishing-api/#{page.filename}.html", "publishing_api_template.html", locals: {
@@ -58,6 +59,13 @@ AppDocs.pages.each do |application|
   proxy "/apps/#{application.app_name}.html", "application_template.html", locals: {
     page_title: application.title,
     application: application,
+  }
+end
+
+DocumentTypes.pages.each do |page|
+  proxy "/document-types/#{page.name}.html", "document_type_template.html", locals: {
+    page: page,
+    page_title: page.name
   }
 end
 
