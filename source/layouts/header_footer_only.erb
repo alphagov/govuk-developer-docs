@@ -14,8 +14,6 @@
     <link rel="canonical" href="<%= config[:tech_docs][:host] %><%= current_page.url %>">
 
     <%= stylesheet_link_tag :print, media: 'print' %>
-
-    <%= javascript_include_tag :application %>
   </head>
 
   <body>
@@ -50,13 +48,13 @@
               <% end %>
             </div>
 
-            <input class="header__navigation-toggle-checkbox" type="checkbox" id="show-menu" />
-            <label class="header__navigation-toggle" for="show-menu">
-              Menu
-            </label>
-
             <% if config[:tech_docs][:header_links] %>
-              <nav id="navigation" class="header__navigation" aria-label="Top level">
+              <input class="header__navigation-toggle-checkbox" type="checkbox" id="show-menu" aria-controls="navigation" aria-expanded="false" />
+              <label class="header__navigation-toggle" for="show-menu">
+                Menu
+              </label>
+
+              <nav id="navigation" class="header__navigation" aria-label="Top Level Navigation" aria-hidden="true">
                 <ul>
                   <% config[:tech_docs][:header_links].each do |title, url| %>
                     <li<% if url == current_page.url %> class="active"<% end %>>
@@ -86,5 +84,7 @@
       ga('send', 'pageview');
       </script>
     <% end %>
+
+    <%= javascript_include_tag :application %>
   </body>
 </html>

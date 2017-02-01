@@ -28,7 +28,7 @@
       a:link, a:visited {
         display: block;
         padding: 8px 0;
-        letter-spacing: 0.03em;
+        letter-spacing: 0.019em;
 
         &.toc-link--in-view {
           font-weight: bold;
@@ -61,6 +61,12 @@
   @include media(tablet) {
     .toc {
       padding: $gutter-half $gutter;
+    }
+
+    // Prevent the fixedsticky spacer from appearing if the browser is resized
+    // from mobile to desktop.
+    .fixedsticky-on + .fixedsticky-dummy {
+      display: none !important;
     }
   }
 
