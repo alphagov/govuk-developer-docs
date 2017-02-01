@@ -8,11 +8,7 @@ class DocumentTypes
   end
 
   def self.coverage_percentage
-    ((pages_with_document_type / facet_query.fetch("total").to_f) * 100).round(1)
-  end
-
-  def self.pages_with_document_type
-    pages.sum(&:total_count)
+    ((pages.sum(&:total_count) / facet_query.fetch("total").to_f) * 100).round(1)
   end
 
   def self.facet_query
