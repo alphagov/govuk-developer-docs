@@ -1,3 +1,5 @@
+require 'webmock/rspec'
+
 require_relative './../lib/requires'
 
 RSpec.configure do |config|
