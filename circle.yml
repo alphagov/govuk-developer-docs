@@ -1,3 +1,7 @@
+compile:
+  override:
+    - ruby -v # skip this step
+
 test:
   override:
     - bundle exec rspec
