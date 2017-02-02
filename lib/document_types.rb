@@ -4,7 +4,7 @@ class DocumentTypes
       facet_query.dig("facets", "content_store_document_type", "options").map { |o|
         Page.new(
           name: o.dig("value", "slug"),
-          count: o.dig("documents"),
+          total_count: o.dig("documents"),
           examples: o.dig("value", "example_info", "examples"),
         )
       }.sort_by(&:name)
