@@ -1,6 +1,7 @@
 //= require govuk/modules
 //= require modules/anchored-headings
 //= require modules/in-page-navigation
+//= require modules/navigation
 //= require modules/table-of-contents
 
 $(document).ready(function() {
