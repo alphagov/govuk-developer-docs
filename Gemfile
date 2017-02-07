@@ -14,6 +14,7 @@ gem 'middleman-compass', '>= 4.0.0'
 gem 'middleman-sprockets', '~> 4.0.0'
 gem 'middleman-autoprefixer', '~> 2.7.0'
 gem 'middleman-syntax', '~> 3.0.0'
+gem 'middleman-search_engine_sitemap', '~> 1.4'
 
 gem 'table_of_contents', github: 'alphagov/table_of_contents'
 
