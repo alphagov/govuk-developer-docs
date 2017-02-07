@@ -6,7 +6,7 @@
     <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= current_page.data.title || "GOV.UK Documentation" %></title>
+    <title><%= defined?(page_title) ? page_title : current_page.data.title %> - GOV.UK Developer Documentation</title>
 
     <!--[if gt IE 8]><!--><%= stylesheet_link_tag :screen, media: 'screen' %><!--<![endif]-->
     <!--[if lte IE 8]><%= stylesheet_link_tag 'screen-old-ie', media: 'screen' %><![endif]-->
