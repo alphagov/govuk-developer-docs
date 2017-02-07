@@ -1,33 +1,16 @@
-<% wrap_layout :header_footer_only do %>
-  <div id="toc-heading" class="toc-show fixedsticky">
-    <a href="#toc" class="toc-show__label js-toc-show">
-      Table of contents <span class="toc-show__icon"></span>
-    </a>
-  </div>
+<% content_for :sidebar do %>
+  <ul>
+    <li><a href='/document-types.html'>Document types</a>
+      <ul>
+      <% DocumentTypes.pages.each do |page| %>
+        <li><%= link_to "#{page.name} - #{page.total_count}", "/document-types/#{page.name}.html" %></li>
+      <% end %>
+      </ul>
+    </li>
+  </ul>
+<% end %>
 
-  <div class="app-pane__body">
-    <div class="app-pane__toc">
-      <div class="toc" data-module="table-of-contents">
-        <a href="#" class="toc__close js-toc-close">Close</a>
-        <nav  id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-          <ul>
-            <li><a href='/document-types.html'>Document types</a>
-              <ul>
-              <% DocumentTypes.pages.each do |page| %>
-                <li><%= link_to "#{page.name} - #{page.total_count}", "/document-types/#{page.name}.html" %></li>
-              <% end %>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-
-    <div class="app-pane__content">
-      <main id="content" class="technical-documentation" data-module="anchored-headings">
-        <%= partial 'partials/header' %>
-        <%= yield %>
-      </main>
-    </div>
-  </div>
+<% wrap_layout :layout_with_sidebar do %>
+  <%= partial 'partials/header' %>
+  <%= yield %>
 <% end %>
