@@ -175,7 +175,6 @@ $active-nav-color: #1d8feb;
       $font-weight: 700
     );
 
-    display: none;
     clear: both;
 
     padding-top: 10px;
@@ -239,50 +238,51 @@ $active-nav-color: #1d8feb;
 }
 
 .header__navigation-toggle {
-  float: right;
-  color: $white;
-  text-decoration: none;
-  border: 1px solid $grey-1;
-  border-radius: 3px;
-  padding: 2px 6px 1px;
-  font-size: 80%;
-  font-weight: bold;
+  display: none;
+}
 
-  input {
+.js {
+  .header__navigation {
     display: none;
+    
+    @include media(tablet) {
+      display: block;
+    }
   }
 
-  @include media(tablet) {
-    display: none;
+  .header__navigation-toggle {
+    display: block;
+    float: right;
+    color: $white;
+    background: transparent;
+    border: 1px solid $grey-1;
+    border-radius: 3px;
+    padding: 2px 6px 1px;
+    font-size: 80%;
+    font-weight: bold;
+
+    input {
+      display: none;
+    }
+
+    @include media(tablet) {
+      display: none;
+    }
+
+    &:after {
+      display: inline-block;
+      font-size: 8px;
+      padding-left: 5px;
+      vertical-align: middle;
+      content: " \25BC";
+    }
   }
 
-  &:after {
-    display: inline-block;
-    font-size: 8px;
-    height: 8px;
-    padding-left: 5px;
-    vertical-align: middle;
-    content: " \25BC";
+  &.nav-open .header__navigation-toggle:after {
+    content: "\25B2";
   }
-}
 
-.header__navigation-toggle-checkbox {
-  position: absolute;
-  left: -9999em;
-
-  @include media(tablet) {
-    display: none;
+  &.nav-open .header__navigation {
+    display: block;
   }
-}
-
-.header__navigation-toggle-checkbox:focus ~ .header__navigation-toggle {
-  outline: 3px solid $focus-colour;
-}
-
-.header__navigation-toggle-checkbox:checked ~ .header__navigation-toggle:after {
-  content: "\25B2";
-}
-
-.header__navigation-toggle-checkbox:checked ~ .header__navigation {
-  display: block;
 }
