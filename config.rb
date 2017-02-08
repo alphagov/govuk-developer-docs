@@ -1,5 +1,7 @@
 require_relative './lib/requires'
 
+config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_access
+
 set :markdown_engine, :redcarpet
 
 set :markdown,
@@ -17,6 +19,11 @@ end
 activate :autoprefixer
 activate :sprockets
 activate :syntax
+
+# Configure the sitemap for Google
+set :url_root, config[:tech_docs][:host]
+activate :search_engine_sitemap,
+  default_change_frequency: 'weekly'
 
 helpers do
   def dashboard
@@ -63,6 +70,3 @@ DocumentTypes.pages.each do |page|
     page: page,
   }
 end
-
-config[:tech_docs] = YAML.load_file('config/tech-docs.yml')
-                         .with_indifferent_access
