@@ -5,11 +5,13 @@
     var $tocPane;
     var $contentPane;
     var $tocItems;
+    var $targets;
 
     this.start = function start($element) {
       $tocPane = $element.find('.app-pane__toc');
       $contentPane = $element.find('.app-pane__content');
       $tocItems = $('.js-toc-list').find('a');
+      $targets = $contentPane.find('[id]');
 
       $contentPane.on('scroll', _.debounce(handleScrollEvent, 100, { maxWait: 100 }));
 
@@ -39,38 +41,39 @@
     }
 
     function handleInitialLoadEvent() {
-      var $activeTocItem = tocItemForTargetElement();
+      var fragment = fragmentForTargetElement();
 
-      if ($activeTocItem.length == 0) {
-        $activeTocItem = tocItemForFirstElementInView();
+      if (!fragment) {
+        fragment = fragmentForFirstElementInView();
       }
 
-      handleChangeInActiveItem($activeTocItem);
+      handleChangeInActiveItem(fragment);
     }
 
     function handleScrollEvent() {
-      handleChangeInActiveItem(tocItemForFirstElementInView());
+      handleChangeInActiveItem(fragmentForFirstElementInView());
     }
 
-    function handleChangeInActiveItem($activeTocItem) {
-      storeCurrentPositionInHistoryApi($activeTocItem);
-      highlightActiveItemInToc($activeTocItem);
+    function handleChangeInActiveItem(fragment) {
+      storeCurrentPositionInHistoryApi(fragment);
+      highlightActiveItemInToc(fragment);
     }
 
-    function storeCurrentPositionInHistoryApi($activeTocItem) {
-      if (Modernizr.history && $activeTocItem && $activeTocItem.length == 1) {
+    function storeCurrentPositionInHistoryApi(fragment) {
+      if (Modernizr.history && fragment) {
         history.replaceState(
           { scrollTop: $contentPane.scrollTop() },
           "",
-          $activeTocItem.attr('href')
+          fragment
         );
       }
     }
 
-    function highlightActiveItemInToc($activeTocItem) {
-      $tocItems.removeClass('toc-link--in-view');
+    function highlightActiveItemInToc(fragment) {
+      var $activeTocItem = $tocItems.filter('[href="' + fragment + '"]');
 
-      if ($activeTocItem) {
+      if ($activeTocItem.get(0)) {
+        $tocItems.removeClass('toc-link--in-view');
         $activeTocItem.addClass('toc-link--in-view');
         scrollTocToActiveItem($activeTocItem);
       }
@@ -96,34 +99,26 @@
       $tocPane.scrollTop(newScrollTop);
     }
 
-    function tocItemForTargetElement() {
-      var target = window.location.hash
-      var $targetElement = $(target);
-
-      if ($targetElement) {
-        return $tocItems.filter(function (elem) {
-          return ($(this).attr('href') == target);
-        }).first();
-      }
+    function fragmentForTargetElement() {
+      return window.location.hash;
     }
 
-    function tocItemForFirstElementInView() {
-      var target = null;
+    function fragmentForFirstElementInView() {
+      var result = null;
 
-      $($tocItems.get().reverse()).each(function checkIfInView(index) {
-        if (target) {
+      $($targets.get().reverse()).each(function checkIfInView(index) {
+        if (result) {
           return;
         }
 
         var $this = $(this);
-        var $heading = $contentPane.find($this.attr('href'));
 
-        if ($heading.position().top <= 0) {
-          target = $this;
+        if (Math.floor($this.position().top) <= 0) {
+          result = $this;
         }
       });
 
-      return target;
+      return '#' + result.attr('id');
     }
   };
 })(jQuery, window.GOVUK.Modules);

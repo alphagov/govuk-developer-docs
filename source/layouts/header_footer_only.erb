@@ -4,6 +4,9 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <% if config[:tech_docs][:prevent_indexing] %>
+      <meta name="robots" content="noindex">
+    <% end %>
 
     <!-- Use title if it's in the page YAML frontmatter -->
     <title><%= current_page.data.title || "GOV.UK Documentation" %></title>
@@ -14,11 +17,12 @@
     <link rel="canonical" href="<%= config[:tech_docs][:host] %><%= current_page.url %>">
 
     <%= stylesheet_link_tag :print, media: 'print' %>
+    <%= javascript_include_tag :application %>
   </head>
 
   <body>
     <div class="app-pane">
-      <div class="app-pane__header">
+      <div class="app-pane__header toc-open-disabled">
         <a href="#content" class="skip-link">Skip to main content</a>
 
         <header class="header header--full-width">
@@ -49,22 +53,21 @@
             </div>
 
             <% if config[:tech_docs][:header_links] %>
-              <input class="header__navigation-toggle-checkbox" type="checkbox" id="show-menu" aria-controls="navigation" aria-expanded="false" />
-              <label class="header__navigation-toggle" for="show-menu">
-                Menu
-              </label>
+              <div data-module="navigation">
+                <button type="button" class="header__navigation-toggle js-nav-toggle" aria-controls="navigation" aria-label="Show or hide top level navigation">Menu</button>
 
-              <nav id="navigation" class="header__navigation" aria-label="Top Level Navigation" aria-hidden="true">
-                <ul>
-                  <% config[:tech_docs][:header_links].each do |title, url| %>
-                    <li<% if url == current_page.url %> class="active"<% end %>>
-                      <a href="<%= url %>">
-                        <%= title %>
-                      </a>
-                    </li>
-                  <% end %>
-                </ul>
-              </nav>
+                <nav id="navigation" class="header__navigation js-nav" aria-label="Top Level Navigation" aria-hidden="true">
+                  <ul>
+                    <% config[:tech_docs][:header_links].each do |title, url| %>
+                      <li<% if url == current_page.url %> class="active"<% end %>>
+                        <a href="<%= url %>">
+                          <%= title %>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </nav>
+              </div>
             <% end %>
           </div>
         </header>
@@ -84,7 +87,5 @@
       ga('send', 'pageview');
       </script>
     <% end %>
-
-    <%= javascript_include_tag :application %>
   </body>
 </html>
