@@ -11,6 +11,23 @@ There are two ways of doing A/B testing on GOV.UK. The first uses Javascript to 
 
 For a general introduction to A/B testing from a content design perspective, see the [Confluence Wiki](https://bit.ly/AB-testing-GOVUK)
 
+Which implementation you choose depends on your A/B testing needs:
+
+**JavaScript**
+
+* **Pro:** much simpler to configure
+* **Con:** content flashes on page load: users see one version first, which is then replaced with the other version
+* **Con:** every HTTP response contains both versions, which could significantly increase the page size if the change is large
+* **Choose if:** you want to A/B test a small, simple change to a page, such as the wording of a link
+
+**Fastly**
+
+* **Pro:** No content flashing
+* **Con:** Requires changes to the CDN configuration
+* **Choose if:** you are testing wide-ranging changes, perhaps with redirects to the new version, or if you really need to avoid content flashing
+
+Both options let you report the results to Google Analytics.
+
 ## 2. Javascript testing
 
 Javascript testing uses the [Multivariate test framework][multivariate-testing] from the [GOV.UK frontend toolkit][govuk_frontend_toolkit]. It works by running a piece of Javascript after the page is loaded.
