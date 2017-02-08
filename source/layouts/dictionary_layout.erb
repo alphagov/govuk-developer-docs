@@ -1,0 +1,17 @@
+<% content_for :sidebar do %>
+  <ul>
+  <% data.dictionary.each do |entry| %>
+    <li>
+      <%= link_to entry.word, "/dictionary.html##{entry.word.parameterize}-definition" %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
+
+<% wrap_layout :layout_with_sidebar do %>
+  <%= partial 'partials/header' %>
+
+  <%= yield %>
+
+  <%= partial 'partials/source', locals: { page: current_page.data } %>
+<% end %>
