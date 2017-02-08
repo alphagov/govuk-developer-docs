@@ -36,7 +36,7 @@ ignore 'templates/*'
 
 PublishingApiDocs.pages.each do |page|
   proxy "/apis/publishing-api/#{page.filename}.html", "templates/publishing_api_template.html", locals: {
-    page_title: page.title,
+    page_title: "Publishing API: #{page.title}",
     page: page,
   }
 end
@@ -45,22 +45,22 @@ GovukSchemas::Schema.schema_names.each do |schema_name|
   schema = ContentSchema.new(schema_name)
 
   proxy "/content-schemas/#{schema_name}.html", "templates/schema_template.html", locals: {
-    schema: schema,
     page_title: "Schema: #{schema.schema_name}",
+    schema: schema,
   }
 end
 
 AppDocs.pages.each do |application|
   proxy "/apps/#{application.app_name}.html", "templates/application_template.html", locals: {
-    page_title: application.title,
+    page_title: "Application: #{application.title}",
     application: application,
   }
 end
 
 DocumentTypes.pages.each do |page|
   proxy "/document-types/#{page.name}.html", "templates/document_type_template.html", locals: {
+    page_title: "Document type: #{page.name}",
     page: page,
-    page_title: page.name
   }
 end
 
