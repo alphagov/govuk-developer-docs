@@ -37,6 +37,9 @@ helpers do
   def app_pages
     AppDocs.pages.sort_by(&:title)
   end
+
+  require 'table_of_contents/helpers'
+  include TableOfContents::Helpers
 end
 
 ignore 'templates/*'
