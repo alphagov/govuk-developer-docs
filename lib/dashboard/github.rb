@@ -11,7 +11,7 @@ class GitHub
       # Not on alpghagov, make a separate call to the API. Cache it for
       # development speed.
       @@cache ||= {}
-      @@cache[app_name] = client.repo(app_name)
+      @@cache[app_name] ||= client.repo(app_name)
     else
       all_alphagov_repos.find { |repo| repo.name == app_name } || raise("alphagov/#{app_name} not found")
     end
