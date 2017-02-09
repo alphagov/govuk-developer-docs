@@ -1,0 +1,18 @@
+---
+layout: dictionary_layout
+title: Dictionary
+source_url: https://github.com/alphagov/govuk-developers/blob/master/source/dictionary.html.md.erb
+edit_url: https://github.com/alphagov/govuk-developers/edit/master/source/dictionary.html.md.erb
+---
+
+(Originally from [the Wiki](https://gov-uk.atlassian.net/wiki/display/TECH/Publishing+Platform))
+
+<% data.dictionary.each do |entry| %>
+  <div>
+    <h2 id=<%="#{entry.word.parameterize}"%>-definition>
+      <%= entry.word %>
+    </h2>
+    <small>Synonyms: <%= entry.synonyms %></small>
+    <p><%= entry.description %></p>
+  </div>
+<% end %>
