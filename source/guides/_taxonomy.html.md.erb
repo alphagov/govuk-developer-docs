@@ -8,6 +8,7 @@ The taxonomy is managed in [content-tagger][edit-taxonomy].
 
 The topics in the taxonomy (we call them "taxons" in code) are persisted in the publishing-api as content items. For an example [see the "Education" taxon][education-taxon].
 
+The link type `parent_taxons` is used to store the relationship between taxons. Link expansion makes sure that the taxons will have a `child_taxons` link type too.
 
 ## 2. Tagging
 
