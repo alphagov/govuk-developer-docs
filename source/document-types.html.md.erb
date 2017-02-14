@@ -10,4 +10,7 @@ all document types have been indexed in search yet. This means some types are
 missing from the list on the left. At the moment the list covers types for
 <%= DocumentTypes.coverage_percentage %>% of the pages in search index.
 
+The data for the list is generated [by running a facet query against search][query].
+
 [content-store]: https://github.com/alphagov/content-store
+[query]: <%= DocumentTypes::FACET_QUERY %>

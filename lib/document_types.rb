@@ -1,4 +1,6 @@
 class DocumentTypes
+  FACET_QUERY = 'https://www.gov.uk/api/search.json?facet_content_store_document_type=100,examples:10,example_scope:global&count=0'.freeze
+
   def self.pages
     @@pages ||= begin
       facet_query.dig("facets", "content_store_document_type", "options").map { |o|
@@ -17,7 +19,7 @@ class DocumentTypes
 
   def self.facet_query
     @@facet_query ||= begin
-      json = Faraday.get('https://www.gov.uk/api/search.json?facet_content_store_document_type=100,examples:10,example_scope:global&count=0').body
+      json = Faraday.get(FACET_QUERY).body
       JSON.parse(json)
     end
   end
