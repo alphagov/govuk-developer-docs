@@ -9,7 +9,7 @@ There are <strong><%= page.total_count %></strong> pages with document type '<%=
 
 <ul>
 <% page.examples.each do |example| %>
-  <li><%= link_to example['title'], "https://www.gov.uk/#{example['link']}" %></li>
+  <li><%= link_to example['title'], "https://www.gov.uk#{example['link']}" %></li>
 <% end %>
 </ul>
 
