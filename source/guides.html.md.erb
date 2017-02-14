@@ -26,6 +26,7 @@ Which implementation you choose depends on your A/B testing needs:
 
 * **Pro:** No content flashing
 * **Con:** Requires changes to the CDN configuration
+* **Con:** Because it depends on Fastly this can only be fully tested on staging and production. You can still test your A and B versions in other environments, it's just not a completely realistic test without the full stack.
 * **Choose if:** you are testing wide-ranging changes, perhaps with redirects to the new version, or if you really need to avoid content flashing
 
 Both options let you report the results to Google Analytics.
