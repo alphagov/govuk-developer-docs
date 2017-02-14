@@ -11,7 +11,7 @@
       var $this = $(this);
       $this.addClass('anchored-heading');
       $this.prepend(
-        '<a href="#' + $this.attr('id') + '" class="anchored-heading__icon" aria-hidden="true">Link to here</a>'
+        '<a href="#' + $this.attr('id') + '" class="anchored-heading__icon" aria-hidden="true"></a>'
       );
     };
   };
