@@ -1,10 +1,15 @@
 <% content_for :sidebar do %>
   <ul>
-  <% data.dictionary.each do |entry| %>
     <li>
-      <%= link_to entry.word, "/dictionary.html##{entry.word.parameterize}-definition" %>
+      <%= link_to 'Dictionary', '/dictionary.html' %>
+      <ul>
+      <% data.dictionary.each do |entry| %>
+        <li>
+          <%= link_to entry.word, "/dictionary.html##{entry.word.parameterize}-definition" %>
+        </li>
+      <% end %>
+      </ul>
     </li>
-  <% end %>
   </ul>
 <% end %>
 

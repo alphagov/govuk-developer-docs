@@ -1,16 +1,21 @@
 <% content_for :sidebar do %>
-  <ul>
-    <% GovukSchemas::Schema.schema_names.sort.each do |schema_name| %>
-      <li><%= link_to schema_name, "/content-schemas/#{schema_name}.html" %></li>
-      <% if current_page.path.include?("content-schemas/#{schema_name}.html") %>
-        <ul>
-          <li><%= link_to 'Frontend schema', '#frontend-schema' %>
-          <li><%= link_to 'Publisher content schema', '#publisher-content-schema' %>
-          <li><%= link_to 'Publisher links schema', '#publisher-links-schema' %>
-        </ul>
+<ul>
+  <li>
+    <%= link_to 'Content schemas', '/content-schemas.html' %>
+    <ul>
+      <% GovukSchemas::Schema.schema_names.sort.each do |schema_name| %>
+        <li><%= link_to schema_name, "/content-schemas/#{schema_name}.html" %></li>
+        <% if current_page.path.include?("content-schemas/#{schema_name}.html") %>
+          <ul>
+            <li><%= link_to 'Frontend schema', '#frontend-schema' %>
+            <li><%= link_to 'Publisher content schema', '#publisher-content-schema' %>
+            <li><%= link_to 'Publisher links schema', '#publisher-links-schema' %>
+          </ul>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </li>
+</ul>
 <% end %>
 
 <% wrap_layout :layout_with_sidebar do %>
