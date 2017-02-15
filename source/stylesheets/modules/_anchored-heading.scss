@@ -30,6 +30,12 @@
     @include media(tablet) {
       display: block;
     }
+
+    &:before {
+      // zero width space character so that the link behaves like it has text,
+      // has height, sits on the baseline, etc.
+      content: "\200b";
+    }
   }
 
   &:hover &__icon {
