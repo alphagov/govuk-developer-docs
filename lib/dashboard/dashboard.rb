@@ -48,12 +48,12 @@ private
 
     # Pull the the applications from applications.yml into the first categories
     def from_application_page
-      app_data = YAML.load_file("data/applications.yml")
-      applications_in_this_section = app_data.select { |a| a['type'] == name }
+      applications_in_this_section = AppDocs.pages.reject(&:retired?).select do |app|
+        app.type == name
+      end
 
-      applications_in_this_section.map do |a|
-        repo = GitHub.client.repo(a['github_repo_name'])
-        App.new("name" => a['github_repo_name'], "description" => repo["description"])
+      applications_in_this_section.map do |app|
+        App.new("name" => app.app_name, "description" => app.description)
       end
     end
 

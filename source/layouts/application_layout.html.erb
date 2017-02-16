@@ -1,11 +1,11 @@
 <% content_for :sidebar do %>
   <ul>
-  <% app_pages.group_by(&:type).each do |name, apps| %>
+  <% active_app_pages.group_by(&:type).each do |name, apps| %>
     <li><%= link_to name, '/apps.html' %></li>
 
     <ul>
     <% apps.each do |app| %>
-      <li><%= link_to app.title, "/apps/#{app.app_name}.html" %></li>
+      <li><%= link_to app.app_name, "/apps/#{app.app_name}.html" %></li>
     <% end %>
     </ul>
   <% end %>
