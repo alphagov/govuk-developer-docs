@@ -45,8 +45,7 @@ class AppDocs
     end
 
     def description
-      repo = GitHub.client.repo(github_repo_name)
-      repo["description"]
+      app_data["description"] || description_from_github
     end
 
     def production_url
@@ -57,6 +56,11 @@ class AppDocs
 
     def puppet_name
       app_data["puppet_name"] || app_name.underscore
+    end
+
+    def description_from_github
+      repo = GitHub.client.repo(github_repo_name)
+      repo["description"]
     end
   end
 end
