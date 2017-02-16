@@ -31,7 +31,7 @@ helpers do
   end
 
   def publishing_api_pages
-    PublishingApiDocs.pages
+    PublishingApiDocs.pages.sort_by(&:title)
   end
 
   def active_app_pages

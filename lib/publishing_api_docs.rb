@@ -4,6 +4,7 @@ class PublishingApiDocs
     "dependency-resolution" => "Dependency resolution",
     "link-expansion" => "Link expansion",
     "model" => "Model",
+    "pact_testing" => "Contract testing with Pact",
     "publishing-application-examples" => "Examples",
     "rabbitmq" => "Message queue",
   }
