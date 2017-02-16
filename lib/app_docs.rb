@@ -12,6 +12,18 @@ class AppDocs
       @app_data = app_data
     end
 
+    def retired?
+      app_data["retired"]
+    end
+
+    def page_title
+      if retired?
+        "Application: #{app_name} (retired)"
+      else
+        "Application: #{app_name}"
+      end
+    end
+
     def app_name
       app_data["app_name"] || github_repo_name
     end
@@ -20,12 +32,8 @@ class AppDocs
       app_data.fetch("github_repo_name")
     end
 
-    def title
-      app_name
-    end
-
     def repo_url
-      "https://github.com/alphagov/#{github_repo_name}"
+      app_data["repo_url"] || "https://github.com/alphagov/#{github_repo_name}"
     end
 
     def puppet_url
