@@ -34,8 +34,8 @@ helpers do
     PublishingApiDocs.pages
   end
 
-  def app_pages
-    AppDocs.pages.sort_by(&:title)
+  def active_app_pages
+    AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
 
   require 'table_of_contents/helpers'
@@ -62,7 +62,7 @@ end
 
 AppDocs.pages.each do |application|
   proxy "/apps/#{application.app_name}.html", "templates/application_template.html", locals: {
-    page_title: "Application: #{application.title}",
+    page_title: application.page_title,
     application: application,
   }
 end

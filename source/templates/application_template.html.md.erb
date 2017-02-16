@@ -7,6 +7,15 @@ edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/appl
 
 <%= application.description %>
 
+This application is retired.
+
+<% if application.retired? %>
+<ul>
+  <li><%= link_to "GitHub repo", application.repo_url %></li>
+</ul>
+
+<% else %>
+
 <% if application.team %>
 Owned by team **<%= application.team %>**.
 <% else %>
@@ -23,6 +32,8 @@ The team that owns this application isn't specified. Help out by
     <li><%= link_to application.production_url.gsub('https://', ''), application.production_url %></li>
   <% end %>
 </ul>
+
+<% end %>
 
 <%= partial 'partials/source', locals: { page: current_page.data } %>
 
