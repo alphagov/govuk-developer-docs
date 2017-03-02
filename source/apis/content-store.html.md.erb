@@ -1,0 +1,142 @@
+---
+layout: api_layout
+title: Content Store
+parent: /apis.html
+---
+
+The [Content Store][content-store-repo] is the store for all published content on
+GOV.UK. When given a path, it responds with the content that should be displayed
+on that path.
+
+While it is primarily intended for the use of the frontend apps, it is also
+exposed externally at `https://www.gov.uk/api/content/<path>`, where `<path>` is
+the full path of the item on GOV.UK.
+
+The full list of fields in a document depends on the document type and schema
+name, which are themselves fields included at the top level; these schemas are
+defined in the [govuk-content-schemas repository][schemas-repo]. However, the
+bulk of the fields are common between all schemas, and these are primarily
+contained in three sections, as detailed below.
+
+## Top level fields
+
+These fields are constant across all document types.
+
+`base_path`: The main path that this content item is served on. Some items will
+contain data for multiple pages; these will all be sub-pages contained under the
+base_path.
+
+`content_id`: The unique identifier for this content item. This uuid remains
+constant throughout the lifetime of a piece of content, and is used to identify
+an item across our systems.
+
+`schema_name`: The individual schema in [govuk-content-schemas][schemas-repo]
+that this item conforms to; used in validation. Examples include "publication",
+"detailed_guide".
+
+`document_type`: The type of document; frequently the same as schema_name but
+may differ when one schema contains many sub-types - for example, publications
+includes "policy_paper", "notice", "national_statistics", etc.
+
+`title`: The title of the document.
+
+`description`: A summary of the content. This is often displayed on the search
+or index page for this item.
+
+`public_updated_at`: The timestamp of the last major update to this content.
+
+`first_published_at`: The timestamp that this content was first published.
+
+`last_edited_at`: The timestamp this content was last edited.
+
+`updated_at`: Timestamp of the last change made to this item.
+
+`publishing_app`: The app that created this content and is responsible for
+editing it. Examples include "whitehall", "specialist-publisher".
+
+`rendering_app`: The frontend app that is responsible for displaying this
+content. Examples include "government-frontend", "specialist-frontend".
+
+`locale`: The language of the content, eg "en", "ar".
+
+`need_ids`: The IDs of the user needs that this content serves, as denoted by
+the Need API. Deprecated.
+
+`analytics_identifier`: The identifier to use in Google Analytics for this
+content.
+
+`withdrawn_notice`: The text to display at the top of this item indicating it
+is no longer current, along with the timestamp it was withdrawn.
+
+`details`: As hash containing the full details for this content, see below.
+
+`links`: A hash containing all the links and tags for an item; see below.
+
+## Details
+
+These fields differ per document type, but may include the following:
+
+`body`: The full body text of the item, in HTML (rendered from govspeak).
+
+`change_history`: An array listing all the major changes to an item; each
+element consists of a timestamp and a note describing the change.
+
+`political`: boolean flag indicating whether this content relates to the
+policies of a particular government.
+
+`government`: a hash containing the title of the government responsible for
+publishing this content, and a boolean indicating whether it is the current
+government.
+
+`documents`: an array of attachments associated with the current item. Each
+document is presented as a rendered piece of HTML including link and thumbnail.
+
+`image`: the URL of an image to display alongside the item.
+
+## Links
+
+Each element in this hash is an array of hashes containing links of a certain
+type. The particular elements in the hash will depend on the schema type, but
+common ones include:
+
+`available_translations`: Pages that contain translations of this content into
+other languages.
+
+`organisations`: Government bodies that own or are responsible for this content.
+
+`parent`: The item that is the parent of this document; eg an index page, or
+the publication page in the case of HTML publications.
+
+`children`: The items that are children of this page.
+
+`mainstream_browse_pages`: The sections under the /browse area of the site
+that this content will appear in.
+
+The exact selection of fields inside each of these hashes is dependent on what
+is needed to display in the frontend, so may differ per link type. However, all
+links will include the following fields:
+
+`content_id`: The unique identifer of the linked content item.
+
+`base_path`: The linked item's path on the site.
+
+`api_path`: The path for the linked item in this API.
+
+`title`: The title of the linked item.
+
+`description`: Summary of the content of the linked item.
+
+`document_type`: The type of the linked document.
+
+`schema_name`: The schema in [govuk-content-schemas][schemas-repo] that the
+linked item conforms to.
+
+`locale`: The locale of the linked item. Usually, if a translation of the
+linked content into the same language as the current item exists, the link will
+point to that translation; otherwise, it will default to the English version.
+
+`links`: Any recursive links relevant to rendering this item.
+
+
+[content-store-repo]: https://github.com/alphagov/content-store
+[schemas-repo]: https://github.com/alphagov/govuk-content-schemas
