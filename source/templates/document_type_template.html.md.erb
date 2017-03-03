@@ -3,9 +3,11 @@ layout: document_type_layout
 parent: /document-types.html
 ---
 
-There are <strong><%= page.total_count %></strong> pages with document type '<%= page.name %>' on GOV.UK.
+There are <strong><%= page.total_count %></strong> pages with document type
+'<%= page.name %>' in the GOV.UK search index.
 
-<h2>Most popular pages</h2>
+<% if page.examples.any? %>
+<h2>Example pages</h2>
 
 <ul>
 <% page.examples.each do |example| %>
@@ -14,3 +16,4 @@ There are <strong><%= page.total_count %></strong> pages with document type '<%=
 </ul>
 
 <%= link_to 'Source query from Search API', page.search_url %>
+<% end %>

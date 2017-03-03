@@ -12,5 +12,21 @@ missing from the list on the left. At the moment the list covers types for
 
 > The data for the list is generated [by running a facet query against search][query].
 
+## Supertypes
+
+Document types can be grouped into "document supertypes". For example, the
+whitehall document grouping splits document types into "Publications",
+"Announcements" and "Statistics".
+
+<% Supertypes.all.each do |supertype| %>
+### <%= supertype.name %>
+
+<%= supertype.description %>
+
+Types:
+<%= supertype.supertype_names.map { |name| link_to name, "https://www.gov.uk/api/search.json?filter_#{supertype.id}=#{name}" }.to_sentence %>
+
+<% end %>
+
 [content-store]: https://github.com/alphagov/content-store
 [query]: <%= DocumentTypes::FACET_QUERY %>
