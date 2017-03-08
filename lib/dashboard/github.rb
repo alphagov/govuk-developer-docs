@@ -7,7 +7,7 @@ class GitHub
   # org. Because 99% of the repos will be from that org, we can download and
   # cache all alphagov-repos and save on API calls.
   def repo(app_name)
-    if app_name =~ "/"
+    if app_name =~ %r[/]
       # Not on alpghagov, make a separate call to the API. Cache it for
       # development speed.
       @@cache ||= {}
