@@ -1,7 +1,7 @@
 class Supertypes
   def self.all
-    yaml = Faraday.get("https://raw.githubusercontent.com/alphagov/govuk_document_types/master/data/supertypes.yml").body
-    YAML.load(yaml).map { |id, config| Supertype.new(id, config) }
+    data = HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk_document_types/master/data/supertypes.yml")
+    data.map { |id, config| Supertype.new(id, config) }
   end
 
   class Supertype
