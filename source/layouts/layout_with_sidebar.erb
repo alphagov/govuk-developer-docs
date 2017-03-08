@@ -1,6 +1,6 @@
 <% wrap_layout :header_footer_only do %>
   <div id="toc-heading" class="toc-show fixedsticky">
-    <a href="#toc" class="toc-show__label js-toc-show">
+    <a href="#toc" class="toc-show__label js-toc-show" aria-controls="toc">
       Table of contents <span class="toc-show__icon"></span>
     </a>
   </div>
@@ -8,14 +8,14 @@
   <div class="app-pane__body">
     <div class="app-pane__toc">
       <div class="toc" data-module="table-of-contents">
-        <a href="#" class="toc__close js-toc-close">Close</a>
-        <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+        <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
+        <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">        <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
           <%= yield_content :sidebar %>
         </nav>
       </div>
     </div>
 
-    <div class="app-pane__content">
+    <div class="app-pane__content toc-open-disabled">
       <main id="content" class="technical-documentation" data-module="anchored-headings">
         <%= yield %>
       </main>
