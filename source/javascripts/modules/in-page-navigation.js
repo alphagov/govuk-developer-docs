@@ -118,7 +118,7 @@
         }
       });
 
-      return '#' + result.attr('id');
+      return result ? '#' + result.attr('id') : false;
     }
   };
 })(jQuery, window.GOVUK.Modules);
