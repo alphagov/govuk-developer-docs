@@ -28,7 +28,9 @@ edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/dict
       <h2 id=<%="#{entry.word.parameterize}"%>-definition>
         <%= entry.word %>
       </h2>
-      <small>Synonyms: <%= entry.synonyms %></small>
+      <% if entry.synonyms.present? %>
+        <small>Synonyms: <%= entry.synonyms %></small>
+      <% end %>
       <p><%= entry.description %></p>
     </div>
   <% end %>
