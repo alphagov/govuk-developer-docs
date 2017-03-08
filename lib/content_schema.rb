@@ -1,5 +1,3 @@
-require 'json'
-require 'active_support/core_ext/string'
 require 'govuk_schemas'
 
 class ContentSchema

@@ -6,6 +6,7 @@ gem 'rake'
 gem 'rspec', '~> 3.5'
 gem 'webmock', '~> 2.1'
 gem 'activesupport', '~> 5.0'
+gem 'govuk-lint', '~> 2.0'
 
 # Middleman Gems
 gem 'middleman', '>= 4.0.0'
@@ -23,8 +24,9 @@ gem 'redcarpet', '~> 3.3.2'
 gem 'govuk_schemas', '~> 2.1.0'
 
 # GitHub API
-gem 'octokit'
-gem 'faraday-http-cache'
+gem 'octokit', '~> 4.2.0'
+gem 'faraday-http-cache', '~> 2.0.0'
+gem 'faraday_middleware', '~> 0.11.0'
 
 # For hosting on Heroku
-gem 'rack-contrib'
+gem 'rack-contrib', '~> 1.2.0'
