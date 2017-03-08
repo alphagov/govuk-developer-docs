@@ -1,3 +1,10 @@
+---
+layout: false
+title: Dictionary
+source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/dictionary.yml
+edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/dictionary.yml
+---
+
 <% content_for :sidebar do %>
   <ul>
     <li>
@@ -16,7 +23,15 @@
 <% wrap_layout :layout_with_sidebar do %>
   <%= partial 'partials/header' %>
 
-  <%= yield %>
+  <% data.dictionary.each do |entry| %>
+    <div>
+      <h2 id=<%="#{entry.word.parameterize}"%>-definition>
+        <%= entry.word %>
+      </h2>
+      <small>Synonyms: <%= entry.synonyms %></small>
+      <p><%= entry.description %></p>
+    </div>
+  <% end %>
 
   <%= partial 'partials/source', locals: { page: current_page.data } %>
 <% end %>
