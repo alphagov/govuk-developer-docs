@@ -16,8 +16,8 @@ class Supertypes
     end
 
     def for_document_type(document_type)
-      item = items.find { |item| item.fetch("document_types").include?(document_type) }
-      item ? item['id'] : default
+      document_type_item = items.find { |item| item.fetch("document_types").include?(document_type) }
+      document_type_item ? document_type_item['id'] : default
     end
   end
 end

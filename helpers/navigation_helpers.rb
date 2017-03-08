@@ -7,6 +7,6 @@ module NavigationHelpers
 
   def sidebar_link(name, page_path)
     link_to name, page_path,
-      class: ("/" + current_page.path == page_path) ? 'toc-link--in-view' : nil
+      class: "/#{current_page.path}" == page_path ? 'toc-link--in-view' : nil
   end
 end
