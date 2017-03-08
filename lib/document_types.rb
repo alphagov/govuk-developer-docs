@@ -18,10 +18,7 @@ class DocumentTypes
   end
 
   def self.facet_query
-    @@facet_query ||= begin
-      json = Faraday.get(FACET_QUERY).body
-      JSON.parse(json)
-    end
+    @@facet_query ||= HTTP.get(FACET_QUERY)
   end
 
   class Page

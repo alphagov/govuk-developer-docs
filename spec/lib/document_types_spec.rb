@@ -4,7 +4,12 @@ RSpec.describe DocumentTypes do
   describe ".pages" do
     it "returns document types" do
       stub_request(:get, "https://www.gov.uk/api/search.json?count=0&facet_content_store_document_type=100,examples:10,example_scope:global").
-        to_return(body: File.read("spec/fixtures/rummager-app-search-response.json"))
+        to_return(
+          body: File.read("spec/fixtures/rummager-app-search-response.json"),
+          headers: {
+            content_type: "application/json"
+          }
+        )
 
       document_type = DocumentTypes.pages.first
 
