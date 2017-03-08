@@ -12,7 +12,7 @@ edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/dict
       <ul>
       <% data.dictionary.each do |entry| %>
         <li>
-          <%= link_to entry.word, "/dictionary.html##{entry.word.parameterize}-definition" %>
+          <%= link_to entry.word, "##{entry.word.parameterize}-definition" %>
         </li>
       <% end %>
       </ul>
