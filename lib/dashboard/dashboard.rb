@@ -11,8 +11,6 @@ class Dashboard
     end
   end
 
-private
-
   class Thing
     attr_reader :data
 
