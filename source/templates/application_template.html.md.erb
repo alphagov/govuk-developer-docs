@@ -34,6 +34,26 @@ The team that owns this application isn't specified. Help out by
   <% end %>
 </ul>
 
+<% if application.example_published_pages %>
+<h3>Example pages published by <%= application.app_name %></h3>
+
+<ul>
+<% application.example_published_pages.each do |example| %>
+  <li><%= link_to example['title'], "https://www.gov.uk#{example['link']}" %></li>
+<% end %>
+</ul>
+<% end %>
+
+<% if application.example_rendered_pages %>
+<h3>Example pages rendered by <%= application.app_name %></h3>
+
+<ul>
+<% application.example_rendered_pages.each do |example| %>
+  <li><%= link_to example['title'], "https://www.gov.uk#{example['link']}" %></li>
+<% end %>
+</ul>
+<% end %>
+
 <% end %>
 
 <%= partial 'partials/source', locals: { page: current_page.data } %>

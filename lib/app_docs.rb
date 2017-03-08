@@ -5,6 +5,10 @@ class AppDocs
     end
   end
 
+  def self.app_data
+    @publishing_app_data ||= AppData.new
+  end
+
   class App
     attr_reader :app_data
 
@@ -26,6 +30,14 @@ class AppDocs
 
     def app_name
       app_data["app_name"] || github_repo_name
+    end
+
+    def example_published_pages
+      AppDocs.app_data.publishing_examples[app_name]
+    end
+
+    def example_rendered_pages
+      AppDocs.app_data.rendering_examples[app_name]
     end
 
     def github_repo_name
