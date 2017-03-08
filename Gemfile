@@ -25,6 +25,7 @@ gem 'govuk_schemas', '~> 2.1.0'
 # GitHub API
 gem 'octokit'
 gem 'faraday-http-cache'
+gem 'faraday_middleware'
 
 # For hosting on Heroku
 gem 'rack-contrib'
