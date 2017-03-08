@@ -1,8 +1,3 @@
-require 'yaml'
-require 'active_support/core_ext/string'
-
-require_relative './github'
-
 # View model for the dashboard.
 class Dashboard
   def chapters
