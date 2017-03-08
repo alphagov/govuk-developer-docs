@@ -5,7 +5,7 @@
 
     <ul>
     <% apps.each do |app| %>
-      <li><%= link_to app.app_name, "/apps/#{app.app_name}.html" %></li>
+      <li><%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %></li>
     <% end %>
     </ul>
   <% end %>

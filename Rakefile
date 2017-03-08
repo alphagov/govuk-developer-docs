@@ -8,8 +8,7 @@ end
 
 desc "Find deployable applications that are not in this repo"
 task :verify_deployable_apps do
-  response = Faraday.get("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
-  common_yaml = YAML.load(response.body.to_s)
+  common_yaml = HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
   deployable_applications = common_yaml["deployable_applications"].map { |k, v| v['repository'] || k }
   our_applications = AppDocs.pages.map(&:github_repo_name)
 

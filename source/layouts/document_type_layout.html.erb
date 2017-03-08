@@ -1,9 +1,9 @@
 <% content_for :sidebar do %>
   <ul>
-    <li><a href='/document-types.html'>Document types</a>
+    <li><%= sidebar_link 'Document types', "/document-types.html" %>
       <ul>
       <% DocumentTypes.pages.each do |page| %>
-        <li><%= link_to "#{page.name} - #{page.total_count}", "/document-types/#{page.name}.html" %></li>
+        <li><%= sidebar_link "#{page.name} - #{page.total_count}", "/document-types/#{page.name}.html" %></li>
       <% end %>
       </ul>
     </li>
