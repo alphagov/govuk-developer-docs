@@ -27,29 +27,57 @@
 
       a:link, a:visited {
         display: block;
-        padding: 8px 0;
-        letter-spacing: 0.019em;
+        padding: 8px $gutter-half;
+        margin: 0 $gutter-half * -1;
+        border-left: 5px solid transparent;
 
-        &.toc-link--in-view {
-          font-weight: bold;
-          color: $link-active-colour;
-          letter-spacing: normal;
+        @include media(tablet) {
+          &.toc-link--in-view {
+            color: $link-active-colour;
+            border-left-color: $link-active-colour;
+            background-color: $grey-4;
+          }
         }
       }
 
+      // Top level
       > ul > li > a:link {
         @include bold-19;
-        letter-spacing: normal;
       }
 
-      // Second Level
-      > ul > li > ul {
-        margin-bottom: 20px;
-      }
+      @include media(tablet) {
+        // Level 2
+        > ul > li > ul {
+          margin-bottom: 20px;
+        }
 
-      // Third Level & Below
-      li li li {
-        margin-left: $gutter-half;
+        // Level 3
+        li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 2;
+          }
+        }
+
+        // Level 4
+        li li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 4;
+          }
+        }
+
+        // Level 5
+        li li li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 5;
+          }
+        }
+
+        // Level 6
+        li li li li li li {
+          a:link, a:visited {
+            padding-left: $gutter-half * 6;
+          }
+        }
       }
     }
   }
