@@ -1,11 +1,11 @@
 <% content_for :sidebar do %>
   <ul>
-    <li><%= link_to 'Search API', '/apis/search-api.html' %></li>
+    <li><%= sidebar_link 'Search API', '/apis/search-api.html' %></li>
     <li>
-      <%= link_to 'Publishing API', '/apis/publishing-api.html' %>
+      <%= sidebar_link 'Publishing API', '/apis/publishing-api.html' %>
       <ul>
         <% publishing_api_pages.each do |page| %>
-          <li><%= link_to page.title, "/apis/publishing-api/#{page.filename}.html" %></li>
+          <li><%= sidebar_link page.title, "/apis/publishing-api/#{page.filename}.html" %></li>
         <% end %>
       </ul>
     </li>

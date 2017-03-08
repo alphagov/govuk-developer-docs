@@ -1,10 +1,10 @@
 <% content_for :sidebar do %>
 <ul>
   <li>
-    <%= link_to 'Content schemas', '/content-schemas.html' %>
+    <%= sidebar_link 'Content schemas', '/content-schemas.html' %>
     <ul>
       <% GovukSchemas::Schema.schema_names.sort.each do |schema_name| %>
-        <li><%= link_to schema_name, "/content-schemas/#{schema_name}.html" %></li>
+        <li><%= sidebar_link schema_name, "/content-schemas/#{schema_name}.html" %></li>
         <% if current_page.path.include?("content-schemas/#{schema_name}.html") %>
           <ul>
             <li><%= link_to 'Frontend schema', '#frontend-schema' %>
