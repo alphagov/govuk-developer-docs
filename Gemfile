@@ -24,9 +24,9 @@ gem 'redcarpet', '~> 3.3.2'
 gem 'govuk_schemas', '~> 2.1.0'
 
 # GitHub API
-gem 'octokit'
-gem 'faraday-http-cache'
-gem 'faraday_middleware'
+gem 'octokit', '~> 4.2.0'
+gem 'faraday-http-cache', '~> 2.0.0'
+gem 'faraday_middleware', '~> 0.11.0'
 
 # For hosting on Heroku
-gem 'rack-contrib'
+gem 'rack-contrib', '~> 1.2.0'
