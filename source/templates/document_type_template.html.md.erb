@@ -5,6 +5,14 @@ parent: /document-types.html
 
 There are <strong><%= page.total_count %></strong> pages with document type '<%= page.name %>' on GOV.UK.
 
+## Supertypes
+
+| Type | Group |
+| --- | --- |
+<% Supertypes.all.each do |supertype| %>
+| <%= link_to supertype.name, "/document-types.html" %> | <%= supertype.for_document_type(page.name) %> |
+<% end %>
+
 <h2>Most popular pages</h2>
 
 <ul>

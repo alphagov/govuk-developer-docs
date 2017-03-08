@@ -12,5 +12,29 @@ missing from the list on the left. At the moment the list covers types for
 
 The data for the list is generated [by running a facet query against search][query].
 
+## Supertypes
+
+Document types can be grouped into "document supertypes". The types are defined
+in a YAML file [in the GOV.UK Document Types gem][govuk_document_types].
+
+<% Supertypes.all.each do |supertype| %>
+### <%= supertype.name %>
+
+<%= supertype.description %>
+
+| Name | Types |
+| --- | --- |
+<% supertype.items.map do |item| %>
+| <%= item.fetch("id") %> | <%= item.fetch("document_types").map { |d| link_to(d, document_type_url(d)) }.join("<br/>") %> |
+<% end %>
+| <%= supertype.default %> | All other types |
+
+<% end %>
+
 [content-store]: https://github.com/alphagov/content-store
+[govuk_document_types]: https://github.com/alphagov/govuk_document_types
 [query]: <%= DocumentTypes::FACET_QUERY %>
+
+<style>
+table td:first-child { width: 150px; }
+</style>
