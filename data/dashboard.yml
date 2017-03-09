@@ -55,12 +55,18 @@
   sections:
     - name: Routing
       repos:
-        - router
         - authenticating-proxy
+        - fastly-configure
+        - govuk-cdn-configs
+        - router
       sites:
         - name: gds/router-data
           url: https://github.gds/gds/router-data
           description: Send routes directly to the router-api (deprecated)
+      sites:
+        - name: gds/cdn-configs
+          url: https://github.gds/gds/cdn-configs
+          description: Configuration for our Fastly
 
     - name: Configuration
       repos:
