@@ -3,7 +3,7 @@
     <li><%= sidebar_link 'Document types', "/document-types.html" %>
       <ul>
       <% DocumentTypes.pages.each do |page| %>
-        <li><%= sidebar_link "#{page.name} - #{page.total_count}", "/document-types/#{page.name}.html" %></li>
+        <li><%= sidebar_link page.name, "/document-types/#{page.name}.html" %></li>
       <% end %>
       </ul>
     </li>

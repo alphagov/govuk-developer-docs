@@ -11,12 +11,12 @@ RSpec.describe DocumentTypes do
           }
         )
 
+      stub_request(:get, "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/lib/govuk_content_schemas/allowed_document_types.yml").
+        to_return(body: File.read("spec/fixtures/allowed-document-types-fixture.json"))
+
       document_type = DocumentTypes.pages.first
 
-      expect(document_type.examples.first).to eql(
-        "title" => "Disclosure and Barring Service – About us",
-        "link" => "/government/organisations/disclosure-and-barring-service/about"
-      )
+      expect(document_type.examples.first.keys).to eql(%w[title link])
     end
   end
 end
