@@ -1,5 +1,5 @@
 class DocumentTypes
-  FACET_QUERY = 'https://www.gov.uk/api/search.json?facet_content_store_document_type=100,examples:10,example_scope:global&count=0'.freeze
+  FACET_QUERY = 'https://www.gov.uk/api/search.json?facet_content_store_document_type=500,examples:10,example_scope:global&count=0'.freeze
 
   def self.pages
     @@pages ||= begin
