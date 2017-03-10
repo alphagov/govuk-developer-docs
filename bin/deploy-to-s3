@@ -1,5 +1,7 @@
 #!/bin/bash -x
 
+set -e
+
 rm -rf /tmp/govuk-content-schemas
 git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1
 export GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas
