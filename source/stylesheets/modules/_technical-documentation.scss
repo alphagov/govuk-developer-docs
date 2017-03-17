@@ -1,10 +1,34 @@
+// Adds combination of margin and padding to headings to make them appear
+// correctly when they're linked to as anchors, and scale them on mobile
+@mixin heading-offset($tabletTopMargin) {
+  // Scale margins with font size on mobile (16/19ths)
+  $mobileTopMargin: ceil($tabletTopMargin * (16 / 19));
+  
+  // Offset headings down on mobile so that linking to anchors they appear after
+  // the sticky 'table of contents' element
+  $stickyTocOffset: 20px + $gutter-half + 10px + 1px;
+  
+  // Pad the heading so that when linking to an anchor there is at most a
+  // $gutter-half (mobile) or $gutter (tablet and above) sized gap between the
+  // top of the viewport and the heading.
+  padding-top: min($mobileTopMargin, $gutter-half) + $stickyTocOffset;
+  margin-top: max(0, $mobileTopMargin - $gutter-half) - $stickyTocOffset;
+
+  @include media(tablet) {
+    padding-top: min($tabletTopMargin, $gutter);
+    margin-top: max(0, $tabletTopMargin - $gutter);
+  }
+}
+
 .technical-documentation {
   // Required for IE11 to render <main> correctly
   display: block;
   margin: 0 $gutter-half 10px;
   max-width: 40em;
-
-  line-height: 1.6;
+  
+  line-height: 1.4;
+  
+  color: $text-colour;
 
   @include media(tablet) {
     // We add 2 pixels to the gutter here to ensure there's sufficient spacing between
@@ -12,8 +36,66 @@
     margin: 0 ($gutter + 2px) $gutter;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    padding-top: $gutter-half;
+  // Headings
+  h1 {
+    @include bold-48;
+    @include heading-offset($gutter * 2);
+    
+    &:first-of-type {
+      @include heading-offset($gutter);
+    }
+  }
+
+  h2 {    
+    @include bold-36;
+    @include heading-offset($gutter * 1.5);
+  }
+
+  h3, h4, h5, h6 {
+    @include heading-offset($gutter);
+  }
+
+  h3 {
+    @include bold-24;
+  }
+
+  h4 {
+    @include bold-19;
+  }
+
+  h5 {
+    @include bold-19;
+    color: $secondary-text-colour;
+  }
+
+  h6 {
+    @include core-19;
+    color: $secondary-text-colour;
+  }
+
+  // Expand margin when h1 followed directly by paragraph
+  h1 + p {
+    @include media(tablet) {
+      margin-top: $gutter * 1.5;
+    }
+  }
+
+  // Tighten up margins where headings follow each other
+  h1 + h2 {
+    @include heading-offset($gutter);
+  }
+
+  h2 + h3, h3 + h4, h4 + h5, h5 + h6 {
+    @include heading-offset(20px);
+  }
+
+  p {
+    margin-top: ceil($gutter-half * (16 / 19));
+    margin-bottom: 0;
+
+    @include media(tablet) {
+      margin-top: $gutter-half;
+    }
   }
 
   img {
@@ -23,21 +105,24 @@
   }
 
   ol, ul {
-    padding-left: $gutter-half;
-
-    @include media(desktop) {
-      padding-left: $gutter;
-    }
+    margin: $gutter-half 0 0;
+    padding-left: 20px;
   }
 
-  h1 {
-    border-top: 5px solid $text-colour;
-    margin-top: $gutter * 2;
-  }
-
-  h1:first-child {
-    border-top: none;
+  ol ol, ul ul, ol ul, ul ol {
     margin-top: 0;
+  }
+
+  li {
+    margin-top: 5px;
+  }
+
+  ol + p, ul + p, .table-container + p {
+    margin-top: ceil($gutter * (16 / 19));
+    
+    @include media(tablet) {
+      margin-top: $gutter;
+    }
   }
 
   blockquote {
@@ -57,13 +142,22 @@
 
   pre code {
     background: none;
+    color: inherit;
     padding: 0;
   }
 
   code {
     background: $code-01;
-    padding: 3px 3px;
-    border-radius: 3px;
+    padding: 3px 5px;
+    border-radius: 1px;
+    
+    font-family: monaco, Consolas, "Lucida Console", monospace;
+    font-size: 15px;
+    color: $code-0E;
+    
+    @include media(tablet) {
+      font-size: 16px;
+    }
 
     // Handle long strings (URLs, long variable names, etc) by allowing them
     // to break anywhere if required.
@@ -77,16 +171,26 @@
     word-break: break-word;
   }
 
+  // Support monospace headings for e.g. listing API endpoints
+  h1, h2, h3, h4, h5, h6 {
+    code {
+      font-size: inherit;
+      color: $text-colour;
+      background: none;
+      padding: 0;
+    }
+  }
+
   .table-container {
     display: block;
     max-width: 100%;
     overflow-x: auto;
+    
+    margin-top: $gutter-half;
   }
 
   table {    
     width: 100%;
-
-    margin-bottom: $gutter * 2;
 
     border-collapse: collapse;
     border-spacing: 0;
@@ -96,7 +200,7 @@
     padding: $gutter-one-third $gutter-two-thirds $gutter-one-third 0;
 
     background-color: transparent;
-    border-bottom: 1px solid $grey-2;
+    border-bottom: 1px solid $border-colour;
     border-width: 0 0 1px 0;
 
     @include core-16;
