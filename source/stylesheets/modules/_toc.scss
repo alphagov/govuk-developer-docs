@@ -88,7 +88,7 @@
 
   @include media(tablet) {
     .toc {
-      padding: $gutter-half $gutter;
+      padding: 22px $gutter $gutter-half;
     }
 
     // Prevent the fixedsticky spacer from appearing if the browser is resized
@@ -208,26 +208,6 @@
             background: transparentize($white, 0.05);
             backdrop-filter: blur(2px);
           }
-        }
-      }
-
-      // Allow space header on mobile
-      .technical-documentation {
-        $offset: 20px + $gutter-half + 10px + 1px;
-
-        h1, h2, h3, h4, h5, h6 {
-          // Line height + padding + border of .toc-show
-
-          padding-top: $gutter-half + $offset;
-          margin-top: -$offset;
-        }
-
-        h1 {
-          margin-top: ($gutter * 2) - $offset;
-        }
-
-        h1:first-child {
-          margin-top: -$offset;
         }
       }
     }
