@@ -28,7 +28,7 @@ class DocumentTypes
   end
 
   def self.all_document_types
-    HTTP.get_yaml(DOCUMENT_TYPES_URL).sort
+    @@all_document_types ||= HTTP.get_yaml(DOCUMENT_TYPES_URL).sort
   end
 
   class Page
