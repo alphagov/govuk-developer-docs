@@ -9,15 +9,19 @@
     <% end %>
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title><%= defined?(page_title) ? page_title : current_page.data.title %> - GOV.UK Developer Documentation</title>
+    <title><%= browser_title %></title>
 
     <!--[if gt IE 8]><!--><%= stylesheet_link_tag :screen, media: 'screen' %><!--<![endif]-->
     <!--[if lte IE 8]><%= stylesheet_link_tag 'screen-old-ie', media: 'screen' %><![endif]-->
 
-    <link rel="canonical" href="<%= config[:tech_docs][:host] %><%= current_page.url %>">
+    <link rel="canonical" href="<%= canonical_url %>">
 
     <%= stylesheet_link_tag :print, media: 'print' %>
     <%= javascript_include_tag :application %>
+
+    <% meta_tags.each do |property, content| %>
+      <%= tag :meta, property: property, content: content %>
+    <% end %>
   </head>
 
   <body>
