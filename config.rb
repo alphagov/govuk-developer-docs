@@ -38,6 +38,13 @@ helpers do
     AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
 
+  # Returns all pages under a certain directory.
+  def sub_pages(dir)
+    sitemap.resources.select do |resource|
+      resource.path.start_with?(dir)
+    end
+  end
+
   require 'table_of_contents/helpers'
   include TableOfContents::Helpers
 end
@@ -76,3 +83,5 @@ DocumentTypes.pages.each do |document_type|
     page: document_type,
   }
 end
+
+redirect "/guides.html", to: "/opsmanual.html"
