@@ -17,11 +17,17 @@ This application is retired.
 
 <% else %>
 
+<% if application.product_manager %>
+Product Manager: **<%= application.product_manager %>**.
+<br>
+<% end %>
 <% if application.team %>
 Owned by team **<%= application.team %>**.
-<% else %>
-The team that owns this application isn't specified. Help out by
-[adding a team name to the YAML configuration][app-yaml].
+<br>
+<% end %>
+<% if !(application.team || application.product_manager) %>
+Do you support this application? Help out by [adding your team name][app-yaml] to the documentation.
+<br>
 <% end %>
 
 <ul>
