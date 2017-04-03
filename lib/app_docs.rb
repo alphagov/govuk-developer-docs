@@ -64,6 +64,10 @@ class AppDocs
       app_data["team"]
     end
 
+    def product_manager
+      app_data["product_manager"]
+    end
+
     def description
       app_data["description"] || description_from_github
     end
