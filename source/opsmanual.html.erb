@@ -1,0 +1,26 @@
+---
+layout: false
+title: Opsmanual
+---
+
+<% content_for :sidebar do %>
+  <ul>
+    <li>
+      <% sub_pages('opsmanual/').each do |page| %>
+        <%= link_to page.data.title, page.path %>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
+<% wrap_layout :layout_with_sidebar do %>
+  <%= partial 'partials/header' %>
+
+<blockquote>
+  <strong>Work in progress</strong><br/><br/>
+
+  We're currently moving <a href='https://github.gds/pages/gds/opsmanual'>
+  the opsmanual</a> to this site. Follow along option
+  <a href='https://trello.com/b/pWnVP4wF'>on our Trello board</a>.
+</blockquote>
+<% end %>
