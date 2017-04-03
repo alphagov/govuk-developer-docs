@@ -84,4 +84,4 @@ DocumentTypes.pages.each do |document_type|
   }
 end
 
-redirect "/guides.html", to: "/opsmanual.html"
+redirect "guides.html", to: "opsmanual.html"
