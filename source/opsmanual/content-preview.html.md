@@ -1,3 +1,9 @@
+---
+title: Content Preview
+parent: /opsmanual.html
+layout: opsmanual_layout
+---
+
 # Content Preview
 
 ## Overview
