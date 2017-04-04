@@ -14,15 +14,11 @@ sent for publication. This allows content editors to preview their
 content before making it live, without having to manually copy it into a
 separate version of the publishing tool.
 
-Content Preview only contains applications that read from the
-content-store. Initially, these are:
-
--   government-frontend (Whitehall case studies only)
--   manuals-frontend (manuals published by specialist publisher)
--   contacts-frontend
--   static (supplies assets and templates for the other apps)
+Content Preview contains [most frontend applications][preview-puppet].
 
 Content Preview exists in each of integration, staging and production.
+
+[preview-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/draft_frontend.yaml
 
 ## Design
 
