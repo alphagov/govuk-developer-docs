@@ -1,6 +1,7 @@
 ---
 title: Keeping software current
 parent: /opsmanual.html
+layout: opsmanual_layout
 ---
 
 # Keeping software current

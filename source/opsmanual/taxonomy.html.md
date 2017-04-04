@@ -1,6 +1,7 @@
 ---
 title: Taxonomy
 parent: /opsmanual.html
+layout: opsmanual_layout
 ---
 
 # Taxonomy
