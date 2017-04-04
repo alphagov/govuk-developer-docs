@@ -1,6 +1,7 @@
 ---
 title: A/B testing
 parent: /opsmanual.html
+layout: opsmanual_layout
 ---
 
 # A/B testing
@@ -78,6 +79,8 @@ Fastly also saves the response in the cache. The `Vary: GOVUK-ABTest-Example` re
 If the original request did not have the `ABTest-Example` cookie, Fastly will set a `Set-Cookie` header to the response based on the value of the `GOVUK-ABTest-Example` header.
 
 ### 3.2 Checklist for enabling A/B testing
+
+Follow these steps:
 
 1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). The content team can help.
 2. You will have to make appropriate changes in [govuk-cdn-config][govuk-cdn-config].

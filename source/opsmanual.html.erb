@@ -6,10 +6,21 @@ title: Opsmanual
 <% content_for :sidebar do %>
   <ul>
     <li>
-      <% sub_pages('opsmanual/').each do |page| %>
-        <%= link_to page.data.title, page.path %>
+      <a href="/opsmanual.html">Opsmanual</a>
+    <ul>
+    <li>
+      <% opsmanual_pages.each do |section, pages| %>
+        <li><a href='#'><%= section %></a>
+        <ul>
+          <% pages.each do |page| %>
+            <li><%= link_to page.data.title, page.path %></li>
+          <% end %>
+        </ul>
+        </li>
       <% end %>
     </li>
+    </ul>
+  </li>
   </ul>
 <% end %>
 
