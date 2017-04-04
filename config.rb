@@ -38,11 +38,11 @@ helpers do
     AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
 
-  # Returns all pages under a certain directory.
-  def sub_pages(dir)
-    sitemap.resources.select do |resource|
-      resource.path.start_with?(dir)
-    end
+  def opsmanual_pages
+    sitemap.resources
+      .select { |resource| resource.path.start_with?('opsmanual/') && resource.path.end_with?('.html') }
+      .sort_by { |page| page.data.title }
+      .group_by { |page| page.data.section }
   end
 
   require 'table_of_contents/helpers'
