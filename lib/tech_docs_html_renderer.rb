@@ -19,7 +19,7 @@ class TechDocsHTMLRenderer < Middleman::Renderers::MiddlemanRedcarpetHTML
     %(<h#{header_level} id="#{githubify_fragment_id(text)}" class="anchored-heading">
         <a href="##{githubify_fragment_id(text)}" class="anchored-heading__icon" aria-hidden="true"></a>
         #{text}
-      </h2>)
+      </h#{header_level}>)
   end
 
   # Redcarpet uses a different algo to create fragment ids than github
