@@ -29,6 +29,8 @@ required will be supplied by the GOV.UK on-call escalations contact:
 
 ### Prerequisites
 
+You'll need this:
+
 - Text for the heading
 - Text for 'extra info', which is a sentence displayed under the heading
 - A URL for users to find more information (it might not be provided at first)
