@@ -7,6 +7,8 @@ edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/appl
 
 <%= application.description %>
 
+GitHub topics: <%= application.topics.map { |topic| link_to(topic, "https://github.com/search?q=topic:#{topic}+org:alphagov") }.to_sentence %>
+
 <% if application.retired? %>
 
 This application is retired.
@@ -16,6 +18,8 @@ This application is retired.
 </ul>
 
 <% else %>
+
+### Ownership
 
 <% if application.product_manager %>
 Product Manager: **<%= application.product_manager %>**.
