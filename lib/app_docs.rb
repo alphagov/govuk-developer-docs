@@ -1,12 +1,16 @@
 class AppDocs
   def self.pages
-    YAML.load_file('data/applications.yml').map do |app_data|
+    @pages ||= YAML.load_file('data/applications.yml').map do |app_data|
       App.new(app_data)
     end
   end
 
   def self.app_data
     @publishing_app_data ||= AppData.new
+  end
+
+  def self.topics_on_github
+    pages.reject(&:retired?).flat_map(&:topics).sort.uniq
   end
 
   class App
@@ -76,6 +80,10 @@ class AppDocs
       app_data["production_url"] || (type.in?(["Publishing app", "Admin app"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
     end
 
+    def topics
+      github_repo_data["topics"]
+    end
+
   private
 
     def puppet_name
@@ -83,8 +91,11 @@ class AppDocs
     end
 
     def description_from_github
-      repo = GitHub.client.repo(github_repo_name)
-      repo["description"]
+      github_repo_data["description"]
+    end
+
+    def github_repo_data
+      @github_repo_data ||= GitHub.client.repo(github_repo_name)
     end
   end
 end

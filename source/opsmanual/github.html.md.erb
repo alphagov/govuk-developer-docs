@@ -1,0 +1,22 @@
+---
+title: How we use GitHub
+parent: /opsmanual.html
+layout: opsmanual_layout
+---
+
+# How we use GitHub
+
+We share the [alphagov GitHub organisation][alphagov] with the other teams in the
+Government Digital Service (GDS).
+
+This can sometimes make it hard to find repositories that belong to our team. We use
+GitHub "topics" to organise the repos. All repos owned by us should be tagged with
+[`govuk`](https://github.com/search?q=topic:govuk).
+
+## Topics on GitHub
+
+<% AppDocs.topics_on_github.each do |topic| %>
+- <%= link_to topic, "https://github.com/search?q=topic:#{topic}+org:alphagov" %>
+<% end %>
+
+[alphagov]: https://github.com/alphagov
