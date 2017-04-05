@@ -1,6 +1,7 @@
 ---
-layout: false
 title: Dictionary
+parent: /opsmanual.html
+layout: false
 source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/dictionary.yml
 edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/dictionary.yml
 ---
@@ -8,7 +9,8 @@ edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/dict
 <% content_for :sidebar do %>
   <ul>
     <li>
-      <%= link_to 'Dictionary', '/dictionary.html' %>
+      <a href='/opsmanual.html'>&lsaquo; Opsmanual</a>
+      <%= link_to 'Dictionary', '/opsmanual/dictionary.html' %>
       <ul>
       <% data.dictionary.each do |entry| %>
         <li>
