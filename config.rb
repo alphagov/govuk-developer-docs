@@ -25,6 +25,11 @@ set :url_root, config[:tech_docs][:host]
 activate :search_engine_sitemap,
   default_change_frequency: 'weekly'
 
+configure :build do
+  activate :minify_css
+  activate :minify_javascript
+end
+
 helpers do
   def dashboard
     Dashboard.new
