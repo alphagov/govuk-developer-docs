@@ -25,10 +25,6 @@ class PublishingApiDocs
       "https://github.com/alphagov/publishing-api/blob/master/doc/#{filename}.md"
     end
 
-    def edit_url
-      "https://github.com/alphagov/publishing-api/edit/master/doc/#{filename}.md"
-    end
-
     def raw_source
       "https://raw.githubusercontent.com/alphagov/publishing-api/master/doc/#{filename}.md"
     end

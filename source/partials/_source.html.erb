@@ -1,5 +1,3 @@
 <div class="meta-links">
-  Something wrong? Something to add?
-  <%= link_to "View source on GitHub", page.source_url %> or
-  <%= link_to "edit directly on GitHub", page.edit_url %>.
+  <%= link_to "View source", (locals.key?(:page) ? page.try(:source_url) : false) || current_page.data.source_url || "https://github.com/alphagov/govuk-developer-docs/blob/master/source/#{current_page.file_descriptor[:relative_path]}" %>
 </div>
