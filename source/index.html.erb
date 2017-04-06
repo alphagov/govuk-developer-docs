@@ -2,7 +2,6 @@
 layout: false
 title: Dashboard
 source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/dashboard.yml
-edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/dashboard.yml
 ---
 
 <% content_for :sidebar do %>
@@ -39,6 +38,4 @@ edit_url: https://github.com/alphagov/govuk-developer-docs/edit/master/data/dash
       <% end %>
     <% end %>
   <% end %>
-
-  <%= partial 'partials/source', locals: { page: current_page.data } %>
 <% end %>

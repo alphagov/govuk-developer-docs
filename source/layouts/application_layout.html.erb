@@ -14,13 +14,5 @@
 
 <% wrap_layout :layout_with_sidebar do %>
   <%= partial 'partials/header' %>
-  <% if locals.key?(:page) %>
-    <%= partial 'partials/source', page: page %>
-  <% end %>
-
   <%= yield %>
-
-  <% if locals.key?(:page) %>
-    <%= partial 'partials/source', page: page %>
-  <% end %>
 <% end %>
