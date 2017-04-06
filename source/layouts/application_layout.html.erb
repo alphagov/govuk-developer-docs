@@ -1,13 +1,26 @@
 <% content_for :sidebar do %>
   <ul>
+
+  <li><%= link_to 'By Team', '/apps/by_team.html' %></li>
+  <li>
+    <ul class='subnav'>
+    <% renderer = TechDocsHTMLRenderer.new %>
+    <% teams.each do |team_name| %>
+      <li><%= link_to team_name, "/apps/by-team.html#" + renderer.githubify_fragment_id(team_name) %></li>
+    <% end %>
+    </ul>
+  </li>
+
   <% active_app_pages.group_by(&:type).each do |name, apps| %>
     <li><%= link_to name, '/apps.html' %></li>
 
-    <ul>
-    <% apps.each do |app| %>
-      <li><%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %></li>
-    <% end %>
-    </ul>
+    <li>
+      <ul class='subnav'>
+      <% apps.each do |app| %>
+        <li><%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %></li>
+      <% end %>
+      </ul>
+    </li>
   <% end %>
   </ul>
 <% end %>
