@@ -1,0 +1,25 @@
+---
+layout: application_layout
+title: Application ownership by team
+---
+
+<% unless ApplicationsByTeam.no_known_owner.empty? %>
+
+## Repos without a home
+
+You can help us improve this documentation by [editing this page](https://github.com/alphagov/govuk-developer-docs/edit/master/data/applications.yml).
+
+<% ApplicationsByTeam.no_known_owner.each do |app_name| %>
+- [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
+<% end %>
+
+<% end %>
+
+<% teams.each do |team| %>
+## <%= team %>
+
+<% ApplicationsByTeam[team].each do |app_name| %>
+- [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
+<% end %>
+
+<% end %>
