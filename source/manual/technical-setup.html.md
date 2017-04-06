@@ -17,35 +17,9 @@ It hasn't been reviewed for accuracy yet.
 
 # Technical setup
 
-## SSH config
+## Production Access
 
-Boxen contains an [example configuration](https://github.com/alphagov/gds-boxen/blob/master/modules/gds_ssh_config/files/gds_ssh_config)
-
-After you place it into `~/.ssh/config` you will able able to be able to
-ssh into any box in the infrastructure directly, by running, for
-example, `ssh mongo-1.backend.production`.
-
-Things to check if it doesn't work:
-
--   **Can you ssh directly onto the jumpbox?**
-    `ssh jumpbox.publishing.service.gov.uk` If not, check your ssh
-    version and config.
--   **Do you get a permission denied error?** Make sure you're in the
-    user list in the [deployment repo](https://github.gds/gds/deployment/tree/master/puppet/hieradata)
-    for production access, or the [govuk-puppet repo](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
-    for access to other environments.
--   **Do you have a really old (5.3) version of openssh?** You need to
-    swap `-W %h:%p` for `exec nc %h %p`
--   **Are you connecting from outside Aviation House?** You'll need to
-    connect to the Aviation House VPN first; SSH connections are
-    restricted to the Aviation House IP addresses.
-
-It's possible the username on your local machine differs to the one
-being used remotely, in which case add a `User joebloggs` line to each
-Host section.
-
-If you get an error `percent_expand: unknown key %r` then replace `%r`
-with your username. This is a known issue on ubuntu lucid.
+See [the docs](https://github.com/alphagov/govuk-puppet/blob/master/docs/creating-a-user-account.md) for help adding your user account to Staging and Production systems.
 
 ## Emergency Publishing
 
