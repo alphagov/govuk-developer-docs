@@ -31,7 +31,7 @@ node {
     }
 
     stage("Lint Ruby") {
-      govuk.rubyLinter("*/*")
+      govuk.rubyLinter("lib helpers spec bin")
     }
 
     stage("Tests") {
