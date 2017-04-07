@@ -1,7 +1,7 @@
 ---
 title: Useful Kibana queries
-layout: opsmanual_layout
-parent: "/opsmanual.html"
+layout: manual_layout
+parent: "/manual.html"
 ---
 
 # Useful Kibana queries

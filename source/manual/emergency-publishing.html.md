@@ -1,7 +1,7 @@
 ---
 title: Emergency publishing
-parent: /opsmanual.html
-layout: opsmanual_layout
+parent: /manual.html
+layout: manual_layout
 ---
 
 # Emergency publishing
@@ -127,8 +127,8 @@ A large **red** `campaign` banner is to be displayed on the GOV.UK homepage.
 A small red `notification` banner is to be displayed on all other GOV.UK
 pages.
 
-![](/opsmanual/images/emergency-publishing-national-emergency.png)
-![](/opsmanual/images/emergency-publishing-national-emergency-notification.png)
+![](images/emergency-publishing-national-emergency.png)
+![](images/emergency-publishing-national-emergency-notification.png)
 
 ### Localised large-scale emergency (level 2 or category 1)
 
@@ -139,8 +139,8 @@ pages.
 
 These incidents will not be processed outside of business hours.
 
-![](/opsmanual/images/emergency-publishing-localised-emergency.png)
-![](/opsmanual/images/emergency-publishing-localised-emergency-notification.png)
+![](images/emergency-publishing-localised-emergency.png)
+![](images/emergency-publishing-localised-emergency-notification.png)
 
 ### Death of a notable person
 
@@ -154,4 +154,4 @@ The wording to use in the template will be the official title of the
 deceased and the years of their life e.g. 'His Royal Highness Henry VIII
 1491 to 1547'. The text should link to their official biography.
 
-![](/opsmanual/images/emergency-publishing-notable-death.png)
+![](images/emergency-publishing-notable-death.png)
