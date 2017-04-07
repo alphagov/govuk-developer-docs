@@ -89,4 +89,6 @@ DocumentTypes.pages.each do |document_type|
   }
 end
 
-redirect "guides.html", to: "opsmanual.html"
+YAML.load_file('data/redirects.yml').each do |from, to|
+  redirect from, to: to
+end
