@@ -1,4 +1,4 @@
 <div class="meta-links">
-  <%= link_to "View source", (locals.key?(:page) ? page.try(:source_url) : false) || current_page.data.source_url || "https://github.com/alphagov/govuk-developer-docs/blob/master/source/#{current_page.file_descriptor[:relative_path]}" %>
-  <%= link_to "Report problem", "https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&title=Problem with '#{current_page.data.title}'&body=Problem with '#{current_page.data.title}' (#{config[:tech_docs][:host]}#{current_page.url})" %>
+  <%= link_to "View source", view_source_url %>
+  <%= link_to "Report problem", report_issue_url %>
 </div>
