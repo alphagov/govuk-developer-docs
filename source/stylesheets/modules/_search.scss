@@ -1,0 +1,26 @@
+@include screen {
+  .search {
+    @include core-16;
+    padding: $gutter-half;
+
+    .form-control {
+      @include box-sizing(border-box);
+      @include core-19;
+      width: 100%;
+      padding: 5px 4px 2px;
+      border: 2px solid $text-colour;
+      -webkit-appearance: none;
+
+      &:focus {
+        outline: 3px solid $focus-colour;
+        outline-offset: 0;
+      }
+    }
+  }
+}
+
+@include print {
+  .search {
+    display: none;
+  }
+}
