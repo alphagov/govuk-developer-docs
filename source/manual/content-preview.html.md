@@ -1,7 +1,7 @@
 ---
 title: Content Preview
-parent: /opsmanual.html
-layout: opsmanual_layout
+parent: /manual.html
+layout: manual_layout
 ---
 
 # Content Preview
