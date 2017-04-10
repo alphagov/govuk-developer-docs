@@ -7,7 +7,7 @@ config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_acc
 set :markdown_engine, :redcarpet
 
 set :markdown,
-    renderer: TechDocsHTMLRenderer.new(
+    renderer: DeveloperDocsRenderer.new(
       with_toc_data: true
     ),
     fenced_code_blocks: true,
