@@ -1,6 +1,6 @@
 ---
 title: Redirecting content in the Router
-section: howto
+section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/redirecting-content-in-the-router.md"
@@ -55,4 +55,3 @@ tag](https://github.gds/gds/router-data/releases) has been created,
 otherwise your changes will not be deployed. If there is no release tag,
 then the checks did not complete successfully and you should look in
 Jenkins to see what failed.
-

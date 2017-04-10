@@ -1,6 +1,6 @@
 ---
 title: Testing projects on Jenkins
-section: testing
+section: Testing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/testing/testing-projects.md"
@@ -61,4 +61,3 @@ Many GOV.UK applications test against the
 
 To test your application for each PR on govuk-content-schemas, add it to the [govuk-content-schemas
 Jenkinsfile](https://github.com/alphagov/govuk-content-schemas/blob/master/Jenkinsfile).
-

@@ -1,6 +1,6 @@
 ---
 title: Offsite backups
-section: howto
+section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/offsite-backup-and-restore.md"
@@ -33,7 +33,7 @@ Please see
 
 ## Restoring offsite backups of a datastore
 
-This requires access to 'production credentials hieradata' to retrieve the 
+This requires access to 'production credentials hieradata' to retrieve the
 AWS credentials and GPG key to decrypt the backups.
 
 Connect to the machine where you want to restore the backup. For this example,
@@ -50,10 +50,10 @@ Using pip:
 
 `sudo pip install s3cmd`
 
-Retrieve the keys and credentials from `github.gds/gds/deployment` 
+Retrieve the keys and credentials from `github.gds/gds/deployment`
 following [these instructions](https://github.gds/gds/deployment/tree/master/puppet#common-actions)
 
-You are looking for: 
+You are looking for:
 
 ```
 backup::offsite::job::aws_access_key_id
@@ -62,7 +62,7 @@ backup::assets::backup_private_gpg_key
 backup::assets::backup_private_gpg_key_passphrase
 ```
 
-Ensure that you can connect to the S3 bucket: 
+Ensure that you can connect to the S3 bucket:
 
 ```
 export AWS_ACCESS_KEY_ID=<access_key_id>
@@ -89,7 +89,7 @@ Import it with:
 
 `gpg --allow-secret-key-import --import <path to GPG key file>`
 
-You can confirm the key has been imported correctly with: 
+You can confirm the key has been imported correctly with:
 
 `gpg --list-secret-keys`
 
@@ -124,7 +124,7 @@ Restore with:
 
 `sudo mysql < foo.sql`
 
-This will restore the contents of file `foo.sql` to the database name that the 
+This will restore the contents of file `foo.sql` to the database name that the
 dump was taken from, creating it if it doesn't exist (at least that's how the Whitehall test behaved)
 
 ## Restoring offsite backups of assets
@@ -191,4 +191,3 @@ manual actions you've taken. These may include:
 1.  Changing the owner of the assets files
 2.  Removing the secret key from the GPG keyring
     (`gpg --delete-secret-key 12345678`)
-

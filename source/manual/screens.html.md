@@ -2,6 +2,7 @@
 title: Monitoring screens
 parent: /manual.html
 layout: manual_layout
+section: Tools
 ---
 
 # Monitoring screens

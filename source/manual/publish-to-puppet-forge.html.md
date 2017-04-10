@@ -1,6 +1,6 @@
 ---
 title: Publish to Puppet Forge
-section: howto
+section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/publish-to-puppet-forge.md"
@@ -49,5 +49,3 @@ repository:
 1)  Tag the release prefixed with a `v`, eg: `git tag v0.1.2`. Ensure
     you tag the merge commit, not the branch commit.
 2)  Push the commit and tag to the repo: `git push --tags origin master`
-
-

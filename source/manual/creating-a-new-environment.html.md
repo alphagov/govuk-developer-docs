@@ -1,6 +1,6 @@
 ---
 title: Creating a new environment for GOV.UK
-section: howto
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/creating-a-new-environment.md"
@@ -353,4 +353,3 @@ Failing this:
 Then, ask Rummager to re-index:
 
 > `RUMMAGER_INDEX=all bundle exec rake rummager:migrate_from_unaliased_index`
-

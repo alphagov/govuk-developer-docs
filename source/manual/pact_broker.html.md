@@ -1,6 +1,6 @@
 ---
 title: Pact Broker
-section: introductions
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/introductions/pact_broker.md"
@@ -68,4 +68,3 @@ In addition to numeric versions, our scheme allows for "master", and
 "branch-foo" versions to be uploaded. These will always be ordered after any
 numeric versions, so the 'latest' pactfile from the pact brokers POV will
 always be the highest numeric version.
-

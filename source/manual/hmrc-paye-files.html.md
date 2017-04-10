@@ -1,6 +1,6 @@
 ---
 title: Uploading HMRC PAYE files
-section: howto
+section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/hmrc-paye-files.md"
@@ -103,5 +103,3 @@ The files are:
         fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
 
 9.  Update and resolve the Zendesk ticket
-
-

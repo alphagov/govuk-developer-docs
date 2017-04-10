@@ -1,7 +1,7 @@
 ---
 title: Switch an app off
-section: howto
 layout: manual_layout
+section: Packaging
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-switch-off-app.md"
 ---
@@ -29,4 +29,3 @@ Stop the app on the relevant machines::
 ```
 fab $environment node_type:frontend app.stop:designprinciples
 ```
-

@@ -1,6 +1,6 @@
 ---
 title: Redis alerts
-section: alerts
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/redis.md"
@@ -75,4 +75,3 @@ To manually check the length of the list, use:
 ```
 fab $environment -H logs-redis-1.management do:'redis-cli LLEN logs'
 ```
-

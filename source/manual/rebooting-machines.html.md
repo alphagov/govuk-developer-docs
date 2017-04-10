@@ -1,6 +1,6 @@
 ---
-title: Rebooting Machines
-section: howto
+title: Rebooting machines
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/rebooting-machines.md"
@@ -261,4 +261,3 @@ Team.
 These machines are safe to reboot during the day. During the night they
 are involved in a data sync processes and rebooting could cause the data
 sync to fail.
-

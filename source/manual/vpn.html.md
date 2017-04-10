@@ -1,6 +1,6 @@
 ---
 title: GOV.UK and Virtual Private Networks (VPNs)
-section: infrastructure
+section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/vpn.md"
@@ -66,4 +66,3 @@ over the internet rather than over the VPN.
 
 [carrenza-secure]: howto/connect-carrenza-il2.html
 [gds-vpn]: https://docs.google.com/document/d/1WRh-uBLP1XAKaytgRm5YX5DWUFHM3InZEB-xhoKzvqI/edit
-

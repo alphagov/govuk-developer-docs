@@ -1,6 +1,6 @@
 ---
 title: GitHub Enterprise
-section: github-enterprise
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/github-enterprise/index.md"
@@ -23,4 +23,3 @@ maintaining as private repositories on public GitHub.
 
 GOV.UK data on GitHub Enterprise should be encrypted in the repository (for example
 using a list of GOV.UK GPG keys).
-

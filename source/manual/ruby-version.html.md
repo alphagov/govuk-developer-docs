@@ -1,6 +1,6 @@
 ---
 title: Apps running the expected Ruby version
-section: alerts
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/ruby-version.md"
@@ -22,4 +22,3 @@ up the new version.
 
 We have checks to ensure that the version of Ruby the app is using is
 the same as the version specified in the repo.
-

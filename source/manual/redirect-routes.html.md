@@ -1,6 +1,6 @@
 ---
 title: Redirect Routes
-section: howto
+section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/redirect-routes.md"
@@ -47,4 +47,3 @@ English version to a translation e.g.
 For the deleted routes to take effect, reload the router.
 
     > RouterReloader.reload
-

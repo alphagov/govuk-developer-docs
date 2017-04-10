@@ -1,6 +1,6 @@
 ---
 title: Archive and redirect mainstream content to other pages on GOV.UK
-section: howto
+section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/archiving-and-redirecting-content.md"
@@ -76,4 +76,3 @@ Instructions for deploying redirects can be found in:
 Instructions for archiving Departments and Policy content can be found
 in the ['How to publish on GOV.UK'
 manual](https://www.gov.uk/guidance/how-to-publish-on-gov-uk/unpublishing-and-archiving).
-

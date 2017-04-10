@@ -1,6 +1,6 @@
 ---
 title: Add sidekiq-monitoring to your application
-section: howto
+section: Logging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.md"
@@ -61,4 +61,3 @@ template](https://github.com/alphagov/govuk-puppet/blob/70a10190b/modules/govuk/
 Once changes are merged and deployed to Integration, you can
 access your sidekiq monitoring instance running on Integration &lt;sidekiq-monitoring-app&gt;,
 and check that it works as expected.
-

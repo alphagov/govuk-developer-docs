@@ -1,6 +1,6 @@
 ---
 title: Ruby
-section: infrastructure
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/ruby.md"
@@ -61,4 +61,3 @@ applications are using a specific version of Ruby on GOV.UK. For example:
 ```
 fab production puppet_class:govuk_rbenv::all rbenv.version_in_use:2.3.1
 ```
-
