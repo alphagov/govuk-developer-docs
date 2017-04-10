@@ -1,7 +1,7 @@
 ---
 title: A/B testing
-parent: /opsmanual.html
-layout: opsmanual_layout
+parent: /manual.html
+layout: manual_layout
 ---
 
 # A/B testing

@@ -1,15 +1,15 @@
 ---
 layout: false
-title: Opsmanual
+title: Dev manual
 ---
 
 <% content_for :sidebar do %>
   <ul>
     <li>
-      <a href="/opsmanual.html">Opsmanual</a>
+      <a href="/manual.html">Dev manual</a>
     <ul>
     <li>
-      <% opsmanual_pages.each do |section, pages| %>
+      <% manual_pages.each do |section, pages| %>
         <li><a href='#'><%= section %></a>
         <ul>
           <% pages.each do |page| %>
