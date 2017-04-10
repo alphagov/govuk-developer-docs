@@ -1,12 +1,20 @@
 RSpec.describe ExternalDoc do
   describe '.fetch' do
-    it 'returns the markdown file without title' do
-      stub_request(:get, "https://example.org/markdown.md").
-        to_return(body: File.read("spec/fixtures/markdown.md"))
+    subject(:markdown) { described_class.fetch(url) }
 
-      text = ExternalDoc.fetch('https://example.org/markdown.md')
+    let(:url) { 'https://example.org/markdown.md' }
 
-      expect(text).to eql('And some text')
+    before do
+      stub_request(:get, url).
+        to_return(body: File.read('spec/fixtures/markdown.md'))
+    end
+
+    it 'removes the title of the page' do
+      expect(markdown).to start_with('## tl;dr')
+    end
+
+    it 'rewrites links to markdown pages' do
+      expect(markdown).to include('[turpis ultrices](/ultrices.html)')
     end
   end
 end
