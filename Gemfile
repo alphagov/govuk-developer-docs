@@ -7,6 +7,7 @@ gem 'rspec', '~> 3.5'
 gem 'webmock', '~> 2.1'
 gem 'activesupport', '~> 5.0'
 gem 'govuk-lint', '~> 2.0'
+gem 'simplecov'
 
 # Middleman Gems
 gem 'middleman', '>= 4.0.0'
