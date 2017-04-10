@@ -50,6 +50,7 @@ helpers do
       .select { |resource| resource.path.start_with?('manual/') && resource.path.end_with?('.html') }
       .sort_by { |page| page.data.title }
       .group_by { |page| page.data.section || "Uncategorised" }
+      .sort_by(&:first)
   end
 
   def teams
