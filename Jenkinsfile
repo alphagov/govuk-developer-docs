@@ -26,6 +26,10 @@ node {
       govuk.mergeMasterBranch()
     }
 
+    stage("Set up content schema dependency") {
+      govuk.contentSchemaDependency()
+    }
+
     stage("bundle install") {
       govuk.bundleApp()
     }
