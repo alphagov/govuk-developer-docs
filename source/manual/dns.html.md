@@ -1,6 +1,6 @@
 ---
 title: Domain Name System (DNS) records
-section: infrastructure
+section: DNS
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/dns.md"

@@ -1,6 +1,6 @@
 ---
 title: How to add an Icinga passive check to a Jenkins job
-section: howto
+section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/add_a_passive_check_to_jenkins.md"
@@ -38,4 +38,3 @@ job by configuring Puppet.
 
 [parameterized build trigger]: https://github.com/alphagov/govuk-puppet/blob/ddf7d9f0a921638a0fd3e9b69121e766722ddacf/modules/govuk_jenkins/templates/jobs/production/copy_data_to_staging.yaml.erb#L59-L69
 [exported resource]: https://github.com/alphagov/govuk-puppet/blob/bb67dbf6a87e43588a2def759a114b5c142ba293/modules/govuk_jenkins/manifests/job/production/copy_data_to_staging.pp#L20-L29
-

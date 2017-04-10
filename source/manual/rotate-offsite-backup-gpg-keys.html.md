@@ -1,6 +1,6 @@
 ---
 title: Rotate Offsite Backup GPG keys
-section: howto
+section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/rotate-offsite-backup-gpg-keys.md"
@@ -37,4 +37,3 @@ updating the `_: &offsite_gpg_key` key with the new fingerprint value
 Update the [encrypted deployment repo hieradata](https://github.gds/gds/deployment/blob/master/puppet/hieradata/production_credentials.yaml),
 updating both `backup::assets::backup_private_gpg_key` and `backup_private_gpg_key_passphrase` with
 the relavant values.
-

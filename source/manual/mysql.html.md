@@ -1,6 +1,6 @@
 ---
 title: MySQL backups
-section: backups
+section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/mysql.md"
@@ -59,4 +59,3 @@ An advantage of this method is that because it is a binary type of backup, resto
 Related documentation:
 https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/preparing_a_backup_ibk.html
 https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html#preparing-an-incremental-backup-with-innobackupex
-

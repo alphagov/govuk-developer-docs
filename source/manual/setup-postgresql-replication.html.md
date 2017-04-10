@@ -1,6 +1,6 @@
 ---
 title: Set up PostgreSQL replication
-section: howto
+section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setup-postgresql-replication.md"
@@ -56,5 +56,3 @@ automated by Puppet.
 
 -   <http://www.rassoc.com/gregr/weblog/2013/02/16/zero-to-postgresql-streaming-replication-in-10-mins/>
 -   <https://wiki.postgresql.org/wiki/Binary_Replication_Tutorial>
-
-

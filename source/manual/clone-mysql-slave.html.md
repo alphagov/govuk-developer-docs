@@ -1,6 +1,6 @@
 ---
 title: Clone a MySQL instance from one slave to another
-section: howto
+section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/clone-mysql-slave.md"
@@ -164,4 +164,3 @@ you wish to add in future. As you are copying the `/var/lib/mysql` dir
 from an existing replication slave, there are no configuration
 amendments required. The slave will simply use the configuration copied
 from the existing slave to replicate from the master.
-

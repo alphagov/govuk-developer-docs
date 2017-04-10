@@ -1,6 +1,6 @@
 ---
 title: Manually Remove Assets
-section: howto
+section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-manually-remove-assets.md"
@@ -32,4 +32,3 @@ follow these steps:
 
 \* Note: You might need to look at the timestamps or other information to figure
 out which records to delete if two assets share the same filename.
-

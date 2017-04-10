@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ
-section: howto
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/rabbitmq.md"
@@ -64,4 +64,3 @@ Note: there is a risk that you might delete the wrong message(s). This
 is because the contents of the queue may have changed.
 
 Repeat, but change the "Requeue" option to "No".
-

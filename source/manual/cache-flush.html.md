@@ -1,6 +1,6 @@
 ---
 title: Cache Flush
-section: howto
+section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/cache-flush.md"
@@ -138,5 +138,3 @@ Within the UI you reach the purge all functionality.
 -   chose the correct service in the service drop down
 -   click on the "Purge" drop down
 -   click on "Purge All"
-
-

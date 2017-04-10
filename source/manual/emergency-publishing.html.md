@@ -2,6 +2,7 @@
 title: Emergency publishing
 parent: /manual.html
 layout: manual_layout
+section: Publishing
 ---
 
 # Emergency publishing

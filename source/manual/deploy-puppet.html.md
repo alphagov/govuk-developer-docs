@@ -1,6 +1,6 @@
 ---
 title: Deploy Puppet
-section: howto
+section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/deploy-puppet.md"
@@ -129,5 +129,3 @@ brief outage, e.g. MySQL.
         fab $environment class:mysql_master puppet.enable puppet
 
 5.  Schedule a time to actually restart the service if neccessary.
-
-

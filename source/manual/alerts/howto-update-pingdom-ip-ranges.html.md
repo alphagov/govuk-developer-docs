@@ -1,6 +1,6 @@
 ---
 title: Update Pingdom IP Ranges
-section: howto
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-update-pingdom-ip-ranges.md"
@@ -36,4 +36,3 @@ To run the check of IP ranges on your own machine clone the
 [mirror_repo]: https://github.gds/gds/govuk_mirror-deployment
 [carrenza]: https://github.gds/gds/govuk_mirror-deployment/blob/master/vcloud-edge_gateway/vars/skyscape_mirror_vars.yaml
 [skyscape]: https://github.gds/gds/govuk_mirror-deployment/blob/master/vcloud-edge_gateway/vars/skyscape_mirror_vars.yaml
-

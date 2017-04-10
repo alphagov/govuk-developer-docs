@@ -2,6 +2,7 @@
 title: A/B testing
 parent: /manual.html
 layout: manual_layout
+section: Tools
 ---
 
 # A/B testing

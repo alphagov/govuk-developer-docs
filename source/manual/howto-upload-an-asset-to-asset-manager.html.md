@@ -1,6 +1,6 @@
 ---
 title: Upload an asset to asset-manager
-section: howto
+section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-upload-an-asset-to-asset-manager.md"
@@ -39,4 +39,3 @@ Note the `basepath` the script outputs. This should be appended to the asset hos
 ```
 https://assets.publishing.service.gov.uk/media/57358658ed915d58bd000000/my_file.jpg
 ```
-

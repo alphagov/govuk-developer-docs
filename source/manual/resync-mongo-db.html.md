@@ -1,6 +1,6 @@
 ---
 title: Resync a Mongo database
-section: howto
+section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/resync-mongo-db.md"
@@ -39,4 +39,3 @@ then:
 You can run mongo.status at any time to see the status of the cluster:
 
     fab {env name} -H {host name} mongo.status
-

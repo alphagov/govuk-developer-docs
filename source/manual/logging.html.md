@@ -1,6 +1,6 @@
 ---
 title: GOV.UK logging infrastructure
-section: logging
+section: Logging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/logging/index.md"
@@ -61,4 +61,3 @@ Kibana is the interface for viewing logs in Elasticsearch. We made
 It's deployed to the backend application servers.
 
 There's some documentation on [useful Kibana queries for 2nd line](../2nd-line/kibana.html).
-

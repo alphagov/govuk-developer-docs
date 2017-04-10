@@ -1,6 +1,6 @@
 ---
 title: Adding a disk to a vCloud machine
-section: howto
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/adding-disks-in-vcloud.md"
@@ -137,4 +137,3 @@ operations.
 <!-- -->
 
     sudo resize2fs /dev/mapper/${VG}-${LV}
-

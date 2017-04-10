@@ -1,6 +1,6 @@
 ---
 title: Checking for a `gone` route
-section: howto
+section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/check-for-gone-route.md"
@@ -32,4 +32,3 @@ to Whitehall):
 
     > r.destroy
     > RouterReloader.reload
-

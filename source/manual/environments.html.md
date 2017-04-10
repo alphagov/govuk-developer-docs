@@ -1,6 +1,6 @@
 ---
 title: GOV.UK's environments
-section: architecture
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/environments.md"
@@ -44,4 +44,3 @@ Staging is primarily hosted by Carrenza in their London datacentre.
 The thing that runs the website for real people.
 
 Production is primarily hosted by Carrenza in their Slough datacentre.
-

@@ -1,6 +1,6 @@
 ---
 title: Heroku
-section: infrastructure
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/heroku.md"
@@ -18,4 +18,3 @@ It hasn't been reviewed for accuracy yet.
 We use Heroku to host some non-critical applications.
 
 The credentials for Heroku are found in [gds/deployment](https://github.gds/gds/deployment/blob/master/pass/infra/heroku.gpg).
-
