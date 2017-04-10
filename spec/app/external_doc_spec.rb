@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe ExternalDoc do
   describe '.fetch' do
     it 'returns the markdown file without title' do

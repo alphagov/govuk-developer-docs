@@ -1,5 +1,3 @@
-require "spec_helper"
-
 RSpec.describe DocumentTypes do
   describe ".pages" do
     it "returns document types" do

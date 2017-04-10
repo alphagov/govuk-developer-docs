@@ -1,5 +1,3 @@
-require "spec_helper"
-
 RSpec.describe AppDocs::App do
   describe "production_url" do
     it "has a good default" do
