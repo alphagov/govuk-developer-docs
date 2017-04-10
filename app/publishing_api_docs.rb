@@ -21,12 +21,12 @@ class PublishingApiDocs
       @title = title
     end
 
-    def source_url
-      "https://github.com/alphagov/publishing-api/blob/master/doc/#{filename}.md"
+    def path
+      "/doc/#{filename}.md"
     end
 
-    def raw_source
-      "https://raw.githubusercontent.com/alphagov/publishing-api/master/doc/#{filename}.md"
+    def repository
+      'alphagov/publishing-api'
     end
   end
 end
