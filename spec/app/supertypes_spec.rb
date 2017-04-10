@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe Supertypes do
   describe '.all' do
     it 'works' do
