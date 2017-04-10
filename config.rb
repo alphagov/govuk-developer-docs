@@ -49,7 +49,7 @@ helpers do
     sitemap.resources
       .select { |resource| resource.path.start_with?('manual/') && resource.path.end_with?('.html') }
       .sort_by { |page| page.data.title }
-      .group_by { |page| page.data.section }
+      .group_by { |page| page.data.section || "Uncategorised" }
   end
 
   def teams
