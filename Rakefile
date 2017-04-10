@@ -1,4 +1,4 @@
-require_relative './lib/requires'
+require_relative './app/requires'
 
 begin
   require 'rspec/core/rake_task'
