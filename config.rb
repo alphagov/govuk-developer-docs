@@ -52,6 +52,10 @@ helpers do
       .group_by { |page| page.data.section }
   end
 
+  def teams
+    ApplicationsByTeam.teams
+  end
+
   require 'table_of_contents/helpers'
   include TableOfContents::Helpers
 end
