@@ -1,5 +1,3 @@
-require "spec_helper"
-
 RSpec.describe ContentSchema do
   describe '#frontend_schema' do
     it "it can link to GitHub" do

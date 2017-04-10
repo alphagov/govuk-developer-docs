@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 RSpec.describe GitHub do
   describe "#repo" do
     it "returns a repo if the user is specified" do

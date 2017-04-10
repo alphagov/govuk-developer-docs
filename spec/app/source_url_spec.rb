@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 Dir.glob(::File.expand_path('../../helpers/**/*.rb', __FILE__)).each { |f| require_relative f }
 
 RSpec.describe SourceUrl do
