@@ -45,9 +45,9 @@ helpers do
     AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
 
-  def opsmanual_pages
+  def manual_pages
     sitemap.resources
-      .select { |resource| resource.path.start_with?('opsmanual/') && resource.path.end_with?('.html') }
+      .select { |resource| resource.path.start_with?('manual/') && resource.path.end_with?('.html') }
       .sort_by { |page| page.data.title }
       .group_by { |page| page.data.section }
   end
