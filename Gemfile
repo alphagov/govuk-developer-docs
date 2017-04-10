@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby File.read('.ruby-version').chomp
 
+gem 'capybara'
 gem 'rake'
 gem 'rspec', '~> 3.5'
 gem 'webmock', '~> 2.1'
@@ -20,6 +21,8 @@ gem 'middleman-search_engine_sitemap', '~> 1.4'
 
 gem 'table_of_contents', git: 'https://github.com/alphagov/table_of_contents.git', ref: 'f6d37fe1e837cebf7354abafd891f755148e7efa'
 
+gem 'github-markdown'
+gem 'html-pipeline'
 gem 'redcarpet', '~> 3.3.2'
 
 gem 'govuk_schemas', '~> 2.1.1'
