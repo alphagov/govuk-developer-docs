@@ -1,5 +1,3 @@
-Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
-
 require_relative './app/requires'
 
 config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_access
