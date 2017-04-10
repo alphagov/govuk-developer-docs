@@ -1,6 +1,6 @@
 ---
 title: Retire an app from the GOV.UK Infrastructure
-section: howto
+section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/retiring-an-application.md"
@@ -134,4 +134,3 @@ For example: https://github.com/alphagov/govuk-puppet/pull/5507
 For example: https://github.gds/gds/deployment/pull/408
 
 3. Drop the database for the app if puppet hasn't done it (eg for Mongo databases).
-

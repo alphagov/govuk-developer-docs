@@ -1,6 +1,6 @@
 ---
 title: Gor
-section: alerts
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/gor.md"
@@ -52,4 +52,3 @@ able to see them back in icinga.
 
 [gor-gh]: https://github.com/buger/gor/
 [govuk-gor-data-sync]: https://github.com/alphagov/govuk-puppet/blob/06dd008d09/modules/govuk_gor/manifests/init.pp#L50
-

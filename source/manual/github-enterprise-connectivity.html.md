@@ -1,6 +1,6 @@
 ---
 title: GitHub Enterprise connectivity
-section: alerts
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/github-enterprise-connectivity.md"
@@ -30,4 +30,3 @@ adds an alert that checks that GitHub Enterprise is reachable.
   to the IT Service Desk)
 
 [puppet_vpn]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_ghe_vpn/manifests/init.pp
-

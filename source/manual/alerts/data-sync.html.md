@@ -1,6 +1,6 @@
 ---
 title: Data sync
-section: alerts
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/data-sync.md"
@@ -19,4 +19,3 @@ Data is synced from production to staging and integration every night.
 
 Check the output of the production Jenkins job to see which part of
 the data sync failed. It may be safe to re-run part of the sync.
-

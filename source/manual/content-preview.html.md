@@ -2,6 +2,7 @@
 title: Content Preview
 parent: /manual.html
 layout: manual_layout
+section: Environments
 ---
 
 # Content Preview

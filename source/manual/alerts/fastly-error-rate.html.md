@@ -1,6 +1,6 @@
 ---
 title: Fastly error rate for GOV.UK
-section: alerts
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/fastly-error-rate.md"

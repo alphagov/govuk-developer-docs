@@ -1,6 +1,6 @@
 ---
 title: Transition a site to GOV.UK
-section: howto
+section: Transition
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-transition-a-site-to-govuk.md"
@@ -154,5 +154,3 @@ There are two things that need to be responded to:
 -   high numbers of 404s - this means a mapping is missing
 -   high numbers hitting 410s - this means the old page is popular and
     should perhaps be redirected instead
-
-

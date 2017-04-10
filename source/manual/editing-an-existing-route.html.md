@@ -1,6 +1,6 @@
 ---
 title: Editing an existing route in the Router
-section: howto
+section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/editing-an-existing-route.md"
@@ -34,4 +34,3 @@ once you've edited the Route appropriately and saved it, you need to
 reload the router:
 
     > RouterReloader.reload
-

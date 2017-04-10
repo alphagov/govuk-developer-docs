@@ -1,6 +1,6 @@
 ---
 title: GOV.UK assets
-section: architecture
+section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/assets.md"
@@ -38,4 +38,3 @@ is proxied to the hostname for `government-frontend` in that environment.
 
 All other assets that have a path that don't match fall back to the
 static application.
-

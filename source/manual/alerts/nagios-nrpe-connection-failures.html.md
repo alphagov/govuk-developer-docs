@@ -1,6 +1,6 @@
 ---
 title: Nagios NRPE connection failures
-section: alerts
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/nagios-nrpe-connection-failures.md"
@@ -57,4 +57,3 @@ monitored machine.
 
 Note that the NRPE port is firewalled and only accessible from the
 monitoring machine and the box itself.
-

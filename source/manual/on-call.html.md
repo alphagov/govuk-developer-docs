@@ -1,6 +1,6 @@
 ---
 title: Out of hours support (on-call)
-section: howto
+section: Support
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/on-call.md"
@@ -94,4 +94,3 @@ support (assuming everything is working).
 - [Emergency publishing](emergency-publishing.html)
 - [Emergency publishing while origin is unavailable](mirror-fallback.html)
 - [Responding to an outage](outage-detail.html)
-

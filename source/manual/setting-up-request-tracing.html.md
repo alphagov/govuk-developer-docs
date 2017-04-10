@@ -1,6 +1,6 @@
 ---
 title: Setting Up Request Tracing
-section: howto
+section: Logging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-request-tracing.md"
@@ -50,4 +50,3 @@ send this downstream as this could make it easier to debug in the future.
 
 Use [govuk_sidekiq](https://github.com/alphagov/govuk_sidekiq) to do this. This
 gem injects middleware that will pass on the request id.
-

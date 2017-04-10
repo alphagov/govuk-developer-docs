@@ -1,6 +1,6 @@
 ---
 title: Debian Packaging
-section: infrastructure
+section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/debian-packaging.md"
@@ -276,4 +276,3 @@ To remove a mirror that is no longer in use, run the following in order:
 
     # Remove mirror
     sudo aptly mirror drop <repo>
-
