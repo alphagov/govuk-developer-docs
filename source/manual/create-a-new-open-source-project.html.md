@@ -1,6 +1,6 @@
 ---
 title: Create a new open source project
-section: howto
+section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/create-a-new-open-source-project.md"
@@ -38,4 +38,3 @@ When creating a new repository, ensure that you [update the repository
 data](https://github.com/gds-operations/gds-operations.github.io/blob/master/_README.md)
 used by the [GDS open source web
 site](https://gds-operations.github.io/).
-

@@ -2,6 +2,7 @@
 title: Keeping software current
 parent: /manual.html
 layout: manual_layout
+section: Tools
 ---
 
 # Keeping software current

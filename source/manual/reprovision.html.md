@@ -1,6 +1,6 @@
 ---
 title: Reprovision a machine in vCloud Director
-section: howto
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/reprovision.md"
@@ -73,4 +73,3 @@ potential downtime.
 > machine's console from the vCloud Director Flash UI. VMs have been
 > known to wait at the Grub bootloader screen; if this is the case,
 > simply press enter in the console to start Linux.
-

@@ -1,6 +1,6 @@
 ---
 title: Set up a new mirror for GOV.UK
-section: howto
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-mirror.md"
@@ -243,4 +243,3 @@ setting govuk\_crawler::targets.
 Finally, you will need to configure the CDN to serve content from these
 mirrors if the primary origin fails; this currently falls outside the
 scope of this document.
-

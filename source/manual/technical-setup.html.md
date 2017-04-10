@@ -1,6 +1,6 @@
 ---
 title: Technical setup
-section: howto
+section: Support
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/technical-setup.md"
@@ -63,4 +63,3 @@ you be added by raising a ticket in ZenDesk itself.
 
 2nd line has a [Google Group](https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/2nd-line-support)
 that receives requests. Make sure you're a member.
-

@@ -1,6 +1,6 @@
 ---
 title: GOV.UK's content delivery network (CDN)
-section: architecture
+section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/cdn.md"
@@ -119,4 +119,3 @@ the same as the `A` records at that hostname:
 
 Domains do not need to be added to the "Production Bouncer" Fastly service
 like they used to be.
-

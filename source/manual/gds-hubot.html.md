@@ -1,6 +1,6 @@
 ---
 title: GDS Hubot
-section: infrastructure
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/gds-hubot.md"

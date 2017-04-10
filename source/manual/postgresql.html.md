@@ -1,6 +1,6 @@
 ---
 title: PostgreSQL backups
-section: backups
+section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/postgresql.md"
@@ -45,4 +45,3 @@ we can recover point in time backups to specific time and dates in this timefram
 
 To restore we can use the commands specified in the documentation: `backup-fetch` and `wal-fetch`. To make this easier, a script has been written to automate the
 restore of the very latest backup available(`/usr/local/bin/wal-e_restore`). The environmental variables which define the AWS credentials will need to be present.
-

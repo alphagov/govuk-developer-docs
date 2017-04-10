@@ -1,6 +1,6 @@
 ---
 title: Tools
-section: howto
+section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/tools.md"
@@ -126,4 +126,3 @@ Check the `app.py` class for different methods you can use. To run more specific
 `fab $environment class:backend sdo:"service contentapi reload"`
 
 For more information, check out the [Fabric scripts README](https://github.com/alphagov/fabric-scripts#readme>).
-

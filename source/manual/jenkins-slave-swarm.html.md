@@ -1,6 +1,6 @@
 ---
 title: Jenkins Swarm Plugin
-section: introductions
+section: Testing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/introductions/jenkins-slave-swarm.md"
@@ -44,4 +44,3 @@ that is generated per Jenkins master instance.
 
 Slave connection log can be found in: /var/log/upstart/jenkins-slave.log
 (default upstart logging location)
-

@@ -1,6 +1,6 @@
 ---
 title: Blocking apps from being released
-section: releasing-software
+section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/blocking-apps-from-release.md"
@@ -48,4 +48,3 @@ With similar information.
 ## Tag the badger
 
 Add a post-it to the badger saying which application can't be deployed.
-

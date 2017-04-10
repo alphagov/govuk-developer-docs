@@ -1,6 +1,6 @@
 ---
 title: Generate a Certificate Signing Request (CSR) for GOV.UK
-section: howto
+section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/generate-csr.md"
@@ -35,4 +35,3 @@ want to store its contents encrypted in the
 
 The contents of the CSR should be shared with the SSL certificate
 provider. This allows them to generate the SSL certificate.
-
