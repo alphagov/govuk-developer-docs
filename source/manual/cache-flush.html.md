@@ -1,5 +1,5 @@
 ---
-title: Cache Flush
+title: How to flush the cache
 section: howto
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/cache-flush.md)
 
 
-# Cache Flush
+# How to flush the cache
 
 The `www.gov.uk` domain is served through Fastly, which honours the
 cache control headers sent by Varnish.
