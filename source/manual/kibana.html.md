@@ -3,6 +3,7 @@ title: Useful Kibana queries
 layout: manual_layout
 parent: "/manual.html"
 section: Logging
+important: true
 ---
 
 # Useful Kibana queries
