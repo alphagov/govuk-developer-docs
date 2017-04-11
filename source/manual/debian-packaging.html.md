@@ -1,5 +1,5 @@
 ---
-title: Debian Packaging
+title: Debian packaging
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/debian-packaging.md)
 
 
-# Debian Packaging
+# Debian packaging
 
 This page explains how we're managing our Debian packaging.
 

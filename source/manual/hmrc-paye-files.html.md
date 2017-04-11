@@ -1,5 +1,5 @@
 ---
-title: Uploading HMRC PAYE files
+title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/hmrc-paye-files.md)
 
 
-# Uploading HMRC PAYE files
+# Upload HMRC PAYE files
 
 ## Preamble
 

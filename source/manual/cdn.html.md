@@ -1,5 +1,5 @@
 ---
-title: GOV.UK's content delivery network (CDN)
+title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/architecture/cdn.md)
 
 
-# GOV.UK's content delivery network (CDN)
+# Our content delivery network (CDN)
 
 GOV.UK uses Fastly as a CDN. Citizen users aren't accessing GOV.UK
 servers directly, they connect via the CDN. This is better because:

@@ -1,5 +1,5 @@
 ---
-title: Cache Flush
+title: Purge a page from cache
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
@@ -14,7 +14,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/cache-flush.md)
 
 
-# Cache Flush
+# Purge a page from cache
 
 The `www.gov.uk` domain is served through Fastly, which honours the
 cache control headers sent by Varnish.

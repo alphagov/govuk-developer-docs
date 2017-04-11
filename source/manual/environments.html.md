@@ -1,19 +1,17 @@
 ---
-title: GOV.UK's environments
+title: GOV.UK's environments (integration, staging, production)
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/environments.md"
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/architecture/environments.md)
 
 
-# GOV.UK's environments
+# GOV.UK's environments (integration, staging, production)
 
 GOV.UK has several environments with different purposes.
 

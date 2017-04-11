@@ -1,5 +1,5 @@
 ---
-title: Testing projects on Jenkins
+title: Test & build a project on Jenkins CI
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/testing/testing-projects.md)
 
 
-# Testing projects on Jenkins
+# Test & build a project on Jenkins CI
 
 Application tests run in a continuous integration (CI) environment.
 

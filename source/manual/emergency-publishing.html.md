@@ -1,12 +1,12 @@
 ---
-title: Emergency publishing
+title: Deploy emergency publishing banners
 parent: /manual.html
 layout: manual_layout
 section: Publishing
 important: true
 ---
 
-# Emergency publishing
+# Deploy emergency publishing banners
 
 There are three types of events that would lead GOV.UK to add an emergency banner to
 the top of each page on the web site. Each type of event is detailed below.

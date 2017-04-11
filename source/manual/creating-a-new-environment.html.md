@@ -1,5 +1,5 @@
 ---
-title: Creating a new environment for GOV.UK
+title: Create a new environment for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/creating-a-new-environment.md)
 
 
-# Creating a new environment for GOV.UK
+# Create a new environment for GOV.UK
 
 ## Manual steps to ask of the IaaS provider
 
