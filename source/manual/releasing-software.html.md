@@ -1,7 +1,7 @@
 ---
 title: Deploy something to GOV.UK
-parent: /opsmanual.html
-layout: opsmanual_layout
+parent: "/manual.html"
+layout: manual_layout
 section: Deployment
 ---
 
