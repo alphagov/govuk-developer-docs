@@ -1,19 +1,17 @@
 ---
-title: Retire an app from the GOV.UK Infrastructure
+title: Retire an application
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/retiring-an-application.md"
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/retiring-an-application.md)
 
 
-# Retire an app from the GOV.UK Infrastructure
+# Retire an application
 
 To remove an application from our infrastructure take the following
 steps:

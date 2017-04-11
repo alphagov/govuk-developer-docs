@@ -1,5 +1,5 @@
 ---
-title: Editing an existing route in the Router
+title: Edit an existing route in the Router
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/editing-an-existing-route.md)
 
 
-# Editing an existing route in the Router
+# Edit an existing route in the Router
 
 If there's a need to edit a Route in the database, follow these
 instructions:

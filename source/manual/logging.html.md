@@ -1,5 +1,5 @@
 ---
-title: GOV.UK logging infrastructure
+title: How logging works on GOV.UK
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/logging/index.md)
 
 
-# GOV.UK logging infrastructure
+# How logging works on GOV.UK
 
 ## Syslog
 

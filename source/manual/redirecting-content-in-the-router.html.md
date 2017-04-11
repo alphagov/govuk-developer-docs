@@ -1,5 +1,5 @@
 ---
-title: Redirecting content in the Router
+title: Redirect content in the Router
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/redirecting-content-in-the-router.md)
 
 
-# Redirecting content in the Router
+# Redirect content in the Router
 
 Sometimes there is a need to manually redirect existing URLs to another
 internal location, usually due to content being archived or because the

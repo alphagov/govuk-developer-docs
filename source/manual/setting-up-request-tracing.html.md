@@ -1,5 +1,5 @@
 ---
-title: Setting Up Request Tracing
+title: Set up request tracing
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setting-up-request-tracing.md)
 
 
-# Setting Up Request Tracing
+# Set up request tracing
 
 Request tracing makes it easier to understand how requests originating from
 users of publishing apps make their way through the system. For example, if a

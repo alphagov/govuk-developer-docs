@@ -1,5 +1,5 @@
 ---
-title: Ruby
+title: Add a new Ruby version
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/ruby.md)
 
 
-# Ruby
+# Add a new Ruby version
 
 The Ruby language is a core part of GOV.UK - most of our applications
 are written in it.
@@ -38,7 +38,7 @@ We set up rbenv differently depending on what's going on:
 [cap_deploy_commit]: https://github.gds/gds/alphagov-deployment/commit/b6404e33c354ef63f01c13b202ce0cf2ed2975fc
 [rbenv_path]: https://github.gds/gds/deployment/blob/master/puppet/hieradata/integration_credentials.yaml
 
-## Adding a new Ruby version
+## Add a new Ruby version in puppet
 
 Build a package using [fpm](debian-packaging.html) and make it
 available using our aptly repository.

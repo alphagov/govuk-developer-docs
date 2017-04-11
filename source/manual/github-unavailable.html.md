@@ -1,5 +1,5 @@
 ---
-title: Deploying software when GitHub is unavailable
+title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/releasing-software/github-unavailable.md)
 
 
-# Deploying software when GitHub is unavailable
+# Deploy when GitHub is unavailable
 
 ## Public GitHub (application code)
 

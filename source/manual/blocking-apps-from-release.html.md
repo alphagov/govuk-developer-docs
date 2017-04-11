@@ -1,5 +1,5 @@
 ---
-title: Blocking apps from being released
+title: Block apps from being deployed
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/releasing-software/blocking-apps-from-release.md)
 
 
-# Blocking apps from being released
+# Block apps from being deployed
 
 Sometimes the master branch of an app might contain a feature which cannot
 be released to production. This is usually because it is coupled to the release of

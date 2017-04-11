@@ -1,5 +1,5 @@
 ---
-title: Adding a disk to a vCloud machine
+title: Add a disk to a vCloud machine
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/adding-disks-in-vcloud.md)
 
 
-# Adding a disk to a vCloud machine
+# Add a disk to a vCloud machine
 
 > **note**
 

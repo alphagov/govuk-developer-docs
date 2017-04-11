@@ -1,5 +1,5 @@
 ---
-title: GOV.UK assets
+title: "Assets: how they work"
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/architecture/assets.md)
 
 
-# GOV.UK assets
+# Assets: how they work
 
 Assets are stylesheets (CSS), JavaScript (JS) and image files which
 make GOV.UK look the way it does. When we use the term assets we
