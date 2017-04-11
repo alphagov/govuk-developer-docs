@@ -51,6 +51,10 @@ helpers do
       .sort_by(&:first)
   end
 
+  def most_important_pages
+    manual_pages.select { |page| page.data.important }
+  end
+
   def manual_pages
     sitemap.resources
       .select { |resource| resource.path.start_with?('manual/') && resource.path.end_with?('.html') }
