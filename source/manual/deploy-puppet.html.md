@@ -20,19 +20,19 @@ It hasn't been reviewed for accuracy yet.
 1.  Get the number of the build that you wish to deploy from the Puppet
     job on CI (e.g. `18295`, this will be tagged as `release_18295`):
 
- -   [](https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/job/master/)
+    [](https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/job/master/)
 
 2.  Get the tag of the last deployed build from the release app (e.g.
     `release_18290`):
 
-    -   [](https://release.publishing.service.gov.uk/applications/puppet)
+       [](https://release.publishing.service.gov.uk/applications/puppet)
 
 3.  Compare the two build tags to see what you are deploying:
 
     NB: make sure you have the older release first otherwise you won't
     see a diff
 
-    -   [](https://github.com/alphagov/govuk-puppet/compare/release_18290...release_18295)
+       [](https://github.com/alphagov/govuk-puppet/compare/release_18290...release_18295)
 
 4.  Deploy the tag to staging using the [Deploy Puppet
     job](https://deploy.staging.publishing.service.gov.uk/job/Deploy_Puppet).
@@ -40,14 +40,14 @@ It hasn't been reviewed for accuracy yet.
     You need to configure the build by setting the 'TAG' value to the
     successful build you previously selected (e.g.`release_18295`)
 
-    -   [](https://deploy.integration.publishing.service.gov.uk/job/deploy_puppet/build)
+       [](https://deploy.integration.publishing.service.gov.uk/job/deploy_puppet/build)
 
 5.  You will either need to wait 30mins or read about convergence. After
     which you should keep an eye on Icinga, Smokey and test anything
     you're concerned about.
 6.  Repeat the last step to deploy to production.
 
-    -   [](https://deploy.publishing.service.gov.uk/job/Deploy_Puppet/)
+       [](https://deploy.publishing.service.gov.uk/job/Deploy_Puppet/)
 
 ## Build tags and release branches
 
