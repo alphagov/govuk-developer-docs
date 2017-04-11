@@ -25,14 +25,14 @@ It hasn't been reviewed for accuracy yet.
 2.  Get the tag of the last deployed build from the release app (e.g.
     `release_18290`):
 
-> -   [](https://release.publishing.service.gov.uk/applications/puppet)
+    -   [](https://release.publishing.service.gov.uk/applications/puppet)
 
 3.  Compare the two build tags to see what you are deploying:
 
     NB: make sure you have the older release first otherwise you won't
     see a diff
 
- -   [](https://github.com/alphagov/govuk-puppet/compare/release_18290...release_18295)
+    -   [](https://github.com/alphagov/govuk-puppet/compare/release_18290...release_18295)
 
 4.  Deploy the tag to staging using the [Deploy Puppet
     job](https://deploy.staging.publishing.service.gov.uk/job/Deploy_Puppet).
@@ -47,7 +47,7 @@ It hasn't been reviewed for accuracy yet.
     you're concerned about.
 6.  Repeat the last step to deploy to production.
 
- -   [](https://deploy.publishing.service.gov.uk/job/Deploy_Puppet/)
+    -   [](https://deploy.publishing.service.gov.uk/job/Deploy_Puppet/)
 
 ## Build tags and release branches
 
