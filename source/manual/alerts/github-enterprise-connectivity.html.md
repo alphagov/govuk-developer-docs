@@ -1,6 +1,6 @@
 ---
 title: GitHub Enterprise connectivity
-section: Tools
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/github-enterprise-connectivity.md"
