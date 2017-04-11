@@ -15,8 +15,12 @@ It hasn't been reviewed for accuracy yet.
 
 # Attachment backups
 
-We sync all the data to both an offsite backup machine (using Duplicity, from
-asset-slave-1.backend) and S3 (using s3cmd, from asset-slave-2.backend).
+We sync all the data to both an offsite backup machine (using [Duplicity], from
+asset-slave-1.backend) and [S3] (using [s3cmd], from asset-slave-2.backend).
 
 To restore from these locations you would need to pull the files and copy to the master.
 Due to the size of the dataset this could potentially take a very long time.
+
+[Duplicity]: http://duplicity.nongnu.org 'Bandwidth-efficient encrypted backup'
+[S3]: https://aws.amazon.com/s3/ 'Amazon Simple Storage Service (S3)'
+[s3cmd]: http://s3tools.org/s3cmd 'Command-line tool for the Amazon S3 service'
