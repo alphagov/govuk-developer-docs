@@ -48,31 +48,3 @@ task :verify_deployable_apps do
     puts missing_app
   end
 end
-
-task :import_nagios do
-  nagios = File.read("../opsmanual/2nd-line/nagios.md")
-
-  chapters = nagios.split("\n## ")
-
-  `rm source/manual/alerts/*`
-
-  chapters.each do |chapter|
-    title = chapter.lines.first
-    filename = title.parameterize
-
-    next if filename == 'nagios-alerts-documentation-and-suggested-actions'
-
-    body = <<~doc
-    ---
-    title: '#{title.strip.gsub("'", '').gsub('"', '')}'
-    parent: /manual.html
-    layout: manual_layout
-    section: Alerts
-    ---
-
-    # #{chapter}
-    doc
-
-    File.write("source/manual/alerts/#{filename}.html.md", body)
-  end
-end
