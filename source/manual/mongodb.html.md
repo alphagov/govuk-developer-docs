@@ -1,7 +1,7 @@
 ---
 title: MongoDB backups
-layout: opsmanual_layout
-parent: "/opsmanual.html"
+layout: manual_layout
+parent: "/manual.html"
 section: Backups
 ---
 

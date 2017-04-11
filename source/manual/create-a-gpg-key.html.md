@@ -1,7 +1,7 @@
 ---
 title: Create a GPG key
-parent: /opsmanual.html
-layout: opsmanual_layout
+parent: "/manual.html"
+layout: manual_layout
 section: Support
 ---
 
