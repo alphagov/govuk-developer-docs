@@ -2,7 +2,7 @@ class DeveloperDocsRenderer < TechDocsHTMLRenderer
   def header(text, header_level)
     anchor = githubify_fragment_id(text)
     tag = "h" + header_level.to_s
-    "<#{tag} id='#{anchor}' class='anchored-heading'>#{text}</#{tag}>"
+    "<#{tag} id='#{anchor}'>#{text}</#{tag}>"
   end
 
   # Redcarpet uses a different algo to create fragment ids than github
