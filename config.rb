@@ -45,12 +45,16 @@ helpers do
     AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
 
+  def manual_pages_grouped_by_section
+    manual_pages
+      .group_by { |page| page.data.section || "Uncategorised" }
+      .sort_by(&:first)
+  end
+
   def manual_pages
     sitemap.resources
       .select { |resource| resource.path.start_with?('manual/') && resource.path.end_with?('.html') }
       .sort_by { |page| page.data.title || raise("#{page.path} doesn't have a title") }
-      .group_by { |page| page.data.section || "Uncategorised" }
-      .sort_by(&:first)
   end
 
   def teams
