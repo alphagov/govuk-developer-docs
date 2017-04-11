@@ -9,7 +9,7 @@ title: Dev manual
       <a href="/manual.html">Dev manual</a>
     <ul>
     <li>
-      <% manual_pages.each do |section, pages| %>
+      <% manual_pages_grouped_by_section.each do |section, pages| %>
         <li><a href='#'><%= section %></a>
         <ul>
           <% pages.each do |page| %>
