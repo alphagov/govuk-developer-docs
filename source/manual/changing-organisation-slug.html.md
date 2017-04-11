@@ -1,10 +1,11 @@
 ---
-title: Changing an organisation's slug
+title: Change an organisation's slug
 parent: /opsmanual.html
 layout: opsmanual_layout
+section: Routing
 ---
 
-# Changing an organisation's slug
+# Change an organisation's slug
 
 > **NOTE:** for Worldwide Organisations, only Steps 1, 6 and maybe 7 below need
 > to be performed.

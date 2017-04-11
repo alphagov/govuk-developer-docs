@@ -1,10 +1,11 @@
 ---
-title: Elasticsearch - dumping and restoring indices
+title: "Elasticsearch: dump and restore indices"
 parent: /opsmanual.html
 layout: opsmanual_layout
+sections: Backups
 ---
 
-# Elasticsearch - dumping and restoring indices
+# Elasticsearch: dump and restore indices
 
 ## Creating a dump
 

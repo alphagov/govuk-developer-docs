@@ -1,10 +1,11 @@
 ---
-title: Remove machines
+title: Remove a machine
 parent: /opsmanual.html
 layout: opsmanual_layout
+section: Environments
 ---
 
-# Remove machines
+# Remove a machine
 
 If you need to remove/decommission individual machines or a class of machines,
 there are several steps you need to go through.

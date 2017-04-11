@@ -2,6 +2,7 @@
 title: MongoDB backups
 layout: opsmanual_layout
 parent: "/opsmanual.html"
+section: Backups
 ---
 
 # MongoDB backups
