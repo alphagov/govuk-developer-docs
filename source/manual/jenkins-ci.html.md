@@ -2,6 +2,7 @@
 title: Jenkins CI infrastructure
 parent: /opsmanual.html
 layout: opsmanual_layout
+section: Testing
 ---
 
 # Jenkins CI infrastructure

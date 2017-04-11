@@ -1,10 +1,11 @@
 ---
-title: Releasing software to GOV.UK
+title: Deploy something to GOV.UK
 parent: /opsmanual.html
 layout: opsmanual_layout
+section: Deployment
 ---
 
-# Releasing software to GOV.UK
+# Deploy something to GOV.UK
 
 ## Introduction
 

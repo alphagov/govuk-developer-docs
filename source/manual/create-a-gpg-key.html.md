@@ -2,6 +2,7 @@
 title: Create a GPG key
 parent: /opsmanual.html
 layout: opsmanual_layout
+section: Support
 ---
 
 # Create a GPG key
