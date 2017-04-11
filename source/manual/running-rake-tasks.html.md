@@ -4,6 +4,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/running-rake-tasks.md"
+important: true
 ---
 
 
