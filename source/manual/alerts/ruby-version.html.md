@@ -1,6 +1,6 @@
 ---
-title: Apps running the expected Ruby version
-section: Tools
+title: App isn't running the expected Ruby version
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/ruby-version.md"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/alerts/ruby-version.md)
 
 
-# Apps running the expected Ruby version
+# App isn't running the expected Ruby version
 
 When a `.ruby-version` file is updated, a standard app reload won't pick
 up the change, and the application will be left running under the old
