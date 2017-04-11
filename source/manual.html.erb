@@ -9,7 +9,7 @@ title: Dev manual
       <a href="/manual.html">Dev manual</a>
     <ul>
     <li>
-      <% manual_pages.each do |section, pages| %>
+      <% manual_pages_grouped_by_section.each do |section, pages| %>
         <li><a href='#'><%= section %></a>
         <ul>
           <% pages.each do |page| %>
@@ -27,11 +27,19 @@ title: Dev manual
 <% wrap_layout :layout_with_sidebar do %>
   <%= partial 'partials/header' %>
 
-<blockquote>
-  <strong>Work in progress</strong><br/><br/>
+  <blockquote>
+    <strong>Work in progress</strong><br/><br/>
 
-  We're currently moving <a href='https://github.gds/pages/gds/opsmanual'>
-  the opsmanual</a> to this site. Follow along option
-  <a href='https://trello.com/b/pWnVP4wF'>on our Trello board</a>.
-</blockquote>
+    We're currently moving <a href='https://github.gds/pages/gds/opsmanual'>
+    the opsmanual</a> to this site. Follow along option
+    <a href='https://trello.com/b/pWnVP4wF'>on our Trello board</a>.
+  </blockquote>
+
+  <h4>Top tasks</h4>
+
+  <ul>
+    <% most_important_pages.each do |page| %>
+      <li><%= link_to page.data.title, page.path %></li>
+    <% end %>
+  </ul>
 <% end %>

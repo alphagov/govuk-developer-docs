@@ -4,6 +4,7 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/cache-flush.md"
+important: true
 ---
 
 
