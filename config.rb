@@ -57,7 +57,7 @@ helpers do
 
   def manual_pages
     sitemap.resources
-      .select { |resource| resource.path.start_with?('manual/') && resource.path.end_with?('.html') }
+      .select { |page| page.path.start_with?('manual/') && page.path.end_with?('.html') }
       .sort_by { |page| page.data.title || raise("#{page.path} doesn't have a title") }
   end
 
