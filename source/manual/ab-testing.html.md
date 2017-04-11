@@ -1,11 +1,11 @@
 ---
-title: A/B testing
+title: Run an A/B test
 parent: /manual.html
 layout: manual_layout
 section: Tools
 ---
 
-# A/B testing
+# Run an A/B test
 
 ## 1. Overview
 

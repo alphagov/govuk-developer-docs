@@ -1,5 +1,5 @@
 ---
-title: Checking for a `gone` route
+title: Check for a `gone` route
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/check-for-gone-route.md)
 
 
-# Checking for a `gone` route
+# Check for a `gone` route
 
 When a Whitehall document fails to appear on the frontend, and the user
 is shown a 'Gone' page, follow these instructions:

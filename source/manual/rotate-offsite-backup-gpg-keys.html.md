@@ -1,5 +1,5 @@
 ---
-title: Rotate Offsite Backup GPG keys
+title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/rotate-offsite-backup-gpg-keys.md)
 
 
-# Rotate Offsite Backup GPG keys
+# Rotate offsite backup GPG keys
 
 To encrypt our offsite backups, we use GPG keys which are valid for a year. For
 good security practice we rotate these keys each year.

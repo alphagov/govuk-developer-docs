@@ -1,11 +1,11 @@
 ---
-title: Content Preview
+title: How the draft stack works
 parent: /manual.html
 layout: manual_layout
-section: Environments
+section: Publishing
 ---
 
-# Content Preview
+# How the draft stack works
 
 ## Overview
 

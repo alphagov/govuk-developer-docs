@@ -1,5 +1,5 @@
 ---
-title: GDS Hubot
+title: Update Hubot (Slack bot)
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/gds-hubot.md)
 
 
-# GDS Hubot
+# Update Hubot (Slack bot)
 
 Hubot is a bot on our Slack channel.
 

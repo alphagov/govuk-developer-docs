@@ -1,5 +1,5 @@
 ---
-title: Rebooting machines
+title: Reboot a machine
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
@@ -14,7 +14,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/rebooting-machines.md)
 
 
-# Rebooting Machines
+# Reboot a machine
 
 ## Rules of rebooting
 
