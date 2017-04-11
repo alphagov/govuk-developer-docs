@@ -1,6 +1,6 @@
 ---
 title: Add sidekiq-monitoring to your application
-section: Logging
+section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.md"

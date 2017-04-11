@@ -1,6 +1,6 @@
 ---
-title: Virus Scanning
-section: Assets
+title: Fix stuck virus scanning
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/virus-scanning.md"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/alerts/virus-scanning.md)
 
 
-# Virus Scanning
+# Fix stuck virus scanning
 
 Documents uploaded to asset-master are scanned asynchronously through
 a virus scanner, as explained in <https://github.gds/pages/gds/opsmanual/2nd-line/applications/whitehall.html?highlight=whitehall#virus-scanning-of-uploaded-files>

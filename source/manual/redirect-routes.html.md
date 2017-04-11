@@ -1,5 +1,5 @@
 ---
-title: Redirect Routes
+title: Redirect a route
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/redirect-routes.md)
 
 
-# Redirect Routes
+# Redirect a route
 
 To find if there is a redirect route for a particular path:
 

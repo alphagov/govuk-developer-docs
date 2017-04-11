@@ -1,5 +1,5 @@
 ---
-title: Running rake tasks
+title: Run a rake task
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
@@ -14,7 +14,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/running-rake-tasks.md)
 
 
-# Running rake tasks
+# Run a rake task
 
 There is a Jenkins job that can be used to run any rake task:
 

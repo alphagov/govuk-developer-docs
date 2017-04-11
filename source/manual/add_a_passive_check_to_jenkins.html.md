@@ -1,5 +1,5 @@
 ---
-title: How to add an Icinga passive check to a Jenkins job
+title: Add an Icinga passive check to a Jenkins job
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/add_a_passive_check_to_jenkins.md)
 
 
-# How to add an Icinga passive check to a Jenkins job
+# Add an Icinga passive check to a Jenkins job
 
 If you would like Icinga to raise an alert when a Jenkins job has not completed
 successfully in a while, you can add an Icinga passive check to the Jenkins

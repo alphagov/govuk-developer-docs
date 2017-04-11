@@ -1,5 +1,5 @@
 ---
-title: Manually Remove Assets
+title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/howto-manually-remove-assets.md)
 
 
-# Manually Remove Assets
+# Remove an asset
 
 If you need to remove an asset manually from `assets.publishing.sevice.gov.uk`,
 follow these steps:

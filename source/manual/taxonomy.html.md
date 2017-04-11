@@ -2,6 +2,7 @@
 title: Taxonomy
 parent: /manual.html
 layout: manual_layout
+section: Publishing
 ---
 
 # Taxonomy

@@ -1,5 +1,5 @@
 ---
-title: Tools
+title: "Tools: Icinga, Grafana and Graphite, Kibana and Fabric"
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
@@ -13,7 +13,7 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/tools.md)
 
 
-# Tools
+# Tools: Icinga, Grafana and Graphite, Kibana and Fabric
 
 ## Icinga
 
