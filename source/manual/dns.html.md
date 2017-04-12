@@ -6,18 +6,37 @@ parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/dns.md"
 ---
 
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/dns.md)
-
-
 # Domain Name System (DNS) records
 
-The GOV.UK Infrastructure team is responsible for managing lots of DNS records.
+The GOV.UK Infrastructure team is responsible for managing several DNS zones.
 
-All DNS is managed in DynDNS using the `Cabinet-Office` account.
+By default, zones are managed using DynDNS.
+
+The following zones use both DynDNS and Amazon Route 53 as dual providers:
+
+  digital.cabinet-office.gov.uk.
+  govuk.service.gov.uk.
+  performance.service.gov.uk.
+  service.gov.uk.
+
+The following use Route 53 and Google Cloud DNS:
+
+  publishing.service.gov.uk
+
+**If zones are managed with two providers, then both sets of records must be updated
+in both providers**
+
+## DynDNS
+
+Use the `Cabinet-Office` account. Once you have a Dyn ID, you can login [here](https://manage.dynect.net/login/).
+
+## Amazon Route 53
+
+Use the "production" account. Speak to Infrastructure if you require access.
+
+## Google Cloud DNS
+
+Use the "production" account. Speak to Infrastructure if you require access.
 
 ## Records for GOV.UK systems
 
@@ -27,6 +46,25 @@ There are a few domains that we use:
   We maintain records that point to Bouncer so that these URLs redirect.
 - `publishing.service.gov.uk` and `govuk.service.gov.uk` are where GOV.UK lives. We
   should probably only have one of those.
+
+## Making changes to publishing.service.gov.uk
+
+We use a Jenkins job that publishes changes to publishing.service.gov.uk. The
+job uses [Terraform](https://www.terraform.io/) and pushes changes to the
+selected provider.
+
+To make a change to this zone, begin by adding the records to the yaml file for
+the zone held in the [DNS config repo](https://github.gds/gds/govuk-dns-config).
+
+When this has been reviewed and merged, you can deploy the changes using [the
+"Deploy DNS "Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
+
+Changes should be deployed for each provider separately, and you should first
+run a "plan", and when you're happy with the changes, run "apply".
+
+Please note that due to the Terraform state being held in an S3 bucket, you
+will require access to the GOVUK AWS "production" account to roll changes for
+both Amazon and Google.
 
 ## DNS for the `gov.uk` top level domain
 
@@ -55,7 +93,7 @@ team.
 The request will contain the service domain name that needs to be delegated and
 more than one nameserver hostname (usually `ns0.example.com`, `ns1.example.com`).
 
-In Dyn, create a new node for the service domain underneath `service.gov.uk`
+In both Dyn and Route 53, create a new node for the service domain underneath `service.gov.uk`
 and add `NS` records for that node.
 
 We __do not__ manage DNS for service domains. If you get a request asking you to add
