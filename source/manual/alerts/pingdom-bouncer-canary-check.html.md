@@ -2,7 +2,7 @@
 title: 'Pingdom Bouncer canary check'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Pingdom Bouncer canary check

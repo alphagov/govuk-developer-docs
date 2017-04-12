@@ -2,7 +2,7 @@
 title: 'nginx 5xx rate too high for many apps/boxes'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # "nginx 5xx rate too high" for many apps/boxes

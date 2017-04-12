@@ -2,7 +2,7 @@
 title: 'Logs are not being received from the CDN'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Logs are not being received from the CDN

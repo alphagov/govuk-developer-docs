@@ -2,7 +2,7 @@
 title: 'Prolonged GC collection times Check'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'Prolonged GC collection times' Check

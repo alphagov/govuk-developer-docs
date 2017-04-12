@@ -2,7 +2,7 @@
 title: 'Fetch analytics data for search failed'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Fetch analytics data for search failed

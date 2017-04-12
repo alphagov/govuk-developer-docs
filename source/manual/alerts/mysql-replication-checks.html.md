@@ -2,7 +2,7 @@
 title: 'MySQL replication checks'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # MySQL replication checks

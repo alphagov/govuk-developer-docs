@@ -2,7 +2,7 @@
 title: 'Elasticsearch Cluster Health'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Elasticsearch Cluster Health

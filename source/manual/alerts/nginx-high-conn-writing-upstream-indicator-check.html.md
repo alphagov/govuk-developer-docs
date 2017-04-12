@@ -2,7 +2,7 @@
 title: 'nginx high conn writing -- upstream indicator Check'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'nginx high conn writing -- upstream indicator' Check

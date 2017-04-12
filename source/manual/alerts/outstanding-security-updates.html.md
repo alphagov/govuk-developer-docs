@@ -2,7 +2,7 @@
 title: 'Outstanding security updates'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'Outstanding security updates'

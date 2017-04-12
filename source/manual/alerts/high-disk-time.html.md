@@ -2,7 +2,7 @@
 title: 'high disk time'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'high disk time'

@@ -2,7 +2,7 @@
 title: 'root filesystem is readonly'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # root filesystem is readonly

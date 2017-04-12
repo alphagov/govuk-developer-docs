@@ -2,7 +2,7 @@
 title: 'Check we are not exceeding our AWS SES email quota'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Check we are not exceeding our AWS SES email quota

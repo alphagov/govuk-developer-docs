@@ -2,7 +2,7 @@
 title: 'Unicorn Herder'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Unicorn Herder
