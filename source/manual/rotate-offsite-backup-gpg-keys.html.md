@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-25
 title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-30
 title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout

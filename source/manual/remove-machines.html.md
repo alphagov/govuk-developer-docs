@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-22
 title: Remove a machine
 parent: "/manual.html"
 layout: manual_layout

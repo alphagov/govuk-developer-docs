@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-10
 title: 'RabbitMQ: No consumers listening to queue'
 parent: /manual.html
 layout: manual_layout

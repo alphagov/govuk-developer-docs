@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-15
 title: Check for a `gone` route
 section: Routing
 layout: manual_layout

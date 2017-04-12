@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-07
 title: Fastly error rate for GOV.UK
 section: Icinga alerts
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-05
 title: 'Logs are not being received from the CDN'
 parent: /manual.html
 layout: manual_layout

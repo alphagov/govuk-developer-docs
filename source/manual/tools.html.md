@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-09
 title: "Tools: Icinga, Grafana and Graphite, Kibana and Fabric"
 section: Tools
 layout: manual_layout

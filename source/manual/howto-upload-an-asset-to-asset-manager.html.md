@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-23
 title: Upload an asset to asset-manager
 section: Assets
 layout: manual_layout

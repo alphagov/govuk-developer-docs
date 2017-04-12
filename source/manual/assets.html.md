@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-26
 title: "Assets: how they work"
 section: Assets
 layout: manual_layout

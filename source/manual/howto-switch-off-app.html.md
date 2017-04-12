@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-06
 title: Switch an app off
 layout: manual_layout
 section: Packaging

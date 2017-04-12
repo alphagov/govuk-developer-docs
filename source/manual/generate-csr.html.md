@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-24
 title: Generate a Certificate Signing Request (CSR) for GOV.UK
 section: Environments
 layout: manual_layout

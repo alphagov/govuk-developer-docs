@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-19
 title: 'Whitehall scheduled publishing'
 parent: /manual.html
 layout: manual_layout

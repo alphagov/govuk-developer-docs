@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-30
 title: 'PagerDuty drill'
 parent: /manual.html
 layout: manual_layout

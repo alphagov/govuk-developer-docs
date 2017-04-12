@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-30
 title: Create a new open source project
 section: Packaging
 layout: manual_layout

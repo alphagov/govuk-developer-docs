@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-26
 title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout

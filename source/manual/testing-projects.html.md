@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-24
 title: Test & build a project on Jenkins CI
 section: Testing
 layout: manual_layout

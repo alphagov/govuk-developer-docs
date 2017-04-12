@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-05
 title: 'asset master attachment processing'
 parent: /manual.html
 layout: manual_layout

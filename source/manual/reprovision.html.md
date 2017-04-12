@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-29
 title: Reprovision a machine in vCloud Director
 section: Environments
 layout: manual_layout

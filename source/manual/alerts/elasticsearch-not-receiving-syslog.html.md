@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-08
 title: 'Elasticsearch: not receiving syslog from logstash'
 parent: /manual.html
 layout: manual_layout

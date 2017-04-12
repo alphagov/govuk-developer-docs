@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-01
 title: Retire an application
 section: Packaging
 layout: manual_layout

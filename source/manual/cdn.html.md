@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-04-19
 title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout

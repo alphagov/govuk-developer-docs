@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-09
 title: 'PostgreSQL: S3 Backups'
 parent: /manual.html
 layout: manual_layout

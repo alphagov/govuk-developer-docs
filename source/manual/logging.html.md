@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-21
 title: How logging works on GOV.UK
 section: Logging
 layout: manual_layout

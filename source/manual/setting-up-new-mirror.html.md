@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-12
 title: Set up a new mirror for GOV.UK
 section: Environments
 layout: manual_layout

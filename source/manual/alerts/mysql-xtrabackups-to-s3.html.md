@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-06
 title: 'MySQL Xtrabackups to S3'
 parent: /manual.html
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-24
 title: 'Fetch analytics data for search failed'
 parent: /manual.html
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-13
 title: 'AWS SES quota usage higher than expected'
 parent: /manual.html
 layout: manual_layout

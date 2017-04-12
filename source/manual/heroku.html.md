@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-07
 title: Heroku
 section: Tools
 layout: manual_layout
