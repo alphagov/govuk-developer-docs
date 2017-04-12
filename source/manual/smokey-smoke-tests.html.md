@@ -3,6 +3,8 @@ title: "Smoke testing with smokey"
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
+owner_slack: '#2ndline'
+review_by: 2018-01-01
 ---
 
 # Smoke testing with smokey
