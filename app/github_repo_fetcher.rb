@@ -1,6 +1,6 @@
 require 'octokit'
 
-class GitHub
+class GitHubRepoFetcher
   # Fetch a repo from GitHub.
   #
   # If the app_name is just a repo name we'll assume that it's in the alphagov
@@ -18,7 +18,7 @@ class GitHub
   end
 
   def self.client
-    @client ||= GitHub.new
+    @client ||= GitHubRepoFetcher.new
   end
 
 private

@@ -52,7 +52,7 @@ class Dashboard
 
     def repos
       data['repos'].to_a.map do |app_name|
-        repo = GitHub.client.repo(app_name)
+        repo = GitHubRepoFetcher.client.repo(app_name)
         Repo.new(repo)
       end
     end
