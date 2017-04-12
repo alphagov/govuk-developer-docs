@@ -2,7 +2,7 @@
 title: 'asset master attachment processing'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # asset master attachment processing

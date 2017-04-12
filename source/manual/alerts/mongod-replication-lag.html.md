@@ -2,7 +2,7 @@
 title: 'mongod replication lag'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'mongod replication lag'

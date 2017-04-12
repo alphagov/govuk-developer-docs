@@ -2,7 +2,7 @@
 title: 'Email Alerts'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Email Alerts

@@ -3,15 +3,7 @@ title: Update Pingdom IP Ranges
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/howto-update-pingdom-ip-ranges.md"
 ---
-
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/howto-update-pingdom-ip-ranges.md)
-
 
 # Update Pingdom IP Ranges
 

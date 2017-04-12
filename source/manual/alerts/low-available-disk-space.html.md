@@ -2,7 +2,7 @@
 title: 'Low available disk space'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Low available disk space

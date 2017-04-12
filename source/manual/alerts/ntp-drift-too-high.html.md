@@ -2,7 +2,7 @@
 title: 'ntp drift too high'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'ntp drift too high'

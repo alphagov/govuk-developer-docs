@@ -1,13 +1,13 @@
 ---
-title: 'PostgreSQL replication'
+title: 'PostgreSQL: replication too far behind'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
-# PostgreSQL replication
+# PostgreSQL: replication too far behind
 
-### 'replication on the postgres slave is too far behind master \[value in bytes\]'
+> "replication on the postgres slave is too far behind master [value in bytes]"
 
 When this alert fires, the Postgres slave replication process may be
 struggling to keep up (due to load) or may have stopped altogether. Take
@@ -33,4 +33,3 @@ metrics it needs.
 The replication lag is measured by examining the difference in the [XLOG
 location in
 bytes](https://wiki.postgresql.org/wiki/Streaming_Replication).
-

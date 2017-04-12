@@ -2,7 +2,7 @@
 title: 'reboot required by apt'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'reboot required by apt'

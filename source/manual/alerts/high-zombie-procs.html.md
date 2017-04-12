@@ -2,7 +2,7 @@
 title: 'high zombie procs'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'high zombie procs'
