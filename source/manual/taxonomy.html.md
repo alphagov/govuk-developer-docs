@@ -3,6 +3,8 @@ title: Taxonomy
 parent: /manual.html
 layout: manual_layout
 section: Publishing
+owner_slack: "@tijmen"
+review_by: 2017-05-01
 ---
 
 # Taxonomy

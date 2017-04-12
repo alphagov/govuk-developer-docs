@@ -63,6 +63,10 @@ helpers do
     ApplicationsByTeam.teams
   end
 
+  def page_freshness
+    PageFreshness.new(sitemap)
+  end
+
   require 'table_of_contents/helpers'
   include TableOfContents::Helpers
 end
