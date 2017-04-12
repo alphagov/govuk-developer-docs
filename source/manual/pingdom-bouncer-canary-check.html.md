@@ -2,7 +2,7 @@
 title: 'Pingdom Bouncer canary check'
 parent: /manual.html
 layout: manual_layout
-section: Icinga alerts
+section: Monitoring
 ---
 
 # Pingdom Bouncer canary check
@@ -51,4 +51,3 @@ effect on requests for transitioned sites of errors when querying them:
 
 There are other tables in the `transition_production` database but they
 are only used by Transition and not by Bouncer.
-
