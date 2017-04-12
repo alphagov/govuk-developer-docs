@@ -26,7 +26,7 @@ can be found in the Elasticsearch documentation.
 Make sure you understand the consequences of the problem before jumping to a
 solution.
 
-Nagios uses the `check_elasticsearch` check from 
+Nagios uses the `check_elasticsearch` check from
 [nagios-plugins](https://github.com/alphagov/nagios-plugins/) to
 monitor the health of the Elasticsearch cluster. This plugin uses various
 endpoints of the Elasticsearch API, but also extrapolates additional information
@@ -123,7 +123,7 @@ This means that when adding or removing nodes you need to ensure that all
 nodes get the updated configuration with the new value for this calculation.
 
 If split brain does occur, you can use the following steps to fix it. But it is
-**strongly** suggested to thoroughly investigate the problem first before 
+**strongly** suggested to thoroughly investigate the problem first before
 doing so.
 
 - By stopping the node which considers itself to belong to two cluster
@@ -150,16 +150,6 @@ logstash on logging-1 to send its syslog data to a different
 elasticsearch node. This is done by changing the /etc/hosts file on
 logging-1.management
 
-### 'elasticsearch not receiving syslog from logstash' Check
-
-The problem behind this warning is that logstash has stopped sending
-things. Restart logstash on logging-1.management with:
-
-`fab <environment> -H logging-1.management app.restart:logstash`
-
-[Further information on GOV.UK
-logging](https://github.gds/pages/gds/opsmanual/infrastructure/logging/index.html)
-
 ### 'One or more indexes are missing replica shards.' despite cluster being green
 
 For some reason the elasticsearch plugin [does not consider a replica in the
@@ -181,4 +171,3 @@ and you can leave it to reallocate the replicas, which may take some time.
 
 You can monitor the progress of shard (re)allocation using the [cat recovery
 endpoint](https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-recovery.html).
-
