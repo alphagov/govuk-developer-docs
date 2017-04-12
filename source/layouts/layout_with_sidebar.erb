@@ -19,6 +19,14 @@
 
     <div class="app-pane__content toc-open-disabled">
       <main id="content" class="technical-documentation" data-module="anchored-headings">
+        <% if current_page.data.review_by && Date.today > current_page.data.review_by  %>
+          <div class='warning'>
+            This page was set to be reviewed before <%= current_page.data.review_by %>
+            by the page owner: <%= current_page.data.owner_slack %>. This might mean the
+            content is out of date
+          </div>
+        <% end %>
+
         <%= yield %>
         <%= partial 'partials/source' %>
       </main>

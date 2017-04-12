@@ -31,15 +31,41 @@ title: Dev manual
     <strong>Work in progress</strong><br/><br/>
 
     We're currently moving <a href='https://github.gds/pages/gds/opsmanual'>
-    the opsmanual</a> to this site. Follow along option
+    the opsmanual</a> to this site. Follow along
     <a href='https://trello.com/b/pWnVP4wF'>on our Trello board</a>.
   </blockquote>
 
-  <h4>Top tasks</h4>
+  <h2>Top tasks</h2>
 
   <ul>
     <% most_important_pages.each do |page| %>
       <li><%= link_to page.data.title, page.path %></li>
     <% end %>
   </ul>
+
+  <h2>Keeping the opsmanual up to date</h2>
+
+  <p>Everyone on GOV.UK is responsible for keeping the opsmanual up to date. To ensure
+  this, every page should have a named owner.</p>
+
+
+  <% if page_freshness.expiring_soon.any? %>
+    <h3>Pages to be reviewed soon</h3>
+
+    <ul>
+    <% page_freshness.expiring_soon.each do |page| %>
+      <li><%= link_to page[:title], page[:url] %></li>
+    <% end %>
+    </ul>
+  <% end %>
+
+  <% if page_freshness.expired_pages.any? %>
+    <h3>Expired pages</h3>
+
+    <ul>
+    <% page_freshness.expired_pages.each do |page| %>
+      <li><%= link_to page[:title], page[:url] %></li>
+    <% end %>
+    </ul>
+  <% end %>
 <% end %>

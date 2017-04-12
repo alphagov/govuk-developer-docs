@@ -3,6 +3,8 @@ title: Run an A/B test
 parent: /manual.html
 layout: manual_layout
 section: Tools
+owner_slack: "@tijmen"
+review_by: 2017-04-14
 ---
 
 # Run an A/B test
