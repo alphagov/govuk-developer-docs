@@ -4,7 +4,7 @@
   <li><%= link_to 'By Team', '/apps/by-team.html' %></li>
   <li>
     <ul class='subnav'>
-    <% renderer = TechDocsHTMLRenderer.new %>
+    <% renderer = DeveloperDocsRenderer.new %>
     <% teams.each do |team_name| %>
       <li><%= link_to team_name, "/apps/by-team.html#" + renderer.githubify_fragment_id(team_name) %></li>
     <% end %>
