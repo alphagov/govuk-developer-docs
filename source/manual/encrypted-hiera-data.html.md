@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-13
 title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout

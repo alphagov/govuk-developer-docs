@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-10-03
 title: 'Email Alerts'
 parent: /manual.html
 layout: manual_layout

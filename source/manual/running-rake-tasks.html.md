@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-21
 title: Run a rake task
 section: Deployment
 layout: manual_layout

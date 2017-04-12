@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-12
 title: Redirect a route
 section: Routing
 layout: manual_layout

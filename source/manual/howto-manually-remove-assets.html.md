@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-28
 title: Remove an asset
 section: Assets
 layout: manual_layout

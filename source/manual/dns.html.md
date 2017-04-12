@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-04
 title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-04
 title: How the draft stack works
 parent: /manual.html
 layout: manual_layout

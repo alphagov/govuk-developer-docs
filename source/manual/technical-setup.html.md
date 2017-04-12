@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-22
 title: Technical setup
 section: Support
 layout: manual_layout

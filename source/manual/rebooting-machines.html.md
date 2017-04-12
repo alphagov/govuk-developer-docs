@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-14
 title: Reboot a machine
 section: Environments
 layout: manual_layout

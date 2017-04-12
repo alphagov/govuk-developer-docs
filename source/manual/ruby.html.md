@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-09
 title: Add a new Ruby version
 section: Tools
 layout: manual_layout

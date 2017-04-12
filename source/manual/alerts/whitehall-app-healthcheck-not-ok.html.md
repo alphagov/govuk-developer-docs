@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-24
 title: 'whitehall app health check not ok'
 parent: /manual.html
 layout: manual_layout

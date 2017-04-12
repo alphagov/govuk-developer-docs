@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-12
 title: Redis alerts
 section: Icinga alerts
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-31
 title: Add sidekiq-monitoring to your application
 section: Monitoring
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-15
 title: Clone a MySQL instance from one slave to another
 section: Databases
 layout: manual_layout
