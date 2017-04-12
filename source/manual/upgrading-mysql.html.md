@@ -2,7 +2,7 @@
 title: 'Upgrading mysql'
 parent: /manual.html
 layout: manual_layout
-section: Icinga alerts
+section: Databases
 ---
 
 # Upgrading mysql
@@ -58,4 +58,3 @@ turn the slow query log back on - Only do this on staging and
 integration -slow query logs are not enabled in production
 
 `fab $environment class:mysql_backup class:mysql_slave mysql.start_slow_query_log`
-
