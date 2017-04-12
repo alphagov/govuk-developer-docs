@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-26
 title: 'ClamAV definitions out of date'
 parent: /manual.html
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-10-05
 title: 'high zombie procs'
 parent: /manual.html
 layout: manual_layout

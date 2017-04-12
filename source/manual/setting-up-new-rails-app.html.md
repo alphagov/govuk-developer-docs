@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-16
 title: Set up a new Rails app
 section: Packaging
 layout: manual_layout

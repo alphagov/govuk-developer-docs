@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-27
 title: 'root filesystem is readonly'
 parent: /manual.html
 layout: manual_layout

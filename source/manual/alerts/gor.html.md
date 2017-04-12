@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-16
 title: Gor
 section: Icinga alerts
 layout: manual_layout

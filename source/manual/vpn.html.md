@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-31
 title: GOV.UK and Virtual Private Networks (VPNs)
 section: Monitoring
 layout: manual_layout

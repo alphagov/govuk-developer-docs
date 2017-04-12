@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-13
 title: Packer Vagrant Dev VM / Image Creation
 section: Packaging
 layout: manual_layout

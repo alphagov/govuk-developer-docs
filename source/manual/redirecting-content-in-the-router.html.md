@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-16
 title: Redirect content in the Router
 section: Routing
 layout: manual_layout

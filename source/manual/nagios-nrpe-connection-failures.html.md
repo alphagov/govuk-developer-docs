@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-12
 title: Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout

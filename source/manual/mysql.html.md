@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-04
 title: MySQL backups
 section: Backups
 layout: manual_layout

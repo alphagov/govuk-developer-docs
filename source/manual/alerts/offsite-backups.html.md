@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-15
 title: 'Offsite backups'
 parent: /manual.html
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-06
 title: 'duplicate SSH host keys'
 parent: /manual.html
 layout: manual_layout

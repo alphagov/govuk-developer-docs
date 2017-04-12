@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-10-08
 title: Add a disk to a vCloud machine
 section: Environments
 layout: manual_layout

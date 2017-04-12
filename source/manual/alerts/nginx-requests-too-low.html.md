@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-20
 title: 'nginx requests too low'
 parent: /manual.html
 layout: manual_layout

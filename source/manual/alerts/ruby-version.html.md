@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-24
 title: App isn't running the expected Ruby version
 section: Icinga alerts
 layout: manual_layout

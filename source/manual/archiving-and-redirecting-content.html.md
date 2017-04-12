@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-24
 title: Archive and redirect mainstream content to other pages on GOV.UK
 section: Routing
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-17
 title: Data sync
 section: Icinga alerts
 layout: manual_layout

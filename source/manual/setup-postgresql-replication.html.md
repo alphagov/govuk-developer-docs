@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-26
 title: Set up PostgreSQL replication
 section: Databases
 layout: manual_layout

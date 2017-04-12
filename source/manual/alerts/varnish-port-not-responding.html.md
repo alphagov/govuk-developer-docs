@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-16
 title: 'Varnish port not responding'
 parent: /manual.html
 layout: manual_layout

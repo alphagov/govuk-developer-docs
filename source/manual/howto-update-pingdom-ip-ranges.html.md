@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-31
 title: Update Pingdom IP Ranges
 section: Environments
 layout: manual_layout

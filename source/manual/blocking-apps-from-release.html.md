@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-03
 title: Block apps from being deployed
 section: Deployment
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-18
 title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout

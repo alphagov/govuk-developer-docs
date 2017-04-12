@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-08
 title: 'defined cpu type does not match'
 parent: /manual.html
 layout: manual_layout

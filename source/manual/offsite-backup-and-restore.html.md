@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-28
 title: Offsite backups
 section: Backups
 layout: manual_layout

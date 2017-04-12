@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-04-13
 title: Set up request tracing
 section: Logging
 layout: manual_layout

@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-11
 title: 'VPN down'
 parent: /manual.html
 layout: manual_layout

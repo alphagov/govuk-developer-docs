@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-05-18
 title: Resync a Mongo database
 section: Databases
 layout: manual_layout
