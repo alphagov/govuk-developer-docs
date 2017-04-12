@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-10
 title: GitHub Enterprise connectivity
 section: Icinga alerts
 layout: manual_layout

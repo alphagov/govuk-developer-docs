@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-18
 title: PostgreSQL backups
 section: Backups
 layout: manual_layout

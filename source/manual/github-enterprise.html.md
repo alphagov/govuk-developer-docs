@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-08
 title: GitHub Enterprise
 section: Tools
 layout: manual_layout

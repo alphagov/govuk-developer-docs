@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-06-04
 title: MongoDB backups
 layout: manual_layout
 parent: "/manual.html"

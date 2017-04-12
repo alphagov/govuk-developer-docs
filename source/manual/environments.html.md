@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-11
 title: GOV.UK's environments (integration, staging, production)
 section: Environments
 layout: manual_layout

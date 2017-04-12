@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-30
 title: Docs styleguide
 layout: manual_layout
 parent: "/manual.html"

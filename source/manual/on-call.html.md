@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-09-20
 title: Out of hours support (on-call)
 section: Support
 layout: manual_layout

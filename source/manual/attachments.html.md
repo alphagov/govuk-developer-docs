@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-07-08
 title: Attachment backups
 section: Backups
 layout: manual_layout

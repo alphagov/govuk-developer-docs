@@ -1,4 +1,6 @@
 ---
+owner_slack: '#2ndline'
+review_by: 2017-08-18
 title: Useful Kibana queries
 layout: manual_layout
 parent: "/manual.html"
