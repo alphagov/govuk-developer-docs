@@ -3,6 +3,8 @@ title: 'asset master attachment processing'
 parent: /manual.html
 layout: manual_layout
 section: Icinga alerts
+owner_slack: "#2ndline"
+review_by: 2016-01-01
 ---
 
 # asset master attachment processing
@@ -14,4 +16,3 @@ which scans files and then moves them into either a "clean" or
 "infected" directory. If you have received an alert regarding this it
 means that the job has not run for over half an hour and is probably
 locked (or processing a large amount of files).
-
