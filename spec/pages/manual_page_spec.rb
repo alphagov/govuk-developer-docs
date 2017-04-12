@@ -11,5 +11,9 @@ Dir.glob("source/manual/**/*.md").each do |filename|
     it "has a review_by date" do
       expect(frontmatter['review_by']).to be_a(Date)
     end
+
+    it "has a title" do
+      expect(frontmatter['title']).to be_present, "Page doesn't have `title` set"
+    end
   end
 end
