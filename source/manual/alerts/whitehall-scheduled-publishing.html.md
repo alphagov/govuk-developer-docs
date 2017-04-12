@@ -2,7 +2,7 @@
 title: 'Whitehall scheduled publishing'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Whitehall scheduled publishing

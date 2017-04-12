@@ -6,14 +6,29 @@ parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/rabbitmq.md"
 ---
 
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/rabbitmq.md)
-
-
 # RabbitMQ
+
+## How we run RabbitMQ
+
+We run a RabbitMQ cluster, which is used to trigger events when
+documents are published. The general process is that messages are
+published onto "exchanges" in RabbitMQ. Applications create "queues"
+which listen to the exchanges, and gather the messages sent to the
+exchanges together. Applications then run "consumers" which receive
+messages from the queues.
+
+In order to ensure that our consumers remain active, we publish
+"heartbeat" messages to the exchanges every minute. This helps to avoid
+problems with consumers dropping their connections due to inactivity,
+but also allows us to monitor activity easily.
+
+### Sending heartbeats
+
+Heartbeat messages are sent every minute by cron. Currently, we only
+send heartbeat messages to one exchange: the `published_documents`
+exchange. These heartbeats are sent via a rake task in the
+`content-store` app.
+
 
 ## Connecting to the RabbitMQ web control panel
 

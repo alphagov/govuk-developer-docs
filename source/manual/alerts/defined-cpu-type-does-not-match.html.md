@@ -2,7 +2,7 @@
 title: 'defined cpu type does not match'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # defined cpu type does not match

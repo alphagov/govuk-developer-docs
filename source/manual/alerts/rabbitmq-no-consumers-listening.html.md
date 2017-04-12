@@ -1,32 +1,13 @@
 ---
-title: 'RabbitMQ checks'
+title: 'RabbitMQ: No consumers listening to queue'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
-# RabbitMQ checks
+# RabbitMQ: No consumers listening to queue
 
-We run a RabbitMQ cluster, which is used to trigger events when
-documents are published. The general process is that messages are
-published onto "exchanges" in RabbitMQ. Applications create "queues"
-which listen to the exchanges, and gather the messages sent to the
-exchanges together. Applications then run "consumers" which receive
-messages from the queues.
-
-In order to ensure that our consumers remain active, we publish
-"heartbeat" messages to the exchanges every minute. This helps to avoid
-problems with consumers dropping their connections due to inactivity,
-but also allows us to monitor activity easily.
-
-### Sending heartbeats
-
-Heartbeat messages are sent every minute by cron. Currently, we only
-send heartbeat messages to one exchange: the `published_documents`
-exchange. These heartbeats are sent via a rake task in the
-`content-store` app.
-
-### Check for non-idle consumers
+[Read more about how we use RabbitMQ](/manual/rabbitmq.html)
 
 We run a check that there is at least one non-idle consumer for a named
 RabbitMQ queue. (For example, for the `email_alert_service` queue.) The
@@ -55,7 +36,7 @@ queue, it will report a critical failure:
 
     CRITICAL: "No consumers listening to queue"
 
-### Consequences of idle consumers
+## Consequences of idle consumers
 
 If consumers are idle, messages sent to the queue will not be being
 processed. This means that the actions which are meant to happen in
@@ -66,22 +47,7 @@ isn't running.
 Unless there is a wider RabbitMQ failure, messages will not be lost -
 they will be processed once the problem is resolved.
 
-### RabbitMQ high watermark has been exceeded
-
-The RabbitMQ server detects the total amount of RAM installed on
-startup. By default, when the RabbitMQ server uses above 40% of the
-installed RAM, it raises a memory alarm and blocks all connections. Once
-the memory alarm has cleared (e.g. due to the server paging messages to
-disk or delivering them to clients) normal service resumes.
-
-If this alert is regularly triggered it is a sign that it is time to
-beef up the Rabbit boxes with more RAM. Alternatively, if you don't care
-about messages, you can try to purge messages or remove unused queues.
-
-Further information can be found
-[here](https://www.rabbitmq.com/memory.html).
-
-### Investigation
+## Investigation
 
 RabbitMQ has an admin interface, which allows details of recent activity
 on the queues to be seen. To log in, [follow the
@@ -103,4 +69,3 @@ app are also alerted, since this shouldn't normally happen). For
 example:
 
     fab $environment class:backend app.restart:email-alert-service
-

@@ -2,7 +2,7 @@
 title: 'rkhunter warnings'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # rkhunter warnings

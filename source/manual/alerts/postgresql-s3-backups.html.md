@@ -1,11 +1,11 @@
 ---
-title: 'PostgreSQL S3 Backups'
+title: 'PostgreSQL: S3 Backups'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
-# PostgreSQL S3 Backups
+# PostgreSQL: S3 Backups
 
 There are two passive checks related to PostgreSQL S3 backups:
 
@@ -58,4 +58,3 @@ WAL logs will continue to write on the filesystem of the local server.
 Check the status of the archiving with the following Kibana query:
 
     @message:"*wal-e_postgres_archiving_wrapper*"
-

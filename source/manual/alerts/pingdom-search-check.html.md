@@ -2,7 +2,7 @@
 title: 'Pingdom search check'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Pingdom search check

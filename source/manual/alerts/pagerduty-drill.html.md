@@ -2,7 +2,7 @@
 title: 'PagerDuty drill'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # PagerDuty drill

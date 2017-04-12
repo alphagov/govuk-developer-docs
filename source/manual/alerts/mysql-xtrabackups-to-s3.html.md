@@ -2,7 +2,7 @@
 title: 'MySQL Xtrabackups to S3'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # MySQL Xtrabackups to S3
