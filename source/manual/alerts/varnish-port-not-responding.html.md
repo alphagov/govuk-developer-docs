@@ -2,7 +2,7 @@
 title: 'Varnish port not responding'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Varnish port not responding

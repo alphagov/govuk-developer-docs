@@ -2,7 +2,7 @@
 title: 'nginx requests too low'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # 'nginx requests too low'

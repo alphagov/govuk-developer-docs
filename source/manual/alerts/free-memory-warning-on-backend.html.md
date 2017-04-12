@@ -2,7 +2,7 @@
 title: 'Free memory warning on backend'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Free memory warning on backend

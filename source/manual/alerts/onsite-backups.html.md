@@ -2,7 +2,7 @@
 title: 'Onsite backups'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # Onsite backups

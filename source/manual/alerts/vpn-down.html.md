@@ -2,7 +2,7 @@
 title: 'VPN down'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # VPN down

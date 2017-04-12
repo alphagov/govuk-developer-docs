@@ -2,7 +2,7 @@
 title: 'MongoDB rollback'
 parent: /manual.html
 layout: manual_layout
-section: Alerts
+section: Icinga alerts
 ---
 
 # MongoDB rollback
