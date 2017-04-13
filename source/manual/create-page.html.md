@@ -101,3 +101,7 @@ Example of not widely known acronyms:
 ### Bullets and numbered lists
 
 Bullet lists [make pages easier to read](https://www.nngroup.com/articles/presenting-bulleted-lists/). Use numbered lists to describe a linear progress, or when the number of items in the list is important.
+
+## Related
+
+- [Review a page in this manual](/manual/review-page.html)
