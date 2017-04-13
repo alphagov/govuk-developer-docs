@@ -37,6 +37,7 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   <li><%= link_to "GitHub repo", application.repo_url %></li>
   <li><%= link_to "Puppet configuration", application.puppet_url %></li>
   <li><%= link_to "Deploy scripts", application.deploy_url %></li>
+  <li><%= link_to "Deployment dashboard", application.dashboard_url %> (warning: not all apps have a dashboard)</li>
 
   <% if application.production_url %>
     <li><%= link_to application.production_url.gsub('https://', ''), application.production_url %></li>
