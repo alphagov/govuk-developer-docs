@@ -35,7 +35,7 @@ node {
     }
 
     stage("Lint Ruby") {
-      govuk.rubyLinter("lib helpers spec bin")
+      govuk.rubyLinter("app lib helpers spec bin")
     }
 
     stage("Tests") {
