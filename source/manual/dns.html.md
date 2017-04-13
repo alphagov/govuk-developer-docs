@@ -68,6 +68,9 @@ Please note that due to the Terraform state being held in an S3 bucket, you
 will require access to the GOVUK AWS "production" account to roll changes for
 both Amazon and Google.
 
+You will not require credentials for Google Cloud. These credentials are stored
+in Jenkins itself.
+
 ## DNS for the `gov.uk` top level domain
 
 [Jisc](https://www.jisc.ac.uk/) is a non-profit which provides networking to
