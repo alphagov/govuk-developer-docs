@@ -21,7 +21,7 @@ Application tests run in a continuous integration (CI) environment.
 
 https://ci.integration.publishing.service.gov.uk/
 
-[Read here about the CI infrastructure](/infrastructure/jenkins-ci.html).
+[Read here about the CI infrastructure](/manual/jenkins-ci.html).
 
 ## Setting up
 
@@ -34,7 +34,7 @@ You need to add your repo to the `govuk_ci::master::pipeline_jobs` in [govuk-pup
 ### 2. Add a Jenkinsfile
 
 Your repo needs to contain a `Jenkinsfile` in the root which has
-details of how the application is built. In most cases the `Jenkinsfile` will need to run the tests for your project. For applications the build process includes [creating a release tag](/2nd-line/releasing-software/index.html). For gems the build process includes releasing the packaged gem to [rubygems.org](https://rubygems.org).
+details of how the application is built. In most cases the `Jenkinsfile` will need to run the tests for your project. For applications the build process includes [creating a release tag](/manual/releasing-software.html). For gems the build process includes releasing the packaged gem to [rubygems.org](https://rubygems.org).
 
 [Read the documentation for this in alphagov/govuk-puppet][puppet-x]
 

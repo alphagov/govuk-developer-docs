@@ -62,4 +62,4 @@ Kibana is the interface for viewing logs in Elasticsearch. We made
 
 It's deployed to the backend application servers.
 
-There's some documentation on [useful Kibana queries for 2nd line](../2nd-line/kibana.html).
+There's some documentation on [useful Kibana queries for 2nd line](/manual/kibana.html).
