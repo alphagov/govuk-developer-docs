@@ -27,6 +27,7 @@ parent: "/manual.html"
 
 - The [Platform Operations wiki][plops] contains information about 2nd line and incident management
 - The [Product documentation][prod-docs] contains documentation about the features of the platform
+- The [RFCs section][rfcs] contains ideas and proposals for GOV.UK
 
 ## Opsmanual
 
@@ -38,3 +39,4 @@ parent: "/manual.html"
 [docs-folder]: https://github.com/alphagov/publishing-api/tree/master/doc
 [plops]: https://gov-uk.atlassian.net/wiki/display/PLOPS/GOV.UK+Platform+Operations+Home
 [prod-docs]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Product+documentation
+[rfcs]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Request+for+comments+-+RFC
