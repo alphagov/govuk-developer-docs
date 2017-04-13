@@ -6,5 +6,16 @@
 <% end %>
 
 <% wrap_layout :layout_with_sidebar do %>
+  <% if current_page.data.section == "Icinga alerts" %>
+    <div class="information-callout">
+      This page describes what to do in case of an
+      <a href='https://docs.publishing.service.gov.uk/manual/tools.html#icinga'>Icinga alert</a>.
+      For more information you could
+      <a href='https://github.com/alphagov/govuk-puppet/search?utf8=%E2%9C%93&q=<%= File.basename(current_page.path, ".*") %>'>
+        search the govuk-puppet repo for the source of the alert
+      </a>
+    </div>
+  <% end %>
+
   <%= html %>
 <% end %>
