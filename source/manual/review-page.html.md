@@ -13,26 +13,26 @@ How to review pages in the dev manual.
 
 ## Questions to ask
 
-Is the page accurate?
-is the page still relevant?
-Should it still be there?
-Does it help the reader complete their task?
-Is it incomplete?
-Does the page contain information easily available elsewhere?
-Does the page contain sensitive or inappropriate information? For example passwords, individual email addresses, groups, calendars, 'secret' links.
+- Is the page accurate?
+- Is the page still relevant?
+- Should it still be there?
+- Does it help the reader complete their task?
+- Is it incomplete?
+- Does the page contain information easily available elsewhere?
+- Does the page contain sensitive or inappropriate information? For example passwords, individual email addresses, groups, calendars, 'secret' links.
 
 ## Options
 
-- update the page
-- remove it (don’t forget to set up a redirect)
-- assign it for someone else to review
-- confirm the page is OK and set a new review date
+- Update the page
+- Remove it (don’t forget to set up a redirect)
+- Assign it for someone else to review
+- Confirm the page is OK and set a new review date
 
 ## Set a review by date
 
-How likely is it that the information will change?
-Is work happening in this area?
-What would the impact be if the information were wrong?
+- How likely is it that the information will change?
+- Is work happening in this area?
+- What would the impact be if the information were wrong?
 
 ## Relevant blog posts to link to
 
