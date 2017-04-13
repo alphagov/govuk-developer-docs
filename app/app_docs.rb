@@ -95,7 +95,7 @@ class AppDocs
     end
 
     def github_repo_data
-      @github_repo_data ||= GitHub.client.repo(github_repo_name)
+      @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
     end
   end
 end

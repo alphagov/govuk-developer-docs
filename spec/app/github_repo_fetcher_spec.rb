@@ -1,10 +1,10 @@
-RSpec.describe GitHub do
+RSpec.describe GitHubRepoFetcher do
   describe "#repo" do
     it "returns a repo if the user is specified" do
       stub_request(:get, "https://api.github.com/repos/some-user/some-repo").
         to_return(body: "{}", headers: { content_type: "application/json" })
 
-      repo = GitHub.new.repo("some-user/some-repo")
+      repo = GitHubRepoFetcher.new.repo("some-user/some-repo")
 
       expect(repo).not_to be_nil
     end
@@ -14,7 +14,7 @@ RSpec.describe GitHub do
         to_return(body: "[]", headers: { content_type: "application/json" })
 
       expect {
-        GitHub.new.repo("something-not-here")
+        GitHubRepoFetcher.new.repo("something-not-here")
       }.to raise_error(StandardError)
     end
   end
