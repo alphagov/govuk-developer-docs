@@ -1,6 +1,6 @@
 ---
 owner_slack: '#2ndline'
-review_by: 2017-04-12
+review_by: 2017-11-01
 title: Change an organisation's slug
 parent: "/manual.html"
 layout: manual_layout
