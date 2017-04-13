@@ -131,3 +131,7 @@ our jobs.
 With this configuration, in our jobs we can choose between 'GitHub' and 'GDS GitHub Enterprise' API endpoints to
 access the source code repository. The API endpoint name is referenced in Puppet to configure jobs automatically so
 we shouldn't update it.
+
+## On the blog
+
+- [Updating the GOV.UK Continuous Integration environment](https://gdstechnology.blog.gov.uk/2017/02/10/updating-the-gov-uk-continuous-integration-environment/)
