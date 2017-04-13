@@ -1,19 +1,11 @@
 ---
 owner_slack: '#2ndline'
-review_by: 2017-04-13
+review_by: 2017-10-13
 title: Set up request tracing
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-request-tracing.md"
 ---
-
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setting-up-request-tracing.md)
-
 
 # Set up request tracing
 
@@ -25,15 +17,17 @@ consequence of the publish.
 
 ## How it works
 
-For the most part, the gds-api-adapters handle this for you. The adapters read
-the HTTP_GOVUK_REQUEST_ID header and forward this onto backend services. A
+For the most part, [gds-api-adapters][] handle this for you. The adapters read
+the `HTTP_GOVUK_REQUEST_ID` header and forward this onto backend services. A
 search can then be carried out against log files for a single request id to see
 all of the backend service requests that were made in consequence to the
 originating request.
 
+[gds-api-adapters]: https://github.com/alphagov/gds-api-adapters
+
 ## When it "just works"
 
-If you are using gds-api-adapters to speak to backend services and your requests
+If you are using [gds-api-adapters][] to speak to backend services and your requests
 are handled synchronously, you don't need to do anything. It should just work.
 
 ## When it doesn't "just work"
