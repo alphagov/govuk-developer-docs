@@ -1,8 +1,9 @@
 <div class="meta-links">
   <%= link_to "View source", view_source_url %>
   <%= link_to "Report problem", report_issue_url %>
-
-  <% if current_page.data.review_by %>
-    Page owner: <%= current_page.data.owner_slack %>, Review by: <%= current_page.data.review_by %>
-  <% end %>
+  <%= link_to "Create new page", "/manual/create-page.html" %>
 </div>
+
+<% if current_page.data.review_by %>
+  Page owner: <%= current_page.data.owner_slack %>, <%= link_to "Review", "/manual/review-page.html" %> by: <%= current_page.data.review_by %>
+<% end %>
