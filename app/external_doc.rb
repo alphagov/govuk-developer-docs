@@ -124,7 +124,7 @@ class ExternalDoc
 
         headers[id] += 1
 
-        if header_content = node.children.first
+        if node.children.first
           node[:id] = id
         end
       end
