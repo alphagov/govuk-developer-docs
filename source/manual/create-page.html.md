@@ -30,13 +30,17 @@ Put the most important word as near to the start of the title as possible. Short
 Good examples:
 
 > Reboot a machine
+
 > Data sync: check failed data
+
 > Assets: how they work
 
 Bad examples:
 
 > How to reboot a machine
+
 > Data sync
+
 > Ruby (too vague: what about Ruby?)
 
 
@@ -56,11 +60,13 @@ Use subheadings to break up the page and allow readers to scan the page for what
 Good example:
 
 > Title: Rebooting machines
+
 > Subheadings: Redis, Mongo, Elasticsearch
 
 Bad example:
 
 > Title: Rebooting machines
+
 > Subheadings: Rebooting Redis machines, Rebooting Mongo machines, Rebooting Elasticsearch machines.
 
 ## Writing style
