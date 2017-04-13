@@ -39,8 +39,6 @@ class ExternalDoc
       .to_html(contents, context)
   end
 
-private
-
   # When we import external documentation it can contain relative links to
   # source files within the repository that the documentation resides. We need
   # to filter out these types of links and make them absolute so that they
@@ -124,10 +122,9 @@ private
                .gsub(/[^\w\- ]/, '') # remove any non-word characters
                .tr(' ', '-') # replace spaces with hyphens
 
-        uniq = (headers[id] > 0) ? "-#{headers[id]}" : ''
         headers[id] += 1
 
-        if header_content = node.children.first
+        if node.children.first
           node[:id] = id
         end
       end
