@@ -1,19 +1,11 @@
 ---
 owner_slack: '#2ndline'
-review_by: 2017-04-19
+review_by: 2017-10-01
 title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/cdn.md"
 ---
-
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/architecture/cdn.md)
-
 
 # Our content delivery network (CDN)
 
