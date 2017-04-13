@@ -4,7 +4,7 @@ parent: /manual.html
 layout: manual_layout
 section: Tools
 owner_slack: "@tijmen"
-review_by: 2017-04-14
+review_by: 2017-06-01
 ---
 
 # Run an A/B test
@@ -88,7 +88,6 @@ Follow these steps:
 1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). The content team can help.
 2. You will have to make appropriate changes in [govuk-cdn-config][govuk-cdn-config].
 3. Use the [govuk\_ab\_testing gem][govuk_ab_testing] to serve different versions to your users.
-4. Configure Google Analytics
 
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
