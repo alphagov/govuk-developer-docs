@@ -12,7 +12,7 @@ section: Icinga alerts
 This check indicates that some packages have been installed but cannot
 be activated without rebooting the machines.
 
-See the [rebooting machines](rebooting-machines.html) for what to do.
+See the [rebooting machines](/manual/rebooting-machines.html) for what to do.
 
 If there are a high number of machines requiring a reboot, including
 ones that are not part of database clusters (such as Mongo and MySQL
@@ -29,4 +29,3 @@ You can remove it with:
 
 Machines which are safe to reboot should then do so at the scheduled
 time.
-

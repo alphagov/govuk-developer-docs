@@ -18,8 +18,7 @@ Hiera eYAML GPG acts as a
 [backend](https://docs.puppetlabs.com/hiera/1/custom_backends.html) to
 Hiera; like a plugin. It enables us to encrypt Hiera data using GPG
 keys. In our case, we encrypt the data using the GPG keys of all
-security-cleared members of
-[second-line](../2nd-line/introduction-to-2nd-line.html).
+security-cleared members of 2nd line.
 
 Hiera eYAML GPG works by encrypting only the Hiera values rather than
 encrypting a whole file. It also encrypts each Hiera value individually,
