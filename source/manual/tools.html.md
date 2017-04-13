@@ -128,3 +128,7 @@ Check the `app.py` class for different methods you can use. To run more specific
 `fab $environment class:backend sdo:"service contentapi reload"`
 
 For more information, check out the [Fabric scripts README](https://github.com/alphagov/fabric-scripts#readme>).
+
+## On the blog
+
+- [Monitoring the GOV.UK infrastructure](https://gdstechnology.blog.gov.uk/2016/03/30/monitoring-the-gov-uk-infrastructure/)
