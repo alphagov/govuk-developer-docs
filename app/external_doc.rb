@@ -39,8 +39,6 @@ class ExternalDoc
       .to_html(contents, context)
   end
 
-private
-
   # When we import external documentation it can contain relative links to
   # source files within the repository that the documentation resides. We need
   # to filter out these types of links and make them absolute so that they
