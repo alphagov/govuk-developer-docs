@@ -1,13 +1,13 @@
 ---
 owner_slack: '#2ndline'
 review_by: 2017-06-01
-title: 'Fixing issues with Elasticsearch cluster health'
+title: 'Elasticsearch cluster health'
 parent: /manual.html
 layout: manual_layout
 section: Icinga alerts
 ---
 
-# Fixing issues with Elasticsearch cluster health
+# Elasticsearch cluster health
 
 Elasticsearch reports cluster health as one of three possible states, based on
 the state of its primary and replica shards.
