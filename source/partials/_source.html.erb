@@ -5,4 +5,6 @@
   <% if current_page.data.review_by %>
     Page owner: <%= current_page.data.owner_slack %>, <%= link_to "Review", "/manual/review-page.html" %> by: <%= current_page.data.review_by %>
   <% end %>
+
+  <%= link_to "Create new page", "/manual/create-page.html" %>
 </div>
