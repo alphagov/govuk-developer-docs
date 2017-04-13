@@ -60,6 +60,10 @@ class AppDocs
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
 
+    def dashboard_url
+      "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
+    end
+
     def type
       app_data.fetch("type")
     end
