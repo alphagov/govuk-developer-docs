@@ -43,28 +43,12 @@ helpers do
     AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
 
-  def manual_pages_grouped_by_section
-    manual_pages
-      .group_by { |page| page.data.section || "Uncategorised" }
-      .sort_by(&:first)
-  end
-
-  def most_important_pages
-    manual_pages.select { |page| page.data.important }
-  end
-
-  def manual_pages
-    sitemap.resources
-      .select { |page| page.path.start_with?('manual/') && page.path.end_with?('.html') }
-      .sort_by { |page| page.data.title.try(:downcase).to_s }
+  def manual_index_page
+    ManualIndexPage.new(sitemap)
   end
 
   def teams
     ApplicationsByTeam.teams
-  end
-
-  def page_freshness
-    PageFreshness.new(sitemap)
   end
 
   require 'table_of_contents/helpers'
