@@ -1,6 +1,6 @@
 ---
 owner_slack: '#2ndline'
-review_by: 2017-04-17
+review_by: 2017-10-01
 title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
