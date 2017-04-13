@@ -39,3 +39,7 @@ How to review pages in the dev manual.
 Is there a relevant blog post to the page you're reviewing? Would linking to it help the reader complete their task?
 
 You can find [GOV.UK blog posts on the  GDS Tech blog](https://gdstechnology.blog.gov.uk/category/gov-uk/).
+
+## Related
+
+- [Create a page in this manual](/manual/create-page.html)
