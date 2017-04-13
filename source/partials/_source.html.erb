@@ -3,6 +3,6 @@
   <%= link_to "Report problem", report_issue_url %>
 
   <% if current_page.data.review_by %>
-    Page owner: <%= current_page.data.owner_slack %>, Review by: <%= current_page.data.review_by %>
+    Page owner: <%= current_page.data.owner_slack %>, <%= link_to "Review", "/manual/review-page.html" %> by: <%= current_page.data.review_by %>
   <% end %>
 </div>
