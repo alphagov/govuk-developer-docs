@@ -122,7 +122,6 @@ class ExternalDoc
                .gsub(/[^\w\- ]/, '') # remove any non-word characters
                .tr(' ', '-') # replace spaces with hyphens
 
-        uniq = (headers[id]).positive? ? "-#{headers[id]}" : ''
         headers[id] += 1
 
         if header_content = node.children.first
