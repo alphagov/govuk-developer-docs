@@ -38,34 +38,7 @@ How to review pages in the dev manual.
 
 Is there a relevant blog post to the page you're reviewing? Would linking to it help the reader complete their task?
 
-Example blog posts (as of April 2017):
-
-```
-https://gdstechnology.blog.gov.uk/2017/02/10/updating-the-gov-uk-continuous-integration-environment/
-https://gdstechnology.blog.gov.uk/2016/09/30/easing-the-process-of-pull-request-reviews/
-https://gdstechnology.blog.gov.uk/2016/07/28/a-roundup-of-our-gov-uk-search-tools/
-https://gdstechnology.blog.gov.uk/2016/07/08/introducing-the-gov-uk-publishing-platform-in-detail/
-https://gdstechnology.blog.gov.uk/2016/06/15/improving-how-we-update-content-links/
-https://gdstechnology.blog.gov.uk/2016/05/31/how-we-use-git-at-the-government-digital-service/
-https://gdstechnology.blog.gov.uk/2016/03/30/monitoring-the-gov-uk-infrastructure/
-https://gdstechnology.blog.gov.uk/2016/02/01/performing-complex-schema-changes-in-production/
-https://gdstechnology.blog.gov.uk/2016/01/19/opening-gov-uks-puppet-repository/
-https://gdstechnology.blog.gov.uk/2015/09/24/reminding-developers-about-code-reviews/
-https://gdstechnology.blog.gov.uk/2015/08/12/configuring-content-delivery-in-code/
-https://gdstechnology.blog.gov.uk/2015/02/12/experimenting-with-content-security-policy-on-gov-uk/
-https://gdstechnology.blog.gov.uk/2015/01/07/validating-a-distributed-architecture-with-json-schema/
-https://gdstechnology.blog.gov.uk/2014/12/22/monitoring-search-performance-on-gov-uk/
-https://gdstechnology.blog.gov.uk/2014/12/19/how-we-moved-vcloud-tools-from-coding-in-the-open-to-open-source/
-https://gdstechnology.blog.gov.uk/2014/12/11/govuk-living-style-guide/
-https://gdstechnology.blog.gov.uk/2014/10/01/cdn-acceptance-testing/
-https://gdstechnology.blog.gov.uk/2014/09/10/releasing-applications-to-gov-uk/
-https://gdstechnology.blog.gov.uk/2014/08/27/taking-another-look-at-gov-uks-disaster-recovery/
-https://gdstechnology.blog.gov.uk/2014/08/14/improving-accessibility-on-gov-uk-search/
-https://gdstechnology.blog.gov.uk/2014/03/28/migrating-govuk-infrastructure/
-https://gdstechnology.blog.gov.uk/2014/01/27/how-we-use-github/
-https://gdstechnology.blog.gov.uk/tag/router/
-https://gdstechnology.blog.gov.uk/2013/12/05/building-a-new-router-for-gov-uk/
-```
+You can find [GOV.UK blog posts on the  GDS Tech blog](https://gdstechnology.blog.gov.uk/category/gov-uk/).
 
 ## Style guide
 
