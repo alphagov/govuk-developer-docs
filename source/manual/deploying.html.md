@@ -110,3 +110,7 @@ We have processes in place to deploy if [either of the GitHubs are unavailable](
 The [release app](https://release.publishing.service.gov.uk/) tracks releases.
 
 You need to have a Signon account with appropriate permissions to access the release app.
+
+## On the blog
+
+- (Releasing applications to GOV.UK)[https://gdstechnology.blog.gov.uk/2014/09/10/releasing-applications-to-gov-uk/]
