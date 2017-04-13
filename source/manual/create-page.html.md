@@ -14,7 +14,6 @@ parent: "/manual.html"
 1. Add a page in Github to the [/source/manual](https://github.com/alphagov/govuk-developer-docs/tree/master/source/manual) directory.
 2. Mark it with a section that makes sense for it to live in.
 3. Add a review-by date.
-4. Tag it with '2nd line' if someone on 2nd line would need to have the page handy.
 
 ## What pages should be about
 
