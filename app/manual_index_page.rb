@@ -53,7 +53,7 @@ private
       .sort_by { |page| page.data.title.downcase }
   end
 
-  # Only show accessible HTML pages, not images or redirects 
+  # Only show accessible HTML pages, not images or redirects
   def page_in_manual?(resource)
     !resource.is_a?(Middleman::Sitemap::Extensions::RedirectResource) &&
       resource.path.start_with?('manual/') &&
