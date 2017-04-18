@@ -68,4 +68,4 @@ Params:
 
 - has_workers: This adds a row with workers failure and success panels, this is required for applications that have sidekiq workers. This is `false` by default.
 
-- docs_name: This is the name of the application used in the developer documentation. Often the same as the repository name on Github. This deffaults to the `app_name`.
+- docs_name: This is the name of the application used in the developer documentation. Often the same as the repository name on Github. This defaults to the `app_name`.
