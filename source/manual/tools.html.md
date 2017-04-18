@@ -85,6 +85,8 @@ The full list of Grafana dashboards is [stored in the Puppet repo][dashboards]
 
 Graphite is a graphing tool that allows us to draw graphs of various metrics that we put into it. Graphite has two main views: a [composer](https://graphite.publishing.service.gov.uk/composer) to build individual graphs and a [dashboard](https://graphite.publishing.service.gov.uk/dashboard) to put multiple graphs together.
 
+We are currently locked at version 0.9.13.
+
 To build a graph, you can add one or more graph targets in the composer by either clicking on them in the left frame.
 Some useful targets are:
 
@@ -99,6 +101,8 @@ Both Graphite views let you adjust the time range of graphs, although they both 
 
 [composer_buttons_image]: images/composer-buttons.png
 [dashboard_buttons_image]: images/dashboard-buttons.png
+
+Our [deployment dashboards](deployment-dashboards.html) use Graphite extensively. [See some tips](graphite-and-deployment-dashboards.html) on how to best manipulate the data streams to create useful dashboards.
 
 ### Applying Functions
 
