@@ -4,7 +4,7 @@ review_by: 2017-10-06
 title: "Elasticsearch: dump and restore indices"
 parent: "/manual.html"
 layout: manual_layout
-sections: Backups
+section: Backups
 ---
 
 # Elasticsearch: dump and restore indices
