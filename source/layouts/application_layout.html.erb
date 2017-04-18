@@ -1,7 +1,7 @@
 <% content_for :sidebar do %>
   <ul>
 
-  <li><%= link_to 'By Team', '/apps/by-team.html' %></li>
+  <li><%= link_to 'Application ownership by team', '/apps/by-team.html' %></li>
 
   <% active_app_pages.group_by(&:type).each do |name, apps| %>
     <li><%= link_to name, '/apps.html' %></li>
