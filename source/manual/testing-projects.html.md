@@ -1,19 +1,11 @@
 ---
 owner_slack: '#2ndline'
-review_by: 2017-09-24
+review_by: 2018-01-01
 title: Test & build a project on Jenkins CI
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/testing/testing-projects.md"
 ---
-
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/testing/testing-projects.md)
-
 
 # Test & build a project on Jenkins CI
 
@@ -36,6 +28,17 @@ You need to add your repo to the `govuk_ci::master::pipeline_jobs` in [govuk-pup
 Your repo needs to contain a `Jenkinsfile` in the root which has
 details of how the application is built. In most cases the `Jenkinsfile` will need to run the tests for your project. For applications the build process includes [creating a release tag](/manual/releasing-software.html). For gems the build process includes releasing the packaged gem to [rubygems.org](https://rubygems.org).
 
+The following `Jenkinsfile` should be sufficient for most projects:
+
+```groovy
+#!/usr/bin/env groovy
+
+node {
+  def govuk = load '/var/lib/jenkins/groovy_scripts/govuk_jenkinslib.groovy'
+  govuk.buildProject()
+}
+```
+
 [Read the documentation for this in alphagov/govuk-puppet][puppet-x]
 
 [puppet-x]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/files/var/lib/jenkins/groovy_scripts/govuk_jenkinslib.groovy
@@ -43,8 +46,11 @@ details of how the application is built. In most cases the `Jenkinsfile` will ne
 ### 3. Trigger builds from GitHub
 
 Builds are triggered using a GitHub "service". From a project's GitHub
-settings, add the "Jenkins (GitHub plugin)" service to point to
-`https://ci.integration.publishing.service.gov.uk/github-webhook/`.
+settings, add the "Jenkins (GitHub plugin)" service to point to:
+
+```
+https://ci.integration.publishing.service.gov.uk/github-webhook/
+```
 
 See [content-store's configuration for an example][example].
 
