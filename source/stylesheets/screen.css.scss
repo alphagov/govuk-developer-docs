@@ -54,3 +54,37 @@
   background-color: $canvas-colour;
   padding: 0 20px 20px 20px;
 }
+
+.technical-documentation {
+  .entry-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .entry-list__item {
+    margin-top: 0;
+    margin-bottom: $gutter-half;
+  }
+  .entry-list__key {
+    display: block;
+  }
+  @include media(tablet) {
+    .entry-list {
+      display: table;
+    }
+    .entry-list__item {
+      display: table-row;
+    }
+    .entry-list__key,
+    .entry-list__value {
+      display: table-cell;
+    }
+    .entry-list__key {
+      width: 1%;
+      white-space: nowrap;
+      padding-right: $gutter;
+    }
+    .entry-list__value {
+      width: 100%;
+    }
+  }
+}
