@@ -9,9 +9,8 @@
 
   <div class="app-pane__body">
     <div class="app-pane__toc">
-      <%= partial "partials/search" %>
-
       <div class="toc" data-module="table-of-contents">
+        <%= partial "partials/search" %>
         <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
         <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
           <%=
