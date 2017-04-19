@@ -11,7 +11,7 @@ parent: "/manual.html"
 
 ## Update and Add Panels to Existing Dashboards
 
-[Deployment dashboards](deployment_dashboards.html) are configured in `govuk-puppet`. Each dashboard panel is configured by a .json.erb template in `modules/grafana/templates/dashboards/deployment_partials` and these are combined to generate the JSON config for each application dashboard.
+[Deployment dashboards](deployment-dashboards.html) are configured in `govuk-puppet`. Each dashboard panel is configured by a .json.erb template in `modules/grafana/templates/dashboards/deployment_partials` and these are combined to generate the JSON config for each application dashboard.
 
 It’s best to duplicate an existing dashboard in Grafana to test your changes.
 

@@ -27,6 +27,10 @@ These show/hide vertical lines on the other panels that show when events happene
 
 ![Deployment lines](images/deployment_dashboards/deployment_lines.png)
 
+Implementation note:
+
+Deployment lines use graphite [events](http://graphite.readthedocs.io/en/latest/events.html) data as deployment data in graphite's normal time-series format is not available in all environments.
+
 ### Processes - Last hour
 
 ![Processes](images/deployment_dashboards/processes.png)
@@ -49,27 +53,17 @@ Implementation note:
 
 The Y-Axis on this graph depends on how the data is collected and sampled by graphite, and is not meaningful to users. It’s only showing you relative spikes in errors.
 
-### Deploys and Errors
+### Errors and 5XX counts
 
-![Errors and deploys](images/deployment_dashboards/errors_and_deploys.png)
+![Errors and 5XX counts](images/deployment_dashboards/errors_and_5xxs.png)
 
-These show you the total number of errors and deploys over the last 5 minutes and the last 24 hours respectively.
+These show you the total number of errors and 5XXs over the last 5 minutes and the last 24 hours respectively.
 
 Implementation note:
 
+Warning (orange) and error (red) levels are confirgurable on per application basis using `warning_threshold` and `error_threshold`.
+
 The reason for the long titles is we can’t alter the table column headings in Grafana.
-
-### 500 count last 5 min
-
-![500s in last 5 minutes](images/deployment_dashboards/500s_5_mins.png)
-
-Total number of 500s in the last 5 minutes.
-
-### 500 count full time range
-
-![500s over full time range](images/deployment_dashboards/500s_full_range.png)
-
-Total number 500s in the across the dashboard's given time range.
 
 ### Links
 
@@ -107,6 +101,4 @@ Graph showing the response time by controller over the dashboard time range.
 
 ## Deploy the Dashboards
 
-Deploy puppet and then either wait for convergence or use the [fabric scripts](tools.html#fabric-scripts) to force a puppet run on the graphite box. Currently you will need to restart the Grafana service after deploying new dashboards.
-
-`sudo service grafana-server restart` if you’re on the `graphite-1.management` machine. Otherwise use the fabric scripts.
+Please refer to [add a deployment dashboards](add-deployment-dashboard.html) for details on adding/updating dashboards.
