@@ -1,19 +1,13 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-04-20
+owner_slack: '#infrastructure'
+review_by: 2019-01-01
 title: Create a new environment for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/creating-a-new-environment.md"
 ---
 
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/creating-a-new-environment.md)
-
+> It's possible this page is out of date, but it's is still relevant if we ever need to rebuild a VMWare vCloud environment somewhere.
 
 # Create a new environment for GOV.UK
 
