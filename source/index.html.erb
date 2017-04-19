@@ -30,12 +30,18 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/da
     <% chapter.sections.each do |section| %>
       <h3 id='<%= section.id %>'><%= section.name %></h3>
 
-      <% section.entries.each do |entry| %>
-        <div class='entry'>
-          <a href='<%= entry.url %>'><%= entry.name %></a>
-          <small><%= entry.description %></small>
-        </div>
-      <% end %>
+      <ul class='entry-list'>
+        <% section.entries.each do |entry| %>
+        <li class='entry-list__item'>
+          <a class='entry-list__key' href='<%= entry.url %>'>
+            <%= entry.name %>
+          </a>
+          <small class='entry-list__value' >
+            <%= entry.description %>
+          </small>
+        </li>
+        <% end %>
+      </ul>
     <% end %>
   <% end %>
 <% end %>
