@@ -42,6 +42,10 @@
   }
 }
 
+.grid-row {
+  @extend %grid-row;
+}
+
 .column-third {
   @include grid-column( 1/3 );
 }
@@ -53,4 +57,47 @@
 .top-tasks {
   background-color: $canvas-colour;
   padding: 0 20px 20px 20px;
+}
+
+.technical-documentation {
+  .entry-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  .entry-list__item {
+    margin-top: 0;
+    margin-bottom: $gutter-half;
+  }
+  .entry-list__key {
+    display: block;
+  }
+  @include media(tablet) {
+    .entry-list {
+      display: table;
+    }
+    .entry-list__item {
+      display: table-row;
+    }
+    .entry-list__key,
+    .entry-list__value {
+      display: table-cell;
+    }
+    .entry-list__key {
+      width: 1%;
+      white-space: nowrap;
+    }
+    .entry-list__value {
+      width: 100%;
+      padding-left: $gutter;
+    }
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  left: -9999em;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden
 }

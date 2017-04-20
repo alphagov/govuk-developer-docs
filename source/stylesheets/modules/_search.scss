@@ -1,7 +1,11 @@
 @include screen {
+  .page-title + .search {
+    margin-top: $gutter;
+  }
+
   .search {
     @include core-16;
-    padding: $gutter-half;
+    margin-bottom: $gutter-half;
 
     .form-control {
       @include box-sizing(border-box);
