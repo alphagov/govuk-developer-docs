@@ -101,4 +101,4 @@ Graph showing the response time by controller over the dashboard time range.
 
 ## Deploy the Dashboards
 
-Please refer to [add a deployment dashboards](add-deployment-dashboard.html) for details on adding/updating dashboards.
+Please refer to [add a deployment dashboard](add-deployment-dashboard.html) for details on adding/updating dashboards.
