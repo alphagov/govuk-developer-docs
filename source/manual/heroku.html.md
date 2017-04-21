@@ -1,23 +1,17 @@
 ---
 owner_slack: '#2ndline'
-review_by: 2017-06-07
-title: Heroku
+review_by: 2018-01-01
+title: Access apps on the shared Heroku account
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/heroku.md"
 ---
 
+# Access apps on the shared Heroku account
 
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/heroku.md)
-
-
-# Heroku
-
-We use Heroku to host some non-critical applications.
+We use Heroku to host some non-critical applications like the [monitoring-screen][].
 
 The credentials for Heroku are found in
 [gds/deployment](https://github.gds/gds/deployment/blob/master/pass/2ndline/heroku.gpg).
+
+[monitoring-screen]: https://docs.publishing.service.gov.uk/manual/screens.html
