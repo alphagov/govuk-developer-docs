@@ -25,7 +25,7 @@ and database health.
 
 If the slave has fallen too far behind or is in an otherwise
 unrecoverable state then you may need to [resync
-it](../infrastructure/howto/setup-postgresql-replication.html#syncing-a-standby).
+it](/manual/setup-postgresql-replication.html#syncing-a-standby).
 
 If this is a new machine, the issue may be that PostgreSQL replication
 is set up and running correctly, but `collectd` needs to be restarted on
