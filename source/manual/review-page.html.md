@@ -9,7 +9,7 @@ parent: "/manual.html"
 
 # Review a page in this manual
 
-How to review pages in the dev manual.
+How to review pages in this manual.
 
 ## Questions to ask
 
