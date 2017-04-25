@@ -8,13 +8,6 @@ parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/postgresql.md"
 ---
 
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/backups/postgresql.md)
-
-
 # PostgreSQL backups
 
 ## autopostgresqlbackup
@@ -25,12 +18,11 @@ A third-party script called [autopostgresqlbackup](http://manpages.ubuntu.com/ma
 takes a `pg_dump` every night and stores them on disk on a dedicated mount point on the PostgreSQL primary machines.
 
 The onsite backup machine (backup-1.management) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/)
-runs each night to send encrypted backups to an offsite backup machine (the location of this machine is dependent on the environment).
+runs each night to send encrypted backups to an S3 bucket.
 
 To restore from this method:
 
- - Fetch a backup from either the dedicated mount point, the onsite machine or the offsite machine (to decrypt you may need a password kept
-  in the password store)
+ - Fetch a backup from either the dedicated mount point, the onsite machine or the S3 bucket [using duplicity](offsite-backup-and-restore.html) (to decrypt you may need a password kept in encrypted hieradata).
    - Unzip the file
    - Import into a PostgreSQL primary using `psql <dbname> < <file>`
 
