@@ -152,6 +152,18 @@ E: Unable to locate package rbenv-ruby-2.4.0
 E: Couldn't find any package by regex 'rbenv-ruby-2.4.0'
 ```
 
+## Bundler permissions error on provision
+
+On `vagrant up` or `vagrant provision` you receive an error similar to:
+
+`/usr/lib/ruby/1.9.1/fileutils.rb:247:in `mkdir': Permission denied - /Users (Errno::EACCES)`
+
+Make sure that no bundler config already exists (if you have bundled outside of the development vm).
+
+You can remove this in the govuk-puppet directory:
+
+`rm -r ~/govuk/govuk-puppet/.bundle`
+
 ## Running `govuk_puppet` on VM
 
 Generally, you might want to try `vagrant provision` on your host machine, which does the same thing as `govuk_puppet`, but in a more reliable fashion.
