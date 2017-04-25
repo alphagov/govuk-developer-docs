@@ -8,13 +8,6 @@ parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/mysql.md"
 ---
 
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/backups/mysql.md)
-
-
 # MySQL backups
 
 ## automysqlbackup
@@ -25,12 +18,11 @@ A third-party script called [automysqlbackup](http://www.debianhelp.co.uk/mysqls
 on a dedicated mount point on the MySQL backup machines (mysql-backup-1.backend and whitehall-mysql-backup-1.backend).
 
 The onsite backup machine (backup-1.management) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/)
-runs each night to send encrypted backups to an offsite backup machine (the location of this machine is dependent on the environment).
+runs each night to send encrypted backups to an Amazon S3 bucket.
 
 To restore from this method:
 
- - Fetch a backup from either the dedicated mount point, the onsite machine or the offsite machine (to decrypt you may need a password kept
- in the password store)
+ - Fetch a backup from either the dedicated mount point, the onsite machine or the S3 bucket [using duplicity](offsite-backup-and-restore.html) (to decrypt you may need a password kept in encrypted hieradata).
  - Unzip the file
  - Import into MySQL using `mysql < <file>`
 
