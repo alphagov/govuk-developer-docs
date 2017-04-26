@@ -39,7 +39,7 @@ multiple teams are involved in the release, pick one.
 Any member of the team responsible for a release can book a release slot. To
 book a release slot, find a free slot in the GOV.UK Release Calendar, then create
 an event in either your personal or your team's calendar, including the "GOV.UK Release Calendar"
-as a room.
+as a guest.
 
 Release slots are half an hour for normal changes and one hour for larger or
 more complex changes. The release calendar shows what times releases can happen - they
