@@ -3,8 +3,8 @@ title: Taxonomy
 parent: /manual.html
 layout: manual_layout
 section: Publishing
-owner_slack: "@tijmen"
-review_by: 2017-05-01
+owner_slack: "#taxonomy"
+review_by: 2017-09-01
 ---
 
 # Taxonomy
@@ -23,7 +23,7 @@ The link type `parent_taxons` is used to store the relationship between taxons. 
 
 All pages can be tagged to the taxonomy, currently in [content-tagger][content-tagger] too.
 
-In the future, editors will also be able to tag to the taxonomy in publishing apps like [Whitehall][whitehall].
+Pages that belong to selected organisations (like those related to the education theme) can be tagged to the taxonomy in [Whitehall][whitehall].
 
 The relationship between a page and a taxon is persisted in the publishing-api "links hash". For example, see the [taxons link in the content item for this guidance document][example-guidance].
 
@@ -33,9 +33,9 @@ This is the content item for the top-level "Education" taxon:
 
 [https://www.gov.uk/api/content/education][education-taxon]
 
-You can use this to find the structure of the taxonomy by following the `child_taxons` links.
+It is visible on [gov.uk/education](https://www.gov.uk/education)
 
-To manipulate and browse taxonomies in ruby code, use the [govuk_taxonomy_helpers](http://www.rubydoc.info/gems/govuk_taxonomy_helpers) gem.
+You can use this to find the structure of the taxonomy by following the `child_taxons` links.
 
 ## 4. Accessing tagged content
 
