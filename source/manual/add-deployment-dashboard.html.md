@@ -1,6 +1,6 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-04-26
+owner_slack: '#search-team'
+review_by: 2017-10-27
 title: Add a deployment dashboard for an application
 section: Packaging
 layout: manual_layout
