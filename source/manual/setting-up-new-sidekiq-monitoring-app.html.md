@@ -62,5 +62,4 @@ template](https://github.com/alphagov/govuk-puppet/blob/70a10190b/modules/govuk/
 ## Test that the configuration works on Integration
 
 Once changes are merged and deployed to Integration, you can
-access your sidekiq monitoring instance running on Integration &lt;sidekiq-monitoring-app&gt;,
-and check that it works as expected.
+access your [sidekiq monitoring](monitor-sidekiq-workers.html) instance running on Integration, and check that it works as expected.
