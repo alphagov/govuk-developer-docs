@@ -11,13 +11,13 @@ class PageFreshness
 
   def expired_pages
     sitemap.resources.select do |page|
-      page.data.review_by && Date.today > page.data.review_by
+      PageReview.new(page).expired?
     end
   end
 
   def expiring_soon
     soon = sitemap.resources.select do |page|
-      page.data.review_by && Date.today > (page.data.review_by - 7.days)
+      PageReview.new(page).expiring_soon?
     end
 
     soon - expired_pages
@@ -28,7 +28,7 @@ class PageFreshness
       {
         title: page.data.title,
         url: "https://docs.publishing.service.gov.uk#{page.url}",
-        review_by: page.data.review_by,
+        review_by: PageReview.new(page).review_by,
         owner_slack: page.data.owner_slack,
       }
     end

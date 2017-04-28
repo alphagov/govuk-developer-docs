@@ -4,10 +4,10 @@
   <%= link_to "Create new page", "/manual/create-page.html" %>
 </div>
 
-<% if current_page.data.owner_slack && current_page.data.review_by %>
+<% if page_review.reviewable? %>
   This page is owned by <%= current_page.data.owner_slack %>
   and <%= link_to "needs to be reviewed", "/manual/review-page.html" %>
-  <time data-module="datetime-relative" datetime="<%= current_page.data.review_by %>">
-    <%= current_page.data.review_by %>
+  <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
+    <%= page_review.review_by %>
   </time>
 <% end %>
