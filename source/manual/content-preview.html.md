@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-04
+owner_slack: "#2ndline"
 title: How the draft stack works
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Publishing
+last_reviewed_at: 2017-01-04
+review_in: 6 months
 ---
 
 # How the draft stack works

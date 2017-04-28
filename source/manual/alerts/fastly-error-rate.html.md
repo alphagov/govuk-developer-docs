@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-07
+owner_slack: "#2ndline"
 title: Fastly error rate for GOV.UK
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/fastly-error-rate.md"
+last_reviewed_at: 2017-01-07
+review_in: 6 months
 ---
 
 

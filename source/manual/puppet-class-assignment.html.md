@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-22
+owner_slack: "#2ndline"
 title: Puppet Class Assignment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/puppet-class-assignment.md"
+last_reviewed_at: 2017-02-22
+review_in: 6 months
 ---
 
 

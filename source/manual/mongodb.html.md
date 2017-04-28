@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-04
+owner_slack: "#2ndline"
 title: MongoDB backups
 layout: manual_layout
 parent: "/manual.html"
 section: Backups
+last_reviewed_at: 2016-12-04
+review_in: 6 months
 ---
 
 # MongoDB backups

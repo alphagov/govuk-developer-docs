@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-28
-title: 'MongoDB rollback'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: MongoDB rollback
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-03-28
+review_in: 6 months
 ---
 
 # MongoDB rollback

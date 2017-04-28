@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-14
+owner_slack: "#2ndline"
 title: Monitoring screens
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Tools
+last_reviewed_at: 2017-03-14
+review_in: 6 months
 ---
 
 # Monitoring screens

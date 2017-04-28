@@ -1,12 +1,13 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-14
+owner_slack: "#2ndline"
 title: Reboot a machine
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/rebooting-machines.md"
 important: true
+last_reviewed_at: 2017-02-14
+review_in: 6 months
 ---
 
 

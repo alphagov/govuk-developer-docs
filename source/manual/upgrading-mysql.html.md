@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-10-03
-title: 'Upgrading mysql'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: Upgrading mysql
+parent: "/manual.html"
 layout: manual_layout
 section: Databases
+last_reviewed_at: 2017-04-03
+review_in: 6 months
 ---
 
 # Upgrading mysql

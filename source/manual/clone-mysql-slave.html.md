@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-15
+owner_slack: "#2ndline"
 title: Clone a MySQL instance from one slave to another
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/clone-mysql-slave.md"
+last_reviewed_at: 2016-11-15
+review_in: 6 months
 ---
 
 

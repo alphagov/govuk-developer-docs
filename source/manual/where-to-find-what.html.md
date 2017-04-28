@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-01
+owner_slack: "#2ndline"
 title: Where to find what documentation?
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2016-12-01
+review_in: 6 months
 ---
 
 # Where to find what documentation?

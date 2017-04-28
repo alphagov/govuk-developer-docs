@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-26
-title: 'ClamAV definitions out of date'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: ClamAV definitions out of date
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-03-26
+review_in: 6 months
 ---
 
 # ClamAV definitions out of date

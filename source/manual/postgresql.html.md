@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-18
+owner_slack: "#2ndline"
 title: PostgreSQL backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/postgresql.md"
+last_reviewed_at: 2017-02-18
+review_in: 6 months
 ---
 
 # PostgreSQL backups

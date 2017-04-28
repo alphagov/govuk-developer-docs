@@ -2,8 +2,8 @@ RSpec.describe PageFreshness do
   describe "#to_json" do
     it "returns JSON" do
       sitemap = double(resources: [
-        double(url: "/a", data: double(title: "A thing", owner_slack: "#2ndline", review_by: Date.yesterday)),
-        double(url: "/b", data: double(title: "B thing", owner_slack: "#2ndline", review_by: Date.tomorrow)),
+        double(url: "/a", data: double(title: "A thing", owner_slack: "#2ndline", last_reviewed_at: Date.yesterday, review_in: "0 days")),
+        double(url: "/b", data: double(title: "B thing", owner_slack: "#2ndline", last_reviewed_at: Date.yesterday, review_in: "2 days")),
       ])
 
       json = PageFreshness.new(sitemap).to_json

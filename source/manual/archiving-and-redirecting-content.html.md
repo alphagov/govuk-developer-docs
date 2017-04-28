@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-24
+owner_slack: "#2ndline"
 title: Archive and redirect mainstream content to other pages on GOV.UK
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/archiving-and-redirecting-content.md"
+last_reviewed_at: 2017-03-24
+review_in: 6 months
 ---
 
 

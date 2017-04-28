@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-11
-title: 'VPN down'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: VPN down
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-02-11
+review_in: 6 months
 ---
 
 # VPN down

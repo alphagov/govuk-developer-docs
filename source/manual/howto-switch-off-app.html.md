@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-06
+owner_slack: "#2ndline"
 title: Switch an app off
 layout: manual_layout
 section: Packaging
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-switch-off-app.md"
+last_reviewed_at: 2016-12-06
+review_in: 6 months
 ---
 
 

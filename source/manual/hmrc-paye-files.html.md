@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-22
+owner_slack: "#2ndline"
 title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/hmrc-paye-files.md"
+last_reviewed_at: 2016-11-22
+review_in: 6 months
 ---
 
 

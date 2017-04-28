@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-28
+owner_slack: "#2ndline"
 title: Jenkins CI infrastructure
 parent: "/manual.html"
 layout: manual_layout
 section: Testing
+last_reviewed_at: 2016-12-28
+review_in: 6 months
 ---
 
 # Jenkins CI infrastructure

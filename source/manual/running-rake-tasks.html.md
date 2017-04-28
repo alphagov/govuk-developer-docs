@@ -1,12 +1,13 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-21
+owner_slack: "#2ndline"
 title: Run a rake task
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/running-rake-tasks.md"
 important: true
+last_reviewed_at: 2016-12-21
+review_in: 6 months
 ---
 
 

@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-09
+owner_slack: "#2ndline"
 title: Debian packaging
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/debian-packaging.md"
+last_reviewed_at: 2016-12-09
+review_in: 6 months
 ---
 
 

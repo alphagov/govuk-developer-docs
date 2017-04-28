@@ -51,6 +51,10 @@ helpers do
     ApplicationsByTeam.teams
   end
 
+  def page_review
+    @page_review ||= PageReview.new(current_page)
+  end
+
   require 'table_of_contents/helpers'
   include TableOfContents::Helpers
 end

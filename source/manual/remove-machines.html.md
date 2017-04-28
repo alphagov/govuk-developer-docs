@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-22
+owner_slack: "#2ndline"
 title: Remove a machine
 parent: "/manual.html"
 layout: manual_layout
 section: Environments
+last_reviewed_at: 2017-03-22
+review_in: 6 months
 ---
 
 # Remove a machine

@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-26
-title: "Assets: how they work"
+owner_slack: "#2ndline"
+title: 'Assets: how they work'
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/assets.md"
+last_reviewed_at: 2017-03-26
+review_in: 6 months
 ---
 
 

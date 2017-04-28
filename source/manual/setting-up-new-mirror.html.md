@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-12
+owner_slack: "#2ndline"
 title: Set up a new mirror for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-mirror.md"
+last_reviewed_at: 2017-03-12
+review_in: 6 months
 ---
 
 
