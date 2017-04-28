@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-10
+owner_slack: "#2ndline"
 title: Edit an existing route in the Router
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/editing-an-existing-route.md"
+last_reviewed_at: 2017-02-10
+review_in: 6 months
 ---
 
 

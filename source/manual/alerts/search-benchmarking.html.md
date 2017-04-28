@@ -1,10 +1,11 @@
 ---
-owner_slack: '#search-team'
-review_by: 2017-06-26
-title: 'Benchmark search queries failed'
-parent: /manual.html
+owner_slack: "#search-team"
+title: Benchmark search queries failed
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-12-26
+review_in: 6 months
 ---
 
 # Benchmark search queries failed

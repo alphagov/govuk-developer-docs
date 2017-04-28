@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-11
-title: 'Free memory warning on backend'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: Free memory warning on backend
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-03-11
+review_in: 6 months
 ---
 
 # Free memory warning on backend

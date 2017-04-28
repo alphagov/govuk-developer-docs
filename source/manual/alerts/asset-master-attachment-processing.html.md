@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-11-01
-title: 'Asset master attachment processing'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: Asset master attachment processing
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-05-01
+review_in: 6 months
 ---
 
 # asset master attachment processing

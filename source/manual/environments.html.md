@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-11
+owner_slack: "#2ndline"
 title: GOV.UK's environments (integration, staging, production)
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/environments.md"
+last_reviewed_at: 2017-02-11
+review_in: 6 months
 ---
 
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.

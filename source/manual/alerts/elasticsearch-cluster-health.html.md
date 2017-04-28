@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-01
-title: 'Elasticsearch cluster health'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: Elasticsearch cluster health
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-12-01
+review_in: 6 months
 ---
 
 # Elasticsearch cluster health

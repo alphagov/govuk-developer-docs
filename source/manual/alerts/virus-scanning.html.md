@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-27
+owner_slack: "#2ndline"
 title: Fix stuck virus scanning
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/virus-scanning.md"
+last_reviewed_at: 2016-12-27
+review_in: 6 months
 ---
 
 

@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-31
+owner_slack: "#2ndline"
 title: Add sidekiq-monitoring to your application
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.md"
+last_reviewed_at: 2017-02-28
+review_in: 6 months
 ---
 
 

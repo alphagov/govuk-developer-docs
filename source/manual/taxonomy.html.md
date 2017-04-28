@@ -1,10 +1,11 @@
 ---
 title: Taxonomy
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#taxonomy"
-review_by: 2017-09-01
+last_reviewed_at: 2017-03-01
+review_in: 6 months
 ---
 
 # Taxonomy

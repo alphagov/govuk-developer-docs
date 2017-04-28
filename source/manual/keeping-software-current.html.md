@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-30
+owner_slack: "#2ndline"
 title: Keeping software current
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Tools
+last_reviewed_at: 2017-01-30
+review_in: 6 months
 ---
 
 # Keeping software current

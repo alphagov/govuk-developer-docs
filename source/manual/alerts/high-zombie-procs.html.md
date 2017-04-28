@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-10-05
-title: 'high zombie procs'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: high zombie procs
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-04-05
+review_in: 6 months
 ---
 
 # 'high zombie procs'

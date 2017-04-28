@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-20
+owner_slack: "#2ndline"
 title: Set up Heroku review apps for pull requests
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2016-11-20
+review_in: 6 months
 ---
 
 # Set up Heroku review apps for pull requests

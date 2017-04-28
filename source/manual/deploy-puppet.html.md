@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-09
+owner_slack: "#2ndline"
 title: Deploy Puppet
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/deploy-puppet.md"
+last_reviewed_at: 2017-02-09
+review_in: 6 months
 ---
 
 

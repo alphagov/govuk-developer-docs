@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-04
+owner_slack: "#2ndline"
 title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/dns.md"
+last_reviewed_at: 2016-11-04
+review_in: 6 months
 ---
 
 # Domain Name System (DNS) records

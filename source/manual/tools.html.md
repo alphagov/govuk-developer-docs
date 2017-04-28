@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-09
-title: "Tools: Icinga, Grafana and Graphite, Kibana and Fabric"
+owner_slack: "#2ndline"
+title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/tools.md"
+last_reviewed_at: 2017-03-09
+review_in: 6 months
 ---
 
 

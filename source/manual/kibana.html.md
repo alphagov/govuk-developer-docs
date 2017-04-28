@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-18
+owner_slack: "#2ndline"
 title: Useful Kibana queries
 layout: manual_layout
 parent: "/manual.html"
 section: Logging
 important: true
+last_reviewed_at: 2017-02-18
+review_in: 6 months
 ---
 
 # Useful Kibana queries

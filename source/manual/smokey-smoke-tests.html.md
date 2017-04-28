@@ -1,10 +1,11 @@
 ---
-title: "Smoke testing with smokey"
+title: Smoke testing with smokey
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-owner_slack: '#2ndline'
-review_by: 2018-01-01
+owner_slack: "#2ndline"
+last_reviewed_at: 2017-07-01
+review_in: 6 months
 ---
 
 # Smoke testing with smokey

@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-10-08
+owner_slack: "#2ndline"
 title: Add a disk to a vCloud machine
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/adding-disks-in-vcloud.md"
+last_reviewed_at: 2017-04-08
+review_in: 6 months
 ---
 
 

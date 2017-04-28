@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-29
+owner_slack: "#2ndline"
 title: Reprovision a machine in vCloud Director
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/reprovision.md"
+last_reviewed_at: 2017-01-29
+review_in: 6 months
 ---
 
 

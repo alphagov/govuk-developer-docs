@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-20
+owner_slack: "#2ndline"
 title: Out of hours support (on-call)
 section: Support
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/on-call.md"
+last_reviewed_at: 2017-03-20
+review_in: 6 months
 ---
 
 

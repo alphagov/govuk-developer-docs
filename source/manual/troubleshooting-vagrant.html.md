@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-25
+owner_slack: "#2ndline"
 title: Troubleshooting Vagrant
 section: Support
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2016-11-25
+review_in: 6 months
 ---
 
 # Troubleshooting Vagrant

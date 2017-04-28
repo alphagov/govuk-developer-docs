@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-28
+owner_slack: "#2ndline"
 title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-manually-remove-assets.md"
+last_reviewed_at: 2017-02-28
+review_in: 6 months
 ---
 
 

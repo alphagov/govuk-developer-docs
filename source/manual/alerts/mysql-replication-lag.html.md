@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-20
+owner_slack: "#2ndline"
 title: 'MySQL: replication lag'
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-12-20
+review_in: 6 months
 ---
 
 # MySQL: replication lag

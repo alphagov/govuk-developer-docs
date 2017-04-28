@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-30
+owner_slack: "#2ndline"
 title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/publish-to-puppet-forge.md"
+last_reviewed_at: 2017-03-30
+review_in: 6 months
 ---
 
 

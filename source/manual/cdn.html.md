@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-10-01
+owner_slack: "#2ndline"
 title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-04-01
+review_in: 6 months
 ---
 
 # Our content delivery network (CDN)

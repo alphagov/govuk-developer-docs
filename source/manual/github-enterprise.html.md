@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-08
+owner_slack: "#2ndline"
 title: GitHub Enterprise
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/github-enterprise/index.md"
+last_reviewed_at: 2017-03-08
+review_in: 6 months
 ---
 
 

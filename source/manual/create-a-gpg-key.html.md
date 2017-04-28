@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-10-01
+owner_slack: "#2ndline"
 title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
 section: Support
+last_reviewed_at: 2017-04-01
+review_in: 6 months
 ---
 
 # Create a GPG key

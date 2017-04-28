@@ -1,10 +1,11 @@
 ---
-owner_slack: '#infrastructure'
-review_by: 2019-01-01
+owner_slack: "#infrastructure"
 title: Create a new environment for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2018-07-01
+review_in: 6 months
 ---
 
 > It's possible this page is out of date, but it's is still relevant if we ever need to rebuild a VMWare vCloud environment somewhere.

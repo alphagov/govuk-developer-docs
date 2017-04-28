@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-26
+owner_slack: "#2ndline"
 title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-transition-a-site-to-govuk.md"
+last_reviewed_at: 2017-01-26
+review_in: 6 months
 ---
 
 

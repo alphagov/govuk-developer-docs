@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-16
+owner_slack: "#2ndline"
 title: Redirect content in the Router
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/redirecting-content-in-the-router.md"
+last_reviewed_at: 2016-12-16
+review_in: 6 months
 ---
 
 

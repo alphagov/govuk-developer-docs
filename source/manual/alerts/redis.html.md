@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-12
+owner_slack: "#2ndline"
 title: Redis alerts
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/redis.md"
+last_reviewed_at: 2017-03-12
+review_in: 6 months
 ---
 
 

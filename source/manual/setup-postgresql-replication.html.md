@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-26
+owner_slack: "#2ndline"
 title: Set up PostgreSQL replication
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setup-postgresql-replication.md"
+last_reviewed_at: 2017-02-26
+review_in: 6 months
 ---
 
 
