@@ -1,5 +1,6 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: '#navigation'
+review_by: 2017-07-26
 title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
@@ -157,3 +158,7 @@ There are two things that need to be responded to:
 -   high numbers of 404s - this means a mapping is missing
 -   high numbers hitting 410s - this means the old page is popular and
     should perhaps be redirected instead
+
+## Checklist
+
+The transition checklist covers the whole process of transitioning a site from the technical side. There’s a [full version for complex sites](https://docs.google.com/document/d/1SiBwYtV_d_D9pPcqzpqvRWs0kscUtB7yqxN8Ub_uRSA/edit) and a [slightly simplified one](https://docs.google.com/document/d/1gIJBUuPaZqtYsrgwqMBSrU4lpr2e93tuhQcgylnSHb4/edit) - we probably only need the simpler one for upcoming transitions.
