@@ -33,6 +33,12 @@ Most of the CDN config is versioned and scripted:
 These are deployed to [staging][staging_cdn] and [production][production_cdn].
 There is no CDN in integration.
 
+Some configuration isn't scripted, such as logging. The www, bouncer and assets
+services stream logs to the `logs-cdn-1` box in each environment. bouncer also logs
+to `transition-logs-1`. We also log requests for `assets.publishing.service.gov.uk/static/a?`
+to S3 for later analysis. These logging endpoints are currently configured directly
+in the Fastly UI.
+
 [staging_cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
 [production_cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
 
