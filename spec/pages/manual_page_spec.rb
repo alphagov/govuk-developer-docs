@@ -8,8 +8,10 @@ Dir.glob("source/manual/**/*.md").each do |filename|
       expect(frontmatter['owner_slack'][0]).to be_in(%[# @]), "`owner_slack` should be a @username or #channel"
     end
 
-    it "has a review_by date" do
-      expect(frontmatter['review_by']).to be_a(Date)
+    it "has a valid review date" do
+      review_by = PageReview.new(double(data: double(frontmatter)))
+
+      expect(review_by.review_by).to be_a(Date)
     end
 
     it "has a title" do
