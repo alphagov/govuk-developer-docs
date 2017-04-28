@@ -8,6 +8,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+# Upgrade Rails
+
 When upgrading our apps between Rails major and minor versions, follow the [official Rails guides][guide]
 
 ## Gotchas for upgrading to Rails 5.0
