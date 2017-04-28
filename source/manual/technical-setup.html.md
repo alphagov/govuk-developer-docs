@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-22
+owner_slack: "#2ndline"
 title: Technical setup
 section: Support
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/technical-setup.md"
+last_reviewed_at: 2016-12-22
+review_in: 6 months
 ---
 
 

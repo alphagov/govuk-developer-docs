@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-16
+owner_slack: "#2ndline"
 title: Set up a new Rails app
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-rails-app.md"
+last_reviewed_at: 2017-01-16
+review_in: 6 months
 ---
 
 

@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-07
-title: 'Sidekiq'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: Sidekiq
+parent: "/manual.html"
 layout: manual_layout
 section: Tools
+last_reviewed_at: 2016-11-07
+review_in: 6 months
 ---
 
 # Sidekiq

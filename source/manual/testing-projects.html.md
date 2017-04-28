@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2018-01-01
+owner_slack: "#2ndline"
 title: Test & build a project on Jenkins CI
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-07-01
+review_in: 6 months
 ---
 
 # Test & build a project on Jenkins CI

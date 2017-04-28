@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-24
+owner_slack: "#2ndline"
 title: App isn't running the expected Ruby version
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/ruby-version.md"
+last_reviewed_at: 2016-12-24
+review_in: 6 months
 ---
 
 

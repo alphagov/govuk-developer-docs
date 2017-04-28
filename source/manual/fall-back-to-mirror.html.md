@@ -1,10 +1,11 @@
 ---
-title: "Fall back to the static mirrors"
+title: Fall back to the static mirrors
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-owner_slack: '#2ndline'
-review_by: 2017-10-01
+owner_slack: "#2ndline"
+last_reviewed_at: 2017-04-01
+review_in: 6 months
 ---
 
 # Fall back to the static mirrors

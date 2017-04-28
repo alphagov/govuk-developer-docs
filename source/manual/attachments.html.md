@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-08
+owner_slack: "#2ndline"
 title: Attachment backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/attachments.md"
+last_reviewed_at: 2017-01-08
+review_in: 6 months
 ---
 
 # Attachment backups

@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-08
+owner_slack: "#2ndline"
 title: 'Elasticsearch: not receiving syslog from logstash'
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-11-08
+review_in: 6 months
 ---
 
 # Elasticsearch: not receiving syslog from logstash

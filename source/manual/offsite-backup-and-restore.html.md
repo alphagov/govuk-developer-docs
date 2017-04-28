@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-28
+owner_slack: "#2ndline"
 title: Offsite backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/offsite-backup-and-restore.md"
+last_reviewed_at: 2017-01-28
+review_in: 6 months
 ---
 
 

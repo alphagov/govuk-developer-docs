@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-08
-title: 'defined cpu type does not match'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: defined cpu type does not match
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-11-08
+review_in: 6 months
 ---
 
 # defined cpu type does not match

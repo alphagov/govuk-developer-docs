@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-18
-title: 'high disk time'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: high disk time
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-02-18
+review_in: 6 months
 ---
 
 # 'high disk time'

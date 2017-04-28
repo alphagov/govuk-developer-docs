@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-12
+owner_slack: "#2ndline"
 title: Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-02-12
+review_in: 6 months
 ---
 
 # Nagios NRPE connection failures

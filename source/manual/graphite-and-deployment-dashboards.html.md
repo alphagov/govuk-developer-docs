@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-09
-title: "Graphite and deployment dashboards"
+owner_slack: "#2ndline"
+title: Graphite and deployment dashboards
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-03-09
+review_in: 6 months
 ---
 
 # Graphite and deployment dashboards

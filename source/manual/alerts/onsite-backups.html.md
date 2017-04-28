@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-06
-title: 'Onsite backups'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: Onsite backups
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-11-06
+review_in: 6 months
 ---
 
 # Onsite backups

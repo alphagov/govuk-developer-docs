@@ -1,10 +1,11 @@
 ---
 title: Run an A/B test
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Tools
 owner_slack: "@tijmen"
-review_by: 2017-06-01
+last_reviewed_at: 2016-12-01
+review_in: 6 months
 ---
 
 # Run an A/B test

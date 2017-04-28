@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-10-13
+owner_slack: "#2ndline"
 title: Set up request tracing
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-04-13
+review_in: 6 months
 ---
 
 # Set up request tracing

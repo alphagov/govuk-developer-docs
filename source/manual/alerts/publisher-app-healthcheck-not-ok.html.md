@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-04
-title: 'publisher app health check not ok'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: publisher app health check not ok
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-03-04
+review_in: 6 months
 ---
 
 # 'publisher app health check not ok'

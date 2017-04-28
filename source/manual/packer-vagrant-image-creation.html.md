@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-07-13
+owner_slack: "#2ndline"
 title: Packer Vagrant Dev VM / Image Creation
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/packer-vagrant-image-creation.md"
+last_reviewed_at: 2017-01-13
+review_in: 6 months
 ---
 
 

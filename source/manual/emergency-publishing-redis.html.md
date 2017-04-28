@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-17
+owner_slack: "#2ndline"
 title: Deploy emergency publishing banners with Redis
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
+last_reviewed_at: 2017-02-17
+review_in: 6 months
 ---
 
 # Deploy emergency publishing banners
