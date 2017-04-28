@@ -48,8 +48,8 @@ and elsewhere:
 
 ## Defining the app in the development repository
 
-You first need to add the app to the [development
-repository](https://github.gds/gds/development).
+You first need to add the app to the [development-vm
+configuration in puppet](https://github.com/alphagov/govuk-puppet/tree/master/development-vm).
 
 Add the app to the `Procfile` and assign it the next available port
 number.
