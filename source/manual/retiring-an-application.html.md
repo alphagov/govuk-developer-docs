@@ -91,12 +91,12 @@ Click on the Applications tab. Find the application that is being
 retired and click the "edit" button. Tick the box that says "This
 application is being retired", then save your changes.
 
-11. Remove from the [development repo][development] `Procfile` and `Pinfile`:
+11. Remove from the [development-vm repo][development] `Procfile` and `Pinfile`:
 
 Leave a comment in the `Procfile` indicating that the port used to be
 used by this app (eg <https://github.gds/gds/development/pull/149>)
 
-[development]: https://github.gds/gds/development
+[development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 
 12. Check the data replication scripts for anything specific to this application:
 
