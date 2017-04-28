@@ -28,7 +28,7 @@ apps on our backend machines.
 
 -   Identify a port you want to allocate to the sidekiq-monitoring
     instance for your application and reserve it in
-    [development/Procfile](https://github.gds/gds/development/blob/master/Procfile).
+    [govuk-puppet/development-vm/Procfile](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/Procfile).
 
 ## Adding configuration for your application in sidekiq-monitoring repository
 
