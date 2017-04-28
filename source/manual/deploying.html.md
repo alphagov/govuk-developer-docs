@@ -114,4 +114,4 @@ You need to have a Signon account with appropriate permissions to access the rel
 
 ## On the blog
 
-- (Releasing applications to GOV.UK)[https://gdstechnology.blog.gov.uk/2014/09/10/releasing-applications-to-gov-uk/]
+- [Releasing applications to GOV.UK](https://gdstechnology.blog.gov.uk/2014/09/10/releasing-applications-to-gov-uk/)
