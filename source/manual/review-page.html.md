@@ -21,7 +21,7 @@ How to review pages in this manual.
 - Does the page contain information easily available elsewhere?
 - Does the page contain sensitive or inappropriate information? For example passwords, individual email addresses, groups, calendars, 'secret' links.
 
-## Options
+## When you've reviewed the page, either:
 
 - Update the page
 - Remove it (don’t forget to set up a redirect)
