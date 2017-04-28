@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-13
-title: 'AWS SES quota usage higher than expected'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: AWS SES quota usage higher than expected
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-12-13
+review_in: 6 months
 ---
 
 # AWS SES quota usage higher than expected

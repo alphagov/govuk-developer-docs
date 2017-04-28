@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-02
+owner_slack: "#2ndline"
 title: Deploy an application to GOV.UK
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
+last_reviewed_at: 2017-02-02
+review_in: 6 months
 ---
 
 # Deploy an application to GOV.UK

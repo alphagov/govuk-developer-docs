@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-10-06
-title: "Elasticsearch: dump and restore indices"
+owner_slack: "#2ndline"
+title: 'Elasticsearch: dump and restore indices'
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
+last_reviewed_at: 2017-04-06
+review_in: 6 months
 ---
 
 # Elasticsearch: dump and restore indices

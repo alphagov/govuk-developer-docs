@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-09
+owner_slack: "#2ndline"
 title: Review a page in this manual
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-02-09
+review_in: 6 months
 ---
 
 # Review a page in this manual

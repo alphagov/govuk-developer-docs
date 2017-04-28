@@ -1,10 +1,11 @@
 ---
-owner_slack: '#search-team'
-review_by: 2017-10-27
+owner_slack: "#search-team"
 title: Monitor your app during deployment
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-04-27
+review_in: 6 months
 ---
 
 # Monitor your app during deployment

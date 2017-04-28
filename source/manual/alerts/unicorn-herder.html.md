@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-30
-title: 'Unicorn Herder'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: Unicorn Herder
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-12-30
+review_in: 6 months
 ---
 
 # Unicorn Herder

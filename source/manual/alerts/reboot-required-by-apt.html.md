@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-12
-title: 'reboot required by apt'
-parent: /manual.html
+owner_slack: "#2ndline"
+title: reboot required by apt
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-03-12
+review_in: 6 months
 ---
 
 # 'reboot required by apt'

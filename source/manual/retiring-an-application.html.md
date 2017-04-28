@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-01
+owner_slack: "#2ndline"
 title: Retire an application
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/retiring-an-application.md"
+last_reviewed_at: 2017-03-01
+review_in: 6 months
 ---
 
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.

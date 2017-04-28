@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-09-23
+owner_slack: "#2ndline"
 title: Upload an asset to asset-manager
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-upload-an-asset-to-asset-manager.md"
+last_reviewed_at: 2017-03-23
+review_in: 6 months
 ---
 
 

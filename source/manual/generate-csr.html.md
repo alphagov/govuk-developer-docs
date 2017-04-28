@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-24
+owner_slack: "#2ndline"
 title: Generate a Certificate Signing Request (CSR) for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/generate-csr.md"
+last_reviewed_at: 2017-02-24
+review_in: 6 months
 ---
 
 

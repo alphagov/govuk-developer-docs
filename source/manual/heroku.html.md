@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2018-01-01
+owner_slack: "#2ndline"
 title: Access apps on the shared Heroku account
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
+last_reviewed_at: 2017-07-01
+review_in: 6 months
 ---
 
 # Access apps on the shared Heroku account

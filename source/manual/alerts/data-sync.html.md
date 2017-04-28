@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-17
+owner_slack: "#2ndline"
 title: Data sync
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/data-sync.md"
+last_reviewed_at: 2017-02-17
+review_in: 6 months
 ---
 
 

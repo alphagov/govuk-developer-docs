@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-25
+owner_slack: "#2ndline"
 title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/rotate-offsite-backup-gpg-keys.md"
+last_reviewed_at: 2016-12-25
+review_in: 6 months
 ---
 
 

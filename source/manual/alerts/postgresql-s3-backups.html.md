@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-08-09
+owner_slack: "#2ndline"
 title: 'PostgreSQL: S3 Backups'
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2017-02-09
+review_in: 6 months
 ---
 
 # PostgreSQL: S3 Backups

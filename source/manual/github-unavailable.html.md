@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-18
+owner_slack: "#2ndline"
 title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/github-unavailable.md"
+last_reviewed_at: 2016-12-18
+review_in: 6 months
 ---
 
 

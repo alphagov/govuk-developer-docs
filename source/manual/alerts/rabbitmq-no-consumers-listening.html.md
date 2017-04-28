@@ -1,10 +1,11 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-06-10
+owner_slack: "#2ndline"
 title: 'RabbitMQ: No consumers listening to queue'
-parent: /manual.html
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-12-10
+review_in: 6 months
 ---
 
 # RabbitMQ: No consumers listening to queue

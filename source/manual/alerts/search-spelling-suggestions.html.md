@@ -1,10 +1,11 @@
 ---
-owner_slack: '#search-team'
-review_by: 2017-06-26
-title: 'Check for spelling suggestions failed'
-parent: /manual.html
+owner_slack: "#search-team"
+title: Check for spelling suggestions failed
+parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
+last_reviewed_at: 2016-12-26
+review_in: 6 months
 ---
 
 # Check for spelling suggestions failed

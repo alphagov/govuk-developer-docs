@@ -1,11 +1,12 @@
 ---
-owner_slack: '#2ndline'
-review_by: 2017-05-18
+owner_slack: "#2ndline"
 title: Resync a Mongo database
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/resync-mongo-db.md"
+last_reviewed_at: 2016-11-18
+review_in: 6 months
 ---
 
 
