@@ -9,6 +9,7 @@ gem 'webmock', '~> 2.1'
 gem 'activesupport', '~> 5.0'
 gem 'govuk-lint', '~> 2.1'
 gem 'simplecov'
+gem 'chronic'
 
 # Middleman Gems
 gem 'middleman', '>= 4.0.0'
