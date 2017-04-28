@@ -34,4 +34,4 @@ reasons. When a job fails it gets retried with an exponential backoff
 retries signifies a bigger, less transient problem maybe occuring.
 
 If an alert fires a good place to start
-investigation is the [Sidekiq monitor](/opsmanual/sidekiq-monitoring.html).
+investigation is the [Sidekiq monitor](monitor-sidekiq-workers.html).
