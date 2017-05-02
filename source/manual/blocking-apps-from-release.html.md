@@ -5,14 +5,13 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/blocking-apps-from-release.md"
-last_reviewed_at: 2016-11-03
+last_reviewed_at: 2017-04-28
 review_in: 6 months
 ---
 
 
 
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/releasing-software/blocking-apps-from-release.md)
 
 
