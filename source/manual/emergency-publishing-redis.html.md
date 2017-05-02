@@ -75,18 +75,19 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
 <a name="clear-template-cache"></a>
-### Clear the application template cache and reload Whitehall
+### Clear caching in frontend, static and whitehall-frontend
 
-1) Run the fabric task to clear the application template cache:
+1) Run the fabric task to clear the application template cache for frontend and
+static:
 
 ```
 fab $environment campaigns.clear_cached_templates
 ```
 
-2) Reload whitehall:
+2) Clear the cache for whitehall-frontend by restarting memcached:
 
 ```
-fab $environment class:whitehall_frontend app.reload:whitehall
+fab $environment class:whitehall_frontend app.restart:memcached
 ```
 <a name="test-with-cache-bust"></a>
 ### Test with cache bust strings
@@ -99,6 +100,13 @@ You can automate this by using the [emergency publishing scraper](https://github
 - [https://www.gov.uk/financial-help-disabled?7f7992eb](https://www.gov.uk/financial-help-disabled?7f7992eb)
 - [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527)
 - [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8)
+
+Check the banner displays as expected and double check the information for the
+header, short description and link are as they should be. Test the link if it is
+present. Make sure the banner colour is appropriate - black for a death, red for
+a national emergency, green for a local emergency.
+
+If the banner information is not correct, re-run the Jenkins job to correct it.
 
 <a name="purge-origin-cache"></a>
 ### Purge the caches and test again
