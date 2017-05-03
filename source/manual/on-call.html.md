@@ -5,7 +5,7 @@ section: Support
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/on-call.md"
-last_reviewed_at: 2017-03-20
+last_reviewed_on: 2017-03-20
 review_in: 6 months
 ---
 

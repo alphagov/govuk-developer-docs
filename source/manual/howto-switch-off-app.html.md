@@ -5,7 +5,7 @@ layout: manual_layout
 section: Packaging
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-switch-off-app.md"
-last_reviewed_at: 2016-12-06
+last_reviewed_on: 2016-12-06
 review_in: 6 months
 ---
 

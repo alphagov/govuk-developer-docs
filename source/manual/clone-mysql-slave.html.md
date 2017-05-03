@@ -5,7 +5,7 @@ section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/clone-mysql-slave.md"
-last_reviewed_at: 2016-11-15
+last_reviewed_on: 2016-11-15
 review_in: 6 months
 ---
 

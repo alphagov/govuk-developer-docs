@@ -4,7 +4,7 @@ title: Jenkins CI infrastructure
 parent: "/manual.html"
 layout: manual_layout
 section: Testing
-last_reviewed_at: 2016-12-28
+last_reviewed_on: 2016-12-28
 review_in: 6 months
 ---
 

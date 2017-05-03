@@ -4,7 +4,7 @@ title: Fetch analytics data for search failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2016-12-24
+last_reviewed_on: 2016-12-24
 review_in: 6 months
 ---
 

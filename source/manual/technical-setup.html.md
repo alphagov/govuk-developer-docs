@@ -5,7 +5,7 @@ section: Support
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/technical-setup.md"
-last_reviewed_at: 2016-12-22
+last_reviewed_on: 2016-12-22
 review_in: 6 months
 ---
 

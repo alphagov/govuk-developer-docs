@@ -4,7 +4,7 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_at: 2017-01-13
+last_reviewed_on: 2017-01-13
 review_in: 6 months
 ---
 # Handle encrypted hieradata

@@ -4,7 +4,7 @@ title: Pingdom search check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2017-03-04
+last_reviewed_on: 2017-03-04
 review_in: 6 months
 ---
 

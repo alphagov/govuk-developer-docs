@@ -4,7 +4,7 @@ title: Low available disk space
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2016-12-16
+last_reviewed_on: 2016-12-16
 review_in: 6 months
 ---
 

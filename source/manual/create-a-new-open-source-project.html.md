@@ -5,7 +5,7 @@ section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/create-a-new-open-source-project.md"
-last_reviewed_at: 2017-01-30
+last_reviewed_on: 2017-01-30
 review_in: 6 months
 ---
 

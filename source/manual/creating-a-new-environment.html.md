@@ -4,7 +4,7 @@ title: Create a new environment for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_at: 2018-07-01
+last_reviewed_on: 2018-07-01
 review_in: 6 months
 ---
 

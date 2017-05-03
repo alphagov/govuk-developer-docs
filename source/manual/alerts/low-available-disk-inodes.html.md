@@ -4,7 +4,7 @@ title: Low available disk inodes
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2017-03-29
+last_reviewed_on: 2017-03-29
 review_in: 6 months
 ---
 
