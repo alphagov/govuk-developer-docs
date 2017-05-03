@@ -4,7 +4,7 @@ title: Prolonged GC collection times Check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2016-12-11
+last_reviewed_on: 2016-12-11
 review_in: 6 months
 ---
 

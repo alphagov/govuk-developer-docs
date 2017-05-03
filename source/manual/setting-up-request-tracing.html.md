@@ -4,7 +4,7 @@ title: Set up request tracing
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_at: 2017-04-13
+last_reviewed_on: 2017-04-13
 review_in: 6 months
 ---
 

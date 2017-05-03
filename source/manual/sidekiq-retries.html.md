@@ -4,7 +4,7 @@ title: Sidekiq
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_at: 2017-5-02
+last_reviewed_on: 2017-5-02
 review_in: 6 months
 ---
 

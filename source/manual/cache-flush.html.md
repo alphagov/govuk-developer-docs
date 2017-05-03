@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/cache-flush.md"
 important: true
-last_reviewed_at: 2017-01-08
+last_reviewed_on: 2017-01-08
 review_in: 6 months
 ---
 

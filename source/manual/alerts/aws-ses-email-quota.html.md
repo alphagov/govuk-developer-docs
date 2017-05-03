@@ -4,7 +4,7 @@ title: AWS SES quota usage higher than expected
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2016-12-13
+last_reviewed_on: 2016-12-13
 review_in: 6 months
 ---
 

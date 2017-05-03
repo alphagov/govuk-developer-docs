@@ -4,7 +4,7 @@ title: Email Alerts
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2017-04-03
+last_reviewed_on: 2017-04-03
 review_in: 6 months
 ---
 

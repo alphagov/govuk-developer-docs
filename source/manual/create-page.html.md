@@ -4,7 +4,7 @@ title: Create a page in this manual
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_at: 2017-02-09
+last_reviewed_on: 2017-02-09
 review_in: 6 months
 ---
 

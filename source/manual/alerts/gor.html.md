@@ -5,7 +5,7 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/gor.md"
-last_reviewed_at: 2017-03-16
+last_reviewed_on: 2017-03-16
 review_in: 6 months
 ---
 

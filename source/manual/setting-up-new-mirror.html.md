@@ -5,7 +5,7 @@ section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-mirror.md"
-last_reviewed_at: 2017-03-12
+last_reviewed_on: 2017-03-12
 review_in: 6 months
 ---
 

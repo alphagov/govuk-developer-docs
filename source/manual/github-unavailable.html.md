@@ -5,7 +5,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/github-unavailable.md"
-last_reviewed_at: 2016-12-18
+last_reviewed_on: 2016-12-18
 review_in: 6 months
 ---
 

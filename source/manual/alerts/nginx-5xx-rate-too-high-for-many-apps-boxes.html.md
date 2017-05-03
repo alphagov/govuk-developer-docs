@@ -4,7 +4,7 @@ title: nginx 5xx rate too high for many apps/boxes
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2017-02-04
+last_reviewed_on: 2017-02-04
 review_in: 6 months
 ---
 
