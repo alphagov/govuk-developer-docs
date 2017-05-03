@@ -49,7 +49,7 @@ private
 
   def manual_pages
     sitemap.resources
-      .select { |page| page.path.start_with?('manual/') && page.path.end_with?('.html') }
-      .sort_by { |page| page.data.title.try(:downcase).to_s }
+      .select { |page| page.path.start_with?('manual/') && page.path.end_with?('.html') && page.data.title }
+      .sort_by { |page| page.data.title.downcase }
   end
 end
