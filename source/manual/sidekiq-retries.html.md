@@ -4,7 +4,7 @@ title: Sidekiq
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_at: 2016-11-07
+last_reviewed_at: 2017-5-02
 review_in: 6 months
 ---
 
@@ -25,7 +25,16 @@ namespace. i.e.:
 
 ```
 stats.gauges.govuk.app.support.workers.retry_set_size
+
+stats.govuk.app.*.workers.*.failure
+stats.govuk.app.<app_name>.workers.<worker_name>.failure
 stats.govuk.app.whitehall.workers.SearchIndexAddWorker.failure
+```
+
+Rummager worker data use a different namespace and can be accessed at:
+
+```
+stats.govuk.app.rummager.workers.Indexer.*.failure
 ```
 
 Jobs do fail, this is not inherently bad and can happen for a number of
