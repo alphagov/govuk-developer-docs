@@ -4,7 +4,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 owner_slack: "#2ndline"
-last_reviewed_at: 2017-04-01
+last_reviewed_on: 2017-04-01
 review_in: 6 months
 ---
 

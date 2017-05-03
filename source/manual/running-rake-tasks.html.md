@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/running-rake-tasks.md"
 important: true
-last_reviewed_at: 2016-12-21
+last_reviewed_on: 2016-12-21
 review_in: 6 months
 ---
 

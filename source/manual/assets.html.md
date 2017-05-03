@@ -5,7 +5,7 @@ section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/assets.md"
-last_reviewed_at: 2017-03-26
+last_reviewed_on: 2017-03-26
 review_in: 6 months
 ---
 

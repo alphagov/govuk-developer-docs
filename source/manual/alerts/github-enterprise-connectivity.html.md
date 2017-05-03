@@ -5,7 +5,7 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/github-enterprise-connectivity.md"
-last_reviewed_at: 2017-03-10
+last_reviewed_on: 2017-03-10
 review_in: 6 months
 ---
 

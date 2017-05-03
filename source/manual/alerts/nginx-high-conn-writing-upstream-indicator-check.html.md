@@ -4,7 +4,7 @@ title: nginx high conn writing -- upstream indicator Check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_at: 2017-01-06
+last_reviewed_on: 2017-01-06
 review_in: 6 months
 ---
 

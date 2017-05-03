@@ -1,6 +1,6 @@
 ---
 owner_slack: '#2ndline'
-last_reviewed_at: 2017-04-28
+last_reviewed_on: 2017-04-28
 review_in: 6 months
 title: Upgrading Rails
 section: Packaging

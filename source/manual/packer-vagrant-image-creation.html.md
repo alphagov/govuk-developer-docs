@@ -5,7 +5,7 @@ section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/packer-vagrant-image-creation.md"
-last_reviewed_at: 2017-01-13
+last_reviewed_on: 2017-01-13
 review_in: 6 months
 ---
 

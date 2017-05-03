@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#taxonomy"
-last_reviewed_at: 2017-03-01
+last_reviewed_on: 2017-03-01
 review_in: 6 months
 ---
 

@@ -5,7 +5,7 @@ section: DNS
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/dns.md"
-last_reviewed_at: 2016-11-04
+last_reviewed_on: 2016-11-04
 review_in: 6 months
 ---
 

@@ -4,7 +4,7 @@ title: Pingdom Bouncer canary check
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
-last_reviewed_at: 2017-02-08
+last_reviewed_on: 2017-02-08
 review_in: 6 months
 ---
 

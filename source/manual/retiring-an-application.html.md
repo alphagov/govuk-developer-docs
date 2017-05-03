@@ -4,7 +4,7 @@ title: Retire an application
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_at: 2017-05-03
+last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 

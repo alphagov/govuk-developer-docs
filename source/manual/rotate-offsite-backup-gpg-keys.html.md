@@ -5,7 +5,7 @@ section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/rotate-offsite-backup-gpg-keys.md"
-last_reviewed_at: 2016-12-25
+last_reviewed_on: 2016-12-25
 review_in: 6 months
 ---
 
