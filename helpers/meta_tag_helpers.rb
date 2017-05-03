@@ -33,7 +33,7 @@ module MetaTagHelpers
   end
 
   def page_description
-    locals[:description] || current_page.data.description || config[:tech_docs][:description]
+    locals[:description] || current_page.data.description || yield_content(:page_description) || config[:tech_docs][:description]
   end
 
   def page_title
