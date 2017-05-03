@@ -24,7 +24,7 @@ first stages of our build and continuous deployment pipeline:
 
 Components:
 
-- The CI environment runs on a separated VCloud DC, named 'ci'
+- The CI environment runs in the Integration environment in the "CI" vDC
 - Jenkins master:
   - Nginx, listening on port 443, it serves <https://ci.integration.publishing.service.gov.uk>
 and proxies requests to Jenkins. It is also running on port 80 to serve a monitoring page.
@@ -40,11 +40,9 @@ and proxies requests to Jenkins. It is also running on port 80 to serve a monito
 
 ## Configuration
 
-### VCloud
-Complete.
-
 ### Configuration Management
-Complete.
+
+The configuration for CI resides in [govuk-puppet](https://github.com/alphagov/govuk-puppet/tree/master/modules/govuk_ci).
 
 ### Manual configuration
 
