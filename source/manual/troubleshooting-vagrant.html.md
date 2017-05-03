@@ -106,7 +106,7 @@ vagrant up
 
 If your host is running macOS 10.12 Sierra you may encounter this problem as there is a bug in the nfs implementation that means the cache is not updated frequently enough.  The usual way of encountering this problem is early in a `govuk_puppet` run, it will fail early with a Permission Denied error when trying to remove a file in `vendor/modules/`.  One workaround is to remove the `vendor/modules` and `.tmp` folders from your govuk-puppet working directory on your host, and then run `govuk_puppet` again in the VM.
 
-The other solution, as mentioned in [this github issue against vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to run `ls -alR > /dev/null` on your host before bringing the vm up as this causes macOS to refresh the nfs cache.
+The other solution, as mentioned in [this github issue against vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
 
 ## installing vagrant-dns
 
