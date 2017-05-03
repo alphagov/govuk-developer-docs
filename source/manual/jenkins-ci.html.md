@@ -1,10 +1,10 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-infrastructure"
 title: Jenkins CI infrastructure
 parent: "/manual.html"
 layout: manual_layout
 section: Testing
-last_reviewed_on: 2016-12-28
+last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 
