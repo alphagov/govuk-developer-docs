@@ -102,6 +102,12 @@ vagrant halt
 vagrant up
 ```
 
+### Permission denied errors on synced folders
+
+If your host is running macOS 10.12 Sierra you may encounter this problem as there is a bug in the nfs implementation that means the cache is not updated frequently enough.  The usual way of encountering this problem is early in a `govuk_puppet` run, it will fail early with a Permission Denied error when trying to remove a file in `vendor/modules/`.  One workaround is to remove the `vendor/modules` and `.tmp` folders from your govuk-puppet working directory on your host, and then run `govuk_puppet` again in the VM.
+
+The other solution, as mentioned in [this github issue against vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to run `ls -alR > /dev/null` on your host before bringing the vm up as this causes macOS to refresh the nfs cache.
+
 ## installing vagrant-dns
 
 Installing vagrant-dns with `vagrant plugin install vagrant-dns` against Vagrant 1.9 installed may give an error like:
