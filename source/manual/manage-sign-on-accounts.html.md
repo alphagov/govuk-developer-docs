@@ -4,7 +4,7 @@ title: Manage sign on accounts
 section: Support
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_at: 2016-12-11
+last_reviewed_on: 2016-12-11
 review_in: 6 months
 ---
 

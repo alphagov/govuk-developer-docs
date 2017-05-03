@@ -5,7 +5,7 @@ layout: manual_layout
 parent: "/manual.html"
 section: Logging
 important: true
-last_reviewed_at: 2017-02-18
+last_reviewed_on: 2017-02-18
 review_in: 6 months
 ---
 

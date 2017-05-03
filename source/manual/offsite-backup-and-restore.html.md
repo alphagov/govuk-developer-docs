@@ -5,7 +5,7 @@ section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/offsite-backup-and-restore.md"
-last_reviewed_at: 2017-01-28
+last_reviewed_on: 2017-01-28
 review_in: 6 months
 ---
 

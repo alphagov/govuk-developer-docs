@@ -5,7 +5,7 @@ section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/resync-mongo-db.md"
-last_reviewed_at: 2016-11-18
+last_reviewed_on: 2016-11-18
 review_in: 6 months
 ---
 

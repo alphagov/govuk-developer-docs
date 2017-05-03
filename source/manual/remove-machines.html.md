@@ -4,7 +4,7 @@ title: Remove a machine
 parent: "/manual.html"
 layout: manual_layout
 section: Environments
-last_reviewed_at: 2017-03-22
+last_reviewed_on: 2017-03-22
 review_in: 6 months
 ---
 

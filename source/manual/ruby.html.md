@@ -5,7 +5,7 @@ section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/ruby.md"
-last_reviewed_at: 2016-12-09
+last_reviewed_on: 2016-12-09
 review_in: 6 months
 ---
 

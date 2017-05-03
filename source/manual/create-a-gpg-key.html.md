@@ -4,7 +4,7 @@ title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
 section: Support
-last_reviewed_at: 2017-04-01
+last_reviewed_on: 2017-04-01
 review_in: 6 months
 ---
 

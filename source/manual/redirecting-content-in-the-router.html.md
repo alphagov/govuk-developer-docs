@@ -5,7 +5,7 @@ section: Routing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/redirecting-content-in-the-router.md"
-last_reviewed_at: 2016-12-16
+last_reviewed_on: 2016-12-16
 review_in: 6 months
 ---
 
