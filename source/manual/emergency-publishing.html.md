@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Deploy emergency publishing banners with Redis
+title: Deploy emergency publishing banners
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
