@@ -35,7 +35,7 @@ RSpec.describe Snippet do
 
       snippet = Snippet.generate(html)
 
-      expect(snippet).to eql("2nd line is responsible for: ensuring that software is released to GOV.UK responsibly providing access to deploy software for teams who can&rsquo;t deploy it themselves As far as possible, teams are responsible for deploying their own work. We believe that regular releases minimise the risk of ma...")
+      expect(snippet).to eql("2nd line is responsible for: ensuring that software is released to GOV.UK responsibly providing access to deploy software for teams who can’t deploy it themselves As far as possible, teams are responsible for deploying their own work. We believe that regular releases minimise the risk of major pr...")
     end
   end
 end
