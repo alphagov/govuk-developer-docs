@@ -37,7 +37,7 @@ module MetaTagHelpers
   end
 
   def page_title
-    locals[:title] || current_page.data.title
+    locals[:title] || [current_page.data.title, current_page.data.section].compact.join(' - ')
   end
 
 private
