@@ -4,7 +4,8 @@ class SearchApiReference
       field_definitions_url,
     )
 
-    JSON.parse(contents)
+    fields = JSON.parse(contents)
+    fields.sort_by { |name, definition| [definition["type"], name] }
   end
 
   def self.field_definitions_url
