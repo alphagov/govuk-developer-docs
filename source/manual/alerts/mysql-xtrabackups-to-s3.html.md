@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-06
 review_in: 6 months
 ---
 
-# MySQL Xtrabackups to S3
-
 We send backups to an Amazon S3 bucket every 15 minutes. This is
 performed using a nightly "base" backup and "incremental" backups which
 run every 15 minutes, which are linked to the base backup.

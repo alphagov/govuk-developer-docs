@@ -10,8 +10,6 @@ review_in: 6 months
 
 > It's possible this page is out of date, but it's is still relevant if we ever need to rebuild a VMWare vCloud environment somewhere.
 
-# Create a new environment for GOV.UK
-
 ## Manual steps to ask of the IaaS provider
 
 Ask the IaaS provider to:

@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-05
 review_in: 6 months
 ---
 
-# 'high zombie procs'
-
 You can check what the zombie processes are by SSHing onto the machine
 and running the command:
 

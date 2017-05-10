@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-26
 review_in: 6 months
 ---
 
-# Benchmark search queries failed
-
 Indicates that the Jenkins [search_benchmark healthcheck job]
 (https://deploy.publishing.service.gov.uk/job/search_benchmark/) has failed.
 

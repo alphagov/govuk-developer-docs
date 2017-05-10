@@ -9,8 +9,6 @@ last_reviewed_on: 2016-11-04
 review_in: 6 months
 ---
 
-# Domain Name System (DNS) records
-
 The GOV.UK Infrastructure team is responsible for managing several DNS zones.
 
 By default, zones are managed using DynDNS.

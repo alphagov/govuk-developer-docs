@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-27
 review_in: 6 months
 ---
 
-# root filesystem is readonly
-
 When Ubuntu is unable to write to disk it switches the filesystem to be
 read only. This could be caused by a cloud hosting provider having
 problems with their Storage Area Network (SAN).

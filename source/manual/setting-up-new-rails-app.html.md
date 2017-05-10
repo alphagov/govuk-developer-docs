@@ -9,14 +9,10 @@ last_reviewed_on: 2017-01-16
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setting-up-new-rails-app.md)
 
-
-# Set up a new Rails app
 
 Getting a new Rails app configured and deployed to the integration and
 production infrastructure involves several steps across multiple

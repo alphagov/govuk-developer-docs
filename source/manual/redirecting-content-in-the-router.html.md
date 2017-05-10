@@ -9,14 +9,10 @@ last_reviewed_on: 2016-12-16
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/redirecting-content-in-the-router.md)
 
-
-# Redirect content in the Router
 
 Sometimes there is a need to manually redirect existing URLs to another
 internal location, usually due to content being archived or because the

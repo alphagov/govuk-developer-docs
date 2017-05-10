@@ -8,8 +8,6 @@ last_reviewed_on: 2017-07-01
 review_in: 6 months
 ---
 
-# Access apps on the shared Heroku account
-
 We use Heroku to host some non-critical applications like the [monitoring-screen][].
 
 The credentials for Heroku are found in

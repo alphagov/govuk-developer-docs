@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-12
 review_in: 6 months
 ---
 
-# Nagios NRPE connection failures
-
 Nagios uses a protocol called NRPE (Nagios Remote Plugin Executor) to perform
 checks on remote machines. Monitored machines run an 'NRPE agent' which
 listens for requests to execute monitoring checks.

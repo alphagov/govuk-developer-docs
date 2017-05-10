@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-15
 review_in: 6 months
 ---
 
-# Offsite backups
-
 All of our offsite backups use duplicity. Most, but not all, are
 encrypted using GPG.
 

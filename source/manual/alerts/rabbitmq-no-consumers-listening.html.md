@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-10
 review_in: 6 months
 ---
 
-# RabbitMQ: No consumers listening to queue
-
 [Read more about how we use RabbitMQ](/manual/rabbitmq.html)
 
 We run a check that there is at least one non-idle consumer for a named

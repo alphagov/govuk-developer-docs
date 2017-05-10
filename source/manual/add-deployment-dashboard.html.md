@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-27
 review_in: 6 months
 ---
 
-# Add a deployment dashboard for an application
-
 ## Update and Add Panels to Existing Dashboards
 
 [Deployment dashboards](deployment-dashboards.html) are configured in `govuk-puppet`. Each dashboard panel is configured by a .json.erb template in `modules/grafana/templates/dashboards/deployment_partials` and these are combined to generate the JSON config for each application dashboard.

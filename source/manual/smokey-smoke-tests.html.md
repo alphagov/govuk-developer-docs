@@ -8,8 +8,6 @@ last_reviewed_on: 2017-07-01
 review_in: 6 months
 ---
 
-# Smoke testing with smokey
-
 We have [smoke tests][smokey] running against our infrastructure to verify
 that core functionality of the site is working.
 

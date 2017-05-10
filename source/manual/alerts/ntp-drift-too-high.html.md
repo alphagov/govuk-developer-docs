@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-02
 review_in: 6 months
 ---
 
-# 'ntp drift too high'
-
 There are tasks in fabric-scripts to make this less painful:
 
     fab $environment -H jumpbox-1.management ntp.status

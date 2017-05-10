@@ -8,8 +8,6 @@ last_reviewed_on: 2017-05-01
 review_in: 6 months
 ---
 
-# Change an organisation's slug
-
 > **NOTE:** for Worldwide Organisations, only Steps 1, 6 and maybe 7 below need
 > to be performed.
 

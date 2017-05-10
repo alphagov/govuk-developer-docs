@@ -9,14 +9,10 @@ last_reviewed_on: 2017-03-09
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/tools.md)
 
-
-# Tools: Icinga, Grafana and Graphite, Kibana and Fabric
 
 ## Icinga
 
@@ -42,8 +38,6 @@ navigation):
 [recovery_image]: images/icinga/recovery.png
 [unknown_image]: images/icinga/unknown.png
 [flapping_image]: images/icinga/flapping.gif
-
-
 ### External URLs
 
 A service may have two additional URLs associated with it which will assist
@@ -61,8 +55,6 @@ these icons:
 
 They will appear next to the service name in the service overview page or on
 the top-right of the page when viewing a specific service.
-
-
 ### Digging deeper
 
 If you want to dig a little deeper into the history of a specific alert click on it in the "Unhandled Services" view. In the top left of the main window there a few links. "View Alert Histogram For This Service" and "View Trends For This Service" are particularly useful.
@@ -109,8 +101,6 @@ Our [deployment dashboards](deployment-dashboards.html) use Graphite extensively
 ### Applying Functions
 
 Graphite has a whole bunch of functions you can apply to your data to make it more useful: they’re listed out [in the Graphite docs](http://graphite.readthedocs.org/en/0.9.12/functions.html). One particularly useful one is `keepLastValue`: if your graphs come out nearly black with a few spots of colour in them, you probably want this one. Both views have an Apply Function button.
-
-
 ## Kibana
 
 <https://kibana.publishing.service.gov.uk/>

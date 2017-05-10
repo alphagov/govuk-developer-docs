@@ -9,14 +9,10 @@ last_reviewed_on: 2017-03-24
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/archiving-and-redirecting-content.md)
 
-
-# Archive and redirect mainstream content to other pages on GOV.UK
 
 Sometimes there is a need to remove existing content and redirect the
 slug to another internal location. This can happen when content is

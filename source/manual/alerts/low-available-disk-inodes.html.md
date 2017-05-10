@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-29
 review_in: 6 months
 ---
 
-# Low available disk inodes
-
 The inode usage on a box can be checked using:
 
     df -i

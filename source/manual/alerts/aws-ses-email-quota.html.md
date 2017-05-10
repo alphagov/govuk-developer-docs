@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-13
 review_in: 6 months
 ---
 
-# AWS SES quota usage higher than expected
-
 Likely suspect for elevated email volumes is Errbit emailing too much errors.
 
 Other things that use the same SES account include Whitehall, Publisher, Signon, Licensing and machine email.

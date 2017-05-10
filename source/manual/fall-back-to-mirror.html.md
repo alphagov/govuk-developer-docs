@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-01
 review_in: 6 months
 ---
 
-# Fall back to the static mirrors
-
 We maintain a static copy of most of the site which is used by the content delivery
 network (CDN) whenever origin (the application server) times out or serves an error
 response.

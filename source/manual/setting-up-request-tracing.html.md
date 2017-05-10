@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-13
 review_in: 6 months
 ---
 
-# Set up request tracing
-
 Request tracing makes it easier to understand how requests originating from
 users of publishing apps make their way through the system. For example, if a
 user publishes a piece of content, request tracing will "connect the dots"

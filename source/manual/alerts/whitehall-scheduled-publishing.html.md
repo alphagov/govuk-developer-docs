@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-19
 review_in: 6 months
 ---
 
-# Whitehall scheduled publishing
-
 ### 'overdue publications in Whitehall'
 
 This alert means that there are scheduled editions which have passed

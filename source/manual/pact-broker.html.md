@@ -9,13 +9,9 @@ last_reviewed_on: 2017-04-28
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/introductions/pact_broker.md)
 
-
-# Pact Broker
 
 [Pact Broker](https://github.com/bethesque/pact_broker#readme) is a repository
 for consumer contracts created by the [pact

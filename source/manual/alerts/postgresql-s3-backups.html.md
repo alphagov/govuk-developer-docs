@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-09
 review_in: 6 months
 ---
 
-# PostgreSQL: S3 Backups
-
 There are two passive checks related to PostgreSQL S3 backups:
 
 -   PostgreSQL WAL-E base backup push

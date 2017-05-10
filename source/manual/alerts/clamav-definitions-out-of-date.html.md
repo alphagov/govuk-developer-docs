@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-26
 review_in: 6 months
 ---
 
-# ClamAV definitions out of date
-
 This could be because of a number of reasons. Check that the database is
 up to date by calling the freshclam command directly with verbose:
 

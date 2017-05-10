@@ -9,14 +9,10 @@ last_reviewed_on: 2016-11-15
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/clone-mysql-slave.md)
 
-
-# Clone a MySQL instance from one slave to another
 
 This tutorial documents the process behind adding a new slave to a MySQL
 senvironment where an existing slave may or may not already exist. The

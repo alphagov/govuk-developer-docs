@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-04
 review_in: 6 months
 ---
 
-# Pingdom search check
-
 If Pingdom can't retrieve the search results page it means that while
 GOV.UK may be available (see check above), it is not possible to
 retrieve dynamic content. Assuming that the homepage check has not

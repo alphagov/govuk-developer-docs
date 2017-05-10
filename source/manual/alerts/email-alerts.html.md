@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-03
 review_in: 6 months
 ---
 
-# Email Alerts
-
 GOV.UK sends out emails when certain publications are published. We have
 set up a check to verify that emails are sent for certain publication
 types (the drug and medical device alerts and travel advice updates).
