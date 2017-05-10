@@ -21,8 +21,8 @@ It hasn't been reviewed for accuracy yet.
 ## Preamble
 
 HMRC have a [desktop application to submit
-PAYE](http://www.hmrc.gov.uk/payerti/payroll/bpt/paye-tools.htm). This
-is available on Windows, Linux, and OS X.
+PAYE](https://www.gov.uk/basic-paye-tools). This is available on Windows,
+Linux, and OS X.
 
 As part of the initial tranche of ministerial department migration their
 upload site was switched off. However, we don't currently allow `exe`
@@ -45,8 +45,9 @@ The way the updates work:
 -   The software downloads the relevant binaries from our asset host and
     updates itself
 -   There is also a [mainstream content
-    item](https://www.gov.uk/basic-paye-tools) which should be updated
-    to link to the full downloads of the new versions
+    item](https://www.gov.uk/basic-paye-tools) and a [Welsh
+    translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
+    which should be updated to link to the full downloads of the new versions
 
 ## Where are the files?
 
@@ -93,9 +94,10 @@ The files are:
 
 7.  When Aspire or one of the other suppliers replies that the file
     works fine, the new edition of the [mainstream content
-    item](https://www.gov.uk/basic-paye-tools) can be prepped by the
-    content team with the new links and version number, ready to publish
-    at the launch time.
+    item](https://www.gov.uk/basic-paye-tools) and [Welsh
+    translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
+    can be prepped by the content team with the new links and version
+    number, ready to publish at the launch time.
 8.  When the launch time comes (which should be specified in the Zendesk
     ticket), copy the test file over the production file using the
     following commands (the `mv` command can't be used because it
