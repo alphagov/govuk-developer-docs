@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-11
 review_in: 6 months
 ---
 
-# Manage signon accounts
-
 ## Accounts in different environments
 
 User accounts from production are synced to staging every morning, so any

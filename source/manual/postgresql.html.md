@@ -9,8 +9,6 @@ last_reviewed_on: 2017-02-18
 review_in: 6 months
 ---
 
-# PostgreSQL backups
-
 ## autopostgresqlbackup
 
 This is how PostgreSQL backups have traditionally been taken on the GOV.UK Infrastructure.

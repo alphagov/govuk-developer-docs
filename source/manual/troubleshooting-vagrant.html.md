@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-25
 review_in: 6 months
 ---
 
-# Troubleshooting Vagrant
-
 ## loading the Vagrantfile
 
 If you're encountering errors loading the `Vagrantfile`, check you're running the right version:

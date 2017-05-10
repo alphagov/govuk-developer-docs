@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-20
 review_in: 6 months
 ---
 
-# MySQL: replication lag
-
 Checks the value of `Seconds_Behind_Master` to a threshold. As described
 in the MySQL documentation:
 

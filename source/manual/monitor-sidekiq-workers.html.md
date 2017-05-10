@@ -8,8 +8,6 @@ last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 
-# Monitor Sidekiq queues for your application
-
 [Sidekiq] comes with a web application, [`Sidekiq::Web`](https://github.com/mperham/sidekiq/wiki/Monitoring) that can display the current state of a [Sidekiq] installation. We have [configured this](https://github.com/alphagov/sidekiq-monitoring) to monitor multiple [Sidekiq] configurations used throughout [GOV.UK].
 
 We have restricted public access as the Web UI allows modifying the state of [Sidekiq] queues.

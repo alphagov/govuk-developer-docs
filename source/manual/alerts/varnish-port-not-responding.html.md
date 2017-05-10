@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-16
 review_in: 6 months
 ---
 
-# Varnish port not responding
-
 Under high load, it is possible that the Varnish child process which
 handles connections will timeout on the healthcheck from the parent. If
 that happens and the replacement child process also fails to start,

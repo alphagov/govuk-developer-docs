@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-08
 review_in: 6 months
 ---
 
-# defined cpu type does not match
-
 We have two types of VM hosts that use either Intel or AMD processors.
 Some VMs have significant performance degradation when on the AMD CPUs
 and thus should live on the more performant Intel processor-based hosts.

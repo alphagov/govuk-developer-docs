@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-01
 review_in: 6 months
 ---
 
-# Elasticsearch cluster health
-
 Elasticsearch reports cluster health as one of three possible states, based on
 the state of its primary and replica shards.
 

@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-17
 review_in: 6 months
 ---
 
-# Pingdom homepage check
-
 Pingdom monitors externally (from \~10 locations in Europe and America)
 that it can connect to <https://www.gov.uk/>. If this fails it could
 indicate that DNS for www.gov.uk is not working, our CDN has failed or

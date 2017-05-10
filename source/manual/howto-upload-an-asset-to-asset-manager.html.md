@@ -9,14 +9,10 @@ last_reviewed_on: 2017-03-23
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/howto-upload-an-asset-to-asset-manager.md)
 
-
-# Upload an asset to asset-manager
 
 Some publishing apps such as Mainstream Publisher do not provide the facility for editors to upload
 assets such as images and PDFs. In these rare cases, we can upload assets to asset-manager manually

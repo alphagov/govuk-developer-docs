@@ -8,8 +8,6 @@ last_reviewed_on: 2017-07-01
 review_in: 6 months
 ---
 
-# Test & build a project on Jenkins CI
-
 Application tests run in a continuous integration (CI) environment.
 
 https://ci.integration.publishing.service.gov.uk/

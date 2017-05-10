@@ -9,14 +9,10 @@ last_reviewed_on: 2017-03-08
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/add_a_passive_check_to_jenkins.md)
 
-
-# Add an Icinga passive check to a Jenkins job
 
 If you would like Icinga to raise an alert when a Jenkins job has not completed
 successfully in a while, you can add an Icinga passive check to the Jenkins

@@ -9,8 +9,6 @@ last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 
-# Bouncer
-
 [Bouncer](https://github.com/alphagov/bouncer) is a Ruby/Rack web app that receives requests for the URLs of government sites that have either been transitioned to GOV.UK, archived or removed. It queries the database it shares with Transition and replies with a
 redirect, an archive page or a 404 page. It also handles `/robots.txt`
 and `/sitemap.xml` requests.

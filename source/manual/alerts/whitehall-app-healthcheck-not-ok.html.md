@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-24
 review_in: 6 months
 ---
 
-# whitehall app health check not ok
-
 If the message is a warning about `scheduled_queue`, eg '850 scheduled
 edition(s); 840 job(s) queued', this alert means that the number of
 editions in the database which are scheduled to be published in the

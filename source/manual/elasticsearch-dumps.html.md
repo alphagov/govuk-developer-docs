@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-06
 review_in: 6 months
 ---
 
-# Elasticsearch: dump and restore indices
-
 ## Creating a dump
 
 Sometimes you may need to take a backup of Elasticsearch before a

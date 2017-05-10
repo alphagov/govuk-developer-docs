@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-31
 review_in: 6 months
 ---
 
-# Update Pingdom IP Ranges
-
 There is a task that runs daily of "Check_Pingdom_IP_Ranges" which checks
 whether the IP addresses we have stored for Pingdom match the ones they
 are actually using.

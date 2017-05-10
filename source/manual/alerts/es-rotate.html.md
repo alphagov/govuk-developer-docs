@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-05
 review_in: 6 months
 ---
 
-# es-rotate
-
 This alert triggers when the es-rotate hasn't completed successfully.
 
 es-rotate is part of [es-tools](https://github.com/alphagov/estools).

@@ -10,8 +10,6 @@ review_in: 6 months
 ---
 
 
-# Upload HMRC PAYE files
-
 ## Preamble
 
 HMRC have a [desktop application to submit

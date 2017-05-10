@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-14
 review_in: 6 months
 ---
 
-# Monitoring screens
-
 Most teams in GOV.UK have screens set up to show data about pull requests and
 releases.
 

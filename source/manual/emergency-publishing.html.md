@@ -9,8 +9,6 @@ last_reviewed_on: 2017-02-17
 review_in: 6 months
 ---
 
-# Deploy emergency publishing banners
-
 There are three types of events that would lead GOV.UK to add an emergency banner to the top of each page on the web site. Each type of event is detailed below.
 
 The GOV.UK on-call escalations contact will tell you when you need to publish an emergency banner. They will ensure that the event is legitimate and provide you with the text for the emergency banner.
