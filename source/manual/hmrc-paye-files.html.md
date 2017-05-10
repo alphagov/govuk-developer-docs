@@ -83,16 +83,20 @@ The files are:
 
         scp realtimepayetools-update-v14.xml asset-master-1.backend.production:/mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml
 
-5.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
+5.  Purge the cache for the test file:
+
+        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
+
+6.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
         https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
 
-6.  When Aspire or one of the other suppliers replies that the file
+7.  When Aspire or one of the other suppliers replies that the file
     works fine, the new edition of the [mainstream content
     item](https://www.gov.uk/basic-paye-tools) can be prepped by the
     content team with the new links and version number, ready to publish
     at the launch time.
-7.  When the launch time comes (which should be specified in the Zendesk
+8.  When the launch time comes (which should be specified in the Zendesk
     ticket), copy the test file over the production file using the
     following commands (the `mv` command can't be used because it
     doesn't update the modified time of the file):
@@ -100,9 +104,9 @@ The files are:
         ssh asset-master-1.backend.production
         cat /mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml | sudo -u assets tee /mnt/uploads/whitehall/clean/uploaded/hmrc/realtimepayetools-update-v14.xml
 
-8.  Purge the cache, which will otherwise take up to 12 hours to
+9.  Purge the cache, which will otherwise take up to 12 hours to
     expire:
 
-        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
+        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-v14.xml
 
-9.  Update and resolve the Zendesk ticket
+10.  Update and resolve the Zendesk ticket
