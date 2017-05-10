@@ -100,7 +100,7 @@ The files are:
         ssh asset-master-1.backend.production
         cat /mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml | sudo -u assets tee /mnt/uploads/whitehall/clean/uploaded/hmrc/realtimepayetools-update-v14.xml
 
-8.  Purge the cache, which will otherwise take up the 12 hours to
+8.  Purge the cache, which will otherwise take up to 12 hours to
     expire:
 
         fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
