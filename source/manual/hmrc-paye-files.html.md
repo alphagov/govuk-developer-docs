@@ -72,6 +72,10 @@ The files are:
 
 ## The process for uploading new versions of the app
 
+The manifest file version v14 is given as an example. You should confirm the
+version number to use with HMRC because it must match the URL hard-coded into
+the previous version of the software.
+
 1.  HMRC submit a ticket via Zendesk
     ([example](https://govuk.zendesk.com/tickets/771694))
 2.  Download all zip files and XML file in the ticket
