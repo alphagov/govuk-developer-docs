@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-05
 review_in: 6 months
 ---
 
-# Logs are not being received from the CDN
-
 Sometimes, we stop receiving either GOV.UK or Bouncer logs from Fastly
 to logs-cdn-1.management. We run Rsyslog on this machine, and Fastly
 send us logs using Syslog on their side to a port we have previously

@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-06
 review_in: 6 months
 ---
 
-# 'duplicate SSH host keys'
-
 This check indicates that more than one machine in an environment is
 using the same SSH host key. This is bad because it means that we can't
 verify the authenticity of a particular host and it could be used in a

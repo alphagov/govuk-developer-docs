@@ -9,14 +9,10 @@ last_reviewed_on: 2016-11-18
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/resync-mongo-db.md)
 
-
-# Resync a Mongo database
 
 To
 [resync](https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/)

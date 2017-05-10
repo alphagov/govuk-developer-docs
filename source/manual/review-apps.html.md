@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-20
 review_in: 6 months
 ---
 
-# Set up Heroku review apps for pull requests
-
 [Review apps](https://devcenter.heroku.com/articles/github-integration-review-apps)
 allow us to automatically deploy application changes into a brand
 new Heroku app so that each Pull Request reviewer has a chance to see how it

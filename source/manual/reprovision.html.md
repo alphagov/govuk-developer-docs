@@ -9,14 +9,10 @@ last_reviewed_on: 2017-01-29
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/reprovision.md)
 
-
-# Reprovision a machine in vCloud Director
 
 Make sure you are aware what the consequences will be of removing a
 machine from the rotation and consider who needs to be aware of

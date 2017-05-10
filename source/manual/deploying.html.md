@@ -9,8 +9,6 @@ last_reviewed_on: 2017-02-02
 review_in: 6 months
 ---
 
-# Deploy an application to GOV.UK
-
 ## Introduction
 
 2nd line is responsible for:

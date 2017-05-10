@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-01
 review_in: 6 months
 ---
 
-# Run an A/B test
-
 ## 1. Overview
 
 There are two ways of doing A/B testing on GOV.UK. The first uses Javascript to change the contents on a page. The second uses our CDN to allow frontend applications to render different pages.

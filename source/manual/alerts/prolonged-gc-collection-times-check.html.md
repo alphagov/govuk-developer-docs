@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-11
 review_in: 6 months
 ---
 
-# 'Prolonged GC collection times' Check
-
 ### What is 'Prolonged GC collection times' check?
 
 This checks when the elasticsearch JVM garbage collection times (in

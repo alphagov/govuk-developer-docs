@@ -9,8 +9,6 @@ last_reviewed_on: 2017-02-25
 review_in: 6 months
 ---
 
-# RabbitMQ
-
 ## How we run RabbitMQ
 
 We run a RabbitMQ cluster, which is used to trigger events when
@@ -31,8 +29,6 @@ Heartbeat messages are sent every minute by cron. Currently, we only
 send heartbeat messages to one exchange: the `published_documents`
 exchange. These heartbeats are sent via a rake task in the
 `content-store` app.
-
-
 ## Connecting to the RabbitMQ web control panel
 
 1.  Create an SSH tunnel to access the web control panel

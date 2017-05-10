@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-09
 review_in: 6 months
 ---
 
-# Create a page in this manual
-
 ## Create a page
 
 1. Add a page in Github to the [/source/manual](https://github.com/alphagov/govuk-developer-docs/tree/master/source/manual) directory.
@@ -43,8 +41,6 @@ Bad examples:
 > Data sync
 
 > Ruby (too vague: what about Ruby?)
-
-
 Don't use:
 
 - "how to" at the start
@@ -85,8 +81,6 @@ Don't say:
 > Data can be exported to CSV.
 
 ### Acronyms
-
-
 Spell out acronyms the first time they're used on the page unless they're very widely known.
 
 Examples of widely known acronyms:

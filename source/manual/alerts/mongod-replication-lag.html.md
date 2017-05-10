@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-27
 review_in: 6 months
 ---
 
-# 'mongod replication lag'
-
 ### Investigating the problem
 
 There is a fabric task to show various mongo replication status

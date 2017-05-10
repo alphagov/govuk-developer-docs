@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-04
 review_in: 6 months
 ---
 
-# "nginx 5xx rate too high" for many apps/boxes
-
 If the message is "UNKNOWN: INTERNAL ERROR: RuntimeError: no valid
 datapoints" or "UNKNOWN: INTERNAL ERROR: RuntimeError: no data returned
 for target", it probably means that statsd or collectd stopped

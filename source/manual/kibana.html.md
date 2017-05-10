@@ -9,8 +9,6 @@ last_reviewed_on: 2017-02-18
 review_in: 6 months
 ---
 
-# Useful Kibana queries
-
 All logs for GOV.UK are collected in Kibana:
 
 - <https://kibana.publishing.service.gov.uk>

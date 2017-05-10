@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-01
 review_in: 6 months
 ---
 
-# Create a GPG key
-
 ## Prerequisites
 
 Install gpg if you don't already have it. [GPGtools](https://gpgtools.org/) is recommended if you are on a Mac.

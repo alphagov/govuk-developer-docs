@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-08
 review_in: 6 months
 ---
 
-# Pingdom Bouncer canary check
-
 Bouncer has a canary route at <https://www.direct.gov.uk/__canary__>
 which queries all the database tables which Bouncer uses to serve all
 responses to users and checks that those tables are not empty. The

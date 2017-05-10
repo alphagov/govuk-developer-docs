@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-30
 review_in: 6 months
 ---
 
-# PagerDuty drill
-
 Every week we test PagerDuty to make sure it can phone to alert us to
 any issues.
 

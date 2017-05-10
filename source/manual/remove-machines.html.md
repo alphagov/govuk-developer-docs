@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-22
 review_in: 6 months
 ---
 
-# Remove a machine
-
 If you need to remove/decommission individual machines or a class of machines,
 there are several steps you need to go through.
 

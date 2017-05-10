@@ -9,14 +9,10 @@ last_reviewed_on: 2017-03-10
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/alerts/github-enterprise-connectivity.md)
 
-
-# GitHub Enterprise connectivity
 
 Some machines have a VPN connection to the GDS office so that they can
 clone repositories from GitHub Enterprise.

@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-06
 review_in: 6 months
 ---
 
-# Onsite backups
-
 The backup machine (e.g. backup-1.management.integration) collects
 backups from the various data stores.
 

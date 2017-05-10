@@ -8,8 +8,6 @@ last_reviewed_on: 2017-5-02
 review_in: 6 months
 ---
 
-# Sidekiq
-
 Many of our applications use
 [Sidekiq](https://github.com/mperham/sidekiq) for background job
 processing.

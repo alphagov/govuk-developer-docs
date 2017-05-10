@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-26
 review_in: 6 months
 ---
 
-# Check for spelling suggestions failed
-
 Indicates that the Jenkins [search_test_spelling_suggestions healthcheck job]
 (https://deploy.publishing.service.gov.uk/job/search_test_spelling_suggestions/)
 has failed.

@@ -9,8 +9,6 @@ last_reviewed_on: 2017-01-08
 review_in: 6 months
 ---
 
-# Attachment backups
-
 We sync all the data to both an Amazon S3 bucket (using [Duplicity], from
 asset-slave-1.backend) and [S3] (using [s3cmd], from asset-slave-2.backend).
 

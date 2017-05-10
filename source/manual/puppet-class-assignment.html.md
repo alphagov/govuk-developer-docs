@@ -8,14 +8,10 @@ last_reviewed_on: 2017-02-22
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/puppet-class-assignment.md)
 
-
-# Puppet Class Assignment
 
 ## High level overview
 

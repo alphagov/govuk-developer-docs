@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-17
 review_in: 6 months
 ---
 
-# 'Outstanding security updates'
-
 Most security updates should be automagically applied overnight by
 [unattended-upgrades](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package)
 and our Nagios check accounts for that by delaying alerts for up to

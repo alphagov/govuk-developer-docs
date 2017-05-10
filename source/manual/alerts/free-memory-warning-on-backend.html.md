@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-11
 review_in: 6 months
 ---
 
-# Free memory warning on backend
-
 ### Background
 
 This is often caused by an application slowly leaking memory, which

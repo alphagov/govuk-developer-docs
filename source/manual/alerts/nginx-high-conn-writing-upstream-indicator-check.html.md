@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-06
 review_in: 6 months
 ---
 
-# 'nginx high conn writing -- upstream indicator' Check
-
 ### What is the 'nginx high conn writing -- upstream indicator' check?
 
 -   If you see this alert it may be that we are having or about to have

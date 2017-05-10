@@ -9,8 +9,6 @@ last_reviewed_on: 2017-02-04
 review_in: 6 months
 ---
 
-# MySQL backups
-
 ## automysqlbackup
 
 This is how MySQL backups have traditionally been taken on the GOV.UK Infrastructure.
