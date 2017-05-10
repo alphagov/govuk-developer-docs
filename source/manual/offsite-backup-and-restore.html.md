@@ -32,7 +32,7 @@ respectively (the same private key is used for all offsite backups).
 ## Rotating offsite backups GPG keys
 
 Please see
-<https://github.gds/pages/gds/opsmanual/infrastructure/howto/rotate-offsite-backup-gpg-keys>
+<https://docs.publishing.service.gov.uk/manual/rotate-offsite-backup-gpg-keys.html>
 
 ## Restoring offsite backups of a datastore
 
