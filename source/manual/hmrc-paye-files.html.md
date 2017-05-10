@@ -5,15 +5,9 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/hmrc-paye-files.md"
-last_reviewed_on: 2016-11-22
+last_reviewed_on: 2017-05-10
 review_in: 6 months
 ---
-
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/hmrc-paye-files.md)
 
 
 # Upload HMRC PAYE files
@@ -21,8 +15,8 @@ It hasn't been reviewed for accuracy yet.
 ## Preamble
 
 HMRC have a [desktop application to submit
-PAYE](http://www.hmrc.gov.uk/payerti/payroll/bpt/paye-tools.htm). This
-is available on Windows, Linux, and OS X.
+PAYE](https://www.gov.uk/basic-paye-tools). This is available on Windows,
+Linux, and OS X.
 
 As part of the initial tranche of ministerial department migration their
 upload site was switched off. However, we don't currently allow `exe`
@@ -45,8 +39,9 @@ The way the updates work:
 -   The software downloads the relevant binaries from our asset host and
     updates itself
 -   There is also a [mainstream content
-    item](https://www.gov.uk/basic-paye-tools) which should be updated
-    to link to the full downloads of the new versions
+    item](https://www.gov.uk/basic-paye-tools) and a [Welsh
+    translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
+    which should be updated to link to the full downloads of the new versions
 
 ## Where are the files?
 
@@ -71,6 +66,10 @@ The files are:
 
 ## The process for uploading new versions of the app
 
+The manifest file version v14 is given as an example. You should confirm the
+version number to use with HMRC because it must match the URL hard-coded into
+the previous version of the software.
+
 1.  HMRC submit a ticket via Zendesk
     ([example](https://govuk.zendesk.com/tickets/771694))
 2.  Download all zip files and XML file in the ticket
@@ -83,16 +82,21 @@ The files are:
 
         scp realtimepayetools-update-v14.xml asset-master-1.backend.production:/mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml
 
-5.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
+5.  Purge the cache for the test file:
+
+        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
+
+6.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
         https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
 
-6.  When Aspire or one of the other suppliers replies that the file
+7.  When Aspire or one of the other suppliers replies that the file
     works fine, the new edition of the [mainstream content
-    item](https://www.gov.uk/basic-paye-tools) can be prepped by the
-    content team with the new links and version number, ready to publish
-    at the launch time.
-7.  When the launch time comes (which should be specified in the Zendesk
+    item](https://www.gov.uk/basic-paye-tools) and [Welsh
+    translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
+    can be prepped by the content team with the new links and version
+    number, ready to publish at the launch time.
+8.  When the launch time comes (which should be specified in the Zendesk
     ticket), copy the test file over the production file using the
     following commands (the `mv` command can't be used because it
     doesn't update the modified time of the file):
@@ -100,9 +104,9 @@ The files are:
         ssh asset-master-1.backend.production
         cat /mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml | sudo -u assets tee /mnt/uploads/whitehall/clean/uploaded/hmrc/realtimepayetools-update-v14.xml
 
-8.  Purge the cache, which will otherwise take up the 12 hours to
+9.  Purge the cache, which will otherwise take up to 12 hours to
     expire:
 
-        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
+        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-v14.xml
 
-9.  Update and resolve the Zendesk ticket
+10.  Update and resolve the Zendesk ticket
