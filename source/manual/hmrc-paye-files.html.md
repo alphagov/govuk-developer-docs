@@ -5,15 +5,9 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/hmrc-paye-files.md"
-last_reviewed_on: 2016-11-22
+last_reviewed_on: 2017-05-10
 review_in: 6 months
 ---
-
-
-
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/hmrc-paye-files.md)
 
 
 # Upload HMRC PAYE files
