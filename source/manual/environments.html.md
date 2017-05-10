@@ -14,8 +14,6 @@ It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/architecture/environments.md)
 
 
-# GOV.UK's environments (integration, staging, production)
-
 GOV.UK has several environments with different purposes.
 
 ## Continuous integration (CI)

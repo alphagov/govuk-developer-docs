@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-11
 review_in: 6 months
 ---
 
-# VPN down
-
 We use VPNs to connect between datacentres. Please see
 GOV.UK and Virtual
 Private Networks (VPNs) &lt;/infrastructure/vpn&gt; for details of the

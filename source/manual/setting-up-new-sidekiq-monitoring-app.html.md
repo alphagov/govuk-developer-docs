@@ -9,14 +9,10 @@ last_reviewed_on: 2017-02-28
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.md)
 
-
-# Add sidekiq-monitoring to your application
 
 [Sidekiq monitoring
 applications](https://github.com/mperham/sidekiq/wiki/Monitoring) are

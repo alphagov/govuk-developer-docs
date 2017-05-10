@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-27
 review_in: 6 months
 ---
 
-# rkhunter warnings
-
 rkhunter (Rootkit Hunter) is software installed on our machines to
 detect potential rootkits and exploits. rkhunter runs every morning
 across our machines.

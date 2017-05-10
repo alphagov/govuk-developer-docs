@@ -9,14 +9,10 @@ last_reviewed_on: 2017-03-12
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setting-up-new-mirror.md)
 
-
-# Set up a new mirror for GOV.UK
 
 We mirror GOV.UK on a number of providers which run independently of
 each other in order to ensure availability and integrity. In this

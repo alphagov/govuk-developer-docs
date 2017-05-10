@@ -8,8 +8,6 @@ last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 
-# Jenkins CI infrastructure
-
 ## Introduction
 
 Our CI environment provides the infrastructure and services to cover the

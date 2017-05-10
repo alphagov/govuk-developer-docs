@@ -9,14 +9,10 @@ last_reviewed_on: 2017-03-16
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/alerts/gor.md)
 
-
-# Gor
 
 [Gor][gor-gh] is an open source tool for replaying HTTP traffic. We use it to
 replay traffic from production to staging to give us greater confidence that

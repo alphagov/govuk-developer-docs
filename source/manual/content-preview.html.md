@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-04
 review_in: 6 months
 ---
 
-# How the draft stack works
-
 ## Overview
 
 The Content Preview site, also known as Draft GOV.UK, is intended to be

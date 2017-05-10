@@ -9,14 +9,10 @@ last_reviewed_on: 2017-01-30
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/create-a-new-open-source-project.md)
 
-
-# Create a new open source project
 
 We try to [code in the
 open](https://gds.blog.gov.uk/2012/10/12/coding-in-the-open/) by default

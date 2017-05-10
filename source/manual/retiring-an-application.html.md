@@ -8,8 +8,6 @@ last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 
-# Retire an application
-
 To remove an application from our infrastructure take the following
 steps:
 

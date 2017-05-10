@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-04
 review_in: 6 months
 ---
 
-# MongoDB backups
-
 # automongodbbackup
 
 This is how MongoDB backups have traditionally been taken on the GOV.UK Infrastructure.

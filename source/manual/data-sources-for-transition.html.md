@@ -9,8 +9,6 @@ last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 
-# Data sources for Transition
-
 Site configuration is automatically imported on an hourly basis via
 [deploy.publishing](https://deploy.publishing.service.gov.uk/job/Transition_load_site_config/) from
 [transition-config](https://github.com/alphagov/transition-config).

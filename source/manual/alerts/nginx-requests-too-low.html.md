@@ -8,8 +8,6 @@ last_reviewed_on: 2016-11-20
 review_in: 6 months
 ---
 
-# 'nginx requests too low'
-
 -   An Icinga check that alerts when the number of Nginx requests drops
     below a critical threshold.
 -   We have seen misconfigured firewall configs on our vSE.

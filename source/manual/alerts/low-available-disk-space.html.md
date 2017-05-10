@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-16
 review_in: 6 months
 ---
 
-# Low available disk space
-
 ### Low available disk space on root
 
 You can try clearing out the APT cache:

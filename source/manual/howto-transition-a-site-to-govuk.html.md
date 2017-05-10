@@ -10,14 +10,10 @@ last_reviewed_on: 2017-01-26
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/howto-transition-a-site-to-govuk.md)
 
-
-# Transition a site to GOV.UK
 
 When a site is going to move to GOV.UK, there are broadly two ways that
 the old site can be redirected. They can do it themselves, or they can

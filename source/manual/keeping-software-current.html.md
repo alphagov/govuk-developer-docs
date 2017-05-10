@@ -8,8 +8,6 @@ last_reviewed_on: 2017-01-30
 review_in: 6 months
 ---
 
-# Keeping software current
-
 One of our core values is to use secure and up to date software. This document lays out the recommendations for keeping our Ruby on Rails software current.
 
 ## Introduction

@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-09
 review_in: 6 months
 ---
 
-# Review a page in this manual
-
 How to review pages in this manual.
 
 ## Questions to ask

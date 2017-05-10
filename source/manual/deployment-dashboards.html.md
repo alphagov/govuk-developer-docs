@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-27
 review_in: 6 months
 ---
 
-# Monitor your app during deployment
-
 ## Deployment Dashboards
 
 There are a number of applications with a dashboard showing useful information for the deployment process.

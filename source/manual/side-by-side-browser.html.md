@@ -9,8 +9,6 @@ last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---
 
-# Side by Side Browser
-
 The side-by-side browser is a tool to preview redirections for sites that are
 being transitioned to GOV.UK.
 

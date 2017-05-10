@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-01
 review_in: 6 months
 ---
 
-# Our content delivery network (CDN)
-
 GOV.UK uses Fastly as a CDN. Citizen users aren't accessing GOV.UK
 servers directly, they connect via the CDN. This is better because:
 

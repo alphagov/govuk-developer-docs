@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-28
 review_in: 6 months
 ---
 
-# MongoDB rollback
-
 ### What is a rollback
 
 Explanation from the [MongoDB

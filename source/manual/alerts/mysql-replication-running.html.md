@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-21
 review_in: 6 months
 ---
 
-# MySQL: replication running
-
 Checks whether `Slave_IO_Running` and `Slave_SQL_Running` both return
 `Yes` to indicate that replication is currently active. As described in
 the MySQL documentation:

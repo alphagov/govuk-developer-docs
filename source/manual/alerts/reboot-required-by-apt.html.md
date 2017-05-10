@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-12
 review_in: 6 months
 ---
 
-# 'reboot required by apt'
-
 This check indicates that some packages have been installed but cannot
 be activated without rebooting the machines.
 

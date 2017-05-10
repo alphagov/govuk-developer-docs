@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-09
 review_in: 6 months
 ---
 
-# Graphite and deployment dashboards
-
 ## How Graphite is used with deployment dashboards
 
 Graphite is a data storage application for time stream data that is used to store data performance data, error counts and other statistics about gov.uk servers.

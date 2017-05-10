@@ -8,8 +8,6 @@ last_reviewed_on: 2017-02-18
 review_in: 6 months
 ---
 
-# 'high disk time'
-
 This alert tells us that reads and/or writes to disk are taking longer
 than expected. In most cases this is only informational; you may not
 need to take any action, but it may explain the cause for other alerts.

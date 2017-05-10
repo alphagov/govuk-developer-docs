@@ -7,8 +7,6 @@ section: Deployment
 last_reviewed_on: 2017-01-13
 review_in: 6 months
 ---
-# Handle encrypted hieradata
-
 [Hiera](https://docs.puppetlabs.com/hiera/1/) is a key/value lookup tool
 that we use for storing [Puppet](https://docs.puppetlabs.com/puppet/)
 configuration data. We use [Hiera eYAML

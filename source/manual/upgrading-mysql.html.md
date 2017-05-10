@@ -8,8 +8,6 @@ last_reviewed_on: 2017-04-03
 review_in: 6 months
 ---
 
-# Upgrading mysql
-
 Upgrading mysql will cause 500 errors on sites as the master and slave
 machines are restarted, so this procedure needs to be done at a suitable
 time on production - i.e outside of core business hours (9:00 - 18:00

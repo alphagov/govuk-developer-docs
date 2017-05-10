@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-01
 review_in: 6 months
 ---
 
-# Where to find what documentation?
-
 ## Individual repos
 
 - GOV.UK projects on GitHub should [conform to the README styleguide][readme]

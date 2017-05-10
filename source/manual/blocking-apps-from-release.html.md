@@ -9,13 +9,9 @@ last_reviewed_on: 2017-04-28
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/releasing-software/blocking-apps-from-release.md)
 
-
-# Block apps from being deployed
 
 Sometimes the master branch of an app might contain a feature which cannot
 be released to production. This is usually because it is coupled to the release of

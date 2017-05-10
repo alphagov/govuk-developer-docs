@@ -8,8 +8,6 @@ last_reviewed_on: 2017-03-04
 review_in: 6 months
 ---
 
-# 'publisher app health check not ok'
-
 If the message is a warning about `scheduled_queue`, eg '71 scheduled
 edition(s); 3 item(s) queued', this alert means that the number of
 editions in the database which are scheduled to be published in the

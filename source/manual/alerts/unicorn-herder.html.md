@@ -8,8 +8,6 @@ last_reviewed_on: 2016-12-30
 review_in: 6 months
 ---
 
-# Unicorn Herder
-
 ### 'app unicornherder running'
 
 This alert means the Unicorn Herder process has disappeared for the

@@ -9,14 +9,10 @@ last_reviewed_on: 2016-12-27
 review_in: 6 months
 ---
 
-
-
 > **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
 [View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/alerts/virus-scanning.md)
 
-
-# Fix stuck virus scanning
 
 Documents uploaded to asset-master are scanned asynchronously through
 a virus scanner, as explained in <https://github.gds/pages/gds/opsmanual/2nd-line/applications/whitehall.html?highlight=whitehall#virus-scanning-of-uploaded-files>
