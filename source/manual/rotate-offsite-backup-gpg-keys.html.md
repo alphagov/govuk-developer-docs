@@ -9,9 +9,9 @@ last_reviewed_on: 2016-12-25
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/infrastructure/howto/rotate-offsite-backup-gpg-keys.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/rotate-offsite-backup-gpg-keys.md)
 
 
 To encrypt our offsite backups, we use GPG keys which are valid for a year. For

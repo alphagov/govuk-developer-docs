@@ -3,9 +3,9 @@ RSpec.describe Snippet do
     it 'generates a proper snippet without the opsmanual warning' do
       html = <<~html
         <blockquote>
-        <p><strong>This page was imported from <a href="https://github.digital.cabinet-office.gov.uk/gds/opsmanual">the opsmanual on GitHub Enterprise</a></strong>.
+        <p><strong>This page was imported from <a href="https://github.com/alphagov/govuk-legacy-opsmanual">the opsmanual on GitHub Enterprise</a></strong>.
         It hasn&rsquo;t been reviewed for accuracy yet.
-        <a href="https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/2nd-line/howto-manually-remove-assets.md">View history in old opsmanual</a></p>
+        <a href="https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/howto-manually-remove-assets.md">View history in old opsmanual</a></p>
         </blockquote>
         <h1 id='remove-an-asset'>Remove an asset</h1>
         <p>If you need to remove an asset manually from <code>assets.publishing.sevice.gov.uk</code>,
