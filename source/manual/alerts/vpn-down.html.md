@@ -16,7 +16,7 @@ VPNs we have and a description of the impact of each VPN failing.
 If a VPN is down, it is likely caused by a network issue due to a vendor
 incident or our own misconfiguration. If no changes have been made
 recently to our [network
-configuration](https://github.gds/gds/govuk-provisioning), the best
+configuration](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning), the best
 action is to contact the vendors involved. If the VPN connects one
 vendor to another, you should open a ticket with each vendor as the
 problem could lie on either side.

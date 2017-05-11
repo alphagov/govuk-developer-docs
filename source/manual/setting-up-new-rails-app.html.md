@@ -9,9 +9,9 @@ last_reviewed_on: 2017-01-16
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setting-up-new-rails-app.md)
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/infrastructure/howto/setting-up-new-rails-app.md)
 
 
 Getting a new Rails app configured and deployed to the integration and
@@ -171,7 +171,7 @@ To configure your app so users (or API clients) can authenticate:
     GDS-SSO configuration in the `initializers_by_organisation`
     directory for your environment, as described above. Example:
     [Maslow's SSO
-    config](https://github.gds/gds/alphagov-deployment/blob/ceaca2a60cab75eaaab86291f4768faaa9e3d2ca/maslow/initializers_by_organisation/preview/gds-sso.rb).
+    config](https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment/blob/ceaca2a60cab75eaaab86291f4768faaa9e3d2ca/maslow/initializers_by_organisation/preview/gds-sso.rb).
 
 To configure your app so it can talk to an existing API application:
 
@@ -185,7 +185,7 @@ To configure your app so it can talk to an existing API application:
     adapters](https://github.com/alphagov/gds-api-adapters) client
     configuration in the `initializers_by_organisation` directory for
     your environment. Example: [Maslow's API
-    config](https://github.gds/gds/alphagov-deployment/blob/ceaca2a60cab75eaaab86291f4768faaa9e3d2ca/maslow/initializers_by_organisation/preview/api_client_credentials.rb).
+    config](https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment/blob/ceaca2a60cab75eaaab86291f4768faaa9e3d2ca/maslow/initializers_by_organisation/preview/api_client_credentials.rb).
 
 You need separate IDs, secrets and tokens for preview and
 staging/production, but staging and production should use the same keys,

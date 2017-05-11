@@ -117,12 +117,12 @@ our jobs.
         -   Untick 'Manage hooks'
         -   Click 'Test connection' to confirm the settings
     -   GitHub -\> Add GitHub Server
-        -   API URL: 'https://github.gds/api/v3/'
+        -   API URL: 'https://github.digital.cabinet-office.gov.uk/api/v3/'
         -   Credentials: select 'GitHub Enterprise token for govukjenkinsci'
         -   Untick 'Manage hooks'
         -   Click 'Test connection' to confirm the settings
     -   GitHub Enterprise Servers -\> Add
-        -   API endpoint: 'https://github.gds/api/v3/'
+        -   API endpoint: 'https://github.digital.cabinet-office.gov.uk/api/v3/'
         -   Name: 'GDS GitHub Enterprise'
 
 With this configuration, in our jobs we can choose between 'GitHub' and 'GDS GitHub Enterprise' API endpoints to

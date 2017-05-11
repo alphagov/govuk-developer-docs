@@ -9,9 +9,9 @@ last_reviewed_on: 2017-03-12
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setting-up-new-mirror.md)
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/infrastructure/howto/setting-up-new-mirror.md)
 
 
 We mirror GOV.UK on a number of providers which run independently of
@@ -57,12 +57,12 @@ that translates the JSON provided by
 Finally, this YAML can be supplied to vCloud launcher to create the
 machines in vCloud.
 
-Firstly, use [vcloud-walker](https://github.gds/gds/vcloud-tools) to
+Firstly, use [vcloud-walker](https://github.digital.cabinet-office.gov.uk/gds/vcloud-tools) to
 walk an existing mirror. Edit the output such that the only two vApps
 defined in the output are those of the mirrors, as we are not interested
 in launching other entities within the vDC. Find the generate\_input.rb
 script in the
-[govuk-provisioning](https://github.gds/gds/govuk-provisioning) repo,
+[govuk-provisioning](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning) repo,
 and invoke it as follows:
 
 ``` {.sourceCode .}
@@ -76,14 +76,14 @@ ruby generate_input.rb -i {$input_filename} -o {$output_filename} -
 > 'host-0'.
 
 With your shiny new YAML, you can now launch the vApps with
-[vcloud-launch](https://github.gds/gds/vcloud-launch) in the usual way.
+[vcloud-launch](https://github.digital.cabinet-office.gov.uk/gds/vcloud-launch) in the usual way.
 
 A working
-[example](https://github.gds/gds/govuk_mirror-deployment/tree/master/vcloud_box/carrenza)
+[example](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/tree/master/vcloud_box/carrenza)
 is available for Carrenza; the vApp definitions are contained in
-[govuk\_mirrors.yaml](https://github.gds/gds/govuk_mirror-deployment/blob/master/vcloud_box/carrenza/govuk_mirrors.yaml)
+[govuk\_mirrors.yaml](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/blob/master/vcloud_box/carrenza/govuk_mirrors.yaml)
 and these can be deployed using the
-[jenkins.sh](https://github.gds/gds/govuk_mirror-deployment/blob/master/vcloud_box/carrenza/jenkins.sh)
+[jenkins.sh](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/blob/master/vcloud_box/carrenza/jenkins.sh)
 script.
 
 > **note**
@@ -100,7 +100,7 @@ script.
 Your vDC network can be configured using the jenkins.sh bash script,
 which in turn runs vcloud-net-spinner to configure load balancing, NAT
 and firewall rules. An
-[example](https://github.gds/gds/govuk_mirror-deployment/tree/master/vcloud_net/carrenza)
+[example](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/tree/master/vcloud_net/carrenza)
 jenkins.sh script and its accompanying configuration files is available
 for Carrenza; we recommend using these as a template.
 
@@ -125,7 +125,7 @@ When modifying jenkins.sh, you will need two pieces of information:
 -   the Edge Gateway UUID
 -   the vDC UUID
 
-To obtain these, use [vcloud-walk](https:/github.gds/vcloud-walker) to
+To obtain these, use [vcloud-walk](https://github.digital.cabinet-office.gov.uk/gds/vcloud-walker) to
 walk the environment where the mirrors will be deployed.
 
 #### Obtaining the edge gateway UUID
@@ -194,7 +194,7 @@ the
 repository to those machines. This is done using a fabric script.
 
 In the
-[govuk\_mirror-deployment](https://github.gds/gds/govuk_mirror-deployment)
+[govuk\_mirror-deployment](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment)
 repository, open fabfile.py for editing.
 
 Find the lines below, assuming that you wish to use the development

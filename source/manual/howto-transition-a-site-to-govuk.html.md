@@ -10,9 +10,9 @@ last_reviewed_on: 2017-01-26
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/howto-transition-a-site-to-govuk.md)
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/2nd-line/howto-transition-a-site-to-govuk.md)
 
 
 When a site is going to move to GOV.UK, there are broadly two ways that

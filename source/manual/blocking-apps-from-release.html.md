@@ -9,8 +9,8 @@ last_reviewed_on: 2017-04-28
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/releasing-software/blocking-apps-from-release.md)
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/2nd-line/releasing-software/blocking-apps-from-release.md)
 
 
 Sometimes the master branch of an app might contain a feature which cannot
