@@ -45,7 +45,7 @@ The username is root. The password you can obtain from the deployment
 repo. Look for govuk\_rabbitmq::root\_password in the file for the
 relevant environment in:
 
-<https://github.gds/gds/deployment/tree/master/puppet/hieradata>
+<https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/puppet/hieradata>
 
 3.  Do your business
 4.  Tidy up

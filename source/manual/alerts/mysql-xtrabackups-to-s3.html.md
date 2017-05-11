@@ -13,7 +13,7 @@ performed using a nightly "base" backup and "incremental" backups which
 run every 15 minutes, which are linked to the base backup.
 
 [Further detail on the implementation can be found
-here](https://github.gds/pages/gds/opsmanual/infrastructure/backups/mysql.md)
+here](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/infrastructure/backups/mysql.md)
 
 ### MySQL Xtrabackup daily base push
 

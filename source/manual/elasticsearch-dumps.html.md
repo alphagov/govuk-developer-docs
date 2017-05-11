@@ -45,5 +45,5 @@ $ es_dump_restore http://localhost:9200/ <indexname> dumpfile.zip
 ```
 
 Given a directory of dumps named after their respective indices, you can
-use the [elasticsearch-restore.sh](https://github.gds/gds/env-sync-and-backup/blob/master/scripts/elasticsearch-restore.sh)
+use the [elasticsearch-restore.sh](https://github.digital.cabinet-office.gov.uk/gds/env-sync-and-backup/blob/master/scripts/elasticsearch-restore.sh)
 script to restore them.

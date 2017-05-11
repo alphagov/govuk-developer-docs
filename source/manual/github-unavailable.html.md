@@ -9,9 +9,9 @@ last_reviewed_on: 2016-12-18
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/releasing-software/github-unavailable.md)
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/2nd-line/releasing-software/github-unavailable.md)
 
 
 ## Public GitHub (application code)
@@ -24,7 +24,7 @@ GDS Internal IT host GitHub Enterprise which we can use to deploy from if public
 GitHub is unavailable.
 
 During a normal production application deployment the app code is pushed to the
-[`gds-production-backup`](https://github.gds/gds-production-backup/) organisation
+[`gds-production-backup`](https://github.digital.cabinet-office.gov.uk/gds-production-backup/) organisation
 on GitHub Enterprise.
 
 We copy to GitHub Enterprise after a production deployment so we know that we're

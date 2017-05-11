@@ -9,9 +9,9 @@ last_reviewed_on: 2016-12-16
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/redirecting-content-in-the-router.md)
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/infrastructure/howto/redirecting-content-in-the-router.md)
 
 
 Sometimes there is a need to manually redirect existing URLs to another
@@ -24,12 +24,12 @@ departments, usually for use with for campaign materials.
 
 ## Prerequisites
 
--   Check out the [router-data](https://github.gds/gds/router-data)
+-   Check out the [router-data](https://github.digital.cabinet-office.gov.uk/gds/router-data)
     repository
 
 ## Workflow
 
-1)  Follow the [README](https://github.gds/gds/router-data#router-data)
+1)  Follow the [README](https://github.digital.cabinet-office.gov.uk/gds/router-data#router-data)
     to add new redirects
 2)  Commit your changes to a feature branch
 3)  Send a pull request with your changes
@@ -50,7 +50,7 @@ to deploy your changes to production.
 Note that Jenkins runs validation checks on all redirects, both when
 creating a pull request and when merging the branch into master. Before
 deploying, check that a [release
-tag](https://github.gds/gds/router-data/releases) has been created,
+tag](https://github.digital.cabinet-office.gov.uk/gds/router-data/releases) has been created,
 otherwise your changes will not be deployed. If there is no release tag,
 then the checks did not complete successfully and you should look in
 Jenkins to see what failed.

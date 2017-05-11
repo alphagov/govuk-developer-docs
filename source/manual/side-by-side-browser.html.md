@@ -4,7 +4,7 @@ title: Side by Side Browser
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual:  "https://github.gds/pages/gds/opsmanual/infrastructure/side-by-side.html"
+old_path_in_opsmanual:  "https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/infrastructure/side-by-side.html"
 last_reviewed_on: 2017-05-03
 review_in: 6 months
 ---

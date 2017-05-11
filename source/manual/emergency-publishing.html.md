@@ -18,7 +18,7 @@ The GOV.UK on-call escalations contact will tell you what type of event it is; y
 If you need to publish the emergency banner out of hours, you will be
 instructed to do so either by the GOV.UK on-call escalations contact or the Head of GOV.UK.
 
-[Contact numbers for those people](https://github.gds/pages/gds/opsmanual/2nd-line/contact-numbers-in-case-of-incident.html) are in the opsmanual on GitHub enterprise.
+[Contact numbers for those people](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/contact-numbers-in-case-of-incident.html) are in the opsmanual on GitHub enterprise.
 
 ## Adding emergency publishing banners
 
@@ -124,7 +124,7 @@ fab $environment
 cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
 ```
 
-See [these instructions for more details](https://github.gds/pages/gds/opsmanual/2nd-line/cache-flush.html) on
+See [these instructions for more details](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/cache-flush.html) on
 purging the cache.
 
 3) Check that the emergency banner is visible when accessing the same pages as above but without a cache-bust string.

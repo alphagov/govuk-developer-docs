@@ -26,7 +26,7 @@ Most of the CDN config is versioned and scripted:
 
 - [Code that uses the Fastly API](https://github.com/alphagov/fastly-configure)
 - [Varnish configuration](https://github.com/alphagov/govuk-cdn-config/)
-- [Secrets](https://github.gds/gds/cdn-configs)
+- [Secrets](https://github.digital.cabinet-office.gov.uk/gds/cdn-configs)
 
 These are deployed to [staging][staging_cdn] and [production][production_cdn].
 There is no CDN in integration.
@@ -51,7 +51,7 @@ We use these IP addresses in 2 places:
   IP addresses (otherwise anyone would be able to purge the cache).
 
 [fastly_ips]: https://api.fastly.com/public-ip-list
-[firewall rules]: https://github.gds/gds/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
+[firewall rules]: https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
 [vcl_config]: https://github.com/alphagov/govuk-cdn-config/
 
 ## Banning IP addresses at the CDN edge
@@ -73,7 +73,7 @@ always a chance that we may block a legitimate user when we ban IP addresses.
 You can change the list of banned IP addresses by modifying the
 [YAML config file][ip_ban_config] and [deploying the configuration][ip_ban_deploy].
 
-[ip_ban_config]: https://github.gds/gds/cdn-configs/blob/master/fastly/dictionaries/config/ip_address_blacklist.yaml
+[ip_ban_config]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/blob/master/fastly/dictionaries/config/ip_address_blacklist.yaml
 [ip_ban_deploy]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/build
 
 ## Bouncer's Fastly service

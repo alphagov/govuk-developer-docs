@@ -10,9 +10,9 @@ last_reviewed_on: 2017-02-14
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/rebooting-machines.md)
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/2nd-line/rebooting-machines.md)
 
 
 ## Rules of rebooting
@@ -143,10 +143,10 @@ to safely reboot these machines you'll need access to vCloud Director.
 
 -   find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
-    repo](https://github.gds/gds/govuk-provisioning/)
+    repo](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/)
 -   use vCloud Director to update the NAT rule to point to backend-lb-2.
     -   The Nat rule will be in [this
-        repo](https://github.gds/gds/govuk-provisioning/).
+        repo](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/).
     -   Go to "Administration"
     -   find 'GOV.UK Management' in the list of vdcs and click on it
     -   select the "edge gateway" tab, right click on it and select
@@ -237,7 +237,7 @@ environment).
 
 If urgently required applications can have their database configuration
 amended by editing the relevant configuration in
-<https://github.gds/gds/alphagov-deployment>
+<https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment>
 
 When the app has been redeployed then the machine which is **not** being
 read from can be rebooted.

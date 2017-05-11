@@ -9,13 +9,13 @@ last_reviewed_on: 2017-01-13
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.digital.cabinet-office.gov.uk/gds/opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/packer-vagrant-image-creation.md)
+[View history in old opsmanual](https://github.digital.cabinet-office.gov.uk/gds/opsmanual/tree/master/infrastructure/packer-vagrant-image-creation.md)
 
 
 This is a stub page that links to the real documentation for this task.
 
 ## Further information
 
-For full details regarding how to build Vagrant Virtual Box and VMWare Fusion images please read the [GOV.UK virtual machine images using Packer README](https://github.gds/gds/govuk-provisioning/blob/master/packer/README.md)
+For full details regarding how to build Vagrant Virtual Box and VMWare Fusion images please read the [GOV.UK virtual machine images using Packer README](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/master/packer/README.md)

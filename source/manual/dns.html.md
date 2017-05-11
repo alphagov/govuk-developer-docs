@@ -55,7 +55,7 @@ job uses [Terraform](https://www.terraform.io/) and pushes changes to the
 selected provider.
 
 To make a change to this zone, begin by adding the records to the yaml file for
-the zone held in the [DNS config repo](https://github.gds/gds/govuk-dns-config).
+the zone held in the [DNS config repo](https://github.digital.cabinet-office.gov.uk/gds/govuk-dns-config).
 
 When this has been reviewed and merged, you can deploy the changes using [the
 "Deploy DNS "Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
