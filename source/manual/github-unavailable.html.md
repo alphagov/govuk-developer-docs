@@ -5,14 +5,9 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/github-unavailable.md"
-last_reviewed_on: 2016-12-18
+last_reviewed_on: 2017-05-09
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/releasing-software/github-unavailable.md)
-
 
 ## Public GitHub (application code)
 
@@ -45,12 +40,16 @@ but sometimes we need to (in exceptional circumstances when we can't work in pub
 
 ## GitHub Enterprise (secrets)
 
-If GitHub Enterprise becomes unavailable, GDS internal IT will switch to
-a disaster recovery instance. Internal IT have previously estimated that failing
-over to the DR machine may take some time.
+If [GitHub Enterprise](github-enterprise.html) becomes unavailable, GDS internal IT will switch to
+a disaster recovery instance. Failing over to the DR machine may take some time.
 
 Depending on the nature of the outage, we may need to change our `govuk_ghe_vpn`
 configuration to point to `vpndr.digital.cabinet-office.gov.uk`.
 
-In order to deploy this change, you may first need to disable Puppet on the Jenkins
-machine and make the change manually.
+In order to deploy this change, first disable Puppet on the Jenkins machine.
+
+```
+fab $environment -H jenkins-1.management puppet.disable:"Switching to disaster recovery VPN"
+```
+
+Then update the VPN host in `/etc/init/openconnect.conf` on that machine.
