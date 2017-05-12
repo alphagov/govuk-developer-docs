@@ -69,6 +69,12 @@ the previous team isn't going to have to roll back their release.
 
 ### Deployment
 
+#### Security fixes
+
+If you are responding to a security incident, follow the steps in [Deploy fixes for a security vulnerability](deploy-fixes-for-a-security-vulnerability.html).
+
+#### Regular code changes
+
 1.  Check any notes against the application in the [Release app][release].
 1.  Acquire the badger
 1.  Ensure the badger is not tagged with the application you are deploying,
