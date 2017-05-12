@@ -1,7 +1,7 @@
 ---
 owner_slack: "#2ndline"
 title: Copying application data locally for development
-section: Manual
+section: Databases
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-05-12
