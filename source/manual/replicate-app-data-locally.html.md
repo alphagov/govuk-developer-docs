@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Copying application data locally for development
+title: Replicating application data locally for development
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
