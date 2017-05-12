@@ -6,7 +6,7 @@ layout: manual_layout
 section: Deployment
 important: true
 last_reviewed_on: 2017-05-12
-review_in: 6 months
+review_in: 1 months
 ---
 
 ## Introduction
