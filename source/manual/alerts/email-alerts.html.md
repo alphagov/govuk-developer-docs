@@ -19,7 +19,7 @@ more information about the [architecture on the
 Wiki](https://gov-uk.atlassian.net/wiki/display/GOVUK/Email+notifications+and+atom+feeds).
 
 [DetailedTravel Advice Issue
-Guidance](https://github.gds/pages/gds/opsmanual/2nd-line/applications/travel-advice-publisher.html)
+Guidance](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/applications/travel-advice-publisher.html)
 
 If you need to force the sending of a travel advice email alert, there
 is a rake task in the travel advice publisher, which you can run using

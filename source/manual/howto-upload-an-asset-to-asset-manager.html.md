@@ -9,9 +9,9 @@ last_reviewed_on: 2017-03-23
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/howto-upload-an-asset-to-asset-manager.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/howto-upload-an-asset-to-asset-manager.md)
 
 
 Some publishing apps such as Mainstream Publisher do not provide the facility for editors to upload

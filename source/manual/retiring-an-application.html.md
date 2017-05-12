@@ -44,7 +44,7 @@ Remove any [smokey tests][smokey] specific to the application.
 Remove necessary scripts from the [alphagov-deployment][alphagov-deployment] and
 [govuk-app-deployment][govuk-app-deployment] repos.
 
-[alphagov-deployment]: https://github.gds/gds/alphagov-deployment
+[alphagov-deployment]: https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 
 ## 5. Update Release app
@@ -104,7 +104,7 @@ application is being retired", then save your changes.
 Remove from the [development-vm directory][development] `Procfile` and `Pinfile`:
 
 Leave a comment in the `Procfile` indicating that the port used to be
-used by this app (eg <https://github.gds/gds/development/pull/149>)
+used by this app (eg <https://github.digital.cabinet-office.gov.uk/gds/development/pull/149>)
 
 [development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 
@@ -113,7 +113,7 @@ used by this app (eg <https://github.gds/gds/development/pull/149>)
 Check the data replication scripts for anything specific to this application.
 
 Some applications have special case details in
-<https://github.gds/gds/env-sync-and-backup/>. Any relating to the
+<https://github.digital.cabinet-office.gov.uk/gds/env-sync-and-backup/>. Any relating to the
 application should be removed.
 
 ## 12. Update DNS
@@ -132,7 +132,7 @@ Mark the application as `retired` in [govuk-developer-docs][dev-docs].
 
 Remove any hieradata credential entries for the app:
 
-For example: <https://github.gds/gds/deployment/pull/408>
+For example: <https://github.digital.cabinet-office.gov.uk/gds/deployment/pull/408>
 
 ## 15. Drop database
 

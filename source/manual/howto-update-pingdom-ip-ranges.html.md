@@ -26,6 +26,6 @@ list.
 To run the check of IP ranges on your own machine clone the
 [govuk_mirror_deployment][mirror_repo] and run `ruby tools/pingdom_ips.rb`.
 
-[mirror_repo]: https://github.gds/gds/govuk_mirror-deployment
-[carrenza]: https://github.gds/gds/govuk_mirror-deployment/blob/master/vcloud-edge_gateway/vars/skyscape_mirror_vars.yaml
-[skyscape]: https://github.gds/gds/govuk_mirror-deployment/blob/master/vcloud-edge_gateway/vars/skyscape_mirror_vars.yaml
+[mirror_repo]: https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment
+[carrenza]: https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/blob/master/vcloud-edge_gateway/vars/skyscape_mirror_vars.yaml
+[skyscape]: https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/blob/master/vcloud-edge_gateway/vars/skyscape_mirror_vars.yaml

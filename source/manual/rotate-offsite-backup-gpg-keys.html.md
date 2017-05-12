@@ -9,9 +9,9 @@ last_reviewed_on: 2016-12-25
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/rotate-offsite-backup-gpg-keys.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/rotate-offsite-backup-gpg-keys.md)
 
 
 To encrypt our offsite backups, we use GPG keys which are valid for a year. For
@@ -19,7 +19,7 @@ good security practice we rotate these keys each year.
 
 ## Generate a new key
 
-1. Pull the [deployment repo](https://github.gds/gds/deployment).
+1. Pull the [deployment repo](https://github.digital.cabinet-office.gov.uk/gds/deployment).
 2. `cd deployment/puppet`
 3. `gpg2 --batch --gen-key gpg_templates/offsite_backup_gpg_template.txt`
 4. Ensure you make a copy of the password you use.
@@ -33,6 +33,6 @@ The following files need to be updated with the new key details:
 Update the [govuk-puppet hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/production.yaml),
 updating the `_: &offsite_gpg_key` key with the new fingerprint value
 
-Update the [encrypted deployment repo hieradata](https://github.gds/gds/deployment/blob/master/puppet/hieradata/production_credentials.yaml),
+Update the [encrypted deployment repo hieradata](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/hieradata/production_credentials.yaml),
 updating both `backup::assets::backup_private_gpg_key` and `backup_private_gpg_key_passphrase` with
 the relavant values.

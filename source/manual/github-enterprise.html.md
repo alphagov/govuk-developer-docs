@@ -9,12 +9,12 @@ last_reviewed_on: 2017-03-08
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/github-enterprise/index.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/github-enterprise/index.md)
 
 
-Our GitHub Enterprise installation lives at https://github.gds/ and is manged
+Our GitHub Enterprise installation lives at https://github.digital.cabinet-office.gov.uk/ and is manged
 by the GDS service desk.
 
 On GOV.UK we use GitHub Enterprise to store repositories that we're not comfortable

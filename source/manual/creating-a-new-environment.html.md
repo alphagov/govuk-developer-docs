@@ -35,7 +35,7 @@ Ask the IaaS provider to:
 > f.  Ensure ingress access to the organisation on these TCP ports:
 >
 > > -   22 and 1022 (for jumpbox-2): for the [nat\_a IP
-> >     address](https://github.gds/gds/govuk-provisioning/blob/69c299557f7c0600c17180e0dec05bd1765e02bc/vcloud-edge_gateway/vars/production_skyscape_vars.yaml#L29)
+> >     address](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/69c299557f7c0600c17180e0dec05bd1765e02bc/vcloud-edge_gateway/vars/production_skyscape_vars.yaml#L29)
 > > -   80 and 443 for all IP addresses
 > >
 > > > **note**
@@ -60,14 +60,14 @@ Ask the IaaS provider to:
 machines. They are equivalent to an Amazon Machine Image (AMI).
 
 The process for creating a vApp template is [documented in
-govuk-provisioning](https://github.gds/gds/govuk-provisioning/blob/master/packer/README.md).
+govuk-provisioning](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/master/packer/README.md).
 
 ## Configuring the vDC networks
 
 Internal networking is configured using
 [vcloud-net\_launcher](https://github.com/gds-operations/vcloud-net_launcher).
 The configuration files for networking are in
-[govuk-provisioning](https://github.gds/gds/govuk-provisioning).
+[govuk-provisioning](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning).
 
 The input to vcloud-net-launch is a yaml file describing the networks to
 launch.
@@ -97,7 +97,7 @@ Edge gateways:
 Edge gateway configuration is automated; use the [vcloud-configure-edge
 tool](https://github.com/gds-operations/vcloud-edge_gateway) with the
 configuration checked in to
-[govuk-provisioning/vcloud-edge\_gateway](https://github.gds/gds/govuk-provisioning/tree/master/vcloud-edge_gateway).
+[govuk-provisioning/vcloud-edge\_gateway](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/tree/master/vcloud-edge_gateway).
 For example, to configure firewalls in the Carrenza Preview environment:
 
     # get an authentication token
@@ -186,21 +186,21 @@ that has already been provisioned):
 
 1.  On Github Enterprise, create a new configuration repository for
     your environment. Make sure that the
-    [Bots](https://github.gds/organizations/gds/teams/3) team has access
+    [Bots](https://github.digital.cabinet-office.gov.uk/organizations/gds/teams/3) team has access
     to to your new repository
-2.  Add public half of the Jenkins user's SSH key to github.gds:
+2.  Add public half of the Jenkins user's SSH key to GitHub Enterprise:
 
         ssh jenkins-1.management.staging 'sudo cat /var/lib/jenkins/.ssh/id_rsa.pub'
 
     You will need to "Fake GitHub Sign In" from the [staff tools user
-    page](https://github.gds/stafftools/users).
+    page](https://github.digital.cabinet-office.gov.uk/stafftools/users).
 
 3.  Also put that public half into the deploy user on puppetmaster-1
 4.  Configure scm with details for git repo
 5.  Clone the configuration repository for Jenkins:
 
         sudo rm -rf /var/lib/jenkins/scm-sync-configuration/checkoutConfiguration/
-        git clone git@github.gds:gds/jenkins-config-p1production.git
+        git clone git@github.digital.cabinet-office.gov.uk:gds/jenkins-config-p1production.git
         sudo mkdir /var/lib/jenkins/scm-sync-configuration/checkoutConfiguration
         sudo rsync -avPh ~bob/jenkins-config-p1production/ /var/lib/jenkins/scm-sync-configuration/checkoutConfiguration/
         sudo chown -R jenkins:jenkins /var/lib/jenkins/scm-sync-configuration/checkoutConfiguration/

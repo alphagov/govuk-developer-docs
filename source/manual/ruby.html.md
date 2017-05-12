@@ -9,9 +9,9 @@ last_reviewed_on: 2016-12-09
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/ruby.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/ruby.md)
 
 
 The Ruby language is a core part of GOV.UK - most of our applications
@@ -34,8 +34,8 @@ We set up rbenv differently depending on what's going on:
 - Cronjobs: some cronjobs start with `/bin/bash -l -c` which runs a login shell
 
 [cap_deploy]: https://github.com/alphagov/govuk-app-deployment/blob/master/recipes/ruby.rb
-[cap_deploy_commit]: https://github.gds/gds/alphagov-deployment/commit/b6404e33c354ef63f01c13b202ce0cf2ed2975fc
-[rbenv_path]: https://github.gds/gds/deployment/blob/master/puppet/hieradata/integration_credentials.yaml
+[cap_deploy_commit]: https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment/commit/b6404e33c354ef63f01c13b202ce0cf2ed2975fc
+[rbenv_path]: https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/hieradata/integration_credentials.yaml
 
 ## Add a new Ruby version in puppet
 
