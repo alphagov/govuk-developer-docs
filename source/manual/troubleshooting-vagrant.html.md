@@ -8,7 +8,7 @@ last_reviewed_on: 2016-11-25
 review_in: 6 months
 ---
 
-## loading the Vagrantfile
+## Loading the Vagrantfile
 
 If you're encountering errors loading the `Vagrantfile`, check you're running the right version:
 
@@ -251,18 +251,6 @@ If you need direct access (for `rsync`, `scp` or similar), you'll need to manual
 If you want to run the project in development mode with the static assets served from your local copy, run bowler with the STATIC_DEV variable defined and make sure you're not setting static=0:
 
     dev$ STATIC_DEV="http://static.dev.gov.uk" bowl planner static
-
-## Working on databases while out of the office
-
-If you take your laptop home at night, you may want to download the data while in the office and restore it overnight to minimise disruption.
-
-First, do the download on your host as the unzipping is a lot quicker when not run over NFS:
-
-    mac$ ./replicate-data-local.sh -u your_ssh_username -n
-
-Then when you get home (or if you have a spare hour during meetings) run the script on your VM and specify the backup directory for the date you performed the download:
-
-    dev$ ./replicate-data-local.sh -s -d backups/2016-11-17
 
 ## Run a single app
 
