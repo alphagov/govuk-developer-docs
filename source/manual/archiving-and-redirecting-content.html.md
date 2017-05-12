@@ -9,9 +9,9 @@ last_reviewed_on: 2017-03-24
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/archiving-and-redirecting-content.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/archiving-and-redirecting-content.md)
 
 
 Sometimes there is a need to remove existing content and redirect the
@@ -38,13 +38,13 @@ There is a different procedure in Whitehall, see whitehall-unpublishing.
 ## Prerequisites
 
 -   Ensure you have Signon permissions for Publisher
--   Check out the [router-data](https://github.gds/gds/router-data)
+-   Check out the [router-data](https://github.digital.cabinet-office.gov.uk/gds/router-data)
     repository
 
 ## Workflow
 
 1)  Follow the [Router-data
-    README](https://github.gds/gds/router-data#router-data) to add new
+    README](https://github.digital.cabinet-office.gov.uk/gds/router-data#router-data) to add new
     redirects
 2)  Commit your changes to a feature branch
 3)  Send a pull request with your changes

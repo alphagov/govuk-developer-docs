@@ -9,9 +9,9 @@ last_reviewed_on: 2017-01-28
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/offsite-backup-and-restore.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/offsite-backup-and-restore.md)
 
 
 We use [duplicity](http://duplicity.nongnu.org/) to perform offsite backups. Some
@@ -21,7 +21,7 @@ The fingerprint of the key can be found in `hieradata/production.yaml` within
 the [govuk-puppet](https://github.com/alphagov/govuk-puppet) repository as
 `_: &offsite_gpg_key `.
 The key and passphrase are both stored in encrypted hieradata in the
-[deployment repository](https://github.gds/gds/deployment),
+[deployment repository](https://github.digital.cabinet-office.gov.uk/gds/deployment),
 as `backup::assets::backup_private_gpg_key` and `backup::assets::backup_private_gpg_key_passphrase`
 respectively (the same private key is used for all offsite backups).
 
@@ -49,8 +49,8 @@ Using pip:
 
 `sudo pip install s3cmd`
 
-Retrieve the keys and credentials from `github.gds/gds/deployment`
-following [these instructions](https://github.gds/gds/deployment/tree/master/puppet#common-actions)
+Retrieve the keys and credentials from `https://github.digital.cabinet-office.gov.uk/gds/deployment`
+following [these instructions](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/puppet#common-actions)
 
 You are looking for:
 

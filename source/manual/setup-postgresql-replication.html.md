@@ -9,9 +9,9 @@ last_reviewed_on: 2017-02-26
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/setup-postgresql-replication.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/setup-postgresql-replication.md)
 
 
 This how-to guide explains how to set-up PostgreSQL replication.
@@ -27,7 +27,7 @@ To sync (or indeed resync) a standby from a primary run
 
 By default, you should **not** be prompted for a password. If you are
 prompted, then this password is stored in the [deployment
-repo](https://github.gds/gds/deployment) under the
+repo](https://github.digital.cabinet-office.gov.uk/gds/deployment) under the
 `govuk::node::s_postgresql_primary::standby_password` key and can be
 read with:
 

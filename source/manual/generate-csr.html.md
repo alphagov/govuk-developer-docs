@@ -9,9 +9,9 @@ last_reviewed_on: 2017-02-24
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/infrastructure/howto/generate-csr.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/generate-csr.md)
 
 
 When buying an SSL certificate for a GOV.UK domain, a certificate
@@ -30,7 +30,7 @@ certificate is intended for.
 
 The contents of the .key file must be kept secret. You most likely will
 want to store its contents encrypted in the
-[deployment](https://github.gds/gds/deployment) repository.
+[deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment) repository.
 
 The contents of the CSR should be shared with the SSL certificate
 provider. This allows them to generate the SSL certificate.

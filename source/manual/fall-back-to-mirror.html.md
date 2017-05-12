@@ -98,6 +98,6 @@ origin has been updated to serve the change that you made.
 [graphite_cdn_backend]: https://graphite.publishing.service.gov.uk/render?from=-1months&until=now&width=800&height=600&target=stats.govuk.app.govuk-cdn-logs-monitor.logs-cdn-1.cdn_backend.mirror1&target=stats.govuk.app.govuk-cdn-logs-monitor.logs-cdn-1.cdn_backend.mirror0
 [govuk_crawler_worker]: https://github.com/alphagov/govuk_crawler_worker
 [govuk_seed_crawler]: https://github.com/alphagov/govuk_seed_crawler/
-[govuk_mirror-deployment]: https://github.gds/gds/govuk_mirror-deployment
+[govuk_mirror-deployment]: https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment
 [govuk_mirror-puppet hieradata]: https://github.com/alphagov/govuk_mirror-puppet/blob/master/hieradata/common.yaml
-[suppliers]: https://github.gds/pages/gds/opsmanual/infrastructure/suppliers.html
+[suppliers]: https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/infrastructure/suppliers.html

@@ -30,7 +30,7 @@ review_in: 6 months
 
 ## Opsmanual
 
-<https://github.gds/pages/gds/opsmanual> (private)
+<https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual> (private)
 
 - Contains private information on operations, such as phone numbers and account IDs
 

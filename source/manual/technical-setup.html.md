@@ -9,9 +9,9 @@ last_reviewed_on: 2016-12-22
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on github.gds](https://github.gds/gds/opsmanual)**.
+> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
 It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.gds/gds/opsmanual/tree/master/2nd-line/technical-setup.md)
+[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/technical-setup.md)
 
 
 ## Production Access
@@ -21,7 +21,7 @@ See [the docs](https://github.com/alphagov/govuk-puppet/blob/master/docs/creatin
 ## Emergency Publishing
 
 You should have a recent copy of the
-[opsmanual](https://github.gds/gds/opsmanual) and the
+[opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual) and the
 [fabric scripts](https://github.com/alphagov/fabric-scripts) in case you're
 required to perform [emergency publishing](emergency-publishing.html).
 
