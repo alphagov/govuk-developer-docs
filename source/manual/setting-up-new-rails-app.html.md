@@ -26,7 +26,7 @@ repository](https://github.com/alphagov/govuk-rails-app-template). This
 will create a new Rails application, installing and configuring common
 features such as: rspec for testing; JSON-formatted logging; a
 healthcheck endpoint; coverage reporting; scripts for Jenkins CI builds;
-and airbrake for errbit-based error reporting.
+and airbrake for Errbit-based error reporting.
 
 The following instructions asssume you’re trying to configure a new
 Rails 4.2 application named `myapp` that was created with the above

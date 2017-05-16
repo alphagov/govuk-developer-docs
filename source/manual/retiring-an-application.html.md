@@ -71,7 +71,7 @@ services that exist for it.
 
 ## 8. Remove from Errbit
 
-Delete the application from Errbit. On all 3 errbit instances, delete the
+Delete the application from Errbit. On all 3 Errbit instances, delete the
 application (you'll need the `admin` permission to do this). The delete button
 can be found in the application edit screen.
 
