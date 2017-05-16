@@ -23,16 +23,16 @@ those logs to `logs-elasticsearch`.
 
 The logging machine keeps the logs at `/srv/log/year/month/date/server-name`
 
-## Logstream, logship and redis
+## Logstream, logship and Redis
 
 We have a defined type in our Puppet code which uses
 [logship](https://github.com/alphagov/tagalog/blob/master/tagalog/command/logship.py)
 to tail logfiles.
 
 The tailed logs are sent to `logs-redis` machines. The logging Elasticsearch cluster has a
-river to pull logs from redis.
+river to pull logs from Redis.
 
-logship provides multiple shippers. We're using the redis shipper and the statsd shipper
+logship provides multiple shippers. We're using the Redis shipper and the statsd shipper
 (for sending NGINX status codes to Graphite).
 
 ## Logstash

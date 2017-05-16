@@ -121,11 +121,11 @@ This will prevent you from rebooting a machine in a cluster which
 doesn't have a green cluster health status.
 
 After rebooting an Elasticsearch machine, Redis rivers may become stuck,
-see [redis rivers for Elasticsearch](alerts/redis.html)
+see [Redis rivers for Elasticsearch](alerts/redis.html)
 
-## Rebooting redis machines
+## Rebooting Redis machines
 
-To reboot a redis machine, run the following command:
+To reboot a Redis machine, run the following command:
 
     fab $environment -H '<machine-to-reboot' elasticsearch.redis_safe_reboot
 

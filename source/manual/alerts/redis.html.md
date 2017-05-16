@@ -38,7 +38,7 @@ to find out what those things might be.
 ### Investigation of the problem
 
 For logs-redis, memory may be exhausted if the Elasticsearch river is not
-consuming data from redis for some reason. In this case, redis will accumulate
+consuming data from Redis for some reason. In this case, redis will accumulate
 data up to its memory limit and then stop accepting log data. In this
 condition log data will be lost from the logging pipeline because logship
 discards data.
@@ -52,13 +52,13 @@ discards data.
 ### Redis rivers for Elasticsearch
 
 We use [elasticsearch-redis-river](https://github.com/leeadkins/elasticsearch-redis-river)
-(a redis river for Elasticsearch). This is a special process which reads data continuously from a redis queue (called `logs`) into Elasticsearch.
+(a Redis river for Elasticsearch). This is a special process which reads data continuously from a redis queue (called `logs`) into Elasticsearch.
 
-There is a Nagios alert (listed above) for when the `logs` redis list gets
+There is a Nagios alert (listed above) for when the `logs` Redis list gets
 too long. This might be because Elasticsearch is unavailable or may be for
 some other reason.
 
-Generally this can be fixed by deleting and recreating the rivers. This is safe to do because the river pulls data from redis (rather than redis pushing data into Elasticsearch).
+Generally this can be fixed by deleting and recreating the rivers. This is safe to do because the river pulls data from Redis (rather than redis pushing data into Elasticsearch).
 
 Delete and recreate the rivers with this Fabric command:
 
