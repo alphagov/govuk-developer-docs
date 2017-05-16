@@ -21,7 +21,7 @@ stack](applications/bouncer-and-transition.html#bouncer-s-stack).
 Possible causes of errors on the canary route include:
 
 -   DNS problems for `www.direct.gov.uk` or
-    `bouncer.publishing.service.gov.uk` - check [Bouncer's nginx
+    `bouncer.publishing.service.gov.uk` - check [Bouncer's NGINX
     logs](https://kibana.publishing.service.gov.uk/kibana/#/dashboard/elasticsearch/Bouncer)
     to see which requests are getting through
 -   CDN problems resulting in requests for `www.direct.gov.uk` not being

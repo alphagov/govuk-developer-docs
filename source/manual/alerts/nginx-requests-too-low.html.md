@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: nginx requests too low
+title: NGINX requests too low
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
@@ -8,7 +8,7 @@ last_reviewed_on: 2016-11-20
 review_in: 6 months
 ---
 
--   An Icinga check that alerts when the number of Nginx requests drops
+-   An Icinga check that alerts when the number of NGINX requests drops
     below a critical threshold.
 -   We have seen misconfigured firewall configs on our vSE.
 -   It could be a genuine low number of requests or it may be indicative
