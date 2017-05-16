@@ -191,7 +191,7 @@ repo](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/pu
 There is no separate staging file, the production file is used for both
 staging and production.
 
-The .rcp file for vagrant is stored in the [puppet
+The .rcp file for Vagrant is stored in the [puppet
 repo](https://github.com/alphagov/govuk-puppet/tree/master/gpg_recipients).
 
 Each line in a recipient file corresponds to a [GPG

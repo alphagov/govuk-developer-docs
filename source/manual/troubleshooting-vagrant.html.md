@@ -84,9 +84,9 @@ exports:5: no usable directories in export entry
 exports:5: using fallback (marked offline): /
 ```
 
-This means that you may already have old vagrant path definitions in your `/etc/exports` file.
+This means that you may already have old Vagrant path definitions in your `/etc/exports` file.
 
-Try opening up `/etc/exports` file to identify old or unwanted vagrant paths and removing them if necessary
+Try opening up `/etc/exports` file to identify old or unwanted Vagrant paths and removing them if necessary
 
 On opening `/etc/exports` file each set begins with # VAGRANT-BEGIN: and ends with # VAGRANT-END:. Make sure to delete these and any other lines between VAGRANT-BEGIN: and VAGRANT-END:
 
