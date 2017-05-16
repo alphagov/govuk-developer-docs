@@ -104,7 +104,7 @@ vagrant up
 
 If your host is running macOS 10.12 Sierra you may encounter this problem as there is a bug in the nfs implementation that means the cache is not updated frequently enough.  The usual way of encountering this problem is early in a `govuk_puppet` run, it will fail early with a Permission Denied error when trying to remove a file in `vendor/modules/`.  One workaround is to remove the `vendor/modules` and `.tmp` folders from your govuk-puppet working directory on your host, and then run `govuk_puppet` again in the VM.
 
-The other solution, as mentioned in [this GitHub issue against vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
+The other solution, as mentioned in [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
 
 ## installing vagrant-dns
 
@@ -118,7 +118,7 @@ It looks like this might be a problem with Vagrant 1.9.0, because installing 1.8
 
 ## vagrant-dns having updated vagrant
 
-If after updating vagrant, you get errors regarding vagrant-dns when provisioning the VM you will need to reinstall the vagrant-dns plugin:
+If after updating Vagrant, you get errors regarding vagrant-dns when provisioning the VM you will need to reinstall the vagrant-dns plugin:
 
     vagrant plugin uninstall vagrant-dns
     vagrant plugin install vagrant-dns
@@ -242,7 +242,7 @@ Consider using `vagrant ssh` to SSH into your VM directly, as it'll always do th
 
 If you need direct access (for `rsync`, `scp` or similar), you'll need to manually configure your SSH configuration:
 
-1. Run`vagrant ssh-config --host dev`
+1. Run `vagrant ssh-config --host dev`
 2. Paste the output into your `~/.ssh/config`
 3. SSH into this using `ssh dev`
 
