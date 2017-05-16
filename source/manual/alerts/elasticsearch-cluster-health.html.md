@@ -90,7 +90,7 @@ come handy
 - Elasticsearch logs live at `/var/logs/elasticsearch/<logging|govuk-production>.log`
 
 **Note:** If you have had a health alert for the logs-elasticsearch
-cluster you may need to change where LogStash writes to to ensure we can
+cluster you may need to change where Logstash writes to to ensure we can
 keep getting getting syslog entries.
 
 ### How to fix unassigned nodes in indices?
@@ -152,14 +152,14 @@ doing so.
 
 [blog]: http://asquera.de/opensource/2012/11/25/elasticsearch-pre-flight-checklist/#avoiding-split-brain
 
-### Manual repointing of LogStash to logs-elasticsearch cluster
+### Manual repointing of Logstash to logs-elasticsearch cluster
 
-Currently logstash (logging-1.management) talks only to
+Currently Logstash (logging-1.management) talks only to
 logs-elasticsearch-cluster (which is mapped through a dns entry to
 logs-elasticsearch-1.management) for sending logs.
 
 If logs-elasticsearch-1.management is not available, we need to tell
-logstash on logging-1 to send its syslog data to a different
+Logstash on logging-1 to send its syslog data to a different
 elasticsearch node. This is done by changing the /etc/hosts file on
 logging-1.management
 
