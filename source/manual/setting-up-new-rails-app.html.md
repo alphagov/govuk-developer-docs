@@ -201,7 +201,7 @@ If you used the the [govuk-rails-app-template
 repository](https://github.com/alphagov/govuk-rails-app-template) to
 create your application, your app will already have the `airbrake` gem
 installed and a configuration file in `config/initializers`. If not,
-install the `airbrake` gem and copy the [configuration from the rails
+install the `airbrake` gem and copy the [configuration from the Rails
 template
 app](https://github.com/alphagov/govuk-rails-app-template/blob/master/templates/initializers/airbrake.rb).
 
