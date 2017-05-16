@@ -193,7 +193,7 @@ to the cluster.
 
 ## Rebooting whitehall-frontend machines
 
-The whitehall application boots slowly and causes HTTP requests to back
+The Whitehall application boots slowly and causes HTTP requests to back
 up. You need to make sure that each machine is fully up before rebooting
 the next.
 
@@ -205,10 +205,10 @@ and 4pm, so where possible try to reboot outside of that window.
     `fab <environment> -H whitehall-frontend-N.frontend vm.reboot`
 
 -   Wait until the CPU usage and NGINX requests equally spread across
-    the cluster with the [whitehall cluster health
+    the cluster with the [Whitehall cluster health
     dashboard](https://graphite.publishing.service.gov.uk/dashboard#whitehall%20cluster%20health)
 -   If the machine does not recover properly and behave like the others
-    in the dashboard, you might need to restart the whitehall
+    in the dashboard, you might need to restart the Whitehall
     application on it:
 
     `fab <environment> -H whitehall-frontend-N.frontend app.restart:whitehall`

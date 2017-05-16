@@ -30,7 +30,7 @@ probably just need to wait for the metric to get created.
 ### Spikes
 
 The alert should link to a graphite graph - often certain applications
-such as whitehall can have spikes - if you can determine this is a spike
+such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let the team that owns the app
 know
 

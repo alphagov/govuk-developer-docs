@@ -36,7 +36,7 @@ got one:
 
 Then, depending on the alert, look at which machine and which app it is
 that needs "bodging". For example, if the machine was
-whitehall-backend-1 and the app is whitehall, then the command you would
+whitehall-backend-1 and the app is Whitehall, then the command you would
 run is:
 
     fab $environment -H whitehall-backend-1.backend vm.bodge_unicorn:whitehall
