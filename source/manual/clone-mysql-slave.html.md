@@ -1,12 +1,12 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-infrastructure"
 title: Clone a MySQL instance from one slave to another
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/clone-mysql-slave.md"
 last_reviewed_on: 2016-11-15
-review_in: 6 months
+review_in: 7 months
 ---
 
 > **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
