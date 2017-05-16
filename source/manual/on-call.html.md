@@ -89,7 +89,7 @@ support (assuming everything is working).
 
 ## Things you should read if you're on-call
 
-- [Stopping NGINX on the cache machines to fail to our static mirror](https://github.com/alphagov/fabric-scripts/blob/master/incident.py)
+- [Stopping Nginx on the cache machines to fail to our static mirror](https://github.com/alphagov/fabric-scripts/blob/master/incident.py)
 - [Emergency publishing](emergency-publishing.html)
 - [Emergency publishing while origin is unavailable](mirror-fallback.html)
 - [Responding to an outage](outage-detail.html)

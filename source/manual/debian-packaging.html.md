@@ -36,7 +36,7 @@ an easy interface to build packages. It creates intermediate files
 to build the Debian package. The README for the repository explains how
 to create packages for Launchpad.
 
-Once a package is imported (published) from a given source (eg the NGINX
+Once a package is imported (published) from a given source (eg the Nginx
 package is published from `nginx-stable-testing`) it cannot be
 republished/superceded (even if deleted and published again) from a
 different source on the same version number. To do so the version has to
