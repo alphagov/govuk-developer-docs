@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: nginx 5xx rate too high for many apps/boxes
+title: NGINX 5xx rate too high for many apps/boxes
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
@@ -30,7 +30,7 @@ probably just need to wait for the metric to get created.
 ### Spikes
 
 The alert should link to a graphite graph - often certain applications
-such as whitehall can have spikes - if you can determine this is a spike
+such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let the team that owns the app
 know
 

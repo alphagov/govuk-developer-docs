@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Resync a Mongo database
+title: Resync a MongoDB database
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
@@ -16,8 +16,8 @@ It hasn't been reviewed for accuracy yet.
 
 To
 [resync](https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/)
-a member of a mongo cluster, run our force\_resync
-[fabric](https://github.com/alphagov/fabric-scripts) script:
+a member of a MongoDB cluster, run our force\_resync
+[Fabric](https://github.com/alphagov/fabric-scripts) script:
 
     fab {env name} -H {host name} mongo.force_resync
 

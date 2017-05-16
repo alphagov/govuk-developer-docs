@@ -19,7 +19,7 @@ It hasn't been reviewed for accuracy yet.
 
 -   Do not reboot more than one machine of the same class at the
     same time.
--   When rebooting clustered applications (such as elasticsearch) wait
+-   When rebooting clustered applications (such as Elasticsearch) wait
     for the cluster to recover fully before rebooting the next machine.
 
 ## Unattended upgrades
@@ -51,7 +51,7 @@ Notices](http://www.ubuntu.com/usn/).
 -   Is it a kernel update?
 -   If it's a shared library are we using it (see below)?
 
-There is a fabric task to find all processes using a deprecated library:
+There is a Fabric task to find all processes using a deprecated library:
 
     fab $environment all vm.deprecated_library:dbus
 
@@ -65,7 +65,7 @@ is an example of a machine that cannot be safely rebooted. The
 is safe\_to\_reboot::can\_reboot: 'yes', so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
 
-There is a fabric task to schedule a machine for downtime in nagios for
+There is a Fabric task to schedule a machine for downtime in Nagios for
 20 minutes and then reboot it:
 
     fab $environment -H graphite-1.management vm.reboot
@@ -81,7 +81,7 @@ There is a fabric task to schedule a machine for downtime in nagios for
 
 ## Rebooting all "safe" machines
 
-If you wish to reboot all machines, there is a fabric task to reboot
+If you wish to reboot all machines, there is a Fabric task to reboot
 "safe" machines one at a time:
 
     fab $environment puppet_class:govuk_safe_to_reboot::yes numbered:N vm.reboot
@@ -89,7 +89,7 @@ If you wish to reboot all machines, there is a fabric task to reboot
 replacing `$environment` with the appropriate environment, and `N` with
 a number (currently from 1 to 7).
 
-## Rebooting mongo machines
+## Rebooting MongoDB machines
 
 You can see our MongoDB machines by running:
 
@@ -98,20 +98,20 @@ You can see our MongoDB machines by running:
 This section doesn't apply to `exception-handler-1` because it isn't
 using a replicaset.
 
-The general approach for rebooting machines in a mongo cluster is:
+The general approach for rebooting machines in a MongoDB cluster is:
 
 -   Check cluster status with `fab <environment> -H <host> mongo.status`
 -   Using `fab <environment> -H <host> mongo.safe_reboot`
     -   reboot the secondaries
 
     - reboot the primary waiting for the cluster to recover after
-    each reboot. The `mongo.safe_reboot` fabric task automates stepping
+    each reboot. The `mongo.safe_reboot` Fabric task automates stepping
     down the primary and waiting for the cluster to recover
     before rebooting.
 
-## Rebooting elasticsearch machines
+## Rebooting Elasticsearch machines
 
-To reboot an elasticsearch machine, run the following command:
+To reboot an Elasticsearch machine, run the following command:
 
     fab $environment class:elasticsearch numbered:N elasticsearch.safe_reboot
 
@@ -120,12 +120,12 @@ To reboot an elasticsearch machine, run the following command:
 This will prevent you from rebooting a machine in a cluster which
 doesn't have a green cluster health status.
 
-After rebooting an elasticsearch machine, Redis rivers may become stuck,
-see [redis rivers for elasticsearch](alerts/redis.html)
+After rebooting an Elasticsearch machine, Redis rivers may become stuck,
+see [Redis rivers for Elasticsearch](alerts/redis.html)
 
-## Rebooting redis machines
+## Rebooting Redis machines
 
-To reboot a redis machine, run the following command:
+To reboot a Redis machine, run the following command:
 
     fab $environment -H '<machine-to-reboot' elasticsearch.redis_safe_reboot
 
@@ -164,9 +164,9 @@ to safely reboot these machines you'll need access to vCloud Director.
 -   use vCloud Director to update the NAT rule to point back to the IP
     address of backend-lb-1
 
-## Rebooting rabbitmq machines
+## Rebooting RabbitMQ machines
 
-There's a fabric task to reboot all nodes in the rabbitmq cluster,
+There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
 waiting for the cluster to recover before rebooting the next node.
 
 However, the `govuk_crawler_worker` app points directly to to rabbitmq-1
@@ -193,7 +193,7 @@ to the cluster.
 
 ## Rebooting whitehall-frontend machines
 
-The whitehall application boots slowly and causes HTTP requests to back
+The Whitehall application boots slowly and causes HTTP requests to back
 up. You need to make sure that each machine is fully up before rebooting
 the next.
 
@@ -204,11 +204,11 @@ and 4pm, so where possible try to reboot outside of that window.
 
     `fab <environment> -H whitehall-frontend-N.frontend vm.reboot`
 
--   Wait until the CPU usage and nginx requests equally spread across
-    the cluster with the [whitehall cluster health
+-   Wait until the CPU usage and NGINX requests equally spread across
+    the cluster with the [Whitehall cluster health
     dashboard](https://graphite.publishing.service.gov.uk/dashboard#whitehall%20cluster%20health)
 -   If the machine does not recover properly and behave like the others
-    in the dashboard, you might need to restart the whitehall
+    in the dashboard, you might need to restart the Whitehall
     application on it:
 
     `fab <environment> -H whitehall-frontend-N.frontend app.restart:whitehall`

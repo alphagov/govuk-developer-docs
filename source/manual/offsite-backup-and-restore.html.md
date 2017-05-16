@@ -36,7 +36,7 @@ This requires access to 'production credentials hieradata' to retrieve the
 AWS credentials and GPG key to decrypt the backups.
 
 Connect to the machine where you want to restore the backup. For this example,
-we will try to restore and unpack a MySQL database on a vagrant vm.
+we will try to restore and unpack a MySQL database on a Vagrant VM.
 
 On a fresh VM, you may require the following packages for this exercise,
 installing using apt-get:

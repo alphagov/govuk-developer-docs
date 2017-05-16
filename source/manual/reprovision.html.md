@@ -55,8 +55,8 @@ potential downtime.
 
         until ssh mybox-2.somevdc.production; do sleep 10; done
 
-9.  Check `/var/log/userdata.log` for puppet run errors, and perhaps
-    re-run puppet manually to assert that all's well:
+9.  Check `/var/log/userdata.log` for Puppet run errors, and perhaps
+    re-run Puppet manually to assert that all's well:
 
         sudo less /var/log/userdata.log
         govuk_puppet -v

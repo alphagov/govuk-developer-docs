@@ -68,7 +68,7 @@ runs a Puppet agent every 30mins (via cron), so it may be some time
 before the release has taken effect. This has an implication on how
 quickly you can go from Staging to Production.
 
-If you would like to know which version of puppet is running where on a
+If you would like to know which version of Puppet is running where on a
 specific environment, there is a script in the
 [fabric-scripts](https://github.com/alphagov/fabric-scripts) repository
 to help.
@@ -81,11 +81,11 @@ the fabric-scripts repository:
 
 The script will prompt you for an environment (integration, staging or
 production) and it will query all servers in that environment for the
-version of puppet and the last time the puppet agent ran.
+version of Puppet and the last time the Puppet agent ran.
 
 If you'd rather not wait and you're able to safely determine from the
 diff what classes of machines the change will affect, or which ones are
-still on an older version of puppet using the script above, you can use
+still on an older version of Puppet using the script above, you can use
 [Fabric](https://github.com/alphagov/fabric-scripts) to force a run of
 Puppet. For example:
 

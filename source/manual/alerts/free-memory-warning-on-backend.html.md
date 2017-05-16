@@ -35,7 +35,7 @@ Once you've identified a Unicorn application with a memory leak, you can
 gracefully kill a Unicorn worker to reclaim some memory. Sending a
 SIGQUIT to the worker causes it to finish serving its current request
 then exit, the master will notice this and spawn a fresh worker. This
-fabric task will kill the worker using the most memory:
+Fabric task will kill the worker using the most memory:
 
     fab $environment -H backend-1.backend app.respawn_large_unicorns:APP-NAME
 

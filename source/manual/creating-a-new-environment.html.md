@@ -152,7 +152,7 @@ that has already been provisioned):
 
         FOG_CREDENTIAL=foo bundle exec vcloud-logout
 
-2.  Make sure you have the puppet repository checked out locally and
+2.  Make sure you have the Puppet repository checked out locally and
     have pulled the latest from the master branch.
 3.  Make sure you have the deployment repository checked out locally and
     have pulled the latest from the master branch.
@@ -184,7 +184,7 @@ that has already been provisioned):
 
 #### Configure
 
-1.  On Github Enterprise, create a new configuration repository for
+1.  On GitHub Enterprise, create a new configuration repository for
     your environment. Make sure that the
     [Bots](https://github.digital.cabinet-office.gov.uk/organizations/gds/teams/3) team has access
     to to your new repository
@@ -287,12 +287,12 @@ no chance of breaking the build pipelines for anyone else.
 
 There are two MySQL clusters:
 
-> -   "Normal" mysql
+> -   "Normal" MySQL
 >     -   mysql-master-1
 >     -   mysql-slave-1
 >     -   mysql-slave-2
 >     -   mysql-backup-1
-> -   Whitehall mysql
+> -   Whitehall MySQL
 >     -   whitehall-master-1
 >     -   whitehall-slave-1
 >     -   whitehall-slave-2
@@ -301,7 +301,7 @@ There are two MySQL clusters:
 Both clusters need to be set up so that `slave-{1,2}` and `backup-1`
 slave from the `master-1`.
 
-To set up slaving, follow the documentation on [setting up mysql
+To set up slaving, follow the documentation on [setting up MySQL
 replication](setup-mysql-replication.html) , except that you might need
 to take the initial dump from a different environment. This is the case
 if you are rebuilding preview.
@@ -329,7 +329,7 @@ this.
 ### Elasticsearch
 
 Assuming Elasticsearch has been installed by Puppet, and is contactable
-on :9200, then you can run the elasticsearch job in Jenkins to copy the
+on :9200, then you can run the Elasticsearch job in Jenkins to copy the
 relevant data and indexes over.
 
 If it turns out that this isn't the case, you can attempt to fix this

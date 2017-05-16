@@ -36,7 +36,7 @@ live content store when it is published.
 
 The draft-frontend and draft-cache machines host draft instances of the
 frontend apps and router which serve the content from the draft
-content-store. Both router and content-store share mongo clusters with
+content-store. Both router and content-store share MongoDB clusters with
 their respective live versions, although they use separate databases on
 these clusters.
 

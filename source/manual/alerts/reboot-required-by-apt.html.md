@@ -17,7 +17,7 @@ If there are a high number of machines requiring a reboot, including
 ones that are not part of database clusters (such as Mongo and MySQL
 machines) there may be a problem with the locking mechanism.
 
-Check if this is the case using fabric:
+Check if this is the case using Fabric:
 
     fab <environment> locksmith.status
 

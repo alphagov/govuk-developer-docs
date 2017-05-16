@@ -26,7 +26,7 @@ repository](https://github.com/alphagov/govuk-rails-app-template). This
 will create a new Rails application, installing and configuring common
 features such as: rspec for testing; JSON-formatted logging; a
 healthcheck endpoint; coverage reporting; scripts for Jenkins CI builds;
-and airbrake for errbit-based error reporting.
+and airbrake for Errbit-based error reporting.
 
 The following instructions asssume you’re trying to configure a new
 Rails 4.2 application named `myapp` that was created with the above
@@ -135,7 +135,7 @@ You also need to add a Jenkins integration to the repo on Github:
 
 1.  In github, go to Settings -&gt; Integrations & Services
 2.  Add Jenkins (GitHub plugin)
-3.  Add the link to the CI github webhook
+3.  Add the link to the CI GitHub webhook
 4.  Make sure Active is ticked
 
 Add the app to the list of
@@ -201,7 +201,7 @@ If you used the the [govuk-rails-app-template
 repository](https://github.com/alphagov/govuk-rails-app-template) to
 create your application, your app will already have the `airbrake` gem
 installed and a configuration file in `config/initializers`. If not,
-install the `airbrake` gem and copy the [configuration from the rails
+install the `airbrake` gem and copy the [configuration from the Rails
 template
 app](https://github.com/alphagov/govuk-rails-app-template/blob/master/templates/initializers/airbrake.rb).
 
@@ -233,7 +233,7 @@ On the apps tab, "Add a New App".
 
 You'll need the generated API key in a later step.
 
-### Update puppet to include the environment variables for airbrake
+### Update Puppet to include the environment variables for airbrake
 
     # modules/govuk/manifests/apps/myapp.pp
     class govuk::apps::myapp(
