@@ -204,7 +204,7 @@ and 4pm, so where possible try to reboot outside of that window.
 
     `fab <environment> -H whitehall-frontend-N.frontend vm.reboot`
 
--   Wait until the CPU usage and NGINX requests equally spread across
+-   Wait until the CPU usage and Nginx requests equally spread across
     the cluster with the [Whitehall cluster health
     dashboard](https://graphite.publishing.service.gov.uk/dashboard#whitehall%20cluster%20health)
 -   If the machine does not recover properly and behave like the others

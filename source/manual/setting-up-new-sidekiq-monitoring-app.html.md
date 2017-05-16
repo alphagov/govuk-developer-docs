@@ -50,7 +50,7 @@ configuration](https://github.com/alphagov/govuk-puppet/commit/9ffa90f571a43cba1
 
 ## Configuring a path under the sidekiq-monitoring vhost
 
-The sidekiq-monitoring vhost in NGINX has one location for every
+The sidekiq-monitoring vhost in Nginx has one location for every
 sidekiq-monitoring application. Add one for your application in [this
 puppet
 template](https://github.com/alphagov/govuk-puppet/blob/70a10190b/modules/govuk/templates/sidekiq_monitoring_nginx_config.conf.erb#L21-L23).
