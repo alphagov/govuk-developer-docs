@@ -50,7 +50,7 @@ relevant environment in:
 3.  Do your business
 4.  Tidy up
 
-Close the ssh connection you set up earlier with CTRL+C or by typing
+Close the SSH connection you set up earlier with CTRL+C or by typing
 "exit".
 
 ## Inspecting/removing items from a queue
