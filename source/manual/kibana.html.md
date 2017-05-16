@@ -50,13 +50,13 @@ Kibana can be searched using the [Lucene search syntax][lucene].
 @type:"syslog" AND @fields.syslog_program:"rsync"
 ```
 
-### NGINX logs
+### Nginx logs
 
 ```rb
 nginx @tags:"nginx"
 ```
 
-NGINX logs for frontend:
+Nginx logs for frontend:
 
 ```rb
 @tags:"nginx" AND @fields.application:frontend

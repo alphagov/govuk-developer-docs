@@ -53,8 +53,8 @@ and they are load-balanced at the vShield Edge rather than by a separate machine
 Bouncer's traffic does not go through the `cache-*` nodes - the CDN proxies all
 requests to `bouncer.publishing.service.gov.uk` which points to its vShield Edge.
 
-It uses an NGINX default vhost so that requests for all domains are passed on to
-the application; there's generally no NGINX configuration for individual
+It uses an Nginx default vhost so that requests for all domains are passed on to
+the application; there's generally no Nginx configuration for individual
 transitioned sites (but see [Special cases](#special-cases) below).
 
 In the case of a data centre failure, within the disaster recovery (DR) vCloud organisation we have:
@@ -82,10 +82,10 @@ to allow it isn't present on the master.
 - We reverse-proxy requests for [some paths on www.mhra.gov.uk](https://github.com/alphagov/govuk-puppet/blob/master/modules/bouncer/templates/www.mhra.gov.uk_nginx.conf.erb#L16-L56)
 to the old site because some tools had not yet been redeveloped when they
 transitioned and they needed to continue to be served; their site is often slow
-to respond and may time out. This proxying is handled by NGINX so these requests
+to respond and may time out. This proxying is handled by Nginx so these requests
 are not routed to Bouncer.
 - We serve some assets which were previously on directgov and businesslink
-[via NGINX](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer.pp#L56-L146)
+[via Nginx](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer.pp#L56-L146)
 on the Bouncer machines. The assets live in [two](https://github.com/alphagov/assets-directgov)
 [repos](https://github.com/alphagov/assets-businesslink) which are [fetched and
 rsynced](https://github.com/alphagov/govuk-app-deployment/blob/master/bouncer/config/deploy.rb#L16-L41)
