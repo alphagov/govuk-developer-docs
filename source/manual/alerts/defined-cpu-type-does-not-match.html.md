@@ -1,10 +1,10 @@
 ---
 owner_slack: "#2ndline"
-title: defined cpu type does not match
+title: Defined cpu type does not match
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2016-11-08
+last_reviewed_on: 2017-05-16
 review_in: 6 months
 ---
 
@@ -16,4 +16,3 @@ If an alert reports that the defined CPU model name does not match what
 it has been defined with, we should firstly try to find out why (has the
 machine been recently rebuilt or vMotioned?) and then migrate the VM to
 the correct host.
-
