@@ -215,7 +215,7 @@ credentials;
     [integration](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
     [production](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
     and
-    [vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
+    [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
     Note that there is no separate recipients file for Staging.
 2.  Commit your changes and raise a pull request for review.
 
