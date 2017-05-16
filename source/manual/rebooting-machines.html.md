@@ -164,9 +164,9 @@ to safely reboot these machines you'll need access to vCloud Director.
 -   use vCloud Director to update the NAT rule to point back to the IP
     address of backend-lb-1
 
-## Rebooting rabbitmq machines
+## Rebooting RabbitMQ machines
 
-There's a Fabric task to reboot all nodes in the rabbitmq cluster,
+There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
 waiting for the cluster to recover before rebooting the next node.
 
 However, the `govuk_crawler_worker` app points directly to to rabbitmq-1
