@@ -81,7 +81,7 @@ If the app has received lots of errors, the request to delete it can
 timeout. If this happens, it will need to be deleted manually from the
 rails console as follows:
 
-- ssh to `exception-handler-1.backend.{integration,staging,production}`
+- SSH to `exception-handler-1.backend.{integration,staging,production}`
 - start a rails console `govuk_app_console errbit`
 
 - Find and destroy the application:

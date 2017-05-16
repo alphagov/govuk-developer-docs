@@ -25,7 +25,7 @@ the upload directly in production. First, upload the asset to a backend box:
 scp my_file.jpg backend-1.backend.production:/tmp/
 ```
 
-Then ssh to the same box and run the upload command:
+Then SSH to the same box and run the upload command:
 
 ```
 ssh backend-1.backend.production

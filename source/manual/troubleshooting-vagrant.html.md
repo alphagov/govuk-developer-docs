@@ -48,7 +48,7 @@ ssh-add -L  # list key and location on host machine
 
 Things to check if it doesn't work:
 
--   **Can you ssh directly onto the jumpbox?**
+-   **Can you SSH directly onto the jumpbox?**
     `ssh jumpbox.integration.publishing.service.gov.uk` If not, check your ssh
     version and config.
 -   **Do you get a permission denied error?** Make sure you're in the
@@ -240,7 +240,7 @@ You can reduce the RAM available to the VM in a `Vagrantfile.localconfig` file i
 
 Consider using `vagrant ssh` to SSH into your VM directly, as it'll always do the right thing.
 
-If you need direct access (for `rsync`, `scp` or similar), you'll need to manually configure your ssh configuration:
+If you need direct access (for `rsync`, `scp` or similar), you'll need to manually configure your SSH configuration:
 
 1. Run`vagrant ssh-config --host dev`
 2. Paste the output into your `~/.ssh/config`

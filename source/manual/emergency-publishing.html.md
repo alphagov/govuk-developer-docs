@@ -175,7 +175,7 @@ The information for the emergency banner is stored in Redis. [Static](https://gi
 
 You can manually check whether the data has been stored in Redis by the Jenkins job on one of the frontend machines.
 
-From your development machine ssh into a frontend box appropriate to the environment you want to check
+From your development machine SSH into a frontend box appropriate to the environment you want to check
 
 ```
 ssh frontend1.frontend.integration
@@ -252,7 +252,7 @@ exit
 
 ### Manually running the rake task to remove an emergency banner
 
-1) As above you first need to ssh into a frontend machine:
+1) As above you first need to SSH into a frontend machine:
 
 ```
 ssh frontend-1.frontend.integration
