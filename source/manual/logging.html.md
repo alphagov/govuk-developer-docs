@@ -18,7 +18,7 @@ It hasn't been reviewed for accuracy yet.
 
 Each machine sends its syslog to a central `logging` machine (logging-1.management) which listens on UDP port 514.
 
-The logging machine sends all the syslog messages it receives to a local logstash, which sends
+The logging machine sends all the syslog messages it receives to a local Logstash, which sends
 those logs to `logs-elasticsearch`.
 
 The logging machine keeps the logs at `/srv/log/year/month/date/server-name`
@@ -43,7 +43,7 @@ in its config and then applies filters to the log lines.
 We use `grok` patterns for applying filters. A useful tool to test patterns is
 [Grok Debugger](https://grokdebug.herokuapp.com/).
 
-The output for logstash is our logging Elasticsearch cluster.
+The output for Logstash is our logging Elasticsearch cluster.
 
 ## Elasticsearch
 
