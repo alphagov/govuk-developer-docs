@@ -164,7 +164,7 @@ vcloud-net-spinner -u <username> -p <password> -U <edgegateway_uuid> -c <compone
 > **warning**
 >
 > Even if you do intend to restrict traffic handled by the load balancer
-> to :443 (HTTPS), you must include the http directive in order for the
+> to :443 (HTTPS), you must include the HTTP directive in order for the
 > load balancing rules to be accepted properly.
 
 ## DNS configuration
