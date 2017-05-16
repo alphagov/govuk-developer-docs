@@ -69,7 +69,7 @@ master.
 To recover:
 
 1.  SSH to mysql-master-1.backend
-2.  Stop mysql using `sudo service mysql stop` (this may never return)
+2.  Stop MySQL using `sudo service mysql stop` (this may never return)
 3.  At this point `service mysql status` may return `stop/killed`,
     indicating that Upstart has tried to kill MySQL but it is refusing
     to die

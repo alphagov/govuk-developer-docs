@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Upgrading mysql
+title: Upgrading MySQL
 parent: "/manual.html"
 layout: manual_layout
 section: Databases
@@ -8,7 +8,7 @@ last_reviewed_on: 2017-04-03
 review_in: 6 months
 ---
 
-Upgrading mysql will cause 500 errors on sites as the master and slave
+Upgrading MySQL will cause 500 errors on sites as the master and slave
 machines are restarted, so this procedure needs to be done at a suitable
 time on production - i.e outside of core business hours (9:00 - 18:00
 Monday to Friday)
@@ -18,7 +18,7 @@ as they are not actively used by sites and will not cause 500 errors
 
 The following Puppet classes will need upgrading
 
-mysql cluster:
+MySQL cluster:
 
 > mysql\_backup
 >
