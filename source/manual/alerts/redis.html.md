@@ -43,7 +43,7 @@ data up to its memory limit and then stop accepting log data. In this
 condition log data will be lost from the logging pipeline because logship
 discards data.
 
--  You should use graphite for looking at cpu load and used memory.
+-  You should use graphite for looking at CPU load and used memory.
    (Pending: More graphite inputs)
 -  Also check how does this impacts Elasticsearch.
 -  `redis-cli INFO` and `redis-cli CLIENT LIST` command helps to
