@@ -16,9 +16,9 @@ It hasn't been reviewed for accuracy yet.
 
 ## Syslog
 
-Each machine sends its syslog to a central `logging` machine (logging-1.management) which listens on UDP port 514.
+Each machine sends its Syslog to a central `logging` machine (logging-1.management) which listens on UDP port 514.
 
-The logging machine sends all the syslog messages it receives to a local Logstash, which sends
+The logging machine sends all the Syslog messages it receives to a local Logstash, which sends
 those logs to `logs-elasticsearch`.
 
 The logging machine keeps the logs at `/srv/log/year/month/date/server-name`

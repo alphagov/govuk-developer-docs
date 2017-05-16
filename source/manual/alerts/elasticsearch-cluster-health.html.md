@@ -91,7 +91,7 @@ come handy
 
 **Note:** If you have had a health alert for the logs-elasticsearch
 cluster you may need to change where Logstash writes to to ensure we can
-keep getting getting syslog entries.
+keep getting getting Syslog entries.
 
 ### How to fix unassigned nodes in indices?
 
@@ -159,7 +159,7 @@ logs-elasticsearch-cluster (which is mapped through a dns entry to
 logs-elasticsearch-1.management) for sending logs.
 
 If logs-elasticsearch-1.management is not available, we need to tell
-Logstash on logging-1 to send its syslog data to a different
+Logstash on logging-1 to send its Syslog data to a different
 elasticsearch node. This is done by changing the /etc/hosts file on
 logging-1.management
 
