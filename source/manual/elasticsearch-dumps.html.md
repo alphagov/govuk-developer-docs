@@ -11,7 +11,7 @@ review_in: 6 months
 ## Creating a dump
 
 Sometimes you may need to take a backup of Elasticsearch before a
-critical operation and all elasticsearch servers create their own
+critical operation and all Elasticsearch servers create their own
 nightly backups via the following cronjob:
 
 ```bash
@@ -19,7 +19,7 @@ $ sudo crontab -lu elasticsearch
 /usr/bin/es_dump http://localhost:9200 /var/es_dump
 ```
 
-The first argument is the elasticsearch instance and the second is the
+The first argument is the Elasticsearch instance and the second is the
 directory in which to store the output. The user running the dump needs
 permission to write to this directory.
 
@@ -38,7 +38,7 @@ $ curl -XDELETE 'http://localhost:9200/indexname/'
 If the import fails (as it sometimes does), you can simply re-run the command.
 
 Given a dump, which will typically be a zipfile, then it can be restored
-into elasticsearch:
+into Elasticsearch:
 
 ```
 $ es_dump_restore http://localhost:9200/ <indexname> dumpfile.zip

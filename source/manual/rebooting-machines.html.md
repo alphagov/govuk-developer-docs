@@ -19,7 +19,7 @@ It hasn't been reviewed for accuracy yet.
 
 -   Do not reboot more than one machine of the same class at the
     same time.
--   When rebooting clustered applications (such as elasticsearch) wait
+-   When rebooting clustered applications (such as Elasticsearch) wait
     for the cluster to recover fully before rebooting the next machine.
 
 ## Unattended upgrades
@@ -109,9 +109,9 @@ The general approach for rebooting machines in a MongoDB cluster is:
     down the primary and waiting for the cluster to recover
     before rebooting.
 
-## Rebooting elasticsearch machines
+## Rebooting Elasticsearch machines
 
-To reboot an elasticsearch machine, run the following command:
+To reboot an Elasticsearch machine, run the following command:
 
     fab $environment class:elasticsearch numbered:N elasticsearch.safe_reboot
 
@@ -120,8 +120,8 @@ To reboot an elasticsearch machine, run the following command:
 This will prevent you from rebooting a machine in a cluster which
 doesn't have a green cluster health status.
 
-After rebooting an elasticsearch machine, Redis rivers may become stuck,
-see [redis rivers for elasticsearch](alerts/redis.html)
+After rebooting an Elasticsearch machine, Redis rivers may become stuck,
+see [redis rivers for Elasticsearch](alerts/redis.html)
 
 ## Rebooting redis machines
 
