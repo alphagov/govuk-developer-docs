@@ -39,7 +39,7 @@ There are 2 ways that this might contact you:
 
 - Any Icinga checks that 'use' `govuk_urgent_priority` will cause
   PagerDuty to be notified. You can get the most up to date list of these
-  by searching the puppet repo for `govuk_urgent_priority`. All urgent priority
+  by searching the Puppet repo for `govuk_urgent_priority`. All urgent priority
   alerts must be linked to a section in the
   [alert documentation](nagios.html).
 - There are a couple of checks defined in Pingdom which notify PagerDuty directly rather
@@ -89,7 +89,7 @@ support (assuming everything is working).
 
 ## Things you should read if you're on-call
 
-- [Stopping nginx on the cache machines to fail to our static mirror](https://github.com/alphagov/fabric-scripts/blob/master/incident.py)
+- [Stopping NGINX on the cache machines to fail to our static mirror](https://github.com/alphagov/fabric-scripts/blob/master/incident.py)
 - [Emergency publishing](emergency-publishing.html)
 - [Emergency publishing while origin is unavailable](mirror-fallback.html)
 - [Responding to an outage](outage-detail.html)

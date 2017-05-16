@@ -24,7 +24,7 @@ Components:
 
 - The CI environment runs in the Integration environment in the "CI" vDC
 - Jenkins master:
-  - Nginx, listening on port 443, it serves <https://ci.integration.publishing.service.gov.uk>
+  - NGINX, listening on port 443, it serves <https://ci.integration.publishing.service.gov.uk>
 and proxies requests to Jenkins. It is also running on port 80 to serve a monitoring page.
   - Jenkins master, listening on port 8080
 - Jenkins agents:

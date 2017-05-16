@@ -24,7 +24,7 @@ the MySQL documentation:
 To check the status of the slave,
 
 1. Log onto the server (e.g. `mysql-backup-1.backend.integration`)
-2. Open a mysql shell:
+2. Open a MySQL shell:
 
     ```
     sudo -i mysql

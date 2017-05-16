@@ -38,13 +38,13 @@ Before publishing an emergency banner, you will need to know the following. The 
 - A URL for users to find more information (it might not be provided at first).
 
 <a name="set-up-fabric"></a>
-### Set up your fabric scripts
+### Set up your Fabric scripts
 
 If you've not used them before, you'll need to clone [fabric-scripts](https://github.com/alphagov/fabric-scripts) and follow the setup instructions in the fabric-scripts README.
 
 1) Make sure your copy of fabric-scripts is up to date and on master.
 
-2) Activate your virtual environment for the fabric scripts if you have set one up. If you have followed the setup guide for the fabric scripts, this will be:
+2) Activate your virtual environment for the Fabric scripts if you have set one up. If you have followed the setup guide for the Fabric scripts, this will be:
 
 ```
 $ . ~/venv/fabric-scripts/bin/activate
@@ -75,7 +75,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 <a name="clear-template-cache"></a>
 ### Clear caching in frontend, static and whitehall-frontend
 
-1) Run the fabric task to clear the application template cache for frontend and
+1) Run the Fabric task to clear the application template cache for frontend and
 static:
 
 ```
@@ -132,7 +132,7 @@ purging the cache.
 <a name="unset-env-var"></a>
 ### Unset your environment variable
 
-1) Remember to unset your fabric environment variable:
+1) Remember to unset your Fabric environment variable:
 
 ```
 unset environment
@@ -141,9 +141,9 @@ unset environment
 
 ## Removing emergency publishing banners
 
-### Set up your fabric scripts
+### Set up your Fabric scripts
 
-Follow the instructions above to [set up your fabric scripts](#set-up-fabric)
+Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
 
 ### Remove the banner using Jenkins
 
@@ -175,13 +175,13 @@ The information for the emergency banner is stored in Redis. [Static](https://gi
 
 You can manually check whether the data has been stored in Redis by the Jenkins job on one of the frontend machines.
 
-From your development machine ssh into a frontend box appropriate to the environment you want to check
+From your development machine SSH into a frontend box appropriate to the environment you want to check
 
 ```
 ssh frontend1.frontend.integration
 ```
 
-Load a rails console for static:
+Load a Rails console for static:
 
 ```
 govuk_app_console static
@@ -203,7 +203,7 @@ irb(main):001:0> Redis.new.hgetall("emergency_banner")
 
 ### Manually running the rake task to deploy the emergency banner
 
-If you need to manually run the rake tasks to set the Redis keys for some reason, you can do so (remember to follow the instructions above to clear application template caches, restart whitehall and purge origin caches afterwards):
+If you need to manually run the rake tasks to set the Redis keys for some reason, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
 
 1) SSH into a `frontend` machine appropriate to the environment you are
 deploying the banner on. For example, for integration:
@@ -252,7 +252,7 @@ exit
 
 ### Manually running the rake task to remove an emergency banner
 
-1) As above you first need to ssh into a frontend machine:
+1) As above you first need to SSH into a frontend machine:
 
 ```
 ssh frontend-1.frontend.integration

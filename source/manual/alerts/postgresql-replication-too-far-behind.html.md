@@ -8,7 +8,7 @@ last_reviewed_on: 2017-02-14
 review_in: 6 months
 ---
 
-> "replication on the postgres slave is too far behind master [value in bytes]"
+> "replication on the PostgreSQL slave is too far behind master [value in bytes]"
 
 When this alert fires, the Postgres slave replication process may be
 struggling to keep up (due to load) or may have stopped altogether. Take

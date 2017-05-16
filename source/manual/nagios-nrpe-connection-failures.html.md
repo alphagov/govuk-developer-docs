@@ -12,7 +12,7 @@ Nagios uses a protocol called NRPE (Nagios Remote Plugin Executor) to perform
 checks on remote machines. Monitored machines run an 'NRPE agent' which
 listens for requests to execute monitoring checks.
 
-Occasionally the nagios server is unable to connect to an NRPE agent on one of
+Occasionally the Nagios server is unable to connect to an NRPE agent on one of
 the monitored machines. In this case you will see an alert with a message such
 as 'connection to NRPE could not be established'.
 

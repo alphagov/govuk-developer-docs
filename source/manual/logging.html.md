@@ -16,24 +16,24 @@ It hasn't been reviewed for accuracy yet.
 
 ## Syslog
 
-Each machine sends its syslog to a central `logging` machine (logging-1.management) which listens on UDP port 514.
+Each machine sends its Syslog to a central `logging` machine (logging-1.management) which listens on UDP port 514.
 
-The logging machine sends all the syslog messages it receives to a local logstash, which sends
+The logging machine sends all the Syslog messages it receives to a local Logstash, which sends
 those logs to `logs-elasticsearch`.
 
 The logging machine keeps the logs at `/srv/log/year/month/date/server-name`
 
-## Logstream, logship and redis
+## Logstream, logship and Redis
 
 We have a defined type in our Puppet code which uses
 [logship](https://github.com/alphagov/tagalog/blob/master/tagalog/command/logship.py)
 to tail logfiles.
 
 The tailed logs are sent to `logs-redis` machines. The logging Elasticsearch cluster has a
-river to pull logs from redis.
+river to pull logs from Redis.
 
-logship provides multiple shippers. We're using the redis shipper and the statsd shipper
-(for sending nginx status codes to Graphite).
+logship provides multiple shippers. We're using the Redis shipper and the statsd shipper
+(for sending NGINX status codes to Graphite).
 
 ## Logstash
 
@@ -43,7 +43,7 @@ in its config and then applies filters to the log lines.
 We use `grok` patterns for applying filters. A useful tool to test patterns is
 [Grok Debugger](https://grokdebug.herokuapp.com/).
 
-The output for logstash is our logging Elasticsearch cluster.
+The output for Logstash is our logging Elasticsearch cluster.
 
 ## Elasticsearch
 

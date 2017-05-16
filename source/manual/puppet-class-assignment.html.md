@@ -17,14 +17,14 @@ It hasn't been reviewed for accuracy yet.
 
 On each instance running Puppet there is a [trusted fact](http://www.sebdangerfield.me.uk/2015/06/puppet-trusted-facts/)
 called `certname`. This is based on the host name embedded in the instances certificate
-and cannot be changed without making the cert invalid. This value is sent to the puppet master
+and cannot be changed without making the cert invalid. This value is sent to the Puppet master
 on each run, as are all facts, and made available to the master in a data structure that cannot be easily overridden.
-These values are used by puppet as it builds the config for the given host.
+These values are used by Puppet as it builds the config for the given host.
 
-When an agent checks in, the puppet master looks in the `manifests/site.pp` file to find a `node` block matching
+When an agent checks in, the Puppet master looks in the `manifests/site.pp` file to find a `node` block matching
 the nodes name. You would normally list the classes to include here. In our case we call out to the
 `govuk_node_class()` function (which lives in (`./modules/govuk/lib/puppet/parser/functions/govuk_node_class.rb`)
-and use it to extract a puppet class name by taking the following steps:
+and use it to extract a Puppet class name by taking the following steps:
 
   * assume we start with a fully qualified host name of `api-1.api.integration.publishing.service.gov.uk
 `
@@ -41,5 +41,5 @@ You can see all the currently defined roles in:
     ls -alh modules/govuk/manifests/node/s_*.pp
 
 Assuming a matching class name exists the role is assigned to the host. In some cases there will also be an inherits
-statement to include resources from one of the base classes. From this point you can follow the puppet resources
+statement to include resources from one of the base classes. From this point you can follow the Puppet resources
  assigned by reading the included classes in the roles and then the modules they include.

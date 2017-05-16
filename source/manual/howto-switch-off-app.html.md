@@ -17,7 +17,7 @@ It hasn't been reviewed for accuracy yet.
 In the event of a security incident an app may need to be switched off until it
 can be patched.
 
-Stop puppet from running on the relevant machines
+Stop Puppet from running on the relevant machines
 
 ```
 fab $environment node_type:frontend puppet.disable

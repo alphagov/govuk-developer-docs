@@ -131,7 +131,7 @@ Delete the original MySQL data:
 
     backup$: sudo rm -rf /var/lib/mysql
 
-Move the mysql directory from your Home Directory to /var/lib:
+Move the MySQL directory from your Home Directory to /var/lib:
 
     backup$: sudo mv ~/mysql /var/lib/
     backup$: sudo chown -R mysql:mysql /var/lib/mysql

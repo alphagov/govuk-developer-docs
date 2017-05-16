@@ -37,37 +37,37 @@ to find out what those things might be.
 
 ### Investigation of the problem
 
-For logs-redis, memory may be exhausted if the elasticsearch river is not
-consuming data from redis for some reason. In this case, redis will accumulate
+For logs-redis, memory may be exhausted if the Elasticsearch river is not
+consuming data from Redis for some reason. In this case, redis will accumulate
 data up to its memory limit and then stop accepting log data. In this
 condition log data will be lost from the logging pipeline because logship
 discards data.
 
--  You should use graphite for looking at cpu load and used memory.
+-  You should use graphite for looking at CPU load and used memory.
    (Pending: More graphite inputs)
--  Also check how does this impacts elasticsearch.
+-  Also check how does this impacts Elasticsearch.
 -  `redis-cli INFO` and `redis-cli CLIENT LIST` command helps to
    see present info. [Other commands may come handy](http://redis.io/commands).
 
-### Redis rivers for elasticsearch
+### Redis rivers for Elasticsearch
 
 We use [elasticsearch-redis-river](https://github.com/leeadkins/elasticsearch-redis-river)
-(a redis river for elasticsearch). This is a special process which reads data continuously from a redis queue (called `logs`) into elasticsearch.
+(a Redis river for Elasticsearch). This is a special process which reads data continuously from a redis queue (called `logs`) into Elasticsearch.
 
-There is a nagios alert (listed above) for when the `logs` redis list gets
-too long. This might be because elasticsearch is unavailable or may be for
+There is a Nagios alert (listed above) for when the `logs` Redis list gets
+too long. This might be because Elasticsearch is unavailable or may be for
 some other reason.
 
-Generally this can be fixed by deleting and recreating the rivers. This is safe to do because the river pulls data from redis (rather than redis pushing data into elasticsearch).
+Generally this can be fixed by deleting and recreating the rivers. This is safe to do because the river pulls data from Redis (rather than redis pushing data into Elasticsearch).
 
-Delete and recreate the rivers with this fabric command:
+Delete and recreate the rivers with this Fabric command:
 
 ```
 fab $environment -H logs-elasticsearch-1.management elasticsearch.delete:_river puppet
 ```
 
 The `elasticsearch.delete:_river` command deletes all rivers, and `puppet`
-runs puppet which will recreate them.
+runs Puppet which will recreate them.
 
 To manually check the length of the list, use:
 

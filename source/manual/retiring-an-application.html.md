@@ -22,7 +22,7 @@ This will then be included in the sync to the offsite backup machines
 
 ## 2. Remove app from puppet
 
-Configure puppet to remove the app from all servers. Change the app resource,
+Configure Puppet to remove the app from all servers. Change the app resource,
 and any database resources to `ensure => absent`, remove any host and load-balancer entries, but leave the hieradata entries.
 
 See this pull request for an example:
@@ -71,7 +71,7 @@ services that exist for it.
 
 ## 8. Remove from Errbit
 
-Delete the application from Errbit. On all 3 errbit instances, delete the
+Delete the application from Errbit. On all 3 Errbit instances, delete the
 application (you'll need the `admin` permission to do this). The delete button
 can be found in the application edit screen.
 
@@ -79,10 +79,10 @@ can be found in the application edit screen.
 
 If the app has received lots of errors, the request to delete it can
 timeout. If this happens, it will need to be deleted manually from the
-rails console as follows:
+Rails console as follows:
 
-- ssh to `exception-handler-1.backend.{integration,staging,production}`
-- start a rails console `govuk_app_console errbit`
+- SSH to `exception-handler-1.backend.{integration,staging,production}`
+- start a Rails console `govuk_app_console errbit`
 
 - Find and destroy the application:
 
@@ -136,7 +136,7 @@ For example: <https://github.digital.cabinet-office.gov.uk/gds/deployment/pull/4
 
 ## 15. Drop database
 
-If puppet hasn't done it (eg for Mongo databases), drop the database.
+If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
 ## 16. Remove jobs in CI
 

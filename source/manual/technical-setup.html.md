@@ -22,7 +22,7 @@ See [the docs](https://github.com/alphagov/govuk-puppet/blob/master/docs/creatin
 
 You should have a recent copy of the
 [opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual) and the
-[fabric scripts](https://github.com/alphagov/fabric-scripts) in case you're
+[Fabric scripts](https://github.com/alphagov/fabric-scripts) in case you're
 required to perform [emergency publishing](emergency-publishing.html).
 
 ## ZenDesk

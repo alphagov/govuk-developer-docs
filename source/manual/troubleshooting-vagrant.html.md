@@ -48,7 +48,7 @@ ssh-add -L  # list key and location on host machine
 
 Things to check if it doesn't work:
 
--   **Can you ssh directly onto the jumpbox?**
+-   **Can you SSH directly onto the jumpbox?**
     `ssh jumpbox.integration.publishing.service.gov.uk` If not, check your ssh
     version and config.
 -   **Do you get a permission denied error?** Make sure you're in the
@@ -84,9 +84,9 @@ exports:5: no usable directories in export entry
 exports:5: using fallback (marked offline): /
 ```
 
-This means that you may already have old vagrant path definitions in your `/etc/exports` file.
+This means that you may already have old Vagrant path definitions in your `/etc/exports` file.
 
-Try opening up `/etc/exports` file to identify old or unwanted vagrant paths and removing them if necessary
+Try opening up `/etc/exports` file to identify old or unwanted Vagrant paths and removing them if necessary
 
 On opening `/etc/exports` file each set begins with # VAGRANT-BEGIN: and ends with # VAGRANT-END:. Make sure to delete these and any other lines between VAGRANT-BEGIN: and VAGRANT-END:
 
@@ -104,7 +104,7 @@ vagrant up
 
 If your host is running macOS 10.12 Sierra you may encounter this problem as there is a bug in the nfs implementation that means the cache is not updated frequently enough.  The usual way of encountering this problem is early in a `govuk_puppet` run, it will fail early with a Permission Denied error when trying to remove a file in `vendor/modules/`.  One workaround is to remove the `vendor/modules` and `.tmp` folders from your govuk-puppet working directory on your host, and then run `govuk_puppet` again in the VM.
 
-The other solution, as mentioned in [this github issue against vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
+The other solution, as mentioned in [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
 
 ## installing vagrant-dns
 
@@ -118,7 +118,7 @@ It looks like this might be a problem with Vagrant 1.9.0, because installing 1.8
 
 ## vagrant-dns having updated vagrant
 
-If after updating vagrant, you get errors regarding vagrant-dns when provisioning the VM you will need to reinstall the vagrant-dns plugin:
+If after updating Vagrant, you get errors regarding vagrant-dns when provisioning the VM you will need to reinstall the vagrant-dns plugin:
 
     vagrant plugin uninstall vagrant-dns
     vagrant plugin install vagrant-dns
@@ -144,7 +144,7 @@ If you're still having issues you can try to update the vagrant-dns plugin:
 
 ## Fetching packages
 
-GOV.UK have an apt repository at http://apt.publishing.service.gov.uk/ This is not accessible on the internet, so if you're trying to provision the virtual machine outside of the GDS office, you have a little bit of work to do. The prerequisites talk about needing an LDAP account to access GDS Github Enterprise, so you should have an account which lets you access the VPN.
+GOV.UK have an apt repository at http://apt.publishing.service.gov.uk/ This is not accessible on the internet, so if you're trying to provision the virtual machine outside of the GDS office, you have a little bit of work to do. The prerequisites talk about needing an LDAP account to access GDS GitHub Enterprise, so you should have an account which lets you access the VPN.
 
 1. [Install openconnect](https://github.com/alphagov/gds-boxen/blob/1ba02125e0/modules/people/manifests/jabley.pp#L31)
 2. [Connect to the Aviation House VPN](https://github.com/jabley/homedir/commit/2682f094024524cb7e31ca447694bdf81b1239a2)
@@ -175,7 +175,7 @@ Generally, you might want to try `vagrant provision` on your host machine, which
 
 ## Can't connect to Mongo
 
-This is probably happening because your VM didn't shut down cleanly. You should be running `vagrant halt` or `vagrant suspend` but if you had to kill your VM or restart your machine mongo won't be able to connect. You can fix this by deleting your `mongod.lock` and restarting mongodb.
+This is probably happening because your VM didn't shut down cleanly. You should be running `vagrant halt` or `vagrant suspend` but if you had to kill your VM or restart your machine MongoDB won't be able to connect. You can fix this by deleting your `mongod.lock` and restarting MongoDB.
 
 ```
 sudo rm /var/lib/mongodb/mongod.lock
@@ -240,9 +240,9 @@ You can reduce the RAM available to the VM in a `Vagrantfile.localconfig` file i
 
 Consider using `vagrant ssh` to SSH into your VM directly, as it'll always do the right thing.
 
-If you need direct access (for `rsync`, `scp` or similar), you'll need to manually configure your ssh configuration:
+If you need direct access (for `rsync`, `scp` or similar), you'll need to manually configure your SSH configuration:
 
-1. Run`vagrant ssh-config --host dev`
+1. Run `vagrant ssh-config --host dev`
 2. Paste the output into your `~/.ssh/config`
 3. SSH into this using `ssh dev`
 

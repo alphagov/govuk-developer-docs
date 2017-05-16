@@ -38,7 +38,7 @@ way. If that's the case, make sure that the following file exists on the host:
 ```
 
 And that it is in a proper state (i.e. empty). If not, you can restart the gor
-processes with the following fabric command:
+processes with the following Fabric command:
 
 ```
 fab $environment puppet_class:gor sdo:'rm /etc/govuk/env.d/FACTER_data_sync_in_progress' app.start:gor
@@ -46,7 +46,7 @@ fab $environment puppet_class:gor sdo:'rm /etc/govuk/env.d/FACTER_data_sync_in_p
 
 This will remove the file and restart gor from all hosts running it.
 
-When puppet runs again in those hosts, it will re-create the alerts and we will be
+When Puppet runs again in those hosts, it will re-create the alerts and we will be
 able to see them back in icinga.
 
 [gor-gh]: https://github.com/buger/gor/

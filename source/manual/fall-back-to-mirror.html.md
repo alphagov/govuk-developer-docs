@@ -16,7 +16,7 @@ This process is handled by our CDN config and is entirely transparent to us and
 our users. It happens multiple times a day for lots of different reasons. The
 `govuk-cdn-logs-monitor` app outputs [stats showing if the mirrors are active][graphite_cdn_backend].
 
-This is why we refer to switching off Nginx on the origin cache machines as
+This is why we refer to switching off NGINX on the origin cache machines as
 "failing to the mirrors".
 
 ## Viewing
@@ -61,7 +61,7 @@ cd /mnt/crawler_worker/www.gov.uk
 ## Forcing failover to the static mirrors
 
 Because the CDN will retry every request against the mirrors automatically if origin
-is unavailable, all you need to do is [stop Nginx on the cache machines with Fabric][fab-fail]:
+is unavailable, all you need to do is [stop NGINX on the cache machines with Fabric][fab-fail]:
 
 ```
 fab $environment incident.fail_to_mirror
