@@ -287,12 +287,12 @@ no chance of breaking the build pipelines for anyone else.
 
 There are two MySQL clusters:
 
-> -   "Normal" mysql
+> -   "Normal" MySQL
 >     -   mysql-master-1
 >     -   mysql-slave-1
 >     -   mysql-slave-2
 >     -   mysql-backup-1
-> -   Whitehall mysql
+> -   Whitehall MySQL
 >     -   whitehall-master-1
 >     -   whitehall-slave-1
 >     -   whitehall-slave-2
@@ -301,7 +301,7 @@ There are two MySQL clusters:
 Both clusters need to be set up so that `slave-{1,2}` and `backup-1`
 slave from the `master-1`.
 
-To set up slaving, follow the documentation on [setting up mysql
+To set up slaving, follow the documentation on [setting up MySQL
 replication](setup-mysql-replication.html) , except that you might need
 to take the initial dump from a different environment. This is the case
 if you are rebuilding preview.
