@@ -184,7 +184,7 @@ that has already been provisioned):
 
 #### Configure
 
-1.  On Github Enterprise, create a new configuration repository for
+1.  On GitHub Enterprise, create a new configuration repository for
     your environment. Make sure that the
     [Bots](https://github.digital.cabinet-office.gov.uk/organizations/gds/teams/3) team has access
     to to your new repository

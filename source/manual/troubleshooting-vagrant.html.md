@@ -104,7 +104,7 @@ vagrant up
 
 If your host is running macOS 10.12 Sierra you may encounter this problem as there is a bug in the nfs implementation that means the cache is not updated frequently enough.  The usual way of encountering this problem is early in a `govuk_puppet` run, it will fail early with a Permission Denied error when trying to remove a file in `vendor/modules/`.  One workaround is to remove the `vendor/modules` and `.tmp` folders from your govuk-puppet working directory on your host, and then run `govuk_puppet` again in the VM.
 
-The other solution, as mentioned in [this github issue against vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
+The other solution, as mentioned in [this GitHub issue against vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
 
 ## installing vagrant-dns
 
@@ -144,7 +144,7 @@ If you're still having issues you can try to update the vagrant-dns plugin:
 
 ## Fetching packages
 
-GOV.UK have an apt repository at http://apt.publishing.service.gov.uk/ This is not accessible on the internet, so if you're trying to provision the virtual machine outside of the GDS office, you have a little bit of work to do. The prerequisites talk about needing an LDAP account to access GDS Github Enterprise, so you should have an account which lets you access the VPN.
+GOV.UK have an apt repository at http://apt.publishing.service.gov.uk/ This is not accessible on the internet, so if you're trying to provision the virtual machine outside of the GDS office, you have a little bit of work to do. The prerequisites talk about needing an LDAP account to access GDS GitHub Enterprise, so you should have an account which lets you access the VPN.
 
 1. [Install openconnect](https://github.com/alphagov/gds-boxen/blob/1ba02125e0/modules/people/manifests/jabley.pp#L31)
 2. [Connect to the Aviation House VPN](https://github.com/jabley/homedir/commit/2682f094024524cb7e31ca447694bdf81b1239a2)
