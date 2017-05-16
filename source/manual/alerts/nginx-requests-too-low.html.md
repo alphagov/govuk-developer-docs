@@ -15,4 +15,6 @@ review_in: 6 months
     of a bigger problem as described above. The threshold is
     configurable in hieradata so we can tweak for environments where we
     expect to see lower traffic levels.
-
+-   On Staging and Integration, this alert may appear while production
+    data is being copied to the environment. This is because production
+    traffic replay is paused during the copying job.
