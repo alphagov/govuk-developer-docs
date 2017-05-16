@@ -16,7 +16,7 @@ Monday to Friday)
 It is safe to reboot the \_backup and \_slave-2 machines on production
 as they are not actively used by sites and will not cause 500 errors
 
-The following puppet classes will need upgrading
+The following Puppet classes will need upgrading
 
 mysql cluster:
 

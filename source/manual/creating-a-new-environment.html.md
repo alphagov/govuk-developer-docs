@@ -152,7 +152,7 @@ that has already been provisioned):
 
         FOG_CREDENTIAL=foo bundle exec vcloud-logout
 
-2.  Make sure you have the puppet repository checked out locally and
+2.  Make sure you have the Puppet repository checked out locally and
     have pulled the latest from the master branch.
 3.  Make sure you have the deployment repository checked out locally and
     have pulled the latest from the master branch.

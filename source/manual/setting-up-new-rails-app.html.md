@@ -233,7 +233,7 @@ On the apps tab, "Add a New App".
 
 You'll need the generated API key in a later step.
 
-### Update puppet to include the environment variables for airbrake
+### Update Puppet to include the environment variables for airbrake
 
     # modules/govuk/manifests/apps/myapp.pp
     class govuk::apps::myapp(

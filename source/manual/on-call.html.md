@@ -39,7 +39,7 @@ There are 2 ways that this might contact you:
 
 - Any Icinga checks that 'use' `govuk_urgent_priority` will cause
   PagerDuty to be notified. You can get the most up to date list of these
-  by searching the puppet repo for `govuk_urgent_priority`. All urgent priority
+  by searching the Puppet repo for `govuk_urgent_priority`. All urgent priority
   alerts must be linked to a section in the
   [alert documentation](nagios.html).
 - There are a couple of checks defined in Pingdom which notify PagerDuty directly rather
