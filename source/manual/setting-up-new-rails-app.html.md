@@ -135,7 +135,7 @@ You also need to add a Jenkins integration to the repo on Github:
 
 1.  In github, go to Settings -&gt; Integrations & Services
 2.  Add Jenkins (GitHub plugin)
-3.  Add the link to the CI github webhook
+3.  Add the link to the CI GitHub webhook
 4.  Make sure Active is ticked
 
 Add the app to the list of

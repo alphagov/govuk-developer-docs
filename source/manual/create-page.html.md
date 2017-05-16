@@ -10,7 +10,7 @@ review_in: 6 months
 
 ## Create a page
 
-1. Add a page in Github to the [/source/manual](https://github.com/alphagov/govuk-developer-docs/tree/master/source/manual) directory.
+1. Add a page in GitHub to the [/source/manual](https://github.com/alphagov/govuk-developer-docs/tree/master/source/manual) directory.
 2. Mark it with a section that makes sense for it to live in.
 3. Add a review-by date.
 
