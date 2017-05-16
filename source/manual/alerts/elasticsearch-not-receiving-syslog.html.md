@@ -4,7 +4,7 @@ title: 'Elasticsearch: not receiving Syslog from Logstash'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2016-11-08
+last_reviewed_on: 2017-05-16
 review_in: 6 months
 ---
 
