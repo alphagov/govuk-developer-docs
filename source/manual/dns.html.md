@@ -4,8 +4,7 @@ title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/dns.md"
-last_reviewed_on: 2016-11-04
+last_reviewed_on: 2017-05-16
 review_in: 6 months
 ---
 
@@ -15,14 +14,14 @@ By default, zones are managed using DynDNS.
 
 The following zones use both DynDNS and Amazon Route 53 as dual providers:
 
-  digital.cabinet-office.gov.uk.
-  govuk.service.gov.uk.
-  performance.service.gov.uk.
-  service.gov.uk.
+- digital.cabinet-office.gov.uk.
+- govuk.service.gov.uk.
+- performance.service.gov.uk.
+- service.gov.uk.
 
 The following use Route 53 and Google Cloud DNS:
 
-  publishing.service.gov.uk
+- publishing.service.gov.uk
 
 **If zones are managed with two providers, then both sets of records must be updated
 in both providers**
