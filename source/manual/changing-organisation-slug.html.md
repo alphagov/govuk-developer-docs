@@ -76,7 +76,7 @@ db.topics.find({_id: {$regex: new RegExp("old-slug") }})
 ```
 
 Then update the topics by inserting the new record and deleting the old one.
-(An update isn't possible because Mongo doesn't allow updating IDs):
+(An update isn't possible because MongoDB doesn't allow updating IDs):
 
 ```js
 db.topics.find({_id: {$regex: new RegExp("old-slug") }}).forEach(function(doc) {

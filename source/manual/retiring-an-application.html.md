@@ -136,7 +136,7 @@ For example: <https://github.digital.cabinet-office.gov.uk/gds/deployment/pull/4
 
 ## 15. Drop database
 
-If Puppet hasn't done it (eg for Mongo databases), drop the database.
+If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
 ## 16. Remove jobs in CI
 

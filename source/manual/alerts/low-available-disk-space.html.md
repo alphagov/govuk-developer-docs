@@ -85,7 +85,7 @@ If there's no disk space available, purging binary logs from within
 MySQL doesn't work - this is why we first need to manually delete some
 logs and update the index.
 
-### Low available disk space on monogodb mount on exception-handler (errbit)
+### Low available disk space on MongoDB mount on exception-handler (errbit)
 
 You can clear out resolved exceptions by running the following rake
 task:
@@ -93,7 +93,7 @@ task:
     rake errbit:db:clear_resolved
 
 Depending on the size of the db this could take a while to complete. The
-last thing this rake task does is run the mongo repair database command
+last thing this rake task does is run the MongoDB repair database command
 to release the disk space freed up. This command requires free space on
 the drive equal to the size of the db + 2GB so it's likely it will fail.
 

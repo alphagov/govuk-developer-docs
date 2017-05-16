@@ -89,7 +89,7 @@ If you wish to reboot all machines, there is a fabric task to reboot
 replacing `$environment` with the appropriate environment, and `N` with
 a number (currently from 1 to 7).
 
-## Rebooting mongo machines
+## Rebooting MongoDB machines
 
 You can see our MongoDB machines by running:
 
@@ -98,7 +98,7 @@ You can see our MongoDB machines by running:
 This section doesn't apply to `exception-handler-1` because it isn't
 using a replicaset.
 
-The general approach for rebooting machines in a mongo cluster is:
+The general approach for rebooting machines in a MongoDB cluster is:
 
 -   Check cluster status with `fab <environment> -H <host> mongo.status`
 -   Using `fab <environment> -H <host> mongo.safe_reboot`

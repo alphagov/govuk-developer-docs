@@ -175,7 +175,7 @@ Generally, you might want to try `vagrant provision` on your host machine, which
 
 ## Can't connect to Mongo
 
-This is probably happening because your VM didn't shut down cleanly. You should be running `vagrant halt` or `vagrant suspend` but if you had to kill your VM or restart your machine mongo won't be able to connect. You can fix this by deleting your `mongod.lock` and restarting mongodb.
+This is probably happening because your VM didn't shut down cleanly. You should be running `vagrant halt` or `vagrant suspend` but if you had to kill your VM or restart your machine MongoDB won't be able to connect. You can fix this by deleting your `mongod.lock` and restarting MongoDB.
 
 ```
 sudo rm /var/lib/mongodb/mongod.lock
