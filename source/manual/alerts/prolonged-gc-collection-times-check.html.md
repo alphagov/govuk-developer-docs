@@ -10,9 +10,9 @@ review_in: 6 months
 
 ### What is 'Prolonged GC collection times' check?
 
-This checks when the elasticsearch JVM garbage collection times (in
+This checks when the Elasticsearch JVM garbage collection times (in
 milliseconds) exceeds critical or warning levels. This is collected by
-graphite via collectd from the elasticsearch API.
+graphite via collectd from the Elasticsearch API.
 
 Currently the check uses graphite function to summarize over a time
 period of 5minutes and find the maximum value in that period.
@@ -34,7 +34,7 @@ completing.
 Solving this problem largely depends on what the particular box is being
 used for.
 
-On boxes where the data in elasticsearch isn't critical (e.g. for
+On boxes where the data in Elasticsearch isn't critical (e.g. for
 ci-master and ci-agent, where it is only test data) freeing up heap
 space can be achieved by deleting indexes:
 
@@ -49,9 +49,9 @@ to delete all indexes. Obviously run these with extreme care!
 ### Places to investigate?
 
 -   Make sure this is not affecting the gov.uk site search if coming
-    from elasticsearch search boxes.
+    from Elasticsearch search boxes.
 -   Make sure not leading to loss of log lines if coming from
-    elasticsearch logging boxes.
+    Elasticsearch logging boxes.
 
 ### Further reading
 

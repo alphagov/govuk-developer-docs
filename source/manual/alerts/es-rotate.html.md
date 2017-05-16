@@ -12,7 +12,7 @@ This alert triggers when the es-rotate hasn't completed successfully.
 
 es-rotate is part of [es-tools](https://github.com/alphagov/estools).
 
-Its job is to rotate the elasticsearch alias for the current day's logs,
+Its job is to rotate the Elasticsearch alias for the current day's logs,
 and to delete old indexes.
 
 If it doesn't run, it's fine to rerun manually on the affected host,

@@ -85,7 +85,7 @@ come handy
   fab production puppet_class:govuk_elasticsearch hosts
   ```
 
-- Configuration files for elasticsearch are in `/var/apps/<name>/config/elasticsearch.yml`
+- Configuration files for Elasticsearch are in `/var/apps/<name>/config/elasticsearch.yml`
 
 - Elasticsearch logs live at `/var/logs/elasticsearch/<logging|govuk-production>.log`
 
@@ -95,16 +95,16 @@ keep getting getting Syslog entries.
 
 ### How to fix unassigned nodes in indices?
 
-We can have a red status on elasticsearch cluster health when you have
+We can have a red status on Elasticsearch cluster health when you have
 unassigned shards for some indices. (We have seen a similar scenario
 occur on the integration environment, when logs-es-1/3 ran out of space
 and logs-es-2 reached it load limit \[number of file open error\]).
 
 This can be solved by:
 
-Restarting elasticsearch node in order giving elastic node enough time
+Restarting Elasticsearch node in order giving elastic node enough time
 to start up and reallocate the shards allocated to it before starting
-the other elasticsearch (this can be checked using elasticsearch-head or
+the other Elasticsearch (this can be checked using elasticsearch-head or
 using cluster health api). This should be enough to fix the issue
 
 An exception to the above case can happen after the restart of the
@@ -160,12 +160,12 @@ logs-elasticsearch-1.management) for sending logs.
 
 If logs-elasticsearch-1.management is not available, we need to tell
 Logstash on logging-1 to send its Syslog data to a different
-elasticsearch node. This is done by changing the /etc/hosts file on
+Elasticsearch node. This is done by changing the /etc/hosts file on
 logging-1.management
 
 ### 'One or more indexes are missing replica shards.' despite cluster being green
 
-For some reason the elasticsearch plugin [does not consider a replica in the
+For some reason the Elasticsearch plugin [does not consider a replica in the
 `REALLOCATING` state to be
 healthy](https://github.com/alphagov/nagios-plugins/blob/6534386f658ce573a8b65e0f9147f61b1b0fe964/plugins/command/check_elasticsearch.py#L453).
 

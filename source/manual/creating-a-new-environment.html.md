@@ -329,7 +329,7 @@ this.
 ### Elasticsearch
 
 Assuming Elasticsearch has been installed by Puppet, and is contactable
-on :9200, then you can run the elasticsearch job in Jenkins to copy the
+on :9200, then you can run the Elasticsearch job in Jenkins to copy the
 relevant data and indexes over.
 
 If it turns out that this isn't the case, you can attempt to fix this
