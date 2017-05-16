@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: whitehall app health check not ok
+title: Whitehall app health check not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts

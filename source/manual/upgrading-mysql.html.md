@@ -26,7 +26,7 @@ MySQL cluster:
 >
 > mysql\_master
 
-whitehall cluster:
+Whitehall cluster:
 
 > whitehall\_mysql\_backup
 >
@@ -43,7 +43,7 @@ first slave and then the master.
 
 Before upgrading the master it is best to stop the slow query logs on
 the slaves. This can be done with the following Fabric command (or a
-similar one replacing the classes for whitehall). Only do this on
+similar one replacing the classes for Whitehall). Only do this on
 staging and integration -slow query logs are not enabled in production
 
 `fab $environment class:mysql_backup class:mysql_slave mysql.stop_slow_query_log`

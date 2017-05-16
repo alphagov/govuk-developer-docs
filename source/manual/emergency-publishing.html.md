@@ -203,7 +203,7 @@ irb(main):001:0> Redis.new.hgetall("emergency_banner")
 
 ### Manually running the rake task to deploy the emergency banner
 
-If you need to manually run the rake tasks to set the Redis keys for some reason, you can do so (remember to follow the instructions above to clear application template caches, restart whitehall and purge origin caches afterwards):
+If you need to manually run the rake tasks to set the Redis keys for some reason, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
 
 1) SSH into a `frontend` machine appropriate to the environment you are
 deploying the banner on. For example, for integration:
