@@ -191,7 +191,7 @@ the URL is a good idea.
 To configure the new VMs that you have created, you will need to deploy
 the
 [govuk\_mirror-puppet](https://github.com/alphagov/govuk_mirror-puppet)
-repository to those machines. This is done using a fabric script.
+repository to those machines. This is done using a Fabric script.
 
 In the
 [govuk\_mirror-deployment](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment)

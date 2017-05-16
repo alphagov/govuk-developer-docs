@@ -60,7 +60,7 @@ some other reason.
 
 Generally this can be fixed by deleting and recreating the rivers. This is safe to do because the river pulls data from redis (rather than redis pushing data into elasticsearch).
 
-Delete and recreate the rivers with this fabric command:
+Delete and recreate the rivers with this Fabric command:
 
 ```
 fab $environment -H logs-elasticsearch-1.management elasticsearch.delete:_river puppet

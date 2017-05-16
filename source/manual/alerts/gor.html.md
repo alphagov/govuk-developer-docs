@@ -38,7 +38,7 @@ way. If that's the case, make sure that the following file exists on the host:
 ```
 
 And that it is in a proper state (i.e. empty). If not, you can restart the gor
-processes with the following fabric command:
+processes with the following Fabric command:
 
 ```
 fab $environment puppet_class:gor sdo:'rm /etc/govuk/env.d/FACTER_data_sync_in_progress' app.start:gor
