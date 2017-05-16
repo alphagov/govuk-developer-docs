@@ -10,7 +10,7 @@ review_in: 6 months
 
 ### Investigating the problem
 
-There is a fabric task to show various mongo replication status
+There is a fabric task to show various MongoDB replication status
 information.:
 
     fab <environment> -H mongo-?.backend mongo.status
