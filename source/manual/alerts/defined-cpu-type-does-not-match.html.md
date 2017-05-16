@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Defined cpu type does not match
+title: Defined CPU type does not match
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
