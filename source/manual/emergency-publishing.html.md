@@ -181,7 +181,7 @@ From your development machine SSH into a frontend box appropriate to the environ
 ssh frontend1.frontend.integration
 ```
 
-Load a rails console for static:
+Load a Rails console for static:
 
 ```
 govuk_app_console static

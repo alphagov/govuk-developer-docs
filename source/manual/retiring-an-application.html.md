@@ -79,10 +79,10 @@ can be found in the application edit screen.
 
 If the app has received lots of errors, the request to delete it can
 timeout. If this happens, it will need to be deleted manually from the
-rails console as follows:
+Rails console as follows:
 
 - SSH to `exception-handler-1.backend.{integration,staging,production}`
-- start a rails console `govuk_app_console errbit`
+- start a Rails console `govuk_app_console errbit`
 
 - Find and destroy the application:
 
