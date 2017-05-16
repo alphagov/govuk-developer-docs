@@ -10,7 +10,7 @@ review_in: 6 months
 
 ### Investigating the problem
 
-There is a fabric task to show various MongoDB replication status
+There is a Fabric task to show various MongoDB replication status
 information.:
 
     fab <environment> -H mongo-?.backend mongo.status
@@ -34,7 +34,7 @@ This may restart replication on that node, and also cause the other
 lagging node to resync with the primary node and restart its own
 replication.
 
--   If restarting doesn't solve the problem force a resync with fabric:
+-   If restarting doesn't solve the problem force a resync with Fabric:
 
         fab <environment> -H mongo-?.backend mongo.force_resync
 

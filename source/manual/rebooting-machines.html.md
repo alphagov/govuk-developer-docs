@@ -51,7 +51,7 @@ Notices](http://www.ubuntu.com/usn/).
 -   Is it a kernel update?
 -   If it's a shared library are we using it (see below)?
 
-There is a fabric task to find all processes using a deprecated library:
+There is a Fabric task to find all processes using a deprecated library:
 
     fab $environment all vm.deprecated_library:dbus
 
@@ -65,7 +65,7 @@ is an example of a machine that cannot be safely rebooted. The
 is safe\_to\_reboot::can\_reboot: 'yes', so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
 
-There is a fabric task to schedule a machine for downtime in Nagios for
+There is a Fabric task to schedule a machine for downtime in Nagios for
 20 minutes and then reboot it:
 
     fab $environment -H graphite-1.management vm.reboot
@@ -81,7 +81,7 @@ There is a fabric task to schedule a machine for downtime in Nagios for
 
 ## Rebooting all "safe" machines
 
-If you wish to reboot all machines, there is a fabric task to reboot
+If you wish to reboot all machines, there is a Fabric task to reboot
 "safe" machines one at a time:
 
     fab $environment puppet_class:govuk_safe_to_reboot::yes numbered:N vm.reboot
@@ -105,7 +105,7 @@ The general approach for rebooting machines in a MongoDB cluster is:
     -   reboot the secondaries
 
     - reboot the primary waiting for the cluster to recover after
-    each reboot. The `mongo.safe_reboot` fabric task automates stepping
+    each reboot. The `mongo.safe_reboot` Fabric task automates stepping
     down the primary and waiting for the cluster to recover
     before rebooting.
 
@@ -166,7 +166,7 @@ to safely reboot these machines you'll need access to vCloud Director.
 
 ## Rebooting rabbitmq machines
 
-There's a fabric task to reboot all nodes in the rabbitmq cluster,
+There's a Fabric task to reboot all nodes in the rabbitmq cluster,
 waiting for the cluster to recover before rebooting the next node.
 
 However, the `govuk_crawler_worker` app points directly to to rabbitmq-1

@@ -14,7 +14,7 @@ and our Nagios check accounts for that by delaying alerts for up to
 24hrs.
 
 To see which packages are outstading you can use the
-apt.security\_updates fabric task.
+apt.security\_updates Fabric task.
 
 Before running an unattended upgrade manually it's worth checking why it
 failed to run. Logs of the previous runs can be found in
@@ -23,7 +23,7 @@ failed to run. Logs of the previous runs can be found in
 date in the same directory.
 
 Perform an unattended upgrade manually with the apt.unattended\_upgrade
-fabric task.
+Fabric task.
 
 It has been known to alert about packages that were not currently
 installed and thus not picked up by unattended-upgrades, such as

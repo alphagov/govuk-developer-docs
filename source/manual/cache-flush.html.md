@@ -102,7 +102,7 @@ You can manually flush the cache from the following machines:
 
 ## Purging a page from our origin server varnish cache
 
-Use the fabric command from
+Use the Fabric command from
 [fabric-scripts](https://github.com/alphagov/fabric-scripts). Note that
 you can if necessary specify multiple URLs in one go:
 
@@ -121,7 +121,7 @@ purging.
 There are two steps involved in flushing *everything*; our origin (the
 cache servers) followed by Fastly.
 
-To flush our origin run the following fabric command::
+To flush our origin run the following Fabric command::
 
     fab $environment cache.ban_all
 

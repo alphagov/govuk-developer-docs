@@ -18,7 +18,7 @@ to be happening on our machines and then acknowledge it.
 If we miss the schedule on Integration (e.g. if Jenkins doesn't start
 the servers up on time), we get a 'freshness threshold' warning for each
 machine. It's possible to resolve this across all machines in an
-environment by running rkhunter via a fabric script, e.g.:
+environment by running rkhunter via a Fabric script, e.g.:
 
     fab integration all rkhunter
 

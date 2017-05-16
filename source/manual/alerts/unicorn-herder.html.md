@@ -14,7 +14,7 @@ This alert means the Unicorn Herder process has disappeared for the
 named app, so the app is still running but we don't know about it and
 can't control it.
 
-At the moment, the fix is to run the fabric task vm.bodge\_unicorn for
+At the moment, the fix is to run the Fabric task vm.bodge\_unicorn for
 that app. (The name of the task should give a clue as to why I say "At
 the moment".)
 

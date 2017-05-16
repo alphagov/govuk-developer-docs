@@ -33,7 +33,7 @@ Create a data migration that uses the `DataHygiene::OrganisationReslugger` class
 
 ### 3)  Clear the organisation cache in Maslow:
 
-Restart the workers using fabric:
+Restart the workers using Fabric:
 
 ```
 fab $environment class:backend sdo:'service maslow reload'

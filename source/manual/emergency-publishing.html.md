@@ -38,13 +38,13 @@ Before publishing an emergency banner, you will need to know the following. The 
 - A URL for users to find more information (it might not be provided at first).
 
 <a name="set-up-fabric"></a>
-### Set up your fabric scripts
+### Set up your Fabric scripts
 
 If you've not used them before, you'll need to clone [fabric-scripts](https://github.com/alphagov/fabric-scripts) and follow the setup instructions in the fabric-scripts README.
 
 1) Make sure your copy of fabric-scripts is up to date and on master.
 
-2) Activate your virtual environment for the fabric scripts if you have set one up. If you have followed the setup guide for the fabric scripts, this will be:
+2) Activate your virtual environment for the Fabric scripts if you have set one up. If you have followed the setup guide for the Fabric scripts, this will be:
 
 ```
 $ . ~/venv/fabric-scripts/bin/activate
@@ -75,7 +75,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 <a name="clear-template-cache"></a>
 ### Clear caching in frontend, static and whitehall-frontend
 
-1) Run the fabric task to clear the application template cache for frontend and
+1) Run the Fabric task to clear the application template cache for frontend and
 static:
 
 ```
@@ -132,7 +132,7 @@ purging the cache.
 <a name="unset-env-var"></a>
 ### Unset your environment variable
 
-1) Remember to unset your fabric environment variable:
+1) Remember to unset your Fabric environment variable:
 
 ```
 unset environment
@@ -141,9 +141,9 @@ unset environment
 
 ## Removing emergency publishing banners
 
-### Set up your fabric scripts
+### Set up your Fabric scripts
 
-Follow the instructions above to [set up your fabric scripts](#set-up-fabric)
+Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
 
 ### Remove the banner using Jenkins
 
