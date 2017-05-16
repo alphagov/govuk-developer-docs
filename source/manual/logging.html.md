@@ -33,7 +33,7 @@ The tailed logs are sent to `logs-redis` machines. The logging Elasticsearch clu
 river to pull logs from Redis.
 
 logship provides multiple shippers. We're using the Redis shipper and the statsd shipper
-(for sending NGINX status codes to Graphite).
+(for sending Nginx status codes to Graphite).
 
 ## Logstash
 

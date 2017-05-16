@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: NGINX high conn writing -- upstream indicator Check
+title: Nginx high conn writing -- upstream indicator Check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
@@ -8,7 +8,7 @@ last_reviewed_on: 2017-01-06
 review_in: 6 months
 ---
 
-### What is the 'NGINX high conn writing -- upstream indicator' check?
+### What is the 'Nginx high conn writing -- upstream indicator' check?
 
 -   If you see this alert it may be that we are having or about to have
     an outage -- this is an early warning check.
@@ -21,7 +21,7 @@ review_in: 6 months
 
 ### Other useful information
 
--   Checks are specifically on the NGINX frontend boxes as thats the
+-   Checks are specifically on the Nginx frontend boxes as thats the
     closest place to the problem we can monitor and avoids the false
     positives that checking the Load balancers might give us.
 -   The warning and alert levels have been selected to fire early in the
