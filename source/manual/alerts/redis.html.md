@@ -54,7 +54,7 @@ discards data.
 We use [elasticsearch-redis-river](https://github.com/leeadkins/elasticsearch-redis-river)
 (a redis river for elasticsearch). This is a special process which reads data continuously from a redis queue (called `logs`) into elasticsearch.
 
-There is a nagios alert (listed above) for when the `logs` redis list gets
+There is a Nagios alert (listed above) for when the `logs` redis list gets
 too long. This might be because elasticsearch is unavailable or may be for
 some other reason.
 

@@ -23,7 +23,7 @@ box:
     curl localhost:9200/_nodes/stats/jvm?pretty
 
 You need to look for the `collection_time_in_millis`. There will be two
-values: `old` and `young`. Both are checked by nagios and correspond to
+values: `old` and `young`. Both are checked by Nagios and correspond to
 different portions of the JVM heap. The lower these times are, the
 better. Another important value is `heap_used_percent`, again this
 should be low. If it gets too high it may prevent garbage collection
