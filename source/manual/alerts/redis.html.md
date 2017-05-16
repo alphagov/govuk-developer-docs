@@ -67,7 +67,7 @@ fab $environment -H logs-elasticsearch-1.management elasticsearch.delete:_river 
 ```
 
 The `elasticsearch.delete:_river` command deletes all rivers, and `puppet`
-runs puppet which will recreate them.
+runs Puppet which will recreate them.
 
 To manually check the length of the list, use:
 

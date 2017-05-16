@@ -22,7 +22,7 @@ This will then be included in the sync to the offsite backup machines
 
 ## 2. Remove app from puppet
 
-Configure puppet to remove the app from all servers. Change the app resource,
+Configure Puppet to remove the app from all servers. Change the app resource,
 and any database resources to `ensure => absent`, remove any host and load-balancer entries, but leave the hieradata entries.
 
 See this pull request for an example:
@@ -136,7 +136,7 @@ For example: <https://github.digital.cabinet-office.gov.uk/gds/deployment/pull/4
 
 ## 15. Drop database
 
-If puppet hasn't done it (eg for Mongo databases), drop the database.
+If Puppet hasn't done it (eg for Mongo databases), drop the database.
 
 ## 16. Remove jobs in CI
 

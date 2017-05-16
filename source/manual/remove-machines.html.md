@@ -19,7 +19,7 @@ You need to remove the nodes from the puppet-master in each environment.
 This is needed to clean up exported resources from puppetdb, including
 removing checks from Icinga.
 
-First ssh into the puppet master for the environment:
+First ssh into the Puppet master for the environment:
 
 ```console
 $ ssh puppetmaster-1.management.production

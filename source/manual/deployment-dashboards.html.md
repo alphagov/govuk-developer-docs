@@ -14,7 +14,7 @@ There are a number of applications with a dashboard showing useful information f
 
 They can be found in [Grafana](tools.html#grafana), and they are all named "Deployment dashboard - application name", such as [Deployment dashboard - whitehall](https://grafana.publishing.service.gov.uk/dashboard/file/deployment_whitehall.json).
 
-The existing deployment dashboards are written by puppet every 30 minutes and loaded when Grafana starts. Don’t change them directly.
+The existing deployment dashboards are written by Puppet every 30 minutes and loaded when Grafana starts. Don’t change them directly.
 
 You can also see further tips on [how we use Graphite](graphite-and-deployment-dashboards.html) to present the data below.
 

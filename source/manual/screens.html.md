@@ -94,11 +94,11 @@ reads from the release calendar.
 ### Deployment status of puppet
 
 This shows the difference between the commits on master and the commits
-on the release tag for puppet. Letting us know if lots of puppet stuff
+on the release tag for puppet. Letting us know if lots of Puppet stuff
 hasn't been deployed.
 
 This is powered by [David Singleton's deploy-lag radiator][deploy-lag] and is
-configured to look at the release tag on the puppet repo.
+configured to look at the release tag on the Puppet repo.
 
 [deploy-lag]: https://github.com/dsingleton/deploy-lag-radiator
 [splits]: https://github.com/dsingleton/frame-splits
