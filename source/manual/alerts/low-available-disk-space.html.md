@@ -111,7 +111,7 @@ apps are robust in the face of Errbit being down.
 
 If you cant find any of the above cases causing low disk spaces, it can
 be useful to run the command `sudo ncdu <mountpoint>`, where mountpoint
-will be the path specified in the nagios alert. It will calculate all
+will be the path specified in the Nagios alert. It will calculate all
 the disk space being used, and then bring you into an ncurses file
 explorer-style interface. Press enter to go into a directory, and d to
 delete any large files.

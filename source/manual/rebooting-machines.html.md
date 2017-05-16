@@ -65,7 +65,7 @@ is an example of a machine that cannot be safely rebooted. The
 is safe\_to\_reboot::can\_reboot: 'yes', so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
 
-There is a fabric task to schedule a machine for downtime in nagios for
+There is a fabric task to schedule a machine for downtime in Nagios for
 20 minutes and then reboot it:
 
     fab $environment -H graphite-1.management vm.reboot
