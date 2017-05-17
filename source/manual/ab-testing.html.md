@@ -26,7 +26,7 @@ Which implementation you choose depends on your A/B testing needs:
 **Fastly**
 
 * **Pro:** No content flashing
-* **Con:** Requires changes to the CDN configuration
+* **Con:** Requires deploying the Fastly CDN
 * **Con:** Because it depends on Fastly this can only be fully tested on staging and production. You can still test your A and B versions in other environments, it's just not a completely realistic test without the full stack.
 * **Choose if:** you are testing wide-ranging changes, perhaps with redirects to the new version, or if you really need to avoid content flashing
 
@@ -84,12 +84,13 @@ If the original request did not have the `ABTest-Example` cookie, Fastly will se
 
 Follow these steps:
 
-1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). The content team can help.
-2. You will have to make appropriate changes in [govuk-cdn-config][govuk-cdn-config].
+1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [Gov.uk Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line Gov.uk content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
+2. Add the details for your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo. You will need to set the name, the percentage of users to be given the b variant and the expiry time for the cookie.
 3. Use the [govuk\_ab\_testing gem][govuk_ab_testing] to serve different versions to your users.
 
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
-[govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
+[configuration-file]: https://github.com/alphagov/fastly-configure/blob/master/ab_tests/ab_tests.yaml
+[fastly-configure]: https://github.com/alphagov/fastly-configure
 
 ## Resources
 
