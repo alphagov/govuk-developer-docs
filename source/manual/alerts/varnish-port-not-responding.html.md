@@ -11,7 +11,7 @@ review_in: 6 months
 Under high load, it is possible that the Varnish child process which
 handles connections will timeout on the healthcheck from the parent. If
 that happens and the replacement child process also fails to start,
-varnish can get in a state where it is not responsive.
+Varnish can get in a state where it is not responsive.
 
 The 'varnish port not responding' check simply attempts to contact
 <http://localhost:7999/> and get a response. If it doesn't, then it will
@@ -47,9 +47,9 @@ $ fab $environment -H cache-3.router do:'/usr/lib/nagios/plugins/check_procs -c 
 [cache-3.router] out: PROCS OK: 1 process with command name 'varnishd', PPID = 8273
 ```
 
-### To resolve varnish port not responding
+### To resolve Varnish port not responding
 
-You just need to restart varnish on this machine:
+You just need to restart Varnish on this machine:
 
 ```
 $ fab $environment -H cache-3.router cache.restart
