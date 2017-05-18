@@ -9,7 +9,7 @@ last_reviewed_on: 2017-05-23
 review_in: 6 months
 ---
 
-There are three types of events that would lead GOV.UK to add an emergency banner to the top of each page on the web site. Each type of event is detailed below.
+There are three types of events that would lead GOV.UK to add an emergency banner to the top of each page on the web site; a notable death, a national emergency or a local emergency.
 
 The GOV.UK on-call escalations contact will tell you when you need to publish an emergency banner. They will ensure that the event is legitimate and provide you with the text for the emergency banner. They will also tell you what type of event it is; you do not need to determine the type of event yourself.
 
@@ -26,8 +26,8 @@ Before publishing an emergency banner, you will need to know the following. The 
 
 #### Mandatory fields
 
-- The emergency banner type or campaign class (black for a death, red for
-a national emergency, green for a local emergency).
+- The emergency banner type or campaign class (one of `notable-death`,
+  `national-emergency` or `local-emergency`)
 - Text for the heading.
 
 #### Optional fields
@@ -99,7 +99,7 @@ You can automate this by using the [emergency publishing scraper](https://github
 
 Check the banner displays as expected and double check the information for the
 header, short description and link are as they should be. Test the link if it is
-present. Make sure the banner colour is appropriate - black for a death, red for
+present. Make sure the banner colour is appropriate - black for a notable death, red for
 a national emergency, green for a local emergency.
 
 If the banner information is not correct, re-run the Jenkins job to correct it.
@@ -151,7 +151,7 @@ Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
 
 3) Click `Build now` in the left hand menu.
 
-![Jenkins Deploy Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
+![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
 
 ### Clear application caches and restart Whitehall
 
@@ -196,7 +196,7 @@ In the above example the key has not been set. A sucessfully set key would retur
 
 ```
 irb(main):001:0> Redis.new.hgetall("emergency_banner")
-=> {"campaign_class"=>"black", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk"}
+=> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk"}
 ```
 
 ### Manually running the rake task to deploy the emergency banner
@@ -224,6 +224,12 @@ sudo -u deploy govuk_setenv static bundle exec rake
 emergency_banner:deploy[campaign_class,heading,short_description,link]
 ```
 
+The `campaign_class` is directly injected into the HTML as a `class` and must be one of
+
+* notable-death
+* national-emergency
+* local-emergency
+
 For example, if you are deploying an emergency banner for which you have the
 following information:
 
@@ -236,7 +242,7 @@ You would enter the following command:
 
 ```
 sudo -u deploy govuk_setenv static bundle exec rake
-emergency_banner:deploy["black","Alas poor Yorick","I knew him
+emergency_banner:deploy["notable-death","Alas poor Yorick","I knew him
 Horatio","https://www.gov.uk"]
 ```
 
