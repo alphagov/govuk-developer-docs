@@ -4,15 +4,18 @@ title: Free memory warning on backend
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-03-11
+last_reviewed_on: 2017-05-17
 review_in: 6 months
 ---
 
-### Background
-
-This is often caused by an application slowly leaking memory, which
+This alert is often caused by an application slowly leaking memory, which
 isn't usually an issue for apps that are deployed/restarted frequently.
 Some less frequently deployed apps will continue to grow over time.
+
+For more info, you can also read [the page for the alert that triggers
+when a application uses too much memory][mem].
+
+[mem]: /manual/alerts/high-memory-for-application.html
 
 ### Investigation of the problem
 
@@ -49,4 +52,3 @@ Sidekiq worker), restart it to reset the memory usage, and increase free
 memory on the host:
 
     fab $environment -H whitehall-backend-1.backend app.restart:whitehall-admin-procfile-worker
-
