@@ -85,9 +85,11 @@ If the original request did not have the `ABTest-Example` cookie, Fastly will se
 Follow these steps:
 
 1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [Gov.uk Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line Gov.uk content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
-2. Add the details for your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo. You will need to set the name, the percentage of users to be given the b variant and the expiry time for the cookie.
-3. Use the [govuk\_ab\_testing gem][govuk_ab_testing] to serve different versions to your users.
+2. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. There is a range of dimensions from 40-49 blocked out for A/B tests. These can be reused when an A/B test has ended.
+3. Add the details for your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo. You will need to set the name, the percentage of users to be given the b variant and the expiry time for the cookie.
+4. Use the [govuk\_ab\_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
 
+[analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [configuration-file]: https://github.com/alphagov/fastly-configure/blob/master/ab_tests/ab_tests.yaml
 [fastly-configure]: https://github.com/alphagov/fastly-configure
