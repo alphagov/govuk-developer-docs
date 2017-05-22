@@ -18,7 +18,7 @@ servers directly, they connect via the CDN. This is better because:
 The CDN is responsible for retrying requests against the
 [static mirror](../2nd-line/mirror-fallback.html).
 
-![image](/infrastructure/images/cdn-mirror-configuration.png)
+![image](images/cdn-mirror-configuration.png)
 
 ## CDN configuration
 
