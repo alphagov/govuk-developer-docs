@@ -95,7 +95,7 @@ A standard `app.json` file for a Rails project will look somewhat like this:
 ```
 
 There is more information about it on the
-[https://devcenter.heroku.com/articles/app-json-schema](Heroku Dev Center).
+[Heroku Dev Center](https://devcenter.heroku.com/articles/app-json-schema).
 
 Each GOV.UK application will have a set of dependencies, so the level of
 configuration will vary. However, for most apps, you will need a number of
@@ -113,7 +113,7 @@ You will need a successful deploy with a correct configuration before you can
 deploy review apps.
 
 If all goes well, you will be able to see your app on:
-https://govuk-app.herokuapp.com
+<https://govuk-app.herokuapp.com>
 
 ## Create a new pipeline on Heroku
 
