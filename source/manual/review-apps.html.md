@@ -4,7 +4,7 @@ title: Set up Heroku review apps for pull requests
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2016-11-20
+last_reviewed_on: 2017-05-23
 review_in: 6 months
 ---
 
@@ -14,6 +14,7 @@ new Heroku app so that each Pull Request reviewer has a chance to see how it
 looks with live data.
 
 These are 2 examples of GOV.UK apps that have review apps enabled:
+
 - [collections](https://github.com/alphagov/collections)
 - [government-frontend](https://github.com/alphagov/government-frontend)
 
@@ -93,8 +94,8 @@ A standard `app.json` file for a Rails project will look somewhat like this:
 }
 ```
 
-There is more information about it on
-https://devcenter.heroku.com/articles/app-json-schema.
+There is more information about it on the
+[https://devcenter.heroku.com/articles/app-json-schema](Heroku Dev Center).
 
 Each GOV.UK application will have a set of dependencies, so the level of
 configuration will vary. However, for most apps, you will need a number of
