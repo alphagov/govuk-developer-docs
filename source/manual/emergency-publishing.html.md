@@ -5,18 +5,15 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2017-02-17
+last_reviewed_on: 2017-05-23
 review_in: 6 months
 ---
 
 There are three types of events that would lead GOV.UK to add an emergency banner to the top of each page on the web site. Each type of event is detailed below.
 
-The GOV.UK on-call escalations contact will tell you when you need to publish an emergency banner. They will ensure that the event is legitimate and provide you with the text for the emergency banner.
+The GOV.UK on-call escalations contact will tell you when you need to publish an emergency banner. They will ensure that the event is legitimate and provide you with the text for the emergency banner. They will also tell you what type of event it is; you do not need to determine the type of event yourself.
 
-The GOV.UK on-call escalations contact will tell you what type of event it is; you do not need to determine the type of event yourself.
-
-If you need to publish the emergency banner out of hours, you will be
-instructed to do so either by the GOV.UK on-call escalations contact or the Head of GOV.UK.
+If you need to publish the emergency banner out of hours, you will be instructed to do so either by the GOV.UK on-call escalations contact or the Head of GOV.UK.
 
 [Contact numbers for those people](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/contact-numbers-in-case-of-incident.html) are in the opsmanual on GitHub enterprise.
 
@@ -29,7 +26,8 @@ Before publishing an emergency banner, you will need to know the following. The 
 
 #### Mandatory fields
 
-- The emergency banner type or campaign class.
+- The emergency banner type or campaign class (black for a death, red for
+a national emergency, green for a local emergency).
 - Text for the heading.
 
 #### Optional fields
@@ -157,7 +155,7 @@ Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
 
 ### Clear application caches and restart Whitehall
 
-Follow the instructions above to 
+Follow the instructions above to
 
 - [Clear the application template cache and reload Whitehall](#clear-template-cache)
 - [Test with cache bust strings](#test-with-cache-bust)
