@@ -239,36 +239,35 @@ of deployment matters and might have changed since this was written.
 Here is the order that was used for building the Carrenza preview
 environment:
 
-> 1.  errbit
-> 2.  router
-> 3.  router-api
-> 4.  whitehall
-> 5.  publisher
-> 6.  rummager
-> 7.  signon
-> 8.  smartanswers
-> 9.  release
-> 10. external\_link\_tracker
-> 11. govuk\_content\_api
-> 12. govuk\_need\_api
-> 13. asset-manager
-> 14. designprinciples
-> 15. feedback
-> 16. support
-> 17. travel-advice-publisher
-> 18. transaction-wrappers
-> 19. frontend
-> 20. static
-> 21. govuk-delivery
-> 22. transition
-> 23. licencefinder
-> 24. imminence
-> 25. kibana
-> 26. maslow
-> 27. bouncer
-> 28. calculators
-> 29. calendars
-> 30. licensify (it has separete Jenkins jobs)
+> 0. errbit
+> 0. router
+> 0. router-api
+> 0. whitehall
+> 0. publisher
+> 0. rummager
+> 0. signon
+> 0. smartanswers
+> 0. release
+> 0. external\_link\_tracker
+> 0. govuk\_need\_api
+> 0. asset-manager
+> 0. designprinciples
+> 0. feedback
+> 0. support
+> 0. travel-advice-publisher
+> 0. transaction-wrappers
+> 0. frontend
+> 0. static
+> 0. govuk-delivery
+> 0. transition
+> 0. licencefinder
+> 0. imminence
+> 0. kibana
+> 0. maslow
+> 0. bouncer
+> 0. calculators
+> 0. calendars
+> 0. licensify (it has separete Jenkins jobs)
 
 ## Other environment setup
 
