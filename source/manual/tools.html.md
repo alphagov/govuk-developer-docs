@@ -85,7 +85,7 @@ To build a graph, you can add one or more graph targets in the composer by eithe
 Some useful targets are:
 
 - `stats.cache-?_router.nginx_logs.www-origin.http_5xx` to graph the rate of HTTP errors from all cache machines (note the question mark to pattern-match multiple data series: * also works).
-- `stats.backend-?_backend.nginx_logs.contentapi_publishing_service_gov_uk.http_5xx` to show HTTP errors for a specific app on all backend machines.
+- `stats.backend-?_backend.nginx_logs.content-store_publishing_service_gov_uk.http_5xx` to show HTTP errors for a specific app on all backend machines.
 
 The composer offers tab completion, although it doesn’t handle patterns very well.
 
@@ -105,7 +105,7 @@ Graphite has a whole bunch of functions you can apply to your data to make it mo
 
 <https://kibana.publishing.service.gov.uk/>
 
-Kibana is a log viewer and search engine. In Kibana, you can filter down log messages to show you just the ones you want. Say you’ve spotted a large number of errors coming from the content API related to MongoDB connections and you want to find out whether the MongoDB logs show anything strange. You can narrow down which log messages you want using the column browser on the left: `@source_host` and `@fields.application` are some particularly useful ones. The magnifying glass symbol next to each value lets you build up a query string and tinker with it.
+Kibana is a log viewer and search engine. In Kibana, you can filter down log messages to show you just the ones you want. Say you’ve spotted a large number of errors coming from the content store related to MongoDB connections and you want to find out whether the MongoDB logs show anything strange. You can narrow down which log messages you want using the column browser on the left: `@source_host` and `@fields.application` are some particularly useful ones. The magnifying glass symbol next to each value lets you build up a query string and tinker with it.
 
 You can tweak the time range manually with the drop down at the top or by dragging on the timeline.
 
@@ -115,13 +115,13 @@ Check out some of the [useful Kibana queries](kibana.html) to get an idea of wha
 
 <https://github.com/alphagov/fabric-scripts/>
 
-The Fabric scripts are useful for running something on a set of machines. For instance, to restart all instances of the content API on backend boxes:
+The Fabric scripts are useful for running something on a set of machines. For instance, to restart all instances of the content store on backend boxes:
 
-`fab $environment class:backend app.reload:contentapi`
+`fab $environment class:backend app.reload:content-store`
 
 Check the `app.py` class for different methods you can use. To run more specific commands you can run the following (`sdo` for sudo):
 
-`fab $environment class:backend sdo:"service contentapi reload"`
+`fab $environment class:backend sdo:"service content-store reload"`
 
 For more information, check out the [Fabric scripts README](https://github.com/alphagov/fabric-scripts#readme>).
 
