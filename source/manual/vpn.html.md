@@ -60,7 +60,7 @@ If it goes down, these things will happen:
    unreachable hosts in GOV.UK monitoring
 
 Applying for a licence should remain available because
-the connection between GOV.UK (the router and contentapi) and the Licensify organisation is made
+the connection between GOV.UK (the router and content store) and the Licensify organisation is made
 over the internet rather than over the VPN.
 
 [carrenza-secure]: howto/connect-carrenza-il2.html
