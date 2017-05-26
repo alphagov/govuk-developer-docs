@@ -104,7 +104,11 @@ vagrant up
 
 If your host is running macOS 10.12 Sierra you may encounter this problem as there is a bug in the nfs implementation that means the cache is not updated frequently enough.  The usual way of encountering this problem is early in a `govuk_puppet` run, it will fail early with a Permission Denied error when trying to remove a file in `vendor/modules/`.  One workaround is to remove the `vendor/modules` and `.tmp` folders from your govuk-puppet working directory on your host, and then run `govuk_puppet` again in the VM.
 
-The other solution, as mentioned in [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
+The other solution, as mentioned in [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061) is to force macOS to refresh the nfs cache.  To do this on your host you run `ls -alR > /dev/null` in the root of your govuk folder.  To do this on your vm you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.  These two options have been provided as shell scripts in the `govuk-puppet/development-vm` folder:
+
+* `refresh-nfs-cache-on-host.sh` - run this on your host machine to perform the `ls` command above on `../../` which should be the checkout location of all your repos.
+* `refresh-nfs-cache-on-vm.sh` - run this on your VM to perform the `find` command above on `/var/govuk`.
+* `vagrant-up.sh` - run this on your host to refresh the cache and then bring up your vagrant vm.
 
 ## installing vagrant-dns
 
