@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: publisher app health check not ok
+title: publisher app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
