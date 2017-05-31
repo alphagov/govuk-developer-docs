@@ -4,7 +4,7 @@ title: Troubleshooting Vagrant
 section: Support
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2016-11-25
+last_reviewed_on: 2017-05-31
 review_in: 6 months
 ---
 
@@ -69,7 +69,7 @@ with your username. This is a known issue on ubuntu lucid.
 You're likely on the production VPN. Disconnect the VPN and `reload`
 your VM.
 
-### Vagrant error :NFS is reporting that your exports file is invalid
+### Vagrant error: NFS is reporting that your exports file is invalid
 ```
 ==> default: Exporting NFS shared folders...
 NFS is reporting that your exports file is invalid. Vagrant does
@@ -88,7 +88,7 @@ This means that you may already have old Vagrant path definitions in your `/etc/
 
 Try opening up `/etc/exports` file to identify old or unwanted Vagrant paths and removing them if necessary
 
-On opening `/etc/exports` file each set begins with # VAGRANT-BEGIN: and ends with # VAGRANT-END:. Make sure to delete these and any other lines between VAGRANT-BEGIN: and VAGRANT-END:
+On opening `/etc/exports` file each set begins with `# VAGRANT-BEGIN:` and ends with `# VAGRANT-END:`. Make sure to delete these and any other lines between `# VAGRANT-BEGIN:` and `# VAGRANT-END:`
 
 or maybe
 
