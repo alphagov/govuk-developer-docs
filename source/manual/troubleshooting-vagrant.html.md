@@ -91,7 +91,7 @@ Using Cisco AnyConnect has been known to cause issues with NFS.
 
 Either disconnect from the VPN and reload the VM for access.
 
-Or, consider using [OpenConnect][] for your VPN. You can access the Aviation
+Or, consider using [OpenConnect](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-gds/how-to/connect-to-the-aviation-house-vpn) for your VPN. You can access the Aviation
 House VPN via:
 
 ```shell
@@ -146,14 +146,33 @@ directory on your host, and then run `govuk_puppet` again in the VM.
 The other solution, as mentioned in
 [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061)
 is to force macOS to refresh the NFS cache. To do this on your host you run
-`ls -alR > /dev/null` in the root of your govuk folder. To do this on your VM
-you run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
+
+```bash
+ls -alR > /dev/null
+```
+
+in the root of your govuk folder. To do this on your VM
+you run
+
+```bash
+find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null
+```
 
 The other solution, as mentioned in
 [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061)
 is to force macOS to refresh the NFS cache. To do this on your host you run
-`ls -alR > /dev/null` in the root of your govuk folder. To do this on your VM
-run `find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null`.
+
+```bash
+ls -alR > /dev/null
+```
+
+in the root of your govuk folder. To do this on your VM
+run
+
+```bash
+find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null
+```
+
 These two options have been provided as shell scripts in the `govuk-puppet/development-vm` folder:
 
 * `refresh-nfs-cache-on-host.sh` - run this on your host machine to perform the `ls` command above on `../../` which should be the checkout location of all your repos.
@@ -186,10 +205,7 @@ done
 then run `rbenv rehash` to make sure all the Gem installed shims are
 removed from your `PATH`.
 
-<<<<<<< HEAD
 ## SSH into GOV.UK servers from the VM
-=======
->>>>>>> origin/document-new-scripts-for-refreshing-nfs-disk-cache
 
 You will need to either forward your publickey from the host machine to the
 VM or have your VM publickey added to your [user manifest][user-manifests].
@@ -331,4 +347,3 @@ the offending `return` line.
 [vagrantfile-directory]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 [Open Connect]: http://www.infradead.org/openconnect/
 [user-manifests]: https://github.com/alphagov/govuk-puppet/tree/master/modules/users/manifests
-
