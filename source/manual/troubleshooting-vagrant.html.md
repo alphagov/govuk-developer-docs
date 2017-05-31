@@ -91,7 +91,7 @@ Using Cisco AnyConnect has been known to cause issues with NFS.
 
 Either disconnect from the VPN and reload the VM for access.
 
-Or, consider using [OpenConnect](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-gds/how-to/connect-to-the-aviation-house-vpn) for your VPN. You can access the Aviation
+Or, consider using [OpenConnect][] for your VPN. You can access the Aviation
 House VPN via:
 
 ```shell
@@ -353,5 +353,5 @@ the offending `return` line.
 [Pinfile]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/Pinfile
 [Procfile]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/Procfile
 [vagrantfile-directory]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
-[Open Connect]: http://www.infradead.org/openconnect/
+[OpenConnect]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-gds/how-to/connect-to-the-aviation-house-vpn
 [user-manifests]: https://github.com/alphagov/govuk-puppet/tree/master/modules/users/manifests
