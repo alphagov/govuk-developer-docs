@@ -15,7 +15,7 @@ problems with their Storage Area Network (SAN).
 The machine will need to have a filesystem check forced on reboot. To do
 this you will need access to the vCloud Director instance for the
 environment, this access is typically only available to members
-of the infrastructure team. However, if you do on-call, you should have access
+of the GOV.UK Infrastructure team. However, if you do on-call, you should have access
 to the vCloud Production environment.
 
 In the vCloud Director instance:
