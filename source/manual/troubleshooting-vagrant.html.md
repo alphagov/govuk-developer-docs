@@ -99,7 +99,7 @@ $ sudo openconnect -v --pfs --no-dtls -u $USER vpn.digital.cabinet-office.gov.uk
 ```
 
 ### Vagrant error NFS is reporting that your exports file is invalid
-```
+```shell
 ==> default: Exporting NFS shared folders...
 NFS is reporting that your exports file is invalid. Vagrant does
 this check before making any changes to the file. Please correct
@@ -125,7 +125,7 @@ VAGRANT-BEGIN: and VAGRANT-END:
 
 or maybe
 
-```
+```shell
 sudo rm /etc/exports
 sudo touch /etc/exports
 
@@ -147,14 +147,14 @@ The other solution, as mentioned in
 [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061)
 is to force macOS to refresh the NFS cache. To do this on your host you run
 
-```bash
+```shell
 ls -alR > /dev/null
 ```
 
 in the root of your govuk folder. To do this on your VM
 you run
 
-```bash
+```shell
 find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null
 ```
 
@@ -162,14 +162,14 @@ The other solution, as mentioned in
 [this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061)
 is to force macOS to refresh the NFS cache. To do this on your host you run
 
-```bash
+```shell
 ls -alR > /dev/null
 ```
 
 in the root of your govuk folder. To do this on your VM
 run
 
-```bash
+```shell
 find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null
 ```
 
@@ -212,7 +212,7 @@ VM or have your VM publickey added to your [user manifest][user-manifests].
 
 To confirm your key has been forwarded to the development vm you can run:
 
-```
+```shell
 vagrant ssh # ssh onto vm
 ssh-add -L  # list key and location on host machine
 ```
@@ -239,7 +239,7 @@ provisioning the VM you will need to reinstall the vagrant-dns plugin:
 
 You may see an error like:
 
-```
+```shell
 /opt/vagrant/embedded/lib/ruby/2.2.0/rubygems/dependency.rb:315:in `to_specs': Could not find 'celluloid' (>= 0.16.0) among 45 total gem(s) (Gem::LoadError)
 ```
 
@@ -249,23 +249,31 @@ they may have a better workaround: https://github.com/BerlinVagrant/vagrant-dns/
 
 You may also need to make sure the plugin has been started:
 
-    vagrant dns --start
+```shell
+vagrant dns --start
+```
 
 If you're having issues with your host machine resolving hosts, try purging and
 reinstalling the DNS config:
 
-    vagrant dns --purge
-    vagrant dns --install
-    vagrant dns --start
+```shell
+vagrant dns --purge
+vagrant dns --install
+vagrant dns --start
+```
 
 In order to check if the plugin started correctly, you can run:
 
-    ps aux | grep vagrant-dns
-    vagrant dns --start -o
+```shell
+ps aux | grep vagrant-dns
+vagrant dns --start -o
+```
 
 If you're still having issues you can try to update the vagrant-dns plugin:
 
-    vagrant plugin update vagrant-dns
+```shell
+vagrant plugin update vagrant-dns
+```
 
 ## Problems fetching packages
 
@@ -301,7 +309,7 @@ You can remove this in the govuk-puppet directory:
 
 If you use Vagrant 1.8.7 you may have this problem:
 
-```
+```shell
 ➜  development-vm git:(master) vagrant up
 installing vagrant-dns plugin is recommended
 Bringing machine 'default' up with 'virtualbox' provider...
@@ -332,7 +340,7 @@ Try `vagrant provision` on your host machine, as above.
 If you use Vagrant 1.8.x, you may encounter an error along these lines during
 provisioning:
 
-```
+```shell
 Default: Setting hostname...
 /opt/vagrant/embedded/gems/gems/vagrant-1.8.1/plugins/guests/ubuntu/cap/change_host_name.rb:37:in `block in init_package': unexpected return (LocalJumpError)
     from /opt/vagrant/embedded/gems/gems/vagrant-1.8.1/plugins/communicators/ssh/communicator.rb:222:in `call’
