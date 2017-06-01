@@ -85,6 +85,13 @@ fab $environment campaigns.clear_cached_templates
 ```
 fab $environment class:whitehall_frontend app.restart:memcached
 ```
+
+You may also need to restart `government-frontend` for Whitehall and Travel Advice pages:
+
+```shell
+fab staging class:frontend app.restart:government-frontend
+```
+
 <a name="test-with-cache-bust"></a>
 ### Test with cache bust strings
 
@@ -292,16 +299,20 @@ The wording to use in the template will be the official title of the
 deceased and the years of their life e.g. 'His Royal Highness Henry VIII
 1491 to 1547'. The text should link to their official biography.
 
+#### GOV.UK Homepage
 ![GOV.UK Homepage](images/emergency_publishing/notable-death-homepage.png)
 
+#### Other pages
 ![](images/emergency_publishing/notable-death.png)
 
 ### National emergency (level 1 or category 2)
 
 A large **red** banner is to be displayed on all GOV.UK pages, including the homepage.
 
+#### GOV.UK Homepage
 ![GOV.UK Homepage](images/emergency_publishing/national-emergency-homepage.png)
 
+#### Other pages
 ![](images/emergency_publishing/national-emergency.png)
 
 ### Localised large-scale emergency (level 2 or category 1)
@@ -310,6 +321,8 @@ A large **green** banner is to be displayed on all GOV.UK pages, including the h
 
 These incidents will not be processed outside of business hours.
 
-![GOV.UK Homepage](images/emergency_publishing/local-emergency-homepage.png)
+#### GOV.UK Homepage
+![GOV.UK Homepage](images/emergency_publishing/local-emergency_homepage.png)
 
+#### Other pages
 ![](images/emergency_publishing/local-emergency.png)
