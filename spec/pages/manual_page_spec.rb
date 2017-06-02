@@ -3,6 +3,10 @@ Dir.glob("source/manual/**/*.md").each do |filename|
     raw = File.read(filename)
     frontmatter = YAML.load(raw.split('---')[1])
 
+    it "uses the correct spelling of GOV.UK" do
+      expect(raw).not_to match "Gov.uk"
+    end
+
     it "has an owner" do
       expect(frontmatter['owner_slack']).to be_present, "Page doesn't have `owner_slack` set"
       expect(frontmatter['owner_slack'][0]).to be_in(%[# @]), "`owner_slack` should be a @username or #channel"
