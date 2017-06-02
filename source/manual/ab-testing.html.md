@@ -4,8 +4,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: Tools
 owner_slack: "@tijmen"
-last_reviewed_on: 2016-12-01
-review_in: 6 months
+last_reviewed_on: 2017-06-02
+review_in: 2 months
 ---
 
 ## 1. Overview
@@ -86,7 +86,7 @@ If the original request did not have the `ABTest-Example` cookie, Fastly will se
 
 Follow these steps:
 
-1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [Gov.uk Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line Gov.uk content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
+1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line Gov.uk content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
 2. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. There is a range of dimensions from 40-49 blocked out for A/B tests. These can be reused when an A/B test has ended.
 3. Configure the A/B test in [the cdn-configs repo][cdn-configs]. Add your test to the following files:
   - `active_ab_tests.yaml`: This controls whether the test is active or not. You may want to configure your test to be inactive at first, so that you can activate it at a later date.
