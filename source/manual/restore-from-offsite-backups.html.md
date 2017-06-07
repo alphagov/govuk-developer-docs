@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Offsite backups
+title: Restore from offsite backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
@@ -8,11 +8,6 @@ old_path_in_opsmanual: "../opsmanual/2nd-line/offsite-backup-and-restore.md"
 last_reviewed_on: 2017-06-06
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/offsite-backup-and-restore.md)
-
 
 We use [duplicity](http://duplicity.nongnu.org/) to perform offsite backups. Some backups are encrypted with GPG before being shipped to an Amazon S3 bucket.
 

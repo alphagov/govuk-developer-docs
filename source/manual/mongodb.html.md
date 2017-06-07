@@ -20,7 +20,7 @@ runs each night to send encrypted backups to an Amazon S3 bucket.
 
 To restore from this method:
 
- - Fetch a backup from either the dedicated mount point, the onsite machine or the S3 bucket [using duplicity](offsite-backup-and-restore.html) (to decrypt you may need a password kept in the encrypted hieradata.
+ - Fetch a backup from either the dedicated mount point, the onsite machine or the S3 bucket [using duplicity](restore-from-offsite-backups.html) (to decrypt you may need a password kept in the encrypted hieradata.
  - Unzip the file. This will produce a directory of data.
  - `mongo restore --drop <directory>`
 
