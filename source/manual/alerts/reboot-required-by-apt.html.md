@@ -19,12 +19,12 @@ machines) there may be a problem with the locking mechanism.
 
 Check if this is the case using Fabric:
 
-    fab <environment> locksmith.status
+    fab <environment> all locksmith.status
 
 If there is a lock in place it will detail which machine holds the lock.
 You can remove it with:
 
-    fab <environment> locksmith.unlock:"<machine-name>"
+    fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
 
 Machines which are safe to reboot should then do so at the scheduled
 time.
