@@ -113,7 +113,7 @@ used by this app (eg <https://github.digital.cabinet-office.gov.uk/gds/developme
 Check the data replication scripts for anything specific to this application.
 
 Some applications have special case details in
-<https://github.digital.cabinet-office.gov.uk/gds/env-sync-and-backup/>. Any relating to the
+<https://github.com/alphagov/env-sync-and-backup/>. Any relating to the
 application should be removed.
 
 ## 12. Update DNS
