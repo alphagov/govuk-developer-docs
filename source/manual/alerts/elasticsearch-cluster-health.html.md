@@ -1,15 +1,15 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#search-team"
 title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2016-12-01
-review_in: 6 months
+last_reviewed_on: 2017-06-07
+review_in: 3 months
 ---
 
 Elasticsearch reports cluster health as one of three possible states, based on
-the state of its primary and replica shards.
+the state of its [primary and replica shards](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/_basic_concepts.html#_shards_amp_replicas).
 
 - `green` - all primary and secondary (replica) shards are allocated. There are
   two (or more) copies of all shards across the nodes on the cluster.
@@ -28,13 +28,41 @@ solution.
 
 [docs]: https://www.elastic.co/guide/en/elasticsearch/guide/current/_cluster_health.html
 
-Nagios uses the `check_elasticsearch` check from
+Icinga uses the `check_elasticsearch` check from
 [nagios-plugins](https://github.com/alphagov/nagios-plugins/) to
 monitor the health of the Elasticsearch cluster. This plugin uses various
 endpoints of the Elasticsearch API, but also extrapolates additional information
 to help you diagnose any problems.
 
-You can also access the Elasticsearch health API directly. Start with the
+### Investigating problems
+
+#### Find hosts in an elasticsearch cluster
+
+We use different elasticsearch clusters for different applications. For example, the `logs-elasticsearch` cluster is used for logging, and the `api-elasticsearch` cluster powers the GOV.UK search API.
+
+You can find hostnames by running:
+
+```
+fab production puppet_class:govuk_elasticsearch hosts
+```
+
+#### View a live dashboard
+
+The [elasticsearch-head](http://mobz.github.io/elasticsearch-head/) plugin is a nice UI for looking at current state of Elasticsearch.
+
+To use this, forward port 9200 from the Elasticsearch box to your localhost:
+
+```
+ssh -L9200:localhost:9200 logs-elasticsearch-1.management.staging
+```
+
+Access the UI at <http://localhost:9200/_plugin/head/>
+
+The tabs on top right corner for Cluster Status & Cluster Health come in handy
+
+#### Use the elasticsearch API
+
+An alternative to using the dashboard is accessing the Elasticsearch health API yourself. Start with the
 [`/_cluster/health` endpoint][cluster-health-endpoint] and go from there.
 
 [cluster-health-endpoint]: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/cluster-health.html
@@ -56,34 +84,7 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 }
 ```
 
-### Investigating problems
-
-#### elasticsearch-head
-
-<http://mobz.github.io/elasticsearch-head/>
-
-A plugin that helps you have a nice UI for looking at current state of Elasticsearch.
-
-To use this following steps might be handy
-
-Forward port 9200 from the Elasticsearch box to your localhost:
-
-```
-ssh -L9200:localhost:9200 logs-elasticsearch-1.management.staging
-```
-
-Access the UI at <http://localhost:9200/_plugin/head/>
-
-The tabs on top right corner for Cluster Status & Cluster Health
-come handy
-
 #### Other options
-
-- You can find our Elasticsearch clusters by running:
-
-  ```
-  fab production puppet_class:govuk_elasticsearch hosts
-  ```
 
 - Configuration files for Elasticsearch are in `/var/apps/<name>/config/elasticsearch.yml`
 
@@ -93,8 +94,20 @@ come handy
 cluster you may need to change where Logstash writes to to ensure we can
 keep getting getting Syslog entries.
 
-### How to fix unassigned nodes in indices?
+### How to fix unassigned shards in indices?
 
+#### Before you do anything
+
+Make sure a thorough analysis is done before fixing the problem,
+as any down time of the elasticsearch cluster can result in loss of data. In general, avoid shutting down a node when there isn't any other node available with replicas of its shards.
+
+#### Unassigned replica shards
+
+When the health is yellow, i.e. replica shards are not allocated, elasticsearch should automatically allocate another node to create replicas on, given enough time.
+
+You can manually interfere with this process using the [Cluster Reroute API](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/cluster-reroute.html#cluster-reroute).
+
+#### Unassigned primary shards
 We can have a red status on Elasticsearch cluster health when you have
 unassigned shards for some indices. (We have seen a similar scenario
 occur on the integration environment, when logs-es-1/3 ran out of space
@@ -105,7 +118,7 @@ This can be solved by:
 Restarting Elasticsearch node in order giving elastic node enough time
 to start up and reallocate the shards allocated to it before starting
 the other Elasticsearch (this can be checked using elasticsearch-head or
-using cluster health api). This should be enough to fix the issue
+using cluster health api). This should be enough to fix the issue.
 
 An exception to the above case can happen after the restart of the
 cluster, when some shards in indices can have both primary and replica
@@ -117,8 +130,7 @@ curl -XPOST 'localhost:9200/<index_name>/_close?pretty=true'
 curl -XPOST 'localhost:9200/<index_name>/_open?pretty=true'
 ```
 
-**NB**: Make sure a thorough analysis is done before fixing the problem,
-as any down time to es cluster can result in loss of data.
+
 
 ### Split brain
 
