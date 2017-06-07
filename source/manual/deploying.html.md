@@ -33,7 +33,7 @@ You need to have a Signon account with appropriate permissions to access the rel
 
 ## Deployment process
 
-As a response to [RFC-70](https://gov-uk.atlassian.net/wiki/pages/viewpage.action?pageId=130703581) starting 15 May 2017 we are using a process which allows us to deploy without the need for a booked deployment slot.
+As a response to [RFC-70](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-070-path-towards-continuous-deployment-cd.md) starting 15 May 2017 we are using a process which allows us to deploy without the need for a booked deployment slot.
 
 Deployment communications are in the `#govuk-deploy` Slack channel. If you are on 2ndline you should add yourself to that channel. As before, releases can start from 9:30am and must be finished by 5pm, or 4pm on Fridays.
 
