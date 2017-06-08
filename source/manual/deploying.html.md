@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
-last_reviewed_on: 2017-05-12
+last_reviewed_on: 2017-06-07
 review_in: 1 months
 ---
 
@@ -27,12 +27,13 @@ We have a staging environment that must always be deployed to immediately before
 ## Release process
 
 Only one release takes place at a time. One product team owns the release - if
-multiple teams are involved in the release, pick one.
+multiple teams are involved in the release, pick one. Releases are tracked by the [release app](https://release.publishing.service.gov.uk/).
 
+You need to have a Signon account with appropriate permissions to access the release app.
 
-## Experimental deployment process
+## Deployment process
 
-As a response to [RFC-70](https://gov-uk.atlassian.net/wiki/pages/viewpage.action?pageId=130703581) starting 15 May 2017 we are experimenting with a process which allows us to remove the need to book a deployment slot. If you think there's something wrong with the process during the experiment speak up as soon as possible.
+As a response to [RFC-70](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-070-path-towards-continuous-deployment-cd.md) starting 15 May 2017 we are using a process which allows us to deploy without the need for a booked deployment slot.
 
 Deployment communications are in the `#govuk-deploy` Slack channel. If you are on 2ndline you should add yourself to that channel. As before, releases can start from 9:30am and must be finished by 5pm, or 4pm on Fridays.
 
@@ -62,6 +63,10 @@ If you need to hold deployments of applications during your deploy say so in you
 
 If you need support from 2nd line during your deploy, contact them in advance and agree a time.
 
+### Security patches
+
+If you are responding to a security incident, follow the steps to [deploy fixes for a security vulnerability](deploy-fixes-for-a-security-vulnerability.html).
+
 ### Rollback
 
 Make sure you have a rollback plan if things go wrong. When you're just changing code, this is relatively easy; when you're doing data migrations, less so. **As far as is possible, all data migrations should be reversible**. Don't rely on backups unless you absolutely have to.
@@ -75,72 +80,6 @@ trying again later.
 
 We depend on both GitHub and GitHub Enterprise for deploying software to GOV.UK. We have processes in place to deploy if [either of the GitHubs are unavailable](github-unavailable.html).
 
-## Release application
-
-The [release app](https://release.publishing.service.gov.uk/) tracks releases.
-
-You need to have a Signon account with appropriate permissions to access the release app.
-
-## Badger deployment (on hold for the moment)
-
-While the above experiment is in progress you do not need to book a deployment slot and can ignore this section.
-
-### Scheduling
-
-Any member of the team responsible for a release can book a release slot. To
-book a release slot, find a free slot in the GOV.UK Release Calendar, then create an event in either your personal or your team's calendar, including the "GOV.UK Release Calendar"
-as a guest.
-
-Release slots are half an hour for normal changes and one hour for larger or
-more complex changes. The release calendar shows what times releases can happen - they can start from 9:30am and must be finished by 5pm, or 4pm on Fridays.
-
-At an absolute minimum, you should include the name of the app or apps you're
-deploying; you should probably also include a description of what you're
-releasing and build numbers for all the apps. If you invite yourself to the
-event, people will be able to see who to talk to about it.
-
-If you do not have deploy access, and you need someone from the 2nd line team to deploy for you, put as much information into the event as possible, include "2nd line required' in the title. Please be considerate when booking deployments over lunchtime, the team need to eat too.
-If in doubt, ask.
-
-### The Badger
-
-The [Badger of Deploy][badger] stops multiple people deploying to GOV.UK at once. If you want to deploy to production, you **must** acquire the badger. You
-**should** display it prominently on your monitor, so people can see when you
-are deploying. Once your release is finished, return it to one of the people on
-2nd line.
-
-If the previous release is over-running slightly, you can technically deploy to
-staging without the badger. Be sensible, though: make sure before you start that the previous team isn't going to have to roll back their release.
-
-[badger]: https://twitter.com/badgerofdeploy
-
-### Deployment
-
-#### Security fixes
-
-If you are responding to a security incident, follow the steps in [Deploy fixes for a security vulnerability](deploy-fixes-for-a-security-vulnerability.html).
-
-#### Regular code changes
-
-1.  Check any notes against the application in the [Release app][release].
-1.  Acquire the badger
-1.  Ensure the badger is not tagged with the application you are deploying,
-    indicating that it is [blocked from being released](blocking-apps-from-release.html).
-1.  Deploy to staging
-1.  Check Smokey passes; remember most apps take a couple of minutes to restart
-1.  Check the new functionality works as you would expect
-1.  No, really: **acquire the badger**
-1.  Deploy to production
-1.  Check Smokey passes in production; once again, apps take a couple of minutes
-    to restart
-1.  Check the new functionality works in production
-1.  Take a look at any alerts and metrics, just to check you haven't broken
-    something
-1.  Return the badger to someone on 2nd line
-1.  Stay around for a while just in case something goes wrong
-
-[release]: https://release.publishing.service.gov.uk/
-
 ## On the blog
 
-- [Releasing applications to GOV.UK](https://gdstechnology.blog.gov.uk/2014/09/10/releasing-applications-to-gov-uk/)
+- [Releasing applications to GOV.UK](https://gdstechnology.blog.gov.uk/2014/09/10/releasing-applications-to-gov-uk/) (older post, using the badger)
