@@ -1,6 +1,6 @@
 ---
 owner_slack: "#search-team"
-title: 'Elasticsearch: dump and restore indices'
+title: 'Backup and restore Elasticsearch indices'
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
@@ -8,7 +8,7 @@ last_reviewed_on: 2017-06-07
 review_in: 3 months
 ---
 
-## Creating a dump
+## Creating a backup
 
 Sometimes you may need to take a backup of Elasticsearch before a
 critical operation. You can use [es_dump_restore](https://github.com/patientslikeme/es_dump_restore) for this.
@@ -24,7 +24,7 @@ $ sudo crontab -lu elasticsearch
 The first argument is the Elasticsearch instance and the second is the
 directory in which to store the output. The user running the dump needs permission to write to this directory.
 
-## Restoring a dump
+## Restoring a backup
 
 Before restoring a backup, make sure you are [monitoring the cluster](/manual/alerts/elasticsearch-cluster-health.html).
 
