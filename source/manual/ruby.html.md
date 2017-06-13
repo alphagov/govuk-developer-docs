@@ -5,7 +5,7 @@ section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/ruby.md"
-last_reviewed_on: 2016-12-09
+last_reviewed_on: 2017-06-12
 review_in: 6 months
 ---
 
@@ -46,7 +46,7 @@ The package name includes the version of Ruby (eg `rbenv-ruby-2.3.1`) because
 we need to install multiple versions of Ruby at the same time.
 
 Once it's available as a package you can
-[install it everywhere using Puppet][puppet_rbenv_all]. Machines only runs
+[install it everywhere using Puppet][puppet_rbenv_all]. Machines only run
 `apt-get update` periodically so it might take a little time for the package
 to become available.
 
