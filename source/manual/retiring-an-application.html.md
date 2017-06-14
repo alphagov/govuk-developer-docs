@@ -4,7 +4,7 @@ title: Retire an application
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-05-03
+last_reviewed_on: 2017-06-14
 review_in: 6 months
 ---
 
@@ -119,8 +119,13 @@ application should be removed.
 ## 12. Update DNS
 
 Request any public DNS entries be removed. If the app had an admin UI, it will
-have had public DNS entries in the `publishing.service.gov.uk` domain. Request
-that the infrastructure team remove these, or, if appropriate, transition them.
+have had public DNS entries in the `publishing.service.gov.uk` domain.
+
+Follow the [instructions for DNS changes][dns-changes] in order to remove these,
+and ask the infrastructure team to approve any necessary Pull Requests.
+
+[dns-changes]:
+https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
 
 ## 13. Update docs
 
@@ -150,3 +155,9 @@ Do a [code search on GitHub][search] to find any references to the application
 and update or remove them.
 
 [search]: https://github.com/search?q=org%3Aalphagov+panopticon&type=Code
+
+## 18. Unpublish routes
+
+Some applications are responsible for publishing certain routes. If you're
+retiring a publishing application, make sure you check if any of its content
+items need to be unpublished and do it via the Publishing API.
