@@ -137,12 +137,18 @@ purging the cache.
 3) Check that the emergency banner is visible when accessing the same pages as above but without a cache-bust string.
 
 <a name="unset-env-var"></a>
-### Unset your environment variable
+### Unset your environment variable and deactivate your virtual environment
 
 1) Remember to unset your Fabric environment variable:
 
 ```
 unset environment
+```
+
+2) Deactivate your virtual environment:
+
+```
+deactivate
 ```
 ---
 
