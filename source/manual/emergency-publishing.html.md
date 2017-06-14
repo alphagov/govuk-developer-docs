@@ -89,7 +89,7 @@ fab $environment class:whitehall_frontend app.restart:memcached
 You may also need to restart `government-frontend` for Whitehall and Travel Advice pages:
 
 ```shell
-fab staging class:frontend app.restart:government-frontend
+fab $environment class:frontend app.restart:government-frontend
 ```
 
 <a name="test-with-cache-bust"></a>
