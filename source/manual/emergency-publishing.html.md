@@ -89,8 +89,10 @@ fab $environment class:whitehall_frontend app.restart:memcached
 You may also need to restart `government-frontend` for Whitehall and Travel Advice pages:
 
 ```shell
-fab staging class:frontend app.restart:government-frontend
+fab $environment class:frontend app.restart:government-frontend
 ```
+
+> **NOTE:** The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
 
 <a name="test-with-cache-bust"></a>
 ### Test with cache bust strings
