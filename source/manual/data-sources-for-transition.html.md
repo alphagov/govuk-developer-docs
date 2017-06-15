@@ -5,7 +5,7 @@ section: Transition
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/applications/bouncer-and-transition.html"
-last_reviewed_on: 2017-05-03
+last_reviewed_on: 2017-06-14
 review_in: 6 months
 ---
 
@@ -21,5 +21,10 @@ periodically by hand, but this has come to an end.
 Traffic data is automatically imported once an hour from
 [transition-stats](https://github.com/alphagov/transition-stats). This
 import puts a high load on the database. CDN logs for the "Production Bouncer"
-Fastly service are streamed to transition-logs.govuk.service.gov.uk in the CI
-environment and processed there by cron job and pushed to the GitHub repository.
+Fastly service are streamed to logs-cdn.publishing.service.gov.uk (which is
+routed to logs-cdn-1.management in Production), processed there by cron job and 
+pushed to the GitHub repository.
+
+On logs-cdn-1.management, both log files and cache files that are produced by the
+processing script are rotated. These files should be compressed and archived and
+not deleted.
