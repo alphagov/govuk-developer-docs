@@ -61,3 +61,27 @@ After replicating data a few times, your machine might be running low on disk
 space. This is because the old database dumps aren't cleaned up once newer ones
 have been downloaded. To solve this, you can periodically `rm -r` older
 directories in `govuk-puppet/development-vm/replication/backups`.
+
+## Can't take a write lock while out of disk space (in MongoDB)
+
+You may see such an error message which will prevent you from creating or even dropping collections. So you won't be able to replicate the latest data.
+
+You will need to delete large Mongo collections to free up space before they can be re-imported. Follow this [guide on how to delete them, and ensure that Mongo honours their removal](https://caffinc.github.io/2014/07/mongodb-cant-take-a-write-lock-while-out-of-disk-space/).
+
+Find your biggest Mongo collections by running:
+
+```
+dev$ sudo ncdu /var/lib/mongodb
+```
+
+You can re-run the replication but skip non-Mongo imports, like MySQL if it'd already succesfully imported. Use
+```
+replicate-data-local.sh --help
+```
+to see the options.
+
+For example, to run an import but skip MySQL and Elasticsearch:
+
+```
+dev$ replicate-data-local.sh -q -e -d backups/2017-06-08 -s
+```
