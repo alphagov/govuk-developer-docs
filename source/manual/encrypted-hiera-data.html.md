@@ -229,8 +229,8 @@ credentials;
 > retained a copy of the data. They are still able to decrypt the
 > current copy of the credentials file and have made unencrypted copies.
 >
-> We must assume that, until the credentials file is re-encrypted and
-> the stored credentials are rotated, any secrets contained in the
+> We must assume that, until the stored credentials are rotated and the 
+> credentials file is re-encrypted any secrets contained in the
 > credentials file can still be read by anyone with a GPG key previously
 > listed in the recipient list.
 
