@@ -44,6 +44,16 @@ pub   2048R/90E65803 2013-02-08
 The key id is `90E65803` in this case. The fingerprint is `37CC 021A C5C2
 4E27 C4D9 5735 9B0E 9DD1 90E6 5803`
 
+## Make sure your passphrase works
+
+You can test it like this:
+
+```
+echo "1234" | gpg --no-use-agent -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
+```
+
+If you have entered your passphrase correctly you will see "The correct passphrase was entered for this key" text.
+
 ## Upload your GPG key to a keyserver
 
 Send your key to a keyserver by doing:
