@@ -20,3 +20,7 @@ only fail if something actually goes wrong. For example, if a request to the
 search API fails.
 
 Check the output of the job on the relevant environment for more information.
+
+It's common to see 'freshness threshold exceeded' alerts in integration on a
+Monday morning for this check, because integration is switched off over the
+weekend so the job has not been run for a couple of days.
