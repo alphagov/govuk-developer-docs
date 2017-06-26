@@ -4,11 +4,11 @@ title: 'RabbitMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2016-12-10
+last_reviewed_on: 2017-06-26
 review_in: 6 months
 ---
 
-[Read more about how we use RabbitMQ](/manual/rabbitmq.html)
+[Read more about how we use RabbitMQ][rabbitmq]
 
 We run a check that there is at least one non-idle consumer for a named
 RabbitMQ queue. (For example, for the `email_alert_service` queue.) The
@@ -52,7 +52,7 @@ they will be processed once the problem is resolved.
 
 RabbitMQ has an admin interface, which allows details of recent activity
 on the queues to be seen. To log in, [follow the
-instructions](rabbitmq).
+instructions in the RabbitMQ docs][rabbitmq].
 
 The admin interface allows you to see details (and graphs!) of the
 messages sent to each queue, and the number of messages held on the
@@ -70,3 +70,6 @@ app are also alerted, since this shouldn't normally happen). For
 example:
 
     fab $environment class:backend app.restart:email-alert-service
+
+
+[rabbitmq]: /manual/rabbitmq.html
