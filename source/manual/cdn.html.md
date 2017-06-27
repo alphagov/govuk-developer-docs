@@ -16,7 +16,7 @@ servers directly, they connect via the CDN. This is better because:
 - It reduces load on our origin. Fastly uses Varnish to cache responses.
 
 The CDN is responsible for retrying requests against the
-[static mirror](../2nd-line/mirror-fallback.html).
+[static mirror](/manual/fall-back-to-mirror.html).
 
 ![image](images/cdn-mirror-configuration.png)
 
