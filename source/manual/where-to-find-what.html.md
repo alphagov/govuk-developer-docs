@@ -1,11 +1,11 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "@tijmen"
 title: Where to find what documentation?
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-02
-review_in: 6 months
+last_reviewed_on: 2017-06-27
+review_in: 3 months
 ---
 
 ## Individual repos
