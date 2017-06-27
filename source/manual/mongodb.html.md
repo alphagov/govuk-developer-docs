@@ -1,10 +1,10 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-infrastructure"
 title: MongoDB backups
 layout: manual_layout
 parent: "/manual.html"
 section: Backups
-last_reviewed_on: 2016-12-04
+last_reviewed_on: 2017-04-25
 review_in: 6 months
 ---
 
