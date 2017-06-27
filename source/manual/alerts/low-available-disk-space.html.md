@@ -4,17 +4,17 @@ title: Low available disk space
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2016-12-16
+last_reviewed_on: 2017-06-27
 review_in: 6 months
 ---
 
-### Low available disk space on root
+## Low available disk space on root
 
 You can try clearing out the APT cache:
 
 > sudo apt-get clean
 
-### Low available disc space on /mnt/uploads for asset-master-1 and asset-slave-1
+## Low available disc space on /mnt/uploads for asset-master-1 and asset-slave-1
 
 Nagios is set up to monitor disc usage by /mnt/uploads on
 asset-master-1.backend and asset-slave-1.backend. Usually, the culprit
@@ -55,7 +55,7 @@ This command will take a while to complete, depending - of course - on
 how large your two starting folders are. After it has completed, push
 Nagios to re-check the service on each affected host.
 
-### No disk space on the MySQL master
+## No disk space on the MySQL master
 
 If the MySQL master runs out of disk space, all of the apps that rely on
 MySQL may crash. You'll probably notice this in Nagios. There's a lot of
@@ -85,7 +85,7 @@ If there's no disk space available, purging binary logs from within
 MySQL doesn't work - this is why we first need to manually delete some
 logs and update the index.
 
-### Low available disk space on MongoDB mount on exception-handler (Errbit)
+## Low available disk space on MongoDB mount on exception-handler (Errbit)
 
 You can clear out resolved exceptions by running the following rake
 task:
@@ -107,7 +107,7 @@ This will result in freeing up all the empty space. Obviously it takes
 Errbit offline for a while as the db is dropped and restored, but our
 apps are robust in the face of Errbit being down.
 
-### No disk space in general
+## No disk space in general
 
 If you cant find any of the above cases causing low disk spaces, it can
 be useful to run the command `sudo ncdu <mountpoint>`, where mountpoint
@@ -123,7 +123,7 @@ scan it to see which directory inside it is using the most space, then
 use ncdu on that directory. Do it with the following command:
 `sudo du -hc --max-depth=1 <mountpoint>`
 
-### Disk space used by logfiles
+## Disk space used by logfiles
 
 You may discover that disk space is mostly being used up by logfiles.
 This is probably caused by logrotate failing to properly rotate a
@@ -153,4 +153,3 @@ You can force a logrotate run afterwards:
 **If you have nowhere to move the logs and it is causing an incident,
 uptime of the server takes precedent over logfiles, so just truncate the
 logs to free up space**
-
