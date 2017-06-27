@@ -41,4 +41,4 @@ You can find [GOV.UK blog posts on the  GDS Tech blog](https://gdstechnology.blo
 
 ## Related
 
-- [Create a page in this manual](/manual/create-page.html)
+- [Documentation style guide](/manual/docs-style-guide.html)
