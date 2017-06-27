@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-infrastructure"
 title: Offsite backups
 parent: "/manual.html"
 layout: manual_layout
@@ -48,4 +48,3 @@ google group. If the log contains the line
 `"Warning, found the following orphaned backup files` then try running
 the command
 `sudo -iugovuk-backup duplicity cleanup <destination>  --no-encryption --force`
-

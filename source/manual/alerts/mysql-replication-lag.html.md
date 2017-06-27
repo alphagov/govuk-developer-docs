@@ -4,7 +4,7 @@ title: 'MySQL: replication lag'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2016-12-20
+last_reviewed_on: 2017-06-27
 review_in: 6 months
 ---
 
