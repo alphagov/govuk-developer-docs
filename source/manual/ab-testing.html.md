@@ -10,42 +10,19 @@ review_in: 2 months
 
 ## 1. Overview
 
-There are two ways of doing A/B testing on GOV.UK. The first uses Javascript to change the contents on a page. The second uses our CDN to allow frontend applications to render different pages.
-
 For a general introduction to A/B testing from a content design perspective, see the [Confluence Wiki](https://bit.ly/AB-testing-GOVUK)
 
-Which implementation you choose depends on your A/B testing needs:
+Use our CDN (Fastly) to allow frontend applications to render different pages.
 
-**JavaScript**
+This A/B test approach:
+* requires deploying the Fastly CDN
+* does not rely on JavaScript so does not suffer from flashes of content when variants change
+* can only be fully tested on staging and production because of its dependency on Fastly. You can still test your A and B versions in other environments, it's just not a completely realistic test without the full stack.
+* reports results to Google Analytics
 
-* **Pro:** much simpler to configure
-* **Con:** content flashes on page load: users see one version first, which is then replaced with the other version
-* **Con:** every HTTP response contains both versions, which could significantly increase the page size if the change is large
-* **Choose if:** you want to A/B test a small, simple change to a page, such as the wording of a link
+## 2. Using Fastly for A/B testing
 
-**Fastly**
-
-* **Pro:** No content flashing
-* **Con:** Requires deploying the Fastly CDN
-* **Con:** Because it depends on Fastly this can only be fully tested on staging and production. You can still test your A and B versions in other environments, it's just not a completely realistic test without the full stack.
-* **Choose if:** you are testing wide-ranging changes, perhaps with redirects to the new version, or if you really need to avoid content flashing
-
-Both options let you report the results to Google Analytics.
-
-## 2. Javascript testing
-
-Javascript testing uses the [Multivariate test framework][multivariate-testing] from the [GOV.UK frontend toolkit][govuk_frontend_toolkit]. It works by running a piece of Javascript after the page is loaded.
-
-A [step-by-step walkthrough is provided on the Wiki](https://gov-uk.atlassian.net/wiki/pages/viewpage.action?pageId=85786770).
-
-[multivariate-testing]: https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/javascript.md#multivariate-test-framework
-[govuk_frontend_toolkit]: https://github.com/alphagov/govuk_frontend_toolkit
-
-## 3. Using Fastly
-
-This method uses Fastly, our Content Delivery Network (CDN).
-
-### 3.1 How it works
+### 2.1 How it works
 
 #### Fastly receives the request
 
@@ -82,7 +59,7 @@ Fastly also saves the response in the cache. The `Vary: GOVUK-ABTest-Example` re
 
 If the original request did not have the `ABTest-Example` cookie, Fastly will set a `Set-Cookie` header to the response based on the value of the `GOVUK-ABTest-Example` header.
 
-### 3.2 Checklist for enabling A/B testing
+### 2.2 Checklist for enabling A/B testing
 
 Follow these steps:
 
