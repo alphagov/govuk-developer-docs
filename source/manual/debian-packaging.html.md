@@ -5,7 +5,7 @@ section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/debian-packaging.md"
-last_reviewed_on: 2016-12-09
+last_reviewed_on: 2017-06-27
 review_in: 6 months
 ---
 
@@ -54,27 +54,20 @@ and then add the deb file to aptly.
 We are using [aptly](http://www.aptly.info) to mirror third-party
 repositories. We do this for:
 
-Availability
+**Availability**: Our ability to provision new and deploy to existing machines
+shouldn't be affected by the availability/uptime of another vendor/project.
+This doesn't necessarily apply to Ubuntu upstream, who have a good network of
+mirrors.
 
-:   Our ability to provision new and deploy to existing machines
-    shouldn't be affected by the availability/uptime of
-    another vendor/project. This doesn't necessarily apply to Ubuntu
-    upstream, who have a good network of mirrors.
+**Consistency**:   We should be able to use a consistent set of package
+versions across all environments. New versions should be staged in
+when we choose to do so. This also guards us against some vendors/projects
+who remove old packages without warning.
 
-Consistency
-
-:   We should be able to use a consistent set of package versions across
-    all environments. New versions should be staged in when we choose to
-    do so. This also guards us against some vendors/projects who remove
-    old packages without warning.
-
-Bandwidth
-
-:   This is the least important, but is good netizen practice. We
-    shouldn't need to go out to the internet everytime we install
-    a package. Especially if we're doing it 40x for all hosts in
-    an environment. We also shouldn't hit them with `apt-get update`
-    every 30mins.
+**Bandwidth**:   This is the least important, but is good netizen practice. We
+shouldn't need to go out to the internet everytime we install a package.
+Especially if we're doing it 40x for all hosts in an environment. We also
+shouldn't hit them with `apt-get update` every 30mins.
 
 We will describe some common operations here and add to it as we do more
 complex things. However the upstream documentation and examples are also
