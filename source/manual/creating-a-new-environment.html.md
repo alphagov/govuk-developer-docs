@@ -35,7 +35,7 @@ Ask the IaaS provider to:
 > f.  Ensure ingress access to the organisation on these TCP ports:
 >
 > > -   22 and 1022 (for jumpbox-2): for the [nat\_a IP
-> >     address](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/69c299557f7c0600c17180e0dec05bd1765e02bc/vcloud-edge_gateway/vars/production_skyscape_vars.yaml#L29)
+> >     address](https://github.com/alphagov/govuk-provisioning/blob/69c299557f7c0600c17180e0dec05bd1765e02bc/vcloud-edge_gateway/vars/production_skyscape_vars.yaml#L29)
 > > -   80 and 443 for all IP addresses
 > >
 > > > **note**
@@ -60,7 +60,7 @@ Ask the IaaS provider to:
 machines. They are equivalent to an Amazon Machine Image (AMI).
 
 The process for creating a vApp template is [documented in
-govuk-provisioning](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/master/packer/README.md).
+govuk-provisioning](https://github.com/alphagov/govuk-provisioning/blob/master/packer/README.md).
 
 ## Configuring the vDC networks
 
@@ -97,7 +97,7 @@ Edge gateways:
 Edge gateway configuration is automated; use the [vcloud-configure-edge
 tool](https://github.com/gds-operations/vcloud-edge_gateway) with the
 configuration checked in to
-[govuk-provisioning/vcloud-edge\_gateway](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/tree/master/vcloud-edge_gateway).
+[govuk-provisioning/vcloud-edge\_gateway](https://github.com/alphagov/govuk-provisioning/tree/master/vcloud-edge_gateway).
 For example, to configure firewalls in the Carrenza Preview environment:
 
     # get an authentication token

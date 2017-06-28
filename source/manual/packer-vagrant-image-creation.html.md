@@ -18,4 +18,4 @@ This is a stub page that links to the real documentation for this task.
 
 ## Further information
 
-For full details regarding how to build Vagrant Virtual Box and VMWare Fusion images please read the [GOV.UK virtual machine images using Packer README](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/master/packer/README.md)
+For full details regarding how to build Vagrant Virtual Box and VMWare Fusion images please read the [GOV.UK virtual machine images using Packer README](https://github.com/alphagov/govuk-provisioning/blob/master/packer/README.md)
