@@ -51,7 +51,7 @@ We use these IP addresses in 2 places:
   IP addresses (otherwise anyone would be able to purge the cache).
 
 [fastly_ips]: https://api.fastly.com/public-ip-list
-[firewall rules]: https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
+[firewall rules]: https://github.com/alphagov/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
 [vcl_config]: https://github.com/alphagov/govuk-cdn-config/
 
 ## Banning IP addresses at the CDN edge

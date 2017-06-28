@@ -143,10 +143,10 @@ to safely reboot these machines you'll need access to vCloud Director.
 
 -   find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
-    repo](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/)
+    repo](https://github.com/alphagov/govuk-provisioning/)
 -   use vCloud Director to update the NAT rule to point to backend-lb-2.
     -   The Nat rule will be in [this
-        repo](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/).
+        repo](https://github.com/alphagov/govuk-provisioning/).
     -   Go to "Administration"
     -   find 'GOV.UK Management' in the list of vdcs and click on it
     -   select the "edge gateway" tab, right click on it and select
