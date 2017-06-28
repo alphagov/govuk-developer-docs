@@ -20,12 +20,16 @@ here](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/infrastru
 If this alert triggers it means the nightly base backup has failed to
 run. Check the logs in Kibana using this query:
 
-@source\_host:mysql-backup\* AND @fields.syslog\_program:xtrabackup\_s3\_base
+```rb
+@source_host:mysql-backup* AND @fields.syslog_program:xtrabackup_s3_base
+```
 
 As this runs on a slave, it is safe to rerun at anytime. Log into the
 machine and run:
 
-sudo -i /usr/bin/timeout 1h /usr/bin/setlock -N /var/run/mysql\_xtrabackup /usr/local/bin/xtrabackup\_s3\_base
+```sh
+sudo -i /usr/bin/timeout 1h /usr/bin/setlock -N /var/run/mysql_xtrabackup /usr/local/bin/xtrabackup_s3_base
+```
 
 If it errors you should be able to find out what the issue is.
 
@@ -35,11 +39,12 @@ When this alert triggers it means the incremental backups, which run
 every 15 minutes, have had a problem. Check Kibana with the following
 query:
 
-@source\_host:mysql-backup\* AND @fields.syslog\_program:xtrabackup\_s3\_incremental
+```rb
+@source_host:mysql-backup* AND @fields.syslog_program:xtrabackup_s3_incremental
+```
 
 It is safe to run manually, though this will by nature run regularly so
 you should be able to view what the problem is in the logs. If the
 incremental backup is failing, it may be worth rerunning the base backup
 job, and then running the incremental job. Other possible problems could
 point to connectivity to Amazon S3.
-
