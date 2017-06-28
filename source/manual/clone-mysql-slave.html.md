@@ -5,7 +5,7 @@ section: Databases
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/clone-mysql-slave.md"
-last_reviewed_on: 2016-11-15
+last_reviewed_on: 2017-06-28
 review_in: 7 months
 ---
 
@@ -46,7 +46,7 @@ CLI
 ## 1. Lock the original slave to prevent writes
 
 First, find out the MySQL root password. This is in hieradata in the
-deployment repo.
+deployment repo (look for the `mysql_root` key).
 
 Open an SSH connection to slave (this connection will remain open for
 the duration of the operation so it makes sense to do it in screen or
@@ -70,21 +70,22 @@ switch to a new console and login to the slave again via SSH.
 
 ## 2. Copy the data from the original slave to your directory on the new slave
 
-On your second terminal, login to the original MySQL slave again.
+On your second terminal run the following command:
 
-You are going to need to temporarily copy your SSH Private Key
-.ssh/id\_rsa to your home directory on the original slave server.
-There's no easy way around this, as while we can forward the SSH agent
-from your personal machine to the original server, we're going to be
-running the SSH command as root which will need access to your key. Make
-sure the file is chmod 0600 otherwise SSH will fail.
+    ssh -A mysql-slave-1.backend.integration \
+        sudo -E rsync --delete \
+                      --exclude 'relay-log.info' \
+                      --exclude 'mysql-bin*' \
+                      --exclude 'mysql-slave*' \
+                      -Wavz /var/lib/mysql/ <username>@mysql-backup-1:mysql
 
-Once you have done that, copy the entire contents of /var/lib/mysql from
-the original server to your home directory on the new server:
+You should set `<username>` to your short name as set in puppet (e.g. 'bobwalker').
 
-    sudo rsync --delete --exclude 'relay-log.info' --exclude 'mysql-bin*' --exclude 'mysql-slave*' -Wavze "ssh -i /home/username/.ssh/id_rsa" /var/lib/mysql/ username@mysql-backup-1:mysql
+**warning** forwarding your ssh-agent (`-A`) means that anyone with sufficient access on the remote server can authenticate as you. Do not use it on un-trusted servers.
 
 > **note**
+>
+> This forwards your ssh-agent to slave (`-A`) then, passing that agent to sudo's environment (`-E`), rsyncs the mysql files to backup.
 >
 > -a is archive mode, which is - in essence - a shortcut to using '-r -l -p -t -g -o -D', which are common switches used during backups.
 >
@@ -115,10 +116,6 @@ monitor this with:
     slave:mysql> SHOW SLAVE STATUS\G
 
 You should see that seconds\_behind\_master drops to 0.
-
-> **warning**
-
-> DO NOT FORGET TO REMOVE YOUR SSH PRIVATE KEY FROM THE SLAVE!
 
 ## 4. Move the data on the new slave
 
