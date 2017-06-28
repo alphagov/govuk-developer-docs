@@ -38,7 +38,9 @@ Primary machine some caution is advised. As detailed above, you could
 wait until the next morning for the backup to try again since we are not
 losing data due to the archiving process:
 
-sudo -iu postgres /usr/local/bin/wal-e\_postgres\_base\_backup\_push
+```sh
+sudo -iu postgres /usr/local/bin/wal-e_postgres_base_backup_push
+```
 
 ### PostgreSQL WAL-E archiving to S3
 
