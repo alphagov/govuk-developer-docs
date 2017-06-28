@@ -65,7 +65,7 @@ stop it, and then delete it.
 ## 3. Remove from govuk-provisioning
 
 If your machine class matches a VDC, be careful not to remove firewall
-rules that apply to the VDC. [See this PR for an example](https://github.digital.cabinet-office.gov.uk/gds/govuk-provisioning/pull/141).
+rules that apply to the VDC. [See this PR for an example](https://github.com/alphagov/govuk-provisioning/pull/141).
 
 ## 4. Remove from puppet
 
