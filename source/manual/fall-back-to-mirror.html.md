@@ -4,7 +4,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 owner_slack: "#2ndline"
-last_reviewed_on: 2017-04-01
+last_reviewed_on: 2017-06-29
 review_in: 6 months
 ---
 
@@ -23,19 +23,24 @@ This is why we refer to switching off Nginx on the origin cache machines as
 
 Mirror sites can be viewed and navigated at:
 
-- [Skyscape](https://www-origin.mirror.provider0.production.govuk.service.gov.uk/) (`https://www-origin.mirror.provider0.production.govuk.service.gov.uk/`)
 - [Carrenza](https://www-origin.mirror.provider1.production.govuk.service.gov.uk/) (`https://www-origin.mirror.provider1.production.govuk.service.gov.uk/`)
+- Amazon S3 bucket govuk-mirror-<environment>
 
 ## Access
 
-Everyone with production access can connect to the mirrors. Unfortunately,
+Everyone with production access can connect to the VCloud mirror in Carrenza. Unfortunately,
 adding and removing accounts is a manual process in [govuk_mirror-puppet hieradata][].
+
+Access to the S3 mirror is restricted to Fastly IP addresses (read only) and AWS authenticated users.
 
 ## Hosting
 
-The static mirror is hosted as two pairs of machines running a webserver. One pair is
-hosted with Skyscape and the other is with Carrenza. The [suppliers][] page has their
-details.
+We currently support two types of mirror backends:
+
+- VCloud: the static mirror is hosted as two pairs of machines running a webserver. This is
+hosted with Carrenza. The [suppliers][] page has their details.
+
+- Amazon S3: the static mirror is hosted in a bucket and the content is retrieved via API
 
 ## Updates to the mirror
 
@@ -82,10 +87,12 @@ You'll be notified by the escalation on-call contact that you need to edit the s
 
         $ fab $environment get_file:path-to-file.html
 
-3.  Edit the file in `tmp/path-to-file.html` on your machine
-4.  Put the file back to the mirrors:
+3. Edit the file in `tmp/path-to-file.html` on your machine
+4. Put the file back to VCloud mirror:
 
         $ fab $environment put_file:path-to-file.html
+
+   Upload the file to the S3 mirror via console or command line
 
 Your manual changes to the mirror might be overwritten by the hourly copy from the
 mirrorer machine. You might need to ensure that the copy doesn't happen.
