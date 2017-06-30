@@ -82,7 +82,7 @@ how serious the problem is and contact other people on GOV.UK if required.
 If you're phoned by somebody who works on GOV.UK it's likely that this is because:
 
 - There's a serious issue with the site which somebody else in government has noticed
-- Government has decided to do [emergency publishing](emergency-publishing.html)
+- Government has decided to do [emergency publishing](/manual/emergency-publishing.html)
 
 There's a separate process for urgent changes to content which doesn't require technical
 support (assuming everything is working).
@@ -90,6 +90,6 @@ support (assuming everything is working).
 ## Things you should read if you're on-call
 
 - [Stopping Nginx on the cache machines to fail to our static mirror](https://github.com/alphagov/fabric-scripts/blob/master/incident.py)
-- [Emergency publishing](emergency-publishing.html)
-- [Emergency publishing while origin is unavailable](mirror-fallback.html)
-- [Responding to an outage](outage-detail.html)
+- [Emergency publishing](/manual/emergency-publishing.html)
+- [Emergency publishing while origin is unavailable](/manual/fall-back-to-mirror.html)
+- [Responding to an outage](https://gov-uk.atlassian.net/wiki/display/PLOPS/GOV.UK+Incidents)
