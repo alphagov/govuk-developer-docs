@@ -1,18 +1,12 @@
 ---
-owner_slack: "#2ndline"
-title: Create a page in this manual
+owner_slack: "@tijmen"
+title: Documentation style guide
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-02-09
-review_in: 6 months
+last_reviewed_on: 2017-06-27
+review_in: 3 months
 ---
-
-## Create a page
-
-1. Add a page in GitHub to the [/source/manual](https://github.com/alphagov/govuk-developer-docs/tree/master/source/manual) directory.
-2. Mark it with a section that makes sense for it to live in.
-3. Add a review-by date.
 
 ## What pages should be about
 
