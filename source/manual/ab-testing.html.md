@@ -65,21 +65,34 @@ Follow these steps:
 
 1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line GOV.UK content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
 2. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. There is a range of dimensions from 40-49 blocked out for A/B tests. These can be reused when an A/B test has ended.
-3. Configure the A/B test in [the cdn-configs repo][cdn-configs]. Add your test to the following files:
-  - `active_ab_tests.yaml`: This controls whether the test is active or not. You may want to configure your test to be inactive at first, so that you can activate it at a later date.
-  - `ab_test_b_percentages.yaml`: The percentage of users who should see the B version of your test. This can be changed at a later date to expand the test to more users, but note that there will be some lag because users who have already visited the site will stay in their A/B test bucket until their cookie expires.
-  - `ab_test_expiries.yaml`: The lifetime of the A/B test cookie. The value you choose depends on what kind of change you are making. If it is important that users always see a consistent version of the site (e.g. because you are making large changes to the navigation) then choose a lifetime which is significantly longer than the duration of your A/B test, such as 1 year. On the other hand, a shorter lifetime (such as 1 day) causes less lag when changing the B percentage, and might be more appropriate when testing something where consistency is less important from day-to-day, such as changing the order of search results.
-4. Deploy the cdn-configs changes to staging and production using the `Update_CDN_Dictionaries` Jenkins job. The `vhost` must be set to `www`, and the credentials are in the deployment repo.
-5. Add your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo. The test name must match the name configured in the cdn-configs repo in step 3.
-6. Deploy the Fastly configuration to staging and production using the `Deploy_CDN` Jenkins job. Use the same parameters as in step 4. You can test it on staging by visiting https://www.staging.publishing.service.gov.uk/. Changes should appear almost immediately - there is no caching of the CDN config.
+3. Configure the A/B test in [the cdn-configs repo][cdn-configs] ([see an example][dictionary-config-example]). For more details, see the [dictionaries README][dictionaries-readme].
+4. Deploy the cdn-configs changes to staging and production using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the deployment repo.
+5. Add your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo ([see an example][fastly-configure-example]). The test name must match the name configured in the cdn-configs repo in step 3.
+6. Deploy the Fastly configuration to staging and production using the [Deploy_CDN][deploy-cdn] Jenkins job. Use the same parameters as in step 4. You can test it on staging by visiting https://www.staging.publishing.service.gov.uk/. Changes should appear almost immediately - there is no caching of the CDN config.
 7. Use the [govuk\_ab\_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
-8. To activate or deactivate the test, or to change the B percentage, update your test in the cdn-configs repo and deploy the change.
+8. To activate or deactivate the test, or to change the B percentage, update your test in [the cdn-configs repo][cdn-configs] and deploy the change.
+
+### 2.3 Checklist for disabling A/B testing
+
+Follow these steps:
+
+1. Remove your test from the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo.
+2. Deploy the Fastly configuration to staging and production using the [Deploy_CDN][deploy-cdn] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the deployment repo.
+3. Remove your test from [the cdn-configs repo][cdn-configs]. If you are removing the very last A/B test, you should replace the last test name with `[]` ([See an example of having no A/B tests][dictionary-removal-example]).
+4. Deploy the cdn-configs changes to staging and production using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. Use the same parameters as in step 2.
+5. Get your cookie removed from the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line GOV.UK content triage.
 
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [cdn-configs]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs
+[dictionaries-readme]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/blob/master/fastly/dictionaries/README.md
+[dictionary-config-example]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/pull/143/files
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [configuration-file]: https://github.com/alphagov/fastly-configure/blob/master/ab_tests/ab_tests.yaml
 [fastly-configure]: https://github.com/alphagov/fastly-configure
+[fastly-configure-example]: https://github.com/alphagov/fastly-configure/pull/29/files
+[dictionary-removal-example]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/pull/157/files
+[update-cdn-dictionaries]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
+[deploy-cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
 
 ## Resources
 
