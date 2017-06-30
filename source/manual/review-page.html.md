@@ -1,11 +1,11 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "@tijmen"
 title: Review a page in this manual
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-02-09
-review_in: 6 months
+review_in: 3 months
 ---
 
 How to review pages in this manual.
@@ -41,4 +41,4 @@ You can find [GOV.UK blog posts on the  GDS Tech blog](https://gdstechnology.blo
 
 ## Related
 
-- [Create a page in this manual](/manual/create-page.html)
+- [Documentation style guide](/manual/docs-style-guide.html)
