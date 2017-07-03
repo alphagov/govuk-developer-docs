@@ -248,8 +248,8 @@ To generate a new key, run the following rake(1) task:
 ...where integration is the name of the environment to create the GPG
 key for.
 
-The GPG key will be saved to the [2ndline cred
-store](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/creds) in the
+The GPG key will be saved to the [2ndline password
+store](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/pass/2ndline) in the
 [gds/deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment) repository, or in
 the `gpg` directory of the
 [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) repository if you
@@ -264,8 +264,8 @@ You will need to re-encrypt the credentials using the new key:
 
 ### Configuring the Puppet Master
 
-The GPG key, stored in the [2ndline cred
-store](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/creds) in the
+The GPG key, stored in the [2ndline password
+store](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/pass/2ndline) in the
 [gds/deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment) repository, must be
 installed on the Puppet Master so that encrypted Hiera data is available
 to Puppet:
@@ -277,7 +277,7 @@ to Puppet:
 3.  Copy the contents of the appropriate environment directory to the
     Puppet Master in that environment, from your local machine:
 
-        cd ~/govuk/deployment/creds
+        cd ~/govuk/deployment/pass/
         rsync --rsync-path="sudo rsync" 2ndline/hiera-eyaml-gpg/integration/* puppetmaster-1.management.integration:/etc/puppet/gpg/
 
 4.  Be sure to set the correct permissions for the contents of
