@@ -11,6 +11,9 @@ review_in: 6 months
 This check indicates that some packages have been installed but cannot
 be activated without rebooting the machines.
 
+The check contains a list of apps that require a reboot (click into the warning
+for the list)
+
 See the [rebooting machines](/manual/rebooting-machines.html) for what to do.
 
 If there are a high number of machines requiring a reboot, including
