@@ -4,7 +4,7 @@ title: Review a page in this manual
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-02-09
+last_reviewed_on: 2017-07-03
 review_in: 3 months
 ---
 
