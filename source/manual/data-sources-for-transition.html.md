@@ -1,5 +1,5 @@
 ---
-owner_slack: '#navigation'
+owner_slack: '#taxonomy'
 title: Data Sources for Transition
 section: Transition
 layout: manual_layout
@@ -22,7 +22,7 @@ Traffic data is automatically imported once an hour from
 [transition-stats](https://github.com/alphagov/transition-stats). This
 import puts a high load on the database. CDN logs for the "Production Bouncer"
 Fastly service are streamed to logs-cdn.publishing.service.gov.uk (which is
-routed to logs-cdn-1.management in Production), processed there by cron job and 
+routed to logs-cdn-1.management in Production), processed there by cron job and
 pushed to the GitHub repository.
 
 On logs-cdn-1.management, both log files and cache files that are produced by the
