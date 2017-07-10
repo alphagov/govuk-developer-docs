@@ -7,6 +7,7 @@ class PublishingApiDocs
     "pact_testing" => "Contract testing with Pact",
     "publishing-application-examples" => "Examples",
     "rabbitmq" => "Message queue",
+    "admin-tasks" => "Admin tasks",
   }.freeze
 
   def self.pages
