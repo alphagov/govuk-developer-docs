@@ -1,5 +1,5 @@
 ---
-owner_slack: '#navigation'
+owner_slack: '#taxonomy'
 title: Bouncer
 section: Transition
 layout: manual_layout

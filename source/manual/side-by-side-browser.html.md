@@ -1,5 +1,5 @@
 ---
-owner_slack: '#navigation'
+owner_slack: '#taxonomy'
 title: Side by Side Browser
 section: Transition
 layout: manual_layout
