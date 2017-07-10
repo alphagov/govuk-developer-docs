@@ -5,11 +5,11 @@ section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/github-enterprise/index.md"
-last_reviewed_on: 2017-05-09
+last_reviewed_on: 2017-07-10
 review_in: 2 months
 ---
 
-Our GitHub Enterprise installation lives at [https://github.digital.cabinet-office.gov.uk]() and is managed by the GDS service desk.
+Our GitHub Enterprise installation lives at <https://github.digital.cabinet-office.gov.uk> and is managed by the GDS service desk.
 
 It's used for:
 
