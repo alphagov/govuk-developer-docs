@@ -5,16 +5,22 @@ section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/attachments.md"
-last_reviewed_on: 2017-01-08
+last_reviewed_on: 2017-07-11
 review_in: 6 months
 ---
 
-We sync all the data to both an Amazon S3 bucket (using [Duplicity], from
-asset-slave-1.backend) and [S3] (using [s3cmd], from asset-slave-2.backend).
+We sync all the data to two [S3] buckets:
 
-To restore from these locations you would need to pull the files and copy to the master.
-Due to the size of the dataset this could potentially take a very long time.
+- from asset-slave-1.backend using [Duplicity]
+- from asset-slave-2.backend using [s3cmd]
+
+See the [offsite backups alert page] for information on how to check the status
+of the backups and rerun the backup job.
+
+Data can also be [restored from backups] using Duplicity.
 
 [Duplicity]: http://duplicity.nongnu.org 'Bandwidth-efficient encrypted backup'
 [S3]: https://aws.amazon.com/s3/ 'Amazon Simple Storage Service (S3)'
 [s3cmd]: http://s3tools.org/s3cmd 'Command-line tool for the Amazon S3 service'
+[offsite backups alert page]: /manual/alerts/offsite-backups.html
+[restored from backups]: /manual/restore-from-offsite-backups.html
