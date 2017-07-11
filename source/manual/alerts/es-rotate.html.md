@@ -4,7 +4,7 @@ title: es-rotate
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-01-05
+last_reviewed_on: 2017-07-11
 review_in: 6 months
 ---
 
@@ -20,7 +20,5 @@ using:
 
     sudo -u nobody /usr/local/bin/es-rotate-passive-check
 
-If there is a problem you can find out more information using the
-elasticsearch-head plugin (see "Elasticsearch cluster health" alert for
-more details).
-
+If there is a problem you can find out more information by checking the
+[Elasticsearch cluster health](/manual/alerts/elasticsearch-cluster-health.html).
