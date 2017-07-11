@@ -64,6 +64,10 @@ class AppDocs
       "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 
+    def api_docs_url
+      app_data["api_docs_url"]
+    end
+
     def type
       app_data.fetch("type")
     end
