@@ -4,7 +4,7 @@ title: MySQL Xtrabackups to S3
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-01-06
+last_reviewed_on: 2017-07-11
 review_in: 6 months
 ---
 
@@ -12,8 +12,7 @@ We send backups to an Amazon S3 bucket every 15 minutes. This is
 performed using a nightly "base" backup and "incremental" backups which
 run every 15 minutes, which are linked to the base backup.
 
-[Further detail on the implementation can be found
-here](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/infrastructure/backups/mysql.md)
+[Further detail on the implementation can be found here.](/manual/mysql.html)
 
 ### MySQL Xtrabackup daily base push
 
