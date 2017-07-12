@@ -50,5 +50,6 @@ data directory.
 An advantage of this method is that because it is a binary type of backup, restores are much quicker than having to import SQL text based backups.
 
 Related documentation:
-https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/preparing_a_backup_ibk.html
-https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html#preparing-an-incremental-backup-with-innobackupex
+
+- [Preparing a full backup with innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/preparing_a_backup_ibk.html)
+- [Preparing an incremental backup with innobackupex]( https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html#preparing-an-incremental-backup-with-innobackupex)
