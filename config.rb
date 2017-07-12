@@ -84,6 +84,10 @@ AppDocs.pages.each do |application|
     description: "Everything about the #{application.app_name} application (#{application.description})",
     application: application,
   }
+
+  proxy "/apps/#{application.app_name}.json", "templates/json_response.json", locals: {
+    payload: application.api_payload,
+  }
 end
 
 DocumentTypes.pages.each do |document_type|
