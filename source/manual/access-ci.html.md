@@ -5,7 +5,7 @@ section: Testing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-07-12
-review_in: 6 months
+review_in: 2 months # We may soon be moving to public GitHub for authentication.
 ---
 
 Our [Jenkins CI environment][ci] uses GitHub Enterprise for authorisation. You need to be given access first, otherwise you won't see any projects, or see a message that you're unauthorised.
