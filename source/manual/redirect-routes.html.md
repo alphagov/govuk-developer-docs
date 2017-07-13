@@ -27,27 +27,25 @@ Redirect routes have the handler 'redirect'.
 
 ## Redirecting from the original publishing app
 
-The preferred method of creating redirects is to use the publishing app that originally published the content to unpublish it and redirect it to another page using the publishing-api.
+The preferred method of creating redirects is to use the publishing app that originally published the content to unpublish it and redirect it to another page using the Publishing API.
 
 This ensures that the workflow and publishing history stays within the app wherever possible.
 
-## Using the short URL manager
+## Using the Short URL Manager
 
-If the redirect is from a URL that is not a currently-published content item, you should first look to use the [short URL manager](https://short-url-manager.publishing.service.gov.uk) to create a redirect request. Requests are checked and approved by content designers, after which they are made live.
+If the redirect is from a URL that is not a currently-published content item, you should first look to use the [Short URL Manager](https://short-url-manager.publishing.service.gov.uk) to create a redirect request. Requests are checked and approved by content designers, after which they are made live.
 
-Redirects created in short-url-manager are published via the publishing-api.
+Redirects created in Short URL Manager are published via the Publishing API.
 
 ## Using router-data
 
-If the short URL manager does not support the redirect you are trying to create (for example, a prefix redirect), then you should use [router-data](https://github.digital.cabinet-office.gov.uk/gds/router-data). Follow the [README](https://github.digital.cabinet-office.gov.uk/gds/router-data#router-data) to create your redirects in a new branch and open a pull request.
+If you need to put a redirect in place without changing the content in
+the Publishing API, then [router-data][router-data] can be
+used. Follow the [README](router-data-README) to create your redirects
+in a new branch and open a pull request.
 
-Once your pull request has been approved and merged, use the [router data job](https://deploy.staging.publishing.service.gov.uk/job/deploy_router_data/) to deploy your changes to staging.
-
-Use this opportunity on staging to also run any database migration scripts you need to run to update slugs on your data.
-
-Once you're happy with the changes, use the [router data job](https://deploy.staging.publishing.service.gov.uk/job/deploy_router_data/) to deploy your changes to production.
-
-Note that Jenkins runs validation checks on all redirects, both when creating a pull request and when merging the branch into master. Before deploying, check that a [release tag](https://github.digital.cabinet-office.gov.uk/gds/router-data/releases) has been created, otherwise your changes will not be deployed. If there is no release tag, then the checks did not complete successfully and you should look in [Jenkins](https://ci.integration.publishing.service.gov.uk) to see what failed.
+[router-data]: https://github.digital.cabinet-office.gov.uk/gds/router-data
+[router-data-README]: https://github.digital.cabinet-office.gov.uk/gds/router-data#router-data
 
 ## Fixing incorrect Corporate Information page redirects
 
