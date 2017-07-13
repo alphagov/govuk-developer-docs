@@ -15,7 +15,7 @@ It's used for:
 
 - [Backups](github-unavailable.html) of our [public repositories](https://alphagov.github.io/gds-tech/source-code.html)
 - Older private repositories that haven't been moved to github.com
-- Authentication with Jenkins CI ([ci.integration.publishing.service.gov.uk](https://ci.integration.publishing.service.gov.uk))
+- [Authentication with Jenkins CI](/manual/access-ci.html)
 
 GOV.UK data on GitHub Enterprise should be encrypted in the repository (for example
 using a list of GOV.UK GPG keys).
