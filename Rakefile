@@ -39,7 +39,7 @@ task :verify_deployable_apps do
     kibana-gds
     sidekiq-monitoring
 
-    govuk_delivery
+    govuk-delivery
   ]
 
   puts "Deployables is not included in applications.yml:"
