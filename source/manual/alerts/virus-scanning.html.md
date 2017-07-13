@@ -86,3 +86,19 @@ Note that this doesn't actually clear the queue: it simply shortcuts it.  Each
 file will still be scanned individually, and then copied to the asset slaves
 appropriately.  This means that any new uploads will still be at the back of
 the queue.
+
+In order to clear the queue, you can copy the files to a temporary directory:
+
+    $ sudo -u assets rsync -rav /mnt/uploads/whitehall/incoming/* /mnt/uploads/whitehall/temp/
+
+and then remove the files from `/mnt/uploads/whitehall/incoming/`, so that there's
+a clean distinction between the files that have been copied and those that are
+newly uploaded.  Next, scan the copied files manually:
+
+    $ find /mnt/uploads/whitehall/temp -type f | xargs clamscan
+
+Then, if they are all clean, copy to `/mnt/uploads/whitehall/clean/`:
+
+    $ sudo -u assets rsync -rav /mnt/uploads/whitehall/temp/* /mnt/uploads/whitehall/clean/
+
+Finally, remember to delete your temporary directory!
