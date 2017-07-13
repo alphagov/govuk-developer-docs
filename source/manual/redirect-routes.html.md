@@ -27,15 +27,15 @@ Redirect routes have the handler 'redirect'.
 
 ## Redirecting from the original publishing app
 
-The preferred method of creating redirects is to use the publishing app that originally published the content to unpublish it and redirect it to another page using the publishing-api.
+The preferred method of creating redirects is to use the publishing app that originally published the content to unpublish it and redirect it to another page using the Publishing API.
 
 This ensures that the workflow and publishing history stays within the app wherever possible.
 
-## Using the short URL manager
+## Using the Short URL Manager
 
-If the redirect is from a URL that is not a currently-published content item, you should first look to use the [short URL manager](https://short-url-manager.publishing.service.gov.uk) to create a redirect request. Requests are checked and approved by content designers, after which they are made live.
+If the redirect is from a URL that is not a currently-published content item, you should first look to use the [Short URL Manager](https://short-url-manager.publishing.service.gov.uk) to create a redirect request. Requests are checked and approved by content designers, after which they are made live.
 
-Redirects created in short-url-manager are published via the publishing-api.
+Redirects created in Short URL Manager are published via the Publishing API.
 
 ## Using router-data
 
