@@ -65,7 +65,7 @@ manuals after deploying your change.
 
 ### 6) Update the organisation slug in the GOV.UK Delivery database
 
-Repo: <https://github.digital.cabinet-office.gov.uk/gds/govuk_delivery>
+Repo: <https://github.com/alphagov/govuk-delivery>
 
 Find the original slug in the MongoDB database for GOV.UK
 Delivery by running the following in a MongoDB console:
