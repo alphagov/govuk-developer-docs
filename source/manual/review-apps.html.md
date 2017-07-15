@@ -17,6 +17,8 @@ These are 2 examples of GOV.UK apps that have review apps enabled:
 
 - [collections](https://github.com/alphagov/collections)
 - [government-frontend](https://github.com/alphagov/government-frontend)
+- [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs) - this project
+- [smart-answers](https://github.com/alphagov/smart-answers)
 
 Follow the steps below in order to enable review apps for your GOV.UK
 application.
