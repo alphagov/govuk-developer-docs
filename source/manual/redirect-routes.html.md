@@ -37,6 +37,14 @@ If the redirect is from a URL that is not a currently-published content item, yo
 
 Redirects created in Short URL Manager are published via the Publishing API.
 
+Specific Signon [permissions][short-url-manager-permissions] are
+required to make and approve redirect requests through the Short URL
+Manager. Additionally, there is a `advanced_options` permission which
+enables creating `prefix` type redirects, and using non-default values
+for the `segments_mode`.
+
+[short-url-manager-permissions]: https://github.com/alphagov/short-url-manager/#permissions
+
 ## Using router-data
 
 If you need to put a redirect in place without changing the content in
