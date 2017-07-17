@@ -13,10 +13,12 @@ allow us to automatically deploy application changes into a brand
 new Heroku app so that each Pull Request reviewer has a chance to see how it
 looks with live data.
 
-These are 2 examples of GOV.UK apps that have review apps enabled:
+These are examples of GOV.UK apps that have review apps enabled:
 
 - [collections](https://github.com/alphagov/collections)
 - [government-frontend](https://github.com/alphagov/government-frontend)
+- [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs) - this project
+- [smart-answers](https://github.com/alphagov/smart-answers)
 
 Follow the steps below in order to enable review apps for your GOV.UK
 application.
