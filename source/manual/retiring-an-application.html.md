@@ -104,7 +104,9 @@ application is being retired", then save your changes.
 Remove from the [development-vm directory][development] `Procfile` and `Pinfile`:
 
 Leave a comment in the `Procfile` indicating that the port used to be
-used by this app (eg <https://github.digital.cabinet-office.gov.uk/gds/development/pull/149>)
+used by this app, to avoid port conflicts causing a problem running
+this app locally in the future
+(eg <https://github.digital.cabinet-office.gov.uk/gds/development/pull/149>).
 
 [development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 
