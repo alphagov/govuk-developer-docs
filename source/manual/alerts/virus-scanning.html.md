@@ -7,6 +7,7 @@ parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/virus-scanning.md"
 last_reviewed_on: 2017-07-05
 review_in: 6 months
+related_applications: [whitehall]
 ---
 
 Documents uploaded to asset-master are scanned asynchronously through
