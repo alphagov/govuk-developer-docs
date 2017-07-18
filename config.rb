@@ -14,6 +14,9 @@ set :markdown,
 
 configure :development do
   activate :livereload
+
+  # Disable Google Analytics in development
+  config[:tech_docs][:ga_tracking_id] = nil
 end
 
 activate :autoprefixer
