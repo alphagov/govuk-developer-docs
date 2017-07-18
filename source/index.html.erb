@@ -22,7 +22,9 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/da
 <% end %>
 
 <% wrap_layout :layout_with_sidebar do %>
-  <%= partial 'partials/header' %>
+  <h1 class="page-title">GOV.UK developer docs</h1>
+
+  <%= partial 'partials/intro' %>
 
   <% dashboard.chapters.each do |chapter| %>
     <h2 id='<%= chapter.id %>'><%= chapter.name %></h2>
