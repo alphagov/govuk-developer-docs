@@ -58,6 +58,16 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 </ul>
 <% end %>
 
+<% if manual.pages_for_application(application.app_name) %>
+<h3>Relevant manual pages</h3>
+
+<ul>
+<% manual.pages_for_application(application.app_name).each do |page| %>
+  <li><%= link_to page.data.title, page.url %></li>
+<% end %>
+</ul>
+<% end %>
+
 <% if application.example_rendered_pages %>
 <h3>Example pages rendered by <%= application.app_name %></h3>
 

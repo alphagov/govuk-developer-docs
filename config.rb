@@ -47,6 +47,10 @@ helpers do
     ManualIndexPage.new(sitemap)
   end
 
+  def manual
+    Manual.new(sitemap)
+  end
+
   def teams
     ApplicationsByTeam.teams
   end

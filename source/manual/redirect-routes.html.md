@@ -6,6 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-06-19
 review_in: 6 months
+related_applications: [short-url-manager]
 ---
 
 Sometimes, there is a need to manually redirect existing URLs to another
