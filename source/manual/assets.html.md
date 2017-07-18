@@ -7,6 +7,7 @@ parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/assets.md"
 last_reviewed_on: 2017-06-13
 review_in: 6 months
+related_applications: [asset-manager]
 ---
 
 There are two types of asset files.

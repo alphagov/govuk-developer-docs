@@ -7,6 +7,7 @@ parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/blocking-apps-from-release.md"
 last_reviewed_on: 2017-04-28
 review_in: 6 months
+related_applications: [release]
 ---
 
 > **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
