@@ -6,6 +6,7 @@ section: Publishing
 owner_slack: "#taxonomy"
 last_reviewed_on: 2017-03-01
 review_in: 6 months
+related_applications: [content-tagger]
 ---
 
 GOV.UK's "single subject taxonomy" will describe all content on GOV.UK. It is being developed theme-by-theme, starting with education.

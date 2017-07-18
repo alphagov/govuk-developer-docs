@@ -6,6 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-05-18
 review_in: 12 months
+related_applications: [whitehall]
 ---
 
 If you suspect that a file has been incorrectly marked as "infected" in Whitehall,
