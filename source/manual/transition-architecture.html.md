@@ -28,7 +28,7 @@ All the repositories involved in transition have been [tagged with govuk-transit
 
 ## Transition data sources
 
-Site configuration is automatically imported on an hourly basis via
+Site configuration is automatically imported every hour via
 [deploy.publishing](https://deploy.publishing.service.gov.uk/job/Transition_load_site_config/) from
 [transition-config](https://github.com/alphagov/transition-config).
 
@@ -37,7 +37,7 @@ Pre-transition traffic data is imported from
 based on logs provided by transitioning organisations. This was updated
 periodically by hand, but this has come to an end.
 
-Traffic data is automatically imported once an hour from
+Traffic data is automatically imported every hour from
 [transition-stats](https://github.com/alphagov/transition-stats). This
 import puts a high load on the database. CDN logs for the "Production Bouncer"
 Fastly service are streamed to logs-cdn.publishing.service.gov.uk (which is
