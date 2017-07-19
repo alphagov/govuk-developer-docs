@@ -27,11 +27,11 @@ job by configuring Puppet.
    service description matches the one used to configure the build trigger
    above.
 
-   You will need to determine an appropriate 'freshness threshold', which
-   determines how much time can pass, in seconds, before Icinga will raise a
-   'freshness threshold alert'.  You should allow enough time for the interval
-   between scheduled builds, plus the time it usually takes the job to run,
-   plus a little extra in case the job takes longer than usual.
+     You will need to determine an appropriate 'freshness threshold', which
+     determines how much time can pass, in seconds, before Icinga will raise a
+     'freshness threshold alert'.  You should allow enough time for the interval
+     between scheduled builds, plus the time it usually takes the job to run,
+     plus a little extra in case the job takes longer than usual.
 
 1. Deploy Puppet.
 
