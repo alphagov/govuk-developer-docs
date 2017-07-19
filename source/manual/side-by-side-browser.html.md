@@ -1,10 +1,10 @@
 ---
 owner_slack: '#taxonomy'
-title: Side by Side Browser
+title: Use the side-by-side browser
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-27
+last_reviewed_on: 2017-07-14
 review_in: 6 months
 ---
 
@@ -12,9 +12,9 @@ The side-by-side browser is a tool to preview redirections for sites that are
 being transitioned to GOV.UK.
 
 - [Github repo](https://github.com/alphagov/side-by-side-browser)
-- [View the Side by Side Browser](http://www.apho.org.uk.side-by-side.alphagov.co.uk/__/#/)
+- [View the side-by-side browser](http://www.apho.org.uk.side-by-side.alphagov.co.uk/__/#/)
 
-## Deploying the Side by Side browser on AWS
+## Deploying the side-by-side browser on AWS
 
 [Instructions on the Wiki](https://gov-uk.atlassian.net/wiki/display/GOVUK/Bouncer+and+Transition) under 'Deploying the side-by-side browser on AWS'.
 

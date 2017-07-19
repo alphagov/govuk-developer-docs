@@ -5,42 +5,29 @@ title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/howto-transition-a-site-to-govuk.md"
-last_reviewed_on: 2017-01-26
+last_reviewed_on: 2017-07-14
 review_in: 6 months
 related_applications: [bouncer, transition]
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/howto-transition-a-site-to-govuk.md)
-
 
 When a site is going to move to GOV.UK, there are broadly two ways that
 the old site can be redirected. They can do it themselves, or they can
 repoint the domain at us. This page is about the latter.
 
-The [Transition](https://github.com/alphagov/transition) app exists to
-allow editing of mapping of Old URLs to pages on GOV.UK. These mappings
-are stored in a database and used by
-[Bouncer](https://github.com/alphagov/bouncer) to handle requests to
-those old domains.
+The [Transition][] app exists to allow editing of mapping of old URLs to pages
+on GOV.UK. These mappings are stored in a database and used by [Bouncer][] to
+handle requests to those old domains.
 
 This page covers the details of adding a site so that we can handle
 traffic to it.
 
-## Adding the site to the Transition app
+## Checklist
 
-Follow the instructions in the [transition-config
-README](https://github.com/alphagov/transition-config/blob/master/README.md).
+### 1) Add a site to the Transition app
 
-## Next steps
+Follow the instructions in the [transition-config README][transition-config].
 
-A product/project management orientated overview of this needs to
-created, but here is an overview from a technical perspective in the
-mean time.
-
-### 1) Getting a list of old URLs
+### 2) Getting a list of old URLs
 
 In order for us to redirect anything but the homepage, we need a list of
 URLs for the old site so that they can be mapped. In the past, this is
@@ -52,7 +39,7 @@ option, as we can get a list of URLs we know are actively used. If we
 can't get this then there are other options.
 
 One option is to get a list of the URLs from the Internet Archive. The
-[archive\_lister](https://github.com/rgarner/archive_lister) gem can do
+[archive_lister](https://github.com/rgarner/archive_lister) gem can do
 this for you. Sometimes the Internet Archive doesn't have any data, so
 try the domain name with `http` or `https`, or with/without the `www.`.
 Sometimes it still won't have any data.
@@ -62,19 +49,21 @@ An alternative would be to crawl the site with a crawler like
 this might take several hours. With Anemone running this will give you a
 list of URLs for a domain:
 
-    $ anemone url-list 'transitioning-site.gov.uk'
+```
+$ anemone url-list 'transitioning-site.gov.uk'
+```
 
 Note: This will include 404s, 301s, etc.
 
-### 2) Cleaning up URLs
+### 3) Cleaning up URLs
 
 **Strip paths and pattern**
 
 There are lots of file formats we don't want to provide mappings for,
 like static assets, images, or common spammy/malicious crawlers. These
-can be stripped with using the
-[strip\_mappings.sh](https://github.com/alphagov/transition-config/blob/master/tools/strip_mappings.sh)
-script.
+can be stripped with using the [strip_mappings.sh][smsh] script.
+
+[smsh]: https://github.com/alphagov/transition-config/blob/master/tools/strip_mappings.sh
 
 **Query parameter analysis**
 
@@ -87,8 +76,8 @@ and/or it would be mapped to a different new URL.
 There are some transition-config scripts to help analyse query param
 usage:
 
--   [analyse\_query\_params.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_params.sh)
--   [analyse\_query\_usage.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_usage.sh)
+-   [analyse_query_params.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_params.sh)
+-   [analyse_query_usage.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_usage.sh)
 
 Some common examples of significant parameters:
 
@@ -102,7 +91,7 @@ Some common examples of non-significant parameters:
 -   Analytics
 -   search queries
 
-### 3) Adding the old URLs as mappings
+### 4) Adding the old URLs as mappings
 
 Ideally, any significant querystring parameters should be identified and
 added to the site before adding the mappings. This is because URLs are
@@ -120,7 +109,7 @@ rather than just ones belonging to your organisation. You can then go
 the [transition app](https://transition.publishing.service.gov.uk), find
 the site and click `Add mappings` to add them in bulk.
 
-### 4) Get the organisation to do the mapping work
+### 5) Get the organisation to do the mapping work
 
 By default, the mappings will present an archive page to users visiting
 the old URL. The objective is to get users to somewhere that best serves
@@ -128,7 +117,7 @@ the need fulfilled by the old page. Usually this means redirecting them
 to the page on GOV.UK or elsewhere. It is really important that this is
 done by people who understand the users and content.
 
-### 5) Get the organisation to lower the TTL on the DNS records a day ahead
+### 6) Get the organisation to lower the TTL on the DNS records a day ahead
 
 In order to cleanly switch the domain from the old site, the TTL needs
 to be low enough that there isn't a significant period where some users
@@ -139,7 +128,7 @@ advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.
 
-### 6) Pointing the domain at us
+### 7) Pointing the domain at us
 
 Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a `CNAME`
@@ -148,7 +137,7 @@ Domains at the root of their zone can't be CNAMEd, so must use an `A`
 record and point at one of the [Fastly GOV.UK IP
 addresses](https://github.com/alphagov/transition/blob/master/app/models/host.rb#L18).
 
-### 7) Get the organisation to monitor the traffic data in the Transition app
+### 8) Get the organisation to monitor the traffic data in the Transition app
 
 There are two things that need to be responded to:
 
@@ -156,6 +145,10 @@ There are two things that need to be responded to:
 -   high numbers hitting 410s - this means the old page is popular and
     should perhaps be redirected instead
 
-## Checklist
+## Further reading
 
 The transition checklist covers the whole process of transitioning a site from the technical side. There’s a [full version for complex sites](https://docs.google.com/document/d/1SiBwYtV_d_D9pPcqzpqvRWs0kscUtB7yqxN8Ub_uRSA/edit) and a [slightly simplified one](https://docs.google.com/document/d/1gIJBUuPaZqtYsrgwqMBSrU4lpr2e93tuhQcgylnSHb4/edit) - we probably only need the simpler one for upcoming transitions.
+
+[Transition]: /apps/transition.html
+[Bouncer]: /apps/bouncer.html
+[transition-config]: https://github.com/alphagov/transition-config/blob/master/README.md
