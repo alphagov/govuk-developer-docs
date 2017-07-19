@@ -28,37 +28,39 @@ All the repositories involved in transition have been [tagged with govuk-transit
 
 ## Transition data sources
 
-Site configuration is automatically imported every hour via
-[deploy.publishing](https://deploy.publishing.service.gov.uk/job/Transition_load_site_config/) from
-[transition-config](https://github.com/alphagov/transition-config).
+Site configuration is automatically imported every hour via [a Jenkins job][import-job]
+from [transition-config][].
 
-Pre-transition traffic data is imported from
-[pre-transition-stats](https://github.com/alphagov/pre-transition-stats),
-based on logs provided by transitioning organisations. This was updated
-periodically by hand, but this has come to an end.
+Pre-transition traffic data is imported from [pre-transition-stats][], based on
+logs provided by transitioning organisations. This was updated periodically by
+hand, but this has come to an end.
 
-Traffic data is automatically imported every hour from
-[transition-stats](https://github.com/alphagov/transition-stats). This
+Traffic data is automatically imported every hour from [transition-stats][]. This
 import puts a high load on the database. CDN logs for the "Production Bouncer"
-Fastly service are streamed to logs-cdn.publishing.service.gov.uk (which is
-routed to logs-cdn-1.management in Production), processed there by cron job and
+Fastly service are streamed to `logs-cdn.publishing.service.gov.uk` (which is
+routed to `logs-cdn-1.management` in Production), processed there by cron job and
 pushed to the GitHub repository.
 
-On logs-cdn-1.management, both log files and cache files that are produced by the
+On `logs-cdn-1.management`, both log files and cache files that are produced by the
 processing script are rotated. These files should be compressed and archived and
 not deleted.
 
+[import-job]: https://deploy.publishing.service.gov.uk/job/Transition_load_site_config
+[transition-config]: https://github.com/alphagov/transition-config
+[pre-transition-stats]: https://github.com/alphagov/pre-transition-stats
+[transition-stats]: https://github.com/alphagov/transition-stats
+
 ## Bouncer
 
-[Bouncer][] is a Ruby/Rack web app that receives requests for the URLs of government sites that have either been transitioned to GOV.UK, archived or removed. It queries the database it shares with Transition and replies with a
-redirect, an archive page or a 404 page. It also handles `/robots.txt`
-and `/sitemap.xml` requests.
+[Bouncer][] is a Ruby/Rack web app that receives requests for the URLs of government
+sites that have either been transitioned to GOV.UK, archived or removed. It queries
+the database it shares with Transition and replies with a redirect, an archive page
+or a 404 page. It also handles `/robots.txt` and `/sitemap.xml` requests.
 
-Transition is a Rails app that allows users in transitioning
-organisations and at GDS to view, add and edit the mappings used by
-Bouncer. It also presents traffic data sourced from CDN logs and logs
-provided by transitioning organisations (though this latter activity has
-now ended).
+Transition is a Rails app that allows users in transitioning organisations and
+at GDS to view, add and edit the mappings used by Bouncer. It also presents
+traffic data sourced from CDN logs and logs provided by transitioning organisations
+(though this latter activity has now ended).
 
 ### Bouncer's stack
 
