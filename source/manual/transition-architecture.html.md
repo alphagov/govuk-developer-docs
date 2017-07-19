@@ -6,6 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-07-14
 review_in: 6 months
+related_applications: [bouncer, transition]
 ---
 
 The Transition system is built to transition government websites to GOV.UK. The
