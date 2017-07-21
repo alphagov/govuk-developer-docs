@@ -30,7 +30,7 @@ Git commit.
 Currently, we only encrypt the data in the
 credentials files found in the
 [hieradata/](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
-directories of the alphagov/govuk-puppet and gds/deployment repositories. These
+directories of the alphagov/govuk-puppet and alphagov/govuk-secrets repositories. These
 files contain secrets such as passwords and private keys.
 
 Only secrets for the production, staging and integration environments
@@ -50,13 +50,13 @@ this is intentional for reasons of simplicity.
 
 Before encrypted Hiera data was supported we used (and continue to use)
 a separate repository,
-[gds/deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment), to store secrets
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets), to store secrets
 and sensitive data in Hiera. Whereas the
 [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) repository is
-open to all developers, access to the gds/deployment repository is
+open to all developers, access to the alphagov/govuk-secrets repository is
 restricted to a small number of staff.
 
-Upon deploying Puppet, the gds/deployment repository is copied over the
+Upon deploying Puppet, the alphagov/govuk-secrets repository is copied over the
 files in the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet)
 repository such that both sets of files are read by Puppet.
 
@@ -66,7 +66,7 @@ still allowing developers to access the main Puppet repository.
 There are some limitations and disadvantages of this pattern, however;
 
 -   Sensitive data would be unencrypted on disk. Despite everyone having
-    access to the gds/deployment repository using full disk encryption,
+    access to the alphagov/govuk-secrets repository using full disk encryption,
     secrets would be readable if a laptop was infected by malware or if
     a secret was accidentally commited to a public repository or copied
     accidentally to an unencrypted disk.
@@ -84,7 +84,7 @@ outlined above and gives us additional time to change credentials in
 case of accidental exposure.
 
 Note that there are no plans currently to merge the alphagov/govuk-puppet and
-gds/deployment repositories; having them separate still provides
+alphagov/govuk-secrets repositories; having them separate still provides
 additional protection against accidental exposure.
 
 ## Common tasks for handling encrypted Hiera data
@@ -93,9 +93,9 @@ Hiera eYAML provides a command-line tool for viewing and editing
 encrypted data.
 
 There is a
-[Rakefile](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/Rakefile)
+[Rakefile](https://github.com/alphagov/govuk-secrets/blob/master/puppet/Rakefile)
 in the puppet/ directory of the
-[gds/deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment) repository which
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository which
 wraps the Hiera eYAML tool and helps to ensure that sensitive data is
 only accessible to the intended recipients.
 
@@ -103,7 +103,7 @@ You must use the rake tasks to modify encrypted hieradata.
 
 ### Prerequisites
 
-1. Pull the latest changes from the [gds/deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment)
+1. Pull the latest changes from the [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets)
    repo
 
 2.  Next, run bundler(1) to install dependencies:
@@ -186,8 +186,8 @@ error, please see the troubleshooting section below.
 The list of people that have access to encrypted Hiera data in stored in
 'recipient' file specific to each environment (.rcp extension).
 
-The production and integration files are stored in the [deployment
-repo](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/puppet/gpg_recipients).
+The production and integration files are stored in the [govuk-secrets
+repo](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_recipients).
 There is no separate staging file, the production file is used for both
 staging and production.
 
@@ -212,8 +212,8 @@ credentials;
 
 1.  Delete the leaver's GPG fingerprint from each of the recipient files
     for
-    [integration](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
-    [production](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
+    [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
+    [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
     and
     [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
     Note that there is no separate recipients file for Staging.
@@ -237,10 +237,10 @@ credentials;
 ### How to (re)generate GPG keys for a new environment
 
 The environments that we recognise are [listed in the
-Rakefile](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/cfcbbaeb29e28e9a7dfaf77e18b366e655ef2ef8/puppet/Rakefile#L58).
+Rakefile](https://github.com/alphagov/govuk-secrets/blob/cfcbbaeb29e28e9a7dfaf77e18b366e655ef2ef8/puppet/Rakefile#L58).
 
 To ensure consistency, new GPG keys are generated using a template
-([example](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/cfcbbaeb29e28e9a7dfaf77e18b366e655ef2ef8/puppet/gpg_templates/production_hiera_gpg_template.txt)).
+([example](https://github.com/alphagov/govuk-secrets/blob/cfcbbaeb29e28e9a7dfaf77e18b366e655ef2ef8/puppet/gpg_templates/production_hiera_gpg_template.txt)).
 To generate a new key, run the following rake(1) task:
 
     bundle exec rake 'eyaml:gpg_create[integration]'
@@ -249,8 +249,8 @@ To generate a new key, run the following rake(1) task:
 key for.
 
 The GPG key will be saved to the [2ndline cred
-store](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/creds) in the
-[gds/deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment) repository, or in
+store](https://github.com/alphagov/govuk-secrets/tree/master/creds) in the
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository, or in
 the `gpg` directory of the
 [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) repository if you
 are generating a key for the 'vagrant' environment'.
@@ -265,8 +265,8 @@ You will need to re-encrypt the credentials using the new key:
 ### Configuring the Puppet Master
 
 The GPG key, stored in the [2ndline cred
-store](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/creds) in the
-[gds/deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment) repository, must be
+store](https://github.com/alphagov/govuk-secrets/tree/master/creds) in the
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository, must be
 installed on the Puppet Master so that encrypted Hiera data is available
 to Puppet:
 
