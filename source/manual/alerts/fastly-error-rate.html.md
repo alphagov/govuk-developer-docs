@@ -5,7 +5,7 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/fastly-error-rate.md"
-last_reviewed_on: 2017-01-07
+last_reviewed_on: 2017-07-13
 review_in: 6 months
 ---
 
@@ -26,6 +26,8 @@ investigation is to examine the Fastly CDN logs.
 
 - `ssh logs-cdn-1.management.production`
 - `cd /mnt/logs_cdn` to access log files
+
+Alternatively you can look [in Kibana with the query `@fields.application:"govuk-cdn-logs-monitor"`](https://kibana.publishing.service.gov.uk/kibana#/dashboard/elasticsearch/GOV.UK%20CDN%20logs)
 
 ## `Unknown` alert
 
