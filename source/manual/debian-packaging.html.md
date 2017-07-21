@@ -88,8 +88,6 @@ We only manage *some* parts of aptly using Puppet, because it requires
 GPG keys and passwords, and updating repositories is something that
 should be done ad-hoc rather than a regular schedule.
 
-Get our GPG secret key from the 2ndline password store:
-
     $ PASSWORD_STORE_DIR=~/govuk/deployment/pass/2ndline pass apt/key > apt-1.management.key
 
 Copy the `apt-1.management.key` file and import it on the aptly machine:

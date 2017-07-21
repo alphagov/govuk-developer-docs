@@ -154,7 +154,7 @@ that has already been provisioned):
 
 2.  Make sure you have the Puppet repository checked out locally and
     have pulled the latest from the master branch.
-3.  Make sure you have the deployment repository checked out locally and
+3.  Make sure you have the govuk-secrets repository checked out locally and
     have pulled the latest from the master branch.
 4.  Install ssh-copy-id if you do not have it already:
 

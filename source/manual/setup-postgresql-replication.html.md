@@ -26,8 +26,8 @@ To sync (or indeed resync) a standby from a primary run
 `pg_resync_slave` as root.
 
 By default, you should **not** be prompted for a password. If you are
-prompted, then this password is stored in the [deployment
-repo](https://github.digital.cabinet-office.gov.uk/gds/deployment) under the
+prompted, then this password is stored in the [govuk-secrets
+repo](https://github.com/alphagov/govuk-secrets) under the
 `govuk::node::s_postgresql_primary::standby_password` key and can be
 read with:
 
