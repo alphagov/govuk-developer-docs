@@ -46,7 +46,7 @@ CLI
 ## 1. Lock the original slave to prevent writes
 
 First, find out the MySQL root password. This is in hieradata in the
-deployment repo (look for the `mysql_root` key).
+govuk-secrets repo (look for the `mysql_root` key).
 
 Open an SSH connection to slave (this connection will remain open for
 the duration of the operation so it makes sense to do it in screen or

@@ -17,7 +17,7 @@ It hasn't been reviewed for accuracy yet.
 ## Logging in to the Forge
 
 Credentials for the GDS Operations account can be found in the
-`gds/deployment:creds/infra_team` secure store.
+`alphagov/govuk-secrets:creds/infra_team` secure store.
 
 The URL for our account is: <http://forge.puppetlabs.com/gdsoperations>
 

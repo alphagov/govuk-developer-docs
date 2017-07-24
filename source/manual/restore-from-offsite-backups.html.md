@@ -14,7 +14,7 @@ We use [duplicity](http://duplicity.nongnu.org/) to perform offsite backups. Som
 You will find the fingerprint of the key in `hieradata/production.yaml` within
 the [govuk-puppet](https://github.com/alphagov/govuk-puppet) repository.
 The key and passphrase are both stored in encrypted hieradata in the
-[deployment repository](https://github.digital.cabinet-office.gov.uk/gds/deployment). The same private key is used for all offsite backups).
+[govuk-secrets repository](https://github.com/alphagov/govuk-secrets). The same private key is used for all offsite backups).
 
 ## Restore datastore from offsite backups
 
@@ -132,8 +132,8 @@ sudo pip install s3cmd
 ### Set up GPG keys to decrypt backups
 You will need access to production hieradata credentials to retrieve the AWS credentials and GPG key to decrypt the backups.
 
-1. Retrieve the keys and credentials from the [Deployment repo](https://github.digital.cabinet-office.gov.uk/gds/deployment)
-following [these instructions](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/puppet#common-actions)
+1. Retrieve the keys and credentials from the [Deployment repo](https://github.com/alphagov/govuk-secrets)
+following [these instructions](https://github.com/alphagov/govuk-secrets/tree/master/puppet#common-actions)
   * You are looking for:
 
       ```

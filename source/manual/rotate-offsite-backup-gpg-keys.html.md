@@ -19,7 +19,7 @@ good security practice we rotate these keys each year.
 
 ## Generate a new key
 
-1. Pull the [deployment repo](https://github.digital.cabinet-office.gov.uk/gds/deployment).
+1. Pull the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets).
 2. `cd deployment/puppet`
 3. `gpg2 --batch --gen-key gpg_templates/offsite_backup_gpg_template.txt`
 4. Ensure you make a copy of the password you use.
@@ -33,6 +33,6 @@ The following files need to be updated with the new key details:
 Update the [govuk-puppet hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/production.yaml),
 updating the `_: &offsite_gpg_key` key with the new fingerprint value
 
-Update the [encrypted deployment repo hieradata](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/hieradata/production_credentials.yaml),
+Update the [encrypted govuk-secrets repo hieradata](https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/production_credentials.yaml),
 updating both `backup::assets::backup_private_gpg_key` and `backup_private_gpg_key_passphrase` with
 the relavant values.

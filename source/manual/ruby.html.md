@@ -35,7 +35,7 @@ We set up rbenv differently depending on what's going on:
 
 [cap_deploy]: https://github.com/alphagov/govuk-app-deployment/blob/master/recipes/ruby.rb
 [cap_deploy_commit]: https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment/commit/b6404e33c354ef63f01c13b202ce0cf2ed2975fc
-[rbenv_path]: https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/master/puppet/hieradata/integration_credentials.yaml
+[rbenv_path]: https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/integration_credentials.yaml
 
 ## Add a new Ruby version in puppet
 

@@ -222,7 +222,7 @@ Things to check if it doesn't work:
     `ssh jumpbox.integration.publishing.service.gov.uk` If not, check your ssh
     version and config.
 -   **Do you get a permission denied error?** Make sure you're in the
-    user list in the [deployment repo](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/puppet/hieradata)
+    user list in the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata)
     for production access, or the [govuk-puppet repo](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
     for access to other environments.
 -   **Are you connecting from outside Aviation House?** You'll need to
