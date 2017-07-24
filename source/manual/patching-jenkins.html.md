@@ -60,7 +60,7 @@ sudo aptly snapshot create govuk-jenkins-$(date +%Y%m%d) from repo govuk-jenkins
 sudo -i aptly publish switch stable govuk-jenkins govuk-jenkins-$(date +%Y%m%d)
 ```
 
-You will require the apt passphrase found in the [password store](https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/pass).
+You will require the apt passphrase found in the [password store](https://github.com/alphagov/govuk-secrets/tree/master/pass).
 
 Purge the cache for the "Production Apt" service in Fastly.
 

@@ -139,7 +139,7 @@ Mark the application as `retired` in [govuk-developer-docs][dev-docs].
 
 Remove any hieradata credential entries for the app:
 
-For example: <https://github.digital.cabinet-office.gov.uk/gds/deployment/pull/408>
+For example: <https://github.com/alphagov/govuk-secrets/pull/408>
 
 ## 15. Drop database
 

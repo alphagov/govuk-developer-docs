@@ -41,11 +41,11 @@ For example for integration:
 
 Point your browser at <http://127.0.0.1:15672>
 
-The username is root. The password you can obtain from the deployment
+The username is root. The password you can obtain from the govuk-secrets
 repo. Look for govuk\_rabbitmq::root\_password in the file for the
 relevant environment in:
 
-<https://github.digital.cabinet-office.gov.uk/gds/deployment/tree/master/puppet/hieradata>
+<https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata>
 
 3.  Do your business
 4.  Tidy up

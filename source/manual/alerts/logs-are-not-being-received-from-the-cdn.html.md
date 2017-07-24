@@ -30,7 +30,7 @@ To fix, try (in order):
         https://app.fastly.com/service/<service-id>/logging_status
 
     You can find the service ID in the
-    [deployment](https://github.digital.cabinet-office.gov.uk/gds/deployment/blob/8a85170d639fb82f0f86653aba2e536655811741/puppet/hieradata/production.yaml#L15-L18)
+    [deployment](https://github.com/alphagov/govuk-secrets/blob/8a85170d639fb82f0f86653aba2e536655811741/puppet/hieradata/production.yaml#L15-L18)
     repository.
 
     In particular, notice the `BrokenNow` boolean which indicates if
