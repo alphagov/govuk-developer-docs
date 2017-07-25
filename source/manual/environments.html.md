@@ -1,12 +1,12 @@
 ---
 owner_slack: "#2ndline"
-title: GOV.UK's environments (integration, staging, production)
+title: GOV.UK's environments (training, integration, staging, production)
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/architecture/environments.md"
-last_reviewed_on: 2017-02-11
-review_in: 6 months
+last_reviewed_on: 2017-07-25
+review_in: 3 months
 ---
 
 > **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
@@ -19,6 +19,12 @@ GOV.UK has several environments with different purposes.
 ## Continuous integration (CI)
 
 Runs tests for applications. Hosted by Skyscape.
+
+## Training
+
+This environment is currently being built and will replace integration as the environment
+used by content trainers for training sessions. It it hosted on a single VM running in AWS.
+It is rebuilt once a week by a scheduled Jenkins job in integration.
 
 ## Integration
 
