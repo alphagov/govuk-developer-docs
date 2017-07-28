@@ -4,7 +4,7 @@ title: reboot required by apt
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-03-12
+last_reviewed_on: 2017-07-26
 review_in: 6 months
 ---
 
@@ -12,9 +12,9 @@ This check indicates that some packages have been installed but cannot
 be activated without rebooting the machines.
 
 The check contains a list of apps that require a reboot (click into the warning
-for the list)
+for the list).
 
-See the [rebooting machines](/manual/rebooting-machines.html) for what to do.
+See [rebooting machines](/manual/rebooting-machines.html) for what to do.
 
 If there are a high number of machines requiring a reboot, including
 ones that are not part of database clusters (such as Mongo and MySQL
@@ -22,12 +22,16 @@ machines) there may be a problem with the locking mechanism.
 
 Check if this is the case using Fabric:
 
-    fab <environment> all locksmith.status
+```command-line
+$ fab <environment> all locksmith.status
+```
 
 If there is a lock in place it will detail which machine holds the lock.
 You can remove it with:
 
-    fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
+```command-line
+$ fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
+```
 
 Machines which are safe to reboot should then do so at the scheduled
 time.
