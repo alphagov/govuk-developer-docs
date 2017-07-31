@@ -4,13 +4,13 @@ title: Enhanced ecommerce data export
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-06-27
-review_in: 1 months
+last_reviewed_on: 2017-07-31
+review_in: 3 months
 ---
 
 This process is related to collection of data for analytics and is run daily so that data can be uploaded to GA for newly created content. This process can be rerun multiple times without side effect.
 
-Ecommerce events only send the `content_id` to google analytics. In order to make the data valuable we upload additional data fields linked to the `content_id` which can then be used for reporting within GA. GA refers to this process as [query time import](https://support.google.com/analytics/answer/6071511?hl=en)
+Ecommerce events only send the `content_id` to google analytics. In order to make the data valuable we upload additional data fields linked to the `content_id` which can then be used for reporting within GA. GA refers to this process as a [query time import](https://support.google.com/analytics/answer/6071511?hl=en).
 
 This task is responsible for generating the data file on the production server `search-1.api` and deleting historical files - we currently keep the last 10 files on record.
 
