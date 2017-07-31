@@ -5,7 +5,7 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/hmrc-paye-files.md"
-last_reviewed_on: 2017-05-10
+last_reviewed_on: 2017-07-31
 review_in: 6 months
 ---
 
@@ -94,6 +94,7 @@ the previous version of the software.
     translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
     can be prepped by the content team with the new links and version
     number, ready to publish at the launch time.
+
 8.  When the launch time comes (which should be specified in the Zendesk
     ticket), copy the test file over the production file using the
     following commands (the `mv` command can't be used because it
@@ -102,7 +103,9 @@ the previous version of the software.
         ssh asset-master-1.backend.production
         cat /mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml | sudo -u assets tee /mnt/uploads/whitehall/clean/uploaded/hmrc/realtimepayetools-update-v14.xml
 
-9.  Purge the cache, which will otherwise take up to 12 hours to
+9. Publish the content items.
+
+10.  Purge the cache, which will otherwise take up to 12 hours to
     expire:
 
         fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-v14.xml
