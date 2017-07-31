@@ -5,31 +5,47 @@ section: Packaging
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-rails-app.md"
-last_reviewed_on: 2017-01-16
+last_reviewed_on: 2017-07-31
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/setting-up-new-rails-app.md)
+Getting a new Rails app running in production has several steps. You should ensure that:
 
+- Your app follows GOV.UK conventions, including the [Ruby styleguide](https://github.com/alphagov/styleguides/blob/master/ruby.md)
+- Continuous integration is set up
+- Your app can be deployed to integration, staging and production environments
+- You can monitor how your app is performing
 
-Getting a new Rails app configured and deployed to the integration and
-production infrastructure involves several steps across multiple
-repositories and services.
+For most apps, this means you'll be using:
+
+- [Jenkins](https://jenkins.io) for CI
+- [Puppet](https://puppet.com/product) to provision the machines your app runs on
+- [Capistrano](http://capistranorb.com/) to deploy it
+- [Errbit](https://github.com/alphagov/errbit) to track stack traces
+- The [GOV.UK development VM](https://github.com/alphagov/govuk-puppet/tree/master/development-vm)
+
+Exceptions are apps that don't need to share infrastructure with the rest of GOV.UK, such as internal tools or prototypes. In this case it might be easier to deploy to the [Government PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas) or [Heroku](https://devcenter.heroku.com/articles/getting-started-with-ruby).
+
+(This guide will assume you aren't doing that).
 
 ## Bootstrapping a new application
 
 The quickest and easiest way to start a new Rails application on the
 GOV.UK stack is to use the [govuk-rails-app-template
-repository](https://github.com/alphagov/govuk-rails-app-template). This
-will create a new Rails application, installing and configuring common
-features such as: rspec for testing; JSON-formatted logging; a
-healthcheck endpoint; coverage reporting; scripts for Jenkins CI builds;
-and airbrake for Errbit-based error reporting.
+repository](https://github.com/alphagov/govuk-rails-app-template).
 
-The following instructions asssume you’re trying to configure a new
-Rails 4.2 application named `myapp` that was created with the above
+This will create a new Rails application, installing and configuring common
+features such as:
+
+- RSpec for testing
+- JSON-formatted logging
+- a healthcheck endpoint
+- coverage reporting
+- scripts for Jenkins CI builds
+- Airbrake for Errbit-based error reporting
+
+From here on we'll assume you’re configuring a new
+Rails application named `myapp` that was created with the above
 script.
 
 ## Naming conventions
