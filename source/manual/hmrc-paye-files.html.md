@@ -33,7 +33,7 @@ The way the updates work:
     (`realtimepayetools-update-vXX.xml`) to determine which files
     to download. This manifest contains the version number and partial
     paths to each of the available binaries. This manifest URL is
-    hard-coded in the desktop software and must remain stable
+    hard-coded in the desktop software and only changes with each major version.
 -   The software downloads the relevant binaries from our asset host and
     updates itself
 -   There is also a [mainstream content
