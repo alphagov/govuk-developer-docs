@@ -5,7 +5,7 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/hmrc-paye-files.md"
-last_reviewed_on: 2017-05-10
+last_reviewed_on: 2017-07-31
 review_in: 6 months
 ---
 
@@ -30,10 +30,10 @@ The way the updates work:
 -   Binaries are provided for Windows, OS X and Linux
 -   Deltas of the binaries are also provided for partial updates
 -   The software hits a manifest file
-    (`realtimepayetools-update-v14.xml`) to determine which files
+    (`realtimepayetools-update-vXX.xml`) to determine which files
     to download. This manifest contains the version number and partial
     paths to each of the available binaries. This manifest URL is
-    hard-coded in the desktop software and must remain stable
+    hard-coded in the desktop software and only changes with each major version.
 -   The software downloads the relevant binaries from our asset host and
     updates itself
 -   There is also a [mainstream content
@@ -56,15 +56,15 @@ The files are:
 -   `payetools-{linux,osx,win}.zip` - the full binary
 -   `payetools-rti-$version-{linux,osx,win}.zip` - the binary patch
     updates
--   `realtimepayetools-update-v14.xml` - a manifest file describing the
+-   `realtimepayetools-update-vXX.xml` - a manifest file describing the
     patch update locations and versions
--   `test-realtimepayetools-update-v14.xml` - the next patch release
+-   `test-realtimepayetools-update-vXX.xml` - the next patch release
     test file, used by the software provider to test the end to end
     process
 
 ## The process for uploading new versions of the app
 
-The manifest file version v14 is given as an example. You should confirm the
+The manifest file version vXX is given as an example. You should confirm the
 version number to use with HMRC because it must match the URL hard-coded into
 the previous version of the software.
 
@@ -78,15 +78,15 @@ the previous version of the software.
 
 4.  Replace the XML manifest prefixed with `test`:
 
-        scp realtimepayetools-update-v14.xml asset-master-1.backend.production:/mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml
+        scp realtimepayetools-update-vXX.xml asset-master-1.backend.production:/mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
 
 5.  Purge the cache for the test file:
 
-        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
+        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
 
 6.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
-        https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-v14.xml
+        https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
 
 7.  When Aspire or one of the other suppliers replies that the file
     works fine, the new edition of the [mainstream content
@@ -94,17 +94,20 @@ the previous version of the software.
     translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
     can be prepped by the content team with the new links and version
     number, ready to publish at the launch time.
+
 8.  When the launch time comes (which should be specified in the Zendesk
     ticket), copy the test file over the production file using the
     following commands (the `mv` command can't be used because it
     doesn't update the modified time of the file):
 
         ssh asset-master-1.backend.production
-        cat /mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-v14.xml | sudo -u assets tee /mnt/uploads/whitehall/clean/uploaded/hmrc/realtimepayetools-update-v14.xml
+        cat /mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-vXX.xml | sudo -u assets tee /mnt/uploads/whitehall/clean/uploaded/hmrc/realtimepayetools-update-vXX.xml
 
-9.  Purge the cache, which will otherwise take up to 12 hours to
+9. Publish the content items.
+
+10.  Purge the cache, which will otherwise take up to 12 hours to
     expire:
 
-        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-v14.xml
+        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-vXX.xml
 
 10.  Update and resolve the Zendesk ticket
