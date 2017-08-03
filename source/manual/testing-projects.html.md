@@ -68,3 +68,25 @@ Many GOV.UK applications test against the
 
 To test your application for each PR on govuk-content-schemas, add it to the [govuk-content-schemas
 Jenkinsfile](https://github.com/alphagov/govuk-content-schemas/blob/master/Jenkinsfile).
+
+## Fixing the build number
+
+Master branch builds are often tagged with the Jenkins build number so that a
+specific version can be deployed to each environment.
+
+This can fail if the build number is reset, for example if all the old builds
+are deleted or if a job is migrated from a different CI server. The error will
+be something like this:
+
+```
+fatal: tag 'release_1' already exists
+```
+
+To fix this, set the build number to the next release number using the [Jenkins
+script console](https://ci.integration.publishing.service.gov.uk/script):
+
+```
+def job = Jenkins.instance.getItemByFullName("your-project-name/master")
+job.nextBuildNumber = 1234
+job.save()
+```
