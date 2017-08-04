@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2017-05-23
+last_reviewed_on: 2017-07-28
 review_in: 6 months
 ---
 
@@ -34,6 +34,8 @@ Before publishing an emergency banner, you will need to know the following. The 
 
 - Text for the 'short description', which is a sentence displayed under the heading. This is optional.
 - A URL for users to find more information (it might not be provided at first).
+- Anchor text that will be displayed for the more information URL (this will
+  default to "More information" if you do not supply it).
 
 <a name="set-up-fabric"></a>
 ### Set up your Fabric scripts
@@ -211,7 +213,7 @@ In the above example the key has not been set. A sucessfully set key would retur
 
 ```
 irb(main):001:0> Redis.new.hgetall("emergency_banner")
-=> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk"}
+=> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
 ```
 
 ### Manually running the rake task to deploy the emergency banner
@@ -236,7 +238,7 @@ the quoted data for the parameters:
 
 ```
 sudo -u deploy govuk_setenv static bundle exec rake
-emergency_banner:deploy[campaign_class,heading,short_description,link]
+emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
 ```
 
 The `campaign_class` is directly injected into the HTML as a `class` and must be one of
@@ -252,13 +254,14 @@ following information:
 * Heading: Alas poor Yorick
 * Short description: I knew him Horatio
 * URL: https://www.gov.uk
+* Link text: Click for more information
 
 You would enter the following command:
 
 ```
 sudo -u deploy govuk_setenv static bundle exec rake
 emergency_banner:deploy["notable-death","Alas poor Yorick","I knew him
-Horatio","https://www.gov.uk"]
+Horatio","https://www.gov.uk","Click for more information"]
 ```
 
 Note there are no spaces after the commas between parameters to the rake task.
