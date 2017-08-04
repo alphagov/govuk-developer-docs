@@ -4,15 +4,15 @@ title: Using Database GUI Tools
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-03
+last_reviewed_on: 2017-08-04
 review_in: 6 months
 ---
 
 Database GUI tools can be useful when developing applications and to understand
 the relationships between data. This document explains how to configure
-[Sequel Pro](https://www.sequelpro.com/) and [PSequel](http://www.psequel.com/),
-two popular GUI tools, to work with databases inside the
-[development VM](https://github.com/alphagov/govuk-puppet/tree/master/development-vm).
+[Sequel Pro](https://www.sequelpro.com/) for MySQL, [PSequel](http://www.psequel.com/)
+for PostgreSQL and [MongoHub](https://github.com/jeromelebel/MongoHub-Mac) for MongoDB
+inside the [development VM](https://github.com/alphagov/govuk-puppet/tree/master/development-vm).
 
 ## Prerequisites
 
@@ -71,3 +71,11 @@ easier in the future.  You can make `trust` runnable with
 
 If something goes wrong and Postgres fails to start, re-run `govuk_puppet` or
 restore the `pg_hba.conf.backup` file created by `sed` then try restarting again.
+
+## MongoHub (for MongoDB)
+
+You only need to set the host address for the VM (10.1.1.254) and the default
+port (27017) to connect to MongoDB on your dev machine. See below for sample
+settings.
+
+![MongoHub Config](images/mongohub-config.png)
