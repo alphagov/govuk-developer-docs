@@ -15,6 +15,8 @@ If a backup fails then then start by looking at any output captured by
 cron and sent to the "machine email" list. This is linked from the
 Nagios alert under "extra actions".
 
+If the backup hasn't failed but is flagged with a freshness warning it may still be in progress. The asset stores are large and backups can take a long time, check whether the duplicity process is still running (e.g. using `htop` or `ps aux | grep duplicity`).
+
 To proceed further you will need to know a few things which you can
 determine either from the job configuration in Puppet or by listing
 crontabs for users, eg. `sudo crontab -lu govuk-backup`:
