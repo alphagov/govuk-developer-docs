@@ -53,8 +53,8 @@ the Publishing API, then [router-data][router-data] can be
 used. Follow the [README](router-data-README) to create your redirects
 in a new branch and open a pull request.
 
-[router-data]: https://github.digital.cabinet-office.gov.uk/gds/router-data
-[router-data-README]: https://github.digital.cabinet-office.gov.uk/gds/router-data#router-data
+[router-data]: https://github.com/alphagov/router-data
+[router-data-README]: https://github.com/alphagov/router-data#router-data
 
 ## Fixing incorrect Corporate Information page redirects
 
