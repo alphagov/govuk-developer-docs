@@ -57,7 +57,10 @@
         - fastly-configure
         - govuk-cdn-config
         - router
-        - router-data
+      sites:
+        - name: alphagov/router-data
+          url: https://github.com/alphagov/router-data
+          description: Send routes directly to the router-api (deprecated)
       sites:
         - name: gds/cdn-configs
           url: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs
