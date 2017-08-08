@@ -4,7 +4,7 @@ title: PagerDuty drill
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-01-30
+last_reviewed_on: 2017-08-08
 review_in: 6 months
 ---
 
@@ -22,4 +22,3 @@ You don't need to take any action for this alert. The primary in-office
 it to "escalations" to ensure that phone redirection is working. The
 person on "escalations" will resolve the PagerDuty alert to prevent
 anyone else being phoned.
-
