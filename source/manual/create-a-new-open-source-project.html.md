@@ -1,18 +1,12 @@
 ---
-owner_slack: "#2ndline"
-title: Create a new open source project
+owner_slack: "#govuk-infrastructure"
+title: Create a new open source project for ops
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/create-a-new-open-source-project.md"
-last_reviewed_on: 2017-01-30
+last_reviewed_on: 2017-08-08
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/create-a-new-open-source-project.md)
-
 
 We try to [code in the
 open](https://gds.blog.gov.uk/2012/10/12/coding-in-the-open/) by default
