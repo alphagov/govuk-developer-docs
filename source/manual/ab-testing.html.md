@@ -4,27 +4,21 @@ parent: "/manual.html"
 layout: manual_layout
 section: Tools
 owner_slack: "@tijmen"
-last_reviewed_on: 2017-06-02
-review_in: 2 months
+last_reviewed_on: 2017-08-08
+review_in: 3 months
 ---
 
 ## 1. Overview
 
-For a general introduction to A/B testing from a content design perspective, see the [Confluence Wiki](https://bit.ly/AB-testing-GOVUK)
+GOV.UK uses our [Content Delivery Network (Fastly)][cdn] to run A/B tests.
 
-Use our CDN (Fastly) to allow frontend applications to render different pages.
+For a general introduction to A/B testing from a content design perspective, see the [Confluence Wiki](https://bit.ly/AB-testing-GOVUK).
 
-This A/B test approach:
-* requires deploying the Fastly CDN
-* does not rely on JavaScript so does not suffer from flashes of content when variants change
-* can only be fully tested on staging and production because of its dependency on Fastly. You can still test your A and B versions in other environments, it's just not a completely realistic test without the full stack.
-* reports results to Google Analytics
+[cdn]: https://docs.publishing.service.gov.uk/manual/cdn.html
 
-## 2. Using Fastly for A/B testing
+## 2. How it works
 
-### 2.1 How it works
-
-#### Fastly receives the request
+### Fastly receives the request
 
 When the user requests a GOV.UK page that has A/B testing enabled, they will reach Fastly first.
 
@@ -33,46 +27,50 @@ Fastly appends the `GOVUK-ABTest-Example` header to the request for downstream a
 - If the request already has a cookie, use the value of that
 - If not, randomly assign the user to a test variant and set it value based on that
 
-Fastly looks up the weighting for the random assignment in a [Fastly dictionary](https://docs.fastly.com/guides/edge-dictionaries/) configured for our A/B tests.
+Fastly looks up the weighting for the random assignment in a [Fastly dictionary][dicts] configured for our A/B tests.
 
 Fastly will then try to get a response from its cache. The `Vary: GOVUK-ABTest-Example` header on previously cached responses will ensure that the right version is returned to the user.
 
 If there's nothing in Fastly's cache, it'll send the request down the stack to GOV.UK.
 
-#### GOV.UK (Varnish caching layer)
+[dicts]: https://docs.fastly.com/guides/edge-dictionaries/
+
+### GOV.UK (Varnish caching layer)
 
 Varnish tries to get a response from the cache. Because Fastly has sent the `GOVUK-ABTest-Example` header, it knows whether to return the `A` or `B` version from the cache. If there's nothing in the cache, Varnish forwards the request to the application server.
 
-#### Application layer
+### Application layer
 
 The application (for example, [government-frontend](/apps/government-frontend.html) or [collections](/apps/collections.html)) inspects the `GOVUK-ABTest-Example` header to determine which version of the content to return.
 
 It also adds an extra response header: `Vary: GOVUK-ABTest-Example`. This instructs Fastly and Varnish to cache both versions of the page separately.
 
-#### Varnish (response)
+### Varnish (response)
 
 Varnish saves the response in the cache. The `Vary: GOVUK-ABTest-Example` response header will ensure that `A` and `B` are cached separately.
 
-#### Fastly responds
+### Fastly responds
 
 Fastly also saves the response in the cache. The `Vary: GOVUK-ABTest-Example` response header will ensure that `A` and `B` are cached separately.
 
 If the original request did not have the `ABTest-Example` cookie, Fastly will set a `Set-Cookie` header to the response based on the value of the `GOVUK-ABTest-Example` header.
 
-### 2.2 Checklist for enabling A/B testing
+## 3. How to set up an A/B test
 
 Follow these steps:
 
 1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line GOV.UK content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
 2. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. There is a range of dimensions from 40-49 blocked out for A/B tests. These can be reused when an A/B test has ended.
 3. Configure the A/B test in [the cdn-configs repo][cdn-configs] ([see an example][dictionary-config-example]). For more details, see the [dictionaries README][dictionaries-readme].
-4. Deploy the cdn-configs changes to staging and production using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the govuk-secrets repo.
+4. Deploy the cdn-configs changes to staging and production using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the [govuk-secrets repo][govuk-secrets].
 5. Add your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo ([see an example][fastly-configure-example]). The test name must match the name configured in the cdn-configs repo in step 3.
-6. Deploy the Fastly configuration to staging and production using the [Deploy_CDN][deploy-cdn] Jenkins job. Use the same parameters as in step 4. You can test it on staging by visiting https://www.staging.publishing.service.gov.uk/. Changes should appear almost immediately - there is no caching of the CDN config.
-7. Use the [govuk\_ab\_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
+6. Deploy the Fastly configuration to staging and production using the [Deploy_CDN][deploy-cdn] Jenkins job. Use the same parameters as in step 4. You can test it on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately - there is no caching of the CDN config.
+7. Use the [govuk_ab_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
 8. To activate or deactivate the test, or to change the B percentage, update your test in [the cdn-configs repo][cdn-configs] and deploy the change.
 
-### 2.3 Checklist for disabling A/B testing
+[govuk-secrets]: https://github.com/alphagov/govuk-secrets
+
+## 4. How to tear down an A/B test
 
 Follow these steps:
 
@@ -94,7 +92,7 @@ Follow these steps:
 [update-cdn-dictionaries]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
 [deploy-cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
 
-## Resources
+## 5. Further reading
 
 - ["A/B testing at the edge" - Fastly blog](https://www.fastly.com/blog/ab-testing-edge)
 - ["Best Practices for Using the Vary Header" - Fastly blog](https://www.fastly.com/blog/best-practices-for-using-the-vary-header)
