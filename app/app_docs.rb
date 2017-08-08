@@ -28,6 +28,7 @@ class AppDocs
         links: {
           self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
           html_url: "https://docs.publishing.service.gov.uk/apps/#{app_name}.html",
+          repo_url: repo_url,
         }
       }
     end
