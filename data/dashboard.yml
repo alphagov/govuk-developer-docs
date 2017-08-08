@@ -46,6 +46,7 @@
     - name: Ensuring quality
       repos:
         - govuk_security_audit
+        - govuk-rfcs
         - govuk-lint
         - styleguides
 
@@ -78,6 +79,11 @@
         - govuk-tagging-monitor
         - kibana-gds
         - sidekiq-monitoring
+
+      sites:
+        - name: alphagov/govuk-user-reviewer
+          url: https://www.github.com/alphagov/govuk-user-reviewer
+          description: Monitor user lists to make sure leavers are removed from all systems
 
     - name: Deployment
       sites:
