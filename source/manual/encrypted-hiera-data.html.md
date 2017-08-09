@@ -4,7 +4,7 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2017-01-13
+last_reviewed_on: 2017-08-09
 review_in: 6 months
 ---
 [Hiera](https://docs.puppetlabs.com/hiera/1/) is a key/value lookup tool
@@ -76,7 +76,7 @@ There are some limitations and disadvantages of this pattern, however;
 -   A vulnerability in GitHub Enterprise or an administrative
     error when setting access permissions could expose secrets.
 
-By encrypting Hiera data using GPG; we are able to strictly define who
+By encrypting Hiera data using GPG, we are able to strictly define who
 has access to these secrets (using GPG keys) and have assurances that
 should the encrypted data be leaked or exposed, we have the additional
 protection of GPG encryption which mitigates some of the scenarios
