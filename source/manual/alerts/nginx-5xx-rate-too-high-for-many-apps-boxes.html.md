@@ -4,7 +4,7 @@ title: Nginx 5xx rate too high for many apps/boxes
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-02-04
+last_reviewed_on: 2017-08-09
 review_in: 6 months
 ---
 
@@ -32,5 +32,5 @@ probably just need to wait for the metric to get created.
 The alert should link to a graphite graph - often certain applications
 such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let the team that owns the app
-know
+know.
 
