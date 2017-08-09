@@ -25,6 +25,7 @@ class AppDocs
         app_name: app_name,
         product_manager: product_manager,
         team: team,
+        puppet_name: puppet_name,
         links: {
           self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
           html_url: "https://docs.publishing.service.gov.uk/apps/#{app_name}.html",
