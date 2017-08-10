@@ -5,7 +5,7 @@ section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/backups/mysql.md"
-last_reviewed_on: 2017-02-04
+last_reviewed_on: 2017-08-09
 review_in: 6 months
 ---
 

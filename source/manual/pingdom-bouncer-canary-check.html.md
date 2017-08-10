@@ -4,7 +4,7 @@ title: Pingdom Bouncer canary check
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
-last_reviewed_on: 2017-02-08
+last_reviewed_on: 2017-08-09
 review_in: 6 months
 ---
 
@@ -14,6 +14,7 @@ responses to users and checks that those tables are not empty. The
 canary should return 200; if it doesn't then errors will be being served
 to users - see the table below for more details of the errors in each
 case.
+
 
 Possible causes of errors on the canary route include:
 
@@ -37,15 +38,14 @@ Possible causes of errors on the canary route include:
 The database tables checked by the canary route (in order) and the
 effect on requests for transitioned sites of errors when querying them:
 
-  Database table          HTTP status codes for requests for transitioned sites
-  ----------------------- -----------------------------------------------------------------------------------------------------------------------------
-  table name              when table inaccessible when table missing data
-  =====================   ================================================================================================ ==========================
-  `hosts`                 `500` for all requests `404` for all requests
-  `sites`                 `500` for all requests `500` for all requests
-  `mappings`              `500` for most requests `404` for most requests
-  `whitelisted_hosts`     `500` for requests which should redirect to non-`*.gov.uk`/`*.mod.uk`/`*.nhs.uk` domains `501` for those requests
-  `organisations`         `500` for most requests which should serve a 404 or 410 page `500` for those requests
+  Database table         | HTTP status codes for requests for transitioned sites | |
+  -----------------------| -------------------------------|-----------------------
+  table name             | when table inaccessible | when table missing data
+  `hosts`                | `500` for all requests | `404` for all requests
+  `sites`                | `500` for all requests | `500` for all requests
+  `mappings`             | `500` for most requests | `404` for most requests
+  `whitelisted_hosts`    | `500` for requests which should redirect to non-`*.gov.uk`/`*.mod.uk`/`*.nhs.uk` domains | `501` for those requests
+  `organisations`        | `500` for most requests which should<br>serve a 404 or 410 page | `500` for those requests
 
 There are other tables in the `transition_production` database but they
 are only used by Transition and not by Bouncer.

@@ -4,14 +4,14 @@ title: Troubleshooting Vagrant
 section: Support
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-05-30
+last_reviewed_on: 2017-08-09
 review_in: 2 months
 ---
 
 ## How to run an application
 
 You can use [bowler](https://github.com/JordanHatch/bowler) to run an
-application, it will also run all dependant services and applications.
+application, it will also run all dependent services and applications.
 The applications are listed in the [Pinfile][].
 
 ```shell
@@ -324,10 +324,9 @@ message, if any, is reproduced below. Please fix this error and try
 again.
 ```
 
-It looks like a problem with this specific version of Vagrant. Using version
-1.8.6 works instead: https://releases.hashicorp.com/vagrant/1.8.6/
-You can find more information about this issue here:
-https://github.com/mitchellh/vagrant/issues/8002
+It looks like a problem with this specific version of Vagrant. Using [version
+1.8.6](https://releases.hashicorp.com/vagrant/1.8.6/) works instead 
+You can find more information about this issue [here](https://github.com/mitchellh/vagrant/issues/8002).
 
 ## `librarian:install` fails due to permission errors
 
