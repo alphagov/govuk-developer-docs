@@ -103,8 +103,8 @@ To resolve this you can dump the database, drop it, and restore it:
     echo 'db.dropDatabase()' | mongo errbit_production
     mongorestore dump/errbit_production
 
-This will result in freeing up all the empty space. Obviously it takes
-Errbit offline for a while as the db is dropped and restored, but our
+This will result in freeing up all the empty space. This takes Errbit
+offline for about 10 minutes while the db is dropped and restored, but our
 apps are robust in the face of Errbit being down.
 
 ## No disk space in general
