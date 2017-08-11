@@ -48,3 +48,10 @@ task :verify_deployable_apps do
     puts missing_app
   end
 end
+
+desc "Check all puppet names are valid, will error when not"
+task :check_puppet_names do
+  AppDocs.pages.reject(&:retired?).each do |app|
+    HTTP.get(app.puppet_url)
+  end
+end
