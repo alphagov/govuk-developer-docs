@@ -32,7 +32,7 @@ to complete, install and restart the service.
 Back on the machine terminal, run the following command to see the currently
 installed plugins in a hieradata like format:
 ```
-sudo jenkins-cli list-plugins |sort |awk '{ print $1 ":\n  version: \"" $NF "\"" }'
+sudo jenkins-cli list-plugins |sort| awk '{ if ($NF ~ /\(.*\)/) print $1":\n  version:", "'\''" $(NF-1) "'\''"; else print $1":\n  version:", "'\''" $NF "'\''" }'
 ```
 
 Update the class hieradata with the list of plugins. Check [this example](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/ci_master.yaml).
