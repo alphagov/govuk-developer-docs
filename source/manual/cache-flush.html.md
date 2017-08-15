@@ -6,13 +6,9 @@ layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/cache-flush.md"
 important: true
-last_reviewed_on: 2017-07-18
+last_reviewed_on: 2017-08-15
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/cache-flush.md)
 
 
 The `www.gov.uk` domain is served through Fastly, which honours the
@@ -125,12 +121,10 @@ To flush our origin run the following Fabric command::
 
     fab $environment cache.ban_all
 
-Once this is done move on to Fastly. If you need to do this please speak
-to the on-call escalation person and they will evaluate the risk and
-guide you through the required contacts who can action this. Access to
-the Fastly UI is limited to the infrastructure team, and a few senior
-technical staff. There is currently no way to do it via the command
-line.
+Once this is done move on to Fastly. This can only be done through the
+Fastly UI - the credentials are in the 2nd line store. If possible, 
+speak to a member of the senior tech team before doing this, to
+evaluate the risk.
 
 Within the UI you reach the purge all functionality.
 
