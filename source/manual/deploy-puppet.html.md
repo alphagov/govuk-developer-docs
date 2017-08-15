@@ -5,14 +5,9 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/deploy-puppet.md"
-last_reviewed_on: 2017-02-09
+last_reviewed_on: 2017-08-15
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/deploy-puppet.md)
-
 
 ## Basic Steps
 
@@ -41,7 +36,7 @@ It hasn't been reviewed for accuracy yet.
 
        [link](https://deploy.integration.publishing.service.gov.uk/job/deploy_puppet/build)
 
-5.  You will either need to wait 30mins or read about convergence. After
+5.  You will either need to wait 30mins or read about [convergence](#convergence). After
     which you should keep an eye on Icinga, Smokey and test anything
     you're concerned about.
 6.  Repeat the last step to deploy to production.
@@ -106,7 +101,7 @@ brief outage, e.g. MySQL.
 
 > This is not a "normal" procedure. You should only do this if you need
 > to and you MUST have some plan for restarting the service in the near
-> future so that it's not inconsistent with it's configuration.
+> future so that it's not inconsistent with its configuration.
 
 1.  Disable normal Puppet runs on the affected nodes:
 
