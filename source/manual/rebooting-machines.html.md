@@ -6,13 +6,9 @@ layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/rebooting-machines.md"
 important: true
-last_reviewed_on: 2017-02-14
+last_reviewed_on: 2017-08-15
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/rebooting-machines.md)
 
 
 ## Rules of rebooting
@@ -76,8 +72,8 @@ There is a Fabric task to schedule a machine for downtime in Nagios for
 > Logic Parallel (SCSI) controller to a VM causes the BIOS boot order to
 > change, meaning that the system disk cannot be found and the OS does
 > not boot when the affected VM is restarted. See the
-> Ops Manual entry on adding disks
-> &lt;/infrastructure/howto/adding-disks-in-vcloud&gt; for more info.
+> manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
+> more info.
 
 ## Rebooting all "safe" machines
 
@@ -237,7 +233,7 @@ environment).
 
 If urgently required applications can have their database configuration
 amended by editing the relevant configuration in
-<https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment>
+<https://github.com/alphagov/govuk-app-deployment>
 
 When the app has been redeployed then the machine which is **not** being
 read from can be rebooted.
