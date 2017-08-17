@@ -22,6 +22,14 @@ Then visit [http://127.0.0.1:9000](http://127.0.0.1:9000) to see a list of [Side
 
 You can also monitor Sidekiq queue lengths using [this Grafana dashboard](https://grafana.publishing.service.gov.uk/dashboard/file/sidekiq.json).
 
+To view your local Sidekiq queue, go to the [sidekiq-monitoring app](https://github.com/alphagov/sidekiq-monitoring) in the vm and run `./bin/foreman start` for all applications, or `./bin/foreman run <app_name>` for a specific app. In the output of sidekiq-monitoring, you'll find the port number of the app whose queue you want to view. Make a note of it, then in your local machine, go to govuk-puppet/development-vm and run:
+
+```bash
+$ vagrant ssh  -- -CNL <port_number>:localhost:<port_number>
+```
+
+Then visit `http://localhost:<port_number>/<app_name>` to see a list of Sidekiq configurations you can monitor.
+
 See also: [Add sidekiq-monitoring to your application](setting-up-new-sidekiq-monitoring-app.html).
 
 [gov.uk]: https://www.gov.uk/
