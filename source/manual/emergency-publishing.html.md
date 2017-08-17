@@ -60,7 +60,8 @@ export environment=integration
 
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
-1) Navigate to the appropriate deploy Jenkins environment (integration, staging or production)
+1) Navigate to the appropriate
+deploy Jenkins environment ([integration](https://deploy.integration.publishing.service.gov.uk/), [staging](https://deploy.staging.publishing.service.gov.uk/) or [production](https://deploy.publishing.service.gov.uk/))
 
 2) Select the `Deploy the emergency banner` task.
 
@@ -136,7 +137,13 @@ cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/governmen
 See [these instructions for more details](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/cache-flush.html) on
 purging the cache.
 
-3) Check that the emergency banner is visible when accessing the same pages as above but without a cache-bust string.
+3) Check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
+
+- [https://www.gov.uk/](https://www.gov.uk/)
+- [https://www.gov.uk/financial-help-disabled](https://www.gov.uk/financial-help-disabled)
+- [https://www.gov.uk/government/organisations/hm-revenue-customs](https://www.gov.uk/government/organisations/hm-revenue-customs)
+- [https://www.gov.uk/search](https://www.gov.uk/search)
+
 
 <a name="unset-env-var"></a>
 ### Unset your environment variable and deactivate your virtual environment
