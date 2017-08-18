@@ -1,10 +1,10 @@
 ---
 owner_slack: "#2ndline"
-title: Troubleshooting Vagrant
-section: Support
+title: Fix problems with Vagrant
+section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2017-08-18
 review_in: 2 months
 ---
 
@@ -325,7 +325,7 @@ again.
 ```
 
 It looks like a problem with this specific version of Vagrant. Using [version
-1.8.6](https://releases.hashicorp.com/vagrant/1.8.6/) works instead 
+1.8.6](https://releases.hashicorp.com/vagrant/1.8.6/) works instead
 You can find more information about this issue [here](https://github.com/mitchellh/vagrant/issues/8002).
 
 ## `librarian:install` fails due to permission errors
