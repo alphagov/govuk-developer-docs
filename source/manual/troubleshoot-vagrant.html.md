@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Troubleshooting Vagrant
+title: Troubleshoot Vagrant
 section: Support
 layout: manual_layout
 parent: "/manual.html"
@@ -325,7 +325,7 @@ again.
 ```
 
 It looks like a problem with this specific version of Vagrant. Using [version
-1.8.6](https://releases.hashicorp.com/vagrant/1.8.6/) works instead 
+1.8.6](https://releases.hashicorp.com/vagrant/1.8.6/) works instead
 You can find more information about this issue [here](https://github.com/mitchellh/vagrant/issues/8002).
 
 ## `librarian:install` fails due to permission errors

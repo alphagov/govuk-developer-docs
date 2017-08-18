@@ -1,0 +1,52 @@
+---
+title: Troubleshoot your development VM
+parent: "/manual.html"
+layout: manual_layout
+section: Support
+owner_slack: "#govuk-developers"
+last_reviewed_on: 2017-08-08
+review_in: 3 months
+---
+
+Here are some things that can go wrong with the development VM.
+
+## Running out of disk space
+
+You may run out of disk space when replicating data into your development
+environment.
+
+First check if you are out of disk space on your host machine (`df -h`).
+If your host machine has plenty of available space, then the problem may be
+the space allocated to the VM for its root partition.
+
+### What to delete on your host machine
+
+On the host machine, you can safely delete:
+
+- Old backups from `~/govuk/govuk-puppet/development-vm/replication/backups/`
+- Old log files from `~/govuk/*/logs`
+
+You can also use graphical tools like [Disk Inventory X](http://www.derlien.com/) to
+find out what's eating up the most space.
+
+### What to delete on the VM
+
+On the VM, you can safely delete old elasticsearch indexes:
+
+  ```
+  cd /var/govuk/govuk-puppet/development-vm/replication
+  bundle exec ruby delete_closed_indices.rb
+  ```
+
+If you plan on replicating all your data again, you can also delete big mongodb
+databases to clear space.
+
+```
+mongo
+> show databases
+> use draft_content_store_development
+> db.dropDatabase()
+```
+
+You can run `ncdu /` from the command line to browse the filesystem and
+identify large directories.
