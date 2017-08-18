@@ -1,10 +1,10 @@
 ---
 owner_slack: "#2ndline"
-title: Troubleshoot Vagrant
-section: Support
+title: Fix problems with Vagrant
+section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2017-08-18
 review_in: 2 months
 ---
 
