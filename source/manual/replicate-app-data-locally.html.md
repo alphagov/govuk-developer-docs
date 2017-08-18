@@ -1,7 +1,7 @@
 ---
 owner_slack: "#2ndline"
 title: Replicating application data locally for development
-section: Databases
+section: Development VM
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-05-12
@@ -57,10 +57,7 @@ Then follow the instructions above for importing using the `-s` flag.
 
 ## If you're running out of disk space
 
-After replicating data a few times, your machine might be running low on disk
-space. This is because the old database dumps aren't cleaned up once newer ones
-have been downloaded. To solve this, you can periodically `rm -r` older
-directories in `govuk-puppet/development-vm/replication/backups`.
+See [running out of disk space in development](/manual/development-disk-space.html).
 
 ## Can't take a write lock while out of disk space (in MongoDB)
 
