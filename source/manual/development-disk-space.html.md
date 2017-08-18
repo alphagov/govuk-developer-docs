@@ -1,16 +1,12 @@
 ---
-title: Troubleshoot your development VM
+title: Running out of disk space in development
 parent: "/manual.html"
 layout: manual_layout
-section: Support
+section: Development VM
 owner_slack: "#govuk-developers"
 last_reviewed_on: 2017-08-08
 review_in: 3 months
 ---
-
-Here are some things that can go wrong with the development VM.
-
-## Running out of disk space
 
 You may run out of disk space when replicating data into your development
 environment.
@@ -19,17 +15,18 @@ First check if you are out of disk space on your host machine (`df -h`).
 If your host machine has plenty of available space, then the problem may be
 the space allocated to the VM for its root partition.
 
-### What to delete on your host machine
+You can run `ncdu /` from the command line to browse the filesystem and
+identify large directories and files. On your host machine you could also use
+graphical tools like [Disk Inventory X](http://www.derlien.com/).
+
+## What to delete on your host machine
 
 On the host machine, you can safely delete:
 
 - Old backups from `~/govuk/govuk-puppet/development-vm/replication/backups/`
 - Old log files from `~/govuk/*/logs`
 
-You can also use graphical tools like [Disk Inventory X](http://www.derlien.com/) to
-find out what's eating up the most space.
-
-### What to delete on the VM
+## What to delete on the VM
 
 On the VM, you can safely delete old elasticsearch indexes:
 
@@ -48,5 +45,9 @@ mongo
 > db.dropDatabase()
 ```
 
-You can run `ncdu /` from the command line to browse the filesystem and
-identify large directories.
+Similarly, you can find large postgres databases with:
+
+```
+sudo -u postgres psql
+\l+
+```
