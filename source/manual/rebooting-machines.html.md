@@ -129,7 +129,7 @@ see [Redis rivers for Elasticsearch](alerts/redis.html)
 
 To reboot a Redis machine, run the following command:
 
-    fab $environment -H '<machine-to-reboot' elasticsearch.redis_safe_reboot
+    fab $environment -H '<machine-to-reboot>' elasticsearch.redis_safe_reboot
 
 This will prevent you from rebooting a machine which still has to
 process logs
