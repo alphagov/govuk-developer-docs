@@ -4,62 +4,33 @@ title: Deploy Puppet
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/deploy-puppet.md"
-last_reviewed_on: 2017-08-15
+last_reviewed_on: 2017-08-22
 review_in: 6 months
 ---
 
-## Basic Steps
+You can deploy puppet using the following steps:
 
-1.  Get the number of the build that you wish to deploy from the Puppet
-    job on CI (e.g. `18295`, this will be tagged as `release_18295`):
+1. Get the [release tag of the build that you wish to deploy][tag] from the release
+app (`release_18295` for example). Look at the diff you're going to deploy.
 
-    [link](https://ci.integration.publishing.service.gov.uk/job/govuk-puppet/job/master/)
-
-2.  Get the tag of the last deployed build from the release app (e.g.
-    `release_18290`):
-
-       [link](https://release.publishing.service.gov.uk/applications/puppet)
-
-3.  Compare the two build tags to see what you are deploying:
-
-    NB: make sure you have the older release first otherwise you won't
-    see a diff
-
-       [link](https://github.com/alphagov/govuk-puppet/compare/release_18290...release_18295)
-
-4.  Deploy the tag to staging using the [Deploy Puppet
-    job](https://deploy.staging.publishing.service.gov.uk/job/Deploy_Puppet).
+2. Deploy the tag to staging using the [Deploy Puppet job][stage-deploy].
 
     You need to configure the build by setting the 'TAG' value to the
     successful build you previously selected (e.g.`release_18295`)
 
-       [link](https://deploy.integration.publishing.service.gov.uk/job/deploy_puppet/build)
+3. You will either need to wait 30mins or read about [convergence](#convergence).
+After which you should keep an eye on Icinga, Smokey and test anything you're concerned about.
 
-5.  You will either need to wait 30mins or read about [convergence](#convergence). After
-    which you should keep an eye on Icinga, Smokey and test anything
-    you're concerned about.
-6.  Repeat the last step to deploy to production.
+4.  Repeat the last step to [deploy to production][prod].
 
-       [link](https://deploy.publishing.service.gov.uk/job/Deploy_Puppet/)
-
-## Build tags and release branches
-
-Puppet deployments are different from most of the other application
-deployments in GOV.UK in that we only ever deploy to Staging and
-Production from the `release` branch. Build tags are promoted (merged)
-into that branch prior to deployment.
-
-This is in part because configuration management tools like Puppet rely
-on managing only a subset of the complete system which doesn't lend
-itself well to flipping backwards and forwards through build history.
-Think of it like database migrations; you can't undo the creation of a
-new column unless you write a new migration to explicitly remove it.
+[tag]: https://release.publishing.service.gov.uk/applications/puppet
+[stage-deploy]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_Puppet
+[prod]: https://deploy.publishing.service.gov.uk/job/Deploy_Puppet
 
 ## Convergence
 
 The deployment only pushes the new code to the Puppet master. Each node
-runs a Puppet agent every 30mins (via cron), so it may be some time
+runs a Puppet agent every 30 minutes (via cron), so it may be some time
 before the release has taken effect. This has an implication on how
 quickly you can go from Staging to Production.
 
