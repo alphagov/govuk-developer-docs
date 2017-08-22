@@ -25,7 +25,8 @@ security updates overnight. Sometimes these require a reboot in order to
 become active.
 
 You can review the list of packages on machines (or classes of machines)
-with:
+with the following command. If you have not done so, you will need to
+[set up your fabric scripts first](emergency-publishing.html#set-up-your-fabric-scripts).
 
     fab $environment all apt.packages_with_reboots
 
@@ -85,6 +86,11 @@ If you wish to reboot all machines, there is a Fabric task to reboot
 replacing `$environment` with the appropriate environment, and `N` with
 a number (currently from 1 to 7).
 
+For example using '1' will reboot all machines ending with that number, e.g.
+backend-1, frontend-1, etc.
+
+All "safe" machines are automatically rebooted once a day.
+
 ## Rebooting MongoDB machines
 
 You can see our MongoDB machines by running:
@@ -123,7 +129,7 @@ see [Redis rivers for Elasticsearch](alerts/redis.html)
 
 To reboot a Redis machine, run the following command:
 
-    fab $environment -H '<machine-to-reboot' elasticsearch.redis_safe_reboot
+    fab $environment -H '<machine-to-reboot>' elasticsearch.redis_safe_reboot
 
 This will prevent you from rebooting a machine which still has to
 process logs
