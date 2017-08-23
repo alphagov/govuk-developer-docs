@@ -67,7 +67,13 @@ Note: the `@timestamp` field records the request END time. To calculate request 
 ### Application upstart logs
 
 ```rb
-@tags:"upstart" @tags:"upstart" AND @tags:"stdout" @tags:"upstart" AND @tags:"stderr" @tags:"upstart" AND @fields.application:"licensify"
+@tags:"upstart" 
+
+@tags:"upstart" AND @tags:"stdout"
+
+@tags:"upstart" AND @tags:"stderr"
+
+@tags:"upstart" AND @fields.application:"licensify"
 ```
 
 ### Application production.log files
