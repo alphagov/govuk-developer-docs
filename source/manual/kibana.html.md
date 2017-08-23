@@ -79,7 +79,9 @@ Note: the `@timestamp` field records the request END time. To calculate request 
 ### Application production.log files
 
 ```rb
-@tags:"application" @tags:"application" AND @fields.application:"smartanswers"
+@tags:"application"
+
+@tags:"application" AND @fields.application:"smartanswers"
 ```
 
 ### MongoDB slow queries
