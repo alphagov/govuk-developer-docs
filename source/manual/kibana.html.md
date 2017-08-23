@@ -59,7 +59,7 @@ nginx @tags:"nginx"
 Nginx logs for frontend:
 
 ```rb
-@tags:"nginx" AND @fields.application:frontend
+@tags:"nginx" AND @fields.application:"frontend*"
 ```
 
 Note: the `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
