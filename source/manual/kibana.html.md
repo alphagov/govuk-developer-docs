@@ -5,7 +5,7 @@ layout: manual_layout
 parent: "/manual.html"
 section: Logging
 important: true
-last_reviewed_on: 2017-02-18
+last_reviewed_on: 2017-08-23
 review_in: 6 months
 ---
 
@@ -59,7 +59,7 @@ nginx @tags:"nginx"
 Nginx logs for frontend:
 
 ```rb
-@tags:"nginx" AND @fields.application:frontend
+@tags:"nginx" AND @fields.application:frontend*
 ```
 
 Note: the `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
@@ -73,13 +73,21 @@ Note: the `@timestamp` field records the request END time. To calculate request 
 ### Application upstart logs
 
 ```rb
-@tags:"upstart" @tags:"upstart" AND @tags:"stdout" @tags:"upstart" AND @tags:"stderr" @tags:"upstart" AND @fields.application:"licensify"
+@tags:"upstart" 
+
+@tags:"upstart" AND @tags:"stdout"
+
+@tags:"upstart" AND @tags:"stderr"
+
+@tags:"upstart" AND @fields.application:"licensify"
 ```
 
 ### Application production.log files
 
 ```rb
-@tags:"application" @tags:"application" AND @fields.application:"smartanswers"
+@tags:"application"
+
+@tags:"application" AND @fields.application:"smartanswers"
 ```
 
 ### MongoDB slow queries
