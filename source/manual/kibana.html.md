@@ -64,6 +64,12 @@ Nginx logs for frontend:
 
 Note: the `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
 
+### CDN logs
+
+```rb
+@fields.application:"govuk-cdn-logs-monitor"
+```
+
 ### Application upstart logs
 
 ```rb
