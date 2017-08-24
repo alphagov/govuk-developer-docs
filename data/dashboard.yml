@@ -79,8 +79,12 @@
         - govuk-tagging-monitor
         - kibana-gds
         - sidekiq-monitoring
+        - govuk-sentry-config
 
       sites:
+        - name: Sentry
+          url: https://sentry.io/govuk
+          description: Our error tracking service
         - name: alphagov/govuk-user-reviewer
           url: https://www.github.com/alphagov/govuk-user-reviewer
           description: Monitor user lists to make sure leavers are removed from all systems
