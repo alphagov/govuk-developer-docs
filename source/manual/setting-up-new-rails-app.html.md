@@ -34,15 +34,7 @@ The quickest and easiest way to start a new Rails application on the
 GOV.UK stack is to use the [govuk-rails-app-template
 repository](https://github.com/alphagov/govuk-rails-app-template).
 
-This will create a new Rails application, installing and configuring common
-features such as:
-
-- RSpec for testing
-- JSON-formatted logging
-- a healthcheck endpoint
-- coverage reporting
-- scripts for Jenkins CI builds
-- Airbrake for Errbit-based error reporting
+This will create a new Rails application, installing and configuring common features.
 
 From here on we'll assume you’re configuring a new
 Rails application named `myapp` that was created with the above
