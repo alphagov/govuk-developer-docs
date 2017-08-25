@@ -30,6 +30,7 @@ class AppDocs
           self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
           html_url: "https://docs.publishing.service.gov.uk/apps/#{app_name}.html",
           repo_url: repo_url,
+          sentry_url: sentry_url,
         }
       }
     end
@@ -64,6 +65,10 @@ class AppDocs
 
     def repo_url
       app_data["repo_url"] || "https://github.com/alphagov/#{github_repo_name}"
+    end
+
+    def sentry_url
+      "https://sentry.io/govuk/app-#{app_name}"
     end
 
     def puppet_url
