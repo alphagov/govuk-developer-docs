@@ -4,7 +4,7 @@ title: high disk time
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-02-18
+last_reviewed_on: 2017-07-25
 review_in: 6 months
 ---
 
@@ -23,4 +23,3 @@ even across multiple environments, then our cloud provider may be at
 fault. Even if it's not yet causing other alerts it may be worth
 checking their status pages, talking to other projects that use that
 provider, or contacting their support.
-
