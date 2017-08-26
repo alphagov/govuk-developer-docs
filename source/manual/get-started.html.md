@@ -48,7 +48,7 @@ First, install:
 ## 2. Create your GitHub accounts
 
 1. Set up a [GitHub](https://www.github.com) account.
-1. Ask your tech lead to add you to the [alphagov organisation](https://github.com/alphagov).
+1. Ask your tech lead to add you to the [alphagov organisation](https://github.com/alphagov). You will have to be added to the [GOV.UK team](https://github.com/orgs/alphagov/teams/gov-uk/members) to get access to repos & CI.
 1. [Generate and register an SSH key pair](https://help.github.com/articles/connecting-to-github-with-ssh/) for your Mac for your GitHub account.
 1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
 
@@ -71,8 +71,6 @@ To create a new account, start by creating an SSH key at least 4096 bits long. F
 Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you just created. Your username should use the `firstnamelastname` format.
 
 Add the name of your manifest (your username) into the list of `users::usernames` in [`hieradata/integration.yaml`][integration-hiera].
-
-There's another bit of hieradata in [`integration.yaml`][integration-hiera] for `govuk_jenkins::config::admins` which will give you access to the deployment Jenkins. Add your **GitHub Enterprise** username to this list.
 
 Create a pull request with these changes. Once it has been reviewed by a member of the GOV.UK team, you can merge it and it will automatically deploy to the Integration environment. This will come in handy later.
 
