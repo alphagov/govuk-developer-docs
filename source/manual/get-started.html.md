@@ -2,7 +2,6 @@
 owner_slack: "#2ndline"
 title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
-parent: "/manual.html"
 layout: manual_layout
 section: Basics
 last_reviewed_on: 2017-08-26
