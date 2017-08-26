@@ -1,9 +1,0 @@
-<% html = yield %>
-
-<% content_for :sidebar do %>
-  <%= table_of_contents html, max_level: 2 %>
-<% end %>
-
-<% wrap_layout :layout_with_sidebar do %>
-  <%= html %>
-<% end %>
