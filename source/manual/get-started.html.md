@@ -49,7 +49,6 @@ First, install:
 
 1. Set up a [GitHub](https://www.github.com) account.
 1. Ask your tech lead to add you to the [alphagov organisation](https://github.com/alphagov).
-1. Set up a [GitHub Enterprise](https://github.digital.cabinet-office.gov.uk) (private) account and ask to be added to the `gds` organisation.
 1. [Generate and register an SSH key pair](https://help.github.com/articles/connecting-to-github-with-ssh/) for your Mac for your GitHub account.
 1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
 
