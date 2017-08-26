@@ -10,7 +10,7 @@ review_in: 3 months
 
 Welcome to GOV.UK.
 
-Follow the steps on this page to get your GDS development environment running with a [VirtualBox](https://www.virtualbox.org/) VM, managed and configured by [Vagrant](http://vagrantup.com/).
+Follow the steps on this page to get your GOV.UK development environment running with a [VirtualBox](https://www.virtualbox.org/) VM, managed and configured by [Vagrant](http://vagrantup.com/).
 
 > You'll need to use a Mac to follow this guide.
 
