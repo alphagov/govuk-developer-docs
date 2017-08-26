@@ -1,4 +1,12 @@
-# Get started
+---
+owner_slack: "#2ndline"
+title: Get started on GOV.UK
+parent: "/manual.html"
+layout: manual_layout
+section: Basics
+last_reviewed_on: 2017-08-26
+review_in: 3 months
+---
 
 Welcome to GOV.UK.
 
