@@ -17,8 +17,9 @@ To upgrade make a PR that does the following:
 1. Remove the `airbrake` gem from the app
 2. Add `govuk_config` gem
 3. Upgrade `govuk_sidekiq` to at least `2.0.0` to maintain error reporting
-4. Remove the Airbrake initialiser `rm config/initializers/airbrake.rb`
-5. Change any manual calls to Airbrake with new-style error logs:
+4. Upgrade `slimmer` to at least `11.0.2`, otherwise [errors won't be reported][slimmer]
+5. Remove the Airbrake initialiser `rm config/initializers/airbrake.rb`
+6. Change any manual calls to Airbrake with new-style error logs:
 
   ```rb
   GovukError.notify("My message here")
@@ -27,6 +28,8 @@ To upgrade make a PR that does the following:
   More about this in [govuk_app_config's README][rm].
 
   [rm]: https://github.com/alphagov/govuk_app_config#usage
+
+[slimmer]: https://github.com/alphagov/slimmer/pull/203
 
 ## 2. Test that error reporting works
 
