@@ -18,7 +18,7 @@ So, with this in mind you'll need to search all published content.
 
 ## Searching the Publishing API
 
-First make sure you can SSH into our integration environment, you can [follow the Getting Started guide](https://docs.publishing.service.gov.uk/getting-started.html#6-access-remote-environments)
+First make sure you can SSH into our integration environment, you can [follow the Getting Started guide](/manual/get-started.html#6-access-remote-environments)
 
 Now if everything is setup you can ssh onto the machine with the publishing api using:
 
