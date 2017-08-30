@@ -120,7 +120,7 @@ There are also some Python apps, which use [PIP](https://pip.pypa.io/en/stable/)
 
 Your pull request from earlier will hopefully have been merged by now. It's time to test your access to servers via SSH.
 
-> If you're not in the office right now, you'll need to be connected to the Aviation House VPN for SSH access to Integration.
+> If you're not in the office right now, you'll need to be connected to the GDS Office VPN for SSH access to Integration.
 
 While the applications are available directly via the public internet, SSH access to remote environments is via a ‘jumpbox’. You’ll need to configure your machine to use this jumpbox using the [example SSH config file](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config). Copy the file into the `~/.ssh/config` file on your host machine. You should then be able to ssh into any box in the Integration environment directly. Test that it works, by running:
 
