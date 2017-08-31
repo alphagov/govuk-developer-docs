@@ -4,7 +4,7 @@ title: 'PostgreSQL: replication too far behind'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-02-14
+last_reviewed_on: 2017-08-31
 review_in: 6 months
 ---
 
