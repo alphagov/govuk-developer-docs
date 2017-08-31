@@ -115,9 +115,7 @@ The general approach for rebooting machines in a MongoDB cluster is:
 
 To reboot an Elasticsearch machine, run the following command:
 
-    fab $environment class:elasticsearch numbered:N elasticsearch.safe_reboot
-
-(you will also need to do this for `class:logs_elasticsearch`).
+    fab $environment -H '<machine-to-reboot>' elasticsearch.safe_reboot
 
 This will prevent you from rebooting a machine in a cluster which
 doesn't have a green cluster health status.
