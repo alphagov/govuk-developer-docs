@@ -280,6 +280,11 @@ You may reboot the master machine in the staging environment during working
 hours however it is prudent to warn colleagues that uploading attachments will
 be unavailable during this period.
 
+## Rebooting router-backend machines
+
+Router backend machines are instances of MongoDB machines and can be rebooted
+as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
+
 ## Rebooting Jumpbox machines
 
 These machines are safe to reboot during the day. During the night they
