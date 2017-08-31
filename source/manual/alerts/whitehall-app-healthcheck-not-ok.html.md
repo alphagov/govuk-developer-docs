@@ -4,7 +4,7 @@ title: Whitehall app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-02-24
+last_reviewed_on: 2017-08-31
 review_in: 6 months
 ---
 
