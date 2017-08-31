@@ -264,6 +264,22 @@ with the Infrastructure Team.
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
 
+## Rebooting Asset master and slave machines
+
+Unless there are urgent updates to apply the master machine should not be
+rebooted in production during working hours - as the master machine is required
+for attachments to be uploaded.
+
+The slave machines can be rebooted as they hold a copy of data and are resynced
+regularly.
+
+Reboots of the master machine should be organised with the Infrastructure team,
+for the production environment.
+
+You may reboot the master machine in the staging environment during working
+hours however it is prudent to warn colleagues that uploading attachments will
+be unavailable during this period.
+
 ## Rebooting Jumpbox machines
 
 These machines are safe to reboot during the day. During the night they
