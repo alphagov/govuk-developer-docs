@@ -233,9 +233,9 @@ If that file exists, the machine isn't safe to reboot.
 ## Rebooting MySQL master and slave machines
 
 Unless there are urgent updates to apply, these machines should not be
-rebooted during working hours. Applications write to the masters and
-read from the slaves (with the exception of the slave within the DR
-environment).
+rebooted during working hours in production. Applications write to the
+masters and read from the slaves (with the exception of the slave within
+the DR environment).
 
 If urgently required applications can have their database configuration
 amended by editing the relevant configuration in
@@ -244,19 +244,25 @@ amended by editing the relevant configuration in
 When the app has been redeployed then the machine which is **not** being
 read from can be rebooted.
 
-Reboots of these machines should be organised with the Infrastructure
-Team.
+Reboots of these machines, in the production environment, should be organised
+with the Infrastructure Team.
+
+They may be rebooted in working hours in the staging environment, however you
+should notify colleagues before doing so.
 
 ## Rebooting PostgreSQL primary and standby machines
 
 Unless there are urgent updates to apply, these machines should not be
-rebooted during working hours. Applications read and write to the
-primary machines, and some applications (e.g. Bouncer) read from the
+rebooted in production during working hours. Applications read and write
+to the primary machines, and some applications (e.g. Bouncer) read from the
 standby machines (with the exception of the slave within the DR
 environment).
 
-Reboots of these machines should be organised with the Infrastructure
-Team.
+Reboots of these machines, in the production environment, should be organised
+with the Infrastructure Team.
+
+They may be rebooted in working hours in the staging environment, however you
+should notify colleagues before doing so.
 
 ## Rebooting Jumpbox machines
 
