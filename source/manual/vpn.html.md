@@ -5,7 +5,7 @@ section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/vpn.md"
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2017-08-31
 review_in: 6 months
 ---
 
@@ -59,4 +59,4 @@ the connection between GOV.UK (the router and content store) and the Licensify o
 over the internet rather than over the VPN.
 
 [carrenza-secure]: howto/connect-carrenza-il2.html
-[gds-vpn]: https://docs.google.com/document/d/1WRh-uBLP1XAKaytgRm5YX5DWUFHM3InZEB-xhoKzvqI/edit
+[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/how-to/connect-to-the-aviation-house-vpn
