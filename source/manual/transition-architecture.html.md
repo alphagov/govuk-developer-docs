@@ -4,7 +4,7 @@ title: Transition architecture
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-14
+last_reviewed_on: 2017-09-01
 review_in: 6 months
 related_applications: [bouncer, transition]
 ---
@@ -25,6 +25,19 @@ All the repositories involved in transition have been [tagged with govuk-transit
 <em>Source diagram in the [GOV.UK architecture folder][arch-folder].</em>
 
 [arch-folder]: https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00
+
+### Components
+
+- [transition][] is the admin app that departments use to transition
+- [transition-config][] contains YAML files to configure transitioning websites. It's imported into the Transition database by the [Transition_load_site_config job][]
+- [process_transition_logs][] loads the data from Fastly into [transition-stats][]. Those are then loaded into Transition by the [Transition_load_transition job][]
+- [bouncer][] is the application that does the actual redirecting
+- [cdn-configs][] contains the script that the [Bouncer_CDN job][] uses to send the [hosts from transition][] to Fastly
+
+[process_transition_logs]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_cdnlogs/templates/process_transition_logs.erb
+[Transition_load_site_config job]: https://deploy.publishing.service.gov.uk/job/Transition_load_site_config
+[transition-stats]: https://github.com/alphagov/transition-stats
+[Transition_load_transition job]: https://deploy.publishing.service.gov.uk/job/Transition_load_transition
 
 ## Transition data sources
 
@@ -73,7 +86,7 @@ Some sites partially transition, which means that they redirect some paths to
 their AKA domain, which is CNAMEd to us.
 
 GDS doesn't control the DNS for most transitioned domains, except for some domains such as
-`*.direct.gov.uk`, `*.businesslink.co.uk`, `*.alphagov.co.uk`. We are working on providing a more exhaustive list. If the DNS
+`*.direct.gov.uk`, `*.businesslink.co.uk`, `*.alphagov.co.uk`. If the DNS
 for a particular transitioned site isn't configured correctly we need to inform
 the responsible department so they can fix it themselves.
 
@@ -81,13 +94,13 @@ the responsible department so they can fix it themselves.
 
 Bouncer has a separate CDN service at Fastly ("Production Bouncer") from the
 main GOV.UK one, and it's configured by a
-[separate Jenkins job](../../infrastructure/architecture/cdn.html#bouncer-s-fastly-service)
+[separate Jenkins job](/manual/cdn.html#bouncer39s-fastly-service)
 which adds and removes domains to and from the service.
 That job fetches the list of domains which should be configured at the CDN from
 Transition's [hosts API](https://transition.publishing.service.gov.uk/hosts), so
 will fail if that is unavailable.
 
-[More information about Bouncer's Fastly service](https://docs.publishing.service.gov.uk/manual/cdn.html#bouncer39s-fastly-service)
+[More information about Bouncer's Fastly service](/manual/cdn.html#bouncer39s-fastly-service)
 
 #### Machines
 
@@ -135,3 +148,7 @@ rsynced](https://github.com/alphagov/govuk-app-deployment/blob/master/bouncer/co
 to the machines when Bouncer is deployed.
 
 [Bouncer]: /apps/bouncer.html
+[transition]: /apps/transition.html
+[cdn-configs]: https://github.com/alphagov/cdn-configs
+[Bouncer_CDN job]: https://deploy.publishing.service.gov.uk/job/Bouncer_CDN
+[hosts from transition]: https://transition.publishing.service.gov.uk/hosts.json
