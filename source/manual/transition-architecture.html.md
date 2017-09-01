@@ -94,13 +94,13 @@ the responsible department so they can fix it themselves.
 
 Bouncer has a separate CDN service at Fastly ("Production Bouncer") from the
 main GOV.UK one, and it's configured by a
-[separate Jenkins job](../../infrastructure/architecture/cdn.html#bouncer-s-fastly-service)
+[separate Jenkins job](/manual/cdn.html#bouncer39s-fastly-service)
 which adds and removes domains to and from the service.
 That job fetches the list of domains which should be configured at the CDN from
 Transition's [hosts API](https://transition.publishing.service.gov.uk/hosts), so
 will fail if that is unavailable.
 
-[More information about Bouncer's Fastly service](https://docs.publishing.service.gov.uk/manual/cdn.html#bouncer39s-fastly-service)
+[More information about Bouncer's Fastly service](/manual/cdn.html#bouncer39s-fastly-service)
 
 #### Machines
 
