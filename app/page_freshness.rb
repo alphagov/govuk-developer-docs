@@ -26,7 +26,7 @@ class PageFreshness
   def export(pages)
     pages.map do |page|
       {
-        title: page.data.title,
+        title: [page.data.title, page.data.section].join(' - '),
         url: "https://docs.publishing.service.gov.uk#{page.url}",
         review_by: PageReview.new(page).review_by,
         owner_slack: page.data.owner_slack,
