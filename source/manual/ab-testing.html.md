@@ -81,14 +81,14 @@ Follow these steps:
 5. Get your cookie removed from the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line GOV.UK content triage.
 
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
-[cdn-configs]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs
-[dictionaries-readme]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/blob/master/fastly/dictionaries/README.md
-[dictionary-config-example]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/pull/143/files
+[cdn-configs]: https://github.com/alphagov/cdn-configs
+[dictionaries-readme]: https://github.com/alphagov/cdn-configs/blob/master/fastly/dictionaries/README.md
+[dictionary-config-example]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/commit/a2a3e2bf2e5371a9d82b06072a2034c76e219460
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [configuration-file]: https://github.com/alphagov/fastly-configure/blob/master/ab_tests/ab_tests.yaml
 [fastly-configure]: https://github.com/alphagov/fastly-configure
 [fastly-configure-example]: https://github.com/alphagov/fastly-configure/pull/29/files
-[dictionary-removal-example]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/pull/157/files
+[dictionary-removal-example]: https://github.com/alphagov/cdn-configs/commit/1e98e41ef87091e6fab6881a6acfac51b046875a
 [update-cdn-dictionaries]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
 [deploy-cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
 
