@@ -86,7 +86,7 @@ Some sites partially transition, which means that they redirect some paths to
 their AKA domain, which is CNAMEd to us.
 
 GDS doesn't control the DNS for most transitioned domains, except for some domains such as
-`*.direct.gov.uk`, `*.businesslink.co.uk`, `*.alphagov.co.uk`. We are working on providing a more exhaustive list. If the DNS
+`*.direct.gov.uk`, `*.businesslink.co.uk`, `*.alphagov.co.uk`. If the DNS
 for a particular transitioned site isn't configured correctly we need to inform
 the responsible department so they can fix it themselves.
 
