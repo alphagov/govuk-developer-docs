@@ -5,14 +5,9 @@ section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-manually-remove-assets.md"
-last_reviewed_on: 2017-02-28
+last_reviewed_on: 2017-09-04
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/howto-manually-remove-assets.md)
-
 
 If you need to remove an asset manually from `assets.publishing.sevice.gov.uk`,
 follow these steps:
