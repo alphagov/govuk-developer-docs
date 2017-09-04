@@ -5,7 +5,7 @@ section: Backups
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/offsite-backup-and-restore.md"
-last_reviewed_on: 2017-06-06
+last_reviewed_on: 2017-09-04
 review_in: 6 months
 ---
 
@@ -16,9 +16,84 @@ the [govuk-puppet](https://github.com/alphagov/govuk-puppet) repository.
 The key and passphrase are both stored in encrypted hieradata in the
 [govuk-secrets repository](https://github.com/alphagov/govuk-secrets). The same private key is used for all offsite backups).
 
-## Restore datastore from offsite backups
+## Pre-requisites for restoring backups
+On the machine where you want to restore the backup:
 
-**Note**: Ensure you have followed the [Pre-requisites for restoring backups](#pre-requisites-for-restoring-backups) before attempting a backup restore.
+### VM requirements
+For the backup and restore drill, you will restore and unpack a MySQL database on a Vagrant VM.
+
+On a fresh VM, you may require the following packages for this exercise:
+
+#### Packages via `apt-get`
+
+```shell
+sudo apt-get install duplicity python-pip python-boto mysql-server
+```
+
+#### Python libs via `pip`
+
+```shell
+sudo pip install s3cmd
+```
+
+### Set up GPG keys to decrypt backups
+You will need access to production hieradata credentials to retrieve the AWS credentials and GPG key to decrypt the backups.
+
+1. Retrieve the keys and credentials from the [Deployment repo](https://github.com/alphagov/govuk-secrets)
+following [these instructions](https://github.com/alphagov/govuk-secrets/tree/master/puppet#common-actions)
+  * You are looking for:
+
+      ```
+      backup::offsite::job::aws_access_key_id
+      backup::offsite::job::aws_secret_access_key
+      backup::assets::backup_private_gpg_key
+      backup::assets::backup_private_gpg_key_passphrase
+      ```
+
+2. Ensure that you can connect to the S3 bucket:
+
+      ```
+      export AWS_ACCESS_KEY_ID=<access_key_id>
+      export AWS_SECRET_ACCESS_KEY=<secret_access_key>
+      s3cmd ls s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
+      ```
+  * If you receive a `403` error, try:
+
+        ```
+        s3cmd ls s3://govuk-offsite-backups-production/govuk-datastores/
+        ```
+        If you can view objects inside the bucket you now have access.
+
+3. Now you can see the status of duplicity:
+
+      ```
+      duplicity collection-status s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
+      ```
+
+#### Import key on machine
+
+On the machine where you'll be running the restore:
+
+1. Create a file containing the `backup::assets::backup_private_gpg_key` [GPG key](#gpg-keys-for-decrypting-backups)
+
+2. Import it with:
+
+      ```
+      gpg --allow-secret-key-import --import <path to GPG key file>
+      ```
+  * Confirm the key has been imported correctly with:
+
+        ```
+        gpg --list-secret-keys
+        ```
+
+3. Once the key is imported, you'll be able to list files:
+
+      ```
+      duplicity list-current-files s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
+      ```
+
+## Restore datastore from offsite backups
 
 ### Download a backup
 
@@ -109,82 +184,6 @@ manual actions you've taken. These may include:
 2.  Removing the secret key from the GPG keyring
     (`gpg --delete-secret-key 12345678`)
 
-## Pre-requisites for restoring backups
-On the machine where you want to restore the backup:
-
-### VM requirements
-For the backup and restore drill, you will restore and unpack a MySQL database on a Vagrant VM.
-
-On a fresh VM, you may require the following packages for this exercise:
-
-#### Packages via `apt-get`
-
-```shell
-sudo apt-get install duplicity python-pip python-boto mysql-server
-```
-
-#### Python libs via `pip`
-
-```shell
-sudo pip install s3cmd
-```
-
-### Set up GPG keys to decrypt backups
-You will need access to production hieradata credentials to retrieve the AWS credentials and GPG key to decrypt the backups.
-
-1. Retrieve the keys and credentials from the [Deployment repo](https://github.com/alphagov/govuk-secrets)
-following [these instructions](https://github.com/alphagov/govuk-secrets/tree/master/puppet#common-actions)
-  * You are looking for:
-
-      ```
-      backup::offsite::job::aws_access_key_id
-      backup::offsite::job::aws_secret_access_key
-      backup::assets::backup_private_gpg_key
-      backup::assets::backup_private_gpg_key_passphrase
-      ```
-
-2. Ensure that you can connect to the S3 bucket:
-
-      ```
-      export AWS_ACCESS_KEY_ID=<access_key_id>
-      export AWS_SECRET_ACCESS_KEY=<secret_access_key>
-      s3cmd ls s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
-      ```
-  * If you receive a `403` error, try:
-
-        ```
-        s3cmd ls s3://govuk-offsite-backups-production/govuk-datastores/
-        ```
-        If you can view objects inside the bucket you now have access.
-
-3. Now you can see the status of duplicity:
-
-      ```
-      duplicity collection-status s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
-      ```
-
-#### Import key on machine
-
-On the machine where you'll be running the restore:
-
-1. Create a file containing the `backup::assets::backup_private_gpg_key` [GPG key](#gpg-keys-for-decrypting-backups)
-
-2. Import it with:
-
-      ```
-      gpg --allow-secret-key-import --import <path to GPG key file>
-      ```
-  * Confirm the key has been imported correctly with:
-
-        ```
-        gpg --list-secret-keys
-        ```
-
-3. Once the key is imported, you'll be able to list files:
-
-      ```
-      duplicity list-current-files s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
-      ```
 
 ## Rotating offsite backups GPG keys
 
