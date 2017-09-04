@@ -152,7 +152,7 @@ To do this, follow the [Pre-requisites for restoring backups](#pre-requisites-fo
       ```
       export AWS_ACCESS_KEY_ID=<access_key_id>
       export AWS_SECRET_ACCESS_KEY=<secret_access_key>
-      aws s3cmd ls s3://govuk-offsite-backups-production/assets-whitehall/
+      s3cmd ls s3://govuk-offsite-backups-production/assets-whitehall/
       ```
   * If you can view objects inside the bucket you should have access.
   * The buckets are as described in `hieradata/production.yaml` in the [govuk-puppet](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/production.yaml) repo.
