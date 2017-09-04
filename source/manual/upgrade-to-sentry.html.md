@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
 owner_slack: "@tijmen"
-last_reviewed_on: 2017-08-21
+last_reviewed_on: 2017-09-04
 review_in: 1 month
 ---
 
@@ -15,11 +15,12 @@ We are [migrating all apps][trello] to use Sentry.
 To upgrade make a PR that does the following:
 
 1. Remove the `airbrake` gem from the app
-2. Add `govuk_config` gem
-3. Upgrade `govuk_sidekiq` to at least `2.0.0` to maintain error reporting
-4. Upgrade `slimmer` to at least `11.0.2`, otherwise [errors won't be reported][slimmer]
-5. Remove the Airbrake initialiser `rm config/initializers/airbrake.rb`
-6. Change any manual calls to Airbrake with new-style error logs:
+1. Remove the Airbrake initialiser `rm config/initializers/airbrake.rb`
+1. Add `gem "govuk_app_config", "~> 0.2.0"` to your Gemfile
+1. Use at least `gem "govuk_sidekiq", "~> 2.0.0"` to maintain error reporting
+1. Use at least `gem "slimmer", "~> 11.0.2"`, otherwise [errors won't be reported][slimmer]
+1. Use at least `gem "gds-api-adapters", "~> 47.9.1"` to improve error reporting
+1. Change any manual calls to Airbrake with new-style error logs:
 
   ```rb
   GovukError.notify("My message here")
