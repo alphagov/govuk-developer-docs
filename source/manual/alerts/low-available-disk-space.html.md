@@ -123,6 +123,10 @@ scan it to see which directory inside it is using the most space, then
 use ncdu on that directory. Do it with the following command:
 `sudo du -hc --max-depth=1 <mountpoint>`
 
+If you are able to determine that the machine simply requires more disk space
+to run the applications (such as a growing database) you can increase capacity
+by [adding a new disk in vCloud](../adding-disks-in-vcloud.html).
+
 ## Disk space used by logfiles
 
 You may discover that disk space is mostly being used up by logfiles.
