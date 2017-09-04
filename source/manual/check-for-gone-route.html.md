@@ -20,8 +20,7 @@ is shown a 'Gone' page, follow these instructions:
 ## Check the router API for a `gone` route
 
     $ ssh router-backend-1.router.production
-    $ cd /var/apps/router-api
-    $ sudo -u deploy govuk_setenv router-api bundle exec rails c
+    $ govuk_app_console router-api
     > r = Route.where(incoming_path: '/path-to-item').first
     > puts r.handler
 
