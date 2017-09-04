@@ -160,7 +160,7 @@ To do this, follow the [Pre-requisites for restoring backups](#pre-requisites-fo
 3. Now you'll be able to see the status of duplicity:
 
       ```
-      asset-master-1:~$ duplicity collection-status s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/
+      duplicity collection-status s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/
       ```
 
 4. Import the GPG secret key from the credentials store as per the section to [Set up GPG keys to decrypt backups](#set-up-gpg-keys-to-decrypt-backups)
@@ -168,7 +168,7 @@ To do this, follow the [Pre-requisites for restoring backups](#pre-requisites-fo
 5. Once the key is imported, you can list files:
 
       ```
-      asset-master-1:~$ duplicity list-current-files s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/
+      duplicity list-current-files s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/
       ```
 
 5. In order to restore the files, you may need to change the owner of the
@@ -178,7 +178,7 @@ any files that already exist in that directory.
 6. Run a restore:
 
       ```
-      asset-master-1:~$ duplicity restore --file-to-restore mnt/uploads/whitehall/ s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/ /mnt/uploads/whitehall
+      duplicity restore --file-to-restore mnt/uploads/whitehall/ s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/ /mnt/uploads/whitehall
       ```
 
 #### Clean up
