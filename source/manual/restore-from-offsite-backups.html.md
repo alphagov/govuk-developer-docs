@@ -41,6 +41,7 @@ You will need access to production hieradata credentials to retrieve the AWS cre
 
 1. Retrieve the keys and credentials from the [Deployment repo](https://github.com/alphagov/govuk-secrets)
 following [these instructions](https://github.com/alphagov/govuk-secrets/tree/master/puppet#common-actions)
+
   * You are looking for:
 
       ```
@@ -49,6 +50,8 @@ following [these instructions](https://github.com/alphagov/govuk-secrets/tree/ma
       backup::assets::backup_private_gpg_key
       backup::assets::backup_private_gpg_key_passphrase
       ```
+  * If you are performing the 2nd line backup drill, you will want to use the
+    production credentials
 
 2. Ensure that you can connect to the S3 bucket:
 
@@ -111,6 +114,10 @@ On the machine where you'll be running the restore:
 
 ### Restore a backup
 
+Note: If performing this as part of the 2nd line drill with the whitehall
+backup above, please note that this may require a lot of free disk space as
+the whitehall database is large - ~9GB as of Sept 2017.
+
 1. Extract the downloaded backup
 
       ```
@@ -123,7 +130,6 @@ On the machine where you'll be running the restore:
       ```
       bunzip2 latest/foo.sql.bz2
       ```
-
 3. Restore with:
 
       ```
