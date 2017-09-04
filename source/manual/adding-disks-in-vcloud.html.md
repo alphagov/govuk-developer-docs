@@ -5,14 +5,28 @@ section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/adding-disks-in-vcloud.md"
-last_reviewed_on: 2017-04-08
+last_reviewed_on: 2017-09-04
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/adding-disks-in-vcloud.md)
+New disks are added to machines to add or increase the size of a
+[logical volume (LV)][logical-volume-wiki].
 
+## 1) Add the new disk to Puppet Hieradata
+
+Add the new disk to
+[Hieradata](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
+([example](https://github.com/alphagov/govuk-puppet/commit/73531ea7a7c28cbbb1c04f41ec5da53b4ff591d2)).
+
+You can deploy puppet once the changes have been merged in. However until the
+disk is configured puppet runs on the machine will result in errors.
+
+## 2) Add the extra disk in vCloud Director
+
+1)  Navigate to the VM Properties in the vCloud Director interface and
+    select the 'Hardware' tab. From here, hit the add button under
+    disks, choose a size and hit save.
+2)  Wait for the VM to reconfigure.
 
 > **note**
 
@@ -46,36 +60,30 @@ It hasn't been reviewed for accuracy yet.
 > default disk controller used when we provision machines using [vCloud
 > Launcher](http://rubygems.org/gems/vcloud-launcher).
 
-## 1) Add the new disk to Hiera
+## 3) Update GOV.UK Provisioning repository
 
-1)  Add the new disk to
-    [Hiera](https://github.com/alphagov/govuk-puppet/tree/master/hieradata).
+The [GOV.UK Provisioning](https://github.com/alphagov/govuk-provisioning)
+repository contains all the configuration of the hosts needed for provisioning
+GOV.UK environments. It's important that this remains in sync with the
+configurations in vCloud director.
 
-See an [example
-here](https://github.com/alphagov/govuk-puppet/commit/73531ea7a7c28cbbb1c04f41ec5da53b4ff591d2).
+See an [example](https://github.com/alphagov/govuk-provisioning/pull/17/files).
 
-## 2) Add the extra disk in vCloud Director
-
-1)  Navigate to the VM Properties in the vCloud Director interface and
-    select the 'Hardware' tab. From here, hit the add button under
-    disks, choose a size and hit save.
-2)  Wait for the VM to reconfigure.
-
-## 3) Probe for the new disk on the VM
+## 4) Probe for the new disk on each VM.
 
 1)  Run `sudo fdisk -l` and note the output. You should see each disk
     already configured listed separately. Make a note of which are
     already present.
 2)  Run the following loop as root to probe for new discs
 
-<!-- -->
-
+    ```bash
     echo '- - -' | sudo tee -a /sys/class/scsi_host/*/scan
+    ```
 
 3)  Run `sudo fdisk -l` again and note that you have a new disk called
     `/dev/sdX` where X is a letter. This disk *should* be unpartitioned.
 
-## 4) Partition the disk if necessary
+## 5) Partition the disk if necessary
 
 You can skip this step if you have configured Puppet to use the whole
 disk as an LVM physical volume.
@@ -83,32 +91,34 @@ disk as an LVM physical volume.
 1)  Set an environment variable, replacing `X` with the appropriate
     block device letter
 
-<!-- -->
-
+    ```bash
     export NEW_DISK=/dev/sdX
+    ```
 
 2)  Create a single partition on that disk
 
-<!-- -->
-
+    ```bash
     sudo parted ${NEW_DISK} mklabel msdos
     sudo parted ${NEW_DISK} mkpart primary 1 100%
+    ```
 
 We use [LVM](https://wiki.ubuntu.com/Lvm) for disk management. Once a
 partition exists as a device file (i.e. `/dev/sdX1`), Puppet will enable
 LVM, format the disk and tune the filesystem.
 
-## 5) Run Puppet
+## 6) Run Puppet
 
 1)  Run Puppet, which will configure LVM and tune the filesystem:
 
-<!-- -->
-
+    ```bash
     govuk_puppet --test
+    ```
 
-2)  Verify that the new disk has been created by running `mount`.
+2)  Verify that the new disk has been created by checking the output of
+    `sudo fdisk -l` which will no longer say the disk is unpartitioned. For a
+    new logical volume you can also check `mount` for it's existence
 
-## 6) Extend existing logical volume and filesystem
+## 7) Extend existing logical volume and filesystem
 
 You can skip this step if you're creating a new disk/machine.
 
@@ -120,19 +130,21 @@ operations.
 1)  Set environment variables for the VG and LV names. Replace `XXX`
     with the appropriate names from `sudo vgs` and `sudo lvs`:
 
-<!-- -->
-
+    ```bash
     export VG=XXX
     export LV=XXX
+    ```
 
 2)  Extend the logical volume to the full size of the volume group:
 
-<!-- -->
-
+    ```bash
     sudo lvextend -l +100%FREE /dev/${VG}/${LV}
+    ```
 
 3)  Extend the filesystem to the full size of the logical volume:
 
-<!-- -->
-
+    ```bash
     sudo resize2fs /dev/mapper/${VG}-${LV}
+    ```
+
+[logical-volume-wiki]: https://en.wikipedia.org/wiki/Logical_volume_management
