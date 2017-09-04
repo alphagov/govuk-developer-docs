@@ -69,7 +69,7 @@ configurations in vCloud director.
 
 See an [example](https://github.com/alphagov/govuk-provisioning/pull/17/files).
 
-## 3) Probe for the new disk on each VM.
+## 4) Probe for the new disk on each VM.
 
 1)  Run `sudo fdisk -l` and note the output. You should see each disk
     already configured listed separately. Make a note of which are
@@ -83,7 +83,7 @@ See an [example](https://github.com/alphagov/govuk-provisioning/pull/17/files).
 3)  Run `sudo fdisk -l` again and note that you have a new disk called
     `/dev/sdX` where X is a letter. This disk *should* be unpartitioned.
 
-## 4) Partition the disk if necessary
+## 5) Partition the disk if necessary
 
 You can skip this step if you have configured Puppet to use the whole
 disk as an LVM physical volume.
@@ -106,7 +106,7 @@ We use [LVM](https://wiki.ubuntu.com/Lvm) for disk management. Once a
 partition exists as a device file (i.e. `/dev/sdX1`), Puppet will enable
 LVM, format the disk and tune the filesystem.
 
-## 5) Run Puppet
+## 6) Run Puppet
 
 1)  Run Puppet, which will configure LVM and tune the filesystem:
 
@@ -118,7 +118,7 @@ LVM, format the disk and tune the filesystem.
     `sudo fdisk -l` which will no longer say the disk is unpartitioned. For a
     new logical volume you can also check `mount` for it's existence
 
-## 6) Extend existing logical volume and filesystem
+## 7) Extend existing logical volume and filesystem
 
 You can skip this step if you're creating a new disk/machine.
 
