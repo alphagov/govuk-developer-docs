@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#taxonomy"
-last_reviewed_on: 2017-03-01
+last_reviewed_on: 2017-09-05
 review_in: 6 months
 related_applications: [content-tagger]
 ---
@@ -13,9 +13,11 @@ GOV.UK's "single subject taxonomy" will describe all content on GOV.UK. It is be
 
 ## 1. Editing taxonomy
 
-The taxonomy is managed in [content-tagger][edit-taxonomy].
+The taxonomy is managed in [content-tagger][edit-taxonomy]. Users must have the Editor permission in content-tagger in order to see the relevent pages.
 
 The topics in the taxonomy (we call them "taxons" in code) are persisted in the publishing-api as content items. For an example [see the "Education" taxon][education-taxon].
+
+This means that taxons inherit the publishing-api workflow, and can be in either draft state or published. 
 
 The link type `parent_taxons` is used to store the relationship between taxons. Link expansion makes sure that the taxons will have a `child_taxons` link type too.
 
@@ -28,6 +30,8 @@ Pages that belong to selected organisations (like those related to the education
 The relationship between a page and a taxon is persisted in the publishing-api "links hash". For example, see the [taxons link in the content item for this guidance document][example-guidance].
 
 ## 3. Accessing the taxonomy
+
+The top level taxons are associated with the GOV.UK home page through the `root_taxons` link type. 
 
 This is the content item for the top-level "Education" taxon:
 
