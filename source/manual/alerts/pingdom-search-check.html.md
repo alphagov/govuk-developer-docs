@@ -4,16 +4,15 @@ title: Pingdom search check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-03-04
+last_reviewed_on: 2017-09-05
 review_in: 6 months
 ---
 
 If Pingdom can't retrieve the search results page it means that while
-GOV.UK may be available (see check above), it is not possible to
-retrieve dynamic content. Assuming that the homepage check has not
-failed, the CDN is probably OK. It is possible for our main provider
-(Carrenza) to be down and for us to serve static content from a
-secondary mirror at a second supplier (Skyscape).
+GOV.UK may be available, it is not possible to retrieve dynamic content.
+Assuming that the homepage check has not failed, the CDN is probably OK.
+It is possible for our main provider (Carrenza) to be down and for us to
+serve static content from a secondary mirror at a second supplier (Skyscape).
 
 This is not such a critical problem as you might assume, because a large
 amount of traffic comes direct to static content from external searches
