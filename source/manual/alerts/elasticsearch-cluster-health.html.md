@@ -130,8 +130,6 @@ curl -XPOST 'localhost:9200/<index_name>/_close?pretty=true'
 curl -XPOST 'localhost:9200/<index_name>/_open?pretty=true'
 ```
 
-
-
 ### Split brain
 
 Split brain occurs when two parts of the cluster lose connectivity with each
