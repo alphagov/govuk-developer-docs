@@ -13,7 +13,7 @@ GOV.UK's "single subject taxonomy" will describe all content on GOV.UK. It is be
 
 ## 1. Editing taxonomy
 
-The taxonomy is managed in [content-tagger][edit-taxonomy]. Users must have the Editor permission in content-tagger in order to see the relevent pages.
+The taxonomy is managed in [content-tagger][edit-taxonomy]. Users must have the "GDS Editor" permission in content-tagger in order to see the relevent pages.
 
 The topics in the taxonomy (we call them "taxons" in code) are persisted in the publishing-api as content items. For an example [see the "Education" taxon][education-taxon].
 
