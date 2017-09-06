@@ -76,9 +76,9 @@ See an [example](https://github.com/alphagov/govuk-provisioning/pull/17/files).
     already present.
 2)  Run the following loop as root to probe for new discs
 
-    ```bash
-    echo '- - -' | sudo tee -a /sys/class/scsi_host/*/scan
-    ```
+```bash
+echo '- - -' | sudo tee -a /sys/class/scsi_host/*/scan
+```
 
 3)  Run `sudo fdisk -l` again and note that you have a new disk called
     `/dev/sdX` where X is a letter. This disk *should* be unpartitioned.
@@ -91,16 +91,16 @@ disk as an LVM physical volume.
 1)  Set an environment variable, replacing `X` with the appropriate
     block device letter
 
-    ```bash
-    export NEW_DISK=/dev/sdX
-    ```
+```bash
+export NEW_DISK=/dev/sdX
+```
 
 2)  Create a single partition on that disk
 
-    ```bash
-    sudo parted ${NEW_DISK} mklabel msdos
-    sudo parted ${NEW_DISK} mkpart primary 1 100%
-    ```
+```bash
+sudo parted ${NEW_DISK} mklabel msdos
+sudo parted ${NEW_DISK} mkpart primary 1 100%
+```
 
 We use [LVM](https://wiki.ubuntu.com/Lvm) for disk management. Once a
 partition exists as a device file (i.e. `/dev/sdX1`), Puppet will enable
@@ -110,9 +110,9 @@ LVM, format the disk and tune the filesystem.
 
 1)  Run Puppet, which will configure LVM and tune the filesystem:
 
-    ```bash
-    govuk_puppet --test
-    ```
+```bash
+govuk_puppet --test
+```
 
 2)  Verify that the new disk has been created by checking the output of
     `sudo fdisk -l` which will no longer say the disk is unpartitioned. For a
@@ -130,21 +130,21 @@ operations.
 1)  Set environment variables for the VG and LV names. Replace `XXX`
     with the appropriate names from `sudo vgs` and `sudo lvs`:
 
-    ```bash
-    export VG=XXX
-    export LV=XXX
-    ```
+```bash
+export VG=XXX
+export LV=XXX
+```
 
 2)  Extend the logical volume to the full size of the volume group:
 
-    ```bash
-    sudo lvextend -l +100%FREE /dev/${VG}/${LV}
-    ```
+```bash
+sudo lvextend -l +100%FREE /dev/${VG}/${LV}
+```
 
 3)  Extend the filesystem to the full size of the logical volume:
 
-    ```bash
-    sudo resize2fs /dev/mapper/${VG}-${LV}
-    ```
+```bash
+sudo resize2fs /dev/mapper/${VG}-${LV}
+```
 
 [logical-volume-wiki]: https://en.wikipedia.org/wiki/Logical_volume_management
