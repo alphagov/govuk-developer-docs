@@ -61,15 +61,7 @@ Remove entry from the deploy Jenkinses. This is managed [through govuk-puppet][c
 
 [common]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
 
-## 7. Move repo
-
-Move the repository to the attic. Go into the repository settings in Github, and
-change the owner to [gds-attic][gds-attic]. Once moved, delete any webooks and
-services that exist for it.
-
-[gds-attic]: https://github.com/gds-attic
-
-## 8. Update Signon
+## 7. Update Signon
 
 Mark the application as "retired" in signon, if it used it.
 
@@ -77,7 +69,7 @@ Click on the Applications tab. Find the application that is being
 retired and click the "edit" button. Tick the box that says "This
 application is being retired", then save your changes.
 
-## 9. Update development scripts
+## 8. Update development scripts
 
 Remove from the [development-vm directory][development] `Procfile` and `Pinfile`:
 
@@ -88,7 +80,7 @@ this app locally in the future
 
 [development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 
-## 10. Check replication script
+## 9. Check replication script
 
 Check the data replication scripts for anything specific to this application.
 
@@ -96,7 +88,7 @@ Some applications have special case details in
 <https://github.com/alphagov/env-sync-and-backup/>. Any relating to the
 application should be removed.
 
-## 11. Update DNS
+## 10. Update DNS
 
 Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
@@ -107,37 +99,45 @@ and ask the infrastructure team to approve any necessary Pull Requests.
 [dns-changes]:
 https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
 
-## 12. Update docs
+## 11. Update docs
 
 Mark the application as `retired` in [govuk-developer-docs][dev-docs].
 
 [dev-docs]: https://github.com/alphagov/govuk-developer-docs
 
-## 13. Remove credentials
+## 12. Remove credentials
 
 Remove any hieradata credential entries for the app:
 
 For example: <https://github.com/alphagov/govuk-secrets/pull/408>
 
-## 14. Drop database
+## 13. Drop database
 
 If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
-## 15. Remove jobs in CI
+## 14. Remove jobs in CI
 
 If tests were set up, go to [CI][ci] and choose "Delete Repository" for your project.
 
 [ci]: https://ci.integration.publishing.service.gov.uk/
 
-## 16. Remove other references
+## 15. Remove other references
 
 Do a [code search on GitHub][search] to find any references to the application
 and update or remove them.
 
 [search]: https://github.com/search?q=org%3Aalphagov+panopticon&type=Code
 
-## 17. Unpublish routes
+## 16. Unpublish routes
 
 Some applications are responsible for publishing certain routes. If you're
 retiring a publishing application, make sure you check if any of its content
 items need to be unpublished and do it via the Publishing API.
+
+## 17. Move repo
+
+Move the repository to the attic. Go into the repository settings in Github, and
+change the owner to [gds-attic][gds-attic]. Once moved, delete any webooks and
+services that exist for it.
+
+[gds-attic]: https://github.com/gds-attic
