@@ -168,8 +168,16 @@
   api_docs_url: https://mapit.mysociety.org/docs/
 
 - github_repo_name: metadata-api
+  retired: true
   type: APIs
   team: "#survey-and-support"
+  description: |
+    API written in Go that was used to get user need information about given URLs
+    on GOV.UK. The api would communicate with the `needs API` on behalf of
+    `info-frontend` and retrieve information about user needs. The responses would
+    then be parsed by `metadata-api` and handed over to `info-frontend`. `info-frontend` is
+    now getting need information via the `backdrop read API` which it talks to using
+    `gds-api-adapters`.
 
 # Support
 
