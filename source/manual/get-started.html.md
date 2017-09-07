@@ -161,6 +161,8 @@ If you don't need an optional dependency, you can pass the `-w` option:
 
     dev$ bowl whitehall -w mapit
 
+If these `bowl` commands fail, try the troubleshooting guide on [how to fix a broken bowl](/manual/fix-problems-with-vagrant.html#using-bowl-fails-with-bundler-error).
+
 ## 9. Keep your VM up to date
 
 There are a few scripts that should be run regularly to keep your VM up to date. In `govuk-puppet/development-vm` there is `update-git.sh` and `update-bundler.sh` to help with this. Also, `govuk_puppet` should be run from anywhere on the VM regularly.
