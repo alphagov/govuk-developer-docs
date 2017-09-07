@@ -4,9 +4,11 @@ title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
 section: Support
-last_reviewed_on: 2017-04-01
+last_reviewed_on: 2017-09-06
 review_in: 6 months
 ---
+
+We use GPG keys to encrypt our secrets, documentation for using your GPG key can be found [here](/manual/encrypted-hiera-data.html#common-tasks-for-handling-encrypted-hiera-data).
 
 ## Prerequisites
 
@@ -49,7 +51,7 @@ The key id is `90E65803` in this case. The fingerprint is `37CC 021A C5C2
 You can test it like this:
 
 ```
-echo "1234" | gpg --no-use-agent -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
+echo "1234" | gpg -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
 ```
 
 If you have entered your passphrase correctly you will see "The correct passphrase was entered for this key" text.
