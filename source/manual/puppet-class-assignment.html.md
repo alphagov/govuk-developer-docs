@@ -4,7 +4,7 @@ title: Puppet Class Assignment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/puppet-class-assignment.md"
-last_reviewed_on: 2017-02-22
+last_reviewed_on: 2017-09-08
 review_in: 6 months
 ---
 
@@ -42,4 +42,22 @@ You can see all the currently defined roles in:
 
 Assuming a matching class name exists the role is assigned to the host. In some cases there will also be an inherits
 statement to include resources from one of the base classes. From this point you can follow the Puppet resources
- assigned by reading the included classes in the roles and then the modules they include.
+assigned by reading the included classes in the roles and then the modules they include.
+
+## Puppet class assignment on AWS
+
+On AWS we can't use `certname` to do the class assignment because it is not a fixed value. In this case we are
+using [certificate extensions](https://docs.puppet.com/puppet/latest/ssl_attributes_extensions.html) to decide which class
+should be assigned to an instance. On the instances, the certificate request has been updated at provisioning time to
+include the following extensions, that will appear in the `$::trusted['extensions']` hash:
+  - pp_instance_id: AWS instance Id
+  - pp_image_name: AWS image name
+  - 1.3.6.1.4.1.34380.1.1.13 (pp_role): Instance role, populated at provisioning time with the value of the `aws_migration` tag.
+  - 1.3.6.1.4.1.34380.1.1.18 (pp_region): AWS instance region
+
+When we run `puppet agent`, `govuk_node_class()` will return the content of `$::trusted['extensions']['1.3.6.1.4.1.34380.1.1.13']`
+if it's not empty or null. Otherwise the previous `$::trusted['certname']` is used to extract the class_name.
+
+When we run `puppet apply --trusted_node_data`, `govuk_node_class()` will return the value of the fact
+`$::aws_migration` if it's not empty or null. Otherwise `$::trusted['certname']` will be used.
+
