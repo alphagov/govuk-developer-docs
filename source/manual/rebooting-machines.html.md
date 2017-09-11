@@ -125,6 +125,17 @@ see [Redis rivers for Elasticsearch](alerts/redis.html)
 
 ## Rebooting Redis machines
 
+Unless there are urgent updates to apply, these machines should not be
+rebooted during working hours in production. Other services rely directly on
+particular Redis hosts and may error if they are unvailable.
+
+Reboots of these machines, in the production environment, should be organised
+with the Infrastructure Team.
+
+They may be rebooted in working hours in the staging environment, however you
+should notify colleagues before doing so as this may remove in flight jobs
+that sidekiq has added to the redis queues but not yet processed.
+
 To reboot a Redis machine, run the following command:
 
     fab $environment -H '<machine-to-reboot>' elasticsearch.redis_safe_reboot
