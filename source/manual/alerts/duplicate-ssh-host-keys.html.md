@@ -4,7 +4,7 @@ title: duplicate SSH host keys
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-03-06
+last_reviewed_on: 2017-09-08
 review_in: 6 months
 ---
 
@@ -26,3 +26,8 @@ need to bear in mind that the:
 -   root cause in templating/provisioning also needs to be fixed
 -   key change should be communicated to all people with login accounts
 
+It is also important to keep in mind that this check uses Puppetdb to query
+the facts 'sshdsakey', 'sshecdsakey' and 'sshrsakey' and find duplicated values.
+The check assumes some default values that might change with the time, or there
+could be a problem with Puppetdb itself. For more information, check the
+source of the check in https://github.com/alphagov/nagios-plugins/blob/master/plugins/command/check_puppetdb_ssh_host_keys.py
