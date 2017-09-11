@@ -4,7 +4,7 @@ title: Offsite backups
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2016-12-15
+last_reviewed_on: 2016-09-08
 review_in: 6 months
 ---
 
