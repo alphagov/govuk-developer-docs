@@ -81,6 +81,12 @@ $ rbenv rehash
 
 You should now be able to use `bowl` to run the apps correctly.
 
+However, if you are seeing an error such as
+`rbenv: cannot rehash: /usr/lib/rbenv/shims/.rbenv-shim exists` but the
+`.rbenv-shim` file doesn't exist, try rebooting the VM. Use `vagrant halt`,
+`vagrant up` and then `vagrant ssh` and hopefully `bowl` should be globally
+available.
+
 ## Can't connect to Mongo
 
 This is probably happening because your VM didn't shut down cleanly.
