@@ -4,8 +4,8 @@ title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-06-07
-review_in: 3 months
+last_reviewed_on: 2017-09-12
+review_in: 6 months
 ---
 
 Elasticsearch reports cluster health as one of three possible states, based on
@@ -38,7 +38,7 @@ to help you diagnose any problems.
 
 #### Find hosts in an elasticsearch cluster
 
-We use different elasticsearch clusters for different applications. For example, the `logs-elasticsearch` cluster is used for logging, and the `api-elasticsearch` cluster powers the GOV.UK search API.
+We use different elasticsearch clusters for different applications. For example, the `logs-elasticsearch` cluster is used for logging, and the `rummager-elasticsearch` cluster powers the GOV.UK search API.
 
 You can find hostnames by running:
 

@@ -4,8 +4,8 @@ title: 'Backup and restore Elasticsearch indices'
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2017-06-07
-review_in: 3 months
+last_reviewed_on: 2017-09-12
+review_in: 2 months
 ---
 
 ## Creating a backup
@@ -56,6 +56,9 @@ The [search analytics jenkins job](https://deploy.publishing.service.gov.uk/job/
 - government-$timestamp
 - page-traffic-$timestamp
 - metasearch-$timestamp
+
+After restoring a backup, consider [replaying traffic](/manual/rummager-traffic-replay.html)
+to bring the search index back in sync with the publishing apps.
 
 ### Restoring other indexes (without aliases)
 
