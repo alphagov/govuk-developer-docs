@@ -37,12 +37,13 @@ Give the app a meaningful name to closely match the application name on GitHub.
 
 ## Enable your app to work on Heroku
 
-There are 2 things needed to be configured before you can deploy your app to
+There are 3 things needed to be configured before you can deploy your app to
 Heroku:
 
 - Add a [Procfile](https://devcenter.heroku.com/articles/procfile) that tells
 heroku how to run your application;
 - Add a file called `app.json` with the expected app configuration.
+- Ensure the Gemfile references the correct Ruby version
 
 An example Procfile for a standard Rails application will look something like
 this:
@@ -113,6 +114,14 @@ You can create the application via the `app.json` file.
 
 You will need a successful deploy with a correct configuration before you can
 deploy review apps.
+
+Your Gemfile should contain logic to ensure it's using the same Ruby version as our infrastructure:
+
+```ruby
+ruby File.read('.ruby-version').chomp
+```
+
+See [smart-answers](https://github.com/alphagov/smart-answers/blob/release_3739/Gemfile#L3) for an example of this.
 
 If all goes well, you will be able to see your app on:
 <https://govuk-app.herokuapp.com>
