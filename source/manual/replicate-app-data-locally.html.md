@@ -82,3 +82,7 @@ For example, to run an import but skip MySQL and Elasticsearch:
 ```
 dev$ replicate-data-local.sh -q -e -d backups/2017-06-08 -s
 ```
+
+## Upgrading to Elasticsearch 2.4.6
+
+If you have been running Elasticsearch 1.x.x in the development machine at some point the puppet run will install version 2.4.6. After this you will need to remove some plugins and the re-import the data in order for it to work with this version. In the `govuk-puppet/development-vm` you can run the script `fix-elasticsearch-2.4.sh`. This will remove any incompatible plugins and also delete the data from the previous version. After this you can replicate the Elasticsearch data again by running `./replicate-data-local.sh -u $USERNAME -m -p -q -t` from the `replication` directory.
