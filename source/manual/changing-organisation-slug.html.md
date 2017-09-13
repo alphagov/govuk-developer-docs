@@ -8,8 +8,8 @@ last_reviewed_on: 2017-05-01
 review_in: 6 months
 ---
 
-> **NOTE:** for Worldwide Organisations, only Steps 1, 6 and maybe 7 below need
-> to be performed.
+> **NOTE:** for Worldwide Organisations, only Steps 1 and maybe 6 below need to
+> be performed.
 
 The organisation slug is used as a foreign key for organisations across
 lots of apps. Changing it can be complex and time consuming.
@@ -63,30 +63,6 @@ ManualRecord.exists?(conditions: { organisation_slug: "old-slug" })
 If there are, create a migration to update the slugs. Republish all affected
 manuals after deploying your change.
 
-### 6) Update the organisation slug in the GOV.UK Delivery database
-
-Repo: <https://github.com/alphagov/govuk-delivery>
-
-Find the original slug in the MongoDB database for GOV.UK
-Delivery by running the following in a MongoDB console:
-
-```js
-use govuk_delivery
-db.topics.find({_id: {$regex: new RegExp("old-slug") }})
-```
-
-Then update the topics by inserting the new record and deleting the old one.
-(An update isn't possible because MongoDB doesn't allow updating IDs):
-
-```js
-db.topics.find({_id: {$regex: new RegExp("old-slug") }}).forEach(function(doc) {
-  var old_id = doc._id;
-  doc._id = doc._id.replace(/old-slug/g, "new-slug");
-  db.topics.insert(doc);
-  db.topics.remove({ _id: old_id });
-});
-```
-
-### 7) Update any best-bet searches in Search Admin
+### 6) Update any best-bet searches in Search Admin
 
 <https://search-admin.publishing.service.gov.uk/>
