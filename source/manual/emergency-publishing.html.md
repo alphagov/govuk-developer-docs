@@ -56,6 +56,11 @@ $ . ~/venv/fabric-scripts/bin/activate
 export environment=integration
 ```
 
+4) If you'd like to double check the environment you have set:
+```
+echo $environment
+```
+
 ### Deploy the banner using Jenkins
 
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
@@ -83,13 +88,15 @@ static:
 fab $environment campaigns.clear_cached_templates
 ```
 
-2) Clear the cache for whitehall-frontend by restarting memcached:
+2) Clear the cache for whitehall-frontend and frontend by restarting memcached:
 
 ```
 fab $environment class:whitehall_frontend app.restart:memcached
+fab $environment class:frontend app.restart:memcached
 ```
 
 You may also need to restart `government-frontend` for Whitehall and Travel Advice pages:
+(Note for the reader: This step may not be necessary anymore due to the addition of the memcache clear above, if this is the case please remove this step as part of your 2ndline testing)
 
 ```shell
 fab $environment class:frontend app.restart:government-frontend
