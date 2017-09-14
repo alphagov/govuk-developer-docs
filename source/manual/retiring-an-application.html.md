@@ -134,10 +134,14 @@ Some applications are responsible for publishing certain routes. If you're
 retiring a publishing application, make sure you check if any of its content
 items need to be unpublished and do it via the Publishing API.
 
-## 17. Move repo
+## 17. Remove from Sentry
+
+Since the application has been retired, it shouldn't be tracked in Sentry. 
+
+## 18. Move repo to attic
 
 Move the repository to the attic. Go into the repository settings in Github, and
-change the owner to [gds-attic][gds-attic]. Once moved, delete any webooks and
+change the owner to [gds-attic][gds-attic]. Once moved, delete any webhooks and
 services that exist for it.
 
 [gds-attic]: https://github.com/gds-attic
