@@ -4,7 +4,7 @@ title: Whitehall scheduled publishing
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-03-19
+last_reviewed_on: 2017-09-14
 review_in: 6 months
 ---
 
@@ -31,4 +31,3 @@ If there are overdue publications you can publish by running the
 following:
 
     $ fab $environment whitehall.schedule_publications
-
