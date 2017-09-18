@@ -8,7 +8,9 @@ last_reviewed_on: 2017-08-26
 review_in: 3 months
 ---
 
-Welcome to GOV.UK.
+This is the guide for new technical staff working on GOV.UK in [GDS][]. If you just joined, 👋 welcome!
+
+Note that if you're not working for GDS you'll not be able to complete all of the steps in this guide.
 
 Follow the steps on this page to get your GOV.UK development environment running with a [VirtualBox](https://www.virtualbox.org/) VM, managed and configured by [Vagrant](http://vagrantup.com/).
 
@@ -35,6 +37,8 @@ Run `dev$` commands in the shell on the development VM:
 **If you run into problems**
 
 If you're having trouble with Vagrant or the development VM, there are [troubleshooting tips](https://docs.publishing.service.gov.uk/manual/troubleshooting-vagrant.html) in the dev manual. Of course you should also feel free to call on your colleagues or ask in the #govuk-developers channel in Slack.
+
+[GDS]: https://gds.blog.gov.uk/about/
 
 ## 1. Install some dependencies
 
