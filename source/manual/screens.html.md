@@ -4,7 +4,7 @@ title: Monitoring screens
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_on: 2017-03-14
+last_reviewed_on: 2017-09-14
 review_in: 6 months
 ---
 
@@ -18,8 +18,6 @@ Most often displayed are the [deploy lag radiator][deploy-lag] and the [fourth w
 ![Screen shot of the search screen](images/search-screen.png)
 
 The [search screen][search-screen] displays live data from GOV.UK. Includes number of people on GOV.UK, latest searches, trending and recent content. It's not publicly accessible because there's sometimes personal data in the latest searches.
-
-It runs on a TV on the 6th floor of Aviation House.
 
 [search-screen]: https://github.com/alphagov/govuk-display-screen
 
@@ -81,15 +79,6 @@ box (red for criticals, yellow for warnings, green for all ok).
 
 This is powered by [blinken](https://github.com/alphagov/blinken), an
 instance of which is running on the localhost on port 8080. This is run with `~/blinken/run.sh`.
-
-### Upcoming Releases
-
-This shows the list of upcoming releases.
-
-This is powered by the [departure-lounge][departure-lounge] application, which
-reads from the release calendar.
-
-[departure-lounge]: https://github.com/issyl0/departure-lounge
 
 ### Deployment status of puppet
 
