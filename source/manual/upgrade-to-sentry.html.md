@@ -17,9 +17,9 @@ To upgrade make a PR that does the following:
 1. Remove the `airbrake` gem from the app
 1. Remove the Airbrake initialiser `rm config/initializers/airbrake.rb`
 1. Add `gem "govuk_app_config", "~> 0.2.0"` to your Gemfile
-1. Use at least `gem "govuk_sidekiq", "~> 2.0.0"` to maintain error reporting
-1. Use at least `gem "slimmer", "~> 11.0.2"`, otherwise [errors won't be reported][slimmer]
-1. Use at least `gem "gds-api-adapters", "~> 47.9.1"` to improve error reporting
+1. If you use `govuk_sidekiq`, upgrade at least `gem "govuk_sidekiq", "~> 2.0.0"`, as earlier versions [require Airbrake][req-air]
+1. If you use `slimmer`, upgrade to at least `gem "slimmer", "~> 11.0.2"`, otherwise [errors won't be reported][slimmer]
+1. (Optional) If you use `gds-api-adapters`, upgrade to at least `gem "gds-api-adapters", "~> 47.9.1"` to improve error reporting
 1. Change any manual calls to Airbrake with new-style error logs:
 
   ```rb
@@ -31,6 +31,7 @@ To upgrade make a PR that does the following:
   [rm]: https://github.com/alphagov/govuk_app_config#usage
 
 [slimmer]: https://github.com/alphagov/slimmer/pull/203
+[req-air]: https://github.com/alphagov/govuk_sidekiq/commit/62ff62665bca17121637384ea1ba01691214c603
 
 ## 2. Test that error reporting works
 
