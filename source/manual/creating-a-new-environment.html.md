@@ -258,7 +258,6 @@ environment:
 > 0. transaction-wrappers
 > 0. frontend
 > 0. static
-> 0. govuk-delivery
 > 0. transition
 > 0. licencefinder
 > 0. imminence

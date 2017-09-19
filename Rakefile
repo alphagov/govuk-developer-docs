@@ -38,8 +38,6 @@ task :verify_deployable_apps do
     errbit
     kibana-gds
     sidekiq-monitoring
-
-    govuk-delivery
   ]
 
   puts "Deployables is not included in applications.yml:"
