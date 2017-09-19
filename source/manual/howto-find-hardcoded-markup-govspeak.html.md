@@ -12,7 +12,7 @@ Usually to find usage of markup we can look in our source code.
 
 For example if we wanted to see which templates use a class called 'button' you could search in Github.
 
-However [GovSpeak (our variant of Markdown)](http://govuk-component-guide.herokuapp.com/components/govspeak) includes markup such as buttons that will be in published content.
+However [GovSpeak (our variant of Markdown)](https://govuk-static.herokuapp.com/component-guide/govspeak) includes markup such as buttons that will be in published content.
 
 So, with this in mind you'll need to search all published content.
 
