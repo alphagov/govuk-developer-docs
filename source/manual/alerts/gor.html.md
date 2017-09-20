@@ -5,14 +5,9 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/gor.md"
-last_reviewed_on: 2017-03-16
+last_reviewed_on: 2017-09-13
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/alerts/gor.md)
-
 
 [Gor][gor-gh] is an open source tool for replaying HTTP traffic. We use it to
 replay traffic from production to staging to give us greater confidence that
@@ -51,3 +46,6 @@ able to see them back in icinga.
 
 [gor-gh]: https://github.com/buger/gor/
 [govuk-gor-data-sync]: https://github.com/alphagov/govuk-puppet/blob/06dd008d09/modules/govuk_gor/manifests/init.pp#L50
+
+## `gor running` critical errors in production
+When a data sync job is in progress, you may see errors in production with the status of `PROCS CRITICAL: 0 processes with command name 'gor'`, this is expected and you can check the [progress the job in jenkins](https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging).
