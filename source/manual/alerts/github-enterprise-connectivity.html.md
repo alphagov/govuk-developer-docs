@@ -1,18 +1,13 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-infrastructure"
 title: GitHub Enterprise connectivity
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/github-enterprise-connectivity.md"
-last_reviewed_on: 2017-03-10
-review_in: 6 months
+last_reviewed_on: 2017-09-21
+review_in: 1 month
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/alerts/github-enterprise-connectivity.md)
-
 
 Some machines have a VPN connection to the GDS office so that they can
 clone repositories from GitHub Enterprise.
