@@ -42,7 +42,7 @@ run that directly too:
 ```shell
 $ cd /var/govuk/rummager
 $ ./startup.sh
-````
+```
 
 ## Using `bowl` fails with bundler error
 
@@ -63,7 +63,7 @@ different app.  Leading to errors like:
 
 ```
 /usr/lib/rbenv/versions/2.4.0/bin/bundle:22:in `load': cannot load such file -- /usr/lib/rbenv/versions/1.9.3-p550/lib/ruby/gems/1.9.1/gems/bundler-1.7.4/lib/gems/bundler-1.7.4/bin/bundle (LoadError)
-````
+```
 
 or
 
