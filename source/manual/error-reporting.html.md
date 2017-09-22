@@ -4,8 +4,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
 owner_slack: "@tijmen"
-last_reviewed_on: 2017-08-21
-review_in: 1 month
+last_reviewed_on: 2017-09-22
+review_in: 2 weeks
 ---
 
 When exceptions occur in production environments we need to be notified. We currently use [Errbit][] for this but are in the process of migrating to [Sentry][].
@@ -16,9 +16,9 @@ Sentry is an open source error tracking tool. There's a company called [Sentry.i
 
 ## Configuring Sentry
 
-We configure Sentry using [govuk-sentry-config][]. It reads from the docs and makes sure all the configuration is set up correctly.
+We configure Sentry using [govuk_app_config][]. It reads from the docs and makes sure all the configuration is set up correctly.
 
 [Errbit]: https://errbit.com/docs/master/
 [Sentry]: https://sentry.io/govuk
-[govuk-sentry-config]: https://github.com/alphagov/govuk-sentry-config
+[govuk_app_config]: https://github.com/alphagov/govuk_app_config
 [Sentry.io]: https://sentry.io/about
