@@ -4,11 +4,13 @@ parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
 owner_slack: "@tijmen"
-last_reviewed_on: 2017-08-21
-review_in: 1 month
+last_reviewed_on: 2017-09-25
+review_in: 2 weeks
 ---
 
 When exceptions occur in production environments we need to be notified. We currently use [Errbit][] for this but are in the process of migrating to [Sentry][].
+
+<https://sentry.io/govuk>
 
 ## What is Sentry?
 
