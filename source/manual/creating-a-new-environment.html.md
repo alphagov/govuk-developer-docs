@@ -239,7 +239,6 @@ of deployment matters and might have changed since this was written.
 Here is the order that was used for building the Carrenza preview
 environment:
 
-> 0. errbit
 > 0. router
 > 0. router-api
 > 0. whitehall

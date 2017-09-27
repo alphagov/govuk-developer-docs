@@ -3,18 +3,14 @@ title: Error reporting with Sentry
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
-owner_slack: "@tijmen"
-last_reviewed_on: 2017-09-25
-review_in: 2 weeks
+owner_slack: "#2ndline"
+last_reviewed_on: 2017-09-27
+review_in: 6 months
 ---
 
-When exceptions occur in production environments we need to be notified. We currently use [Errbit][] for this but are in the process of migrating to [Sentry][].
+When exceptions occur in production environments we need to be notified. We use [Sentry][] for this. Sentry is an open source error tracking tool. There's a company called [Sentry.io][] that provides the application as a SaaS product, which we're using.
 
 <https://sentry.io/govuk>
-
-## What is Sentry?
-
-Sentry is an open source error tracking tool. There's a company called [Sentry.io][] that provides the application as a SaaS product, which we're using.
 
 ## Configuring Sentry
 
