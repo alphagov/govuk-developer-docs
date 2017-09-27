@@ -25,18 +25,6 @@ The solution is append to `eager_load_paths` rather than `autoload_paths` which
 will ensure the classes are loaded in both production and development. See
 [Publishing API Example][publishing-api-autoload-change].
 
-### Airbrake
-
-Upgrading to Rails 5 requires upgrading the Airbrake gem to avoid deprecation 
-warnings about middleware. However, Airbrake 5 breaks some compatibility with
-our Errbit installation, namely that deployments are no longer recorded.
-
-Instead of upgrading to a released version of the Airbrake 5 gem you can use
-[a branch in our fork of Airbrake](https://github.com/alphagov/airbrake/tree/silence-dep-warnings-for-rails-5).
-This is 4.3.8 of the gem with a small change to silence the warnings:
-
-    gem 'airbrake', github: 'alphagov/airbrake', branch: 'silence-dep-warnings-for-rails-5'
-
 ### Don't include ActionCable or Puma configs
 
 We don't use these in production and are likely to cause conflicts.

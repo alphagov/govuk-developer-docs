@@ -35,7 +35,6 @@ task :verify_deployable_apps do
     govuk_crawler_worker
     smokey
 
-    errbit
     kibana-gds
     sidekiq-monitoring
   ]
