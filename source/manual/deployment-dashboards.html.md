@@ -68,8 +68,6 @@ The reason for the long titles is we can’t alter the table column headings in 
 
 ### Links
 
-Any additional links to monitoring services that we have not been able to add to the dashboard. Errbit currently links to the page showing all the applications for a given environment. Unfortunately we are not able to link to the application specific Errbit.
-
 Icinga for general errors for a given environment. This should be checked prior to any deployments and also after once all processes count have returned to normal.
 
 ### Worker Failures
