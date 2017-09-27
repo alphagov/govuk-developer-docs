@@ -1,14 +1,12 @@
 ---
 owner_slack: "#govuk-infrastructure"
-title: Patching Jenkins
+title: Patch Jenkins
 parent: "/manual.html"
 layout: manual_layout
 section: Testing
 last_reviewed_on: 2017-05-04
 review_in: 6 months
 ---
-
-# Patching Jenkins
 
 Jenkins should be regularly patched when possible, including all plugins.
 
