@@ -114,9 +114,11 @@ On the machine where you'll be running the restore:
 
 ### Restore a backup
 
-Note: If performing this as part of the 2nd line drill with the whitehall
+**Note**: If performing this as part of the 2nd line drill with the whitehall
 backup above, please note that this may require a lot of free disk space as
-the whitehall database is large - ~9GB as of Sept 2017.
+the whitehall database is large - ~10GB as of Sept 2017.
+
+To make space, first drop your dev VM's `whitehall_development` database. Note after you import the sql, you will end up with a `whitehall_production` database.
 
 1. Extract the downloaded backup
 
