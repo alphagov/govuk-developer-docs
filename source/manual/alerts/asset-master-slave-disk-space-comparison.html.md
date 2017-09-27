@@ -39,4 +39,4 @@ that a large volume of files has been uploaded to Whitehall. In this case the
 alert will only resolve itself when the daily sync job runs so the alert is a
 false alarm and can be acknowledged.
 
-It is worth checking the `support-api/csvs` directory as any reports generated against zendesk get created here, if the report is poorly constrained this can be large (>1GB). These files will be synced daily as part of the `rsync-uploads` task. Use `ls -hltr` to check if any of the recent files are particularly large.
+It is worth checking on `asset-master-1` the `/mnt/uploads/support-api/csvs` directory as any reports generated against zendesk get created here, if the report is poorly constrained this can be large (>1GB). These files will be synced daily as part of the `rsync-uploads` task. Use `ls -hltr` to check if any of the recent files are particularly large.
