@@ -7,9 +7,7 @@ parent: "/apps.html"
 
 <% unless ApplicationsByTeam.no_known_owner.empty? %>
 
-## Repos without a home
-
-You can help us improve this documentation by [editing this page](https://github.com/alphagov/govuk-developer-docs/edit/master/data/applications.yml).
+## Repos without a team
 
 <% ApplicationsByTeam.no_known_owner.each do |app_name| %>
 - [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
