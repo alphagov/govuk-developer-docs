@@ -14,9 +14,9 @@ When exceptions occur in production environments we need to be notified. We use 
 
 ## Configuring Sentry
 
-We configure Sentry using [govuk-sentry-config][]. It reads from the docs and makes sure all the configuration is set up correctly.
+We configure Sentry using [govuk-saas-config][]. It reads from the docs and makes sure all the configuration is set up correctly.
 
 [Errbit]: https://errbit.com/docs/master/
 [Sentry]: https://sentry.io/govuk
-[govuk-sentry-config]: https://github.com/alphagov/govuk-sentry-config
+[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
 [Sentry.io]: https://sentry.io/about

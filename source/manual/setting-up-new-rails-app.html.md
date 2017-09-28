@@ -214,9 +214,9 @@ To complete the setup, do the following.
 
 ### Create the app in Sentry
 
-Run the appropriate rake task in [govuk-sentry-config][].
+Run the appropriate rake task in [govuk-saas-config][].
 
-[govuk-sentry-config]: https://github.com/alphagov/govuk-sentry-config
+[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
 
 ### Update Puppet to include the environment variables for airbrake
 
