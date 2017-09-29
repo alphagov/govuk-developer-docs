@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Replicating application data locally for development
+title: Replicate application data locally for development
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"

@@ -1,5 +1,5 @@
 ---
-title: Managing product support tickets (Zendesk)
+title: Manage product support tickets (Zendesk)
 parent: "/manual.html"
 layout: manual_layout
 section: Support
@@ -8,8 +8,6 @@ last_reviewed_on: 2017-09-05
 review_in: 6 months
 ---
 
-## Managing and triaging product support tickets (Zendesk)
-
-Please review documentation on the [wiki][wiki].
+Please review [documentation on the wiki][wiki].
 
 [wiki]: https://gov-uk.atlassian.net/wiki/spaces/GOVUK/pages/34209803/Managing+product+support+tickets+Zendesk

@@ -1,5 +1,5 @@
 ---
-title: Running out of disk space in development
+title: Fix low disk space in development
 parent: "/manual.html"
 layout: manual_layout
 section: Development VM

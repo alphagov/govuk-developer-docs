@@ -1,8 +1,8 @@
 ---
 owner_slack: '#2ndline'
-last_reviewed_on: 2017-04-28
+last_reviewed_on: 2017-09-27
 review_in: 6 months
-title: Upgrading Rails
+title: Upgrade Rails to a new version
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"

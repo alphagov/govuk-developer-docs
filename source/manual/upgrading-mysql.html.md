@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Upgrading MySQL
+title: Upgrade MySQL
 parent: "/manual.html"
 layout: manual_layout
 section: Databases
