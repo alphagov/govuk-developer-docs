@@ -4,7 +4,7 @@ title: Set up Heroku review apps for pull requests
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-05-23
+last_reviewed_on: 2017-09-29
 review_in: 6 months
 ---
 
@@ -23,12 +23,9 @@ These are examples of GOV.UK apps that have review apps enabled:
 Follow the steps below in order to enable review apps for your GOV.UK
 application.
 
-## Create a Heroku account
+## Use the shared Heroku account
 
-If you don't have a Heroku account yet, please create one using your work email
-address.
-
-You can do so on this page: https://signup.heroku.com
+GOV.UK has a [shared Heroku account](heroku.html). This can be the owner of the review apps.
 
 ## Create a new Heroku app via the UI
 
