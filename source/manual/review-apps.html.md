@@ -25,7 +25,7 @@ application.
 
 ## Use the shared Heroku account
 
-GOV.UK has a [shared Heroku account](heroku.html). This can be the owner of the review apps.
+GOV.UK has a [shared Heroku account](heroku.html). This can be the owner of the review apps, as well as the associated pipelines for deploying the review apps.
 
 ## Create a new Heroku app via the UI
 
