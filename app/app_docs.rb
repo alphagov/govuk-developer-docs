@@ -87,6 +87,10 @@ class AppDocs
       app_data["api_docs_url"]
     end
 
+    def component_guide_url
+      app_data["component_guide_url"]
+    end
+
     def type
       app_data.fetch("type")
     end

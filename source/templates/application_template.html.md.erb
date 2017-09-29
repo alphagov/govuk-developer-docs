@@ -44,6 +44,10 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
     <li><%= link_to "API docs", application.api_docs_url %></li>
   <% end %>
 
+  <% if application.component_guide_url %>
+    <li><%= link_to "Component guide", application.component_guide_url %></li>
+  <% end %>
+
   <% if application.production_url %>
     <li><%= link_to application.production_url.gsub('https://', ''), application.production_url %></li>
   <% end %>
