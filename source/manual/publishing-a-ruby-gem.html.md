@@ -11,8 +11,9 @@ review_in: 6 months
 ## Naming
 
 In general, the gem name should be the same as the thing you require when using
-it.  This means using `_`, and not `-` to separate multi-word gem names.  See
-http://guides.rubygems.org/name-your-gem/ for more detailed guidance.
+it. This means using `_`, and not `-` to separate multi-word gem names.  See the
+[name your gem guide](http://guides.rubygems.org/name-your-gem/) for more detailed
+guidance.
 
 ## Versioning
 
