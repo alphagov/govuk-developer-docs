@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Testing Ruby projects
+title: Test Ruby projects
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"

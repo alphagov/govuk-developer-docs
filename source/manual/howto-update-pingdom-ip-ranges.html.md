@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Update Pingdom IP Ranges
+title: Update Pingdom IP ranges
 section: Environments
 layout: manual_layout
 parent: "/manual.html"

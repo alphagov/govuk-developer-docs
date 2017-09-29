@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Using Database GUI Tools
+title: Use database GUI tools
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
