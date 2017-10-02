@@ -4,7 +4,7 @@ title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-04-01
+last_reviewed_on: 2017-10-02
 review_in: 6 months
 ---
 
@@ -84,7 +84,7 @@ was undocumented).
 We have asked them to increase this limit for Bouncer's service a few
 times as the number of domains it handled grew, and the limit is
 [currently 3500](https://fastly.zendesk.com/requests/7356). We have
-[about 3000 domains](https://transition.publishing.service.gov.uk/hosts)
+[about 2000 domains](https://transition.publishing.service.gov.uk/hosts)
 so shouldn't need to increase it again for a while.
 
 If we reach the limit then the [Jenkins job to update Bouncer's CDN
