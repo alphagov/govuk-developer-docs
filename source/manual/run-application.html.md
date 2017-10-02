@@ -40,4 +40,4 @@ run that directly too:
 ```shell
 $ cd /var/govuk/rummager
 $ ./startup.sh
-````
+```
