@@ -4,7 +4,7 @@ title: Benchmark search queries failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-06-27
+last_reviewed_on: 2017-10-02
 review_in: 3 months
 ---
 
