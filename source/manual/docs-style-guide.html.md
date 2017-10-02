@@ -4,8 +4,8 @@ title: Documentation style guide
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-27
-review_in: 3 months
+last_reviewed_on: 2017-10-02
+review_in: 6 months
 ---
 
 ## What pages should be about
@@ -32,6 +32,8 @@ Bad examples:
 
 > How to reboot a machine
 
+> Rebooting a machine
+
 > Data sync
 
 > Ruby (too vague: what about Ruby?)
@@ -50,7 +52,7 @@ Use subheadings to break up the page and allow readers to scan the page for what
 
 Good example:
 
-> Title: Rebooting machines
+> Title: Reboot a machine
 
 > Subheadings: Redis, MongoDB, Elasticsearch
 
