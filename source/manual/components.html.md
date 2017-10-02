@@ -18,6 +18,8 @@ Find components in these guides:
 
 * [static component guide](https://govuk-static.herokuapp.com/component-guide/)
 * [government-frontend component guide](https://government-frontend.herokuapp.com/component-guide/)
+* [collections component guide](https://govuk-collections.herokuapp.com/component-guide/)
+* [finder-frontend component guide](https://finder-frontend.herokuapp.com/component-guide/)
 
 ## Building components
 
