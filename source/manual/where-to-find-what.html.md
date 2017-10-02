@@ -4,8 +4,8 @@ title: Where to find what documentation?
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-27
-review_in: 3 months
+last_reviewed_on: 2017-10-02
+review_in: 6 months
 ---
 
 ## Individual repos
@@ -39,7 +39,7 @@ review_in: 3 months
 
 - Contains ideas and proposals for GOV.UK
 
-[readme]: https://github.com/alphagov/styleguides/blob/master/use-of-READMEs.md
+[readme]: https://docs.publishing.service.gov.uk/manual/readmes.html
 [docs-folder]: https://github.com/alphagov/publishing-api/tree/master/doc
 [plops]: https://gov-uk.atlassian.net/wiki/display/PLOPS/GOV.UK+Platform+Operations+Home
 [prod-docs]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Product+documentation

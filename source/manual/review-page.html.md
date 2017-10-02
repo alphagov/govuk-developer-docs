@@ -4,8 +4,8 @@ title: Review a page in this manual
 section: Manual
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-03
-review_in: 3 months
+last_reviewed_on: 2017-10-02
+review_in: 6 months
 ---
 
 How to review pages in this manual.
@@ -18,12 +18,11 @@ How to review pages in this manual.
 - Does it help the reader complete their task?
 - Is it incomplete?
 - Does the page contain information easily available elsewhere?
-- Does the page contain sensitive or inappropriate information? For example passwords, individual email addresses, groups, calendars, 'secret' links.
 
 ## When you've reviewed the page, either:
 
 - Update the page
-- Remove it (don’t forget to set up a redirect)
+- Remove it (don’t forget to [set up a redirect][redirects])
 - Assign it for someone else to review
 - Confirm the page is OK and set a new review date
 
@@ -42,3 +41,5 @@ You can find [GOV.UK blog posts on the  GDS Tech blog](https://gdstechnology.blo
 ## Related
 
 - [Documentation style guide](/manual/docs-style-guide.html)
+
+[redirects]: https://github.com/alphagov/govuk-developer-docs/blob/master/data/redirects.yml
