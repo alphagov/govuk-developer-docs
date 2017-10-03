@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Publishing a Ruby gem
+title: Publish a Ruby gem
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"
