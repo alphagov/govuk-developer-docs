@@ -23,7 +23,7 @@ but replication has to be initiated manually.
 ## Syncing a standby
 
 To sync (or indeed resync) a standby from a primary run
-`pg_resync_slave` as root.
+`sudo pg_resync_slave`.
 
 By default, you should **not** be prompted for a password. If you are
 prompted, then this password is stored in the [govuk-secrets
