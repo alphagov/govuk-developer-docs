@@ -47,6 +47,13 @@ $ fab $environment -H cache-3.router do:'/usr/lib/nagios/plugins/check_procs -c 
 [cache-3.router] out: PROCS OK: 1 process with command name 'varnishd', PPID = 8273
 ```
 
+### Related Kibana query
+
+You can view the number of 5xx errors by [logging into Logit](/manual/logit.html),
+and using this query:
+
+`host:cache* AND @fields.status:[500 TO 599]`
+
 ### To resolve Varnish port not responding
 
 You just need to restart Varnish on this machine:
