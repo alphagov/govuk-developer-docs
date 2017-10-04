@@ -78,3 +78,19 @@ Note: there is a risk that you might delete the wrong message(s). This
 is because the contents of the queue may have changed.
 
 Repeat, but change the "Requeue" option to "No".
+
+## Previewing a message for a document_type
+
+The publishing API generates messages when content is updated and posts them
+to the rabbitMQ exchange. Each message has a shared format, however the contents
+of the message is affected by the publishing app and what data it sends to the
+publishing API.
+
+As messages for different formats can vary, we have created a rake task in the
+publishing API app to allow us to easily generate example messages. The example
+message is generated from the most recently published message (based off of
+last public_updated_at) for the entered document type:
+
+```
+bundle exec rake queue:preview_recent_message[<document_type>]
+```
