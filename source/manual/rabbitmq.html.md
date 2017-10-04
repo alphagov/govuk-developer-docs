@@ -5,7 +5,7 @@ section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/rabbitmq.md"
-last_reviewed_on: 2017-02-25
+last_reviewed_on: 2017-10-04
 review_in: 6 months
 ---
 
@@ -27,8 +27,11 @@ but also allows us to monitor activity easily.
 
 Heartbeat messages are sent every minute by cron. Currently, we only
 send heartbeat messages to one exchange: the `published_documents`
-exchange. These heartbeats are sent via a rake task in the
-`content-store` app.
+exchange. These heartbeats are sent via a [rake task][heartbeat_rake_task]
+in the `publishing-api` app.
+
+[heartbeat_rake_task]: https://github.com/alphagov/publishing-api/blob/012cb3f1ceb3b18e7059a367cc4030aa0763afb4/lib/tasks/heartbeat_messages.rake
+
 ## Connecting to the RabbitMQ web control panel
 
 1.  Create an SSH tunnel to access the web control panel
