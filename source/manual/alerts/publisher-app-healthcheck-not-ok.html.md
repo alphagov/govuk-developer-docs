@@ -4,7 +4,7 @@ title: publisher app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-03-04
+last_reviewed_on: 2017-10-04
 review_in: 6 months
 ---
 
