@@ -10,7 +10,12 @@ review_in: 6 months
 
 This alert triggers when there's an error while running Puppet on a machine.
 
-To investigate, SSH into the machine and look at `syslog`:
+To view the errors in Kibana, first login to [Logit](/manual/logit.html), and then
+run the following query (where `$hostname` is the hostname linked to the alert):
+
+`syslog_program:'puppet-agent' AND host:$hostname`
+
+You may also SSH into the machine and look at `syslog`:
 
 ```
 tail /var/log/syslog
