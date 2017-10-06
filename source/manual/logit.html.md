@@ -59,6 +59,6 @@ At present there is no automated way to configure Logstash configuration.
 4. Click "Validate"
 5. If correctly validated, click "Apply"
 
-We store our configuration in the [govuk-logitio](https://github.com/alphagov/govuk-logitio)
+We store our configuration in the [govuk-saas-config](https://github.com/alphagov/govuk-saas-config)
 repository. Any changes to the configuration should be stored in here, and they
 should be consistent across stacks.
