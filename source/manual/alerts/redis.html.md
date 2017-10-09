@@ -5,14 +5,9 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/redis.md"
-last_reviewed_on: 2017-03-12
+last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/alerts/redis.md)
-
 
 We have a few monitoring checks for Redis:
 
@@ -45,8 +40,8 @@ discards data.
 
 -  You should use graphite for looking at CPU load and used memory.
    (Pending: More graphite inputs)
--  Also check how does this impacts Elasticsearch.
--  `redis-cli INFO` and `redis-cli CLIENT LIST` command helps to
+-  Also check how this impacts Elasticsearch.
+-  `redis-cli INFO` and `redis-cli CLIENT LIST` commands help to
    see present info. [Other commands may come handy](http://redis.io/commands).
 
 ### Redis rivers for Elasticsearch
