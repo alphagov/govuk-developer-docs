@@ -5,14 +5,9 @@ section: Environments
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-mirror.md"
-last_reviewed_on: 2017-03-12
+last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/setting-up-new-mirror.md)
-
 
 We mirror GOV.UK on a number of providers which run independently of
 each other in order to ensure availability and integrity. In this
@@ -219,7 +214,7 @@ Run:
 fab -u ubuntu -p password $ENVIRONMENT deploy
 ```
 
-...where \$ENVIRONMENT is corresponds the to the environment you just
+...where \$ENVIRONMENT corresponds to the environment you just
 configured in fabfile.py. If prompted for a password or passphrase,
 enter ubuntu. The Puppet run should now complete on all of the hosts
 specified in fabfile.py. Note that Puppet will delete the ubuntu user
