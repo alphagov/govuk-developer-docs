@@ -5,14 +5,9 @@ section: Assets
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/howto-upload-an-asset-to-asset-manager.md"
-last_reviewed_on: 2017-03-23
+last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/howto-upload-an-asset-to-asset-manager.md)
-
 
 Some publishing apps such as Mainstream Publisher do not provide the facility for editors to upload
 assets such as images and PDFs. In these rare cases, we can upload assets to asset-manager manually
