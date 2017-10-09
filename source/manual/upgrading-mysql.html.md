@@ -4,7 +4,7 @@ title: Upgrade MySQL
 parent: "/manual.html"
 layout: manual_layout
 section: Databases
-last_reviewed_on: 2017-04-03
+last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---
 
