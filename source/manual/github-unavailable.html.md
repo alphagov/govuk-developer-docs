@@ -5,7 +5,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/github-unavailable.md"
-last_reviewed_on: 2017-10-05
+last_reviewed_on: 2017-10-09
 review_in: 1 months
 ---
 
@@ -34,9 +34,18 @@ disclosing it to the public. To do this, push to a new branch on GitLab.com and 
 
 ### Deploying if you can't authenticate with Jenkins
 
-If GitHub.com is down, we may not be able to log in to Jenkins. We haven't yet looked into this problem,
-2ndline is due to Gameday this scenario soon. Possible options:
+If GitHub.com is down, we will not be able to log in to Jenkins.
 
-1. Run the Capistrano deployment scripts from a developer's laptop. This may require them to have access to the `deploy` user.
-2. [Bypass Jenkins authentication](https://jenkins.io/doc/book/system-administration/security/#disabling-security)
-3. Add break-glass credentials to Jenkins to use instead of GitHub OAuth.
+In this scenario, Jenkins security should be disabled to enable deployment.
+
+1. SSH to the Jenkins Deploy instance: `ssh jenkins-1.<environment>`
+2. Disable Puppet: `govuk_puppet -r "Emergency Jenkins deploy" --disable`
+3. Edit the Jenkins configuration file: `sudo vim /var/lib/jenkins/config.xml`
+4. Replace `<useSecurity>true</useSecurity>` with `<useSecurity>false</useSecurity>` and save
+5. Restart Jenkins: `sudo service jenkins restart`
+6. Browse to the Jenkins UI and begin the deployment process
+7. When completed, enable and run Puppet on the instance: `govuk_puppet --enable && govuk_puppet --test`
+
+See the [Jenkins documentation](https://jenkins.io/doc/book/system-administration/security/#disabling-security)
+for further details. Also note that once we've disabled security, anyone on GDS
+trusted IPs will be able to deploy to Production.
