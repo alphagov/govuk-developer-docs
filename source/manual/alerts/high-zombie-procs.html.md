@@ -4,7 +4,7 @@ title: high zombie procs
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-04-05
+last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---
 
