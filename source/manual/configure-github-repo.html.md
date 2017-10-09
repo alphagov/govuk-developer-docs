@@ -10,7 +10,7 @@ review_in: 6 months
 
 Repositories in GOV.UK must:
 
-- Be accessible to the [GOV.UK team][team]
+- Have the [GOV.UK team][team] as `Admin`
 - Have a good description
 - Link to relevant documentation
 - Be tagged with [`govuk`](https://github.com/search?q=topic:govuk)
