@@ -87,7 +87,7 @@ Follow these steps:
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [cdn-configs]: https://github.com/alphagov/cdn-configs
 [dictionaries-readme]: https://github.com/alphagov/cdn-configs/blob/master/fastly/dictionaries/README.md
-[dictionary-config-example]: https://github.digital.cabinet-office.gov.uk/gds/cdn-configs/commit/a2a3e2bf2e5371a9d82b06072a2034c76e219460
+[dictionary-config-example]: https://github.com/alphagov/cdn-configs/commit/a2a3e2bf2e5371a9d82b06072a2034c76e219460
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [configuration-file]: https://github.com/alphagov/fastly-configure/blob/master/ab_tests/ab_tests.yaml
 [fastly-configure]: https://github.com/alphagov/fastly-configure
