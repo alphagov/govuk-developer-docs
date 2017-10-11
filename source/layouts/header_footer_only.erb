@@ -15,6 +15,7 @@
     <!--[if lte IE 8]><%= stylesheet_link_tag 'screen-old-ie', media: 'screen' %><![endif]-->
 
     <link rel="canonical" href="<%= canonical_url %>">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css"/>
 
     <%= stylesheet_link_tag :print, media: 'print' %>
     <%= javascript_include_tag :application %>
@@ -79,6 +80,15 @@
 
       <%= yield %>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.js"></script>
+    <script>
+      docsearch({
+        apiKey: '7acf46aa10b80bb6f92e7138f84bfacf',
+        indexName: 'publishing_service_gov_uk',
+        inputSelector: '#tech-docs-search'
+      });
+    </script>
 
     <% if config[:tech_docs][:ga_tracking_id].is_a?(String) && !config[:tech_docs][:ga_tracking_id].empty? %>
       <script>
