@@ -38,6 +38,14 @@
     .algolia-autocomplete .algolia-docsearch-suggestion--subcategory-column {
       color: $text-colour;
     }
+
+    // Default search term highlighting is low contrast and doesn't work with
+    // the yellow curreny-highlighting.
+    .algolia-autocomplete .algolia-docsearch-suggestion--highlight {
+      color: $text-colour;
+      text-decoration: underline;
+      background: inherit;
+    }
   }
 }
 
