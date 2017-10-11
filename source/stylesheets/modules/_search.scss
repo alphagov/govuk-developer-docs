@@ -6,6 +6,7 @@
   .search {
     @include core-16;
     margin-bottom: $gutter-half;
+    height: 40px;
 
     .form-control {
       @include box-sizing(border-box);
@@ -19,6 +20,11 @@
         outline: 3px solid $focus-colour;
         outline-offset: 0;
       }
+    }
+
+    .algolia-autocomplete {
+      position: absolute !important;
+      z-index: 10000;
     }
   }
 }
