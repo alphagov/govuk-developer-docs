@@ -28,11 +28,15 @@ class AppDocs
         puppet_name: puppet_name,
         links: {
           self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
-          html_url: "https://docs.publishing.service.gov.uk/apps/#{app_name}.html",
+          html_url: html_url,
           repo_url: repo_url,
           sentry_url: sentry_url,
         }
       }
+    end
+
+    def html_url
+      "https://docs.publishing.service.gov.uk/apps/#{app_name}.html"
     end
 
     def retired?
