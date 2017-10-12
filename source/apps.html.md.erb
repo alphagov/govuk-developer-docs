@@ -6,6 +6,15 @@ title: Applications on GOV.UK
 The publishing platform of GOV.UK consists of at least <%= active_app_pages.size %>
 separate applications. Most of them are built using [Ruby on Rails][rails].
 
+You can [download this data as JSON](/apps.json), or [download this data as CSV](/apps.csv).
+In Google Spreadsheets, use the following formula:
+
+```
+=importData("https://docs.publishing.service.gov.uk/apps.csv")
+```
+
+## Infrastructure
+
 Applications are hosted on an infrastructure [configured using puppet][govuk-puppet].
 They are deployed using [capistrano scripts][govuk-app-deployment].
 
