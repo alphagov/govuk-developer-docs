@@ -19,6 +19,10 @@ class DocumentTypes
     end
   end
 
+  def self.to_csv
+    DocumentTypesCsv.new(pages).to_csv
+  end
+
   def self.coverage_percentage
     ((pages.sum(&:total_count) / facet_query.fetch("total").to_f) * 100).round(1)
   end
@@ -38,6 +42,10 @@ class DocumentTypes
       @name = name
       @total_count = total_count
       @examples = examples
+    end
+
+    def url
+      "https://docs.publishing.service.gov.uk/document-types/#{name}.html"
     end
 
     def search_url
