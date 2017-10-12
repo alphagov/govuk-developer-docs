@@ -63,7 +63,7 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 </ul>
 <% end %>
 
-<% if manual.pages_for_application(application.app_name) %>
+<% if manual.pages_for_application(application.app_name).any? %>
 <h3>Relevant manual pages</h3>
 
 <ul>
