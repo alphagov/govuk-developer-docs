@@ -22,44 +22,44 @@ Kibana can be searched using the [Lucene search syntax][lucene].
 ### 5xx errors returned from cache layer
 
 ```rb
-@source_host:cache* AND @fields.status:[500 TO 504]
+host:cache* AND @fields.status:[500 TO 504]
 ```
 
 ### Puppet runs
 
 ```rb
 # both agent and master
-@fields.syslog_program:puppet
+syslog_program:puppet
 
 # agent only
-@fields.syslog_program:"puppet-agent"
+syslog_program:"puppet-agent"
 
 # master only
-@fields.syslog_program:"puppet-master"
+syslog_program:"puppet-master"
 ```
 
 ### Syslog logs
 
 ```rb
-@type:"syslog"
+application:"syslog"
 ```
 
 ### Syslog logs filtered by program
 
 ```rb
-@type:"syslog" AND @fields.syslog_program:"rsync"
+application:"syslog" AND syslog_program:"rsync"
 ```
 
 ### Nginx logs
 
 ```rb
-nginx @tags:"nginx"
+tags:"nginx"
 ```
 
 Nginx logs for frontend:
 
 ```rb
-@tags:"nginx" AND @fields.application:frontend*
+tags:"nginx" AND application:frontend*
 ```
 
 Note: the `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
@@ -67,56 +67,56 @@ Note: the `@timestamp` field records the request END time. To calculate request 
 ### CDN logs
 
 ```rb
-@fields.application:"govuk-cdn-logs-monitor"
+application:"govuk-cdn-logs-monitor"
 ```
 
 ### Application upstart logs
 
 ```rb
-@tags:"upstart" 
+tags:"upstart"
 
-@tags:"upstart" AND @tags:"stdout"
+tags:"upstart" AND tags:"stdout"
 
-@tags:"upstart" AND @tags:"stderr"
+tags:"upstart" AND tags:"stderr"
 
-@tags:"upstart" AND @fields.application:"licensify"
+tags:"upstart" AND application:"licensify"
 ```
 
 ### Application production.log files
 
 ```rb
-@tags:"application"
+tags:"application"
 
-@tags:"application" AND @fields.application:"smartanswers"
+tags:"application" AND application:"smartanswers"
 ```
 
 ### MongoDB slow queries
 
 ```rb
-@fields.application:"mongodb" AND @message:"command"
+application:"mongodb" AND message:"command"
 ```
 
 ### Audit/access logs
 
 ```rb
-@type:"syslog" AND @fields.syslog_program:"audispd"
+application:"syslog" AND syslog_program:"audispd"
 ```
 
 ### Mirrrorer logs
 
 ```rb
-@fields.syslog_program:"mirrorer"
+syslog_program:"mirrorer"
 ```
 
 ### Publishing API timeouts
 
 ```rb
-@fields.error:"TimedOutException" AND (@fields.application:"specialist-publisher" OR @fields.application:"whitehall" OR @fields.application:"content-tagger")
+@fields.error:"TimedOutException" AND (application:"specialist-publisher" OR application:"whitehall" OR application:"content-tagger")
 ```
 
 ## Syslog program names
 
-If you're looking for specific program outputs, use `@fields.syslog_program:FOO`:
+If you're looking for specific program outputs, use `syslog_program:FOO`:
 
 - `audispd`:	This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.
 - `clamd`	 
