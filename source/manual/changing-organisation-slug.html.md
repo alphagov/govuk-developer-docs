@@ -36,7 +36,7 @@ Find out if any manuals are published by this organisation.
 Run the following in manuals-publisher Rails console:
 
 ```ruby
-ManualRecord.exists?(conditions: { organisation_slug: "old-slug" })
+ManualRecord.where(organisation_slug: "old-slug").exists?
 ```
 
 If there are, create a migration to update the slugs. Republish all affected
