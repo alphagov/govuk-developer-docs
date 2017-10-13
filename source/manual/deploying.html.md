@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
-last_reviewed_on: 2017-07-10
+last_reviewed_on: 2017-10-13
 review_in: 3 months
 ---
 
@@ -78,7 +78,7 @@ trying again later.
 
 ## GitHub
 
-We depend on both GitHub and GitHub Enterprise for deploying software to GOV.UK. We have processes in place to deploy if [either of the GitHubs are unavailable](github-unavailable.html).
+We depend on GitHub for deploying software to GOV.UK. We have processes in place to deploy if [GitHub is unavailable](github-unavailable.html).
 
 ## On the blog
 
