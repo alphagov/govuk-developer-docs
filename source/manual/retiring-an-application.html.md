@@ -4,12 +4,13 @@ title: Retire an application
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-14
+last_reviewed_on: 2017-10-17
 review_in: 6 months
 ---
 
 To remove an application from our infrastructure take the following
-steps:
+steps. Note some of the repositories are private repos that not everyone has
+access to, you may need to ask your tech lead for access.
 
 ## 1. Archive database
 
@@ -41,10 +42,10 @@ Remove any [smokey tests][smokey] specific to the application.
 
 ## 4. Remove deploy scripts
 
-Remove necessary scripts from the [alphagov-deployment][alphagov-deployment] and
-[govuk-app-deployment][govuk-app-deployment] repos.
+Remove necessary scripts from the [alphagov-deployment][alphagov-deployment]
+(private repo) and [govuk-app-deployment][govuk-app-deployment] repos.
 
-[alphagov-deployment]: https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment
+[alphagov-deployment]: https://github.com/alphagov/alphagov-deployment
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 
 ## 5. Update Release app
@@ -75,8 +76,7 @@ Remove from the [development-vm directory][development] `Procfile` and `Pinfile`
 
 Leave a comment in the `Procfile` indicating that the port used to be
 used by this app, to avoid port conflicts causing a problem running
-this app locally in the future
-(eg <https://github.digital.cabinet-office.gov.uk/gds/development/pull/149>).
+this app locally in the future.
 
 [development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 
@@ -85,8 +85,8 @@ this app locally in the future
 Check the data replication scripts for anything specific to this application.
 
 Some applications have special case details in
-<https://github.com/alphagov/env-sync-and-backup/>. Any relating to the
-application should be removed.
+<https://github.com/alphagov/env-sync-and-backup/> (private repo). Any relating
+to the application should be removed.
 
 ## 10. Update DNS
 
@@ -107,9 +107,10 @@ Mark the application as `retired` in [govuk-developer-docs][dev-docs].
 
 ## 12. Remove credentials
 
-Remove any hieradata credential entries for the app:
+Remove any hieradata credential entries for the app in [govuk-secrets][]
+(private repo).
 
-For example: <https://github.com/alphagov/govuk-secrets/pull/408>
+[govuk-secrets]: https://github.com/alphagov/govuk-secrets
 
 ## 13. Drop database
 
@@ -136,7 +137,7 @@ items need to be unpublished and do it via the Publishing API.
 
 ## 17. Remove from Sentry
 
-Since the application has been retired, it shouldn't be tracked in Sentry. 
+Since the application has been retired, it shouldn't be tracked in Sentry.
 
 ## 18. Move repo to attic
 
