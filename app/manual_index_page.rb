@@ -15,6 +15,10 @@ class ManualIndexPage
     ]
   end
 
+  def other_pages_from_section(other_page)
+    manual_pages.select { |page| page.data.section == other_page.data.section } - [other_page]
+  end
+
 private
 
   def first_column
