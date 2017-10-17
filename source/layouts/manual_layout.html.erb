@@ -19,5 +19,33 @@
     </div>
   <% end %>
 
+  <% if page_review.expired? %>
+    <div class='warning'>
+      This page was set to be reviewed before <%= page_review.review_by %>
+      by the page owner: <%= current_page.data.owner_slack %>. This might mean the
+      content is out of date. <%= link_to "Read how to review a page", "/manual/review-page.html" %>
+    </div>
+  <% end %>
+
   <%= html %>
+
+  <div>
+    <% if current_page.data.related_applications %>
+      <h2 id='related-applications'>Related applications</h2>
+
+      <ul>
+      <% current_page.data.related_applications.to_a.each do |app| %>
+        <li><%= link_to app, "/apps/#{app}.html" %></li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+
+  <% if page_review.reviewable? %>
+    This page is owned by <%= current_page.data.owner_slack %>
+    and <%= link_to "needs to be reviewed", "/manual/review-page.html" %>
+    <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
+      <%= page_review.review_by %>
+    </time>
+  <% end %>
 <% end %>
