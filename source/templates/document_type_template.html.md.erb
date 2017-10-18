@@ -6,6 +6,20 @@ parent: /document-types.html
 There are <strong><%= page.total_count %></strong> pages with document type
 '<%= page.name %>' in the GOV.UK search index.
 
+## Rendering apps
+
+<% if page.rendering_apps.any? %>
+This document type is rendered by:
+
+<% page.rendering_apps.each do |rendering_app| %>
+- <%= link_to rendering_app, "/apps/#{rendering_app}.html" %>
+<% end %>
+<% else %>
+This document type is not rendered by any apps. This could mean that the document
+type is not meant to be rendered (a redirect for example), or that there aren't
+actually any pages with this document type.
+<% end %>
+
 ## Supertypes
 
 | Type | Group |
