@@ -4,7 +4,7 @@ title: MySQL Xtrabackups to S3
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-07-11
+last_reviewed_on: 2017-10-18
 review_in: 6 months
 ---
 
@@ -20,7 +20,7 @@ If this alert triggers it means the nightly base backup has failed to
 run. Check the logs in Kibana using this query:
 
 ```rb
-@source_host:mysql-backup* AND @fields.syslog_program:xtrabackup_s3_base
+host:mysql-backup* AND syslog_program:xtrabackup_s3_base
 ```
 
 As this runs on a slave, it is safe to rerun at anytime. Log into the
@@ -39,7 +39,7 @@ every 15 minutes, have had a problem. Check Kibana with the following
 query:
 
 ```rb
-@source_host:mysql-backup* AND @fields.syslog_program:xtrabackup_s3_incremental
+host:mysql-backup* AND syslog_program:xtrabackup_s3_incremental
 ```
 
 It is safe to run manually, though this will by nature run regularly so
