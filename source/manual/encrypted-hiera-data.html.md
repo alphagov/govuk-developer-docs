@@ -4,9 +4,10 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2017-10-18
 review_in: 6 months
 ---
+
 [Hiera](https://docs.puppetlabs.com/hiera/1/) is a key/value lookup tool
 that we use for storing [Puppet](https://docs.puppetlabs.com/puppet/)
 configuration data. We use [Hiera eYAML
@@ -27,23 +28,20 @@ Git commit.
 
 ## What Hiera data do we encrypt?
 
-Currently, we only encrypt the data in the
-credentials files found in the
+Currently, we only encrypt the data in the credentials files found in the
 [hieradata/](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
-directories of the alphagov/govuk-puppet and alphagov/govuk-secrets repositories. These
-files contain secrets such as passwords and private keys.
+directories of the `alphagov/govuk-puppet` and `alphagov/govuk-secrets`
+repositories. These files contain secrets such as passwords and private keys.
 
 Only secrets for the production, staging and integration environments
 are actually sensitive. The
 [vagrant_credentials.yml](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/vagrant_credentials.yaml)
-file, used with the [Vagrant test
-VMs](https://github.com/alphagov/govuk-puppet/blob/master/Vagrantfile),
+file, used with the [Vagrant test VMs](https://github.com/alphagov/govuk-puppet/blob/master/Vagrantfile),
 should not contain any sensitive data but can be used to test Hiera
 eYAML GPG using dummy data.
 
 There is currently no support for encrypted Hiera data using the
-[development
-VM](https://github.com/alphagov/govuk-puppet/tree/master/development-vm);
+[development VM](https://github.com/alphagov/govuk-puppet/tree/master/development-vm);
 this is intentional for reasons of simplicity.
 
 ## Why do we encrypt Hiera data?
@@ -53,28 +51,28 @@ a separate repository,
 [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets), to store secrets
 and sensitive data in Hiera. Whereas the
 [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) repository is
-open to all developers, access to the alphagov/govuk-secrets repository is
+open to all developers, access to the `alphagov/govuk-secrets` repository is
 restricted to a small number of staff.
 
-Upon deploying Puppet, the alphagov/govuk-secrets repository is copied over the
+Upon deploying Puppet, the `alphagov/govuk-secrets` repository is copied over the
 files in the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet)
 repository such that both sets of files are read by Puppet.
 
 This patten enables us to restrict access to sensitive credentials while
 still allowing developers to access the main Puppet repository.
 
-There are some limitations and disadvantages of this pattern, however;
+There are some limitations and disadvantages of this pattern, however:
 
 -   Sensitive data would be unencrypted on disk. Despite everyone having
-    access to the alphagov/govuk-secrets repository using full disk encryption,
+    access to the `alphagov/govuk-secrets` repository using full disk encryption,
     secrets would be readable if a laptop was infected by malware or if
-    a secret was accidentally commited to a public repository or copied
+    a secret was accidentally committed to a public repository or copied
     accidentally to an unencrypted disk.
 -   There was the possibility of secrets being sent over plaintext email
     as part of GitHub notifications if comments were made on specific
     lines of a pull request that included changes to sensitive data.
--   A vulnerability in GitHub Enterprise or an administrative
-    error when setting access permissions could expose secrets.
+-   A vulnerability in GitHub or an administrative error when setting
+    access permissions could expose secrets.
 
 By encrypting Hiera data using GPG, we are able to strictly define who
 has access to these secrets (using GPG keys) and have assurances that
@@ -83,8 +81,8 @@ protection of GPG encryption which mitigates some of the scenarios
 outlined above and gives us additional time to change credentials in
 case of accidental exposure.
 
-Note that there are no plans currently to merge the alphagov/govuk-puppet and
-alphagov/govuk-secrets repositories; having them separate still provides
+Note that there are no plans currently to merge the `alphagov/govuk-puppet` and
+`alphagov/govuk-secrets` repositories; having them separate still provides
 additional protection against accidental exposure.
 
 ## Common tasks for handling encrypted Hiera data
@@ -95,18 +93,18 @@ encrypted data.
 There is a
 [Rakefile](https://github.com/alphagov/govuk-secrets/blob/master/puppet/Rakefile)
 in the puppet/ directory of the
-[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository which
-wraps the Hiera eYAML tool and helps to ensure that sensitive data is
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository
+which wraps the Hiera eYAML tool and helps to ensure that sensitive data is
 only accessible to the intended recipients.
 
-You must use the rake tasks to modify encrypted hieradata.
+You must use the rake tasks to modify encrypted Hiera data.
 
 ### Prerequisites
 
-1. Pull the latest changes from the [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets)
-   repo
+1.  Pull the latest changes from the
+    [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repo
 
-2.  Next, run bundler(1) to install dependencies:
+2.  Next, run `bundler(1)` to install dependencies:
 
         cd puppet/
         bundle install
@@ -130,12 +128,12 @@ You must use the rake tasks to modify encrypted hieradata.
     ...where integration is the name of the environment whose
     credentials you wish to access.
 
-Once complete, you should run git pull to obtain the re-encrypted copy.
+Once complete, you should run `git pull` to obtain the re-encrypted copy.
 
-You should now be able to use the rake(1) tasks below to access and
+You should now be able to use the `rake(1)` tasks below to access and
 modify encrypted Hiera data.
 
-> **note**
+> **NOTE**
 >
 > If you use [ZSH](http://zsh.sourceforge.net/) as your local shell, you
 > will need to either enclose the rake(1) command in single quotes or
@@ -176,7 +174,9 @@ Once you have finished, save the file and quit the editor. The changes
 you made will be encrypted by Hiera eYAML. Should you encounter an
 error, please see the troubleshooting section below.
 
-> **NOTE**: When editing a Hiera key that has previously been encrypted, you will
+> **NOTE**
+>
+> When editing a Hiera key that has previously been encrypted, you will
 > notice a number enclosed in parentheses after the word GPG; for
 > example: DEC::GPG(1). You should not make any changes to the number as
 > this is used by Hiera eYAML GPG to identify existing encrypted data.
@@ -184,18 +184,15 @@ error, please see the troubleshooting section below.
 ## Managing access to encrypted Hiera data
 
 The list of people that have access to encrypted Hiera data in stored in
-'recipient' file specific to each environment (.rcp extension).
+'recipient' file specific to each environment (`.rcp` extension).
 
-The production and integration files are stored in the [govuk-secrets
-repo](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_recipients).
-There is no separate staging file, the production file is used for both
+The production and integration files are stored in the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_recipients).
+There is no separate staging file; the production file is used for both
 staging and production.
 
-The .rcp file for Vagrant is stored in the [puppet
-repo](https://github.com/alphagov/govuk-puppet/tree/master/gpg_recipients).
+The `.rcp` file for Vagrant is stored in the [puppet repo](https://github.com/alphagov/govuk-puppet/tree/master/gpg_recipients).
 
-Each line in a recipient file corresponds to a [GPG
-fingerprint](http://en.wikipedia.org/wiki/Public_key_fingerprint) and
+Each line in a recipient file corresponds to a [GPG fingerprint](http://en.wikipedia.org/wiki/Public_key_fingerprint) and
 usually is identified by a comment after the hash (\#) symbol denoting
 its owner. Each GPG key (and owner of that key) listed in the recipient
 file is able to decrypt data belonging to the environment that the
@@ -208,7 +205,7 @@ achieved by deleting the line where the leaver's name is referenced by a
 comment.
 
 Therefore, to revoke a leaver's access from future changes to
-credentials;
+credentials:
 
 1.  Delete the leaver's GPG fingerprint from each of the recipient files
     for
@@ -216,10 +213,10 @@ credentials;
     [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
     and
     [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
-    Note that there is no separate recipients file for Staging.
+    Note that there is no separate recipients file for staging.
 2.  Commit your changes and raise a pull request for review.
 
-> **warning**
+> **WARNING**
 >
 > Removing a GPG key from the recipient key and re-encrypting the
 > credentials files does **not** mean that the leaver is no longer able
@@ -229,84 +226,112 @@ credentials;
 > retained a copy of the data. They are still able to decrypt the
 > current copy of the credentials file and have made unencrypted copies.
 >
-> We must assume that, until the stored credentials are rotated and the 
+> We must assume that, until the stored credentials are rotated and the
 > credentials file is re-encrypted any secrets contained in the
 > credentials file can still be read by anyone with a GPG key previously
 > listed in the recipient list.
 
-### How to (re)generate GPG keys for a new environment
+### How to (re)generate GPG keys for an environment
 
-The environments that we recognise are [listed in the
-Rakefile](https://github.com/alphagov/govuk-secrets/blob/cfcbbaeb29e28e9a7dfaf77e18b366e655ef2ef8/puppet/Rakefile#L58).
+If a new environment is added or the Puppet GPG key for an existing environment
+expires or is compromised, a new GPG key must be generated. This key allows
+Puppet to read encrypted Hiera data.
 
 To ensure consistency, new GPG keys are generated using a template
-([example](https://github.com/alphagov/govuk-secrets/blob/cfcbbaeb29e28e9a7dfaf77e18b366e655ef2ef8/puppet/gpg_templates/production_hiera_gpg_template.txt)).
-To generate a new key, run the following rake(1) task:
+([example](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_templates/production_hiera_gpg_template.txt)).
 
-    bundle exec rake 'eyaml:gpg_create[integration]'
+To generate a new key:
 
-...where integration is the name of the environment to create the GPG
-key for.
+1.  Generate a random passphrase using a secure method (such as a password
+    manager).
+2.  Run `bundle exec rake 'eyaml:gpg_create[integration]'`, where integration is
+    the name of the environment to create the GPG key for, entering the
+    passphrase when prompted.
+3.  Depending on the version of `gpg` you are using, you may end up with either
+    `.gpg` or `.kbx` files saved to the [2ndline password store](https://github.com/alphagov/govuk-secrets/tree/master/pass) in the
+    [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets)
+    repository, or in the `gpg` directory of the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet)
+    repository if you are generating a key for the 'vagrant' environment.
+4.  If you have `.kbx` files as a result of step 3, you'll need to export the
+    public and secret keys into `.gpg` files by running
+    `gpg --keyring pubring.kbx --export > pubring.gpg` and
+    `gpg --keyring pubring.kbx --export-secret-key > secring.gpg`. You'll need
+    to set `GNUPGHOME` to the path that contains the keyring file
+    (for example, `GNUPGHOME=~/govuk/govuk-secrets/pass/2ndline/hiera-eyaml-gpg/integration`).
+5.  Remove all files from the folder apart from `pubring.gpg`, `secring.gpg`
+    and `trustdb.gpg` (usually `S.gpg-agent`, `S.gpg-agent.browser`,
+    `S.gpg-agent.extra` and `S.gpg-agent.ssh`).
+6.  Add the passphrase you used when creating the new key to the 2nd line
+    password store by running `PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline PASSWORD_STORE_GPG_OPTS="--trust-model always" pass insert hiera-eyaml-gpg/integration-gpg-key-passphrase`.
+    Note that `PASSWORD_STORE_GPG_OPTS` is required here other GPG will refuse
+    to encrypt the data since the new GPG key isn't trusted by default.
+7.  Change the relevant recipients file to remove the fingerprint of the old
+    key and add the new fingerprint ([recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)).
+8.  Run `bundle exec rake eyaml:recrypt[integration]` to recrypt the encrypted
+    hieradata with the new GPG key.
+9.  Open a pull request with all the changes so far and get it approved and
+    merged.
+10. Now, configure the Puppet Master in the relevant environment using the
+    instructions in the next section.
 
-The GPG key will be saved to the [2ndline cred
-store](https://github.com/alphagov/govuk-secrets/tree/master/creds) in the
-[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository, or in
-the `gpg` directory of the
-[alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) repository if you
-are generating a key for the 'vagrant' environment'.
-
-Follow the on-screen instructions to amend the recipient files and
-ensure that the old key is removed and revoked if necessary.
-
-You will need to re-encrypt the credentials using the new key:
-
-    bundle exec rake eyaml:recrypt[integration]
+> **WARNING**
+>
+> If you're generating a new key because the old one has been compromised, or
+> if it has not yet expired, you should revoke the old key to prevent it being
+> used.
 
 ### Configuring the Puppet Master
 
-The GPG key, stored in the [2ndline cred
-store](https://github.com/alphagov/govuk-secrets/tree/master/creds) in the
-[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository, must be
-installed on the Puppet Master so that encrypted Hiera data is available
+The GPG key, stored in the [2ndline password
+store](https://github.com/alphagov/govuk-secrets/tree/master/pass) in the
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets) repository,
+must be installed on the Puppet Master so that encrypted Hiera data is available
 to Puppet:
 
-1.  First, mount the 2ndline cred store as per the README.
-2.  In the hiera-eyaml-gpg directory in the 2ndline cred store, you will
-    find a directory for each environment. Production and Staging both
-    use the production directory.
-3.  Copy the contents of the appropriate environment directory to the
-    Puppet Master in that environment, from your local machine:
+1.  Remove the passphrase from the secret key, where 6DB296C0 is the ID or
+    fingerprint of the new key (the Puppet Master requires a secret key without
+    a passphrase):
 
-        cd ~/govuk/deployment/creds
-        rsync --rsync-path="sudo rsync" 2ndline/hiera-eyaml-gpg/integration/* puppetmaster-1.management.integration:/etc/puppet/gpg/
+          $ gpg --edit-key 6DB296C0
+          gpg> passwd
+          Enter passphrase: <enter the passphrase>
+          Enter the new passphrase for this secret key.
+          Enter passphrase: <press enter>
+          Repeat passphrase: <press enter>
+          gpg> save
+          $ gpg --export-secret-key 6DB296C0 > secring.gpg
 
-4.  Be sure to set the correct permissions for the contents of
-    \`/etc/puppet/gpg\`:
+2.  SSH to the Puppet Master (for example,
+    `puppetmaster-1.management.integration`).
+3.  Change to the root user (`sudo su -`).
+4.  Go to `/etc/puppet/gpg`.
+5.  Create a new folder (for example, `old`) and move all files currently in the
+    `gpg` folder into there as a backup.
+6.  Copy the new files to the Puppet Master using rsync from your local machine:
+    `rsync --rsync-path="sudo rsync" ~/govuk/govuk-secrets/pass/2ndline/hiera-eyaml-gpg/integration/* puppetmaster-1.management.integration:/etc/puppet/gpg/`
+7.  Make sure the new files have the correct permissions:
+    `sudo chown -R puppet: /etc/puppet/gpg` and
+    `sudo chmod -R 0700 /etc/puppet/gpg`.
+8.  Deploy Puppet to pick up the changes.
+9.  Send the new key to a key server, so that other people re-encrypting the
+    Hiera data can obtain it easily: `gpg --send-keys 6DB296C0`.
 
-        ssh puppetmaster-1.management.integration sudo chown -R puppet: /etc/puppet/gpg
-        ssh puppetmaster-1.management.integration sudo chmod -R 0700 /etc/puppet/gpg
-
-> **warning**
+> **WARNING**
 >
-> Please be sure not to copy the Production GPG keys to the Preview
-> environment.
+> Make sure not to copy the Production GPG key to the Integration environment.
 
-### Rotating GPG keys
-
-1.  Follow the instructions in How to (re)generate GPG keys for a new
-    environment\_ and raise a pull request with your changes.
-2.  Deploy Puppet so that the credentials which have been re-encrypted
-    with the new key during the last step are present on the
-    Puppet master.
-3.  Copy the new key to the Puppet master, following the steps
-    in Configuring
-    the Puppet Master\_.
+> **NOTE**
+>
+> In the time between adding the new keys to the Puppet Master, deploying
+> puppet, and it running on all machines in the relevant environment, you
+> will see alerts in Icinga about puppet not being able to read config files.
+> These alerts will go away as each machine runs puppet.
 
 ## Troubleshooting
 
 ### Encryption fails when running the Rake task
 
-If the Rake task to edit the encrypted credentials fails, with errors
+If the rake task to edit the encrypted credentials fails, with errors
 such as:
 
     $ bundle exec rake eyaml:edit[integration]
@@ -351,27 +376,27 @@ When Puppet runs, you may see the following error:
 
 This error can occur for the following reasons:
 
--   Puppet cannot find a GPG keyring in /etc/puppet/gpg. Note that this
+-   Puppet cannot find a GPG keyring in `/etc/puppet/gpg`. Note that this
     should only occur in development or test VMs **or** on the
     Puppet Master. If this is a non-Vagrant environment (e.g.
     Production), check that you have copied the GPG keys from the
-    2ndline cred store to /etc/puppet/gpg; see encryptedpuppetmaster.
-    Servers running puppet-agent(1), do not require a GPG key as they
+    2ndline pass store to `/etc/puppet/gpg` - see [configuring the Puppet Master](#configuring-the-puppet-master).
+    Servers running `puppet-agent` do not require a GPG key as they
     rely on the Puppet Master to provide and, when necessary, decrypt
     Hiera data.
--   The GPG key has expired, it should be renewed if possible or
-    replaced with a new key.
+-   The GPG key has expired; it should be replaced with a new key -
+    see [how to (re)generate GPG keys for an environment](#how-to-regenerate-gpg-keys-for-an-environment).
 -   The Hiera YAML files contain encrypted data for which the GPG keys
-    in /etc/puppet/gpg is not listed as a recipient. Check the GPG
+    in `/etc/puppet/gpg` is not listed as a recipient. Check the GPG
     recipient files and compare the fingerprint there to the fingerprint
-    of the GPG keyring in /etc/puppet/gpg. You can find the fingerprint
+    of the GPG keyring in `/etc/puppet/gpg`. You can find the fingerprint
     by executing the following command on the server:
 
         GNUPGHOME=/etc/puppet/gpg gpg --fingerprint
 
 -   The shared folder configured in the
     [Vagrantfile](https://github.com/alphagov/govuk-puppet/blob/master/Vagrantfile)
-    for Vagrant boxes is not being mounted correctly at /etc/puppet/gpg.
+    for Vagrant boxes is not being mounted correctly at `/etc/puppet/gpg`.
     Check the output of mount(1) and try reloading the machine using:
 
         vagrant reload
@@ -380,7 +405,7 @@ This error can occur for the following reasons:
     you are using is current and compatible with the VirtualBox version
     you are using.
 
-### Puppet fails because it can't find gpgme\_n
+### Puppet fails because it can't find gpgme
 
 The error occurs because the Ruby load path is missing a directory
 containing a shared object file belonging to the gpgme Ruby gem.
@@ -392,5 +417,4 @@ for the development VM:
     vagrant up
 
 Alternatively, you can add the `$LOAD_PATH` to `/usr/bin/puppet` as shown
-in [this
-commit](https://github.com/alphagov/govuk-puppet/commit/b7743452875b1dd83fda982e28ae8e776bc3a8b8).
+in [this commit](https://github.com/alphagov/govuk-puppet/commit/b7743452875b1dd83fda982e28ae8e776bc3a8b8).
