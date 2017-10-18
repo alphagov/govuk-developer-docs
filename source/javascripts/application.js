@@ -1,9 +1,9 @@
-//= require vendor/jquery
-//= require vendor/modernizr
-//= require vendor/fixedsticky
-//= require vendor/lodash
-//= require analytics
-//= require start-modules
+//= require _vendor/jquery
+//= require _vendor/modernizr
+//= require _vendor/fixedsticky
+//= require _vendor/lodash
+//= require _analytics
+//= require _start-modules
 
 $(function() {
   $('.fixedsticky').fixedsticky();
