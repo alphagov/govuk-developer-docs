@@ -12,6 +12,7 @@ class DocumentTypesCsv
         "Docs URL",
         "Number of pages",
         "Example URL",
+        "Rendering apps",
       ]
 
       Supertypes.all.each do |supertype|
@@ -28,6 +29,7 @@ class DocumentTypesCsv
           page.url,
           page.total_count,
           example_url,
+          page.rendering_apps.join(', '),
         ]
 
         Supertypes.all.each do |supertype|

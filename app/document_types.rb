@@ -35,6 +35,10 @@ class DocumentTypes
     @@all_document_types ||= HTTP.get_yaml(DOCUMENT_TYPES_URL).sort
   end
 
+  def self.rendering_apps_from_content_store
+    YAML.load_file("data/rendering-apps.yml")
+  end
+
   class Page
     attr_reader :name, :total_count, :examples
 
@@ -46,6 +50,11 @@ class DocumentTypes
 
     def url
       "https://docs.publishing.service.gov.uk/document-types/#{name}.html"
+    end
+
+    def rendering_apps
+      entry = DocumentTypes.rendering_apps_from_content_store.find { |el| el[:name] == name }
+      entry.to_h[:apps].to_a.compact
     end
 
     def search_url
