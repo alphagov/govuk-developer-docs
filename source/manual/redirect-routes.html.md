@@ -80,3 +80,7 @@ English version to a translation, for example:
 For the deleted routes to take effect, you need to reload the router.
 
     > RouterReloader.reload
+
+## Redirects from Campaign sites
+
+The campaign platform is a WP site managed by DXW. For redirects to be put in place from a `*.campaign.gov.uk` site we need to raise a support ticket with them and request for them to do this for us. Currently Mark McLeod or Kelvin Gan can raise a ticket.
