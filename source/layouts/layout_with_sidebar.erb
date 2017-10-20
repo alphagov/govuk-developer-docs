@@ -18,14 +18,6 @@
 
     <div class="app-pane__content toc-open-disabled">
       <main id="content" class="technical-documentation" data-module="anchored-headings">
-        <% if page_review.expired? %>
-          <div class='warning'>
-            This page was set to be reviewed before <%= page_review.review_by %>
-            by the page owner: <%= current_page.data.owner_slack %>. This might mean the
-            content is out of date. <%= link_to "Read how to review a page", "/manual/review-page.html" %>
-          </div>
-        <% end %>
-
         <%= yield %>
         <%= partial 'partials/source' %>
       </main>

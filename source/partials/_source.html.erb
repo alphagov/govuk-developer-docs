@@ -1,25 +1,6 @@
-<div>
-  <% if current_page.data.related_applications %>
-    <h2 id='related-applications'>Related applications</h2>
-
-    <ul>
-    <% current_page.data.related_applications.to_a.each do |app| %>
-      <li><%= link_to app, "/apps/#{app}.html" %></li>
-    <% end %>
-    </ul>
-  <% end %>
-</div>
 
 <div class="meta-links">
   <%= link_to "View source", view_source_url %>
   <%= link_to "Report problem", report_issue_url %>
   <%= link_to "GitHub Repo", "https://github.com/alphagov/govuk-developer-docs" %>
 </div>
-
-<% if page_review.reviewable? %>
-  This page is owned by <%= current_page.data.owner_slack %>
-  and <%= link_to "needs to be reviewed", "/manual/review-page.html" %>
-  <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
-    <%= page_review.review_by %>
-  </time>
-<% end %>
