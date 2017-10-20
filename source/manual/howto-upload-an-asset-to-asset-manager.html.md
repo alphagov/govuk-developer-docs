@@ -13,6 +13,10 @@ Some publishing apps such as Mainstream Publisher do not provide the facility fo
 assets such as images and PDFs. In these rare cases, we can upload assets to asset-manager manually
 and give the URL to content editors to embed.
 
+This only works for apps which use the asset manager. See the [alternative
+instructions for whitehall](upload-asset-to-whitehall.html) if you need to
+attach a file to a whitehall page.
+
 Production assets are replicated to staging and integration nightly, so it is best to simply perform
 the upload directly in production. First, upload the asset to a backend box:
 
