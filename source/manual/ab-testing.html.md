@@ -64,7 +64,7 @@ If the original request did not have the `ABTest-Example` cookie, Fastly will se
 Follow these steps:
 
 1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line GOV.UK content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
-2. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test. There is a range of dimensions from 40-49 blocked out for A/B tests. These can be reused when an A/B test has ended.
+2. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test.
 3. Configure the A/B test in [the cdn-configs repo][cdn-configs] ([see an example][dictionary-config-example]). For more details, see the [dictionaries README][dictionaries-readme].
 4. Deploy the cdn-configs changes to staging and production using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the [govuk-secrets repo][govuk-secrets].
 5. Add your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo ([see an example][fastly-configure-example]). The test name must match the name configured in the cdn-configs repo in step 3.
