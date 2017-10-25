@@ -17,11 +17,11 @@ on [logging](https://gds-way.cloudapps.digital/standards/logging.html).
 
 ## Logging in to Logit
 
-We use a Google App to authenticate users with Logit. Login to your GDS Google account in Chrome
-(for example, when in https://mail.google.com), and click on the 9 small dots at the top
-right of the Chrome browser.
+We use a Google App to authenticate users with Logit. Login to your GDS Google account in Chrome and from within any Google App (e.g. [GMail](https://mail.google.com)), click on the 9 small dots at the top right of the Chrome browser.
 
-Go to the bottom of the selection of apps and you should find one for "Logit".
+Note that the App doesn't seem to be in the list if you click the 9 small dots at the top right of a new/blank tab, even if you are signed into Chrome with your GDS Google account.
+
+Scroll down the list of Apps (clicking "More" if necessary) and you should find the Logit App.
 
 Clicking on this should log you in.
 
