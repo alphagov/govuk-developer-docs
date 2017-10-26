@@ -56,7 +56,7 @@ First, install:
 1. [Generate and register an SSH key pair](https://help.github.com/articles/connecting-to-github-with-ssh/) for your Mac for your GitHub account.
 1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
 
-        mac$ /usr/bin/ssh-add -K yourkey
+        mac$ /usr/bin/ssh-add -K your-private-key
 
 1. Test that it all works by running `ssh -T git@github.com`.
 
