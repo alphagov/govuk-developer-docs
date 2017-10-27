@@ -98,9 +98,9 @@ Our [deployment dashboards](deployment-dashboards.html) use Graphite extensively
 Graphite has a whole bunch of functions you can apply to your data to make it more useful: they’re listed out [in the Graphite docs](http://graphite.readthedocs.org/en/0.9.12/functions.html). One particularly useful one is `keepLastValue`: if your graphs come out nearly black with a few spots of colour in them, you probably want this one. Both views have an Apply Function button.
 ## Kibana
 
-<https://kibana.publishing.service.gov.uk/>
+You can access GOV.UK Kibana through [Logit](logit.html).
 
-Kibana is a log viewer and search engine. In Kibana, you can filter down log messages to show you just the ones you want. Say you’ve spotted a large number of errors coming from the content store related to MongoDB connections and you want to find out whether the MongoDB logs show anything strange. You can narrow down which log messages you want using the column browser on the left: `@source_host` and `@fields.application` are some particularly useful ones. The magnifying glass symbol next to each value lets you build up a query string and tinker with it.
+Kibana is a log viewer and search engine. In Kibana, you can filter down log messages to show you just the ones you want. Say you’ve spotted a large number of errors coming from the content store related to MongoDB connections and you want to find out whether the MongoDB logs show anything strange. You can narrow down which log messages you want using the column browser on the left: `@source_host` and `application` are some particularly useful ones. The magnifying glass symbol next to each value lets you build up a query string and tinker with it.
 
 You can tweak the time range manually with the drop down at the top or by dragging on the timeline.
 
