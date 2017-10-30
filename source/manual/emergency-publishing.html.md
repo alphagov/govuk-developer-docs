@@ -55,6 +55,7 @@ $ . ~/venv/fabric-scripts/bin/activate
 ```
 export environment=integration
 ```
+> **NOTE:** You must remember to [unset your Fabric environment variable](#unset-your-environment-variable-and-deactivate-your-virtual-environment) once you have finished running your tasks.
 
 4) If you'd like to double check the environment you have set:
 ```
