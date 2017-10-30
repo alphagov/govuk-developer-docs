@@ -165,7 +165,7 @@ If you don't need an optional dependency, you can pass the `-w` option:
 
     dev$ bowl whitehall -w mapit
 
-If these `bowl` commands fail, try the troubleshooting guide on [how to fix a broken bowl](/manual/fix-problems-with-vagrant.html#using-bowl-fails-with-bundler-error).
+If these `bowl` commands fail, try the troubleshooting guide on [how to fix a broken bowl](/manual/bowl-error.html).
 
 ## 9. Keep your VM up to date
 
