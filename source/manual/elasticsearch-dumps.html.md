@@ -60,6 +60,31 @@ The [search analytics jenkins job](https://deploy.publishing.service.gov.uk/job/
 After restoring a backup, consider [replaying traffic](/manual/rummager-traffic-replay.html)
 to bring the search index back in sync with the publishing apps.
 
+### Replaying rummager traffic
+
+Once an index is restored we need to re-run all traffic that occurred after the snapshot was taken for the 'government', 'detailed' and
+'mainstream' indicies. We have setup `GOR` logging for `POST` and `GET` requests so that we can replay this traffic, this way we don't need
+to resend the traffic from individual publishing application.
+
+> The `govuk` index can be restored by resending data directly from the publishing API as it is not updated directly from the publishing applications.
+
+The logs are stored on the rummager servers (1 file per server) location at:
+
+```
+/var/logs/gor_dump
+```
+
+A copy of the file should be taken for the restore, as the restore requests will be logged to the file. The following command can be used to run the restore:
+
+```
+sudo gor --input-file "20171031.log|6000%" --stats --output-http-stats --output-http "http://localhost:3009/|6000%" -verbose
+```
+
+This runs the restore at 60x the speed it was saved so each hour of logs takes 1min to process.
+
+> This processed failed when running on the rummager server, but was successful when run locally with port forwarding.
+> This may be an issue with the `GOR` version on the server.
+
 ### Restoring other indexes (without aliases)
 
 If you want to replace something, you have to delete it first.
