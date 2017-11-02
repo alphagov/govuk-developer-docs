@@ -4,7 +4,7 @@ title: Redirect a route
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-19
+last_reviewed_on: 2017-11-02
 review_in: 6 months
 related_applications: [short-url-manager]
 ---
@@ -28,32 +28,38 @@ Redirect routes have the handler 'redirect'.
 
 ## Redirecting from the original publishing app
 
-The preferred method of creating redirects is to use the publishing app that originally published the content to unpublish it and redirect it to another page using the Publishing API.
+The preferred method of creating redirects is to use the publishing app that
+originally published the content to unpublish it and redirect it to another
+page using the Publishing API.
 
-This ensures that the workflow and publishing history stays within the app wherever possible.
+This ensures that the workflow and publishing history stays within the app
+wherever possible.
 
 ## Using the Short URL Manager
 
-If the redirect is from a URL that is not a currently-published content item, you should first look to use the [Short URL Manager](https://short-url-manager.publishing.service.gov.uk) to create a redirect request. Requests are checked and approved by content designers, after which they are made live.
+If the redirect is from a URL that is not a currently-published content item,
+you should first look to use the [Short URL Manager](short-url-manager) to
+create a redirect request. Requests are checked and approved by content
+designers, after which they are made live.
 
 Redirects created in Short URL Manager are published via the Publishing API.
 
-Specific Signon [permissions][short-url-manager-permissions] are
-required to make and approve redirect requests through the Short URL
-Manager. Additionally, there is a `advanced_options` permission which
-enables creating `prefix` type redirects, and using non-default values
-for the `segments_mode`.
+Specific Signon [permissions][short-url-manager-permissions] are required to
+make and approve redirect requests through the Short URL Manager. Additionally,
+there is a `advanced_options` permission which enables creating redirects for
+pages that are already owned by other apps, creating `prefix` type redirects,
+and using non-default values for the `segments_mode`.
 
+[short-url-manager]: https://short-url-manager.publishing.service.gov.uk
 [short-url-manager-permissions]: https://github.com/alphagov/short-url-manager/#permissions
 
 ## Using router-data
 
-If you need to put a redirect in place without changing the content in
-the Publishing API, then [router-data][router-data] can be
-used. Follow the [README](router-data-README) to create your redirects
-in a new branch and open a pull request.
+Router-data is deprecated and its use should be avoided. However, in the
+extremely rare case that a redirect needs to be put in place without changing
+the content in the Publishing API, follow the [README](router-data-README)
+to create your redirects in a new branch and open a pull request.
 
-[router-data]: https://github.com/alphagov/router-data
 [router-data-README]: https://github.com/alphagov/router-data#router-data
 
 ## Fixing incorrect Corporate Information page redirects
@@ -83,4 +89,7 @@ For the deleted routes to take effect, you need to reload the router.
 
 ## Redirects from Campaign sites
 
-The campaign platform is a WP site managed by DXW. For redirects to be put in place from a `*.campaign.gov.uk` site we need to raise a support ticket with them and request for them to do this for us. Currently Mark McLeod or Kelvin Gan can raise a ticket.
+The campaign platform is a WP site managed by DXW. For redirects to be put in
+place from a `*.campaign.gov.uk` site we need to raise a support ticket with
+them and request for them to do this for us. Currently Mark McLeod or Kelvin
+Gan can raise a ticket.
