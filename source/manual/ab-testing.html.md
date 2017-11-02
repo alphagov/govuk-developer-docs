@@ -1,5 +1,5 @@
 ---
-title: Run an A/B test
+title: Run an A/B or multivariate test
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
@@ -10,7 +10,7 @@ review_in: 3 months
 
 ## 1. Overview
 
-GOV.UK uses our [Content Delivery Network (Fastly)][cdn] to run A/B tests.
+GOV.UK uses our [Content Delivery Network (Fastly)][cdn] to run A/B and multivariate tests.
 
 For a general introduction to A/B testing from a content design perspective, see the [Confluence Wiki](https://bit.ly/AB-testing-GOVUK).
 
@@ -87,7 +87,7 @@ Follow these steps:
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [cdn-configs]: https://github.com/alphagov/cdn-configs
 [dictionaries-readme]: https://github.com/alphagov/cdn-configs/blob/master/fastly/dictionaries/README.md
-[dictionary-config-example]: https://github.com/alphagov/cdn-configs/commit/a2a3e2bf2e5371a9d82b06072a2034c76e219460
+[dictionary-config-example]: https://github.com/alphagov/cdn-configs/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [configuration-file]: https://github.com/alphagov/fastly-configure/blob/master/ab_tests/ab_tests.yaml
 [fastly-configure]: https://github.com/alphagov/fastly-configure
