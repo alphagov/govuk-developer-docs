@@ -52,6 +52,7 @@ First, install:
 ## 2. Create your GitHub accounts
 
 1. Set up a [GitHub](https://www.github.com) account.
+1. Ask somebody with access to add your GitHub username and SSH username (`firstnamelastname`) to the [user monitoring system][user-reviewer]
 1. Ask your tech lead to add you to the [alphagov organisation](https://github.com/alphagov). You will have to be added to the [GOV.UK team](https://github.com/orgs/alphagov/teams/gov-uk/members) to get access to repos & CI.
 1. [Generate and register an SSH key pair](https://help.github.com/articles/connecting-to-github-with-ssh/) for your Mac for your GitHub account.
 1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
@@ -59,6 +60,8 @@ First, install:
         mac$ /usr/bin/ssh-add -K your-private-key
 
 1. Test that it all works by running `ssh -T git@github.com`.
+
+[user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
 ## 3. Create a user in Integration and CI
 
