@@ -1,6 +1,6 @@
 ---
 owner_slack: "#2ndline"
-title: Incident management
+title: Incident management guidance
 parent: "/manual.html"
 layout: manual_layout
 section: Support
