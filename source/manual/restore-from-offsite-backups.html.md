@@ -120,6 +120,7 @@ On the machine where you'll be running the restore:
     ```bash
     duplicity restore --file-to-restore data/backups/whitehall-mysql-backup-1.backend.publishing.service.gov.uk/var/lib/automysqlbackup/latest.tbz2 s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/ /tmp/latest.tbz2
     ```
+    * If you are running out of space in your VM, you could run the same command, but replacing `/tmp/latest.tbz2` with `--tempdir /var/govuk/tmp /var/govuk/tmp/latest.tbz2`
 
     * When this completes you may see the following 'error':
 
