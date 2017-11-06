@@ -5,25 +5,28 @@ section: Tools
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/introductions/pact_broker.md"
-last_reviewed_on: 2017-04-28
+last_reviewed_on: 2017-11-06
 review_in: 6 months
 ---
 
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/introductions/pact_broker.md)
+[Pact](https://docs.pact.io/) is a tool for *consumer-driven contract testing*.
+It's a way of testing the integration between microservices without performing
+end-to-end testing.
 
+"Consumer-driven" means that the consumer of a service sets expectations about
+behaviour it needs from the provider.
 
-[Pact Broker](https://github.com/bethesque/pact_broker#readme) is a repository
-for consumer contracts created by the [pact
-gem](https://github.com/realestate-com-au/pact). It allows consumers of an
-API to publish their pact files here so that the producer of an API can use
-them in its test suite to verify that it adheres to the contract.
+For example, [the publishing API is set up to run pact tests](https://github.com/alphagov/publishing-api/blob/master/doc/pact_testing.md).
+This means that any consumer of the publishing API can create contracts using the pact gem,
+and the publishing api deployment pipeline will check that consumers' contracts are still met by new builds.
+
+The [Pact Broker](https://docs.pact.io/documentation/sharings_pacts.html) is
+a repository for all the contracts. The consumers publish to it, and the producers query from it when they run the tests.
 
 ## Information you need to know
 
-* The URL is <https://pact-broker.cloudapps.digital/>
+* It runs on the Government PaaS at <https://pact-broker.cloudapps.digital/>
 * It is deployed from <https://github.com/alphagov/pact-broker>
-* It runs on GOV.UK PaaS (<https://www.cloud.service.gov.uk/>)
 
 ## Accessing and logging on
 
