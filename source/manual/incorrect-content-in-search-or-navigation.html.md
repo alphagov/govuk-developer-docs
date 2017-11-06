@@ -24,14 +24,14 @@ The search team are working on improving this.
 
 ### Check if search is the problem
 
-A page with URL [/council-tax](https://www.gov.uk/council-tax) can be queried using [/api/search.json?filter_link=/council-tax](https://www.gov.uk/api/search.json?filter_link=council-tax). You can quickly
+A page with URL [/council-tax](https://www.gov.uk/council-tax) can be queried using [/api/search.json?filter_link=/council-tax](https://www.gov.uk/api/search.json?filter_link=/council-tax). You can quickly
 switch between the two using the GOV.UK chrome plugin.
 
 You can compare the data returned with the publishing app to check if it's up
 to date. An empty response means search has never received the content.
 
 You can also request [different fields](/apis/search/fields.html), for example
-[/api/search.json?filter_link=/council-tax&fields=format,content_id](https://www.gov.uk/api/search.json?filter_link=council-tax&fields=format,content_id).
+[/api/search.json?filter_link=/council-tax&fields=format,content_id](https://www.gov.uk/api/search.json?filter_link=/council-tax&fields=format,content_id).
 
 ### Correct the search data
 
