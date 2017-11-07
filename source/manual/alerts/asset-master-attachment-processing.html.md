@@ -4,8 +4,8 @@ title: Asset master attachment processing
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-05-01
-review_in: 6 months
+last_reviewed_on: 2017-11-07
+review_in: 3 months
 ---
 
 When new assets get uploaded to asset-master-1, there is a script
