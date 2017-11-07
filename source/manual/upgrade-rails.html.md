@@ -10,6 +10,17 @@ parent: "/manual.html"
 
 When upgrading our apps between Rails major and minor versions, follow the [official Rails guides][guide]
 
+## Rails Configs
+
+Going forward we are trying to standardise our Rails config files. The guidelines
+for these are as follows:
+
+- If `load_defaults` is used, it should be top of the config
+- Config options should be alphabetised
+- Group together options that relate to the same option
+  - E.g. `config.assets.enabled` and `config.assets.prefix` should be grouped together
+- Remove any default/unnecessary comments
+
 ## Gotchas for upgrading to Rails 5.0
 
 ### Eager loading
