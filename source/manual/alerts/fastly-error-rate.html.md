@@ -5,14 +5,9 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/fastly-error-rate.md"
-last_reviewed_on: 2017-07-13
+last_reviewed_on: 2017-10-20
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/alerts/fastly-error-rate.md)
-
 
 ## Error rate alert
 
@@ -27,7 +22,8 @@ investigation is to examine the Fastly CDN logs.
 - `ssh logs-cdn-1.management.production`
 - `cd /mnt/logs_cdn` to access log files
 
-Alternatively you can look [in Kibana with the query `@fields.application:"govuk-cdn-logs-monitor"`](https://kibana.publishing.service.gov.uk/kibana#/dashboard/elasticsearch/GOV.UK%20CDN%20logs)
+Alternatively you can look in [Kibana](tools.html#kibana) with the query
+`application:"govuk-cdn-logs-monitor"`
 
 ## `Unknown` alert
 
@@ -37,8 +33,8 @@ The alert appears on `monitoring-1.management`. Collectd uses the Fastly API to 
 
 To prove collectd is the problem, use this query in Kibana:
 
-`@source_host:monitoring-1.management AND @fields.syslog_program:collectd`
+`syslog_hostname:monitoring-1.management AND syslog_program:collectd`
 
-You will see many reports simlilar to:
+You will see many reports similar to:
 
 `cdn_fastly plugin: Failed to query service`

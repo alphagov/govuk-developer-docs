@@ -5,17 +5,15 @@ layout: manual_layout
 parent: "/manual.html"
 section: Logging
 important: true
-last_reviewed_on: 2017-08-23
+last_reviewed_on: 2017-10-27
 review_in: 6 months
 ---
 
-All logs for GOV.UK are collected in Kibana:
+All logs for GOV.UK on all environments are collected in Kibana, which you can
+access through [Logit](logit.html).
 
-- <https://kibana.publishing.service.gov.uk>
-- <https://kibana.staging.publishing.service.gov.uk>
-- <https://kibana.integration.publishing.service.gov.uk>
-
-Kibana can be searched using the [Lucene search syntax][lucene].
+Kibana can be [searched using the Lucene search syntax or full JSON-based
+Elasticsearch queries][kibana-search].
 
 ## Examples
 
@@ -29,7 +27,7 @@ host:cache* AND @fields.status:[500 TO 504]
 
 ```rb
 # both agent and master
-syslog_program:puppet
+syslog_program:puppet*
 
 # agent only
 syslog_program:"puppet-agent"
@@ -102,10 +100,10 @@ application:"mongodb" AND message:"command"
 application:"syslog" AND syslog_program:"audispd"
 ```
 
-### Mirrrorer logs
+### Mirrorer logs
 
 ```rb
-syslog_program:"mirrorer"
+syslog_program:"govuk_sync_mirror"
 ```
 
 ### Publishing API timeouts
@@ -121,7 +119,7 @@ If you're looking for specific program outputs, use `syslog_program:FOO`:
 - `audispd`:	This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.
 - `clamd`	 
 - `cron`	 
-- `mirrorer`: Records information from govuk_mirrorer script. It contains INFO, WARN and ERROR information
+- `govuk_sync_mirror`: Records information from govuk_sync_mirror script
 - `puppet-agent`:	Records output for govuk_puppet script on various servers
 - `puppet-master`	 
 - `smokey`
@@ -130,8 +128,8 @@ If you're looking for specific program outputs, use `syslog_program:FOO`:
 
 - Score: does a aggregation of field on last 2000 results
 - Terms is not an aggregation of field, it is an aggregation of terms in the field across 1 recent indices
-- For more elaborate searching, [read about the Lucene syntax][lucene]
+- For more elaborate searching, [read about the Lucene and Elasticsearch syntax][kibana-search]
 - `@timestamp` of nginx log entries records [request end time is sometimes confusing][end]
 
-[lucene]: http://lucene.apache.org/core/old_versioned_docs/versions/2_9_1/queryparsersyntax.html
+[kibana-search]: https://www.elastic.co/guide/en/kibana/current/search.html
 [end]: http://serverfault.com/questions/438880/what-does-nginxs-time-local-logging-variable-mean-specifically/438891#438891
