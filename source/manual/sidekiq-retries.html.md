@@ -4,7 +4,7 @@ title: Sidekiq
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_on: 2017-5-02
+last_reviewed_on: 2017-11-07
 review_in: 6 months
 ---
 
@@ -13,6 +13,9 @@ Many of our applications use
 processing.
 
 There's a [GOV.UK wrapper](https://github.com/alphagov/govuk_sidekiq) that will help you set it up.
+
+If an alert fires a good place to start
+investigation is the [Sidekiq monitor](monitor-sidekiq-workers.html).
 
 ## Retry logic
 
@@ -39,6 +42,3 @@ Jobs do fail, this is not inherently bad and can happen for a number of
 reasons. When a job fails it gets retried with an exponential backoff
 (up to 21 days), as long as retries are enabled. A high number of
 retries signifies a bigger, less transient problem maybe occuring.
-
-If an alert fires a good place to start
-investigation is the [Sidekiq monitor](monitor-sidekiq-workers.html).
