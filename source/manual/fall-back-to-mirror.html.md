@@ -24,7 +24,7 @@ This is why we refer to switching off Nginx on the origin cache machines as
 Mirror sites can be viewed and navigated at:
 
 - [Carrenza](https://www-origin.mirror.provider1.production.govuk.service.gov.uk/) (`https://www-origin.mirror.provider1.production.govuk.service.gov.uk/`)
-- Amazon S3 bucket govuk-mirror-<environment>
+- Amazon S3 bucket `govuk-mirror-<environment>`
 
 ## Access
 
