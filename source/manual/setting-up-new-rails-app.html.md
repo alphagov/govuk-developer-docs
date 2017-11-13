@@ -4,7 +4,6 @@ title: Set up a new Rails app
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-rails-app.md"
 last_reviewed_on: 2017-07-31
 review_in: 6 months
 ---

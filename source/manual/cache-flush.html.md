@@ -4,7 +4,6 @@ title: Purge a page from cache
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/cache-flush.md"
 important: true
 last_reviewed_on: 2017-08-15
 review_in: 6 months
@@ -122,7 +121,7 @@ To flush our origin run the following Fabric command::
     fab $environment cache.ban_all
 
 Once this is done move on to Fastly. This can only be done through the
-Fastly UI - the credentials are in the 2nd line store. If possible, 
+Fastly UI - the credentials are in the 2nd line store. If possible,
 speak to a member of the senior tech team before doing this, to
 evaluate the risk.
 

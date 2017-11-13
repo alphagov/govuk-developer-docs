@@ -4,7 +4,6 @@ title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/github-unavailable.md"
 last_reviewed_on: 2017-10-13
 review_in: 1 months
 ---

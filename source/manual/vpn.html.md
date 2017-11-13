@@ -4,7 +4,6 @@ title: GOV.UK and Virtual Private Networks (VPNs)
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/vpn.md"
 last_reviewed_on: 2017-08-31
 review_in: 6 months
 ---

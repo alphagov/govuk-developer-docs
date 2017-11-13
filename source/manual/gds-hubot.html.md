@@ -4,7 +4,6 @@ title: Update Hubot (Slack bot)
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/gds-hubot.md"
 last_reviewed_on: 2017-08-15
 review_in: 6 months
 ---

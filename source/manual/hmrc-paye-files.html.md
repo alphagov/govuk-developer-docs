@@ -4,13 +4,9 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/hmrc-paye-files.md"
 last_reviewed_on: 2017-07-31
 review_in: 6 months
 ---
-
-
-## Preamble
 
 HMRC have a [desktop application to submit
 PAYE](https://www.gov.uk/basic-paye-tools). This is available on Windows,
