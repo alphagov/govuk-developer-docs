@@ -4,7 +4,6 @@ title: App isn't running the expected Ruby version
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/ruby-version.md"
 last_reviewed_on: 2017-06-26
 review_in: 6 months
 ---

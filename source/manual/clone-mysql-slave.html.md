@@ -4,15 +4,9 @@ title: Clone a MySQL instance from one slave to another
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/clone-mysql-slave.md"
 last_reviewed_on: 2017-06-28
 review_in: 7 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/clone-mysql-slave.md)
-
 
 This tutorial documents the process behind adding a new slave to a MySQL
 senvironment where an existing slave may or may not already exist. The

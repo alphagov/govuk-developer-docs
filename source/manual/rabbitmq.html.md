@@ -4,7 +4,6 @@ title: RabbitMQ
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/rabbitmq.md"
 last_reviewed_on: 2017-10-04
 review_in: 6 months
 ---

@@ -4,7 +4,6 @@ title: Block apps from being deployed
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/releasing-software/blocking-apps-from-release.md"
 last_reviewed_on: 2017-11-07
 review_in: 6 months
 related_applications: [release]

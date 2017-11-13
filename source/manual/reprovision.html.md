@@ -4,7 +4,6 @@ title: Reprovision a machine in vCloud Director
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/reprovision.md"
 last_reviewed_on: 2017-08-09
 review_in: 6 months
 ---

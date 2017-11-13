@@ -4,15 +4,9 @@ title: Data sync
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/alerts/data-sync.md"
 last_reviewed_on: 2017-08-30
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/2nd-line/alerts/data-sync.md)
-
 
 Data is synced from production to staging and integration every night.
 

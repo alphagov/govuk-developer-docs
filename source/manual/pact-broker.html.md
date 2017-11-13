@@ -4,7 +4,6 @@ title: Pact Broker
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/introductions/pact_broker.md"
 last_reviewed_on: 2017-11-06
 review_in: 6 months
 ---
