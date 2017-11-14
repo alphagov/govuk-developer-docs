@@ -4,7 +4,6 @@ title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/publish-to-puppet-forge.md"
 last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---

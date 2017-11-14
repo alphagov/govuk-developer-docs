@@ -4,7 +4,6 @@ title: Upload an asset to asset-manager
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/howto-upload-an-asset-to-asset-manager.md"
 last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---

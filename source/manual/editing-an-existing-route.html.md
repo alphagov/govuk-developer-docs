@@ -4,7 +4,6 @@ title: Edit an existing route in the Router
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/editing-an-existing-route.md"
 last_reviewed_on: 2017-08-15
 review_in: 6 months
 ---

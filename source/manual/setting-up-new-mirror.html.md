@@ -4,7 +4,6 @@ title: Set up a new mirror for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-mirror.md"
 last_reviewed_on: 2017-10-09
 review_in: 6 months
 ---

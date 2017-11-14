@@ -4,7 +4,6 @@ title: Add a disk to a vCloud machine
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/adding-disks-in-vcloud.md"
 last_reviewed_on: 2017-09-04
 review_in: 6 months
 ---

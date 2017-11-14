@@ -4,7 +4,6 @@ title: How logging works on GOV.UK
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/logging/index.md"
 last_reviewed_on: 2017-10-02
 review_in: 6 months
 ---

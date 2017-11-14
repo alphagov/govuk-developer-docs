@@ -4,7 +4,6 @@ title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/tools.md"
 last_reviewed_on: 2017-09-25
 review_in: 6 months
 ---

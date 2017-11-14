@@ -4,15 +4,9 @@ title: Debian packaging
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/debian-packaging.md"
 last_reviewed_on: 2017-06-27
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/debian-packaging.md)
-
 
 This page explains how we're managing our Debian packaging.
 

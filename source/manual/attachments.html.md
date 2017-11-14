@@ -4,7 +4,6 @@ title: Attachment backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/backups/attachments.md"
 last_reviewed_on: 2017-07-11
 review_in: 6 months
 related_applications: [whitehall]
