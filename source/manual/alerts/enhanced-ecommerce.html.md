@@ -4,7 +4,7 @@ title: Enhanced ecommerce data export
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-07-31
+last_reviewed_on: 2017-11-14
 review_in: 3 months
 ---
 
