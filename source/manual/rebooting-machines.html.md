@@ -4,12 +4,10 @@ title: Reboot a machine
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/rebooting-machines.md"
 important: true
 last_reviewed_on: 2017-08-15
 review_in: 6 months
 ---
-
 
 ## Rules of rebooting
 

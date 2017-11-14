@@ -4,15 +4,9 @@ title: Add sidekiq-monitoring to your application
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.md"
 last_reviewed_on: 2017-10-04
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/setting-up-new-sidekiq-monitoring-app.md)
-
 
 [Sidekiq monitoring
 applications](https://github.com/mperham/sidekiq/wiki/Monitoring) are

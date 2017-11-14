@@ -4,15 +4,9 @@ title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/infrastructure/howto/rotate-offsite-backup-gpg-keys.md"
 last_reviewed_on: 2017-09-07
 review_in: 6 months
 ---
-
-> **This page was imported from [the opsmanual on GitHub Enterprise](https://github.com/alphagov/govuk-legacy-opsmanual)**.
-It hasn't been reviewed for accuracy yet.
-[View history in old opsmanual](https://github.com/alphagov/govuk-legacy-opsmanual/tree/master/infrastructure/howto/rotate-offsite-backup-gpg-keys.md)
-
 
 To encrypt our offsite backups, we use GPG keys which are valid for a year. For
 good security practice we rotate these keys each year.

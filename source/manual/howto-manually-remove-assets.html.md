@@ -4,7 +4,6 @@ title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-old_path_in_opsmanual: "../opsmanual/2nd-line/howto-manually-remove-assets.md"
 last_reviewed_on: 2017-09-04
 review_in: 6 months
 ---
