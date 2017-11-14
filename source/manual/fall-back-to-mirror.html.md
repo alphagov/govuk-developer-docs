@@ -28,8 +28,11 @@ Mirror sites can be viewed and navigated at:
 
 ## Access
 
-Everyone with production access can connect to the VCloud mirror in Carrenza. Unfortunately,
-adding and removing accounts is a manual process in [govuk_mirror-puppet hieradata][].
+To gain SSH access to the mirrors in Carrenza, please see the following repositories:
+ - [govuk_mirror-puppet][]
+ - [govuk_mirror-deployment][]
+
+To gain console access to the mirrors in Carrenza, please use the credentials found in the [password store](https://github.com/alphagov/govuk-secrets/tree/master/pass).
 
 Access to the S3 mirror is restricted to Fastly IP addresses (read only) and AWS authenticated users.
 
@@ -38,7 +41,7 @@ Access to the S3 mirror is restricted to Fastly IP addresses (read only) and AWS
 We currently support two types of mirror backends:
 
 - VCloud: the static mirror is hosted as two pairs of machines running a webserver. This is
-hosted with Carrenza. The [suppliers][] page has their details.
+hosted with Carrenza.
 
 - Amazon S3: the static mirror is hosted in a bucket and the content is retrieved via API
 
@@ -104,7 +107,6 @@ origin has been updated to serve the change that you made.
 
 [graphite_cdn_backend]: https://graphite.publishing.service.gov.uk/render?from=-1months&until=now&width=800&height=600&target=stats.govuk.app.govuk-cdn-logs-monitor.logs-cdn-1.cdn_backend.mirror1&target=stats.govuk.app.govuk-cdn-logs-monitor.logs-cdn-1.cdn_backend.mirror0
 [govuk_crawler_worker]: https://github.com/alphagov/govuk_crawler_worker
-[govuk_seed_crawler]: https://github.com/alphagov/govuk_seed_crawler/
-[govuk_mirror-deployment]: https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment
-[govuk_mirror-puppet hieradata]: https://github.com/alphagov/govuk_mirror-puppet/blob/master/hieradata/common.yaml
-[suppliers]: https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/infrastructure/suppliers.html
+[govuk_seed_crawler]: https://github.com/alphagov/govuk_seed_crawler
+[govuk_mirror-puppet]: https://github.com/alphagov/govuk_mirror-puppet
+[govuk_mirror-deployment]: https://github.com/alphagov/govuk_mirror-deployment
