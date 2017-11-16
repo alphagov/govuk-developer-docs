@@ -4,7 +4,7 @@ title: Retire an application
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-17
+last_reviewed_on: 2017-11-16
 review_in: 6 months
 ---
 
@@ -139,10 +139,6 @@ items need to be unpublished and do it via the Publishing API.
 
 Since the application has been retired, it shouldn't be tracked in Sentry.
 
-## 18. Move repo to attic
+## 18. Archive the repo
 
-Move the repository to the attic. Go into the repository settings in Github, and
-change the owner to [gds-attic][gds-attic]. Once moved, delete any webhooks and
-services that exist for it.
-
-[gds-attic]: https://github.com/gds-attic
+Go into the repository settings in Github, and [archive the repo](https://github.com/blog/2460-archiving-repositories).
