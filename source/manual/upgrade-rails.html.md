@@ -12,7 +12,7 @@ When upgrading our apps between Rails major and minor versions, follow the [offi
 
 ## Rails Configs
 
-Going forward we are trying to standardise our Rails config files. The guidelines
+We are trying to standardise our Rails config files. The guidelines
 for these are as follows:
 
 - If `load_defaults` is used, it should be top of the config
