@@ -91,8 +91,8 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 - Elasticsearch logs live at `/var/logs/elasticsearch/<logging|govuk-production>.log`
 
 **Note:** If you have had a health alert for the logs-elasticsearch
-cluster you may need to change where Logstash writes to to ensure we can
-keep getting getting Syslog entries.
+cluster you may need to change where Logstash writes to ensure we can
+keep getting Syslog entries.
 
 ### How to fix unassigned shards in indices?
 
