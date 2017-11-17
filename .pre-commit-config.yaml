@@ -1,0 +1,7 @@
+- repo: local
+  hooks:
+    - id: vale-lint
+      name: ===> Running linter against syntax
+      entry: vale-lint.sh
+      language: script
+      files: \.md$
