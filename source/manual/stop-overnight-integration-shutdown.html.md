@@ -51,8 +51,6 @@ In the settings scroll down to the Build Triggers:
 
 ![With periodic build enabled](images/with-periodic-build-stop-vapp.png)
 
-> Ensure you make a not of the run times setup for the periodic build as they will be lost once you save the project.
-
 You need to disable the periodic build:
 
 ![With periodic build disabled](images/without-periodic-build.png)
@@ -67,8 +65,6 @@ To do this logging into the jenkins server at [https://deploy.publishing.service
 In the settings scroll down to the Build Triggers:
 
 ![With periodic build enabled](images/with-periodic-build-copy-to-integration.png)
-
-> Ensure you make a not of the run times setup for the periodic build as they will be lost once you save the project.
 
 You need to disable the periodic build:
 
