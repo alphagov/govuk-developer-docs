@@ -75,7 +75,7 @@ Remeber to **Save** the project
 ## Renabling everything
 
 This can be done by just re-enabling the puppet job, as this will reset the flag on jenkins task. This can be
-down by running the following [fabic script]:
+down by running the following [fabic script]():
 
 ```
 fab integration -H jenkins-1.management puppet.enable
