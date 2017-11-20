@@ -9,8 +9,6 @@ last_reviewed_on: 2017-11-20
 review_in: 6 months
 ---
 
-## Stop overnight integration shutdown
-
 But default the integration environments is shutdown each night at 7pm to save money.
 
 On occasion is it necessary to keep the integration environment online overnight (i.e. pre budget testing).
@@ -28,7 +26,7 @@ overwritten the following morning.
 This is done by disabling the `Copy_Data_to_Integration` job in jenkins, as this runs on `deploy.publishing.service.gov.uk` we
 will also need to disable puppet run on that machine
 
-### Disabling puppet for `deploy.integration`
+## Disabling puppet for `deploy.integration`
 
 This can be done using the [fabric scrips]:
 
@@ -36,7 +34,7 @@ This can be done using the [fabric scrips]:
 fab integration -H jenkins-1.management puppet.disable:"<reason for disabling the job>"
 ```
 
-### Disabling puppet for `deploy.production`
+## Disabling puppet for `deploy.production`
 
 This can be done using the [fabric scrips]:
 
@@ -44,7 +42,7 @@ This can be done using the [fabric scrips]:
 fab production -H jenkins-1.management puppet.disable:"<reason for disabling the job>"
 ```
 
-### Disabling `Stop vApps` in jenkins (integration)
+## Disabling `Stop vApps` in jenkins (integration)
 
 To do this logging into the jenkins server at: [https://deploy.integration.publishing.service.gov.uk] selecting the
 [Stop vApps](https://deploy.integration.publishing.service.gov.uk/job/stop_vapps/) job and click on **configure**.
@@ -61,7 +59,7 @@ You need to disable the periodic build:
 
 Remeber to **Save** the project
 
-### Disabling `Copy_Data_to_Integration` in jenkins (production)
+## Disabling `Copy_Data_to_Integration` in jenkins (production)
 
 To do this logging into the jenkins server at: [https://deploy.publishing.service.gov.uk] selecting the
 [Copy_Data_to_Integration](https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Integration/) job and click on **configure**.
@@ -78,7 +76,7 @@ You need to disable the periodic build:
 
 Remeber to **Save** the project
 
-### Renabling everything
+## Renabling everything
 
 This can be done by just re-enabling the puppet job, as this will reset the flag on jenkins task. This can be
 down by running the following [fabic script]:
