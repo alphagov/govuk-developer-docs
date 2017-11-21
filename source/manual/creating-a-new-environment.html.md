@@ -187,7 +187,7 @@ that has already been provisioned):
 1.  On GitHub Enterprise, create a new configuration repository for
     your environment. Make sure that the
     [Bots](https://github.digital.cabinet-office.gov.uk/organizations/gds/teams/3) team has access
-    to to your new repository
+    to your new repository
 2.  Add public half of the Jenkins user's SSH key to GitHub Enterprise:
 
         ssh jenkins-1.management.staging 'sudo cat /var/lib/jenkins/.ssh/id_rsa.pub'

@@ -132,10 +132,10 @@ which make it simpler to configure apps to connect to their databases.
 
 ## Configuring the app for Jenkins
 
-If you used the the [govuk-rails-app-template
+If you used the [govuk-rails-app-template
 repository](https://github.com/alphagov/govuk-rails-app-template) to
 create your application, your app will already have `Jenkinsfile`. If
-you you didn't, you will need to create a
+you didn't, you will need to create a
 \[Jenkinsfile\](testing/application-testing) in your application repo.
 
 You also need to add a Jenkins integration to the repo on Github:
@@ -204,7 +204,7 @@ a Rails console.
 
 ## Configuring Sentry
 
-If you used the the [govuk-rails-app-template
+If you used the [govuk-rails-app-template
 repository](https://github.com/alphagov/govuk-rails-app-template) to
 create your application, your app will already have the `govuk_config` gem
 installed.

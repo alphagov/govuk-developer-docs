@@ -65,4 +65,4 @@ potential downtime.
 > a long period of time (e.g. 20 minutes), try connecting to the
 > machine's console from the vCloud Director Flash UI. VMs have been
 > known to wait at the Grub bootloader screen; if this is the case,
-> simply press enter in the console to start Linux.
+> press the enter key in the console to start Linux.
