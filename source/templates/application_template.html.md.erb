@@ -83,6 +83,14 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 </ul>
 <% end %>
 
+<h2>Repo readme</h2>
+
+<p>Pulled in directly from <%= link_to "the repo", application.repo_url %>. Links might not function properly.</p>
+
+<div class='embedded-readme'>
+<%= ExternalDoc.fetch(repository: "alphagov/#{application.github_repo_name}", path: 'README.md') %>
+</div>
+
 <% end %>
 
 [app-yaml]: https://github.com/alphagov/govuk-developer-docs/edit/master/data/applications.yml
