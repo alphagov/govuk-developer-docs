@@ -65,7 +65,7 @@
       <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
         on <%= page_review.review_by %>
       </time>
-      by the page owner <%= current_page.data.owner_slack %>.
+      by the page owner <%= link_to page_review.owner_slack, page_review.owner_slack_url  %>.
     </div>
   <% end %>
 <% end %>
