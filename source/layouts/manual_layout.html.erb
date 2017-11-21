@@ -54,7 +54,7 @@
   </div>
 
   <% if page_review.reviewable? %>
-    <div class='review-status'>
+    <div class='information-callout'>
       This page was <%= link_to "last reviewed", "/manual/review-page.html" %>
 
       <time data-module="datetime-relative" datetime="<%= page_review.last_reviewed_on %>">
