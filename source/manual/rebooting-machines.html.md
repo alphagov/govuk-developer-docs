@@ -178,7 +178,7 @@ to safely reboot these machines you'll need access to vCloud Director.
 There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
 waiting for the cluster to recover before rebooting the next node.
 
-However, the `govuk_crawler_worker` app points directly to to rabbitmq-1
+However, the `govuk_crawler_worker` app points directly to rabbitmq-1
 rather than the whole cluster, so this machine is a single point of
 failure. A brief downtime of `govuk_crawler_worker` isn't critical,
 though, so it just needs to be restarted after rebooting the cluster.

@@ -68,8 +68,40 @@ This will create a bunch of static files in `/build`.
 This project is re-deployed by a Jenkins task every hour (to pick up external
 changes). It is [hosted on S3][terraform].
 
+## Pre-commit hooks
+
+There are pre-commit hooks available to help when creating or editing markdown.
+
+Install [pre-commit][]:
+
+Homebrew:
+
+`brew install pre-commit`
+`pre-commit install`
+
+Pip:
+
+`pip install pre-commit`
+
+Install [vale][] linter:
+
+Homebrew:
+
+`brew tap ValeLint/vale`
+`brew install vale`
+
+Install the binary:
+
+Download the [latest release](https://github.com/valelint/vale/releases).
+
+`wget https://github.com/ValeLint/vale/releases/download/0.9.0/vale_0.9.0_Linux_64-bit.tar.gz`
+`tar zxvf vale_0.9.0_Linux_64-bit.tar.gz`
+`chmod +x vale && mv vale /usr/local/bin/vale`
+
 ## Licence
 
 [MIT License](LICENCE.md)
 
 [terraform]: https://github.com/alphagov/govuk-terraform-provisioning/tree/master/projects/developer_docs/resources
+[pre-commit]: https://github.com/pre-commit/pre-commit
+[vale]: https://github.com/ValeLint/vale

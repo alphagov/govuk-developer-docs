@@ -11,7 +11,7 @@ review_in: 6 months
 All of our offsite backups use duplicity. Most, but not all, are
 encrypted using GPG.
 
-If a backup fails then then start by looking at any output captured by
+If a backup fails then start by looking at any output captured by
 cron and sent to the "machine email" list. This is linked from the
 Nagios alert under "extra actions".
 
