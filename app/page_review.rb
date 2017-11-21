@@ -11,6 +11,16 @@ class PageReview
     page.data.review_in.present?
   end
 
+  def owner_slack
+    page.data.owner_slack
+  end
+
+  def owner_slack_url
+    # Slack URLs don't have the # (channels) or @ (usernames)
+    slack_identifier = owner_slack.gsub('#', '').gsub('@', '')
+    "https://govuk.slack.com/messages/#{slack_identifier}"
+  end
+
   def expired?
     reviewable? && Date.today > review_by
   end
