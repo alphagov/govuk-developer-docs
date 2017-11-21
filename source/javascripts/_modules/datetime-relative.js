@@ -36,6 +36,10 @@
         return day + ' days from now'
       } else if (hr >= 24) {
         return 'a day from now'
+      } else if (Math.abs(month) >= 45) {
+        return Math.abs(month) + ' months ago'
+      } else if (day < 0) {
+        return Math.abs(day) + ' days ago'
       } else {
         return 'now'
       }
