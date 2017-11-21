@@ -55,11 +55,17 @@
 
   <% if page_review.reviewable? %>
     <div class='review-status'>
-      This page is owned by <%= current_page.data.owner_slack %>
-      and <%= link_to "needs to be reviewed", "/manual/review-page.html" %>
+      This page was <%= link_to "last reviewed", "/manual/review-page.html" %>
+
+      <time data-module="datetime-relative" datetime="<%= page_review.last_reviewed_on %>">
+        on <%= page_review.last_reviewed_on %>
+      </time>.
+
+      It needs to be reviewed again
       <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
-        <%= page_review.review_by %>
+        on <%= page_review.review_by %>
       </time>
+      by the page owner <%= current_page.data.owner_slack %>.
     </div>
   <% end %>
 <% end %>

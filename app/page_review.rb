@@ -22,7 +22,11 @@ class PageReview
   def review_by
     @review_by ||= Chronic.parse(
       "in #{page.data.review_in}",
-      now: page.data.last_reviewed_on.to_time
+      now: last_reviewed_on.to_time
     ).to_date
+  end
+
+  def last_reviewed_on
+    page.data.last_reviewed_on
   end
 end
