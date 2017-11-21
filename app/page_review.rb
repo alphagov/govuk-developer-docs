@@ -17,7 +17,7 @@ class PageReview
 
   def owner_slack_url
     # Slack URLs don't have the # (channels) or @ (usernames)
-    slack_identifier = owner_slack.gsub('#', '').gsub('@', '')
+    slack_identifier = owner_slack.delete('#').delete('@')
     "https://govuk.slack.com/messages/#{slack_identifier}"
   end
 
