@@ -11,6 +11,8 @@ review_in: 6 months
 You will need to either forward your publickey from the host machine to the
 VM or have your VM publickey added to your [user manifest][user-manifests].
 
+[user-manifests]: https://docs.publishing.service.gov.uk/manual/get-started.html#3-create-a-user-in-integration-and-ci
+
 To confirm your key has been forwarded to the development vm you can run:
 
 ```shell
