@@ -4,12 +4,21 @@ title: Restart an application
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2017-05-17
+last_reviewed_on: 2017-11-22
 review_in: 6 months
 ---
 
-To restart an application use this fabric script:
+To restart an application use the [fabric command](https://github.com/alphagov/fabric-scripts) `app.reload`.
+
+For example, to restart the 'manuals-frontend' app on all frontend machines
+in staging, do:
 
 ```
-fab $environment class:frontend app.reload:manuals-frontend
+fab staging class:frontend app.reload:manuals-frontend
+```
+
+or to restart Publisher on integration backend-1 only, do:
+
+```
+fab integration -H backend-1 app.reload:publisher
 ```
