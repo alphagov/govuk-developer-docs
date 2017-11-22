@@ -85,7 +85,7 @@ HTML, it's hard to make broad changes to the site (like putting a banner on ever
 
 You'll be notified by the escalation on-call contact that you need to edit the site.
 
-1. If you're at home, connect to the Aviation House VPN
+1. If you're at home, connect to the [VPN][gds-vpn]
 2. Download a copy of the file you want to edit using [govuk_mirror-deployment][]:
 
         $ fab $environment get_file:path-to-file.html
@@ -110,3 +110,4 @@ origin has been updated to serve the change that you made.
 [govuk_seed_crawler]: https://github.com/alphagov/govuk_seed_crawler
 [govuk_mirror-puppet]: https://github.com/alphagov/govuk_mirror-puppet
 [govuk_mirror-deployment]: https://github.com/alphagov/govuk_mirror-deployment
+[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/how-to/connect-to-the-aviation-house-vpn
