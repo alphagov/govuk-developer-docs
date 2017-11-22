@@ -28,6 +28,6 @@ Things to check if it doesn't work:
     user list in the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata)
     for production access, or the [govuk-puppet repo](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
     for access to other environments.
--   **Are you connecting from outside Aviation House?** You'll need to
-    connect to the Aviation House VPN first; SSH connections are
-    restricted to the Aviation House IP addresses.
+- **Are you connecting from outside The White Chapel Building?**
+    You'll need to connect to the VPN first; SSH connections are
+    restricted to the White Chapel Building IP addresses.
