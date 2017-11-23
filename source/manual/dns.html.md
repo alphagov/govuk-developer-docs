@@ -4,7 +4,7 @@ title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-05-16
+last_reviewed_on: 2017-11-22
 review_in: 6 months
 ---
 
@@ -44,8 +44,7 @@ There are a few domains that we use:
 
 - `alphagov.co.uk` is the old domain name that GOV.UK publishing used to live on.
   We maintain records that point to Bouncer so that these URLs redirect.
-- `publishing.service.gov.uk` and `govuk.service.gov.uk` are where GOV.UK lives. We
-  should probably only have one of those.
+- `publishing.service.gov.uk` and `govuk.service.gov.uk` are where GOV.UK lives.
 
 ## Making changes to publishing.service.gov.uk
 
