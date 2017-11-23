@@ -63,7 +63,7 @@ to bring the search index back in sync with the publishing apps.
 ### Replaying rummager traffic
 
 Once an index is restored we need to re-run all traffic that occurred after the snapshot was taken for the 'government', 'detailed' and
-'mainstream' indicies. We have setup `GOR` logging for `POST` and `GET` requests so that we can replay this traffic, this way we don't need
+'mainstream' indices. We have setup `GOR` logging for `POST` and `GET` requests so that we can replay this traffic, this way we don't need
 to resend the traffic from individual publishing application.
 
 > The `govuk` index can be restored by resending data directly from the publishing API as it is not updated directly from the publishing applications.
