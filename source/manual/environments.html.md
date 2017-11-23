@@ -1,10 +1,10 @@
 ---
 owner_slack: "#2ndline"
-title: GOV.UK's environments (training, integration, staging, production)
+title: GOV.UK's environments (integration, staging, production)
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-25
+last_reviewed_on: 2017-11-22
 review_in: 3 months
 ---
 
@@ -12,13 +12,7 @@ GOV.UK has several environments with different purposes.
 
 ## Continuous integration (CI)
 
-Runs tests for applications. Hosted by Skyscape.
-
-## Training
-
-This environment is currently being built and will replace integration as the environment
-used by content trainers for training sessions. It it hosted on a single VM running in AWS.
-It is rebuilt once a week by a scheduled Jenkins job in integration.
+Runs tests for applications. Hosted by Carrenza.
 
 ## Integration
 
