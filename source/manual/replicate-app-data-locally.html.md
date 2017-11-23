@@ -4,12 +4,12 @@ title: Replicate application data locally for development
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-05-12
+last_reviewed_on: 2017-11-22
 review_in: 6 months
 ---
 
-Dumps are generated from production data in the early hours each day, and are
-then downloaded from integration.  This process is managed by the
+Dumps are generated from production data in the early hours each day, and can
+then be downloaded from integration.  The process is managed by the
 [replicate-data-local.sh](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/replication/replicate-data-local.sh)
 script within the [govuk-puppet
 repository](https://github.com/alphagov/govuk-puppet).
@@ -71,7 +71,7 @@ Find your biggest Mongo collections by running:
 dev$ sudo ncdu /var/lib/mongodb
 ```
 
-You can re-run the replication but skip non-Mongo imports, like MySQL if it'd already succesfully imported. Use
+You can re-run the replication but skip non-Mongo imports like MySQL if it's already succesfully imported. Use
 ```
 replicate-data-local.sh --help
 ```

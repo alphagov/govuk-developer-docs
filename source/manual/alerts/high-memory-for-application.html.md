@@ -4,7 +4,7 @@ title: High memory for application
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-05-17
+last_reviewed_on: 2017-11-22
 review_in: 6 months
 ---
 
