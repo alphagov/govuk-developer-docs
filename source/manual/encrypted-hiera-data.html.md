@@ -133,6 +133,7 @@ Once complete, you should run `git pull` to obtain the re-encrypted copy.
 You should now be able to use the `rake(1)` tasks below to access and
 modify encrypted Hiera data.
 
+<a name="zsh-note"></a>
 > **NOTE**
 >
 > If you use [ZSH](http://zsh.sourceforge.net/) as your local shell, you
@@ -418,3 +419,17 @@ for the development VM:
 
 Alternatively, you can add the `$LOAD_PATH` to `/usr/bin/puppet` as shown
 in [this commit](https://github.com/alphagov/govuk-puppet/commit/b7743452875b1dd83fda982e28ae8e776bc3a8b8).
+
+### Zsh: no matches found
+
+If you encounter an error similar to
+
+```
+zsh: no matches found: eyaml:edit[integration]
+```
+
+you should read the [note](#zsh-note) and try:
+
+```
+noglob bundle exec rake eyaml:edit[integration]
+```
