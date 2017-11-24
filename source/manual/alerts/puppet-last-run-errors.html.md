@@ -32,3 +32,9 @@ Sometimes this alert means that there is a puppet lock on the machine, so puppet
 ```
 govuk_puppet -l
 ```
+
+### Could not parse puppet summary file
+
+This usually means the Puppet client is unable to retrieve the catalogue from the master.
+
+The file that the check uses is `/var/lib/puppet/state/last_run_summary.yaml`. If it is only a few lines long, check logs for the error as above.
