@@ -10,7 +10,7 @@ review_in: 6 months
 
 You can use [bowler](https://github.com/JordanHatch/bowler) to run an
 application, it will also run all dependent services and applications.
-The applications are listed in the [Pinfile][].
+The applications are listed in the [Pinfile](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/Pinfile).
 
 ```shell
 $ cd /var/govuk/govuk-puppet/development-vm
@@ -27,7 +27,7 @@ $ STATIC_DEV="http://static.dev.gov.uk" bowl planner static
 
 To run a single application without the dependencies you can use
 [foreman](http://ddollar.github.io/foreman/). The available apps are defined in
-the [Procfile][].
+the [Procfile](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/Procfile).
 
 ```shell
 $ cd /var/govuk/govuk-puppet/development-vm
