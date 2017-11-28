@@ -4,7 +4,7 @@ title: Restore from offsite backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-09
+last_reviewed_on: 2017-11-28
 review_in: 6 months
 ---
 
@@ -27,6 +27,16 @@ on a Vagrant VM.
 
 On a fresh VM, you may require the following packages for this exercise:
 
+> You can use either your dev VM or if you have the space you can create a new mysql server VM using the following command:
+>
+> ```vagrant up mysql-master-1.backend```
+>
+> This needs to be run from the root of the `govuk-puppet` repository
+>
+> Access the new VM using:
+>
+> ```vagrant ssh mysql-master-1.backend```
+
 #### Packages via `apt-get`
 
 ```shell
@@ -45,10 +55,10 @@ You will need access to production hieradata credentials to retrieve the AWS
 credentials and GPG key to decrypt the backups.
 
 1. Retrieve the keys and credentials from the
-   [govuk-secrets repo][govuk-secrets] following
-   [these instructions](https://github.com/alphagov/govuk-secrets/tree/master/puppet#common-actions)
+  [govuk-secrets repo][govuk-secrets] following
+  [these instructions](https://github.com/alphagov/govuk-secrets/tree/master/puppet#common-actions)
 
-  * You are looking for:
+    You are looking for:
 
     ```yaml
     backup::offsite::job::aws_access_key_id
@@ -57,7 +67,7 @@ credentials and GPG key to decrypt the backups.
     backup::assets::backup_private_gpg_key_passphrase
     ```
 
-  * If you are performing the 2nd line backup drill, you will want to use the
+    If you are performing the 2nd line backup drill, you will want to use the
     production credentials
 
 2. Ensure that you can connect to the S3 bucket:
@@ -68,13 +78,15 @@ credentials and GPG key to decrypt the backups.
     s3cmd ls s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
     ```
 
-  * If you receive a `403` error, try:
+    If you receive a `403` error, try:
 
     ```bash
     s3cmd ls s3://govuk-offsite-backups-production/govuk-datastores/
     ```
 
     If you can view objects inside the bucket you now have access.
+
+    > You will still need to use the full URL list above when using the below duplicity commands
 
 3. Now you can see the status of duplicity:
 
@@ -95,11 +107,11 @@ On the machine where you'll be running the restore:
     gpg --allow-secret-key-import --import <path to GPG key file>
     ```
 
-    * Confirm the key has been imported correctly with:
+    Confirm the key has been imported correctly with:
 
-      ```bash
-      gpg --list-secret-keys
-      ```
+    ```bash
+    gpg --list-secret-keys
+    ```
 
 3. Once the key is imported, you'll be able to list files:
 
@@ -119,16 +131,17 @@ On the machine where you'll be running the restore:
     ```bash
     duplicity restore --file-to-restore data/backups/whitehall-mysql-backup-1.backend.publishing.service.gov.uk/var/lib/automysqlbackup/latest.tbz2 s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/ /tmp/latest.tbz2
     ```
-    * If you are running out of space in your VM, you could run the same command, but replacing `/tmp/latest.tbz2` with `--tempdir /var/govuk/tmp /var/govuk/tmp/latest.tbz2`
 
-    * When this completes you may see the following 'error':
+    If you are running out of space in your VM, you could run the same command, but replacing `/tmp/latest.tbz2` with `--tempdir /var/govuk/tmp /var/govuk/tmp/latest.tbz2`
 
-      ```
-      Error '[Errno 1] Operation not permitted: '/tmp/latest.tbz2'' processing .
-      ```
+    When this completes you may see the following 'error':
 
-      This doesn't seem to have any significant consequences and can be
-      ignored.
+    ```
+    Error '[Errno 1] Operation not permitted: '/tmp/latest.tbz2'' processing .
+    ```
+
+    This doesn't seem to have any significant consequences and can be
+    ignored.
 
 ### Restore a backup
 
@@ -159,6 +172,8 @@ database.
     sudo mysql < foo.sql
     ```
 
+    > You will need to provide the password for `mysql_root` from the hieradata if running the mysql VM
+
 This will restore the contents of file `foo.sql` to the database name that the
 dump was taken from, creating it if it doesn't exist.
 
@@ -172,7 +187,7 @@ access keys. To do this, follow the
 section.
 
 1. SSH to the machine where you want to restore the backup, for example
-   `asset-master-1.backend`.
+ `asset-master-1.backend`.
 
 2. `ls` the destination bucket
 
@@ -182,9 +197,10 @@ section.
     s3cmd ls s3://govuk-offsite-backups-production/assets-whitehall/
     ```
 
-    * If you can view objects inside the bucket you should have access.
-    * The buckets are as described in [`hieradata/production.yaml` in the
-      govuk-puppet repo][hieradata-production-yaml].
+    If you can view objects inside the bucket you should have access.
+
+    The buckets are as described in [`hieradata/production.yaml` in the
+    govuk-puppet repo][hieradata-production-yaml].
 
 3. Now you'll be able to see the status of duplicity:
 
