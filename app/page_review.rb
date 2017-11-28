@@ -11,6 +11,16 @@ class PageReview
     page.data.review_in.present?
   end
 
+  def owner_slack
+    page.data.owner_slack
+  end
+
+  def owner_slack_url
+    # Slack URLs don't have the # (channels) or @ (usernames)
+    slack_identifier = owner_slack.delete('#').delete('@')
+    "https://govuk.slack.com/messages/#{slack_identifier}"
+  end
+
   def expired?
     reviewable? && Date.today > review_by
   end
@@ -22,7 +32,11 @@ class PageReview
   def review_by
     @review_by ||= Chronic.parse(
       "in #{page.data.review_in}",
-      now: page.data.last_reviewed_on.to_time
+      now: last_reviewed_on.to_time
     ).to_date
+  end
+
+  def last_reviewed_on
+    page.data.last_reviewed_on
   end
 end

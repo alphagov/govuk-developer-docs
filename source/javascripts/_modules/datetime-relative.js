@@ -3,12 +3,11 @@
   Modules.DatetimeRelative = function () {
     this.start = function ($element) {
       var originalText = $element.text().trim()
-      var suffix = originalText ? ' (' + originalText + ')' : ''
       var dateTime = $element.attr('datetime')
       var timestamp = Date.parse(dateTime)
       if (isNaN(timestamp) === false) {
         $element.text(
-          timeUntil(new Date(dateTime)) + suffix
+          timeUntil(new Date(dateTime))
         )
       }
     }
@@ -36,6 +35,10 @@
         return day + ' days from now'
       } else if (hr >= 24) {
         return 'a day from now'
+      } else if (Math.abs(day) >= 45) {
+        return Math.abs(month) + ' months ago'
+      } else if (day < 0) {
+        return Math.abs(day) + ' days ago'
       } else {
         return 'now'
       }

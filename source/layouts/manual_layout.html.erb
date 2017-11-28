@@ -20,11 +20,7 @@
   <% end %>
 
   <% if page_review.expired? %>
-    <div class='warning'>
-      This page was set to be reviewed before <%= page_review.review_by %>
-      by the page owner: <%= current_page.data.owner_slack %>. This might mean the
-      content is out of date. <%= link_to "Read how to review a page", "/manual/review-page.html" %>
-    </div>
+    <%= partial 'partials/page_expired' %>
   <% end %>
 
   <%= html %>
@@ -54,12 +50,22 @@
   </div>
 
   <% if page_review.reviewable? %>
-    <div class='review-status'>
-      This page is owned by <%= current_page.data.owner_slack %>
-      and <%= link_to "needs to be reviewed", "/manual/review-page.html" %>
-      <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
-        <%= page_review.review_by %>
-      </time>
-    </div>
+    <% if page_review.expired? %>
+      <%= partial 'partials/page_expired' %>
+    <% else %>
+      <div class='information-callout'>
+        This page was <%= link_to "last reviewed", "/manual/review-page.html" %>
+
+        <time data-module="datetime-relative" datetime="<%= page_review.last_reviewed_on %>">
+          on <%= page_review.last_reviewed_on %>
+        </time>.
+
+        It needs to be reviewed again
+        <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
+          on <%= page_review.review_by %>
+        </time>
+        by the page owner <%= link_to page_review.owner_slack, page_review.owner_slack_url  %>.
+      </div>
+    <% end %>
   <% end %>
 <% end %>
