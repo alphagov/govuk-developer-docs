@@ -4,7 +4,7 @@ title: 'Backup and restore Elasticsearch indices'
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2017-09-12
+last_reviewed_on: 2017-11-28
 review_in: 2 months
 ---
 
@@ -49,13 +49,7 @@ This will restore each backup into a new index, and then move the alias to point
 
 If you need to change the alias back for any reason, you can run the rummager rake task `rummager:switch_to_named_index[foo-2017-01-01...]`, where `foo-2017-01-01...` is the name of the index you want to point the alias to. The task will automatically determine the correct alias name from the index name.
 
-The [search analytics jenkins job](https://deploy.publishing.service.gov.uk/job/search-fetch-analytics-data/) runs overnight and will automatically clean up search indexes that no longer have an alias pointing to them. It looks for indices with any of these names:
-
-- mainstream-$timestamp
-- detailed-$timestamp
-- government-$timestamp
-- page-traffic-$timestamp
-- metasearch-$timestamp
+Once backups have been restored it is necessary to manually delete the old indices as otherwise elasticsearch will run out of disk space and memory. This can be done by running the rummager task: `rummager:clean`.
 
 After restoring a backup, consider [replaying traffic](/manual/rummager-traffic-replay.html)
 to bring the search index back in sync with the publishing apps.
