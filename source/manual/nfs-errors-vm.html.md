@@ -83,21 +83,6 @@ you run
 find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null
 ```
 
-The other solution, as mentioned in
-[this GitHub issue against Vagrant](https://github.com/mitchellh/vagrant/issues/8061)
-is to force macOS to refresh the NFS cache. To do this on your host you run
-
-```shell
-ls -alR > /dev/null
-```
-
-in the root of your govuk folder. To do this on your VM
-run
-
-```shell
-find /var/govuk -type d -exec touch '{}'/.touch ';' -exec rm -f '{}'/.touch ';' 2>/dev/null
-```
-
 These two options have been provided as shell scripts in the `govuk-puppet/development-vm` folder:
 
 * `refresh-nfs-cache-on-host.sh` - run this on your host machine to perform the `ls` command above on `../../` which should be the checkout location of all your repos.
