@@ -4,7 +4,7 @@ title: Check that correct users have access
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-05-25
+last_reviewed_on: 2017-12-01
 review_in: 6 months
 ---
 

@@ -4,7 +4,7 @@ title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
 section: Basics
-last_reviewed_on: 2017-08-26
+last_reviewed_on: 2017-12-01
 review_in: 3 months
 ---
 

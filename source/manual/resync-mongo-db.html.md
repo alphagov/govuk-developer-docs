@@ -4,7 +4,7 @@ title: Resync a MongoDB database
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-05-30
+last_reviewed_on: 2017-12-01
 review_in: 6 months
 ---
 
