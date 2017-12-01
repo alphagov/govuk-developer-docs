@@ -4,8 +4,8 @@ title: Email alerts not sent
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-05-23
-review_in: 6 months
+last_reviewed_on: 2017-12-01
+review_in: 1 month
 ---
 
 GOV.UK sends out emails when certain publications are published. We have
