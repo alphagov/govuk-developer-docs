@@ -4,8 +4,8 @@ title: root filesystem is readonly
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-05-30
-review_in: 6 months
+last_reviewed_on: 2017-12-01
+review_in: 1 month
 ---
 
 When Ubuntu is unable to write to disk it switches the filesystem to be
