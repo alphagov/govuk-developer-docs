@@ -250,7 +250,6 @@ environment:
 > 0. external\_link\_tracker
 > 0. govuk\_need\_api
 > 0. asset-manager
-> 0. designprinciples
 > 0. feedback
 > 0. support
 > 0. travel-advice-publisher

@@ -20,5 +20,5 @@ fab $environment node_type:frontend puppet.disable:"Reason for disabling Puppet"
 Stop the app on the relevant machines:
 
 ```
-fab $environment node_type:frontend app.stop:designprinciples
+fab $environment node_type:frontend app.stop:frontend
 ```
