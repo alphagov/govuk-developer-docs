@@ -16,9 +16,7 @@ and [travel advice updates](https://www.gov.uk/foreign-travel-advice).
 
 If the check fails:
 
-- Inspect the [console
-logs for the rake task](https://deploy.publishing.service.gov.uk/job/email-alert-check)
-for the job. This will tell you which emails are missing.
+- Inspect the console logs for the [travel advice email alert](https://deploy.publishing.service.gov.uk/job/travel-advice-email-alert-check/) and the [email alert monitoring](https://deploy.publishing.service.gov.uk/job/email-alert-check) jobs. These will tell you which emails are missing.
 - Check the monitoring inbox to rule out false alerts. Emails are sent to a
 monitoring inbox at `googleapi@digital.cabinet-office.gov.uk`. Credentials for
 the account can be found in the 2nd Line pass store. The test is
