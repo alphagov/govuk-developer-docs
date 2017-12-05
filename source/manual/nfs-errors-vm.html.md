@@ -14,7 +14,7 @@ Using Cisco AnyConnect has been known to cause issues with NFS.
 
 Either disconnect from the VPN and reload the VM for access.
 
-Or, consider using [OpenConnect][] for your VPN. You can access the
+Or, consider using [OpenConnect] for your VPN. You can access the
 [VPN][gds-vpn] via:
 
 ```shell
@@ -22,6 +22,7 @@ $ sudo openconnect -v --pfs --no-dtls -u $USER vpn.digital.cabinet-office.gov.uk
 ```
 
 [gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/how-to/connect-to-the-aviation-house-vpn
+[openconnect]: http://formulae.brew.sh/formula/openconnect
 
 ## Vagrant error NFS is reporting that your exports file is invalid
 ```shell
