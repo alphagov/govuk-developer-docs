@@ -1,14 +1,14 @@
 ---
 owner_slack: "#govuk-infrastructure"
-title: Onsite backups
+title: Onsite backups failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-05-16
+last_reviewed_on: 2017-12-05
 review_in: 6 months
 ---
 
-The backup machine (e.g. backup-1.management.integration) collects
+The backup machine (e.g. `backup-1.management.integration`) collects
 backups from the various data stores.
 
 The location of the backups is defined in
