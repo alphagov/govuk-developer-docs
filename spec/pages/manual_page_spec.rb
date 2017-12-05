@@ -21,5 +21,9 @@ Dir.glob("source/manual/**/*.md").each do |filename|
     it "has a title" do
       expect(frontmatter['title']).to be_present, "Page doesn't have `title` set"
     end
+
+    it "has the correct suffix" do
+      expect(filename).to match(/\.html\.md$/)
+    end
   end
 end
