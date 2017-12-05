@@ -8,7 +8,7 @@ last_reviewed_on: 2017-12-05
 review_in: 2 weeks
 ---
 
-We're [obliged to keep our software current][].
+We're [obliged to keep our software current][current].
 
 To help with this we're currently trialling a service called [Dependabot][] to perform automated dependency upgrades.
 
