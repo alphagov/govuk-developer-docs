@@ -10,31 +10,3 @@ You can [download this data as CSV too](/document-types.csv). In Google Spreadsh
 ```
 =importData("https://docs.publishing.service.gov.uk/document-types.csv")
 ```
-
-## Supertypes
-
-Document types can be grouped into "document supertypes". The types are defined
-in a YAML file [in the GOV.UK Document Types gem][govuk_document_types].
-
-<% Supertypes.all.each do |supertype| %>
-### <%= supertype.name %>
-
-<%= supertype.description %>
-
-Field in content-store: `<%= supertype.id %>`
-
-| Name | Types |
-| --- | --- |
-<% supertype.items.map do |item| %>
-| <%= item.fetch("id") %> | <%= item.fetch("document_types").map { |d| link_to(d, document_type_url(d)) }.join("<br/>") %> |
-<% end %>
-| <%= supertype.default %> | All other types |
-
-<% end %>
-
-[content-store]: https://github.com/alphagov/content-store
-[govuk_document_types]: https://github.com/alphagov/govuk_document_types
-
-<style>
-table td:first-child { width: 200px; }
-</style>

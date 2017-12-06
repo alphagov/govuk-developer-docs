@@ -2,6 +2,14 @@
   <ul>
     <li><%= sidebar_link 'Document types', "/document-types.html" %>
       <ul>
+      <% Supertypes.all.each do |supertype| %>
+        <li><%= sidebar_link supertype.name, "/document-types/#{supertype.id}.html" %></li>
+      <% end %>
+      </ul>
+    </li>
+
+    <li>
+      <ul>
       <% DocumentTypes.pages.each do |page| %>
         <li><%= sidebar_link page.name, "/document-types/#{page.name}.html" %></li>
       <% end %>

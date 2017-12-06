@@ -25,7 +25,7 @@ actually any pages with this document type.
 | Type | Group |
 | --- | --- |
 <% Supertypes.all.each do |supertype| %>
-| <%= link_to supertype.name, "/document-types.html" %> | <%= supertype.for_document_type(page.name) %> |
+| <%= link_to supertype.name, "/document-types/#{supertype.id}.html" %> | <%= supertype.for_document_type(page.name) %> |
 <% end %>
 
 <% if page.examples.any? %>
