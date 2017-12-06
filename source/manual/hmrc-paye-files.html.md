@@ -88,7 +88,7 @@ the previous version of the software.
     works fine, the new edition of the [mainstream content
     item](https://www.gov.uk/basic-paye-tools) and [Welsh
     translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
-    can be prepped by the content team with the new links and version
+    can be prepped by the content team with the new links, file sizes and version
     number, ready to publish at the launch time.
 
 8.  When the launch time comes (which should be specified in the Zendesk
