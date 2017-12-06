@@ -105,6 +105,14 @@ DocumentTypes.pages.each do |document_type|
   }
 end
 
+Supertypes.all.each do |supertype|
+  proxy "/document-types/#{supertype.id}.html", "templates/supertype_template.html", locals: {
+    title: "#{supertype.name} supertype",
+    description: supertype.description,
+    supertype: supertype,
+  }
+end
+
 YAML.load_file('data/redirects.yml').each do |from, to|
   redirect from, to: to
 end
