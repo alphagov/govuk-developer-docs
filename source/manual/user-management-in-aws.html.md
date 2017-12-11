@@ -58,8 +58,8 @@ There are two methods to assume roles using the CLI.
 
 Both methods require the following:
 
- - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account
- - MFA ARN: this is the ARN assigned to the MFA device in your central account
+ - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg govuk-administrators
+ - MFA ARN: this is the ARN assigned to the MFA device in your own account
 
 Both methods will allow a valid session up to an hour. After one hour, you will be prompted
 for an MFA token again.
@@ -69,7 +69,7 @@ for an MFA token again.
 Create `~/.aws/config`:
 
 ```
-[govuk-<environment>]
+[profile govuk-<environment>]
 role_arn = <Role ARN>
 mfa_serial = <MFA ARN>
 source_profile = gds
