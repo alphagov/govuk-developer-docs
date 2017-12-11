@@ -72,6 +72,6 @@ example error would be `And I should see a closed facet titled
 If the pages for those things don't themselves exist in search, finder frontend
 won't be able to fill in the titles.
 
-This can be fixed by republishing/indexing those pages.
+This can be fixed by [republishing/indexing](https://github.com/alphagov/publishing-api/blob/6f310279956fa6dc92d20ece62de5a59ebc63c56/lib/tasks/represent_downstream.rake#L62) the pages for those people.
 
 ![People facet with blank options](/images/blank-facets.png)
