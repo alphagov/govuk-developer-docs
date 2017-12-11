@@ -2,9 +2,9 @@
 owner_slack: "#2ndline"
 title: Switch an app off
 layout: manual_layout
-section: Packaging
+section: Deployment
 parent: "/manual.html"
-last_reviewed_on: 2017-06-08
+last_reviewed_on: 2017-12-11
 review_in: 6 months
 ---
 
