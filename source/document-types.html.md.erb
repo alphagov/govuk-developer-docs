@@ -3,46 +3,10 @@ layout: document_type_layout
 title: Document types on GOV.UK
 ---
 
-The document type describes what a page on GOV.UK looks like.
-
-> **WARNING:** All documents have a document type in the [content-store][content-store], but not
-all document types have been indexed in search yet. This means some types are
-missing from the list on the left. At the moment the list covers types for
-<%= DocumentTypes.coverage_percentage %>% of the pages in search index.
+The document type describes a page on GOV.UK.
 
 You can [download this data as CSV too](/document-types.csv). In Google Spreadsheets, use the following formula:
 
 ```
 =importData("https://docs.publishing.service.gov.uk/document-types.csv")
 ```
-
-> The data for the list is generated [by running a facet query against search][query].
-
-## Supertypes
-
-Document types can be grouped into "document supertypes". The types are defined
-in a YAML file [in the GOV.UK Document Types gem][govuk_document_types].
-
-<% Supertypes.all.each do |supertype| %>
-### <%= supertype.name %>
-
-<%= supertype.description %>
-
-Field in content-store: `<%= supertype.id %>`
-
-| Name | Types |
-| --- | --- |
-<% supertype.items.map do |item| %>
-| <%= item.fetch("id") %> | <%= item.fetch("document_types").map { |d| link_to(d, document_type_url(d)) }.join("<br/>") %> |
-<% end %>
-| <%= supertype.default %> | All other types |
-
-<% end %>
-
-[content-store]: https://github.com/alphagov/content-store
-[govuk_document_types]: https://github.com/alphagov/govuk_document_types
-[query]: <%= DocumentTypes::FACET_QUERY %>
-
-<style>
-table td:first-child { width: 200px; }
-</style>

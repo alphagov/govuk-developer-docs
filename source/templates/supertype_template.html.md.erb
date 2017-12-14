@@ -1,0 +1,17 @@
+---
+layout: document_type_layout
+parent: /document-types.html
+---
+
+<%= supertype.name %> is a "document supertype".
+
+<%= supertype.description %>
+
+Field in content-store: `<%= supertype.id %>`
+
+| Name | Document types |
+| --- | --- |
+<% supertype.items.map do |item| %>
+| **<%= item.fetch("id") %>**<br/><%= item["description"] %> | <%= item.fetch("document_types").map { |d| link_to(d, document_type_url(d)) }.join("<br/>") %> |
+<% end %>
+| <%= supertype.default %> | All other types |
