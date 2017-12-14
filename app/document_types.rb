@@ -23,10 +23,6 @@ class DocumentTypes
     DocumentTypesCsv.new(pages).to_csv
   end
 
-  def self.coverage_percentage
-    ((pages.sum(&:total_count) / facet_query.fetch("total").to_f) * 100).round(1)
-  end
-
   def self.facet_query
     @@facet_query ||= HTTP.get(FACET_QUERY)
   end
