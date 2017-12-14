@@ -43,3 +43,14 @@ classes is accessible via `govuk_node_list`.
    your SSH command:
 
         ssh `govuk_node_list -c backend --single-node`
+
+Alternatively, you can SSH into specific nodes directly from your local machine with:
+
+        ssh ip-10-1-5-53.eu-west-1.internal.aws.integration
+
+and this piece of SSH config:
+
+        Host *.aws.integration
+          ProxyCommand ssh -e none %r@jumpbox.blue.integration.govuk.digital -W $(echo %h | sed 's/\.aws.integration$//'):%p
+
+This is useful if you want to investigate Icinga alerts which already provide the instance's hostname.
