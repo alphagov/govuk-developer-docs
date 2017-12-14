@@ -4,7 +4,7 @@ title: Jenkins CI infrastructure
 parent: "/manual.html"
 layout: manual_layout
 section: Testing
-last_reviewed_on: 2017-05-03
+last_reviewed_on: 2017-12-12
 review_in: 6 months
 ---
 
@@ -13,9 +13,9 @@ review_in: 6 months
 Our CI environment provides the infrastructure and services to cover the
 first stages of our build and continuous deployment pipeline:
 
-- Build application, Puppet and infrastructure projects from our GitHub and GitHub Enterprise organisations
+- Build application, Puppet and infrastructure projects from our GitHub organisation
 - Run unit, functional, performance tests
-- Update the status of the build in GitHub and GitHub Enterprise
+- Update the status of the build in GitHub
 - Trigger deployment jobs on our Deployment infrastructure
 
 ## Systems diagram
@@ -24,7 +24,7 @@ Components:
 
 - The CI environment runs in the Integration environment in the "CI" vDC
 - Jenkins master:
-  - Nginx, listening on port 443, it serves <https://ci.integration.publishing.service.gov.uk>
+  - Nginx, listening on port 443, serves <https://ci.integration.publishing.service.gov.uk>
 and proxies requests to Jenkins. It is also running on port 80 to serve a monitoring page.
   - Jenkins master, listening on port 8080
 - Jenkins agents:
@@ -32,7 +32,6 @@ and proxies requests to Jenkins. It is also running on port 80 to serve a monito
   - The agent machines run a set of services for application tests. Not all the boxes run
     the same services, this is managed with Puppet. Check the `govuk_ci::master::ci_agents` label keys in
 [Hiera](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml) for more information.
-- Both master and agents need to run Openconnect to connect with GitHub Enterprise
 
 ![image](images/ci_infrastructure.png)
 
@@ -74,13 +73,6 @@ To configure our credentials manually, from the Jenkins Credentials section add 
   - Username: govuk-ci
   - Private Key: From the Jenkins master ~/.ssh
   - Passphrase: *\<private key passphrase\>*
-* GitHub Enterprise token for govukjenkinsci user
-  - ID: github-enterprise-token-govukjenkinsci-username
-  - Type: Username with password
-  - Description: GitHub Enterprise token for govukjenkinsci user
-  - Scope: Global
-  - Username: govukjenkinsci
-  - Password: *\<personal access token for govukjenkinsci user on GitHub Enterprise\>*
 * Pact broker creds for ci.dev.publishing.service.gov.uk
   - ID: pact-broker-ci-dev
   - Type: Username with password
@@ -88,12 +80,6 @@ To configure our credentials manually, from the Jenkins Credentials section add 
   - Scope: Global
   - Username: pact_ci
   - Password: *\<pact_ci user password on ci.dev.publishing.service.gov.uk\>*
-* GitHub Enterprise token for govukjenkinsci
-  - ID: github-enterprise-token-govukjenkinsci
-  - Type: Secret text
-  - Description: GitHub Enterprise token for govukjenkinsci
-  - Scope: Global
-  - Secret: *\<personal access token for govukjenkinsci user on GitHub Enterprise\>*
 * Jenkins user that connects to SSH slaves
   - ID: jenkins-ssh-slave
   - Type: SSH Username with private key
@@ -116,18 +102,10 @@ our jobs.
         -   Credentials: select 'GitHub token for govuk-ci'
         -   Untick 'Manage hooks'
         -   Click 'Test connection' to confirm the settings
-    -   GitHub -\> Add GitHub Server
-        -   API URL: 'https://github.digital.cabinet-office.gov.uk/api/v3/'
-        -   Credentials: select 'GitHub Enterprise token for govukjenkinsci'
-        -   Untick 'Manage hooks'
-        -   Click 'Test connection' to confirm the settings
-    -   GitHub Enterprise Servers -\> Add
-        -   API endpoint: 'https://github.digital.cabinet-office.gov.uk/api/v3/'
-        -   Name: 'GDS GitHub Enterprise'
 
-With this configuration, in our jobs we can choose between 'GitHub' and 'GDS GitHub Enterprise' API endpoints to
-access the source code repository. The API endpoint name is referenced in Puppet to configure jobs automatically so
-we shouldn't update it.
+With this configuration, in our jobs we can use 'GitHub' API endpoints to
+access the source code repository. The API endpoint name is referenced in
+Puppet to configure jobs automatically so we shouldn't update it.
 
 ## On the blog
 

@@ -4,7 +4,7 @@ title: Patch Jenkins
 parent: "/manual.html"
 layout: manual_layout
 section: Testing
-last_reviewed_on: 2017-05-04
+last_reviewed_on: 2017-12-12
 review_in: 6 months
 ---
 
