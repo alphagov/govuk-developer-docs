@@ -8,7 +8,9 @@ last_reviewed_on: 2017-12-12
 review_in: 6 months
 ---
 
-# automongodbbackup
+We have 2 ways of taking MongoDB backups. 
+
+## automongodbbackup
 
 This is how MongoDB backups have traditionally been taken on the GOV.UK Infrastructure.
 
@@ -24,7 +26,7 @@ To restore from this method:
  - Unzip the file. This will produce a directory of data.
  - `mongo restore --drop <directory>`
 
-# mongodumps to S3
+## mongodumps to S3
 
 We also take backups that are sent to an Amazon S3 bucket. The timings are defined by parameters [set in the manifest](https://github.com/alphagov/govuk-puppet/blob/master/modules/mongodb/manifests/s3backup/cron.pp),
 but for important MongoDB clusters these may be taken every 15 minutes. The machines which take the backups are defined in hiera node classes.

@@ -17,9 +17,9 @@ until they see the documents available. There is a Grafana [dashboard](https://g
 that helps to visualise the number of documents that have been processed and the
 waiting time since the file has been placed on disk until it is scanned.
 
-# Virus scanning process
+## Virus scanning process
 
-## Incoming files
+### Incoming files
 
 All files uploaded through Whitehall (including both attachment documents and
 images) are asynchronously run through a virus scanner (ClamAV) before being
@@ -54,7 +54,7 @@ follows:
 
     $ tail -f /var/log/syslog | grep "process_uploaded_attachment\|virus_scan\|copy_attachment"
 
-## Detecting new viruses
+### Detecting new viruses
 
 A [separate script](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/files/node/s_asset_base/virus_scan.sh)
 regularly rescans *all* the previously uploaded files in both clean and
@@ -63,7 +63,7 @@ draft-clean to catch any newly-released virus signatures.
 The script is configured in cron to run every hour, but actually takes over 2
 days to complete. It starts under a lock so that only one scan runs at a time.
 
-# Quickly process a backlog of files awaiting AV scan
+## Quickly process a backlog of files awaiting AV scan
 
 The AV scan process is currently quite slow (usually taking between 10-12
 seconds per file), and we get a lot of files to check.  If there's a large
