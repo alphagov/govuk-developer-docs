@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-infrastructre"
 title: Migrate zone from Dyn DNS
-section: Manual
+section: DNS
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-10-26
