@@ -24,7 +24,7 @@ usage should be very similar.
 A difference in the disk usage triggers the alert: "Asset master and slave are
 using about the same amount of disk space".
 
-# Investigation
+## Investigation
 
 Check that the asset-manager cron job is syncing new asset data correctly by
 graphing `asset-slave-*_backend*.df-mnt-uploads.df_complex-used` in [Graphite or
