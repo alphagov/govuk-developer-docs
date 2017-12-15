@@ -4,7 +4,7 @@ title: Add a new Ruby version
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-12
+last_reviewed_on: 2017-12-15
 review_in: 6 months
 ---
 
