@@ -18,6 +18,8 @@ dynamically assigned IPs, which means hostnames like
 class" (backend, frontend, ...), and the list of instances belonging to these
 classes is accessible via `govuk_node_list`.
 
+# When you don't know the hostname or IP address
+
 1. SSH with agent forwarding to the jumpbox:
 
         ssh -A friendlygiraffe@jumpbox.blue.integration.govuk.digital
@@ -36,15 +38,14 @@ classes is accessible via `govuk_node_list`.
 
         ssh ip-10-1-5-53.eu-west-1.compute.internal
 
-4. If your SSH key has forwarded correctly, you will be on the new machine.
-
-5. If you're bored of copy/paste and would like to just get to a single node,
-   you can use the `--single-node` switch on `govuk_node_list`, straight into
-   your SSH command:
+5. To get to a single node, you can use the `--single-node` switch on
+   `govuk_node_list`, straight into your SSH command:
 
         ssh `govuk_node_list -c backend --single-node`
 
-Alternatively, you can SSH into specific nodes directly from your local machine with:
+# SSH config for if you know the hostname
+
+You can SSH into specific nodes directly from your local machine with:
 
         ssh ip-10-1-5-53.eu-west-1.internal.aws.integration
 
