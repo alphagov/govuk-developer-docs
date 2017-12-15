@@ -4,8 +4,8 @@ title: Manage Ruby dependencies with Dependabot
 section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-05
-review_in: 2 weeks
+last_reviewed_on: 2017-12-15
+review_in: 4 weeks
 ---
 
 We're [obliged to keep our software current][current].
