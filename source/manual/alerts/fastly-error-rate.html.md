@@ -21,7 +21,7 @@ investigation is to examine the Fastly CDN logs.
 - `ssh logs-cdn-1.management.production`
 - `cd /mnt/logs_cdn` to access log files
 
-Alternatively you can look in [Kibana](tools.html#kibana) with the query
+Alternatively you can look in [Kibana](/manual/tools.html#kibana) with the query
 `application:"govuk-cdn-logs-monitor"`
 
 ## `Unknown` alert
