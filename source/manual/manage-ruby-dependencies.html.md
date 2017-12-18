@@ -22,6 +22,12 @@ To help with this we're currently trialling a service called [Dependabot][] to p
 1. Give Dependabot [access to the repo][access] (only GitHub org owners can do this)
 2. Go to [Dependabot admin][admin] and click "Add project"
 
+## Ask Dependabot to bump Dependencies
+
+By default Dependabot will bump dependencies once a day, but you can ask it to bump manually:
+
+Go to [Dependabot admin][admin] and click "Bump now" for your project
+
 ## Security
 
 There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub][access]. This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/configure-github-repo.html#auto-configuration) for all repos with the `govuk` label. This prevents Dependabot from writing directly to master.
