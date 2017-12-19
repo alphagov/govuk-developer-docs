@@ -12,7 +12,9 @@ review_in: 6 months
 
 You can try clearing out the APT cache:
 
-> sudo apt-get clean
+```
+sudo apt-get clean
+```
 
 ## Low available disc space on /mnt/uploads for asset-master-1 and asset-slave-1
 
