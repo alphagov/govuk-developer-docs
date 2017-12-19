@@ -4,7 +4,7 @@ title: Monitor sidekiq queues for your application
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-28
+last_reviewed_on: 2017-12-19
 review_in: 6 months
 ---
 
@@ -15,20 +15,19 @@ We have restricted public access as the Web UI allows modifying the state of [Si
 To gain access you should setup SSH port forwarding to a backend box belonging to the environment you wish to monitor when connected to the Bardeen wireless network or the VPN:
 
 ```bash
-$ ssh backend-1.backend.integration -CNL 9000:127.0.0.1:80
+$ ssh backend-1.backend.integration -CNL 9000:127.0.0.1:3211
 ```
 
 Then visit [http://127.0.0.1:9000](http://127.0.0.1:9000) to see a list of [Sidekiq] configurations you can monitor.
 
 You can also monitor Sidekiq queue lengths using [this Grafana dashboard](https://grafana.publishing.service.gov.uk/dashboard/file/sidekiq.json).
 
-To view your local Sidekiq queue, go to the [sidekiq-monitoring app](https://github.com/alphagov/sidekiq-monitoring) in the vm and run `./bin/foreman start` for all applications, or `./bin/foreman run <app_name>` for a specific app. In the output of sidekiq-monitoring, you'll find the port number of the app whose queue you want to view. Make a note of it, then in your local machine, go to govuk-puppet/development-vm and run:
+To view your local Sidekiq queue, go to the [sidekiq-monitoring app](https://github.com/alphagov/sidekiq-monitoring) in the vm and run `./bin/foreman start` for all applications, or `./bin/foreman run <app_name>` for a specific app.
 
-```bash
-$ vagrant ssh  -- -CNL <port_number>:localhost:<port_number>
-```
+Then visit:
 
-Then visit `http://localhost:<port_number>/<app_name>` to see a list of Sidekiq configurations you can monitor.
+* [`http://sidekiq-monitoring.dev.gov.uk:3211/`](http://sidekiq-monitoring.dev.gov.uk:3211/) to see a list of all the GOV.UK applications whose Sidekiq status you can monitor
+* `http://sidekiq-monitoring.dev.gov.uk/<app_name>` to directly monitor a specific app
 
 See also: [Add sidekiq-monitoring to your application](setting-up-new-sidekiq-monitoring-app.html).
 
