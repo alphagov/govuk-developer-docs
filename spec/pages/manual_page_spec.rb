@@ -26,7 +26,11 @@ Dir.glob("source/manual/**/*.md").each do |filename|
       expect(filename).to match(/\.html\.md$/)
     end
 
-    unless filename.in?(%w[source/manual/readmes.html.md source/manual/kibana.html.md])
+    unless filename.in?(%w[
+      source/manual/readmes.html.md
+      source/manual/kibana.html.md
+      source/manual/howto-merge-a-pull-request-from-an-external-contributor.html.md
+    ])
       it "doesn't use H1 tags (the page title is already an H1)" do
         expect(raw).not_to match(/\n#\s/)
       end
