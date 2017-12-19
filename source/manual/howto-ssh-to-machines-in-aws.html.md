@@ -18,7 +18,7 @@ dynamically assigned IPs, which means hostnames like
 class" (backend, frontend, ...), and the list of instances belonging to these
 classes is accessible via `govuk_node_list`.
 
-# When you don't know the hostname or IP address
+## When you don't know the hostname or IP address
 
 1. SSH with agent forwarding to the jumpbox:
 
@@ -43,7 +43,7 @@ classes is accessible via `govuk_node_list`.
 
         ssh `govuk_node_list -c backend --single-node`
 
-# SSH config for if you know the hostname
+## SSH config for if you know the hostname
 
 You can SSH into specific nodes directly from your local machine with:
 
