@@ -61,16 +61,14 @@ echo $environment
 
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
-1) Navigate to the appropriate
-deploy Jenkins environment ([integration](https://deploy.integration.publishing.service.gov.uk/), [staging](https://deploy.staging.publishing.service.gov.uk/) or [production](https://deploy.publishing.service.gov.uk/))
+1) Go to the Jenkins task:
 
-2) Select the `Deploy the emergency banner` task.
+  - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
+  - [Deploy the emergency banner on Staging](https://deploy.staging.publishing.service.gov.uk/job/deploy-emergency-banner/)
 
-3) Click `Build with Parameters` in the left hand menu.
+2) Fill in the appropriate variables using the form presented by Jenkins
 
-4) Fill in the appropriate variables using the form presented by Jenkins. You should be using the information you gathered in the [prerequisites](#prerequisites).
-
-5) Click `build`.
+3) Click `Build`.
 
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
@@ -172,11 +170,12 @@ Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
 
 ### 2. Remove the banner using Jenkins
 
-1) Navigate to the appropriate deploy Jenkins environment (integration, staging or production)
+1) Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
 
-2) Select the `Remove the emergency banner` task.
+  - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
+  - [Remove the emergency banner from Staging](https://deploy.staging.publishing.service.gov.uk/job/remove-emergency-banner/)
 
-3) Click `Build now` in the left hand menu.
+2) Click `Build now` in the left hand menu.
 
 ![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
 
