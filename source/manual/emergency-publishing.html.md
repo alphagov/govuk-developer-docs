@@ -5,8 +5,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2017-07-28
-review_in: 6 months
+last_reviewed_on: 2017-12-20
+review_in: 3 months
 ---
 
 There are three types of events that would lead GOV.UK to add an emergency banner to the top of each page on the web site; a notable death, a national emergency or a local emergency.
@@ -20,25 +20,20 @@ If you need to publish the emergency banner out of hours, you will be instructed
 ## Adding emergency publishing banners
 
 <a name="prerequisites"></a>
-### Prerequisites
+### 1. Content you will need
 
-Before publishing an emergency banner, you will need to know the following. The text required will be supplied by the GOV.UK on-call escalations contact:
-
-#### Mandatory fields
+The GOV.UK on-call escalations contact will supply you with:
 
 - The emergency banner type or campaign class (one of `notable-death`,
   `national-emergency` or `local-emergency`)
 - Text for the heading.
-
-#### Optional fields
-
-- Text for the 'short description', which is a sentence displayed under the heading. This is optional.
-- A URL for users to find more information (it might not be provided at first).
-- Anchor text that will be displayed for the more information URL (this will
+- (Optional) Text for the 'short description', which is a sentence displayed under the heading. This is optional.
+- (Optional) A URL for users to find more information (it might not be provided at first).
+- (Optional) Link text that will be displayed for the more information URL (this will
   default to "More information" if you do not supply it).
 
 <a name="set-up-fabric"></a>
-### Set up your Fabric scripts
+### 2. Set up your Fabric scripts
 
 If you've not used them before, you'll need to clone [fabric-scripts](https://github.com/alphagov/fabric-scripts) and follow the setup instructions in the fabric-scripts README.
 
@@ -62,25 +57,23 @@ export environment=integration
 echo $environment
 ```
 
-### Deploy the banner using Jenkins
+### 3. Deploy the banner using Jenkins
 
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
-1) Navigate to the appropriate
-deploy Jenkins environment ([integration](https://deploy.integration.publishing.service.gov.uk/), [staging](https://deploy.staging.publishing.service.gov.uk/) or [production](https://deploy.publishing.service.gov.uk/))
+1) Go to the Jenkins task:
 
-2) Select the `Deploy the emergency banner` task.
+  - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
+  - [Deploy the emergency banner on Staging](https://deploy.staging.publishing.service.gov.uk/job/deploy-emergency-banner/)
 
-3) Click `Build with Parameters` in the left hand menu.
+2) Fill in the appropriate variables using the form presented by Jenkins
 
-4) Fill in the appropriate variables using the form presented by Jenkins. You should be using the information you gathered in the [prerequisites](#prerequisites).
-
-5) Click `build`.
+3) Click `Build`.
 
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
 <a name="clear-template-cache"></a>
-### Clear caching in frontend, static and whitehall-frontend
+### 4. Clear caching in frontend, static and whitehall-frontend
 
 1) Run the Fabric task to clear the application template cache for frontend and
 static:
@@ -106,7 +99,7 @@ fab $environment class:frontend app.restart:government-frontend
 > **NOTE:** The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
 
 <a name="test-with-cache-bust"></a>
-### Test with cache bust strings
+### 5. Test with cache bust strings
 
 1) Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
@@ -125,7 +118,7 @@ a national emergency, green for a local emergency.
 If the banner information is not correct, re-run the Jenkins job to correct it.
 
 <a name="purge-origin-cache"></a>
-### Purge the caches and test again
+### 6. Purge the caches and test again
 
 1) Purge our entire origin cache:
 
@@ -154,7 +147,7 @@ purging the cache.
 
 
 <a name="unset-env-var"></a>
-### Unset your environment variable and deactivate your virtual environment
+### 7. Unset your environment variable and deactivate your virtual environment
 
 1) Remember to unset your Fabric environment variable:
 
@@ -171,21 +164,22 @@ deactivate
 
 ## Removing emergency publishing banners
 
-### Set up your Fabric scripts
+### 1. Set up your Fabric scripts
 
 Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
 
-### Remove the banner using Jenkins
+### 2. Remove the banner using Jenkins
 
-1) Navigate to the appropriate deploy Jenkins environment (integration, staging or production)
+1) Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
 
-2) Select the `Remove the emergency banner` task.
+  - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
+  - [Remove the emergency banner from Staging](https://deploy.staging.publishing.service.gov.uk/job/remove-emergency-banner/)
 
-3) Click `Build now` in the left hand menu.
+2) Click `Build now` in the left hand menu.
 
 ![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
 
-### Clear application caches and restart Whitehall
+### 3. Clear application caches and restart Whitehall
 
 Follow the instructions above to
 
