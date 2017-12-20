@@ -5,8 +5,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2017-07-28
-review_in: 6 months
+last_reviewed_on: 2017-12-20
+review_in: 3 months
 ---
 
 There are three types of events that would lead GOV.UK to add an emergency banner to the top of each page on the web site; a notable death, a national emergency or a local emergency.
