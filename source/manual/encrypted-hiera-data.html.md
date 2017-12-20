@@ -171,16 +171,20 @@ modify encrypted Hiera data.
     Do not enclose it in single or double quotes as this will get
     interpreted as part of the secret.
 
-Once you have finished, save the file and quit the editor. The changes
-you made will be encrypted by Hiera eYAML. Should you encounter an
-error, please see the troubleshooting section below.
+    Once you have finished, save the file and quit the editor. The changes
+    you made will be encrypted by Hiera eYAML. Should you encounter an
+    error, please see the troubleshooting section below.
 
-> **NOTE**
->
-> When editing a Hiera key that has previously been encrypted, you will
-> notice a number enclosed in parentheses after the word GPG; for
-> example: DEC::GPG(1). You should not make any changes to the number as
-> this is used by Hiera eYAML GPG to identify existing encrypted data.
+    > **NOTE**
+    >
+    > When editing a Hiera key that has previously been encrypted, you will
+    > notice a number enclosed in parentheses after the word GPG; for
+    > example: DEC::GPG(1). You should not make any changes to the number as
+    > this is used by Hiera eYAML GPG to identify existing encrypted data.
+
+3. Check that the value is actually encrypted! If you make a typo in your markup, Hiera Eyaml doesn't always treat it as an error.
+
+    GIT_PAGER='less -S' git diff
 
 ## Managing access to encrypted Hiera data
 
