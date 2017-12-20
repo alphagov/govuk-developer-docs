@@ -8,7 +8,7 @@ last_reviewed_on: 2018-01-03
 review_in: 6 months
 ---
 
-[Hiera](https://docs.puppetlabs.com/hiera/1/) is a key/value lookup tool
+[Hiera](https://docs.puppetlabs.com/hiera/1/) is a key-value lookup tool
 that we use for storing [Puppet](https://docs.puppetlabs.com/puppet/)
 configuration data. We use [Hiera eYAML
 GPG](https://github.com/sihil/hiera-eyaml-gpg) to encrypt sensitive
@@ -20,11 +20,9 @@ Hiera; like a plugin. It enables us to encrypt Hiera data using GPG
 keys. In our case, we encrypt the data using the GPG keys of all
 security-cleared members of 2nd line.
 
-Hiera eYAML GPG works by encrypting only the Hiera values rather than
-encrypting a whole file. It also encrypts each Hiera value individually,
-which makes for meaningful output from git-diff(1) such that it's
-possible to identify exactly which Hiera key has changed in any given
-Git commit.
+Hiera eYAML GPG only encrypts the Hiera values, rather than the whole file.
+It also encrypts each Hiera value individually, so you can see which ones
+changed in a Git commit.
 
 ## What Hiera data do we encrypt?
 
@@ -34,10 +32,10 @@ directories of the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-pup
 repositories. These files contain secrets such as passwords and private keys.
 
 Only secrets for the production, staging and integration environments
-are actually sensitive. The
+are sensitive. The
 [vagrant_credentials.yml](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/vagrant_credentials.yaml)
 file, used with the [Vagrant test VMs](https://github.com/alphagov/govuk-puppet/blob/master/Vagrantfile),
-should not contain any sensitive data but can be used to test Hiera
+should not contain any sensitive data but you can use it to test Hiera
 eYAML GPG using dummy data.
 
 There is currently no support for encrypted Hiera data using the
@@ -46,44 +44,39 @@ this is intentional for reasons of simplicity.
 
 ## Why do we encrypt Hiera data?
 
-Before encrypted Hiera data was supported we used (and continue to use)
-a separate repository,
-[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets), to store secrets
-and sensitive data in Hiera. Whereas the
-[alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) repository is
-open to all developers, access to the `alphagov/govuk-secrets` repository is
-restricted to a small number of staff.
+We store secrets and sensitive data in a separate repository,
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets). This lets
+us open the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet)
+repository to all developers, while restricting access to the
+`alphagov/govuk-secrets` repository to a small number of staff.
 
-Upon deploying Puppet, the `alphagov/govuk-secrets` repository is copied over the
+Deploying puppet copies `alphagov/govuk-secrets` over the
 files in the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet)
-repository such that both sets of files are read by Puppet.
+repository.
 
 This patten enables us to restrict access to sensitive credentials while
 still allowing developers to access the main Puppet repository.
 
-There are some limitations and disadvantages of this pattern, however:
+Even though we restrict who can see `govuk-secrets` there are still downsides
+to storing secrets in plaintext:
 
--   Sensitive data would be unencrypted on disk. Despite everyone having
-    access to the `alphagov/govuk-secrets` repository using full disk encryption,
-    secrets would be readable if a laptop was infected by malware or if
-    a secret was accidentally committed to a public repository or copied
-    accidentally to an unencrypted disk.
--   There was the possibility of secrets being sent over plaintext email
-    as part of GitHub notifications if comments were made on specific
-    lines of a pull request that included changes to sensitive data.
+-   It's dangerous to leave sensitive data unencrypted on disk. Even if
+    everyone who has access to the `alphagov/govuk-secrets` repository uses
+    full disk encryption, secrets would be readable if a laptop is infected by
+    malware, or if someone accidentally commits to a public repository or
+    copies to an unencrypted disk.
+-   GitHub notifications send secrets over plaintext email if users comment
+    on specific lines of a pull request that include changes to sensitive data.
 -   A vulnerability in GitHub or an administrative error when setting
     access permissions could expose secrets.
 
-By encrypting Hiera data using GPG, we are able to strictly define who
-has access to these secrets (using GPG keys) and have assurances that
-should the encrypted data be leaked or exposed, we have the additional
-protection of GPG encryption which mitigates some of the scenarios
-outlined above and gives us additional time to change credentials in
-case of accidental exposure.
+By encrypting Hiera data using GPG, we can define who has access to these
+secrets (using GPG keys) and we have the extra protection of GPG encryption,
+which gives us time to change credentials when secrets are exposed.
 
-Note that there are no plans currently to merge the `alphagov/govuk-puppet` and
-`alphagov/govuk-secrets` repositories; having them separate still provides
-additional protection against accidental exposure.
+There are no plans to merge the `alphagov/govuk-puppet` and
+`alphagov/govuk-secrets` repositories. Having them separate still provides
+extra protection against accidental exposure.
 
 ## Common tasks for handling encrypted Hiera data
 
@@ -97,7 +90,7 @@ in the puppet/ directory of the
 which wraps the Hiera eYAML tool and helps to ensure that sensitive data is
 only accessible to the intended recipients.
 
-You must use the rake tasks to modify encrypted Hiera data.
+You must use the rake tasks to change encrypted Hiera data.
 
 ### Prerequisites
 
@@ -149,14 +142,14 @@ modify encrypted Hiera data.
 
         bundle exec rake eyaml:edit[integration]
 
-    You will be asked for your GPG passphrase. If you encounter an
+    It will ask you for your GPG passphrase. If you get an
     error, please see the troubleshooting section below.
 
     The above command will open a text editor (as determined by the
     `$EDITOR` environment variable) showing the undecrypted Hiera data in
     YAML format.
 
-    An unencrypted Hiera key and value might look like:
+    An unencrypted Hiera key and value looks like:
 
         password: 'thisisasecret'
 
@@ -171,20 +164,20 @@ modify encrypted Hiera data.
     Do not enclose it in single or double quotes as this will get
     interpreted as part of the secret.
 
-    Once you have finished, save the file and quit the editor. The changes
-    you made will be encrypted by Hiera eYAML. Should you encounter an
-    error, please see the troubleshooting section below.
+    Once you have finished, save the file and quit the editor.
+    Hiera eYAML will encrypt your changes. If you get an error, please see the
+    troubleshooting section below.
 
     > **NOTE**
     >
-    > When editing a Hiera key that has previously been encrypted, you will
-    > notice a number enclosed in parentheses after the word GPG; for
-    > example: DEC::GPG(1). You should not make any changes to the number as
-    > this is used by Hiera eYAML GPG to identify existing encrypted data.
+    > When editing a Hiera key that has been encrypted before, you will
+    > notice a number in parentheses after the word GPG; for
+    > example: DEC::GPG(1). You should not make any changes to the number, as
+    > Hiera eYAML GPG uses this to identify existing encrypted data.
 
-3. Check that the value is actually encrypted! If you make a typo in your markup, Hiera Eyaml doesn't always treat it as an error.
+3. Check that the value is really encrypted! If you make a typo in your markup, Hiera Eyaml doesn't always treat it as an error.
 
-    GIT_PAGER='less -S' git diff
+        GIT_PAGER='less -S' git diff
 
 ## Managing access to encrypted Hiera data
 
@@ -205,12 +198,8 @@ recipient file pertains to.
 
 ### What to do when someone leaves
 
-Leavers should be removed from all recipient files (see above). This is
-achieved by deleting the line where the leaver's name is referenced by a
-comment.
-
-Therefore, to revoke a leaver's access from future changes to
-credentials:
+Remove leavers from all recipient files, so that they can no longer change
+credentials.
 
 1.  Delete the leaver's GPG fingerprint from each of the recipient files
     for
@@ -218,7 +207,7 @@ credentials:
     [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
     and
     [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
-    Note that there is no separate recipients file for staging.
+    There is no separate recipients file for staging.
 2.  Commit your changes and raise a pull request for review.
 
 > **WARNING**
@@ -344,7 +333,7 @@ such as:
     [hiera-eyaml-core] !!! Bad file descriptor
 
 Check that you're using GPG version 2 or above. Hiera eYAML GPG appears
-to fail when using GPG version 1 with a large number of credentials.
+to fail when using GPG version 1 with lots of credentials.
 
 If you see this error:
 
@@ -381,7 +370,7 @@ When Puppet runs, you may see the following error:
 
 This error can occur for the following reasons:
 
--   Puppet cannot find a GPG keyring in `/etc/puppet/gpg`. Note that this
+-   Puppet cannot find a GPG keyring in `/etc/puppet/gpg`. This
     should only occur in development or test VMs **or** on the
     Puppet Master. If this is a non-Vagrant environment (e.g.
     Production), check that you have copied the GPG keys from the
