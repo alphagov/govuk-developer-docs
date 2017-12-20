@@ -13,6 +13,16 @@ class AppDocs
     pages.reject(&:retired?).flat_map(&:topics).sort.uniq
   end
 
+  def self.aws_machines
+    @common ||= HTTP.get_yaml('https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml')
+    @common["node_class"]
+  end
+
+  def self.carrenza_machines
+    @common ||= HTTP.get_yaml('https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml')
+    @common["node_class"]
+  end
+
   class App
     attr_reader :app_data
 
@@ -33,6 +43,22 @@ class AppDocs
           sentry_url: sentry_url,
         }
       }
+    end
+
+    def aws_puppet_class
+      AppDocs.aws_machines.each do |puppet_class, keys|
+        if keys["apps"].include?(app_name)
+          return puppet_class
+        end
+      end
+    end
+
+    def carrenza_machine
+      AppDocs.carrenza_machines.each do |puppet_class, keys|
+        if keys["apps"].include?(app_name)
+          return puppet_class
+        end
+      end
     end
 
     def html_url

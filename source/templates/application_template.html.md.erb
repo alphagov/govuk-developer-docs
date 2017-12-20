@@ -53,6 +53,28 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   <% end %>
 </ul>
 
+<h3>SSH access</h3>
+
+This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
+
+To SSH to one of these machines:
+
+```
+ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+```
+
+<h3>AWS SSH access</h3>
+
+This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
+
+To SSH to one of these machines [via the jumpbox](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines-in-aws.html), use this command:
+
+```
+ssh -A -t jumpbox.integration.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+```
+
 <% if application.example_published_pages %>
 <h3>Example pages published by <%= application.app_name %></h3>
 
