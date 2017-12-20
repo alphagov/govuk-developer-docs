@@ -75,6 +75,12 @@ To SSH to one of these machines [via the jumpbox](https://docs.publishing.servic
 ssh -A -t jumpbox.integration.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
 ```
 
+<h3>Run a rake task</h3>
+
+- <%= link_to "Run on Integration Jenkins", "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+- <%= link_to "Run on Staging Jenkins", "https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+- <%= link_to "Run on Production Jenkins", "https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+
 <% if application.example_published_pages %>
 <h3>Example pages published by <%= application.app_name %></h3>
 
