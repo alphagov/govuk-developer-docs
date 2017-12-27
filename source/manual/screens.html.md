@@ -4,8 +4,8 @@ title: Monitoring screens
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_on: 2017-09-14
-review_in: 6 months
+last_reviewed_on: 2017-12-27
+review_in: 1 month
 ---
 
 Most teams in GOV.UK have screens set up to show data about pull requests and
