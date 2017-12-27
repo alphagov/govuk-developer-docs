@@ -4,8 +4,8 @@ title: Monitoring screens
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_on: 2017-09-14
-review_in: 6 months
+last_reviewed_on: 2017-12-27
+review_in: 1 month
 ---
 
 Most teams in GOV.UK have screens set up to show data about pull requests and
@@ -77,8 +77,9 @@ This screen shows a summary of the critical and warning alerts for our
 three environments (production, staging, integration) in a colour coded
 box (red for criticals, yellow for warnings, green for all ok).
 
-This is powered by [blinken](https://github.com/alphagov/blinken), an
-instance of which is running on the localhost on port 8080. This is run with `~/blinken/run.sh`.
+This is powered by [blinkenjs][blinkenjs] which is deployed to Heroku on
+the [govuk-secondline-blinken][secondline] app. You must be in the office
+or on the VPN to access the icinga instances it gets its data from.
 
 ### Deployment status of puppet
 
@@ -91,3 +92,5 @@ configured to look at the release tag on the Puppet repo.
 
 [deploy-lag]: https://github.com/dsingleton/deploy-lag-radiator
 [splits]: https://github.com/dsingleton/frame-splits
+[blinkenjs]: https://github.com/alphagov/blinkenjs
+[secondline]: https://govuk-secondline-blinken.herokuapp.com/blinken.html
