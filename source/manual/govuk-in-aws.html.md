@@ -62,7 +62,7 @@ calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.5.
 calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.27
 ```
 
-The service name will first resolve the top level environment domain name (`integration.govuk-internal.digital`), which will be a [CNAME record](https://en.wikipedia.org/wiki/CNAME_record) to a stack specific DNS record. Please see the documentation about [the concept of stacks in the infrastructure]().
+The service name will first resolve the top level environment domain name (`integration.govuk-internal.digital`), which will be a [CNAME record](https://en.wikipedia.org/wiki/CNAME_record) to a stack specific DNS record. Please see the documentation about [the concept of stacks in the infrastructure](concept-of-stacks.html).
 
 GOV.UK applications use [Plek](https://github.com/alphagov/plek) for service discovery. Plek will return the fully-qualified domain name (FQDN) of the service it is discovering. To ensure that all internal traffic is routed internally, we must set [specific overrides for Plek to ensure internal names are resolved](https://github.com/alphagov/govuk-puppet/blob/6d19af8a266eaa1680a6a3b54f9b4fc7af943c20/modules/govuk/manifests/deploy/config.pp#L103-L117):
 
