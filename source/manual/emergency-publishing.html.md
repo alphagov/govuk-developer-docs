@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2017-12-20
+last_reviewed_on: 2017-12-29
 review_in: 3 months
 ---
 
@@ -117,6 +117,9 @@ a national emergency, green for a local emergency.
 
 If the banner information is not correct, re-run the Jenkins job to correct it.
 
+> HELP, the banner won't show. Try out some handy [hints and
+> tips](#the-banner-is-not-showing--not-clearing)
+
 <a name="purge-origin-cache"></a>
 ### 6. Purge the caches and test again
 
@@ -188,12 +191,30 @@ Follow the instructions above to
 - [Purge the caches and test again](#purge-origin-cache)
 - [Unset your environment variable](#unset-env-var)
 
+> HELP, the banner won't go away. Try out some handy [hints and
+> tips](#the-banner-is-not-showing--not-clearing)
+
 ---
 ## Troubleshooting
 
 ### Background
 
 The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we use Jenkins to run [rake tasks in static](https://github.com/alphagov/static/blob/master/lib/tasks/emergency_banner.rake) to set or delete  the appropriate hash in Redis.
+
+### The banner is not showing / not clearing
+
+Usually this is because the caching has not cleared properly. This can be at
+various points in our stack as well as locally in your browser. Things to try:
+
+- Make sure you are actually looking at a page on the environment you released
+  the banner. All the links in this document go to the production version of
+  GOV.UK. Remember to use the equivalent page for the environment (often staging)
+  on which you are testing/releasing the banner.
+- Test the page with `curl` to circumvent any browser based in memory caching.
+  Chrome seems to aggressively cache on occasion. You can also test in an
+  incognito browser instance.
+- It is possible that the caching layers for the GOV.UK stack have evolved and
+  we need to tweak the fabric scripts to clear new caches that have been set up.
 
 ### Manually testing the Redis key
 
