@@ -1,12 +1,12 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#asset-management"
 title: 'Assets: how they work'
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-13
-review_in: 6 months
-related_applications: [asset-manager]
+last_reviewed_on: 2018-01-02
+review_in: 1 month
+related_applications: [asset-manager, whitehall]
 ---
 
 There are two types of asset files.
@@ -53,6 +53,10 @@ assets.publishing.service.gov.uk/government/uploads and
 www.gov.uk/government/uploads, even for content that has been migrated to the
 publishing platform.
 
+Note: Subsets of Whitehall assets are gradually being migrated to Asset Manager
+so that Whitehall eventually becomes like any of the other publishing apps from
+an asset management point of view.
+
 ### How uploaded assets are stored and served
 
 Both Whitehall and Asset Manager store the asset files on an NFS share. This is
@@ -71,3 +75,8 @@ enable the following features:
 * Asset files can be replaced, and a request to the original path redirects to
   the replacement. Currently only Whitehall and Specialist Publisher support
   this.
+
+Note: Asset Manager now also stores the asset files as objects in an S3 bucket
+(i.e. `govuk-assets-production` in production) and instructs Nginx to proxy
+requests to them. Thus the Asset Manager portion of the NFS mount is now largely
+redundant and the files on it will shortly be removed.
