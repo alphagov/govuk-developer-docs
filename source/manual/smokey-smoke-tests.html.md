@@ -4,7 +4,7 @@ section: Testing
 layout: manual_layout
 parent: "/manual.html"
 owner_slack: "#2ndline"
-last_reviewed_on: 2017-07-01
+last_reviewed_on: 2018-01-03
 review_in: 6 months
 ---
 
@@ -20,9 +20,8 @@ hieradata, or you can fake a passphrase change in the Signon Rails console:
 
 ```
 $ govuk_app_console signon
-irb(main):001:0> smokey = User.find_by(email: 'EMAIL_OF_THE_TEST_ACCOUNT')
-irb(main):002:0> smokey.password_changed_at = Time.now
-irb(main):003:0> smokey.save!
+irb(main):001:0> smokey = User.find_by(name: "Smokey (test user)")
+irb(main):002:0> smokey.update_attribute(:password_changed_at, Time.now)
 ```
 
 [smokey]: https://github.com/alphagov/smokey
