@@ -24,6 +24,22 @@ with govuk-email-courtesy-copies@digital.cabinet-office.gov.uk. You should then
 see two copies of the email at that address when you perform an action that triggers
 an email alert (the courtesy copy and the subscriber one).
 
+The process for triggering an alert varies by publishing application, but it
+usually involves creating a new edition of some content, then publishing it with
+a 'major' update type. The change note you enter should appear in the email that
+gets sent.
+
+A useful debug step if you're not sure if an email has been sent is to check
+`email-alert-api` to see if it has created records in its database, e.g.
+
+```ruby
+$ govuk_app_console email-alert-api
+> ContentChange.last
+> Email.last
+> DeliveryAttempt.last
+```
+
+Emails won't be sent if no one is subscribed, so you'll need to do that first.
 Our integration and staging environments only allow email to be sent to a small
 number of email addresses so you cannot test using your own email address in these
 environments.
