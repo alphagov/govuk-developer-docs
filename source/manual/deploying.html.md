@@ -55,6 +55,10 @@ Deployment communications are in the `#govuk-deploy` Slack channel. If you are o
 
 An alert for the start and end of your deployment will appear in the channel. Jenkins will still enforce sequential deployments per environment across all applications, so you may end up in a queue.
 
+### Testing email alerts
+
+See [testing email](testing-email.md) if the changes you are deploying may affect email. Deploying Travel Advice Publisher should always include testing email alerts.
+
 ### Holding deployment of other applications
 
 If you need to hold deployments of applications during your deploy say so in your announcement post and add it to the channel topic (along with your name). Post again and remove from the topic when you release your hold.
