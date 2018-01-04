@@ -20,7 +20,7 @@ Elasticsearch queries][kibana-search].
 ### 5xx errors returned from cache layer
 
 ```rb
-host:cache* AND @fields.status:[500 TO 504]
+host:cache* AND access.response_code:[500 TO 504]
 ```
 
 ### Puppet runs
