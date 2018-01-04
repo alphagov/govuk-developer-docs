@@ -45,3 +45,16 @@ The default Jenkins build script will automatically detect the presence of a
 `gemspec` file and publish the gem to rubygems.org. See the
 [Jenkinsfile for govuk-lint](https://github.com/alphagov/govuk-lint/blob/master/Jenkinsfile)
 for an example.
+
+## Clearing the gemstash cache
+
+When a new gem version is released, it may not be available immediately on Jenkins.
+This is due to [gemstash][], our gem mirror. It caches versions for up to 30
+minutes. To force it to clear, run this on `apt-1.management` in the relevant
+environment:
+
+    $ sudo docker restart gemstash
+
+To clear the cache for the CI Jenkins instance, run this in integration.
+
+[gemstash]: https://github.com/bundler/gemstash/
