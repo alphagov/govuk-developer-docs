@@ -4,8 +4,8 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 owner_slack: "#2ndline"
-last_reviewed_on: 2017-06-29
-review_in: 6 months
+last_reviewed_on: 2018-01-04
+review_in: 2 months
 ---
 
 We maintain a static copy of most of the site which is used by the content delivery
