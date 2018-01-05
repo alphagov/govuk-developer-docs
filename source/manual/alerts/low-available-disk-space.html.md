@@ -4,8 +4,8 @@ title: Low available disk space
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-06-27
-review_in: 6 months
+last_reviewed_on: 2018-01-04
+review_in: 4 months
 ---
 
 ## Low available disk space on root
