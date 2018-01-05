@@ -4,7 +4,7 @@ title: Email alerts not sent
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-01-04
+last_reviewed_on: 2018-01-04
 review_in: 1 month
 ---
 
