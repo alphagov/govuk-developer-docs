@@ -4,7 +4,7 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2017-10-18
+last_reviewed_on: 2018-01-03
 review_in: 6 months
 ---
 
@@ -30,7 +30,7 @@ Git commit.
 
 Currently, we only encrypt the data in the credentials files found in the
 [hieradata/](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
-directories of the `alphagov/govuk-puppet` and `alphagov/govuk-secrets`
+directories of the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) and [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets)
 repositories. These files contain secrets such as passwords and private keys.
 
 Only secrets for the production, staging and integration environments
