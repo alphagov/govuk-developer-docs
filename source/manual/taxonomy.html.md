@@ -53,8 +53,8 @@ content item for this guidance document][example-guidance].
 
 ## Accessing the taxonomy
 
-The top level taxons are associated with the GOV.UK home page through
-the `root_taxons` link type.
+The level one taxons are associated with the GOV.UK home page through
+the `level_one_taxons` link type.
 
 This is the content item for the top-level "Education" taxon:
 
