@@ -19,7 +19,15 @@ which will give an output like:
 
 with a row for each filesystem currently mounted.
 
-### Low available disk inodes on Jenkins
+### Low available disk inodes (any machine)
+
+Gem documentation consumes a lot of inodes.
+[We no longer install it](https://github.com/alphagov/govuk-puppet/pull/7036),
+but there may still be some on the machine. You can remove it with:
+
+    find /usr/lib/rbenv/ -name *.ri | sudo xargs -n1 rm
+
+### Low available disk inodes (Jenkins)
 
 If Jenkins is running out of inodes (rather than disk space) then it may
 be possible to free some by clearing out old workspaces:
