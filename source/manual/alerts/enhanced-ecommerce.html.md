@@ -1,5 +1,5 @@
 ---
-owner_slack: "#search-team"
+owner_slack: "#2ndline"
 title: Enhanced ecommerce data export
 parent: "/manual.html"
 layout: manual_layout
