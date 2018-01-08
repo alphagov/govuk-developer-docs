@@ -4,7 +4,7 @@ title: 'PostgreSQL: S3 Backups'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-08-10
+last_reviewed_on: 2018-01-08
 review_in: 6 months
 ---
 
@@ -27,7 +27,7 @@ longer to restore and replay the WAL logs from an older checkpoint.
 If it fails check Kibana to see if you can see the error using the
 following query:
 
-    @fields.syslog_program:wal-e_postgres_base_backup_push
+    syslog_program:wal-e_postgres_base_backup_push
 
 There may be a problem with PostgreSQL or it may have trouble connecting
 to the S3 bucket.
@@ -60,4 +60,4 @@ base backup itself**.
 WAL logs will continue to write on the filesystem of the local server.
 Check the status of the archiving with the following Kibana query:
 
-    @message:"*wal-e_postgres_archiving_wrapper*"
+    message:"*wal-e_postgres_archiving_wrapper*"
