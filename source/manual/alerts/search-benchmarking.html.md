@@ -1,11 +1,11 @@
 ---
-owner_slack: "#search-team"
+owner_slack: "#2ndline"
 title: Benchmark search queries failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-10-02
-review_in: 3 months
+last_reviewed_on: 2018-01-08
+review_in: 6 months
 ---
 
 Indicates that the Jenkins [search_benchmark healthcheck job] (https://deploy.publishing.service.gov.uk/job/search_benchmark/) has failed.
