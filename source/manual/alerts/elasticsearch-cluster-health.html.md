@@ -1,5 +1,5 @@
 ---
-owner_slack: "#search-team"
+owner_slack: "#2ndline"
 title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
