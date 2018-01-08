@@ -3,7 +3,7 @@ title: Content that doesn't show up correctly in search or list pages
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#search-team"
+owner_slack: "#2ndline"
 last_reviewed_on: 2017-11-23
 review_in: 3 months
 related_applications: [rummager]
