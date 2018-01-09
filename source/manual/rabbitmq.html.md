@@ -4,7 +4,7 @@ title: RabbitMQ
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-04
+last_reviewed_on: 2018-01-08
 review_in: 6 months
 ---
 
@@ -35,25 +35,24 @@ in the `publishing-api` app.
 
 1.  Create an SSH tunnel to access the web control panel
 
-For example for integration:
+    For example for integration:
 
-> ssh rabbitmq-1.backend.integration -L 15672:127.0.0.1:15672
+    > ssh rabbitmq-1.backend.integration -L 15672:127.0.0.1:15672
 
 2.  Log in to the web control panel
 
-Point your browser at <http://127.0.0.1:15672>
+    Point your browser at <http://127.0.0.1:15672>
 
-The username is root. The password you can obtain from the govuk-secrets
-repo. Look for govuk\_rabbitmq::root\_password in the file for the
-relevant environment in:
-
-<https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata>
+    The username is root. The password you can obtain from the govuk-secrets
+    repo. Look for govuk\_rabbitmq::root\_password in the file for the
+    relevant environment in
+    <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata>
 
 3.  Do your business
 4.  Tidy up
 
-Close the SSH connection you set up earlier with CTRL+C or by typing
-"exit".
+    Close the SSH connection you set up earlier with CTRL+C or by typing
+    "exit".
 
 ## Inspecting/removing items from a queue
 
@@ -64,22 +63,22 @@ in our case.
 
 1.  Find the queue
 
-Click on the "Queues" tab. Then click on the name of the queue.
+    Click on the "Queues" tab. Then click on the name of the queue.
 
 2.  Find the messages
 
-Scroll down and click "Get messages". Clicking the "Get Message(s)"
-button that appears will fetch however many messages you ask for.
+    Scroll down and click "Get messages". Clicking the "Get Message(s)"
+    button that appears will fetch however many messages you ask for.
 
-Note: Fetching messages actually removes them from the queue. By leaving
-the "Requeue" option set to "Yes", they will be added back to queue.
+    Note: Fetching messages actually removes them from the queue. By leaving
+    the "Requeue" option set to "Yes", they will be added back to queue.
 
 3.  Delete the messages
 
-Note: there is a risk that you might delete the wrong message(s). This
-is because the contents of the queue may have changed.
+    Note: there is a risk that you might delete the wrong message(s). This
+    is because the contents of the queue may have changed.
 
-Repeat, but change the "Requeue" option to "No".
+    Repeat, but change the "Requeue" option to "No".
 
 ## Previewing a message for a document_type
 

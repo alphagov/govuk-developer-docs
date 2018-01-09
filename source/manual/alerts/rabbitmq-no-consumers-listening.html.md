@@ -4,7 +4,7 @@ title: 'RabbitMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-06-26
+last_reviewed_on: 2018-01-08
 review_in: 6 months
 ---
 
@@ -17,11 +17,10 @@ queue name should indicate the app responsible for consuming the queue.
 The check is performed by connecting to RabbitMQ's admin API, so the
 information given is from Rabbit's point of view.
 
-Since we send heartbeats every minute (from each instance of the content
-store), at least one of the consumers for each queue should be active
-every minute. To be conservative, the check checks that at least one
-consumer of the queue is running and has been active within the last 5
-minutes.
+Since we send heartbeats every minute (from each instance of the publishing API)
+at least one of the consumers for each queue should be active every minute. To
+be conservative, the check checks that at least one consumer of the queue is
+running and has been active within the last 5 minutes.
 
 If the check succeeds, it will return the most recent time at which
 activity happened on the queue.
@@ -52,15 +51,14 @@ they will be processed once the problem is resolved.
 
 RabbitMQ has an admin interface, which allows details of recent activity
 on the queues to be seen. To log in, [follow the
-instructions in the RabbitMQ docs][rabbitmq].
+instructions in the RabbitMQ docs][rabbitmq_control_panel].
 
 The admin interface allows you to see details (and graphs!) of the
 messages sent to each queue, and the number of messages held on the
 queues. Look at the queue for which the alert happened. If no messages
 have been sent to the queue over the last several minutes, the most
 likely failure is that the heartbeat messages are no longer being sent
-correctly. Look for recent changes to the [content
-store](https://github.com/alphagov/content-store).
+correctly. Look for recent changes to the [publishing API][publishing_api].
 
 If messages have been received, and the queue has messages held on it
 and not being processed, the consumers have either got stuck or stopped
@@ -72,4 +70,6 @@ example:
     fab $environment class:backend app.restart:email-alert-service
 
 
+[publishing_api]: https://github.com/alphagov/publishing-api
 [rabbitmq]: /manual/rabbitmq.html
+[rabbitmq_control_panel]: /manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel
