@@ -1,5 +1,5 @@
 ---
-title: Taxonomy
+title: Topic Taxonomy
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
@@ -84,9 +84,20 @@ a facet:
 
 [https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&facet_taxons=1000&count=0](https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&facet_taxons=1000&count=0)
 
+## Taxonomy Metrics
+
+High level metrics regarding the taxonomy are recorded in Graphite,
+and can be looked at through a Grafana [dashboard].
+
+A rake task in Content Tagger is run through the [deploy
+Jenkins][record-taxonomy-metrics] every 30 minutes to push metrics to
+Graphite (via StatsD).
+
 [education-taxon]: https://www.gov.uk/api/content/education
 [example-guidance]: https://www-origin.integration.publishing.service.gov.uk/api/content/government/publications/staffing-and-employment-advice-for-schools
 [edit-taxonomy]: https://content-tagger.publishing.service.gov.uk/taxon
 [content-tagger]: https://content-tagger.publishing.service.gov.uk/
 [whitehall]: /apps/whitehall.html
 [rummager]: /apps/rummager.html
+[dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/topic_taxonomy.json
+[record-taxonomy-metrics]: https://deploy.publishing.service.gov.uk/job/record-taxonomy-metrics/
