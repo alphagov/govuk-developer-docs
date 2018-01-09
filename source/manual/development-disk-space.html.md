@@ -9,7 +9,7 @@ review_in: 6 months
 ---
 
 You may run out of disk space when replicating data into your development
-environment. The default VM disk size is 100GB.
+environment. The default VM disk size is 150GB.
 
 First check if you are out of disk space on your host machine (`df -h`).
 If your host machine has plenty of available space, then the problem may be

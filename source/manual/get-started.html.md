@@ -18,7 +18,7 @@ Follow the steps on this page to get your GOV.UK development environment running
 
 It will take you roughly one day to do everything in this guide from start to finish. There are lots of things to download, and loads of installers need to do their thing.
 
-> You'll need up to 100GB of free space on your hard-drive to run the whole of GOV.UK.
+> You'll need up to 150GB of free space on your hard-drive to run the whole of GOV.UK.
 
 **Developing outside the VM**
 
