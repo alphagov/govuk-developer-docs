@@ -60,7 +60,6 @@ This application lives on `<%= application.carrenza_machine %>` machines in Carr
 To SSH to one of these machines:
 
 ```
-ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
 ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
 ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
 ```
@@ -72,7 +71,7 @@ This application lives on `<%= application.aws_puppet_class %>` machines on the 
 To SSH to one of these machines [via the jumpbox](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines-in-aws.html), use this command:
 
 ```
-ssh -A -t jumpbox.integration.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
 ```
 
 <h3>Run a rake task</h3>
