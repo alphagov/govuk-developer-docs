@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#2ndline"
-last_reviewed_on: 2017-11-23
+last_reviewed_on: 2018-01-09
 review_in: 3 months
 related_applications: [rummager]
 ---
@@ -72,6 +72,9 @@ example error would be `And I should see a closed facet titled
 If the pages for those things don't themselves exist in search, finder frontend
 won't be able to fill in the titles.
 
-This can be fixed by [republishing/indexing](https://github.com/alphagov/publishing-api/blob/6f310279956fa6dc92d20ece62de5a59ebc63c56/lib/tasks/represent_downstream.rake#L62) the pages for those people.
+To fix the issue:
+- Inspect the blank options using browser developer tools to work out which
+  people are affected
+- Republish those people in whitehall
 
 ![People facet with blank options](/images/blank-facets.png)
