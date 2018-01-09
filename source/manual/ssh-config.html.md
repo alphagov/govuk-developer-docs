@@ -13,8 +13,11 @@ Add the following to `~/.ssh/config`:
 ```
 ## CI
 ## -------
+Host ci-jumpbox
+  Hostname ci-jumpbox.integration.publishing.service.gov.uk
+
 Host *.ci
-  ProxyCommand ssh -e none %r@ci-jumpbox.integration.publishing.service.gov.uk -W %h:%p
+  ProxyCommand ssh -e none %r@ci-jumpbox -W $(echo %h | sed 's/\.ci$//'):%p
 
 ## Integration
 ## -------
