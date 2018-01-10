@@ -8,7 +8,7 @@ last_reviewed_on: 2017-10-11
 review_in: 6 months
 ---
 
-> **NOTE:** for Worldwide Organisations, only Steps 1 and maybe 4 below need to
+> **NOTE:** for Worldwide Organisations, only Steps 1 and maybe 5 below need to
 > be performed.
 
 The organisation slug is used as a foreign key for organisations across
@@ -42,6 +42,15 @@ ManualRecord.where(organisation_slug: "old-slug").exists?
 If there are, create a migration to update the slugs. Republish all affected
 manuals after deploying your change.
 
-### 4) Update any best-bet searches in Search Admin
+### 4) Sync the organisations with Signon
+
+[Signon](https://signon.publishing.service.gov.uk/) assigns users to
+organisations. This is used by apps such as whitehall for authorization.
+
+To sync all organisations from whitehall to signon, run the signon rake task
+`rake organisations:fetch`. Users may have to log out and in again to pick up
+permissions for the renamed organisation.
+
+### 5) Update any best-bet searches in Search Admin
 
 <https://search-admin.publishing.service.gov.uk/>
