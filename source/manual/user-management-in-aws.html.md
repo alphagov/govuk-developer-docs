@@ -4,8 +4,8 @@ title: User Management in AWS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-07
-review_in: 1 month
+last_reviewed_on: 2018-01-11
+review_in: 3 months
 ---
 
 To work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data),
