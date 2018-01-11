@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-infrastructure"
+owner_slack: "#2ndline"
 title: Create a new environment for GOV.UK
 section: Environments
 layout: manual_layout

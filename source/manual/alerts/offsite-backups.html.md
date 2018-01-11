@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-infrastructure"
+owner_slack: "#2ndline"
 title: Offsite backups
 parent: "/manual.html"
 layout: manual_layout

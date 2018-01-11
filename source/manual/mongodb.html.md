@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-infrastructure"
+owner_slack: "#2ndline"
 title: MongoDB backups
 layout: manual_layout
 parent: "/manual.html"
