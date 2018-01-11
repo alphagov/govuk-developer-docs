@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-infrastructure"
+owner_slack: "#2ndline"
 title: Stacks in AWS
 section: AWS
 layout: manual_layout
