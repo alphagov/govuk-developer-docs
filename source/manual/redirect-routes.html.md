@@ -38,7 +38,7 @@ wherever possible.
 ## Using the Short URL Manager
 
 If the redirect is from a URL that is not a currently-published content item,
-you should first look to use the [Short URL Manager](short-url-manager) to
+you should first look to use the [Short URL Manager][short-url-manager] to
 create a redirect request. Requests are checked and approved by content
 designers, after which they are made live.
 
@@ -57,7 +57,7 @@ and using non-default values for the `segments_mode`.
 
 Router-data is deprecated and its use should be avoided. However, in the
 extremely rare case that a redirect needs to be put in place without changing
-the content in the Publishing API, follow the [README](router-data-README)
+the content in the Publishing API, follow the [README][router-data-README]
 to create your redirects in a new branch and open a pull request.
 
 [router-data-README]: https://github.com/alphagov/router-data#router-data
