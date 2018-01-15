@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-infrastructure"
+owner_slack: "#2ndline"
 title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout

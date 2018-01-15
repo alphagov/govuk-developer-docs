@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-infrastructure"
+owner_slack: "#2ndline"
 title: Create a new open source project for ops
 section: Packaging
 layout: manual_layout
