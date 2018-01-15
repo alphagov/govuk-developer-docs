@@ -32,8 +32,29 @@ and proxies requests to Jenkins. It is also running on port 80 to serve a monito
   - The agent machines run a set of services for application tests. Not all the boxes run
     the same services, this is managed with Puppet. Check the `govuk_ci::master::ci_agents` label keys in
 [Hiera](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml) for more information.
+- Supporting services:
+  - An [Icinga instance](https://ci-alert.integration.publishing.service.gov.uk) to monitor the
+    status of CI and the supporting infrastructure.
+  - A [Deploy Jenkins instance](https://ci-deploy.integration.publishing.service.gov.uk) to deploy Puppet
+    in to the environment and run any other adhoc tasks.
+  - [Graphite](https://ci-graphite.integration.publishing.service.gov.uk) and [Grafana](https://ci-grafana.integration.publishing.service.gov.uk)
+    for metrics in the environment.
+  - Puppetmaster which deploys the latest version of [https://github.com/alphagov/govuk-puppet].
+  - Apt instance for Gemstash
 
 ![image](images/ci_infrastructure.png)
+
+## Access
+
+Ensure your [SSH configuration](ssh-configs.html) include the CI section.
+
+SSH to parts of the CI stack:
+
+`ssh ci-agent-1.ci`
+
+To view available nodes:
+
+`ssh ci "govuk_node_list"`
 
 ## Configuration
 
