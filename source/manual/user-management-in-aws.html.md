@@ -46,7 +46,7 @@ When this has been deployed, you should also gain access to edit this data.
 
 To switch role to a GOV.UK account, you can either do this through the console or command line.
 
-See [details for GOV.UK accounts]().
+See [details for GOV.UK accounts](https://github.com/alphagov/govuk-aws-data/blob/master/docs/govuk-aws-accounts.md).
 
 #### Console
 
