@@ -4,16 +4,17 @@ title: Puppet last run errors
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-08-31
+last_reviewed_on: 2018-01-15
 review_in: 6 months
 ---
 
 This alert triggers when there's an error while running Puppet on a machine.
 
 To view the errors in Kibana, first login to [Logit](/manual/logit.html), and then
-run the following query (where `$hostname` is the hostname linked to the alert):
+run the following query (where `$hostname` is the short name of the machine
+linked to the alert, for example `backend-1`):
 
-`syslog_program:'puppet-agent' AND host:$hostname`
+`syslog_program:"puppet-agent" AND host:$hostname`
 
 You may also SSH into the machine and look at `syslog`:
 
