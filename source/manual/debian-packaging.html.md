@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-infrastructure"
+owner_slack: "#2ndline"
 title: Debian packaging
 section: Packaging
 layout: manual_layout
