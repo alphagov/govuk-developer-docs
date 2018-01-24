@@ -25,7 +25,7 @@ Gem documentation consumes a lot of inodes.
 [We no longer install it](https://github.com/alphagov/govuk-puppet/pull/7036),
 but there may still be some on the machine. You can remove it with:
 
-    find /usr/lib/rbenv/ -name *.ri | sudo xargs -n1 rm
+    find /usr/lib/rbenv/ -name *.ri -delete
 
 ### Low available disk inodes (Jenkins)
 
