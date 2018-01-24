@@ -362,7 +362,7 @@ before your one. If this is the case, the credentials will need to be
 re-encrypted again, making sure that your GPG key fingerprint is in the
 relevant recipient files.
 
-### Puppet fails because my it can't find a usable GPG key
+### Puppet fails because it can't find a usable GPG key
 
 When Puppet runs, you may see the following error:
 
