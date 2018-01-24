@@ -4,11 +4,11 @@ title: GOV.UK in AWS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-13
+last_reviewed_on: 2018-01-24
 review_in: 1 month
 ---
 
-To bring the GOV.UK platform in line with the [guidance detailed in The GDS Way](https://gds-way.cloudapps.digital/standards/hosting.html#tools),
+To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
 it is being migrated to [Amazon Web Services](https://aws.amazon.com/).
 
 This is a transitional step before GOV.UK is migrated to the [Government PaaS](https://www.cloud.service.gov.uk/).
@@ -100,7 +100,7 @@ Both PostgreSQL and MySQL databases are managed through this instance. They are 
 
 Transition has its own class for management: [transition_db_admin](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_transition_db_admin.pp)
 
-Please see [the documentation]() about administering RDS databases.
+Please see [the documentation](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html) about administering RDS databases.
 
 #### Redis
 
