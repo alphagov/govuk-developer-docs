@@ -18,8 +18,10 @@ good security practice we rotate these keys each year.
 3. `gpg2 --batch --gen-key gpg_templates/offsite_backup_gpg_template.txt`
 4. Ensure you make a copy of the password you use.
 5. Get the key ID you just generated with `gpg2 --list-keys --fingerprint`, and make a copy of the full fingerprint ID.
-6. Copy the output of `gpg2 --export-secret-key --armor <key id>`
-7. Export the public key to a key server by submitting the output of `gpg2 --export --armor <key id>` to a public key server, for instance https://pgp.mit.edu/
+6. Export _secret_ key: Copy the output of `gpg2 --export-secret-key --armor <key id>`
+7. Export _public_ key: Copy the output of `gpg2 --export --armor <key id>` to a public key server, for instance https://pgp.mit.edu/
+
+NB: Steps 6 & 7 use different commands for exporting. 
 
 ## What do I need to update?
 
