@@ -4,7 +4,7 @@ title: Stacks in AWS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-13
+last_reviewed_on: 2018-01-24
 review_in: 1 month
 ---
 
