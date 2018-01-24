@@ -46,7 +46,7 @@ ip-10-1-6-88.eu-west-1.compute.internal
 
 SSH with agent forwarding to the jumpbox:
 
-        ssh -A friendlygiraffe@integration
+        ssh -A <EXAMPLEUSER>@integration
 
 2. Use `govuk_node_list` to narrow down the IP addresses you require:
 
@@ -60,7 +60,7 @@ SSH with agent forwarding to the jumpbox:
 
    Choose one, and copy/paste into a normal SSH command:
 
-        ssh ip-10-1-5-57.eu-west-1.compute.internal
+        ssh ip-10-1-5-57.eu-west-1.compute.internal.integration
 
 5. To get to a single node, you can use the `--single-node` switch on
    `govuk_node_list`, straight into your SSH command:
