@@ -5,4 +5,14 @@ title: Content schemas
 
 The content schemas are defined in the [govuk-content-schemas repo][repo].
 
+| Keyword       | Explanation                                                                            |
+| ------------- | ------------------------------------------------------------------------------------- |
+| `type`        | The data type of a schema |
+| `required`    | Specify object-level properties that must exist - by default all object properties are optional |
+| `enum`                        | To specify values a request parameter or model property can accept     |
+| `oneOf`, `anyOf`, `allOf`     | These allow you to validate the use of other subschemas in your schema |
+| `additionalProperties`        | Controls whether properties that are not already specified can be accepted. By default any additional properties are allowed     |
+
+
+
 [repo]: https://github.com/alphagov/govuk-content-schemas
