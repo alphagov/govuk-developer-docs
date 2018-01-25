@@ -4,7 +4,7 @@ title: How the draft stack works
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-last_reviewed_on: 2017-07-18
+last_reviewed_on: 2018-01-24
 review_in: 6 months
 ---
 
