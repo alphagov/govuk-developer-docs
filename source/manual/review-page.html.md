@@ -26,6 +26,8 @@ How to review pages in this manual.
 - Assign it for someone else to review
 - Confirm the page is OK and set a new review date
 
+These tasks can be achieved by editing the metadata at the top of the source for that page. See the [govuk-developer-docs github repo](https://github.com/alphagov/govuk-developer-docs).
+
 ## Set a review by date
 
 - How likely is it that the information will change?
