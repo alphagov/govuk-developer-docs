@@ -46,7 +46,7 @@ ip-10-1-6-88.eu-west-1.compute.internal
 
 SSH with agent forwarding to the jumpbox:
 
-        ssh -A <EXAMPLEUSER>@integration
+        ssh -A $USERNAME@integration
 
 2. Use `govuk_node_list` to narrow down the IP addresses you require:
 
