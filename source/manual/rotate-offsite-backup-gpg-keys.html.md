@@ -13,6 +13,9 @@ good security practice we rotate these keys each year.
 
 ## Generate a new key
 
+When creating a new key it is important you reuse the existing `passphrase` as otherwise the incremental backup will fail as
+historical data is unable to be access/unencrypted previous diffs.
+
 1. Pull the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets).
 2. `cd puppet`
 3. `gpg2 --batch --gen-key gpg_templates/offsite_backup_gpg_template.txt`
@@ -21,7 +24,7 @@ good security practice we rotate these keys each year.
 6. Export _secret_ key: Copy the output of `gpg2 --export-secret-key --armor <key id>`
 7. Export _public_ key: Copy the output of `gpg2 --export --armor <key id>` to a public key server, for instance https://pgp.mit.edu/
 
-NB: Steps 6 & 7 use different commands for exporting. 
+NB: Steps 6 & 7 use different commands for exporting.
 
 ## What do I need to update?
 
