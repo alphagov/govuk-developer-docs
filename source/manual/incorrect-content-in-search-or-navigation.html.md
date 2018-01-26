@@ -62,19 +62,4 @@ to remove unwanted duplicates.
 
 #### There are blank options on finder pages
 
-On finder pages, facets on the left hand side can be populated from "link"
-fields in the search documents, like people, organisations, topics.
-
-This can be detected by the Finder Frontend feature in Smokey (an
-example error would be `And I should see a closed facet titled
-"People" with non-blank values`).
-
-If the pages for those things don't themselves exist in search, finder frontend
-won't be able to fill in the titles.
-
-To fix the issue:
-- Inspect the blank options using browser developer tools to work out which
-  people are affected
-- Republish those people in whitehall
-
-![People facet with blank options](/images/blank-facets.png)
+See the instructions for [fixing blank finder filter options](fix-blank-finder-filter-options.html).
