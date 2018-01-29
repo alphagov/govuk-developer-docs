@@ -14,7 +14,7 @@ class ApplicationsByTeam
   end
 
   def self.no_known_owner
-    applications[UNKNOWN].map(&:app_name)
+    applications[UNKNOWN].to_a.map(&:app_name)
   end
 
   def self.applications
