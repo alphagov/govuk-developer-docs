@@ -3,8 +3,8 @@ title: Add a new document type
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-owner_slack: "@davidslv and @matmoore"
-last_reviewed_on: 2017-08-08
+owner_slack: "#2ndline"
+last_reviewed_on: 2018-01-26
 review_in: 3 months
 ---
 
@@ -12,12 +12,12 @@ The [document type](https://docs.publishing.service.gov.uk/document-types.html) 
 
 ## Add the document type in the govuk-content-schema repo
 
-You need to add the document type into the [allowed document types](https://github.com/alphagov/govuk-content-schemas/blob/master/lib/govuk_content_schemas/allowed_document_types.yml) in [content-schemas](https://github.com/alphagov/govuk-content-schemas/blob/master/lib/govuk_content_schemas).
+You need to add the document type into the [allowed document types](https://github.com/alphagov/govuk-content-schemas/blob/master/lib/govuk_content_schemas/allowed_document_types.yml) in [content-schemas](https://github.com/alphagov/govuk-content-schemas).
 
 Once you have added the document type you should:
 
 - commit the change
-- run the default [rake task](https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html) to generate the schemas again
+- run `bundle exec rake` to generate the schemas again
 - commit this update separately
 
 Examples of implementation:
@@ -75,5 +75,3 @@ Republish all the documents and they should appear in search. You can test this 
 
 - [https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide](https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide)
 - [https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide](https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide)
-
-

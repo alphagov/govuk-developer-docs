@@ -95,6 +95,7 @@ Our [deployment dashboards](deployment-dashboards.html) use Graphite extensively
 ### Applying Functions
 
 Graphite has a whole bunch of functions you can apply to your data to make it more useful: they’re listed out [in the Graphite docs](http://graphite.readthedocs.org/en/0.9.12/functions.html). One particularly useful one is `keepLastValue`: if your graphs come out nearly black with a few spots of colour in them, you probably want this one. Both views have an Apply Function button.
+
 ## Kibana
 
 You can access GOV.UK Kibana through [Logit](logit.html).
@@ -104,6 +105,8 @@ Kibana is a log viewer and search engine. In Kibana, you can filter down log mes
 You can tweak the time range manually with the drop down at the top or by dragging on the timeline.
 
 Check out some of the [useful Kibana queries](kibana.html) to get an idea of what's possible.
+
+Logs are sent to Kibana using [Filebeat](logging.html#filebeat).
 
 ## Fabric Scripts
 
