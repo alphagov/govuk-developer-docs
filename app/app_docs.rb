@@ -33,7 +33,6 @@ class AppDocs
     def api_payload
       {
         app_name: app_name,
-        product_manager: product_manager,
         team: team,
         puppet_name: puppet_name,
         links: {
@@ -127,10 +126,6 @@ class AppDocs
 
     def team
       app_data["team"]
-    end
-
-    def product_manager
-      app_data["product_manager"]
     end
 
     def description
