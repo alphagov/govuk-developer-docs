@@ -20,18 +20,12 @@ GitHub topics: <%= application.topics.map { |topic| link_to(topic, "https://gith
 
 ### Ownership
 
-<% if application.product_manager %>
-Product Manager: **<%= application.product_manager %>**.
-<br>
-<% end %>
 <% if application.team %>
 Owned by team **<%= application.team %>**.
-<br>
-<% end %>
-<% if !(application.team || application.product_manager) %>
+<% else %>
 Do you support this application? Help out by [adding your team name][app-yaml] to the documentation.
-<br>
 <% end %>
+<br>
 
 <ul>
   <li><%= link_to "GitHub repo", application.repo_url %></li>
