@@ -2,33 +2,251 @@
 
 - github_repo_name: collections-publisher
   type: Publishing apps
-  product_manager: "@chris_pugh"
   team: "#taxonomy"
 
 - github_repo_name: contacts-admin
   type: Publishing apps
   puppet_name: contacts
-  product_manager: "@gansenthi"
-  team: "#frontend-design"
+  team: "#platform_support"
 
 - github_repo_name: content-tagger
   type: Publishing apps
-  product_manager: "@chris_pugh"
   team: "#taxonomy"
 
 - github_repo_name: local-links-manager
   type: Publishing apps
-  product_manager: "@samdub"
-  team: "#modelling-services"
+  team: "#platform_support"
 
 - github_repo_name: manuals-publisher
   type: Publishing apps
-  product_manager: "@antonia"
+  team: "#platform_support"
 
 - github_repo_name: maslow
   type: Publishing apps
-  product_manager: "@lutgendorff"
-  team: "#survey-and-support"
+  team: "#platform_support"
+
+- github_repo_name: policy-publisher
+  type: Publishing apps
+  team: "#platform_support"
+
+- github_repo_name: publisher
+  type: Publishing apps
+  team: "#platform_support"
+
+- github_repo_name: service-manual-publisher
+  type: Publishing apps
+  team: "#servicemanual"
+
+- github_repo_name: short-url-manager
+  type: Publishing apps
+  team: "#platform_support"
+
+- github_repo_name: specialist-publisher
+  type: Publishing apps
+  team: "#platform_support"
+
+- github_repo_name: travel-advice-publisher
+  type: Publishing apps
+  team: "#platform_support"
+
+- github_repo_name: whitehall
+  type: Publishing apps
+  production_url: https://whitehall-admin.publishing.service.gov.uk
+  team: "#platform_support"
+  api_docs_url: /apis/whitehall.html
+
+# api
+
+- github_repo_name: content-store
+  type: APIs
+  team: "#platform_support"
+  api_docs_url: /apis/content-store.html
+
+- github_repo_name: email-alert-api
+  type: APIs
+  team: "#email"
+
+- github_repo_name: email-alert-service
+  type: APIs
+  team: "#email"
+
+- github_repo_name: imminence
+  type: APIs
+  team: "#platform_support"
+
+- github_repo_name: link-checker-api
+  type: APIs
+  team: "#platform_support"
+  api_docs_url: /apis/link-checker-api.html
+
+- github_repo_name: publishing-api
+  type: APIs
+  team: "#platform_support"
+  api_docs_url: /apis/publishing-api.html
+
+- github_repo_name: rummager
+  type: APIs
+  team: "#platform_support"
+  api_docs_url: /apis/search-api.html
+
+- github_repo_name: asset-manager
+  type: APIs
+  team: "#asset-management"
+
+- github_repo_name: router-api
+  type: APIs
+  team: "#platform_support"
+
+- github_repo_name: support-api
+  type: APIs
+  team: "#platform_support"
+
+- github_repo_name: hmrc-manuals-api
+  type: APIs
+  team: "#platform_support"
+
+- github_repo_name: mapit
+  type: APIs
+  team: "#platform_support"
+  api_docs_url: https://mapit.mysociety.org/docs/
+
+# Support
+
+- github_repo_name: content-performance-manager
+  type: Supporting apps
+  team: "#content-tools"
+
+- github_repo_name: search-admin
+  type: Supporting apps
+  team: "#platform_support"
+
+- github_repo_name: signon
+  type: Supporting apps
+  team: "#platform_support"
+
+- github_repo_name: support
+  type: Supporting apps
+  team: "#platform_support"
+
+- github_repo_name: authenticating-proxy
+  type: Supporting apps
+  team: "#platform_support"
+
+- github_repo_name: release
+  type: Supporting apps
+  team: "#platform_support"
+
+- github_repo_name: router
+  type: Supporting apps
+  team: "#platform_support"
+
+# frontend
+
+- github_repo_name: calculators
+  type: Frontend apps
+  team: "#platform_support"
+
+- github_repo_name: calendars
+  type: Frontend apps
+  team: "#platform_support"
+
+- github_repo_name: collections
+  type: Frontend apps
+  team: "#frontend-design"
+  component_guide_url: https://govuk-collections.herokuapp.com/component-guide
+
+- github_repo_name: email-alert-frontend
+  type: Frontend apps
+  team: "#email"
+
+- github_repo_name: feedback
+  type: Frontend apps
+  team: "#platform_support"
+
+- github_repo_name: finder-frontend
+  type: Frontend apps
+  team: "#platform_support"
+  component_guide_url: https://finder-frontend.herokuapp.com/component-guide
+
+- github_repo_name: frontend
+  type: Frontend apps
+  team: "#platform_support"
+
+- github_repo_name: government-frontend
+  type: Frontend apps
+  team: "#frontend-design"
+  component_guide_url: https://government-frontend.herokuapp.com/component-guide
+
+- github_repo_name: info-frontend
+  type: Frontend apps
+  team: "#platform_support"
+
+- github_repo_name: licence-finder
+  type: Frontend apps
+  puppet_name: licencefinder
+  team: "#platform_support"
+
+- github_repo_name: manuals-frontend
+  type: Frontend apps
+  team: "#platform_support"
+
+- github_repo_name: smart-answers
+  type: Frontend apps
+  team: "#platform_support"
+  puppet_name: smartanswers
+
+- github_repo_name: service-manual-frontend
+  team: "#servicemanual"
+  type: Frontend apps
+
+- github_repo_name: static
+  type: Frontend apps
+  team: "#platform_support"
+  component_guide_url: https://govuk-static.herokuapp.com/component-guide
+
+# Transition
+
+- github_repo_name: bouncer
+  type: Transition apps
+  team: "#platform_support"
+
+- github_repo_name: transition
+  type: Transition apps
+  team: "#platform_support"
+
+# Retired applications
+
+
+- github_repo_name: specialist-frontend
+  type: Frontend apps
+  retired: true
+  description: |
+    specialist-frontend was used to render specialist documents. Those were moved
+    to government-frontend in April 2017.
+
+- github_repo_name: contacts-frontend
+  type: Frontend apps
+  retired: true
+  description: |
+   contacts-frontend used to render the HMRC contacts pages. Since April 2017
+   these are rendered by government-frontend.
+
+- github_repo_name: multipage-frontend
+  type: Frontend apps
+  retired: true
+  description: |
+    multipage-frontend was used to render travel advice pages. Those were moved
+    to government-frontend in March 2017.
+
+- github_repo_name: design-principles
+  type: Frontend apps
+  retired: true
+  puppet_name: designprinciples
+  description: |
+    A frontend app that used to render the GDS design principles as static
+    pages.  This required developer effort to update the content so in
+    November 2017 we retired the app after all the content had been replaced
+    by a version managed by our publishing apps.
 
 - github_repo_name: panopticon
   retired: true
@@ -44,41 +262,6 @@
     to [content-tagger](/apps/content-tagger.html). Publishing apps became
     responsible for sending their pages to search.
 
-- github_repo_name: policy-publisher
-  type: Publishing apps
-  product_manager: "@chris_pugh"
-  team: "#taxonomy"
-
-- github_repo_name: publisher
-  type: Publishing apps
-  product_manager: "@samdub"
-  team: "#modelling-services"
-
-- github_repo_name: service-manual-publisher
-  team: "#servicemanual"
-  type: Publishing apps
-
-- github_repo_name: short-url-manager
-  type: Publishing apps
-  product_manager: "@lutgendorff"
-  team: "#survey-and-support"
-
-- github_repo_name: specialist-publisher
-  type: Publishing apps
-  product_manager: "@antonia"
-
-- github_repo_name: travel-advice-publisher
-  type: Publishing apps
-  product_manager: "@ganesh"
-
-- github_repo_name: whitehall
-  type: Publishing apps
-  production_url: https://whitehall-admin.publishing.service.gov.uk
-  team: "#email"
-  product_manager: "@martinlugton"
-  api_docs_url: /apis/whitehall.html
-
-# api
 
 - github_repo_name: business-support-api
   retired: true
@@ -87,27 +270,10 @@
     API that was used to populate the "business support finder". In May 2017,
     it was replaced with the publishing-api and content-store.
 
-- github_repo_name: content-store
-  type: APIs
-  product_manager: "@robrankin"
-  team: "#publishing-platform"
-  api_docs_url: /apis/content-store.html
-
-- github_repo_name: email-alert-api
-  type: APIs
-  team: "#email"
-  product_manager: "@martinlugton"
-
-- github_repo_name: email-alert-service
-  type: APIs
-  team: "#email"
-  product_manager: "@martinlugton"
 
 - github_repo_name: govuk-delivery
   retired: true
   type: APIs
-  team: "#email"
-  product_manager: "@martinlugton"
   description: |
     API that was once used to handle Whitehall email notifications and the
     translation of Whitehall feed URLs into Govdelivery topics. Retired in favour
@@ -126,66 +292,14 @@
   retired: true
   type: APIs
   puppet_name: need_api
-  product_manager: "@lutgendorff"
-  team: "#survey-and-support"
   description: |
     A JSON read and write API for information about user needs on GOV.UK. It was a Rails
     app which was part of the GOV.UK Publishing Platform. The need information is now
     stored in the Publishing API, and available in the Content Store.
 
-- github_repo_name: imminence
-  type: APIs
-  product_manager: "@samdub"
-  team: "#modelling-services"
-
-- github_repo_name: link-checker-api
-  type: APIs
-  product_manager: "@robrankin"
-  team: "#publishing-platform"
-  api_docs_url: /apis/link-checker-api.html
-
-- github_repo_name: publishing-api
-  type: APIs
-  product_manager: "@robrankin"
-  team: "#publishing-platform"
-  api_docs_url: /apis/publishing-api.html
-
-- github_repo_name: rummager
-  type: APIs
-  product_manager: "@markmcleod"
-  team: "#search-team"
-  api_docs_url: /apis/search-api.html
-
-- github_repo_name: asset-manager
-  type: APIs
-  product_manager: "@danielroseman"
-  team: "#asset-management"
-
-- github_repo_name: router-api
-  type: APIs
-  product_manager: "@robrankin"
-  team: "#publishing-platform"
-
-- github_repo_name: support-api
-  type: APIs
-  product_manager: "@lutgendorff"
-  team: "#survey-and-support"
-
-- github_repo_name: hmrc-manuals-api
-  type: APIs
-  product_manager: "@antonia"
-
-- github_repo_name: mapit
-  type: APIs
-  product_manager: "@samdub"
-  team: "#modelling-services"
-  api_docs_url: https://mapit.mysociety.org/docs/
-
 - github_repo_name: metadata-api
   retired: true
   type: APIs
-  product_manager: "@lutgendorff"
-  team: "#survey-and-support"
   description: |
     API written in Go that was used to get user need information about given URLs
     on GOV.UK. The api would communicate with the `needs API` on behalf of
@@ -193,45 +307,6 @@
     then be parsed by `metadata-api` and handed over to `info-frontend`. `info-frontend` is
     now getting need information via the `backdrop read API` which it talks to using
     `gds-api-adapters`.
-
-# Support
-
-- github_repo_name: content-performance-manager
-  type: Supporting apps
-  team: "#content-tools"
-  product_manager: "@ben"
-
-- github_repo_name: search-admin
-  type: Supporting apps
-  product_manager: "@markmcleod"
-  team: "#search-team"
-
-- github_repo_name: signon
-  type: Supporting apps
-  team: "#email"
-  product_manager: "@patgov"
-
-- github_repo_name: support
-  type: Supporting apps
-  product_manager: "@lutgendorff"
-  team: "#survey-and-support"
-
-- github_repo_name: authenticating-proxy
-  type: Supporting apps
-  product_manager: "@martinlugton"
-  team: "#publishing-platform"
-
-- github_repo_name: release
-  type: Supporting apps
-  product_manager: "@robrankin"
-  team: "#email"
-
-- github_repo_name: router
-  type: Supporting apps
-  product_manager: "@robrankin"
-  team: "#email"
-
-# frontend
 
 - github_repo_name: business-support-finder
   retired: true
@@ -243,123 +318,3 @@
     finance support schemes. In March 2017, it was replaced with a new-style finder
     rendered by [finder-frontend](/apps/finder-frontend.html) and published by
     [specialist-publisher](/apps/specialist-publisher.html).
-
-- github_repo_name: calculators
-  type: Frontend apps
-  team: "#content-tools"
-  product_manager: "@ben"
-
-- github_repo_name: calendars
-  type: Frontend apps
-  team: "#content-tools"
-  product_manager: "@ben"
-
-- github_repo_name: collections
-  type: Frontend apps
-  product_manager: "@gansenthi"
-  team: "#frontend-design"
-  component_guide_url: https://govuk-collections.herokuapp.com/component-guide
-
-- github_repo_name: contacts-frontend
-  type: Frontend apps
-  retired: true
-  description: |
-   contacts-frontend used to render the HMRC contacts pages. Since April 2017
-   these are rendered by government-frontend.
-
-- github_repo_name: design-principles
-  type: Frontend apps
-  retired: true
-  team: "#start-pages"
-  product_manager: "@humin_miah"
-  puppet_name: designprinciples
-  description: |
-    A frontend app that used to render the GDS design principles as static
-    pages.  This required developer effort to update the content so in
-    November 2017 we retired the app after all the content had been replaced
-    by a version managed by our publishing apps.
-
-- github_repo_name: email-alert-frontend
-  type: Frontend apps
-  team: "#email"
-  product_manager: "@martinlugton"
-
-- github_repo_name: feedback
-  type: Frontend apps
-  team: "#start-pages"
-  product_manager: "@humin_miah"
-
-- github_repo_name: finder-frontend
-  type: Frontend apps
-  team: "#start-pages"
-  product_manager: "@humin_miah"
-  component_guide_url: https://finder-frontend.herokuapp.com/component-guide
-
-- github_repo_name: frontend
-  type: Frontend apps
-  team: "#start-pages"
-  product_manager: "@humin_miah"
-
-- github_repo_name: government-frontend
-  type: Frontend apps
-  team: "#start-pages"
-  product_manager: "@humin_miah"
-  component_guide_url: https://government-frontend.herokuapp.com/component-guide
-
-- github_repo_name: info-frontend
-  type: Frontend apps
-  product_manager: "@lutgendorff"
-  team: "#survey-and-support"
-
-- github_repo_name: licence-finder
-  type: Frontend apps
-  puppet_name: licencefinder
-  product_manager: "@antonia"
-  team: "#govuk-licensing"
-
-- github_repo_name: manuals-frontend
-  type: Frontend apps
-  team: "#start-pages"
-  product_manager: "@humin_miah"
-
-- github_repo_name: multipage-frontend
-  type: Frontend apps
-  retired: true
-  description: |
-    multipage-frontend was used to render travel advice pages. Those were moved
-    to government-frontend in March 2017.
-
-- github_repo_name: smart-answers
-  type: Frontend apps
-  team: "#content-tools"
-  product_manager: "@ben"
-  puppet_name: smartanswers
-
-- github_repo_name: service-manual-frontend
-  team: "#servicemanual"
-  type: Frontend apps
-
-- github_repo_name: specialist-frontend
-  type: Frontend apps
-  retired: true
-  description: |
-    specialist-frontend was used to render specialist documents. Those were moved
-    to government-frontend in April 2017.
-
-- github_repo_name: static
-  type: Frontend apps
-  team: "#start-pages"
-  product_manager: "@humin_miah"
-  component_guide_url: https://govuk-static.herokuapp.com/component-guide
-
-# Transition
-
-- github_repo_name: bouncer
-  type: Transition apps
-  product_manager: "@martinlugton"
-  team: "#platform_support"
-
-- github_repo_name: transition
-  type: Transition apps
-  product_manager: "@martinlugton"
-  team: "#platform_support"
