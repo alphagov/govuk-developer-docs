@@ -34,7 +34,7 @@ run a reindexing during working hours.
 To reindex, run the `rummager:migrate_schema` rake task:
 
 ```
-bundle exec rake rummager:migrate_schema CONFIRM_INDEX_MIGRATION_START=1 RUMMAGER_INDEX=name_of_index_to_migrate
+bundle exec rake rummager:migrate_schema CONFIRM_INDEX_MIGRATION_START=1 RUMMAGER_INDEX=alias_of_index_to_migrate
 ```
 
 If you set the last parameter to `RUMMAGER_INDEX=all`, rummager will reindex all
@@ -60,8 +60,85 @@ been copied to the new index.
 This step is only necessary if you ran reindexing job during working hours,
 which means that content published in whitehall will be missing from search.
 
-See [Replaying traffic to correct an out of sync search index][rummager-traffic-replay.html]
+See [Replaying traffic to correct an out of sync search index][traffic-replay]
 for details.
+
+### Cleanup
+
+Reindexing does not delete the old index. This lets us switch back to the old
+index if there is a serious problem with the new one.
+
+Once you're confident that the reindexing was successful, delete the old
+(unaliased) index using the rummager rake task:
+
+```
+rake rummager:clean RUMMAGER_INDEX=alias_of_index_to_clean_up
+```
+
+Avoid leaving old indices around for more than a few days. Rummager performance
+starts to degrade once there are more than three or four old indices in the
+cluster.
+
+### Troubleshooting
+
+#### To stop the reindexing job
+
+If you need to cancel the reindexing while it's in progress:
+
+0. Stop the reindexing rake task
+0. Unlock the old index by running the rummager rake task:
+    ```
+    rake rummager:unlock RUMMAGER_INDEX=alias_of_index_to_unlock
+    ```
+
+This doesn't actually stop the reindexing, because reindexing is an internal
+Elasticsearch progress triggered by the rake task. It will stop the rake task
+from switching the alias over to the new index once it has copied all the data,
+which is normally good enough.
+
+If you need to stop the reindexing process itself, for example because
+Elasticsearch is about to run out of disk space, port-forward to the
+rummager-elasticsearch box (see above) then use <http://localhost:9200/_plugin/head/>
+to send these requests to Elasticsearch:
+
+0. Find the ID of the reindexing task:
+
+    ```
+    GET /_tasks?actions=%2Areindex
+    ```
+
+0. Stop the task:
+
+    ```
+    POST /_tasks/{task_id}/_cancel
+    ```
+
+#### To switch back to the old index
+
+If you discover a problem after reindexing and need to switch back to the old
+index, run this rummager rake task:
+
+```
+rake rummager:switch_to_named_index[full_index_name] RUMMAGER_INDEX=index_alias
+```
+
+where `full_index_name` is the full name of the new index, including the date
+and UUID, e.g. `govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498`.
+
+Switching back to an old index means that you'll **lose any content updates**
+that were published while the new index was live. To fix this:
+
+0. [Replay traffic from whitehall][traffic-replay]
+0. Republish other content using one of the [publishing-api represent_downstream
+    tasks](https://github.com/alphagov/publishing-api/blob/master/lib/tasks/represent_downstream.rake).
+
+    You can use the publishing-api app console to find out what was published in
+    that time window. If only a small number of documents need to be
+    republished, use the task `rake
+    represent_downstream:content_id[content_ids]`. To republish a very large
+    number of documents, it may be easier to republish everything with
+    `rake represent_downstream:all`.
 
 [update-fields-or-doc-types]: /apis/search/add-new-fields-or-document-types.html
 [index-alias]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html
+[traffic-replay]: rummager-traffic-replay.html
