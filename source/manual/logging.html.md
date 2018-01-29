@@ -18,7 +18,7 @@ For information on how to log in and view stacks, please see the [GOV.UK Logit d
 ## Filebeat
 
 Each machine runs [Elastic Filebeat](https://www.elastic.co/products/beats/filebeat), and
-indepedently ships logs to the Logit provided logstash endpoint.
+independently ships logs to the Logit provided logstash endpoint.
 
 Filebeat tails logs and can output to a variety of sources. It is fully incorporated into the
 Elastic ecosystem.

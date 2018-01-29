@@ -4,7 +4,7 @@ title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-09-12
+last_reviewed_on: 2017-01-26
 review_in: 6 months
 ---
 
@@ -20,13 +20,11 @@ the state of its [primary and replica shards](https://www.elastic.co/guide/en/el
   entire cluster is cold started, before it's initially allocated the primary
   shards. If it happens at other times this may be a sign of data loss.
 
-More [comprehensive documentation on cluster health][docs]
+More [comprehensive documentation on cluster health][cluster-health-endpoint]
 can be found in the Elasticsearch documentation.
 
 Make sure you understand the consequences of the problem before jumping to a
 solution.
-
-[docs]: https://www.elastic.co/guide/en/elasticsearch/guide/current/_cluster_health.html
 
 Icinga uses the `check_elasticsearch` check from
 [nagios-plugins](https://github.com/alphagov/nagios-plugins/) to
@@ -38,7 +36,8 @@ to help you diagnose any problems.
 
 #### Find hosts in an elasticsearch cluster
 
-We use different elasticsearch clusters for different applications. For example, the `logs-elasticsearch` cluster is used for logging, and the `rummager-elasticsearch` cluster powers the GOV.UK search API.
+We use different elasticsearch clusters for different applications. For example
+the `rummager-elasticsearch` cluster powers the GOV.UK search API.
 
 You can find hostnames by running:
 
@@ -53,7 +52,7 @@ The [elasticsearch-head](http://mobz.github.io/elasticsearch-head/) plugin is a 
 To use this, forward port 9200 from the Elasticsearch box to your localhost:
 
 ```
-ssh -L9200:localhost:9200 logs-elasticsearch-1.management.staging
+ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging
 ```
 
 Access the UI at <http://localhost:9200/_plugin/head/>
@@ -88,11 +87,7 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 
 - Configuration files for Elasticsearch are in `/var/apps/<name>/config/elasticsearch.yml`
 
-- Elasticsearch logs live at `/var/logs/elasticsearch/<logging|govuk-production>.log`
-
-**Note:** If you have had a health alert for the logs-elasticsearch
-cluster you may need to change where Logstash writes to ensure we can
-keep getting Syslog entries.
+- Elasticsearch logs live at `/var/logs/elasticsearch/<name>/`
 
 ### How to fix unassigned shards in indices?
 
@@ -105,7 +100,7 @@ as any down time of the elasticsearch cluster can result in loss of data. In gen
 
 When the health is yellow, i.e. replica shards are not allocated, elasticsearch should automatically allocate another node to create replicas on, given enough time.
 
-You can manually interfere with this process using the [Cluster Reroute API](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/cluster-reroute.html#cluster-reroute).
+You can manually interfere with this process using the [Cluster Reroute API](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/cluster-reroute.html#cluster-reroute).
 
 #### Unassigned primary shards
 We can have a red status on Elasticsearch cluster health when you have
@@ -162,17 +157,6 @@ doing so.
 
 [blog]: http://asquera.de/opensource/2012/11/25/elasticsearch-pre-flight-checklist/#avoiding-split-brain
 
-### Manual repointing of Logstash to logs-elasticsearch cluster
-
-Currently Logstash (logging-1.management) talks only to
-logs-elasticsearch-cluster (which is mapped through a dns entry to
-logs-elasticsearch-1.management) for sending logs.
-
-If logs-elasticsearch-1.management is not available, we need to tell
-Logstash on logging-1 to send its Syslog data to a different
-Elasticsearch node. This is done by changing the /etc/hosts file on
-logging-1.management
-
 ### 'One or more indexes are missing replica shards.' despite cluster being green
 
 For some reason the Elasticsearch plugin [does not consider a replica in the
@@ -182,8 +166,8 @@ healthy](https://github.com/alphagov/nagios-plugins/blob/6534386f658ce573a8b65e0
 You can identify reallocating replica shards using Elasticsearch Head - they
 will be displayed in purple (reallocating) and without a thick border (replica).
 
-Alternatively, you can run check_elasticsearch directly on the
-logs-elasticsearch box:
+Alternatively, you can run check_elasticsearch directly on the elasticsearch
+box:
 
 ```
 check_elasticsearch -vv
