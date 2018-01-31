@@ -129,15 +129,11 @@ Switching back to an old index means that you'll **lose any content updates**
 that were published while the new index was live. To fix this:
 
 0. [Replay traffic from whitehall][traffic-replay]
-0. Republish other content using one of the [publishing-api represent_downstream
-    tasks](https://github.com/alphagov/publishing-api/blob/master/lib/tasks/represent_downstream.rake).
+0. Republish other content using the publishing-api rake task:
 
-    You can use the publishing-api app console to find out what was published in
-    that time window. If only a small number of documents need to be
-    republished, use the task `rake
-    represent_downstream:content_id[content_ids]`. To republish a very large
-    number of documents, it may be easier to republish everything with
-    `rake represent_downstream:all`.
+    ```
+    rake 'represent_downstream:published_between[2018-01-04T09:30:00, 2018-01-04T10:00:00]'
+    ```
 
 [update-fields-or-doc-types]: /apis/search/add-new-fields-or-document-types.html
 [index-alias]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html
