@@ -4,7 +4,7 @@ title: Fix stuck virus scanning
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-05
+last_reviewed_on: 2018-01-29
 review_in: 6 months
 related_applications: [whitehall]
 ---
@@ -102,3 +102,47 @@ Then, if they are all clean, copy to `/mnt/uploads/whitehall/clean/`:
     $ sudo -u assets rsync -rav /mnt/uploads/whitehall/temp/* /mnt/uploads/whitehall/clean/
 
 Finally, remember to delete your temporary directory!
+
+## Troubleshooting clamdscan
+
+A good place to check for current clamav issues is the clamav [mailing list](http://lists.clamav.net/cgi-bin/mailman/listinfo). The [clamav users archive](http://lists.clamav.net/pipermail/clamav-users/) is probably going to be your first port of call.
+
+We use clamdscan in [virus-scan-file.sh](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/files/node/s_asset_base/virus-scan-file.sh). This is a daemonised version of clamscan which helps speed up individual file scanning. You can run clamdscan against a single file:
+
+```
+clamdscan /path/to/file
+```
+
+### Lots of false positives
+
+We have had an instance where clamdscan was erroring because of a bad signature. This ultimately caused [virus-scan-file.sh](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/files/node/s_asset_base/virus-scan-file.sh) script to exit with a non-null return value which meant we reported false positives.
+
+### Checking the signature files
+
+Clamav has a utility called freshclam that we use to download new virus signatures on a daily basis. The files are stored in `/var/lib/clamav`.
+
+You can check the current version by doing the following:
+
+```
+cd /var/lib/clamav
+sigtool --info daily.cld
+```
+
+### Whitelist
+
+There is a "whitelist" file which contains signatures that should not be run by clamav. This file can be found at `/var/lib/clamav/whitelist.ign2`.
+
+### Restarting clamav-daemon
+
+The `clamav-daemon` should be running - you can find out by listing the services:
+
+```
+sudo service --status-all
+```
+
+If it is not running, you can start it with
+
+```
+sudo service clamav-daemon start
+```
+
