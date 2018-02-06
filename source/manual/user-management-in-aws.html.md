@@ -58,7 +58,7 @@ There are two methods to assume roles using the CLI.
 
 Both methods require the following:
 
- - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg govuk-administrators
+ - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg govuk-administrators, govuk-powerusers, govuk-users
  - MFA ARN: this is the ARN assigned to the MFA device in your own account
 
 Both methods will allow a valid session up to an hour. After one hour, you will be prompted
@@ -83,6 +83,8 @@ Create `~/.aws/credentials`:
 aws_access_key_id = <access key id>
 aws_secret_access_key = <secret access key>
 ```
+
+> You can get the key id and secret by following the instructions for IAM based access keys [here](https://www.cloudberrylab.com/blog/how-to-find-your-aws-access-key-id-and-secret-access-key-and-register-with-cloudberry-s3-explorer/)
 
 To test the configuration, use [`awscli`](https://aws.amazon.com/cli/).
 
