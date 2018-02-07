@@ -23,5 +23,7 @@ descriptors that can be opened at a time.
 
 ## General Redis investigation tips
 
-If Redis is using large amounts of memory you could use ``redis-cli --bigkeys``
-to find out what those things might be.
+If Redis is using large amounts of memory you can use ``redis-cli --bigkeys``
+to find out what those things might be. If any of the returned keys are new, try and speak to the team responsible.
+
+If there is an associated graph, it may also be worth checking as the alert could be a temporary spike, for example: due to running a rake task.
