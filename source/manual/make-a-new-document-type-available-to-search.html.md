@@ -3,14 +3,13 @@ title: Make a new document type available to search
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "@davidslv and @matmoore"
-last_reviewed_on: 2017-08-08
+owner_slack: "#2ndline"
+last_reviewed_on: 2017-02-06
 review_in: 3 months
 related_applications: [rummager]
 ---
 
-
-Any document type that the publishing api knows about can be added to our internal search.
+Any document type that the publishing-api knows about can be added to our internal search.
 By default, all document types in internal search also get included in the GOV.UK sitemap, which tells external search engines about our content.
 
 The app responsible for search is [Rummager](https://github.com/alphagov/rummager). Rummager listens to RabbitMQ messages about published documents to know when to index documents. For the new document type to be indexed, you need to add it to a whitelist.
@@ -37,5 +36,3 @@ Republish all the documents and they should appear in search. You can test this 
 
 - [https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide](https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide)
 - [https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide](https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide)
-
-
