@@ -4,7 +4,7 @@ title: Asset master and slave disk space comparison
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-10
+last_reviewed_on: 2018-02-08
 review_in: 6 months
 ---
 
@@ -27,6 +27,8 @@ using about the same amount of disk space".
 ## Investigation
 
 Check that the asset-manager cron job is syncing new asset data correctly by
+checking the [assets Grafana
+dashboard](https://grafana.publishing.service.gov.uk/dashboard/db/assets) or
 graphing `asset-slave-*_backend*.df-mnt-uploads.df_complex-used` in [Graphite or
 Grafana](https://docs.publishing.service.gov.uk/manual/tools.html).
 

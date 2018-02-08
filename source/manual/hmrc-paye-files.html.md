@@ -4,7 +4,7 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-31
+last_reviewed_on: 2018-02-08
 review_in: 6 months
 ---
 
