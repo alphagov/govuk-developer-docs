@@ -202,13 +202,27 @@ Remove leavers from all recipient files, so that they can no longer change
 credentials.
 
 1.  Delete the leaver's GPG fingerprint from each of the recipient files
-    for
-    [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
-    [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
+    for Carrenza
+    [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
+    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp),
+    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
+    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp),
     and
     [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
-    There is no separate recipients file for staging.
-2.  Commit your changes and raise a pull request for review.
+    There are separate recipients file for staging on Carrenza and AWS as these
+    environments share the production key list.
+2.  Recrypt the hieradata that they had access to with the recrypt rake task.
+    For example `bundle exec rake 'eyaml:recrypt[integration]` to recrypt the
+    integration hieradata.  For AWS remember to recrypt all the hieradata files
+    - the common ones and any for individual stacks. For example `bundle exec
+    rake 'eyaml:recrypt[integration] && bundle exec rake
+    'eyaml:recrypt[integration,blue]` to recrypt the common integration
+    hieradata and the integration hieradata for the "blue" stack.
+3.  Commit your changes and raise a pull request for review.
+4.  Take care when rebasing changes to master that have been merged since you
+    started your PR.  The encrypted hieradata files are effectively binary data
+    that git's text diff may not correctly merge.  You will likely have to
+    reset your recrypted versions and start again from the versions on master.
 
 > **WARNING**
 >
