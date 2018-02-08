@@ -4,12 +4,12 @@ title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-01-26
+last_reviewed_on: 2018-02-08
 review_in: 6 months
 ---
 
 Elasticsearch reports cluster health as one of three possible states, based on
-the state of its [primary and replica shards](https://www.elastic.co/guide/en/elasticsearch/reference/1.7/_basic_concepts.html#_shards_amp_replicas).
+the state of its [primary and replica shards](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/_basic_concepts.html#_shards_amp_replicas).
 
 - `green` - all primary and secondary (replica) shards are allocated. There are
   two (or more) copies of all shards across the nodes on the cluster.
@@ -85,9 +85,9 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 
 #### Other options
 
-- Configuration files for Elasticsearch are in `/var/apps/<name>/config/elasticsearch.yml`
+- Configuration files for Elasticsearch are in `/etc/elasticsearch/<name>/elasticsearch.yml`
 
-- Elasticsearch logs live at `/var/logs/elasticsearch/<name>/`
+- Elasticsearch logs live at `/var/log/elasticsearch/<name>/`
 
 ### How to fix unassigned shards in indices?
 
@@ -132,7 +132,7 @@ other and both independently elect new master nodes, and each part of the
 cluster starts operating independently, allowing the data indexed to diverge.
 
 We guard against split brain problem by following the
-[recommended practise][blog]
+[recommended practice][blog]
 of setting minimum number of master-eligible nodes to `([the size of the cluster] / 2) + 1` N/2+1.
 
 This means that when adding or removing nodes you need to ensure that all
