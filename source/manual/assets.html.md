@@ -4,8 +4,8 @@ title: 'Assets: how they work'
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-02
-review_in: 1 month
+last_reviewed_on: 2018-02-09
+review_in: 1 week
 related_applications: [asset-manager, whitehall]
 ---
 
@@ -59,10 +59,13 @@ an asset management point of view.
 
 ### How uploaded assets are stored and served
 
-Both Whitehall and Asset Manager store the asset files on an NFS share. This is
-hosted on the backend and whitehall-backend machines, and asset requests
-therefore go via the cache, frontend-lb, (whitehall-)frontend, backend-lb and
-backend machines.
+Asset Manager stores its asset files in an S3 bucket (i.e.
+`govuk-assets-production` in production) and instructs nginx to proxy requests
+to them.
+
+Whitehall stores its asset files on an NFS share. This NFS share is mounted on
+the backend and whitehall-backend machines, and asset requests therefore go via
+the cache, frontend-lb, (whitehall-)frontend, backend-lb and backend machines.
 
 It should be noted that both applications do actually serve the asset
 requests, rather than letting nginx serve directly from the share. This is to
@@ -75,8 +78,3 @@ enable the following features:
 * Asset files can be replaced, and a request to the original path redirects to
   the replacement. Currently only Whitehall and Specialist Publisher support
   this.
-
-Note: Asset Manager now also stores the asset files as objects in an S3 bucket
-(i.e. `govuk-assets-production` in production) and instructs Nginx to proxy
-requests to them. Thus the Asset Manager portion of the NFS mount is now largely
-redundant and the files on it will shortly be removed.
