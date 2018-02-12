@@ -81,11 +81,12 @@ Import the SSH key into your keychain.
 
 Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you just created. Your username should use the `firstnamelastname` format.
 
-Add the name of your manifest (your username) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-hiera].
+Add the name of your manifest (your username) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera] for integration and in [`hieradata/integration.yaml`][integration-hiera] for CI.
 
 Create a pull request with these changes. Once it has been [reviewed by a member of the GOV.UK team][rfcs], you can merge it and it will automatically deploy to the Integration environment. This will come in handy later.
 
-[integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
+[integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
+[integration-aws-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
 [rfcs]: https://github.com/alphagov/govuk-rfcs/blob/master/rfc-052-pull-request-merging-process.md
 
 ## 4. Boot your VM
