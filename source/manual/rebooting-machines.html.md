@@ -118,9 +118,6 @@ To reboot an Elasticsearch machine, run the following command:
 This will prevent you from rebooting a machine in a cluster which
 doesn't have a green cluster health status.
 
-After rebooting an Elasticsearch machine, Redis rivers may become stuck,
-see [Redis rivers for Elasticsearch](alerts/redis.html)
-
 ## Rebooting Redis machines
 
 Unless there are urgent updates to apply, these machines should not be
