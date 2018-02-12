@@ -5,7 +5,7 @@ title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-14
+last_reviewed_on: 2018-02-12
 review_in: 6 months
 related_applications: [bouncer, transition]
 ---
