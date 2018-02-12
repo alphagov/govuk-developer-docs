@@ -1,5 +1,5 @@
 ---
-owner_slack: '#taxonomy'
+owner_slack: '#platform_support'
 review_by: 2017-07-26
 title: Transition a site to GOV.UK
 section: Transition
