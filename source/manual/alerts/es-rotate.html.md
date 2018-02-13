@@ -4,11 +4,12 @@ title: es-rotate
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-07-11
+last_reviewed_on: 2018-02-13
 review_in: 6 months
 ---
 
-This alert triggers when the es-rotate hasn't completed successfully.
+This alert triggers when the [es-rotate](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/templates/usr/local/bin/es-rotate-passive-check.erb)
+hasn't completed successfully.
 
 es-rotate is part of [es-tools](https://github.com/alphagov/estools).
 
