@@ -33,6 +33,9 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   <li><%= link_to "Puppet configuration", application.puppet_url %></li>
   <li><%= link_to "Deploy scripts", application.deploy_url %></li>
   <li><%= link_to "Deployment dashboard", application.dashboard_url %> (warning: not all apps have a dashboard)</li>
+  <% if application.publishing_e2e_tests_url %>
+    <li><%= link_to "Publishing E2E scenarios", application.publishing_e2e_tests_url %> (warning: not all apps have E2E tests)</li>
+  <% end %>
 
   <% if application.api_docs_url %>
     <li><%= link_to "API docs", application.api_docs_url %></li>

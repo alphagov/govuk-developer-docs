@@ -112,6 +112,12 @@ class AppDocs
       "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 
+    def publishing_e2e_tests_url
+      if ["Frontend apps", "Publishing apps"].include?(type)
+        "https://github.com/alphagov/publishing-e2e-tests/search?q=%22#{app_name.underscore}%3A+true%22+path%3A%2Fspec%2F"
+      end
+    end
+
     def api_docs_url
       app_data["api_docs_url"]
     end
