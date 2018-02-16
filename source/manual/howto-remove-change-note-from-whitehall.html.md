@@ -24,7 +24,7 @@ is referring to an `editorial_remark` in the Whitehall Admin, or to a public fac
 
 #### Editorial Remark
 1. Obtain the content item ID of the document on which the change note was created. 
-This can be done by visiting the `/api/content/` version of the the edition's url. 
+This can be done by visiting the `/api/content/` version of the edition's url. 
 This document will contain multiple editions. You will have to extract the 
 `editorial_remark` from these editions. 
 1. Create a data migration in Whitehall [docs here](https://github.com/alphagov/whitehall/blob/19cd7d72de32454d532c195f35b027fa1b3ba6ac/db/data_migration/README.md)
