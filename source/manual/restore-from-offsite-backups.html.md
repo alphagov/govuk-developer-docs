@@ -28,14 +28,10 @@ on a Vagrant VM.
 On a fresh VM, you may require the following packages for this exercise:
 
 > You can use either your dev VM or if you have the space you can create a new mysql server VM using the following command:
->
-> ```vagrant up mysql-master-1.backend```
->
+> `vagrant up mysql-master-1.backend`
 > This needs to be run from the root of the `govuk-puppet` repository
->
 > Access the new VM using:
->
-> ```vagrant ssh mysql-master-1.backend```
+> `vagrant ssh mysql-master-1.backend`
 
 #### Packages via `apt-get`
 

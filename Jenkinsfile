@@ -38,6 +38,10 @@ node {
       govuk.rubyLinter("app lib helpers spec bin")
     }
 
+    stage("Lint documentation") {
+      sh "vale --glob='*.md' ."
+    }
+
     stage("Tests") {
       govuk.runTests()
     }
