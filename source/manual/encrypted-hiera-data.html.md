@@ -126,7 +126,6 @@ Once complete, you should run `git pull` to obtain the re-encrypted copy.
 You should now be able to use the `rake(1)` tasks below to access and
 modify encrypted Hiera data.
 
-<a name="zsh-note"></a>
 > **NOTE**
 >
 > If you use [ZSH](http://zsh.sourceforge.net/) as your local shell, you
@@ -435,7 +434,10 @@ If you encounter an error similar to
 zsh: no matches found: eyaml:edit[integration]
 ```
 
-you should read the [note](#zsh-note) and try:
+Try either enclosing the rake command in single quotes or
+set the
+[noglob](http://zsh.sourceforge.net/Doc/Release/Options.html#index-NOGLOB)
+option.
 
 ```
 noglob bundle exec rake eyaml:edit[integration]
