@@ -47,8 +47,9 @@ An example PR can be found here: https://github.com/alphagov/publishing-api/pull
 to an Edition in publishing-api. You can search for that edition using the content
 item id (Edition IDs will not coincide between whitehall and
 publishing-api). You can also do a freetext search for the change note text in
-publishing-api. If it was a minor change, you will not find the change note in
-publishing-api.
-1. If you do find a change note, you will have to delete it and re-send
-the edition to the content store to be updated.
+1. If you do find a change note, you will have to delete it and re-send 
+the edition to the content store to be updated. 
+1. You will also have to delete the change history as this does not get regenerated 
+automatically. This change also has to represented downstream to the content store
+so you should combine it with the previous step. Example PR: https://github.com/alphagov/publishing-api/pull/1167/files
 
