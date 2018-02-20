@@ -126,6 +126,10 @@ class AppDocs
       app_data["component_guide_url"]
     end
 
+    def metrics_dashboard_url
+      app_data["metrics_dashboard_url"]
+    end
+
     def type
       app_data.fetch("type")
     end
