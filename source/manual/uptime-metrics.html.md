@@ -4,16 +4,25 @@ title: Uptime Metrics
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-25
+last_reviewed_on: 2018-02-26
 review_in: 6 months
-related_applications: [publishing-api, content-store]
+related_applications:
+  - content-store
+  - hmrc-manuals-api
+  - link-checker-api
+  - manuals-publisher
+  - publishing-api
+  - specialist-publisher
+  - travel-advice-publisher
 ---
 
-Uptime metrics are collected for the `content-store` and the `publishing-api`,
-they are available as [a Grafana dashboard][grafana-dashboard].
+Uptime metrics are collected for `content-store`, `hmrc-manuals-api`,
+`link-checker-api`, `manuals-publisher`, `publishing-api`, `specialist-publisher`
+and `travel-advice-publisher`, they are available as
+[a Grafana dashboard][grafana-dashboard].
 
 <p>
-  <iframe src="https://grafana.publishing.service.gov.uk/dashboard-solo/file/application_uptime.json?panelId=4" width="700" height="300" frameborder="0"></iframe>
+  <iframe src="https://grafana.publishing.service.gov.uk/dashboard-solo/file/application_uptime.json?panelId=4" width="720" height="340" frameborder="0"></iframe>
 </p>
 
 They are available broken down into a day by day view, highlighted in different
