@@ -4,7 +4,7 @@ title: Policy on keeping software current
 parent: "/manual.html"
 layout: manual_layout
 section: Dependencies
-last_reviewed_on: 2017-08-08
+last_reviewed_on: 2018-02-26
 review_in: 6 months
 ---
 
@@ -31,6 +31,6 @@ New versions of Ruby bring us improved performance and nicer syntax for certain 
 
 ### Current state
 
-The current state of the Ruby and Rails versions is [listed in this versions spreadsheet][sheet]  with team ownership by Alex Tomlins.
+The current state of the Ruby and Rails versions is [listed in this versions spreadsheet][sheet].
 
 [sheet]: https://docs.google.com/spreadsheets/d/1FJmr39c9eXgpA-qHUU6GAbbJrnenc0P7JcyY2NB9PgU
