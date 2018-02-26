@@ -27,6 +27,14 @@ disk is configured puppet runs on the machine will result in errors.
     disks, choose a size and hit save.
 2)  Wait for the VM to reconfigure.
 
+Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst) for details on how to access Carrenza. Also, the credentials are in **secrets**.
+
+> **info**
+
+> In the link above, you will see a link format similar to the one given below.
+>    https://localhost:8443/cloud/org/<environment>
+> Here, the **<environment>** actually means the org detail you get from decrypting secrets. It will look something like [Org: XXXX-govuk-staging-london].
+
 > **note**
 
 > Aligning disk partitions on VMware VMs ensures that disk I/O is not
