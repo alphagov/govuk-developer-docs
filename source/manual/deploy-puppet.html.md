@@ -4,7 +4,7 @@ title: Deploy Puppet
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-22
+last_reviewed_on: 2018-02-27
 review_in: 6 months
 ---
 
