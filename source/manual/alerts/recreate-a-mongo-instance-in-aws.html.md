@@ -1,7 +1,7 @@
 ---
 owner_slack: "#2ndline"
 title: Re-create an AWS mongo instance
-section: Development VM
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-02-23
