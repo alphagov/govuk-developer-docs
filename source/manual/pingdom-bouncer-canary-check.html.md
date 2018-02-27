@@ -4,7 +4,7 @@ title: Pingdom Bouncer canary check
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2018-02-27
 review_in: 6 months
 ---
 
@@ -19,8 +19,8 @@ case.
 Possible causes of errors on the canary route include:
 
 -   DNS problems for `www.direct.gov.uk` or
-    `bouncer.publishing.service.gov.uk` - check [Bouncer's Nginx
-    logs](https://kibana.publishing.service.gov.uk/kibana/#/dashboard/elasticsearch/Bouncer)
+    `bouncer.publishing.service.gov.uk` - check Bouncer's Nginx
+    logs via the [logit.io dashboard](https://logit.io)
     to see which requests are getting through
 -   CDN problems resulting in requests for `www.direct.gov.uk` not being
     correctly passed to `https://bouncer.publishing.service.gov.uk`
