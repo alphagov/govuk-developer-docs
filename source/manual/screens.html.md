@@ -4,7 +4,7 @@ title: Monitoring screens
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_on: 2017-12-27
+last_reviewed_on: 2018-02-27
 review_in: 1 month
 ---
 
