@@ -87,6 +87,21 @@ If there's no disk space available, purging binary logs from within
 MySQL doesn't work - this is why we first need to manually delete some
 logs and update the index.
 
+## Low available disk space on /var/lib/postgresql
+
+Check which databases are occupying a lot of space and discuss with the relevant owners
+about reducing size or exanding the size of the postgres drive. 
+
+Steps to investigate postgres db size:
+
+1. SSH into `postgresql-primary-1.backend`
+1. See what space is left: `df -h`
+1. Open the psql console: `sudo -u postgres psql postgres`
+1. List databases: `\list` or `\l`
+1. Check out which databases can be improved
+1. You can choose one of the dbs by doing: `\c <name-of-db>`
+For example: `\c email-alert-api_production` 
+
 ## No disk space in general
 
 If you cant find any of the above cases causing low disk spaces, it can
