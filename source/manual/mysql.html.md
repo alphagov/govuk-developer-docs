@@ -4,7 +4,7 @@ title: MySQL backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2018-02-27
 review_in: 6 months
 ---
 
@@ -12,7 +12,7 @@ review_in: 6 months
 
 This is how MySQL backups have traditionally been taken on the GOV.UK Infrastructure.
 
-A third-party script called [automysqlbackup](http://www.debianhelp.co.uk/mysqlscript.htm) takes a `mysqldump` every night and stores them on disk
+A third-party script called [automysqlbackup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/automysqlbackup) takes a `mysqldump` every night and stores them on disk
 on a dedicated mount point on the MySQL backup machines (mysql-backup-1.backend and whitehall-mysql-backup-1.backend).
 
 The onsite backup machine (backup-1.management) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/)
