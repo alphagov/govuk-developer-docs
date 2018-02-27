@@ -8,7 +8,6 @@ important: true
 last_reviewed_on: 2017-10-27
 review_in: 6 months
 ---
-
 All logs for GOV.UK on all environments are collected in Kibana, which you can
 access through [Logit](logit.html).
 
@@ -16,6 +15,10 @@ Kibana can be [searched using the Lucene search syntax or full JSON-based
 Elasticsearch queries][kibana-search].
 
 ## Examples
+
+You can save and load queries using the buttons in the top right. You may want to use one of the existing queries as a starting point instead of writing a query from scratch.
+
+![Kibana saved searches](images/kibana_saved_searches.png)
 
 ### 5xx errors returned from cache layer
 
