@@ -4,7 +4,7 @@ title: Packer Vagrant Dev VM / Image Creation
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2018-02-27
 review_in: 6 months
 ---
 
