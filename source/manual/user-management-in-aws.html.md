@@ -61,8 +61,9 @@ Both methods require the following:
  - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg govuk-administrators, govuk-powerusers, govuk-users
  - MFA ARN: this is the ARN assigned to the MFA device in your own account
 
-Both methods will allow a valid session up to an hour. After one hour, you will be prompted
-for an MFA token again.
+Both methods will allow a valid session up to an hour. Once the hour has
+elapsed, you will need to rerun the `assume-role` command, but shouldn't be
+prompted for MFA.
 
 ##### Storing credentials on disk
 
@@ -84,7 +85,9 @@ aws_access_key_id = <access key id>
 aws_secret_access_key = <secret access key>
 ```
 
-> You can get the key id and secret by following the instructions for IAM based access keys [here](https://www.cloudberrylab.com/blog/how-to-find-your-aws-access-key-id-and-secret-access-key-and-register-with-cloudberry-s3-explorer/)
+> You can get the key id and secret by following the instructions for IAM based
+> access keys
+> [here](https://www.cloudberrylab.com/blog/how-to-find-your-aws-access-key-id-and-secret-access-key-and-register-with-cloudberry-s3-explorer/)
 
 To test the configuration, use [`awscli`](https://aws.amazon.com/cli/).
 
@@ -98,15 +101,23 @@ Ensure [`awscli`](https://aws.amazon.com/cli/) is installed. Ensure you have you
 MFA token ready, and run:
 
 ```
-aws sts assume-role \
-  --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" \
-  --role-arn <Role ARN> \
+aws --profile=gds sts get-session-token \
   --serial-number <MFA ARN> \
   --token-code <MFA token>
 ```
 
+This will authenticate your account via MFA for 12 hours. Then, you can assume
+the required role with the following:
+
+```
+aws sts assume-role \
+  --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" \
+  --role-arn <Role ARN>
+```
+
 If successful, this will output some credentials. Store them in your environment using
-these environment variables:
+the following environment variables. Refresh them when they expire after an
+hour with another `sts assume-role` command.
 
 ```
 AWS_ACCESS_KEY_ID
