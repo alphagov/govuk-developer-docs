@@ -73,6 +73,20 @@ tagged to the above mentioned ["Education taxon"][education-taxon]:
 
 [https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0](https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0)
 
+By default rummager returns a handful of fields in a search result item.
+You are able to override the default fields by naming which fields you want returned. 
+If a content item does not have one of the named fields provided,
+it will be left out of the returned item.
+[See full documentation here.][override-fields] 
+
+
+You can filter on multiple different field names if you wish to narrow
+down what you are searching for. You are able to filter by one or many
+field names and multiple values can be given for each field name.
+To find all `speech` content tagged to ["Education taxon"][education-taxon]:
+
+[https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&filter_content_store_document_type[]=speech&fields[]=title,description,link,content_store_document_type,format](https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&filter_content_store_document_type[]=speech&fields[]=title,description,link,content_store_document_type,format)
+
 You can also access all content tagged to a taxon and the part of the
 taxonomy below it. The following will give you everything tagged to
 topics in the "Education" taxonomy:
@@ -101,3 +115,4 @@ Graphite (via StatsD).
 [rummager]: /apps/rummager.html
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/topic_taxonomy.json
 [record-taxonomy-metrics]: https://deploy.publishing.service.gov.uk/job/record-taxonomy-metrics/
+[override-fields]: /apis/search/search-api.html#returning-specific-document-fields
