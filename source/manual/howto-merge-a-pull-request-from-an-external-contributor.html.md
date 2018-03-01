@@ -1,7 +1,7 @@
 ---
 owner_slack: "#2ndline"
 title: Merge a Pull Request from an external contributor
-section: Testing
+section: Development & Reviews
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2017-12-19
