@@ -32,8 +32,9 @@ The following `Jenkinsfile` should be sufficient for most projects:
 ```groovy
 #!/usr/bin/env groovy
 
+library("govuk")
+
 node {
-  def govuk = load '/var/lib/jenkins/groovy_scripts/govuk_jenkinslib.groovy'
   govuk.buildProject()
 }
 ```
