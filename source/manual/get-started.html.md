@@ -4,7 +4,7 @@ title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
 section: Basics
-last_reviewed_on: 2017-12-01
+last_reviewed_on: 2018-03-02
 review_in: 3 months
 ---
 
@@ -12,7 +12,7 @@ This is the guide for new technical staff working on GOV.UK in [GDS][]. If you j
 
 Note that if you're not working for GDS you'll not be able to complete all of the steps in this guide.
 
-Follow the steps on this page to get your GOV.UK development environment running with a [VirtualBox](https://www.virtualbox.org/) VM, managed and configured by [Vagrant](http://vagrantup.com/).
+Follow the steps on this page to get your GOV.UK development environment running with a [VirtualBox][] VM, managed and configured by [Vagrant][].
 
 > You'll need to use a Mac to follow this guide.
 
@@ -36,36 +36,46 @@ Run `dev$` commands in the shell on the development VM:
 
 **If you run into problems**
 
-If you're having trouble with Vagrant or the development VM, there are [troubleshooting tips](https://docs.publishing.service.gov.uk/manual/troubleshooting-vagrant.html) in the dev manual. Of course you should also feel free to call on your colleagues or ask in the #govuk-developers channel in Slack.
+If you're having trouble with Vagrant or the development VM, [troubleshooting tips](troubleshooting-vagrant.html) are available. You can also ask your colleagues or the #govuk-developers channel in Slack.
 
 [GDS]: https://gds.blog.gov.uk/about/
+[VirtualBox]: https://www.virtualbox.org/
+[Vagrant]: https://www.vagrantup.com/
 
 ## 1. Install some dependencies
 
 First, install:
 
-* git command line tool: either from the managed software center or from [git-scm](https://git-scm.com/downloads)
-* [VirtualBox](https://www.virtualbox.org/)
-* [Vagrant](https://www.vagrantup.com/downloads.html)
-* vagrant-dns plugin: `vagrant plugin install vagrant-dns`
+* git command line tool: either from the Managed Software Center or from [git-scm][]
+* [VirtualBox][]
+* [Vagrant][]
+* The vagrant-dns plugin (`vagrant plugin install vagrant-dns`)
+
+[git-scm]: https://git-scm.com/downloads
+[VirtualBox]: https://www.virtualbox.org/
+[Vagrant]: https://www.vagrantup.com/downloads.html
 
 ## 2. Create your GitHub accounts
 
-1. Set up a [GitHub](https://www.github.com) account.
-1. Ask somebody with access to add your GitHub username and SSH username (`firstnamelastname`) to the [user monitoring system][user-reviewer]
-1. Ask your tech lead to add you to the [alphagov organisation](https://github.com/alphagov). You will have to be added to the [GOV.UK team](https://github.com/orgs/alphagov/teams/gov-uk/members) to get access to repos & CI.
-1. [Generate and register an SSH key pair](https://help.github.com/articles/connecting-to-github-with-ssh/) for your Mac for your GitHub account.
+1. Set up a [GitHub][] account.
+1. Ask somebody with access to add your GitHub username and SSH username (`firstnamelastname`) to the [user monitoring system][user-reviewer].
+1. Ask your tech lead to add you to the [alphagov organisation][alphagov]. You will have to be added to the [GOV.UK team][govuk-team] to get access to repos & CI.
+1. [Generate and register an SSH key pair][register-ssh-key] for your Mac for your GitHub account.
 1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
 
         mac$ /usr/bin/ssh-add -K your-private-key
 
 1. Test that it all works by running `ssh -T git@github.com`.
 
+[GitHub]: https://www.github.com/
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
+[alphagov]: https://github.com/alphagov
+[govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk/members
+[register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 
-## 3. Create a user in Integration and CI
+## 3. Create a user in integration and CI
 
-User accounts in our Integration and CI environments are managed in the [govuk-puppet](https://github.com/alphagov/govuk-puppet) repository.
+User accounts in our integration and CI environments are managed in the [govuk-puppet][] repository.
 
     mac$ mkdir ~/govuk
     mac$ cd ~/govuk
@@ -83,10 +93,11 @@ Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` wit
 
 Add the name of your manifest (your username) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera] for integration and in [`hieradata/integration.yaml`][integration-hiera] for CI.
 
-Create a pull request with these changes. Once it has been [reviewed by a member of the GOV.UK team][rfcs], you can merge it and it will automatically deploy to the Integration environment. This will come in handy later.
+Create a pull request with these changes. Once it has been [reviewed by a member of the GOV.UK team][rfcs], you can merge it and it will automatically deploy to the integration environment.
 
-[integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
+[govuk-puppet]: https://github.com/alphagov/govuk-puppet
 [integration-aws-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
+[integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
 [rfcs]: https://github.com/alphagov/govuk-rfcs/blob/master/rfc-052-pull-request-merging-process.md
 
 ## 4. Boot your VM
@@ -96,13 +107,15 @@ Run the VM bootstrap script:
     mac$ cd govuk-puppet/development-vm
     mac$ vagrant up
 
-This will take a little while, but it will throw up a question or two in your console so check back on it occassionally. Now might be a good time to scan through the [GOV.UK technology blog](https://gdstechnology.blog.gov.uk/category/gov-uk/) while Puppet runs.
+This will take a little while, but it will throw up a question or two in your console so check back on it occasionally. Now might be a good time to scan through the [GOV.UK technology blog](govuk-tech-blog) while Puppet runs.
 
-Once your VM is running, you should be able to SSH into it with:
+Once your VM is running, you can SSH into it with:
 
     mac$ vagrant ssh
 
 > See the full command list by typing `vagrant --help`
+
+[govuk-tech-blog]: https://gdstechnology.blog.gov.uk/category/gov-uk/
 
 ### Set your Git username and email
 
@@ -113,73 +126,90 @@ You can assign your name and email to commits on the VM:
 
 ## 5. Set up your apps
 
-Begin by checking out all of the gov.uk services. There's a handy shortcut:
+Begin by checking out all of the GOV.UK services. There's a handy shortcut:
 
     dev$ cd /var/govuk/govuk-puppet/development-vm
     dev$ ./checkout-repos.sh < alphagov_repos
 
-Most of our apps are written in Ruby and use [Bundler](http://bundler.io/rationale.html) to manage their dependencies. To boot apps, you’ll also need to install those dependencies:
+Most of our apps are written in Ruby and use [Bundler][] to manage their dependencies. To boot apps, you’ll also need to install those dependencies:
 
     dev$ ./update-bundler.sh
 
-There are also some Python apps, which use [PIP](https://pip.pypa.io/en/stable/). You’ll probably need to install those dependencies too, so run:
+There are also some Python apps, which use [PIP][]. You’ll probably need to install those dependencies too, so run:
 
     dev$ ./update-pip.sh
 
 > `~/govuk/` on your host machine is mounted as `/var/govuk` inside the VM. Any app repositories you clone should go here.
 
+[Bundler]: http://bundler.io/rationale.html
+[PIP]: https://pip.pypa.io/en/stable/
+
 ## 6. Access remote environments
 
 Your pull request from earlier will hopefully have been merged by now. It's time to test your access to servers via SSH.
 
-> If you're not in the office right now, you'll need to be connected to the GDS Office VPN for SSH access to Integration.
+> If you're not in the office right now, you'll need to be connected to the GDS Office VPN for SSH access to integration.
 
-While the applications are available directly via the public internet, SSH access to remote environments is via a ‘jumpbox’. You’ll need to configure your machine to use this jumpbox using the [example SSH config file](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config). Copy the file into the `~/.ssh/config` file on your host machine. You should then be able to ssh into any box in the Integration environment directly. Test that it works, by running:
+While the applications are available directly via the public internet, SSH access to remote environments is via a ‘jumpbox’. You’ll need to configure your machine to use this jumpbox and use `govukcli` to SSH into server.
 
-    mac$ ssh backend-1.backend.integration
+1. Copy the [example SSH config file][ssh-config] into the `~/.ssh/config` file on your host machine.
+1. Run `ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli` on your host machine to be able to use the `govukcli` tool from any directory.
 
-Next, create an ssh config file inside the VM with the same contents. You can choose whether to import your `alphagov` keypair to the VM or to use the built in key-forwarding. Test that you can reach Integration from your VM:
+Test that it works by running:
 
-    dev$ ssh backend-1.backend.integration
+    mac$ govukcli set-context integration
+    mac$ govukcli ssh backend
+
+Next, follow the same steps inside your VM. You can choose whether to import your `alphagov` keypair to the VM or to use the built in key-forwarding. Test that you can reach integration from your VM:
+
+    dev$ govukcli set-context integration
+    dev$ govukcli ssh backend
+
+[ssh-config]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config
 
 ## 7. Import production data
 
 Dumps are generated from production data in the early hours each day, and are then downloaded from integration.
 
-If you have integration access, you can download and import the latest data by running:
+If you have integration access, you can download and import the latest data by running (replacing <2FA code> with the current 2-factor authentication code for AWS integration):
 
-    dev$ cd /var/govuk/govuk-puppet/development-vm/replication
-    dev$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config
+    mac$ cd ~/govuk/govuk-puppet/development-vm/replication
+    mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n -a <2FA code>
 
-If you don't have integration access, ask someone to give you a copy of their dump. Then, from `govuk-puppet/development-vm/replication` run:
+Once the data has been downloaded (if you don't have integration access, ask someone to give you a copy of their dump), run:
 
     dev$ ./replicate-data-local.sh -d path/to/dir -s
 
-For more information, see the guide in the developer docs on [replicating application data locally for development](https://docs.publishing.service.gov.uk/manual/replicate-app-data-locally.html).
+For more information, see the guide in the developer docs on [replicating application data locally for development][data-replication].
+
+[data-replication]: replicate-app-data-locally.html
 
 ## 8. Run your apps
 
 You can run any of the GOV.UK apps from the `/var/govuk/govuk-puppet/development-vm` directory. You’ll first need to run `bundle install` in this folder to install the required gems.
 
-Since many of our apps depend on other apps, we normally run them using [bowler](https://github.com/JordanHatch/bowler) instead of foreman.
+Since many of our apps depend on other apps, we normally run them using [bowler][] instead of foreman.
 
 To run particular apps with bowler, use:
 
     dev$ bowl content-tagger
 
-This will also run all of the dependencies defined in the Pinfile.
+This will also run all of the dependencies defined in the `Pinfile`.
 
 If you don't need an optional dependency, you can pass the `-w` option:
 
     dev$ bowl whitehall -w mapit
 
-If these `bowl` commands fail, try the troubleshooting guide on [how to fix a broken bowl](/manual/bowl-error.html).
+If these `bowl` commands fail, try the troubleshooting guide on [how to fix a broken bowl][bowl-error].
+
+[bowler]: https://github.com/JordanHatch/bowler
+[bowl-error]: bowl-error.html
 
 ## 9. Keep your VM up to date
 
 There are a few scripts that should be run regularly to keep your VM up to date. In `govuk-puppet/development-vm` there is `update-git.sh` and `update-bundler.sh` to help with this. Also, `govuk_puppet` should be run from anywhere on the VM regularly.
 
-The following invocation will do all of this for you.
+The following script will do all of this for you.
 
     dev$ cd /var/govuk/govuk-puppet/development-vm
     dev$ ./update-all.sh
@@ -189,7 +219,7 @@ This will run:
 * `git pull` on each of the applications checked out in `/var/govuk`
 * `govuk_puppet` to bring the latest configuration to the dev VM
 * `bundle install` for each Ruby application to install any missing gems
-* `pip install` to update runtime dependencies for any python apps
+* `pip install` to update runtime dependencies for any Python apps
 
 ## 10. Access the web frontend
 
