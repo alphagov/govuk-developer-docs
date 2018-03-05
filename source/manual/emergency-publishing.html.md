@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2017-12-29
+last_reviewed_on: 2018-03-05
 review_in: 3 months
 ---
 
@@ -15,7 +15,7 @@ The GOV.UK on-call escalations contact will tell you when you need to publish an
 
 If you need to publish the emergency banner out of hours, you will be instructed to do so either by the GOV.UK on-call escalations contact or the Head of GOV.UK.
 
-[Contact numbers for those people](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/contact-numbers-in-case-of-incident.html) are in the opsmanual on GitHub enterprise.
+[Contact numbers for those people](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/2nd-line/contact-numbers-in-case-of-incident.md) are in the legacy Opsmanual in a private repo.
 
 ## Adding emergency publishing banners
 
@@ -94,7 +94,7 @@ fab $environment class:frontend app.restart:memcached
 <a name="test-with-cache-bust"></a>
 ### 5. Test with cache bust strings
 
-1) Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
+Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
 You can automate this by using the [emergency publishing scraper](https://github.com/alphagov/emergency-publishing-scraper)
 
@@ -103,15 +103,13 @@ You can automate this by using the [emergency publishing scraper](https://github
 - [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527) ([Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527))
 - [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8))
 
-Check the banner displays as expected and double check the information for the
-header, short description and link are as they should be. Test the link if it is
-present. Make sure the banner colour is appropriate - black for a notable death, red for
+- Check the banner displays as expected
+- Double check the information for the header, short description and link are as they should be
+- Test the link if it is present
+- Make sure the banner colour is appropriate - black for a notable death, red for
 a national emergency, green for a local emergency.
 
-If the banner information is not correct, re-run the Jenkins job to correct it.
-
-> HELP, the banner won't show. Try out some handy [hints and
-> tips](#the-banner-is-not-showing--not-clearing)
+If the banner doesn't show [look at the troubleshooting chapter](#the-banner-is-not-showing--not-clearing)
 
 <a name="purge-origin-cache"></a>
 ### 6. Purge the caches and test again
@@ -127,12 +125,10 @@ fab $environment cache.ban_all
 You can do so by giving a list of comma separated url paths, the following is a list of the 10 most used pages:
 
 ```
-fab $environment
-cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
+fab $environment cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
 ```
 
-See [these instructions for more details](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/cache-flush.html) on
-purging the cache.
+See [these instructions for more details](/manual/cache-flush.html) on purging the cache.
 
 3) Check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
 
