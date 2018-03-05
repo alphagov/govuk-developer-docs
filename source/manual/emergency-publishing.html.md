@@ -103,15 +103,13 @@ You can automate this by using the [emergency publishing scraper](https://github
 - [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527) ([Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527))
 - [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8))
 
-Check the banner displays as expected and double check the information for the
-header, short description and link are as they should be. Test the link if it is
-present. Make sure the banner colour is appropriate - black for a notable death, red for
+- Check the banner displays as expected
+- Double check the information for the header, short description and link are as they should be
+- Test the link if it is present
+- Make sure the banner colour is appropriate - black for a notable death, red for
 a national emergency, green for a local emergency.
 
-If the banner information is not correct, re-run the Jenkins job to correct it.
-
-> HELP, the banner won't show. Try out some handy [hints and
-> tips](#the-banner-is-not-showing--not-clearing)
+If the banner doesn't show [look at the troubleshooting chapter](#the-banner-is-not-showing--not-clearing)
 
 <a name="purge-origin-cache"></a>
 ### 6. Purge the caches and test again
