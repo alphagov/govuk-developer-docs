@@ -94,7 +94,7 @@ fab $environment class:frontend app.restart:memcached
 <a name="test-with-cache-bust"></a>
 ### 5. Test with cache bust strings
 
-1) Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
+Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
 You can automate this by using the [emergency publishing scraper](https://github.com/alphagov/emergency-publishing-scraper)
 
