@@ -77,12 +77,10 @@ Role ARN: should be one of the following depending on the level of access you ha
 Create a `~/.aws/credentials` file
 
 ```
-[default]
+[gds]
 aws_access_key_id = <access key id>
 aws_secret_access_key = <secret access key>
 ```
-
-> Please note this file differs in the it uses `[default]` instead of `[gds]`.
 
 **access key id**: This is the ID that we created earlier
 **secret access key**: This is the secret associated with the key we created earlier. If you didn't note these down you can simply create a new one.
@@ -93,7 +91,7 @@ If you have integration access, you can download and import the latest data by
 running:
 
     mac$ cd ~/govuk/govuk-puppet/development-vm/replication
-    mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n -a <MFA code>
+    mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
 
 > You may be able to skip the -u anf -F flags depending on your setup
 
@@ -103,8 +101,6 @@ then
     dev$ ./replicate-data-local.sh -d path/to/dir -s
 
 > You can skip the -d flag if you do this on the say day as the download
-
-**MFA Code**: This is your 6 digit 2FA number so you will need to type it in and start the script before the timer runs out, also be aware that this creates a time limited token (1 hour) so if the restore takes longer than that you may find AWS access drops out.
 
 > Databases will take a long time to download. They'll also take up a lot of
 > disk space (up to ~30GB uncompressed). The process will also take up a bunch
