@@ -128,8 +128,7 @@ You can do so by giving a list of comma separated url paths, the following is a 
 fab $environment cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
 ```
 
-See [these instructions for more details](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/cache-flush.html) on
-purging the cache.
+See [these instructions for more details](/manual/cache-flush.html) on purging the cache.
 
 3) Check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
 
