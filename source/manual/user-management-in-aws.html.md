@@ -75,6 +75,10 @@ role_arn = <Role ARN>
 mfa_serial = <MFA ARN>
 source_profile = gds
 region = eu-west-1
+
+[profile gds]
+mfa_serial = <MFA ARN>
+region = eu-west-1
 ```
 
 Create `~/.aws/credentials`:
