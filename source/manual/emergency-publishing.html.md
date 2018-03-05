@@ -125,8 +125,7 @@ fab $environment cache.ban_all
 You can do so by giving a list of comma separated url paths, the following is a list of the 10 most used pages:
 
 ```
-fab $environment
-cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
+fab $environment cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
 ```
 
 See [these instructions for more details](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/cache-flush.html) on
