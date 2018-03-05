@@ -15,7 +15,7 @@ The GOV.UK on-call escalations contact will tell you when you need to publish an
 
 If you need to publish the emergency banner out of hours, you will be instructed to do so either by the GOV.UK on-call escalations contact or the Head of GOV.UK.
 
-[Contact numbers for those people](https://github.digital.cabinet-office.gov.uk/pages/gds/opsmanual/2nd-line/contact-numbers-in-case-of-incident.html) are in the opsmanual on GitHub enterprise.
+[Contact numbers for those people](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/2nd-line/contact-numbers-in-case-of-incident.md) are in the legacy Opsmanual in a private repo.
 
 ## Adding emergency publishing banners
 
