@@ -4,8 +4,8 @@ title: Architectural overview of GOV.UK applications
 section: Basics
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-18
-review_in: 2 months
+last_reviewed_on: 2018-03-06
+review_in: 3 months
 ---
 
 ![](/manual/images/govuk-architecture.jpg)
