@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#taxonomy"
-last_reviewed_on: 2017-11-27
+last_reviewed_on: 2018-03-05
 review_in: 3 months
 related_applications: [content-tagger]
 ---
@@ -12,21 +12,21 @@ related_applications: [content-tagger]
 The Topic Taxonomy is a classification scheme for organising and
 finding content on GOV.UK, based on its subject area.
 
-Not to be confused with the Topics published throught Collections
+Not to be confused with the Topics published through Collections
 Publisher.
 
 ## Editing the Topic Taxonomy
 
 The taxonomy is managed in [content-tagger][edit-taxonomy]. Users must
 have the "GDS Editor" permission in content-tagger in order to see the
-relevent pages.
+relevant pages.
 
 The topics in the taxonomy (we call them "taxons" in code) are
 persisted in the publishing-api as content items. For an example [see
 the "Education" taxon][education-taxon].
 
 This means that taxons inherit the publishing-api workflow, and can be
-in either draft state or published.
+in either draft state or published. 
 
 The link type `parent_taxons` is used to store the relationship
 between taxons. A [reverse link][reverse-link-config] called
@@ -54,14 +54,21 @@ content item for this guidance document][example-guidance].
 ## Accessing the taxonomy
 
 The level one taxons are associated with the GOV.UK home page through
-the `level_one_taxons` link type.
+the `root_taxon` link type. The GOV.UK home page in turn has a 
+corresponding reverse link of link type `level one taxons`.
 
-This is the content item for the top-level "Education" taxon:
+This is the content item for the GOV.UK home page with all level one
+taxons listed.
+
+[https://www.gov.uk/api/content/][homepage-taxon]
+
+An example of a level one taxon is the "Education" taxon:
 
 [https://www.gov.uk/api/content/education][education-taxon]
 
 You can use this to find the structure of the taxonomy by following
 the `child_taxons` links.
+
 
 ## Accessing tagged content
 
@@ -98,6 +105,21 @@ a facet:
 
 [https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&facet_taxons=1000&count=0](https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&facet_taxons=1000&count=0)
 
+## Visibility
+
+Editors can use Whitehall to tag content to the taxonomy. They can see
+both the published as well as the draft taxonomy. Only content tagged
+to the published taxonomy can be used on the live site.
+
+Individual branches can be hidden from Editors by clearing the 
+`visible_to_departmental_editors` flag on level one taxons in 
+Content Tagger.
+
+Additionally taxons have a 'phase', which can be 'alpha', 'beta' or 'live'.
+The phase of a taxon controls its visibility on the front end apps. This 
+allows us to publish the entire taxonomy while hiding those parts which are not
+considered mature enough for production.
+
 ## Taxonomy Metrics
 
 High level metrics regarding the taxonomy are recorded in Graphite,
@@ -107,6 +129,7 @@ A rake task in Content Tagger is run through the [deploy
 Jenkins][record-taxonomy-metrics] every 30 minutes to push metrics to
 Graphite (via StatsD).
 
+[homepage-taxon]: https://www.gov.uk/api/content/
 [education-taxon]: https://www.gov.uk/api/content/education
 [example-guidance]: https://www-origin.integration.publishing.service.gov.uk/api/content/government/publications/staffing-and-employment-advice-for-schools
 [edit-taxonomy]: https://content-tagger.publishing.service.gov.uk/taxon
