@@ -29,7 +29,7 @@ for details of how we improved this for non-whitehall formats.
 
 A page with URL [/council-tax](https://www.gov.uk/council-tax) can be queried using [/api/search.json?filter_link=/council-tax](https://www.gov.uk/api/search.json?filter_link=/council-tax). You can quickly
 switch between the two using the [GOV.UK chrome
-plugin](https://github.com/alphagov/govuk-toolkit-chrome).
+plugin](https://github.com/alphagov/govuk-browser-extension).
 
 You can compare the data returned with the publishing app to check if it's up
 to date. An empty response means search has never received the content.
