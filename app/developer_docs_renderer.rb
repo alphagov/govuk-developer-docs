@@ -1,4 +1,4 @@
-class DeveloperDocsRenderer < TechDocsHTMLRenderer
+class DeveloperDocsRenderer < GovukTechDocs::TechDocsHTMLRenderer
   def header(text, header_level)
     anchor = githubify_fragment_id(text)
     tag = "h" + header_level.to_s

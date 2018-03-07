@@ -11,16 +11,8 @@ gem 'govuk-lint', '~> 2.1'
 gem 'simplecov'
 gem 'chronic'
 
-# Middleman Gems
-gem 'middleman', '>= 4.0.0'
-gem 'middleman-livereload'
-gem 'middleman-compass', '>= 4.0.0'
-gem 'middleman-sprockets', '~> 4.0.0'
-gem 'middleman-autoprefixer', '~> 2.7.0'
-gem 'middleman-syntax', '~> 3.0.0'
+gem 'govuk_tech_docs'
 gem 'middleman-search_engine_sitemap', '~> 1.4'
-
-gem 'table_of_contents', git: 'https://github.com/alphagov/table_of_contents.git', ref: 'f6d37fe1e837cebf7354abafd891f755148e7efa'
 
 gem 'github-markdown'
 gem 'html-pipeline'
