@@ -4,7 +4,7 @@ title: Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-15
+last_reviewed_on: 2018-03-07
 review_in: 6 months
 ---
 
