@@ -3,6 +3,7 @@ SimpleCov.start
 
 require 'webmock/rspec'
 
+require 'govuk_tech_docs'
 require_relative './../app/requires'
 
 RSpec.configure do |config|
