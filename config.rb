@@ -1,8 +1,7 @@
+require 'govuk_tech_docs'
 require_relative './app/requires'
 
-config[:tech_docs] = YAML.load_file('config/tech-docs.yml').with_indifferent_access
-
-set :markdown_engine, :redcarpet
+GovukTechDocs.configure(self)
 
 set :markdown,
     renderer: DeveloperDocsRenderer.new(
@@ -13,25 +12,14 @@ set :markdown,
     no_intra_emphasis: true
 
 configure :development do
-  activate :livereload
-
   # Disable Google Analytics in development
   config[:tech_docs][:ga_tracking_id] = nil
 end
-
-activate :autoprefixer
-activate :sprockets
-activate :syntax
 
 # Configure the sitemap for Google
 set :url_root, config[:tech_docs][:host]
 activate :search_engine_sitemap,
   default_change_frequency: 'weekly'
-
-configure :build do
-  activate :minify_css
-  activate :minify_javascript
-end
 
 helpers do
   def dashboard
@@ -61,9 +49,6 @@ helpers do
   def page_review
     @page_review ||= PageReview.new(current_page)
   end
-
-  require 'table_of_contents/helpers'
-  include TableOfContents::Helpers
 end
 
 ignore 'templates/*'
