@@ -4,7 +4,7 @@ title: SSH Configuration
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_on: 2018-01-09
+last_reviewed_on: 2018-03-07
 review_in: 1 months
 ---
 
@@ -12,7 +12,7 @@ Add the following to `~/.ssh/config`:
 
 ```
 ## CI
-## -------
+## --
 Host ci-jumpbox
   Hostname ci-jumpbox.integration.publishing.service.gov.uk
 
@@ -20,7 +20,7 @@ Host *.ci
   ProxyCommand ssh -e none %r@ci-jumpbox -W $(echo %h | sed 's/\.ci$//'):%p
 
 ## Integration
-## -------
+## -----------
 Host integration
   Hostname jumpbox.integration.publishing.service.gov.uk
 
