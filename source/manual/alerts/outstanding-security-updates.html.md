@@ -40,10 +40,11 @@ Please see the `apt::unattended_upgrades::blacklist:` node in Hiera for
 details of the exact packages that are blacklisted.
 
 You should only consider running `apt-get dist-upgrade` as a last
-resort, because it will aggressively upgrade and even downgrade packages
-as it deems necessary. Run it with `--dry-run` in Integration first and
-review the output very carefully. If in doubt ask someone in the
-Infrastructure team.
+resort, because it will aggressively upgrade, downgrade, and even
+_remove_ packages as it deems necessary. Run it with `--dry-run` in
+Integration first and review the output very carefully. If in doubt
+about any of this output ask the Reliability Engineering team for
+assistance.
 
 You may see an alert telling you that a connection to NRPE could not be
 established. See [Nagios NRPE connection
