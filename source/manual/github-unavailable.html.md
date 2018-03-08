@@ -4,7 +4,7 @@ title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-22
+last_reviewed_on: 2018-03-07
 review_in: 3 months
 ---
 
@@ -27,7 +27,7 @@ Use the normal deployment job but check the box to deploy from GitLab.com.
 
 ### Making changes to code in GitLab before deployment
 
-GOV.UK Tech Leads are owners on the `govuk` team on GitLab.com. Thy can give access to developers who need to make changes to the code before deployment. This may be necessary if we need to work in private, for example to fix a security vulnerability without disclosing it to the public. To do this, push to a new branch on GitLab.com and then deploy that code.
+GOV.UK Tech Leads are owners on the `govuk` team on GitLab.com. They can give access to developers who need to make changes to the code before deployment. This may be necessary if we need to work in private, for example to fix a security vulnerability without disclosing it to the public. To do this, push to a new branch on GitLab.com and then deploy that code.
 
 ### Authenticating with Jenkins
 
