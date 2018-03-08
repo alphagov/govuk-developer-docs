@@ -4,7 +4,7 @@ title: GOV.UK and Virtual Private Networks (VPNs)
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-31
+last_reviewed_on: 2018-03-07
 review_in: 6 months
 ---
 
@@ -57,5 +57,5 @@ Applying for a licence should remain available because
 the connection between GOV.UK (the router and content store) and the Licensify organisation is made
 over the internet rather than over the VPN.
 
-[carrenza-secure]: howto/connect-carrenza-il2.html
-[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/how-to/connect-to-the-aviation-house-vpn
+[carrenza-secure]: https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst
+[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/connect-to-the-aviation-house-vpn
