@@ -117,7 +117,7 @@ If the banner doesn't show [look at the troubleshooting chapter](#the-banner-is-
 1) Purge our entire origin cache:
 
 ```
-fab $environment cache.ban_all
+fab $environment class:cache cache.ban_all
 ```
 
 2) If you are in production environment, once the origin cache is purged, purge the CDN cache. At the time of writing, this can only be done one item at a time, and doesn’t work in staging or integration.
@@ -125,7 +125,7 @@ fab $environment cache.ban_all
 You can do so by giving a list of comma separated url paths, the following is a list of the 10 most used pages:
 
 ```
-fab $environment cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
+fab $environment class:cache cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
 ```
 
 See [these instructions for more details](/manual/cache-flush.html) on purging the cache.
