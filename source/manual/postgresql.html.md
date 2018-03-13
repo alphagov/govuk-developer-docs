@@ -4,7 +4,7 @@ title: PostgreSQL backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-31
+last_reviewed_on: 2018-03-13
 review_in: 6 months
 ---
 
@@ -35,5 +35,5 @@ where the logs should go. It also specifies encryption details.
 The archived transactions logs are based upon a "base" backup, which is taken every night. By default we rotate a new transaction log every 5 minutes, so in theory
 we can recover point in time backups to specific time and dates in this timeframe.
 
-To restore we can use the commands specified in the documentation: `backup-fetch` and `wal-fetch`. To make this easier, a script has been written to automate the
+To restore we can use the commands specified in the WAL-E documentation: `backup-fetch` and `wal-fetch`. To make this easier, a script has been written to automate the
 restore of the very latest backup available(`/usr/local/bin/wal-e_restore`). The environmental variables which define the AWS credentials will need to be present.
