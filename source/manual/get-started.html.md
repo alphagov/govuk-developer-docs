@@ -106,6 +106,7 @@ Run the VM bootstrap script:
 
     mac$ cd govuk-puppet/development-vm
     mac$ vagrant up
+    mac$ vagrant dns --install
 
 This will take a little while, but it will throw up a question or two in your console so check back on it occasionally. Now might be a good time to scan through the [GOV.UK technology blog](govuk-tech-blog) while Puppet runs.
 
