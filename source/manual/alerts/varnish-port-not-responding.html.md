@@ -52,7 +52,7 @@ $ fab $environment -H cache-3.router do:'/usr/lib/nagios/plugins/check_procs -c 
 You can view the number of 5xx errors by [logging into Logit](/manual/logit.html),
 and using this query:
 
-`host:cache* AND @fields.status:[500 TO 599]`
+`host:cache* AND access.response_code:[500 TO 599]`
 
 ### To resolve Varnish port not responding
 

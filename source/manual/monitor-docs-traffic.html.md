@@ -15,19 +15,19 @@ You can inspect the traffic forwarded in [Kibana][kibana]. The data goes back a 
 ## All traffic
 
 ```rb
-@fields.http_host:"docs.publishing.service.gov.uk"
+access.host:"docs.publishing.service.gov.uk"
 ```
 
 ## All 404s
 
 ```rb
-@fields.http_host:"docs.publishing.service.gov.uk" AND @fields.status:404
+access.host:"docs.publishing.service.gov.uk" AND access.status:404
 ```
 
 ## Particular page
 
 ```rb
-@fields.http_host:"docs.publishing.service.gov.uk" AND @fields.request:"/manual/emergency-publishing.html"
+access.host:"docs.publishing.service.gov.uk" AND access.request:"/manual/emergency-publishing.html"
 ```
 
 [proxy]: https://github.com/alphagov/govuk-puppet/blob/d9f32be24890a47e0ed7368efccec7fb70ecab50/modules/govuk/manifests/node/s_backend_lb.pp#L132-L139
