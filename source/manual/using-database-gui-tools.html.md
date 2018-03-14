@@ -4,7 +4,7 @@ title: Use database GUI tools
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-04
+last_reviewed_on: 2018-03-13
 review_in: 6 months
 ---
 
@@ -14,7 +14,7 @@ the relationships between data. This document explains how to configure
 for PostgreSQL and [MongoHub](https://github.com/jeromelebel/MongoHub-Mac) for MongoDB
 inside the [development VM](https://github.com/alphagov/govuk-puppet/tree/master/development-vm).
 
-## Prerequisites
+## Prerequisites
 
 You should have set up the development VM and have replicated data. You'll need
 to generate a ssh config to be able to connect to the VM via the standard ssh
@@ -41,7 +41,7 @@ favourites. It will now appear in the left-hand menu.
 If you need to access other MySQL databases, you can duplicate the favourite,
 change the database and choose a different name.
 
-## PSequel (for Postgres)
+## PSequel (for Postgres)
 
 Install PSequel in the normal way. Add a new connection with the following
 configuration:
@@ -72,7 +72,7 @@ easier in the future.  You can make `trust` runnable with
 If something goes wrong and Postgres fails to start, re-run `govuk_puppet` or
 restore the `pg_hba.conf.backup` file created by `sed` then try restarting again.
 
-## MongoHub (for MongoDB)
+## MongoHub (for MongoDB)
 
 You only need to set the host address for the VM (10.1.1.254) and the default
 port (27017) to connect to MongoDB on your dev machine. See below for sample
