@@ -35,7 +35,7 @@ direct links externally they will take you to this stack.
 ### Adding your user to the right team
 
 If you are unable to see any logs, please speak to a GOV.UK Logit administrator.
-This will normally be your Tech Lead, or a member of the Infrastructure team.
+This will normally be your Tech Lead.
 
 ## Administration guide
 
