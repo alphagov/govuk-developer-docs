@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Support
 owner_slack: "#2ndline"
-last_reviewed_on: 2017-09-05
+last_reviewed_on: 2018-03-13
 review_in: 6 months
 ---
 
