@@ -31,7 +31,7 @@ To get production data on to your local VM, you'll need to have either:
 
 ## AWS access
 
-The [aws setup guide](/manual/user-management-in-aws.html) covers using the interface in full, however if you only
+The [AWS setup guide](/manual/user-management-in-aws.html) covers using the interface in full, however if you only
 want to do developer replication you will need to:
 
 1. Log into AWS
@@ -54,7 +54,7 @@ want to do developer replication you will need to:
 
 1. Setup your AWS access config and credentials files
 
-    I am repeating the instructions described in the [aws setup guide](/manual/user-management-in-aws.html) with one difference. In the credentials file the setting must be under default as otherwise they are not found by the replication script.
+    I am repeating the instructions described in the [AWS setup guide](/manual/user-management-in-aws.html) with one difference. In the credentials file the setting must be under default as otherwise they are not found by the replication script.
 
     Create a `~/.aws/config` file:
 
