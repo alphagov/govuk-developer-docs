@@ -50,7 +50,7 @@ want to do developer replication you will need to:
 
 1. Install the AWS CLI application locally
 
-    On MacOS this can be done using `brew install awscli`. This is being installed locally with the assumption you will be doing a two step backup process, i.e. download the files on your local machine and then update you VM. This is the recommended process as the download is quicker to you local machine for most users.
+    On macOS this can be done using `brew install awscli`. This is being installed locally with the assumption you will be doing a two step backup process, i.e. download the files on your local machine and then update you VM. This is the recommended process as the download is quicker to you local machine for most users.
 
 1. Setup your AWS access config and credentials files
 
