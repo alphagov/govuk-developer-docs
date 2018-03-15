@@ -40,13 +40,13 @@ want to do developer replication you will need to:
 
 1. Setup MFA/2FA on your device
 
-    Naviagte to `IAM -> Users -> <Your username>`
+    Navigate to `IAM -> Users -> <Your username>`
 
     If you don't see an ARN ID next to `Assigned MFA device` click the edit button and set one up.
 
 1. Create an access token
 
-    Under `Access keys`click `Create access key` - you will secret is only displayed once, however if you fail to note it down just remove it and create another.
+    Under `Access keys` click `Create access key` – you will secret is only displayed once, however if you fail to note it down just remove it and create another.
 
 1. Install the AWS CLI application locally
 
@@ -66,7 +66,7 @@ want to do developer replication you will need to:
     region = eu-west-1
     ```
 
-    Role ARN: should be one of the following depending on the level of access you have been configured with [here](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars):
+    **Role ARN**: should be one of the following depending on the level of access you have been configured with [here](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars):
 
         * govuk-admins: arn:aws:iam::210287912431:role/govuk-administrators
         * govuk-poweruser: arn:aws:iam::210287912431:role/govuk-poweruser
@@ -82,19 +82,18 @@ want to do developer replication you will need to:
     aws_secret_access_key = <secret access key>
     ```
 
-    **access key id**: This is the ID that we created earlier
-    
-    **secret access key**: This is the secret associated with the key we created earlier. If you didn't note these down you can simply create a new one.
+    **AWS access key id**: This is the ID that we created earlier
+
+    **AWS secret access key**: This is the secret associated with the key we created earlier. If you didn't note these down you can simply create a new one.
 
 ## If you have integration access
 
-If you have integration access, you can download and import the latest data by
-running:
+If you have integration access, you can download and import the latest data by running:
 
     mac$ cd ~/govuk/govuk-puppet/development-vm/replication
     mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
 
-> You may be able to skip the -u anf -F flags depending on your setup
+> You may be able to skip the -u and -F flags depending on your setup
 
 then
 
