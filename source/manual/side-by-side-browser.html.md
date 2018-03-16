@@ -1,10 +1,10 @@
 ---
-owner_slack: '#taxonomy'
+owner_slack: '#platform_support'
 title: Use the side-by-side browser
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-04
+last_reviewed_on: 2018-03-16
 review_in: 6 months
 ---
 
