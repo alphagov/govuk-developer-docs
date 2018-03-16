@@ -1,16 +1,16 @@
 ---
-owner_slack: "#taxonomy"
+owner_slack: "#2ndline"
 title: Metrics
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-05
+last_reviewed_on: 2018-03-16
 review_in: 6 months
 ---
 
 Metrics are measurements of something. GOV.UK use metrics to monitor
 the service in realtime, and store these metrics over time, which can
-help with understand what changes are occurring.
+help to understand changes that are occurring.
 
 [Graphite] is the service used on GOV.UK to store metrics. Normally,
 metrics are sent by applications to another service called statsd,
