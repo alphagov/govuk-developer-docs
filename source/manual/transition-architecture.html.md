@@ -1,11 +1,11 @@
 ---
-owner_slack: '#taxonomy'
+owner_slack: '#platform_support'
 title: Transition architecture
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-01
-review_in: 6 months
+last_reviewed_on: 2018-03-16
+review_in: 2 months
 related_applications: [bouncer, transition]
 ---
 
