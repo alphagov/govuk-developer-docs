@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: CDN & Caching
 owner_slack: "@bevan"
-last_reviewed_on: 2017-12-17
+last_reviewed_on: 2018-03-21
 review_in: 3 months
 ---
 
