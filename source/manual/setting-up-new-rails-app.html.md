@@ -4,13 +4,15 @@ title: Set up a new Rails app
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-31
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
-Getting a new Rails app running in production has several steps. You should ensure that:
+Getting a new Rails app running in production has several steps.
 
-- Your app follows GOV.UK conventions, including the [Ruby styleguide](https://github.com/alphagov/styleguides/blob/master/ruby.md)
+You should ensure that:
+
+- Your app follows GOV.UK conventions, including the [Ruby styleguide](https://gds-way.cloudapps.digital/manuals/programming-languages.html#code-styleguides)
 - Continuous integration is set up
 - Your app can be deployed to integration, staging and production environments
 - You can monitor how your app is performing
@@ -25,7 +27,7 @@ For most apps, this means you'll be using:
 
 Exceptions are apps that don't need to share infrastructure with the rest of GOV.UK, such as internal tools or prototypes. In this case it might be easier to deploy to the [Government PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas) or [Heroku](https://devcenter.heroku.com/articles/getting-started-with-ruby).
 
-(This guide will assume you aren't doing that).
+This guide will assume you aren't doing that.
 
 ## Bootstrapping a new application
 
@@ -90,11 +92,11 @@ you and point them to the correct boxes.
 After the app has been configured and defined in Puppet, the deployment
 scripts are the next step to getting the app running on the boxes.
 Deployment scripts are bespoke to each application, but they live
-together in the [govuk-app-govuk-secrets
-repository](https://github.com/alphagov/govuk-app-deployment); All Rails
-apps use [Capistrano](http://www.capistranorb.com/) for deployment, and
-common deployment steps have been extracted into the `recipes`
-directory.
+together in the [govuk-app-deployment
+repository](https://github.com/alphagov/govuk-app-deployment).
+
+All Rails apps use [Capistrano](http://www.capistranorb.com/) for deployment, and
+common deployment steps have been extracted into the `recipes` directory.
 
 It's recommended to copy the deploy scripts from an existing app as a
 starting point. The deployment scripts for the `content-store` are
@@ -134,9 +136,10 @@ which make it simpler to configure apps to connect to their databases.
 
 If you used the [govuk-rails-app-template
 repository](https://github.com/alphagov/govuk-rails-app-template) to
-create your application, your app will already have `Jenkinsfile`. If
-you didn't, you will need to create a
-\[Jenkinsfile\](testing/application-testing) in your application repo.
+create your application, your app will already have `Jenkinsfile`.
+
+If you didn't, you will need to create a [Jenkinsfile](https://jenkins.io/doc/book/pipeline/jenkinsfile/)
+in your application repo.
 
 You also need to add a Jenkins integration to the repo on Github:
 
@@ -161,11 +164,10 @@ If users need to sign in to your app, if your app needs to authenticate
 API clients, or if your app needs authenticated access to another app's
 API, you'll need to configure Signon.
 
-(These examples assume you use
-[GDS-SSO](https://github.com/alphagov/gds-sso) for authentication and
-the [GDS API adapters](https://github.com/alphagov/gds-api-adapters) to
-connect to APIs. If you don't, you'll have to figure out the equivalents
-for your libraries.)
+These examples assume you use [GDS-SSO](https://github.com/alphagov/gds-sso)
+for authentication and the [GDS API adapters](https://github.com/alphagov/gds-api-adapters)
+to connect to APIs. If you don't, you'll have to figure out the equivalents
+for your libraries.
 
 To configure your app so users (or API clients) can authenticate:
 
@@ -174,6 +176,7 @@ To configure your app so users (or API clients) can authenticate:
     repo](https://github.com/alphagov/signonotron2/blob/master/doc/usage.md)
     No need to run this in Staging as Production credentials will be
     copied over.
+    
 2.  Save the OAuth ID and OAuth secret this command gives you into the
     GDS-SSO configuration in the `initializers_by_organisation`
     directory for your environment, as described above. Example:
@@ -186,8 +189,10 @@ To configure your app so it can talk to an existing API application:
     Users](https://signon.integration.publishing.service.gov.uk/api_users)
     section in Signon (you'll need to be a signon superadmin to
     access this).
+    
 2.  Add an application token for this user to access the
     necessary application.
+    
 3.  Save the access token this generates into the [API
     adapters](https://github.com/alphagov/gds-api-adapters) client
     configuration in the `initializers_by_organisation` directory for
@@ -196,20 +201,19 @@ To configure your app so it can talk to an existing API application:
 
 You need separate IDs, secrets and tokens for preview and
 staging/production, but staging and production should use the same keys,
-as production data replicates to staging overnight. Ideally, you should
-do this once in preview and once in production, then let the replication
+as production data replicates to staging overnight.
+
+Ideally, you should do this once in preview and once in production, then let the replication
 run its course. If you don't have a night to spare, you can also do the
 configuration in staging and update the Application object manually from
 a Rails console.
 
 ## Configuring Sentry
 
-If you used the [govuk-rails-app-template
-repository](https://github.com/alphagov/govuk-rails-app-template) to
-create your application, your app will already have the `govuk_config` gem
-installed.
+If you used the [govuk-rails-app-template repository](https://github.com/alphagov/govuk-rails-app-template) to
+create your application, your app will already have the `govuk_config` gem installed.
 
-To complete the setup, do the following.
+To complete the setup, do the following:
 
 ### Create the app in Sentry
 
