@@ -4,7 +4,7 @@ title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-07
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
@@ -30,9 +30,9 @@ NB: Steps 6 & 7 use different commands for exporting.
 
 The following files need to be updated with the new key details:
 
-Update the [govuk-puppet hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/production.yaml),
-updating the `_: &offsite_gpg_key` key with the new fingerprint value
+- Update the [govuk-puppet hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/production.yaml),
+updating the `_: &offsite_gpg_key` key with the new fingerprint value.
 
-Update the [encrypted govuk-secrets repo hieradata](https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/production_credentials.yaml),
+- Update the [encrypted govuk-secrets repo hieradata](https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/production_credentials.yaml),
 updating both `backup::assets::backup_private_gpg_key` and `backup::assets::backup_private_gpg_key_passphrase` with
 the relevant values.
