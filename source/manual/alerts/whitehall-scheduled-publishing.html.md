@@ -4,7 +4,7 @@ title: Whitehall scheduled publishing
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-09-14
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
