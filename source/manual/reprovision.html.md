@@ -4,7 +4,7 @@ title: Reprovision a machine in vCloud Director
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
@@ -23,7 +23,7 @@ potential downtime.
 2.  Stop the machine in the vCloud Director using the Flash UI.
 3.  Delete the machine in the vCloud Director.
 4.  Remove the certificate for the relevant machine on the
-    organisation's puppetmaster, e.g.
+    organisation's Puppet master, e.g.
 
         sudo puppet cert clean mybox-2.somevdc.production
 
