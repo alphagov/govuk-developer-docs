@@ -4,11 +4,11 @@ title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-04
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
-If you need to remove an asset manually from `assets.publishing.sevice.gov.uk`,
+If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
 follow these steps:
 
 1. `ssh asset-master-1.production`
