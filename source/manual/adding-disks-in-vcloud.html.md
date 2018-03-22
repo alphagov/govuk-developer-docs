@@ -4,7 +4,7 @@ title: Add a disk to a vCloud machine
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-04
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
@@ -31,17 +31,15 @@ Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/
 
 > **info**
 
-> In the link above, you will see a link format similar to the one given below.
->    https://localhost:8443/cloud/org/<environment>
-> Here, the **<environment>** actually means the org detail you get from decrypting secrets. It will look something like [Org: XXXX-govuk-staging-london].
+> In the link above, you will see a link format similar to https://localhost:8443/cloud/org/{environment}, where {environment} is the value of the `Org` key you get from decrypting secrets. It will look something like `Org: XXXX-govuk-staging-london`.
 
 > **note**
 
 > Aligning disk partitions on VMware VMs ensures that disk I/O is not
 > negatively affected. If a disk is not partition aligned correctly, I/O
-> from each filesystem is being translated in to 2 I/Os to the
+> from each filesystem is being translated into 2 I/Os to the
 > underlying virtual disk, and thus to the SAN itself. Ultimately, it is
-> not exactly a doubling - in fact, it leads to about a 20-30% disk I/O
+> not exactly a doubling. In fact, it leads to about a 20-30% disk I/O
 > increase, thus creating further load.
 >
 > Further details can be found in [this VMware
@@ -57,8 +55,8 @@ Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/
 > controller.
 >
 > There is a known issue whereby adding disks using certain disk
-> controllers may alter the BIOS boot order (causing a 'System disk not
-> found error' when restarting the VM). Specifically, check the
+> controllers may alter the BIOS boot order, causing a 'System disk not
+> found error' when restarting the VM. Specifically, check the
 > compability table (Table 5-4) on page 109 of the [vSphere Virtual
 > Machine Administration
 > Guide](http://pubs.vmware.com/vsphere-55/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-551-virtual-machine-admin-guide.pdf).
@@ -123,7 +121,7 @@ govuk_puppet --test
 
 2)  Verify that the new disk has been created by checking the output of
     `sudo fdisk -l` which will no longer say the disk is unpartitioned. For a
-    new logical volume you can also check `mount` for it's existence
+    new logical volume you can also check `mount` for its existence
 
 ## 7) Extend existing logical volume and filesystem
 
