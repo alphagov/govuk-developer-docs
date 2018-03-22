@@ -4,14 +4,14 @@ title: Stacks in AWS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-24
+last_reviewed_on: 2018-03-22
 review_in: 1 month
 ---
 
 When designing the infrastructure for GOV.UK in AWS we built in the concept of
 being able to deploy multiple "stacks" within a single environment.
 
-The implementation detail is described in the [related ADR](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0015-dns-infrastructure.md).
+The implementation detail is described in the [related architectural decision record (ADR)](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0015-dns-infrastructure.md).
 
 ## Definition of a stack
 
