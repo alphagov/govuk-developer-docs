@@ -4,7 +4,7 @@ title: Nginx high conn writing -- upstream indicator Check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-08-09
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
@@ -24,10 +24,10 @@ review_in: 6 months
 -   Checks are specifically on the Nginx frontend boxes as that is the
     closest place to the problem we can monitor and avoids the false
     positives that checking the load balancers might give us.
--   The warning and alert levels have been selected to fire early in the
-    case of outages to be a useful flag of what might be happening, but
+-   The warning and alert levels for outages have been set low
+    to be useful flags of what might be happening, but
     not so low that we get too many false positives.
--   We should really monitor what's going on at the rack/unicorn level
-    which would give us more accurate information. We don't currently
+-   Ideally we would monitor at the rack/unicorn level,
+    which would give us more accurate information, but don't currently
     have that ability, hence this check.
 
