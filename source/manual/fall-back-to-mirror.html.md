@@ -4,7 +4,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 owner_slack: "#2ndline"
-last_reviewed_on: 2018-01-04
+last_reviewed_on: 2018-03-13
 review_in: 2 months
 ---
 
@@ -98,7 +98,8 @@ You'll be notified by the escalation on-call contact that you need to edit the s
    Upload the file to the S3 mirror via console or command line
 
 Your manual changes to the mirror might be overwritten by the hourly copy from the
-mirrorer machine. You might need to ensure that the copy doesn't happen.
+mirrorer machine. You might need to ensure that the copy doesn't happen by stopping the
+`govuk_sync_mirror` cron job from running.
 
 If you're notified that the edit you've made can be reverted, do that the same way.
 
