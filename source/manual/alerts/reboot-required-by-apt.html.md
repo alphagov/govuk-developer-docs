@@ -4,52 +4,50 @@ title: reboot required by apt
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-09-01
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
-This check indicates that some packages have been installed but cannot
-be activated without rebooting the machines.
+This check indicates that some new packages have been installed but require
+rebooting the machines to become active.
 
-The check contains a list of hosts that require a reboot (click into the warning
-for the list).
+The check contains a list of hosts that require a reboot. Click into the warning
+for the list.
 
-Under normal circumstances most machines will reboot automatically and the list
-will be populated with those that need to be
-[rebooted manually][reboot-machines], such as database clusters. If the list
-does not correlate with this there may be a
+Under normal circumstances most machines reboot automatically and the list
+shows those that need to be [rebooted manually][reboot-machines], such as
+database clusters. If the list does not correlate with this there may be a
 [problem with the locking mechanism](#checking-locking-status)
 
 ## When on 2nd Line
 
-It's common to see this alert when on GOV.UK 2nd line support in the production
-and staging environment (it's unlikely to see it in integration as the machines
-are powered on each day). Typically you can manage it with the following steps:
+This alert is a common occurrence in production and staging environments.
+It's unlikely to occur in integration because the machines are powered on
+each day.
+
+Typically you can manage this alert with the following steps:
 
 ### In staging
 
-Most, if not all, machines are acceptable to be rebooted in staging during the
-working day - however there may be some data loss so caution should be applied.
+It is acceptable for most, if not all, machines to be rebooted in staging during the
+working day. However, data loss can occur so apply caution.
 
-You should work through the documentation on
-[rebooting machines][reboot-machines] following the particular procedures for
-each machine.
+Work through the documentation on [rebooting machines][reboot-machines], following
+the procedures particular to each machine.
 
 ### In production
 
-In the production environment you are normally dealing with a selection of
-hosts where some can be rebooted with caution (such as MongoDB
-and Elasticsearch machines) and others (such as MySQL and PostgreSQL machines)
-require out-of-hours reboots by infrastructure.
+In production environment, you are normally dealing with variety of hosts.
+Some machines, like MongoDB and Elasticsearch, can be rebooted with caution.
+Others, like MySQL and PostgreSQL, require out-of-hours reboots by infrastructure.
 
-You should work through the guide on [rebooting machines][reboot-machines] to
-reboot the ones that are safe to do so and then communicate with the
-infrastructure team to arrange for them to reboot the others.
+Work through the guide on [rebooting machines][reboot-machines] to
+safely reboot the machines that can be, and kindly ask the
+infrastructure team to schedule out-of-hour reboots for the other machines.
 
 ## Checking locking status
 
-Reboots for machines are managed by a tool,
-[locksmith](https://github.com/coreos/locksmith), that manages unattended
+[locksmith](https://github.com/coreos/locksmith) manages unattended
 reboots to ensure that systems are available. It is possible that a problem
 could occur where they can't reboot automatically.
 
@@ -57,14 +55,15 @@ could occur where they can't reboot automatically.
 $ fab <environment> all locksmith.status
 ```
 
-If there is a lock in place it will detail which machine holds the lock.
+If a lock is in place, it will detail which machine holds the lock.
+
 You can remove it with:
 
 ```command-line
 $ fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
 ```
 
-Machines which are safe to reboot should then do so at the scheduled
+Machines that are safe to reboot should then do so at the scheduled
 time.
 
 [reboot-machines]: /manual/rebooting-machines.html
