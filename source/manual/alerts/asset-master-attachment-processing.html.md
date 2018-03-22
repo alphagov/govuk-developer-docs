@@ -4,14 +4,15 @@ title: Asset master attachment processing
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-11-07
+last_reviewed_on: 2018-03-22
 review_in: 3 months
 ---
 
-When new assets get uploaded to asset-master-1, there is a script
-(/usr/local/bin/process-uploaded-attachment.sh) run by the assets user
-every minute in a cronjob. This kicks off a script (virus-scan-file.sh)
-which scans files and then moves them into either a "clean" or
-"infected" directory. If you have received an alert regarding this it
-means that the job has not run for over half an hour and is probably
-locked (or processing a large amount of files).
+When new assets get uploaded to asset-master-1, the assets user runs a script
+(`/usr/local/bin/process-uploaded-attachment.sh`) every minute in a cronjob.
+
+This kicks off a script (`virus-scan-file.sh`) that scans files and then moves
+them into either a "clean" or "infected" directory.
+
+This alert means that the job has not run for over half an hour and is probably
+locked, or processing a large amount of files.
