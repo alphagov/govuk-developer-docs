@@ -4,7 +4,7 @@ title: Offsite backups
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-09-08
+last_reviewed_on: 2017-03-22
 review_in: 6 months
 ---
 
@@ -21,19 +21,15 @@ To proceed further you will need to know a few things which you can
 determine either from the job configuration in Puppet or by listing
 crontabs for users, eg. `sudo crontab -lu govuk-backup`:
 
-1.  the user that the backup normally runs as, eg. `govuk-backup` or
+1. the user that the backup normally runs as, eg. `govuk-backup` or
     `root`.
-2.  the script that is run, eg. `/var/spool/duplicity/<job>.sh`.
-3.  the destination for the backup, eg. `rsync://<user>@<host>:/<path>`
-4.  the archive directory used as a local cache, eg.
+2. the script that is run, eg. `/var/spool/duplicity/<job>.sh`.
+3. the destination for the backup, eg. `rsync://<user>@<host>:/<path>`
+4. the archive directory used as a local cache, eg.
     `/data/backups/.cache/duplicity`
 
-<div class="admonition note">
-
-The `sudo -i` in these commands is important because it prevents GPG
+> The `sudo -i` in these commands is important because it prevents GPG
 from using keyrings in your own user's home directory.
-
-</div>
 
 Start by checking the status of the destination to see what backups
 succeeded recently:
