@@ -4,30 +4,26 @@ title: Clone a MySQL instance from one slave to another
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-06-28
+last_reviewed_on: 2018-03-22
 review_in: 7 months
 ---
 
 This tutorial documents the process behind adding a new slave to a MySQL
-senvironment where an existing slave may or may not already exist. The
+environment where an existing slave may or may not already exist. The
 process involves cloning data from an existing replication slave on to a
-new slave, thus keeping the replication configuration intact. After the
-initial synchronisation from the existing to the new slave, both the new
-and existing slaves will replicate directly from the master.
+new slave, thus keeping the replication configuration intact. 
+
+After the initial synchronisation from the existing to the new slave,
+both the new and existing slaves will replicate directly from the master.
 
 ## Conventions
 
 In this how-to, we're using...
 
-`slave$` to denote commands to be run on the existing slave
-
-`slave:mysql>` to denote commands to be run in the original slave's
-MySQL CLI
-
-`backup$` to denote commands to be run on the new slave
-
-`backup:mysql>` to denote commands to be run in the new slave's MySQL
-CLI
+- `slave$` to denote commands to be run on the existing slave
+- `slave:mysql>` to denote commands to be run in the original slave's MySQL CLI
+- `backup$` to denote commands to be run on the new slave
+- `backup:mysql>` to denote commands to be run in the new slave's MySQL CLI
 
 ## Overview
 
@@ -51,10 +47,13 @@ tmux):
 
 We need to stop MySQL slaving on the original slave - the master host
 need not be touched as we are replicating data from existing to new
-slave. Once done, we need to then flush the tables and apply a read lock
+slave.
+
+Once done, we need to then flush the tables and apply a read lock
 to ensure no new data is written during the period we are copying data
-from the existing to the new slave. Issue the following commands to
-MySQL:
+from the existing to the new slave.
+
+Issue the following commands to MySQL:
 
     slave:mysql> SLAVE STOP;
     slave:mysql> FLUSH TABLES WITH READ LOCK;
@@ -87,7 +86,7 @@ You should set `<username>` to your short name as set in puppet (e.g. 'bobwalker
 >     output from rsync human-readable --stats tells rsync to report on
 >     the connection speed and such. Progress is already reported
 >     using -P.
->
+
 Sometimes, for some unknown reason, rsync will fail to copy across all
 of the data. This manifests itself as MySQL complaining when you run
 `SHOW SLAVE STATUS\G` in a MySQL prompt that it could not find certain
@@ -150,7 +149,9 @@ You should see:
 
 You should now have two replication slaves, both with data, replicating
 the master. The process above can be used for any new replication slaves
-you wish to add in future. As you are copying the `/var/lib/mysql` dir
+you wish to add in future.
+
+As you are copying the `/var/lib/mysql` dir
 from an existing replication slave, there are no configuration
 amendments required. The slave will simply use the configuration copied
 from the existing slave to replicate from the master.
