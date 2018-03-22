@@ -4,7 +4,7 @@ title: duplicate SSH host keys
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-09-08
+last_reviewed_on: 2018-03-22
 review_in: 6 months
 ---
 
@@ -20,8 +20,9 @@ can run the following command on the host:
     for file in /etc/ssh/ssh_host_*.pub; do sudo ssh-keygen -lf $file; done
 
 The immediate problem can be resolved by deleting the host keys and
-regenerating them with `dpkg-reconfigure openssh-server`. However you
-need to bear in mind that the:
+regenerating them with `dpkg-reconfigure openssh-server`.
+
+However, bear in mind that the:
 
 -   root cause in templating/provisioning also needs to be fixed
 -   key change should be communicated to all people with login accounts
@@ -29,5 +30,6 @@ need to bear in mind that the:
 It is also important to keep in mind that this check uses Puppetdb to query
 the facts 'sshdsakey', 'sshecdsakey' and 'sshrsakey' and find duplicated values.
 The check assumes some default values that might change with the time, or there
-could be a problem with Puppetdb itself. For more information, check the
-source of the check in https://github.com/alphagov/nagios-plugins/blob/master/plugins/command/check_puppetdb_ssh_host_keys.py
+could be a problem with Puppetdb itself.
+
+For more information, check the source of the check in https://github.com/alphagov/nagios-plugins/blob/master/plugins/command/check_puppetdb_ssh_host_keys.py
