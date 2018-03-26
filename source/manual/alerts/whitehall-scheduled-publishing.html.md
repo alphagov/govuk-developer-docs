@@ -31,3 +31,11 @@ If there are overdue publications you can publish by running the
 following:
 
     $ fab $environment whitehall.schedule_publications
+
+#### After a database restore
+
+If the above rake tasks aren't working, it could be because the database was recently restored, perhaps due to the data sync. In that case, you can try running the following Rake task on a `whitehall_backend` machine:
+
+```bash
+$ sudo -u deploy govuk_setenv whitehall bundle exec rake publishing:scheduled:requeue_all_jobs
+```
