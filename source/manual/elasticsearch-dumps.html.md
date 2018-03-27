@@ -7,7 +7,7 @@ section: Backups
 last_reviewed_on: 2018-03-12
 review_in: 2 months
 ---
-The elasticsearch indexes used for search are backed up to disk using [es_dump_restore](https://github.com/patientslikeme/es_dump_restore).
+The Elasticsearch indexes used for search are backed up to disk using [es_dump_restore](https://github.com/patientslikeme/es_dump_restore).
 
 **Note: this will change to S3 snapshots when production is moved to AWS**
 
@@ -47,7 +47,7 @@ This will restore each backup into a new index, and then move the alias to point
 If you need to change the alias back for any reason, you can run the rummager rake task `rummager:switch_to_named_index[foo-2017-01-01...]`, where `foo-2017-01-01...` is the name of the index you want to point the alias to. The task will automatically determine the correct alias name from the index name.
 
 Once backups have been restored it is necessary to manually delete the old
-indices as otherwise elasticsearch will eventually run out of disk space and
+indices as otherwise Elasticsearch will eventually run out of disk space and
 memory. It's OK to keep an old index around for a few days in case you need to
 roll back. You can delete all the unaliased indices by running the rummager
 task: `rummager:clean`.

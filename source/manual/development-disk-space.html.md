@@ -28,7 +28,7 @@ On the host machine, you can safely delete:
 
 ## What to delete on the VM
 
-On the VM, you can safely delete old elasticsearch indexes:
+On the VM, you can safely delete old Elasticsearch indexes:
 
   ```
   cd /var/govuk/govuk-puppet/development-vm/replication
