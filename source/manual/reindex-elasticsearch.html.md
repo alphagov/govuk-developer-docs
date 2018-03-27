@@ -46,7 +46,7 @@ directly on a `search` machine, but you need to prefix the command with
 `govuk_setenv rummager` to make sure the Elasticsearch hostname is set
 correctly.
 
-To monitor progress, SSH to an elasticsearch box with port-forwarding:
+To monitor progress, SSH to an Elasticsearch box with port-forwarding:
 
 ```
 ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging

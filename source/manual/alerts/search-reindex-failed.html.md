@@ -12,7 +12,7 @@ The reindex task is run weekly on a Monday at 12pm on integration. It
 [reindexes][reindexing]  every Elasticsearch index used by [rummager][]. This is
 to ensure the process works as expected when we need to run it in production.
 This task is manually run in production by the development team after they have
-made and changes to the elasticsearch schema.
+made and changes to the Elasticsearch schema.
 
 If this process fails then please escalate to the Search team as they are responsible for ensuring this process
 works.

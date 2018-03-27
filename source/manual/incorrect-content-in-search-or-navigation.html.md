@@ -40,7 +40,7 @@ You can also request [different fields](/apis/search/fields.html), for example
 If the document is missing from the search API, check the search index itself to
 see if it is present and has the expected fields:
 
-0. ssh to an elasticsearch box with port-forwarding:
+0. ssh to an Elasticsearch box with port-forwarding:
 
     ```
     ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging
@@ -91,10 +91,10 @@ Unpublished content can be removed from search manually using [search admin](htt
 
 #### Content is duplicated in search results
 
-This has happened before when either the elasticsearch document type or id
+This has happened before when either the Elasticsearch document type or id
 have changed.
 
-You'll need to look at the [raw elasticsearch documents](https://docs.publishing.service.gov.uk/manual/alerts/elasticsearch-cluster-health.html#view-a-live-dashboard) to see what happened.
+You'll need to look at the [raw Elasticsearch documents](https://docs.publishing.service.gov.uk/manual/alerts/elasticsearch-cluster-health.html#view-a-live-dashboard) to see what happened.
 
 There is a [rake task](https://github.com/alphagov/rummager/blob/master/lib/tasks/delete.rake)
 to remove unwanted duplicates.

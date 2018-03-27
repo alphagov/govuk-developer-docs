@@ -34,9 +34,9 @@ to help you diagnose any problems.
 
 ### Investigating problems
 
-#### Find hosts in an elasticsearch cluster
+#### Find hosts in an Elasticsearch cluster
 
-We use different elasticsearch clusters for different applications. For example
+We use different Elasticsearch clusters for different applications. For example
 the `rummager-elasticsearch` cluster powers the GOV.UK search API.
 
 You can find hostnames by running:
@@ -59,7 +59,7 @@ Access the UI at <http://localhost:9200/_plugin/head/>
 
 The tabs on top right corner for Cluster Status & Cluster Health come in handy
 
-#### Use the elasticsearch API
+#### Use the Elasticsearch API
 
 An alternative to using the dashboard is accessing the Elasticsearch health API yourself. Start with the
 [`/_cluster/health` endpoint][cluster-health-endpoint] and go from there.
@@ -94,11 +94,11 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 #### Before you do anything
 
 Make sure a thorough analysis is done before fixing the problem,
-as any down time of the elasticsearch cluster can result in loss of data. In general, avoid shutting down a node when there isn't any other node available with replicas of its shards.
+as any down time of the Elasticsearch cluster can result in loss of data. In general, avoid shutting down a node when there isn't any other node available with replicas of its shards.
 
 #### Unassigned replica shards
 
-When the health is yellow, i.e. replica shards are not allocated, elasticsearch should automatically allocate another node to create replicas on, given enough time.
+When the health is yellow, i.e. replica shards are not allocated, Elasticsearch should automatically allocate another node to create replicas on, given enough time.
 
 You can manually interfere with this process using the [Cluster Reroute API](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/cluster-reroute.html#cluster-reroute).
 
@@ -166,7 +166,7 @@ healthy](https://github.com/alphagov/nagios-plugins/blob/6534386f658ce573a8b65e0
 You can identify reallocating replica shards using Elasticsearch Head - they
 will be displayed in purple (reallocating) and without a thick border (replica).
 
-Alternatively, you can run check_elasticsearch directly on the elasticsearch
+Alternatively, you can run check_elasticsearch directly on the Elasticsearch
 box:
 
 ```
