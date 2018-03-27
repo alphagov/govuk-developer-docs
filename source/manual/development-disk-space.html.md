@@ -32,7 +32,7 @@ On the VM, you can safely delete old elasticsearch indexes:
 
   ```
   cd /var/govuk/govuk-puppet/development-vm/replication
-  bundle exec ruby delete_closed_indices.rb
+  bundle exec ruby close_and_delete_old_indices.rb
   ```
 
 If you plan on replicating all your data again, you can also delete big mongodb
