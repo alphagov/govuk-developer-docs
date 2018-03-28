@@ -179,7 +179,7 @@ If you have integration access, you can download and import the latest data by r
 
 You will then be prompted to enter your MFA Token.
 
-If you receive the error message The config profile (gds) could not be found, refer to the [guide about replicating data locally][data-replication-aws-access].
+If you receive the error message `The config profile (gds) could not be found`, refer to the [guide about replicating data locally][data-replication-aws-access].
 
 Once the data has been downloaded (if you don't have integration access, ask someone to give you a copy of their dump), run:
 
@@ -188,7 +188,7 @@ Once the data has been downloaded (if you don't have integration access, ask som
 For more information, see the guide in the developer docs on [replicating application data locally for development][data-replication].
 
 [data-replication]: replicate-app-data-locally.html
-[data-replication-aws-access]: https://docs.publishing.service.gov.uk/manual/replicate-app-data-locally.html#aws-access
+[data-replication-aws-access]: replicate-app-data-locally.html#aws-access
 
 ## 8. Run your apps
 
