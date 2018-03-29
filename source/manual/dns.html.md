@@ -73,8 +73,12 @@ in Jenkins itself.
 [Jisc](https://www.jisc.ac.uk/) is a non-profit which provides networking to
 UK education and government. They control the `gov.uk.` top-level domain.
 
-Requests to modify the DNS records for `gov.uk.` should be sent by email
-to `naming@ja.net`.
+Requests to modify the DNS records for `gov.uk.` should be sent by email to
+`naming@ja.net` from someone on Jisc's approved contacts list. Speak to a
+senior technologist member of GOV.UK or Reliability Engineering if you need to
+make a change and don't have access.
+
+2nd line should be notified of any planned changes via email.
 
 - `gov.uk.` is a top-level domain so it cannot contain a CNAME record
   (see [RFC 1912 section 2.4](https://tools.ietf.org/html/rfc1912#section-2.4) and the
@@ -83,8 +87,6 @@ to `naming@ja.net`.
 - `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which means that we
   do not need to make a request to Jisc if we want to change CDN providers. Just change where
   the CNAME points to.
-
-Generally, members of the infrastructure team have authority to email Jisc.
 
 ## Delegating `service.gov.uk` domains
 
