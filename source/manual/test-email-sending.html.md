@@ -1,5 +1,5 @@
 ---
-owner_slack: "#email"
+owner_slack: "#2ndline"
 title: Test email sending
 section: Emails
 layout: manual_layout

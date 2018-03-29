@@ -1,5 +1,5 @@
 ---
-owner_slack: "#email"
+owner_slack: "#2ndline"
 title: "Email notifications: how they work"
 section: Emails
 layout: manual_layout

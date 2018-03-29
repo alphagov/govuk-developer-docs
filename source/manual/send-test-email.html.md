@@ -1,5 +1,5 @@
 ---
-owner_slack: "#email"
+owner_slack: "#2ndline"
 title: Send a test email via Notify
 section: Development VM
 layout: manual_layout
