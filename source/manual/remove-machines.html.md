@@ -19,7 +19,9 @@ You need to remove the nodes from the puppet-master in each environment.
 This is needed to clean up exported resources from puppetdb, including
 removing checks from Icinga.
 
-First SSH into the Puppet master for the environment:
+First disable puppet on the machines you wish to remove.
+
+Next SSH into the Puppet master for the environment:
 
 ```console
 $ ssh puppetmaster-1.management.production
@@ -32,7 +34,13 @@ $ govuk_node_clean <machine_name>
 ```
 
 Where `<machine_name>` might be `machine-name-1.vdc-name.production`.
-The suffix is always production. If it was successful, you will get
+To find the names of the machines, you can list the nodes on puppet master:
+
+```console
+$ sudo puppet cert list --all
+```
+
+If 'govuk_node_clean' was successful, you will get
 output like:
 
 ```bash
