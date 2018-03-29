@@ -1,5 +1,5 @@
 ---
-owner_slack: "#email"
+owner_slack: "#2ndline"
 title: email-alert-api app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout

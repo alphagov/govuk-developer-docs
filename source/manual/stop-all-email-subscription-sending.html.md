@@ -1,5 +1,5 @@
 ---
-owner_slack: "#email"
+owner_slack: "#2ndline"
 title: "Stop all email subscription sending"
 section: Emails
 layout: manual_layout
