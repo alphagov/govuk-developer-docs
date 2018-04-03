@@ -94,7 +94,7 @@ Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
 
 Follow the [instructions for DNS changes][dns-changes] in order to remove these,
-and ask the infrastructure team to approve any necessary Pull Requests.
+and ask the Reliability Engineering team to approve any necessary Pull Requests.
 
 [dns-changes]:
 https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk

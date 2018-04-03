@@ -10,7 +10,7 @@ review_in: 6 months
 
 ## Migrate a zone from DynDNS
 
-GOV.UK Infrastructure are currently responsible for managing several DNS zones
+Reliability Engineering is currently responsible for managing several DNS zones
 in [DynDNS](www.dyn.com/dns). This is a step-by-step guide to migrate these zones
 to using [Google Cloud DNS](https://cloud.google.com/dns/docs/) and/or [Amazon Route 53](https://aws.amazon.com/route53/).
 

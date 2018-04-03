@@ -8,7 +8,7 @@ last_reviewed_on: 2017-11-22
 review_in: 6 months
 ---
 
-The GOV.UK Infrastructure team is responsible for managing several DNS zones.
+The Reliability Engineering team is responsible for managing several DNS zones.
 
 By default, zones are managed using DynDNS.
 
@@ -90,7 +90,8 @@ make a change and don't have access.
 
 ## Delegating `service.gov.uk` domains
 
-At the moment we're also responsible for delegating DNS to other government services.
+At the moment Reliability Engineering are also responsible for delegating DNS
+to other government services.
 
 The request will arrive by email or Zendesk from a member of the GOV.UK Proposition
 team.

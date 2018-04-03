@@ -47,8 +47,9 @@ To fix, try (in order):
     Jenkins
     job](https://deploy.publishing.service.gov.uk/job/Deploy_CDN/).
     Authenticate with the 2nd Line user, details of which can be found
-    in the `infra_team` cred store. If you don't have access, ask someone
-    on the Infrastructure team to deploy it for you.
+    in the `infra` password store. If you don't have access, ask one of
+    GOV.UK's senior technologists, or Reliability Engineering, to deploy
+    it for you.
 -   tailing Syslog - `sudo tail -f /var/log/syslog` for the current file,
     and `sudo zless syslog.x.gz` for any gzipped files replacing x with
     the number from the file itself. It's pretty verbose, and might not
