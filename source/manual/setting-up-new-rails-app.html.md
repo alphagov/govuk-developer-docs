@@ -84,8 +84,10 @@ Be sure to use the same port number which you assigned in the
 ## Setting up DNS entries
 
 If the app requires the creation of new external (publicly accessible)
-subdomains, speak to the infrastructure team. They can create these for
-you and point them to the correct boxes.
+subdomains, you can do this via [the govuk-dns-config
+repo](https://github.com/alphagov/govuk-dns-config). If you need assistance
+with pointing the records at the correct boxes, talk to Reliability
+Engineering.
 
 ## Adding deployment scripts
 
@@ -176,7 +178,7 @@ To configure your app so users (or API clients) can authenticate:
     repo](https://github.com/alphagov/signonotron2/blob/master/doc/usage.md)
     No need to run this in Staging as Production credentials will be
     copied over.
-    
+
 2.  Save the OAuth ID and OAuth secret this command gives you into the
     GDS-SSO configuration in the `initializers_by_organisation`
     directory for your environment, as described above. Example:
@@ -189,10 +191,10 @@ To configure your app so it can talk to an existing API application:
     Users](https://signon.integration.publishing.service.gov.uk/api_users)
     section in Signon (you'll need to be a signon superadmin to
     access this).
-    
+
 2.  Add an application token for this user to access the
     necessary application.
-    
+
 3.  Save the access token this generates into the [API
     adapters](https://github.com/alphagov/gds-api-adapters) client
     configuration in the `initializers_by_organisation` directory for

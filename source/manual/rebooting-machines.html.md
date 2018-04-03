@@ -125,7 +125,7 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-with the Infrastructure Team.
+with Platform Support.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so as this may remove in flight jobs
@@ -249,7 +249,7 @@ When the app has been redeployed then the machine which is **not** being
 read from can be rebooted.
 
 Reboots of these machines, in the production environment, should be organised
-with the Infrastructure Team.
+with Platform Support.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
@@ -263,7 +263,7 @@ standby machines (with the exception of the slave within the DR
 environment).
 
 Reboots of these machines, in the production environment, should be organised
-with the Infrastructure Team.
+with Platform Support.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
@@ -277,7 +277,7 @@ for attachments to be uploaded.
 The slave machines can be rebooted as they hold a copy of data and are resynced
 regularly.
 
-Reboots of the master machine should be organised with the Infrastructure team,
+Reboots of the master machine should be organised with Platform Support,
 for the production environment.
 
 You may reboot the master machine in the staging environment during working
