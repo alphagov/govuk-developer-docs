@@ -4,7 +4,7 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-08
+last_reviewed_on: 2018-03-28
 review_in: 6 months
 ---
 
@@ -69,16 +69,22 @@ the previous version of the software.
 2.  Download all zip files and XML file in the ticket
 3.  Upload the ZIP files only:
 
-        scp *.zip asset-master-1.backend.production:/mnt/uploads/whitehall/clean/uploaded/hmrc/
-        ssh asset-master-1.backend.production 'chown assets /mnt/uploads/whitehall/clean/uploaded/hmrc/*.zip'
+        ssh asset-master-1.backend.production "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
+        scp *.zip asset-master-1.backend.production:/tmp/hmrc-paye
+        ssh asset-master-1.backend.production
+        sudo su - assets
+        cp /tmp/hmrc-paye/* /mnt/uploads/whitehall/clean/uploaded/hmrc/
 
 4.  Replace the XML manifest prefixed with `test`:
 
-        scp realtimepayetools-update-vXX.xml asset-master-1.backend.production:/mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
+        scp realtimepayetools-update-vXX.xml asset-master-1.backend.production:/tmp/hmrc-paye/test-realtimepayetools-update-vXX.xml
+        ssh asset-master-1.backend.production
+        sudo su - assets
+        cp /tmp/hmrc-paye/*.xml /mnt/uploads/whitehall/clean/uploaded/hmrc/
 
 5.  Purge the cache for the test file:
 
-        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
+        fab $environment class:cache cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
 
 6.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
