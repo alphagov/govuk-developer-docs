@@ -3,30 +3,34 @@ layout: false
 title: Manual
 ---
 
-<% wrap_layout :header_footer_only do %>
-  <div class="app-pane__body">
-    <div class="app-pane__content">
-      <main id="content" class="technical-documentation full-width">
-        <%= partial 'partials/header' %>
-
-        <%= partial "partials/search" %>
-
-        <div class='grid-row'>
-          <% manual_index_page.columns.each do |column_pages| %>
-            <div class='column-third'>
-              <% column_pages.each do |section_name, pages| %>
-                <% next unless pages.any? %>
-                <h2><%= section_name %></h2>
-                <ul>
-                  <% pages.each do |page| %>
-                    <li><%= link_to page.data.title, page.path %></li>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+<% content_for :sidebar do %>
+  <ul>
+    <li><%= link_to "Manual", "/manual.html" %></li>
+    <ul>
+      <% manual.manual_pages_grouped_by_section.each do |section_name, pages| %>
+        <li><%= link_to section_name, "##{section_name.parameterize}" %></li>
+      <% end %>
+    </ul>
+  </ul>
 <% end %>
+
+<% wrap_layout :layout_with_sidebar do %>
+  <%= partial 'partials/header' %>
+
+  <% manual.manual_pages_grouped_by_section.each do |section_name, pages| %>
+    <h3 id='<%= section_name.parameterize %>'><%= section_name %></h3>
+
+    <ul>
+      <% pages.each do |page| %>
+        <li><%= link_to page.data.title, page.path %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
+
+<style media="screen">
+  #content ul:first-of-type {
+    padding-bottom: 40px;
+    border-bottom: 2px solid #333;
+  }
+</style>
