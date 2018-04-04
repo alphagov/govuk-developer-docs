@@ -4,7 +4,7 @@ title: 'Assets: how they work'
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-09
+last_reviewed_on: 2018-04-04
 review_in: 1 week
 related_applications: [asset-manager, whitehall]
 ---
