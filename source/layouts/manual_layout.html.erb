@@ -42,7 +42,7 @@
       <h3>More about <%= current_page.data.section %></h3>
 
       <ul>
-      <% manual_index_page.other_pages_from_section(current_page).each do |page| %>
+      <% manual.other_pages_from_section(current_page).each do |page| %>
         <li><%= link_to page.data.title, page.url %></li>
       <% end %>
       </ul>
