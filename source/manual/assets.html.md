@@ -44,18 +44,15 @@ There are currently two systems for uploading, managing and serving
 user-supplied assets on GOV.UK.
 
 Asset Manager is an API that is called internally by Publisher, Specialist
-Publisher, Manuals Publisher and Travel Advice Publisher to manage their
+Publisher, Manuals Publisher, Travel Advice Publisher and Whitehall to manage their
 uploads. It serves the uploaded assets on assets.publishing.service.gov.uk/media
 
-Whitehall is a standalone publishing app that manages its own uploaded assets.
-It also serves those assets, via both
-assets.publishing.service.gov.uk/government/uploads and
-www.gov.uk/government/uploads, even for content that has been migrated to the
+Whitehall is a standalone publishing app that manages a type of asset called "attachments". It serves attachments, via both
+`assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data` and
+`www.gov.uk/government/uploads/government/uploads/system/uploads/attachment_data`, even for content that has been migrated to the
 publishing platform.
 
-Note: Subsets of Whitehall assets are gradually being migrated to Asset Manager
-so that Whitehall eventually becomes like any of the other publishing apps from
-an asset management point of view.
+Note: Other types of assets that are managed through the Whitehall admin application, such as organisation logos, are sent to and served from Asset Manager.
 
 ### How uploaded assets are stored and served
 
@@ -63,8 +60,8 @@ Asset Manager stores its asset files in an S3 bucket (i.e.
 `govuk-assets-production` in production) and instructs nginx to proxy requests
 to them.
 
-Whitehall stores its asset files on an NFS share. This NFS share is mounted on
-the backend and whitehall-backend machines, and asset requests therefore go via
+Whitehall stores attachment files on an NFS share. This NFS share is mounted on
+the backend and whitehall-backend machines, and requests for attachments therefore go via
 the cache, frontend-lb, (whitehall-)frontend, backend-lb and backend machines.
 
 It should be noted that both applications do actually serve the asset
@@ -73,8 +70,7 @@ enable the following features:
 
 * Assets are not served until they have been virus scanned; a placeholder image
   or page is shown for assets that are not finished scanning.
-* Assets can be access-limited so that only authorised users can see them. This
-  is only done by Whitehall.
+* Assets can be access-limited so that only authorised users can see them.
 * Asset files can be replaced, and a request to the original path redirects to
   the replacement. Currently only Whitehall and Specialist Publisher support
   this.
