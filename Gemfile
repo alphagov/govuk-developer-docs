@@ -18,10 +18,10 @@ gem 'github-markdown'
 gem 'html-pipeline'
 gem 'redcarpet', '~> 3.3.2'
 
-gem 'govuk_schemas', '~> 3.0.1'
+gem 'govuk_schemas', '~> 3.1.0'
 
 # GitHub API
-gem 'octokit', '~> 4.2.0'
+gem 'octokit', '~> 4.8.0'
 gem 'faraday-http-cache', '~> 2.0.0'
 gem 'faraday_middleware', '~> 0.12.2'
 
