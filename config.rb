@@ -34,10 +34,6 @@ helpers do
     AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
 
-  def manual_index_page
-    ManualIndexPage.new(sitemap)
-  end
-
   def manual
     Manual.new(sitemap)
   end
