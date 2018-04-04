@@ -4,7 +4,7 @@ title: Fix issues with vagrant-dns
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-27
+last_reviewed_on: 2018-03-28
 review_in: 6 months
 ---
 
