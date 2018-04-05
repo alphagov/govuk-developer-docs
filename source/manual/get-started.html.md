@@ -237,3 +237,5 @@ Most GOV.UK web applications and services are available via the public internet,
 * [https://alert.publishing.service.gov.uk](https://alert.publishing.service.gov.uk) (production, restricted to GDS office IP addresses)
 
 The basic authentication username and password is widely known, so just ask somebody on your team if you don't know it.
+
+If you can't resolve `dev.gov.uk` domains, see [fix issues with vagrant-dns](vagrant-dns.html).
