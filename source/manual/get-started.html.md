@@ -198,7 +198,7 @@ Once the data has been downloaded (if you don't have integration access, ask som
 
     dev$ ./replicate-data-local.sh -d path/to/dir -s
 
-For more information, see the guide in the developer docs on [replicating application data locally for development][data-replication].
+For more information, and for troubleshooting advice, see the guide in the developer docs on [replicating application data locally for development][data-replication].
 
 [data-replication]: replicate-app-data-locally.html
 [data-replication-aws-access]: replicate-app-data-locally.html#aws-access
