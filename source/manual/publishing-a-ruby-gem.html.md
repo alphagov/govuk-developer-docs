@@ -4,7 +4,7 @@ title: Publish a Ruby gem
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-29
+last_reviewed_on: 2018-04-05
 review_in: 6 months
 ---
 
@@ -15,16 +15,19 @@ it. This means using `_`, and not `-` to separate multi-word gem names.  See the
 [name your gem guide](http://guides.rubygems.org/name-your-gem/) for more detailed
 guidance.
 
+Also [see the general policy on naming](/manual/naming.html#naming-gems).
+
 ## Versioning
 
 Follow the guidelines on [semver.org](http://semver.org/) for assigning version
 numbers.
 
 Versions should only be changed in a commit of their own, in a pull request of
-their own. This alerts team members to the new version and allows for
-last-minute scrutiny before the new version is released. Also, by raising a
-separate pull request, we avoid version number conflicts between feature
-branches.
+their own.
+
+This alerts team members to the new version and allows for last-minute scrutiny
+before the new version is released. Also, by raising a separate pull request,
+we avoid version number conflicts between feature branches.
 
 ## File layout
 

@@ -4,8 +4,8 @@ title: Test Ruby projects
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-21
-review_in: 6 months
+last_reviewed_on: 2018-04-05
+review_in: 12 months
 ---
 
 We use RSpec for both unit/integration testing and acceptance testing via RSpec
