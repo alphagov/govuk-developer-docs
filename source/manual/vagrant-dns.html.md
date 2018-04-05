@@ -46,6 +46,15 @@ ps aux | grep vagrant-dns
 vagrant dns --start -o
 ```
 
+If this gives an error about an "undefined method `socket_type`", then
+you have hit a bug in async-dns, a dependency of vagrant-dns.  The
+solution is to install an older version of vagrant-dns:
+
+```shell
+vagrant plugin uninstall vagrant-dns
+vagrant plugin install vagrant-dns --plugin-version 1.1.0
+```
+
 If you're still having issues you can try to update the vagrant-dns plugin:
 
 ```shell
