@@ -36,7 +36,7 @@ Run `dev$` commands in the shell on the development VM:
 
 **If you run into problems**
 
-If you're having trouble with Vagrant or the development VM, [troubleshooting tips](troubleshooting-vagrant.html) are available. You can also ask your colleagues or the #govuk-developers channel in Slack.
+If you're having trouble with Vagrant or the development VM, you can ask your colleagues or the #govuk-developers channel in Slack.
 
 [GDS]: https://gds.blog.gov.uk/about/
 [VirtualBox]: https://www.virtualbox.org/
