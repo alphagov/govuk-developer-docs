@@ -55,6 +55,19 @@ First, install:
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/downloads.html
 
+Starting with High Sierra 10.13, kernel extensions must be approved by
+the user (see [this Apple technical note][kext].  This causes the
+VirtualBox installer to fail with a permissions error.
+
+[kext]: https://developer.apple.com/library/content/technotes/tn2459/_index.html
+
+To install VirtualBox on High Sierra 10.13 or later:
+
+1. Run the VirtualBox installer
+2. Open "Security & Privacy" in the system preferences
+3. Allow the blocked VirtualBox kernel extension
+4. Run the VirtualBox installer again
+
 ## 2. Create your GitHub accounts
 
 1. Set up a [GitHub][] account.
