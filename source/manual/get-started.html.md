@@ -36,7 +36,7 @@ Run `dev$` commands in the shell on the development VM:
 
 **If you run into problems**
 
-If you're having trouble with Vagrant or the development VM, [troubleshooting tips](troubleshooting-vagrant.html) are available. You can also ask your colleagues or the #govuk-developers channel in Slack.
+If you're having trouble with Vagrant or the development VM, you can ask your colleagues or the #govuk-developers channel in Slack.
 
 [GDS]: https://gds.blog.gov.uk/about/
 [VirtualBox]: https://www.virtualbox.org/
@@ -54,6 +54,19 @@ First, install:
 [git-scm]: https://git-scm.com/downloads
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/downloads.html
+
+Starting with High Sierra 10.13, kernel extensions must be approved by
+the user (see [this Apple technical note][kext].  This causes the
+VirtualBox installer to fail with a permissions error.
+
+[kext]: https://developer.apple.com/library/content/technotes/tn2459/_index.html
+
+To install VirtualBox on High Sierra 10.13 or later:
+
+1. Run the VirtualBox installer
+2. Open "Security & Privacy" in the system preferences
+3. Allow the blocked VirtualBox kernel extension
+4. Run the VirtualBox installer again
 
 ## 2. Create your GitHub accounts
 
@@ -140,6 +153,14 @@ There are also some Python apps, which use [PIP][]. You’ll probably need to in
 
     dev$ ./update-pip.sh
 
+If installing the Python dependencies for fabric-scripts fails, your version of setuptools may be too old:
+
+   dev$ cd /var/govuk/fabric-scripts
+   dev$ virtualenv .venv
+   dev$ source .venv/bin/activate
+   dev$ pip install --upgrade setuptools
+   dev$ pip install -r requirements.txt
+
 > `~/govuk/` on your host machine is mounted as `/var/govuk` inside the VM. Any app repositories you clone should go here.
 
 [Bundler]: http://bundler.io/rationale.html
@@ -185,7 +206,7 @@ Once the data has been downloaded (if you don't have integration access, ask som
 
     dev$ ./replicate-data-local.sh -d path/to/dir -s
 
-For more information, see the guide in the developer docs on [replicating application data locally for development][data-replication].
+For more information, and for troubleshooting advice, see the guide in the developer docs on [replicating application data locally for development][data-replication].
 
 [data-replication]: replicate-app-data-locally.html
 [data-replication-aws-access]: replicate-app-data-locally.html#aws-access
@@ -237,3 +258,5 @@ Most GOV.UK web applications and services are available via the public internet,
 * [https://alert.publishing.service.gov.uk](https://alert.publishing.service.gov.uk) (production, restricted to GDS office IP addresses)
 
 The basic authentication username and password is widely known, so just ask somebody on your team if you don't know it.
+
+If you can't resolve `dev.gov.uk` domains, see [fix issues with vagrant-dns](vagrant-dns.html).

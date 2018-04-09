@@ -128,6 +128,12 @@ Then follow the instructions above for importing using the `-s` flag.
 
 See [running out of disk space in development](/manual/development-disk-space.html).
 
+## If you get a curl error when restoring Elasticsearch data
+
+Check the service is running:
+
+    dev$ sudo service elasticsearch-development.development start
+
 ## Can't take a write lock while out of disk space (in MongoDB)
 
 You may see such an error message which will prevent you from creating or even dropping collections. So you won't be able to replicate the latest data.
