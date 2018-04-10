@@ -1,5 +1,5 @@
 ---
-owner_slack: '#platform_support'
+owner_slack: '#platform-health'
 title: Transition architecture
 section: Transition
 layout: manual_layout
