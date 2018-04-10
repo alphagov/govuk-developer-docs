@@ -1,5 +1,5 @@
 ---
-owner_slack: "#platform_support"
+owner_slack: "#platform-health"
 title: Who do I ask for support?
 parent: "/manual.html"
 layout: manual_layout

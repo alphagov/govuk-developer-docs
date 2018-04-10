@@ -1,5 +1,5 @@
 ---
-owner_slack: '#platform_support'
+owner_slack: '#platform-health'
 title: Whitelist site to allow redirection away from GOV.UK
 section: Transition
 layout: manual_layout
