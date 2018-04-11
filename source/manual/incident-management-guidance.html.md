@@ -3,12 +3,17 @@ owner_slack: "#2ndline"
 title: Incident management guidance
 parent: "/manual.html"
 layout: manual_layout
-section: Support
-last_reviewed_on: 2017-11-03
-review_in: 6 months
+section: Incidents
+last_reviewed_on: 2018-04-11
+review_in: 2 months
 ---
 
-You can find within the [GOV.UK Platform Operations wiki][1], a [section for GOV.UK incidents][2], where you will find guidance for writing incident reports and running post mortems, as well as general guidance about managing incidents on GOV.UK.
+When something goes wrong on GOV.UK we follow the incident management procedure.
 
-[1]: https://gov-uk.atlassian.net/wiki/spaces/PLOPS/overview
-[2]: https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/33620002/Incident+management+guidance
+- [So, you're having an incident](incident-what-to-do.html)
+- [Write an incident report](incident-reports.html)
+
+There are 2 pages on the Wiki:
+
+- [Handling security incidents](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/131077240/Handling+security+incidents)
+- [Incident severity levels](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/64487471/Incident+severity+levels)
