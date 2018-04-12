@@ -35,3 +35,7 @@ While the [above](#deploying-find-data-and-publish-data) applies to both [Find D
 You can monitor Sidekiq jobs for the worker here: [https://publish-data-beta-staging.cloudapps.digital/sidekiq/]().
 
 The release tag method described in [Common tasks][common-tasks] deploys both apps in this repository. See the relevant section in the [Find Data][find] `travis.yml`.
+
+## Zero-downtime deployment
+
+Populating the Elasticsearch service is done via a rake task in the [Publish Data][publish] app. It creates a new index, imports data from Elasticsearch, and changes the `datasets-[env]` alias to point to the new index. Since [Find Data][find] connects to Elasticsearch through that alias, the switchover to the new index is instant. This method is detailed in [Elasticsearch’s documentation on zero-downtime](https://www.elastic.co/guide/en/elasticsearch/guide/current/index-aliases.html#index-aliases).
