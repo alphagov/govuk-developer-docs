@@ -4,7 +4,7 @@ title: Unable to mount VirtualBox shared folders
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-28
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
