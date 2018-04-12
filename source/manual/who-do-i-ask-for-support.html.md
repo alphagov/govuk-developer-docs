@@ -8,7 +8,7 @@ last_reviewed_on: 2018-02-07
 review_in: 3 months
 ---
 
-The GOV.UK Platform Support team will:
+The GOV.UK 2nd Line team will:
 
 - monitor the GOV.UK hosting platform and applications, and work to fix any issues
 - call on experienced members of other teams to assist in incidents
@@ -36,6 +36,6 @@ If you and your colleagues can’t resolve a technical issue, problem or questio
 2. The Technical Lead for the team’s objective
 3. The Lead Architect
 
-If Platform Support instruct you to escalate something to Reliability Engineering, raise a ticket on Zendesk and assign it to the `3rd Line--Infrastructure` queue. You should also raise a ticket if the issue is related to an ongoing incident for tracking purposes, but you can speak to the team directly to get it more immediate attention.
+If 2nd Line instruct you to escalate something to Reliability Engineering, raise a ticket on Zendesk and assign it to the `3rd Line--Infrastructure` queue. You should also raise a ticket if the issue is related to an ongoing incident for tracking purposes, but you can speak to the team directly to get it more immediate attention.
 
 If you speak to Reliability Engineering about a process only they know about, they will work with you to document the process for all of GOV.UK.
