@@ -4,8 +4,8 @@ title: Email alerts not sent
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-06
-review_in: 1 month
+last_reviewed_on: 2018-04-12
+review_in: 6 months
 ---
 
 GOV.UK sends out emails when certain publications are published. There
@@ -16,7 +16,7 @@ and [travel advice updates](https://www.gov.uk/foreign-travel-advice).
 If the check fails:
 
 * Inspect the console logs for the [travel advice email alert](https://deploy.publishing.service.gov.uk/job/travel-advice-email-alert-check/) and the [drug and medical device email alert](https://deploy.publishing.service.gov.uk/job/email-alert-check/) jobs. These will tell you which emails are missing.
-* Check the monitoring inbox to rule out false alerts. Emails are sent to a monitoring inbox at `googleapi@digital.cabinet-office.gov.uk`. Credentials for the account can be found in the [2nd line password store](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/google-accounts). **In order to login you will need to use one of the backup codes.** (Remove the one you used after), The test is diacritic-sensitive so you may see false alerts where `São Tomé and Principe` fails to match `Sao Tome and Principe`.
+* Check the monitoring inbox to rule out false alerts. Emails are sent to a monitoring inbox at `googleapi@digital.cabinet-office.gov.uk`. Credentials for the account can be found in the [2nd line password store](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/google-accounts). The test is diacritic-sensitive so you may see false alerts where `São Tomé and Principe` fails to match `Sao Tome and Principe`.
 * Email Alert API stores information on what emails have been sent and where they originated from. In lieu of dedicated tasks for diagnosing the following steps can be done in the Email Alert API console:
   * `ContentChange.where(content_id: "<items-content-id>")` to look up the content changes Email Alert API has received for a particular content-id
   * Given a particular content change you can monitor whether this should have been sent to people by querying `SubscriptionContent.where(content_change: <your_content_change>)` to look up the email data directly.

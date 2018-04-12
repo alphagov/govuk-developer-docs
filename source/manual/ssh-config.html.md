@@ -4,8 +4,8 @@ title: SSH Configuration
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-last_reviewed_on: 2018-03-07
-review_in: 1 months
+last_reviewed_on: 2018-04-12
+review_in: 6 months
 ---
 
 Add the following to `~/.ssh/config`:

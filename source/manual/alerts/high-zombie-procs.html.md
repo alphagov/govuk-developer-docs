@@ -1,10 +1,10 @@
 ---
 owner_slack: "#2ndline"
-title: high zombie procs
+title: High zombie procs
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-10-09
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
@@ -17,7 +17,6 @@ The `PPID` field gives you the parent process ID, which you may be able
 to use to diagnose what caused the problem, or at least which process to
 restart.
 
-If there are a number of zombie processes on one of the backend boxes,
+If there are a number of zombie processes on one of the backend machines,
 restarting Imminence (with `sudo service imminence restart`) may fix the
 problem; if that doesn't help, reboot the machine at a convenient time.
-

@@ -4,7 +4,7 @@ title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-02
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 

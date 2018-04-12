@@ -4,7 +4,7 @@ title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-09
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
@@ -13,7 +13,7 @@ review_in: 6 months
 Credentials for the GDS Operations account can be found in `packages/puppet_forge`
 in the 2ndline password store.
 
-The URL for our account is: <http://forge.puppetlabs.com/gdsoperations>
+The URL for our account is <http://forge.puppetlabs.com/gdsoperations>.
 
 ## Checks before releasing a new or updated module
 
@@ -45,4 +45,4 @@ repository:
 
 1.  Tag the release prefixed with a `v`, eg: `git tag v0.1.2`. Ensure
     you tag the merge commit, not the branch commit.
-2.  Push the commit and tag to the repo: `git push --tags origin master`
+2.  Push the commit and tag to the repo: `git push --tags origin master`.

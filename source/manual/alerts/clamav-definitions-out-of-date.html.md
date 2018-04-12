@@ -4,7 +4,7 @@ title: ClamAV definitions out of date
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-10-04
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
@@ -17,4 +17,3 @@ If it reports the virus databases are up to date then you may need to
 check the [ClamAV virusdb
 archive](http://lists.clamav.net/pipermail/clamav-virusdb/) to
 investigate.
-
