@@ -9,6 +9,7 @@ review_in: 3 months
 ---
 [publish]: apps/datagovuk_find
 [find]: apps/datagovuk_find
+[common-tasks]: manual/data-gov-uk-common-tasks
 
 ## Continuous integration
 
@@ -19,15 +20,13 @@ Travis is integrated in both [Find Data][find] and [Publish Data][publish] repos
 
 ## Deploying Find Data and Publish Data
 
-Deployment of the [Find Data][find] and [Publish Data][publish] applications is done automatically when the master branch is modified.
+Deployment of the [Find Data][find] and [Publish Data][publish] applications to staging is done automatically when the master branch is modified.
 
-Each application has different manifest files to set the environment variables and link to the services for PaaS, which can be found in their respective repositories. These manifests are used by the zero-downtime deploy scripts using cloudfoundry’s autopilot module.  See below on how use those scripts to deploy applications by hand.
-
-On both [Find Data][find] and [Publish Data][publish], pushing a tag to GitHub called `v[number].[number].[number]` (e.g. `v1.2.1`) remote triggers a deployment to production by running the `deploy.sh` script. This is defined in the Travis configuration file in each repo. Make sure you use [semantic versioning](https://semver.org/) for tags.
-
-More documentation is available at [Using Travis CI to deploy to Cloud Foundry](http://cruft.io/posts/using-travis-ci-to-deploy-to-cloud-foundry/).
+Each application has different manifest files to set the environment variables and link to the services for PaaS, which can be found in their respective repositories. These manifests are used by the zero-downtime deploy scripts using cloudfoundry’s autopilot module.
 
 The [Find Data][find] repository is linked to a Heroku account which generates apps for each PR opened. URLs looks like `https://find-data-pr-331.herokuapp.com/` and the app remains active while the PR is open. Speak to a member of the data.gov.uk team to get the account’s credentials.
+
+See [Common tasks][common-tasks] for how to deploy to production.
 
 ## Deploying Publish Data Worker
 
@@ -35,4 +34,4 @@ While the [above](#deploying-find-data-and-publish-data) applies to both [Find D
 
 You can monitor Sidekiq jobs for the worker here: [https://publish-data-beta-staging.cloudapps.digital/sidekiq/]().
 
-The release tag method described [above](#deploying-find-data-and-publish-data) deploys both apps in this repository. See the relevant section in the [Find Data][find] `travis.yml`.
+The release tag method described in [Common tasks][common-tasks] deploys both apps in this repository. See the relevant section in the [Find Data][find] `travis.yml`.
