@@ -13,7 +13,7 @@ review_in: 3 months
 [find]: apps/datagovuk_find
 [infrastructure]: https://github.com/alphagov/datagovuk_infrastructure
 
-Most of the service is hosted on [GOV.UK PaaS][paas], which divides components in applications (eg Rails apps) and services (databases, messaging services, etc). All applications and services are controlled through cloudfoundry, as used by [GOV.UK PaaS][paas]. Some familiarity with that documentation will be useful to read this document.
+Most of the service is hosted on [GOV.UK PaaS][paas], which divides components in applications (eg Rails apps) and services (databases, messaging services, etc). All applications and services are controlled through cloudfoundry, as used by [GOV.UK PaaS][paas]. Some familiarity with that documentation will be useful to read this manual.
 
 ## Applications
 

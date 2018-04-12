@@ -58,7 +58,7 @@ Once set-up on [PaaS][paas] and bound to [Publish Data][publish] and [Find Data]
 
 To repopulate the index with dataset metadata:
 
-* From a PaaS backup: ask PaaS support (see Data recovery below).
+* From a PaaS backup: ask [PaaS support](/manual/data-gov-uk-incidents#data-loss).
 * From a Legacy dataset dump: use the `search:reindex` task in [Publish Data][publish].  
 
 
@@ -111,7 +111,7 @@ Push data to Elasticsearch using `rake search:reindex`. This can take several ho
 
 You can ssh into the Publish app service that is bound to the services in question and run the [steps above](#populate-your-local-postgres-and-elasticsearch) on them. You can see the commands to use in the setup.sh script, too.
 
-Alternatively [create an cf ssh tunnel](https://docs.cloud.service.gov.uk/#creating-tcp-tunnels-with-ssh) in order to proxy the services and make them available locally. Then you can run the [steps above](#populate-your-local-postgres-and-elasticsearch) with the right environment variables set (typically, hosts will be `localhost:some-port`).
+Alternatively [create a cf ssh tunnel](https://docs.cloud.service.gov.uk/#creating-tcp-tunnels-with-ssh) in order to proxy the services and make them available locally. Then you can run the [steps above](#populate-your-local-postgres-and-elasticsearch) with the right environment variables set (typically, hosts will be `localhost:some-port`).
 
 If you want to populate the production Postgres and Elasticsearch databases, you need to do it in a way that avoids data temporarily unavailable:
 
