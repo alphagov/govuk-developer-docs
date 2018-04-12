@@ -4,7 +4,7 @@ title: MongoDB rollback
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-10-04
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
@@ -61,4 +61,3 @@ expect.
 
 When satisfied, the BSON files and rollback directory can be deleted.
 This will resolve the Nagios alert.
-

@@ -4,15 +4,15 @@ title: Low available disk inodes
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-10-04
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
-The inode usage on a box can be checked using:
+The inode usage on a machine can be checked using:
 
     df -i
 
-which will give an output like:
+which will give output like:
 
     Filesystem           Inodes  IUsed   IFree IUse% Mounted on
     /dev/mapper/os-root 3121152 151646 2969506    5% /
@@ -34,12 +34,12 @@ be possible to free some by clearing out old workspaces:
 
     find /var/lib/jenkins/workspace/ -maxdepth 1 -type d -mtime +1 -exec rm -rf {} \;
 
-Which will find any directories that are older than 1 day and delete
+This will find any directories that are older than 1 day and delete
 them.
 
 ### Low available disk space on Jenkins
 
-One possible cause of this is that the /var/lib/docker directory is
+One possible cause of this is that the `/var/lib/docker` directory is
 consuming a large amount of disk space. This has been found to happen on
 the ci-agent machines.
 
@@ -55,6 +55,5 @@ following as root:
     docker volume rm $(docker volume ls -qf dangling=true)
 
 This will remove 'dangling' images and volumes. A comprehensive set of
-instructions can be found is this [Docker resource cleanup
+instructions can be found in this [Docker resource cleanup
 gist](https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430).
-

@@ -4,7 +4,7 @@ title: Set up Heroku review apps for pull requests
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-29
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
@@ -38,7 +38,7 @@ There are 3 things needed to be configured before you can deploy your app to
 Heroku:
 
 - Add a [Procfile](https://devcenter.heroku.com/articles/procfile) that tells
-heroku how to run your application;
+Heroku how to run your application;
 - Add a file called `app.json` with the expected app configuration.
 - Ensure the Gemfile references the correct Ruby version
 

@@ -1,6 +1,6 @@
 ---
 owner_slack: '#2ndline'
-last_reviewed_on: 2017-09-27
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 title: Upgrade Rails to a new version
 section: Packaging
@@ -8,7 +8,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-When upgrading our apps between Rails major and minor versions, follow the [official Rails guides][guide]
+When upgrading our apps between Rails major and minor versions, follow the [official Rails guides][guide].
 
 ## Rails Configs
 
@@ -36,9 +36,9 @@ The solution is append to `eager_load_paths` rather than `autoload_paths` which
 will ensure the classes are loaded in both production and development. See
 [Publishing API Example][publishing-api-autoload-change].
 
-### Don't include ActionCable or Puma configs
+### ActionCable and Puma configs
 
-We don't use these in production and are likely to cause conflicts.
+We don't use these in production and they are likely to cause conflicts, so you should remove them.
 
 [guide]: http://guides.rubyonrails.org/upgrading_ruby_on_rails.html
 [rails-5-autoloading]: http://blog.bigbinary.com/2016/08/29/rails-5-disables-autoloading-after-booting-the-app-in-production.html
