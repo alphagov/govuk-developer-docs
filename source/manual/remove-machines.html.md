@@ -4,7 +4,7 @@ title: Remove a machine
 parent: "/manual.html"
 layout: manual_layout
 section: Environments
-last_reviewed_on: 2017-10-05
+last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---
 
@@ -13,7 +13,7 @@ there are several steps you need to go through.
 
 Before you start, make sure that the machines are no longer needed for anything.
 
-## 1. Remove the node from the puppet-master
+## 1. Remove the node from the puppetmaster
 
 You need to remove the nodes from the puppet-master in each environment.
 This is needed to clean up exported resources from puppetdb, including
@@ -21,7 +21,7 @@ removing checks from Icinga.
 
 First disable puppet on the machines you wish to remove.
 
-Next SSH into the Puppet master for the environment:
+Next SSH into the puppetmaster for the environment:
 
 ```console
 $ ssh puppetmaster-1.management.production
@@ -34,7 +34,7 @@ $ govuk_node_clean <machine_name>
 ```
 
 Where `<machine_name>` might be `machine-name-1.vdc-name.production`.
-To find the names of the machines, you can list the nodes on puppet master:
+To find the names of the machines, you can list the nodes on puppetmaster:
 
 ```console
 $ sudo puppet cert list --all
@@ -62,13 +62,9 @@ the "Host Detail" page in Icinga/Nagios.
 
 ## 2. Remove from vCloud Director
 
-For preview, connect to the Carrenza VPN and go to [the account page](https://vcloud.carrenza.com/cloud/org/0e7t).
-Sign in, go to 'My Cloud', search for the given machine, stop it and then delete it. Repeat as
-necessary.
-
-For staging and production, sign in to the vCloud Director instance for
-the given environment. Go to 'My Cloud', search for the given machine,
-stop it, and then delete it.
+Sign in to the vCloud Director instance for the given environment.
+Go to 'My Cloud', search for the given machine, stop it, and then
+delete it.
 
 ## 3. Remove from govuk-provisioning
 
