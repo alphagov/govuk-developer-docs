@@ -229,11 +229,11 @@ If you don't need an optional dependency, you can pass the `-w` option:
 
 If these `bowl` commands fail, try the troubleshooting guide on [how to fix a broken bowl][bowl-error].
 
-Now visit this url once the app is running:
+Now visit this URL once the app is running:
 
 `http://whitehall-admin.dev.gov.uk/`
 
-You should be able to see whitehall.
+You should be able to see Whitehall.
 
 [bowler]: https://github.com/JordanHatch/bowler
 [bowl-error]: bowl-error.html
