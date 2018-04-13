@@ -1,11 +1,11 @@
 ---
 owner_slack: "#2ndline"
 title: Manage email subscribers using email-alert-api rake tasks
-section: Email
+section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-29
-review_in: 1 month
+last_reviewed_on: 2018-04-13
+review_in: 6 months
 ---
 
 The following rake tasks should be run using the Jenkins `Run rake task` job for ease-of-use, in which case the `bundle exec rake` prefix should be omitted.
