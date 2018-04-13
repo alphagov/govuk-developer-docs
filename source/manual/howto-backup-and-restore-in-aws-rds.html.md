@@ -4,7 +4,7 @@ title: Backup and restore databases in AWS RDS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-11
+last_reviewed_on: 2018-04-13
 review_in: 3 months
 ---
 
@@ -15,7 +15,7 @@ and `transition_db_admin`, encompassing all the databases on those instances.
 
 ### Restore an RDS instance via the AWS Console
 
-https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html
+Follow [the AWS documentation on Restoring from a DB Snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html).
 
 ### Restore an RDS instance via the AWS CLI
 
