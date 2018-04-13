@@ -4,7 +4,7 @@ title: User Management in AWS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-11
+last_reviewed_on: 2018-04-13
 review_in: 3 months
 ---
 
@@ -13,7 +13,7 @@ you will require an account in AWS.
 
 ## GDS central users account
 
-GDS maintain a central account for AWS access. Please see the [guidance]() for further information.
+GDS maintains a central account for AWS access. Please see the [guidance]() for further information.
 
 Ensure that you create both [MFA](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication)
 and [access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) once
@@ -37,8 +37,8 @@ You will need someone who already has access to the account you wish to get acce
 
 They will need to:
 
- - add you to the list of users found in [the data for the infra-security project](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
- - deploy the `infra-security` project
+ - Add you to the list of users found in [the data for the infra-security project](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
+ - Deploy the `infra-security` project
 
 When this has been deployed, you should also gain access to edit this data.
 
@@ -58,7 +58,7 @@ There are two methods to assume roles using the CLI.
 
 Both methods require the following:
 
- - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg govuk-administrators, govuk-powerusers, govuk-users
+ - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg `govuk-administrators`, `govuk-powerusers`, `govuk-users`
  - MFA ARN: this is the ARN assigned to the MFA device in your own account
 
 Both methods will allow a valid session up to an hour. Once the hour has
@@ -89,7 +89,7 @@ aws_access_key_id = <access key id>
 aws_secret_access_key = <secret access key>
 ```
 
-> You can get the key id and secret by following the instructions for IAM based
+> You can get the key ID and secret by following the instructions for IAM based
 > access keys
 > [here](https://www.cloudberrylab.com/blog/how-to-find-your-aws-access-key-id-and-secret-access-key-and-register-with-cloudberry-s3-explorer/)
 

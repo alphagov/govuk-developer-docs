@@ -4,7 +4,7 @@ title: Set up a new mirror for GOV.UK
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-09
+last_reviewed_on: 2018-04-13
 review_in: 6 months
 ---
 
@@ -23,9 +23,9 @@ should be followed where at all possible.
 ### Naming convention
 
 The organisation should be named "Infrastructure Services
-(\$firstinitial)" where \$firstinitial refers to the first letter of the
+($firstinitial)" where `$firstinitial` refers to the first letter of the
 vendor's name. For instance, on Carrenza, our organisation is called
-"Infrastructure Services (C)".
+"Infrastructure Services ( C )".
 
 ### vCloud vDC
 
@@ -63,24 +63,24 @@ and invoke it as follows:
 ruby generate_input.rb -i {$input_filename} -o {$output_filename} -
 ```
 
-> **note**
+> **Note**
 >
 > You may encounter an error on the line in which each vApp and VM name
 > is defined, if the VM name does not contain a hyphen in the format
 > 'host-0'.
 
-With your shiny new YAML, you can now launch the vApps with
+With your new YAML, you can now launch the vApps with
 [vcloud-launch](https://github.digital.cabinet-office.gov.uk/gds/vcloud-launch) in the usual way.
 
 A working
 [example](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/tree/master/vcloud_box/carrenza)
 is available for Carrenza; the vApp definitions are contained in
-[govuk\_mirrors.yaml](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/blob/master/vcloud_box/carrenza/govuk_mirrors.yaml)
+[govuk_mirrors.yaml](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/blob/master/vcloud_box/carrenza/govuk_mirrors.yaml)
 and these can be deployed using the
 [jenkins.sh](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment/blob/master/vcloud_box/carrenza/jenkins.sh)
 script.
 
-> **note**
+> **Note**
 >
 > External IP addresses are only visible at the border, and therefore
 > are not able to be directly allocated to individual VMs. The vShield
@@ -131,7 +131,7 @@ bundle exec vcloud_walk networks
 ```
 
 The gateway's UID is listed as ID in the output, and should be inserted
-after the API URL in an interfaces.yaml file.
+after the API URL in an `interfaces.yaml` file.
 
 #### Obtaining the vDC UUID
 
@@ -147,15 +147,15 @@ command as the -U switch:
 vcloud-net-spinner -u <username> -p <password> -U <edgegateway_uuid> -c <component_type> -o <org_name> -r nat.rb -i interfaces.yaml <http_api_url>
 ```
 
-> **note**
+> **Note**
 >
 > When modifying lb.rb, IP addresses in the load balancing pool should
 > be the internal IP addresses if using NAT.
 >
-> In the virtual\_server declaration, use the external interface and the
+> In the virtual_server declaration, use the external interface and the
 > external IP address you wish to assign to the load balancer.
 
-> **warning**
+> **Warning**
 >
 > Even if you do intend to restrict traffic handled by the load balancer
 > to :443 (HTTPS), you must include the HTTP directive in order for the
@@ -184,15 +184,15 @@ the URL is a good idea.
 
 To configure the new VMs that you have created, you will need to deploy
 the
-[govuk\_mirror-puppet](https://github.com/alphagov/govuk_mirror-puppet)
+[govuk_mirror-puppet](https://github.com/alphagov/govuk_mirror-puppet)
 repository to those machines. This is done using a Fabric script.
 
 In the
-[govuk\_mirror-deployment](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment)
-repository, open fabfile.py for editing.
+[govuk_mirror-deployment](https://github.digital.cabinet-office.gov.uk/gds/govuk_mirror-deployment)
+repository, open `fabfile.py` for editing.
 
 Find the lines below, assuming that you wish to use the development
-environment, and replace the mirror{0,1}.example.com hosts with the
+environment, and replace the `mirror{0,1}.example.com` hosts with the
 hostnames of the new VMs you created:
 
 ``` {.sourceCode .python}
@@ -213,23 +213,23 @@ Run:
 fab -u ubuntu -p password $ENVIRONMENT deploy
 ```
 
-...where \$ENVIRONMENT corresponds to the environment you just
-configured in fabfile.py. If prompted for a password or passphrase,
+...where `$ENVIRONMENT` corresponds to the environment you just
+configured in `fabfile.py`. If prompted for a password or passphrase,
 enter ubuntu. The Puppet run should now complete on all of the hosts
-specified in fabfile.py. Note that Puppet will delete the ubuntu user
+specified in `fabfile.py`. Note that Puppet will delete the `ubuntu` user
 during its run.
 
 ## Configuring mirror synchronisation
 
 The GOV.UK site is crawled daily at midnight and the static content is
-transferred to the mirror boxes using rsync. For more information,
-please see [the govuk\_crawler module
+transferred to the mirror machines using rsync. For more information,
+please see [the govuk_crawler module
 manifests](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_crawler/manifests/init.pp).
 
 You will need to specify the new mirror boxes you have just created in
-the Puppet repository so that the govuk\_sync\_mirror script knows where
+the Puppet repository so that the govuk_sync_mirror script knows where
 to rsync the static content to. You can specify these in hieradata by
-setting govuk\_crawler::targets.
+setting `govuk_crawler::targets`.
 
 ## Configure the CDN to serve from the new mirrors
 
