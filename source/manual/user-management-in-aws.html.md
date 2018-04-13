@@ -61,9 +61,9 @@ Both methods require the following:
  - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg govuk-administrators, govuk-powerusers, govuk-users
  - MFA ARN: this is the ARN assigned to the MFA device in your own account
 
-Both methods will allow a valid session up to an hour. Once the hour has
-elapsed, you will need to rerun the `assume-role` command, but shouldn't be
-prompted for MFA.
+Both methods will allow a valid session up to eight hours. Once the hour has
+elapsed, you will need to rerun the `assume-role` command. If you want to switch
+between environments, you will need to re-authenticate with MFA.
 
 ##### Storing credentials on disk
 
@@ -105,23 +105,16 @@ Ensure [`awscli`](https://aws.amazon.com/cli/) is installed. Ensure you have you
 MFA token ready, and run:
 
 ```
-aws --profile=gds sts get-session-token \
+aws sts assume-role \
+  --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" \
+  --role-arn <Role ARN> \
   --serial-number <MFA ARN> \
   --token-code <MFA token>
 ```
 
-This will authenticate your account via MFA for 12 hours. Then, you can assume
-the required role with the following:
-
-```
-aws sts assume-role \
-  --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" \
-  --role-arn <Role ARN>
-```
-
 If successful, this will output some credentials. Store them in your environment using
-the following environment variables. Refresh them when they expire after an
-hour with another `sts assume-role` command.
+the following environment variables. Refresh them when they expire after eight
+hours with another `aws sts assume-role` command.
 
 ```
 AWS_ACCESS_KEY_ID
