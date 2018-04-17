@@ -208,19 +208,26 @@ various points in our stack as well as locally in your browser. Things to try:
 
 You can manually check whether the data has been stored in Redis by the Jenkins job on one of the frontend machines.
 
-From your development machine SSH into a frontend box appropriate to the environment you want to check
+1) From your development machine SSH into a frontend box appropriate to the environment you want to check.
+
+For staging or production:
+```
+ssh frontend-1.frontend.staging
+```
+
+for integration:
 
 ```
-ssh frontend1.frontend.integration
+ssh $(ssh integration "govuk_node_list --single-node -c frontend").integration
 ```
 
-Load a Rails console for static:
+2) Load a Rails console for static:
 
 ```
 govuk_app_console static
 ```
 
-Check the Redis key exists:
+3) Check the Redis key exists:
 
 ```
 irb(main):001:0> Redis.new.hgetall("emergency_banner")
@@ -242,7 +249,13 @@ If you need to manually run the rake tasks to set the Redis keys for some reason
 deploying the banner on. For example, for integration:
 
 ```
-ssh frontend-1.frontend.integration
+ssh $(ssh integration "govuk_node_list --single-node -c frontend").integration
+```
+
+for staging or production:
+
+```
+ssh frontend-1.frontend.staging
 ```
 
 2) CD into the directory for `static`:
@@ -294,8 +307,16 @@ exit
 
 1) As above you first need to SSH into a frontend machine:
 
+for staging or production:
+
 ```
-ssh frontend-1.frontend.integration
+ssh frontend-1.frontend.staging
+```
+
+for integration:
+
+```
+ssh $(ssh integration "govuk_node_list --single-node -c frontend").integration
 ```
 
 2) CD into the directory for `static`:
