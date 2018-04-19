@@ -109,6 +109,7 @@ aws sts assume-role \
   --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" \
   --role-arn <Role ARN> \
   --serial-number <MFA ARN> \
+  --duration-seconds 28800 \
   --token-code <MFA token>
 ```
 
