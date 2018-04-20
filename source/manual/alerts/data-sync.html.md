@@ -4,8 +4,8 @@ title: Data sync
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-17
-review_in: 6 months
+last_reviewed_on: 2018-04-20
+review_in: 3 months
 ---
 
 Data and assets/attachments are synced from production to staging and integration every night.
@@ -21,5 +21,6 @@ The Jenkins jobs included in the sync are:
 * Copy Data to Integration
 * Copy Attachments to Integration
 * Copy Licensify Data to Staging
+* Copy and Sync sanitised whitehall database (production to integration only)
 
 See the [source code](https://github.com/alphagov/env-sync-and-backup/tree/master/jobs) of the jobs for more information about how they work.
