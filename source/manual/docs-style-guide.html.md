@@ -37,6 +37,7 @@ Bad examples:
 > Data sync
 
 > Ruby (too vague: what about Ruby?)
+
 Don't use:
 
 - "how to" at the start
