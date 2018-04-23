@@ -4,8 +4,8 @@ title: "Stop all email subscription sending"
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-21
-review_in: 1 month
+last_reviewed_on: 2018-04-23
+review_in: 6 month
 ---
 
 In an emergency, the following steps will immediately stop all emails being sent by the GOV.UK email subscription system.
