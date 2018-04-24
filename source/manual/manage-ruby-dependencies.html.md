@@ -36,7 +36,7 @@ Go to [Dependabot admin][admin] and click "Bump now" for your project
 There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub][access]. This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/configure-github-repo.html#auto-configuration) for all repos with the `govuk` label. This prevents Dependabot from writing directly to master.
 
 [ext]: https://docs.publishing.service.gov.uk/manual/merge-pr.html
-[tech-debt]: https://trello.com/c/tBEHwkI9
+[tech-debt]: https://trello.com/b/oPnw6v3r
 [access]: https://github.com/organizations/alphagov/settings/installations/87197
 [current]: /manual/keeping-software-current.html
 [Dependabot]: https://dependabot.com
