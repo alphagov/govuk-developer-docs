@@ -34,57 +34,76 @@ To get production data on to your local VM, you'll need to have either:
 The [AWS setup guide](/manual/user-management-in-aws.html) covers using the interface in full, however if you only
 want to do developer replication you will need to:
 
-1. Log into AWS
+### Log into AWS
 
-    You should have received a email requesting you do this. If you have multiple AWS accounts ensure you are logged into `gds-users`
+You should have received a email requesting you do this. If you have multiple AWS accounts ensure you are logged into `gds-users`
 
-1. Setup MFA/2FA on your device
+### Setup MFA/2FA on your device
 
-    Navigate to `IAM -> Users -> <Your username>`
+Navigate to `IAM -> Users -> <Your username>`
 
-    If you don't see an ARN ID next to `Assigned MFA device` click the edit button and set one up.
+If you don't see an ARN ID next to `Assigned MFA device` click the edit button and set one up.
 
-1. Create an access token
+### Create an access token
 
-    Under `Access keys` click `Create access key` – you will secret is only displayed once, however if you fail to note it down just remove it and create another.
+Under `Access keys` click `Create access key` – you will secret is only displayed once, however if you fail to note it down just remove it and create another.
 
-1. Install the AWS CLI application locally
+### Install the AWS CLI application locally
 
-    On macOS this can be done using `brew install awscli`. This is being installed locally with the assumption you will be doing a two step backup process, i.e. download the files on your local machine and then update you VM. This is the recommended process as the download is quicker to you local machine for most users.
+On macOS this can be done using `brew install awscli`. This is being installed locally with the assumption you will be doing a two step backup process, i.e. download the files on your local machine and then update you VM. This is the recommended process as the download is quicker to you local machine for most users.
 
-1. Setup your AWS access config and credentials files
+### Setup your AWS access config and credentials files
 
-    I am repeating the instructions described in the [AWS setup guide](/manual/user-management-in-aws.html) with one difference. In the credentials file the setting must be under default as otherwise they are not found by the replication script.
+I am repeating the instructions described in the [AWS setup guide](/manual/user-management-in-aws.html) with one difference. In the credentials file the setting must be under default as otherwise they are not found by the replication script.
 
-    Create a `~/.aws/config` file:
+Create a `~/.aws/config` file:
 
-    ```
-    [profile govuk-integration]
-    role_arn = <Role ARN>
-    mfa_serial = <MFA ARN>
-    source_profile = gds
-    region = eu-west-1
-    ```
+```
+[profile govuk-integration]
+role_arn = <Role ARN>
+mfa_serial = <MFA ARN>
+source_profile = gds
+region = eu-west-1
+```
 
-    **Role ARN**: should be one of the following depending on the level of access you have been configured with [here](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars):
+#### Role ARN
+Should be one of the following depending on the level of access you have been configured with [here](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars):
 
-        * govuk-admins: arn:aws:iam::210287912431:role/govuk-administrators
-        * govuk-poweruser: arn:aws:iam::210287912431:role/govuk-poweruser
-        * govuk-users: arn:aws:iam::210287912431:role/govuk-users
-
-    **MFA ARN**: This is the long string next to `Assigned MFA device` in the AWS console
-
-    Create a `~/.aws/credentials` file
+  * govuk-admins
 
     ```
-    [gds]
-    aws_access_key_id = <access key id>
-    aws_secret_access_key = <secret access key>
+    arn:aws:iam::<ACCOUNT-ID>:role/govuk-administrators
     ```
 
-    **AWS access key id**: This is the ID that we created earlier
+  * govuk-poweruser:
 
-    **AWS secret access key**: This is the secret associated with the key we created earlier. If you didn't note these down you can simply create a new one.
+    ```
+    arn:aws:iam::<ACCOUNT-ID>:role/govuk-poweruser
+    ```
+
+  * govuk-users:
+
+    ```
+    arn:aws:iam::<ACCOUNT-ID>:role/govuk-users
+    ```
+
+  The account IDs are in the govuk-aws-data repo's [docs on govuk-aws-accounts](https://github.com/alphagov/govuk-aws-data/blob/master/docs/govuk-aws-accounts.md)
+
+####MFA ARN
+
+This is the long string next to `Assigned MFA device` in the AWS console
+
+Create a `~/.aws/credentials` file
+
+```
+[gds]
+aws_access_key_id = <access key id>
+aws_secret_access_key = <secret access key>
+```
+
+**AWS access key id**: This is the ID that we created earlier
+
+**AWS secret access key**: This is the secret associated with the key we created earlier. If you didn't note these down you can simply create a new one.
 
 ## If you have integration access
 
