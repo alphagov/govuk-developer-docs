@@ -114,7 +114,7 @@ class AppDocs
     end
 
     def dashboard_url
-      return if datagovuk_app?
+      return "https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1" if datagovuk_app?
       "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 

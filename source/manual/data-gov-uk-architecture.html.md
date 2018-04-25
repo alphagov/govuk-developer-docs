@@ -66,7 +66,7 @@ The database that [Publish Data][publish] uses. Publish Data gets the details an
 ### Elasticsearch
 
 The search index that [Find Data][find] uses to search datasets. It is populated through the `search:reindex` rake task on [Publish Data][publish] (see below) and when publishers make changes when using Publish Data.
-Similarly the `VCAP_SERVICES` environment variable, made available to applications that connect to it, contains the credentials to connect to it.
+The `VCAP_SERVICES` environment variable contains the credentials to connect to it.
 
 ### beta.data.gov.uk proxy (aka beta-dgu-route)
 
@@ -76,22 +76,7 @@ This is a “cdn-route” [PaaS](paas) service that proxies the `beta.data.gov.u
 
 There are two “user-provided” services (`find-production-secrets` and `publish-production-secrets`) that are used by [Publish Data][publish] and [Find Data][find] to get access to environment variables, some of which contain secrets such as API keys. Those variables are found in the `VCAP_SERVICES` environment variable for [Publish Data][publish] and [Find Data][find]. The value of those variables is set and encrypted in the [datagovuk_infrastructure][infrastructure] repository, and cloudfoundry is used to deploy the service when they’re modified.
 
-The main environment variables are:
-
-| Variable | Apps | Description |
-| -------- | ---- | ----------- |
-| rails_env | Publish and Find | Rails environment (production or staging) |
-| devise_secret_key | Publish and Find | Rails standard var |
-| secret_key_base | Publish and Find | Rails standard var |
-| es_host | Publish and Find | If using a non-PaaS elasticsearch server, use this URL |
-| es_index | Publish and Find | To override the default index name: `datasets-[rails env]` |
-| sentry_dsn | Publish and Find | Key for sentry monitoring |
-| ga_test_tracking_id | Find | Google analytics id used when accessing Find via private testing URL (...cloudapps...) |
-| ga_tracking_id | Find | Google analytics id used when accessing find via private beta URL (beta.data.gov.uk) |
-| private_beta_user_salt | Find | Arbitrary value to generate the preset http passwords for Find |
-| redis_ip | Publish | The IP of the Redis server |
-| redis_password | Publish | The password for the Redis server |
-| redis_port | Publish | The port of the Redis server |
+The environment variables for each app can be accessed using the command `cf env <app-name>` via the cloudfoundry CLI.
 
 ### Redis
 

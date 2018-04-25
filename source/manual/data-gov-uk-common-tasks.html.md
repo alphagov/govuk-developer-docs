@@ -15,11 +15,12 @@ review_in: 3 months
 
 ## Deploy Find Data and Publish Data to production
 
-1. Create a release on [Publish Data][publish] or [Find Data][find] via GitHub, making sure to add decent notes about what is being deployed. This remote triggers a deployment to production by running the `deploy.sh` script. This is defined in the Travis configuration file in each repo.
-2. Create a tag in the format `v[number].[number].[number]` (e.g. `v1.2.1`). Note there is no dot between the v and first number. Make sure you use [semantic versioning](https://semver.org/) for tags.
-3. Monitor deployment in Travis.
-4. In some cases, such as when migrations have been added, the data needs to be reimported and reindexed. See the [Importing data section](#import-data-from-legacy).
-5. If the data has been reindexed, [Find Data][find] probably needs to be deployed. Follow the same process by creating a git tag on [Find Data][find].
+1. Create a release on [Publish Data][publish] or [Find Data][find] via GitHub. Choose a tag in the format `v[number].[number].[number]` (e.g. `v1.2.1`). Note there is no dot between the v and first number. Make sure you use [semantic versioning](https://semver.org/) for tags.
+2. Add decent notes covering what is being deployed.
+3. Publish the release. This remote triggers a deployment to production by running the `deploy.sh` script. This is defined in the Travis configuration file in each repo.
+4. Monitor deployment in Travis.
+5. In some cases, such as when migrations have been added, the data needs to be reimported and reindexed. See the [Importing data section](#import-data-from-legacy).
+6. If the data has been reindexed, [Find Data][find] probably needs to be deployed. Follow the same process by creating a git tag on [Find Data][find].
 
 > More documentation is available at [Using Travis CI to deploy to Cloud Foundry](http://cruft.io/posts/using-travis-ci-to-deploy-to-cloud-foundry/).
 
@@ -93,23 +94,11 @@ While Legacy remains and publishers use it for creating and modifying datasets (
 
 ### Populate your local Postgres and Elasticsearch
 
-From your local machine:
-
-1. Make sure your local [Publish Data][publish] points to the Postgres database and the Elasticsearch server you want to import data into.
-2. Set the `DATABASE_URL` and `PUBLISH_DATA_BETA_DATABASE_PASSWORD` environment variables for Postgres and `ES_INDEX` and `ES_HOST` for Elasticsearch.
-3. Download the [latest daily data dump file](https://data.gov.uk/data/dumps/data.gov.uk-ckan-meta-data-latest.v2.jsonl.gz) from `data.gov.uk/data/dumps` and the [latest list of publishing organisations](https://data.gov.uk/data/dumps/data.gov.uk-ckan-meta-data-latest.organizations.jsonl.gz) and unzip them.
-4. In order to repopulate the Postgres database, in [Publish Data][publish], run:
-
-```ruby
-rake import:locations[lib/seeds/locations.csv]
-rake import:legacy_organisations[organisations.jsonl]
-rake import:legacy_datasets[data_dump.jsonl]
-```
-Push data to Elasticsearch using `rake search:reindex`. This can take several hours.
+Refer to the [Publish Data][publish] README.
 
 ### Populate the Postgres and Elasticsearch services on PaaS
 
-You can ssh into the Publish app service that is bound to the services in question and run the [steps above](#populate-your-local-postgres-and-elasticsearch) on them. You can see the commands to use in the setup.sh script, too.
+You can ssh into the [Publish Data][publish] app service that is bound to the services in question and run the commands in the `setup.sh` script.
 
 Alternatively [create a cf ssh tunnel](https://docs.cloud.service.gov.uk/#creating-tcp-tunnels-with-ssh) in order to proxy the services and make them available locally. Then you can run the [steps above](#populate-your-local-postgres-and-elasticsearch) with the right environment variables set (typically, hosts will be `localhost:some-port`).
 
