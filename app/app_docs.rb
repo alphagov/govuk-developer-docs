@@ -53,6 +53,7 @@ class AppDocs
     end
 
     def carrenza_machine
+      return if datagovuk_app?
       AppDocs.carrenza_machines.each do |puppet_class, keys|
         if keys["apps"].include?(app_name)
           return puppet_class
@@ -97,18 +98,23 @@ class AppDocs
     end
 
     def sentry_url
+      return "https://sentry.io/govuk/find-data" if app_name == "datagovuk_find"
+      return "https://sentry.io/govuk/publish-data" if app_name == "datagovuk_publish"
       "https://sentry.io/govuk/app-#{app_name}"
     end
 
     def puppet_url
+      return if datagovuk_app?
       "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
     end
 
     def deploy_url
+      return if datagovuk_app?
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
 
     def dashboard_url
+      return "https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1" if datagovuk_app?
       "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 
@@ -148,6 +154,10 @@ class AppDocs
 
     def topics
       github_repo_data["topics"]
+    end
+
+    def datagovuk_app?
+      team == "#datagovuk-tech"
     end
 
   private
