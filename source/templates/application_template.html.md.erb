@@ -30,9 +30,18 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 <ul>
   <li><%= link_to "GitHub repo", application.repo_url %></li>
   <li><%= link_to "Sentry (error tracking)", application.sentry_url %></li>
-  <li><%= link_to "Puppet configuration", application.puppet_url %></li>
-  <li><%= link_to "Deploy scripts", application.deploy_url %></li>
-  <li><%= link_to "Deployment dashboard", application.dashboard_url %> (warning: not all apps have a dashboard)</li>
+  <% if application.puppet_url %>
+    <li><%= link_to "Puppet configuration", application.puppet_url %></li>
+  <% end %>
+
+  <% if application.deploy_url %>
+    <li><%= link_to "Deploy scripts", application.deploy_url %></li>
+  <% end %>
+
+  <% if application.dashboard_url %>
+    <li><%= link_to "Deployment dashboard", application.dashboard_url %> (warning: not all apps have a dashboard)</li>
+  <% end %>
+
   <% if application.publishing_e2e_tests_url %>
     <li><%= link_to "Publishing E2E scenarios", application.publishing_e2e_tests_url %> (warning: not all apps have E2E tests)</li>
   <% end %>
@@ -55,31 +64,36 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 </ul>
 
 <h3>SSH access</h3>
+<% if application.datagovuk_app? %>
+  This applications lives on [GOV.UK PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas).
+<% else %>
+  This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
 
-This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
+  To SSH to one of these machines:
 
-To SSH to one of these machines:
+  ```
+  ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+  ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+  ```
+<% end %>
 
-```
-ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
-ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
-```
+<% unless application.datagovuk_app? %>
+  <h3>AWS SSH access</h3>
 
-<h3>AWS SSH access</h3>
+  This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
 
-This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
+  To SSH to one of these machines [via the jumpbox](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines-in-aws.html), use this command:
 
-To SSH to one of these machines [via the jumpbox](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines-in-aws.html), use this command:
+  ```
+  ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+  ```
 
-```
-ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
-```
+  <h3>Run a rake task</h3>
 
-<h3>Run a rake task</h3>
-
-- <%= link_to "Run on Integration Jenkins", "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
-- <%= link_to "Run on Staging Jenkins", "https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
-- <%= link_to "Run on Production Jenkins", "https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+  - <%= link_to "Run on Integration Jenkins", "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+  - <%= link_to "Run on Staging Jenkins", "https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+  - <%= link_to "Run on Production Jenkins", "https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+<%end %>
 
 <% if application.example_published_pages %>
 <h3>Example pages published by <%= application.app_name %></h3>

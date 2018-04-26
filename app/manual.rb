@@ -10,7 +10,7 @@ class Manual
   def manual_pages_grouped_by_section
     grouped = manual_pages
       .group_by { |page| page.data.section || "Uncategorised" }
-      .sort_by(&:first)
+      .sort_by { |group| group.first.downcase }
 
     [["Common tasks", most_important_pages]] + grouped
   end
