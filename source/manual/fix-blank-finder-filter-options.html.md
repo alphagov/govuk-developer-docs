@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#2ndline"
-last_reviewed_on: 2018-01-26
+last_reviewed_on: 2018-04-27
 review_in: 3 months
 related_applications: [rummager, finder-frontend]
 ---
@@ -16,10 +16,6 @@ If the pages for those things don't themselves exist in search, finder frontend
 won't be able to fill in the titles:
 
 ![People facet with blank options](/images/blank-facets.png)
-
-This can be detected by the [Finder Frontend feature in
-Smokey][finder-frontend-smokey]. An example error would be `And I should see a
-closed facet titled "People" with non-blank values`.
 
 To fix the issue:
 
