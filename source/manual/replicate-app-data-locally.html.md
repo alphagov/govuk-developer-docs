@@ -114,6 +114,8 @@ If you have integration access, you can download and import the latest data by r
 
 > You may be able to skip the -u and -F flags depending on your setup
 
+The data will download to a folder named with today's date in `./backups`, for example `./backups/2018-01-01`.
+
 then
 
     dev$ cd /var/govuk/govuk-puppet/development-vm/replication
