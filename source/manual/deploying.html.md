@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
-last_reviewed_on: 2018-01-24
+last_reviewed_on: 2018-04-26
 review_in: 3 months
 ---
 
@@ -71,10 +71,9 @@ If you are responding to a security incident, follow the steps to [deploy fixes 
 
 Make sure you have a rollback plan if things go wrong. When you're just changing code, this is relatively easy; when you're doing data migrations, less so. **As far as is possible, all data migrations should be reversible**. Don't rely on backups unless you absolutely have to.
 
-If a release fails on staging and you can fix it, test it in integration,
-redeploy it to staging, re-test it, deploy it to production and test it
-there, then that's allowed. You're probably better off rolling back and
-trying again later.
+If a release fails in staging and it can be easily and quickly fixed, you don't need to rollback the change. Just post a message in the `#govuk-deploy` Slack channel to let people know what's going. Then test your fix in integration and redeploy and test it in staging before continuing the deploy to production.
+
+If a release fails in staging and it is not a quick-fix, you should rollback the change and try again later.
 
 ## GitHub
 
