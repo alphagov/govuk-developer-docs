@@ -1,5 +1,5 @@
 ---
-owner_slack: "#asset-management"
+owner_slack: "#platform-health"
 title: 'Assets: how they work'
 section: Assets
 layout: manual_layout
