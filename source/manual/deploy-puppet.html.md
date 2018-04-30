@@ -15,10 +15,8 @@ __NOTE.__ Puppet is automatically deployed to integration by a combination of th
 1. Get the [release tag of the build that you wish to deploy][tag] from the release
 app (`release_18295` for example). Look at the diff you're going to deploy.
 
-2. Deploy the tag to staging using the [Deploy Puppet job][stage-deploy].
-
-    You need to configure the build by setting the 'TAG' value to the
-    successful build you previously selected (e.g.`release_18295`)
+2. Deploy the newer version to staging by using the 'Deploy to Staging' button in
+the release app after clicking on the release tag.
 
 3. You will either need to wait 30mins or read about [convergence](#convergence).
 After which you should keep an eye on Icinga, Smokey and test anything you're concerned about.
