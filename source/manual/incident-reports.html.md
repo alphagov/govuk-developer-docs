@@ -67,6 +67,7 @@ Time to fix|
 Use this section to summarise the root cause of the incident. A draft root cause should be included, and discussed and agreed upon during the incident review. This root cause should be written for a non-technical audience. 
  
 Please also include the root cause category:
+
 * Unexpected effect of code change
 * Infrastructure failure (disk space, logging etc)
 * Provider failure (hardware, network failure etc
