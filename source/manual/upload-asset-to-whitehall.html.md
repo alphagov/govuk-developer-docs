@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Upload an asset to whitehall
 section: Assets
 layout: manual_layout

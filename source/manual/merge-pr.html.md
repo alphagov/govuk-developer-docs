@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Merge a Pull Request
 section: Development & Reviews
 layout: manual_layout

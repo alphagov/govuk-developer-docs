@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: 'PostgreSQL: S3 Backups'
 parent: "/manual.html"
 layout: manual_layout

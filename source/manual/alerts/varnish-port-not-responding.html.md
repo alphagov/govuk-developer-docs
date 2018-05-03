@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Varnish port not responding
 parent: "/manual.html"
 layout: manual_layout

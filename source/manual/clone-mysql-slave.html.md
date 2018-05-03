@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Clone a MySQL instance from one slave to another
 section: Databases
 layout: manual_layout

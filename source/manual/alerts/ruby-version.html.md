@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: App isn't running the expected Ruby version
 section: Icinga alerts
 layout: manual_layout

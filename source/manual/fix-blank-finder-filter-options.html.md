@@ -3,7 +3,7 @@ title: Fix blank options in finder filters
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-04-27
 review_in: 3 months
 related_applications: [rummager, finder-frontend]

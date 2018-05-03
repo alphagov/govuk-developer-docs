@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Update Pingdom IP ranges
 section: Environments
 layout: manual_layout

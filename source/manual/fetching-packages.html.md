@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Problems fetching packages in VM
 section: Development VM
 layout: manual_layout

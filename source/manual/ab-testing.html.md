@@ -3,7 +3,7 @@ title: Run an A/B or multivariate test
 parent: "/manual.html"
 layout: manual_layout
 section: Tools
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-03-05
 review_in: 3 months
 ---

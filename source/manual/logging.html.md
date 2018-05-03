@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: How logging works on GOV.UK
 section: Logging
 layout: manual_layout

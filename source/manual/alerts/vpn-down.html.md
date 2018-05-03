@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: VPN down
 parent: "/manual.html"
 layout: manual_layout

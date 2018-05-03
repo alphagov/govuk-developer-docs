@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: 'Backup and restore Elasticsearch indices'
 parent: "/manual.html"
 layout: manual_layout

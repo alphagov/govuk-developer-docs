@@ -3,7 +3,7 @@ title: Topic Taxonomy
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#taxonomy-and-nav"
+owner_slack: "#govuk-tax-and-nav"
 last_reviewed_on: 2018-03-05
 review_in: 3 months
 related_applications: [content-tagger]

@@ -3,7 +3,7 @@ title: Make a new document type available to search
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-02-16
 review_in: 3 months
 related_applications: [rummager]

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Check for a `gone` route
 section: Routing
 layout: manual_layout

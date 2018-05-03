@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Write an incident report
 parent: "/manual.html"
 layout: manual_layout

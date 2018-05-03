@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Get access to CI (Jenkins)
 section: Testing
 layout: manual_layout
