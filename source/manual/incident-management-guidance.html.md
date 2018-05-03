@@ -10,7 +10,7 @@ review_in: 2 months
 
 When something goes wrong on GOV.UK we follow the incident management procedure.
 
-- [So, you're having an incident](incident-what-to-do.html) 
+- [So, you're having an incident](incident-what-to-do.html)
 - [Write an incident report](incident-reports.html)
 - Hold an incident review
   - Incident reviews are a safe space to discuss and agree the root cause, remedial actions and recommendations to ensure that the incident is less likely to occur again in future. These details are recorded on the incident report.
