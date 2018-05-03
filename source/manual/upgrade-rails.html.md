@@ -1,5 +1,5 @@
 ---
-owner_slack: '#2ndline'
+owner_slack: '#govuk-2ndline'
 last_reviewed_on: 2018-04-12
 review_in: 6 months
 title: Upgrade Rails to a new version

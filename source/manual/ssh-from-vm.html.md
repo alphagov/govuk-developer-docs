@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: SSH into GOV.UK servers from the VM
 section: Development VM
 layout: manual_layout

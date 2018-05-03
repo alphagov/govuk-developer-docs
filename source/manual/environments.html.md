@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: GOV.UK's environments (integration, staging, production)
 section: Environments
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: GOV.UK and Virtual Private Networks (VPNs)
 section: Monitoring
 layout: manual_layout

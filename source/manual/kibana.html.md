@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Useful Kibana queries
 layout: manual_layout
 parent: "/manual.html"

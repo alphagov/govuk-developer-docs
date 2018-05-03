@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Graphite and deployment dashboards
 section: Tools
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout

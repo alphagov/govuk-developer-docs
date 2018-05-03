@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: 'Replaying traffic to correct an out-of-sync search index'
 parent: "/manual.html"
 layout: manual_layout

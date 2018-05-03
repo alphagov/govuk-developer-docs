@@ -1,5 +1,5 @@
 ---
-owner_slack: "#platform-health"
+owner_slack: "#govuk-platform-health"
 title: 'Assets: how they work'
 section: Assets
 layout: manual_layout
