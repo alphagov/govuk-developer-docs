@@ -1,5 +1,5 @@
 ---
-owner_slack: '#publishing-frontend'
+owner_slack: '#govuk-2ndline'
 title: Components
 section: Frontend
 layout: manual_layout
