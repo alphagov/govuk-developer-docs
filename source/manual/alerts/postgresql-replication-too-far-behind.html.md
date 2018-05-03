@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: 'PostgreSQL: replication too far behind'
 parent: "/manual.html"
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Resync a PostgreSQL standby
 section: Databases
 layout: manual_layout

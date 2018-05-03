@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Replicate application data locally for development
 section: Development VM
 layout: manual_layout

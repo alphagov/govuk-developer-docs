@@ -1,5 +1,5 @@
 ---
-owner_slack: '#platform-health'
+owner_slack: '#govuk-platform-health'
 review_by: 2017-07-26
 title: Transition a site to GOV.UK
 section: Transition

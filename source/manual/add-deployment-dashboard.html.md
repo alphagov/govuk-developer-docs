@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Add a deployment dashboard for an application
 section: Packaging
 layout: manual_layout

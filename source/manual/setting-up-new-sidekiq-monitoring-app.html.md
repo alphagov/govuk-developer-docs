@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Add sidekiq-monitoring to your application
 section: Monitoring
 layout: manual_layout

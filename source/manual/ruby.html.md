@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Add a new Ruby version
 section: Tools
 layout: manual_layout

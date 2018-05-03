@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Reprovision a machine in vCloud Director
 section: Environments
 layout: manual_layout

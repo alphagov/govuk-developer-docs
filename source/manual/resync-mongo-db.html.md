@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Resync a MongoDB database
 section: Databases
 layout: manual_layout

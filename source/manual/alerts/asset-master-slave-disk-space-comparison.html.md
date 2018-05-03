@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Asset master and slave disk space comparison
 section: Icinga alerts
 layout: manual_layout

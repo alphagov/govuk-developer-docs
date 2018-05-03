@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: ClamAV definitions out of date
 parent: "/manual.html"
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
 section: Tools
 layout: manual_layout

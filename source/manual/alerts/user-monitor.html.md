@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Check that correct users have access
 parent: "/manual.html"
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#content-api"
+owner_slack: "#govuk-2ndline"
 title: Uptime Metrics
 section: Monitoring
 layout: manual_layout

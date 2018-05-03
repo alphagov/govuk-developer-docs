@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
