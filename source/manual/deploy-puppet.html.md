@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Deploy Puppet
 section: Deployment
 layout: manual_layout

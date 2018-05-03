@@ -1,5 +1,5 @@
 ---
-owner_slack: '#2ndline'
+owner_slack: '#govuk-2ndline'
 title: Monitor sidekiq queues for your application
 section: Monitoring
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Set up Heroku review apps for pull requests
 section: Deployment
 layout: manual_layout

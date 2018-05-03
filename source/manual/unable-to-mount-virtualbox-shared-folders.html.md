@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Unable to mount VirtualBox shared folders
 section: Development VM
 layout: manual_layout

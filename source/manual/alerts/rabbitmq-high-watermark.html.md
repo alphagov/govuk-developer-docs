@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: 'RabbitMQ: high watermark has been exceeded'
 parent: "/manual.html"
 layout: manual_layout

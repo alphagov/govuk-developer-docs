@@ -3,7 +3,7 @@ title: Smoke testing with smokey
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-01-03
 review_in: 6 months
 ---

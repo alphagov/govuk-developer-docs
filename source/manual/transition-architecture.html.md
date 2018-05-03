@@ -1,5 +1,5 @@
 ---
-owner_slack: '#platform-health'
+owner_slack: '#govuk-platform-health'
 title: Transition architecture
 section: Transition
 layout: manual_layout

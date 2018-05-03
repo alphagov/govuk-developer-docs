@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Add an Icinga passive check to a Jenkins job
 section: Monitoring
 layout: manual_layout

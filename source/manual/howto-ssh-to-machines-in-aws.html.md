@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: SSH into AWS machines
 section: AWS
 layout: manual_layout

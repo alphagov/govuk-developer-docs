@@ -1,5 +1,5 @@
 ---
-owner_slack: '#platform-health'
+owner_slack: '#govuk-platform-health'
 title: Use the side-by-side browser
 section: Transition
 layout: manual_layout

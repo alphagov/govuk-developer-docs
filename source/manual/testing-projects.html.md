@@ -1,5 +1,5 @@
 ---
-owner_slack: "#2ndline"
+owner_slack: "#govuk-2ndline"
 title: Test & build a project on Jenkins CI
 section: Testing
 layout: manual_layout
