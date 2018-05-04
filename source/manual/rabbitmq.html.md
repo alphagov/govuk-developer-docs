@@ -35,18 +35,22 @@ in the `publishing-api` app.
 
 1.  Create an SSH tunnel to access the web control panel
 
-    For example for integration:
+    For Carenza environments:
 
-    > ssh rabbitmq-1.backend.integration -L 15672:127.0.0.1:15672
+    > ssh rabbitmq-1.backend.staging -L 15672:127.0.0.1:15672
+
+    For AWS environments:
+
+    > ssh $(ssh integration "govuk_node_list --single-node -c rabbitmq").integration -CNL 15672:127.0.0.1:15672
 
 2.  Log in to the web control panel
 
     Point your browser at <http://127.0.0.1:15672>
 
     The username is root. The password you can obtain from the govuk-secrets
-    repo. Look for govuk\_rabbitmq::root\_password in the file for the
+    repo if you have access. Look for govuk\_rabbitmq::root\_password in the file for the
     relevant environment in
-    <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata>
+    <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata> or <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata_aws>
 
 3.  Do your business
 4.  Tidy up
@@ -98,5 +102,7 @@ bundle exec rake queue:preview_recent_message[<document_type>]
 
 ## Connecting to your local RabbitMQ
 
-Your local RabbitMQ is running as long as your development VM is running. 
+Your local RabbitMQ is running as long as your development VM is running.
 To see the control panel go to <http://dev.gov.uk:15672>.
+
+On the development VM the credentials are just root/root.
