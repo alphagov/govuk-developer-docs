@@ -4,9 +4,12 @@ title: Upload an asset to whitehall
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-20
-review_in: 6 months
+last_reviewed_on: 2018-05-04
+review_in: 1 months
 ---
+Whitehall assets are changing - they will soon be migrated to Asset Manager.
+It's worth checking with #govuk-platform-health on the status of the work before
+trying this.
 
 Sometimes publishers ask us to help them upload very large attachments to
 documents in whitehall because they see timeouts when they try to upload the
