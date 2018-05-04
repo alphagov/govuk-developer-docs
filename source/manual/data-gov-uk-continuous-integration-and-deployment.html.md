@@ -50,4 +50,4 @@ The account is free and unverified. This means there’s a limit of 5 review app
 
 Zendesk support tickets and Sentry are disabled for Heroku apps.
 
-Heroku is pointing at our Elasticsearch instance on AWS called `wombles`. It’s worth periodically re-importing and reindexing `wombles` to ensure that the review apps are reflecting the current state of the apps.
+Heroku is pointing at a Heroku addon for Elasticsearch.
