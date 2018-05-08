@@ -4,7 +4,7 @@ title: SSH into AWS machines
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-14
+last_reviewed_on: 2018-05-03
 review_in: 2 months
 ---
 
@@ -76,3 +76,9 @@ the traditional way:
 You may also use the node class to select a random node:
 
 `govukcli ssh calculators_frontend`
+
+### Troubleshooting
+
+Sometimes you might try to ssh into a server and nothing happens, double check that you added the key into the keychain like so: `ssh-add -K ~/.ssh/id_rsa`.
+
+If that doesn't work run `GOVUKCLI_OUTPUT=debug govukcli ssh backend`
