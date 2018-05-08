@@ -12,12 +12,15 @@ review_in: 3 months
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
 [infrastructure]: https://github.com/alphagov/datagovuk_infrastructure
+[signon]: manual/manage-sign-on-accounts
 
-Most of the service is hosted on [GOV.UK PaaS][paas], which divides components in applications (eg Rails apps) and services (databases, messaging services, etc). All applications and services are controlled through cloudfoundry, as used by [GOV.UK PaaS][paas]. Some familiarity with that documentation will be useful to read this manual.
+## Environments
+
+We have three environments: integration, staging ("test") and production. See the [CI docs](manual/data-gov-uk-continuous-integration-and-deployment) for more information about each environment.
 
 ## Applications
 
-> These are Cloudfoundry applications, show in blue above.
+Most of the service is hosted on [GOV.UK PaaS][paas], which divides components into applications (eg Rails apps) and services (databases, messaging services, etc). All applications and services are controlled through cloudfoundry, as used by [GOV.UK PaaS][paas]. Some familiarity with that documentation will be useful to read this manual.
 
 ### Legacy DGU
 
@@ -48,16 +51,13 @@ To run the task manually you can do the following on [staging](#staging-environm
 
 ## Services
 
-> These are Cloudfoundry services, shown in red above.
+### GOV.UK Signon
 
-| Name | Description | Apps bound |
-| ---- | ----------- | ---------- |
-| beta-production-elasticsearch | The elasticsearch server | publish-data-beta-worker, publish-data-beta, find-data-beta |
-| publish-beta-production-pg | The pg database for Publish | publish-data-beta-worker, publish-data-beta |
-| publish-production-secrets | User-provided service. Provides env variables to Publish | publish-data-beta-worker, publish-data-beta |
-| find-production-secrets | User-provided service. Provides secrets as env variables to Find | find-data-beta |
-| beta-dgu-route | cdn-route. Routes beta.data.gov.uk to find-data-beta | |
-| logit-ssl-drain | TBC | All apps |
+We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish], with the app in each environment linked to the corresponding instance of [GOV.UK Signon][signon].
+
+The organisations in the [Publish Data][publish] database have a `govuk_content_id` field to map them to [GOV.UK Signon][signon] organisations.
+
+If no organisation can be found for a user (e.g. if no mapping exists), the app will fail.
 
 ### Postgres
 
@@ -72,7 +72,7 @@ The `VCAP_SERVICES` environment variable contains the credentials to connect to 
 
 This is a “cdn-route” [PaaS](paas) service that proxies the `beta.data.gov.uk host` name to the [Find Data][find] application.
 
-### “Secrets” services
+### Secrets
 
 There are two “user-provided” services (`find-production-secrets` and `publish-production-secrets`) that are used by [Publish Data][publish] and [Find Data][find] to get access to environment variables, some of which contain secrets such as API keys. Those variables are found in the `VCAP_SERVICES` environment variable for [Publish Data][publish] and [Find Data][find]. The value of those variables is set and encrypted in the [datagovuk_infrastructure][infrastructure] repository, and cloudfoundry is used to deploy the service when they’re modified.
 
@@ -90,13 +90,11 @@ To navigate to the console:
 
 Look for instances called `redis-staging` and `redis-production`.
 
-## Staging environment
-
-All applications and services above (with the exception of `beta-dgu-route`) have both staging and production environments. For instance, [Find Data][find] is `find-data-beta` and `find-data-beta-staging`.
-
 ## Monitoring
 
 The [Publish Data][publish] and [Find Data][find] applications are monitored by Pingdom.
+
+You can monitor Sidekiq jobs for [Publish Data][publish] by going to `/sidekiq` on the website.
 
 We use Sentry to monitor errors, the URLs for which can be found on the app pages in this documentation. Both [Publish Data][publish] and [Find Data][find] look for an environment variable called `SENTRY_DSN` (provided by the [Secrets services](#secrets-services)) which contains the URL which messages should be sent on sentry.io. Members of the data.gov.uk group on Sentry will receive an email in case of errors.
 
