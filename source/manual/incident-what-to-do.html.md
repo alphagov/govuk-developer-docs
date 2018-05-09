@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: So, you're having an incident
 parent: "/manual.html"
 layout: manual_layout
-section: Incidents
+section: 2nd line
 last_reviewed_on: 2018-04-11
 review_in: 2 months
 ---
