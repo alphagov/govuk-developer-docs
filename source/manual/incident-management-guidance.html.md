@@ -18,7 +18,7 @@ When something goes wrong on GOV.UK we follow the incident management procedure.
   - Who attends and contributes:
     * Those involved in handling the incident (core participants). 
     * Those who may have insight into the problem i.e. other GOV.UK developers.
-    * Guests are welcome to observe the incident review if they let review facilitator know in advance of the session.
+    * Guests are welcome to observe the incident review if they let the review facilitator know in advance of the session.
 
 - [GOV.UK blogposts on Priority 1 and Priority 2 incidents](https://insidegovuk.blog.gov.uk/category/incident-reports/)
 
