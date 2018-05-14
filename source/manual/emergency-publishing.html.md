@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2018-03-05
+last_reviewed_on: 2018-05-14
 review_in: 3 months
 ---
 
@@ -32,32 +32,7 @@ The GOV.UK on-call escalations contact will supply you with:
 - (Optional) Link text that will be displayed for the more information URL (this will
   default to "More information" if you do not supply it).
 
-<a name="set-up-fabric"></a>
-### 2. Set up your Fabric scripts
-
-If you've not used them before, you'll need to clone [fabric-scripts](https://github.com/alphagov/fabric-scripts) and follow the setup instructions in the fabric-scripts README.
-
-1) Make sure your copy of fabric-scripts is up to date and on master.
-
-2) Activate your virtual environment for the Fabric scripts if you have set one up. If you have followed the setup guide for the Fabric scripts, this will be:
-
-```
-$ . ~/venv/fabric-scripts/bin/activate
-```
-
-3) Pick your environment, which can be `integration`, `staging`, or `production`. For example, for integration:
-
-```
-export environment=integration
-```
-> **NOTE:** You must remember to [unset your Fabric environment variable](#unset-your-environment-variable-and-deactivate-your-virtual-environment) once you have finished running your tasks.
-
-4) If you'd like to double check the environment you have set:
-```
-echo $environment
-```
-
-### 3. Deploy the banner using Jenkins
+### 2. Deploy the banner using Jenkins
 
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
@@ -72,27 +47,10 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
-<a name="clear-template-cache"></a>
-### 4. Clear caching in frontend, static and whitehall-frontend
-
-1) Run the Fabric task to clear the application template cache for frontend and
-static:
-
-```
-fab $environment campaigns.clear_cached_templates
-```
-
-2) Clear the cache for whitehall-frontend and frontend by restarting memcached:
-
-```
-fab $environment class:whitehall_frontend app.restart:memcached
-fab $environment class:frontend app.restart:memcached
-```
-
-> **NOTE:** The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
+> **NOTE:** The jenkins job will also clear all caches.  The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
 
 <a name="test-with-cache-bust"></a>
-### 5. Test with cache bust strings
+### 3. Test with cache bust strings
 
 Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
@@ -111,55 +69,20 @@ a national emergency, green for a local emergency.
 
 If the banner doesn't show [look at the troubleshooting chapter](#the-banner-is-not-showing--not-clearing)
 
-<a name="purge-origin-cache"></a>
-### 6. Purge the caches and test again
+If you are in production environment, once the origin cache is purged the CDN cache will be purged automatically. This will clear cache for the top 10 most visited pages.
 
-1) Purge our entire origin cache:
-
-```
-fab $environment class:cache cache.ban_all
-```
-
-2) If you are in production environment, once the origin cache is purged, purge the CDN cache. At the time of writing, this can only be done one item at a time, and doesn’t work in staging or integration.
-
-You can do so by giving a list of comma separated url paths, the following is a list of the 10 most used pages:
-
-```
-fab $environment class:cache cdn.fastly_purge:/,/search,/state-pension-age,/jobsearch,/vehicle-tax,/government/organisations/hm-revenue-customs,/government/organisations/companies-house,/get-information-about-a-company,/check-uk-visa,/check-vehicle-tax
-```
-
-See [these instructions for more details](/manual/cache-flush.html) on purging the cache.
-
-3) Check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
+Once all caches have had time to clear, check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
 
 - [https://www.gov.uk/](https://www.gov.uk/) ([Staging](https://www-origin.staging.publishing.service.gov.uk/))
 - [https://www.gov.uk/financial-help-disabled](https://www.gov.uk/financial-help-disabled) ([Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled))
 - [https://www.gov.uk/government/organisations/hm-revenue-customs](https://www.gov.uk/government/organisations/hm-revenue-customs) ([Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs))
 - [https://www.gov.uk/search](https://www.gov.uk/search) ([Staging](https://www-origin.staging.publishing.service.gov.uk/search))
 
-<a name="unset-env-var"></a>
-### 7. Unset your environment variable and deactivate your virtual environment
-
-1) Remember to unset your Fabric environment variable:
-
-```
-unset environment
-```
-
-2) Deactivate your virtual environment:
-
-```
-deactivate
-```
 ---
 
 ## Removing emergency publishing banners
 
-### 1. Set up your Fabric scripts
-
-Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
-
-### 2. Remove the banner using Jenkins
+### Remove the banner using Jenkins
 
 1) Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
 
@@ -170,14 +93,7 @@ Follow the instructions above to [set up your Fabric scripts](#set-up-fabric)
 
 ![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
 
-### 3. Clear application caches and restart Whitehall
-
-Follow the instructions above to
-
-- [Clear the application template cache and reload Whitehall](#clear-template-cache)
-- [Test with cache bust strings](#test-with-cache-bust)
-- [Purge the caches and test again](#purge-origin-cache)
-- [Unset your environment variable](#unset-env-var)
+Caches will clear automatically.
 
 > HELP, the banner won't go away. Try out some handy [hints and
 > tips](#the-banner-is-not-showing--not-clearing)
