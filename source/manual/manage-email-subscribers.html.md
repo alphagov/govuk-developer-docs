@@ -8,7 +8,14 @@ last_reviewed_on: 2018-05-03
 review_in: 6 months
 ---
 
-The following rake tasks should be run using the Jenkins `Run rake task` job for ease-of-use:
+Managing email subscribers can be done via the administration
+interface on GOV.UK. Support tickets coming through to 2ndline where
+the user is unaware of this, or needs guidance can be assigned to "2nd
+Line--User Support Escalation".
+
+If it is not possible for changes to be managed by the user, it is
+possible for changes to be made manually. The following rake tasks
+should be run using the Jenkins `Run rake task` job for ease-of-use:
 
 ## Change a subscriber's email address
 
