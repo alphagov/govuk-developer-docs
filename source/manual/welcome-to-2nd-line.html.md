@@ -18,7 +18,7 @@ Your main responsibility is to respond to alerts. You’ll be set up in PagerDut
 
 Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, talk to your fellow 2nd liner and the DM to make sure you’re covered.   
 
-You do not need to be at the 2nd line desks all the time. If you have meetings to attend then attend them. Please let the delivery manager and the team know know if you need to work from home and/or when you'll be away for long periods and be respectful of the amount of work your colleagues may have to pick up while you're away. If there are lots of alerts, you'll need to prioritise 2nd line above your meetings. 
+You do not need to be at the 2nd line desks all the time. If you have meetings to attend then attend them. Please let the delivery manager and the team know if you need to work from home and/or when you'll be away for long periods and be respectful of the amount of work your colleagues may have to pick up while you're away. If there are lots of alerts, you'll need to prioritise 2nd line above your meetings. 
 
 ## Shift changes and sickness
 
