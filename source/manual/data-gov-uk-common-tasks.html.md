@@ -142,7 +142,7 @@ export CF_PASSWORD="your PaaS password"
 ```
 > Note that if your password contains exclamation marks, you'll need to escape them with `\` e.g. `export CF_PASSWORD="foo \! Bar"``
 
-* Make sure your gpg key is in the repository. Check [blackbox-admins.txt](https://github.com/alphagov/datagovuk_infrastructure/blob/master/keyrings/live/blackbox-admins.txt). If they’re not, ask the team’s Tech Lead.
+* Make sure your GPG key is in the repository, use [this guide to create a gpg key](https://docs.publishing.service.gov.uk/manual/create-a-gpg-key.html) if you don't have one. Check [blackbox-admins.txt](https://github.com/alphagov/datagovuk_infrastructure/blob/master/keyrings/live/blackbox-admins.txt). If they’re not, ask the team’s Tech Lead.
 
 ### Change variables
 
