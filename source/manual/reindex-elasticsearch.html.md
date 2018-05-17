@@ -4,7 +4,7 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-27
+last_reviewed_on: 2018-05-17
 review_in: 3 months
 related_applications: [rummager]
 ---
