@@ -4,7 +4,7 @@ title: RabbitMQ
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-08
+last_reviewed_on: 2018-05-17
 review_in: 6 months
 ---
 
@@ -37,11 +37,15 @@ in the `publishing-api` app.
 
     For Carenza environments:
 
-    > ssh rabbitmq-1.backend.staging -L 15672:127.0.0.1:15672
+    ```bash
+    $ ssh rabbitmq-1.backend.staging -L 15672:127.0.0.1:15672
+    ```
 
     For AWS environments:
 
-    > ssh $(ssh integration "govuk_node_list --single-node -c rabbitmq").integration -CNL 15672:127.0.0.1:15672
+    ```bash
+    $ ssh $(ssh integration "govuk_node_list --single-node -c rabbitmq").integration -CNL 15672:127.0.0.1:15672
+    ```
 
 2.  Log in to the web control panel
 
@@ -96,8 +100,8 @@ publishing API app to allow us to easily generate example messages. The example
 message is generated from the most recently published message (based off of
 last public_updated_at) for the entered document type:
 
-```
-bundle exec rake queue:preview_recent_message[<document_type>]
+```bash
+$ bundle exec rake queue:preview_recent_message[<document_type>]
 ```
 
 ## Connecting to your local RabbitMQ
