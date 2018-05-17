@@ -49,7 +49,7 @@ correctly.
 To monitor progress, SSH to an Elasticsearch box with port-forwarding:
 
 ```
-ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging
+ssh rummager-elasticsearch-1.api.staging -CNL 9200:127.0.0.1:9200
 ```
 
 Then visit <http://localhost:9200/_plugin/head/> to check how many documents have
