@@ -13,7 +13,11 @@ you will require an account in AWS.
 
 ## GDS central users account
 
-GDS maintains a central account for AWS access. Please see the [guidance]() for further information.
+GDS maintains a central account for AWS access. You will receive an email when you are added to this account. To sign in, go to [the gds-users account page](https://gds-users.signin.aws.amazon.com/console), and use the following credentials:
+
+- Account ID or alias: "gds-users"
+- Username: your Cabinet Office email address
+- Password: your password
 
 Ensure that you create both [MFA](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication)
 and [access keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) once
