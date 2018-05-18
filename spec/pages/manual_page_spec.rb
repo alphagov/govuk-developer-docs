@@ -32,7 +32,8 @@ Dir.glob("source/manual/**/*.md").each do |filename|
       source/manual/howto-merge-a-pull-request-from-an-external-contributor.html.md
     ])
       it "doesn't use H1 tags (the page title is already an H1)" do
-        expect(raw).not_to match(/\n#\s/)
+        expect(raw).not_to match(/\n#\s/), "This page contains an unnecessary H1." \
+          " This may have been triggered because of a # comment in a code block"
       end
     end
   end
