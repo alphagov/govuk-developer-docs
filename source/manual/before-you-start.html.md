@@ -20,7 +20,7 @@ Most alerts have some documentation in our [developer docs](https://docs.publish
 
 
 ## Zendesk
-[Zendesk](https://govuk.zendesk.com) is our support ticketing system. Make sure you can sign in. This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1mUnkONOrto2SKRKAO6JnnSUHRLsMy4eZEoq75BGxC6E/edit?usp=sharing). 
+[Zendesk](https://govuk.zendesk.com) is our support ticketing system. Request an account at: www.gov.uk/support/internal (Signon access required - speak to your fellow 2nd Liners if you haven't got this).  This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1mUnkONOrto2SKRKAO6JnnSUHRLsMy4eZEoq75BGxC6E/edit?usp=sharing). 
 
 ## PagerDuty
 This is our escalation workflow for some key alerts that are likely to require urgent attention. When an alert that triggers pager duty goes off we require one of the 2nd line to acknowledge them, otherwise they will be escalated further. The sort of issues which would generate pagerduty are for key aspects of the site becoming unavailable or a large quantity of error pages served. 
