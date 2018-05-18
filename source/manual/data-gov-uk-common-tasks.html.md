@@ -229,8 +229,6 @@ Although the general policy is not to delete datasets, datasets that are harvest
 
 ```
 cf ssh publish-data-beta-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
-# Delete one dataset
 echo "UUID" | rake delete:datasets
-# Delete many datasets
 cat todelete.csv | rake delete:datasets
 ```
