@@ -4,8 +4,8 @@ title: Transition architecture
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-16
-review_in: 2 months
+last_reviewed_on: 2018-05-18
+review_in: 3 months
 related_applications: [bouncer, transition]
 ---
 
