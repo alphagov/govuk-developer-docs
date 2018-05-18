@@ -40,6 +40,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
   - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
   - [Deploy the emergency banner on Staging](https://deploy.staging.publishing.service.gov.uk/job/deploy-emergency-banner/)
+  - [⚠️ Deploy the emergency banner on Production ⚠️](https://deploy.publishing.service.gov.uk/job/deploy-emergency-banner/)
 
 2) Fill in the appropriate variables using the form presented by Jenkins
 
@@ -88,6 +89,7 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
   - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
   - [Remove the emergency banner from Staging](https://deploy.staging.publishing.service.gov.uk/job/remove-emergency-banner/)
+  - [Remove the emergency banner from Production](https://deploy.publishing.service.gov.uk/job/remove-emergency-banner/)
 
 2) Click `Build now` in the left hand menu.
 
