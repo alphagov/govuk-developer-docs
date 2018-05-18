@@ -57,16 +57,19 @@ Test the changes by visiting pages and adding a cache-bust string. Remember to c
 
 You can automate this by using the [emergency publishing scraper](https://github.com/alphagov/emergency-publishing-scraper)
 
-- [https://www.gov.uk/?ae00e491](https://www.gov.uk/?ae00e491) ([Integration](https://www-origin.integration.publishing.service.gov.uk/?ae00e491), [Staging](https://www-origin.staging.publishing.service.gov.uk/?ae00e491))
-- [https://www.gov.uk/financial-help-disabled?7f7992eb](https://www.gov.uk/financial-help-disabled?7f7992eb) ([Integration](https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled?7f7992eb), [Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled?7f7992eb))
-- [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527) ([Integration](https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527), [Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527))
-- [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Integration](https://www-origin.integration.publishing.service.gov.uk/search?q=69b197b8), [Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8))
+For each page:
 
 - Check the banner displays as expected
 - Double check the information for the header, short description and link are as they should be
 - Test the link if it is present
-- Make sure the banner colour is appropriate - black for a notable death, red for
-a national emergency, green for a local emergency.
+- Make sure the banner colour is appropriate - black for a notable death, red for a national emergency, green for a local emergency.
+
+Some example pages to check:
+
+- [https://www.gov.uk/?ae00e491](https://www.gov.uk/?ae00e491) ([Integration](https://www-origin.integration.publishing.service.gov.uk/?ae00e491), [Staging](https://www-origin.staging.publishing.service.gov.uk/?ae00e491))
+- [https://www.gov.uk/financial-help-disabled?7f7992eb](https://www.gov.uk/financial-help-disabled?7f7992eb) ([Integration](https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled?7f7992eb), [Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled?7f7992eb))
+- [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527) ([Integration](https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527), [Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527))
+- [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Integration](https://www-origin.integration.publishing.service.gov.uk/search?q=69b197b8), [Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8))
 
 If the banner doesn't show [look at the troubleshooting chapter](#the-banner-is-not-showing--not-clearing)
 
