@@ -40,6 +40,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
   - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
   - [Deploy the emergency banner on Staging](https://deploy.staging.publishing.service.gov.uk/job/deploy-emergency-banner/)
+  - [Deploy the emergency banner on Production](https://deploy.publishing.service.gov.uk/job/deploy-emergency-banner/)
 
 2) Fill in the appropriate variables using the form presented by Jenkins
 
@@ -56,10 +57,10 @@ Test the changes by visiting pages and adding a cache-bust string. Remember to c
 
 You can automate this by using the [emergency publishing scraper](https://github.com/alphagov/emergency-publishing-scraper)
 
-- [https://www.gov.uk/?ae00e491](https://www.gov.uk/?ae00e491) ([Staging](https://www-origin.staging.publishing.service.gov.uk/?ae00e491))
-- [https://www.gov.uk/financial-help-disabled?7f7992eb](https://www.gov.uk/financial-help-disabled?7f7992eb) ([Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled?7f7992eb))
-- [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527) ([Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527))
-- [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8))
+- [https://www.gov.uk/?ae00e491](https://www.gov.uk/?ae00e491) ([Staging](https://www-origin.staging.publishing.service.gov.uk/?ae00e491)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/?ae00e491))
+- [https://www.gov.uk/financial-help-disabled?7f7992eb](https://www.gov.uk/financial-help-disabled?7f7992eb) ([Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled?7f7992eb)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled?7f7992eb))
+- [https://www.gov.uk/government/organisations/hm-revenue-customs?49854527](https://www.gov.uk/government/organisations/hm-revenue-customs?49854527) ([Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527))
+- [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/search?q=69b197b8))
 
 - Check the banner displays as expected
 - Double check the information for the header, short description and link are as they should be
@@ -73,10 +74,10 @@ If you are in production environment, once the origin cache is purged the CDN ca
 
 Once all caches have had time to clear, check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
 
-- [https://www.gov.uk/](https://www.gov.uk/) ([Staging](https://www-origin.staging.publishing.service.gov.uk/))
-- [https://www.gov.uk/financial-help-disabled](https://www.gov.uk/financial-help-disabled) ([Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled))
-- [https://www.gov.uk/government/organisations/hm-revenue-customs](https://www.gov.uk/government/organisations/hm-revenue-customs) ([Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs))
-- [https://www.gov.uk/search](https://www.gov.uk/search) ([Staging](https://www-origin.staging.publishing.service.gov.uk/search))
+- [https://www.gov.uk/](https://www.gov.uk/) ([Staging](https://www-origin.staging.publishing.service.gov.uk/)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/))
+- [https://www.gov.uk/financial-help-disabled](https://www.gov.uk/financial-help-disabled) ([Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled))
+- [https://www.gov.uk/government/organisations/hm-revenue-customs](https://www.gov.uk/government/organisations/hm-revenue-customs) ([Staging](https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs))
+- [https://www.gov.uk/search](https://www.gov.uk/search) ([Staging](https://www-origin.staging.publishing.service.gov.uk/search)) ([Integration](https://www-origin.integration.publishing.service.gov.uk/search))
 
 ---
 
@@ -88,6 +89,7 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
   - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
   - [Remove the emergency banner from Staging](https://deploy.staging.publishing.service.gov.uk/job/remove-emergency-banner/)
+  - [Remove the emergency banner from Production](https://deploy.publishing.service.gov.uk/job/remove-emergency-banner/)
 
 2) Click `Build now` in the left hand menu.
 
