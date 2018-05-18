@@ -60,7 +60,7 @@ Once set-up on [PaaS][paas] and bound to [Publish Data][publish] and [Find Data]
 To repopulate the index with dataset metadata:
 
 * From a PaaS backup: ask [PaaS support](/manual/data-gov-uk-incidents#data-loss).
-* From a Legacy dataset dump: use the `search:reindex` task in [Publish Data][publish].  
+* From a Legacy dataset dump: use the `search:reindex` task in [Publish Data][publish]. You can specify a batch size as an argument `search:reindex[100]`, the default is 50.
 
 
 ### Redis
@@ -198,3 +198,39 @@ server {
 ```
 
 * Restart nginx: `sudo /etc/service/nginx restart`
+
+## Re-importing a single dataset from CKAN
+
+Occassionally a single dataset fails to synchronise from CKAN to Publish Data.  If you know the legacy slug, or the UUID of the dataset you can use the following commands to import it into publish.
+
+```
+cf ssh publish-data-beta-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
+rake import:single_legacy_dataset[UUID]
+```
+
+Make sure to replace UUID with the actual UUID or legacy slug.
+
+## Re-importing a whole organisation's datasets
+
+If an organisation harvests many datasets, and they fail to synchronise, you may need to reimport them all
+if they fall outside the 24 hour window that is used to check for changes.  You can reimport an entire
+organisations datasets if you know the short-name (slug) for the organisation
+
+```
+cf ssh publish-data-beta-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
+rake import:organisation_datasets[organisation-slug,true]
+```
+
+The boolean option to the command denotes whether you with to delete the existing entries first, or just fetch and update the datasets for that organisation.  Unfortunately this command is not atomic as entries are deleted from the search index and from the database, so should be used with care and only as a last resort.
+
+## Deleting datasets
+
+Although the general policy is not to delete datasets, datasets that are harvested can be withdrawn in the legacy system.  If they are withdrawn, then they also need to be deleted from Publish as it does not currently sync deletions. You will either need a CSV containing a list of UUIDs (or legacy slugs), or a single UUID (or legacy slug).
+
+```
+cf ssh publish-data-beta-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
+# Delete one dataset
+echo "UUID" | rake delete:datasets
+# Delete many datasets
+cat todelete.csv | rake delete:datasets
+```
