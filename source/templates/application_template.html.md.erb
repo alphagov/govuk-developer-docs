@@ -64,7 +64,9 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 </ul>
 
 <h3>SSH access</h3>
-<% if application.datagovuk_app? %>
+<% if application.pending_hosting? %>
+  This application's hosting arrangements are not yet complete
+<% elsif application.datagovuk_app? %>
   This applications lives on [GOV.UK PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas).
 <% else %>
   This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.

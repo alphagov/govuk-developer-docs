@@ -157,7 +157,11 @@ class AppDocs
     end
 
     def datagovuk_app?
-      team == "#datagovuk-tech"
+      team == "#govuk-datagovuk-tech"
+    end
+
+    def pending_hosting?
+      github_repo_name == 'ckanext-datagovuk'
     end
 
   private
