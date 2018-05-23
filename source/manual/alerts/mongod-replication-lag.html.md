@@ -4,7 +4,7 @@ title: mongod replication lag
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-12-01
+last_reviewed_on: 2018-05-17
 review_in: 6 months
 ---
 
@@ -13,7 +13,7 @@ review_in: 6 months
 There is a Fabric task to show various MongoDB replication status
 information.:
 
-    fab <environment> -H mongo-?.backend mongo.status
+    fab <environment> -H api-mongo-[n].api mongo.status
 
 -   The `db.printReplicationInfo()` section shows where the primary
     node's
@@ -28,7 +28,7 @@ information.:
 
 -   Try restarting one of the lagging mongod secondaries:
 
-        fab <environment> -H mongo-?.backend app.restart:mongodb
+        fab <environment> -H api-mongo-[n].api app.restart:mongodb
 
 This may restart replication on that node, and also cause the other
 lagging node to resync with the primary node and restart its own
@@ -36,5 +36,5 @@ replication.
 
 -   If restarting doesn't solve the problem force a resync with Fabric:
 
-        fab <environment> -H mongo-?.backend mongo.force_resync
+        fab <environment> -H api-mongo-[n].api mongo.force_resync
 
