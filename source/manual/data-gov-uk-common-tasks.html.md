@@ -142,7 +142,7 @@ export CF_PASSWORD="your PaaS password"
 ```
 > Note that if your password contains exclamation marks, you'll need to escape them with `\` e.g. `export CF_PASSWORD="foo \! Bar"``
 
-* Make sure your gpg key is in the repository. Check [blackbox-admins.txt](https://github.com/alphagov/datagovuk_infrastructure/blob/master/keyrings/live/blackbox-admins.txt). If they’re not, ask the team’s Tech Lead.
+* Make sure your GPG key is in the repository, use [this guide to create a gpg key](https://docs.publishing.service.gov.uk/manual/create-a-gpg-key.html) if you don't have one. Check [blackbox-admins.txt](https://github.com/alphagov/datagovuk_infrastructure/blob/master/keyrings/live/blackbox-admins.txt). If they’re not, ask the team’s Tech Lead.
 
 ### Change variables
 
@@ -152,8 +152,8 @@ The encrypted file containing the variables is called `terraform.tfvars.json.gpg
 2. Use your text editor to add, remove or change the value of variables in `terraform.tfvars.json`
 3. Run `terraform apply` to send the new values to [PaaS][paas]. The first time you run this it will ask you to do `terraform init`. This will first ask you to check the changes, then it will update the variables made available to all the PaaS apps through the `-secrets` PaaS services.
 4. Save your changes and reencrypt the files: `blackbox_edit_end terraform.tfvars.json.gpg terraform.tfstate.gpg`
-5. Commit your changes in a new branch: `git commit -m"gpg files updated" terraform.tfvars.json.gpg terraform.tfstate.gpg`
-7. Get someone to approve the changes and merge to master.
+5. Commit your changes in a new branch: `git commit -m "GPG files updated" terraform.tfvars.json.gpg terraform.tfstate.gpg`
+6. Get someone to approve the changes and merge to master.
 
 If Terraform finds that the state of the running services are different from what is specified in the `.tf` files (for instance if an Elasticsearch service has crashed), it will recreate them from the `.tf` files when you run `terraform apply`.
 
@@ -168,7 +168,10 @@ To remove an admin:
 1. Go to the home directory of the [infrastructure][infrastructure] repo.
 2. Check the email address to remove with `GPG=gpg2 blackbox_listadmins`
 3. Run `GPG=gpg2 blackbox_removeadmin <email-address>`
-4. Commit the modified files `blackbox-admins.txt` and `pubring.kbx`
+6. Run `blackbox_decrypt_all_files`.
+7. Re-encrypt the files without the old admin's GPG key: `blackbox_edit_end terraform.tfvars.json.gpg terraform.tfstate.gpg`
+8. Commit the modified files `blackbox-admins.txt`, `pubring.kbx`, `terraform.tfvars.json.gpg` and `terraform.tfstate.gpg`
+9. Get someone to approve the changes and merge to master.
 
 To add an admin:
 
@@ -177,7 +180,10 @@ To add an admin:
 3. Import it in your keyring: `gpg2 --import < pubkey.asc`
 4. `GPG=gpg2 blackbox_addadmin <email-address>`
 5. Check with `GPG=gpg2 blackbox_listadmins`
-6. Commit the modified files `blackbox-admins.txt` and `pubring.kbx`
+6. Run `blackbox_decrypt_all_files`.
+7. Re-encrypt the files with the new GPG key: `blackbox_edit_end terraform.tfvars.json.gpg terraform.tfstate.gpg`
+8. Commit the modified files `blackbox-admins.txt`, `pubring.kbx`, `terraform.tfvars.json.gpg` and `terraform.tfstate.gpg`
+9. Get someone to approve the changes and merge to master.
 
 ## Scale the application
 
