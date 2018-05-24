@@ -210,7 +210,7 @@ server {
 Occassionally a single dataset fails to synchronise from CKAN to Publish Data.  If you know the legacy slug, or the UUID of the dataset you can use the following commands to import it into publish.
 
 ```
-cf ssh publish-data-beta-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
+cf ssh publish-data-beta-production-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
 rake import:single_legacy_dataset[UUID]
 ```
 
@@ -223,7 +223,7 @@ if they fall outside the 24 hour window that is used to check for changes.  You 
 organisations datasets if you know the short-name (slug) for the organisation
 
 ```
-cf ssh publish-data-beta-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
+cf ssh publish-data-beta-production-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
 rake import:organisation_datasets[organisation-slug,true]
 ```
 
@@ -234,7 +234,7 @@ The boolean option to the command denotes whether you with to delete the existin
 Although the general policy is not to delete datasets, datasets that are harvested can be withdrawn in the legacy system.  If they are withdrawn, then they also need to be deleted from Publish as it does not currently sync deletions. You will either need a CSV containing a list of UUIDs (or legacy slugs), or a single UUID (or legacy slug).
 
 ```
-cf ssh publish-data-beta-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
+cf ssh publish-data-beta-production-worker -t -c "/tmp/lifecycle/launcher /home/vcap/app bash ''"
 echo "UUID" | rake delete:datasets
 cat todelete.csv | rake delete:datasets
 ```
