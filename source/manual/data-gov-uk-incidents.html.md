@@ -90,7 +90,7 @@ If you see that Find doesn’t update with either manual or harvested changes ma
 Check if the Redis server is working. SSH into it and run `redis-cli`. Look at the Graphite dashboard and restart the server if need be. If you suspect changes were lost:
 
 * For change over 24 hours old, [reimport all datasets](/manual/data-gov-uk-common-tasks.html#import-data-from-legacy) from a daily dump.
-* For changes less than 24 hours old, hit the legacy-sync API by going to [](https://publish-data-beta.cloudapps.digital/api/sync-beta).
+* For changes less than 24 hours old, hit the legacy-sync API by going to [](https://publish-data-beta-production.cloudapps.digital/api/sync-beta).
 
 ## Elasticsearch goes down
 
