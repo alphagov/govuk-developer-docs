@@ -40,7 +40,7 @@ This is a rails worker used to fetch data from legacy. It uses Redis to queue im
 
 The way data is normally imported from legacy is:
 
-* Every hour, pingdom GETs https://publish-data-beta.cloudapps.digital/api/sync-beta
+* Every hour, pingdom GETs https://publish-data-beta-production.cloudapps.digital/api/sync-beta
 * This runs the `sync:beta` Rails task that queries the Legacy API for new and updated datasets
 * Changes are reflected in the Publish database and pushed to elasticsearch
 
