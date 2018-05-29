@@ -4,7 +4,7 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-27
+last_reviewed_on: 2018-05-17
 review_in: 3 months
 related_applications: [rummager]
 ---
@@ -49,7 +49,13 @@ correctly.
 To monitor progress, SSH to an Elasticsearch box with port-forwarding:
 
 ```
-ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging
+ssh rummager-elasticsearch-1.api.staging -CNL 9200:127.0.0.1:9200
+```
+
+#### On AWS
+
+```
+ssh $(ssh integration "govuk_node_list --single-node -c rummager_elasticsearch").integration -CNL 9200:127.0.0.1:9200
 ```
 
 Then visit <http://localhost:9200/_plugin/head/> to check how many documents have
