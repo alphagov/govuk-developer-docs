@@ -4,7 +4,7 @@ title: Monitor your app during deployment
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-14
+last_reviewed_on: 2018-05-21
 review_in: 6 months
 ---
 
