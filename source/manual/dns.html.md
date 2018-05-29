@@ -4,7 +4,7 @@ title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-22
+last_reviewed_on: 2018-05-13
 review_in: 6 months
 ---
 
