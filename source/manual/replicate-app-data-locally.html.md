@@ -4,7 +4,7 @@ title: Replicate application data locally for development
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-22
+last_reviewed_on: 2018-05-23
 review_in: 6 months
 ---
 
