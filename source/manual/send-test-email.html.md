@@ -4,7 +4,7 @@ title: Send a test email via Notify
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-01
+last_reviewed_on: 2018-05-25
 review_in: 6 months
 ---
 
@@ -22,4 +22,4 @@ To send a test email using the dev VM you will need to follow these steps;
 $ bundle exec rake deliver:to_test_email[$TEST_EMAIL] GOVUK_NOTIFY_API_KEY=$KEY GOVUK_NOTIFY_TEMPLATE_ID=$ID
 ```
 
-Your mail box should now have recieved the email.
+Your mail box should now have received the email.
