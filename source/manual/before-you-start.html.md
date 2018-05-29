@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Before you start 
+title: Before you start on 2nd line  
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
