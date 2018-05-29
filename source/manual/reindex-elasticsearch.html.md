@@ -52,6 +52,12 @@ To monitor progress, SSH to an Elasticsearch box with port-forwarding:
 ssh rummager-elasticsearch-1.api.staging -CNL 9200:127.0.0.1:9200
 ```
 
+#### On AWS
+
+```
+ssh $(ssh integration "govuk_node_list --single-node -c rummager_elasticsearch").integration -CNL 9200:127.0.0.1:9200
+```
+
 Then visit <http://localhost:9200/_plugin/head/> to check how many documents have
 been copied to the new index.
 
