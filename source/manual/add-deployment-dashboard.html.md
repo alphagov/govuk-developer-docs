@@ -4,7 +4,7 @@ title: Add a deployment dashboard for an application
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-14
+last_reviewed_on: 2018-05-27
 review_in: 6 months
 ---
 
@@ -63,16 +63,16 @@ The list of applications that have dashboards generated is stored in the [hiera]
 
 Each dashboard can have parameters associated with it which effect how the dashboard is generated.
 
-Params:
+Parameters:
 
-- has_workers: This adds a row with workers failure and success panels, this is required for applications that have sidekiq workers. This is `false` by default.
+- `has_workers`: This adds a row with workers failure and success panels, this is required for applications that have sidekiq workers. This is `false` by default.
 
-- show_controller_errors: Adds a row which graphs 5XX responses broken down by Rails controller and action. For this graph to contain data, the application must report response statuses to Kibana as `@fields.status`, and also report the controller and action as `@fields.controller` and `@fields.action`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
+- `show_controller_errors`: Adds a row which graphs 5XX responses broken down by Rails controller and action. For this graph to contain data, the application must report response statuses to Kibana as `@fields.status`, and also report the controller and action as `@fields.controller` and `@fields.action`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
 
-- show_slow_requests: Adds a row which graphs response times broken down by Rails controller. For this graph to contain data, the application must report response times to Kibana as `@fields.duration` and the controller as `@fields.controller`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
+- `show_slow_requests`: Adds a row which graphs response times broken down by Rails controller. For this graph to contain data, the application must report response times to Kibana as `@fields.duration` and the controller as `@fields.controller`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
 
-- docs_name: This is the name of the application used in the developer documentation. Often the same as the repository name on Github. This defaults to the `app_name`.
+- `docs_name`: This is the name of the application used in the developer documentation. Often the same as the repository name on Github. This defaults to the `app_name`.
 
-- error_threshold: The threshold at which application errors are highlighted in red. Defaults to 50.
+- `error_threshold`: The threshold at which application errors are highlighted in red. Defaults to 50.
 
-- warning_threshold: The threshold at which application errors are highlighted in orange. Defaults to 25.
+- `warning_threshold`: The threshold at which application errors are highlighted in orange. Defaults to 25.

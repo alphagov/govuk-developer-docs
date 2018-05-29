@@ -4,8 +4,8 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-03-22
-review_in: 2 months
+last_reviewed_on: 2018-05-17
+review_in: 3 months
 ---
 
 We maintain a static copy of most of the site, which gets used by the content delivery

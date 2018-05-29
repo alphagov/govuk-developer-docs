@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Development VM
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2017-11-21
+last_reviewed_on: 2018-05-29
 review_in: 6 months
 ---
 
@@ -30,16 +30,16 @@ On the host machine, you can safely delete:
 
 On the VM, you can safely delete old Elasticsearch indexes:
 
-  ```
-  cd /var/govuk/govuk-puppet/development-vm/replication
-  bundle exec ruby close_and_delete_old_indices.rb
-  ```
+```shell
+$ cd /var/govuk/govuk-puppet/development-vm/replication
+$ bundle exec ruby close_and_delete_old_indices.rb
+```
 
 If you plan on replicating all your data again, you can also delete big mongodb
 databases to clear space.
 
-```
-mongo
+```shell
+$ mongo
 > show databases
 > use draft_content_store_development
 > db.dropDatabase()
@@ -47,7 +47,7 @@ mongo
 
 Similarly, you can find large postgres databases with:
 
-```
-sudo -u postgres psql
-\l+
+```shell
+$ sudo -u postgres psql
+> \l+
 ```
