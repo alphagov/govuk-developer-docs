@@ -4,7 +4,7 @@ title: Find hardcoded markup in GovSpeak
 section: Frontend
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-07-28
+last_reviewed_on: 2018-05-30
 review_in: 6 months
 ---
 
@@ -22,11 +22,15 @@ First make sure you can SSH into our integration environment, you can [follow th
 
 Now if everything is setup you can ssh onto the machine with the publishing api using:
 
-`ssh publishing-api-1.integration`
+```shell
+$ ssh publishing-api-1.staging
+```
 
 Then to get access to the console for the [publishing-api](https://github.com/alphagov/publishing-api) so you can execute commands do the following:
 
-`govuk_app_console publishing-api`
+```shell
+$ govuk_app_console publishing-api
+```
 
 ## Example commands
 
