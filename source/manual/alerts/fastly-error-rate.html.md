@@ -4,7 +4,7 @@ title: Fastly error rate for GOV.UK
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-10-20
+last_reviewed_on: 2018-05-30
 review_in: 6 months
 ---
 
@@ -28,12 +28,18 @@ Alternatively you can look in [Kibana](/manual/tools.html#kibana) with the query
 
 The alert appears on `monitoring-1.management`. Collectd uses the Fastly API to get statistics which it pushes to Graphite. If the alert is unknown, collectd likely cannot talk to Fastly so restart collectd.
 
-- `sudo service collectd restart`
+```shell
+$ sudo service collectd restart
+```
 
 To prove collectd is the problem, use this query in Kibana:
 
-`syslog_hostname:monitoring-1.management AND syslog_program:collectd`
+```rb
+syslog_hostname:monitoring-1.management AND syslog_program:collectd
+```
 
 You will see many reports similar to:
 
-`cdn_fastly plugin: Failed to query service`
+```
+cdn_fastly plugin: Failed to query service
+```
