@@ -4,15 +4,15 @@ title: Attachment backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-13
-review_in: 1 month
+last_reviewed_on: 2018-05-30
+review_in: 2 months
 related_applications: [asset-manager, whitehall]
 ---
 
 We sync all the data to two [S3] buckets:
 
-- from asset-slave-1.backend using [Duplicity]
-- from asset-slave-2.backend using [s3cmd]
+- from `asset-slave-1.backend` using [Duplicity]
+- from `asset-slave-2.backend` using [s3cmd]
 
 See the [offsite backups alert page] for information on how to check the status
 of the backups and rerun the backup job.

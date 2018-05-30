@@ -4,7 +4,7 @@ title: MySQL Xtrabackups to S3
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-10-18
+last_reviewed_on: 2018-05-30
 review_in: 6 months
 ---
 
