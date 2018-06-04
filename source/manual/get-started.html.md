@@ -4,7 +4,7 @@ title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
 section: Basics
-last_reviewed_on: 2018-03-02
+last_reviewed_on: 2018-06-04
 review_in: 3 months
 ---
 
@@ -204,7 +204,8 @@ If you receive the error message `The config profile (gds) could not be found`, 
 
 Once the data has been downloaded (if you don't have integration access, ask someone to give you a copy of their dump), run:
 
-    dev$ ./replicate-data-local.sh -d path/to/dir -s
+    dev$ cd /var/govuk/govuk-puppet/development-vm/replication
+    dev$ ./replicate-data-local.sh -d backups/YYYY-MM-DD/ -s
 
 For more information, and for troubleshooting advice, see the guide in the developer docs on [replicating application data locally for development][data-replication].
 
