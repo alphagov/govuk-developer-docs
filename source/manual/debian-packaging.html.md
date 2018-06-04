@@ -40,8 +40,9 @@ be bumped up.
 
 Add an fpm recipe to packager and then use [the Jenkins
 job](https://deploy.publishing.service.gov.uk/job/build_fpm_package/) to
-create a Debian package. You can copy this package to the aptly machine
-and then add the deb file to aptly.
+create a Debian package. You can use the Vagrant development-VM to test
+the recipe prior to commiting to packager. You can copy this package to
+the aptly machine and then add the deb file to aptly.
 
 ## Mirroring
 
@@ -103,6 +104,16 @@ We maintain some local repos. These are typically used to manually
 mirror an upstream repo where we need more than one version of a
 package, and the upstream mirror removes old versions (eg Jenkins).
 
+Recently the need to upgrade packages beyond versions maintained by the
+Linux distribution (Currently Ubuntu 14.04 LTS Trusty) has arisen (The shipped
+Python version 2.7.6 does not support current SSL anymore).
+
+To avoid impact of custom built versions on the existing environment we prefix
+these packages with "govuk-" (as in e.g. `govuk-python_2.7.14_amd64`) and aim
+for installation in /opt. For a single dependency tree a new local repository
+following the naming scheme, e.g. `govuk-python` to contain packages `govuk-python`
+, `govuk-python-pip`, `govuk-python-setuptools`, etc.) should be created.
+
 #### Initial setup
 
 After setting up a `aptly::repo` resource in Puppet (do not use
@@ -152,6 +163,32 @@ Note that whilst - typically - purging all is an expensive operation
 (because requests will then hit origin until Fastly warms back up again,
 which could take some time), in this case, the low amount, and type, of
 traffic this service receives means it's safe.
+
+#### Use a local repo in an app
+
+To make a repository available on a machine it is necessary to include a class implementing
+an `apt::source` object, e.g.:
+
+```
+class govuk_python::repo (
+  $apt_mirror_hostname = undef,
+) {
+  apt::source { 'govuk-python':
+    location     => "http://${apt_mirror_hostname}/govuk-python",
+    release      => $::lsbdistcodename,
+    architecture => $::architecture,
+    key          => 'DA1A4A13543B466853BAF164EB9B1D8886F44E2A';
+  }
+}
+```
+After this, packages can be included in the form:
+
+```
+  package { 'govuk-python':
+    ensure  => $version,
+    require => Apt::Source['govuk-python'],
+  }
+```
 
 ### Third-party repos
 
