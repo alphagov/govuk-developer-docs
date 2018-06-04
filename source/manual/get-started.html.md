@@ -56,7 +56,7 @@ First, install:
 [Vagrant]: https://www.vagrantup.com/downloads.html
 
 Starting with High Sierra 10.13, kernel extensions must be approved by
-the user (see [this Apple technical note][kext].  This causes the
+the user (see [this Apple technical note][kext]).  This causes the
 VirtualBox installer to fail with a permissions error.
 
 [kext]: https://developer.apple.com/library/content/technotes/tn2459/_index.html
