@@ -1,6 +1,6 @@
 ---
 owner_slack: "#datagovuk-tech"
-title: Monitoring, Logging and Alerting
+title: Monitoring, Logging and Alerting for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"

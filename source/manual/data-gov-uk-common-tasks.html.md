@@ -1,6 +1,6 @@
 ---
 owner_slack: "#datagovuk-tech"
-title: Common tasks
+title: Common tasks for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
