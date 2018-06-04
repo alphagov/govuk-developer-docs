@@ -1,6 +1,6 @@
 ---
 owner_slack: "#datagovuk-tech"
-title: Continuous integration and deployment
+title: Continuous integration and deployment for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
