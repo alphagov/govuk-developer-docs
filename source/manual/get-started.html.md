@@ -155,11 +155,11 @@ There are also some Python apps, which use [PIP][]. You’ll probably need to in
 
 If installing the Python dependencies for fabric-scripts fails, your version of setuptools may be too old:
 
-   dev$ cd /var/govuk/fabric-scripts
-   dev$ virtualenv .venv
-   dev$ source .venv/bin/activate
-   dev$ pip install --upgrade setuptools
-   dev$ pip install -r requirements.txt
+    dev$ cd /var/govuk/fabric-scripts
+    dev$ virtualenv .venv
+    dev$ source .venv/bin/activate
+    dev$ pip install --upgrade setuptools
+    dev$ pip install -r requirements.txt
 
 > `~/govuk/` on your host machine is mounted as `/var/govuk` inside the VM. Any app repositories you clone should go here.
 
