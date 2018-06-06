@@ -7,11 +7,12 @@ parent: "/manual.html"
 last_reviewed_on: 2018-05-03
 review_in: 6 months
 ---
-
-Managing email subscribers can be done via the administration
-interface on GOV.UK. Support tickets coming through to 2ndline where
+Users can manage email subscribers via the [administration
+interface on GOV.UK](https://www.gov.uk/email/manage). Support tickets coming through to 2ndline where
 the user is unaware of this, or needs guidance can be assigned to "2nd
 Line--User Support Escalation".
+
+*Note: this applies only to emails sent by GOV.UK. [Drug safety updates](https://www.gov.uk/drug-safety-update) are sent manually by MHRA, who manage their own service using Govdelivery. We do not have access to this.*
 
 If it is not possible for changes to be managed by the user, it is
 possible for changes to be made manually. The following rake tasks
