@@ -21,6 +21,7 @@ follow these steps:
 8. Navigate to your local fabric-scripts directory
 9. `fab production cdn.purge_all:'/media/.../some-asset.pdf`
 10. Check that the asset responds with a 404
+11. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 
 \* Note: You might need to look at the timestamps or other information to figure
 out which records to delete if two assets share the same filename.
