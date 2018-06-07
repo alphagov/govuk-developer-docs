@@ -34,27 +34,25 @@ To get production data on to your local VM, you'll need to have either:
 The [AWS setup guide](/manual/user-management-in-aws.html) covers using the interface in full, however if you only
 want to do developer replication you will need to:
 
-### Log into AWS
+### 1. Log into AWS
 
-You should have received a email requesting you do this. If you have multiple AWS accounts ensure you are logged into `gds-users`
+👉 [gds-users account](https://gds-users.signin.aws.amazon.com/console)
 
-### Setup MFA/2FA on your device
+### 2. Setup MFA/2FA on your device
 
-Navigate to `IAM -> Users -> <Your username>`
+Navigate to [the users list in IAM](https://console.aws.amazon.com/iam/home#/users) and find your username ("IAM > Users" > <Your username>. Click on the "Security Credentials" tab.
 
-If you don't see an ARN ID next to `Assigned MFA device` click the edit button and set one up.
+If you don't see an ID next to "Assigned MFA device" click the edit button and set one up.
 
-### Create an access token
+### 3. Create an access token
 
-Under `Access keys` click `Create access key` – you will secret is only displayed once, however if you fail to note it down just remove it and create another.
+Under "Access keys" click "Create access key". Your secret is only displayed once, however if you fail to note it down just remove it and create another.
 
-### Install the AWS CLI application locally
+### 4. Install the AWS CLI application locally
 
 On macOS this can be done using `brew install awscli`. This is being installed locally with the assumption you will be doing a two step backup process, i.e. download the files on your local machine and then update you VM. This is the recommended process as the download is quicker to you local machine for most users.
 
-### Setup your AWS access config and credentials files
-
-I am repeating the instructions described in the [AWS setup guide](/manual/user-management-in-aws.html) with one difference. In the credentials file the setting must be under default as otherwise they are not found by the replication script.
+### 5. Setup your AWS access config
 
 Create a `~/.aws/config` file:
 
@@ -66,8 +64,7 @@ source_profile = gds
 region = eu-west-1
 ```
 
-#### Role ARN
-Should be one of the following depending on the level of access you have been configured with [here](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars):
+- `role_arn` should be one of the following depending on the level of access you have been configured with [here](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars):
 
   * govuk-admins
 
@@ -89,9 +86,9 @@ Should be one of the following depending on the level of access you have been co
 
   The account IDs are in the govuk-aws-data repo's [docs on govuk-aws-accounts](https://github.com/alphagov/govuk-aws-data/blob/master/docs/govuk-aws-accounts.md)
 
-####MFA ARN
+- `MFA ARN`: This is the long string next to "Assigned MFA device" in the AWS console.
 
-This is the long string next to `Assigned MFA device` in the AWS console
+### 6. Create credentials file
 
 Create a `~/.aws/credentials` file
 
