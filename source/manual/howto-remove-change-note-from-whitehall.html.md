@@ -40,7 +40,7 @@ a migration in publishing API instead.
 `Document.where(content_id: "your-content-id")` and extract the `change_note`.
 If the document is associated with multiple editions you should search through all
 of them for the text of the change note: `document.editions.map(&:change_note)`.
-An example PR can be found here: https://github.com/alphagov/publishing-api/pull/1160
+An example PR can be [found here](https://github.com/alphagov/publishing-api/pull/1160) 
 1. Find the change note containing the text you are looking to delete and destroy it.
 1. Check in the UI that the change note is no longer displayed.
 1. If the change note was indicating a major change, then it will be propagated
@@ -51,5 +51,5 @@ publishing-api). You can also do a freetext search for the change note text in
 the edition to the content store to be updated. 
 1. You will also have to delete the change history as this does not get regenerated 
 automatically. This change also has to represented downstream to the content store
-so you should combine it with the previous step. Example PR: https://github.com/alphagov/publishing-api/pull/1167/files
+so you should combine it with the previous step. An example PR can be [found here](https://github.com/alphagov/publishing-api/pull/1167/files)
 
