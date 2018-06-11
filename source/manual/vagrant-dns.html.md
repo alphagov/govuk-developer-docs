@@ -4,7 +4,7 @@ title: Fix issues with vagrant-dns
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-28
+last_reviewed_on: 2018-06-07
 review_in: 6 months
 ---
 
@@ -59,4 +59,14 @@ If you're still having issues you can try to update the vagrant-dns plugin:
 
 ```shell
 vagrant plugin update vagrant-dns
+```
+
+## /etc/hosts
+
+If none of the steps above seem to help, have a look into your `/etc/hosts` file.
+
+For example if you are having trouble accessing pages rendered by the collections app, try adding the following:
+
+```
+10.1.1.254       collections.dev.gov.uk
 ```
