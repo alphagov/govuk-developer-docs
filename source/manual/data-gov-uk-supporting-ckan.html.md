@@ -41,7 +41,7 @@ with the server's `virtualenv` an environment for Python that includes all of th
 It should be loaded for you on connection, but if not you can activate it from the command line with:
 
 ```
-. /usr/lib/venv/bin/activate
+. /home/co/ckan/bin/activate
 ```
 
 > Further, less commonly used, commands can be found in the [CKAN documentation][ckandocs]
