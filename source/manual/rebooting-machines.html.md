@@ -147,6 +147,13 @@ to safely reboot these machines you'll need access to vCloud Director.
 
     `fab <environment> -H backend-lb-2.backend vm.reboot`
 
+    ---
+    **NOTE**
+
+    Doing this may trigger a Pagerduty alert and trigger 5xx errors on fastly
+
+    ---
+
 -   find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
     repo](https://github.com/alphagov/govuk-provisioning/)
