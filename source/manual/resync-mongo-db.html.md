@@ -4,9 +4,14 @@ title: Resync a MongoDB database
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-01
+last_reviewed_on: 2018-06-14
 review_in: 6 months
 ---
+
+Warning: This process deletes all data from a MongoDB node and forces a full
+copy from the current primary member of the replica set. This causes additional
+load on the primary member of the replica set and reduces the number of
+available copies of the database, so is best performed at a quiet time.
 
 To
 [resync](https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/)
