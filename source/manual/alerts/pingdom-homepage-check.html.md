@@ -25,7 +25,7 @@ failure.
     CDN has global issues
 -   [Carrenza status](https://servicedesk.carrenza.com/) - check if our
     main provider has issues
--   [Skyscape status](http://status.skyscapecloud.com/) - check if our
+-   [UKCloud](https://status.ukcloud.com/) - check if our
     Licensing hosting provider has issues
 
 [Pingdom]: https://www.pingdom.com/
