@@ -15,7 +15,7 @@ review_in: 6 months
 [logit-paas]: https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service
 [logit]: https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74
 [google-analytics]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/information-management/use-online-tools-in-gds/use-google-analytics
-[ckan]: https://data.gov.uk/user?destination=publisher
+[ckan]: apps/ckanext-datagovuk
 
 ## Prometheus
 
