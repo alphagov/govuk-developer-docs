@@ -7,7 +7,7 @@ parent: "/manual.html"
 last_reviewed_on: 2018-06-22
 review_in: 6 months
 ---
-[publish]: apps/datagovuk_find
+[publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
 [terraform]: https://github.com/alphagov/datagovuk_infrastructure
 [publish-ci]: https://travis-ci.org/alphagov/datagovuk_publish/
