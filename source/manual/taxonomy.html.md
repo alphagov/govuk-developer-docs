@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-tax-and-nav"
-last_reviewed_on: 2018-03-05
+last_reviewed_on: 2018-06-22
 review_in: 3 months
 related_applications: [content-tagger]
 ---
@@ -43,9 +43,11 @@ tagging to the taxonomy.
 Content Tagger has a generic interface for tagging content to the
 taxonomy.
 
-Pages that belong to selected organisations (like those related to the
-education theme) can be tagged to the taxonomy in
-[Whitehall][whitehall].
+At the moment only selected organisations (like those related to the
+education theme) are able to tag content to the taxonomy in [Whitehall][whitehall].
+Content created by these organisations must be tagged to at least one taxon before it
+can be published.
+Our goal is to have all organisations tagging to the new taxonomy in Q2 of 2018.
 
 The relationship between a page and a taxon is persisted in the
 publishing-api "links hash". For example, see the [taxons link in the
@@ -107,35 +109,34 @@ a facet:
 
 ## Visibility
 
-Editors can use Whitehall to tag content to the taxonomy. They can see
-both the published as well as the draft taxonomy. Only content tagged
-to the published taxonomy can be used on the live site.
+Editors can use Whitehall to tag content to the taxonomy.
 
 Individual branches can be hidden from Editors by clearing the 
 `visible_to_departmental_editors` flag on level one taxons in 
 Content Tagger.
 
 Additionally taxons have a 'phase', which can be 'alpha', 'beta' or 'live'.
-The phase of a taxon controls its visibility on the front end apps. This 
-allows us to publish the entire taxonomy while hiding those parts which are not
-considered mature enough for production.
+The phase of a taxon controls its visibility on the front end apps. This
+allows us to publish the entire taxonomy while making those parts which are not
+considered mature enough for production harder to find.
 
 ## Taxonomy Metrics
 
 High level metrics regarding the taxonomy are recorded in Graphite,
 and can be looked at through a Grafana [dashboard].
 
-A rake task in Content Tagger is run through the [deploy
+A [rake task][record-metrics] in Content Tagger is run through the [deploy
 Jenkins][record-taxonomy-metrics] every 30 minutes to push metrics to
 Graphite (via StatsD).
 
 [homepage-taxon]: https://www.gov.uk/api/content/
 [education-taxon]: https://www.gov.uk/api/content/education
-[example-guidance]: https://www-origin.integration.publishing.service.gov.uk/api/content/government/publications/staffing-and-employment-advice-for-schools
-[edit-taxonomy]: https://content-tagger.publishing.service.gov.uk/taxon
+[example-guidance]: https://www.gov.uk/api/content/government/publications/staffing-and-employment-advice-for-schools
+[edit-taxonomy]: https://content-tagger.publishing.service.gov.uk/taxons
 [content-tagger]: https://content-tagger.publishing.service.gov.uk/
 [whitehall]: /apps/whitehall.html
 [rummager]: /apps/rummager.html
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/topic_taxonomy.json
 [record-taxonomy-metrics]: https://deploy.publishing.service.gov.uk/job/record-taxonomy-metrics/
 [override-fields]: /apis/search/search-api.html#returning-specific-document-fields
+[record-metrics]: https://github.com/alphagov/content-tagger/blob/master/lib/tasks/taxonomy_metrics.rake#L27
