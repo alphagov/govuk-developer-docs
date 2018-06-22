@@ -13,8 +13,9 @@ Most security updates should be automagically applied overnight by
 and our Nagios check accounts for that by delaying alerts for up to
 24hrs.
 
-To see which packages are outstanding you can use the
-`apt.security_updates` Fabric task.
+To see which packages are outstanding you can use the following fabric task:
+
+    fab $environment -H frontend-lb-1.frontend apt.security_updates
 
 Before running an unattended upgrade manually it's worth checking why it
 failed to run. Logs of the previous runs can be found in
