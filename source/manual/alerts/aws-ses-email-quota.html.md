@@ -16,6 +16,6 @@ Applications using this SES account include:
 
 Hitting the quota may cause emails to not be delivered.
 
-[Whitehall]: https://docs.publishing.service.gov.uk/apps/whitehall.html
-[Publisher]: https://docs.publishing.service.gov.uk/apps/publisher.html
-[Signon]: https://docs.publishing.service.gov.uk/apps/signon.html
+[Whitehall]: /apps/whitehall.html
+[Publisher]: /apps/publisher.html
+[Signon]: /apps/signon.html
