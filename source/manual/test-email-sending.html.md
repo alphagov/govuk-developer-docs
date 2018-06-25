@@ -39,4 +39,12 @@ first. The integration and staging environments only allow email to be
 sent to a small number of email addresses so you cannot test using your
 own email address in these environments.
 
+> **Note**
+> Due to the way that we send the courtesy copy emails and the
+> anonymisation integration data sync, we can't fully exercise the code
+> that matches content changes with subscriptions. Therefore, it is not
+> safe to rely on the courtesy copy Google Group to guarantee that emails
+> are being sent to subscribers, and instead a better test is to
+> subscribe yourself and check the emails arrive.
+
 [google-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
