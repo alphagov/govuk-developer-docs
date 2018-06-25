@@ -8,6 +8,14 @@ last_reviewed_on: 2018-06-25
 review_in: 6 months
 ---
 
-Applications using this SES account include Whitehall, Publisher, and Signon.
+Applications using this SES account include:
+
+* [Whitehall][] and [Publisher][]: publish notifications to editors, and
+  fact-check requests.
+* [Signon][]: account suspension and 2FA setup notifications.
 
 Hitting the quota may cause emails to not be delivered.
+
+[Whitehall]: https://docs.publishing.service.gov.uk/apps/whitehall.html
+[Publisher]: https://docs.publishing.service.gov.uk/apps/publisher.html
+[Signon]: https://docs.publishing.service.gov.uk/apps/signon.html
