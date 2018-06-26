@@ -44,3 +44,13 @@ Create and deploy a data migration to update the `slug` and `name` fields of the
 
 2. Update in the UI
 Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations) and in the "Details" tab edit the Title, Mission statement and relevant Featured links.
+
+### 4. Update Smart-answers
+
+This will update content from pages served by smart-answers such as marriage-abroad/y/countryname. In [Smart-answers](https://github.com/alphagov/smart-answers):
+
+1. Find and replace (case sensitive) old_country_name with new_country_name, then Old_country_name with New_country_name. [Example](https://github.com/alphagov/smart-answers/pull/3567/commits/cd3f693c3bfb6b5a73c11b582a4dc89f02c6e2f6)
+
+2. Run `bundle exec rake checksums:update`
+
+3. Open and deploy a PR with these changes
