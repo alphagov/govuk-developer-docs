@@ -31,7 +31,11 @@ In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.u
 
 ### 2. Update Worldwide Taxons
 
-This will update /world/countryname. In [Content Tagger](https://content-tagger.integration.publishing.service.gov.uk/), open the relevant country. Tick "minor update" and update all the relevant fields with the new country name. Save the draft and publish.
+This will update /world/countryname.
+
+Rename the taxon in the [Rummager index list](https://github.com/alphagov/rummager/blob/master/config/govuk_index/migrated_formats.yaml#L51-L277).
+
+Once the Rummager change is deployed, open the relevant country in [Content Tagger](https://content-tagger.integration.publishing.service.gov.uk/), tick "minor update" and update all the relevant fields with the new country name. Save the draft and publish.
 
 _Note: updating the child taxons linked to the country taxon ("UK help and services in country") will be a content task._
 
