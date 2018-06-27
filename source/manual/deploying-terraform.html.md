@@ -4,7 +4,7 @@ title: Deploying Terraform
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-06
+last_reviewed_on: 2018-06-27
 review_in: 3 months
 ---
 
@@ -34,7 +34,7 @@ There are three methods of deploying Terraform: a shell script, the
 Terragov Ruby gem, and the CI Jenkins.
 
 Before deploying via any of these methods, you'll have to [assume a
-role](source/manual/user-management-in-aws.html.md) for the
+role](/manual/user-management-in-aws.html) for the
 environment you're deploying to (test, integration, staging or
 production).
 
