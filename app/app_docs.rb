@@ -1,3 +1,5 @@
+require "active_support/inflector"
+
 class AppDocs
   def self.pages
     @pages ||= YAML.load_file('data/applications.yml').map do |app_data|
@@ -224,17 +226,7 @@ class AppDocs
   private
 
   def self.new_by_type(app_data)
-    # Turns an app type into a potential class name in the same way that
-    # `x.classify` from the ActiveSupport inflector would.
-    #
-    # E.g. "data.gov.uk apps" --> "AppDocs::DataGovUkApp"
-    klass_name = name + "::" + app_data["type"].
-      downcase.
-      gsub(/[^a-z]+/, " ").
-      sub(/ apps$/, " app").
-      split(" ").
-      map { |x| x.capitalize }.
-      join
+    klass_name = self.name + "::" + app_data["type"].downcase.gsub(/[^a-z]+/, "_").classify
     klass = Module.const_defined?(klass_name) ? Module.const_get(klass_name) : App
     klass.new(app_data)
   end
