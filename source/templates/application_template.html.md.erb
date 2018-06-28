@@ -69,7 +69,7 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 
 <h3>SSH access</h3>
 <% if application.pending_hosting? %>
-  This application's hosting arrangements are not yet complete
+  This application's hosting arrangements are not yet complete.
 <% elsif application.in_paas? %>
   This applications lives on [GOV.UK PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas).
 <% elsif application.carrenza_machine %>
