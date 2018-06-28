@@ -1,9 +1,11 @@
-require "active_support/inflector"
-
 class AppDocs
   def self.new_by_type(app_data)
-    klass_name = self.name + "::" + app_data["type"].downcase.gsub(/[^a-z]+/, "_").classify
-    klass = Module.const_defined?(klass_name) ? Module.const_get(klass_name) : App
+    klass = case app_data["type"]
+            when "data.gov.uk apps"
+              DataGovUkApp
+            else
+              App
+            end
     klass.new(app_data)
   end
 
