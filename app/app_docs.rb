@@ -1,6 +1,12 @@
 require "active_support/inflector"
 
 class AppDocs
+  def self.new_by_type(app_data)
+    klass_name = self.name + "::" + app_data["type"].downcase.gsub(/[^a-z]+/, "_").classify
+    klass = Module.const_defined?(klass_name) ? Module.const_get(klass_name) : App
+    klass.new(app_data)
+  end
+
   def self.pages
     @pages ||= YAML.load_file('data/applications.yml').map do |app_data|
       new_by_type(app_data)
@@ -221,13 +227,5 @@ class AppDocs
     def in_aws?
       false
     end
-  end
-
-  private
-
-  def self.new_by_type(app_data)
-    klass_name = self.name + "::" + app_data["type"].downcase.gsub(/[^a-z]+/, "_").classify
-    klass = Module.const_defined?(klass_name) ? Module.const_get(klass_name) : App
-    klass.new(app_data)
   end
 end
