@@ -3,6 +3,8 @@ class AppDocs
     klass = case app_data["type"]
             when "data.gov.uk apps"
               DataGovUkApp
+            when "Licensing apps"
+              LicensingApp
             else
               App
             end
@@ -180,6 +182,10 @@ class AppDocs
       true
     end
 
+    def in_ukcloud?
+      false
+    end
+
   private
 
     def puppet_name
@@ -228,6 +234,40 @@ class AppDocs
     end
 
     def in_paas?
+      true
+    end
+
+    def in_aws?
+      false
+    end
+  end
+
+  class LicensingApp < App
+    def carrenza_machine
+      # noop
+    end
+
+    def sentry_url
+      # noop
+    end
+
+    def puppet_url
+      # noop
+    end
+
+    def deploy_url
+      # noop
+    end
+
+    def dashboard_url
+      # noop
+    end
+
+    def has_rake_tasks?
+      false
+    end
+
+    def in_ukcloud?
       true
     end
 
