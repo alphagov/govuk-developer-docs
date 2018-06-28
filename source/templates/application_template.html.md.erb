@@ -29,7 +29,11 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
 
 <ul>
   <li><%= link_to "GitHub repo", application.repo_url %></li>
-  <li><%= link_to "Sentry (error tracking)", application.sentry_url %></li>
+
+  <% if application.sentry_url %>
+    <li><%= link_to "Sentry (error tracking)", application.sentry_url %></li>
+  <% end %>
+
   <% if application.puppet_url %>
     <li><%= link_to "Puppet configuration", application.puppet_url %></li>
   <% end %>
@@ -68,7 +72,7 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   This application's hosting arrangements are not yet complete
 <% elsif application.in_paas? %>
   This applications lives on [GOV.UK PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas).
-<% else %>
+<% elsif application.carrenza_machine %>
   This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
 
   To SSH to one of these machines:
