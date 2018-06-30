@@ -15,7 +15,7 @@ rate limit, in which case Nginx will reject requests, log an error message
 in the error log file and generate an HTTP 429 response code.
 
 The alert should link to a Graphite graph. If you determine this is a spike,
-it is best to check the Nginx logs in Kibana to determine why Nginx is rejecting
+it is best to check the [Nginx logs in Kibana] to determine why Nginx is rejecting
 requests (for instance, too many requests coming from a single IP, or the same
 page being requested at a high rate).
 
@@ -32,3 +32,4 @@ You can force creation by creating a zero-value `http_429` counter:
     fab $environment -H cache-1.router statsd.create_counter:cache-1_router.nginx_logs.www-origin.http_429
 
 
+[Nginx logs in Kibana]: https://kibana.logit.io/app/kibana#/discover?_g=()&_a=(columns:!(request,status),filters:!(('$state':(store:appState),meta:(alias:!n,disabled:!f,index:'*-*',key:status,negate:!f,value:'429'),query:(match:(status:(query:429,type:phrase))))),index:'*-*',interval:auto,query:(query_string:(analyze_wildcard:!t,query:'*')),sort:!('@timestamp',desc))
