@@ -19,7 +19,7 @@ follow these steps:
 6. `asset = Asset.find("asset-id-from-url")` (e.g. `57a9c52b40f0b608a700000a`) or for a Whitehall asset `asset = WhitehallAsset.find_by(legacy_url_path: '/government/uploads/system/uploads/attachment_data/file/id/path.extension')`
 7. Check the asset is what you think it is and delete: `asset.destroy`
 8. Navigate to your local fabric-scripts directory
-9. `fab production cdn.purge_all:'/media/.../some-asset.pdf`
+9. `fab production class:cache cdn.purge_all:'/media/.../some-asset.pdf`
 10. Check that the asset responds with a 404
 11. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 

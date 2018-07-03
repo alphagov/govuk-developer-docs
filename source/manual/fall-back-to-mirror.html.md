@@ -73,7 +73,7 @@ Because the CDN will retry every request against the mirrors automatically if or
 is unavailable, all you need to do is [stop Nginx on the cache machines with Fabric][fab-fail]:
 
 ```
-fab $environment incident.fail_to_mirror
+fab $environment class:cache incident.fail_to_mirror
 ```
 
 [fab-fail]: https://github.com/alphagov/fabric-scripts/blob/master/incident.py

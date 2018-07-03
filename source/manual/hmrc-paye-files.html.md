@@ -110,6 +110,6 @@ the previous version of the software.
 10.  Purge the cache, which will otherwise take up to 12 hours to
     expire:
 
-        fab $environment cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-vXX.xml
+        fab $environment class:cache cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-vXX.xml
 
 10.  Update and resolve the Zendesk ticket
