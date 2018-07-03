@@ -13,8 +13,8 @@ module HTTP
       conn.response :logger
       conn.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
       conn.use Octokit::Response::RaiseError
-      conn.adapter Faraday.default_adapter
       conn.response :json, content_type: /\bjson$/
+      conn.adapter Faraday.default_adapter
     end
 
     response = faraday.get(uri.path)
