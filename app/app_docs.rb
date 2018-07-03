@@ -20,7 +20,7 @@ class AppDocs
   end
 
   def self.topics_on_github
-    pages.reject(&:retired?).flat_map(&:topics).sort.uniq
+    pages.reject(&:retired?).reject(&:private_repo?).flat_map(&:topics).sort.uniq
   end
 
   def self.aws_machines
@@ -76,6 +76,10 @@ class AppDocs
 
     def retired?
       app_data["retired"]
+    end
+
+    def private_repo?
+      app_data["private_repo"]
     end
 
     def page_title
@@ -187,6 +191,7 @@ class AppDocs
     end
 
     def github_repo_data
+      return {} if private_repo?
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
     end
   end
