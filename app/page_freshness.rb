@@ -15,6 +15,10 @@ class PageFreshness
     end
   end
 
+  def all_pages
+    sitemap.resources.map { |page| PageReview.new(page) }.select(&:reviewable?)
+  end
+
   def expiring_soon
     soon = sitemap.resources.select do |page|
       PageReview.new(page).expiring_soon?
