@@ -178,7 +178,7 @@ take manual action to resolve the problem.
 
 -   Reboot the nodes in the cluster:
 
-        fab <environment> rabbitmq.safe_reboot
+        fab <environment> class:rabbitmq rabbitmq.safe_reboot
 
 -   after rabbitmq-1 has recovered, restart govuk-crawler:
 
