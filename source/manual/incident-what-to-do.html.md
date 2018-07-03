@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "@hong.nguyen"
 title: So, you're having an incident
 parent: "/manual.html"
 layout: manual_layout

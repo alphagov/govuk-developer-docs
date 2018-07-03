@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "@hong.nguyen"
 title: Incident management guidance
 parent: "/manual.html"
 layout: manual_layout

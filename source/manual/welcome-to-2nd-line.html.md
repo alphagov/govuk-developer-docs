@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "@hong.nguyen"
 title: Welcome to 2nd line
 parent: "/manual.html"
 layout: manual_layout
@@ -8,19 +8,19 @@ last_reviewed_on: 2018-05-15
 review_in: 2 months
 ---
 
-If you’re new to 2nd line or have not worked with us for a while, here’s a brief introduction to what we do and how we work. 
+If you’re new to 2nd line or have not worked with us for a while, here’s a brief introduction to what we do and how we work.
 
 Every Wednesday 3 people - 2 developers and a shadow developer - join the team to work on 2nd line. You can check the [2nd line support rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=10) to find out when your shift is.  
 
-Your main responsibility is to respond to alerts. You’ll be set up in PagerDuty so that you can be called if there are any urgent alerts during working hours. 
+Your main responsibility is to respond to alerts. You’ll be set up in PagerDuty so that you can be called if there are any urgent alerts during working hours.
 
 Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, talk to your fellow 2nd liner and the DM to make sure you’re covered.   
 
-You do not need to be at the 2nd line desks all the time. If you have meetings to attend then attend them. Please let the delivery manager and the team know if you need to work from home and/or when you'll be away for long periods and be respectful of the amount of work your colleagues may have to pick up while you're away. If there are lots of alerts, you'll need to prioritise 2nd line above your meetings. 
+You do not need to be at the 2nd line desks all the time. If you have meetings to attend then attend them. Please let the delivery manager and the team know if you need to work from home and/or when you'll be away for long periods and be respectful of the amount of work your colleagues may have to pick up while you're away. If there are lots of alerts, you'll need to prioritise 2nd line above your meetings.
 
 ## Shift changes and sickness
 
-If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place. 
+If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
 
 To do this:
 
