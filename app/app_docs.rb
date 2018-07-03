@@ -3,6 +3,8 @@ class AppDocs
     klass = case app_data["type"]
             when "data.gov.uk apps"
               DataGovUkApp
+            when "Licensing apps"
+              LicensingApp
             else
               App
             end
@@ -20,7 +22,7 @@ class AppDocs
   end
 
   def self.topics_on_github
-    pages.reject(&:retired?).flat_map(&:topics).sort.uniq
+    pages.reject(&:retired?).reject(&:private_repo?).flat_map(&:topics).sort.uniq
   end
 
   def self.aws_machines
@@ -76,6 +78,10 @@ class AppDocs
 
     def retired?
       app_data["retired"]
+    end
+
+    def private_repo?
+      app_data["private_repo"]
     end
 
     def page_title
@@ -176,6 +182,10 @@ class AppDocs
       true
     end
 
+    def in_ukcloud?
+      false
+    end
+
   private
 
     def puppet_name
@@ -187,6 +197,7 @@ class AppDocs
     end
 
     def github_repo_data
+      return {} if private_repo?
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
     end
   end
@@ -223,6 +234,40 @@ class AppDocs
     end
 
     def in_paas?
+      true
+    end
+
+    def in_aws?
+      false
+    end
+  end
+
+  class LicensingApp < App
+    def carrenza_machine
+      # noop
+    end
+
+    def sentry_url
+      # noop
+    end
+
+    def puppet_url
+      # noop
+    end
+
+    def deploy_url
+      # noop
+    end
+
+    def dashboard_url
+      # noop
+    end
+
+    def has_rake_tasks?
+      false
+    end
+
+    def in_ukcloud?
       true
     end
 

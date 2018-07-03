@@ -16,7 +16,9 @@ This application is retired.
 
 <% else %>
 
+<% unless application.topics.nil? %>
 GitHub topics: <%= application.topics.map { |topic| link_to(topic, "https://github.com/search?q=topic:#{topic}+org:alphagov") }.to_sentence %>
+<% end %>
 
 ### Ownership
 
@@ -67,11 +69,13 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   <% end %>
 </ul>
 
-<h3>SSH access</h3>
+<h3>Hosting & SSH Access</h3>
 <% if application.pending_hosting? %>
   This application's hosting arrangements are not yet complete.
 <% elsif application.in_paas? %>
   This applications lives on [GOV.UK PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas).
+<% elsif application.in_ukcloud? %>
+  This applications lives in UK Cloud.
 <% elsif application.carrenza_machine %>
   This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
 
