@@ -21,7 +21,7 @@ apps](applications/sidekiq-monitoring.html).
 
 You can verify that there are overdue published documents using:
 
-    $ fab $environment whitehall.overdue_scheduled_publications
+    $ fab $environment class:whitehall_backend whitehall.overdue_scheduled_publications
 
 You'll see output like this:
 
@@ -30,7 +30,7 @@ You'll see output like this:
 If there are overdue publications you can publish by running the
 following:
 
-    $ fab $environment whitehall.schedule_publications
+    $ fab $environment class:whitehall_backend whitehall.schedule_publications
 
 #### After a database restore
 
