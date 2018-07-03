@@ -4,21 +4,8 @@ title: Restart an application
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2017-11-22
-review_in: 6 months
+last_reviewed_on: 2018-07-03
+review_in: 12 months
 ---
 
-To restart an application use the [fabric command](https://github.com/alphagov/fabric-scripts) `app.reload`.
-
-For example, to restart the 'manuals-frontend' app on all frontend machines
-in staging, do:
-
-```
-fab staging class:frontend app.reload:manuals-frontend
-```
-
-or to restart Publisher on integration backend-1 only, do:
-
-```
-fab integration -H backend-1 app.reload:publisher
-```
+To restart an application go to the [Deploy app jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_App/build), choose your app, the **current release** and select `app:hard_restart`.
