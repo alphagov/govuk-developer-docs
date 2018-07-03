@@ -10,6 +10,95 @@ review_in: 6 months
 
 This page explains how we're managing our Debian packaging.
 
+## Considerations before creating or importing a package
+
+Due to limited availability of up-to-date packages in long term support (LTS)
+distributions, requirements of software may make installation of a package
+outside of the distribution infrastructure (currently Ubuntu "Trusty" 14.04
+LTS) necessary.
+
+GDS developers may also choose to use the Debian packaging system as a means to
+distribute and maintain their locally developed software.
+
+As always when considering the addition of new software, the first question has to be:
+"Is this really necessary?" Adding a package should be motivated by
+security or architecture requirements and aim to minimise unnecessary
+dependencies.
+
+Additional guidance can be found in the [GDS way](https://gds-way.cloudapps.digital/standards/tracking-dependencies.html#dependency-management-tools)
+as well as the [service manual](https://www.gov.uk/service-manual/technology/managing-software-dependencies#how-to-work-with-third-party-code).
+
+If you are satisfied that adding a local or third party package via aptly is the
+optimal solution, there are a number of ways packages may be sourced and added,
+all carrying different advantages and disadvantages as well as security and
+maintenance implications.
+
+### Creating and maintaining packages locally
+
+See section [Creating Packages](#creating-packages) for details on implementation.
+
+- Creating local packages allows for the greatest flexibility with respect to
+  installation, default configuration and fullfilment of requirements.
+
+- Locally developed bug-fixes can be included and distributed independent of
+  distribution services.
+
+- Distribution bug-fixes and updates are not available and the package has to
+  be actively maintained by GOV.UK.
+
+- To minimise technical debt on future maintenance of packages, locally created
+  packages should only be considered if there is no reliable and secure third
+  party option available.
+
+### Mirroring packages maintained by a third party
+
+See section [Mirroring](#mirroring), in particular [Third-party Repos](#third-party-repos)
+for details on implementation.
+
+- If considering the use of a package created by a third party, the
+  trustworthiness of said party is critical.
+
+- General Debian packages explicitly labelled as suitable for Ubuntu Trusty,
+  such as [Ubuntu packages provided by PostgreSQL](https://www.postgresql.org/download/linux/ubuntu/)
+  or [PPA packages by LibreOffice](https://launchpad.net/~libreoffice/+archive/ubuntu/ppa)
+  can be considered safe.
+
+- With regard to packages provided by private contributors and/or smaller companies,
+  both the maturity of the software and trust for the source need to be evaluated.
+  Comments on maturity as well as the number of users of a package may be an
+  indicator of its suitability for use in production.
+
+- Development activity and update frequency are additional factors to consider.
+
+- When in doubt about the trustworthiness or stability of a third party package,
+  this option should be disregarded in favour of other solutions not
+  compromising on reliability and security.
+
+### Mirroring or importing .deb packages created for other distributions (e.g. Debian, Linux Mint, etc)
+
+See section [Creating Packages](#creating-packages) for details on implementation.
+
+- If great care is taken, it may be possible to make use of a software version
+  which has been packaged for another Linux distribution, e.g. Debian.
+
+- Despite Ubuntu being based on Debian experimental, no Debian repository should ever
+  be directly mirrored and made available through aptly to a Ubuntu system _ever_.
+  There will be severe complications including failing or erroneous package upgrades,
+  broken dependencies and likely complete system failure.
+
+- The safest way to use packages of other distributions is to use source packages. See
+  the note in [Third-party Repos](#third-party-repos) for an idea of how to use them.
+
+- Please note that resolution of building dependencies in source packages may not be possible or
+  require significant work.
+
+- The advantage of using source packages is that it ensures all library requirements of
+  the created binaries are met by the original distribution (Ubuntu).
+
+- This use of (current) Debian packages ensures updates and bug-fixes are
+  readily available. However, the creation and  maintenance of the build
+  environment may introduce significant overhead in itself.
+
 ## Creating packages
 
 In the past we've used
@@ -191,6 +280,24 @@ After this, packages can be included in the form:
 ```
 
 ### Third-party repos
+
+> **note**
+>
+> Despite Ubuntu being based on Debian experimental, no Debian repository should ever
+> be directly mirrored and made available through aptly to a Ubuntu system _ever_.
+> There will be severe complications including failing or erroneous package upgrades,
+> broken dependencies and likely complete system failure.
+>
+> The safest way to attempt to use a .deb package of another distro is to include its
+> source repository and compile the package yourself. After adding e.g. the Debian source
+> repository `deb-src http://deb.debian.org/debian/ experimental main contrib non-free`
+> and executing `apt-get update`, compilation of the desired software can be
+> attempted by invoking:
+>
+>  ```
+>  apt-get build-dep <package> # For build dependencies
+>  apt-get source --compile <package> # To download source and compile package
+>  ```
 
 #### Initial setup
 
