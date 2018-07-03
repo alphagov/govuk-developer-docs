@@ -23,7 +23,7 @@ changing the URL, follow these steps:
 0. `govuk_app_console asset-manager`
 
 0. Find the asset:
-    ```ruby
+    ```
     asset = Asset.find("asset-id-from-url")` # e.g. `57a9c52b40f0b608a700000a`
     # or for a Whitehall asset:
     asset = WhitehallAsset.find_by(legacy_url_path: '/government/uploads/system/uploads/attachment_data/file/id/path.extension')`
@@ -32,6 +32,6 @@ changing the URL, follow these steps:
 0. Check the asset is what you think it is.
 
 0. Replace the file:
-    ```ruby
+    ```
     asset.update_attributes(file: Pathname.new("/tmp/filename.zip").open)
     ```
