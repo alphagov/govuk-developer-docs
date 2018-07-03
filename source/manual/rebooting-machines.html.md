@@ -74,21 +74,6 @@ There is a Fabric task to schedule a machine for downtime in Nagios for
 > manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
 > more info.
 
-## Rebooting all "safe" machines
-
-If you wish to reboot all machines, there is a Fabric task to reboot
-"safe" machines one at a time:
-
-    fab $environment puppet_class:govuk_safe_to_reboot::yes numbered:N vm.reboot
-
-replacing `$environment` with the appropriate environment, and `N` with
-a number (currently from 1 to 7).
-
-For example using '1' will reboot all machines ending with that number, e.g.
-backend-1, frontend-1, etc.
-
-All "safe" machines are automatically rebooted once a day.
-
 ## Rebooting MongoDB machines
 
 You can see our MongoDB machines by running:
