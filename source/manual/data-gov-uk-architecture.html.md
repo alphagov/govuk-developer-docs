@@ -19,7 +19,6 @@ review_in: 6 months
 [statistics]: http://statistics.data.gov.uk
 [land-registry]: http://landregistry.data.gov.uk
 [csw]: http://csw.data.gov.uk/geonetwork/srv/en/main.home
-[legislation]: http://legislation.data.gov.uk
 [location-mde]: http://locationmde.data.gov.uk
 [guidance]: http://guidance.data.gov.uk
 [business]: http://business.data.gov.uk/id/company/09747720
@@ -50,7 +49,6 @@ The `data.gov.uk` platform is used to publish and view datasets. A dataset is a 
   * [Guidance] is a set of manual pages hosted in [GitHub][guidance-github], which ought to be migrated into normal GOV.UK docs.
   * [Contract Finder][contract-finder] is now provided by [Crown Commercial Service][contract-finder-new], which ought to have pre-2015 stuff merged in.
   * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
-  * [Legislation] is a legacy redirect to [legislation.gov.uk](http://www.legislation.gov.uk)
   * [Business] is a legacy redirect to Companies House.
 
 ## [Publish] and [Find]
