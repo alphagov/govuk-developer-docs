@@ -11,8 +11,12 @@ class PageFreshness
 
   def expired_pages
     sitemap.resources.select do |page|
-      PageReview.new(page).expired?
+      PageReview.new(page).expired? && page.data.section != Manual::ICINGA_ALERTS
     end
+  end
+
+  def all_pages
+    sitemap.resources.map { |page| PageReview.new(page) }.select(&:reviewable?)
   end
 
   def expiring_soon
