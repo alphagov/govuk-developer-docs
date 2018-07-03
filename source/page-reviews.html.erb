@@ -1,0 +1,35 @@
+---
+layout: false
+title: Page reviews
+---
+
+<% content_for :sidebar do %>
+&nbsp;
+<% end %>
+
+<% wrap_layout :layout_with_sidebar do %>
+  <%= partial 'partials/header' %>
+  <table>
+    <tr>
+      <th>Page</th>
+      <th>Expired?</th>
+      <th>Owner</th>
+      <th>Section</th>
+      <th>Due date</th>
+      <th>Overdue</th>
+      <th>Review in</th>
+    </tr>
+
+    <% PageFreshness.new(sitemap).all_pages.each do |page| %>
+      <tr>
+        <td><%= link_to page.page.data.title, page.page.url %></td>
+        <td><%= page.expired? %></td>
+        <td><%= page.owner_slack %></td>
+        <td><%= page.page.data.section %></td>
+        <td><%= page.review_by %></td>
+        <td><%= time_ago_in_words page.review_by %></td>
+        <td><%= page.page.data.review_in %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
