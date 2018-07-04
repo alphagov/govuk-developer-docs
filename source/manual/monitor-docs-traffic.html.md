@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen"
+owner_slack: "@tijmen.brommet"
 title: Monitor docs traffic
 section: Manual
 layout: manual_layout

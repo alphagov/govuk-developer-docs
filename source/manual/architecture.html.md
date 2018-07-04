@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen"
+owner_slack: "@tijmen.brommet"
 title: Architectural overview of GOV.UK applications
 section: Basics
 layout: manual_layout
