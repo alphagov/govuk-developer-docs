@@ -17,7 +17,7 @@ merged back into the template we can use that. -->
         <a href="#" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></a>
         <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
           <%=
-            table_of_contents(
+            single_page_table_of_contents(
               html,
               max_level: config[:tech_docs][:max_toc_heading_level]
             )
