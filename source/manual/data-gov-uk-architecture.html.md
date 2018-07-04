@@ -10,6 +10,7 @@ review_in: 6 months
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
 [ckan]: apps/ckanext-datagovuk
+[legacy-ckan]: https://github.com/datagovuk/ckanext-dgu
 [paas]: https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas
 [terraform]: https://github.com/alphagov/datagovuk_infrastructure
 [signon]: manual/manage-sign-on-accounts
@@ -37,7 +38,8 @@ review_in: 6 months
 
 The `data.gov.uk` platform is used to publish and view datasets. A dataset is a document about a collection of links to documentation or data hosted somewhere on the Internet. The platform has the following services.
 
-  * [CKAN] is the legacy publishing and finder app for datasets ('packages'). It also runs Nginx to support [Find].
+  * [Legacy CKAN (ckanext-dgu)][legacy-ckan] is the legacy publishing and finder app for datasets ('packages'). It also runs Nginx to support [Find].
+  * [CKAN (ckanext-datagovuk)][ckan] is the upgrade for Legacy CKAN. It acts as an interim publishing app for datasets and operates harvest sources to import external data.
   * [Find] is the public frontend for searching datasets using Elasticsearch. It replaces CKAN for certain routes.
   * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasitcsearch.
   * [Statistics] is owned by the Office for National Statistics and was established as part of the [Open Data Policy][open-data-policy].
@@ -64,6 +66,19 @@ cf env publish-data-beta-production
 
 We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish], with the app in each environment linked to the corresponding instance of [GOV.UK Signon][signon]. See the Publish ADR for more info.
 
-## [CKAN]
+## [Legacy CKAN (ckanext-dgu)][legacy-ckan]
 
-TODO
+[Legacy CKAN][legacy-ckan] is an extension to CKAN 2.2b and is provisioned on Bytemark hosting.  The following servers are in use:
+
+* Staging: `co-prod2.dh.bytemark.co.uk`
+* Production: `co-prod3.dh.bytemark.co.uk`
+
+User authentication is handled within Drupal, which sits alongside the highly customised CKAN installation.
+
+Legacy CKAN will be retired when the CKAN upgrade is launched.
+
+## [CKAN (ckanext-datagovuk)][ckan]
+
+This is a plugin to CKAN 2.7.3, as an interim solution before [Publish] is launched. Drupal has been removed and user authentication is handled wholly within CKAN.
+
+TODO: Details about staging/production environments
