@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen"
+owner_slack: "@tijmen.brommet"
 title: Where to find what documentation
 section: Manual
 layout: manual_layout

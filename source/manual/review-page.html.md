@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen"
+owner_slack: "@tijmen.brommet"
 title: Review a page in this manual
 section: Manual
 layout: manual_layout

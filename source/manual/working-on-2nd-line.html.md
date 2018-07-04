@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "@hong.nguyen"
 title: Working on 2nd line
 parent: "/manual.html"
 layout: manual_layout
@@ -8,10 +8,10 @@ last_reviewed_on: 2018-05-15
 review_in: 2 months
 ---
 
-When working on 2nd line, we look at Normal and High priority tickets in the Zendesk ['2nd Line--GOV.UK Alerts and Issues' queue](https://govuk.zendesk.com/agent/filters/30791708). 
+When working on 2nd line, we look at Normal and High priority tickets in the Zendesk ['2nd Line--GOV.UK Alerts and Issues' queue](https://govuk.zendesk.com/agent/filters/30791708).
 
 ## Triaging Zendesk tickets
-See the [diagram for how 2nd line triage Zendesk tickets](https://docs.google.com/presentation/d/1mUnkONOrto2SKRKAO6JnnSUHRLsMy4eZEoq75BGxC6E/edit#slide=id.g39d428fe59_0_0) - there is a printout on the 2nd line desk. 
+See the [diagram for how 2nd line triage Zendesk tickets](https://docs.google.com/presentation/d/1mUnkONOrto2SKRKAO6JnnSUHRLsMy4eZEoq75BGxC6E/edit#slide=id.g39d428fe59_0_0) - there is a printout on the 2nd line desk.
 
 Other things to know:
 
@@ -23,5 +23,4 @@ Other things to know:
 
 If you notice an area that can be improved, add your idea and an explanation to the [GOV.UK 2nd line Trello board](https://trello.com/b/M7UzqXpk/govuk-2nd-line). For example, if you have a temporary fix but think we should look into a long term solution for the problem.
 
-You can also find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html). 
-
+You can also find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html).
