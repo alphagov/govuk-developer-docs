@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen"
+owner_slack: "@tijmen.brommet"
 title: Documentation style guide
 section: Manual
 layout: manual_layout
