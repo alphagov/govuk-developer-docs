@@ -4,8 +4,8 @@ title: Get access to CI (Jenkins)
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-05
-review_in: 6 months
+last_reviewed_on: 2018-07-03
+review_in: 12 months
 ---
 
 Our [Jenkins CI environment][ci] uses GitHub for authorisation. You need to be added to the [GOV.UK team][govuk-team] first, otherwise you won't see any projects, or see a message that you're unauthorised.

@@ -4,8 +4,8 @@ title: Merge a Pull Request from an external contributor
 section: Development & Reviews
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-19
-review_in: 6 months
+last_reviewed_on: 2018-07-03
+review_in: 12 months
 ---
 
 The examples below are from a [release from the Start Pages team](https://github.com/alphagov/publisher/pull/687).

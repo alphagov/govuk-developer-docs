@@ -5,7 +5,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2017-06-22
+last_reviewed_on: 2018-07-03
 review_in: 12 months
 ---
 
