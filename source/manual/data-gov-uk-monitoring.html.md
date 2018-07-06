@@ -28,7 +28,7 @@ Pingdom monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downti
 
 ## Sentry
 
-[Sentry] receives application errors and emails `data.gov.uk@digital.cabinet-office.gov.uk` with updates. The Sentry pages for each app can be found on the [Find] and [Publish] app pages.
+[Sentry] monitors application errors. The Sentry pages for each app can be found on the [Find] and [Publish] app pages.
 
 ## Log.it
 
