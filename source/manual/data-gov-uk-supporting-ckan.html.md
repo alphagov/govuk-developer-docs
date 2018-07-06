@@ -56,20 +56,18 @@ cd /var/apps/ckan
 sudo -u deploy govuk_setenv ckan venv/bin/paster
 ``` 
 
-> Further, less commonly used, commands can be found in the [CKAN documentation][ckandocs]
+> Further, less commonly used, commands can be found in the [CKAN documentation][ckandocs].
 > 
 > There is also a separate [historical document of previous admin tasks](https://docs.google.com/document/d/1V64IK9VoHU5w-xQmmmvKXF396FQViHM06iJWnRoAxzc/edit?usp=sharing)
 that you may wish to consult. 
 
 ### Creating a system administrator account
 
-To create a system administrator account, you will need to choose a username (USERNAME) and be ready to enter
-your email address.  Once you have you the command below (which will provide the option to create the account
-if it does not already exists) you will be prompted twice for a password.
-
 ```
 paster --plugin=ckan sysadmin add USERNAME email=EMAIL_ADDRESS -c $CKAN_INI
 ```
+
+You will be prompted twice for a password.
 
 ### Removing a system administrator account
 
@@ -78,9 +76,6 @@ paster --plugin=ckan sysadmin remove USERNAME -c $CKAN_INI
 ```
 
 ### Managing users
-
-Managing users is done with the `paster --plugin=ckan user` command. The following commands can be run
-from anywhere, as long as the virtualenv is activated.
 
 #### Listing users
 
@@ -91,16 +86,13 @@ paster --plugin=ckan user list -c $CKAN_INI
 #### Viewing a user
 
 ```
-paster --plugin=ckan user USERNAME  -c $CKAN_INI
+paster --plugin=ckan user USERNAME -c $CKAN_INI
 ```
 
 #### Adding a user
 
-If you do not supply the user's password, you will be prompted for it.  Ensure the user is given a
-strong password, and ensure they change it as soon as possible.
-
 ```
-paster --plugin=ckan user add USERNAME email=EMAIL_ADDRESS (password=PASSWORD)  -c $CKAN_INI
+paster --plugin=ckan user add USERNAME email=EMAIL_ADDRESS -c $CKAN_INI
 ```
 
 #### Removing a user
