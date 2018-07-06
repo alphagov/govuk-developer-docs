@@ -15,6 +15,7 @@ review_in: 6 months
 [logit-paas]: https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service
 [logit]: https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74
 [google-analytics]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/information-management/use-online-tools-in-gds/use-google-analytics
+[pagerduty]: https://govuk.pagerduty.com/
 [ckan]: apps/ckanext-datagovuk
 
 ## Prometheus
@@ -23,7 +24,7 @@ Container metrics are scraped using the [PaaS Metric Exporter][paas-metric-expor
 
 ## Pingdom
 
-Pingdom checks whether `data.gov.uk` exists and emails `data.gov.uk@digital.cabinet-office.gov.uk` with updates. Maintenace of this service forms part of `#govuk-2nd-line`.
+Pingdom monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downtime is detected. Maintenace of this service forms part of `#govuk-2nd-line`.
 
 ## Sentry
 
