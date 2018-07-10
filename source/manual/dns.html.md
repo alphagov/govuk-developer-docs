@@ -43,15 +43,17 @@ selected provider.
 To make a change to this zone, begin by adding the records to the yaml file for
 the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
 
-When this has been reviewed and merged, you can deploy the changes using [the
+## Jenkins
+
+When the changes have been reviewed and merged, you can deploy them using [the
 "Deploy DNS "Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
 
 You will need to copy and paste the following variables into Jenkins for each operation,
 they can be obtained from a terminal session:
 
-  AWS_SESSION_TOKEN
-  AWS_SECRET_ACCESS_KEY
-  AWS_ACCESS_KEY_ID
+- AWS_SESSION_TOKEN
+- AWS_SECRET_ACCESS_KEY
+- AWS_ACCESS_KEY_ID
 
 Changes should be deployed for each provider (AWS & Google) separately, first
 run a "plan" action, and when you're happy with the changes, run "apply".
@@ -59,13 +61,13 @@ run a "plan" action, and when you're happy with the changes, run "apply".
 Within the Jenkins job, select the provider, zone & action. Once build is complete,
 examine the logs before progressing to the next stage (Apply).
 
-n.b. The order in which you deploy to providers is  not important.
+Please note:
 
-Please note that due to the Terraform state being held in an S3 bucket, you
+- Due to the Terraform state being held in an S3 bucket, you
 will require access to the GOVUK AWS "production" account to roll changes for
 both Amazon and Google.
-
-You will not require credentials for Google Cloud. These credentials are stored
+- The order in which you deploy to providers is not important.
+- You will not require credentials for Google Cloud. These credentials are stored
 in Jenkins itself.
 
 ## DNS for the `gov.uk` top level domain
