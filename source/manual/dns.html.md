@@ -4,31 +4,19 @@ title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-13
+last_reviewed_on: 2018-07-09
 review_in: 6 months
 ---
 
 The Reliability Engineering team is responsible for managing several DNS zones.
 
-By default, zones are managed using DynDNS.
+By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS)
 
-The following zones use both DynDNS and Amazon Route 53 as dual providers:
+As of Jul 2018, there are 40 hosted zones. A list is retrievable from a termnal using:
 
-- digital.cabinet-office.gov.uk.
-- govuk.service.gov.uk.
-- performance.service.gov.uk.
-- service.gov.uk.
+  aws route53 list-hosted-zones |grep Name
 
-The following use Route 53 and Google Cloud DNS:
-
-- publishing.service.gov.uk
-
-**If zones are managed with two providers, then both sets of records must be updated
-in both providers**
-
-## DynDNS
-
-Use the `Cabinet-Office` account. Once you have a Dyn ID, you can login [here](https://manage.dynect.net/login/).
+Some individual records within these zones are managed by other teams.
 
 ## Amazon Route 53
 
@@ -55,17 +43,31 @@ selected provider.
 To make a change to this zone, begin by adding the records to the yaml file for
 the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
 
-When this has been reviewed and merged, you can deploy the changes using [the
+## Jenkins
+
+When the changes have been reviewed and merged, you can deploy them using [the
 "Deploy DNS "Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
 
-Changes should be deployed for each provider separately, and you should first
-run a "plan", and when you're happy with the changes, run "apply".
+You will need to copy and paste the following variables into Jenkins for each operation,
+they can be obtained from a terminal session:
 
-Please note that due to the Terraform state being held in an S3 bucket, you
+- AWS_SESSION_TOKEN
+- AWS_SECRET_ACCESS_KEY
+- AWS_ACCESS_KEY_ID
+
+Changes should be deployed for each provider (AWS & Google) separately, first
+run a "plan" action, and when you're happy with the changes, run "apply".
+
+Within the Jenkins job, select the provider, zone & action. Once build is complete,
+examine the logs before progressing to the next stage (Apply).
+
+Please note:
+
+- Due to the Terraform state being held in an S3 bucket, you
 will require access to the GOVUK AWS "production" account to roll changes for
 both Amazon and Google.
-
-You will not require credentials for Google Cloud. These credentials are stored
+- The order in which you deploy to providers is not important.
+- You will not require credentials for Google Cloud. These credentials are stored
 in Jenkins itself.
 
 ## DNS for the `gov.uk` top level domain
@@ -94,11 +96,10 @@ At the moment Reliability Engineering are also responsible for delegating DNS
 to other government services.
 
 The request will arrive by email or Zendesk from a member of the GOV.UK Proposition
-team.
-The request will contain the service domain name that needs to be delegated and
+team. The request will contain the service domain name that needs to be delegated and
 more than one nameserver hostname (usually `ns0.example.com`, `ns1.example.com`).
 
-In both Dyn and Route 53, create a new node for the service domain underneath `service.gov.uk`
+In Route 53, create a new node for the service domain underneath `service.gov.uk`
 and add `NS` records for that node.
 
 We __do not__ manage DNS for service domains. If you get a request asking you to add
@@ -107,27 +108,7 @@ the single point of DNS for government.
 
 There are ongoing plans to move this responsibility to a different part of GDS.
 
-### Delegating DNS to other Dyn customers
-
-Dyn support say this about delegating DNS to other Dyn customers:
-
-> In order to delegate a subdomain to another Dyn Customer, you will also need
-> to create the subdomain as a Child Zone within your account. Once this is created,
-> we can then transfer the Child Zone into the Ministry of Magic account.
-
-> If the Ministry of Magic had attempted to create this zone within their
-> account manually, it will give them an error stating that the
-> 'Parent Zone exists within another account'.
-
-Follow these steps:
-
-- Open a ticket with Dyn support with the name of the domain to transfer
-- Create a new zone in our Dyn account for the subdomain
-- Create a TXT record on the zone: `Case 000001234 with Dyn support - delegate to Ministry of Magic`
-
-In order to revoke a domain that's been delegated in this way, open a ticket
-with Dyn. As we have control over the parent domain they should be happy to
-reverse the delegation.
+### Delegating DNS to other customers
 
 ## Other weird bits of DNS
 
