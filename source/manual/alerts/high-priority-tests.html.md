@@ -37,5 +37,19 @@ $ ssh monitoring-1.production
 > sudo service smokey-loop restart
 ```
 
+### Integration with Signon
+
+These tests rely on a user in [GOV.UK Signon][signon]. All Signon users have their passphrase expire periodically. This will cause the tests to fail.
+
+You can either change the passphrase of the account and rotate it in encrypted
+hieradata, or you can fake a passphrase change in the Signon Rails console:
+
+```
+$ govuk_app_console signon
+irb(main):001:0> smokey = User.find_by(name: "Smokey (test user)")
+irb(main):002:0> smokey.update_attribute(:password_changed_at, Time.now)
+```
+
+[signon]: https://github.com/alphagov/signon
 [smokey]: https://github.com/alphagov/smokey
 [icinga]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp
