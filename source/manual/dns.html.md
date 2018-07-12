@@ -48,8 +48,8 @@ the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-con
 When the changes have been reviewed and merged, you can deploy them using [the
 "Deploy DNS "Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
 
-You will need to copy and paste the following variables into Jenkins for each operation,
-they can be obtained from a terminal session:
+You will need to copy and paste the below variables into Jenkins for each operation.
+These can be obtained using the [AWS CLI](user-management-in-aws.html#exporting-credentials-to-environment):
 
 - AWS_SESSION_TOKEN
 - AWS_SECRET_ACCESS_KEY
