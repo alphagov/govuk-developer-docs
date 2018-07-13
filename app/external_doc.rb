@@ -8,6 +8,8 @@ class ExternalDoc
     )
 
     context = {
+      # Turn off hardbreaks as they behave different to github rendering
+      gfm: false,
       base_url: URI.join(
         'https://github.com',
         "#{repository}/blob/master/",
