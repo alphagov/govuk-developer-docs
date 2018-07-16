@@ -36,14 +36,14 @@ There are a few domains that we use:
 
 ## Making changes to publishing.service.gov.uk
 
+To make a change to this zone, begin by adding the records to the yaml file for
+the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
+
 We use a Jenkins job that publishes changes to publishing.service.gov.uk. The
 job uses [Terraform](https://www.terraform.io/) and pushes changes to the
 selected provider.
 
-To make a change to this zone, begin by adding the records to the yaml file for
-the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
-
-## Jenkins
+### Jenkins
 
 When the changes have been reviewed and merged, you can deploy them using [the
 "Deploy DNS "Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
@@ -69,6 +69,16 @@ both Amazon and Google.
 - The order in which you deploy to providers is not important.
 - You will not require credentials for Google Cloud. These credentials are stored
 in Jenkins itself.
+
+### Making changes to internal DNS (govuk.digital and govuk-internal.digital)
+
+Currently these zones are only used in environments running on AWS.
+
+These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
+made in the [govuk-aws](https://github.com/alphagov/govuk-aws/) and
+[govuk-aws-data](https://github.com/alphagov/govuk-aws-data/) repositories.
+While GOV.UK migrates to AWS speak with Reliability Engineering for support
+making your changes.
 
 ## DNS for the `gov.uk` top level domain
 
