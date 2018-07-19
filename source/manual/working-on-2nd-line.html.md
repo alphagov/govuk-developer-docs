@@ -11,13 +11,13 @@ review_in: 2 months
 When working on 2nd line, we look at Normal and High priority tickets in the Zendesk ['2nd Line--GOV.UK Alerts and Issues' queue](https://govuk.zendesk.com/agent/filters/30791708).
 
 ## Triaging Zendesk tickets
-See the [diagram for how 2nd line triage Zendesk tickets](https://docs.google.com/presentation/d/1mUnkONOrto2SKRKAO6JnnSUHRLsMy4eZEoq75BGxC6E/edit#slide=id.g39d428fe59_0_0) - there is a printout on the 2nd line desk.
+See the [diagram for how 2nd line triage Zendesk tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing) - there is a printout on the 2nd line desk.
 
 Other things to know:
 
 * If a departmental content request is urgent, content designers will triage their ticket to the ‘2nd line GOV.UK Alerts and Issues’ queue.
 * If you cannot solve a ticket immediately, reply to the requester and let them know you’re looking into it.
-* If a ticket has been resolved and pending a response  for 5 or more days with no response from the requester, submit it as solved with  a message telling them why and that if they still need help they can get in touch.
+* If a ticket has been resolved and pending a response  for 5 or more days with no response from the requester, submit it as solved with a message telling them why and that if they still need help they can get in touch.
 
 ## Improving 2nd line
 
