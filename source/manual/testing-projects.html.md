@@ -4,7 +4,7 @@ title: Test & build a project on Jenkins CI
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-08
+last_reviewed_on: 2019-07-19
 review_in: 6 months
 ---
 
@@ -39,9 +39,9 @@ node {
 }
 ```
 
-[Read the documentation for this in alphagov/govuk-puppet][puppet-x]
+[Read the documentation for this in alphagov/govuk-jenkinslib][jenkinslib]
 
-[puppet-x]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/files/var/lib/jenkins/groovy_scripts/govuk_jenkinslib.groovy
+[jenkinslib]: https://github.com/alphagov/govuk-jenkinslib
 
 ### 3. Trigger builds from GitHub
 
