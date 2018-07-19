@@ -4,7 +4,7 @@ title: Write an incident report
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-04-11
+last_reviewed_on: 2018-07-19
 review_in: 2 months
 ---
 
@@ -53,8 +53,8 @@ All times in local time, unless otherwise stated.
 Time|Description
 ----|-----------  
 HH:MM|
-Total duration of incident|
-Time to fix|
+Total duration of incident (time from when problem started to incident marked as resolved)|
+Time to fix (time from when incident declared to marked as resolved)|
 
 ## Incident Review
 
