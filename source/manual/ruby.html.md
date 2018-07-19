@@ -4,7 +4,7 @@ title: Add a new Ruby version
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-15
+last_reviewed_on: 2018-07-19
 review_in: 6 months
 ---
 
@@ -27,13 +27,13 @@ We set up rbenv differently depending on what's going on:
 - Testing: Jenkins uses a non-login shell so we [add `/usr/lib/rbenv/shims` to the `PATH`][rbenv_path]
 - Cronjobs: some cronjobs start with `/bin/bash -l -c` which runs a login shell
 
-[cap_deploy]: https://github.com/alphagov/govuk-app-deployment/blob/master/recipes/ruby.rb
-[cap_deploy_commit]: https://github.digital.cabinet-office.gov.uk/gds/alphagov-deployment/commit/b6404e33c354ef63f01c13b202ce0cf2ed2975fc
+[cap_deploy]: https://github.com/alphagov/govuk-app-deployment/blob/master/recipes/ruby.rb#L4
+[cap_deploy_commit]: https://github.com/alphagov/alphagov-deployment/commit/b6404e33c354ef63f01c13b202ce0cf2ed2975fc
 [rbenv_path]: https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/integration_credentials.yaml
 
 ## Add a new Ruby version in puppet
 
-Build a package using [fpm](debian-packaging.html) and make it
+Build a package using [fpm](debian-packaging.html#fpm) and make it
 available using our aptly repository.
 
 The package name includes the version of Ruby (eg `rbenv-ruby-2.3.1`) because
