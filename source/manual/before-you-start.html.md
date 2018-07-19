@@ -4,7 +4,7 @@ title: Before you start on 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-05-15
+last_reviewed_on: 2018-07-19
 review_in: 2 months
 ---
 Before you start your shift you’ll need access to the accounts we use and our communication channels.
