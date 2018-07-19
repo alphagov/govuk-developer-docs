@@ -4,11 +4,11 @@ title: Incident management guidance
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-04-11
+last_reviewed_on: 2018-07-19
 review_in: 2 months
 ---
 
-When something goes wrong on GOV.UK we follow the incident management procedure.
+When something goes wrong on GOV.UK we follow the incident management procedure:
 
 - [So, you're having an incident](incident-what-to-do.html)
 - [Write an incident report](incident-reports.html)
