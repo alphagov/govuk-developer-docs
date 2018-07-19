@@ -4,7 +4,7 @@ title: Before you start on 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-05-15
+last_reviewed_on: 2018-07-19
 review_in: 2 months
 ---
 Before you start your shift you’ll need access to the accounts we use and our communication channels.
@@ -23,7 +23,7 @@ Most alerts have some documentation in our [developer docs](https://docs.publish
 
 
 ## Zendesk
-[Zendesk](https://govuk.zendesk.com) is our support ticketing system. [Request an account](https://www.gov.uk/support/internal) if you don't have one yet - Signon access is required so speak to your fellow 2nd Liners if you haven't got this.  This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1mUnkONOrto2SKRKAO6JnnSUHRLsMy4eZEoq75BGxC6E/edit?usp=sharing).
+[Zendesk](https://govuk.zendesk.com) is our support ticketing system. [Request an account](https://www.gov.uk/support/internal) if you don't have one yet - Signon access is required so speak to your fellow 2nd Liners if you haven't got this.  This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing).
 
 ## PagerDuty
 This is our escalation workflow for some key alerts that are likely to require urgent attention. When an alert that triggers pager duty goes off we require one of the 2nd line to acknowledge them, otherwise they will be escalated further. The sort of issues which would generate pagerduty are for key aspects of the site becoming unavailable or a large quantity of error pages served.
