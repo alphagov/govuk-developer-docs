@@ -4,7 +4,7 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2018-01-03
+last_reviewed_on: 2018-07-20
 review_in: 6 months
 ---
 
@@ -187,7 +187,7 @@ The production and integration files are stored in the [govuk-secrets repo](http
 There is no separate staging file; the production file is used for both
 staging and production.
 
-The `.rcp` file for Vagrant is stored in the [puppet repo](https://github.com/alphagov/govuk-puppet/tree/master/gpg_recipients).
+The `.rcp` file for Vagrant is stored in the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_recipients).
 
 Each line in a recipient file corresponds to a [GPG fingerprint](http://en.wikipedia.org/wiki/Public_key_fingerprint) and
 usually is identified by a comment after the hash (\#) symbol denoting
