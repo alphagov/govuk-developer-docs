@@ -4,13 +4,13 @@ title: Welcome to 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-05-15
+last_reviewed_on: 2018-07-20
 review_in: 2 months
 ---
 
 If you’re new to 2nd line or have not worked with us for a while, here’s a brief introduction to what we do and how we work.
 
-Every Wednesday 3 people - 2 developers and a shadow developer - join the team to work on 2nd line. You can check the [2nd line support rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=10) to find out when your shift is.  
+Every Wednesday 3 people from GOV.UK - 2 developers and a shadow developer - join the team to work on 2nd line. An 'interruptible' reliability engineer from the [RE GOV.UK Infra team also sits with the team](/manual/raising-issues-with-reliability-engineering.html#header). You can check the [2nd line support rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=10) to find out when your shift is.  
 
 Your main responsibility is to respond to alerts. You’ll be set up in PagerDuty so that you can be called if there are any urgent alerts during working hours.
 
