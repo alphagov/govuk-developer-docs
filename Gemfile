@@ -18,7 +18,7 @@ gem 'github-markdown'
 gem 'html-pipeline'
 gem 'redcarpet', '~> 3.3.2'
 
-gem 'govuk_schemas', '~> 3.1.0'
+gem 'govuk_schemas', '~> 3.2.0'
 
 # GitHub API
 gem 'octokit', '~> 4.9.0'
