@@ -4,7 +4,7 @@ title: Backup and restore databases in AWS RDS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-13
+last_reviewed_on: 2018-07-25
 review_in: 3 months
 ---
 
