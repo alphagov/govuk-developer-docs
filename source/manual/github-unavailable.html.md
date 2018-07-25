@@ -17,17 +17,17 @@ If GitHub is unavailable, we lose:
 * Access to our primary code repository
 * The ability to authenticate with Jenkins, as it makes use of GitHub groups
 
-We mirror all our repositories to GitLab.com every two hours using the
+We mirror all our repositories to AWS CodeComit every two hours using the
 [`govuk-repo-mirror`](https://github.com/alphagov/govuk-repo-mirror) scripts. This is run from the [`Mirror_Repositories`](https://ci.integration.publishing.service.gov.uk/job/Mirror_Repositories/) CI job
-In the event of Github being down, we can deploy the code from the [govuk team](https://gitlab.com/govuk/) on GitLab.com.
+In the event of Github being down, we can deploy the code from AWS CodeCommit repos. This requires help from a GOV.UK AWS admin.
 
-### Deploying from GitLab.com
+### Deploying from AWS CodeCommit
 
-Use the normal deployment job but check the box to deploy from GitLab.com.
+Use the normal deployment job but check the box to deploy from AWS CodeCommit.
 
-### Making changes to code in GitLab before deployment
+### Making changes to code in AWS CodeCommit before deployment
 
-GOV.UK Tech Leads are owners on the `govuk` team on GitLab.com. They can give access to developers who need to make changes to the code before deployment. This may be necessary if we need to work in private, for example to fix a security vulnerability without disclosing it to the public. To do this, push to a new branch on GitLab.com and then deploy that code.
+GOV.UK AWS admin users can give access to developers who need to make changes to the code before deployment. This may be necessary if we need to work in private, for example to fix a security vulnerability without disclosing it to the public. To do this, push to a new branch on AWS CodeCommit and then deploy that code.
 
 ### Authenticating with Jenkins
 
