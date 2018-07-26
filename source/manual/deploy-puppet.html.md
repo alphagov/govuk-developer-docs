@@ -86,7 +86,7 @@ brief outage, e.g. MySQL.
     running it in `noop` mode. You will need to provide a different lock
     path to bypass the disable:
 
-        govuk_puppet -v --noop --agent_disabled_lockfile /tmp/puppet.noop
+        govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
 
 4.  If you're happy with the results then re-enable Puppet and run it
     again:
