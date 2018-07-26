@@ -12,11 +12,9 @@ As part of the data syncs, the router data should update to point to the relevan
 
 If this fails, then on integration for example, apps will appear to be broken - you'll likely see `cache-1.router.integration.publishing.service.gov.uk;5xx rate for www-origin` alerts and 5xx's for frontend apps.
 
-Check URLs in router-api:
+Check URLs in router-api by SSHing onto a machine with router-api (router-backend for live stack; draft-cache for draft stack) and running the following commands:
 
 ```
-ssh into router-api
-
 govuk_app_console router-api
 
 pp Backend.pluck(:backend_url)
