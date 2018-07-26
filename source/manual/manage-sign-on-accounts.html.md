@@ -4,7 +4,7 @@ title: Manage Signon accounts
 section: Support
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-15
+last_reviewed_on: 2018-07-26
 review_in: 6 months
 ---
 
