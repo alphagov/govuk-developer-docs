@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-01-26
+last_reviewed_on: 2018-07-26
 review_in: 3 months
 related_applications: [rummager]
 ---
@@ -46,8 +46,7 @@ see if it is present and has the expected fields:
     ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging
     ```
 
-0. Go to the Any Request tab and use the panel on the left to send a `POST`
-request to hostname `http://localhost:9200/` and path `govuk/_search`:
+0. Visit [http://localhost:9200/_plugin/head/](http://localhost:9200/_plugin/head/) and use the Any Request tab to send a `POST` request to hostname `http://localhost:9200/` and path `govuk/_search`:
 
     ```
     {
