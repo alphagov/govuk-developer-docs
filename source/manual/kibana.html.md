@@ -23,7 +23,7 @@ You can save and load queries using the buttons in the top right. You may want t
 ### 5xx errors returned from cache layer
 
 ```rb
-host:cache* AND @fields.status:[500 TO 504]
+host:cache* AND (@fields.status:[500 TO 504] OR status:[500 TO 504])
 ```
 
 ### Puppet runs
