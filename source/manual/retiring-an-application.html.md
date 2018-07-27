@@ -24,7 +24,8 @@ This will then be included in the sync to the offsite backup machines
 ## 2. Remove app from puppet
 
 Configure Puppet to remove the app from all servers. Change the app resource,
-and any database resources to `ensure => absent`, remove any host and load-balancer entries, but leave the hieradata entries.
+and any database resources to `ensure => absent`, remove any host and
+load-balancer entries, but leave the hieradata entries.
 
 See this pull request for an example:
 
@@ -58,7 +59,8 @@ hide it from the UI.
 
 ## 6. Remove from deploy Jenkins
 
-Remove entry from the deploy Jenkinses. This is managed [through govuk-puppet][common] in the `common.yml`.
+Remove entry from the deploy Jenkinses. This is managed
+[through govuk-puppet][common] in the `common.yml`.
 
 [common]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
 
@@ -72,7 +74,8 @@ application is being retired", then save your changes.
 
 ## 8. Update development scripts
 
-Remove from the [development-vm directory][development] `Procfile` and `Pinfile`:
+Remove from the [development-vm directory][development] `Procfile` and
+`Pinfile`:
 
 Leave a comment in the `Procfile` indicating that the port used to be
 used by this app, to avoid port conflicts causing a problem running
@@ -93,8 +96,9 @@ to the application should be removed.
 Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
 
-Follow the [instructions for DNS changes][dns-changes] in order to remove these,
-and ask the Reliability Engineering team to approve any necessary Pull Requests.
+Follow the [instructions for DNS changes][dns-changes] in order to remove
+these, and ask the Reliability Engineering team to approve any necessary
+Pull Requests.
 
 [dns-changes]:
 https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
@@ -118,7 +122,8 @@ If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
 ## 14. Remove jobs in CI
 
-If tests were set up, go to [CI][ci] and choose "Delete Repository" for your project.
+If tests were set up, go to [CI][ci] and choose "Delete Repository" for your
+project.
 
 [ci]: https://ci.integration.publishing.service.gov.uk/
 
@@ -141,4 +146,5 @@ Since the application has been retired, it shouldn't be tracked in Sentry.
 
 ## 18. Archive the repo
 
-Go into the repository settings in Github, and [archive the repo](https://github.com/blog/2460-archiving-repositories).
+Go into the repository settings in Github, and
+[archive the repo](https://github.com/blog/2460-archiving-repositories).
