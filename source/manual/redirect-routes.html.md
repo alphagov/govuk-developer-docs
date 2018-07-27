@@ -4,7 +4,7 @@ title: Redirect a route
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-02
+last_reviewed_on: 2018-07-27
 review_in: 6 months
 related_applications: [short-url-manager]
 ---
