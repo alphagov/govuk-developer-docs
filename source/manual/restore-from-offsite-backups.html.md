@@ -4,7 +4,7 @@ title: Restore from offsite backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-28
+last_reviewed_on: 2017-07-27
 review_in: 6 months
 ---
 
