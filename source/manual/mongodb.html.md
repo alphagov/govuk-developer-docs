@@ -4,15 +4,16 @@ title: MongoDB backups
 layout: manual_layout
 parent: "/manual.html"
 section: Backups
-last_reviewed_on: 2017-12-12
+last_reviewed_on: 2018-07-27
 review_in: 6 months
 ---
 
-We have 2 ways of taking MongoDB backups. 
+We have 2 ways of taking MongoDB backups.
 
 ## automongodbbackup
 
-This is how MongoDB backups have traditionally been taken on the GOV.UK Infrastructure.
+This is how MongoDB backups have traditionally been taken on the GOV.UK
+Infrastructure.
 
 A third-party script called [automongodbbackup](https://github.com/micahwedemeyer/automongobackup) takes a `mongodump` every night and stores them on disk
 on a dedicated mount point on one of the MongoDB machines. This is likely [the first in the replicaset as defined in the Puppet manifest](https://github.com/alphagov/govuk-puppet/blob/master/modules/mongodb/manifests/backup.pp#L40-L44).
