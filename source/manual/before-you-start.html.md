@@ -1,10 +1,10 @@
 ---
 owner_slack: "@hong.nguyen"
-title: Before you start on 2nd line  
+title: Before you start on 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-07-19
+last_reviewed_on: 2018-07-31
 review_in: 2 months
 ---
 Before you start your shift you’ll need access to the accounts we use and our communication channels.
@@ -26,12 +26,17 @@ Most alerts have some documentation in our [developer docs](https://docs.publish
 [Zendesk](https://govuk.zendesk.com) is our support ticketing system. [Request an account](https://www.gov.uk/support/internal) if you don't have one yet - Signon access is required so speak to your fellow 2nd Liners if you haven't got this.  This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing).
 
 ## PagerDuty
-This is our escalation workflow for some key alerts that are likely to require urgent attention. When an alert that triggers pager duty goes off we require one of the 2nd line to acknowledge them, otherwise they will be escalated further. The sort of issues which would generate pagerduty are for key aspects of the site becoming unavailable or a large quantity of error pages served.
+This is our escalation workflow for some key alerts that are likely to require urgent attention. The escalation order is:
 
-Please check you can sign in to [PagerDuty](https://govuk.pagerduty.com/). Speak to the delivery manager if you cannot sign in.
+1. Primary Engineer
+2. Secondary Engineer
+3. Designated Programme team member (might not be technical)
 
-There is a [PagerDuty drill](https://docs.publishing.service.gov.uk/manual/alerts/pagerduty-drill.html) every Wednesday morning at 11am. You will be called by PagerDuty and must escalate the incident to the person on 3rd line. When you receive this call do not acknowledge it, instead escalate it so that each person in the workflow can be alerted.
+This mirrors our out of hours on-call escalation order, so 2ndline can be thought of as in-hours on-call. 2ndline Shadows are not required to be on PagerDuty. If you're on Primary or Secondard, please check you can sign in to [PagerDuty](https://govuk.pagerduty.com/). Speak to the Delivery Manager if you cannot sign in.
 
+When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge them, otherwise they will be escalated further. PagerDuty are for key aspects of the site becoming unavailable or a large quantity of error pages being served.
+
+There is a [PagerDuty drill](https://docs.publishing.service.gov.uk/manual/alerts/pagerduty-drill.html) every Wednesday morning at 11am. You will be called by PagerDuty and must escalate the incident to the next person in the escalation order. When you receive this call do not acknowledge it, instead escalate it so that each person in the workflow can be alerted.
 
 You can also find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html).
 
