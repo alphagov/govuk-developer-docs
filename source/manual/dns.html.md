@@ -4,7 +4,7 @@ title: Domain Name System (DNS) records
 section: DNS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-09
+last_reviewed_on: 2018-07-31
 review_in: 6 months
 ---
 
@@ -12,9 +12,11 @@ The Reliability Engineering team is responsible for managing several DNS zones.
 
 By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS)
 
-As of Jul 2018, there are 40 hosted zones. A list is retrievable from a termnal using:
+As of Jul 2018, there are 40 hosted zones. A list is retrievable from a terminal using:
 
-  aws route53 list-hosted-zones |grep Name
+```
+  aws route53 list-hosted-zones | grep Name
+```
 
 Some individual records within these zones are managed by other teams.
 
@@ -46,7 +48,7 @@ selected provider.
 ### Jenkins
 
 When the changes have been reviewed and merged, you can deploy them using [the
-"Deploy DNS "Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
+"Deploy DNS" Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
 
 You will need to copy and paste the below variables into Jenkins for each operation.
 These can be obtained using the [AWS CLI](user-management-in-aws.html#exporting-credentials-to-environment):
@@ -93,8 +95,7 @@ make a change and don't have access.
 2nd line should be notified of any planned changes via email.
 
 - `gov.uk.` is a top-level domain so it cannot contain a CNAME record
-  (see [RFC 1912 section 2.4](https://tools.ietf.org/html/rfc1912#section-2.4) and the
-  page on the [GOV.UK bare redirect](govuk_bare_redirect.html)).
+  (see [RFC 1912 section 2.4](https://tools.ietf.org/html/rfc1912#section-2.4)).
   Instead, it contains A records that point to anycast IP addresses for our CDN provider.
 - `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which means that we
   do not need to make a request to Jisc if we want to change CDN providers. Just change where
@@ -117,8 +118,6 @@ anything other than `NS` records, it should be rejected. This is so that we're n
 the single point of DNS for government.
 
 There are ongoing plans to move this responsibility to a different part of GDS.
-
-### Delegating DNS to other customers
 
 ## Other weird bits of DNS
 

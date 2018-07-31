@@ -4,7 +4,7 @@ title: Content store times out in VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-14
+last_reviewed_on: 2018-07-31
 review_in: 6 months
 related_applications:
   - content-store
@@ -40,7 +40,7 @@ If you only see the `_id_` index as in the above example you need to run another
 command to create the indexes for all models stored in mongo:
 
 ```
-$ cd /var/govuk/content-stor
+$ cd /var/govuk/content-store
 $ rake db:mongoid:create_indexes
 ```
 
