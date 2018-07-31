@@ -40,8 +40,8 @@ potential downtime.
 
     Don't forget to kill the screen(1) session when you're done.
 
-6.  Reprovision the box using the Jenkins job specific to
-    the environment.
+6.  Reprovision the box using the "Launch VMs" Jenkins job in the
+    enviroment's `deploy` Jenkins instance.
 7.  Remove any entries for the box from your SSH
     `~/.ssh/known_hosts` file.
 8.  Wait for the box to run Puppet so you can log in. It make take a few
@@ -66,3 +66,6 @@ potential downtime.
 > machine's console from the vCloud Director Flash UI. VMs have been
 > known to wait at the Grub bootloader screen; if this is the case,
 > press the enter key in the console to start Linux.
+>
+> You won't be able to connect to the Flash console if you're using the
+> "emergency" SSH tunnel to access vCloud.
