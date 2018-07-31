@@ -4,7 +4,7 @@ title: Fix issues with vagrant-dns
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-28
+last_reviewed_on: 2018-07-31
 review_in: 6 months
 ---
 
@@ -20,9 +20,8 @@ You may see an error like:
 /opt/vagrant/embedded/lib/ruby/2.2.0/rubygems/dependency.rb:315:in `to_specs': Could not find 'celluloid' (>= 0.16.0) among 45 total gem(s) (Gem::LoadError)
 ```
 
-It looks like this might be a problem with Vagrant 1.9.0, because installing
-1.8.6 fixes the problem. The issue has been raised with vagrant-dns, so
-they may have a better workaround: https://github.com/BerlinVagrant/vagrant-dns/issues/45
+This is a [problem with Vagrant 1.9.0](https://github.com/BerlinVagrant/vagrant-dns/issues/45).
+Upgrading to Vagrant 1.9.1 or newer should fix the issue.
 
 You may also need to make sure the plugin has been started:
 
