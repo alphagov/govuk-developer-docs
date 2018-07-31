@@ -4,16 +4,12 @@ title: SSH into GOV.UK servers from the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-29
+last_reviewed_on: 2018-07-31
 review_in: 6 months
 ---
 
-You will need to either forward your public key from the host machine to the
-VM or have your VM public key added to your [user manifest][user-manifests].
-
-[user-manifests]: https://docs.publishing.service.gov.uk/manual/get-started.html#3-create-a-user-in-integration-and-ci
-
-To confirm your key has been forwarded to the development vm you can run:
+By default, your SSH agent is forwarded to the VM. To confirm your key has
+been forwarded you can run:
 
 ```shell
 $ vagrant ssh # ssh onto vm
