@@ -53,15 +53,6 @@ and using non-default values for the `segments_mode`.
 [short-url-manager]: https://short-url-manager.publishing.service.gov.uk
 [short-url-manager-permissions]: https://github.com/alphagov/short-url-manager/#permissions
 
-## Using router-data
-
-Router-data is deprecated and its use should be avoided. However, in the
-extremely rare case that a redirect needs to be put in place without changing
-the content in the Publishing API, follow the [README][router-data-README]
-to create your redirects in a new branch and open a pull request.
-
-[router-data-README]: https://github.com/alphagov/router-data#router-data
-
 ## Fixing incorrect Corporate Information page redirects
 
 There have been a few occasions where Corporate Information pages have
