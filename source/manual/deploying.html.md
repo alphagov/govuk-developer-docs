@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
-last_reviewed_on: 2018-07-27
+last_reviewed_on: 2018-07-31
 review_in: 6 months
 ---
 
@@ -42,7 +42,7 @@ release app.
 ## Deployment process
 
 Deployment communications are in the `#govuk-deploy` Slack channel. If you are
-on 2ndline you should add yourself to that channel. As before, releases can
+on 2ndline you should add yourself to that channel. Releases can
 start from 9:30am and must be finished by 5pm, or 4pm on Fridays.
 
 This process is new as of 15th May 2017, for more information about why we
@@ -69,11 +69,11 @@ An alert for the start and end of your deployment will appear in the channel.
 Jenkins will still enforce sequential deployments per environment across all
 applications, so you may end up in a queue.
 
-### Holding deployment of other applications
+### Holding deployment of applications
 
-If you need to hold deployments of applications during your deploy say so in
-your announcement post and add it to the channel topic (along with your name).
-Post again and remove from the topic when you release your hold.
+If you need to hold deployments of applications, you must add a note to the
+release app. Do this by clicking the edit button in the Notes column in the
+entry for that application.
 
 ### 2nd line support
 
@@ -82,7 +82,8 @@ and agree a time.
 
 ### Security patches
 
-If you are responding to a security incident, follow the steps to [deploy fixes for a security vulnerability](deploy-fixes-for-a-security-vulnerability.html).
+If you are responding to a security incident, follow the steps to
+[deploy fixes for a security vulnerability](deploy-fixes-for-a-security-vulnerability.html).
 
 ### Rollback
 
@@ -97,7 +98,8 @@ channel to let people know what's going. Then test your fix in integration and
 redeploy and test it in staging before continuing the deploy to production.
 
 If a release fails in staging and it is not a quick-fix, you should rollback
-the change and try again later.
+the change and try again later. Post a note in the release app saying not to
+deploy the application in the meantime.
 
 ## GitHub
 

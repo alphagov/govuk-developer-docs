@@ -1,11 +1,13 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-platform-health"
 title: Attachment backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-30
+last_reviewed_on: 2018-07-31
 review_in: 2 months
+next_review_notes: |
+  This will probably be irrelevant soon once all attachments are moved to S3
 related_applications: [asset-manager, whitehall]
 ---
 

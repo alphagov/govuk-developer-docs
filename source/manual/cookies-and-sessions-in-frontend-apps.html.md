@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: CDN & Caching
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2018-03-21
+last_reviewed_on: 2018-07-31
 review_in: 3 months
 ---
 

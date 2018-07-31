@@ -1,16 +1,12 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Retire an application
-section: Packaging
+section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-16
+last_reviewed_on: 2018-07-31
 review_in: 6 months
 ---
-
-To remove an application from our infrastructure take the following
-steps. Note some of the repositories are private repos that not everyone has
-access to, you may need to ask your tech lead for access.
 
 ## 1. Archive database
 
@@ -88,7 +84,7 @@ this app locally in the future.
 Check the data replication scripts for anything specific to this application.
 
 Some applications have special case details in
-<https://github.com/alphagov/env-sync-and-backup/> (private repo). Any relating
+<https://github.com/alphagov/env-sync-and-backup/>. Any relating
 to the application should be removed.
 
 ## 10. Update DNS

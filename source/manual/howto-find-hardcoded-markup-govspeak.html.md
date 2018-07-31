@@ -1,7 +1,7 @@
 ---
 owner_slack: '#govuk-2ndline'
 title: Find hardcoded markup in GovSpeak
-section: Frontend
+section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-05-30
