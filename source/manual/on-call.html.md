@@ -22,6 +22,7 @@ to keep GOV.UK running at night, on the weekends and on public holidays.
   know how to fix every issue on your own
 - Logs are not as important as being available - if you need to lose some logs
   in order to bring the site back up, that's probably a good trade-off to make
+- Get paid. Make sure you submit your [payment claim form][] after your shift.
 
 ## On call checklist
 
@@ -105,3 +106,4 @@ support (assuming everything is working).
 [fabric]: https://github.com/alphagov/fabric-scripts/
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets/
 [vcloud]: https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst
+[payment claim form]: https://docs.google.com/forms/d/e/1FAIpQLSd8DX3B0L6az_aHEfWBegK5ABIPhfARgQZ0OpdEW9bIhMk5Fg/viewform
