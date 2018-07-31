@@ -4,11 +4,11 @@ title: Backup and restore Elasticsearch indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2018-07-27
+last_reviewed_on: 2018-07-31
 review_in: 2 months
 ---
 The Elasticsearch indexes used for search are backed up to disk using
-es_dump_restore](https://github.com/patientslikeme/es_dump_restore).
+[es_dump_restore](https://github.com/patientslikeme/es_dump_restore).
 
 **Note: this will change to S3 snapshots when production is moved to AWS**
 
