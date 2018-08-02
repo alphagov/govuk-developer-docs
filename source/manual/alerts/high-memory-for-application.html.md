@@ -4,7 +4,7 @@ title: High memory for application
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-11-22
+last_reviewed_on: 2018-08-02
 review_in: 6 months
 ---
 
@@ -13,7 +13,10 @@ This alert triggers when the application process uses too much memory.
 For more info, you can also read [the page for the alert that triggers
 when a machine is out of memory][mem].
 
+**If you're having trouble with Mapit, see [the Mapit specific page][mapit]**
+
 [mem]: /manual/alerts/free-memory-warning-on-backend.html
+[mapit]: /manual/alerts/high-memory-for-mapit.html
 
 ## Fix memory leaks
 
