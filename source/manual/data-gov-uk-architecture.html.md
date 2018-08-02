@@ -11,7 +11,6 @@ review_in: 6 months
 [find]: apps/datagovuk_find
 [ckan]: apps/ckanext-datagovuk
 [paas]: https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas
-[terraform]: https://github.com/alphagov/datagovuk_infrastructure
 [signon]: manual/manage-sign-on-accounts
 [deployment]: manual/data-gov-uk-deployment
 [monitoring]: manual/data-gov-uk-monitoring
@@ -53,7 +52,7 @@ The `data.gov.uk` platform is used to publish and view datasets. A dataset is a 
 
 ## [Publish] and [Find]
 
-[Publish] and [Find] are provisioned on [GOV.UK Paas][paas] using [Terraform]. The [deployment] and [monitoring] pages explain this in more detail, but you can use the following commands to get an overview.
+[Publish] and [Find] are provisioned on [GOV.UK Paas][paas]. The [deployment] and [monitoring] pages explain this in more detail, but you can use the following commands to get an overview.
 
 ```
 cf apps
