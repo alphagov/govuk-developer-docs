@@ -69,4 +69,4 @@ We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish
 
 ## [CKAN]
 
-TODO
+Legacy [CKAN] is hosted on Bytemark servers. New [CKAN] (still under development) will be hosted on GOV.UK infrastructure.
