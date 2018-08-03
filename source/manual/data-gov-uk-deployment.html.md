@@ -9,7 +9,6 @@ review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
-[terraform]: https://github.com/alphagov/datagovuk_infrastructure
 [publish-ci]: https://travis-ci.org/alphagov/datagovuk_publish/
 [find-ci]: https://travis-ci.org/alphagov/datagovuk_find
 [heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#header
@@ -30,7 +29,7 @@ Each repo has a `Procfile` and an `app.json` file, which help to specify how the
 
 ## PaaS Staging/Prod Env
 
-[Publish] and [Find] are provisioning on [GOV.UK PaaS][paas] using [Terraform]. Each app repo contains a set of manifests that specify the container settings for when it's deployed. You can deploy an app manually as follows.
+[Publish] and [Find] are provisioned on [GOV.UK PaaS][paas]. Each app repo contains a set of manifests that specify the container settings for when it's deployed. You can deploy an app manually as follows.
 
 ```
 ## run once to install the plugin
