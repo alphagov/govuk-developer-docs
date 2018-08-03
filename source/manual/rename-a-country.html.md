@@ -16,15 +16,15 @@ We recommend testing out these instructions in integration and then staging befo
 This will update www.gov.uk/foreign-travel-advice/countryname. In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher):
 
 1. Create a pull request with:
-* A migration to update the relevant `country_slug` of TravelAdviceEdition. [Example](https://github.com/alphagov/travel-advice-publisher/pull/346/commits/b28ff7b4eae96543324f61be700dca32f1ffdba5)
-* A change of the relevant name and slug in the `lib/data/countries.yml` file. Keep the same `content_id` and `email_signup_content_id`, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/346/commits/3eb10a8519638850760698992dd1f6467b041ab0)
+    * A migration to update the relevant `country_slug` of TravelAdviceEdition. [Example](https://github.com/alphagov/travel-advice-publisher/pull/346/commits/b28ff7b4eae96543324f61be700dca32f1ffdba5)
+    * A change of the relevant name and slug in the `lib/data/countries.yml` file. Keep the same `content_id` and `email_signup_content_id`, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/346/commits/3eb10a8519638850760698992dd1f6467b041ab0)
 
 2. Deploy Travel Advice publisher
 Once the above PRs are ready, deploy Travel Advice Publisher. This should be an `app:migrate_and_hard_restart` deploy as a hard restart is required to update the yml file.
 
 3. Run rake tasks
-* Run [bundle exec rake publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[new_country_slug]) to update the PublishingApi.
-* Run [publishing_api:republish_email_signups:editions](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:editions) to update email subscriptions.
+    * Run [bundle exec rake publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[new_country_slug]) to update the PublishingApi.
+    * Run [publishing_api:republish_email_signups:editions](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:editions) to update email subscriptions.
 
 4. Update the search title
 In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin), go to the country, create a new edition, tick "minor update" and update the Search title and Search description fields to ensure search results have the updated name. Save and publish.
