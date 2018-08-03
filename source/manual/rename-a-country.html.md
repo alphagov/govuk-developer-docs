@@ -51,6 +51,8 @@ Go to the relevant country in [World Location News](https://whitehall-admin.inte
 
 ### 4. Update Smart-answers
 
+smart-answers validates country names against the production worldwide API, which is managed by whitehall.  So do this after deploying the whitehall change.
+
 This will update content from pages served by smart-answers such as marriage-abroad/y/countryname. In [Smart-answers](https://github.com/alphagov/smart-answers):
 
 1. Find and replace (case sensitive) old_country_name with new_country_name, then Old_country_name with New_country_name. [Example](https://github.com/alphagov/smart-answers/pull/3567/commits/cd3f693c3bfb6b5a73c11b582a4dc89f02c6e2f6)
