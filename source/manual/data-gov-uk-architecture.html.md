@@ -31,7 +31,7 @@ review_in: 6 months
 [contract-finder-new]: https://www.contractsfinder.service.gov.uk/Search
 [land-registry-birth]: https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/246732/0247.pdf
 [reference]: http://reference.data.gov.uk
-[time-interval-service]: https://github.com/alphagov/IntervalServer
+[time-interval-service]: https://github.com/epimorphics/IntervalServer
 [heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#use-the-shared-heroku-account
 
 The `data.gov.uk` platform is used to publish and view datasets. A dataset is a document about a collection of links to documentation or data hosted somewhere on the Internet. The platform has the following services.
