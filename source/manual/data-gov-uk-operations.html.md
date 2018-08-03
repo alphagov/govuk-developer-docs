@@ -38,4 +38,4 @@ rails runner CKAN::V26::PackageSyncWorker.new.perform
 rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
 ```
 
-Now run `bundle exec sidekiq` and `rails s` and monitor the resulting jobs in the [Sidekiq Web UI](http://localhost:3000/sidekiq).
+Now run `bundle exec sidekiq` and `rails s` and monitor the resulting jobs in the [Sidekiq Web UI](/manual/data-gov-uk-monitoring.html#sidekiq-publish).
