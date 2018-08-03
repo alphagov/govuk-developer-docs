@@ -13,6 +13,8 @@ We recommend testing out these instructions in integration and then staging befo
 
 ### 1. Update Foreign Travel Advice publisher
 
+**Example PR:** https://github.com/alphagov/travel-advice-publisher/pull/381
+
 This will update www.gov.uk/foreign-travel-advice/countryname. In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher):
 
 1. Create a pull request with:
@@ -31,6 +33,8 @@ In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.u
 
 ### 2. Update Worldwide Taxons
 
+**Example PR:** https://github.com/alphagov/rummager/pull/1265
+
 This will update /world/countryname.
 
 Rename the taxon in the [Rummager index list](https://github.com/alphagov/rummager/blob/master/config/govuk_index/migrated_formats.yaml#L51-L277).
@@ -41,21 +45,25 @@ _Note: updating the child taxons linked to the country taxon ("UK help and servi
 
 ### 3. Update Whitehall
 
+**Example PR:** https://github.com/alphagov/whitehall/pull/4245
+
 This will update /world/countryname/news. In [Whitehall](https://github.com/alphagov/whitehall):
 
 1. Data migration
-Create and deploy a data migration to update the `slug` and `name` fields of the WorldLocation table. Examples [1](https://github.com/alphagov/whitehall/pull/2776/files) and [2](https://github.com/alphagov/whitehall/pull/3359)(both changes can be made in one PR)
+Create and deploy a data migration to update the `slug` and `name` fields of the WorldLocation table.
 
 2. Update in the UI
 Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations) and in the "Details" tab edit the Title, Mission statement and relevant Featured links.
 
 ### 4. Update Smart-answers
 
+**Example PR:** https://github.com/alphagov/smart-answers/pull/3619
+
 smart-answers validates country names against the production worldwide API, which is managed by whitehall.  So do this after deploying the whitehall change.
 
 This will update content from pages served by smart-answers such as marriage-abroad/y/countryname. In [Smart-answers](https://github.com/alphagov/smart-answers):
 
-1. Find and replace (case sensitive) old_country_name with new_country_name, then Old_country_name with New_country_name. [Example](https://github.com/alphagov/smart-answers/pull/3567/commits/cd3f693c3bfb6b5a73c11b582a4dc89f02c6e2f6)
+1. Find and replace (case sensitive) old_country_name with new_country_name, then Old_country_name with New_country_name.
 
 2. Run `bundle exec rake checksums:update`
 
