@@ -38,7 +38,7 @@ The `data.gov.uk` platform is used to publish and view datasets. A dataset is a 
 
   * [CKAN] is the legacy publishing and finder app for datasets ('packages'). It also runs Nginx to support [Find].
   * [Find] is the public frontend for searching datasets using Elasticsearch. It replaces CKAN for certain routes.
-  * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasitcsearch.
+  * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasticsearch.
   * [Statistics] is owned by the Office for National Statistics and was established as part of the [Open Data Policy][open-data-policy].
   * [Environment][environment] is owned by DEFRA and was created with the [Location] service as part of the [Open Data Policy][open-data-policy].
   * [Land Registry][land-registry] is owned by the same and [was created][land-registry-birth] to publish linked data as part of the [Open Data Policy][open-data-policy].
