@@ -20,7 +20,7 @@ This will update www.gov.uk/foreign-travel-advice/countryname. In [Travel Advice
     * A change of the relevant name and slug in the `lib/data/countries.yml` file. Keep the same `content_id` and `email_signup_content_id`, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/346/commits/3eb10a8519638850760698992dd1f6467b041ab0)
 
 2. Deploy Travel Advice publisher
-Once the above PRs are ready, deploy Travel Advice Publisher. This should be an `app:migrate_and_hard_restart` deploy as a hard restart is required to update the yml file.
+Once the above PRs are ready, deploy Travel Advice Publisher. Perform a `deploy` and then an `app:migrate_and_hard_restart`, as a hard restart is required to update the yml file.
 
 3. Run rake tasks
     * Run [bundle exec rake publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[new_country_slug]) to update the PublishingApi.
