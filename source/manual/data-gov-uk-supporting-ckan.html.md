@@ -61,6 +61,66 @@ sudo -u deploy govuk_setenv ckan venv/bin/paster
 > There is also a separate [historical document of previous admin tasks](https://docs.google.com/document/d/1V64IK9VoHU5w-xQmmmvKXF396FQViHM06iJWnRoAxzc/edit?usp=sharing)
 that you may wish to consult. 
 
+### Switching between legacy CKAN and Find open data
+
+To access legacy CKAN, append `?legacy=1` to the URL.
+
+If viewing a dataset, the final part of the path must be removed, leaving only the GUID (e.g. `https://data.gov.uk/dataset/f760008b-86d3-4bbb-89da-1dfe56101554/gh-wine-cellar-data` on Find open data can be viewed in legacy CKAN at `https://data.gov.uk/dataset/f760008b-86d3-4bbb-89da-1dfe56101554?legacy=1`).
+
+### Accessing the CKAN API
+
+There are times when it can be useful to access the CKAN API when debugging or resolving issues.
+
+Note that the responses will be different depending on your access permissions.  The ID can be specified as either the GUID or the URL slug (referred to as a URL name in CKAN).
+
+####  Listing all datasets
+
+```
+https://data.gov.uk/api/3/action/package_list
+```
+
+#### Viewing a dataset
+
+```
+https://data.gov.uk/api/3/action/pakcage_show?id=f760008b-86d3-4bbb-89da-1dfe56101554
+```
+
+#### Searching for a dataset
+
+```
+https://data.gov.uk/api/3/action/package_search?q=title:wine+cellar
+```
+
+#### Find all packages created during a specific timeframe
+
+```
+https://data.gov.uk/api/3/action/package_search?q=metadata_created:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
+```
+
+#### Find all packages modified during a specific timeframe
+
+```
+https://data.gov.uk/api/3/action/package_search?q=metadata_modified:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
+```
+
+#### List all publishers
+
+```
+https://data.gov.uk/api/3/action/organization_list
+```
+
+#### View a publisher record
+
+```
+https://data.gov.uk/api/3/action/organization_show?id=government_digital_service
+```
+
+#### View a user (e.g. to get CKAN API key for a Drupal user)
+
+```
+https://data.gov.uk/api/3/action/user_show?id=user_d484581
+```
+
 ### Creating a system administrator account
 
 ```
@@ -219,18 +279,6 @@ Then in the REPL that loads:
 >>> from ckanext.dgu.model.schema_codelist import Schema
 >>> model.Session.add(Schema(url="[URL]", title="[TITLE]"))
 >>> model.repo.commit_and_remove()
-```
-
-### Find all packages created during a specific timeframe
-
-```
-https://data.gov.uk/api/3/action/package_search?q=metadata_created:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
-```
-
-### Find all packages modified during a specific timeframe
-
-```
-https://data.gov.uk/api/3/action/package_search?q=metadata_modified:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
 ```
 
 ### Find all packages where a resource has a partial URL
