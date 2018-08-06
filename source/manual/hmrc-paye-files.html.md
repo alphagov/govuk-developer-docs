@@ -39,24 +39,7 @@ The way the updates work:
 
 ## Where are the files?
 
-The files are currently stored in our asset host. This can be seen as
-follows:
-
-    ssh asset-master-1.backend.production ls /mnt/uploads/whitehall/clean/uploaded/hmrc
-
-Also see [the Puppet definition for how these files are
-served](https://github.com/alphagov/govuk-puppet/blob/b97161bb04a9602fabc80db2a65c923fca27cb42/modules/govuk/manifests/apps/whitehall.pp#L94-L110).
-
-The files are:
-
--   `payetools-{linux,osx,win}.zip` - the full binary
--   `payetools-rti-$version-{linux,osx,win}.zip` - the binary patch
-    updates
--   `realtimepayetools-update-vXX.xml` - a manifest file describing the
-    patch update locations and versions
--   `test-realtimepayetools-update-vXX.xml` - the next patch release
-    test file, used by the software provider to test the end to end
-    process
+The files are stored in S3, along with the rest of our uploaded assets.
 
 ## The process for uploading new versions of the app
 
@@ -67,20 +50,18 @@ the previous version of the software.
 1.  HMRC submit a ticket via Zendesk
     ([example](https://govuk.zendesk.com/tickets/771694))
 2.  Download all zip files and XML file in the ticket
-3.  Upload the ZIP files only:
+3.  Upload the new files:
 
-        ssh asset-master-1.backend.production "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
+        ssh backend-1.production "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
         scp *.zip asset-master-1.backend.production:/tmp/hmrc-paye
-        ssh asset-master-1.backend.production
-        sudo su - assets
-        cp /tmp/hmrc-paye/* /mnt/uploads/whitehall/clean/uploaded/hmrc/
+        scp *.xml asset-master-1.backend.production:/tmp/hmrc-paye
 
-4.  Replace the XML manifest prefixed with `test`:
+4.  Load the files into the Asset Manager, with "test-" at the start of the manifest file's name:
 
-        scp realtimepayetools-update-vXX.xml asset-master-1.backend.production:/tmp/hmrc-paye/test-realtimepayetools-update-vXX.xml
-        ssh asset-master-1.backend.production
-        sudo su - assets
-        cp /tmp/hmrc-paye/*.xml /mnt/uploads/whitehall/clean/uploaded/hmrc/
+        ssh backend-1.production
+        cd /var/apps/asset-manager
+        sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
+        sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
 
 5.  Purge the cache for the test file:
 
@@ -98,12 +79,12 @@ the previous version of the software.
     number, ready to publish at the launch time.
 
 8.  When the launch time comes (which should be specified in the Zendesk
-    ticket), copy the test file over the production file using the
-    following commands (the `mv` command can't be used because it
-    doesn't update the modified time of the file):
+    ticket), re-load the test file to the production path:
 
-        ssh asset-master-1.backend.production
-        cat /mnt/uploads/whitehall/clean/uploaded/hmrc/test-realtimepayetools-update-vXX.xml | sudo -u assets tee /mnt/uploads/whitehall/clean/uploaded/hmrc/realtimepayetools-update-vXX.xml
+        ssh backend-1.production
+        sudo -udeploy govuk_setenv bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
+
+    You will have to copy the file to she server again if it has been deleted since it was first uploaded.
 
 9. Publish the content items.
 
@@ -112,4 +93,4 @@ the previous version of the software.
 
         fab $environment class:cache cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-vXX.xml
 
-10.  Update and resolve the Zendesk ticket
+11.  Update and resolve the Zendesk ticket
