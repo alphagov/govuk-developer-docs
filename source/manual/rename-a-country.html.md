@@ -45,12 +45,14 @@ _Note: updating the child taxons linked to the country taxon ("UK help and servi
 
 ### 3. Update Whitehall
 
-**Example PR:** https://github.com/alphagov/whitehall/pull/4245
+**Example PR:** https://github.com/alphagov/whitehall/pull/4245 and https://github.com/alphagov/whitehall/pull/4259
 
 This will update /world/countryname/news. In [Whitehall](https://github.com/alphagov/whitehall):
 
 1. Data migration
-Create and deploy a data migration to update the `slug` and `name` fields of the WorldLocation table.
+    * Create a data migration to update the `slug` and `name` fields of the WorldLocation table.
+    * Create a data migration to redirect the old slug.
+    * Deploy the data migrations
 
 2. Update in the UI
 Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations) and in the "Details" tab edit the Title, Mission statement and relevant Featured links.
