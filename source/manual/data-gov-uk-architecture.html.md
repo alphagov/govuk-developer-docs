@@ -41,7 +41,6 @@ Services owned by data.gov.uk
   * [CKAN] is the legacy publishing and finder app for datasets ('packages'). It also runs Nginx to support [Find].
   * [Find] is the public frontend for searching datasets using Elasticsearch. It replaces CKAN for certain routes.
   * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasticsearch.
-  * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasitcsearch.
   * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
 
 Services with data.gov.uk sub-domains, but owned by other departments
