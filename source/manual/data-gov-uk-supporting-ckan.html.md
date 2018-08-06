@@ -212,7 +212,7 @@ paster --plugin=ckan search-index -o rebuild -c $CKAN_INI
 
 ### Managing the harvest workers
 
-Although harvesters can mostly be managed from the user interface, it is
+Although harvesters can mostly be managed from the [user interface](https://data.gov.uk/harvest), it is
 sometimes easier to perform these tasks from the command line. If using
 a system administrator account you will see > 400 harvest configs without
 a clear way of seeing which are currently running.
