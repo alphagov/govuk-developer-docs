@@ -186,6 +186,25 @@ to purge the queues used in the various stages of harvesting
 paster --plugin=ckanext-harvest harvester purge_queues -c $CKAN_INI
 ```
 
+#### Restarting the harvest queues
+
+If the queues stall, it may be necessary to restart one or both of the harvest
+queues.
+
+The gather jobs retrieve the identifiers of the updated datasets and create 
+jobs in the fetch queue.
+
+```
+sudo supervisorctl restart ckan_gather_queue
+```
+
+The fetch job retrieve the datasets from the remote source and perform the
+relevant updates in CKAN.
+
+```
+sudo supervisorctl restart ckan_fetch_queue
+```
+
 ### Adding a new Schema
 
 Each new schema for the schema dropdown in [CKAN] needs a title and a URL ...
