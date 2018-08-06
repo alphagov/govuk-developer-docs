@@ -15,7 +15,7 @@ The page is managed using a third party service called [Statuspage][sp].
 
 Use [manage.statuspage.io][man] to post messages.
 
-Remember: government publishers are the main audience of the page. Write in non-technical language. Prefer to use the templates, they've been proofread.
+Remember: government publishers are the main audience of the page. They'll want to know what isn't working, and how long it will take to fix. Write in non-technical language. Use the pre-written templates, they've been proofread and can be customised to most situations.
 
 This is what the [Statuspage admin interface][man] looks like:
 
@@ -24,62 +24,72 @@ This is what the [Statuspage admin interface][man] looks like:
 ## Title of the incident
 
 This is to say which application is affected and what the fault is. You *can*
-update the title, hover over it on the incident interface.
+update the title, but make sure it's consistent enough to track throughout the stages of the incident.
 
-> Delay in publishing
-
-<!-- -->
-> Issue with Whitehall Publisher
+> Delay in publishing content
 
 <!-- -->
-> Investigating issue with the website
+> Attachments aren't uploading
 
-## Status & message
+<!-- -->
+> Search isn't working on GOV.UK
 
-As part of the incident, you will be selecting a status for the incident.
+## Status and message
+
+When you list an incident, you'll need to select an 'incident status'.
 
 ### "Investigating" status
 
-Provide reassurance to publishers that we are working on the problem.
+Provide reassurance to publishers that we know about a problem and are working to diagnose it.
 
 Example messages:
 
-> We’ve been told that publishers aren’t able to upload attachments to pages. We’re looking into why this is happening.
+> We’re looking into an issue with Whitehall Publisher which is causing attachment uploads to fail. We’ll update this page as soon as we know what's causing it.
 
 <!-- -->
-> No email alerts seem to be delivered. We are investigating the issue.
+> We're looking into a delay that's occuring when trying to publish new content. Your content may appear on the site later than usual. 
 
 <!-- -->
-> We're currently experiencing a delay when publishing new content. Your content may appear on the site later than usual. We're monitoring the situation and will update once the delays are over.
+> We're looking into a problem that means email alerts aren't being sent out as quickly as they should. We'll update this page as soon as we know what's causing it.
+
 
 ### "Identified" status
 
-We've found that the problem is.
+This is where we state that we've found the problem. Explain what the problem is in as simple terms as possible, and an estimated time to fix.
 
 Example messages:
 
-> We’ve found the problem – the server is overloaded and can’t process new files. We’re working on fixing it, we think it’ll take approximately 3 hours to fix.
+> We’ve found the problem causing the delay in publishing content – it's caused by the server running too many tasks. We’re working on fixing it and expect it to take approximately 3 hours to fix.
 
 <!-- -->
-> We've identified the cause of the issue relating to our email alert system. We expect to restore full functionality in an hour.
+> We've found out what's causing the delay to email alerts. There was an error which made the email queue artificially long. We expect it to take one hour to fix.
 
 ### "Monitoring" status
 
-We've fixed the issue - but keeping are an eye on it.
+We've fixed the issue - but are keeping are an eye on it to make sure it's properly resolved. State whether there will be a delay to the fix being visible, ie. "This should start functioning normally again in 20 minutes."
 
-> We've solved the problem and implemented a fix. We're waiting for the unsent emails to go out.
+> We've fixed the problem that was delaying publishing. We're going to keep an eye on it for the next hour to make sure it's resolved.
+
+<!-- -->
+> We've fixed the problem that was delaying email alerts. We're going to keep an eye on it for the next 2 hours to make sure it’s resolved.
 
 ### "Resolved" status
 
-We've fixed the issue and everything is back to normal. Incident is closed.
+We've fixed the issue and everything is back to normal. The incident is closed.
 
-> The problem has been resolved and the publishing platform is stable again. Apologies for the inconvenience.
-
-<!-- -->
-> The issue relating to email alerts has been resolved. All systems are back to normal.
+> The delay in publishing content has been solved. Content will appear on the site as normal.
 
 <!-- -->
-> The issues with the website have been resolved. Everything should be working as normal.
+> The problem with the email queue has been fixed. Email alerts should now be working normally.
+
+<!-- -->
+> The problem with the server running too many tasks has been fixed. Attachment uploads should now be back to normal
+
+<!-- -->
+> The issues we were having with search on GOV.UK have been fixed. Everything should now be working as normal.
+
+<!-- -->
+> The invading alien army has retreated. Everything is fine again.
 
 [inc]: /manual/incident-management-guidance.html
 [status]: https://status.publishing.service.gov.uk
