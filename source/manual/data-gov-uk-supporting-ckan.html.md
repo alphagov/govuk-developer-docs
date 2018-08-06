@@ -20,6 +20,13 @@ There are currently three environments for [CKAN]:
 - [Test](https://test.data.gov.uk) — co-prod2.dh.bytemark.co.uk
 - Development — co-dev1.dh.bytemark.co.uk
 
+You can ssh on to these machines with `ssh co@<machine-name>`. For example, to
+access the Test machine, you would `ssh co@co-prod2.dh.bytemark.co.uk`.
+
+If you cannot `ssh` as above, it's worth asking
+someone in the #platform-health slack channel to make sure you are in the
+`authorized_keys`.
+
 We are in the process of migrating [CKAN] to standard GOV.UK infrastructure.
 
 ## Applications
