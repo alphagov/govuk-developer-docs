@@ -31,14 +31,19 @@ review_in: 6 months
 [contract-finder-new]: https://www.contractsfinder.service.gov.uk/Search
 [land-registry-birth]: https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/246732/0247.pdf
 [reference]: http://reference.data.gov.uk
-[time-interval-service]: https://github.com/alphagov/IntervalServer
+[time-interval-service]: https://github.com/epimorphics/IntervalServer
 [heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#use-the-shared-heroku-account
 
-The `data.gov.uk` platform is used to publish and view datasets. A dataset is a document about a collection of links to documentation or data hosted somewhere on the Internet. The platform has the following services.
+The `data.gov.uk` platform is used to publish and view datasets. A dataset is a document about a collection of links to documentation or data hosted somewhere on the Internet.
 
+Services owned by data.gov.uk
   * [CKAN] is the legacy publishing and finder app for datasets ('packages'). It also runs Nginx to support [Find].
   * [Find] is the public frontend for searching datasets using Elasticsearch. It replaces CKAN for certain routes.
+  * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasticsearch.
   * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasitcsearch.
+  * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
+
+Services with data.gov.uk sub-domains, but owned by other departments
   * [Statistics] is owned by the Office for National Statistics and was established as part of the [Open Data Policy][open-data-policy].
   * [Environment][environment] is owned by DEFRA and was created with the [Location] service as part of the [Open Data Policy][open-data-policy].
   * [Land Registry][land-registry] is owned by the same and [was created][land-registry-birth] to publish linked data as part of the [Open Data Policy][open-data-policy].
@@ -47,7 +52,6 @@ The `data.gov.uk` platform is used to publish and view datasets. A dataset is a 
   * [Location] came before [Location Metadata Editor][location-mde] and was established as part of the [UK Location Programme][uk-location-programme].
   * [Guidance] is a set of manual pages hosted in [GitHub][guidance-github], which ought to be migrated into normal GOV.UK docs.
   * [Contract Finder][contract-finder] is now provided by [Crown Commercial Service][contract-finder-new], which ought to have pre-2015 stuff merged in.
-  * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
   * [Business] is a legacy redirect to Companies House.
 
 ## [Publish] and [Find]
@@ -65,4 +69,4 @@ We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish
 
 ## [CKAN]
 
-TODO
+Legacy [CKAN] is hosted on Bytemark servers. New [CKAN] (still under development) will be hosted on GOV.UK infrastructure.
