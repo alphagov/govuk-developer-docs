@@ -138,6 +138,10 @@ You can assign your name and email to commits on the VM:
     dev$ git config --global user.email "friendly.giraffe@digital.cabinet-office.gov.uk"
     dev$ git config --global user.name "Friendly Giraffe"
 
+### Config for ZSH users
+
+If you use ZSH as your shell, you may find that the Ruby version on your VM is stuck on `1.9.3` and there seems to not be any other versions installed when you run `rbenv versions`.  To fix this, add `. /etc/profile` to your `.zshrc`.
+
 ## 5. Set up your apps
 
 Begin by checking out all of the GOV.UK services. There's a handy shortcut:
