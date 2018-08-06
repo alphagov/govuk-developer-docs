@@ -4,7 +4,7 @@ ruby File.read('.ruby-version').chomp
 
 gem 'capybara'
 gem 'rake'
-gem 'rspec', '~> 3.7'
+gem 'rspec', '~> 3.8'
 gem 'webmock', '~> 3.4'
 gem 'activesupport', '~> 5.0'
 gem 'govuk-lint', '~> 3.8'
