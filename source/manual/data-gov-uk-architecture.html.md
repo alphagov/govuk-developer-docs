@@ -34,7 +34,15 @@ review_in: 6 months
 [time-interval-service]: https://github.com/epimorphics/IntervalServer
 [heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#use-the-shared-heroku-account
 
-The `data.gov.uk` platform is used to publish and view datasets. A dataset is a document about a collection of links to documentation or data hosted somewhere on the Internet.
+The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset is a document about a collection of links to documentation or data hosted somewhere on the Internet.
+
+## Architectural overview of data.gov.uk
+
+![](/manual/images/dgu-architecture.png)
+
+The original for this diagram is available on the [Platform Health Google Drive](https://drive.google.com/open?id=1RoI6k6HA_GWUqRG3cC_REQu3BjeXcttp) and can be edited with draw.io.
+
+## data.gov.uk Services
 
 Services owned by data.gov.uk
 
