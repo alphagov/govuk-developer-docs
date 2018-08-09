@@ -1,5 +1,5 @@
 ---
-owner_slack: "#datagovuk-tech"
+owner_slack: "#govuk-platform-health"
 title: Supporting CKAN
 section: data.gov.uk
 layout: manual_layout
