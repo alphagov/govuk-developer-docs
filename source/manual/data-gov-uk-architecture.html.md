@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-datagovuk"
+owner_slack: "#govuk-platform-health"
 title: Architecture of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
