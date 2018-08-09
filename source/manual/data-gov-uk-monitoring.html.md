@@ -36,7 +36,17 @@ Each application sends logs to [Logit]. [Publish] and [Find] use the correspondi
 
 ## Sidekiq ([Publish])
 
-Sidekiq is only accessible to the `localhost` domain, so you'll need an SSH tunnel to see it on staging/production.
+You can monitor the number of jobs in each queue using the following.
+
+```
+cf ssh publish-data-beta-production-worker
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+>>> Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
+```
+
+## Sidekiq UI ([Publish])
+
+Sidekiq UI is only accessible to the `localhost` domain, so you'll need an SSH tunnel to see it on staging/production.
 
 ```
 cf ssh -L 9000:localhost:8080 publish-data-beta-staging
