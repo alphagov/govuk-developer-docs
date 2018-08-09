@@ -62,6 +62,7 @@ class AppDocs
           return puppet_class
         end
       end
+      'Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml'
     end
 
     def carrenza_machine
@@ -70,6 +71,7 @@ class AppDocs
           return puppet_class
         end
       end
+      'Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml'
     end
 
     def html_url
