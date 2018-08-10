@@ -22,3 +22,4 @@ rolled back.
 
 - The publishing-api uses an advisory lock to prevent concurrent writes to the content-store in [ContentStoreWriter](https://github.com/alphagov/publishing-api/blob/master/app/clients/content_store_writer.rb).  Not using the lock here can result in overlapping modifications to the same content item.
 
+A complete and up-to-date list can be found using [the GitHub search](https://github.com/search?q=org%3Aalphagov+with_advisory_lock&type=Code).
