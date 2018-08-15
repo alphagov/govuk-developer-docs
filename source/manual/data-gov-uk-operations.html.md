@@ -11,6 +11,35 @@ review_in: 6 months
 [publish]: apps/datagovuk_publish
 [ckan]: apps/ckanext-datagovuk
 
+## Accessing data.gov.uk
+
+### PaaS
+
+1. Download and install [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
+
+2. Sign into the PaaS.  You will be prompted for your username and password.  After authenticating, a list of your accessible spaces will be shown, select `data-gov-uk`.
+
+```
+cf login -a api.cloud.service.gov.uk
+```
+
+3. SSH into the relevant machine, e.g. `publish-data-beta-production-worker`.
+
+```
+cf ssh publish-data-beta-production-worker
+```
+
+There are [detailed instructions](https://docs.cloud.service.gov.uk/get_started.html#set-up-command-line) in the PaaS documentation.
+
+### Bytemark
+
+You will need to arrange for your public SSH key to be added to the Bytemark staging and production servers.  Once this is done, you can connect by SSH with the username `co`.
+
+```
+ssh co@co-prod2.dh.bytemark.co.uk
+ssh co@co-prod3.dh.bytemark.co.uk
+```
+
 ## Reindexing [Find]
 
 This is done using the `search:reindex` rake task in [Publish] and will not cause any app downtime.
