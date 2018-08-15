@@ -4,7 +4,7 @@ title: Operation of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-22
+last_reviewed_on: 2018-08-15
 review_in: 6 months
 ---
 [find]: apps/datagovuk_find
@@ -24,18 +24,27 @@ This will populate a new index and rotate the `dataset-staging` alias to point t
 
 ## Sync from [CKAN]
 
-This is done automatically using Sidekiq Scheduler. You can run manually to populate your local DB.
+### Perform a full re-sync
+
+The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.
+
+This will not make any changes to the content on Find until the reindex has completed and the Elastic index is updated.  This will affect data served on Publish, however this service is not currently used for publishing or editing datasets.  In most cases, you should never need to do this as the sync performs incremental updates.
 
 ```
-## make sure your local DB is empty
-rails db:drop db:setup
+### connect to staging
+cf ssh publish-data-beta-staging
+### connect to production
+cf ssh publish-data-beta-production
 
-## make sure your local index is setup
-rails search:reindex
+## make sure the database is empty
+/tmp/lifecycle/launcher /home/vcap/app 'rails db:drop db:setup' ''
+
+## make sure the index is setup
+/tmp/lifecycle/launcher /home/vcap/app 'rails search:reindex' ''
 
 ## sync datasets or update orgs
-rails runner CKAN::V26::PackageSyncWorker.new.perform
-rails runner CKAN::V26::CKANOrgSyncWorker.new.perform
+/tmp/lifecycle/launcher /home/vcap/app 'rails runner CKAN::V26::PackageSyncWorker.new.perform' ''
+/tmp/lifecycle/launcher /home/vcap/app 'rails runner CKAN::V26::CKANOrgSyncWorker.new.perform' ''
 ```
 
 Now run `bundle exec sidekiq` and `rails s` and monitor the resulting jobs in the [Sidekiq Web UI](/manual/data-gov-uk-monitoring.html#sidekiq-publish).
