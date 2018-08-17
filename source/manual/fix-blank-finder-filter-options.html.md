@@ -4,15 +4,15 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-04-27
-review_in: 3 months
+last_reviewed_on: 2018-08-17
+review_in: 6 months
 related_applications: [rummager, finder-frontend]
 ---
 
 On finder pages, facets on the left hand side can be populated from "link"
 fields in the search documents, like people, organisations, topics.
 
-If the pages for those things don't themselves exist in search, finder frontend
+If the pages for those things don't themselves exist in search, finder-frontend
 won't be able to fill in the titles:
 
 ![People facet with blank options](/images/blank-facets.png)
