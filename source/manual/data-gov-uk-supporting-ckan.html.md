@@ -63,6 +63,8 @@ cd /var/apps/ckan
 sudo -u deploy govuk_setenv ckan venv/bin/paster
 ``` 
 
+> A full guide to administering CKAN and Bytemark can be found in the [CKAN sysops document](https://docs.google.com/document/d/13U2m-f-mSy-CGeq9XplzhafdJK4Ptt6Pk4NfLWvn40k/edit?usp=sharing).
+>
 > Further, less commonly used, commands can be found in the [CKAN documentation][ckandocs].
 > 
 > There is also a separate [historical document of previous admin tasks](https://docs.google.com/document/d/1V64IK9VoHU5w-xQmmmvKXF396FQViHM06iJWnRoAxzc/edit?usp=sharing)
