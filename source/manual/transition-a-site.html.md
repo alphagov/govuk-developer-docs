@@ -1,16 +1,15 @@
 ---
 owner_slack: '#govuk-platform-health'
-review_by: 2017-07-26
 title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-12
+last_reviewed_on: 2018-08-17
 review_in: 6 months
 related_applications: [bouncer, transition]
 ---
 
-When a site is going to move to GOV.UK, there are broadly two ways that
+When a site is going to move to GOV.UK, there are two ways that
 the old site can be redirected. They can do it themselves, or they can
 repoint the domain at us. This page is about the latter.
 
@@ -27,11 +26,11 @@ traffic to it.
 
 Follow the instructions in the [transition-config README][transition-config].
 
-### 2) Getting a list of old URLs
+### 2) Get a list of old URLs
 
 In order for us to redirect anything but the homepage, we need a list of
 URLs for the old site so that they can be mapped. In the past, this is
-something GDS did for the organisation as it requires a fair bit of
+something GDS did for the organisation as it requires some
 technical skill and experience.
 
 Getting traffic logs from a transitioning organisation is the best
@@ -41,13 +40,11 @@ can't get this then there are other options.
 One option is to get a list of the URLs from the Internet Archive. The
 [archive_lister](https://github.com/rgarner/archive_lister) gem can do
 this for you. Sometimes the Internet Archive doesn't have any data, so
-try the domain name with `http` or `https`, or with/without the `www.`.
-Sometimes it still won't have any data.
+try the domain name with `http` or `https`, or with and without the `www.`.
 
-An alternative would be to crawl the site with a crawler like
+An alternative is to crawl the site with a crawler like
 [Anemone](https://github.com/chriskite/anemone), though for a large site
-this might take several hours. With Anemone running this will give you a
-list of URLs for a domain:
+this might take several hours. This will give you a list of URLs for a domain:
 
 ```
 $ anemone url-list 'transitioning-site.gov.uk'
@@ -55,21 +52,21 @@ $ anemone url-list 'transitioning-site.gov.uk'
 
 Note: This will include 404s, 301s, etc.
 
-### 3) Cleaning up URLs
+### 3) Clean up URLs
 
 **Strip paths and pattern**
 
 There are lots of file formats we don't want to provide mappings for,
 like static assets, images, or common spammy/malicious crawlers. These
-can be stripped with using the [strip_mappings.sh][smsh] script.
+can be stripped using the [strip_mappings.sh][smsh] script.
 
 [smsh]: https://github.com/alphagov/transition-config/blob/master/tools/strip_mappings.sh
 
 **Query parameter analysis**
 
 From your set of URLs, you can attempt to identify significant
-querystring parameter names and then add them to the site configuration
-file in transition-config. A querystring parameter is considered
+query string parameter names and then add them to the site configuration
+file in transition-config. A query string parameter is considered
 significant if it significantly changes the content seen on the old site
 and/or it would be mapped to a different new URL.
 
@@ -88,22 +85,22 @@ Some common examples of significant parameters:
 Some common examples of non-significant parameters:
 
 -   pagination
--   Analytics
+-   analytics
 -   search queries
 
-### 4) Adding the old URLs as mappings
+### 4) Add the old URLs as mappings
 
-Ideally, any significant querystring parameters should be identified and
+Ideally, any significant query string parameters should be identified and
 added to the site before adding the mappings. This is because URLs are
 canonicalised and then deduplicated before being saved and part of
 canonicalisation is to remove non-significant parameters. However,
-significant querystring parameters can be added later; after they have
+significant query string parameters can be added later; after they have
 been imported adding old URLs which include the parameters will be
-canonicalised using the new list of significant parameters. There is a
-slight gotcha that mappings created under the previous list won't be
-removed and in some (complicated) situations won't be used by Bouncer.
+canonicalised using the new list of significant parameters. Note that mappings
+created under the previous list won't be removed and in some (complicated)
+situations won't be used by Bouncer.
 
-To add/edit mappings, you will need the "GDS Editor" permission in
+To add or edit mappings, you will need the "GDS Editor" permission in
 GOV.UK Signon for the Transition app. This lets you edit any site,
 rather than just ones belonging to your organisation. You can then go
 the [transition app](https://transition.publishing.service.gov.uk), find
@@ -128,12 +125,12 @@ advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.
 
-### 7) Pointing the domain at us
+### 7) Point the domain at us
 
 Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a `CNAME`
 record, this is `redirector-cdn.production.govuk.service.gov.uk`.
-Domains at the root of their zone can't be CNAMEd, so must use an `A`
+Domains at the root of their zone can't use `CNAME` records, so must use an `A`
 record and point at one of the [Fastly GOV.UK IP
 addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22).
 
