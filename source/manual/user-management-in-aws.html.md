@@ -62,8 +62,8 @@ There are two methods to assume roles using the CLI.
 
 Both methods require the following:
 
- - Role ARN: this is the ARN of the role that you are using for the GOV.UK specific account, eg `govuk-administrators`, `govuk-powerusers`, `govuk-users`
- - MFA ARN: this is the ARN assigned to the MFA device in your own account
+ - Role ARN: `arn:aws:iam::<Account ID>:role/<Role Name>` ([Account IDs are here](https://github.com/alphagov/govuk-aws-data/blob/master/docs/govuk-aws-accounts.md) and [Role Names are here](https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-security/main.tf))
+ - MFA ARN: the ARN assigned to the MFA device in your account (**be careful not to use your User ARN!**)
 
 Both methods will allow a valid session up to eight hours. Once the hour has
 elapsed, you will need to rerun the `assume-role` command. If you want to switch
