@@ -17,7 +17,7 @@ review_in: 6 months
 
 1. Download and install [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
 
-2. Sign into the PaaS.  You will be prompted for your username and password.  After authenticating, a list of your accessible spaces will be shown, select `data-gov-uk`.
+2. Sign into the PaaS. You will be prompted for your username and password. If your account is not recognised, ask 2nd line for access. After authenticating, a list of your accessible spaces will be shown, select `data-gov-uk`.
 
 ```
 cf login -a api.cloud.service.gov.uk
@@ -33,7 +33,7 @@ There are [detailed instructions](https://docs.cloud.service.gov.uk/get_started.
 
 ### Bytemark
 
-You will need to arrange for your public SSH key to be added to the Bytemark staging and production servers.  Once this is done, you can connect by SSH with the username `co`.
+You will need to arrange with 2nd line for your public SSH key to be added to the Bytemark staging and production servers.  Once this is done, you can connect by SSH with the username `co`.
 
 ```
 ssh co@co-prod2.dh.bytemark.co.uk
