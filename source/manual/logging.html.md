@@ -8,6 +8,11 @@ last_reviewed_on: 2018-08-22
 review_in: 6 months
 ---
 
+![](/manual/images/logging.png)
+<em>[Source diagram][src].</em>
+
+[src]: https://drive.google.com/file/d/0B7zRJZy-BNyUMVBENnVNYW9TTEk/view?usp=sharing
+
 ## Logit
 
 GOV.UK is following [The GDS Way guidance on logging][gds-way-logging] by using
