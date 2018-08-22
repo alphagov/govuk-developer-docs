@@ -11,6 +11,7 @@ review_in: 6 months
 [find]: apps/datagovuk_find
 [paas-metric-exporter]: https://reliability-engineering.cloudapps.digital/manuals/set-up-paas-metric-exporter-with-prometheus.html#configure-container-metrics
 [grafana]: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
+[grafana-app-dashboard]: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 [sentry]: https://sentry.io/govuk/
 [logit-paas]: https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service
 [logit]: https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74
@@ -21,9 +22,9 @@ review_in: 6 months
 
 ## Prometheus
 
-Container metrics are scraped using the [PaaS Metric Exporter][paas-metric-exporter] and sent to [Grafana]
+There are two dashboards: [DGU for 2nd line][grafana] displays a summary overview of key stats (including queue length), and [DGU Apps Dashboard][grafana-app-dashboard] which shows the health of each app deployment (a drop-down menu on the dashboard allows the PaaS app to be selected).
 
-Metrics are exposed to Prometheus through a `/metrics` endpoint from the PaaS-team maintained `metric-exporter` app.  This provides separate stats for each app running in the DGU space on the PaaS.
+Metrics are exposed to Prometheus through a `/metrics` endpoint from the PaaS-team maintained [paas-metric-exporter] app.  This provides separate stats for each app running in the DGU space on the PaaS.
 
 An additional app, [datagovuk_publish_queue_monitor][dgu-queue-monitor], exposes a `/metrics` endpoint summarising the state of the Sidekiq queues used to sync data between CKAN and Publish.
 
