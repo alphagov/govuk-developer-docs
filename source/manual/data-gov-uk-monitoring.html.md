@@ -17,10 +17,15 @@ review_in: 6 months
 [google-analytics]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/information-management/use-online-tools-in-gds/use-google-analytics
 [pagerduty]: https://govuk.pagerduty.com/
 [ckan]: apps/ckanext-datagovuk
+[dgu-queue-monitor]: https://github.com/alphagov/datagovuk_publish_queue_monitor
 
 ## Prometheus
 
-Container metrics are scraped using the [PaaS Metric Exporter][paas-metric-exporter] and sent to [Grafana]. In a nutshell, the `metric-exporter` app exposes a `/metrics` endpoint listing all of the stats for each container.
+Container metrics are scraped using the [PaaS Metric Exporter][paas-metric-exporter] and sent to [Grafana]
+
+Metrics are exposed to Prometheus through a `/metrics` endpoint from the PaaS-team maintained `metric-exporter` app.  This provides separate stats for each app running in the DGU space on the PaaS.
+
+An additional app, [datagovuk_publish_queue_monitor][dgu-queue-monitor], exposes a `/metrics` endpoint summarising the state of the Sidekiq queues used to sync data between CKAN and Publish.
 
 ## Pingdom
 
