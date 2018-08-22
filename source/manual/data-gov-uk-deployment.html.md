@@ -4,7 +4,7 @@ title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-22
+last_reviewed_on: 2018-08-22
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
@@ -42,3 +42,10 @@ cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifes
 ```
 
 Merging code into master triggers a deployment to the '[staging]' environment, but you can also do this manually as follows. A production deployment is triggered when a new GitHub release is created for the app.
+
+The other services on the PaaS are [provisioned using
+Terraform][datagovuk_infrastructure]. There are [some useful
+scripts][datagovuk_cf_scripts] available to perform common CloudFoundry tasks.
+
+[datagovuk_infrastructure]: https://github.com/alphagov/datagovuk_infrastructure
+[datagovuk_cf_scripts]: https://github.com/alphagov/datagovuk_cf_scripts
