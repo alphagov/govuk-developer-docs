@@ -42,7 +42,7 @@ have permissions, you'll need to "Switch Role".
 
 2. Fill in the account alias (this can be found
   [in the govuk-aws-data repo](https://github.com/alphagov/govuk-aws-data/blob/master/docs/govuk-aws-accounts.md) – it's the "account"),
-  the role you're assuming (`govuk-users`, `govuk-poweruser`, or
+  the role you're assuming (`govuk-users`, `govuk-powerusers`, or
   `govuk-administrators`), and a name for that role
   (`govuk-<environment>`).
 
