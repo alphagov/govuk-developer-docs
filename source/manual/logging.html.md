@@ -4,50 +4,78 @@ title: How logging works on GOV.UK
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-08-22
 review_in: 6 months
 ---
 
+![](/manual/images/logging.png)
+<em>[Source diagram][src].</em>
+
+[src]: https://drive.google.com/file/d/0B7zRJZy-BNyUMVBENnVNYW9TTEk/view?usp=sharing
+
 ## Logit
 
-GOV.UK is following [The GDS Way guidance on logging](https://gds-way.cloudapps.digital/standards/logging.html#content)
-by using the approved vendor [Logit](https://logit.io).
+GOV.UK is following [The GDS Way guidance on logging][gds-way-logging] by using
+the approved vendor [Logit][logit].
 
-For information on how to log in and view stacks, please see the [GOV.UK Logit documentation](/manual/logit.html).
+For information on how to log in and view stacks, please see the
+[GOV.UK Logit documentation][logit-docs].
+
+### Elasticsearch
+
+You can access the credentials for the Elasticsearch instances in Logit using
+the `logit` key in the [govuk-secrets] 2nd Line password store.
+
+[gds-way-logging]: https://gds-way.cloudapps.digital/standards/logging.html#content
+[logit]: https://logit.io
+[logit-docs]: /manual/logit.html
+[govuk-secrets]: https://github.com/alphagov/govuk-secrets
 
 ## Filebeat
 
-Each machine runs [Elastic Filebeat](https://www.elastic.co/products/beats/filebeat), and
-independently ships logs to the Logit-provided logstash endpoint.
+Each machine runs [Elastic Filebeat][filebeat], and independently ships logs to
+the Logit-provided logstash endpoint.
 
-Filebeat tails logs and can output to a variety of sources. It is fully incorporated into the
-Elastic ecosystem.
+Filebeat tails logs every 10 seconds and can output to a variety of sources. It
+is fully incorporated into the Elastic ecosystem.
 
-We use [the `filebeat::prospector` defined type](https://github.com/alphagov/govuk-puppet/blob/4cca939ec49a9b4c106b14b7cf896db31a003636/modules/filebeat/manifests/prospector.pp) to create the filebeat configuration on each instance.
+We use [the `filebeat::prospector` defined type][filebeat_prospector] to create
+the filebeat configuration on each instance.
+
+[filebeat]: https://www.elastic.co/products/beats/filebeat
+[filebeat_prospector]: https://github.com/alphagov/govuk-puppet/blob/4cca939ec49a9b4c106b14b7cf896db31a003636/modules/filebeat/manifests/prospector.pp
 
 ## Logstream and Logship
 
-We have a defined type in our Puppet code which uses
-[logship](https://github.com/alphagov/tagalog/blob/master/tagalog/command/logship.py)
-to tail logfiles.
-
-We only use Logstream to send nginx metrics, via statsd, to Graphite.
+We have a defined type in our Puppet code which uses [logship][logship] to tail
+logfiles. We only use Logstream to send nginx metrics, via statsd, to Graphite.
 
 In the future this will be replaced.
 
+[logship]: https://github.com/alphagov/tagalog/blob/master/tagalog/command/logship.py
+
 ## Kibana
 
-Kibana is the interface for viewing logs in Elasticsearch. Use the Logit interface
-to login to Kibana.
+Kibana is the interface for viewing logs in Elasticsearch. Use the Logit
+interface to login to Kibana.
 
-There's some documentation on [useful Kibana queries for 2nd line](/manual/kibana.html).
+There's some documentation on [useful Kibana queries for 2nd line][kibana-docs].
+
+[kibana-docs]: /manual/kibana.html
 
 ## Fastly
 
-Fastly sends logs to multiple locations for the www, assets and bouncer services:
+Fastly sends logs to multiple locations for the www, assets and bouncer
+services:
 
-- via syslog to the logs-cdn-1 boxes in all environments (`/mnt/logs_cdn`), available immediately
+- via syslog to the logs-cdn-1 boxes in all environments (`/mnt/logs_cdn`),
+  available immediately
 - to an S3 bucket per environment, available every 10 minutes
+
+## Graphite
+
+Data from statsd goes to Graphite instances which is then displayed using
+Grafana.
 
 ## Analytics through Athena
 
