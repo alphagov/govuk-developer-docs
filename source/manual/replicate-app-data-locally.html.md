@@ -52,6 +52,9 @@ then
 > disk space (up to ~30GB uncompressed). The process will also take up a bunch
 > of compute resource as you import the data.
 
+> The downloaded backups will automatically be deleted after import (whether
+> successful or not) unless the -k flag is specified.
+
 ## If you don't have integration access
 
 If you don't have integration access, ask someone to give you a copy of their
