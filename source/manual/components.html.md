@@ -1,10 +1,10 @@
 ---
-owner_slack: '#govuk-2ndline'
-title: Components
+owner_slack: '#govuk-frontenders'
+title: Use frontend components
 section: Frontend
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-15
+last_reviewed_on: 2018-08-29
 review_in: 6 months
 ---
 
