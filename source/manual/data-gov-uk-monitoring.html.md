@@ -40,6 +40,10 @@ Pingdom monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downti
 
 Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas]. Example query: `source_host: "gds-data-discovery.data-gov-uk.find-data-beta" && access.response_code: 500`.
 
+## Bytemark
+
+Logs from CKAN on Bytemark are not sent to Log.it or Sentry.  These can be found in the `/var/log/ckan/` directory of the relevant Bytemark machine.
+
 ## Sidekiq ([Publish])
 
 You can monitor the number of jobs in each queue using the following.
