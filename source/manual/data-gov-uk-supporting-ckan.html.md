@@ -70,6 +70,38 @@ sudo -u deploy govuk_setenv ckan venv/bin/paster
 > There is also a separate [historical document of previous admin tasks](https://docs.google.com/document/d/1V64IK9VoHU5w-xQmmmvKXF396FQViHM06iJWnRoAxzc/edit?usp=sharing)
 that you may wish to consult. 
 
+### Updating CKAN extensions on Bytemark
+
+To update a CKAN extension that has been pushed to GitHub, you will need to navigate to it's directory on Bytemark then pull the relevant branch.  Example for `ckanext-spatial`.
+
+```
+cd /vagrant/src/ckanext-spatial
+git pull
+```
+
+This must then be installed into the correct virtualenv using pip.
+
+```
+sudo /home/co/ckan/bin/pip install -U $PWD
+```
+
+Following the update, restart Apache to reflect the updated code on the website.
+
+```
+sudo service apache2 restart
+```
+
+If the extension is related to harvesting, you must restart both the `gather` and `fetch` queues.
+
+```
+ps aux | grep gather_consumer
+sudo kill <PID>
+ps aux | grep fetch_consumer
+sudo kill <PID>
+paster --plugin=ckanext-harvest harvester gather_consumer
+paster --plugin=ckanext-harvest harvester fetch_consumer
+```
+
 ### Switching between legacy CKAN and Find open data
 
 To access legacy CKAN, append `?legacy=1` to the URL.
