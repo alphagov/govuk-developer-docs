@@ -4,7 +4,7 @@ title: Policy on keeping software current
 parent: "/manual.html"
 layout: manual_layout
 section: Dependencies
-last_reviewed_on: 2018-02-26
+last_reviewed_on: 2018-08-29
 review_in: 6 months
 ---
 
