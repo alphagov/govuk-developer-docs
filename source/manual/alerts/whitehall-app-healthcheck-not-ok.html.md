@@ -15,6 +15,8 @@ future is different from the number currently in the queue. This can
 happen in Staging and Integration as a result of the data sync from
 Production. Run this Rake task to requeue all scheduled editions:
 
+SSH into `whitehall_backend` and then:
+
 ```
 cd /var/apps/whitehall
 sudo -u deploy govuk_setenv whitehall bundle exec rake publishing:scheduled:requeue_all_jobs
