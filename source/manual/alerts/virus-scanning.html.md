@@ -4,7 +4,7 @@ title: Fix stuck virus scanning
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-29
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 related_applications: [whitehall]
 ---
@@ -145,4 +145,3 @@ If it is not running, you can start it with
 ```
 sudo service clamav-daemon start
 ```
-

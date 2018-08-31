@@ -4,8 +4,8 @@ title: High memory for mapit
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-02
-review_in: 2 weeks
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 Mapit has been recently having issues with its processes not restarting properly.

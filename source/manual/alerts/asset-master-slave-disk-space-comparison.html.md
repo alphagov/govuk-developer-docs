@@ -4,7 +4,7 @@ title: Asset master and slave disk space comparison
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-08
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 

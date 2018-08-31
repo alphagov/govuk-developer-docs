@@ -4,7 +4,7 @@ title: Nginx 429 too many requests
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -30,5 +30,3 @@ You can force creation by creating a zero-value `http_429` counter:
 
     fab $environment -H cache-1.router statsd.create_counter:cache-1_router.nginx_logs.assets-origin.http_429
     fab $environment -H cache-1.router statsd.create_counter:cache-1_router.nginx_logs.www-origin.http_429
-
-
