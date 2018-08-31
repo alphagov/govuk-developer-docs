@@ -4,8 +4,8 @@ title: App healthcheck failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-05-21
-review_in: 12 months
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 Every application on GOV.UK has a healthcheck endpoint. This is `/healthcheck` by default but can be overridden.

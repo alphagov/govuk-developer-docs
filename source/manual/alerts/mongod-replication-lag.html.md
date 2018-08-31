@@ -4,7 +4,7 @@ title: mongod replication lag
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-05-17
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -37,4 +37,3 @@ replication.
 -   If restarting doesn't solve the problem force a resync with Fabric:
 
         fab <environment> -H api-mongo-[n].api mongo.force_resync
-

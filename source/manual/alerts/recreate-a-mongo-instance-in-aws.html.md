@@ -4,8 +4,8 @@ title: Re-create an AWS mongo instance
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-23
-review_in: 2 months
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 ## Re-create an AWS mongo instance
@@ -33,7 +33,7 @@ In this example we are looking at the `integration` environment.
 3. You can now execute a `terraform plan` to view the actual module names.
   - $ cd govuk-aws
   - tools/build-terraform-project.sh -c plan  -p app-mongo -s blue -d data -e integration **Please check the script to identify the keys**
-  
+
 4. The out-put, will show you the components and how they are named by `terraform`.
   ```
   Initializing modules...
@@ -56,6 +56,6 @@ null_resource.user_data[2]: Refreshing state... (ID: 2147797089831867692)
 
 7. Once you are really sure that you have the correct instance, you can destroy the instance as below.
   - tools/build-terraform-project.sh -c **destroy**  -p app-mongo -s blue -d data -e integration -- -target=module.mongo-1
-  
+
 8. Once the command completes execution, we can execute a `terraform apply`. This will recreate the deleted instance.
   - tools/build-terraform-project.sh -c apply  -p app-mongo -s blue -d data -e integration **you can do a targetted apply but it is not necessary**

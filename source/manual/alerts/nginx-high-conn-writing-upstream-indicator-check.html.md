@@ -4,7 +4,7 @@ title: Nginx high conn writing -- upstream indicator Check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -30,4 +30,3 @@ review_in: 6 months
 -   Ideally we would monitor at the rack/unicorn level,
     which would give us more accurate information, but don't currently
     have that ability, hence this check.
-
