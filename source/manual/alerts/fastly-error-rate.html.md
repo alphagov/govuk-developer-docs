@@ -4,11 +4,9 @@ title: Fastly error rate for GOV.UK
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-30
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
-
-## Error rate alert
 
 We get response code reporting from Fastly (with a 15 minute delay). It
 averages out the last 15 minutes worth of 5xx errors. This is a useful

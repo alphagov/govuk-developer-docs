@@ -4,8 +4,8 @@ title: 'RabbitMQ: high watermark has been exceeded'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-05-30
-review_in: 12 months
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 The RabbitMQ server detects the total amount of RAM installed on

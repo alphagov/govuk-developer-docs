@@ -4,8 +4,8 @@ title: URLs in data sync failed to munge
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-25
-review_in: 3 months
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 As part of the data syncs, the router data should update to point to the relevant environment.
