@@ -33,28 +33,17 @@ This can be used as::
 
     fab $environment class:cache cdn.purge_all:'/one,/two,/three'
 
-This will purge the page from all our origin cache nodes and the CDN
+This will purge the page from the CDN
 cache.
 
-Each page that's purged will output 3 kinds of things. First are
-responses from each of our origin Varnish nodes confirming the purge:
+Each page that's purged will output 2 kinds of things.
 
-    $ fab $environment class:cache cdn.purge_all:'/bank-holidays'
-    [cache-1.router] run: curl -s -I -X PURGE http://localhost:7999/bank-holidays | grep '200 Purged'
-    [cache-1.router] out: HTTP/1.1 200 Purged
-
-    [cache-2.router] run: curl -s -I -X PURGE http://localhost:7999/bank-holidays | grep '200 Purged'
-    [cache-2.router] out: HTTP/1.1 200 Purged
-
-    [cache-3.router] run: curl -s -I -X PURGE http://localhost:7999/bank-holidays | grep '200 Purged'
-    [cache-3.router] out: HTTP/1.1 200 Purged
-
-Second is a purge from Fastly for `www.gov.uk`:
+First is a purge from Fastly for `www.gov.uk`:
 
     [cache-1.router] run: curl -s -X PURGE -H 'Host: www.gov.uk' http://www-gov-uk.map.fastly.net/bank-holidays | grep 'ok'
     [cache-1.router] out: {"status": "ok", "id": "175-1426788291-3713988"}
 
-Third is a purge from Fastly for `assets.publishing.service.gov.uk`:
+Second is a purge from Fastly for `assets.publishing.service.gov.uk`:
 
     [cache-1.router] run: curl -s -X PURGE -H 'Host: assets.publishing.service.gov.uk' http://www-gov-uk.map.fastly.net/bank-holidays | grep 'ok'
     [cache-1.router] out: {"status": "ok", "id": "292-1426787371-4043665"}
@@ -97,11 +86,7 @@ You can manually flush the cache from the following machines:
 
 ## Purging a page from our origin server varnish cache
 
-Use the Fabric command from
-[fabric-scripts](https://github.com/alphagov/fabric-scripts). Note that
-you can if necessary specify multiple URLs in one go:
-
-    fab $environment class:cache class:draft_cache cache.purge:'/bank-holidays,/some-other-url'
+Use the [Jenkins job](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear[/your-path-here])
 
 ## Automatic purging on publication
 
