@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Set up a new Rails app
-section: Packaging
+section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-07-31
 review_in: 6 months
 ---
 
@@ -133,7 +133,7 @@ Now is a good time to run `bin/setup`. Lastly, create `lib/tasks/lint.rake` with
 ```
 desc "Run govuk-lint on all files"
 task "lint" do
-  sh "govuk-lint-ruby --format clang"
+  sh "govuk-lint-ruby --format clang --rails"
   sh "govuk-lint-sass app/assets/stylesheets"
 end
 ```

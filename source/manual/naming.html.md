@@ -4,7 +4,7 @@ title: Name a new application or gem
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-08
+last_reviewed_on: 2018-08-20
 review_in: 6 months
 ---
 
@@ -78,6 +78,20 @@ No so good:
 
 - signonotron2000
 - maslow (needs-manager)
+
+### Service applications
+
+Applications which (probably) listen to the publishing queue and do a thing,
+with no API or web interface.
+
+Good:
+
+- email-alert-service
+- cache-clearing-service
+
+Not so good:
+
+- cache-clearer
 
 ## Naming gems
 

@@ -4,10 +4,10 @@ ruby File.read('.ruby-version').chomp
 
 gem 'capybara'
 gem 'rake'
-gem 'rspec', '~> 3.7'
+gem 'rspec', '~> 3.8'
 gem 'webmock', '~> 3.4'
 gem 'activesupport', '~> 5.0'
-gem 'govuk-lint', '~> 3.8'
+gem 'govuk-lint', '~> 3.9'
 gem 'simplecov'
 gem 'chronic'
 
@@ -18,10 +18,10 @@ gem 'github-markdown'
 gem 'html-pipeline'
 gem 'redcarpet', '~> 3.3.2'
 
-gem 'govuk_schemas', '~> 3.1.0'
+gem 'govuk_schemas', '~> 3.2.0'
 
 # GitHub API
-gem 'octokit', '~> 4.9.0'
+gem 'octokit', '~> 4.11.0'
 gem 'faraday-http-cache', '~> 2.0.0'
 gem 'faraday_middleware', '~> 0.12.2'
 

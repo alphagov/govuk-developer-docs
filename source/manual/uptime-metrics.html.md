@@ -4,7 +4,7 @@ title: Uptime Metrics
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-26
+last_reviewed_on: 2018-08-29
 review_in: 6 months
 related_applications:
   - content-store

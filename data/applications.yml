@@ -75,10 +75,6 @@
   team: "#govuk-platform-health"
   metrics_dashboard_url: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
 
-- github_repo_name: email-alert-service
-  type: APIs
-  team: "#govuk-platform-health"
-
 - github_repo_name: imminence
   type: APIs
   team: "#govuk-platform-health"
@@ -119,6 +115,16 @@
   team: "#govuk-platform-health"
   api_docs_url: https://mapit.mysociety.org/docs/
 
+# Services
+
+- github_repo_name: cache-clearing-service
+  type: Services
+  team: "#govuk-platform-health"
+
+- github_repo_name: email-alert-service
+  type: Services
+  team: "#govuk-platform-health"
+
 # Support
 
 - github_repo_name: content-performance-manager
@@ -126,6 +132,10 @@
   team: "#govuk-data-informed"
 
 - github_repo_name: content-audit-tool
+  type: Supporting apps
+  team: "#govuk-data-informed"
+
+- github_repo_name: content-data-admin
   type: Supporting apps
   team: "#govuk-data-informed"
 
@@ -215,7 +225,6 @@
 - github_repo_name: static
   type: Frontend apps
   team: "#govuk-platform-health"
-  component_guide_url: https://govuk-static.herokuapp.com/component-guide
 
 # Transition
 
@@ -231,15 +240,19 @@
 
 - github_repo_name: datagovuk_find
   type: data.gov.uk apps
-  team: "#govuk-datagovuk-tech"
+  team: "#govuk-platform-health"
 
 - github_repo_name: datagovuk_publish
   type: data.gov.uk apps
-  team: "#govuk-datagovuk-tech"
+  team: "#govuk-platform-health"
+
+- github_repo_name: datagovuk_cf_scripts
+  type: data.gov.uk apps
+  team: "#govuk-platform-health"
 
 - github_repo_name: ckanext-datagovuk
   type: data.gov.uk apps
-  team: "#govuk-datagovuk-tech"
+  team: "#govuk-platform-health"
 
 # Licensing
 

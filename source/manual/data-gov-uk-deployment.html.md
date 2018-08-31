@@ -1,15 +1,14 @@
 ---
-owner_slack: "#govuk-datagovuk"
+owner_slack: "#govuk-platform-health"
 title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-22
+last_reviewed_on: 2018-08-22
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
-[terraform]: https://github.com/alphagov/datagovuk_infrastructure
 [publish-ci]: https://travis-ci.org/alphagov/datagovuk_publish/
 [find-ci]: https://travis-ci.org/alphagov/datagovuk_find
 [heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#header
@@ -30,7 +29,7 @@ Each repo has a `Procfile` and an `app.json` file, which help to specify how the
 
 ## PaaS Staging/Prod Env
 
-[Publish] and [Find] are provisioning on [GOV.UK PaaS][paas] using [Terraform]. Each app repo contains a set of manifests that specify the container settings for when it's deployed. You can deploy an app manually as follows.
+[Publish] and [Find] are provisioned on [GOV.UK PaaS][paas]. Each app repo contains a set of manifests that specify the container settings for when it's deployed. You can deploy an app manually as follows.
 
 ```
 ## run once to install the plugin
@@ -43,3 +42,10 @@ cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifes
 ```
 
 Merging code into master triggers a deployment to the '[staging]' environment, but you can also do this manually as follows. A production deployment is triggered when a new GitHub release is created for the app.
+
+The other services on the PaaS are [provisioned using
+Terraform][datagovuk_infrastructure]. There are [some useful
+scripts][datagovuk_cf_scripts] available to perform common CloudFoundry tasks.
+
+[datagovuk_infrastructure]: https://github.com/alphagov/datagovuk_infrastructure
+[datagovuk_cf_scripts]: https://github.com/alphagov/datagovuk_cf_scripts

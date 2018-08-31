@@ -4,18 +4,17 @@ title: Transition architecture
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-18
-review_in: 3 months
+last_reviewed_on: 2018-08-29
+review_in: 1 month
 related_applications: [bouncer, transition]
 ---
 
 The Transition system is built to transition government websites to GOV.UK. The
-main work around this [happened in 2014][blog-1], but we still take on websites ([more on the new batch of work starting in 2017][blog-2]).
+main work around this [happened in 2014][blog], but we still take on websites.
 
 All the repositories involved in transition have been [tagged with govuk-transition on GitHub][repos].
 
-[blog-1]: https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months
-[blog-2]: https://insidegovuk.blog.gov.uk/2017/01/23/transition-its-back
+[blog]: https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months
 [repos]: https://github.com/search?q=topic%3Agovuk-transition+org%3Aalphagov
 
 ## High level overview

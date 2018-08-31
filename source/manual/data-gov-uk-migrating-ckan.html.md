@@ -1,5 +1,5 @@
 ---
-owner_slack: "#datagovuk-tech"
+owner_slack: "#govuk-platform-health"
 title: Migrating data between CKAN instances
 section: data.gov.uk
 layout: manual_layout

@@ -5,12 +5,16 @@ section: Environments
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-02-22
+last_reviewed_on: 2018-07-31
 review_in: 6 months
+next_review_notes: |
+    We may be on AWS entirely by the next review. Lots of this is Carrenza specific.
 ---
 
 ## Rules of rebooting
 
+-   *Read this page first* to see if any special cases apply to the type of
+    machine you need to reboot.
 -   Do not reboot more than one machine of the same class at the
     same time.
 -   When rebooting clustered applications (such as Elasticsearch) wait
@@ -57,7 +61,7 @@ puppet in hieradata. For example,
 [here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/mysql_master.yaml)
 is an example of a machine that cannot be safely rebooted. The
 [default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
-is safe\_to\_reboot::can\_reboot: 'yes', so if it does not say it is
+is `safe_to_reboot::can_reboot: 'yes'`, so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
 
 There is a Fabric task to schedule a machine for downtime in Nagios for
@@ -83,12 +87,17 @@ You can see our MongoDB machines by running:
 This section doesn't apply to `exception-handler-1` because it isn't
 using a replicaset.
 
+All secondary Mongo machines will reboot overnight. If you don't need to
+reboot the cluster right now, step the current primary down and allow it
+to reboot overnight:
+
+    $ fab $environment -H $hostname mongo.step_down_primary
+
 The general approach for rebooting machines in a MongoDB cluster is:
 
--   Check cluster status with `fab <environment> -H <host> mongo.status`
--   Using `fab <environment> -H <host> mongo.safe_reboot`
-    -   reboot the secondaries
-
+-   Check cluster status with `fab $environment -H $hostname mongo.status`
+-   Using `fab $environment -H $hostname mongo.safe_reboot`
+    - reboot the secondaries
     - reboot the primary waiting for the cluster to recover after
     each reboot. The `mongo.safe_reboot` Fabric task automates stepping
     down the primary and waiting for the cluster to recover
@@ -98,7 +107,7 @@ The general approach for rebooting machines in a MongoDB cluster is:
 
 To reboot an Elasticsearch machine, run the following command:
 
-    fab $environment -H '<machine-to-reboot>' elasticsearch.safe_reboot
+    fab $environment -H $hostname elasticsearch.safe_reboot
 
 This will prevent you from rebooting a machine in a cluster which
 doesn't have a green cluster health status.
@@ -115,13 +124,6 @@ with Platform Health.
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so as this may remove in flight jobs
 that sidekiq has added to the redis queues but not yet processed.
-
-To reboot a Redis machine, run the following command:
-
-    fab $environment -H '<machine-to-reboot>' elasticsearch.redis_safe_reboot
-
-This will prevent you from rebooting a machine which still has to
-process logs
 
 ## Rebooting backend-lb machines
 
@@ -167,11 +169,6 @@ to safely reboot these machines you'll need access to vCloud Director.
 There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
 waiting for the cluster to recover before rebooting the next node.
 
-However, the `govuk_crawler_worker` app points directly to rabbitmq-1
-rather than the whole cluster, so this machine is a single point of
-failure. A brief downtime of `govuk_crawler_worker` isn't critical,
-though, so it just needs to be restarted after rebooting the cluster.
-
 If there are problems with the cluster (eg, a partition has happened),
 the `safe_reboot` script will not reboot anything, and you'll need to
 take manual action to resolve the problem.
@@ -180,36 +177,9 @@ take manual action to resolve the problem.
 
         fab <environment> class:rabbitmq rabbitmq.safe_reboot
 
--   after rabbitmq-1 has recovered, restart govuk-crawler:
-
-        fab <environment> -H mirrorer-1.management app.start:govuk_crawler_worker
-
-If any applications other than govuk-crawler start alerting due to
-rabbitmq-1 being rebooted then either add a note here about how to make
-that application recover, or get the team responsible to make it point
-to the cluster.
-
-## Rebooting whitehall-frontend machines
-
-The Whitehall application boots slowly and causes HTTP requests to back
-up. You need to make sure that each machine is fully up before rebooting
-the next.
-
-Traffic to the whitehall-frontend boxes is at its highest between 10am
-and 4pm, so where possible try to reboot outside of that window.
-
--   Reboot the machine:
-
-    `fab <environment> -H whitehall-frontend-N.frontend vm.reboot`
-
--   Wait until the CPU usage and Nginx requests equally spread across
-    the cluster with the [Whitehall cluster health
-    dashboard](https://graphite.publishing.service.gov.uk/dashboard#whitehall%20cluster%20health)
--   If the machine does not recover properly and behave like the others
-    in the dashboard, you might need to restart the Whitehall
-    application on it:
-
-    `fab <environment> -H whitehall-frontend-N.frontend app.restart:whitehall`
+If any applications start alerting due to rabbitmq-1 being rebooted
+then either add a note here about how to make that application recover,
+or get the team responsible to make it point to the cluster.
 
 ## Rebooting MySQL backup machines
 

@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Tools
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-04-30
+last_reviewed_on: 2018-08-17
 review_in: 3 months
 ---
 
@@ -25,11 +25,11 @@ Examples of implementation:
 - [https://github.com/alphagov/govuk-content-schemas/pull/652](https://github.com/alphagov/govuk-content-schemas/pull/652)
 - [https://github.com/alphagov/govuk-content-schemas/pull/630](https://github.com/alphagov/govuk-content-schemas/pull/630)
 
-## Create a new rake task in the Publishing API
+## Create a new rake task in the publishing app
 
 The rake task will publish the route using the new document type.
 
-Before you begin you must identify which publishing and rendering applications will use the document type. You need to include these as parameters (payload) when you generate the route.
+Before you begin, you must identify which publishing and rendering applications will use the document type. You need to include these as parameters (payload) when you generate the route.
 
 Examples of implementation:
 
@@ -37,14 +37,13 @@ Examples of implementation:
 
 You should publish your new content item with your document type to the Publishing API, especially if you want it to be part of search as it makes it easy to integrate search this way.
 
-### Please note
-Having a document type with `placeholder` prefix will not publish routes. More information can be found here under
+> **Note**
+> Having a document type with `placeholder` prefix will not publish routes. More information can be found here under
 [placeholder items](https://github.com/alphagov/content-store/blob/f5bf2ae1d86b6a38d52d22074c0d13acf2a0413c/doc/route_registration.md#placeholder-items).
-
 
 ## Add a new content schema
 
-If you need help with adding a new schema in govuk-content-schemas please read the following: [https://github.com/alphagov/govuk-content-schemas/blob/master/docs/adding-a-new-schema.md](https://github.com/alphagov/govuk-content-schemas/blob/master/docs/adding-a-new-schema.md)
+[See "Adding a new schema"](https://github.com/alphagov/govuk-content-schemas/blob/master/docs/adding-a-new-schema.md)
 
 ## Make the new document type available to search
 

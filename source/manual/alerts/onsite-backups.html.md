@@ -4,7 +4,7 @@ title: Onsite backups failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-06-04
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -22,3 +22,5 @@ sudo su - govuk-backup
 cd /etc/backup/
 ./001_directory_backup_postgresql_backups_postgresql_primary_1 # Or whichever script is relevant
 ```
+
+If after running the script you find that you get some "Permission denied" errors on the files that the script is trying to copy, this probably means that the backup on the machine that the script is trying to copy from hasn't finished yet. Only after that has finished will it change permissions to the `govuk-backup` user.
