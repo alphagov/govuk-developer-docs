@@ -4,8 +4,8 @@ title: Low available disk space
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-10
-review_in: 4 months
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 ## Low available disk space on root
@@ -90,7 +90,7 @@ logs and update the index.
 ## Low available disk space on /var/lib/postgresql
 
 Check which databases are occupying a lot of space and discuss with the relevant owners
-about reducing size or exanding the size of the postgres drive. 
+about reducing size or exanding the size of the postgres drive.
 
 Steps to investigate postgres db size:
 
@@ -100,7 +100,7 @@ Steps to investigate postgres db size:
 1. List databases: `\list` or `\l`
 1. Check out which databases can be improved
 1. You can choose one of the dbs by doing: `\c <name-of-db>`
-For example: `\c email-alert-api_production` 
+For example: `\c email-alert-api_production`
 
 ## Low available disk space on /mnt/elasticsearch
 

@@ -4,7 +4,7 @@ title: Outstanding security updates
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-03-07
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -69,4 +69,3 @@ As a temporary work-around, run these commands on the machine to fix:
 sudo rm -r /var/lib/apt/lists/*
 sudo apt-get update
 ```
-

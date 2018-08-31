@@ -4,8 +4,8 @@ title: Data sync
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-20
-review_in: 3 months
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 Data and assets/attachments are synced from production to staging and integration every night.
