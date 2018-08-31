@@ -69,10 +69,11 @@ https://email-alert-api-public.publishing.service.gov.uk.
 
 A courtesy copy of every email sent is available in [a Google Group][google-group].
 
-You can login to the Notify account by going to
-[https://www.notifications.service.gov.uk](). The login credentials are
-in the [2nd line password store][password-store] under `govuk-notify/2nd-line-support`.
-Two-factor authentication links for logging in are sent to the 2nd line email address.
+You can [login to the Notify account](https://www.notifications.service.gov.uk) with the
+login credentials from the [2nd line password store][password-store]
+under `govuk-notify/govuk-email-courtesy-copies`.
+
+A courtesy copy of every email sent is available in [a Google Group][google-group].
 
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
 [password-store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/govuk-notify
