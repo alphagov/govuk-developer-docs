@@ -12,8 +12,7 @@ We have a system to make sure we regularly review pages in the manual.
 
 Main pages in the manual are reviewed every 3-12 months, mostly by the 2nd line team.
 
-We also have documented Icinga alerts
-documented. These explain what to do when a certain alert triggers ([example](/manual/alerts/fastly-error-rate.html)). Because these can be very rare and hard to review, we should review these around the same time every six months. This is best done by people with a lot of 2nd line context. To make sure we've documented all alerts, you can [run `rake lint_alert_docs` in govuk-puppet](https://github.com/alphagov/govuk-puppet/blob/master/lib/tasks/lint_alert_docs.rake), which will output alerts that can be removed/need to be added.
+We also document Icinga alerts. These explain what to do when a certain alert triggers ([example](/manual/alerts/fastly-error-rate.html)). Because these can be very rare and hard to review, we should review these around the same time every six months. This is best done by people with a lot of 2nd line context. To make sure we've documented all alerts, you can [run `rake lint_alert_docs` in govuk-puppet](https://github.com/alphagov/govuk-puppet/blob/master/lib/tasks/lint_alert_docs.rake), which will output alerts that can be removed/need to be added.
 
 You can [see also see a list of all pages and review dates](/page-reviews.html).
 
