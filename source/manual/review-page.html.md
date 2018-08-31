@@ -46,4 +46,4 @@ Is there a relevant blog post to the page you're reviewing? Would linking to it 
 
 You can find [GOV.UK blog posts on the  GDS Tech blog](https://gdstechnology.blog.gov.uk/category/gov-uk/).
 
-[redirects]: https://github.com/alphagov/govuk-developer-docs/blob/master/data/redirects.yml
+[redirects]: https://github.com/alphagov/govuk-developer-docs/blob/master/config/tech-docs.yml

@@ -93,7 +93,3 @@ Supertypes.all.each do |supertype|
     supertype: supertype,
   }
 end
-
-YAML.load_file('data/redirects.yml').each do |from, to|
-  redirect from, to: to
-end
