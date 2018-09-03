@@ -4,7 +4,7 @@ title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-08-30
 review_in: 6 months
 ---
 
@@ -32,10 +32,9 @@ These are deployed to [staging][staging_cdn] and [production][production_cdn].
 There is no CDN in integration.
 
 Some configuration isn't scripted, such as logging. The www, bouncer and assets
-services stream logs to the `logs-cdn-1` box in each environment. bouncer also logs
-to `transition-logs-1`. We also log requests for `assets.publishing.service.gov.uk/static/a?`
-to S3 for later analysis. These logging endpoints are currently configured directly
-in the Fastly UI.
+services sends logs to S3 and stream them to `logs-cdn-1`. These logging
+endpoints are configured directly in the Fastly UI. There is
+[documentation](/manual/query-cdn-logs.html) on how to query the CDN logs.
 
 [staging_cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
 [production_cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
