@@ -4,7 +4,7 @@ title: Seeing things in the AWS Console
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-01
+last_reviewed_on: 2018-08-03
 review_in: 3 months
 ---
 
@@ -54,7 +54,7 @@ have permissions, you'll need to "Switch Role".
    (Ireland)" region (eu-west-1).
 
   ![govuk-role-select-region](images/govuk-role-select-region.png)
-  
+
 4. If you've set all of the roles up, they are then easily accessible
    from the "Switch Role" menu, without having to type in the details
    every time. (**Roles do not persist across browsers, you have to
