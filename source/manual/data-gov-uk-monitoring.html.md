@@ -19,6 +19,7 @@ review_in: 6 months
 [pagerduty]: https://govuk.pagerduty.com/
 [ckan]: apps/ckanext-datagovuk
 [dgu-queue-monitor]: https://github.com/alphagov/datagovuk_publish_queue_monitor
+[dgu-elastic-monitor]: https://github.com/alphagov/datagovuk_publish_elasticsearch_monitor
 
 ## Prometheus
 
@@ -26,7 +27,7 @@ There are two dashboards: [DGU for 2nd line][grafana] displays a summary overvie
 
 Metrics are exposed to Prometheus through a `/metrics` endpoint from the PaaS-team maintained [paas-metric-exporter] app.  This provides separate stats for each app running in the DGU space on the PaaS.
 
-An additional app, [datagovuk_publish_queue_monitor][dgu-queue-monitor], exposes a `/metrics` endpoint summarising the state of the Sidekiq queues used to sync data between CKAN and Publish.
+Two additional apps expose `/metrics` endpoints which summarise the state of various parts of data.gov.uk.  These are [datagovuk_publish_queue_monitor][dgu-queue-monitor] for the state of the Sidekiq queues used to sync data between CKAN and Publish, and [datagovuk-publish-elasticsearch-monitor][dgu-elastic-monitor] for monitoring the Elasticsearch indices.
 
 ## Pingdom
 
