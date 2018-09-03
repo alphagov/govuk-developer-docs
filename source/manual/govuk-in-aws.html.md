@@ -4,8 +4,8 @@ title: GOV.UK in AWS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-25
-review_in: 1 month
+last_reviewed_on: 2018-08-03
+review_in: 3 months
 ---
 
 To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
