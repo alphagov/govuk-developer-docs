@@ -5,7 +5,7 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-02-22
+last_reviewed_on: 2018-09-03
 review_in: 6 months
 ---
 
