@@ -4,7 +4,7 @@ title: GOV.UK in AWS
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-25
+last_reviewed_on: 2018-09-03
 review_in: 1 month
 ---
 
@@ -52,7 +52,7 @@ calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.
 calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.5.238
 ```
 
-It will also resolve for an application service name, such as Calendars:
+It will also resolve for an application service name, such as `calendars`:
 
 ```
 lauramartin@ec2-integration-blue-backend-ip-10-1-5-53:~$ host calendars
@@ -82,9 +82,7 @@ publishing-api.blue.integration.govuk-internal.digital has address 10.1.5.50
 
 **No internal services should be accessed using the external public load balancers from within the internal network.**
 
-We are unable to set the internal domain as the default because some applications do self-referred Plek lookups that affect how applications
-are presented to the user. We have determined it is safer to set specific overrides for services until this behaviour is changed within
-the applications.
+We are unable to set the internal domain as the default because some applications do self-referred Plek lookups that affect how applications are presented to the user. We have determined it is safer to set specific overrides for services until this behaviour is changed within the applications.
 
 Please see the related [ADR for DNS Infrastructure](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0015-dns-infrastructure.md) for further detail.
 
@@ -109,22 +107,28 @@ instances.
 
 ### Architecture changes
 
-#### Removal of LB tiers
+#### Removal of load balancer tiers
 
 Due to the use of [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/) we no longer have a need to maintain
-our own NGINX load balancers, and so these have been removed from the stack. See the [related ADR](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0026-remove-load-balancer-tier.md) for further details.
+our own nginx load balancers, and so these have been removed from the stack. See the [related ADR](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0026-remove-load-balancer-tier.md) for further details.
 
-#### Merging MySQL databases
+#### Merging of MySQL database servers
 
-Traditionally we had a separate MySQL server for Whitehall. Rather than manage multiple RDS instances,
+Traditionally, we had a separate MySQL server for Whitehall. Rather than manage multiple RDS instances,
 we have merged this into the main MySQL server. See the [relevant ADR](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0019-centralise-mysql-databases.md) for details.
+
+#### Splitting of PostgreSQL database servers
+
+Traditonally, one server hosted all of our PostgreSQL databases. Due to increasing load, the databases for
+email-alert-api and publishing-api have been split out onto their own RDS instances. The third RDS instance
+hosts all remaining databases.
 
 ### Deploying infrastructure
 
 [Terraform](https://terraform.io) is used to manage our [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_Code). This code is stored
 in [govuk-aws](https://github.com/alphagov/govuk-aws).
 
-See the [documentation]() to make and deploy changes to the infrastructure.
+See the [documentation](deploying-terraform.html) to make and deploy changes to the infrastructure.
 
 ### Automated application deployments
 
