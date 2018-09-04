@@ -4,7 +4,7 @@ title: SSH into GOV.UK servers from the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2018-09-04
 review_in: 6 months
 ---
 
@@ -23,7 +23,7 @@ Things to check if it doesn't work:
   version and config.
 - **Do you get a permission denied error?** Make sure you're in the
   user list in the [govuk-secrets repo][govuk-secrets] for production access,
-  or the [govuk-puppet repo][govuk_puppet] for access to other environments.
+  or the [govuk-puppet repo][govuk-puppet] for access to other environments.
 - **Are you connecting from outside The White Chapel Building?**
   You'll need to connect to the VPN first; SSH connections are restricted
   to the White Chapel Building IP addresses.
