@@ -26,13 +26,15 @@ You don't have to develop on the VM, but we strongly recommend it. If you have p
 
 **Where you should run commands**
 
-Run `mac$` commands in the shell on your Mac:
+Run commands prepended with `mac$` on your Mac:
 
     mac$ echo "Think Different"
 
-Run `dev$` commands in the shell on the development VM:
+Run commands prepended with `dev$` in the development VM:
 
     dev$ echo "Linux for human beings"
+
+Note: `dev$` and `mac$` are prompts within this guide and not part of the given command.
 
 **If you run into problems**
 
