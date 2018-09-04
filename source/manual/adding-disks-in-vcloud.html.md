@@ -1,12 +1,18 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Add a disk to a vCloud machine
+title: Add a disk to a vCloud machine (Carrenza only)
 section: Environments
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-09-04
 review_in: 6 months
 ---
+
+> **NOTE**
+> This process is only applicable to Carrenza environments.
+> For AWS environments, disk space can be expanded by changing
+> and deploying the appropriate Terraform configuration
+> [(example for backend machines)](https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/app-backend/main.tf#L204).
 
 New disks are added to machines to add or increase the size of a
 [logical volume (LV)][logical-volume-wiki].
@@ -14,27 +20,25 @@ New disks are added to machines to add or increase the size of a
 ## 1) Add the new disk to Puppet Hieradata
 
 Add the new disk to
-[Hieradata](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
+[Hiera data](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
 ([example](https://github.com/alphagov/govuk-puppet/commit/73531ea7a7c28cbbb1c04f41ec5da53b4ff591d2)).
 
-You can deploy puppet once the changes have been merged in. However until the
-disk is configured puppet runs on the machine will result in errors.
+You can deploy Puppet once the changes have been merged in. However, until the
+disk is configured, Puppet runs on the machine will result in errors.
 
 ## 2) Add the extra disk in vCloud Director
 
-1)  Navigate to the VM Properties in the vCloud Director interface and
-    select the 'Hardware' tab. From here, hit the add button under
-    disks, choose a size and hit save.
-2)  Wait for the VM to reconfigure.
+1. Navigate to the VM Properties in the vCloud Director interface and
+   select the 'Hardware' tab. From here, click the add button under
+   disks, choose a size and click Save.
+2. Wait for the VM to reconfigure.
 
-Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst) for details on how to access Carrenza. Also, the credentials are in **secrets**.
+Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst) for details on how to access Carrenza. The appropriate credentials are in `govuk-secrets`.
 
-> **info**
-
+> **NOTE**
 > In the link above, you will see a link format similar to https://localhost:8443/cloud/org/{environment}, where {environment} is the value of the `Org` key you get from decrypting secrets. It will look something like `Org: XXXX-govuk-staging-london`.
 
-> **note**
-
+> **NOTE**
 > Aligning disk partitions on VMware VMs ensures that disk I/O is not
 > negatively affected. If a disk is not partition aligned correctly, I/O
 > from each filesystem is being translated into 2 I/Os to the
@@ -49,8 +53,7 @@ Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/
 > VMware performance recommendations can be [found
 > here](http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.0.pdf).
 
-> **warning**
-
+> **WARNING**
 > When adding new disks, be careful to select an appropriate disk
 > controller.
 >
@@ -65,42 +68,42 @@ Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/
 > default disk controller used when we provision machines using [vCloud
 > Launcher](http://rubygems.org/gems/vcloud-launcher).
 
-## 3) Update GOV.UK Provisioning repository
+## 3) Update the GOV.UK provisioning repository
 
-The [GOV.UK Provisioning](https://github.com/alphagov/govuk-provisioning)
+The [GOV.UK provisioning](https://github.com/alphagov/govuk-provisioning)
 repository contains all the configuration of the hosts needed for provisioning
 GOV.UK environments. It's important that this remains in sync with the
-configurations in vCloud director.
+configuration in vCloud Director.
 
 See an [example](https://github.com/alphagov/govuk-provisioning/pull/17/files).
 
-## 4) Probe for the new disk on each VM.
+## 4) Probe for the new disk on each VM
 
-1)  Run `sudo fdisk -l` and note the output. You should see each disk
-    already configured listed separately. Make a note of which are
-    already present.
-2)  Run the following loop as root to probe for new discs
+1. Run `sudo fdisk -l` and note the output. You should see each disk
+   already configured listed separately. Make a note of which are
+   already present.
+2. Run the following loop as root to probe for new discs
 
 ```bash
 echo '- - -' | sudo tee -a /sys/class/scsi_host/*/scan
 ```
 
-3)  Run `sudo fdisk -l` again and note that you have a new disk called
-    `/dev/sdX` where X is a letter. This disk *should* be unpartitioned.
+3. Run `sudo fdisk -l` again and note that you have a new disk called
+   `/dev/sdX` where X is a letter. This disk *should* be unpartitioned.
 
 ## 5) Partition the disk if necessary
 
 You can skip this step if you have configured Puppet to use the whole
 disk as an LVM physical volume.
 
-1)  Set an environment variable, replacing `X` with the appropriate
-    block device letter
+1. Set an environment variable, replacing `X` with the appropriate
+   block device letter
 
 ```bash
 export NEW_DISK=/dev/sdX
 ```
 
-2)  Create a single partition on that disk
+2. Create a single partition on that disk
 
 ```bash
 sudo parted ${NEW_DISK} mklabel msdos
@@ -113,15 +116,15 @@ LVM, format the disk and tune the filesystem.
 
 ## 6) Run Puppet
 
-1)  Run Puppet, which will configure LVM and tune the filesystem:
+1. Run Puppet, which will configure LVM and tune the filesystem:
 
 ```bash
 govuk_puppet --test
 ```
 
-2)  Verify that the new disk has been created by checking the output of
-    `sudo fdisk -l` which will no longer say the disk is unpartitioned. For a
-    new logical volume you can also check `mount` for its existence
+2. Verify that the new disk has been created by checking the output of
+   `sudo fdisk -l` which will no longer say the disk is unpartitioned. For a
+   new logical volume, you can also check `mount` for its existence
 
 ## 7) Extend existing logical volume and filesystem
 
@@ -132,21 +135,21 @@ through Puppet's `govuk::lvm` resource then you'll need to manually
 extend the logical volume and filesystem. These are safe online
 operations.
 
-1)  Set environment variables for the VG and LV names. Replace `XXX`
-    with the appropriate names from `sudo vgs` and `sudo lvs`:
+1. Set environment variables for the VG and LV names. Replace `XXX`
+   with the appropriate names from `sudo vgs` and `sudo lvs`:
 
 ```bash
 export VG=XXX
 export LV=XXX
 ```
 
-2)  Extend the logical volume to the full size of the volume group:
+2. Extend the logical volume to the full size of the volume group:
 
 ```bash
 sudo lvextend -l +100%FREE /dev/${VG}/${LV}
 ```
 
-3)  Extend the filesystem to the full size of the logical volume:
+3. Extend the filesystem to the full size of the logical volume:
 
 ```bash
 sudo resize2fs /dev/mapper/${VG}-${LV}
