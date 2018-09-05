@@ -79,6 +79,7 @@ SimpleCov.start
 RSpec.configure do |config|
   config.expose_dsl_globally = false
   config.infer_spec_type_from_file_location!
+  config.use_transactional_fixtures = true
 end
 ```
 
@@ -133,7 +134,7 @@ Now is a good time to run `bin/setup`. Lastly, create `lib/tasks/lint.rake` with
 ```
 desc "Run govuk-lint on all files"
 task "lint" do
-  sh "govuk-lint-ruby --format clang --rails"
+  sh "govuk-lint-ruby --format clang"
   sh "govuk-lint-sass app/assets/stylesheets"
 end
 ```
