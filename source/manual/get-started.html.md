@@ -197,24 +197,36 @@ Next, follow the same steps inside your VM. You can choose whether to import you
 
 ## 7. Import production data
 
-Dumps are generated from production data in the early hours each day, and are then downloaded from integration.
+Application data from production can be imported to be used within your development environment. Dumps of production data are generated in the early hours each day and made available from the integration environment.
 
-If you have integration access, you can download and import the latest data by running (replacing <2FA code> with the current 2-factor authentication code for AWS integration):
+Make sure you have the correct permissions to access the AWS integration account. To add permissions to assume role follow documentation on [adding your ARN to GOV.UK account role][add-your-arn].
+
+>If you're unable to get permission, ask someone to give you a copy of their data. 
+
+You will also need to configure an AWS profile for the integration environment, refer to documentation on [storing credentials on disk.][creds-on-disk]
+
+After gaining access to the integration environment, download the data by running:
 
     mac$ cd ~/govuk/govuk-puppet/development-vm/replication
     mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
 
-You will then be prompted to enter your MFA Token.
+You should then be prompted to enter your MFA token.
 
-If you receive the error message `The config profile (gds) could not be found`, refer to the [guide about replicating data locally][data-replication-aws-access].
-
-Once the data has been downloaded (if you don't have integration access, ask someone to give you a copy of their dump), run:
+Once you have downloaded or obtained the data, run the following:
 
     dev$ cd /var/govuk/govuk-puppet/development-vm/replication
     dev$ ./replicate-data-local.sh -d backups/YYYY-MM-DD/ -s
 
-For more information, and for troubleshooting advice, see the guide in the developer docs on [replicating application data locally for development][data-replication].
+Replace YYYY-MM-DD with the current date.
 
+> Downloading and decompressing the data may take a long time. Depending on your application you may not need all the data. 
+
+> Run `./replicate-data-local.sh --help` for options to skip databases.
+
+For more information or troubleshooting advice see the guide in the developer docs on [replicating application data locally for development][data-replication].
+
+[creds-on-disk]: user-management-in-aws.html#storing-credentials-on-disk
+[add-your-arn]: user-management-in-aws.html#add-your-arn-to-govuk-account-role
 [data-replication]: replicate-app-data-locally.html
 [data-replication-aws-access]: replicate-app-data-locally.html#aws-access
 
