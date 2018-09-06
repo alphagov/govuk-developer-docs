@@ -4,7 +4,7 @@ title: Redirect a route
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-27
+last_reviewed_on: 2018-09-06
 review_in: 6 months
 related_applications: [short-url-manager]
 ---
@@ -20,11 +20,27 @@ departments, usually for use with for campaign materials.
 
 To find if there is already a redirect for a particular path:
 
-    $ ssh router-backend-1.router.production
-    $ govuk_app_console router-api
-    > Route.where(incoming_path: '/path-to-item')
+```console
+ssh router-backend-1.router.production
+```
 
-Redirect routes have the handler 'redirect'.
+in Carrenza, and
+
+```console
+govukcli set-context integration
+govukcli ssh router_backend
+```
+
+in AWS.
+
+Then:
+
+```console
+govuk_app_console router-api
+> Route.where(incoming_path: '/path-to-item')
+```
+
+Redirect routes have the handler `redirect`.
 
 ## Redirecting from the original publishing app
 
@@ -59,8 +75,6 @@ There have been a few occasions where Corporate Information pages have
 started redirecting the English version to a translation. Should this
 happen, the redirects can be identified with:
 
-    $ ssh router-backend-1.router.production
-    $ govuk_app_console router-api
     > Route.where(incoming_path: /\/about/).each do |route|
     >   puts "#{route.id} #{route.incoming_path} -> #{route.redirect_to}" if route.handler == "redirect"
     > end
@@ -72,15 +86,14 @@ English version to a translation, for example:
 
 ...can be deleted with
 
-    Route.find('579a109cd068b406250014e4').destroy
+    > Route.find('579a109cd068b406250014e4').destroy
 
 For the deleted routes to take effect, you need to reload the router.
 
     > RouterReloader.reload
 
-## Redirects from Campaign sites
+## Redirects from campaign sites
 
-The campaign platform is a WP site managed by DXW. For redirects to be put in
-place from a `*.campaign.gov.uk` site we need to raise a support ticket with
-them and request for them to do this for us. Currently Mark McLeod or Kelvin
-Gan can raise a ticket.
+The campaigns platform is a WordPress site managed by dxw. Redirects from a
+`*.campaign.gov.uk` site require a support ticket. Currently, Mark McLeod or
+Kelvin Gan can raise a ticket.
