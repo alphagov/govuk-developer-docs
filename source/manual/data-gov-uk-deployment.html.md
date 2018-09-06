@@ -4,7 +4,7 @@ title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-22
+last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
@@ -22,13 +22,13 @@ review_in: 6 months
 
 Travis is configured for both [Publish (CI)][publish-ci] and [Find (CI)][find-ci] according to `.travis.yml` file in each repo. Each PR request should automatically build a [Heroku Review App][heroku], which can be accessed from the PR page on GitHub.
 
-## Heroku Integration Env
+## Heroku Integration Environment
 
 Heroku has a pipeline for each of [Publish][publish-heroku] and [Find][find-heroku], with each app set to run in its 'integration' environment. Each pipeline has a permanent instance of the app, providing a common instance of Elasticsearch for us by the [Find] PR apps.
 
 Each repo has a `Procfile` and an `app.json` file, which help to specify how the app is deployed. The environment variables ('Config Vars') are then set via the website, both for the permanent app instance, and the review app template.
 
-## PaaS Staging/Prod Env
+## PaaS Staging and Production Environment
 
 [Publish] and [Find] are provisioned on [GOV.UK PaaS][paas]. Each app repo contains a set of manifests that specify the container settings for when it's deployed. You can deploy an app manually as follows.
 
