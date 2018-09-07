@@ -5,7 +5,7 @@ section: Environments
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2018-09-03
 review_in: 6 months
 next_review_notes: |
     We may be on AWS entirely by the next review. Lots of this is Carrenza specific.
@@ -41,14 +41,14 @@ You will then need to decide whether to:
 ### Deciding whether to reboot or silence
 
 This can be quite nuanced, before you go ahead with any course of action
-gather evidence and then ask in the \#webops slack room.
+gather evidence and then ask in the \#reliability-eng slack room.
 
 Find details of the update from the [Ubuntu Security
 Notices](http://www.ubuntu.com/usn/).
 
 -   Is it a remote or local exploit?
 -   Is it a kernel update?
--   If it's a shared library are we using it (see below)?
+-   If it's a shared library, are we using it (see below)?
 
 There is a Fabric task to find all processes using a deprecated library:
 
@@ -69,7 +69,7 @@ There is a Fabric task to schedule a machine for downtime in Nagios for
 
     fab $environment -H graphite-1.management vm.reboot
 
-> **note**
+> **Note (Carrenza only)**
 >
 > There is a known issue whereby adding an extra disk using the LSI
 > Logic Parallel (SCSI) controller to a VM causes the BIOS boot order to
@@ -83,9 +83,6 @@ There is a Fabric task to schedule a machine for downtime in Nagios for
 You can see our MongoDB machines by running:
 
     $ fab $environment puppet_class:mongodb::server hosts
-
-This section doesn't apply to `exception-handler-1` because it isn't
-using a replicaset.
 
 All secondary Mongo machines will reboot overnight. If you don't need to
 reboot the cluster right now, step the current primary down and allow it
@@ -121,11 +118,59 @@ particular Redis hosts and may error if they are unvailable.
 Reboots of these machines, in the production environment, should be organised
 with Platform Health.
 
-They may be rebooted in working hours in the staging environment, however you
-should notify colleagues before doing so as this may remove in flight jobs
-that sidekiq has added to the redis queues but not yet processed.
+They may be rebooted in working hours in other environments, however you
+should notify colleagues before doing so as this may remove in-flight jobs
+that Sidekiq has added to the Redis queues but not yet processed.
 
-## Rebooting backend-lb machines
+## Rebooting RabbitMQ machines
+
+There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
+waiting for the cluster to recover before rebooting the next node.
+
+If there are problems with the cluster (eg, a partition has happened),
+the `safe_reboot` script will not reboot anything, and you'll need to
+take manual action to resolve the problem.
+
+-   Reboot the nodes in the cluster:
+
+        fab <environment> class:rabbitmq rabbitmq.safe_reboot
+
+If any applications start alerting due to `rabbitmq-1` being rebooted
+then either add a note here about how to make that application recover,
+or get the team responsible to make it point to the cluster.
+
+## Rebooting asset master and slave machines
+
+Unless there are urgent updates to apply the master machine should not be
+rebooted in production during working hours - as the master machine is required
+for attachments to be uploaded.
+
+The slave machines can be rebooted as they hold a copy of data and are resynced
+regularly.
+
+Reboots of the master machine should be organised with Platform Health,
+for the production environment.
+
+You may reboot the master machine in the staging environment during working
+hours however it is prudent to warn colleagues that uploading attachments will
+be unavailable during this period.
+
+## Rebooting router-backend machines
+
+Router backend machines are instances of MongoDB machines and can be rebooted
+as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
+
+## Rebooting jumpbox machines
+
+These machines are safe to reboot during the day. During the night they
+are involved in a data sync processes and rebooting could cause the data
+sync to fail.
+
+## Rebooting backend-lb machines (Carrenza only)
+
+> **Note**
+>
+> These machines don't exist in AWS environments.
 
 NAT rule points directly at backend-lb-1 for backend services. In order
 to safely reboot these machines you'll need access to vCloud Director.
@@ -164,24 +209,11 @@ to safely reboot these machines you'll need access to vCloud Director.
 -   use vCloud Director to update the NAT rule to point back to the IP
     address of backend-lb-1
 
-## Rebooting RabbitMQ machines
+## Rebooting MySQL backup machines (Carrenza only)
 
-There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
-waiting for the cluster to recover before rebooting the next node.
-
-If there are problems with the cluster (eg, a partition has happened),
-the `safe_reboot` script will not reboot anything, and you'll need to
-take manual action to resolve the problem.
-
--   Reboot the nodes in the cluster:
-
-        fab <environment> class:rabbitmq rabbitmq.safe_reboot
-
-If any applications start alerting due to rabbitmq-1 being rebooted
-then either add a note here about how to make that application recover,
-or get the team responsible to make it point to the cluster.
-
-## Rebooting MySQL backup machines
+> **Note**
+>
+> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 The MySQL backup machines [create a file during the backup
 process](https://github.com/alphagov/govuk-puppet/commit/0e1615bf31f714994b43142ecf915330d4d46af5).
@@ -196,14 +228,18 @@ If that file exists, the machine isn't safe to reboot.
 
         fab <environment> -H mysql-backup-1.backend vm.reboot
 
-## Rebooting MySQL master and slave machines
+## Rebooting MySQL master and slave machines (Carrenza only)
+
+> **Note**
+>
+> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted during working hours in production. Applications write to the
 masters and read from the slaves (with the exception of the slave within
 the DR environment).
 
-If urgently required applications can have their database configuration
+If urgently required, applications can have their database configuration
 amended by editing the relevant configuration in
 <https://github.com/alphagov/govuk-app-deployment>
 
@@ -216,7 +252,11 @@ with Platform Health.
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
 
-## Rebooting PostgreSQL primary and standby machines
+## Rebooting PostgreSQL primary and standby machines (Carrenza only)
+
+> **Note**
+>
+> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted in production during working hours. Applications read and write
@@ -229,30 +269,3 @@ with Platform Health.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
-
-## Rebooting Asset master and slave machines
-
-Unless there are urgent updates to apply the master machine should not be
-rebooted in production during working hours - as the master machine is required
-for attachments to be uploaded.
-
-The slave machines can be rebooted as they hold a copy of data and are resynced
-regularly.
-
-Reboots of the master machine should be organised with Platform Health,
-for the production environment.
-
-You may reboot the master machine in the staging environment during working
-hours however it is prudent to warn colleagues that uploading attachments will
-be unavailable during this period.
-
-## Rebooting router-backend machines
-
-Router backend machines are instances of MongoDB machines and can be rebooted
-as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
-
-## Rebooting Jumpbox machines
-
-These machines are safe to reboot during the day. During the night they
-are involved in a data sync processes and rebooting could cause the data
-sync to fail.
