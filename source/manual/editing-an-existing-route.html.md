@@ -4,7 +4,7 @@ title: Edit an existing route in the Router
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 
@@ -15,21 +15,41 @@ however, it can be helpful to make short term changes to routes
 manually, when going through the Publishing API would take too long,
 for example during an incident.
 
-If there's a need to edit a route in the database, follow these
-instructions:
+If there's a need to edit a route in the database:
 
-    $ ssh router-backend-1.router.production
-    $ govuk_app_console router-api
-    > r = Route.where(incoming_path: '/path-to-item').first
+1. Connect to a router-backend machine
 
-Manipulate the `r` object directly (see the
+```console
+ssh router-backend-1.router.production
+```
+
+in Carrenza, and
+
+```console
+govukcli set-context integration
+govukcli ssh router_backend
+```
+
+in AWS.
+
+2. Connect to router-api and get the route
+
+```console
+govuk_app_console router-api
+> r = Route.where(incoming_path: '/path-to-item').first
+```
+
+3. Manipulate the `r` object directly (see the
 [documentation](https://github.com/alphagov/router#data-structure) for
-available options), eg:
+available options), for example:
 
-    > r.route_type = 'exact'
-    > r.save!
+```console
+> r.route_type = 'exact'
+> r.save!
+```
 
-Once you've edited the Route appropriately and saved it, you need to
-reload the router:
+4. Once you've edited the route appropriately and saved it, reload the router
 
-    > RouterReloader.reload
+```console
+> RouterReloader.reload
+```

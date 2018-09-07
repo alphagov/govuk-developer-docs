@@ -4,7 +4,7 @@ title: Seeing things in the AWS Console
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-03
+last_reviewed_on: 2018-09-03
 review_in: 3 months
 ---
 

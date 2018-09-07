@@ -4,21 +4,20 @@ title: Change an organisation's slug
 parent: "/manual.html"
 layout: manual_layout
 section: Routing
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 
-> **NOTE:** for Worldwide Organisations, only steps 1 and maybe 5 below
-> need to be performed.
+> **NOTE**
+> For Worldwide Organisations, only steps 1 and 5 below need to be performed.
 
-The organisation slug is used as a foreign key for organisations across
-multiple apps. Changing it can be complex and time consuming.
+The organisation slug is used as a foreign key for organisations across multiple apps.
 
-### Change the organisation's slug in Whitehall
+### 1. Change the organisation's slug in Whitehall
 
 Create a data migration that uses the `DataHygiene::OrganisationReslugger` class. See [this PR for an example](https://github.com/alphagov/whitehall/pull/2245).
 
-### Update the organisation in transition/transition-config:
+### 2. Update the organisation in transition/transition-config:
 
 The [transition-config repo](https://github.com/alphagov/transition-config) may contain slugs. Change any references to the old slug:
 
@@ -28,7 +27,7 @@ The [transition-config repo](https://github.com/alphagov/transition-config) may 
 
 Merging will trigger the changes to be imported automatically.
 
-### Update the organisation slug in Manuals Publisher
+### 3. Update the organisation slug in Manuals Publisher
 
 Find out if any manuals are published by this organisation, by running the following in the manuals-publisher Rails console:
 
@@ -38,15 +37,12 @@ ManualRecord.where(organisation_slug: "old-slug").exists?
 
 If there are, create a migration to update the slugs. Republish all affected manuals after deploying your change.
 
-### Sync the organisations with Signon
+### 4. Sync the organisations with Signon
 
-[Signon](https://signon.publishing.service.gov.uk/) assigns users to
-organisations. This is used by apps such as whitehall for authorization.
+[Signon](https://signon.publishing.service.gov.uk/) assigns users to organisations. This is used by apps such as whitehall for authorization.
 
-To sync all organisations from whitehall to signon, run the signon rake task
-`rake organisations:fetch`. Users may have to log out and in again to pick up
-permissions for the renamed organisation.
+To sync all organisations from whitehall to signon, run the signon rake task `rake organisations:fetch`. Users may have to log out and in again to pick up permissions for the renamed organisation.
 
-### Update any best-bet searches in Search Admin
+### 5. Update any best bet searches in Search Admin
 
 Search the best bets in [search-admin](https://search-admin.publishing.service.gov.uk/) for references to the old organisation name and update them.

@@ -5,13 +5,13 @@ description: How we manage our Ruby dependencies using Dependabot, who can merge
 section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-24
+last_reviewed_on: 2018-09-03
 review_in: 6 months
 ---
 
 We're [obliged to keep our software current][current].
 
-To help with this we're currently trialling a service called [Dependabot][] to perform automated dependency upgrades.
+To help with this, we use a service called [Dependabot][] to perform automated dependency upgrades.
 
 ## Who can merge Dependabot PRs
 
@@ -25,7 +25,7 @@ You can ignore pull requests from the bot by replying `@dependabot ignore this m
 1. Give Dependabot [access to the repo][access] (only GitHub org owners can do this)
 2. Go to [Dependabot admin][admin] and click "Add project"
 
-## Ask Dependabot to bump Dependencies
+## Ask Dependabot to bump dependencies
 
 By default Dependabot will bump dependencies once a day, but you can ask it to bump manually:
 

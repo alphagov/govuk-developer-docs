@@ -4,17 +4,16 @@ title: Replicate application data locally for development
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2018-09-04
 review_in: 6 months
 ---
 
 Dumps are generated from production data in the early hours each day, and can
 then be downloaded from integration (AWS).  The process is managed by the
 [replicate-data-local.sh](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/replication/replicate-data-local.sh)
-script within the [govuk-puppet
-repository](https://github.com/alphagov/govuk-puppet).
+script within the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet).
 
-> The Licensify and Signon databases aren't synced out of production because of
+> The Licensify and Signon databases aren't synced from production because of
 > security concerns. Mapit's database is downloaded in the Mapit repo, so won’t
 > be in the backups folder.
 
@@ -46,11 +45,11 @@ then
     dev$ cd /var/govuk/govuk-puppet/development-vm/replication
     dev$ ./replicate-data-local.sh -d path/to/dir -s
 
-> You can skip the -d flag if you do this on the say day as the download
+> You can skip the -d flag if you do this on the same day as the download.
 
-> Databases will take a long time to download. They'll also take up a lot of
-> disk space (up to ~30GB uncompressed). The process will also take up a bunch
-> of compute resource as you import the data.
+> Databases take a long time to download and use a lot of disk space
+> (up to ~30GB uncompressed). The process also uses a lot of
+> compute resource as you import the data.
 
 > The downloaded backups will automatically be deleted after import (whether
 > successful or not) unless the -k flag is specified.

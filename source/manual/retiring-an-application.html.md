@@ -4,20 +4,11 @@ title: Retire an application
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 
-## 1. Archive database
-
-This is only relevant if the application has a database. You can skip this
-when retiring frontends.
-
-Grab a copy of the latest production backup of the database and put a copy in
-the `/data/backups/archived` directory on the `backup-1.management` machine.
-This will then be included in the sync to the offsite backup machines
-
-## 2. Remove app from puppet
+## 1. Remove app from puppet
 
 Configure Puppet to remove the app from all servers. Change the app resource,
 and any database resources to `ensure => absent`, remove any host and
@@ -31,13 +22,13 @@ After this has been deployed, remove it entirely. For example:
 
 - <https://github.com/alphagov/govuk-puppet/pull/5507>
 
-## 3. Remove smoke tests
+## 2. Remove smoke tests
 
 Remove any [smokey tests][smokey] specific to the application.
 
 [smokey]: https://github.com/alphagov/smokey
 
-## 4. Remove deploy scripts
+## 3. Remove deploy scripts
 
 Remove necessary scripts from the [alphagov-deployment][alphagov-deployment]
 (private repo) and [govuk-app-deployment][govuk-app-deployment] repos.
@@ -45,7 +36,7 @@ Remove necessary scripts from the [alphagov-deployment][alphagov-deployment]
 [alphagov-deployment]: https://github.com/alphagov/alphagov-deployment
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 
-## 5. Update Release app
+## 4. Update Release app
 
 Mark the application as archived in the Release app.
 
@@ -53,14 +44,14 @@ Edit the application in the release app (you'll need the `deploy`
 permission to do this), and check the `archived` checkbox. This will
 hide it from the UI.
 
-## 6. Remove from deploy Jenkins
+## 5. Remove from deploy Jenkins
 
 Remove entry from the deploy Jenkinses. This is managed
 [through govuk-puppet][common] in the `common.yml`.
 
 [common]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
 
-## 7. Update Signon
+## 6. Update Signon
 
 Mark the application as "retired" in signon, if it used it.
 
@@ -68,7 +59,7 @@ Click on the Applications tab. Find the application that is being
 retired and click the "edit" button. Tick the box that says "This
 application is being retired", then save your changes.
 
-## 8. Update development scripts
+## 7. Update development scripts
 
 Remove from the [development-vm directory][development] `Procfile` and
 `Pinfile`:
@@ -79,7 +70,7 @@ this app locally in the future.
 
 [development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 
-## 9. Check replication script
+## 8. Check replication script
 
 Check the data replication scripts for anything specific to this application.
 
@@ -87,7 +78,7 @@ Some applications have special case details in
 <https://github.com/alphagov/env-sync-and-backup/>. Any relating
 to the application should be removed.
 
-## 10. Update DNS
+## 9. Update DNS
 
 Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
@@ -99,48 +90,48 @@ Pull Requests.
 [dns-changes]:
 https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
 
-## 11. Update docs
+## 10. Update docs
 
 Mark the application as `retired` in [govuk-developer-docs][dev-docs].
 
 [dev-docs]: https://github.com/alphagov/govuk-developer-docs
 
-## 12. Remove credentials
+## 11. Remove credentials
 
 Remove any hieradata credential entries for the app in [govuk-secrets][]
 (private repo).
 
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 
-## 13. Drop database
+## 12. Drop database
 
 If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
-## 14. Remove jobs in CI
+## 13. Remove jobs in CI
 
 If tests were set up, go to [CI][ci] and choose "Delete Repository" for your
 project.
 
 [ci]: https://ci.integration.publishing.service.gov.uk/
 
-## 15. Remove other references
+## 14. Remove other references
 
 Do a [code search on GitHub][search] to find any references to the application
 and update or remove them.
 
 [search]: https://github.com/search?q=org%3Aalphagov+panopticon&type=Code
 
-## 16. Unpublish routes
+## 15. Unpublish routes
 
 Some applications are responsible for publishing certain routes. If you're
 retiring a publishing application, make sure you check if any of its content
 items need to be unpublished and do it via the Publishing API.
 
-## 17. Remove from Sentry
+## 16. Remove from Sentry
 
 Since the application has been retired, it shouldn't be tracked in Sentry.
 
-## 18. Archive the repo
+## 17. Archive the repo
 
-Go into the repository settings in Github, and
+Go into the repository settings in GitHub, and
 [archive the repo](https://github.com/blog/2460-archiving-repositories).
