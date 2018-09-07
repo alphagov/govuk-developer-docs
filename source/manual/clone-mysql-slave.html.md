@@ -1,12 +1,15 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Clone a MySQL instance from one slave to another
+title: Clone a MySQL instance from one slave to another (Carrenza only)
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
-review_in: 7 months
+last_reviewed_on: 2018-09-06
+review_in: 6 months
 ---
+
+> **NOTE**
+> This process is only applicable to Carrenza environments.
 
 This tutorial documents the process behind adding a new slave to a MySQL
 environment where an existing slave may or may not already exist. The
