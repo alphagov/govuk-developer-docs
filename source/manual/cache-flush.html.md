@@ -5,7 +5,7 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-02-22
+last_reviewed_on: 2018-09-03
 review_in: 6 months
 ---
 
@@ -76,10 +76,8 @@ Varnish purges will happen before any of the Fastly purges:
 > **warning**
 >
 > The following command *must* be run from one of the mirror boxes
->
-> :   because we restrict which IP addresses PURGE requests are
->     accepted from.
->
+> because we restrict which IP addresses PURGE requests are accepted from.
+
 To purge content on the Fastly cache nodes, use the PURGE method against
 the URL you wish to purge. For instance:
 
@@ -92,8 +90,8 @@ request more verbose output using the -i switch:
 
 You can manually flush the cache from the following machines:
 
-> -   mirror0.mirror.provider1.\$environment.govuk.service.gov.uk
-> -   mirror1.mirror.provider1.\$environment.govuk.service.gov.uk
+> -   mirror0.mirror.provider1.$environment.govuk.service.gov.uk
+> -   mirror1.mirror.provider1.$environment.govuk.service.gov.uk
 
 ## Purging a page from our origin server varnish cache
 

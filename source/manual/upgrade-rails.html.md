@@ -1,6 +1,6 @@
 ---
 owner_slack: '#govuk-2ndline'
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2018-09-03
 review_in: 6 months
 title: Upgrade Rails to a new version
 section: Dependencies
@@ -9,6 +9,8 @@ parent: "/manual.html"
 ---
 
 When upgrading our apps between Rails major and minor versions, follow the [official Rails guides][guide].
+
+[guide]: https://guides.rubyonrails.org/upgrading_ruby_on_rails.html
 
 ## Rails configs
 

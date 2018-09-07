@@ -4,7 +4,7 @@ title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-22
+last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
@@ -16,18 +16,19 @@ review_in: 6 months
 [find-heroku]: https://dashboard.heroku.com/pipelines/0ca23219-ac0e-4d6c-9d5f-40829c6209db
 [paas]: https://docs.cloud.service.gov.uk/#set-up-command-line
 [staging]: http://test.data.gov.uk
+[cf-docs]: https://docs.cloudfoundry.org
 
 ## Continuous Integration
 
 Travis is configured for both [Publish (CI)][publish-ci] and [Find (CI)][find-ci] according to `.travis.yml` file in each repo. Each PR request should automatically build a [Heroku Review App][heroku], which can be accessed from the PR page on GitHub.
 
-## Heroku Integration Env
+## Heroku Integration Environment
 
 Heroku has a pipeline for each of [Publish][publish-heroku] and [Find][find-heroku], with each app set to run in its 'integration' environment. Each pipeline has a permanent instance of the app, providing a common instance of Elasticsearch for us by the [Find] PR apps.
 
 Each repo has a `Procfile` and an `app.json` file, which help to specify how the app is deployed. The environment variables ('Config Vars') are then set via the website, both for the permanent app instance, and the review app template.
 
-## PaaS Staging/Prod Env
+## PaaS Staging and Production Environment
 
 [Publish] and [Find] are provisioned on [GOV.UK PaaS][paas]. Each app repo contains a set of manifests that specify the container settings for when it's deployed. You can deploy an app manually as follows.
 
@@ -43,9 +44,4 @@ cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifes
 
 Merging code into master triggers a deployment to the '[staging]' environment, but you can also do this manually as follows. A production deployment is triggered when a new GitHub release is created for the app.
 
-The other services on the PaaS are [provisioned using
-Terraform][datagovuk_infrastructure]. There are [some useful
-scripts][datagovuk_cf_scripts] available to perform common CloudFoundry tasks.
-
-[datagovuk_infrastructure]: https://github.com/alphagov/datagovuk_infrastructure
-[datagovuk_cf_scripts]: https://github.com/alphagov/datagovuk_cf_scripts
+For more advanced uses of the PaaS that are not covered in the PaaS internal documentation (e.g. provisioning an app using a buildpack that is not Ruby or Java), refer to the [Cloud Foundry documentation][cf-docs].
