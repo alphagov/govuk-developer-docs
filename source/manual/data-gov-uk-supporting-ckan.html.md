@@ -4,7 +4,7 @@ title: Supporting CKAN
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-22
+last_reviewed_on: 2018-09-10
 review_in: 3 months
 ---
 [ckan]: https://ckan.org
@@ -39,10 +39,10 @@ styling.
 ## Managing CKAN
 
 First check to see if it is possible to complete the task through the
-[system dashboard](https://data.gov.uk/data/system_dashboard). You will need a [system 
+[system dashboard](https://data.gov.uk/data/system_dashboard). You will need a [system
  administrator account](#creating-a-system-administrator-account).
 
-For commands not available via the user interface you must connect to the server to run the commands. All of the 
+For commands not available via the user interface you must connect to the server to run the commands. All of the
 commands to interact with [CKAN] use a tool called `paster`.
 
 Many of these commands take a path to the config file with the `-c` option, although you can instead use
@@ -61,45 +61,53 @@ On GOV.UK servers `paster` should be run with:
 ```
 cd /var/apps/ckan
 sudo -u deploy govuk_setenv ckan venv/bin/paster
-``` 
+```
 
 > A full guide to administering CKAN and Bytemark can be found in the [CKAN sysops document](https://docs.google.com/document/d/13U2m-f-mSy-CGeq9XplzhafdJK4Ptt6Pk4NfLWvn40k/edit?usp=sharing).
 >
 > Further, less commonly used, commands can be found in the [CKAN documentation][ckandocs].
-> 
+>
 > There is also a separate [historical document of previous admin tasks](https://docs.google.com/document/d/1V64IK9VoHU5w-xQmmmvKXF396FQViHM06iJWnRoAxzc/edit?usp=sharing)
-that you may wish to consult. 
+that you may wish to consult.
 
 ### Updating CKAN extensions on Bytemark
 
-To update a CKAN extension that has been pushed to GitHub, you will need to navigate to it's directory on Bytemark then pull the relevant branch.  Example for `ckanext-spatial`.
+To update a CKAN extension that has been pushed to GitHub, you will need to
+navigate to it's directory on Bytemark then pull the relevant branch.
+
+Example for `ckanext-spatial`:
 
 ```
 cd /vagrant/src/ckanext-spatial
 git pull
 ```
 
-This must then be installed into the correct virtualenv using pip.
+All the extensions live in the `/vagrant/src` directory.
+
+> There are numerous copies of CKAN extensions in various places on the machine
+> including `/vagrant/src/src` and `/home/co/ckan/src`. It's not clear why
+> these exist, we're not aware of anything using them, but we're not sure.
+
+They're installed in the virtual environment as "editable" meaning any code
+changes should be reflected automatically, if this is not the case, you can
+install it using:
 
 ```
-sudo /home/co/ckan/bin/pip install -U $PWD
+/home/co/ckan/bin/pip install -e $PWD
 ```
 
-Following the update, restart Apache to reflect the updated code on the website.
+If the extension is related to harvesting, you must restart both the `gather`
+and `fetch` queues:
+
+```
+sudo supervisorctl restart ckan_fetch_consumer_dgu
+sudo supervisorctl restart ckan_gather_consumer_dgu
+```
+
+If your change is not showing up on the website, it may be necessary to restart Apache:
 
 ```
 sudo service apache2 restart
-```
-
-If the extension is related to harvesting, you must restart both the `gather` and `fetch` queues.
-
-```
-ps aux | grep gather_consumer
-sudo kill <PID>
-ps aux | grep fetch_consumer
-sudo kill <PID>
-paster --plugin=ckanext-harvest harvester gather_consumer
-paster --plugin=ckanext-harvest harvester fetch_consumer
 ```
 
 ### Switching between legacy CKAN and Find open data
@@ -292,18 +300,18 @@ paster --plugin=ckanext-harvest harvester purge_queues -c $CKAN_INI
 If the queues stall, it may be necessary to restart one or both of the harvest
 queues.
 
-The gather jobs retrieve the identifiers of the updated datasets and create 
+The gather jobs retrieve the identifiers of the updated datasets and create
 jobs in the fetch queue.
 
 ```
-sudo supervisorctl restart ckan_gather_queue
+sudo supervisorctl restart ckan_gather_consumer_dgu
 ```
 
 The fetch job retrieve the datasets from the remote source and perform the
 relevant updates in CKAN.
 
 ```
-sudo supervisorctl restart ckan_fetch_queue
+sudo supervisorctl restart ckan_fetch_consumer_dgu
 ```
 
 ### Adding a new Schema
@@ -348,7 +356,7 @@ psql ckan -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
 Set all jobs belonging to that harvester to finished:
 
 ```
-psql ckan -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';" 
+psql ckan -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
 ```
 
 ### Change a publisher's name
