@@ -53,8 +53,8 @@ the previous version of the software.
 3.  Upload the new files:
 
         ssh backend-1.production "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
-        scp *.zip asset-master-1.backend.production:/tmp/hmrc-paye
-        scp *.xml asset-master-1.backend.production:/tmp/hmrc-paye
+        scp *.zip backend-1.production:/tmp/hmrc-paye
+        scp *.xml backend-1.production:/tmp/hmrc-paye
 
 4.  Load the files into the Asset Manager, with "test-" at the start of the manifest file's name:
 

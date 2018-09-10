@@ -15,10 +15,10 @@ changing the URL, follow these steps:
 0. Copy the new file from your computer to the server:
 
     ```
-    scp filename.zip asset-master-1.production:/tmp/filename.zip
+    scp filename.zip backend-1.production:/tmp/filename.zip
     ```
 
-0. `ssh asset-master-1.production`
+0. `ssh backend-1.production`
 
 0. `govuk_app_console asset-manager`
 
