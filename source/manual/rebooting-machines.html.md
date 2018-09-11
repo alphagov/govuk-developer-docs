@@ -5,7 +5,7 @@ section: Environments
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2018-09-11
 review_in: 6 months
 next_review_notes: |
     We may be on AWS entirely by the next review. Lots of this is Carrenza specific.
@@ -104,10 +104,19 @@ The general approach for rebooting machines in a MongoDB cluster is:
 
 To reboot an Elasticsearch machine, run the following command:
 
-    fab $environment -H $hostname elasticsearch.safe_reboot
+```sh
+$ fab $environment -H $hostname elasticsearch.safe_reboot
+```
 
-This will prevent you from rebooting a machine in a cluster which
-doesn't have a green cluster health status.
+This will prevent you from rebooting a machine in a cluster which doesn't have
+a green cluster health status.
+
+> Note that whilst the cluster is `yellow` (meaning one or more machines in the
+> cluster is unavailable), no reindexing will take place. Therefore you're
+> likely to see a backlog of jobs being created, particularly with Rummager.
+> This can take a long time to clear once the cluster is `green` again, and can
+> put extraneous load on the machines and it is therefore recommended to only
+> reboot these machines in hours if it is urgent.
 
 ## Rebooting Redis machines
 
