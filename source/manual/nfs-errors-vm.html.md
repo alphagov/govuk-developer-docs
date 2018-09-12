@@ -21,6 +21,8 @@ Or, consider using [OpenConnect] for your VPN. You can access the
 $ sudo openconnect -v --pfs --no-dtls -u $USER vpn.digital.cabinet-office.gov.uk/ah
 ```
 
+If this doesn't work, restart your computer and try the command above again, without launching Cisco AnyConnect first.
+
 [gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/how-to/connect-to-the-aviation-house-vpn
 [openconnect]: http://formulae.brew.sh/formula/openconnect
 
