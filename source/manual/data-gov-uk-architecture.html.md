@@ -63,6 +63,11 @@ Services with data.gov.uk sub-domains, but owned by other departments
   * [Contract Finder][contract-finder] is now provided by [Crown Commercial Service][contract-finder-new], which ought to have pre-2015 stuff merged in.
   * [Business] is a legacy redirect to Companies House.
 
+> Several datasets link to [environment.data.gov.uk][environment] and require user login to access.  Although branded
+> as data.gov.uk, this is a totally separate service.  If a user is having difficulty accessing this system, they
+> should contact the [maintainers of this resource](http://environment.data.gov.uk/ds/partners/index.jsp#/contactus),
+> who are currently Airbus Defence & Space.
+
 ## [Publish] and [Find]
 
 [Publish] and [Find] are provisioned on [GOV.UK Paas][paas]. The [deployment] and [monitoring] pages explain this in more detail, but you can use the following commands to get an overview.
