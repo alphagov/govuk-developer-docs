@@ -21,9 +21,8 @@ There are currently two environments for [CKAN]:
 
 You can ssh on to these machines with `ssh co@<machine-name>`.
 
-If you cannot `ssh` as above, it's worth asking
-someone in the #platform-health slack channel to make sure you are in the
-`authorized_keys`.
+
+If you cannot `ssh` as above, arrange with 2nd line to add your public SSH key to the servers.
 
 We are in the process of migrating [CKAN] to standard GOV.UK infrastructure.
 
