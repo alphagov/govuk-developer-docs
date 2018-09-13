@@ -4,7 +4,7 @@ title: Operation of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-15
+last_reviewed_on: 2018-09-13
 review_in: 6 months
 ---
 [find]: apps/datagovuk_find
@@ -33,12 +33,13 @@ There are [detailed instructions](https://docs.cloud.service.gov.uk/get_started.
 
 ### Bytemark
 
-You will need to arrange with 2nd line for your public SSH key to be added to the Bytemark staging and production servers.  Once this is done, you can connect by SSH with the username `co`.
+You will need to arrange with 2nd line for your public SSH key to be added to the Bytemark production server.  Once this is done, you can connect by SSH with the username `co`.
 
 ```
-ssh co@co-prod2.dh.bytemark.co.uk
 ssh co@co-prod3.dh.bytemark.co.uk
 ```
+
+**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**
 
 ## Reindexing [Find]
 
