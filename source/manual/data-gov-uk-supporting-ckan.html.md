@@ -21,6 +21,7 @@ There are currently two environments for [CKAN]:
 
 You can ssh on to these machines with `ssh co@<machine-name>`.
 
+**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**
 
 If you cannot `ssh` as above, arrange with 2nd line to add your public SSH key to the servers.
 

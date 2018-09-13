@@ -39,6 +39,8 @@ You will need to arrange with 2nd line for your public SSH key to be added to th
 ssh co@co-prod3.dh.bytemark.co.uk
 ```
 
+**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**
+
 ## Reindexing [Find]
 
 This is done using the `search:reindex` rake task in [Publish] and will not cause any app downtime.
