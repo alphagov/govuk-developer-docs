@@ -4,7 +4,7 @@ title: Supporting CKAN
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-10
+last_reviewed_on: 2018-09-13
 review_in: 3 months
 ---
 [ckan]: https://ckan.org
@@ -14,18 +14,16 @@ review_in: 3 months
 
 ## Environments
 
-There are currently three environments for [CKAN]:
+There are currently two environments for [CKAN]:
 
 - [Live](https://data.gov.uk) — co-prod3.dh.bytemark.co.uk
-- [Test](https://test.data.gov.uk) — co-prod2.dh.bytemark.co.uk
 - Development — co-dev1.dh.bytemark.co.uk
 
-You can ssh on to these machines with `ssh co@<machine-name>`. For example, to
-access the Test machine, you would `ssh co@co-prod2.dh.bytemark.co.uk`.
+You can ssh on to these machines with `ssh co@<machine-name>`.
 
-If you cannot `ssh` as above, it's worth asking
-someone in the #platform-health slack channel to make sure you are in the
-`authorized_keys`.
+**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**
+
+If you cannot `ssh` as above, arrange with 2nd line to add your public SSH key to the servers.
 
 We are in the process of migrating [CKAN] to standard GOV.UK infrastructure.
 
