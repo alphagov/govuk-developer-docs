@@ -15,8 +15,9 @@ To help with this, we use a service called [Dependabot][] to perform automated d
 
 ## Who can merge Dependabot PRs
 
-- Dependabot PRs for external gems (Rails for example) are [considered to be from a external contributor][ext] and need 2 reviews
-- Dependabot PRs for GOV.UK-owned gems (govuk_app_config, govspeak for example) need 1 reviewer
+- GOV.UK-owned gems (govuk_app_config, govspeak for example) need 1 reviewer
+- Gems found in the `test` block in the `Gemfile` (Capybara for example) need 1 reviewer
+- All other gems (Rails for example) are [considered to be from a external contributor][ext] and need 2 reviews
 
 You can ignore pull requests from the bot by replying `@dependabot ignore this major version`, but you have to add the PR to the [tech debt Trello board][tech-debt]
 
