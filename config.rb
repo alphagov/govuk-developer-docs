@@ -5,7 +5,9 @@ GovukTechDocs.configure(self)
 
 set :markdown,
     renderer: DeveloperDocsRenderer.new(
-      with_toc_data: true
+      with_toc_data: true,
+      api: true,
+      context: self,
     ),
     fenced_code_blocks: true,
     tables: true,
