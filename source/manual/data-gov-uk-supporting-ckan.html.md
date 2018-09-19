@@ -234,6 +234,16 @@ Purging a dataset:
 paster --plugin=ckan dataset purge DATASET_NAME -c $CKAN_INI
 ```
 
+There may be times when a large number of datasets must be deleted.  This can be done remotely from your
+machine using the CKAN API.  Your API key is required, which can be obtained from the web interface.
+Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.
+
+```
+while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: <your_api_key>" https://data.gov.uk/api/3/action/package_delete; done < list_of_ids.txt
+```
+
+After deleting or purging a dataset, it will take up to 10 minutes to update on Find.
+
 ### Rebuilding the search index
 
 [CKAN] uses Solr for its search index, and occasionally it may be necessary to interact with it
