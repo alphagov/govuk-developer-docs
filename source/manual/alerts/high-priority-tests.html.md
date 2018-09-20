@@ -32,9 +32,26 @@ $ ssh monitoring-1.production
 > sudo less /var/log/upstart/smokey-loop.log
 ```
 
+If you see recent log entries like `HTTP status code 550 (RestClient::RequestFailed)` this usually means that
+the BrowserMob Proxy java process is running as part of a previously aborted smokey-loop and the new smoke tests
+cannot start a new proxy. It's necessary to kill the existing java process.
+
+```shell
+$ ps -ef | grep java
+> smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browsermob-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browsermob-dist-2.1.4.jar --port 3222
+$ sudo kill -9 6385
+```
+(replacing process numbers as appropriate).
+
+It's also useful to ensure no java proxy processes are left running when restarting smokey-loop.
+
 ```shell
 $ ssh monitoring-1.production
-> sudo service smokey-loop restart
+> sudo service smokey-loop stop
+$ ps -ef | grep java
+> smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browsermob-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browsermob-dist-2.1.4.jar --port 3222
+$ sudo kill -9 6385
+$ sudo service smokey-loop start
 ```
 
 ### Integration with Signon
