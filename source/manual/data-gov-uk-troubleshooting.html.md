@@ -22,7 +22,7 @@ https://data.gov.uk/api/3/search/dataset
 Determine the number of datsets in the Publish Postgres database using the Rails console.
 
 ```
-cf ssh publish-data-beta-productionn
+cf ssh publish-data-beta-production
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 >>> Dataset.count
 ```
@@ -30,7 +30,7 @@ cf ssh publish-data-beta-productionn
 If these numbers match, but the number of datasets served on Find is still different, identify the number of published in the Publish Postgres database.
 
 ```
-cf ssh publish-data-beta-productionn
+cf ssh publish-data-beta-production
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 >>> Dataset.published.count
 ```
@@ -38,7 +38,7 @@ cf ssh publish-data-beta-productionn
 With the current set up, all datasets that are available through the CKAN API will be marked as public in the Publish Postgres database.  Therefore, if you get a different number of datasets, you should mark them all as published in the Publish Postgres database.
 
 ```
-cf ssh publish-data-beta-productionn
+cf ssh publish-data-beta-production
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 >>> Dataset.update(status: 'published')
 ```
