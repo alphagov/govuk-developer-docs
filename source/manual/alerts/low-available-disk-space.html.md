@@ -102,6 +102,8 @@ Steps to investigate postgres db size:
 1. You can choose one of the dbs by doing: `\c <name-of-db>`
 For example: `\c email-alert-api_production`
 
+If this continues to be a problem see if you need to [resize the disk](/manual/adding-disks-in-vcloud.html).
+
 ## Low available disk space on /mnt/elasticsearch
 
 Usually this is caused by old indices not being closed.
