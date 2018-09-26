@@ -83,4 +83,4 @@ We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish
 
 ## [CKAN]
 
-Legacy [CKAN] is hosted on Bytemark servers. New [CKAN] (still under development) will be hosted on GOV.UK infrastructure.
+Legacy [CKAN] is hosted on Bytemark servers. New CKAN (still under development) will be hosted on GOV.UK infrastructure.
