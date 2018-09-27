@@ -24,7 +24,7 @@ restore of the very latest backup available (`/usr/local/bin/wal-e_restore`). Th
 
 ## autopostgresqlbackup
 
-This is how PostgreSQL backups have traditionally been taken on the GOV.UK Infrastructure. It is now deprecated.
+This is how PostgreSQL backups have traditionally been taken on the GOV.UK Infrastructure. It is now deprecated. We are continuing to use it as well alongside WAL-E until we are certain that the restores from WAL-E are working ok.
 
 A third-party script called [autopostgresqlbackup](http://manpages.ubuntu.com/manpages/wily/man8/autopostgresqlbackup.8.html)
 takes a `pg_dump` every night and stores them on disk on a dedicated mount point on the PostgreSQL primary machines.
