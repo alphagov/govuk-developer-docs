@@ -41,3 +41,9 @@ The default configuration traces 1% of all requests. The can be changed on a per
 
 > **WARNING**
 > A high sampling rate can result in app slowness since each trace takes some non-zero time to complete. It will also result in cost increases since charges are based on the amount of data sent to the X-Ray service.
+
+## X-Ray daemon
+
+The X-Ray daemon is an app installed on all machines that run instrumented apps. It acts as a proxy between individual apps and the X-Ray service.
+
+The X-Ray gem in an instrumented app sends trace data to the daemon, which collects data into batches before sending it to the X-Ray service. This provides resilience against service downtime and slowness as well as optimising bandwidth usage.
