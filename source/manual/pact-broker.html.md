@@ -19,7 +19,7 @@ For example, [the publishing API is set up to run pact tests](https://github.com
 This means that any consumer of the publishing API can create contracts using the pact gem,
 and the publishing api deployment pipeline will check that consumers' contracts are still met by new builds.
 
-The [Pact Broker](https://docs.pact.io/documentation/sharings_pacts.html) is
+The [Pact Broker](https://docs.pact.io/getting_started/sharing_pacts) is
 a repository for all the contracts. The consumers publish to it, and the producers query from it when they run the tests.
 
 ## Information you need to know
