@@ -4,7 +4,7 @@ title: Out of hours support (on-call)
 section: Support
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-10-02
 review_in: 6 months
 ---
 
