@@ -20,7 +20,7 @@ Almost all repos should:
 
 - Have [branch protection](https://help.github.com/articles/about-protected-branches) on master
 - Have [Jenkins CI](/manual/testing-projects.html) configured
-- Have [GitHub Trello Poster](https://github.com/emmabeynon/github-trello-poster) enabled
+- Have [GitHub Trello Poster](/manual/github-trello-poster.html) enabled
 
 [team]: https://github.com/orgs/alphagov/teams/gov-uk/members
 
