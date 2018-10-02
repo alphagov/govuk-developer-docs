@@ -4,7 +4,7 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-28
+last_reviewed_on: 2018-10-02
 review_in: 6 months
 ---
 
@@ -63,9 +63,7 @@ the previous version of the software.
         sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
         sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
 
-5.  Purge the cache for the test file:
-
-        fab $environment class:cache cdn.purge_all:/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
+5.  [Purge the cache](https://docs.publishing.service.gov.uk/manual/cache-flush.html) for the test file.
 
 6.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
