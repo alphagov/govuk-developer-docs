@@ -4,7 +4,7 @@ title: GitHub Enterprise
 section: Tools
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-09-21
+last_reviewed_on: 2018-10-02
 review_in: 1 year
 ---
 
