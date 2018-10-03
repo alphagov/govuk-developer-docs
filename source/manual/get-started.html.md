@@ -4,11 +4,13 @@ title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
 section: Basics
-last_reviewed_on: 2018-06-04
+last_reviewed_on: 2018-10-03
 review_in: 3 months
 ---
 
 This is the guide for new technical staff working on GOV.UK in [GDS][]. If you just joined, 👋 welcome!
+
+If they haven't done so yet, ask your tech lead to take you through the [overview slides][overview-slides].
 
 Note that if you're not working for GDS you'll not be able to complete all of the steps in this guide.
 
@@ -41,6 +43,7 @@ Note: `dev$` and `mac$` are prompts within this guide and not part of the given 
 If you're having trouble with Vagrant or the development VM, you can ask your colleagues or the #govuk-developers channel in Slack.
 
 [GDS]: https://gds.blog.gov.uk/about/
+[overview-slides]: https://docs.google.com/presentation/d/1nAE65Og04JYNAc0VjYaUYLqNLuUOM9r3Mvo0PGFy_Zk/
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/
 
@@ -201,7 +204,7 @@ Application data from production can be imported to be used within your developm
 
 Make sure you have the correct permissions to access the AWS integration account. To add permissions to assume role follow documentation on [adding your ARN to GOV.UK account role][add-your-arn].
 
->If you're unable to get permission, ask someone to give you a copy of their data. 
+>If you're unable to get permission, ask someone to give you a copy of their data.
 
 You will also need to configure an AWS profile for the integration environment, refer to documentation on [storing credentials on disk.][creds-on-disk]
 
@@ -219,7 +222,7 @@ Once you have downloaded or obtained the data, run the following:
 
 Replace YYYY-MM-DD with the current date.
 
-> Downloading and decompressing the data may take a long time. Depending on your application you may not need all the data. 
+> Downloading and decompressing the data may take a long time. Depending on your application you may not need all the data.
 
 > Run `./replicate-data-local.sh --help` for options to skip databases.
 
