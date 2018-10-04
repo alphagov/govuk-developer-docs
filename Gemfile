@@ -26,4 +26,4 @@ gem 'faraday-http-cache', '~> 2.0.0'
 gem 'faraday_middleware', '~> 0.12.2'
 
 # For hosting on Heroku
-gem 'rack-contrib', '~> 2.0.1'
+gem 'rack-contrib', '~> 2.1.0'
