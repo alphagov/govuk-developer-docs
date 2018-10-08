@@ -27,7 +27,7 @@ The Reliability Engineering team:
 
 - supports the infrastructure used to run and make changes to GOV.UK
 - handles updates to `*.gov.uk` DNS (excluding `*.publishing.service.gov.uk`)
-- obtains and renews SSL certificates
+- obtains and renews TLS certificates
 - maintains centrally-provided services such as Logit
 
 If you and your colleagues can’t resolve a technical issue, problem or question, you should escalate it through, in order:
