@@ -4,7 +4,7 @@ title: Fix NFS errors in VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-28
+last_reviewed_on: 2018-10-08
 review_in: 6 months
 ---
 
@@ -23,7 +23,7 @@ $ sudo openconnect -v --pfs --no-dtls -u $USER vpn.digital.cabinet-office.gov.uk
 
 If this doesn't work, restart your computer and try the command above again, without launching Cisco AnyConnect first.
 
-[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/how-to/connect-to-the-aviation-house-vpn
+[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/connect-to-the-aviation-house-vpn
 [openconnect]: http://formulae.brew.sh/formula/openconnect
 
 ## Vagrant error NFS is reporting that your exports file is invalid
