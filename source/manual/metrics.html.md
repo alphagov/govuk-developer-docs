@@ -4,7 +4,7 @@ title: Metrics
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-16
+last_reviewed_on: 2018-10-09
 review_in: 6 months
 ---
 
