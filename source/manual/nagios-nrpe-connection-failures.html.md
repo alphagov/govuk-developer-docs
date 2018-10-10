@@ -4,7 +4,7 @@ title: Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-07
+last_reviewed_on: 2018-10-08
 review_in: 6 months
 ---
 
@@ -22,10 +22,15 @@ tries the check again (within a minute or two). If the errors persist for
 longer than a few minutes there may be a genuine issue and you should
 investigate.
 
+Note: This example uses hostnames for Carrenza, and will not work on AWS.
+For AWS you'll need to use the hosts from `govuk_node_list`.
+More information on hostnames in different environments is available here:
+https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines-in-aws.html
+
 First verify that NRPE is running on the monitored machine:
 
 ```
-$ ssh broken-machine-1.broken.integration
+$ ssh broken-machine-1.broken.staging
 $ nc -v localhost 5666
 Connection to localhost 5666 port [tcp/nrpe] succeeded!
 ```
@@ -40,7 +45,7 @@ If the agent is running ok, next check that you can connect from the
 monitoring server:
 
 ```
-$ ssh ssh monitoring-1.management.environment
+$ ssh ssh monitoring-1.management.staging
 $ nc -v broken-machine-1.broken 5666
 Connection to localhost 5666 port [tcp/nrpe] succeeded!
 ```
