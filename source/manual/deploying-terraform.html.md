@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Deploying Terraform
+title: Deploy AWS infrastructure with Terraform
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
