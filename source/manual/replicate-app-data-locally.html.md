@@ -4,14 +4,14 @@ title: Replicate application data locally for development
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-04
+last_reviewed_on: 2018-10-10
 review_in: 6 months
 ---
 
 Dumps are generated from production data in the early hours each day, and can
-then be downloaded from integration (AWS).  The process is managed by the
-[replicate-data-local.sh](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/replication/replicate-data-local.sh)
-script within the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet).
+then be downloaded.  You'll use the
+[replicate-data-local.sh script](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/replication/replicate-data-local.sh)
+script in the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet).
 
 > The Licensify and Signon databases aren't synced from production because of
 > security concerns. Mapit's database is downloaded in the Mapit repo, so won’t
@@ -19,15 +19,8 @@ script within the [govuk-puppet repository](https://github.com/alphagov/govuk-pu
 
 ## Pre-requisites to importing data
 
-To get production data on to your local VM, you'll need to have either:
-
-* access to Integration via AWS; or
-* database exports from someone that does.
-
-## AWS access
-
-Follow the [AWS setup guide](/manual/user-management-in-aws.html) to get your user set up in AWS. You'll
-need at least the Integration environment set up.
+👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
+👉 Then, [set up your CLI access for AWS](/manual/aws-cli-access.html)
 
 ## Replication
 
@@ -36,23 +29,16 @@ When you have integration access, you can download and import the latest data by
     mac$ cd ~/govuk/govuk-puppet/development-vm/replication
     mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
 
-> You may be able to skip the -u and -F flags depending on your setup
-
 The data will download to a folder named with today's date in `./backups`, for example `./backups/2018-01-01`.
 
 then
 
     dev$ cd /var/govuk/govuk-puppet/development-vm/replication
-    dev$ ./replicate-data-local.sh -d path/to/dir -s
+    dev$ ./replicate-data-local.sh -d backups/YYYY-MM-DD/ -s
 
-> You can skip the -d flag if you do this on the same day as the download.
+Databases take a long time to download and use a lot of disk space (up to ~30GB uncompressed). The process also uses a lot of compute resource as you import the data.
 
-> Databases take a long time to download and use a lot of disk space
-> (up to ~30GB uncompressed). The process also uses a lot of
-> compute resource as you import the data.
-
-> The downloaded backups will automatically be deleted after import (whether
-> successful or not) unless the -k flag is specified.
+The downloaded backups will automatically be deleted after import (whether successful or not) unless the `-k` flag is specified.
 
 ## If you don't have integration access
 
@@ -83,11 +69,7 @@ Find your biggest Mongo collections by running:
 dev$ sudo ncdu /var/lib/mongodb
 ```
 
-You can re-run the replication but skip non-Mongo imports like MySQL if it's already succesfully imported. Use
-```
-replicate-data-local.sh --help
-```
-to see the options.
+You can re-run the replication but skip non-Mongo imports like MySQL if it's already succesfully imported. Use `replicate-data-local.sh --help `to see the options.
 
 For example, to run an import but skip MySQL and Elasticsearch:
 
