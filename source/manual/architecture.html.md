@@ -1,7 +1,7 @@
 ---
 owner_slack: "@tijmen.brommet"
 title: Architectural overview of GOV.UK applications
-section: Basics
+section: Architecture
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-07-03

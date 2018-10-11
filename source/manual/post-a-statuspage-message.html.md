@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Post a message on the status page
-section: 2nd line
+section: Incidents
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-08-01
@@ -47,7 +47,7 @@ Example messages:
 > We’re looking into an issue with Whitehall Publisher which is causing attachment uploads to fail. We’ll update this page as soon as we know what's causing it.
 
 <!-- -->
-> We're looking into a delay that's occuring when trying to publish new content. Your content may appear on the site later than usual. 
+> We're looking into a delay that's occuring when trying to publish new content. Your content may appear on the site later than usual.
 
 <!-- -->
 > We're looking into a problem that means email alerts aren't being sent out as quickly as they should. We'll update this page as soon as we know what's causing it.

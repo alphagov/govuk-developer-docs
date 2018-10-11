@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Update Hubot (Slack bot)
-section: Tools
+section: Team tools
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-08-03

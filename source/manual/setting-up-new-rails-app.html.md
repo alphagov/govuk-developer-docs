@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Set up a new Rails app
-section: Deployment
+title: Set up a new Rails application
+section: Applications
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-09-04

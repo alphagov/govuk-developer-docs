@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: GOV.UK's environments (integration, staging, production)
-section: Environments
+section: Architecture
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-07-11
