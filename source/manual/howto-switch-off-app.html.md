@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Switch an app off
+title: Switch an app off temporarily
 layout: manual_layout
 section: Deployment
 parent: "/manual.html"

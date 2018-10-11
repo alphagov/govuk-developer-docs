@@ -1,7 +1,7 @@
 ---
 owner_slack: "@tijmen.brommet"
 title: Monitor docs traffic
-section: Manual
+section: Documentation
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-04-05

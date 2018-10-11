@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
-section: Support
+section: Accounts
 last_reviewed_on: 2018-04-12
 review_in: 6 months
 ---

@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
-section: Tools
+section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-03-26

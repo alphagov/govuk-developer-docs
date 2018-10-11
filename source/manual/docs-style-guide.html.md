@@ -1,7 +1,7 @@
 ---
 owner_slack: "@tijmen.brommet"
 title: Documentation style guide
-section: Manual
+section: Documentation
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-04-05

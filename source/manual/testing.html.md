@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: Test Ruby projects
-section: Patterns & Style Guides
+section: Testing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-04-05

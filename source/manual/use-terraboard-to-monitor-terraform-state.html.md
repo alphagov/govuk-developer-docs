@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-platform-health"
 title: Use Terraboard to monitor Terraform state
-section: AWS
+section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-09-27
