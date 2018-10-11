@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: Give a content designer access to GitHub
 parent: "/manual.html"
 layout: manual_layout
-section: Tools
+section: Accounts
 last_reviewed_on: 2018-09-11
 review_in: 3 months
 ---

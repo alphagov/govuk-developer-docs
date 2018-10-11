@@ -2,7 +2,7 @@
 title: Add a new document type
 parent: "/manual.html"
 layout: manual_layout
-section: Tools
+section: Publishing
 owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-08-17
 review_in: 3 months

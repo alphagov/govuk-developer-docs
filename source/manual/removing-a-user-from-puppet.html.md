@@ -1,9 +1,9 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Removing a user from Puppet
+title: Remove a user from Puppet
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
+section: Accounts
 last_reviewed_on: 2018-05-18
 review_in: 12 months
 ---

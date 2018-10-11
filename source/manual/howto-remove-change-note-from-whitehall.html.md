@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Remove a change note in Whitehall
-section: Whitehall
+section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-08-17

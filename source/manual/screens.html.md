@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: Monitoring screens
 parent: "/manual.html"
 layout: manual_layout
-section: Tools
+section: Monitoring
 last_reviewed_on: 2018-09-06
 review_in: 12 months
 ---

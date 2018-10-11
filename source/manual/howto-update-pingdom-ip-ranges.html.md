@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Update Pingdom IP ranges
-section: Environments
+section: Infrastructure tasks
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-09-04
