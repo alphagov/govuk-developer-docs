@@ -1,7 +1,7 @@
 ---
 owner_slack: "@tijmen.brommet"
 title: Review a page in this manual
-section: Manual
+section: Documentation
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-08-31

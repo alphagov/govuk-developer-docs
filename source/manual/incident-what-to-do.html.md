@@ -3,7 +3,7 @@ owner_slack: "@hong.nguyen"
 title: So, you're having an incident
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
+section: Incidents
 last_reviewed_on: 2018-07-19
 review_in: 2 months
 ---

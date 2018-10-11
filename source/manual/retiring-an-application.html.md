@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Retire an application
-section: Deployment
+section: Applications
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-09-06

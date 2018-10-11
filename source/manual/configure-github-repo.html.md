@@ -2,7 +2,7 @@
 title: Configure a GitHub repo
 parent: /manual.html
 layout: manual_layout
-section: Tools
+section: GitHub
 owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-04-12
 review_in: 6 months

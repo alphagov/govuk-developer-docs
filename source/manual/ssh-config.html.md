@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: SSH Configuration
 parent: "/manual.html"
 layout: manual_layout
-section: Tools
+section: Accounts
 last_reviewed_on: 2018-10-09
 review_in: 6 months
 ---
