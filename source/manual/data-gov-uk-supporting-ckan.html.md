@@ -4,8 +4,8 @@ title: Supporting CKAN
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-13
-review_in: 3 months
+last_reviewed_on: 2018-10-11
+review_in: 6 weeks
 ---
 [ckan]: https://ckan.org
 [ckanext-datagovuk]: /apps/ckanext-datagovuk.html

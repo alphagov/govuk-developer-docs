@@ -4,8 +4,8 @@ title: Troubleshooting data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-15
-review_in: 6 months
+last_reviewed_on: 2018-10-11
+review_in: 6 weeks
 ---
 [find]: apps/datagovuk_find
 [publish]: apps/datagovuk_publish
