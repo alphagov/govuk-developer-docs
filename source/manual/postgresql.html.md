@@ -23,6 +23,9 @@ To restore we can use the commands specified in the WAL-E documentation: `backup
 restore of the very latest backup available (`/usr/local/bin/wal-e_restore`). The environmental variables which define the AWS credentials will need to be present.
 After the base backup is imported you can watch postgres restoring WAL chunks by `tail -f` on the postgres log.
 
+Replication to the standby databases may fail after restoring a backup to the primary.  The solution is to also restore the backup to the standby, at which point normal
+replication will take over.  You can also [resync it from the primary](/manual/setup-postgresql-replication.html#syncing-a-standby).
+
 ### WAL-E failing with errors about GPG
 
 WAL-E does not work with password-protected GPG secret keys, but ours
