@@ -4,7 +4,7 @@ title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
 section: Basics
-last_reviewed_on: 2018-10-03
+last_reviewed_on: 2018-10-10
 review_in: 3 months
 ---
 
@@ -73,7 +73,7 @@ To install VirtualBox on High Sierra 10.13 or later:
 3. Allow the blocked VirtualBox kernel extension
 4. Run the VirtualBox installer again
 
-## 2. Create your GitHub accounts
+## 2. Create your GitHub account
 
 1. Set up a [GitHub][] account.
 1. Ask somebody with access to add your GitHub username and SSH username (`firstnamelastname`) to the [user monitoring system][user-reviewer].
@@ -91,9 +91,9 @@ To install VirtualBox on High Sierra 10.13 or later:
 [govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk/members
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 
-## 3. Create a user in integration and CI
+## 3. Create a user to SSH into integration
 
-User accounts in our integration and CI environments are managed in the [govuk-puppet][] repository.
+User accounts in our integration environments are managed in the [govuk-puppet][] repository.
 
     mac$ mkdir ~/govuk
     mac$ cd ~/govuk
@@ -111,12 +111,12 @@ Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` wit
 
 Add the name of your manifest (your username) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera] for integration and in [`hieradata/integration.yaml`][integration-hiera] for CI.
 
-Create a pull request with these changes. Once it has been [reviewed by a member of the GOV.UK team][rfcs], you can merge it and it will automatically deploy to the integration environment.
+Create a pull request with these changes. Once it has been [reviewed by a member of the GOV.UK team][merging], you can merge it and it will automatically deploy to the integration environment.
 
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
 [integration-aws-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
 [integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
-[rfcs]: https://github.com/alphagov/govuk-rfcs/blob/master/rfc-052-pull-request-merging-process.md
+[merging]: /manual/merge-pr.html
 
 ## 4. Boot your VM
 
@@ -198,42 +198,39 @@ Next, follow the same steps inside your VM. You can choose whether to import you
 
 [ssh-config]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config
 
-## 7. Import production data
+## 7. Get AWS access
+
+👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
+👉 Then, [set up your CLI access for AWS](/manual/aws-cli-access.html)
+
+## 8. Import production data
 
 Application data from production can be imported to be used within your development environment. Dumps of production data are generated in the early hours each day and made available from the integration environment.
 
-Make sure you have the correct permissions to access the AWS integration account. To add permissions to assume role follow documentation on [adding your ARN to GOV.UK account role][add-your-arn].
+Download the data by running:
 
->If you're unable to get permission, ask someone to give you a copy of their data.
+```
+mac$ cd ~/govuk/govuk-puppet/development-vm/replication
+mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
+```
 
-You will also need to configure an AWS profile for the integration environment, refer to documentation on [storing credentials on disk.][creds-on-disk]
+If you've [set up your AWS account correctly](/manual/set-up-aws-account.html), you should then be prompted to enter your MFA token.
 
-After gaining access to the integration environment, download the data by running:
+Once you have downloaded or obtained the data, run the following to load the data into your databases:
 
-    mac$ cd ~/govuk/govuk-puppet/development-vm/replication
-    mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
+```
+dev$ cd /var/govuk/govuk-puppet/development-vm/replication
+dev$ ./replicate-data-local.sh -d backups/YYYY-MM-DD/ -s
+```
 
-You should then be prompted to enter your MFA token.
-
-Once you have downloaded or obtained the data, run the following:
-
-    dev$ cd /var/govuk/govuk-puppet/development-vm/replication
-    dev$ ./replicate-data-local.sh -d backups/YYYY-MM-DD/ -s
-
-Replace YYYY-MM-DD with the current date.
-
-> Downloading and decompressing the data may take a long time. Depending on your application you may not need all the data.
-
-> Run `./replicate-data-local.sh --help` for options to skip databases.
+> Downloading and decompressing the data may take a long time. Depending on your application you may not need all the data. Run `./replicate-data-local.sh --help` for options to skip databases.
 
 For more information or troubleshooting advice see the guide in the developer docs on [replicating application data locally for development][data-replication].
 
-[creds-on-disk]: user-management-in-aws.html#storing-credentials-on-disk
-[add-your-arn]: user-management-in-aws.html#add-your-arn-to-govuk-account-role
-[data-replication]: replicate-app-data-locally.html
-[data-replication-aws-access]: replicate-app-data-locally.html#aws-access
+[data-replication]: /manual/replicate-app-data-locally.html
+[data-replication-aws-access]: /manual/replicate-app-data-locally.html#aws-access
 
-## 8. Run your apps
+## 9. Run your apps
 
 You can run any of the GOV.UK apps from the `/var/govuk/govuk-puppet/development-vm` directory. You’ll first need to run `bundle install` in this folder to install the required gems.
 
@@ -260,23 +257,7 @@ You should be able to see Whitehall.
 [bowler]: https://github.com/JordanHatch/bowler
 [bowl-error]: bowl-error.html
 
-## 9. Keep your VM up to date
-
-There are a few scripts that should be run regularly to keep your VM up to date. In `govuk-puppet/development-vm` there is `update-git.sh` and `update-bundler.sh` to help with this. Also, `govuk_puppet` should be run from anywhere on the VM regularly.
-
-The following script will do all of this for you.
-
-    dev$ cd /var/govuk/govuk-puppet/development-vm
-    dev$ ./update-all.sh
-
-This will run:
-
-* `git pull` on each of the applications checked out in `/var/govuk`
-* `govuk_puppet` to bring the latest configuration to the dev VM
-* `bundle install` for each Ruby application to install any missing gems
-* `pip install` to update runtime dependencies for any Python apps
-
-## 10. Access the web frontend
+## 10. Access the web frontend 🚀
 
 Most GOV.UK web applications and services are available via the public internet, on the following forms of URL:
 
@@ -288,3 +269,21 @@ Most GOV.UK web applications and services are available via the public internet,
 The basic authentication username and password is widely known, so just ask somebody on your team if you don't know it.
 
 If you can't resolve `dev.gov.uk` domains, see [fix issues with vagrant-dns](vagrant-dns.html).
+
+## 11. Keep your VM up to date
+
+There are a few scripts that should be run regularly to keep your VM up to date. In `govuk-puppet/development-vm` there is `update-git.sh` and `update-bundler.sh` to help with this. Also, `govuk_puppet` should be run from anywhere on the VM regularly.
+
+The following script will do all of this for you.
+
+```
+dev$ cd /var/govuk/govuk-puppet/development-vm
+dev$ ./update-all.sh
+```
+
+This will run:
+
+* `git pull` on each of the applications checked out in `/var/govuk`
+* `govuk_puppet` to bring the latest configuration to the dev VM
+* `bundle install` for each Ruby application to install any missing gems
+* `pip install` to update runtime dependencies for any Python apps
