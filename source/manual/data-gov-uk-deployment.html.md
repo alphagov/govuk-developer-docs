@@ -4,8 +4,8 @@ title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-06
-review_in: 6 months
+last_reviewed_on: 2018-10-11
+review_in: 6 weeks
 ---
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
