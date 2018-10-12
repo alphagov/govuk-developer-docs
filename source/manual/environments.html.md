@@ -4,7 +4,7 @@ title: GOV.UK's environments (integration, staging, production)
 section: Architecture
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-11
+last_reviewed_on: 2018-10-12
 review_in: 3 months
 ---
 
