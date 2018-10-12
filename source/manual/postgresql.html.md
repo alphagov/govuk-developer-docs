@@ -21,6 +21,42 @@ we can recover point in time backups to specific time and dates in this timefram
 
 To restore we can use the commands specified in the WAL-E documentation: `backup-fetch` and `wal-fetch`. To make this easier, a script has been written to automate the
 restore of the very latest backup available (`/usr/local/bin/wal-e_restore`). The environmental variables which define the AWS credentials will need to be present.
+After the base backup is imported you can watch postgres restoring WAL chunks by `tail -f` on the postgres log.
+
+Replication to the standby databases may fail after restoring a backup to the primary.  The solution is to also restore the backup to the standby, at which point normal
+replication will take over.  You can also [resync it from the primary](/manual/setup-postgresql-replication.html#syncing-a-standby).
+
+### WAL-E failing with errors about GPG
+
+WAL-E does not work with password-protected GPG secret keys, but ours
+are.  If backup restoration is failing with errors about GPG or things
+not being the expected format (eg, complaining that a file doesn't
+have a valid lzo or tar header), the key may be password-protected.
+
+You can edit the key in-place to remove the password:
+
+```
+$ sudo cat /etc/wal-e/env.d/WALE_GPG_KEY_ID
+$ sudo -iu postgres gpg --edit-key <key ID>
+gpg> passwd
+Key is protected.
+
+You need a passphrase to unlock the secret key for
+user: <REDACTED>
+
+Enter passphrase: <password from secrets>
+
+Enter the new passphrase for this secret key.
+
+Enter passphrase: <enter>
+Repeat passphrase: <enter>
+
+You don't want a passphrase - this is probably a *bad* idea!
+
+Do you really want to do this? (y/N) y
+
+gpg> save
+```
 
 ## autopostgresqlbackup
 
