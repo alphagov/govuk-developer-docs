@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-09-03
 review_in: 6 months
-redirects:
+old_paths:
   - /manual/user-management-in-aws.html
 ---
 
