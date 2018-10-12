@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-10-10
 review_in: 3 months
-redirects:
+old_paths:
   - /manual/seeing-things-in-the-aws-console.html
 ---
 
