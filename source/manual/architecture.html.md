@@ -8,7 +8,7 @@ last_reviewed_on: 2018-10-02
 review_in: 3 months
 ---
 
-<iframe src="https://www.draw.io/?lightbox=1&amp;highlight=0000ff&amp;layers=1&amp;nav=1#G1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm" style="width:100%;height:800px; display: block; border:none">
+<iframe src="https://www.draw.io/?lightbox=1&amp;highlight=0000ff&amp;layers=1&amp;nav=1#G1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm" style="width:700pt;height:400pt; display: block; border:none">
 </iframe>
 
 <em>[Source diagram][src] in the [GOV.UK architecture folder][arch-folder].</em>
