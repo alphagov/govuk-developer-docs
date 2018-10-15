@@ -4,7 +4,7 @@ title: Raising issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-07-11
+last_reviewed_on: 2018-10-15
 review_in: 3 months
 ---
 
@@ -27,7 +27,7 @@ indicate in your message that a problem is time critical.
 
 Failing slack communication you can also walk over to Reliability Engineering
 desks and talk to the interruptible person directly - they are currently on
-the 6th floor near bank 26.
+the 6th floor near bank 27-28.
 
 You may be advised to create a
 [Zendesk ticket](#raising-a-zendesk-ticket-with-reliability-engineering).
