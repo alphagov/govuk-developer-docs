@@ -4,7 +4,7 @@ title: Our content delivery network (CDN)
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-30
+last_reviewed_on: 2018-10-15
 review_in: 6 months
 ---
 
@@ -28,14 +28,15 @@ Most of the CDN config is versioned and scripted:
 - [Varnish configuration](https://github.com/alphagov/govuk-cdn-config/)
 - [Secrets](https://github.com/alphagov/cdn-configs)
 
-These are deployed to [staging][staging_cdn] and [production][production_cdn].
-There is no CDN in integration.
+These are deployed to [integration][integration_cdn], [staging][staging_cdn]
+and [production][production_cdn].
 
 Some configuration isn't scripted, such as logging. The www, bouncer and assets
 services sends logs to S3 and stream them to `logs-cdn-1`. These logging
 endpoints are configured directly in the Fastly UI. There is
 [documentation](/manual/query-cdn-logs.html) on how to query the CDN logs.
 
+[integration_cdn]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_CDN/
 [staging_cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
 [production_cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
 
