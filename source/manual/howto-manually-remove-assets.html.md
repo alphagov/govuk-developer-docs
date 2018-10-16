@@ -31,8 +31,6 @@ follow these steps:
 \* Note: You might need to look at the timestamps or other information to figure
 out which records to delete if two assets share the same filename.
 
-[assume-role]: /manual/user-management-in-aws.html#switching-roles-to-govuk-accounts
 [govuk-assets-production-bucket]: https://s3.console.aws.amazon.com/s3/buckets/govuk-assets-production/?region=eu-west-1&tab=overview
-
 [rake-delete]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
 [rake-delete-and-remove-from-s3]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
