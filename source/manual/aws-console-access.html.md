@@ -54,4 +54,4 @@ and it will tell you which role you have assumed on which account.
 ![gds-users-show-role](images/gds-users-show-role.png)
 ![gds-users-show-account](images/gds-users-show-account.png)
 
-[access]: /manual/user-management-in-aws.html#5-get-the-appropriate-access
+[access]: /manual/set-up-aws-account.html#4-get-the-appropriate-access

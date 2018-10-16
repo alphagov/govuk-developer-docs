@@ -97,8 +97,7 @@ Once everything is done, make some final changes to the [puppet configuration an
 
 For each deployment, set the environment to one of `integration`, `staging` or `production` and run the `plan` command first to double-check the changes before running the `apply` command to make the changes.
 
-> **Note**
-> To run the above deployments, you will need to [generate AWS credentials][aws-credentials].
+👉 [Deploy AWS infrastructure with Terraform][deploy-aws]
 
 [govuk-aws-data]: https://github.com/alphagov/govuk-aws-data/search?utf8=✓&q=role_poweruser_user_arns
 [aws-terraform-config-1]: https://github.com/alphagov/govuk-aws/pull/494
@@ -107,4 +106,4 @@ For each deployment, set the environment to one of `integration`, `staging` or `
 [aws-terraform-data-1]: https://github.com/alphagov/govuk-aws-data/pull/103
 [aws-terraform-data-2]: https://github.com/alphagov/govuk-aws-data/pull/104
 [Deploy]: https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS/
-[aws-credentials]: user-management-in-aws.html#exporting-credentials-to-environment
+[deploy-aws]: /manual/deploying-terraform.html
