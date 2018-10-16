@@ -31,17 +31,16 @@ cf ssh publish-data-beta-production-worker
 
 There are [detailed instructions](https://docs.cloud.service.gov.uk/get_started.html#set-up-command-line) in the PaaS documentation.
 
-### Bytemark
+#### Accessing a Rails Console
 
-You will need to arrange with 2nd line for your public SSH key to be added to the Bytemark production server.  Once this is done, you can connect by SSH with the username `co`.
+The following can be used on any PaaS machine to access a Rails console.  The example is for the Find production instance.
 
 ```
-ssh co@co-prod3.dh.bytemark.co.uk
+cf ssh find-data-beta
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 ```
 
-**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**
-
-## Reindexing [Find]
+#### Reindexing [Find]
 
 This is done using the `search:reindex` rake task in [Publish] and will not cause any app downtime.
 
@@ -52,9 +51,7 @@ cf ssh publish-data-beta-staging
 
 This will populate a new index and rotate the `dataset-staging` alias to point to it when it's ready.
 
-## Sync from [CKAN]
-
-### Perform a full re-sync
+#### Perform a full re-sync from [CKAN]
 
 The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.
 
@@ -78,3 +75,13 @@ cf ssh publish-data-beta-production
 ```
 
 Now run `bundle exec sidekiq` and `rails s` and monitor the resulting jobs in the [Sidekiq Web UI](/manual/data-gov-uk-monitoring.html#sidekiq-publish).
+
+### Bytemark
+
+You will need to arrange with 2nd line for your public SSH key to be added to the Bytemark production server.  Once this is done, you can connect by SSH with the username `co`.
+
+```
+ssh co@co-prod3.dh.bytemark.co.uk
+```
+
+**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**
