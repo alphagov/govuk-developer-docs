@@ -58,7 +58,7 @@ After your PR has been merged, someone from the `govuk-administrators` group nee
 
 You can now:
 
-👉 [Access a thing in AWS console](/manual/aws-console-access.html)
+👉 [Access the AWS console](/manual/aws-console-access.html)
 
 👉 [Use AWS on the command line](/manual/aws-cli-access.html)
 
