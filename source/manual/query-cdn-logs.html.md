@@ -4,7 +4,7 @@ title: Query CDN Logs
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-30
+last_reviewed_on: 2018-10-16
 review_in: 6 months
 ---
 
@@ -33,8 +33,8 @@ the CDN which are available as tables:
   feeds and web services
 
 Athena is available through the AWS control panel and is only useful in
-the `govuk_infrastructure_production` account (as there is no CDN in
-integration and we barely use the one in staging). To access,
+the `govuk_infrastructure_production` account (as we barely use the ones for
+integration and staging). To access,
 [log into AWS](/manual/seeing-things-in-the-aws-console.html), navigate to
 [Athena](https://eu-west-1.console.aws.amazon.com/athena) and select the
 `fastly_logs` database.
