@@ -4,7 +4,7 @@ title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-26
+last_reviewed_on: 2018-10-17
 review_in: 6 months
 ---
 
@@ -59,8 +59,8 @@ Grafana lets us create nice dashboards using Graphite data.
 
 Useful Grafana dashboards:
 
-- [Origin health](https://grafana.publishing.service.gov.uk/#/dashboard/file/origin_health.json)
-- [Edge health](https://grafana.publishing.service.gov.uk/#/dashboard/file/edge_health.json)
+- [Origin health](https://grafana.publishing.service.gov.uk/dashboard/file/origin_health.json)
+- [Edge health](https://grafana.publishing.service.gov.uk/dashboard/file/edge_health.json)
 - [Application deployment dashboards](deployment-dashboards.html)
 
 The full list of Grafana dashboards is [stored in the Puppet repo][dashboards]
