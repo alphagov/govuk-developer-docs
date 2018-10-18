@@ -26,9 +26,9 @@ The GOV.UK analytics codebase is a collection of JavaScript modules spread throu
 User behaviours and journeys can be tracked in a variety of ways, the default method of tracking with Google Analytics is to record _pageviews_ - This is data relating to a page the user has just requested (eg. URL, user-agent, referrer).  
 Pageviews are typically recorded as the user visits the page.
 
-Where a page offers the user multiple navigation choices it's often desirable to track _events_, a typical example of this is recoding when a user chooses an option in a group of radio buttons. Event data is usually comprised of a category, a label and a value.
+Where a page offers the user multiple navigation choices it's often desirable to track _events_, a typical example of this is recording when a user chooses an option in a group of radio buttons. Event data is usually comprised of a category, a label and a value.
 
-Both pageviews and events can be augmented with _custom dimensions_, additional fragments of data describing the behaviour of the user, eg. which variant of an multivariate test they are assigned.
+Both pageviews and events can be augmented with _custom dimensions_, additional fragments of data describing the behaviour of the user, eg. which variant of an multivariate test they are assigned.  The [custom dimensions are documented on Confluence](https://gov-uk.atlassian.net/wiki/spaces/GOVUK/pages/23855552/Analytics+on+GOV.UK).
 
 
 ## Cross domain tracking
