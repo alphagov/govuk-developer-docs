@@ -77,4 +77,6 @@ See https://github.com/alphagov/static/commit/c03c11a84f86deb83ed3b7a4d16ad2e6de
 ## Developing and debugging Google Analytics tracking
 
 Google provide an extension [Google Analytics Debugger](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna?hl=en) which logs all GA suite interactions to the console.  
-This is incredibly useful for testing what is being sent to GA and when.
+This is useful for testing what is being sent to GA and when.
+
+![Google Analytics Debugger console output](images/google-analytics-debugger-output.png)
