@@ -108,6 +108,18 @@ If your change is not showing up on the website, it may be necessary to restart 
 sudo service apache2 restart
 ```
 
+### Initialising the database
+
+There may be times when you need to start with an empty database (e.g. on integration).
+The following commands will create the relevant schema for core CKAN and the harvesting
+extension on integration.
+
+```
+. /var/apps/ckan/venv/bin/activate
+paster --plugin=ckan db init -c /var/ckan/ckan.ini
+paster --plugin=ckanext-harvest harvester initdb -c /var/ckan/ckan.ini
+```
+
 ### Switching between legacy CKAN and Find open data
 
 To access legacy CKAN, append `?legacy=1` to the URL.
