@@ -17,7 +17,7 @@ Which changes you can deploy depends on the level of access you have
 to our AWS environments.
 
 - `govuk-users` can't deploy anything
-- `govuk-powerusers` can deploy everything except IAM, ie users and policies.
+- `govuk-powerusers` and `govuk-platformhealth-powerusers` can deploy everything except IAM (users and policies).
 - `govuk-administrators` can deploy everything including IAM.
 
 You can find which class of user you are [in the infra-security
