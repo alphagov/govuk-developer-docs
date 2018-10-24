@@ -4,7 +4,7 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2018-10-16
+last_reviewed_on: 2018-10-24
 review_in: 6 months
 ---
 
@@ -181,7 +181,9 @@ recipient file pertains to.
 4.  Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
     is something like "Adding new key for Jane Smith".
 5.  Commit your changes and raise a pull request for review.
-6.  Take care when rebasing changes to master that have been merged since you
+6.  Check that the joiner has uploaded their gpg key.
+    If their key isn't on a public keyserver it interupts other people's workflow so please make sure it has been uploaded.
+7.  Take care when rebasing changes to master that have been merged since you
     started your PR. The encrypted hieradata files are effectively binary data
     that git's text diff may not correctly merge. You will likely have to
     reset your recrypted versions and start again from the versions on master.
