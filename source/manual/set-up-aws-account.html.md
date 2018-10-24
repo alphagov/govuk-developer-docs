@@ -41,6 +41,7 @@ Add yourself to a lists of users found in [the data for the infra-security proje
 
 - `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure, Architects and Lead Developers of GOV.UK and anyone else working on the AWS migration
 - `govuk-powerusers`: anyone else who can have production access on GOV.UK
+- `govuk-platformhealth-powerusers`: as above but for members of the GOV.UK Platform Health team
 - `govuk-users`: anyone else who needs integration access on GOV.UK
 
 The identifier you need to add is called the "User ARN". You can find this by going

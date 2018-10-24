@@ -37,6 +37,7 @@ Options for "Role":
 
 - `govuk-administrators`
 - `govuk-powerusers`
+- `govuk-platformhealth-powerusers`
 - `govuk-users`
 
 ![gds-users-switch-role-form](images/gds-users-switch-role-form.png)
