@@ -283,6 +283,12 @@ JOB_ID necessary to cancel jobs.
 paster --plugin=ckanext-harvest harvester jobs -c $CKAN_INI
 ```
 
+It may be faster to run a SQL query to get the ID of a specific harvest job.
+
+```
+psql ckan -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
+```
+
 #### Cancelling a current job
 
 To cancel a currently running job, you will require a JOB_ID from the
@@ -290,6 +296,12 @@ To cancel a currently running job, you will require a JOB_ID from the
 
 ```
 paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c $CKAN_INI
+```
+
+This can also be done by running SQL:
+
+```
+psql ckan -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
 ```
 
 #### Purging all currently queued tasks
@@ -351,20 +363,6 @@ INNER JOIN resource_group rg ON rg.package_id = p.id
 INNER JOIN resource r ON r.resource_group_id = rg.id
 WHERE r.url LIKE '%neighbourhood.statistics.gov.uk%'
   AND p.state = 'active';
-```
-
-### Stopping a harvester
-
-Find the UUID of the harvester:
-
-```
-psql ckan -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
-```
-
-Set all jobs belonging to that harvester to finished:
-
-```
-psql ckan -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
 ```
 
 ### Change a publisher's name
