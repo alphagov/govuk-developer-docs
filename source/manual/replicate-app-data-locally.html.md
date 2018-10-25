@@ -27,7 +27,7 @@ script in the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet
 When you have integration access, you can download and import the latest data by running:
 
     mac$ cd ~/govuk/govuk-puppet/development-vm/replication
-    mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
+    mac$ ./replicate-data-local.sh -u $USER -F ../ssh_config -n
 
 The data will download to a folder named with today's date in `./backups`, for example `./backups/2018-01-01`.
 
