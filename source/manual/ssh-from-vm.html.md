@@ -24,6 +24,9 @@ Things to check if it doesn't work:
 - **Do you get a permission denied error?** Make sure you're in the
   user list in the [govuk-secrets repo][govuk-secrets] for production access,
   or the [govuk-puppet repo][govuk-puppet] for access to other environments.
+  Alternatively, are you the correct user? If you're in the VM you might need to
+  specify a username (example: `ssh joebloggs@jumpbox.integration.publishing.service.gov.uk`),
+  as 'vagrant' might be the default ssh username.
 - **Are you connecting from outside The White Chapel Building?**
   You'll need to connect to the VPN first; SSH connections are restricted
   to the White Chapel Building IP addresses.
