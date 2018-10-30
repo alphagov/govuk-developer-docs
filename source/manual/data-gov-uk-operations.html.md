@@ -17,11 +17,14 @@ review_in: 6 weeks
 
 1. Download and install [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
 
-2. Sign into the PaaS. You will be prompted for your username and password. If your account is not recognised, ask 2nd line for access. After authenticating, a list of your accessible spaces will be shown, select `data-gov-uk`.
+2. Sign into the PaaS. You will be prompted for your username and password. After authenticating, a list of your accessible spaces will be shown, select `data-gov-uk`.
 
 ```
 cf login -a api.cloud.service.gov.uk
 ```
+
+> **Don't have an account?**
+> If you don't have an account or if your account isn't recognised ask on #govuk-2ndline for an account.
 
 3. SSH into the relevant machine, e.g. `publish-data-beta-production-worker`.
 
