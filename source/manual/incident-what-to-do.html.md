@@ -4,8 +4,8 @@ title: So, you're having an incident
 parent: "/manual.html"
 layout: manual_layout
 section: Incidents
-last_reviewed_on: 2018-07-19
-review_in: 2 months
+last_reviewed_on: 2018-11-01
+review_in: 3 months
 ---
 
 This [Google Doc describes what to do in case of an incident][doc].
