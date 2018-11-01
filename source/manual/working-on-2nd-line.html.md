@@ -4,8 +4,8 @@ title: Working on 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-07-31
-review_in: 2 months
+last_reviewed_on: 2018-11-01
+review_in: 3 months
 ---
 
 When working on 2nd line, we look at Normal and High priority tickets in the Zendesk ['2nd Line--GOV.UK Alerts and Issues' queue](https://govuk.zendesk.com/agent/filters/360000051009).
@@ -19,8 +19,17 @@ Other things to know:
 * If you cannot solve a ticket immediately, reply to the requester and let them know you’re looking into it.
 * If a ticket has been resolved and pending a response  for 5 or more days with no response from the requester, submit it as solved with a message telling them why and that if they still need help they can get in touch.
 
-## Improving 2nd line
+## Ongoing issues to be aware of
 
-If you notice an area that can be improved, add your idea and an explanation to the [GOV.UK 2nd line Trello board](https://trello.com/b/M7UzqXpk/govuk-2nd-line). For example, if you have a temporary fix but think we should look into a long term solution for the problem.
+Record critical alerts that aren't easily solved to the [GOV.UK 2nd line Trello board](https://trello.com/b/M7UzqXpk/govuk-2nd-line) to help inform the Platform Health and the GOV.UK AWS migration team. 
 
-You can also find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html).
+2nd line should investigate these alerts when there is downtime. 
+
+You do not have to fix the issue necessarily.
+
+We record these alerts here because so other developers are aware that they are likely to happen. 
+
+These alerts shouldn't cause big issues but that's not to say it won't - which is why we should log it here.
+
+## Declaring and responding to an incident 
+Find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html).
