@@ -4,7 +4,7 @@ title: Before you start on 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2018-11-01
 review_in: 2 months
 ---
 Before you start your shift you’ll need access to the accounts we use and our communication channels.
@@ -33,7 +33,7 @@ This is our escalation workflow for some key alerts that are likely to require u
 2. Secondary Engineer
 3. Designated Programme team member (might not be technical)
 
-This mirrors our out of hours on-call escalation order, so 2nd line can be thought of as in-hours on-call. 2nd line Shadows are not required to be on PagerDuty. If you're on Primary or Secondary, please check you can sign in to [PagerDuty](https://govuk.pagerduty.com/). Speak to the Delivery Manager if you cannot sign in.
+This mirrors our out of hours on-call escalation order, so 2nd line can be thought of as in-hours on-call. 2nd line Shadows are not required to be on PagerDuty. If you're on Primary or Secondary, please check you can sign in to [PagerDuty](https://governmentdigitalservice.pagerduty.com). Speak to the Delivery Manager if you cannot sign in.
 
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge them, otherwise they will be escalated further. PagerDuty is for key aspects of the site becoming unavailable or a large quantity of error pages being served.
 
