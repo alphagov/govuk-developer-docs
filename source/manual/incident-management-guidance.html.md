@@ -4,8 +4,8 @@ title: Incident management guidance
 parent: "/manual.html"
 layout: manual_layout
 section: Incidents
-last_reviewed_on: 2018-07-19
-review_in: 2 months
+last_reviewed_on: 2018-11-01
+review_in: 3 months
 ---
 
 When something goes wrong on GOV.UK we follow the incident management procedure:
@@ -22,8 +22,9 @@ When something goes wrong on GOV.UK we follow the incident management procedure:
 
 - [GOV.UK blogposts on Priority 1 and Priority 2 incidents](https://insidegovuk.blog.gov.uk/category/incident-reports/)
 
-There are 3 pages on the Wiki:
+Other useful links:
 
 - [Handling security incidents](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/131077240/Handling+security+incidents)
 - [Incident severity levels](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/64487471/Incident+severity+levels)
-- [Incident summaries and actions](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/272531564/Incident+reports+-+2018)
+- [Incident review actions](https://trello.com/b/O8vBQOLX/govuk-incident-review-actions)
+- [Previous incident reports](https://drive.google.com/drive/u/0/folders/0B91nK-3hxT2eUXpITmhGUF9FMFk?ogsrc=32)
