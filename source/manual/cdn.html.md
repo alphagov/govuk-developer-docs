@@ -32,7 +32,7 @@ These are deployed to [integration][integration_cdn], [staging][staging_cdn]
 and [production][production_cdn].
 
 Some configuration isn't scripted, such as logging. The www, bouncer and assets
-services sends logs to S3 and stream them to `logs-cdn-1`. These logging
+services sends logs to S3 and stream them to `monitoring-1`. These logging
 endpoints are configured directly in the Fastly UI. There is
 [documentation](/manual/query-cdn-logs.html) on how to query the CDN logs.
 

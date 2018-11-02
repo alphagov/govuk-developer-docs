@@ -68,7 +68,7 @@ There's some documentation on [useful Kibana queries for 2nd line][kibana-docs].
 Fastly sends logs to multiple locations for the www, assets and bouncer
 services:
 
-- via syslog to the logs-cdn-1 boxes in all environments (`/mnt/logs_cdn`),
+- via syslog to the monitoring-1 boxes in all environments (`/var/log/cdn`),
   available immediately
 - to an S3 bucket per environment, available every 10 minutes
 
