@@ -17,7 +17,8 @@ account][set-up-account].
 
 1. You can find the `role_arn` in the ["Role ARN" table][secret-docs]
 1. You can find your `mfa_serial` under "Assigned MFA device" in your user
-   profile [in the AWS Console][aws-console]:
+   profile [in the AWS Console][aws-console], under the [IAM
+   service][iam-service]:
 
   ![](images/aws-how-to-get-mfa.png)
 
@@ -60,5 +61,6 @@ output.
 
 [set-up-account]: /manual/set-up-aws-account.html
 [aws-console]: /manual/aws-console-access.html
+[iam-service]: https://console.aws.amazon.com/iam/home?#/users
 [secret-docs]: https://github.com/alphagov/govuk-aws-data/blob/master/docs/govuk-aws-accounts.md
 [access-keys]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys
