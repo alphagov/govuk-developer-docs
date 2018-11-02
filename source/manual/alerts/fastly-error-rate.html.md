@@ -16,8 +16,8 @@ period of time.
 The alert appears on `monitoring-1.management`. A good starting point for
 investigation is to examine the Fastly CDN logs.
 
-- `ssh logs-cdn-1.management.production`
-- `cd /mnt/logs_cdn` to access log files
+- `ssh monitoring-1.management.production`
+- `cd /var/log/cdn` to access log files
 
 Alternatively you can look in [Kibana](/manual/tools.html#kibana) with the query
 `application:"govuk-cdn-logs-monitor"`
