@@ -9,16 +9,15 @@ review_in: 6 months
 ---
 
 Sometimes, we stop receiving either GOV.UK or Bouncer logs from Fastly
-to `logs-cdn-1.management`. We run Rsyslog on this machine, and Fastly
+to `monitoring-1.management`. We run Rsyslog on this machine, and Fastly
 send us logs using Syslog on their side to a port we have previously
 specified.
 
-Firstly, look at how old and how large `/mnt/logs_cdn/cdn-govuk.log` or
-`/mnt/logs_cdn/cdn-bouncer.log` is. In GOV.UK's case, the file should be
-created early in the morning each day, and the file size should be
-positive and greater than 0 bytes. At the end of each day, a file is
-created for the following day, the previous day's file is gzipped up.
-Bouncer's logs rotate once per hour.
+Firstly, look at how old and how large `/var/log/cdn/cdn-govuk.log` or
+`/var/log/cdn/cdn-bouncer.log` is. In GOV.UK's case, the file should
+be created each hour, and the file size should be positive and greater
+than 0 bytes. These log files rotate once per hour, with the previous
+hour gzipped up.
 
 To fix, try (in order):
 
@@ -37,8 +36,8 @@ To fix, try (in order):
     Fastly are currently unable to log to our endpoint.
 
 -   restarting Rsyslog on the box: `sudo service rsyslog restart`, then
-    `sudo tail -f /mnt/logs_cdn/cdn-govuk.log`, or
-    `/mnt/logs_cdn/cdn-bouncer.log`, to check that logs are being
+    `sudo tail -f /var/log/cdn-govuk.log`, or
+    `/var/log/cdn-bouncer.log`, to check that logs are being
     streamed in to us. You'll be able to see when they are, as the
     file size increases and human-readable log lines are entered in to
     that file. It can take as long as 45 minutes for logs to start
