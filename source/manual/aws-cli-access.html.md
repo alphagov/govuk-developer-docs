@@ -4,7 +4,7 @@ title: Use AWS on the command line
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-10
+last_reviewed_on: 2018-11-02
 review_in: 3 months
 ---
 
