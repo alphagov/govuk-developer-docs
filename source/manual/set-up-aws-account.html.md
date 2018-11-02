@@ -33,6 +33,24 @@ To sign in, go to [the GDS AWS Sign page](https://gds-users.signin.aws.amazon.co
 
 You have to set up [Multi-Factor Authentication (MFA)][MFA].
 
+1. [Sign in to AWS GDS account](https://gds-users.signin.aws.amazon.com/console)
+2. Select or go to IAM service.
+3. Click on "Users" in the menu bar on the left hand side
+4. Enter your name
+5. Click on the link for your email address
+6. Click on the security credentials tab
+7. Click on the "Manage" link next to "Assigned MFA device"
+8. Follow the steps to set up your MFA device
+
+### Changing your MFA device
+
+Follow steps 1 - 7 in [Set up your MFA](#3-set-up-your-mfa). Then:
+
+1. Choose one of the two options (Remove or Resync)
+2. Click on the "Manage" link next to "Assigned MFA device"
+3. Follow the steps to set up your MFA device
+
+
 ## 4. Get the appropriate access
 
 An account in AWS doesn't give you access to anything, you'll need to be given rights.
