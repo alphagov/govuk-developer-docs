@@ -4,8 +4,8 @@ title: Write an incident report
 parent: "/manual.html"
 layout: manual_layout
 section: Incidents
-last_reviewed_on: 2018-07-19
-review_in: 2 months
+last_reviewed_on: 2018-11-01
+review_in: 3 months
 ---
 
 This is a template of the incident report as guidance.
