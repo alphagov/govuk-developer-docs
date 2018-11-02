@@ -4,8 +4,8 @@ title: Publish a Ruby gem
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-05
-review_in: 6 months
+last_reviewed_on: 2018-11-02
+review_in: 12 months
 ---
 
 ## Naming
