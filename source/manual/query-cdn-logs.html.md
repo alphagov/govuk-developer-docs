@@ -13,8 +13,8 @@ and are stored for 90 days. The data in these log files can be queried via
 [Amazon Athena][] to gain a variety of insights into GOV.UK traffic.
 
 If you need to access the logs within 15 minutes of the request you can
-access the log files on the `logs-cdn-1` server. These are sent via syslog and
-are available in the `/mnt/logs_cdn/` directory.
+access the log files on the `monitoring-1` server. These are sent via syslog and
+are available in the `/var/log/cdn/` directory.
 
 [Amazon Athena]: https://aws.amazon.com/athena/
 
