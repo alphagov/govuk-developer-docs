@@ -71,14 +71,14 @@ GEM
       scss_lint
     govuk_schemas (3.2.0)
       json-schema (~> 2.8.0)
-    govuk_tech_docs (1.6.2)
+    govuk_tech_docs (1.6.3)
       activesupport
       chronic (~> 0.10.2)
       middleman (~> 4.0)
       middleman-autoprefixer (~> 2.7.0)
       middleman-compass (>= 4.0.0)
       middleman-livereload
-      middleman-search
+      middleman-search-gds
       middleman-sprockets (~> 4.0.0)
       middleman-syntax (~> 3.0.0)
       nokogiri
@@ -102,12 +102,11 @@ GEM
     json-schema (2.8.0)
       addressable (>= 2.4)
     kramdown (1.17.0)
-    libv8 (3.16.14.19)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     memoist (0.16.0)
-    method_source (0.9.0)
+    method_source (0.9.1)
     middleman (4.2.1)
       coffee-script (~> 2.2)
       compass-import-once (= 1.0.5)
@@ -151,10 +150,10 @@ GEM
       em-websocket (~> 0.5.1)
       middleman-core (>= 3.3)
       rack-livereload (~> 0.3.15)
-    middleman-search (0.10.0)
+    middleman-search-gds (0.11.0a)
+      execjs (~> 2.6)
       middleman-core (>= 3.2)
       nokogiri (~> 1.6)
-      therubyracer (~> 0.12.2)
     middleman-search_engine_sitemap (1.4.0)
       builder
       middleman-core (~> 4.0)
@@ -185,7 +184,7 @@ GEM
     parser (2.5.1.2)
       ast (~> 2.4.0)
     powerpack (0.1.2)
-    pry (0.11.3)
+    pry (0.12.0)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
     public_suffix (3.0.3)
@@ -202,7 +201,6 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.3.4)
-    ref (2.0.0)
     regexp_parser (1.2.0)
     rouge (2.2.1)
     rspec (3.8.0)
@@ -249,9 +247,6 @@ GEM
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     temple (0.8.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
