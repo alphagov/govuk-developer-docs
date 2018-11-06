@@ -4,21 +4,20 @@ title: Replaying traffic to correct an out-of-sync search index
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2018-07-27
+last_reviewed_on: 2018-11-06
 review_in: 3 months
 ---
 
 If the data in the search index is out-of-sync with the Publishing API,
-(for example, after [restoring a backup](https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html)),
-then any `publish` and `unpublish` messages that have not been processed need to be resent.
+(for example, after [restoring a backup][restore-backups]), then any `publish`
+and `unpublish` messages that have not been processed need to be resent.
 
 ## `govuk` index
 
-Content in the `govuk` index is populated from the [Publishing API message queue](https://github.com/alphagov/rummager/blob/master/doc/new-indexing-process.md).
-Missing documents can be recovered by resending the content to the message
-queue, for example by running
-`represent_downstream:document_type[:document_type]` rake task in Publishing
-API.
+Content in the `govuk` index is populated from the [Publishing API message queue][queue].
+Missing documents can be recovered by resending the content to the message queue,
+for example by running `represent_downstream:document_type[:document_type]` rake
+task in Publishing API.
 
 ## `government`/`detailed` indexes
 
@@ -27,8 +26,8 @@ API.
 
 These indexes are populated by whitehall calling an HTTP API in Rummager.
 
-We have also setup [GOR](https://github.com/buger/goreplay) logging for `POST`
-and `GET` requests so that we can replay the traffic.
+We have also setup [GOR][gor] logging for `POST` and `GET` requests so that we
+can replay the traffic.
 
 The logs are stored on the rummager servers (1 file per server) location at:
 
@@ -47,6 +46,12 @@ $ sudo gor --input-file "20171031.log|6000%" --stats --output-http-stats --outpu
 This runs the restore at 60x the speed it was saved so each hour of logs takes
 1 minute to process.
 
+> **Note**
+>
 > This process failed when running on the rummager server, but was successful
 > when run locally with port forwarding.
 > This may be an issue with the `GOR` version on the server.
+
+[restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
+[queue]: https://github.com/alphagov/rummager/blob/master/doc/new-indexing-process.md
+[gor]: https://github.com/buger/goreplay
