@@ -19,7 +19,7 @@ documentation](http://docs.mongodb.org/manual/core/replication/#replica-set-roll
 > a network partition with replication lag. When this member (the former
 > primary) rejoins the replica set and attempts to continue replication
 > as a secondary the former primary must revert these operations or
-> “roll back” these operations to maintain database consistency across
+> "roll back" these operations to maintain database consistency across
 > the replica set.
 
 ### How to investigate
