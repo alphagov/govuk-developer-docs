@@ -4,7 +4,7 @@ title: PostgreSQL Advisory Locks
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-10
+last_reviewed_on: 2018-11-13
 review_in: 3 months
 ---
 
