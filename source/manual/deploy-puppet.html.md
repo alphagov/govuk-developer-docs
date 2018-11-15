@@ -22,11 +22,15 @@ the Release app after clicking on the release tag.
 3. You will either need to wait 30 minutes or read about [convergence](#convergence).
 You should monitor Icinga and Smokey, and test anything you're concerned about.
 
-4.  Repeat steps 2 and 3 to [deploy to production][prod-deploy].
+4. Repeat steps 2 and 3 to [deploy to production][prod-deploy].
+
+5. If required, deploy in AWS [staging][stage-aws-deploy] and [production][prod-aws-deploy].
 
 [tag]: https://release.publishing.service.gov.uk/applications/puppet
 [stage-deploy]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_Puppet
+[stage-aws-deploy]: https://deploy.blue.staging.govuk.digital/job/Deploy_Puppet
 [prod-deploy]: https://deploy.publishing.service.gov.uk/job/Deploy_Puppet
+[prod-aws-deploy]: https://deploy.blue.production.govuk.digital/job/Deploy_Puppet
 
 ## Convergence
 
