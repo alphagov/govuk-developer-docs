@@ -14,7 +14,7 @@ review_in: 6 weeks
 
 It's become difficult to access the CKAN version of the management page for a publisher. To work around this:
 
-  1. Login as th 2ndline user (password in [govuk-secrets])
+  1. Login as the 2ndline user (password in [govuk-secrets])
   2. Go to https://data.gov.uk/data/report/publisher-resources/cabinet-office
   3. Use the select box to find the publisher
   4. Path becomes e.g. `/data/report/publisher-resources/cambridge-city-council`
