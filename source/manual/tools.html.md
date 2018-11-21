@@ -10,7 +10,11 @@ review_in: 6 months
 
 ## Icinga
 
-<https://alert.publishing.service.gov.uk/>
+* [Production](https://alert.publishing.service.gov.uk)
+* [Staging](https://alert.staging.publishing.service.gov.uk)
+* [Integration](https://alert.integration.publishing.service.gov.uk)
+* [AWS Production](https://alert.blue.production.govuk.digital)
+* [AWS Staging](https://alert.blue.staging.govuk.digital)
 
 Icinga is used to monitor alerts that we have set up. It can be a bit hard to
 navigate but there are only a few views you need to know about (listed in the left-hand
