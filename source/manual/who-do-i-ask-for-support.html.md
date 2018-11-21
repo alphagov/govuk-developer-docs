@@ -4,8 +4,8 @@ title: Who do I ask for support?
 parent: "/manual.html"
 layout: manual_layout
 section: Basics
-last_reviewed_on: 2018-08-17
-review_in: 3 months
+last_reviewed_on: 2018-11-20
+review_in: 6 months
 ---
 
 The GOV.UK 2nd Line team:
