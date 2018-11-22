@@ -33,7 +33,7 @@ The Reliability Engineering team:
 If you and your colleagues can’t resolve a technical issue, problem or question, you should escalate it through, in order:
 
 1. The Technical Lead on the team
-2. The Technical Lead for the team’s objective
+2. The Lead Developer on the programme
 3. The Lead Architect
 
 If 2nd Line instructs you to escalate something to Reliability Engineering, raise a ticket on Zendesk and assign it to the `3rd Line--Infrastructure` queue. You should also raise a ticket if the issue is related to an ongoing incident for tracking purposes, but you can speak to the team directly to get it more immediate attention.
