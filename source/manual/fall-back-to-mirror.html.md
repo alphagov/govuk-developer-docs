@@ -76,6 +76,12 @@ is unavailable, all you need to do is [stop Nginx on the cache machines with Fab
 fab $environment class:cache incident.fail_to_mirror
 ```
 
+to disable to fallback:
+
+```
+fab $environment class:cache incident.recover_origin
+```
+
 [fab-fail]: https://github.com/alphagov/fabric-scripts/blob/master/incident.py
 
 ## Emergency publishing using the static mirror
