@@ -5,7 +5,7 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-11-15
-review_in: 6 weeks
+review_in: 8 weeks
 ---
 [ckanext-datagovuk-github]: https://github.com/alphagov/ckanext-datagovuk
 
