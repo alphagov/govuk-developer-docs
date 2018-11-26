@@ -57,6 +57,7 @@ Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/
 > here](http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.0.pdf).
 
 > **WARNING**
+>
 > When adding new disks, be careful to select an appropriate disk
 > controller.
 >

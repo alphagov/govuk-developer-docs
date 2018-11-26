@@ -78,7 +78,10 @@ On your second terminal run the following command:
 
 You should set `<username>` to your short name as set in puppet (e.g. 'bobwalker').
 
-**warning** forwarding your ssh-agent (`-A`) means that anyone with sufficient access on the remote server can authenticate as you. Do not use it on un-trusted servers.
+> **WARNING**
+>
+> Forwarding your ssh-agent (`-A`) means that anyone with sufficient access on
+> the remote server can authenticate as you. Do not use it on un-trusted servers.
 
 > **Note**
 >

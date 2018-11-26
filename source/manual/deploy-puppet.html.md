@@ -73,7 +73,8 @@ It may occassionally be neccessary to trick Puppet into not restarting a
 service, if it is a single point of failure and doing so would cause a
 brief outage, e.g. MySQL.
 
-> **Warning**
+> **WARNING**
+>
 > This is not a "normal" procedure. You should only do this if you need
 > to and you MUST have some plan for restarting the service in the near
 > future so that it's not inconsistent with its configuration.
