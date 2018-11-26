@@ -8,7 +8,8 @@ last_reviewed_on: 2018-09-04
 review_in: 6 months
 ---
 
-> **NOTE**
+> **Note**
+>
 > This process is only applicable to Carrenza environments.
 > For AWS environments, disk space can be expanded by changing
 > and deploying the appropriate Terraform configuration
@@ -35,10 +36,12 @@ disk is configured, Puppet runs on the machine will result in errors.
 
 Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst) for details on how to access Carrenza. The appropriate credentials are in `govuk-secrets`.
 
-> **NOTE**
+> **Note**
+>
 > In the link above, you will see a link format similar to https://localhost:8443/cloud/org/{environment}, where {environment} is the value of the `Org` key you get from decrypting secrets. It will look something like `Org: XXXX-govuk-staging-london`.
 
-> **NOTE**
+> **Note**
+>
 > Aligning disk partitions on VMware VMs ensures that disk I/O is not
 > negatively affected. If a disk is not partition aligned correctly, I/O
 > from each filesystem is being translated into 2 I/Os to the

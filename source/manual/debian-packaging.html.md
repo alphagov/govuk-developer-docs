@@ -157,7 +157,7 @@ We will describe some common operations here and add to it as we do more
 complex things. However the upstream documentation and examples are also
 very good.
 
-> **note**
+> **Note**
 >
 > The commands below should be run on the machine where aptly is
 > running. We publish to our preview mirror from our production aptly
@@ -281,7 +281,7 @@ After this, packages can be included in the form:
 
 ### Third-party repos
 
-> **note**
+> **Note**
 >
 > Despite Ubuntu being based on Debian experimental, no Debian repository should ever
 > be directly mirrored and made available through aptly to a Ubuntu system _ever_.

@@ -21,4 +21,5 @@ base_path:edit[content_id,new_base_path]
 [change]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=base_path:edit[content_id,/new_base_path]
 
 > **Note**
->You can find the `content_id` of the document using the [govuk-toolkit](https://github.com/alphagov/govuk-browser-extension) browser extension.
+>
+> You can find the `content_id` of the document using the [govuk-toolkit](https://github.com/alphagov/govuk-browser-extension) browser extension.

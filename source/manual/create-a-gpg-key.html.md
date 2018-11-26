@@ -36,7 +36,8 @@ Create a gpg key with `gpg2 --gen-key` using your
 digital.cabinet-office.gov.uk email address. Defaults for the questions
 should be fine, although you should choose a 4096-bit key.
 
-> **NOTE:**
+> **Note**
+>
 > You should also generate a [revocation
 > certificate](http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.4)
 > with `gpg2 --gen-revoke` and store it in a safe place (*not* on your

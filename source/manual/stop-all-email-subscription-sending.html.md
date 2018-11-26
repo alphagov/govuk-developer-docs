@@ -14,6 +14,7 @@ In an emergency, the following steps will immediately stop all emails being sent
 > This is an emergency stopgap solution that should be reverted as soon as possible. All emails (including urgent ones such as travel alerts) will not be sent while this is active.
 
 > **Note**
+>
 > Emails already sent to GOV.UK Notify for delivery cannot be stopped by this method.
 
 1. Ensure your [fabric scripts][fabric-scripts] are set up.

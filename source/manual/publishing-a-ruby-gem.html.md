@@ -34,13 +34,13 @@ we avoid version number conflicts between feature branches.
 We should follow the scheme used by Bundler when creating gems (see [this
 railscast](http://railscasts.com/episodes/245-new-gem-with-bundler?view=asciicast)).
 
-Some points to note:
-
-* The version is stored in a file by itself in `lib/<gem_name>/version.rb`.
-* The Gemfile references the gemspec for gem dependencies.  All gem
-  dependencies should be specified in the gemspec.
-* The Gemfile.lock is **never** committed (it should be in the `.gitignore`
-  file).
+> **Note**
+>
+> * The version is stored in a file by itself in `lib/<gem_name>/version.rb`.
+> * The Gemfile references the gemspec for gem dependencies.  All gem
+>   dependencies should be specified in the gemspec.
+> * The Gemfile.lock is **never** committed (it should be in the `.gitignore`
+>   file).
 
 ## Releasing gem versions
 

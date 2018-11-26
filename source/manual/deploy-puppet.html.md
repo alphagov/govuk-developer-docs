@@ -11,6 +11,7 @@ review_in: 6 months
 You can deploy Puppet using the following steps:
 
 > **Note**
+>
 > Puppet is automatically deployed to integration by a combination of the [integration-puppet-deploy job on Jenkins CI](https://ci.integration.publishing.service.gov.uk/job/integration-puppet-deploy/) and [Deploy Puppet job on Jenkins Deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/).
 
 1. Get the [release tag of the build that you wish to deploy][tag] from the Release

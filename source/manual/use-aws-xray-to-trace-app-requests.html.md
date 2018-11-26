@@ -16,7 +16,8 @@ Request tracing is a technique that captures data every time an instrumented app
 
 This data can be useful when troubleshooting errors in microservice-architectured apps where the error does not necessarily originate in the app that serves it to the end user. It also provides information about bottlenecks, unnecessary and/or multiple requests and long-running processes.
 
-> **NOTE**
+> **Note**
+>
 > Due to the large amount of data that would be generated and the cost, only 1% of requests an instrumented app makes are traced. This means individual requests of interest cannot always be isolated.
 
 ## Using trace data

@@ -78,13 +78,17 @@ in our case.
     Scroll down and click "Get messages". Clicking the "Get Message(s)"
     button that appears will fetch however many messages you ask for.
 
-    Note: Fetching messages actually removes them from the queue. By leaving
+    > **Note**
+    >
+    > Fetching messages actually removes them from the queue. By leaving
     the "Requeue" option set to "Yes", they will be added back to queue.
 
 3.  Delete the messages
 
-    Note: there is a risk that you might delete the wrong message(s). This
-    is because the contents of the queue may have changed.
+    > **Note**
+    >
+    > There is a risk that you might delete the wrong message(s). This
+    > is because the contents of the queue may have changed.
 
     Repeat, but change the "Requeue" option to "No".
 
