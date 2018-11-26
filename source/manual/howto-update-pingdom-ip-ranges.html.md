@@ -8,7 +8,8 @@ last_reviewed_on: 2018-10-31
 review_in: 6 months
 ---
 
-> **NOTE:**
+> **Note**
+>
 > This process only applies to Carrenza environments.
 
 The "[Check_Pingdom_IP_Ranges][check-pingdom-ip-ranges-jenkins]" Jenkins

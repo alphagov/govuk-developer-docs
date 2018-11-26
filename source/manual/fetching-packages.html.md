@@ -8,7 +8,8 @@ last_reviewed_on: 2018-09-04
 review_in: 6 months
 ---
 
-> **NOTE**
+> **Note**
+>
 > Make sure you are running the latest versions of VirtualBox and Vagrant.
 > Specifically, Vagrant 1.8.x versions have known issues with provisioning.
 

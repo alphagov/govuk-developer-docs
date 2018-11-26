@@ -63,7 +63,9 @@ Nginx logs for frontend:
 tags:"nginx" AND application:frontend*
 ```
 
-Note: the `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
+> **Note**
+>
+> The `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
 
 ### CDN logs
 

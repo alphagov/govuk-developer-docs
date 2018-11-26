@@ -71,14 +71,14 @@ run a "plan" action, and when you're happy with the changes, run "apply".
 Within the Jenkins job, select the provider, zone & action. Once build is complete,
 examine the logs before progressing to the next stage (Apply).
 
-Please note:
-
-- Due to the Terraform state being held in an S3 bucket, you
-will require access to the GOVUK AWS "production" account to roll changes for
-both Amazon and Google.
-- The order in which you deploy to providers is not important.
-- You will not require credentials for Google Cloud. These credentials are stored
-in Jenkins itself.
+> **Note**
+>
+> - Due to the Terraform state being held in an S3 bucket, you
+> will require access to the GOVUK AWS "production" account to roll changes for
+> both Amazon and Google.
+> - The order in which you deploy to providers is not important.
+> - You will not require credentials for Google Cloud. These credentials are stored
+> in Jenkins itself.
 
 ### Making changes to internal DNS (govuk.digital and govuk-internal.digital)
 

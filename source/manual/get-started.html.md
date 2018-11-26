@@ -36,7 +36,9 @@ Run commands prepended with `dev$` in the development VM:
 
     dev$ echo "Linux for human beings"
 
-Note: `dev$` and `mac$` are prompts within this guide and not part of the given command.
+> **Note**
+>
+> `dev$` and `mac$` are prompts within this guide and not part of the given command.
 
 **If you run into problems**
 

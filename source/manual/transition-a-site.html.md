@@ -50,7 +50,9 @@ this might take several hours. This will give you a list of URLs for a domain:
 $ anemone url-list 'transitioning-site.gov.uk'
 ```
 
-Note: This will include 404s, 301s, etc.
+> **Note**
+>
+> This will include 404s, 301s, etc.
 
 ### 3) Clean up URLs
 

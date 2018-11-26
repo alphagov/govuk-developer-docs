@@ -132,7 +132,7 @@ You must use the rake tasks to change encrypted Hiera data.
     Hiera eYAML will encrypt your changes. If you get an error, please see the
     troubleshooting section below.
 
-    > **NOTE**
+    > **Note**
     >
     > When editing a Hiera key that has been encrypted before, you will
     > notice a number in parentheses after the word GPG; for
@@ -315,7 +315,7 @@ to Puppet:
 >
 > Make sure **not** to copy the production GPG key to the integration environment.
 
-> **NOTE**
+> **Note**
 >
 > In the time between adding the new keys to the Puppet Master, deploying
 > puppet, and it running on all machines in the relevant environment, you
