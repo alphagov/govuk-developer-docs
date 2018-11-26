@@ -47,7 +47,9 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
-> **NOTE:** The Jenkins job will also clear all caches. The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
+> **Note**
+>
+> The Jenkins job will also clear all caches. The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
 
 <a name="test-with-cache-bust"></a>
 ### 3. Test with cache bust strings

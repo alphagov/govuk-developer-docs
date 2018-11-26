@@ -111,7 +111,9 @@ $ fab $environment -H $hostname elasticsearch.safe_reboot
 This will prevent you from rebooting a machine in a cluster which doesn't have
 a green cluster health status.
 
-> Note that whilst the cluster is `yellow` (meaning one or more machines in the
+> **Note**
+>
+> Whilst the cluster is `yellow` (meaning one or more machines in the
 > cluster is unavailable), no reindexing will take place. Therefore you're
 > likely to see a backlog of jobs being created, particularly with Rummager.
 > This can take a long time to clear once the cluster is `green` again, and can
@@ -188,12 +190,9 @@ to safely reboot these machines you'll need access to vCloud Director.
 
     `fab <environment> -H backend-lb-2.backend vm.reboot`
 
-    ---
-    **NOTE**
-
-    Doing this may trigger a Pagerduty alert and trigger 5xx errors on fastly
-
-    ---
+    > **Note**
+    >
+    > Doing this may trigger a Pagerduty alert and trigger 5xx errors on fastly
 
 -   find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this

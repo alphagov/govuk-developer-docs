@@ -66,7 +66,7 @@ potential downtime.
     the downtime from Nagios (this can be done from the "Downtime" link
     in the left-hand sidebar).
 
-> **note**
+> **Note**
 >
 > If you are still unable to connect to the newly reprovisioned VM after
 > a long period of time (e.g. 20 minutes), try connecting to the

@@ -8,7 +8,8 @@ last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 
-> **NOTE**
+> **Note**
+>
 > This process is only applicable to Carrenza environments.
 
 Upgrading MySQL will cause 500 errors on sites as the master and slave

@@ -8,13 +8,14 @@ last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 
-> **NOTE**
+> **Note**
+>
 > This process is only applicable to Carrenza environments.
 
 This tutorial documents the process behind adding a new slave to a MySQL
 environment where an existing slave may or may not already exist. The
 process involves cloning data from an existing replication slave on to a
-new slave, thus keeping the replication configuration intact. 
+new slave, thus keeping the replication configuration intact.
 
 After the initial synchronisation from the existing to the new slave,
 both the new and existing slaves will replicate directly from the master.
@@ -79,7 +80,7 @@ You should set `<username>` to your short name as set in puppet (e.g. 'bobwalker
 
 **warning** forwarding your ssh-agent (`-A`) means that anyone with sufficient access on the remote server can authenticate as you. Do not use it on un-trusted servers.
 
-> **note**
+> **Note**
 >
 > This forwards your ssh-agent to slave (`-A`) then, passing that agent to sudo's environment (`-E`), rsyncs the mysql files to backup.
 >
