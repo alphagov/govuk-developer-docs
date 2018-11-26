@@ -38,6 +38,7 @@ Examples of implementation:
 You should publish your new content item with your document type to the Publishing API, especially if you want it to be part of search as it makes it easy to integrate search this way.
 
 > **Note**
+>
 > Having a document type with `placeholder` prefix will not publish routes. More information can be found here under
 [placeholder items](https://github.com/alphagov/content-store/blob/f5bf2ae1d86b6a38d52d22074c0d13acf2a0413c/doc/route_registration.md#placeholder-items).
 

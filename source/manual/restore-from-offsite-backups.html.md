@@ -173,10 +173,12 @@ dump was taken from, creating it if it doesn't exist.
 
 This shows the example process of restoring files for Whitehall attachments.
 
-**Note**: Ensure that you can connect to the S3 bucket using the supplied
-access keys. To do this, follow the
-[Prerequisites for restoring backups](#prerequisites-for-restoring-backups)
-section.
+> **Note**
+>
+> Ensure that you can connect to the S3 bucket using the supplied
+> access keys. To do this, follow the
+> [Prerequisites for restoring backups](#prerequisites-for-restoring-backups)
+> section.
 
 1. SSH to the machine where you want to restore the backup, for example
  `asset-master-1.backend`.

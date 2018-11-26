@@ -8,7 +8,8 @@ last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
 
-> **NOTE**
+> **Note**
+>
 > For Worldwide Organisations, only steps 1 and 5 below need to be performed.
 
 The organisation slug is used as a foreign key for organisations across multiple apps.

@@ -28,8 +28,10 @@ follow these steps:
 1. Check that the asset responds with a 404
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 
-\* Note: You might need to look at the timestamps or other information to figure
-out which records to delete if two assets share the same filename.
+> **Note**
+>
+> You might need to look at the timestamps or other information to figure
+> out which records to delete if two assets share the same filename.
 
 [govuk-assets-production-bucket]: https://s3.console.aws.amazon.com/s3/buckets/govuk-assets-production/?region=eu-west-1&tab=overview
 [rake-delete]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]

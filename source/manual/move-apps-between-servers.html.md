@@ -50,6 +50,7 @@ Once the servers are created, they will run puppet to apply relevant configurati
 ### Add the new servers to the load balancers
 
 > **Note**
+>
 > It is important that all servers are running the same version of the app at this point.
 
 Once you've verified that the app(s) have been deployed to all the new servers, you'll need to change the load balancers to start using the new servers as part of a managed migration from the old to the new servers.
@@ -86,6 +87,7 @@ Once everything is done, make some final changes to the [puppet configuration an
 ## AWS
 
 > **Note**
+>
 > You need to be at least a Power User in AWS to be able to run the following procedure. You can check by looking in the [govuk-aws-data] repository. Some IAM changes may require Administrator access, so you'll need to ask someone in the Reliability Engineering team to run these for you.
 
 1. Add Terraform configuration ([1][aws-terraform-config-1], [2][aws-terraform-config-2], [3][aws-terraform-config-3]) to create the new servers, load balancers, security groups, DNS entries etc.

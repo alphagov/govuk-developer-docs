@@ -41,7 +41,9 @@ Rename the taxon in the [Rummager index list](https://github.com/alphagov/rummag
 
 Once the Rummager change is deployed, open the relevant country in [Content Tagger](https://content-tagger.integration.publishing.service.gov.uk/), tick "minor update" and update all the relevant fields with the new country name. Save the draft and publish.
 
-_Note: updating the child taxons linked to the country taxon ("UK help and services in country") will be a content task._
+> **Note**
+>
+> Updating the child taxons linked to the country taxon ("UK help and services in country") will be a content task.
 
 ### 3. Update Whitehall
 
