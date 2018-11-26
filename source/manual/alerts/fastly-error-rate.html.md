@@ -19,9 +19,6 @@ investigation is to examine the Fastly CDN logs.
 - `ssh monitoring-1.management.production`
 - `cd /var/log/cdn` to access log files
 
-Alternatively you can look in [Kibana](/manual/tools.html#kibana) with the query
-`application:"govuk-cdn-logs-monitor"`
-
 ## `Unknown` alert
 
 The alert appears on `monitoring-1.management`. Collectd uses the Fastly API to get statistics which it pushes to Graphite. If the alert is unknown, collectd likely cannot talk to Fastly so restart collectd.
