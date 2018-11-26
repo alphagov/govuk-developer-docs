@@ -13,8 +13,7 @@ network (CDN) whenever origin (the application server) times out or serves an er
 response.
 
 This process is handled by our CDN config and is entirely transparent to us and
-our users. It happens multiple times a day, for lots of different reasons. The
-`govuk-cdn-logs-monitor` app outputs [stats showing if the mirrors are active][graphite_cdn_backend].
+our users. It happens multiple times a day, for lots of different reasons.
 
 This is why we refer to switching off Nginx on the origin cache machines as
 "falling back to the mirrors".
@@ -112,7 +111,6 @@ If you're notified that the edit you've made can be reverted, do that the same w
 Once origin becomes available again, somebody (maybe you) will have to ensure that
 origin has been updated to serve the change that you made.
 
-[graphite_cdn_backend]: https://graphite.publishing.service.gov.uk/render?from=-1months&until=now&width=800&height=600&target=stats.govuk.app.govuk-cdn-logs-monitor.logs-cdn-1.cdn_backend.mirror1&target=stats.govuk.app.govuk-cdn-logs-monitor.logs-cdn-1.cdn_backend.mirror0
 [govuk_crawler_worker]: https://github.com/alphagov/govuk_crawler_worker
 [govuk_seed_crawler]: https://github.com/alphagov/govuk_seed_crawler
 [govuk_mirror-puppet]: https://github.com/alphagov/govuk_mirror-puppet
