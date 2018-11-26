@@ -4,8 +4,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: CDN & Caching
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2018-07-31
-review_in: 3 months
+last_reviewed_on: 2018-11-26
+review_in: 6 months
 ---
 
 GOV.UK frontend applications, with the exception of Licensing and Email Alert Frontend, do not currently require cookies.
