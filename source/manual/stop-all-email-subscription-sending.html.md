@@ -10,7 +10,8 @@ review_in: 6 month
 
 In an emergency, the following steps will immediately stop all emails being sent by the GOV.UK email subscription system.
 
-> **Warning**
+> **WARNING**
+>
 > This is an emergency stopgap solution that should be reverted as soon as possible. All emails (including urgent ones such as travel alerts) will not be sent while this is active.
 
 > **Note**
