@@ -41,6 +41,7 @@ The [`govuk_app_config`](https://github.com/alphagov/govuk_app_config) gem autom
 The default configuration traces 1% of all requests. The can be changed on a per-app basis by specifying the `XRAY_SAMPLE_RATE` environment variable with a number between 0 (no tracing) and 1 (100% request tracing).
 
 > **WARNING**
+>
 > A high sampling rate can result in app slowness since each trace takes some non-zero time to complete. It will also result in cost increases since charges are based on the amount of data sent to the X-Ray service.
 
 ## X-Ray daemon
