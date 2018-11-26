@@ -8,11 +8,13 @@ last_reviewed_on: 2018-07-31
 review_in: 6 months
 ---
 
-Warning: This process deletes all data from a MongoDB node and forces a full
-copy from the current primary member of the replica set. This causes additional
-load on the primary member of the replica set and reduces the number of
-available copies of the database, so is best performed at a quiet time. Try not
-to resync more than one secondary at a time.
+> **WARNING**
+>
+> This process deletes all data from a MongoDB node and forces a full
+> copy from the current primary member of the replica set. This causes
+> additional load on the primary member of the replica set and reduces the
+> number of available copies of the database, so is best performed at a quiet
+> time. Try not to resync more than one secondary at a time.
 
 To
 [resync](https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/)

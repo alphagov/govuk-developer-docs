@@ -72,8 +72,14 @@ Once all the load balancers have been updated, requests to the app(s) will be us
 1. Change the relevant [app deployment scripts][deploy-scripts] to deploy to only the new servers.
 1. Re-run everything in production once you've checked everything works.
 
-> **Warning**
-> Bundling up the removal of the old servers from the load balancers and the removal of the app(s) from the old servers may result in a period where the old servers are still part of the load balancer group but don't have the app(s) running. This can be mitigated by either splitting up these changes, or running puppet manually on the load balancers after deployment to ensure no further traffic is routed to the old servers.
+> **WARNING**
+>
+> Bundling up the removal of the old servers from the load balancers and the
+> removal of the app(s) from the old servers may result in a period where the
+> old servers are still part of the load balancer group but don't have the
+> app(s) running. This can be mitigated by either splitting up these changes,
+> or running puppet manually on the load balancers after deployment to ensure
+> no further traffic is routed to the old servers.
 
 [hieradata]: https://github.com/alphagov/govuk-puppet/pull/7310
 [deploy-scripts]: https://github.com/alphagov/govuk-app-deployment/pull/250

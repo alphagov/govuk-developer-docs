@@ -321,7 +321,9 @@ psql ckan -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE
 It may be necessary, if there is a schedule clash and the system is too busy,
 to purge the queues used in the various stages of harvesting
 
-> Warning: This command will empty the Redis queues
+> **WARNING**
+>
+> This command will empty the Redis queues
 
 ```
 paster --plugin=ckanext-harvest harvester purge_queues -c $CKAN_INI

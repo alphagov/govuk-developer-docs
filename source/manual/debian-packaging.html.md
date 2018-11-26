@@ -182,8 +182,8 @@ When doing any of the `publish` actions below you will be prompted for
 the password. This can be found in the same place. You will need to use
 `sudo -i` for such actions, in order to reference root's GPG files.
 
-> **warning**
-
+> **WARNING**
+>
 > Please make sure that you use `sudo` and NOT a root shell, so that we
 > have a record of the actions performed.
 
