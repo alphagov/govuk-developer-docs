@@ -23,9 +23,8 @@ follow these steps:
     1. `cd /mnt/uploads/asset-manager/assets`
     1. Use the path identified in step 5 to check for the file by removing the `/var/apps/asset-manager/uploads/assets` prefix
     1. `sudo rm path/to/file`
-1. Navigate to your local fabric-scripts directory
-1. `fab production class:cache cdn.purge_all:'/media/.../some-asset.pdf`
-1. Check that the asset responds with a 404
+1. Add a cache bust and check that the asset responds with a 404 not found
+1. Wait 20 minutes so the cache clears and check the asset is not there
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 
 > **Note**
