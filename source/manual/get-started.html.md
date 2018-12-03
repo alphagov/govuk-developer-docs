@@ -213,7 +213,7 @@ Download the data by running:
 
 ```
 mac$ cd ~/govuk/govuk-puppet/development-vm/replication
-mac$ ./replicate-data-local.sh -u $USERNAME -F ../ssh_config -n
+mac$ ./replicate-data-local.sh -u $USER -F ../ssh_config -n
 ```
 
 If you've [set up your AWS account correctly](/manual/set-up-aws-account.html), you should then be prompted to enter your MFA token.
