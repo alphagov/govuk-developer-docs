@@ -141,7 +141,7 @@ https://data.gov.uk/api/3/action/package_list
 #### Viewing a dataset
 
 ```
-https://data.gov.uk/api/3/action/pakcage_show?id=f760008b-86d3-4bbb-89da-1dfe56101554
+https://data.gov.uk/api/3/action/package_show?id=f760008b-86d3-4bbb-89da-1dfe56101554
 ```
 
 #### Searching for a dataset
