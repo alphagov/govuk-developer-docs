@@ -55,7 +55,7 @@ Follow steps 1 - 7 in [Set up your MFA](#3-set-up-your-mfa). Then:
 
 An account in AWS doesn't give you access to anything, you'll need to be given rights.
 
-Add yourself to a lists of users found in [the data for the infra-security project][infra-terra]. There are 3 groups:
+Add yourself to a lists of users found in [the data for the infra-security project][infra-terra]. There are 4 groups:
 
 - `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure, Architects and Lead Developers of GOV.UK and anyone else working on the AWS migration
 - `govuk-powerusers`: anyone else who can have production access on GOV.UK
