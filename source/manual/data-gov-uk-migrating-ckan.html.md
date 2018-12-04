@@ -16,24 +16,31 @@ CKAN database, reload into a new instance then perform the data migration.
 
 #### Dumping data
 
-Log into the Bytemark production machine and dump the database:
+Create a dump of the Postgres database currently on the Bytemark production machine:
 
 ```
-ssh co@co-prod3.dh.bytemark.co.uk pg_dump ckan > ckan_dump.sql
+ssh co@co-prod3.dh.bytemark.co.uk "pg_dump -x -O ckan | gzip" > ckan_dump.sql.gz
 ```
 
-Log into the new machine in the correct environment and copy the file using SCP:
+SCP the file to the db-admin machine in the correct environment using SCP:
 
 ```
-scp co@co-prod3.dh.bytemark.co.uk:ckan_dump.sql /some/local/directory
+scp -o ProxyCommand="ssh -At jumpbox.integration.govuk.digital -W %h:%p" ckan_dump.sql.gz db-admin:/some/remote/directory
 ```
 
-Load the database dump into the new environment:
+Load the database dump into the new environment (obtain the username and password
+for `aws_db_admin` from secrets):
 
 ```
-sudo -u postgres psql -c 'CREATE DATABASE ckan;'
-sudo -u postgres psql ckan -f /some/local/directory/ckan_dump.sql
+govukcli set-context integration
+govukcli ssh db_admin
+psql postgres://aws_db_admin:password@postgresql-primary/ckan_production -c "SET session_replication_role = 'replica'"
+gunzip -c /some/directory/ckan_dump.sql.gz | psql postgres://aws_db_admin:password@postgresql-primary/ckan_production
+psql postgres://aws_db_admin:password@postgresql-primary/ckan_production -c "SET session_replication_role = 'origin'"
 ```
+
+> The `session_replication_role` must be set to ensure foreign key validation is
+> switched off during the import.
 
 #### Data schema migration
 
@@ -50,7 +57,9 @@ instance of CKAN.  It also removes non-publishing users and some deprecated
 features, such as tags.
 
 ```
-sudo -u postgres psql ckan -f /path/to/ckanext-datagovuk/migrations/001_bytemark_to_govuk.sql
+govukcli set-context integration
+govukcli ssh db_admin
+psql postgres://aws_db_admin:password@postgresql-primary/ckan_production -f /path/to/ckanext-datagovuk/migrations/001_bytemark_to_govuk.sql
 ```
 
 > All sysadmin users will be demoted when running this migration.  They must be
@@ -62,7 +71,48 @@ sudo -u postgres psql ckan -f /path/to/ckanext-datagovuk/migrations/001_bytemark
 CKAN provides a paster script to upgrade the database schema.  This should be
 run after the data models have been updated.
 
+Unfortunately, there is an auto-upgrade feature in `ckanext-harvest` which runs
+before any paster command (including `db upgrade`) and assumes you have already
+run the `db upgrade`.  You must therefore edit the `ckan.ini` to remove the
+plugins before running this step (they must be added again after the core
+CKAN migration is done).  This is the recommended solution given in the
+[CKAN documentation](https://docs.ckan.org/en/2.8/maintaining/database-management.html#upgrading).
+
 ```
-paster db upgrade -c $CKAN_INI
+govukcli set-context integration
+govukcli ssh ckan
+. /var/apps/ckan/venv/bin/activate
+paster --plugin=ckan db upgrade -c /var/ckan/ckan.ini
 ```
 
+##### Harvest sources
+
+Substantial changes were made to harvest records between the CKAN version, in
+particular harvest sources are now stored as packages, alongside the actual
+dataset packages.
+
+An auto-migration occurs for the harvesting plugin when a request is made to
+the web server.  This may result in a 504 (timeout) until the migration has
+completed.  To avoid this, run the migration paster command again, but this
+time with all the plugins specified in `ckan.ini`.
+
+```
+govukcli set-context integration
+govukcli ssh ckan
+. /var/apps/ckan/venv/bin/activate
+paster --plugin=ckan db upgrade -c /var/ckan/ckan.ini
+```
+
+##### Re-index Solr
+
+
+CKAN uses Solr to power some API responses (and therefore some UI content).
+Once a migration has been completed, Solr will need to be reindexed in it's
+entirety, otherwise it will be out of sync with the Postgres database.
+
+```
+govukcli set-context integration
+govukcli ssh ckan
+. /var/apps/ckan/venv/bin/activate
+paster --plugin=ckan search-index rebuild -c /var/ckan/ckan.ini
+```
