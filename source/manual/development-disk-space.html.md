@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Development VM
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2018-05-29
+last_reviewed_on: 2018-12-05
 review_in: 6 months
 ---
 
