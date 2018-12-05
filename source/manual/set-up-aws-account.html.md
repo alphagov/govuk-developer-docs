@@ -13,6 +13,8 @@ old_paths:
 To work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data),
 you will require an account in AWS.
 
+If you already have an AWS user associated with a different team's account, you can continue using it to log in to the AWS console, and then [switch roles](aws-console-access.html) where necessary.
+
 ## 1. Request a GDS AWS account
 
 GDS maintains a central account for AWS access. You will need to request an account from the Technology and Operations team.
