@@ -11,6 +11,8 @@ review_in: 3 months
 💡 Before you can access something in AWS, you [need to set up your AWS
 account][set-up-account].
 
+💡 You will need to [install the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html).
+
 ---
 
 ## 1. Create `~/.aws/config`
