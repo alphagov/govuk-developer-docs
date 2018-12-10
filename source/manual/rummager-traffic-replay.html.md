@@ -32,7 +32,7 @@ can replay the traffic.
 The logs are stored on the rummager servers (1 file per server) location at:
 
 ```
-/var/logs/gor_dump
+/var/log/gor_dump
 ```
 
 A copy of the file should be taken for the restore, as the restore requests
