@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Frontend
 owner_slack: "#govuk-frontenders"
-last_reviewed_on: 2018-08-29
+last_reviewed_on: 2018-12-07
 review_in: 3 months
 related_applications:
  - static
@@ -29,6 +29,10 @@ Most admin applications use:
 
 - [govuk_admin_template](https://github.com/alphagov/govuk_admin_template), built by GOV.UK
 - Which uses [Bootstrap](https://getbootstrap.com/)
+
+New admin applications and some legacy admin applications that have been updated use:
+
+- [layout_for_admin](https://govuk-publishing-components.herokuapp.com/component-guide/layout_for_admin) which is available as a component in [govuk_publishing_components](https://github.com/alphagov/govuk_publishing_components)
 
 ## Long term vision
 
