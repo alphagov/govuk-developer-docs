@@ -79,6 +79,42 @@ cf ssh publish-data-beta-production
 
 Now run `bundle exec sidekiq` and `rails s` and monitor the resulting jobs in the [Sidekiq Web UI](/manual/data-gov-uk-monitoring.html#sidekiq-publish).
 
+#### Updating Zendesk password for Find
+
+The contact form on Find uses the Zendesk API to create new tickets.  If the account password expires, it will need updating in secrets on the PaaS.
+
+The following example is for staging.
+
+Get the existing credentials (username and password):
+
+```
+cf ssh find-data-beta-staging
+echo $VCAP_SERVICES
+```
+
+Log into the Zendesk using the username and password obtained from the previous step.  Reset the password through the UI.
+
+Update the password in secrets using [uups](http://cli.cloudfoundry.org/en-US/cf/update-user-provided-service.html):
+
+```
+cf uups find-staging-secrets -p '{"key1": "value1", "key2": "value2"}'
+```
+
+> Updating the credentials will overwrite any existing credentials, not just the one you are updating.  Therefore you must copy the entirety of the credentials from `echo $VCAP_SERVICES`, update the password then paste this into the `uups` command.  Otherwise other credentials will be lost.
+
+Restage the application to update the environment variables:
+
+```
+cf restage find-data-beta-staging
+```
+
+Verify the new password is being used:
+
+```
+cf ssh find-data-beta-staging
+echo $VCAP_SERVICES
+```
+
 ### Bytemark
 
 You will need to arrange with 2nd line for your public SSH key to be added to the Bytemark production server.  Once this is done, you can connect by SSH with the username `co`.
