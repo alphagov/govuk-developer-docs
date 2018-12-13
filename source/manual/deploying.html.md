@@ -5,14 +5,13 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
-last_reviewed_on: 2018-10-18
+last_reviewed_on: 2018-12-13
 review_in: 6 months
 ---
 
 Teams are responsible for deploying their own work. We believe that [regular releases minimise the risk of major problems][reg] and improve recovery time. The [2nd line team][2l] is responsible for providing access to deploy software for teams who can't deploy it themselves.
 
-If you are responding to a security incident, follow the steps to
-[deploy fixes for a security vulnerability][sec].
+If you are responding to a security incident, follow the steps to [deploy fixes for a security vulnerability][sec].
 
 [2l]: /manual/welcome-to-2nd-line.html
 [reg]: https://gds.blog.gov.uk/2012/11/02/regular-releases-reduce-risk
@@ -20,23 +19,23 @@ If you are responding to a security incident, follow the steps to
 
 ## 1. Test on integration
 
-Code that is merged to `master` is automatically deployed to integration. You
-should verify that your changes work there.
+Code that is merged to `master` is automatically deployed to integration. You should verify that your changes work there.
 
 ## 2. Check the context
 
 The golden rule is that you only deploy what you can support.
 
-- This means that deploys generally take place between 10am and 4pm, the core hours when most people are in the office.
-- Check `#govuk-deploy` recent history and the channel topic. In some circumstances we may institute short deployment freezes, they will be announced in that channel.
-- Announce your deployment in `#2ndline` if it’s potentially problematic.
+- This means that deployments generally take place between 9.30am and 5pm (4pm on Fridays), the core hours when most people are in the office.
+- Check `#govuk-deploy` recent history and the channel topic. In some circumstances we may institute short deployment freezes, and they will be announced in that channel as well as other developer-relevant channels and possibly email.
+- Announce your deployment in `#govuk-2ndline` if it’s potentially problematic, or in `#govuk-deploy` if it involves deploying something other than a release tag (like a branch).
 
 ## 3. Check your changes
 
 Go to the [Release application](https://release.publishing.service.gov.uk) and find the application you want to deploy. Then select the release tag you want to deploy.
 
 - Check what you will be deploying. If there's other people's code to deploy, ask them whether they're okay for the changes to go out.
-- Check if there's a deploy note for the application, to see if there are any special instructions or reasons not to deploy.
+- Check if there's a deploy note for the application, to see if there are any special instructions or reasons not to deploy. Individual app deploy freezes are usually announced here.
+- Check in `#govuk-deploy` if someone's already in the process of deploying the app. This is particularly important for Puppet where there is a delay of 30 minutes between staging and production deployments. Deployments attributed to "Jenkins" are AWS automated deployments and can be ignored for this purpose.
 
 ## 4. Deploy to staging
 
@@ -44,7 +43,7 @@ From the [Release application](https://release.publishing.service.gov.uk), click
 
 Once deployed to staging, you will need to:
 
-- Perform manual testing
+- Perform manual testing (including any testing mandated as part of the deploy note for the app)
 - [Monitor your app during deployment](/manual/deployment-dashboards.html)
 - Check the results of the [smoke tests](https://github.com/alphagov/smokey)
 - Keep an eye on any Icinga alerts related to your application
@@ -54,7 +53,7 @@ Once deployed to staging, you will need to:
 
 Again:
 
-- Perform manual testing
+- Perform manual testing (including any testing mandated as part of the deploy note for the app)
 - [Monitor your app during deployment](/manual/deployment-dashboards.html)
 - Check the results of the [smoke tests](https://github.com/alphagov/smokey)
 - Keep an eye on any Icinga alerts related to your application
