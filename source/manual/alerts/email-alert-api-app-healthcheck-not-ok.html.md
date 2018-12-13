@@ -76,8 +76,7 @@ In non-production environments, this failure may also mean that we’re attempti
 
 In this case, ensure the contents of the  `govuk::apps::email_alert_api::email_address_override_whitelist` key in [hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml) and [hieradata_aws](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml) matches the members of the staging/integration Notify teams.
 
-You can login to the Notify account by going to
-[https://www.notifications.service.gov.uk](). The login credentials are
-in the [2nd line password store][password-store] under `govuk-notify/govuk-email-courtesy-copies`.
+You can login to the Notify account by going to the [GOV.UK Notify Admin Interface](https://www.notifications.service.gov.uk).
+The login credentials are in the [2nd line password store][password-store] under `govuk-notify/2nd-line-support`.
 
 [password-store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/govuk-notify
