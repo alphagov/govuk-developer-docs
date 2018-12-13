@@ -24,6 +24,8 @@ You can find which class of user you are [in the infra-security
 project in
 govuk-aws-data](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
 
+Choose either steps 2 and 3, or step 4 to continue.
+
 ## 2. Get your credentials
 
 Before deploying you'll have to assume a role for the environment you're deploying to.
@@ -43,5 +45,19 @@ If you've [set up AWS CLI correctly](/manual/aws-cli-access.html) you can get th
 ## 3. Terraform `plan` & `deploy`
 
 👉 [Deploy to integration using Jenkins][deploy-integration]
+
+## 4. Use `tools/deploy.rb`
+
+The Ruby script `tools/deploy.rb` in the `govuk-aws` repository takes care of requesting temporary AWS credentials with an assumed role and queuing the deployment Jenkins job.
+
+To use this script, you need to have [set up AWS CLI correctly](/manual/aws-cli-access.html) and have a [GitHub personal access token](https://github.com/settings/tokens).
+
+Then, run the script like the following example:
+
+```
+GITHUB_USERNAME=<your GitHub username> GITHUB_TOKEN=<your GitHub personal access token> ruby deploy.rb plan integration blue app-backend
+```
+
+If your AWS session has expired, you'll be asked for your MFA code. Once the script has run, you can visit the [Jenkins job][deploy-integration] to see it running or queued.
 
 [deploy-integration]: https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS
