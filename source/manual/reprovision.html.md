@@ -4,20 +4,21 @@ title: Reprovision a machine
 section: Infrastructure tasks
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-12-17
 review_in: 6 months
 ---
 
 Make sure you are aware what the consequences will be of removing a
 machine from the rotation and consider who needs to be aware of
-potential downtime.
+potential downtime. In particular, removing a single-point-of-failure
+machine will result in downtime.
 
 ## AWS
 
 1.  Log into the AWS console, select the correct environment and go to the EC2 service
-2.  Locate the instance and confirm it's the correct one by either instance ID or private IP
+2.  Locate the instance and confirm it's the correct one by either instance ID or private IP address
 3.  Select Terminate from the Actions -> Instance State menu
-4.  The AWS Auto Scaling Group will reprovision the instance
+4.  The AWS Auto Scaling Group will reprovision the instance automatically
 
 ## Carrenza
 
@@ -45,7 +46,7 @@ potential downtime.
         screen
         while true; do sudo puppet cert sign --all; sleep 10; done
 
-    Don't forget to kill the screen(1) session when you're done.
+    Don't forget to kill the screen session when you're done.
 
 6.  Reprovision the box using the "Launch VMs" Jenkins job in the
     enviroment's `deploy` Jenkins instance.
