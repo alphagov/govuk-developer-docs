@@ -57,6 +57,10 @@ Check the service is running:
 
     dev$ sudo service elasticsearch-development.development start
 
+If you get an error saying Elasticsearch is not installed, you may need to reprovision the VM from your host machine:
+
+    mac$ vagrant provision
+
 ## Can't take a write lock while out of disk space (in MongoDB)
 
 You may see such an error message which will prevent you from creating or even dropping collections. So you won't be able to replicate the latest data.
