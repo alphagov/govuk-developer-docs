@@ -4,7 +4,7 @@ title: Migrating data between CKAN instances
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-11-15
+last_reviewed_on: 2018-12-17
 review_in: 8 weeks
 ---
 [ckanext-datagovuk-github]: https://github.com/alphagov/ckanext-datagovuk
