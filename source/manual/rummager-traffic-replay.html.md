@@ -15,9 +15,14 @@ and `unpublish` messages that have not been processed need to be resent.
 ## `govuk` index
 
 Content in the `govuk` index is populated from the [Publishing API message queue][queue].
-Missing documents can be recovered by resending the content to the message queue,
-for example by running `represent_downstream:document_type[:document_type]` rake
-task in Publishing API.
+Missing documents can be recovered by resending the content to the message queue. In the
+Publishing API, run the following rake task (including the quotes) to replay traffic between
+two datestamps:
+
+    bundle exec rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
+
+[Other replay options are available](https://github.com/alphagov/publishing-api/blob/master/lib/tasks/represent_downstream.rake), for example replaying all traffic for a single publishing app or doctype.
+Be aware that these options will replay the entire Publisher API history for that app or doctype, and may take some time.
 
 ## `government`/`detailed` indexes
 
