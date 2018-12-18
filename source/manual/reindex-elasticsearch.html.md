@@ -61,6 +61,10 @@ ssh $(ssh integration "govuk_node_list --single-node -c rummager_elasticsearch")
 Then visit <http://localhost:9200/_plugin/head/> to check how many documents have
 been copied to the new index.
 
+Alternatively, to view a summary of the indices from inside the Elasticsearch instance:
+
+    curl http://localhost:9200/_cat/indices
+
 ### Replay traffic
 
 This step is only necessary if you ran reindexing job during working hours,
