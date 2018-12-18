@@ -4,7 +4,7 @@ title: Transition architecture
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-08
+last_reviewed_on: 2018-12-17
 review_in: 3 months
 related_applications: [bouncer, transition]
 ---
@@ -136,6 +136,10 @@ on the Bouncer machines. The assets live in [two](https://github.com/alphagov/as
 [repos](https://github.com/alphagov/assets-businesslink) which are [fetched and
 rsynced](https://github.com/alphagov/govuk-app-deployment/blob/master/bouncer/config/deploy.rb#L16-L41)
 to the machines when Bouncer is deployed.
+
+#### HTTPS support for transitioned sites
+
+Bouncer does not support HTTPS for transitioned sites. This functionality is under investigation as of December 2018. This limitation should be investigated as part of any site transition, especially if the existing site uses HSTS to force secure connections.
 
 [Bouncer]: /apps/bouncer.html
 [transition]: /apps/transition.html
