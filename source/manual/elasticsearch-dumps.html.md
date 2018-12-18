@@ -27,10 +27,17 @@ The first argument is the Elasticsearch instance and the second is the
 directory in which to store the output. The user running the dump needs
 permission to write to this directory.
 
+The [env-sync-and-backup job](https://github.com/alphagov/env-sync-and-backup/blob/master/jobs/elasticsearch-rummager.sh)
+creates daily copies of the Elasticsearch snapshots and stores them in S3 for 5 days.
+
 ## Restoring a backup
 
 Before restoring a backup, make sure you are
 [monitoring the cluster](/manual/alerts/elasticsearch-cluster-health.html).
+
+To view the current status of the indices from inside the Elasticsearch instance:
+
+    curl http://localhost:9200/_cat/indices
 
 Restoring to an index which exists is additive - it doesn't replace the
 existing data or delete any documents which don't exist in the dump.
@@ -72,3 +79,8 @@ updated since the backup was taken.
 After restoring a backup, follow
 [Replaying traffic to correct an out of sync search index](/manual/rummager-traffic-replay.html)
 to bring the search index back in sync with the publishing apps.
+
+### Elasticsearch 5.x support
+
+[es_dump_restore](https://github.com/patientslikeme/es_dump_restore) does not support
+Elasticseach 5.x. This applies to both creating a backup and restoring from a backup.
