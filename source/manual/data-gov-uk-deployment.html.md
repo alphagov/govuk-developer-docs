@@ -4,8 +4,8 @@ title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-17
-review_in: 8 weeks
+last_reviewed_on: 2018-12-21
+review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
@@ -50,8 +50,8 @@ Merging code into master triggers a deployment to the '[staging]' environment, b
 
 For more advanced uses of the PaaS that are not covered in the PaaS internal documentation (e.g. provisioning an app using a buildpack that is not Ruby or Java), refer to the [Cloud Foundry documentation][cf-docs].
 
-## New CKAN
+## CKAN
 
 [CKAN] uses GOV.UK infrastructure, which includes [Jenkins][jenkins] for CI.
 
-Integration, staging and production environments behave like all other GOV.UK applications.
+Integration, staging and production environments behave like all other GOV.UK applications on AWS.
