@@ -4,7 +4,7 @@ title: SSH into AWS machines
 section: AWS accounts 
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-02
+last_reviewed_on: 2018-12-28
 review_in: 2 months
 ---
 
