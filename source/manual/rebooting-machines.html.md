@@ -138,6 +138,15 @@ that Sidekiq has added to the Redis queues but not yet processed.
 There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
 waiting for the cluster to recover before rebooting the next node.
 
+> **Note**
+>
+> We have had a couple of incidents after running this script, so it should only
+> be done in-hours and requires careful monitoring. See:
+>
+> 1) [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#) - This required killing RabbitMQ processes to resolve.
+>
+> 2) [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv) - This required restarting Publishing API workers to resolve.
+
 If there are problems with the cluster (eg, a partition has happened),
 the `safe_reboot` script will not reboot anything, and you'll need to
 take manual action to resolve the problem.
