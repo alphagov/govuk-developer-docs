@@ -12,7 +12,7 @@ If there is a health check error showing for Email Alert API, you can click on t
 
 ## Unprocessed content changes (content_changes)
 
-This means that there are some content changes which haven't been processed within the time we would expect. This may be fine and the emails will eventually go out, but it's worth some investigation. Some useful queries:
+This means that there are some content changes which haven't been processed within the time we would expect. This may be fine and the emails will eventually go out, but it's worth some investigation. Some useful queries and Rake tasks:
 
 #### Check which content changes are affected
 
@@ -30,6 +30,16 @@ SubscriptionContent.where(content_change: content_change).count
 
 ```ruby
 SubscriptionContentWorker.new.perform(content_change.id)
+```
+
+#### Check sent, pending and failed email counts for a content change
+```bash
+ $ bundle exec rake report:content_change_email_status_count[<content_change_id>]
+```
+
+#### Check failed email ids and failure reasons for a content change
+```bash
+ $ bundle exec rake report::content_change_failed_emails[<content_change_id>]
 ```
 
 ## Unprocessed digest runs (digest_runs)
