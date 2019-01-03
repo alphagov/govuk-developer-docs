@@ -4,8 +4,8 @@ title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
-review_in: 6 months
+last_reviewed_on: 2019-01-03
+review_in: 3 months
 ---
 
 To encrypt our offsite backups, we use GPG keys which are valid for a year. For
@@ -24,7 +24,9 @@ historical data is unable to be access/unencrypted previous diffs.
 6. Export _secret_ key: Copy the output of `gpg2 --export-secret-key --armor <key id>`
 7. Export _public_ key: Copy the output of `gpg2 --export --armor <key id>` to a public key server, for instance https://pgp.mit.edu/
 
-NB: Steps 6 & 7 use different commands for exporting.
+> **NOTE**
+>
+> Steps 6 and 7 above use different commands for exporting.
 
 ## What do I need to update?
 
