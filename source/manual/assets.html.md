@@ -4,7 +4,7 @@ title: 'Assets: how they work'
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-29
+last_reviewed_on: 2019-01-03
 review_in: 6 months
 related_applications: [asset-manager]
 ---
@@ -21,11 +21,9 @@ images which are uploaded via the publishing apps and attached to documents.
 
 ### How users access assets
 
-In production, [the GOV.UK content delivery network](cdn.html)
-is in front of our assets hostname.
-
-In other environments there's no CDN and the assets hostname points
-directly to our origin servers.
+[The GOV.UK content delivery network](cdn.html) is in front of our assets
+hostname (`assets.publishing.service.gov.uk` and equivalents in other environments).
+The CDN fetches anything not in its cache from `assets-origin`.
 
 ### Assets at origin
 
@@ -47,7 +45,7 @@ Whitehall to manage their uploads. It serves the uploaded assets on
 
 ### How uploaded assets are stored and served
 
-Asset files are stored in an S3 bucket (i.e.
+Asset files are stored in an S3 bucket (e.g.
 `govuk-assets-production` in production) and Asset Manager instructs
 nginx to proxy requests to them.
 
