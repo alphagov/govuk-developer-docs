@@ -4,8 +4,8 @@ title: Use Terraboard to monitor Terraform state
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-27
-review_in: 3 months
+last_reviewed_on: 2019-01-03
+review_in: 6 months
 ---
 
 We use [Terraboard](https://camptocamp.github.io/terraboard/) for monitoring
