@@ -6,21 +6,9 @@ class AppDocs
     "ukcloud" => "UK Cloud",
   }.freeze
 
-  def self.new_by_type(app_data)
-    klass = case app_data["type"]
-            when "data.gov.uk apps"
-              DataGovUkApp
-            when "Licensing apps"
-              LicensingApp
-            else
-              App
-            end
-    klass.new(app_data)
-  end
-
   def self.pages
     @pages ||= YAML.load_file('data/applications.yml').map do |app_data|
-      new_by_type(app_data)
+      App.new(app_data)
     end
   end
 
@@ -211,11 +199,5 @@ class AppDocs
       return {} if private_repo?
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
     end
-  end
-
-  class DataGovUkApp < App
-  end
-
-  class LicensingApp < App
   end
 end
