@@ -146,6 +146,7 @@ class AppDocs
     end
 
     def deploy_url
+      return if app_data["deploy_url"] == false || production_hosted_on.in?(%w[paas])
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
 
@@ -212,10 +213,6 @@ class AppDocs
   end
 
   class DataGovUkApp < App
-    def deploy_url
-      # noop
-    end
-
     def dashboard_url
       "https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1"
     end
@@ -226,10 +223,6 @@ class AppDocs
   end
 
   class LicensingApp < App
-    def deploy_url
-      # noop
-    end
-
     def dashboard_url
       # noop
     end
