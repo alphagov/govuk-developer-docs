@@ -4,7 +4,7 @@ title: Pact Broker
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-15
+last_reviewed_on: 2019-01-03
 review_in: 6 months
 ---
 
