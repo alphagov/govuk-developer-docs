@@ -1,4 +1,11 @@
 class AppDocs
+  HOSTERS = {
+    "aws" => "AWS",
+    "paas" => "GOV.UK PaaS",
+    "carrenza" => "Carrenza",
+    "ukcloud" => "UK Cloud",
+  }.freeze
+
   def self.new_by_type(app_data)
     klass = case app_data["type"]
             when "data.gov.uk apps"
@@ -47,6 +54,7 @@ class AppDocs
         app_name: app_name,
         team: team,
         puppet_name: puppet_name,
+        production_hosted_on: production_hosted_on,
         links: {
           self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
           html_url: html_url,
@@ -72,6 +80,14 @@ class AppDocs
         end
       end
       'Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml'
+    end
+
+    def production_hosted_on
+      app_data["production_hosted_on"]
+    end
+
+    def hosting_name
+      AppDocs::HOSTERS.fetch(production_hosted_on)
     end
 
     def html_url
@@ -168,24 +184,8 @@ class AppDocs
       github_repo_data["topics"]
     end
 
-    def pending_hosting?
-      false
-    end
-
     def has_rake_tasks?
       true
-    end
-
-    def in_paas?
-      false
-    end
-
-    def in_aws?
-      true
-    end
-
-    def in_ukcloud?
-      false
     end
 
   private
@@ -227,19 +227,7 @@ class AppDocs
       "https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1"
     end
 
-    def pending_hosting?
-      github_repo_name == "ckanext-datagovuk"
-    end
-
     def has_rake_tasks?
-      false
-    end
-
-    def in_paas?
-      true
-    end
-
-    def in_aws?
       false
     end
   end
@@ -266,14 +254,6 @@ class AppDocs
     end
 
     def has_rake_tasks?
-      false
-    end
-
-    def in_ukcloud?
-      true
-    end
-
-    def in_aws?
       false
     end
   end

@@ -9,7 +9,7 @@ class AppsCSV
 
   def to_csv
     CSV.generate do |csv|
-      csv << ["Name", "Team", "Docs URL", "Repo URL"]
+      csv << ["Name", "Team", "Docs URL", "Repo URL", "Hosted On"]
 
       @apps.each do |app|
         csv << [
@@ -17,6 +17,7 @@ class AppsCSV
           app.team,
           app.html_url,
           app.repo_url,
+          app.production_hosted_on,
         ]
       end
     end

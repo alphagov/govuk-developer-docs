@@ -6,8 +6,18 @@ title: Applications on GOV.UK
 The publishing platform of GOV.UK consists of at least <%= active_app_pages.size %>
 separate applications. Most of them are built using [Ruby on Rails][rails].
 
+## Hosting
+
+| Hosting | Number of applications |
+| --- | --- |
+<% AppDocs::HOSTERS.each do |id, name| %>
+| <%= name %> | <%= AppDocs.pages.count { |app| app.production_hosted_on == id } %> |
+<% end %>
+
+## Reuse this data
+
 You can [download this data as JSON](/apps.json), or [download this data as CSV](/apps.csv).
-In Google Spreadsheets, use the following formula:
+In Google Spreadsheets, use the following formula to import all of the data:
 
 ```
 =importData("https://docs.publishing.service.gov.uk/apps.csv")
@@ -27,7 +37,7 @@ For example, a [HMRC manual page][hmrc-manual] is rendered by an application cal
 You can use the [chrome extension][extension] to find out which application
 is rendering any given page.
 
-You can [read more about the frontend architecture on GOV.UK](/manual/frontend-architecture.html). 
+You can [read more about the frontend architecture on GOV.UK](/manual/frontend-architecture.html).
 
 ## Publishing apps
 
