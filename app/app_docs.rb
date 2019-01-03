@@ -131,7 +131,13 @@ class AppDocs
     end
 
     def sentry_url
-      "https://sentry.io/govuk/app-#{app_name}"
+      if app_data["sentry_url"] == false
+        nil
+      elsif app_data["sentry_url"]
+        app_data["sentry_url"]
+      else
+        "https://sentry.io/govuk/app-#{app_name}"
+      end
     end
 
     def puppet_url
@@ -205,12 +211,6 @@ class AppDocs
   end
 
   class DataGovUkApp < App
-    def sentry_url
-      return "https://sentry.io/govuk/find-data" if app_name == "datagovuk_find"
-      return "https://sentry.io/govuk/publish-data" if app_name == "datagovuk_publish"
-      ""
-    end
-
     def puppet_url
       # noop
     end
@@ -229,10 +229,6 @@ class AppDocs
   end
 
   class LicensingApp < App
-    def sentry_url
-      # noop
-    end
-
     def puppet_url
       # noop
     end
