@@ -27,7 +27,12 @@ Owned by team **<%= application.team %>**.
 <% else %>
 Do you support this application? Help out by [adding your team name][app-yaml] to the documentation.
 <% end %>
-<br>
+
+### Hosting
+
+The production version of this application is hosted on **<%= application.hosting_name %>**.
+
+### Links
 
 <ul>
   <li><%= link_to "GitHub repo", application.repo_url %></li>
@@ -69,34 +74,35 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   <% end %>
 </ul>
 
-<h3>Hosting & SSH Access</h3>
-<% if application.pending_hosting? %>
-  This application's hosting arrangements are not yet complete.
-<% elsif application.in_paas? %>
-  This applications lives on [GOV.UK PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas).
-<% elsif application.in_ukcloud? %>
-  This applications lives in UK Cloud.
-<% elsif application.carrenza_machine %>
-  This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
+<% case application.production_hosted_on %>
+<% when  "carrenza" %>
 
-  To SSH to one of these machines:
+### SSH Access (Carrenza & AWS)
 
-  ```
-  ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
-  ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
-  ```
-<% end %>
+This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
 
-<% if application.in_aws? %>
-  <h3>AWS SSH access</h3>
+To SSH to one of these machines:
 
-  This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
+```
+ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+```
 
-  To SSH to one of these machines [via the jumpbox](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines-in-aws.html), use this command:
+This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
 
-  ```
-  ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
-  ```
+To SSH to one of these machines [via the jumpbox](/manual/howto-ssh-to-machines-in-aws.html), use this command:
+
+```
+ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+```
+<% when  "aws" %>
+### SSH Access (AWS)
+
+```
+ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+ssh -A -t jumpbox.staging.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+ssh -A -t jumpbox.production.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+```
 <% end %>
 
 <% if application.has_rake_tasks? %>
