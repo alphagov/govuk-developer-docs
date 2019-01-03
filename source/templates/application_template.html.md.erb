@@ -50,7 +50,7 @@ The production version of this application is hosted on **<%= application.hostin
   <% end %>
 
   <% if application.dashboard_url %>
-    <li><%= link_to "Deployment dashboard", application.dashboard_url %> (warning: not all apps have a dashboard)</li>
+    <li><%= link_to "Deployment dashboard", application.dashboard_url %></li>
   <% end %>
 
   <% if application.publishing_e2e_tests_url %>
