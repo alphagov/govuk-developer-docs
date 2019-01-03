@@ -151,7 +151,8 @@ class AppDocs
     end
 
     def dashboard_url
-      "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
+      return if app_data["dashboard_url"] == false
+      app_data["dashboard_url"] || "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 
     def publishing_e2e_tests_url
@@ -213,20 +214,12 @@ class AppDocs
   end
 
   class DataGovUkApp < App
-    def dashboard_url
-      "https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1"
-    end
-
     def has_rake_tasks?
       false
     end
   end
 
   class LicensingApp < App
-    def dashboard_url
-      # noop
-    end
-
     def has_rake_tasks?
       false
     end
