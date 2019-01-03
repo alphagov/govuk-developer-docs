@@ -130,16 +130,19 @@ class AppDocs
 
     def puppet_url
       return unless production_hosted_on.in?(%w[aws carrenza])
+
       "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
     end
 
     def deploy_url
       return if app_data["deploy_url"] == false || production_hosted_on.in?(%w[paas])
+
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
 
     def dashboard_url
       return if app_data["dashboard_url"] == false
+
       app_data["dashboard_url"] || "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 
