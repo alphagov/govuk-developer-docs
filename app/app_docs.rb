@@ -193,8 +193,8 @@ class AppDocs
       github_repo_data["topics"]
     end
 
-    def has_rake_tasks?
-      true
+    def can_run_rake_tasks_in_jenkins?
+      production_hosted_on.in?(%w[aws carrenza])
     end
 
   private
@@ -214,14 +214,8 @@ class AppDocs
   end
 
   class DataGovUkApp < App
-    def has_rake_tasks?
-      false
-    end
   end
 
   class LicensingApp < App
-    def has_rake_tasks?
-      false
-    end
   end
 end
