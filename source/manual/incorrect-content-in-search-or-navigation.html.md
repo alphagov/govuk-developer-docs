@@ -4,12 +4,12 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-07-26
+last_reviewed_on: 2019-01-03
 review_in: 3 months
 related_applications: [rummager]
 ---
 
-[Rummager](/apps/rummager.html) (the search API) often gets out of sync with
+[Rummager](/apps/rummager.html) (the search API) can get out of sync with
 publishing applications. This affects any part of the site using it, including
 navigation pages and related links.
 
@@ -28,8 +28,7 @@ for details of how we improved this for non-whitehall formats.
 ### Check if search is the problem
 
 A page with URL [/council-tax](https://www.gov.uk/council-tax) can be queried using [/api/search.json?filter_link=/council-tax](https://www.gov.uk/api/search.json?filter_link=/council-tax). You can quickly
-switch between the two using the [GOV.UK chrome
-plugin](https://github.com/alphagov/govuk-browser-extension).
+switch between the two using the [GOV.UK browser extension](https://github.com/alphagov/govuk-browser-extension).
 
 You can compare the data returned with the publishing app to check if it's up
 to date. An empty response means search has never received the content.
