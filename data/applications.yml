@@ -302,6 +302,13 @@
   sentry_url: false
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 
+- github_repo_name: datagovuk_reference
+  management_url: https://dashboard.heroku.com/apps/interval-server
+  production_hosted_on: heroku
+  type: data.gov.uk apps
+  sentry_url: false
+  dashboard_url: false
+
 # Licensing
 
 - github_repo_name: licensify
@@ -314,6 +321,66 @@
   dashboard_url: false
   description: |
     GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)
+
+# Utility Heroku apps (don't add apps that are only for review here)
+
+- github_repo_name: seal
+  management_url: https://dashboard.heroku.com/apps/moody-seal
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-alert-tracker
+  management_url: https://dashboard.heroku.com/apps/govuk-alert-tracker
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-content-schemas
+  app_name: govuk-content-store-examples
+  management_url: https://dashboard.heroku.com/apps/govuk-content-store-examples
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-display-screen
+  management_url: https://dashboard.heroku.com/apps/govuk-display-screen
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-dependencies
+  management_url: https://dashboard.heroku.com/apps/govuk-dependencies
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: blinkenjs
+  app_name: govuk-secondline-blinken
+  management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: side-by-side-browser
+  management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: tech-docs-monitor
+  management_url: https://dashboard.heroku.com/apps/govuk-tech-docs-monitor
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 # Retired applications
 
