@@ -4,6 +4,7 @@ class AppDocs
     "paas" => "GOV.UK PaaS",
     "carrenza" => "Carrenza",
     "ukcloud" => "UK Cloud",
+    "heroku" => "Heroku",
   }.freeze
 
   def self.pages
@@ -114,6 +115,10 @@ class AppDocs
       app_data.fetch("github_repo_name")
     end
 
+    def management_url
+      app_data["management_url"]
+    end
+
     def repo_url
       app_data["repo_url"] || "https://github.com/alphagov/#{github_repo_name}"
     end
@@ -135,7 +140,7 @@ class AppDocs
     end
 
     def deploy_url
-      return if app_data["deploy_url"] == false || production_hosted_on.in?(%w[paas])
+      return if app_data["deploy_url"] == false || production_hosted_on.in?(%w[paas heroku])
 
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
