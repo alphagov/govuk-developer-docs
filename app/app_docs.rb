@@ -141,6 +141,7 @@ class AppDocs
     end
 
     def puppet_url
+      return unless production_hosted_on.in?(%w[aws carrenza])
       "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
     end
 
@@ -211,10 +212,6 @@ class AppDocs
   end
 
   class DataGovUkApp < App
-    def puppet_url
-      # noop
-    end
-
     def deploy_url
       # noop
     end
@@ -229,10 +226,6 @@ class AppDocs
   end
 
   class LicensingApp < App
-    def puppet_url
-      # noop
-    end
-
     def deploy_url
       # noop
     end
