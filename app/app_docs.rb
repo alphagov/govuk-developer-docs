@@ -205,10 +205,6 @@ class AppDocs
   end
 
   class DataGovUkApp < App
-    def carrenza_machine
-      # noop
-    end
-
     def sentry_url
       return "https://sentry.io/govuk/find-data" if app_name == "datagovuk_find"
       return "https://sentry.io/govuk/publish-data" if app_name == "datagovuk_publish"
@@ -233,10 +229,6 @@ class AppDocs
   end
 
   class LicensingApp < App
-    def carrenza_machine
-      # noop
-    end
-
     def sentry_url
       # noop
     end
