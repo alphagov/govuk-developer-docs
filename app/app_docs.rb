@@ -6,21 +6,9 @@ class AppDocs
     "ukcloud" => "UK Cloud",
   }.freeze
 
-  def self.new_by_type(app_data)
-    klass = case app_data["type"]
-            when "data.gov.uk apps"
-              DataGovUkApp
-            when "Licensing apps"
-              LicensingApp
-            else
-              App
-            end
-    klass.new(app_data)
-  end
-
   def self.pages
     @pages ||= YAML.load_file('data/applications.yml').map do |app_data|
-      new_by_type(app_data)
+      App.new(app_data)
     end
   end
 
@@ -131,19 +119,31 @@ class AppDocs
     end
 
     def sentry_url
-      "https://sentry.io/govuk/app-#{app_name}"
+      if app_data["sentry_url"] == false
+        nil
+      elsif app_data["sentry_url"]
+        app_data["sentry_url"]
+      else
+        "https://sentry.io/govuk/app-#{app_name}"
+      end
     end
 
     def puppet_url
+      return unless production_hosted_on.in?(%w[aws carrenza])
+
       "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
     end
 
     def deploy_url
+      return if app_data["deploy_url"] == false || production_hosted_on.in?(%w[paas])
+
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
 
     def dashboard_url
-      "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
+      return if app_data["dashboard_url"] == false
+
+      app_data["dashboard_url"] || "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 
     def publishing_e2e_tests_url
@@ -184,8 +184,8 @@ class AppDocs
       github_repo_data["topics"]
     end
 
-    def has_rake_tasks?
-      true
+    def can_run_rake_tasks_in_jenkins?
+      production_hosted_on.in?(%w[aws carrenza])
     end
 
   private
@@ -201,60 +201,6 @@ class AppDocs
     def github_repo_data
       return {} if private_repo?
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
-    end
-  end
-
-  class DataGovUkApp < App
-    def carrenza_machine
-      # noop
-    end
-
-    def sentry_url
-      return "https://sentry.io/govuk/find-data" if app_name == "datagovuk_find"
-      return "https://sentry.io/govuk/publish-data" if app_name == "datagovuk_publish"
-      ""
-    end
-
-    def puppet_url
-      # noop
-    end
-
-    def deploy_url
-      # noop
-    end
-
-    def dashboard_url
-      "https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1"
-    end
-
-    def has_rake_tasks?
-      false
-    end
-  end
-
-  class LicensingApp < App
-    def carrenza_machine
-      # noop
-    end
-
-    def sentry_url
-      # noop
-    end
-
-    def puppet_url
-      # noop
-    end
-
-    def deploy_url
-      # noop
-    end
-
-    def dashboard_url
-      # noop
-    end
-
-    def has_rake_tasks?
-      false
     end
   end
 end
