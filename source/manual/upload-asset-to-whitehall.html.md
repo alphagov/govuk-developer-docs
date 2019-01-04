@@ -4,7 +4,7 @@ title: Upload an asset to whitehall
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-06-29
+last_reviewed_on: 2019-01-04
 review_in: 6 months
 ---
 
