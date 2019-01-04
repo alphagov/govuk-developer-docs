@@ -31,6 +31,15 @@ in the `publishing-api` app.
 
 [heartbeat_rake_task]: https://github.com/alphagov/publishing-api/blob/012cb3f1ceb3b18e7059a367cc4030aa0763afb4/lib/tasks/heartbeat_messages.rake
 
+## Viewing RabbitMQ metrics
+
+Metrics from RabbitMQ are collected with a CollectD plugin, and are
+available in Graphite/Grafana. There is a [generic RabbitMQ
+dashboard][rabbitmq-dashboard] which shows the main metrics for queues
+and exchanges.
+
+[rabbitmq-dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rabbitmq.json
+
 ## Connecting to the RabbitMQ web control panel
 
 1.  Create an SSH tunnel to access the web control panel
