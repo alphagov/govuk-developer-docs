@@ -20,12 +20,11 @@ This application is retired.
 GitHub topics: <%= application.topics.map { |topic| link_to(topic, "https://github.com/search?q=topic:#{topic}+org:alphagov") }.to_sentence %>
 <% end %>
 
+<% if application.team %>
+
 ### Ownership
 
-<% if application.team %>
 Owned by team **<%= application.team %>**.
-<% else %>
-Do you support this application? Help out by [adding your team name][app-yaml] to the documentation.
 <% end %>
 
 ### Hosting
@@ -39,6 +38,10 @@ The production version of this application is hosted on **<%= application.hostin
 
   <% if application.sentry_url %>
     <li><%= link_to "Sentry (error tracking)", application.sentry_url %></li>
+  <% end %>
+
+  <% if application.management_url %>
+    <li><%= link_to "Manage application", application.management_url %></li>
   <% end %>
 
   <% if application.puppet_url %>
