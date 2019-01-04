@@ -4,7 +4,7 @@ title: Give a content designer access to GitHub
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2018-01-03
+last_reviewed_on: 2019-01-04
 review_in: 6 months
 ---
 
