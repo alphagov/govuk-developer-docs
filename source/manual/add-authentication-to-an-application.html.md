@@ -58,9 +58,9 @@ To set up an application:
        application added in step 1;
      - Make a note of the created token;
      - Add any necessary app permissions to the application access.
-3. Add the tokens you have created to [govuk-secrets][]. This is so they can
-   be used in Puppet hieradata. The production tokens should also be added
-   to the staging secrets. [Example PR][secrets-example-pr].
+3. Add the tokens and oauth credentials you have created to [govuk-secrets][].
+   This is so they can be used in Puppet hieradata. The production tokens should
+   also be added to the staging secrets. [Example PR][secrets-example-pr].
 4. Create environment variables in [govuk-puppet][] for the tokens you have
    created. [Example PR][puppet-example-pr].
    - If your application runs on the draft stack you'll also need to ensure
@@ -115,4 +115,3 @@ is still successfully processing requests.
 [gds-api-factory]: https://github.com/alphagov/gds-api-adapters/pull/852
 [lib-services-example]: https://github.com/alphagov/publisher/blob/008b79a902795aa25d102913e2f4f2fde1ac834b/app/lib/services.rb
 [whitehall-rummager]: https://github.com/alphagov/whitehall/blob/7b5c5a086b89cb62ffba62b152a0a8dcfc10c8e6/config/initializers/rummager.rb
-
