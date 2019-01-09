@@ -38,7 +38,7 @@ As a working example, let's say we have an alert like *Content Publisher token f
 
 > Changes to govuk-secrets do not automatically trigger a Puppet deploy. One way to work around this is to [rebuild the last release][deploy-puppet]. You then need to wait for Puppet to run on each of the affected machines.
 
-   * Once the new token has been deployed, [restart the app][restart-app] to stop using the old token.
+   * Check the token is there with `govuk_setenv content-publisher env | grep -i token`
    * Check the app can still access the remote application APIs with the new token.
    * Once you're happy the new token works, you can *Revoke* the old one in Signon.
 
