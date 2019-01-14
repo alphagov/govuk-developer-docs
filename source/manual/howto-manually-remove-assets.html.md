@@ -24,7 +24,8 @@ follow these steps:
     1. Use the path identified in step 5 to check for the file by removing the `/var/apps/asset-manager/uploads/assets` prefix
     1. `sudo rm path/to/file`
 1. Add a cache bust and check that the asset responds with a 404 not found
-1. Wait 20 minutes so the cache clears and check the asset is not there
+1. Wait 20 minutes so the cache clears and check the asset is not there or clear using curl on a backend machine:
+eg. `curl -X PURGE https://assets.publishing.service.gov.uk/path/to/the/asset.pdf`
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 
 > **Note**
