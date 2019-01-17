@@ -4,7 +4,7 @@ title: Fix issues with installing Ruby gems using Bundler
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-10
+last_reviewed_on: 2019-01-17
 review_in: 6 months
 ---
 
