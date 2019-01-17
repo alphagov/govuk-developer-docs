@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-01-15
+last_reviewed_on: 2019-01-17
 review_in: 3 months
 ---
 
@@ -13,10 +13,10 @@ The [business readiness finder][business-readiness-finder] relies on metadata ta
 
 ## Updating content
 
-Content is curated and added to a [spreadsheet][] by the content team. Developer help is needed to upload the content. We do this by converting the spreadsheet into a CSV, including it [govuk-app-deplopment-secrets][govuk-app-deployment-secrets] and then releasing rummager.
+Content is curated and added to a [spreadsheet][] by the content team. Developer help is needed to upload the content. We do this by converting the spreadsheet into a CSV, including it in [govuk-app-deplopment-secrets][govuk-app-deployment-secrets] and then releasing rummager.
 
-The process of converting the spreadsheet into a CSV involves removing a header row and converting windows encoded line breaks if present.  There is a script to do this.
- 
+The process of converting the spreadsheet into a CSV involves removing a header row and converting windows encoded line breaks if present.  There is a [script](https://github.com/alphagov/govuk-app-deployment-secrets/blob/master/bin/prep_csv) to do this.
+
 1. Make sure the “List of documents with facets” tab is selected and download the spreadsheet as csv:
 
     ![download](images/download.png)
@@ -25,11 +25,14 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 3. `bin/prep_csv ~/Downloads/your-downloaded-file.csv`
 4. Create a pull request and get it reviewed & merged.
 5. Re-deploy rummager and email-alert-api.
-9. Run the [`tag_metadata` rake task][staging-rake-task] in rummager to index the contents of the new CSV, it should take 2 to 3 minutes:
+6. Run the [`tag_metadata` rake task][staging-rake-task] in rummager to index the contents of the new CSV, it should take 2 to 3 minutes:
 
     ![rake_task](images/rake.png)
 
-6. Check the results on e.g. https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business
+7. Check the results on e.g. [https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business](https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business)
+
+> These requests often come in through Zendesk and for pages that have only been created that same day, so you may only be able to check this in production.
+
 
 ## Removing content from the business readiness finder
 
