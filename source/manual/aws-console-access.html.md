@@ -32,6 +32,7 @@ Options for "Account":
 - `govuk-infrastructure-staging`
 - `govuk-infrastructure-integration`
 - `govuk-infrastructure-test`
+- `govuk-tools`
 
 Options for "Role":
 
