@@ -7,6 +7,12 @@ module HTTP
   end
 
   def self.get(url)
+    CACHE.fetch url, expires_in: 1.hour do
+      get_without_cache(url)
+    end
+  end
+
+  def self.get_without_cache(url)
     uri = URI.parse(url)
 
     faraday = Faraday.new(url: uri) do |conn|
