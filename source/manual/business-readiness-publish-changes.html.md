@@ -38,6 +38,8 @@ The content item for the business readiness finder is published by rummager. How
 
     ![download](images/publish-business-readiness.png)
 
+4. If you are making changes to the schema, you may also need to [reindex elasticsearch](/manual/reindex-elasticsearch).
+
 
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [finder-fronted]: https://github.com/alphagov/finder-frontend/blob/master/lib/prepare_business_uk_leaving_eu.yaml
