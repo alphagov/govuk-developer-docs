@@ -9,7 +9,7 @@ last_reviewed_on: 2019-01-18
 review_in: 3 months
 ---
 
-*If you are trying to update the content returned by the business readiness finder, see: [Updating content for the business readiness finder](/manual/business-readiness-update-content)*
+*If you are trying to update the content returned by the business readiness finder, see: [Updating content for the business readiness finder](/manual/business-readiness-update-content.html)*
 
 The full journey for the  [business readiness finder][business-readiness-finder] is made up of the following content items:
 
@@ -42,7 +42,7 @@ The content item for the business readiness finder is published by rummager. How
 
     ![download](images/publish-business-readiness.png)
 
-5. If you are making changes to the schema, you may also need to [reindex elasticsearch](/manual/reindex-elasticsearch).
+5. If you are making changes to the schema, you may also need to [reindex elasticsearch](/manual/reindex-elasticsearch.html).
 
 
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
