@@ -33,12 +33,16 @@ The content item for the finder is updated from a [YAML file](govuk-app-deployme
 The content item for the business readiness finder is published by rummager. However the actual config is read in from [govuk-app-deployment-secrets](govuk-app-deployment-secrets).
 
 1. Update [govuk-app-deployment-secrets](govuk-app-deployment-secrets)
-2. Merge and deploy the change to [govuk-app-deployment-secrets](govuk-app-deployment-secrets)
-3. Run the `publishing_api:publish_document_finder` [rake task][staging-rake-task] in rummager to publish the changes:
+2. Merge the changes to [govuk-app-deployment-secrets](govuk-app-deployment-secrets)
+3. Re-deploy Rummager so it can pick up the changes in [govuk-app-deployment-secrets](govuk-app-deployment-secrets)
+
+  N.B. If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
+
+4. Run the `publishing_api:publish_document_finder` [rake task][staging-rake-task] in rummager to publish the changes:
 
     ![download](images/publish-business-readiness.png)
 
-4. If you are making changes to the schema, you may also need to [reindex elasticsearch](/manual/reindex-elasticsearch).
+5. If you are making changes to the schema, you may also need to [reindex elasticsearch](/manual/reindex-elasticsearch).
 
 
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
