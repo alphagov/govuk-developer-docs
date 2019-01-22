@@ -19,22 +19,22 @@ The full journey for the  [business readiness finder][business-readiness-finder]
 
 The content for the start page can be updated in Mainstream Publisher as you would any other start page.
 
-The content item for the Q&A doesn't actually contain any details. The titles of the questions are defined in a YAML file in [finder frontend](finder-frontend). However the body of the question, for example the options if the question is a checkbox, are read from the content item of the finder itself (content item 3 in the list). Finder frontend searches the content item for a facet "key" that matches the question, e.g. `sector_business_area` to find the question content.
+The content item for the Q&A doesn't actually contain any details. The titles of the questions are defined in a YAML file in [finder frontend][finder-frontend]. However the body of the question, for example the options if the question is a checkbox, are read from the content item of the finder itself (content item 3 in the list). Finder frontend searches the content item for a facet "key" that matches the question, e.g. `sector_business_area` to find the question content.
 
-The content item for the finder is updated from a [YAML file](govuk-app-deployment-secrets). Any changes to this YAML file affect both the facets in the finder and the options in the Q&A.
+The content item for the finder is updated from a [YAML file][govuk-app-deployment-secrets]. Any changes to this YAML file affect both the facets in the finder and the options in the Q&A.
 
 ## Updating question titles
 
-1. Update the content of the YAML file in [finder frontend](finder-frontend)
+1. Update the content of the YAML file in [finder frontend][finder-frontend]
 2. Merge and deploy the changes
 
 ## Updating the business readiness finder
 
-The content item for the business readiness finder is published by rummager. However the actual config is read in from [govuk-app-deployment-secrets](govuk-app-deployment-secrets).
+The content item for the business readiness finder is published by rummager. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
 
-1. Update [govuk-app-deployment-secrets](govuk-app-deployment-secrets)
-2. Merge the changes to [govuk-app-deployment-secrets](govuk-app-deployment-secrets)
-3. Re-deploy Rummager so it can pick up the changes in [govuk-app-deployment-secrets](govuk-app-deployment-secrets)
+1. Update [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
+2. Merge the changes to [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
+3. Re-deploy Rummager so it can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 
   N.B. If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
 
