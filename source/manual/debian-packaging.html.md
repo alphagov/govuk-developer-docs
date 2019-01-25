@@ -128,7 +128,7 @@ be bumped up.
 ### fpm
 
 Add an fpm recipe to packager and then use [the Jenkins
-job](https://deploy.publishing.service.gov.uk/job/build_fpm_package/) to
+job](https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/) to
 create a Debian package. You can use the Vagrant development-VM to test
 the recipe prior to commiting to packager. You can copy this package to
 the aptly machine and then add the deb file to aptly.
