@@ -24,9 +24,8 @@ The CDN is responsible for retrying requests against the
 
 Most of the CDN config is versioned and scripted:
 
-- [Code that uses the Fastly API](https://github.com/alphagov/fastly-configure)
-- [Varnish configuration](https://github.com/alphagov/govuk-cdn-config/)
-- [Secrets](https://github.com/alphagov/cdn-configs)
+- [CDN configuration](https://github.com/alphagov/govuk-cdn-config/)
+- [CDN config secrets](https://github.com/alphagov/cdn-configs)
 
 These are deployed to [integration][integration_cdn], [staging][staging_cdn]
 and [production][production_cdn].

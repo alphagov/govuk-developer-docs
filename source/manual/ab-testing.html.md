@@ -100,7 +100,7 @@ need more data.
 1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test.
 1. Configure the A/B test in [the cdn-configs repo][cdn-configs] ([see an example][dictionary-config-example]). For more details, see the [dictionaries README][dictionaries-readme].
 1. Deploy the cdn-configs changes to each environment using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the [govuk-secrets repo][govuk-secrets] ([pass folder][pass-folder]).
-1. Add your test to the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo ([see an example][fastly-configure-example]). The test name must match the name configured in the cdn-configs repo in step 3.
+1. Add your test to the [ab_tests configuration file][configuration-file] in the [cdn-configs][cdn-configs] repo ([see an example][cdn-config-example]). The test name must match the name configured in the cdn-configs repo in step 3.
 . Deploy the Fastly configuration to each environment using the [Deploy_CDN][deploy-cdn] Jenkins job. Use the same parameters as in step 4. You can test it on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately - there is no caching of the CDN config.
 1. Use the [govuk_ab_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
 1. To activate or deactivate the test, or to change the B percentage, update your test in [the cdn-configs repo][cdn-configs] and deploy the change.
@@ -111,7 +111,7 @@ need more data.
 
 Follow these steps:
 
-1. Remove your test from the [ab_tests configuration file][configuration-file] in the [fastly-configure][fastly-configure] repo.
+1. Remove your test from the [ab_tests configuration file][configuration-file] in the [cdn-configs][cdn-configs] repo.
 2. Deploy the Fastly configuration to each environment using the [Deploy_CDN][deploy-cdn] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the govuk-secrets repo.
 3. Remove your test from [the cdn-configs repo][cdn-configs]. If you are removing the very last A/B test, you should replace the last test name with `[]` ([See an example of having no A/B tests][dictionary-removal-example]).
 4. Deploy the cdn-configs changes to each environment using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. Use the same parameters as in step 2.
@@ -123,9 +123,8 @@ Follow these steps:
 [dictionaries-readme]: https://github.com/alphagov/cdn-configs/blob/master/fastly/dictionaries/README.md
 [dictionary-config-example]: https://github.com/alphagov/cdn-configs/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
-[configuration-file]: https://github.com/alphagov/fastly-configure/blob/master/ab_tests/ab_tests.yaml
-[fastly-configure]: https://github.com/alphagov/fastly-configure
-[fastly-configure-example]: https://github.com/alphagov/fastly-configure/pull/29/files
+[configuration-file]: https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml
+[cdn-config-example]: https://github.com/alphagov/fastly-configure/pull/29/files
 [dictionary-removal-example]: https://github.com/alphagov/cdn-configs/commit/1e98e41ef87091e6fab6881a6acfac51b046875a
 [update-cdn-dictionaries]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
 [deploy-cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
