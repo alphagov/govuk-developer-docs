@@ -4,7 +4,7 @@ title: Raising issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-10-15
+last_reviewed_on: 2019-01-29
 review_in: 3 months
 ---
 
@@ -16,7 +16,7 @@ various GDS programmes such as logging and monitoring tools.
 When on 2nd line you may experience an issue with GOV.UK that requires asking
 Reliability Engineering for assistance.
 
-[There are Reliability Engineering tech docs](https://reliability-engineering.cloudapps.digital/) for users of their systems.
+There are [Reliability Engineering docs](https://reliability-engineering.cloudapps.digital/) for users of their systems. There are also [other Reliability Engineering docs](https://re-team-manual.cloudapps.digital/) for use by the team, these may contain more technical details.
 
 ## If you require urgent assistance
 
