@@ -4,7 +4,7 @@ title: Deploy AWS infrastructure with Terraform
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-10
+last_reviewed_on: 2019-01-29
 review_in: 3 months
 ---
 
@@ -14,13 +14,13 @@ infrastructure in AWS.
 ## 1. Check what you can deploy
 
 Which changes you can deploy depends on the level of access you have
-to our AWS environments.
+to our AWS environments. Specifically, the level of acces your Amazon Resource Name or ARN has been given.
 
-- `govuk-users` can't deploy anything
-- `govuk-powerusers` and `govuk-platformhealth-powerusers` can deploy everything except IAM (users and policies).
-- `govuk-administrators` can deploy everything including IAM.
+- `govuk-users` (`role_user_user_arns`) can't deploy anything
+- `govuk-powerusers` (`role_poweruser_user_arns`) and `govuk-platformhealth-powerusers` (`role_platformhealth_poweruser_user_arns`) can deploy everything except IAM (users and policies).
+- `govuk-administrators` (role_admin_user_arns) can deploy everything including IAM.
 
-You can find which class of user you are [in the infra-security
+You can find which class of user you are (what your arn has been assigned to) [in the infra-security
 project in
 govuk-aws-data](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
 
@@ -44,6 +44,7 @@ If you've [set up AWS CLI correctly](/manual/aws-cli-access.html) you can get th
 
 ## 3. Terraform `plan` & `deploy`
 
+Always `plan` first, check the output is what you expect, then `apply`.
 👉 [Deploy to integration using Jenkins][deploy-integration]
 
 ## 4. Use `tools/deploy.rb`
@@ -55,7 +56,7 @@ To use this script, you need to have [set up AWS CLI correctly](/manual/aws-cli-
 Then, run the script like the following example:
 
 ```
-GITHUB_USERNAME=<your GitHub username> GITHUB_TOKEN=<your GitHub personal access token> ruby deploy.rb plan integration blue app-backend
+GITHUB_USERNAME=<your GitHub username> GITHUB_TOKEN=<your GitHub personal access token> ruby tools/deploy.rb plan integration blue app-backend
 ```
 
 If your AWS session has expired, you'll be asked for your MFA code. Once the script has run, you can visit the [Jenkins job][deploy-integration] to see it running or queued.
