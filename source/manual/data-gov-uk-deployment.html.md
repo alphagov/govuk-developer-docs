@@ -4,7 +4,7 @@ title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-21
+last_reviewed_on: 2019-01-30
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
@@ -46,7 +46,14 @@ cf zero-downtime-push publish-data-beta-staging -f staging-app-manifest.yml
 cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifest.yml
 ```
 
-Merging code into master triggers a deployment to the '[staging]' environment, but you can also do this manually as follows. A production deployment is triggered when a new GitHub release is created for the app.
+There are [some scripts available for datagovuk_publish](https://github.com/alphagov/datagovuk_publish/tree/master/scripts) which can run a deploy for you, for example:
+
+```
+$ cd datagovuk_publish
+$ git pull
+$ ./scripts/deploy-staging.sh
+$ ./scripts/deploy-production.sh
+```
 
 For more advanced uses of the PaaS that are not covered in the PaaS internal documentation (e.g. provisioning an app using a buildpack that is not Ruby or Java), refer to the [Cloud Foundry documentation][cf-docs].
 
