@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: Pact Broker
 section: Testing
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-01-03

@@ -1,8 +1,9 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: GOV.UK in AWS
-section: Architecture
+section: Infrastructure
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2019-01-03
 review_in: 3 months

@@ -2,6 +2,7 @@
 owner_slack: "#govuk-platform-health"
 title: 'Assets: how they work'
 section: Assets
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-01-03

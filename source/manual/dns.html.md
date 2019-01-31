@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: Domain Name System (DNS) records
 section: DNS
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-07-31

@@ -3,6 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: Jenkins CI infrastructure
 parent: "/manual.html"
 layout: manual_layout
+type: learn
 section: Testing
 last_reviewed_on: 2018-07-27
 review_in: 6 months

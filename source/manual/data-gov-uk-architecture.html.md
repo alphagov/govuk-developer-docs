@@ -3,6 +3,7 @@ owner_slack: "#govuk-platform-health"
 title: Architecture of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2018-12-21
 review_in: 6 months
