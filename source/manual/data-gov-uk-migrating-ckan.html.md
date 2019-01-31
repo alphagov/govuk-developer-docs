@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Migrating data between CKAN instances
+title: Migrate data between CKAN instances
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
