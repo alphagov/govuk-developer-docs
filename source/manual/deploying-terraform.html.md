@@ -4,7 +4,7 @@ title: Deploy AWS infrastructure with Terraform
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-29
+last_reviewed_on: 2019-01-31
 review_in: 3 months
 ---
 
@@ -14,7 +14,7 @@ infrastructure in AWS.
 ## 1. Check what you can deploy
 
 Which changes you can deploy depends on the level of access you have
-to our AWS environments. Specifically, the level of acces your Amazon Resource Name or ARN has been given.
+to our AWS environments. Specifically, the level of access your Amazon Resource Name or ARN has been given.
 
 - `govuk-users` (`role_user_user_arns`) can't deploy anything
 - `govuk-powerusers` (`role_poweruser_user_arns`) and `govuk-platformhealth-powerusers` (`role_platformhealth_poweruser_user_arns`) can deploy everything except IAM (users and policies).
