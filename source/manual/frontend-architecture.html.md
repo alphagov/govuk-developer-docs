@@ -2,6 +2,7 @@
 title: Frontend architecture
 parent: "/manual.html"
 layout: manual_layout
+type: learn
 section: Frontend
 owner_slack: "#govuk-frontenders"
 last_reviewed_on: 2018-12-07

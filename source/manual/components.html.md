@@ -1,7 +1,8 @@
 ---
 owner_slack: '#govuk-frontenders'
-title: Use frontend components
+title: The component system
 section: Frontend
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-08-29

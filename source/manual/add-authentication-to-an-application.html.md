@@ -2,7 +2,7 @@
 title: Add authentication to an application
 parent: "/manual.html"
 layout: manual_layout
-section: Security
+section: Applications
 owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-12-18
 review_in: 6 months

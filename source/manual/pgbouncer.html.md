@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: PgBouncer
 section: Databases
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-08-14

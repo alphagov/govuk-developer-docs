@@ -1,8 +1,9 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Schema.org structured data
+title: What data we expose as schema.org structured data
 parent: "/manual.html"
 layout: manual_layout
+type: learn
 section: Publishing
 last_reviewed_on: 2018-09-10
 review_in: 12 months

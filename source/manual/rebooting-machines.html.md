@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Reboot a machine
-section: Infrastructure tasks
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true

@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Debian packaging
+title: Manage Debian packages
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
