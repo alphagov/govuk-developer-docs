@@ -3,6 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: Out of hours support (on-call)
 section: 2nd line
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2018-10-02
 review_in: 6 months
