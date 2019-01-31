@@ -20,3 +20,11 @@ Some projects use MiniTest. If you're in the position, you should convert these 
 - Projects must use [govuk-lint](https://github.com/alphagov/govuk-lint).
 
 See [Lint your Ruby code with govuk-lint](/manual/lint-ruby-code.html) for more instructions.
+
+## Background processing
+
+- Projects must use [govuk_sidekiq](https://github.com/alphagov/govuk_sidekiq)
+
+## Using RabbitMQ
+
+- Projects must use [govuk_message_queue_consumer](https://github.com/alphagov/govuk_message_queue_consumer)
