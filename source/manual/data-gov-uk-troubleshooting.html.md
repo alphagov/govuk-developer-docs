@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Troubleshooting data.gov.uk
+title: Troubleshoot data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
