@@ -4,6 +4,7 @@ title: Screens that we have in the office
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
+type: learn
 last_reviewed_on: 2018-09-06
 review_in: 12 months
 ---

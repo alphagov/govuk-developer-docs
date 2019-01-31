@@ -1,15 +1,14 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Graphite and deployment dashboards
+title: Use Graphite data in Grafana
 section: Monitoring
-type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-04
+last_reviewed_on: 2019-01-31
 review_in: 6 months
+old_paths:
+ - /manual/graphite-and-deployment-dashboards.html
 ---
-
-## How Graphite is used with deployment dashboards
 
 Graphite is a data storage application for time stream data that is used to store data performance data, error counts and other statistics about our servers.
 

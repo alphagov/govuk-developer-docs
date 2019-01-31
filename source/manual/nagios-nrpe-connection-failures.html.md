@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Nagios NRPE connection failures
+title: Deal with Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"

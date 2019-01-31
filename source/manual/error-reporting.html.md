@@ -3,6 +3,7 @@ title: Error reporting with Sentry
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
+type: learn
 owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2018-10-19
 review_in: 6 months

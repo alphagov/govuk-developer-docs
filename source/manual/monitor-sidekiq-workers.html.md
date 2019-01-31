@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-01-04
 review_in: 6 months
+old_paths:
+- manual/sidekiq-retries.html
 ---
 
 There are two approaches for monitoring Sidekiq, via the Sidekiq Web

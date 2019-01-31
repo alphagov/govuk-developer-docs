@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Pingdom Bouncer canary check
+title: How the Pingdom Bouncer canary check works
 parent: "/manual.html"
 layout: manual_layout
 type: learn

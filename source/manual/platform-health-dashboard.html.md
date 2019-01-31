@@ -4,7 +4,8 @@ title: Platform Health Dashboard
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
-last_reviewed_on: 2019-01-30
+type: learn
+last_reviewed_on: 2019-01-31
 review_in: 12 months
 ---
 
