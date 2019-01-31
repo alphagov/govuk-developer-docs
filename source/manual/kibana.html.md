@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Useful Kibana queries
+title: Query Kibana (includes useful queries)
 layout: manual_layout
 parent: "/manual.html"
 section: Logging

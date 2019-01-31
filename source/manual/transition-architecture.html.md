@@ -2,6 +2,7 @@
 owner_slack: '#govuk-platform-health'
 title: Transition architecture
 section: Transition
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-12-17

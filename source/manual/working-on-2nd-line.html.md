@@ -4,6 +4,7 @@ title: What we do on 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
+type: learn
 last_reviewed_on: 2018-11-01
 review_in: 3 months
 ---

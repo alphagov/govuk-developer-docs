@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Reprovision a machine
-section: Infrastructure tasks
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-12-17
