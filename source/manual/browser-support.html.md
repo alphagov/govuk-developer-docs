@@ -1,8 +1,9 @@
 ---
-title: Browser support
+title: Which browsers we support
 parent: "/manual.html"
 layout: manual_layout
 section: Frontend
+type: learn
 owner_slack: "#govuk-frontenders"
 last_reviewed_on: 2018-08-29
 review_in: 12 months

@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: PostgreSQL backups
 section: Backups
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-11-05

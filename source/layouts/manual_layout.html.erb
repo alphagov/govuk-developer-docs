@@ -25,24 +25,34 @@
 
   <%= html %>
 
-  <div class='grid-row'>
-    <div class='column-half'>
-      <% if current_page.data.related_applications %>
-        <h3>Related applications</h3>
+  <div class='related-content grid-row'>
+    <% if current_page.data.related_applications %>
+      <h4>Related applications</h4>
 
-        <ul>
-        <% current_page.data.related_applications.to_a.each do |app| %>
-          <li><%= link_to "#{app} application", "/apps/#{app}.html" %></li>
-        <% end %>
-        </ul>
+      <ul>
+      <% current_page.data.related_applications.to_a.each do |app_name| %>
+        <li><%= link_to app_name, "/apps/#{app_name}.html" %></li>
       <% end %>
+      </ul>
+    <% end %>
+
+    <h3>More in the <%= current_page.data.section %> section</h3>
+
+    <div class='column-half'>
+      <h4>Learn</h4>
+
+      <ul>
+      <% manual.other_pages_from_section(current_page).select { |page| page.data.type == "learn" }.each do |page| %>
+        <li><%= link_to page.data.title, page.url %></li>
+      <% end %>
+      </ul>
     </div>
 
     <div class='column-half'>
-      <h3>More about <%= current_page.data.section %></h3>
+      <h4>How to...</h4>
 
       <ul>
-      <% manual.other_pages_from_section(current_page).each do |page| %>
+      <% manual.other_pages_from_section(current_page).select { |page| page.data.type.nil? }.each do |page| %>
         <li><%= link_to page.data.title, page.url %></li>
       <% end %>
       </ul>

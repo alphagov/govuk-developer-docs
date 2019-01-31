@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: How to use Logit for GOV.UK
+title: Use Logit for GOV.UK
 section: Logging
 layout: manual_layout
 parent: "/manual.html"

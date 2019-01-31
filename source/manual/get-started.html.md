@@ -3,7 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
-section: Basics
+section: Learning GOV.UK
 last_reviewed_on: 2018-10-10
 review_in: 3 months
 ---

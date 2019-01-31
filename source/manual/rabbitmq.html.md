@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Manage RabbitMQ
-section: Infrastructure tasks
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-01-04

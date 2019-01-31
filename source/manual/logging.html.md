@@ -3,6 +3,7 @@ owner_slack: "#govuk-2ndline"
 title: How logging works on GOV.UK
 section: Logging
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2018-08-22
 review_in: 6 months
