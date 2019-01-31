@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Receiving emails from Email Alert API in integration and staging
+title: Receive emails from Email Alert API in integration and staging
 section: Emails
 layout: manual_layout
 parent: "/manual.html"

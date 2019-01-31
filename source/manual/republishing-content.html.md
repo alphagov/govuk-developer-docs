@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Republishing Content
+title: Republish content
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"

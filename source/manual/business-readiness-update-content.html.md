@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Updating content for the business readiness finder
+title: Update content for the business readiness finder
 section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"

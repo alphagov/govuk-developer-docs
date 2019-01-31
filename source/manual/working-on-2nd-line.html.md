@@ -1,6 +1,6 @@
 ---
 owner_slack: "@hong.nguyen"
-title: Working on 2nd line
+title: What we do on 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
@@ -21,15 +21,15 @@ Other things to know:
 
 ## Ongoing issues to be aware of
 
-Record critical alerts that aren't easily solved to the [GOV.UK 2nd line Trello board](https://trello.com/b/M7UzqXpk/govuk-2nd-line) to help inform the Platform Health and the GOV.UK AWS migration team. 
+Record critical alerts that aren't easily solved to the [GOV.UK 2nd line Trello board](https://trello.com/b/M7UzqXpk/govuk-2nd-line) to help inform the Platform Health and the GOV.UK AWS migration team.
 
-2nd line should investigate these alerts when there is downtime. 
+2nd line should investigate these alerts when there is downtime.
 
 You do not have to fix the issue necessarily.
 
-We record these alerts here because so other developers are aware that they are likely to happen. 
+We record these alerts here because so other developers are aware that they are likely to happen.
 
 These alerts shouldn't cause big issues but that's not to say it won't - which is why we should log it here.
 
-## Declaring and responding to an incident 
+## Declaring and responding to an incident
 Find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html).
