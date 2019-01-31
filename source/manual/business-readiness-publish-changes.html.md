@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Publishing changes to the business readiness finder
+title: Publish changes to the business readiness finder
 section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
@@ -9,7 +9,7 @@ last_reviewed_on: 2019-01-18
 review_in: 3 months
 ---
 
-*If you are trying to update the content returned by the business readiness finder, see: [Updating content for the business readiness finder](/manual/business-readiness-update-content.html)*
+*If you are trying to update the content returned by the business readiness finder, see: [Update content for the business readiness finder](/manual/business-readiness-update-content.html)*
 
 The full journey for the  [business readiness finder][business-readiness-finder] is made up of the following content items:
 

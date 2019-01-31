@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Using `bowl` fails with bundler error
+title: Fix bundler errors when running `bowl`
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
