@@ -4,7 +4,7 @@ title: Low available disk space
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-02-01
 review_in: 6 months
 ---
 
@@ -177,7 +177,7 @@ mount point which has free space) and then entirely truncate that log:
 and put it back in the log file directory.
 
 You can force a logrotate run afterwards:
-`logrotate -vf /etc/logrotate.d/<type of logs>`
+`sudo logrotate -vf /etc/logrotate.d/<type of logs>`
 
 **If you have nowhere to move the logs and it is causing an incident,
 uptime of the server takes precedent over logfiles, so just truncate the
