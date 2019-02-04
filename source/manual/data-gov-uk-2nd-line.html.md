@@ -62,12 +62,19 @@ Sometimes a publisher will request a large deletion of datasets.  In these cases
 ### Add a schema vocabulary definition
 Users are not permitted to add their own schema vocabulary definitions.
 This is to be done by 2nd line, following a request from the publisher.
+
 1. Add the new schema vocabulary definition to the [schemas](schemas)
 2. Add the new schema vocabulary definition to the [corresponding test](test-schemas)
 
-The format is `"<random UUID>": "<schema vocabulary definition title> - <schema vocabulary definition url>"`.
-You can generate a `UUID` in `irb` or `pry`:
+The format is:
+
 ```
+"<random UUID>": "<schema vocabulary definition title> - <schema vocabulary definition url>"`
+```
+
+You can generate a `UUID` in `irb` or `pry`:
+
+```bash
 $ pry
 [1] pry(main)> require 'securerandom'
 => true
@@ -77,7 +84,7 @@ $ pry
 
 > **Note**
 >
-> The added schema will appear in https://ckan.publishing.service.gov.uk/dataset/new
+> The added schema will appear in the Schema/Vocabulary dropdown in [https://ckan.publishing.service.gov.uk/dataset/new](https://ckan.publishing.service.gov.uk/dataset/new).
 
 ## Harvesting
 Harvesting is where publishers can automatically import their data to data.gov.uk without having to manually enter it into the web interface.  They can be set up to run automatically at specified periods, or run manually on-demand.
