@@ -110,7 +110,7 @@ https://data.gov.uk/api/3/action/user_show?id=user_d484581
 ### Creating a system administrator account
 
 ```
-paster --plugin=ckan sysadmin add USERNAME email=EMAIL_ADDRESS -c $CKAN_INI
+paster --plugin=ckan sysadmin add USERNAME email=EMAIL_ADDRESS -c /var/ckan/ckan.ini
 ```
 
 You will be prompted twice for a password.
@@ -118,7 +118,7 @@ You will be prompted twice for a password.
 ### Removing a system administrator account
 
 ```
-paster --plugin=ckan sysadmin remove USERNAME -c $CKAN_INI
+paster --plugin=ckan sysadmin remove USERNAME -c /var/ckan/ckan.ini
 ```
 
 ### Managing users
@@ -126,31 +126,31 @@ paster --plugin=ckan sysadmin remove USERNAME -c $CKAN_INI
 #### Listing users
 
 ```
-paster --plugin=ckan user list -c $CKAN_INI
+paster --plugin=ckan user list -c /var/ckan/ckan.ini
 ```
 
 #### Viewing a user
 
 ```
-paster --plugin=ckan user USERNAME -c $CKAN_INI
+paster --plugin=ckan user USERNAME -c /var/ckan/ckan.ini
 ```
 
 #### Adding a user
 
 ```
-paster --plugin=ckan user add USERNAME email=EMAIL_ADDRESS -c $CKAN_INI
+paster --plugin=ckan user add USERNAME email=EMAIL_ADDRESS -c /var/ckan/ckan.ini
 ```
 
 #### Removing a user
 
 ```
-paster --plugin=ckan user remove USERNAME -c $CKAN_INI
+paster --plugin=ckan user remove USERNAME -c /var/ckan/ckan.ini
 ```
 
 #### Changing a user's password
 
 ```
-paster --plugin=ckan user setpass USERNAME -c $CKAN_INI
+paster --plugin=ckan user setpass USERNAME -c /var/ckan/ckan.ini
 ```
 
 ### Deleting a dataset
@@ -164,13 +164,13 @@ UUID.
 Deleting a dataset:
 
 ```
-paster --plugin=ckan dataset delete DATASET_NAME -c $CKAN_INI
+paster --plugin=ckan dataset delete DATASET_NAME -c /var/ckan/ckan.ini
 ```
 
 Purging a dataset:
 
 ```
-paster --plugin=ckan dataset purge DATASET_NAME -c $CKAN_INI
+paster --plugin=ckan dataset purge DATASET_NAME -c /var/ckan/ckan.ini
 ```
 
 There may be times when a large number of datasets must be deleted.  This can be done remotely from your
@@ -192,13 +192,13 @@ to refresh the index, or rebuild it from scratch.
 Refresh the entire search index (this adds/removes datasets, but does not clear the index first):
 
 ```
-paster --plugin=ckan search-index rebuild -r -c $CKAN_INI
+paster --plugin=ckan search-index rebuild -r -c /var/ckan/ckan.ini
 ```
 
 Rebuild the entire search index (this deletes the index before re-indexing begins):
 
 ```
-paster --plugin=ckan search-index rebuild -c $CKAN_INI
+paster --plugin=ckan search-index rebuild -c /var/ckan/ckan.ini
 ```
 
 > Rebuilding the entire search index immediately removes all records from the search before re-indexing
@@ -210,7 +210,7 @@ paster --plugin=ckan search-index rebuild -c $CKAN_INI
 Only reindex those packages that are not currently indexed:
 
 ```
-paster --plugin=ckan search-index -o rebuild -c $CKAN_INI
+paster --plugin=ckan search-index -o rebuild -c /var/ckan/ckan.ini
 ```
 
 ### Managing the harvest workers
@@ -224,7 +224,7 @@ Returns a list of currently running jobs.  This will contain the
 JOB_ID necessary to cancel jobs.
 
 ```
-paster --plugin=ckanext-harvest harvester jobs -c $CKAN_INI
+paster --plugin=ckanext-harvest harvester jobs -c /var/ckan/ckan.ini
 ```
 
 It may be faster to run a SQL query to get the ID of a specific harvest job.
@@ -239,7 +239,7 @@ To cancel a currently running job, you will require a JOB_ID from the
 [Listing current jobs](#listing-current-jobs) section.
 
 ```
-paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c $CKAN_INI
+paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
 ```
 
 This can also be done by running SQL:
@@ -258,7 +258,7 @@ to purge the queues used in the various stages of harvesting
 > This command will empty the Redis queues
 
 ```
-paster --plugin=ckanext-harvest harvester purge_queues -c $CKAN_INI
+paster --plugin=ckanext-harvest harvester purge_queues -c /var/ckan/ckan.ini
 ```
 
 #### Restarting the harvest queues
@@ -285,7 +285,7 @@ sudo initctl restart harvester_fetch_consumer-procfile-worker
 Change the name in the publisher page then reindex that publisher:
 
 ```
-paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c $CKAN_INI
+paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c /var/ckan/ckan.ini
 ```
 
 ### Register a brownfield dataset
