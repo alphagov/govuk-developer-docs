@@ -5,7 +5,7 @@ section: DNS
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 
@@ -13,7 +13,7 @@ The Reliability Engineering team is responsible for managing several DNS zones.
 
 By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS)
 
-As of Jul 2018, there are 40 hosted zones. A list is retrievable from a terminal using:
+As of Feb 2019, there are 40 hosted zones. A list is retrievable from a terminal using:
 
 ```
   aws route53 list-hosted-zones | grep Name
