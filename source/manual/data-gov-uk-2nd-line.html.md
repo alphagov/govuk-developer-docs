@@ -58,6 +58,27 @@ Users are not permitted to remove their own datasets.  There are a [limited numb
 #### Bulk deleting datasets
 Sometimes a publisher will request a large deletion of datasets.  In these cases, you can bulk withdraw the datasets using the instructions contained in the [supporting CKAN](/manual/data-gov-uk-supporting-ckan.html#deleting-a-dataset) documentation.  Refer to the instructions for 'Deleting a dataset' (which is a soft-delete).  **Do not purge the dataset - this is a hard-delete.**
 
+## Schema vocabulary definitions
+### Add a schema vocabulary definition
+Users are not permitted to add their own schema vocabulary definitions.
+This is to be done by 2nd line, following a request from the publisher.
+1. Add the new schema vocabulary definition to the [schemas](schemas)
+2. Add the new schema vocabulary definition to the [corresponding test](test-schemas)
+
+The format is `"<random UUID>": "<schema vocabulary definition title> - <schema vocabulary definition url>"`.
+You can generate a `UUID` in `irb` or `pry`:
+```
+$ pry
+[1] pry(main)> require 'securerandom'
+=> true
+[2] pry(main)> SecureRandom.uuid
+=> "14104757-303a-48ad-8eff-bfbe320b0e0a"
+```
+
+> **Note**
+>
+> The added schema will appear in https://ckan.publishing.service.gov.uk/dataset/new
+
 ## Harvesting
 Harvesting is where publishers can automatically import their data to data.gov.uk without having to manually enter it into the web interface.  They can be set up to run automatically at specified periods, or run manually on-demand.
 
@@ -84,3 +105,8 @@ Organograms are the only datasets in data.gov.uk where we host the data itself r
 Publishers upload their organograms as a Excel (XLS) file that contains macros.  A script is run which converts these to the two CSV files (junior staff and senior staff).
 
 > Publishers **must** select the correct 'Schema Vocabulary' for their organogram dataset (i.e. one of the two 'organisation structure' values) in order for the upload option to become available and for the XLS-to-CSV conversion to run.
+
+
+[schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/helpers.py#L119-L213
+[test-schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/tests/test_helpers.py#L63-L157
+[ckanext-datagovuk]: https://github.com/alphagov/ckanext-datagovuk
