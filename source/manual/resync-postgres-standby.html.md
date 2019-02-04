@@ -4,7 +4,7 @@ title: Resync a PostgreSQL standby
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 
@@ -24,7 +24,7 @@ pg_basebackup: base backup completed
  * Starting PostgreSQL 9.3 database server                                 [ OK ]
 ```
 
-You can get a quick view of postgresql's wal by doing the following:
+You can get a quick view of postgresql's [wal](https://www.postgresql.org/docs/9.1/wal-intro.html) by doing the following:
 
 on a `postgresql-primary`: `ps -ef | grep sender`
 

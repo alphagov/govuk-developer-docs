@@ -4,7 +4,7 @@ title: Post a message on the status page
 section: Incidents
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-11-02
+last_reviewed_on: 2019-02-04
 review_in: 3 months
 important: true
 ---
