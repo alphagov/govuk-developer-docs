@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-11-05
+last_reviewed_on: 2019-02-05
 review_in: 3 months
 related_applications: [rummager]
 ---
