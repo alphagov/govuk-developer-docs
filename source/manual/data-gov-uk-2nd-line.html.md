@@ -116,6 +116,8 @@ Publishers upload their organograms as a Excel (XLS) file that contains macros. 
 
 > Publishers **must** select the correct 'Schema Vocabulary' for their organogram dataset (i.e. one of the two 'organisation structure' values) in order for the upload option to become available and for the XLS-to-CSV conversion to run.
 
+## Revision log
+There is a [revision log](https://ckan.publishing.service.gov.uk/revision) which shows the most recent edits to CKAN datasets, harvester and users performed by all users.
 
 [schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/helpers.py#L119-L213
 [test-schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/tests/test_helpers.py#L63-L157
