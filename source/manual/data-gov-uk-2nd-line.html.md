@@ -15,6 +15,9 @@ This document details some of the requests that GOV.UK 2nd line support may rece
 ## Users and Publishers
 Users have their own accounts and can login using either their username or email address.   A user can be a member of one or more publishing organisations, and can have either the role 'Admin' or 'Editor' for each organisation.  Users with 'Admin' status can add/remove users from the organisation for which they are an admin.  They only have 'admin' rights on their own organisation, contrasted to a 'sysadmin' who has admin rights across all organisations.
 
+### Find a user
+There is a [user list](https://ckan.publishing.service.gov.uk/user) which can be used to locate a user account.  This is useful in cases where a publisher does not know their username or no longer has access to their registered email account.  This list is only accessible when logged in as a sysadmin.
+
 ### Create a user account
 There are two routes for creating an new account for a new user:
 
