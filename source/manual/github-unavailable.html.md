@@ -10,20 +10,18 @@ review_in: 6 months
 
 ## Public GitHub (application code)
 
-Many of the Git repositories which make up GOV.UK are hosted on public GitHub. We may need to deploy changes at any time, and GitHub.com is a Software as a Service (SaaS) product which is not guaranteed to be available.
+Many of the git repositories which make up GOV.UK are hosted on public GitHub. We may need to deploy changes at any time, and GitHub is a Software as a Service (SaaS) product which is not guaranteed to be available.
 
 If GitHub is unavailable, we lose:
 
 * Access to our primary code repository
 * The ability to authenticate with Jenkins, as it makes use of GitHub groups
 
-We mirror all our repositories to AWS CodeComit every two hours using the
-[`govuk-repo-mirror`](https://github.com/alphagov/govuk-repo-mirror) scripts. This is run from the [`Mirror_Repositories`](https://ci.integration.publishing.service.gov.uk/job/Mirror_Repositories/) CI job
-In the event of Github being down, we can deploy the code from AWS CodeCommit repos. This requires help from a GOV.UK AWS admin.
+We [mirror all GitHub repositories](repository-mirroring.html) tagged with `govuk` to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos. This requires help from a GOV.UK AWS admin.
 
 ### Deploying from AWS CodeCommit
 
-Use the normal deployment job but check the box to deploy from AWS CodeCommit.
+Use the normal deployment Jenkins job but check the box to deploy from AWS CodeCommit.
 
 ### Making changes to code in AWS CodeCommit before deployment
 
