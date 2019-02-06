@@ -10,6 +10,17 @@ review_in: 6 months
 
 If there is a health check error showing for Email Alert API, you can click on the alert to find out more details about what’s wrong. Here are the possible problems you may see:
 
+Some of the alerts below tend to trigger when emails are sent out. Check to see if emails have sent out by looking at the [Email Alert API Metrics Grafana dashboard](https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1)
+
+This affects the following alerts:
+
+* Unprocessed content changes
+* Subscription content
+* High queue alerts (all)
+* Subscription content
+
+In this case you can wait until the emails have all been sent out.
+
 ## Unprocessed content changes (content_changes)
 
 This means that there are some content changes which haven't been processed within the time we would expect. This may be fine and the emails will eventually go out, but it's worth some investigation. Some useful queries and Rake tasks:
