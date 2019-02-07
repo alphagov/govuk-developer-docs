@@ -47,6 +47,10 @@ helpers do
   def page_review
     @page_review ||= PageReview.new(current_page)
   end
+
+  def related_things
+    @related_things ||= RelatedThings.new(manual, current_page)
+  end
 end
 
 ignore 'templates/*'
