@@ -25,45 +25,7 @@
 
   <%= html %>
 
-  <div class='related-content grid-row'>
-    <% if related_things.related_applications.any? %>
-      <h4>Related applications</h4>
-
-      <ul>
-      <% related_things.related_applications.each do |name, url| %>
-        <li><%= link_to name, url %></li>
-      <% end %>
-      </ul>
-    <% end %>
-
-    <% if related_things.any_related_pages? %>
-      <h3>More in the <%= current_page.data.section %> section</h3>
-
-      <% if related_things.related_learning_pages.any? %>
-        <div class='column-half'>
-          <h4>Learn</h4>
-
-          <ul>
-          <% related_things.related_learning_pages.each do |page| %>
-            <li><%= link_to page.data.title, page.url %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-
-      <% if related_things.related_task_pages.any? %>
-        <div class='column-half'>
-          <h4>How to...</h4>
-
-          <ul>
-          <% related_things.related_task_pages.each do |page| %>
-            <li><%= link_to page.data.title, page.url %></li>
-          <% end %>
-          </ul>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <%= partial 'partials/related_content' %>
 
   <% if page_review.reviewable? %>
     <% if page_review.expired? %>
