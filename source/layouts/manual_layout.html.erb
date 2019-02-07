@@ -7,7 +7,7 @@
   <%= single_page_table_of_contents html, max_level: 3 %>
 <% end %>
 
-<% wrap_layout :layout_with_sidebar do %>
+<% wrap_layout :core do %>
   <% if current_page.data.section == "Icinga alerts" %>
     <div class="information-callout">
       This page describes what to do in case of an
@@ -19,31 +19,7 @@
     </div>
   <% end %>
 
-  <% if page_review.expired? %>
-    <%= partial 'partials/page_expired' %>
-  <% end %>
-
   <%= html %>
 
   <%= partial 'partials/related_content' %>
-
-  <% if page_review.reviewable? %>
-    <% if page_review.expired? %>
-      <%= partial 'partials/page_expired' %>
-    <% else %>
-      <div class='information-callout'>
-        This page was <%= link_to "last reviewed", "/manual/review-page.html" %>
-
-        <time data-module="datetime-relative" datetime="<%= page_review.last_reviewed_on %>">
-          on <%= page_review.last_reviewed_on %>
-        </time>.
-
-        It needs to be reviewed again
-        <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
-          on <%= page_review.review_by %>
-        </time>
-        by the page owner <%= link_to page_review.owner_slack, page_review.owner_slack_url  %>.
-      </div>
-    <% end %>
-  <% end %>
 <% end %>
