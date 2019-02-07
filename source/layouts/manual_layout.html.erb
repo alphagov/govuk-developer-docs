@@ -26,37 +26,43 @@
   <%= html %>
 
   <div class='related-content grid-row'>
-    <% if current_page.data.related_applications %>
+    <% if related_things.related_applications.any? %>
       <h4>Related applications</h4>
 
       <ul>
-      <% current_page.data.related_applications.to_a.each do |app_name| %>
-        <li><%= link_to app_name, "/apps/#{app_name}.html" %></li>
+      <% related_things.related_applications.each do |name, url| %>
+        <li><%= link_to name, url %></li>
       <% end %>
       </ul>
     <% end %>
 
-    <h3>More in the <%= current_page.data.section %> section</h3>
+    <% if related_things.any_related_pages? %>
+      <h3>More in the <%= current_page.data.section %> section</h3>
 
-    <div class='column-half'>
-      <h4>Learn</h4>
+      <% if related_things.related_learning_pages.any? %>
+        <div class='column-half'>
+          <h4>Learn</h4>
 
-      <ul>
-      <% manual.other_pages_from_section(current_page).select { |page| page.data.type == "learn" }.each do |page| %>
-        <li><%= link_to page.data.title, page.url %></li>
+          <ul>
+          <% related_things.related_learning_pages.each do |page| %>
+            <li><%= link_to page.data.title, page.url %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
 
-    <div class='column-half'>
-      <h4>How to...</h4>
+      <% if related_things.related_task_pages.any? %>
+        <div class='column-half'>
+          <h4>How to...</h4>
 
-      <ul>
-      <% manual.other_pages_from_section(current_page).select { |page| page.data.type.nil? }.each do |page| %>
-        <li><%= link_to page.data.title, page.url %></li>
+          <ul>
+          <% related_things.related_task_pages.each do |page| %>
+            <li><%= link_to page.data.title, page.url %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
+    <% end %>
   </div>
 
   <% if page_review.reviewable? %>
