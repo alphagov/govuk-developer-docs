@@ -1,22 +1,12 @@
 ---
-layout: header_footer_only
+layout: core
 title: Page not found
 hide_from_sitemap: true
 ---
 
-<div class="app-pane__body">
-  <div class="app-pane__content">
-    <main id="content" class="technical-documentation">
-      <%= partial 'partials/header' %>
+<%= partial "partials/header" %>
 
-      If you entered a web address, please check it was correct.
+If you entered a web address, please check it was correct.
 
-      Try searching:
-
-      <%= partial "partials/search" %>
-
-      If the page you are looking for has been moved, you should
-      <a href='https://github.com/alphagov/govuk-developer-docs/blob/master/config/tech-docs.yml'>set up a redirect</a>.
-    </main>
-  </div>
-</div>
+If the page you are looking for has been moved, you should
+<a href='https://github.com/alphagov/govuk-developer-docs/blob/master/config/tech-docs.yml'>set up a redirect</a>.

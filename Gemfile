@@ -9,7 +9,6 @@ gem 'webmock', '~> 3.5'
 gem 'activesupport', '~> 5.0'
 gem 'govuk-lint', '~> 3.10'
 gem 'simplecov'
-gem 'chronic'
 
 gem 'govuk_tech_docs'
 gem 'middleman-search_engine_sitemap', '~> 1.4'
