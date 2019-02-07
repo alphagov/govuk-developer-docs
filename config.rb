@@ -44,12 +44,12 @@ helpers do
     ApplicationsByTeam.teams
   end
 
-  def page_review
-    @page_review ||= PageReview.new(current_page)
-  end
-
   def related_things
     @related_things ||= RelatedThings.new(manual, current_page)
+  end
+
+  def page_title
+    (defined?(locals) && locals[:title]) || [current_page.data.title, current_page.data.section].compact.join(' - ')
   end
 end
 
