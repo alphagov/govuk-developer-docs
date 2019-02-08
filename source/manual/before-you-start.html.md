@@ -28,7 +28,10 @@ Most alerts have some documentation in our [developer docs](https://docs.publish
 
 
 ## Zendesk
-[Zendesk](https://govuk.zendesk.com) is our support ticketing system. [Request an account](https://www.gov.uk/support/internal) if you don't have one yet - Signon access is required so speak to your fellow 2nd liners if you haven't got this.  This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing).
+[Zendesk](https://govuk.zendesk.com) is our support ticketing system.
+[Create an account](https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc) if you don't have one yet. Then ask a fellow 2nd liner to add a new ticket assigned to _2nd/3rd Line—Zendesk Administration_ asking to give you access to _2nd Line - GOV.UK Alerts and Issues_.
+
+This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing).
 
 ## PagerDuty
 This is our escalation workflow for some key alerts that are likely to require urgent attention. The escalation order is:
