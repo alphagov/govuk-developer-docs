@@ -80,7 +80,8 @@ the previous version of the software.
     ticket), re-load the test file to the production path:
 
         ssh backend-1.production
-        sudo -udeploy govuk_setenv bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
+        cd /var/apps/asset-manager
+        sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
 
     You will have to copy the file to the server again if it has been deleted since it was first uploaded.
 
