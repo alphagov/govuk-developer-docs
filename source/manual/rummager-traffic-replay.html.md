@@ -4,7 +4,7 @@ title: Replay traffic to correct an out-of-sync search index
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2018-11-06
+last_reviewed_on: 2019-02-08
 review_in: 3 months
 ---
 
@@ -45,17 +45,11 @@ will be logged to the file. The following command can be used to run the
 restore:
 
 ```bash
-$ sudo gor --input-file "20171031.log|6000%" --stats --output-http-stats --output-http "http://localhost:3009/|6000%" -verbose
+$ sudo gor -input-file "20171031.log|6000%" -stats -output-http-stats -output-http "http://localhost:3009/|6000%" -verbose
 ```
 
 This runs the restore at 60x the speed it was saved so each hour of logs takes
 1 minute to process.
-
-> **Note**
->
-> This process failed when running on the rummager server, but was successful
-> when run locally with port forwarding.
-> This may be an issue with the `GOR` version on the server.
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/rummager/blob/master/doc/new-indexing-process.md
