@@ -8,6 +8,4 @@ export GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
 bundle exec middleman build --verbose
-s3cmd sync -v --acl-public --add-header='Cache-Control: max-age=3600, public' --delete-removed build/ s3://govuk-developer-documentation-production/
-s3cmd put -m "text/css" --add-header='Cache-Control: max-age=3600, public' --acl-public build/stylesheets/screen.css s3://govuk-developer-documentation-production/stylesheets/screen.css
-s3cmd put -m "text/css" --add-header='Cache-Control: max-age=3600, public' --acl-public build/stylesheets/print.css s3://govuk-developer-documentation-production/stylesheets/print.css
+s3cmd sync -v --acl-public --guess-mime-type --add-header='Cache-Control: max-age=3600, public' --delete-removed build/ s3://govuk-developer-documentation-production/
