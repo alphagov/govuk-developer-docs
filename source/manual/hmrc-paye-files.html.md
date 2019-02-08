@@ -82,7 +82,7 @@ the previous version of the software.
         ssh backend-1.production
         sudo -udeploy govuk_setenv bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
 
-    You will have to copy the file to she server again if it has been deleted since it was first uploaded.
+    You will have to copy the file to the server again if it has been deleted since it was first uploaded.
 
 9. Publish the content items.
 
