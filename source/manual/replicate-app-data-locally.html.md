@@ -24,10 +24,10 @@ script in the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet
 
 ## Replication
 
-When you have integration access, you can download and import the latest data by running:
+When you have AWS access, you can download and import the latest data by running:
 
     mac$ cd ~/govuk/govuk-puppet/development-vm/replication
-    mac$ ./replicate-data-local.sh -u $USER -F ../ssh_config -n
+    mac$ ./replicate-data-local.sh -n
 
 The data will download to a folder named with today's date in `./backups`, for example `./backups/2018-01-01`.
 
@@ -40,9 +40,9 @@ Databases take a long time to download and use a lot of disk space (up to ~30GB 
 
 The downloaded backups will automatically be deleted after import (whether successful or not) unless the `-k` flag is specified.
 
-## If you don't have integration access
+## If you don't have AWS access
 
-If you don't have integration access, ask someone to give you a copy of their
+If you don't have AWS access, ask someone to give you a copy of their
 dump. Then, from `govuk-puppet/development-vm/replication` run:
 
     dev$ ./replicate-data-local.sh -d path/to/dir -s

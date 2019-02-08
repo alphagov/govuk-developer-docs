@@ -4,7 +4,7 @@ title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
 section: Learning GOV.UK
-last_reviewed_on: 2019-01-31
+last_reviewed_on: 2019-02-08
 review_in: 3 months
 ---
 
@@ -78,7 +78,7 @@ To install VirtualBox on High Sierra 10.13 or later:
 ## 2. Create your GitHub account
 
 1. Set up a [GitHub][] account.
-1. Ask somebody with access to add your GitHub username and SSH username (`firstnamelastname`) to the [user monitoring system][user-reviewer].
+1. Ask somebody with access to add your GitHub username to the [user monitoring system][user-reviewer].
 1. Ask your tech lead to add you to the [alphagov organisation][alphagov]. You will have to be added to the [GOV.UK team][govuk-team] to get access to repos & CI.
 1. [Generate and register an SSH key pair][register-ssh-key] for your Mac for your GitHub account.
 1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
@@ -93,34 +93,7 @@ To install VirtualBox on High Sierra 10.13 or later:
 [govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk/members
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 
-## 3. Create a user to SSH into integration
-
-User accounts in our integration environments are managed in the [govuk-puppet][] repository.
-
-    mac$ mkdir ~/govuk
-    mac$ cd ~/govuk
-    mac$ git clone git@github.com:alphagov/govuk-puppet.git
-
-To create a new account, start by creating an SSH key at least 4096 bits long. For example:
-
-    mac$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/alphagov
-
-Import the SSH key into your keychain.
-
-    mac$ /usr/bin/ssh-add -K ~/.ssh/alphagov
-
-Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you just created. Your username should use the `firstnamelastname` format.
-
-Add the name of your manifest (your username) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera] for integration and in [`hieradata/integration.yaml`][integration-hiera] for CI.
-
-Create a pull request with these changes. Once it has been [reviewed by a member of the GOV.UK team][merging], you can merge it and it will automatically deploy to the integration environment.
-
-[govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[integration-aws-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
-[integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
-[merging]: /manual/merge-pr.html
-
-## 4. Boot your VM
+## 3. Boot your VM
 
 Run the VM bootstrap script:
 
@@ -149,7 +122,7 @@ You can assign your name and email to commits on the VM:
 
 If you use ZSH as your shell, you may find that the Ruby version on your VM is stuck on `1.9.3` and there seems to not be any other versions installed when you run `rbenv versions`.  To fix this, add `. /etc/profile` to your `.zshrc`.
 
-## 5. Set up your apps
+## 4. Set up your apps
 
 Begin by checking out all of the GOV.UK services. There's a handy shortcut:
 
@@ -177,43 +150,21 @@ If installing the Python dependencies for fabric-scripts fails, your version of 
 [Bundler]: http://bundler.io/rationale.html
 [PIP]: https://pip.pypa.io/en/stable/
 
-## 6. Access remote environments
-
-Your pull request from earlier will hopefully have been merged by now. It's time to test your access to servers via SSH.
-
-> If you're not in the office right now, you'll need to be connected to the GDS Office VPN for SSH access to integration.
-
-While the applications are available directly via the public internet, SSH access to remote environments is via a ‘jumpbox’. You’ll need to configure your machine to use this jumpbox and use `govukcli` to SSH into server.
-
-1. Copy the [example SSH config file][ssh-config] into the `~/.ssh/config` file on your host machine.
-1. Run `ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli` on your host machine to be able to use the `govukcli` tool from any directory.
-
-Test that it works by running:
-
-    mac$ govukcli set-context integration
-    mac$ govukcli ssh backend
-
-Next, follow the same steps inside your VM. You can choose whether to import your `alphagov` keypair to the VM or to use the built in key-forwarding. Test that you can reach integration from your VM:
-
-    dev$ govukcli set-context integration
-    dev$ govukcli ssh backend
-
-[ssh-config]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config
-
-## 7. Get AWS access
+## 5. Get AWS access
 
 👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
+
 👉 Then, [set up your CLI access for AWS](/manual/aws-cli-access.html)
 
-## 8. Import production data
+## 6. Import production data
 
-Application data from production can be imported to be used within your development environment. Dumps of production data are generated in the early hours each day and made available from the integration environment.
+Application data from production can be imported to be used within your development environment. Dumps of production data are generated in the early hours each day and made available from S3.
 
 Download the data by running:
 
 ```
 mac$ cd ~/govuk/govuk-puppet/development-vm/replication
-mac$ ./replicate-data-local.sh -u $USER -F ../ssh_config -n
+mac$ ./replicate-data-local.sh -n
 ```
 
 If you've [set up your AWS account correctly](/manual/set-up-aws-account.html), you should then be prompted to enter your MFA token.
@@ -232,7 +183,7 @@ For more information or troubleshooting advice see the guide in the developer do
 [data-replication]: /manual/replicate-app-data-locally.html
 [data-replication-aws-access]: /manual/replicate-app-data-locally.html#aws-access
 
-## 9. Run your apps
+## 7. Run your apps
 
 You can run any of the GOV.UK apps from the `/var/govuk/govuk-puppet/development-vm` directory. You’ll first need to run `bundle install` in this folder to install the required gems.
 
@@ -259,7 +210,7 @@ You should be able to see Whitehall.
 [bowler]: https://github.com/JordanHatch/bowler
 [bowl-error]: bowl-error.html
 
-## 10. Access the web frontend 🚀
+## 8. Access the web frontend 🚀
 
 Most GOV.UK web applications and services are available via the public internet, on the following forms of URL:
 
@@ -272,7 +223,7 @@ The basic authentication username and password is widely known, so just ask some
 
 If you can't resolve `dev.gov.uk` domains, see [fix issues with vagrant-dns](vagrant-dns.html).
 
-## 11. Keep your VM up to date
+## 9. Keep your VM up to date
 
 There are a few scripts that should be run regularly to keep your VM up to date. In `govuk-puppet/development-vm` there is `update-git.sh` and `update-bundler.sh` to help with this. Also, `govuk_puppet` should be run from anywhere on the VM regularly.
 
