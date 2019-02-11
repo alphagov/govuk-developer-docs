@@ -4,7 +4,7 @@ title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2019-01-29
+last_reviewed_on: 2019-02-11
 review_in: 3 months
 ---
 
@@ -52,7 +52,7 @@ To raise a ticket:
 
 1. [Create a new ticket on Zendesk][new-zendesk-ticket]
 1. Enter yourself as the requester
-1. Set asignee to "3rd Line--Infrastructure"
+1. Set assignee to "3rd Line--GDS Reliability Engineering"
 1. Add the 2nd Line Delivery Manager as a CC recipient
 1. Fill in and submit ticket
 1. Monitor and contribute to the ticket until it is resolved
