@@ -48,6 +48,17 @@ To fix this problem run the [following rake task][3]:
 rake etl:repopulate_searches[2018-01-01 2018-01-02]
 ```
 
+## ETL :: no feedex for yesterday
+
+This means the [the ETL master process][1] that runs daily has failed to collect `feedex` metrics from Google Analytics. The issue may originate from the ELT processor responsible for collecting Feedex comments.
+
+To fix this problem run the [following rake task][4]:
+
+```bash
+rake etl:repopulate_feedex[2018-01-01 2018-01-01]
+```
+
 [1]: https://deploy.publishing.service.gov.uk/job/content_performance_manager_import_etl_master_process/
 [2]: https://github.com/alphagov/content-performance-manager/blob/87116d3ab6f75c0d3dd8be9d4aff80865702f1b9/lib/tasks/etl.rake#L8
 [3]: https://github.com/alphagov/content-performance-manager/blob/8dd689e6917d7bbbf23a99387b85bfe1ce04d7b1/lib/tasks/etl.rake#L18
+[4]: https://github.com/alphagov/content-performance-manager/blob/b886c5489c79a6b5a58190e305ea9746fd7db666/lib/tasks/etl.rake#L29
