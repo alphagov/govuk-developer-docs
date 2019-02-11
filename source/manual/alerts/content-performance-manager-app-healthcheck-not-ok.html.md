@@ -25,7 +25,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulateviews[2018-01-01 2018-01-01]
+rake etl:repopulate_views[2018-01-01 2018-01-01]
 ```
 
 ## ETL :: no upviews for yesterday
@@ -35,7 +35,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulateviews[2018-01-01 2018-01-01]
+rake etl:repopulate_views[2018-01-01 2018-01-01]
 ```
 
 ## ETL :: no searches for yesterday
