@@ -25,7 +25,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulateviews[2018-01-01 2018-01-01]
+rake etl:repopulate_views[2018-01-01 2018-01-01]
 ```
 
 ## ETL :: no upviews for yesterday
@@ -35,8 +35,19 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulateviews[2018-01-01 2018-01-01]
+rake etl:repopulate_views[2018-01-01 2018-01-01]
+```
+
+## ETL :: no searches for yesterday
+
+This means the [the ETL master process][1] that runs daily has failed to collect `number of searches` metrics from Google Analytics. The issue may originate from the ELT processor responsible for collecting Internal Searches.
+
+To fix this problem run the [following rake task][3]:
+
+```bash
+rake etl:repopulate_searches[2018-01-01 2018-01-02]
 ```
 
 [1]: https://deploy.publishing.service.gov.uk/job/content_performance_manager_import_etl_master_process/
 [2]: https://github.com/alphagov/content-performance-manager/blob/87116d3ab6f75c0d3dd8be9d4aff80865702f1b9/lib/tasks/etl.rake#L8
+[3]: https://github.com/alphagov/content-performance-manager/blob/8dd689e6917d7bbbf23a99387b85bfe1ce04d7b1/lib/tasks/etl.rake#L18
