@@ -130,8 +130,11 @@ be bumped up.
 Add an fpm recipe to packager and then use [the Jenkins
 job](https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/) to
 create a Debian package. You can use the Vagrant development-VM to test
-the recipe prior to commiting to packager. You can copy this package to
-the aptly machine and then add the deb file to aptly.
+the recipe prior to commiting to packager.
+- The Jenkins job will produce a `.deb` package in the `Last Successful Artifacts`.
+- Download and run `sudo dpkg -i path/to/the/downloaded/package.deb` in the VM.
+
+If successful, you can copy this package to the aptly machine and then add the deb file to aptly.
 
 ## Mirroring
 
