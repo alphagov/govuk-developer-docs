@@ -44,5 +44,19 @@ To fix this problem run the [following rake task][2]:
 rake etl:repopulateviews[2018-01-01 2018-01-02]
 ```
 
+## ETL :: no searches for yesterday
+
+This means that the [the ETL master process][1] that runs daily to collect metrics from Google Analytics has failed. In particular, the ETL processor that collects number of searches.
+
+
+To fix this problem run the [following rake task][3]:
+
+```bash
+rake etl:repopulate_searches[2018-01-01 2018-01-02]
+```
+
+
+
 [1]: https://deploy.publishing.service.gov.uk/job/content_performance_manager_import_etl_master_process/
 [2]: https://github.com/alphagov/content-performance-manager/blob/87116d3ab6f75c0d3dd8be9d4aff80865702f1b9/lib/tasks/etl.rake#L8
+[3]: https://github.com/alphagov/content-performance-manager/blob/8dd689e6917d7bbbf23a99387b85bfe1ce04d7b1/lib/tasks/etl.rake#L18
