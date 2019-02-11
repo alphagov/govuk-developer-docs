@@ -127,7 +127,7 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-with Platform Health.
+with Platform Health and rummager workers must be restarted after the reboot.
 
 They may be rebooted in working hours in other environments, however you
 should notify colleagues before doing so as this may remove in-flight jobs
