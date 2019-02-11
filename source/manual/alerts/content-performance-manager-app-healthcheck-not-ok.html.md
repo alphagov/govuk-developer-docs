@@ -29,7 +29,7 @@ At least the `page-views` metric for each content item has not been received
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views[2018-01-01 2018-01-02]
+rake etl:repopulate_views[2018-01-01 2018-01-01]
 ```
 
 ## ETL :: no upviews for yesterday
@@ -41,7 +41,7 @@ At least the `unique-page-views` metric for each content item has not been recei
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views[2018-01-01 2018-01-02]
+rake etl:repopulate_views[2018-01-01 2018-01-01]
 ```
 
 ## ETL :: no searches for yesterday
@@ -52,7 +52,7 @@ This means that the [the ETL master process][1] that runs daily to collect metri
 To fix this problem run the [following rake task][3]:
 
 ```bash
-rake etl:repopulate_searches[2018-01-01 2018-01-02]
+rake etl:repopulate_searches[2018-01-01 2018-01-01]
 ```
 
 
