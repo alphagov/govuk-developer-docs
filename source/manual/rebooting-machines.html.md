@@ -64,6 +64,10 @@ is an example of a machine that cannot be safely rebooted. The
 is `safe_to_reboot::can_reboot: 'yes'`, so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
 
+> If there is an incident which requires the rebooting of a machine
+> otherwise marked as 'no', then it may be done provided any downstream
+> effects of this reboot have been considered.
+
 There is a Fabric task to schedule a machine for downtime in Nagios for
 20 minutes and then reboot it:
 
