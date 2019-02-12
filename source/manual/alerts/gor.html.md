@@ -4,7 +4,7 @@ title: Gor
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-02-12
 review_in: 6 months
 ---
 
@@ -34,10 +34,10 @@ If that's the case, make sure that the following file exists on the host:
 
 and that it is in a proper state (i.e. empty).
 
-If not, yrestart the Gor processes with the following Fabric command:
+If not, restart the Gor processes with the following Fabric command:
 
 ```
-fab $environment puppet_class:gor sdo:'rm /etc/govuk/env.d/FACTER_data_sync_in_progress' app.start:gor
+fab $environment puppet_class:gor sdo:'rm /etc/govuk/env.d/FACTER_data_sync_in_progress' app.start:goreplay
 ```
 
 This will remove the file and restart Gor from all hosts running it.
@@ -45,7 +45,7 @@ This will remove the file and restart Gor from all hosts running it.
 When Puppet runs again in those hosts, it re-creates the alerts and sees
 them back in icinga.
 
-[gor-gh]: https://github.com/buger/gor/
+[gor-gh]: https://github.com/buger/goreplay/
 [govuk-gor-data-sync]: https://github.com/alphagov/govuk-puppet/blob/06dd008d09/modules/govuk_gor/manifests/init.pp#L50
 
 ## `gor running` critical errors in production
