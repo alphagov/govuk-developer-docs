@@ -4,7 +4,7 @@ title: Replay traffic to correct an out-of-sync search index
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-02-08
+last_reviewed_on: 2019-02-12
 review_in: 3 months
 ---
 
@@ -31,7 +31,7 @@ Be aware that these options will replay the entire Publisher API history for tha
 
 These indexes are populated by whitehall calling an HTTP API in Rummager.
 
-We have also setup [GOR][gor] logging for `POST` and `GET` requests so that we
+We have also setup [Gor][gor] logging for `POST` and `GET` requests so that we
 can replay the traffic.
 
 The logs are stored on the rummager servers (1 file per server) location at:
@@ -45,7 +45,7 @@ will be logged to the file. The following command can be used to run the
 restore:
 
 ```bash
-$ sudo gor -input-file "20171031.log|6000%" -stats -output-http-stats -output-http "http://localhost:3009/|6000%" -verbose
+$ sudo goreplay -input-file "20171031.log|6000%" -stats -output-http-stats -output-http "http://localhost:3009/|6000%" -verbose
 ```
 
 This runs the restore at 60x the speed it was saved so each hour of logs takes
