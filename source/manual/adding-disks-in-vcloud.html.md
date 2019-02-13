@@ -34,11 +34,11 @@ disk is configured, Puppet runs on the machine will result in errors.
    disks, choose a size and click Save.
 2. Wait for the VM to reconfigure.
 
-Please view this [page](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst) for details on how to access Carrenza. The appropriate credentials are in `govuk-secrets`.
+Please view this [page](connect-to-vcloud-director.html) for details on how to access Carrenza. The appropriate credentials are in `govuk-secrets`.
 
 > **Note**
 >
-> In the link above, you will see a link format similar to https://localhost:8443/cloud/org/{environment}, where {environment} is the value of the `Org` key you get from decrypting secrets. It will look something like `Org: XXXX-govuk-staging-london`.
+> In the link above, you will see a link format similar to https://vcloud.carrenza.com/cloud/org/{environment}, where {environment} is the value of the `Org` key you get from decrypting secrets. It will look something like `Org: XXXX-govuk-staging-london`.
 
 > **Note**
 >
