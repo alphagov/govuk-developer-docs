@@ -64,6 +64,10 @@ is an example of a machine that cannot be safely rebooted. The
 is `safe_to_reboot::can_reboot: 'yes'`, so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
 
+> If there is an incident which requires the rebooting of a machine
+> otherwise marked as 'no', then it may be done provided any downstream
+> effects of this reboot have been considered.
+
 There is a Fabric task to schedule a machine for downtime in Nagios for
 20 minutes and then reboot it:
 
@@ -127,7 +131,7 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-with Platform Health.
+with Platform Health and rummager workers must be restarted after the reboot.
 
 They may be rebooted in working hours in other environments, however you
 should notify colleagues before doing so as this may remove in-flight jobs
