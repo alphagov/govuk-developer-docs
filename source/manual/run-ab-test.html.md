@@ -56,7 +56,7 @@ need more data.
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [dictionaries-readme]: https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries
-[dictionary-config-example]: https://github.com/alphagov/cdn-configs/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
+[dictionary-config-example]: https://github.com/alphagov/govuk-cdn-config-secrets/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [cdn-config-example]: https://github.com/alphagov/fastly-configure/pull/29/files
 
