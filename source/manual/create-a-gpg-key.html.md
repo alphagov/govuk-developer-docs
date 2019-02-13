@@ -4,7 +4,7 @@ title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2018-10-17
+last_reviewed_on: 2019-02-13
 review_in: 6 months
 ---
 
@@ -84,7 +84,7 @@ You can test your passphrase like this:
 echo "1234" | gpg2 -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
 ```
 
-If you have entered your passphrase correctly you will see "The correct passphrase was entered for this key".
+You will be prompted to enter your passphrase upon running this command then if you have entered your passphrase correctly you will see "The correct passphrase was entered for this key".
 
 ## Backup a GPG key
 
