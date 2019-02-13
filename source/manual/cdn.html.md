@@ -26,7 +26,7 @@ The CDN is responsible for retrying requests against the
 Most of the CDN config is versioned and scripted:
 
 - [CDN configuration](https://github.com/alphagov/govuk-cdn-config/)
-- [CDN config secrets](https://github.com/alphagov/cdn-configs)
+- [CDN config secrets](https://github.com/alphagov/govuk-cdn-config-secrets)
 
 These are deployed to [integration][integration_cdn], [staging][staging_cdn]
 and [production][production_cdn].
@@ -73,7 +73,7 @@ always a chance that we may block a legitimate user when we ban IP addresses.
 You can change the list of banned IP addresses by modifying the
 [YAML config file][ip_ban_config] and [deploying the configuration][ip_ban_deploy].
 
-[ip_ban_config]: https://github.com/alphagov/cdn-configs/blob/master/fastly/dictionaries/config/ip_address_blacklist.yaml
+[ip_ban_config]: https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_blacklist.yaml
 [ip_ban_deploy]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/build
 
 ## Bouncer's Fastly service
