@@ -39,7 +39,7 @@ Applying for a licence should remain available because
 the connection between GOV.UK (the router and content store) and the Licensify organisation is made
 over the internet rather than over the VPN.
 
-[carrenza-secure]: https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst
+[carrenza-secure]: connect-to-vcloud-director.html
 [gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/connect-to-the-aviation-house-vpn
 
 ## VPN between live organisation in Carrenza and AWS during AWS migration
@@ -94,7 +94,7 @@ If the VPN goes down, these things will happen:
    ```
 
    1. log in the Carrenza vCloud interface as described
-      [here](https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst#using-an-ssh-tunnel)
+      [here](connect-to-vcloud-director.html)
 
    2. click on the "Administration" button on the interface as shown in step 1
       in Figure 2.0
