@@ -109,5 +109,5 @@ support (assuming everything is working).
 [docs]: https://github.com/alphagov/govuk-developer-docs/
 [fabric]: https://github.com/alphagov/fabric-scripts/
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets/
-[vcloud]: https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst
+[vcloud]: connect-to-vcloud-director.html
 [payment claim form]: https://docs.google.com/forms/d/e/1FAIpQLSd8DX3B0L6az_aHEfWBegK5ABIPhfARgQZ0OpdEW9bIhMk5Fg/viewform
