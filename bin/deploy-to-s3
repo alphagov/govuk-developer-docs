@@ -7,5 +7,5 @@ git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-conte
 export GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
-bundle exec middleman build --verbose
+NO_CONTRACTS=true bundle exec middleman build --verbose
 s3cmd sync -v --acl-public --guess-mime-type --add-header='Cache-Control: max-age=3600, public' --delete-removed build/ s3://govuk-developer-documentation-production/

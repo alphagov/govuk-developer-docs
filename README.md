@@ -58,7 +58,7 @@ export GITHUB_TOKEN=somethingsomething
 Build the site with:
 
 ```
-bundle exec middleman build
+NO_CONTRACTS=true bundle exec middleman build
 ```
 
 This will create a bunch of static files in `/build`.
