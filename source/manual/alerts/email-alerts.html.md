@@ -4,7 +4,7 @@ title: Email alerts not sent
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-29
+last_reviewed_on: 2019-02-14
 review_in: 6 months
 ---
 
@@ -44,6 +44,10 @@ If a check fails:
     sidekiq job has terminated ungracefully. You can [resend the content
     change][resend-content-change]. This will ignore any that have already gone
     out so it is safe to execute
+* If the email has been received by `govuk_email_check@digital.cabinet-office.gov.uk` but the subject of the email doesn't
+  match the title of the content item, this means that the title of the content was updated after it was first published and after
+  the emails went out. To stop the check from constantly failing, add the subject of the email to the list here:
+  [acknowledged email list][] and then re-run the Jenkins job to get rid of the alert.  
 
 ## Resending travel advice emails
 
@@ -65,3 +69,4 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 [number-subs-contents]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#check-number-of-subscription-contents-built-for-a-content-change-you-would-expect-this-number-to-keep-going-up
 [resend-content-change]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#resend-the-emails-for-a-content-change-ignore-ones-that-have-already-gone-out
 [unprocessed-content-changes]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#unprocessed-content-changes-content_changes
+[acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L6-L14
