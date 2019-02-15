@@ -55,3 +55,4 @@ Follow these Slack channels while you’re working on 2nd line:
 * #govuk-2ndline - the main channel for people on 2nd line
 * #govuk-deploy - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing
 * #govuk-developers - this is a general channel for developers and can be a good place to ask questions if you are struggling
+* #reliability-eng - to Slack the RE interruptible person about urgent GOV.UK infrastructure issues 
