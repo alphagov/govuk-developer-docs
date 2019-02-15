@@ -130,8 +130,81 @@ be bumped up.
 Add an fpm recipe to packager and then use [the Jenkins
 job](https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/) to
 create a Debian package. You can use the Vagrant development-VM to test
-the recipe prior to commiting to packager. You can copy this package to
-the aptly machine and then add the deb file to aptly.
+the recipe.
+
+#### Test the recipe
+
+- The Jenkins job will produce a `.deb` package in the `Build Artifacts`.
+- With Packager cloned to your local `govuk` folder, download your new package to
+the Packager root folder.
+- Start the VM, move to the Packager project and run:
+
+    ```
+      $ sudo dpkg -i ./your_package_name.deb`
+    ```
+- Ensure your package has been successfully installed.
+
+If successful, you can copy this package to the aptly machine and then add the
+deb file to aptly.
+
+## Uploading a new package
+
+> **Note**
+>
+> The commands below should be run on the machine where aptly is
+> running.
+> The example used is for upgrading Ruby by adding a new package to the `rbenv-ruby` repository
+
+1. Download the package to your local machine
+2. Upload the package to the aptly machine:
+
+    ```
+      $ scp ~/Downloads/rbenv-ruby-2.6.1_1_amd64.deb username@<inet_addr>.<environment>:/home/username/
+    ```
+3. In the machine, add the package to the repo:
+
+    ```
+      $ sudo -i aptly repo add rbenv-ruby /home/username/rbenv-ruby-2.6.1_1_amd64.deb
+        Loading packages...
+        [+] rbenv-ruby-2.6.1_1_amd64 added
+    ```
+4. Create a snapshot:
+
+    ```
+      $ sudo aptly snapshot create rbenv-ruby-$(date +%Y%m%d) from repo rbenv-ruby
+        Snapshot rbenv-ruby-20190212 successfully created.
+
+      $ sudo aptly snapshot show rbenv-ruby-20190212
+        Name: rbenv-ruby-20190212
+        Created At: 2019-02-12 15:36:23 UTC
+        Description: Snapshot from local repo [rbenv-ruby]
+        Number of packages: 11
+    ```
+5. Check the package doesn't remove or replace a version we are currently using
+by checking the diff. You can find the previous snapshot by running `sudo aptly snapshot list`
+
+    ```
+      $ sudo aptly snapshot diff rbenv-ruby-20181023 rbenv-ruby-20190212
+        Arch   | Package          | Version in A  | Version in B
+      + amd64  | rbenv-ruby-2.6.1 | -             | 1
+
+    ```
+6. Publish the new snapshot, you will be prompted to enter the passphrase for our
+APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass apt`
+
+    ```
+    $ sudo -i aptly publish switch trusty rbenv-ruby rbenv-ruby-$(date +%Y%m%d)
+      Loading packages...
+      Generating metadata files and linking package files...
+      Finalizing metadata files...
+      Publish for snapshot rbenv-ruby/trusty [amd64] publishes {main: [rbenv-ruby-20190212]: Snapshot from local repo [rbenv-ruby]} has been successfully switched to new snapshot.
+    ```
+7. You can check it has been published by going to [https://apt.publishing.service.gov.uk](https://apt.publishing.service.gov.uk/).
+For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/](https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
+
+    ```
+      $ sudo apt-get install rbenv-ruby-2.6.1
+    ```
 
 ## Mirroring
 
