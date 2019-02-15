@@ -25,7 +25,7 @@ When something goes wrong on GOV.UK we follow the incident management procedure:
 
 Other useful links:
 
-- [Handling security incidents](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/131077240/Handling+security+incidents)
+- [Handling security incidents](https://docs.google.com/document/d/1ty12B5eBWB9YSfnD9xY1mr5rtTQxdNxRdmEGgibilN0/edit?usp=sharing)
 - [Incident severity levels](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/64487471/Incident+severity+levels)
 - [Incident review actions](https://trello.com/b/O8vBQOLX/govuk-incident-review-actions)
 - [Previous incident reports](https://drive.google.com/drive/u/0/folders/0B91nK-3hxT2eUXpITmhGUF9FMFk?ogsrc=32)
