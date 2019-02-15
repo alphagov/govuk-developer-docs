@@ -17,7 +17,7 @@ Your main responsibility is to respond to alerts. You’ll be set up in PagerDut
 
 It's also an important opportunity to learn about the GOV.UK stack.
 
-Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, talk to your fellow 2nd liner and the DM to make sure you’re covered.
+Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, talk to your fellow 2nd liner and the delivery manager to make sure you’re covered.
 
 We have stand-ups at 9.35am and a short retrospective at the weekly handover meeting.
 
