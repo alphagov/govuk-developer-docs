@@ -35,7 +35,7 @@ If it's a day or two, arrange a swap for those days with the developer the week 
 
 If you need a whole shift swap, arrange this with another developer from your team.
 
-For either of the above, let the 2nd line delivery manager know so they update Pager Duty and the schedule.
+For either of the above, let the 2nd line delivery manager know. Please update the schedule on [Pager Duty](https://governmentdigitalservice.pagerduty.com/schedules#?offset=5).
 
 If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline Slack channel.
 
