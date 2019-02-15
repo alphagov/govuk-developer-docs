@@ -16,20 +16,34 @@ This application is retired.
 
 <% else %>
 
+<% unless application.topics.nil? %>
 GitHub topics: <%= application.topics.map { |topic| link_to(topic, "https://github.com/search?q=topic:#{topic}+org:alphagov") }.to_sentence %>
+<% end %>
+
+<% if application.team %>
 
 ### Ownership
 
-<% if application.team %>
 Owned by team **<%= application.team %>**.
-<% else %>
-Do you support this application? Help out by [adding your team name][app-yaml] to the documentation.
 <% end %>
-<br>
+
+### Hosting
+
+The production version of this application is hosted on **<%= application.hosting_name %>**.
+
+### Links
 
 <ul>
   <li><%= link_to "GitHub repo", application.repo_url %></li>
-  <li><%= link_to "Sentry (error tracking)", application.sentry_url %></li>
+
+  <% if application.sentry_url %>
+    <li><%= link_to "Sentry (error tracking)", application.sentry_url %></li>
+  <% end %>
+
+  <% if application.management_url %>
+    <li><%= link_to "Manage application", application.management_url %></li>
+  <% end %>
+
   <% if application.puppet_url %>
     <li><%= link_to "Puppet configuration", application.puppet_url %></li>
   <% end %>
@@ -39,7 +53,7 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   <% end %>
 
   <% if application.dashboard_url %>
-    <li><%= link_to "Deployment dashboard", application.dashboard_url %> (warning: not all apps have a dashboard)</li>
+    <li><%= link_to "Deployment dashboard", application.dashboard_url %></li>
   <% end %>
 
   <% if application.publishing_e2e_tests_url %>
@@ -63,33 +77,38 @@ Do you support this application? Help out by [adding your team name][app-yaml] t
   <% end %>
 </ul>
 
-<h3>SSH access</h3>
-<% if application.pending_hosting? %>
-  This application's hosting arrangements are not yet complete
-<% elsif application.datagovuk_app? %>
-  This applications lives on [GOV.UK PaaS](https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas).
-<% else %>
-  This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
+<% case application.production_hosted_on %>
+<% when  "carrenza" %>
 
-  To SSH to one of these machines:
+### SSH Access (Carrenza & AWS)
 
-  ```
-  ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
-  ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
-  ```
+This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
+
+To SSH to one of these machines:
+
+```
+ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+```
+
+This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
+
+To SSH to one of these machines [via the jumpbox](/manual/howto-ssh-to-machines-in-aws.html), use this command:
+
+```
+ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+```
+<% when  "aws" %>
+### SSH Access (AWS)
+
+```
+ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+ssh -A -t jumpbox.staging.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+ssh -A -t jumpbox.production.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+```
 <% end %>
 
-<% unless application.datagovuk_app? %>
-  <h3>AWS SSH access</h3>
-
-  This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
-
-  To SSH to one of these machines [via the jumpbox](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines-in-aws.html), use this command:
-
-  ```
-  ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
-  ```
-
+<% if application.can_run_rake_tasks_in_jenkins? %>
   <h3>Run a rake task</h3>
 
   - <%= link_to "Run on Integration Jenkins", "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>

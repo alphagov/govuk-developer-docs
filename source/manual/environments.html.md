@@ -1,10 +1,11 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: GOV.UK's environments (integration, staging, production)
-section: Environments
+section: Infrastructure
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-07
+last_reviewed_on: 2019-01-31
 review_in: 3 months
 ---
 
@@ -33,9 +34,13 @@ in a production-like environment. This means that staging must be similar to pro
 so that we're able to test things like the performance impact of changes.
 
 Staging is primarily hosted by Carrenza in their London datacentre.
+It is currently being migrated to [AWS][govuk-in-aws]. Check individual application developer
+docs to see if it is hosted with AWS or Carrenza.
 
 ## Production
 
 The thing that runs the website for real people.
 
 Production is primarily hosted by Carrenza in their Slough datacentre.
+It is currently being migrated to [AWS][govuk-in-aws]. Check individual application developer
+docs to see if it is hosted with AWS or Carrenza.

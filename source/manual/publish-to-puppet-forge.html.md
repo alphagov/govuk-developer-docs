@@ -4,7 +4,7 @@ title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-10-15
 review_in: 6 months
 ---
 
@@ -23,7 +23,7 @@ The URL for our account is <http://forge.puppetlabs.com/gdsoperations>.
 2.  Choose a new version number in accordance with [Semantic
     Versioning](http://semver.org/).
 3.  Add a new release entry to the `CHANGELOG`.
-4.  Update the `version` field in `Modulefile`.
+4.  Update the `version` field in `metadata.json`. If this file is not present, but `Modulefile` is, address this before progressing with the release.
 5.  Create a pull request with these changes.
 
 ## Releasing a new or updated module

@@ -4,7 +4,7 @@ title: 'RabbitMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-01-08
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -67,7 +67,7 @@ will probably clear this up (but please make sure the team owning the
 app are also alerted, since this shouldn't normally happen). For
 example:
 
-    fab $environment class:backend app.restart:email-alert-service
+    fab $environment class:email_alert_api app.restart:email-alert-service
 
 
 [publishing_api]: https://github.com/alphagov/publishing-api

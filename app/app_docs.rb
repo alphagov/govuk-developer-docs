@@ -1,4 +1,12 @@
 class AppDocs
+  HOSTERS = {
+    "aws" => "AWS",
+    "paas" => "GOV.UK PaaS",
+    "carrenza" => "Carrenza",
+    "ukcloud" => "UK Cloud",
+    "heroku" => "Heroku",
+  }.freeze
+
   def self.pages
     @pages ||= YAML.load_file('data/applications.yml').map do |app_data|
       App.new(app_data)
@@ -10,7 +18,7 @@ class AppDocs
   end
 
   def self.topics_on_github
-    pages.reject(&:retired?).flat_map(&:topics).sort.uniq
+    pages.reject(&:retired?).reject(&:private_repo?).flat_map(&:topics).sort.uniq
   end
 
   def self.aws_machines
@@ -35,6 +43,7 @@ class AppDocs
         app_name: app_name,
         team: team,
         puppet_name: puppet_name,
+        production_hosted_on: production_hosted_on,
         links: {
           self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
           html_url: html_url,
@@ -50,15 +59,24 @@ class AppDocs
           return puppet_class
         end
       end
+      'Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml'
     end
 
     def carrenza_machine
-      return if datagovuk_app?
       AppDocs.carrenza_machines.each do |puppet_class, keys|
         if keys["apps"].include?(app_name)
           return puppet_class
         end
       end
+      'Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml'
+    end
+
+    def production_hosted_on
+      app_data["production_hosted_on"]
+    end
+
+    def hosting_name
+      AppDocs::HOSTERS.fetch(production_hosted_on)
     end
 
     def html_url
@@ -67,6 +85,10 @@ class AppDocs
 
     def retired?
       app_data["retired"]
+    end
+
+    def private_repo?
+      app_data["private_repo"]
     end
 
     def page_title
@@ -93,29 +115,40 @@ class AppDocs
       app_data.fetch("github_repo_name")
     end
 
+    def management_url
+      app_data["management_url"]
+    end
+
     def repo_url
       app_data["repo_url"] || "https://github.com/alphagov/#{github_repo_name}"
     end
 
     def sentry_url
-      return "https://sentry.io/govuk/find-data" if app_name == "datagovuk_find"
-      return "https://sentry.io/govuk/publish-data" if app_name == "datagovuk_publish"
-      "https://sentry.io/govuk/app-#{app_name}"
+      if app_data["sentry_url"] == false
+        nil
+      elsif app_data["sentry_url"]
+        app_data["sentry_url"]
+      else
+        "https://sentry.io/govuk/app-#{app_name}"
+      end
     end
 
     def puppet_url
-      return if datagovuk_app?
+      return unless production_hosted_on.in?(%w[aws carrenza])
+
       "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
     end
 
     def deploy_url
-      return if datagovuk_app?
+      return if app_data["deploy_url"] == false || production_hosted_on.in?(%w[paas heroku])
+
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
 
     def dashboard_url
-      return "https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1" if datagovuk_app?
-      "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
+      return if app_data["dashboard_url"] == false
+
+      app_data["dashboard_url"] || "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
     end
 
     def publishing_e2e_tests_url
@@ -156,12 +189,8 @@ class AppDocs
       github_repo_data["topics"]
     end
 
-    def datagovuk_app?
-      team == "#govuk-datagovuk-tech"
-    end
-
-    def pending_hosting?
-      github_repo_name == 'ckanext-datagovuk'
+    def can_run_rake_tasks_in_jenkins?
+      production_hosted_on.in?(%w[aws carrenza])
     end
 
   private
@@ -175,6 +204,7 @@ class AppDocs
     end
 
     def github_repo_data
+      return {} if private_repo?
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
     end
   end

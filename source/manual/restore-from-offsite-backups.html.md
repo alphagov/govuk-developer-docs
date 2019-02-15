@@ -4,7 +4,7 @@ title: Restore from offsite backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-11-28
+last_reviewed_on: 2018-08-17
 review_in: 6 months
 ---
 
@@ -141,10 +141,6 @@ On the machine where you'll be running the restore:
 
 ### Restore a backup
 
-**Note**: If performing this as part of the 2nd line drill with the whitehall
-backup above, please note that this may require a lot of free disk space as
-the whitehall database is large - ~10GB as of Sept 2017.
-
 To make space, first drop your dev VM's `whitehall_development` database. Note
 after you import the sql, you will end up with a `whitehall_production`
 database.
@@ -177,10 +173,12 @@ dump was taken from, creating it if it doesn't exist.
 
 This shows the example process of restoring files for Whitehall attachments.
 
-**Note**: Ensure that you can connect to the S3 bucket using the supplied
-access keys. To do this, follow the
-[Prerequisites for restoring backups](#prerequisites-for-restoring-backups)
-section.
+> **Note**
+>
+> Ensure that you can connect to the S3 bucket using the supplied
+> access keys. To do this, follow the
+> [Prerequisites for restoring backups](#prerequisites-for-restoring-backups)
+> section.
 
 1. SSH to the machine where you want to restore the backup, for example
  `asset-master-1.backend`.
@@ -235,7 +233,7 @@ actions you've taken. These may include:
 
 ## Rotating offsite backups GPG keys
 
-Please see [Rotating offsite backup GPG keys][rotate-offsite-backup-gpg-keys].
+See [Rotating offsite backup GPG keys][rotate-offsite-backup-gpg-keys].
 
 [duplicity]: http://duplicity.nongnu.org
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets

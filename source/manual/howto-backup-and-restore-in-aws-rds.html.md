@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Backup and restore databases in AWS RDS
-section: AWS
+section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-13
+last_reviewed_on: 2019-01-03
 review_in: 3 months
 ---
 

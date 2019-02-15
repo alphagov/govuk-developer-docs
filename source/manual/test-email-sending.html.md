@@ -4,11 +4,11 @@ title: Test email sending
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-11-05
 review_in: 6 months
 ---
 
-A courtesy copy of all email sent from the integration, staging and
+A courtesy copy of all emails sent from the integration, staging and
 production environments is sent to [a Google Group][google-group].
 Integration and staging emails have a subject prefixed by the
 environment name.
@@ -38,5 +38,14 @@ Emails won't be sent if no one is subscribed, so you'll need to do that
 first. The integration and staging environments only allow email to be
 sent to a small number of email addresses so you cannot test using your
 own email address in these environments.
+
+> **Note**
+>
+> Due to the way that we send the courtesy copy emails and the
+> anonymisation integration data sync, we can't fully exercise the code
+> that matches content changes with subscriptions. Therefore, it is not
+> safe to rely on the courtesy copy Google Group to guarantee that emails
+> are being sent to subscribers, and instead a better test is to
+> subscribe yourself and check that emails arrive.
 
 [google-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies

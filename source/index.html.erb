@@ -1,5 +1,5 @@
 ---
-layout: false
+layout: core
 title: Dashboard
 source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/dashboard.yml
 ---
@@ -21,29 +21,27 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/da
   </ul>
 <% end %>
 
-<% wrap_layout :layout_with_sidebar do %>
-  <h1 class="page-title">GOV.UK developer docs</h1>
+<h1 class="page-title">GOV.UK developer docs</h1>
 
-  <%= partial 'partials/intro' %>
+<%= partial 'partials/intro' %>
 
-  <% dashboard.chapters.each do |chapter| %>
-    <h2 id='<%= chapter.id %>'><%= chapter.name %></h2>
+<% dashboard.chapters.each do |chapter| %>
+  <h2 id='<%= chapter.id %>'><%= chapter.name %></h2>
 
-    <% chapter.sections.each do |section| %>
-      <h3 id='<%= section.id %>'><%= section.name %></h3>
+  <% chapter.sections.each do |section| %>
+    <h3 id='<%= section.id %>'><%= section.name %></h3>
 
-      <ul class='entry-list'>
-        <% section.entries.each do |entry| %>
-        <li class='entry-list__item'>
-          <a class='entry-list__key' href='<%= entry.url %>'>
-            <%= entry.name %>
-          </a>
-          <small class='entry-list__value' >
-            <%= entry.description %>
-          </small>
-        </li>
-        <% end %>
-      </ul>
-    <% end %>
+    <ul class='entry-list'>
+      <% section.entries.each do |entry| %>
+      <li class='entry-list__item'>
+        <a class='entry-list__key' href='<%= entry.url %>'>
+          <%= entry.name %>
+        </a>
+        <small class='entry-list__value' >
+          <%= entry.description %>
+        </small>
+      </li>
+      <% end %>
+    </ul>
   <% end %>
 <% end %>

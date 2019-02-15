@@ -24,7 +24,9 @@ class GitHubRepoFetcher
 private
 
   def all_alphagov_repos
-    @@all_alphagov_repos ||= client.repos("alphagov")
+    @@all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: 1.hour) do
+      client.repos("alphagov")
+    end
   end
 
   def client

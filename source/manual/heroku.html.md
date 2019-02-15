@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Access apps on the shared Heroku account
-section: Tools
+section: Accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-11-02
 review_in: 6 months
 ---
 

@@ -3,8 +3,8 @@ owner_slack: "#govuk-2ndline"
 title: Patch Jenkins
 parent: "/manual.html"
 layout: manual_layout
-section: Testing
-last_reviewed_on: 2017-12-12
+section: Infrastructure
+last_reviewed_on: 2019-01-31
 review_in: 6 months
 ---
 
@@ -12,12 +12,14 @@ Jenkins should be regularly patched when possible, including all plugins.
 
 ## Upgrading plugins
 
-SSH to the Jenkins machine and take a copy of the Plugins directory:
+SSH to the Jenkins machine and take a copy of the plugins directory:
+
 ```
 tar -zcvf plugins.tgz /var/lib/jenkins/plugins
 ```
 
 Disable Puppet on the host:
+
 ```
 govuk_puppet -n <myname> -r "patching jenkins" --disable
 ```
@@ -29,6 +31,7 @@ to complete, install and restart the service.
 
 Back on the machine terminal, run the following command to see the currently
 installed plugins in a hieradata like format:
+
 ```
 sudo jenkins-cli list-plugins |sort| awk '{ if ($NF ~ /\(.*\)/) print $1":\n  version:", "'\''" $(NF-1) "'\''"; else print $1":\n  version:", "'\''" $NF "'\''" }'
 ```
@@ -45,13 +48,13 @@ Re-enable Puppet on the machine when the PR has been merged and deployed.
 
 ## Upgrading Jenkins base
 
-Grab the latest Debian version from the Jenkins site: https://pkg.jenkins.io/debian-stable/
+Grab the latest Debian package from the [Jenkins site](https://pkg.jenkins.io/debian-stable/).
 
 Upload it to `apt-1.management` in Production (we only use a single apt machine
 across all environments).
 
-
 Run the following commands to add it to the Jenkins repo:
+
 ```
 sudo -i aptly repo add govuk-jenkins /home/$USER/jenkins_2.46.1_all.deb
 sudo aptly snapshot create govuk-jenkins-$(date +%Y%m%d) from repo govuk-jenkins
@@ -80,4 +83,4 @@ sudo mv jenkins.war /usr/share/jenkins/jenkins.war
 sudo service jenkins restart
 ```
 
-When this has completed complete the Puppet and apt steps above.
+When this has completed, complete the Puppet and apt steps above.

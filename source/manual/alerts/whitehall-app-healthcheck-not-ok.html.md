@@ -4,7 +4,7 @@ title: Whitehall app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-03-07
+last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 
@@ -14,6 +14,8 @@ editions in the database which are scheduled to be published in the
 future is different from the number currently in the queue. This can
 happen in Staging and Integration as a result of the data sync from
 Production. Run this Rake task to requeue all scheduled editions:
+
+SSH into `whitehall_backend` and then:
 
 ```
 cd /var/apps/whitehall

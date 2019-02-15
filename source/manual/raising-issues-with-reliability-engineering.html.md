@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Raising issues with Reliability Engineering
+title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2018-05-24
+last_reviewed_on: 2019-02-11
 review_in: 3 months
 ---
 
@@ -16,6 +16,8 @@ various GDS programmes such as logging and monitoring tools.
 When on 2nd line you may experience an issue with GOV.UK that requires asking
 Reliability Engineering for assistance.
 
+There are [Reliability Engineering docs](https://reliability-engineering.cloudapps.digital/) for users of their systems. There are also [other Reliability Engineering docs](https://re-team-manual.cloudapps.digital/) for use by the team, these may contain more technical details.
+
 ## If you require urgent assistance
 
 Reliability Engineering have a Slack channel - #reliability-eng - and they
@@ -25,7 +27,10 @@ indicate in your message that a problem is time critical.
 
 Failing slack communication you can also walk over to Reliability Engineering
 desks and talk to the interruptible person directly - they are currently on
-the 6th floor near bank 26.
+the 6th floor near bank 27-28.
+
+You may be advised to create a
+[Zendesk ticket](#raising-a-zendesk-ticket-with-reliability-engineering).
 
 ## If a problem is not urgent
 
@@ -40,25 +45,24 @@ problem themselves.
 
 ## Raising a Zendesk ticket with Reliability Engineering
 
-For the most part 2nd Line shouldn't need to raise Zendesk tickets with
-Reliability Engineering - with an exception being the leaver process - as
-urgent issues will likely be handled without a ticket and Platform Health will
-manage less urgent issues.
+The official way to communicate with Reliability Engineering is through Zendesk
+tickets.
 
 To raise a ticket:
 
 1. [Create a new ticket on Zendesk][new-zendesk-ticket]
 1. Enter yourself as the requester
-1. Set asignee to "3rd Line--Infrastructure"
+1. Set assignee to "3rd Line--GDS Reliability Engineering"
 1. Add the 2nd Line Delivery Manager as a CC recipient
 1. Fill in and submit ticket
+1. Monitor and contribute to the ticket until it is resolved
 
 [new-zendesk-ticket]: https://govuk.zendesk.com/agent/tickets/new/1
 
 ## Understanding what Reliability Engineering can assist with
 
 There is a broad explanation of the different areas of support in GOV.UK in
-[who do I ask for support?](/manual/who-do-i-ask-for-support).
+[who do I ask for support?](/manual/who-do-i-ask-for-support.html).
 
 More specificially to GOV.UK these are things that fall under the
 responsibility of Reliability Engineering (RE):

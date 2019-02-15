@@ -2,25 +2,25 @@
 owner_slack: '#govuk-platform-health'
 title: Transition architecture
 section: Transition
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-18
+last_reviewed_on: 2018-12-17
 review_in: 3 months
 related_applications: [bouncer, transition]
 ---
 
 The Transition system is built to transition government websites to GOV.UK. The
-main work around this [happened in 2014][blog-1], but we still take on websites ([more on the new batch of work starting in 2017][blog-2]).
+main work around this [happened in 2014][blog], but we still take on websites.
 
 All the repositories involved in transition have been [tagged with govuk-transition on GitHub][repos].
 
-[blog-1]: https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months
-[blog-2]: https://insidegovuk.blog.gov.uk/2017/01/23/transition-its-back
+[blog]: https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months
 [repos]: https://github.com/search?q=topic%3Agovuk-transition+org%3Aalphagov
 
 ## High level overview
 
-![Overview of the elements involved in transition](images/transition-architecture.jpg)
+![Overview of the elements involved in transition](images/transition-architecture.png)
 
 <em>Source diagram in the [GOV.UK architecture folder][arch-folder].</em>
 
@@ -30,38 +30,29 @@ All the repositories involved in transition have been [tagged with govuk-transit
 
 - [transition][] is the admin app that departments use to transition
 - [transition-config][] contains YAML files to configure transitioning websites. It's imported into the Transition database by the [Transition_load_site_config job][]
-- [process_transition_logs][] loads the data from Fastly into [transition-stats][]. Those are then loaded into Transition by the [Transition_load_transition job][]
+- The [cloudwatch / athena / lambda][infra-fastly-logs] trio process the logs from Fastly to produce the statistics. Those are then loaded into Transition by the [Transition_load_all_data job][stats-import]
 - [bouncer][] is the application that does the actual redirecting
-- [cdn-configs][] contains the script that the [Bouncer_CDN job][] uses to send the [hosts from transition][] to Fastly
+- [govuk-cdn-config][] contains the script that the [Bouncer_CDN job][] uses to send the [hosts from transition][] to Fastly
 
 [process_transition_logs]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_cdnlogs/templates/process_transition_logs.erb
 [Transition_load_site_config job]: https://deploy.publishing.service.gov.uk/job/Transition_load_site_config
-[transition-stats]: https://github.com/alphagov/transition-stats
-[Transition_load_transition job]: https://deploy.publishing.service.gov.uk/job/Transition_load_transition
 
 ## Transition data sources
 
-Site configuration is automatically imported every hour via [a Jenkins job][import-job]
+Site configuration is automatically imported every hour via [a Jenkins job][config-import]
 from [transition-config][].
 
-Pre-transition traffic data is imported from [pre-transition-stats][], based on
-logs provided by transitioning organisations. This was updated periodically by
-hand, but this has come to an end.
+Traffic data is automatically imported every day via [a Jenkins
+job][stats-import].  This import puts a high load on the database. CDN
+logs for the "Production Bouncer" Fastly service are sent (by Fastly)
+to the `govuk-production-fastly-logs` S3 bucket and processed by a
+lambda function defined in the [infra-fastly-logs][] Terraform
+project.
 
-Traffic data is automatically imported every hour from [transition-stats][]. This
-import puts a high load on the database. CDN logs for the "Production Bouncer"
-Fastly service are streamed to `logs-cdn.publishing.service.gov.uk` (which is
-routed to `logs-cdn-1.management` in Production), processed there by cron job and
-pushed to the GitHub repository.
-
-On `logs-cdn-1.management`, both log files and cache files that are produced by the
-processing script are rotated. These files should be compressed and archived and
-not deleted.
-
-[import-job]: https://deploy.publishing.service.gov.uk/job/Transition_load_site_config
+[config-import]: https://deploy.publishing.service.gov.uk/job/Transition_load_site_config
 [transition-config]: https://github.com/alphagov/transition-config
-[pre-transition-stats]: https://github.com/alphagov/pre-transition-stats
-[transition-stats]: https://github.com/alphagov/transition-stats
+[stats-import]: https://deploy.publishing.service.gov.uk/job/Transition_load_all_data/
+[infra-fastly-logs]: https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs
 
 ## Bouncer
 
@@ -128,7 +119,7 @@ only thing to do if it's erroring is to restart it.
 Bouncer reads from the `transition_production` database by connecting to
 `transition-postgresql-slave-1.backend`. It authenticates using its own
 postgresql role which is granted `SELECT` permissions on all tables
-[by Puppet](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer/postgresql_role.pp#L17-L33),
+[by Puppet](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer/postgresql_role.pp#L21-L33),
 and that role is further restricted to connecting only to the slave because the
 [pg_hba.conf rule](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_transition_postgresql_slave.pp#L24-L30)
 to allow it isn't present on the master.
@@ -147,8 +138,12 @@ on the Bouncer machines. The assets live in [two](https://github.com/alphagov/as
 rsynced](https://github.com/alphagov/govuk-app-deployment/blob/master/bouncer/config/deploy.rb#L16-L41)
 to the machines when Bouncer is deployed.
 
+#### HTTPS support for transitioned sites
+
+Bouncer does not support HTTPS for transitioned sites. This functionality is under investigation as of December 2018. This limitation should be investigated as part of any site transition, especially if the existing site uses HSTS to force secure connections.
+
 [Bouncer]: /apps/bouncer.html
 [transition]: /apps/transition.html
-[cdn-configs]: https://github.com/alphagov/cdn-configs
+[govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [Bouncer_CDN job]: https://deploy.publishing.service.gov.uk/job/Bouncer_CDN
 [hosts from transition]: https://transition.publishing.service.gov.uk/hosts.json

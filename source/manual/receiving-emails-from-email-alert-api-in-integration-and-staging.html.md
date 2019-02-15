@@ -1,15 +1,15 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Receiving emails from Email Alert API in integration and staging
+title: Receive emails from Email Alert API in integration and staging
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-20
-review_in: 3 months
+last_reviewed_on: 2019-02-04
+review_in: 6 months
 ---
 
 In integration and staging Email Alert API defaults to sending emails
-to a single test address: success@simulator.amazonses.com. This is used to
+to a single test address: `success@simulator.amazonses.com`. This is used to
 simulate a successful email sending.
 
 You can however override this for specific email addresses for testing

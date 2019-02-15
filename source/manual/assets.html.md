@@ -2,11 +2,12 @@
 owner_slack: "#govuk-platform-health"
 title: 'Assets: how they work'
 section: Assets
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-29
-review_in: 1 month
-related_applications: [asset-manager, whitehall]
+last_reviewed_on: 2019-01-03
+review_in: 6 months
+related_applications: [asset-manager]
 ---
 
 There are two types of asset files.
@@ -21,11 +22,9 @@ images which are uploaded via the publishing apps and attached to documents.
 
 ### How users access assets
 
-In production, [the GOV.UK content delivery network](cdn.html)
-is in front of our assets hostname.
-
-In other environments there's no CDN and the assets hostname points
-directly to our origin servers.
+[The GOV.UK content delivery network](cdn.html) is in front of our assets
+hostname (`assets.publishing.service.gov.uk` and equivalents in other environments).
+The CDN fetches anything not in its cache from `assets-origin`.
 
 ### Assets at origin
 
@@ -40,33 +39,20 @@ static application.
 
 ## Uploaded assets
 
-There are currently two systems for uploading, managing and serving
-user-supplied assets on GOV.UK.
-
-Asset Manager is an API that is called internally by Publisher, Specialist
-Publisher, Manuals Publisher, Travel Advice Publisher and Whitehall to manage their
-uploads. It serves the uploaded assets on assets.publishing.service.gov.uk/media
-
-Whitehall is a standalone publishing app that manages a type of asset called "attachments". It serves attachments, via both
-`assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data` and
-`www.gov.uk/government/uploads/government/uploads/system/uploads/attachment_data`, even for content that has been migrated to the
-publishing platform.
-
-Note: Other types of assets that are managed through the Whitehall admin application, such as organisation logos, are sent to and served from Asset Manager.
+Asset Manager is an API that is called internally by Publisher,
+Specialist Publisher, Manuals Publisher, Travel Advice Publisher and
+Whitehall to manage their uploads. It serves the uploaded assets on
+`assets.publishing.service.gov.uk`.
 
 ### How uploaded assets are stored and served
 
-Asset Manager stores its asset files in an S3 bucket (i.e.
-`govuk-assets-production` in production) and instructs nginx to proxy requests
-to them.
+Asset files are stored in an S3 bucket (e.g.
+`govuk-assets-production` in production) and Asset Manager instructs
+nginx to proxy requests to them.
 
-Whitehall stores attachment files on an NFS share. This NFS share is mounted on
-the backend and whitehall-backend machines, and requests for attachments therefore go via
-the cache, frontend-lb, (whitehall-)frontend, backend-lb and backend machines.
-
-It should be noted that both applications do actually serve the asset
-requests, rather than letting nginx serve directly from the share. This is to
-enable the following features:
+It should be noted that Asset Manager does actually serve the asset
+requests, rather than letting nginx serve directly from the
+share. This is to enable the following features:
 
 * Assets are not served until they have been virus scanned; a placeholder image
   or page is shown for assets that are not finished scanning.

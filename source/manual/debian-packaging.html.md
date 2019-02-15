@@ -1,14 +1,103 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Debian packaging
+title: Manage Debian packages
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-01-05
+last_reviewed_on: 2019-01-29
 review_in: 6 months
 ---
 
 This page explains how we're managing our Debian packaging.
+
+## Considerations before creating or importing a package
+
+Due to limited availability of up-to-date packages in long term support (LTS)
+distributions, requirements of software may make installation of a package
+outside of the distribution infrastructure (currently Ubuntu "Trusty" 14.04
+LTS) necessary.
+
+GDS developers may also choose to use the Debian packaging system as a means to
+distribute and maintain their locally developed software.
+
+As always when considering the addition of new software, the first question has to be:
+"Is this really necessary?" Adding a package should be motivated by
+security or architecture requirements and aim to minimise unnecessary
+dependencies.
+
+Additional guidance can be found in the [GDS way](https://gds-way.cloudapps.digital/standards/tracking-dependencies.html#dependency-management-tools)
+as well as the [service manual](https://www.gov.uk/service-manual/technology/managing-software-dependencies#how-to-work-with-third-party-code).
+
+If you are satisfied that adding a local or third party package via aptly is the
+optimal solution, there are a number of ways packages may be sourced and added,
+all carrying different advantages and disadvantages as well as security and
+maintenance implications.
+
+### Creating and maintaining packages locally
+
+See section [Creating Packages](#creating-packages) for details on implementation.
+
+- Creating local packages allows for the greatest flexibility with respect to
+  installation, default configuration and fullfilment of requirements.
+
+- Locally developed bug-fixes can be included and distributed independent of
+  distribution services.
+
+- Distribution bug-fixes and updates are not available and the package has to
+  be actively maintained by GOV.UK.
+
+- To minimise technical debt on future maintenance of packages, locally created
+  packages should only be considered if there is no reliable and secure third
+  party option available.
+
+### Mirroring packages maintained by a third party
+
+See section [Mirroring](#mirroring), in particular [Third-party Repos](#third-party-repos)
+for details on implementation.
+
+- If considering the use of a package created by a third party, the
+  trustworthiness of said party is critical.
+
+- General Debian packages explicitly labelled as suitable for Ubuntu Trusty,
+  such as [Ubuntu packages provided by PostgreSQL](https://www.postgresql.org/download/linux/ubuntu/)
+  or [PPA packages by LibreOffice](https://launchpad.net/~libreoffice/+archive/ubuntu/ppa)
+  can be considered safe.
+
+- With regard to packages provided by private contributors and/or smaller companies,
+  both the maturity of the software and trust for the source need to be evaluated.
+  Comments on maturity as well as the number of users of a package may be an
+  indicator of its suitability for use in production.
+
+- Development activity and update frequency are additional factors to consider.
+
+- When in doubt about the trustworthiness or stability of a third party package,
+  this option should be disregarded in favour of other solutions not
+  compromising on reliability and security.
+
+### Mirroring or importing .deb packages created for other distributions (e.g. Debian, Linux Mint, etc)
+
+See section [Creating Packages](#creating-packages) for details on implementation.
+
+- If great care is taken, it may be possible to make use of a software version
+  which has been packaged for another Linux distribution, e.g. Debian.
+
+- Despite Ubuntu being based on Debian experimental, no Debian repository should ever
+  be directly mirrored and made available through aptly to a Ubuntu system _ever_.
+  There will be severe complications including failing or erroneous package upgrades,
+  broken dependencies and likely complete system failure.
+
+- The safest way to use packages of other distributions is to use source packages. See
+  the note in [Third-party Repos](#third-party-repos) for an idea of how to use them.
+
+- Please note that resolution of building dependencies in source packages may not be possible or
+  require significant work.
+
+- The advantage of using source packages is that it ensures all library requirements of
+  the created binaries are met by the original distribution (Ubuntu).
+
+- This use of (current) Debian packages ensures updates and bug-fixes are
+  readily available. However, the creation and  maintenance of the build
+  environment may introduce significant overhead in itself.
 
 ## Creating packages
 
@@ -39,9 +128,83 @@ be bumped up.
 ### fpm
 
 Add an fpm recipe to packager and then use [the Jenkins
-job](https://deploy.publishing.service.gov.uk/job/build_fpm_package/) to
-create a Debian package. You can copy this package to the aptly machine
-and then add the deb file to aptly.
+job](https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/) to
+create a Debian package. You can use the Vagrant development-VM to test
+the recipe.
+
+#### Test the recipe
+
+- The Jenkins job will produce a `.deb` package in the `Build Artifacts`.
+- With Packager cloned to your local `govuk` folder, download your new package to
+the Packager root folder.
+- Start the VM, move to the Packager project and run:
+
+    ```
+      $ sudo dpkg -i ./your_package_name.deb`
+    ```
+- Ensure your package has been successfully installed.
+
+If successful, you can copy this package to the aptly machine and then add the
+deb file to aptly.
+
+## Uploading a new package
+
+> **Note**
+>
+> The commands below should be run on the machine where aptly is
+> running.
+> The example used is for upgrading Ruby by adding a new package to the `rbenv-ruby` repository
+
+1. Download the package to your local machine
+2. Upload the package to the aptly machine:
+
+    ```
+      $ scp ~/Downloads/rbenv-ruby-2.6.1_1_amd64.deb username@<inet_addr>.<environment>:/home/username/
+    ```
+3. In the machine, add the package to the repo:
+
+    ```
+      $ sudo -i aptly repo add rbenv-ruby /home/username/rbenv-ruby-2.6.1_1_amd64.deb
+        Loading packages...
+        [+] rbenv-ruby-2.6.1_1_amd64 added
+    ```
+4. Create a snapshot:
+
+    ```
+      $ sudo aptly snapshot create rbenv-ruby-$(date +%Y%m%d) from repo rbenv-ruby
+        Snapshot rbenv-ruby-20190212 successfully created.
+
+      $ sudo aptly snapshot show rbenv-ruby-20190212
+        Name: rbenv-ruby-20190212
+        Created At: 2019-02-12 15:36:23 UTC
+        Description: Snapshot from local repo [rbenv-ruby]
+        Number of packages: 11
+    ```
+5. Check the package doesn't remove or replace a version we are currently using
+by checking the diff. You can find the previous snapshot by running `sudo aptly snapshot list`
+
+    ```
+      $ sudo aptly snapshot diff rbenv-ruby-20181023 rbenv-ruby-20190212
+        Arch   | Package          | Version in A  | Version in B
+      + amd64  | rbenv-ruby-2.6.1 | -             | 1
+
+    ```
+6. Publish the new snapshot, you will be prompted to enter the passphrase for our
+APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass apt`
+
+    ```
+    $ sudo -i aptly publish switch trusty rbenv-ruby rbenv-ruby-$(date +%Y%m%d)
+      Loading packages...
+      Generating metadata files and linking package files...
+      Finalizing metadata files...
+      Publish for snapshot rbenv-ruby/trusty [amd64] publishes {main: [rbenv-ruby-20190212]: Snapshot from local repo [rbenv-ruby]} has been successfully switched to new snapshot.
+    ```
+7. You can check it has been published by going to [https://apt.publishing.service.gov.uk](https://apt.publishing.service.gov.uk/).
+For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/](https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
+
+    ```
+      $ sudo apt-get install rbenv-ruby-2.6.1
+    ```
 
 ## Mirroring
 
@@ -67,7 +230,7 @@ We will describe some common operations here and add to it as we do more
 complex things. However the upstream documentation and examples are also
 very good.
 
-> **note**
+> **Note**
 >
 > The commands below should be run on the machine where aptly is
 > running. We publish to our preview mirror from our production aptly
@@ -92,8 +255,8 @@ When doing any of the `publish` actions below you will be prompted for
 the password. This can be found in the same place. You will need to use
 `sudo -i` for such actions, in order to reference root's GPG files.
 
-> **warning**
-
+> **WARNING**
+>
 > Please make sure that you use `sudo` and NOT a root shell, so that we
 > have a record of the actions performed.
 
@@ -102,6 +265,16 @@ the password. This can be found in the same place. You will need to use
 We maintain some local repos. These are typically used to manually
 mirror an upstream repo where we need more than one version of a
 package, and the upstream mirror removes old versions (eg Jenkins).
+
+Recently the need to upgrade packages beyond versions maintained by the
+Linux distribution (Currently Ubuntu 14.04 LTS Trusty) has arisen (The shipped
+Python version 2.7.6 does not support current SSL anymore).
+
+To avoid impact of custom built versions on the existing environment we prefix
+these packages with "govuk-" (as in e.g. `govuk-python_2.7.14_amd64`) and aim
+for installation in /opt. For a single dependency tree a new local repository
+following the naming scheme, e.g. `govuk-python` to contain packages `govuk-python`
+, `govuk-python-pip`, `govuk-python-setuptools`, etc.) should be created.
 
 #### Initial setup
 
@@ -153,7 +326,51 @@ Note that whilst - typically - purging all is an expensive operation
 which could take some time), in this case, the low amount, and type, of
 traffic this service receives means it's safe.
 
+#### Use a local repo in an app
+
+To make a repository available on a machine it is necessary to include a class implementing
+an `apt::source` object, e.g.:
+
+```
+class govuk_python::repo (
+  $apt_mirror_hostname = undef,
+) {
+  apt::source { 'govuk-python':
+    location     => "http://${apt_mirror_hostname}/govuk-python",
+    release      => $::lsbdistcodename,
+    architecture => $::architecture,
+    key          => 'DA1A4A13543B466853BAF164EB9B1D8886F44E2A';
+  }
+}
+```
+After this, packages can be included in the form:
+
+```
+  package { 'govuk-python':
+    ensure  => $version,
+    require => Apt::Source['govuk-python'],
+  }
+```
+
 ### Third-party repos
+
+> **Note**
+>
+> Despite Ubuntu being based on Debian experimental, no Debian repository should ever
+> be directly mirrored and made available through aptly to a Ubuntu system _ever_.
+> There will be severe complications including failing or erroneous package upgrades,
+> broken dependencies and likely complete system failure.
+>
+> The safest way to attempt to use a .deb package of another distro is to include its
+> source repository and compile the package yourself. After adding e.g. the Debian source
+> repository `deb-src http://deb.debian.org/debian/ experimental main contrib non-free`
+> and executing `apt-get update`, compilation of the desired software can be
+> attempted by invoking:
+>
+>  ```
+>  apt-get build-dep <package> # For build dependencies
+>  apt-get source --compile <package> # To download source and compile package
+>  ```
 
 #### Initial setup
 

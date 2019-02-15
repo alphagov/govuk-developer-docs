@@ -4,8 +4,8 @@ title: Search reindex failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2017-11-23
-review_in: 12 months
+last_reviewed_on: 2018-08-31
+review_in: 6 months
 ---
 
 The reindex task is run weekly on a Monday at 12pm on integration. It

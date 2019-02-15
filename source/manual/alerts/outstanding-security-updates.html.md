@@ -4,7 +4,7 @@ title: Outstanding security updates
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-03-07
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -13,8 +13,9 @@ Most security updates should be automagically applied overnight by
 and our Nagios check accounts for that by delaying alerts for up to
 24hrs.
 
-To see which packages are outstanding you can use the
-`apt.security_updates` Fabric task.
+To see which packages are outstanding you can use the following fabric task:
+
+    fab $environment -H frontend-lb-1.frontend apt.security_updates
 
 Before running an unattended upgrade manually it's worth checking why it
 failed to run. Logs of the previous runs can be found in
@@ -68,4 +69,3 @@ As a temporary work-around, run these commands on the machine to fix:
 sudo rm -r /var/lib/apt/lists/*
 sudo apt-get update
 ```
-

@@ -1,109 +1,87 @@
 ---
-owner_slack: "#datagovuk-tech"
-title: Architectural overview of data.gov.uk
+owner_slack: "#govuk-platform-health"
+title: Architecture of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
+type: learn
 parent: "/manual.html"
-last_reviewed_on: 2018-04-30
-review_in: 3 months
+last_reviewed_on: 2018-12-21
+review_in: 6 months
 ---
-![](/manual/images/data-gov-uk-architecture.jpg)
-[paas]: https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
-[infrastructure]: https://github.com/alphagov/datagovuk_infrastructure
+[ckan]: apps/ckanext-datagovuk
+[paas]: https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas
 [signon]: manual/manage-sign-on-accounts
+[deployment]: manual/data-gov-uk-deployment
+[monitoring]: manual/data-gov-uk-monitoring
+[signon-adr]: https://github.com/alphagov/datagovuk_publish/blob/master/doc/adr/0002-signon.md
+[statistics]: http://statistics.data.gov.uk
+[land-registry]: http://landregistry.data.gov.uk
+[csw]: http://csw.data.gov.uk/geonetwork/srv/en/main.home
+[location-mde]: http://locationmde.data.gov.uk
+[guidance]: http://guidance.data.gov.uk
+[business]: http://business.data.gov.uk/id/company/09747720
+[location]: http://location.data.gov.uk/registry/
+[environment]: http://environment.data.gov.uk/index.html
+[guidance-github]: https://github.com/datagovuk/guidance
+[open-data-policy]: https://www.gov.uk/government/publications/open-data-white-paper-unleashing-the-potential
+[inspire]: http://inspire.ec.europa.eu/about-inspire
+[uk-location-programme]: https://inspire.ec.europa.eu/events/conferences/inspire_2010/presentations/258_pdf_presentation.pdf
+[contract-finder]: https://data.gov.uk/data/contracts-finder-archive/
+[contract-finder-new]: https://www.contractsfinder.service.gov.uk/Search
+[land-registry-birth]: https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/246732/0247.pdf
+[reference]: http://reference.data.gov.uk
+[time-interval-service]: https://github.com/epimorphics/IntervalServer
+[heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#use-the-shared-heroku-account
 
-## Environments
+The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.
 
-We have three environments: integration, staging ("test") and production. See the [CI docs](manual/data-gov-uk-continuous-integration-and-deployment) for more information about each environment.
+## Architectural overview of data.gov.uk
 
-## Applications
+![](/manual/images/dgu-architecture.png)
 
-Most of the service is hosted on [GOV.UK PaaS][paas], which divides components into applications (eg Rails apps) and services (databases, messaging services, etc). All applications and services are controlled through cloudfoundry, as used by [GOV.UK PaaS][paas]. Some familiarity with that documentation will be useful to read this manual.
+The original for this diagram is available on the [Platform Health Google Drive](https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r) and can be edited with draw.io.
 
-### Legacy DGU
+## data.gov.uk Services
 
-The old platform which Publish and Find are going to replace. It has an API that is accessed to import data on the new platform.
+Services owned by data.gov.uk
 
-### Find Data
+  * [CKAN] is the publishing app for datasets ('packages').
+  * [Find] is the public frontend for searching datasets using Elasticsearch.
+  * [Publish] is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Elasticsearch for use in Find.
+  * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
 
-The new public-facing service that end-users access to find data. It’s a Rails app, hosted on [GOV.UK PaaS][paas]. You can find out more about this app [here][find].
+Services with data.gov.uk sub-domains, but owned by other departments
 
-### Publish Data
+  * [Statistics] is owned by the Office for National Statistics and was established as part of the [Open Data Policy][open-data-policy].
+  * [Environment][environment] is owned by DEFRA and was created with the [Location] service as part of the [Open Data Policy][open-data-policy].
+  * [Land Registry][land-registry] is owned by the same and [was created][land-registry-birth] to publish linked data as part of the [Open Data Policy][open-data-policy].
+  * [Catalog Service for the Web][csw] is owned by Ordnance Survey and serves [INSPIRE] datasets to the EU Geoportal.
+  * [Location Metadata Editor][location-mde] is owned by DEFRA and publishes [INSPIRE] metadata, which is used to enrich datasets.
+  * [Location] came before [Location Metadata Editor][location-mde] and was established as part of the [UK Location Programme][uk-location-programme].
+  * [Guidance] is a set of manual pages hosted in [GitHub][guidance-github], which ought to be migrated into normal GOV.UK docs.
+  * [Contract Finder][contract-finder] is now provided by [Crown Commercial Service][contract-finder-new], which ought to have pre-2015 stuff merged in.
+  * [Business] is a legacy redirect to Companies House.
 
-The new publisher-facing services that publishers access to add or edit datasets. It's a Rails app, hosted on [GOV.UK PaaS][paas]. You can find out more about this app [here][publish].
+> Several datasets link to [environment.data.gov.uk][environment] and require user login to access.  Although branded
+> as data.gov.uk, this is a totally separate service.  If a user is having difficulty accessing this system, they
+> should contact the [maintainers of this resource](http://environment.data.gov.uk/ds/partners/index.jsp#/contactus),
+> who are currently Airbus Defence & Space.
 
-### Publish Data Worker
+## [Publish] and [Find]
 
-This is a rails worker used to fetch data from legacy. It uses Redis to queue import tasks. It will be removed once legacy is no longer used. The source code is in the [Publish Data app][publish].
+[Publish] and [Find] are provisioned on [GOV.UK Paas][paas]. The [deployment] and [monitoring] pages explain this in more detail, but you can use the following commands to get an overview.
 
-The way data is normally imported from legacy is:
+```
+cf apps
+cf services
+cf routes
+cf env publish-data-beta-production
+```
 
-* Every hour, pingdom GETs https://publish-data-beta-production.cloudapps.digital/api/sync-beta
-* This runs the `sync:beta` Rails task that queries the Legacy API for new and updated datasets
-* Changes are reflected in the Publish database and pushed to elasticsearch
+We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish], with the app in each environment linked to the corresponding instance of [GOV.UK Signon][signon]. See the Publish ADR for more info.
 
-To run the task manually you can do the following on [staging](#staging-environment) (or replace the app name with the live app):
+## [CKAN]
 
-    cf run-task publish-data-beta-staging-worker "bin/rake sync:beta" --name sync
-    cf logs publish-data-beta-staging-worker
-
-## Services
-
-### GOV.UK Signon
-
-We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish], with the app in each environment linked to the corresponding instance of [GOV.UK Signon][signon].
-
-The organisations in the [Publish Data][publish] database have a `govuk_content_id` field to map them to [GOV.UK Signon][signon] organisations.
-
-If no organisation can be found for a user (e.g. if no mapping exists), the app will fail.
-
-### Postgres
-
-The database that [Publish Data][publish] uses. Publish Data gets the details and credentials through the `VCAP_SERVICES` environment variable.
-
-### Elasticsearch
-
-The search index that [Find Data][find] uses to search datasets. It is populated through the `search:reindex` rake task on [Publish Data][publish] (see below) and when publishers make changes when using Publish Data.
-The `VCAP_SERVICES` environment variable contains the credentials to connect to it.
-
-### beta.data.gov.uk proxy (aka beta-dgu-route)
-
-This is a “cdn-route” [PaaS](paas) service that proxies the `beta.data.gov.uk host` name to the [Find Data][find] application.
-
-### Secrets
-
-There are two “user-provided” services (`find-production-secrets` and `publish-production-secrets`) that are used by [Publish Data][publish] and [Find Data][find] to get access to environment variables, some of which contain secrets such as API keys. Those variables are found in the `VCAP_SERVICES` environment variable for [Publish Data][publish] and [Find Data][find]. The value of those variables is set and encrypted in the [datagovuk_infrastructure][infrastructure] repository, and cloudfoundry is used to deploy the service when they’re modified.
-
-The environment variables for each app can be accessed using the command `cf env <app-name>` via the cloudfoundry CLI.
-
-### Redis
-
-Redis is not currently available on [PaaS][paas] for production services, so we run two redis instances on AWS that we set up by hand. Details can be found on data.gov.uk's AWS console.
-
-To navigate to the console:
-
-* Login to AWS.
-* Select ‘Ireland’ from the nav bar drop down menu - top right of page.
-* Select EC2 from the services menu, to reach the EC2 Dashboard
-
-Look for instances called `redis-staging` and `redis-production`.
-
-## Monitoring
-
-The [Publish Data][publish] and [Find Data][find] applications are monitored by Pingdom.
-
-You can monitor Sidekiq jobs for [Publish Data][publish] by going to `/sidekiq` on the website.
-
-We use Sentry to monitor errors, the URLs for which can be found on the app pages in this documentation. Both [Publish Data][publish] and [Find Data][find] look for an environment variable called `SENTRY_DSN` (provided by the [Secrets services](#secrets-services)) which contains the URL which messages should be sent on sentry.io. Members of the data.gov.uk group on Sentry will receive an email in case of errors.
-
-## Analytics
-
-We use Google Analytics, with standard settings and some specific events on datafile download.
-
-## Logging
-
-We use Logit and take advantage of [PaaS’s][paas] support for it. We have a [`logit-ssl-drain`](#services) cloudfoundry service that is bound to all apps.
-
-The logit URL is `syslog-tls://225374f1-0bbc-4aa9-8ba0-b87c33995884-ls.logit.io:19753` and maps to the “DGU Beta” stack on the GDS Logit account.
+[CKAN] is hosted on AWS and is maintained/deployed in the same way as most other GOV.UK applications.

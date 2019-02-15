@@ -5,18 +5,19 @@ description: How we manage our Ruby dependencies using Dependabot, who can merge
 section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-24
+last_reviewed_on: 2018-09-03
 review_in: 6 months
 ---
 
 We're [obliged to keep our software current][current].
 
-To help with this we're currently trialling a service called [Dependabot][] to perform automated dependency upgrades.
+To help with this, we use a service called [Dependabot][] to perform automated dependency upgrades.
 
 ## Who can merge Dependabot PRs
 
-- Dependabot PRs for external gems (Rails for example) are [considered to be from a external contributor][ext] and need 2 reviews
-- Dependabot PRs for GOV.UK-owned gems (govuk_app_config, govspeak for example) need 1 reviewer
+- GOV.UK-owned gems (govuk_app_config, govspeak for example) need 1 reviewer
+- Gems found in the `test` block in the `Gemfile` (Capybara for example) need 1 reviewer
+- All other gems (Rails for example) are [considered to be from a external contributor][ext] and need 2 reviews
 
 You can ignore pull requests from the bot by replying `@dependabot ignore this major version`, but you have to add the PR to the [tech debt Trello board][tech-debt]
 
@@ -25,7 +26,7 @@ You can ignore pull requests from the bot by replying `@dependabot ignore this m
 1. Give Dependabot [access to the repo][access] (only GitHub org owners can do this)
 2. Go to [Dependabot admin][admin] and click "Add project"
 
-## Ask Dependabot to bump Dependencies
+## Ask Dependabot to bump dependencies
 
 By default Dependabot will bump dependencies once a day, but you can ask it to bump manually:
 
