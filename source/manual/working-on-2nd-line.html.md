@@ -11,6 +11,9 @@ review_in: 3 months
 
 When working on 2nd line, we look at Normal and High priority tickets in the Zendesk ['2nd Line--GOV.UK Alerts and Issues' queue](https://govuk.zendesk.com/agent/filters/360000051009).
 
+## Monitoring Icinga
+We respond to alerts on our environments and deal with (in priority order) critical issues and warnings. We acknowledge alerts that are not actionable or causing problems for the platform.
+
 ## Triaging Zendesk tickets
 See the [diagram for how 2nd line triage Zendesk tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing) - there is a printout on the 2nd line desk.
 
