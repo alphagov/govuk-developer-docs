@@ -37,11 +37,11 @@ This package can then be copied to Aptly machine, and the new version added to p
 
 ### Building the fpm package.
 
-- Add a new recipe for the ruby version in [Packager](packager).
+- Add a new recipe for the ruby version in [Packager][packager].
 The folder name will be the Ruby version, and contain a `recipe.rb` file. See previous entries for examples.
-The recipe will require the [SHA256](sha256_checksum) of the version's `tar.gz`, available at [Ruby cache](ruby_cache).
+The recipe will require the [SHA256][sha256_checksum] of the version's `tar.gz`, available at [Ruby cache][ruby_cache].
 
-- Once the Packager change is merged, [build the package](jenkins).
+- Once the Packager change is merged, [build the package][jenkins].
 
 Use the VM to [test the recipe](debian-packaging.html#test-the-recipe)
 

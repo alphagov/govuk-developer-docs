@@ -153,6 +153,7 @@ deb file to aptly.
 >
 > The commands below should be run on the machine where aptly is
 > running.
+> The example used is for upgrading Ruby by adding a new package to the `rbenv-ruby` repository
 
 1. Download the package to your local machine
 2. Upload the package to the aptly machine:
@@ -198,8 +199,8 @@ APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secret
       Finalizing metadata files...
       Publish for snapshot rbenv-ruby/trusty [amd64] publishes {main: [rbenv-ruby-20190212]: Snapshot from local repo [rbenv-ruby]} has been successfully switched to new snapshot.
     ```
-7. You can check it has been published by going to [https://apt.publishing.service.gov.uk](https://apt.publishing.service.gov.uk/). For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/]
-(https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
+7. You can check it has been published by going to [https://apt.publishing.service.gov.uk](https://apt.publishing.service.gov.uk/).
+For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/](https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
 
     ```
       $ sudo apt-get install rbenv-ruby-2.6.1
