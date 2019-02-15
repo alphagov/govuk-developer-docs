@@ -1,10 +1,11 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Out of hours support (on-call)
-section: Support
+section: 2nd line
 layout: manual_layout
+type: learn
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-10-02
 review_in: 6 months
 ---
 
@@ -22,6 +23,7 @@ to keep GOV.UK running at night, on the weekends and on public holidays.
   know how to fix every issue on your own
 - Logs are not as important as being available - if you need to lose some logs
   in order to bring the site back up, that's probably a good trade-off to make
+- Get paid. Make sure you submit your [payment claim form][] after your shift.
 
 ## On call checklist
 
@@ -29,19 +31,22 @@ You should do these things before going on call so you're prepared.
 
 1. Have the numbers of other people on your shift saved in your phone. This
    includes whoever is on Escalations. Get these numbers from PagerDuty.
-2. Ensure you have an up to date local copy of the [Developer Docs][docs] repository
+1. Ensure you have an up to date local copy of the [Developer Docs][docs] repository
    and that you can build it.
-3. Make sure your [`fabric-scripts`][fabric] are up to date.
-4. Make sure you can VPN to the office or disaster recovery location.
-5. Ensure your PagerDuty alert settings will wake you if you're called. You might want
+1. Make sure your [`fabric-scripts`][fabric] are up to date.
+1. Make sure you can VPN to the office or disaster recovery location.
+1. Ensure your PagerDuty alert settings will wake you if you're called. You might want
    to install the [PagerDuty App](https://www.pagerduty.com/features/mobile-incident-management/)
    on your phone.
-6. Ensure you can [decrypt secrets][govuk-secrets] with your GPG setup.
-7. Ensure you can access [vCloud Director][vcloud] in production.
-8. Read these documents:
+1. Ensure you can [decrypt secrets][govuk-secrets] with your GPG setup.
+1. Ensure you can access [vCloud Director][vcloud] in production.
+1. Ensure you can access [govuk_mirror-puppet][] by [adding your SSH key to hierdata](https://github.com/alphagov/govuk_mirror-puppet/blob/master/hieradata/common.yaml#L126).
+1. Read these documents:
     - [So, you're having an incident](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/46301531/So+you+re+having+an+incident)
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
     - [Emergency publishing](/manual/emergency-publishing.html)
+
+[govuk_mirror-puppet]: https://github.com/alphagov/govuk_mirror-puppet
 
 ## Things that may result in you being contacted
 
@@ -104,4 +109,5 @@ support (assuming everything is working).
 [docs]: https://github.com/alphagov/govuk-developer-docs/
 [fabric]: https://github.com/alphagov/fabric-scripts/
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets/
-[vcloud]: https://github.com/alphagov/govuk-legacy-opsmanual/blob/master/infrastructure/howto/connect-carrenza-il2.rst
+[vcloud]: connect-to-vcloud-director.html
+[payment claim form]: https://docs.google.com/forms/d/e/1FAIpQLSd8DX3B0L6az_aHEfWBegK5ABIPhfARgQZ0OpdEW9bIhMk5Fg/viewform

@@ -4,7 +4,7 @@ title: Run an application in the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-28
+last_reviewed_on: 2018-10-15
 review_in: 6 months
 ---
 

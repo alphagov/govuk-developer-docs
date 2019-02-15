@@ -4,7 +4,7 @@ title: MongoDB rollback
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -19,7 +19,7 @@ documentation](http://docs.mongodb.org/manual/core/replication/#replica-set-roll
 > a network partition with replication lag. When this member (the former
 > primary) rejoins the replica set and attempts to continue replication
 > as a secondary the former primary must revert these operations or
-> “roll back” these operations to maintain database consistency across
+> "roll back" these operations to maintain database consistency across
 > the replica set.
 
 ### How to investigate

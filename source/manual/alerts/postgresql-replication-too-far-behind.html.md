@@ -4,7 +4,7 @@ title: 'PostgreSQL: replication too far behind'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-03-06
+last_reviewed_on: 2018-08-31
 review_in: 6 months
 ---
 
@@ -21,6 +21,11 @@ the remaining node and raise a CRITICAL alert.
 If both nodes are down then Graphite will return no data and an UNKNOWN
 alert will be raised. This should correlate with other checks for server
 and database health.
+
+If a backup has recently been restored to the primary, it may be that
+the primary did not keep enough WAL segments around to bring the
+standby up to date.  This can be fixed by restore the backup to the
+standby as well, after which normal replication will take over.
 
 You can get a quick view of postgresql's wal by doing the following:
 

@@ -1,12 +1,16 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Upgrade MySQL in production and staging
+title: Upgrade MySQL in production and staging (Carrenza only)
 parent: "/manual.html"
 layout: manual_layout
 section: Databases
-last_reviewed_on: 2018-04-13
+last_reviewed_on: 2018-09-06
 review_in: 6 months
 ---
+
+> **Note**
+>
+> This process is only applicable to Carrenza environments.
 
 Upgrading MySQL will cause 500 errors on sites as the master and slave
 machines are restarted, so this procedure needs to be done at a suitable

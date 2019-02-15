@@ -5,80 +5,63 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
-last_reviewed_on: 2018-04-26
-review_in: 3 months
+last_reviewed_on: 2018-12-13
+review_in: 6 months
 ---
 
-## Introduction
+Teams are responsible for deploying their own work. We believe that [regular releases minimise the risk of major problems][reg] and improve recovery time. The [2nd line team][2l] is responsible for providing access to deploy software for teams who can't deploy it themselves.
 
-2nd line is responsible for:
+If you are responding to a security incident, follow the steps to [deploy fixes for a security vulnerability][sec].
 
-- ensuring that software is released to GOV.UK responsibly
-- providing access to deploy software for teams who can't deploy it themselves
+[2l]: /manual/welcome-to-2nd-line.html
+[reg]: https://gds.blog.gov.uk/2012/11/02/regular-releases-reduce-risk
+[sec]: /manual/deploy-fixes-for-a-security-vulnerability.html
 
-As far as possible, teams are responsible for deploying their own work. We believe that [regular releases minimise the risk of major problems][regular_releases_reduce_risk] and improve recovery time.
+## 1. Test on integration
 
-[regular_releases_reduce_risk]: https://gds.blog.gov.uk/2012/11/02/regular-releases-reduce-risk/
+Code that is merged to `master` is automatically deployed to integration. You should verify that your changes work there.
 
-If possible, you should avoid coupling multiple applications so that they all have to be deployed at once. Changes should be backwards compatible except in exceptional circumstances.
+## 2. Check the context
 
-We have a staging environment that must always be deployed to immediately before production. Access to staging and production is restricted to certain people.
+The golden rule is that you only deploy what you can support.
 
-## Release process
+- This means that deployments generally take place between 9.30am and 5pm (4pm on Fridays), the core hours when most people are in the office.
+- Check `#govuk-deploy` recent history and the channel topic. In some circumstances we may institute short deployment freezes, and they will be announced in that channel as well as other developer-relevant channels and possibly email.
+- Announce your deployment in `#govuk-2ndline` if it’s potentially problematic, or in `#govuk-deploy` if it involves deploying something other than a release tag (like a branch).
 
-Only one release takes place at a time. One product team owns the release - if
-multiple teams are involved in the release, pick one. Releases are tracked by the [release app](https://release.publishing.service.gov.uk/).
+## 3. Check your changes
 
-You need to have a Signon account with appropriate permissions to access the release app.
+Go to the [Release application](https://release.publishing.service.gov.uk) and find the application you want to deploy. Then select the release tag you want to deploy.
 
-## Deployment process
+- Check what you will be deploying. If there's other people's code to deploy, ask them whether they're okay for the changes to go out.
+- Check if there's a deploy note for the application, to see if there are any special instructions or reasons not to deploy. Individual app deploy freezes are usually announced here.
+- Check in `#govuk-deploy` if someone's already in the process of deploying the app. This is particularly important for Puppet where there is a delay of 30 minutes between staging and production deployments. Deployments attributed to "Jenkins" are AWS automated deployments and can be ignored for this purpose.
 
-As a response to [RFC-70](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-070-path-towards-continuous-deployment-cd.md) starting 15 May 2017 we are using a process which allows us to deploy without the need for a booked deployment slot.
+## 4. Deploy to staging
 
-Deployment communications are in the `#govuk-deploy` Slack channel. If you are on 2ndline you should add yourself to that channel. As before, releases can start from 9:30am and must be finished by 5pm, or 4pm on Fridays.
+From the [Release application](https://release.publishing.service.gov.uk), click the deploy buttons. If you have production access, this will bring you to the Jenkins job to deploy your change.
 
-### Deployment
+Once deployed to staging, you will need to:
 
-1. Check with anyone whose changes you will release during your deploy (check the release app)
-1. Check `#govuk-deploy` recent history and the channel topic
-1. Announce your deployment if it’s potentially problematic
-1. Deploy to staging
-1. Check Smokey passes; remember most apps take a couple of minutes to restart
-1. Check the new functionality works as you would expect
-1. Deploy to production
-1. Check Smokey passes in production; once again, apps take a couple of minutes
-    to restart
-1. Check the new functionality works in production
-1. Take a look at any alerts and metrics, just to check you haven't broken
-   something
-1. Stay around for a while just in case something goes wrong
+- Perform manual testing (including any testing mandated as part of the deploy note for the app)
+- [Monitor your app during deployment](/manual/deployment-dashboards.html)
+- Check the results of the [smoke tests](https://github.com/alphagov/smokey)
+- Keep an eye on any Icinga alerts related to your application
+- Check Sentry for any new errors
 
-An alert for the start and end of your deployment will appear in the channel. Jenkins will still enforce sequential deployments per environment across all applications, so you may end up in a queue.
+## 5. Deploy to production
 
-### Holding deployment of other applications
+Again:
 
-If you need to hold deployments of applications during your deploy say so in your announcement post and add it to the channel topic (along with your name). Post again and remove from the topic when you release your hold.
+- Perform manual testing (including any testing mandated as part of the deploy note for the app)
+- [Monitor your app during deployment](/manual/deployment-dashboards.html)
+- Check the results of the [smoke tests](https://github.com/alphagov/smokey)
+- Keep an eye on any Icinga alerts related to your application
+- Check Sentry for any new errors
 
-### 2nd line support
+Stay around for a while just in case something goes wrong.
 
-If you need support from 2nd line during your deploy, contact them in advance and agree a time.
-
-### Security patches
-
-If you are responding to a security incident, follow the steps to [deploy fixes for a security vulnerability](deploy-fixes-for-a-security-vulnerability.html).
-
-### Rollback
-
-Make sure you have a rollback plan if things go wrong. When you're just changing code, this is relatively easy; when you're doing data migrations, less so. **As far as is possible, all data migrations should be reversible**. Don't rely on backups unless you absolutely have to.
-
-If a release fails in staging and it can be easily and quickly fixed, you don't need to rollback the change. Just post a message in the `#govuk-deploy` Slack channel to let people know what's going. Then test your fix in integration and redeploy and test it in staging before continuing the deploy to production.
-
-If a release fails in staging and it is not a quick-fix, you should rollback the change and try again later.
-
-## GitHub
-
-We depend on GitHub for deploying software to GOV.UK. We have processes in place to deploy if [GitHub is unavailable](github-unavailable.html).
-
-## On the blog
+## Related reading
 
 - [Releasing applications to GOV.UK](https://gdstechnology.blog.gov.uk/2014/09/10/releasing-applications-to-gov-uk/) (older post, using the badger)
+- [Read RFC 70](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-070-path-towards-continuous-deployment-cd.md) for context on changes to the deploy process in May 2017

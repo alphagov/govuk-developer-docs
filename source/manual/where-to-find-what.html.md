@@ -1,7 +1,8 @@
 ---
-owner_slack: "@tijmen"
+owner_slack: "@tijmen.brommet"
 title: Where to find what documentation
-section: Manual
+section: Learning GOV.UK
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-04-05

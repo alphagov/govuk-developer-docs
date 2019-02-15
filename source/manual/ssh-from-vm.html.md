@@ -4,16 +4,12 @@ title: SSH into GOV.UK servers from the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-29
+last_reviewed_on: 2018-09-04
 review_in: 6 months
 ---
 
-You will need to either forward your public key from the host machine to the
-VM or have your VM public key added to your [user manifest][user-manifests].
-
-[user-manifests]: https://docs.publishing.service.gov.uk/manual/get-started.html#3-create-a-user-in-integration-and-ci
-
-To confirm your key has been forwarded to the development vm you can run:
+By default, your SSH agent is forwarded to the VM. To confirm your key has
+been forwarded you can run:
 
 ```shell
 $ vagrant ssh # ssh onto vm
@@ -27,7 +23,10 @@ Things to check if it doesn't work:
   version and config.
 - **Do you get a permission denied error?** Make sure you're in the
   user list in the [govuk-secrets repo][govuk-secrets] for production access,
-  or the [govuk-puppet repo][govuk_puppet] for access to other environments.
+  or the [govuk-puppet repo][govuk-puppet] for access to other environments.
+  Alternatively, are you the correct user? If you're in the VM you might need to
+  specify a username (example: `ssh joebloggs@jumpbox.integration.publishing.service.gov.uk`),
+  as 'vagrant' might be the default ssh username.
 - **Are you connecting from outside The White Chapel Building?**
   You'll need to connect to the VPN first; SSH connections are restricted
   to the White Chapel Building IP addresses.

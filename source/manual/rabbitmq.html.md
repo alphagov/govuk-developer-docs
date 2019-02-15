@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: RabbitMQ
-section: Tools
+title: Manage RabbitMQ
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-17
+last_reviewed_on: 2019-01-04
 review_in: 6 months
 ---
 
@@ -30,6 +30,15 @@ exchange. These heartbeats are sent via a [rake task][heartbeat_rake_task]
 in the `publishing-api` app.
 
 [heartbeat_rake_task]: https://github.com/alphagov/publishing-api/blob/012cb3f1ceb3b18e7059a367cc4030aa0763afb4/lib/tasks/heartbeat_messages.rake
+
+## Viewing RabbitMQ metrics
+
+Metrics from RabbitMQ are collected with a CollectD plugin, and are
+available in Graphite/Grafana. There is a [generic RabbitMQ
+dashboard][rabbitmq-dashboard] which shows the main metrics for queues
+and exchanges.
+
+[rabbitmq-dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rabbitmq.json
 
 ## Connecting to the RabbitMQ web control panel
 
@@ -78,13 +87,17 @@ in our case.
     Scroll down and click "Get messages". Clicking the "Get Message(s)"
     button that appears will fetch however many messages you ask for.
 
-    Note: Fetching messages actually removes them from the queue. By leaving
+    > **Note**
+    >
+    > Fetching messages actually removes them from the queue. By leaving
     the "Requeue" option set to "Yes", they will be added back to queue.
 
 3.  Delete the messages
 
-    Note: there is a risk that you might delete the wrong message(s). This
-    is because the contents of the queue may have changed.
+    > **Note**
+    >
+    > There is a risk that you might delete the wrong message(s). This
+    > is because the contents of the queue may have changed.
 
     Repeat, but change the "Requeue" option to "No".
 

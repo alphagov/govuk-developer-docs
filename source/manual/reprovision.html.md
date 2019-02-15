@@ -1,18 +1,26 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Reprovision a machine in vCloud Director
-section: Environments
+title: Reprovision a machine
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-22
+last_reviewed_on: 2018-12-17
 review_in: 6 months
 ---
 
 Make sure you are aware what the consequences will be of removing a
 machine from the rotation and consider who needs to be aware of
-potential downtime.
+potential downtime. In particular, removing a single-point-of-failure
+machine will result in downtime.
 
-## Steps
+## AWS
+
+1.  Log into the AWS console, select the correct environment and go to the EC2 service
+2.  Locate the instance and confirm it's the correct one by either instance ID or private IP address
+3.  Select Terminate from the Actions -> Instance State menu
+4.  The AWS Auto Scaling Group will reprovision the instance automatically
+
+## Carrenza
 
 1.  Schedule downtime for your host in Icinga using our [Fabric
     scripts](https://github.com/alphagov/fabric-scripts). This will
@@ -38,10 +46,10 @@ potential downtime.
         screen
         while true; do sudo puppet cert sign --all; sleep 10; done
 
-    Don't forget to kill the screen(1) session when you're done.
+    Don't forget to kill the screen session when you're done.
 
-6.  Reprovision the box using the Jenkins job specific to
-    the environment.
+6.  Reprovision the box using the "Launch VMs" Jenkins job in the
+    enviroment's `deploy` Jenkins instance.
 7.  Remove any entries for the box from your SSH
     `~/.ssh/known_hosts` file.
 8.  Wait for the box to run Puppet so you can log in. It make take a few
@@ -59,10 +67,13 @@ potential downtime.
     the downtime from Nagios (this can be done from the "Downtime" link
     in the left-hand sidebar).
 
-> **note**
+> **Note**
 >
 > If you are still unable to connect to the newly reprovisioned VM after
 > a long period of time (e.g. 20 minutes), try connecting to the
 > machine's console from the vCloud Director Flash UI. VMs have been
 > known to wait at the Grub bootloader screen; if this is the case,
 > press the enter key in the console to start Linux.
+>
+> You won't be able to connect to the Flash console if you're using the
+> "emergency" SSH tunnel to access vCloud.

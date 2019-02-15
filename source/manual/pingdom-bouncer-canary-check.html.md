@@ -3,8 +3,9 @@ owner_slack: "#govuk-2ndline"
 title: Pingdom Bouncer canary check
 parent: "/manual.html"
 layout: manual_layout
+type: learn
 section: Monitoring
-last_reviewed_on: 2018-02-27
+last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 

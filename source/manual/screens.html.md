@@ -1,16 +1,16 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Monitoring screens
+title: Screens that we have in the office
 parent: "/manual.html"
 layout: manual_layout
-section: Tools
-last_reviewed_on: 2018-04-12
-review_in: 6 months
+section: Monitoring
+last_reviewed_on: 2018-09-06
+review_in: 12 months
 ---
 
-Most teams in GOV.UK have screens set up to show data about pull requests and releases.
+Most teams in GOV.UK have screens set up to show data about pull requests, released and/or current work.
 
-Most often displayed are the [deploy lag radiator][deploy-lag] and the [fourth wall][fourth-wall].
+Most often displayed are the [deploy lag radiator][deploy-lag], the [fourth wall][fourth-wall] and the team's Trello board.
 
 [deploy-lag]: https://github.com/dsingleton/deploy-lag-radiator
 [fourth-wall]: https://github.com/alphagov/fourth-wall
@@ -23,22 +23,19 @@ The [search screen][search-screen] displays live data from GOV.UK. It includes t
 
 [search-screen]: https://github.com/alphagov/govuk-display-screen
 
-## 2nd line screen
+## 2nd line screens
 
-![Photo of the 2nd line monitoring screen](images/monitoring.jpg)
+![Photo of the 2nd line monitoring screens](images/monitoring.jpg)
 
-There is a screen by the 2ndline desks.
+There are two screens by the 2ndline desks.
 
-The screen is a webpage running [David Singleton's Frame Splits][frame-splits] with 3 splits: production health, icinga alert summary per environment, recent deployments.
+The top screen is a webpage running [frame splits][frame-splits] with two splits: production health and Icinga alert summary per environment.
+
+The bottom screen is a PaaS-hosted Grafana dashboard showing statistics for data.gov.uk.
 
 [frame-splits]: https://github.com/dsingleton/frame-splits
 
 ### Production health
-
-This screen contains [a dashboard giving an overview of health for the
-platform][production-health],
-a list of upcoming releases, and a dashboard showing the alerts for each
-environment.
 
 This dashboard contains 2 graphs, one of origin 4xx and 5xx, and one of
 edge 4xx and 5xx. It's worth keeping an eye on this and looking for any
@@ -48,7 +45,7 @@ issues before they are visible in the second graph, and to end users.
 
 [production-health]: https://grafana.publishing.service.gov.uk/#/dashboard/file/2ndline_health.json
 
-### Troubleshooting
+#### Troubleshooting
 
 Sometimes the 'EDGE' graphs may disappear. These are obtained by the
 [collectd-cdn plugin][collectd-cdn] on
@@ -66,7 +63,7 @@ Nov 10 11:37:17 monitoring-1.management collectd[32764]: cdn_fastly plugin: Fail
 Nov 10 11:37:17 monitoring-1.management collectd[32764]: cdn_fastly plugin: Failed to query service: redirector
 ```
 
-If this happens, restarting collectd on the monitoring server may kick
+If this happens, restarting `collectd` on the monitoring server may kick
 things into life.
 
 ```
@@ -77,9 +74,7 @@ sudo service collectd restart
 
 ### Icinga alert summary per environment
 
-This screen shows a summary of the critical and warning alerts for our
-three environments (production, staging, integration) in a colour coded
-box (red for criticals, yellow for warnings, purple for unknowns, green for no issues).
+This screen shows a summary of the critical and warning alerts for our four environments (production, staging, integration, CI) plus upcoming AWS environments in a colour-coded box (red for critical errors, yellow for warnings, purple for unknown errors and green for no issues).
 
 This is powered by [blinkenjs][blinkenjs] which is deployed to Heroku on
 the [govuk-secondline-blinken][secondline] app. You must be in the office
@@ -87,7 +82,3 @@ or on the VPN to access the Icinga instances it gets its data from.
 
 [blinkenjs]: https://github.com/alphagov/blinkenjs
 [secondline]: https://govuk-secondline-blinken.herokuapp.com/blinken.html
-
-### Recent deployments
-
-This shows a list of recent app deployments to staging and production.

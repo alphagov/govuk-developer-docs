@@ -1,16 +1,21 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
-section: Tools
+section: Monitoring
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-26
+last_reviewed_on: 2018-10-17
 review_in: 6 months
 ---
 
 ## Icinga
 
-<https://alert.publishing.service.gov.uk/>
+* [Production](https://alert.publishing.service.gov.uk)
+* [Staging](https://alert.staging.publishing.service.gov.uk)
+* [Integration](https://alert.integration.publishing.service.gov.uk)
+* [AWS Production](https://alert.blue.production.govuk.digital)
+* [AWS Staging](https://alert.blue.staging.govuk.digital)
 
 Icinga is used to monitor alerts that we have set up. It can be a bit hard to
 navigate but there are only a few views you need to know about (listed in the left-hand
@@ -59,8 +64,8 @@ Grafana lets us create nice dashboards using Graphite data.
 
 Useful Grafana dashboards:
 
-- [Origin health](https://grafana.publishing.service.gov.uk/#/dashboard/file/origin_health.json)
-- [Edge health](https://grafana.publishing.service.gov.uk/#/dashboard/file/edge_health.json)
+- [Origin health](https://grafana.publishing.service.gov.uk/dashboard/file/origin_health.json)
+- [Edge health](https://grafana.publishing.service.gov.uk/dashboard/file/edge_health.json)
 - [Application deployment dashboards](deployment-dashboards.html)
 
 The full list of Grafana dashboards is [stored in the Puppet repo][dashboards]

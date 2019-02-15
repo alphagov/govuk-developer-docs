@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Manage Signon accounts
-section: Support
+section: Accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-15
+last_reviewed_on: 2019-01-31
 review_in: 6 months
 ---
 

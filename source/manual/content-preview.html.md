@@ -3,8 +3,9 @@ owner_slack: "#govuk-2ndline"
 title: How the draft stack works
 parent: "/manual.html"
 layout: manual_layout
+type: learn
 section: Publishing
-last_reviewed_on: 2018-01-24
+last_reviewed_on: 2019-02-01
 review_in: 6 months
 ---
 
@@ -77,13 +78,12 @@ see a 403 Forbidden page.
 (This is achieved by the API adapters passing the UID in the headers of
 the request to content-store, in the same way as the govuk-request-id.)
 
-Publishing apps can also add an `auth_bypass_ids` list to the access limited hash,
-to allow unauthenticated access for preview or fact checking. The ID is encoded
-in a JSON Web Token and appended to the URL provided to the users.
+Publishing apps can also add an `auth_bypass_ids` list to the access limited
+hash, to allow unauthenticated access for preview or fact checking. The ID is
+encoded in a JSON Web Token and appended to the URL provided to the users.
 Authenticating-proxy decodes the token and extracts the ID, and again passes
 it to the content-store in the request headers, where it is compared with the
 ID stored on the requested content item.
 
-Publishing API strips out the `access_limited` hash before sending data
-to the live content-store, since all published content is viewable by
-everyone.
+Publishing API strips out the `access_limited` hash before sending data to the
+live content-store, since all published content is viewable by everyone.

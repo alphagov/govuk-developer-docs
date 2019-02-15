@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Troubleshooting CI Jenkins Performance
+title: Troubleshoot CI Jenkins Performance
 parent: "/manual.html"
 layout: manual_layout
 section: Testing

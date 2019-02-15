@@ -2,241 +2,397 @@
 
 - github_repo_name: collections-publisher
   type: Publishing apps
-  team: "#taxonomy-and-nav"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: contacts-admin
   type: Publishing apps
   puppet_name: contacts
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: content-tagger
   type: Publishing apps
-  team: "#taxonomy-and-nav"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
+
+- github_repo_name: content-publisher
+  type: Publishing apps
+  team: "#govuk-pub-workflow"
+  production_hosted_on: carrenza
 
 - github_repo_name: local-links-manager
   type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
 
 - github_repo_name: manuals-publisher
   type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: maslow
   type: Publishing apps
-  team: "#platform-health"
-
-- github_repo_name: organisations-publisher
-  type: Publishing apps
-  team: "#govuk-porg-pages"
-
-- github_repo_name: policy-publisher
-  type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: publisher
   type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: service-manual-publisher
   type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: short-url-manager
   type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: specialist-publisher
   type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: travel-advice-publisher
   type: Publishing apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: whitehall
   type: Publishing apps
   production_url: https://whitehall-admin.publishing.service.gov.uk
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   api_docs_url: /apis/whitehall.html
+  production_hosted_on: carrenza
 
 # api
 
 - github_repo_name: content-store
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   api_docs_url: /apis/content-store.html
+  production_hosted_on: aws
 
 - github_repo_name: email-alert-api
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   metrics_dashboard_url: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
-
-- github_repo_name: email-alert-service
-  type: APIs
-  team: "#platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: imminence
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
 
 - github_repo_name: link-checker-api
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   api_docs_url: /apis/link-checker-api.html
+  production_hosted_on: aws
 
 - github_repo_name: publishing-api
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   api_docs_url: /apis/publishing-api.html
+  production_hosted_on: carrenza
 
 - github_repo_name: rummager
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   api_docs_url: /apis/search-api.html
+  production_hosted_on: carrenza
+
+- github_repo_name: search-api
+  type: APIs
+  team: "#govuk-search-perf"
+  api_docs_url: /apis/search-api.html
+  production_hosted_on: aws
 
 - github_repo_name: asset-manager
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: router-api
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: support-api
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
 
 - github_repo_name: hmrc-manuals-api
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: mapit
   type: APIs
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   api_docs_url: https://mapit.mysociety.org/docs/
+  production_hosted_on: aws
+
+# Services
+
+- github_repo_name: cache-clearing-service
+  type: Services
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
+
+- github_repo_name: email-alert-service
+  type: Services
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 # Support
 
 - github_repo_name: content-performance-manager
   type: Supporting apps
-  team: "#data-informed-content"
+  team: "#govuk-data-informed"
+  production_hosted_on: carrenza
 
 - github_repo_name: content-audit-tool
   type: Supporting apps
-  team: "#data-informed-content"
+  team: "#govuk-data-informed"
+  production_hosted_on: carrenza
+
+- github_repo_name: content-data-admin
+  type: Supporting apps
+  team: "#govuk-data-informed"
+  production_hosted_on: carrenza
 
 - github_repo_name: search-admin
   type: Supporting apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: signon
   type: Supporting apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: support
   type: Supporting apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
 
 - github_repo_name: authenticating-proxy
   type: Supporting apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: release
   type: Supporting apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: router
   type: Supporting apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 # frontend
 
 - github_repo_name: calculators
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: calendars
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: collections
   type: Frontend apps
-  team: "#taxonomy-and-nav"
+  team: "#govuk-platform-health"
   component_guide_url: https://govuk-collections.herokuapp.com/component-guide
+  production_hosted_on: carrenza
 
 - github_repo_name: email-alert-frontend
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: feedback
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: finder-frontend
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   component_guide_url: https://finder-frontend.herokuapp.com/component-guide
+  production_hosted_on: carrenza
 
 - github_repo_name: frontend
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: government-frontend
   type: Frontend apps
-  team: "#taxonomy-and-nav"
+  team: "#govuk-platform-health"
   component_guide_url: https://government-frontend.herokuapp.com/component-guide
+  production_hosted_on: carrenza
 
 - github_repo_name: info-frontend
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: licence-finder
   type: Frontend apps
   puppet_name: licencefinder
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: manuals-frontend
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 - github_repo_name: smart-answers
   type: Frontend apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   puppet_name: smartanswers
+  production_hosted_on: carrenza
 
 - github_repo_name: service-manual-frontend
-  team: "#platform-health"
+  team: "#govuk-platform-health"
   type: Frontend apps
+  production_hosted_on: carrenza
 
 - github_repo_name: static
   type: Frontend apps
-  team: "#platform-health"
-  component_guide_url: https://govuk-static.herokuapp.com/component-guide
+  team: "#govuk-platform-health"
+  production_hosted_on: carrenza
 
 # Transition
 
 - github_repo_name: bouncer
   type: Transition apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
 
 - github_repo_name: transition
   type: Transition apps
-  team: "#platform-health"
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
 
 # data.gov.uk
 
 - github_repo_name: datagovuk_find
   type: data.gov.uk apps
-  team: "#govuk-datagovuk-tech"
+  team: "#govuk-platform-health"
+  production_hosted_on: paas
+  sentry_url: https://sentry.io/govuk/find-data
+  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 
 - github_repo_name: datagovuk_publish
   type: data.gov.uk apps
-  team: "#govuk-datagovuk-tech"
+  team: "#govuk-platform-health"
+  production_hosted_on: paas
+  sentry_url: https://sentry.io/govuk/publish-data
+  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 
 - github_repo_name: ckanext-datagovuk
   type: data.gov.uk apps
-  team: "#govuk-datagovuk-tech"
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
+  sentry_url: false
+  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 
+- github_repo_name: datagovuk_reference
+  management_url: https://dashboard.heroku.com/apps/interval-server
+  production_hosted_on: heroku
+  type: data.gov.uk apps
+  sentry_url: false
+  dashboard_url: false
+
+# Licensing
+
+- github_repo_name: licensify
+  private_repo: true
+  type: Licensing apps
+  production_hosted_on: ukcloud
+  team: "#govuk-licensing"
+  sentry_url: false
+  deploy_url: false
+  dashboard_url: false
+  description: |
+    GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)
+
+# Utility Heroku apps (don't add apps that are only for review here)
+
+- github_repo_name: seal
+  management_url: https://dashboard.heroku.com/apps/moody-seal
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-alert-tracker
+  management_url: https://dashboard.heroku.com/apps/govuk-alert-tracker
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-content-schemas
+  app_name: govuk-content-store-examples
+  management_url: https://dashboard.heroku.com/apps/govuk-content-store-examples
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-display-screen
+  management_url: https://dashboard.heroku.com/apps/govuk-display-screen
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-dependencies
+  management_url: https://dashboard.heroku.com/apps/govuk-dependencies
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: blinkenjs
+  app_name: govuk-secondline-blinken
+  management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: side-by-side-browser
+  management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: tech-docs-monitor
+  management_url: https://dashboard.heroku.com/apps/govuk-tech-docs-monitor
+  production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- github_repo_name: govuk-pact-broker
+  production_hosted_on: paas
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 # Retired applications
 
@@ -271,10 +427,18 @@
     November 2017 we retired the app after all the content had been replaced
     by a version managed by our publishing apps.
 
+- github_repo_name: organisations-publisher
+  type: Publishing apps
+  retired: true
+  repo_url: https://github.com/alphagov/organisations-publisher
+  description: |
+    organisations-publisher was a proposed app to create and edit organisations,
+    people and roles, taking over from whitehall. It was never released.
+
 - github_repo_name: panopticon
   retired: true
   type: Publishing apps
-  repo_url: https://github.com/gds-attic/panopticon
+  repo_url: https://github.com/alphagov/panopticon
   description: |
     Application that was at one time used for management of "artefacts", route
     registration, tagging and search indexing. The functionality was slowly moved
@@ -285,6 +449,16 @@
     to [content-tagger](/apps/content-tagger.html). Publishing apps became
     responsible for sending their pages to search.
 
+- github_repo_name: policy-publisher
+  retired: true
+  type: Publishing apps
+  repo_url: https://github.com/alphagov/policy-publisher
+  description: |
+    Used to create and edit policies, which were shown at
+    https://www.gov.uk/government/policies. This functionality was
+    originally extracted from Whitehall in to this app. Then later,
+    policy pages were replaced by Topic pages through the work on the
+    GOV.UK Topic Taxonomy, removing the need for Policy Publisher.
 
 - github_repo_name: business-support-api
   retired: true
@@ -334,7 +508,7 @@
 - github_repo_name: business-support-finder
   retired: true
   type: Frontend apps
-  repo_url: https://github.com/gds-attic/business-support-finder
+  repo_url: https://github.com/alphagov/business-support-finder
   description: |
     Application that was used to display the "business support finder", an early
     finder-style page with search functionality for finding details of business

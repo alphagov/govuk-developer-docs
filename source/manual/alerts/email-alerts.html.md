@@ -4,20 +4,19 @@ title: Email alerts not sent
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2019-02-14
 review_in: 6 months
 ---
 
-GOV.UK sends out emails when certain publications are published. There
-is [a check][email-check] to verify that emails are sent for
+There is [a check][email-check] to verify that emails are sent for
 [drug and medical device alerts][] and [travel advice updates][]. These checks
 are run via Jenkins: [Drug and medical device alerts check][drug-alerts-check]
-and [Travel advice alerts check][travel-advice-check]
+and [Travel advice alerts check][travel-advice-check].
 
 If a check fails:
 
-* Inspect the console logs for the Jenkins job to confirm the reason for the
-  failure
+* You can inspect the console logs for the Jenkins job to confirm the reason
+  for the failure.
 * You can check the mailbox that is used for the check to rule out an issue
   searching for the message. We have an email address
   `govuk_email_check@digital.cabinet-office.gov.uk` which is subscribed to
@@ -27,16 +26,28 @@ If a check fails:
 * You can check whether the email was sent to the
   [courtesy copies google group][] - presence here doesn't mean that the email
   was sent to users, just that Email Alert API processed the content change.
-* You can investigate further if the email was sent by accessing the
+* You can investigate further whether the email was sent by accessing the
   Email Alert API console.
   * `ContentChange.where(content_id: "<items-content-id>")` to look up the
      content changes Email Alert API has received for a particular content-id
   * Given a particular content change you can monitor whether this should have
     been sent to people by querying
     `SubscriptionContent.where(content_change: <your_content_change>)`
-    to look up the email data directly.
+    to look up the email data directly
   * You can look up emails sending or sent to a particular address with
     `Email.where(address: "<address>")`
+  * You can find [unprocessed content changes][unprocessed-content-changes] and
+    check whether the content change for the failed alert is in the list of [affected content changes][affected-content-changes]
+  * If you find the content change has not been processed, check the [number of
+    subscription contents][number-subs-contents] built for the content change a few times (the number should increase)
+  * If the number of subscription contents is not increasing, it is possible the
+    sidekiq job has terminated ungracefully. You can [resend the content
+    change][resend-content-change]. This will ignore any that have already gone
+    out so it is safe to execute
+* If the email has been received by `govuk_email_check@digital.cabinet-office.gov.uk` but the subject of the email doesn't
+  match the title of the content item, this means that the title of the content was updated after it was first published and after
+  the emails went out. To stop the check from constantly failing, add the subject of the email to the list here:
+  [acknowledged email list][] and then re-run the Jenkins job to get rid of the alert.  
 
 ## Resending travel advice emails
 
@@ -51,6 +62,11 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 [travel advice updates]: https://www.gov.uk/foreign-travel-advice
 [drug-alerts-check]: https://deploy.publishing.service.gov.uk/job/email-alert-check/
 [travel-advice-check]: https://deploy.publishing.service.gov.uk/job/travel-advice-email-alert-check/
-[2nd line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass
+[2nd line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline
 [courtesy copies google group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
-[resend-travel-advice-job]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE=backend-1.backend&RAKE_TASK=email_alerts:trigger%5BPUT_EDITION_ID_HERE%5D
+[resend-travel-advice-job]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=email_alerts:trigger%5BPUT_EDITION_ID_HERE%5D
+[affected-content-changes]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#check-which-content-changes-are-affected
+[number-subs-contents]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#check-number-of-subscription-contents-built-for-a-content-change-you-would-expect-this-number-to-keep-going-up
+[resend-content-change]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#resend-the-emails-for-a-content-change-ignore-ones-that-have-already-gone-out
+[unprocessed-content-changes]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#unprocessed-content-changes-content_changes
+[acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L6-L14

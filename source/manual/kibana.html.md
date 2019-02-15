@@ -1,11 +1,11 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Useful Kibana queries
+title: Query Kibana (includes useful queries)
 layout: manual_layout
 parent: "/manual.html"
 section: Logging
 important: true
-last_reviewed_on: 2018-05-21
+last_reviewed_on: 2018-12-04
 review_in: 6 months
 ---
 All logs for GOV.UK on all environments are collected in Kibana, which you can
@@ -23,7 +23,7 @@ You can save and load queries using the buttons in the top right. You may want t
 ### 5xx errors returned from cache layer
 
 ```rb
-host:cache* AND @fields.status:[500 TO 504]
+host:cache* AND (@fields.status:[500 TO 504] OR status:[500 TO 504])
 ```
 
 ### Puppet runs
@@ -63,13 +63,9 @@ Nginx logs for frontend:
 tags:"nginx" AND application:frontend*
 ```
 
-Note: the `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
-
-### CDN logs
-
-```rb
-application:"govuk-cdn-logs-monitor"
-```
+> **Note**
+>
+> The `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
 
 ### Application upstart logs
 

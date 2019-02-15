@@ -1,11 +1,11 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "@hong.nguyen"
 title: So, you're having an incident
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
-last_reviewed_on: 2018-04-11
-review_in: 2 months
+section: Incidents
+last_reviewed_on: 2018-11-01
+review_in: 3 months
 ---
 
 This [Google Doc describes what to do in case of an incident][doc].

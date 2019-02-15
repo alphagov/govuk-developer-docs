@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Move apps between servers
-section: Environments
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-02
+last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 
@@ -50,6 +50,7 @@ Once the servers are created, they will run puppet to apply relevant configurati
 ### Add the new servers to the load balancers
 
 > **Note**
+>
 > It is important that all servers are running the same version of the app at this point.
 
 Once you've verified that the app(s) have been deployed to all the new servers, you'll need to change the load balancers to start using the new servers as part of a managed migration from the old to the new servers.
@@ -71,8 +72,14 @@ Once all the load balancers have been updated, requests to the app(s) will be us
 1. Change the relevant [app deployment scripts][deploy-scripts] to deploy to only the new servers.
 1. Re-run everything in production once you've checked everything works.
 
-> **Warning**
-> Bundling up the removal of the old servers from the load balancers and the removal of the app(s) from the old servers may result in a period where the old servers are still part of the load balancer group but don't have the app(s) running. This can be mitigated by either splitting up these changes, or running puppet manually on the load balancers after deployment to ensure no further traffic is routed to the old servers.
+> **WARNING**
+>
+> Bundling up the removal of the old servers from the load balancers and the
+> removal of the app(s) from the old servers may result in a period where the
+> old servers are still part of the load balancer group but don't have the
+> app(s) running. This can be mitigated by either splitting up these changes,
+> or running puppet manually on the load balancers after deployment to ensure
+> no further traffic is routed to the old servers.
 
 [hieradata]: https://github.com/alphagov/govuk-puppet/pull/7310
 [deploy-scripts]: https://github.com/alphagov/govuk-app-deployment/pull/250
@@ -86,6 +93,7 @@ Once everything is done, make some final changes to the [puppet configuration an
 ## AWS
 
 > **Note**
+>
 > You need to be at least a Power User in AWS to be able to run the following procedure. You can check by looking in the [govuk-aws-data] repository. Some IAM changes may require Administrator access, so you'll need to ask someone in the Reliability Engineering team to run these for you.
 
 1. Add Terraform configuration ([1][aws-terraform-config-1], [2][aws-terraform-config-2], [3][aws-terraform-config-3]) to create the new servers, load balancers, security groups, DNS entries etc.
@@ -97,8 +105,7 @@ Once everything is done, make some final changes to the [puppet configuration an
 
 For each deployment, set the environment to one of `integration`, `staging` or `production` and run the `plan` command first to double-check the changes before running the `apply` command to make the changes.
 
-> **Note**
-> To run the above deployments, you will need to [generate AWS credentials][aws-credentials].
+👉 [Deploy AWS infrastructure with Terraform][deploy-aws]
 
 [govuk-aws-data]: https://github.com/alphagov/govuk-aws-data/search?utf8=✓&q=role_poweruser_user_arns
 [aws-terraform-config-1]: https://github.com/alphagov/govuk-aws/pull/494
@@ -107,4 +114,4 @@ For each deployment, set the environment to one of `integration`, `staging` or `
 [aws-terraform-data-1]: https://github.com/alphagov/govuk-aws-data/pull/103
 [aws-terraform-data-2]: https://github.com/alphagov/govuk-aws-data/pull/104
 [Deploy]: https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS/
-[aws-credentials]: user-management-in-aws.html#exporting-credentials-to-environment
+[deploy-aws]: /manual/deploying-terraform.html

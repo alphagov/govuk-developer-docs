@@ -3,9 +3,11 @@
   sections:
     - name: Publishing apps
     - name: APIs
+    - name: Services
     - name: Supporting apps
     - name: Frontend apps
     - name: data.gov.uk apps
+    - name: Licensing apps
 
 - name: Developing
   sections:
@@ -54,7 +56,6 @@
     - name: Routing
       repos:
         - authenticating-proxy
-        - fastly-configure
         - govuk-cdn-config
         - router
       sites:
@@ -62,9 +63,9 @@
           url: https://github.com/alphagov/router-data
           description: Send routes directly to the router-api (deprecated)
       sites:
-        - name: cdn-configs
-          url: https://github.com/alphagov/cdn-configs
-          description: Configuration for our Fastly
+        - name: govuk-cdn-config-secrets
+          url: https://github.com/alphagov/govuk-cdn-config-secrets
+          description: Configuration secrets for Fastly
 
     - name: Configuration
       repos:
@@ -111,18 +112,6 @@
         - alphagov/assets-directgov
         - alphagov/assets-businesslink
         - alphagov/side-by-side-browser
-      sites:
-        - name: pre-transition-stats
-          url: https://github.com/alphagov/pre-transition-stats
-          description: |
-            Processes statistics from sites before they transition to GOV.UK.
-            It creates an intermediate aggregate TSV file from web server logs
-            suitable for import into Transition.
-        - name: transition-stats
-          url: https://github.com/alphagov/transition-stats
-          description: |
-            Daily aggregate statistics gleaned from the GOV.UK redirector
-            Fastly logfiles.
 
 - name: Team tools
   sections:
@@ -130,21 +119,8 @@
       repos:
         - gds-hubot
         - seal
-        - emmabeynon/github-trello-poster
         - dsingleton/deploy-lag-radiator
         - govuk-browser-extension
         - govuk-dependencies
         - govuk-deploy-lag-badger
         - govuk-display-screen
-
-- name: Not GOV.UK (but GDS)
-  sections:
-    - name: Shared GOV.UK Frontend across Government
-      repos:
-        - govuk_prototype_kit
-        - govuk_template
-        - govuk_elements
-        - govuk_elements_rails
-        - govuk_frontend_toolkit
-        - govuk_frontend_toolkit_gem
-        - govuk_frontend_toolkit_npm

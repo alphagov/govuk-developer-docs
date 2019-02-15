@@ -1,16 +1,20 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Reboot a machine
-section: Environments
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-02-22
+last_reviewed_on: 2018-09-11
 review_in: 6 months
+next_review_notes: |
+    We may be on AWS entirely by the next review. Lots of this is Carrenza specific.
 ---
 
 ## Rules of rebooting
 
+-   *Read this page first* to see if any special cases apply to the type of
+    machine you need to reboot.
 -   Do not reboot more than one machine of the same class at the
     same time.
 -   When rebooting clustered applications (such as Elasticsearch) wait
@@ -37,14 +41,14 @@ You will then need to decide whether to:
 ### Deciding whether to reboot or silence
 
 This can be quite nuanced, before you go ahead with any course of action
-gather evidence and then ask in the \#webops slack room.
+gather evidence and then ask in the \#reliability-eng slack room.
 
 Find details of the update from the [Ubuntu Security
 Notices](http://www.ubuntu.com/usn/).
 
 -   Is it a remote or local exploit?
 -   Is it a kernel update?
--   If it's a shared library are we using it (see below)?
+-   If it's a shared library, are we using it (see below)?
 
 There is a Fabric task to find all processes using a deprecated library:
 
@@ -57,15 +61,19 @@ puppet in hieradata. For example,
 [here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/mysql_master.yaml)
 is an example of a machine that cannot be safely rebooted. The
 [default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
-is safe\_to\_reboot::can\_reboot: 'yes', so if it does not say it is
+is `safe_to_reboot::can_reboot: 'yes'`, so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
+
+> If there is an incident which requires the rebooting of a machine
+> otherwise marked as 'no', then it may be done provided any downstream
+> effects of this reboot have been considered.
 
 There is a Fabric task to schedule a machine for downtime in Nagios for
 20 minutes and then reboot it:
 
     fab $environment -H graphite-1.management vm.reboot
 
-> **note**
+> **Note (Carrenza only)**
 >
 > There is a known issue whereby adding an extra disk using the LSI
 > Logic Parallel (SCSI) controller to a VM causes the BIOS boot order to
@@ -74,36 +82,23 @@ There is a Fabric task to schedule a machine for downtime in Nagios for
 > manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
 > more info.
 
-## Rebooting all "safe" machines
-
-If you wish to reboot all machines, there is a Fabric task to reboot
-"safe" machines one at a time:
-
-    fab $environment puppet_class:govuk_safe_to_reboot::yes numbered:N vm.reboot
-
-replacing `$environment` with the appropriate environment, and `N` with
-a number (currently from 1 to 7).
-
-For example using '1' will reboot all machines ending with that number, e.g.
-backend-1, frontend-1, etc.
-
-All "safe" machines are automatically rebooted once a day.
-
 ## Rebooting MongoDB machines
 
 You can see our MongoDB machines by running:
 
     $ fab $environment puppet_class:mongodb::server hosts
 
-This section doesn't apply to `exception-handler-1` because it isn't
-using a replicaset.
+All secondary Mongo machines will reboot overnight. If you don't need to
+reboot the cluster right now, step the current primary down and allow it
+to reboot overnight:
+
+    $ fab $environment -H $hostname mongo.step_down_primary
 
 The general approach for rebooting machines in a MongoDB cluster is:
 
--   Check cluster status with `fab <environment> -H <host> mongo.status`
--   Using `fab <environment> -H <host> mongo.safe_reboot`
-    -   reboot the secondaries
-
+-   Check cluster status with `fab $environment -H $hostname mongo.status`
+-   Using `fab $environment -H $hostname mongo.safe_reboot`
+    - reboot the secondaries
     - reboot the primary waiting for the cluster to recover after
     each reboot. The `mongo.safe_reboot` Fabric task automates stepping
     down the primary and waiting for the cluster to recover
@@ -113,10 +108,21 @@ The general approach for rebooting machines in a MongoDB cluster is:
 
 To reboot an Elasticsearch machine, run the following command:
 
-    fab $environment -H '<machine-to-reboot>' elasticsearch.safe_reboot
+```sh
+$ fab $environment -H $hostname elasticsearch.safe_reboot
+```
 
-This will prevent you from rebooting a machine in a cluster which
-doesn't have a green cluster health status.
+This will prevent you from rebooting a machine in a cluster which doesn't have
+a green cluster health status.
+
+> **Note**
+>
+> Whilst the cluster is `yellow` (meaning one or more machines in the
+> cluster is unavailable), no reindexing will take place. Therefore you're
+> likely to see a backlog of jobs being created, particularly with Rummager.
+> This can take a long time to clear once the cluster is `green` again, and can
+> put extraneous load on the machines and it is therefore recommended to only
+> reboot these machines in hours if it is urgent.
 
 ## Rebooting Redis machines
 
@@ -125,20 +131,70 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-with Platform Health.
+with Platform Health and rummager workers must be restarted after the reboot.
 
-They may be rebooted in working hours in the staging environment, however you
-should notify colleagues before doing so as this may remove in flight jobs
-that sidekiq has added to the redis queues but not yet processed.
+They may be rebooted in working hours in other environments, however you
+should notify colleagues before doing so as this may remove in-flight jobs
+that Sidekiq has added to the Redis queues but not yet processed.
 
-To reboot a Redis machine, run the following command:
+## Rebooting RabbitMQ machines
 
-    fab $environment -H '<machine-to-reboot>' elasticsearch.redis_safe_reboot
+There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
+waiting for the cluster to recover before rebooting the next node.
 
-This will prevent you from rebooting a machine which still has to
-process logs
+> **Note**
+>
+> We have had a couple of incidents after running this script, so it should only
+> be done in-hours and requires careful monitoring. See:
+>
+> 1) [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#) - This required killing RabbitMQ processes to resolve.
+>
+> 2) [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv) - This required restarting Publishing API workers to resolve.
 
-## Rebooting backend-lb machines
+If there are problems with the cluster (eg, a partition has happened),
+the `safe_reboot` script will not reboot anything, and you'll need to
+take manual action to resolve the problem.
+
+-   Reboot the nodes in the cluster:
+
+        fab <environment> class:rabbitmq rabbitmq.safe_reboot
+
+If any applications start alerting due to `rabbitmq-1` being rebooted
+then either add a note here about how to make that application recover,
+or get the team responsible to make it point to the cluster.
+
+## Rebooting asset master and slave machines
+
+Unless there are urgent updates to apply the master machine should not be
+rebooted in production during working hours - as the master machine is required
+for attachments to be uploaded.
+
+The slave machines can be rebooted as they hold a copy of data and are resynced
+regularly.
+
+Reboots of the master machine should be organised with Platform Health,
+for the production environment.
+
+You may reboot the master machine in the staging environment during working
+hours however it is prudent to warn colleagues that uploading attachments will
+be unavailable during this period.
+
+## Rebooting router-backend machines
+
+Router backend machines are instances of MongoDB machines and can be rebooted
+as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
+
+## Rebooting jumpbox machines
+
+These machines are safe to reboot during the day. During the night they
+are involved in a data sync processes and rebooting could cause the data
+sync to fail.
+
+## Rebooting backend-lb machines (Carrenza only)
+
+> **Note**
+>
+> These machines don't exist in AWS environments.
 
 NAT rule points directly at backend-lb-1 for backend services. In order
 to safely reboot these machines you'll need access to vCloud Director.
@@ -146,6 +202,10 @@ to safely reboot these machines you'll need access to vCloud Director.
 -   reboot backend-lb-2 and wait for it to recover
 
     `fab <environment> -H backend-lb-2.backend vm.reboot`
+
+    > **Note**
+    >
+    > Doing this may trigger a Pagerduty alert and trigger 5xx errors on fastly
 
 -   find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
@@ -170,56 +230,11 @@ to safely reboot these machines you'll need access to vCloud Director.
 -   use vCloud Director to update the NAT rule to point back to the IP
     address of backend-lb-1
 
-## Rebooting RabbitMQ machines
+## Rebooting MySQL backup machines (Carrenza only)
 
-There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
-waiting for the cluster to recover before rebooting the next node.
-
-However, the `govuk_crawler_worker` app points directly to rabbitmq-1
-rather than the whole cluster, so this machine is a single point of
-failure. A brief downtime of `govuk_crawler_worker` isn't critical,
-though, so it just needs to be restarted after rebooting the cluster.
-
-If there are problems with the cluster (eg, a partition has happened),
-the `safe_reboot` script will not reboot anything, and you'll need to
-take manual action to resolve the problem.
-
--   Reboot the nodes in the cluster:
-
-        fab <environment> rabbitmq.safe_reboot
-
--   after rabbitmq-1 has recovered, restart govuk-crawler:
-
-        fab <environment> -H mirrorer-1.management app.start:govuk_crawler_worker
-
-If any applications other than govuk-crawler start alerting due to
-rabbitmq-1 being rebooted then either add a note here about how to make
-that application recover, or get the team responsible to make it point
-to the cluster.
-
-## Rebooting whitehall-frontend machines
-
-The Whitehall application boots slowly and causes HTTP requests to back
-up. You need to make sure that each machine is fully up before rebooting
-the next.
-
-Traffic to the whitehall-frontend boxes is at its highest between 10am
-and 4pm, so where possible try to reboot outside of that window.
-
--   Reboot the machine:
-
-    `fab <environment> -H whitehall-frontend-N.frontend vm.reboot`
-
--   Wait until the CPU usage and Nginx requests equally spread across
-    the cluster with the [Whitehall cluster health
-    dashboard](https://graphite.publishing.service.gov.uk/dashboard#whitehall%20cluster%20health)
--   If the machine does not recover properly and behave like the others
-    in the dashboard, you might need to restart the Whitehall
-    application on it:
-
-    `fab <environment> -H whitehall-frontend-N.frontend app.restart:whitehall`
-
-## Rebooting MySQL backup machines
+> **Note**
+>
+> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 The MySQL backup machines [create a file during the backup
 process](https://github.com/alphagov/govuk-puppet/commit/0e1615bf31f714994b43142ecf915330d4d46af5).
@@ -234,14 +249,18 @@ If that file exists, the machine isn't safe to reboot.
 
         fab <environment> -H mysql-backup-1.backend vm.reboot
 
-## Rebooting MySQL master and slave machines
+## Rebooting MySQL master and slave machines (Carrenza only)
+
+> **Note**
+>
+> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted during working hours in production. Applications write to the
 masters and read from the slaves (with the exception of the slave within
 the DR environment).
 
-If urgently required applications can have their database configuration
+If urgently required, applications can have their database configuration
 amended by editing the relevant configuration in
 <https://github.com/alphagov/govuk-app-deployment>
 
@@ -254,7 +273,11 @@ with Platform Health.
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
 
-## Rebooting PostgreSQL primary and standby machines
+## Rebooting PostgreSQL primary and standby machines (Carrenza only)
+
+> **Note**
+>
+> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted in production during working hours. Applications read and write
@@ -267,30 +290,3 @@ with Platform Health.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
-
-## Rebooting Asset master and slave machines
-
-Unless there are urgent updates to apply the master machine should not be
-rebooted in production during working hours - as the master machine is required
-for attachments to be uploaded.
-
-The slave machines can be rebooted as they hold a copy of data and are resynced
-regularly.
-
-Reboots of the master machine should be organised with Platform Health,
-for the production environment.
-
-You may reboot the master machine in the staging environment during working
-hours however it is prudent to warn colleagues that uploading attachments will
-be unavailable during this period.
-
-## Rebooting router-backend machines
-
-Router backend machines are instances of MongoDB machines and can be rebooted
-as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
-
-## Rebooting Jumpbox machines
-
-These machines are safe to reboot during the day. During the night they
-are involved in a data sync processes and rebooting could cause the data
-sync to fail.

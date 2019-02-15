@@ -1,11 +1,11 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "@hong.nguyen"
 title: Write an incident report
 parent: "/manual.html"
 layout: manual_layout
-section: 2nd line
-last_reviewed_on: 2018-04-11
-review_in: 2 months
+section: Incidents
+last_reviewed_on: 2018-11-01
+review_in: 3 months
 ---
 
 This is a template of the incident report as guidance.
@@ -32,8 +32,8 @@ Start Time|HH:MM (local time)
 End Time|HH:MM (local time)
 Application / process|
 Priority|Was it a P1, P2, or P3 incident? 
-Incident lead| 2nd line primary engineer or a senior developer 
-Comms lead|2nd line secondary engineer 
+Incident lead| 2nd line primary engineer or a senior developer
+Comms lead|2nd line secondary engineer
 
 Overview
 
@@ -53,18 +53,18 @@ All times in local time, unless otherwise stated.
 Time|Description
 ----|-----------  
 HH:MM|
-Total duration of incident|
-Time to fix|
+Total duration of incident (time from when problem started to incident marked as resolved)|
+Time to fix (time from when incident declared to marked as resolved)|
 
 ## Incident Review
 
-### Date:	
-### Time:	
-### Attendance: 
+### Date:
+### Time:
+### Attendance:
 
 ### Root cause
 
-Use this section to summarise the root cause of the incident. A draft root cause should be included, and discussed and agreed upon during the incident review. This root cause should be written for a non-technical audience. 
+Use this section to summarise the root cause of the incident. A draft root cause should be included, and discussed and agreed upon during the incident review. This root cause should be written for a non-technical audience.
  
 Please also include the root cause category:
 
@@ -81,8 +81,8 @@ Use this section to assign actions to individuals (not teams). These are actions
 * ...
 ### Standing actions
 
-* Does it need a blogpost? (P1 or P2; P3 if interesting). 
-* Present a summary of the incident at TSAD to share learning. 
+* Does it need a blogpost? (P1 or P2; P3 if interesting).
+* Present a summary of the incident at TSAD to share learning.
 Recommendations
 
 * ...

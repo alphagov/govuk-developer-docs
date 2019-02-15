@@ -1,6 +1,7 @@
 <% content_for :sidebar do %>
   <ul>
     <li><%= link_to 'Content Store', '/apis/content-store.html' %></li>
+    <li><%= link_to 'Email Alert API', '/apis/email-alert-api.html' %></li>
     <li><%= link_to 'Link Checker API', '/apis/link-checker-api.html' %></li>
     <li>
       <%= sidebar_link 'Publishing API', '/apis/publishing-api.html' %>
@@ -21,7 +22,7 @@
   </ul>
 <% end %>
 
-<% wrap_layout :layout_with_sidebar do %>
+<% wrap_layout :core do %>
   <%= partial 'partials/header' %>
   <%= yield %>
 <% end %>

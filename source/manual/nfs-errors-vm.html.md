@@ -4,25 +4,23 @@ title: Fix NFS errors in VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-28
+last_reviewed_on: 2018-10-25
 review_in: 6 months
 ---
 
 ## Are you on a VPN?
 
-Using Cisco AnyConnect has been known to cause issues with NFS.
+Using Cisco AnyConnect will prevent Vagrant from mounting your shared folders
+in the developer VM. If your VM is already running, it will freeze if you attempt
+to access a shared folder.
 
-Either disconnect from the VPN and reload the VM for access.
+To prevent this, start your VM with the command `VAGRANT_GOVUK_NFS=no vagrant up`.
 
-Or, consider using [OpenConnect] for your VPN. You can access the
-[VPN][gds-vpn] via:
+This will use a less efficient method of sharing folders, but it will work with
+the VPN.
 
-```shell
-$ sudo openconnect -v --pfs --no-dtls -u $USER vpn.digital.cabinet-office.gov.uk/ah
-```
-
-[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/how-to/connect-to-the-aviation-house-vpn
-[openconnect]: http://formulae.brew.sh/formula/openconnect
+Once you disconnect from the VPN, you will need to restart your computer before
+you're able to use Vagrant with NFS again.
 
 ## Vagrant error NFS is reporting that your exports file is invalid
 ```shell

@@ -4,8 +4,8 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-17
-review_in: 3 months
+last_reviewed_on: 2018-09-03
+review_in: 6 months
 related_applications: [rummager]
 ---
 
@@ -60,6 +60,10 @@ ssh $(ssh integration "govuk_node_list --single-node -c rummager_elasticsearch")
 
 Then visit <http://localhost:9200/_plugin/head/> to check how many documents have
 been copied to the new index.
+
+Alternatively, to view a summary of the indices from inside the Elasticsearch instance:
+
+    curl http://localhost:9200/_cat/indices
 
 ### Replay traffic
 
@@ -132,14 +136,8 @@ where `full_index_name` is the full name of the new index, including the date
 and UUID, e.g. `govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498`.
 
 Switching back to an old index means that you'll **lose any content updates**
-that were published while the new index was live. To fix this:
-
-0. [Replay traffic from whitehall][traffic-replay]
-0. Republish other content using the publishing-api rake task:
-
-    ```
-    rake 'represent_downstream:published_between[2018-01-04T09:30:00, 2018-01-04T10:00:00]'
-    ```
+that were published while the new index was live. To fix this, [replay the
+traffic][traffic-replay] from both publishing-api and Whitehall.
 
 [update-fields-or-doc-types]: /apis/search/add-new-fields-or-document-types.html
 [index-alias]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html

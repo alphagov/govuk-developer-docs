@@ -1,21 +1,21 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Increase RAM on the VM
+title: Not enough RAM for the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-03-28
+last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 
-If you have less than 8GB of RAM on your host machine, you’ll need to either:
+If you have less than 8GB of RAM on your host machine, you should ask IT for
+an upgrade. Your line manager can help you with this.
 
-* reduce the RAM available to the VM
-* add extra RAM
-
-You can reduce the RAM available to the VM in a `Vagrantfile.localconfig` file
-in the same [directory][vagrantfile-directory] as Vagrantfile, which is
-automatically read by Vagrant (don't forget to run `vagrant reload`):
+In the meantime, if you're struggling to run the VM and your macOS applications,
+you can reduce the RAM available to the VM. You can specify this in a
+`Vagrantfile.localconfig` file in the same directory (`govuk-puppet/development-vm`)
+as the Vagrantfile, which is automatically read by Vagrant (don't forget to run
+`vagrant reload`):
 
 ```shell
 $ cat ./Vagrantfile.localconfig

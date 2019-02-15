@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: How to use Logit for GOV.UK
+title: Use Logit for GOV.UK
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2017-12-21
+last_reviewed_on: 2019-01-03
 review_in: 6 months
 ---
 
@@ -16,18 +16,14 @@ GOV.UK use [Logit](https://logit.io) to provide our
 This is in line with [The GDS Way](https://gds-way.cloudapps.digital/) guidance
 on [logging](https://gds-way.cloudapps.digital/standards/logging.html).
 
+## If Logit is down
+
+If there is a problem with Logit you should report it by following the
+instructions in the Reliability Engineering manual for [reporting an incident](https://reliability-engineering.cloudapps.digital/logging.html#logit-incident-management).
+
 ## Accessing Logit
 
-You can access Logit by visiting
-[kibana.publishing.service.gov.uk](https://kibana.publishing.service.gov.uk).
-You will be prompted to log in with your GDS Google account if you're not
-already logged in.
-
-You can access logs for integration and staging too:
-
-[kibana.integration.publishing.service.gov.uk](https://kibana.integration.publishing.service.gov.uk)
-
-[kibana.staging.publishing.service.gov.uk](https://kibana.staging.publishing.service.gov.uk)
+You can [access Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit) by following the instructions in the Reliability Engineering manual.
 
 Logit stores the last environment you visited in a session. If you open any
 direct links externally they will take you to this stack.

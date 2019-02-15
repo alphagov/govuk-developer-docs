@@ -6,8 +6,18 @@ title: Applications on GOV.UK
 The publishing platform of GOV.UK consists of at least <%= active_app_pages.size %>
 separate applications. Most of them are built using [Ruby on Rails][rails].
 
+## Hosting
+
+| Hosting | Number of applications |
+| --- | --- |
+<% AppDocs::HOSTERS.each do |id, name| %>
+| <%= name %> | <%= AppDocs.pages.count { |app| app.production_hosted_on == id } %> |
+<% end %>
+
+## Reuse this data
+
 You can [download this data as JSON](/apps.json), or [download this data as CSV](/apps.csv).
-In Google Spreadsheets, use the following formula:
+In Google Spreadsheets, use the following formula to import all of the data:
 
 ```
 =importData("https://docs.publishing.service.gov.uk/apps.csv")
@@ -27,11 +37,7 @@ For example, a [HMRC manual page][hmrc-manual] is rendered by an application cal
 You can use the [chrome extension][extension] to find out which application
 is rendering any given page.
 
-All frontend applications use a [Ruby gem called slimmer][slimmer], which wraps
-the generated HTML into a layout with GOV.UK styling. To avoid having to update
-all applications for a global design change, slimmer pulls in the actual ERB
-templates from the ["static" application][static], which also serves stylesheets,
-javascript and images.
+You can [read more about the frontend architecture on GOV.UK](/manual/frontend-architecture.html).
 
 ## Publishing apps
 
@@ -40,8 +46,7 @@ Publishing apps are used by editors to publish content to GOV.UK. For example,
 [specialist documents][specialist documents].
 
 The apps are secured by behind a [single signon system][signon]. They use an
-[omniauth adapter called gds-sso][gds-sso] to authenticate the user. The styling
-of the apps are shared using [a gem called govuk\_admin\_template][govuk_admin_template].
+[omniauth adapter called gds-sso][gds-sso] to authenticate the user.
 
 [rails]: http://rubyonrails.org/
 [extension]: https://github.com/alphagov/govuk-browser-extension
@@ -49,7 +54,6 @@ of the apps are shared using [a gem called govuk\_admin\_template][govuk_admin_t
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 [slimmer]: https://github.com/alphagov/slimmer
 [gds-sso]: https://github.com/alphagov/gds-sso
-[govuk_admin_template]: https://github.com/alphagov/govuk_admin_template
 [hmrc-manual]: https://www.gov.uk/hmrc-internal-manuals/vat-clothing/vclothing1100
 [specialist documents]: https://www.gov.uk/cma-cases/legal-services-market-study
 [manuals-frontend]: /apps/manuals-frontend.html

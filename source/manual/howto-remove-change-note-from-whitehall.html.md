@@ -1,55 +1,79 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Remove a change note in Whitehall
-section: Whitehall
+section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-02-09
+last_reviewed_on: 2018-08-17
 review_in: 6 months
 ---
 
-Change notes are called `editorial_remarks` in Whitehall. An Edition can
-have multiple editorial remarks and they are visible only in the Whitehall
-Admin. On the hand, an Edition in the Publishing API can only have one
-single `change_note`. The change note is public facing as it is displayed on
-the frontend. The Publishing API creates a list of all the change notes
+Change notes are called editorial remarks in Whitehall. An Edition can
+have multiple editorial remarks and they are visible only in Whitehall
+Admin. However, an Edition in the Publishing API can only have one `change_note`, which is public-facing. The Publishing API creates a list of all the change notes
 from all versions of the edition and presents them to the Content Store.
 You can read more about this in the Publishing API [docs](https://docs.publishing.service.gov.uk/apis/publishing-api/model.html#changenote).
 
-### Remove a Change Note
+### Remove a change note
 
-First of all determine whether the person requesting that you remove a change note
-is referring to an `editorial_remark` in the Whitehall Admin, or to a public facing
-`change_note` which is collected from Publishing API.
+You need to determine whether the request is referring to an `editorial_remark` in Whitehall Admin, or to a public-facing `change_note` in Publishing API.
 
 #### Editorial Remark
-1. Obtain the content item ID of the document on which the change note was created.
-This can be done by visiting the `/api/content/` version of the edition's url.
-This document will contain multiple editions. You will have to extract the
+1. Obtain the content ID of the document on which the change note was created.
+This document will contain multiple editions. You need to extract the
 `editorial_remark` from these editions.
 1. Create a data migration in Whitehall [docs here](https://github.com/alphagov/whitehall/blob/19cd7d72de32454d532c195f35b027fa1b3ba6ac/db/data_migration/README.md)
-1. In the data migration, search for the document by the content item ID and
+1. In the data migration, search for the document by the content ID and
 extract the `editorial_remark` that contains the text you are looking to delete.
 1. If such an editorial remark is present, then destroy the `editorial_remark`
-and check in the UI that it is no longer displayed.
+and check that it is no longer displayed.
 
 #### Change Note
-1. If not then it's probably a `change_note` in Publishing API so you should create
-a migration in publishing API instead.
-1. Similarly, search for the document by content item ID in publishing API:
-`Document.where(content_id: "your-content-id")` and extract the `change_note`.
-If the document is associated with multiple editions you should search through all
-of them for the text of the change note: `document.editions.map(&:change_note)`.
-An example PR can be found here: https://github.com/alphagov/publishing-api/pull/1160
-1. Find the change note containing the text you are looking to delete and destroy it.
-1. Check in the UI that the change note is no longer displayed.
-1. If the change note was indicating a major change, then it will be propagated
-to an Edition in publishing-api. You can search for that edition using the content
-item id (Edition IDs will not coincide between whitehall and
-publishing-api). You can also do a freetext search for the change note text in
-1. If you do find a change note, you will have to delete it and re-send 
-the edition to the content store to be updated. 
-1. You will also have to delete the change history as this does not get regenerated 
-automatically. This change also has to represented downstream to the content store
-so you should combine it with the previous step. Example PR: https://github.com/alphagov/publishing-api/pull/1167/files
 
+Rake Tasks exist in both Publishing API and Whitehall to quickly remove change notes for a document. The tasks take a content id, content locale and the text of the change note.
+There are two interfaces for dry and real runs, to ensure the correct change note is being targetted before removing it.
+
+**Note**
+> It performs a fuzzy-search of the change note text, and will return the first best match. So searching for
+> generic words such as "Update" may not return the exact ChangeNote you desire. It is advised to use the
+> dry run first to ensure the correct ChangeNote will be deleted.
+
+##### Publishing API
+
+**Note**
+> Individual publishing apps may have their own equivalent of this task. If possible, remove change notes in the
+> specific publishing application: use this Publishing API task as a last resort!
+
+###### Dry run
+
+`$ bundle exec data_hygiene:remove_change_note:dry[content_id,locale,change note text]`
+
+[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
+
+This attempts to locate the selected change note for the content, and if found, report to the user the change note object that would have been removed.
+
+###### Real run
+
+`$ bundle exec data_hygiene:remove_change_note:real[content_id,locale,change note text]`
+
+[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
+
+This will actually *delete* the selected change note and re-represent to the content store, also updating the edition history.
+
+##### Whitehall
+
+###### Dry run
+
+`$ bundle exec data_hygiene:remove_change_note:dry[content_id,locale,change note text]`
+
+[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
+
+This attempts to locate the selected change note for the content, and if found, report to the user the change note text that would have been removed.
+
+###### Real run
+
+`$ bundle exec data_hygiene:remove_change_note:real[content_id,locale,change note text]`
+
+[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
+
+This will downgrade the edition to a `minor change`, set the change note text to `nil` and the `major_change_published_at` to the previous major change. It then re-represents to the content store with the updated edition history.

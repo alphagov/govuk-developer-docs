@@ -5,7 +5,9 @@ GovukTechDocs.configure(self)
 
 set :markdown,
     renderer: DeveloperDocsRenderer.new(
-      with_toc_data: true
+      with_toc_data: true,
+      api: true,
+      context: self,
     ),
     fenced_code_blocks: true,
     tables: true,
@@ -42,8 +44,12 @@ helpers do
     ApplicationsByTeam.teams
   end
 
-  def page_review
-    @page_review ||= PageReview.new(current_page)
+  def related_things
+    @related_things ||= RelatedThings.new(manual, current_page)
+  end
+
+  def page_title
+    (defined?(locals) && locals[:title]) || [current_page.data.title, current_page.data.section].compact.join(' - ')
   end
 end
 
@@ -92,8 +98,4 @@ Supertypes.all.each do |supertype|
     description: supertype.description,
     supertype: supertype,
   }
-end
-
-YAML.load_file('data/redirects.yml').each do |from, to|
-  redirect from, to: to
 end
