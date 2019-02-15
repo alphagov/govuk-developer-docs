@@ -36,4 +36,4 @@ We record these alerts here because so other developers are aware that they are 
 These alerts shouldn't cause big issues but that's not to say it won't - which is why we should log it here.
 
 ## Declaring and responding to an incident
-Find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html).
+Find out [what to do if there’s an incident](/manual/incident-management-guidance.html).
