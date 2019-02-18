@@ -5,11 +5,14 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2018-11-01
+last_reviewed_on: 2019-02-15
 review_in: 3 months
 ---
 
 When working on 2nd line, we look at Normal and High priority tickets in the Zendesk ['2nd Line--GOV.UK Alerts and Issues' queue](https://govuk.zendesk.com/agent/filters/360000051009).
+
+## Monitoring Icinga
+We respond to alerts on our environments and deal with (in priority order) critical issues and warnings. We acknowledge alerts that are not actionable or causing problems for the platform.
 
 ## Triaging Zendesk tickets
 See the [diagram for how 2nd line triage Zendesk tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing) - there is a printout on the 2nd line desk.
@@ -33,4 +36,4 @@ We record these alerts here because so other developers are aware that they are 
 These alerts shouldn't cause big issues but that's not to say it won't - which is why we should log it here.
 
 ## Declaring and responding to an incident
-Find out [what to do if there’s an incident](https://docs.publishing.service.gov.uk/manual/incident-management-guidance.html).
+Find out [what to do if there’s an incident](/manual/incident-management-guidance.html).

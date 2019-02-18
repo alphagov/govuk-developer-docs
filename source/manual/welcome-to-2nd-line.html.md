@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2018-11-01
+last_reviewed_on: 2019-02-15
 review_in: 3 months
 ---
 
@@ -17,7 +17,7 @@ Your main responsibility is to respond to alerts. You’ll be set up in PagerDut
 
 It's also an important opportunity to learn about the GOV.UK stack.
 
-Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, talk to your fellow 2nd liner and the DM to make sure you’re covered.
+Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, talk to your fellow 2nd liner and the delivery manager to make sure you’re covered.
 
 We have stand-ups at 9.35am and a short retrospective at the weekly handover meeting.
 
@@ -35,7 +35,7 @@ If it's a day or two, arrange a swap for those days with the developer the week 
 
 If you need a whole shift swap, arrange this with another developer from your team.
 
-For either of the above, let the 2nd line delivery manager know so they update Pager Duty and the schedule.
+For either of the above, let the 2nd line delivery manager know. Please update the schedule on [Pager Duty](https://governmentdigitalservice.pagerduty.com/schedules#?offset=5).
 
 If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline Slack channel.
 
