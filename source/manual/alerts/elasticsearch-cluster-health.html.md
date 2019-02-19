@@ -36,8 +36,8 @@ to help you diagnose any problems.
 
 #### Find hosts in an Elasticsearch cluster
 
-We use different Elasticsearch clusters for different applications. For example
-the `rummager-elasticsearch` cluster powers the GOV.UK search API.
+The `rummager-elasticsearch` cluster powers the GOV.UK search API and sector
+name lookup in `licence-finder`.
 
 You can find hostnames by running:
 
