@@ -116,6 +116,9 @@ Publishers upload their organograms as a Excel (XLS) file that contains macros. 
 
 > Publishers **must** select the correct 'Schema Vocabulary' for their organogram dataset (i.e. one of the two 'organisation structure' values) in order for the upload option to become available and for the XLS-to-CSV conversion to run.
 
+### Dataset Analytics requests
+It is possible to access analytics for datasets. If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to Martin Lugton or another member of the Platform Health product team.
+
 ## Revision log
 There is a [revision log](https://ckan.publishing.service.gov.uk/revision) which shows the most recent edits to CKAN datasets, harvester and users performed by all users.
 
