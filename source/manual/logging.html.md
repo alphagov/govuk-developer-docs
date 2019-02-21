@@ -32,9 +32,12 @@ the `logit` key in the [govuk-secrets] 2nd Line password store.
 #### AWS Managed Elasticsearch
 
 Elasticsearch in AWS uses a managed service.  Logs are exported to
-[AWS Cloudwatch[aws-cloudwatch-es5] and retained for 90 days.
+[AWS Cloudwatch][aws-cloudwatch-es5] and retained for 3 days.
+
+Logs are also written to a [S3 bucket][s3-es5] for longer-term storage.
 
 [aws-cloudwatch-es5]: https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logs:prefix=/aws/aes/domains/blue-elasticsearch5-domain
+[s3-es5]: https://s3.console.aws.amazon.com/s3/buckets/govuk-integration-aws-logging/elasticsearch5/?region=eu-west-1&tab=overview
 [gds-way-logging]: https://gds-way.cloudapps.digital/standards/logging.html#content
 [logit]: https://logit.io
 [logit-docs]: /manual/logit.html
