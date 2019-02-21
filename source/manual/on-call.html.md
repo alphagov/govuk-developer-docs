@@ -58,9 +58,7 @@ There are 2 ways that this might contact you:
 
 - Any Icinga checks that 'use' `govuk_urgent_priority` will cause
   PagerDuty to be notified. You can get the most up to date list of these
-  by searching the Puppet repo for `govuk_urgent_priority`. All urgent priority
-  alerts must be linked to a section in the
-  [alert documentation](nagios.html).
+  by searching the Puppet repo for `govuk_urgent_priority`.
 - There are a couple of checks defined in Pingdom which notify PagerDuty directly rather
   than using GOV.UK's internal monitoring. These are normally for key parts of the website
   like the homepage and site search. They are useful when network access to all the
