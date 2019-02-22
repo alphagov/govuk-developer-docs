@@ -4,11 +4,13 @@ title: Name a new application or gem
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-20
-review_in: 6 months
+last_reviewed_on: 2019-02-22
+review_in: 12 months
 ---
 
 This describes how you should name an application or gem on GOV.UK. It was first proposed in [RFC 63](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-063-naming-new-apps-gems-on-gov-uk.md).
+
+Of course, break any of these rules sooner than [say anything outright barbarous](https://en.wikipedia.org/wiki/Politics_and_the_English_Language#Remedy_of_Six_Rules).
 
 ## Naming applications
 
@@ -61,7 +63,7 @@ Good:
 
 Not so good:
 
-- rummager (should be search-api)
+- rummager (became search-api)
 
 ### Admin applications
 
