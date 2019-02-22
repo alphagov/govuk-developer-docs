@@ -63,7 +63,7 @@ Good:
 
 Not so good:
 
-- rummager (became be search-api)
+- rummager (became search-api)
 
 ### Admin applications
 
