@@ -104,26 +104,6 @@ The general approach for rebooting machines in a MongoDB cluster is:
     down the primary and waiting for the cluster to recover
     before rebooting.
 
-## Rebooting Elasticsearch machines
-
-To reboot an Elasticsearch machine, run the following command:
-
-```sh
-$ fab $environment -H $hostname elasticsearch.safe_reboot
-```
-
-This will prevent you from rebooting a machine in a cluster which doesn't have
-a green cluster health status.
-
-> **Note**
->
-> Whilst the cluster is `yellow` (meaning one or more machines in the
-> cluster is unavailable), no reindexing will take place. Therefore you're
-> likely to see a backlog of jobs being created, particularly with Rummager.
-> This can take a long time to clear once the cluster is `green` again, and can
-> put extraneous load on the machines and it is therefore recommended to only
-> reboot these machines in hours if it is urgent.
-
 ## Rebooting Redis machines
 
 Unless there are urgent updates to apply, these machines should not be
