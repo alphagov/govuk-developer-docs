@@ -5,7 +5,7 @@ section: Applications
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-02
+last_reviewed_on: 2019-02-25
 review_in: 3 months
 ---
 
@@ -15,4 +15,4 @@ review_in: 3 months
 <em>[Source diagram][src] in the [GOV.UK architecture folder][arch-folder].</em>
 
 [src]: https://drive.google.com/open?id=1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm
-[arch-folder]: https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00
+[arch-folder]: https://drive.google.com/drive/folders/1xIjPkD_MSKMR65FbDAb-ToXy2GmBcaJ5
