@@ -4,9 +4,25 @@ title: Backup and restore Elasticsearch indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-01-03
-review_in: 3 months
+last_reviewed_on: 2019-02-25
+review_in: 4 weeks
 ---
+There are currently two types of Elasticsearch cluster running on
+GOV.UK:
+
+* Non-managed Elasticsearch on Carrenza: Elasticsearch 2.x, being
+used by `rummager` in staging and production
+* AWS Managed Elasticsearch: Elasticsearch 5.x, used by `search-api`
+in integration only (staging and production will use this in the near
+future).
+
+There are different routes to restoring backups for each of the types
+of deployment.  Regardless of the type of cluster, traffic will need
+to be [replayed](/manual/rummager-traffic-replay.html) following the
+restore, since the index will be out-of-sync with the publishing apps.
+
+## Non-managed Elasticsearch on Carrenza
+
 The Elasticsearch indexes used for search are backed up to disk using
 [es_dump_restore](https://github.com/patientslikeme/es_dump_restore).
 
@@ -14,7 +30,7 @@ The Elasticsearch indexes used for search are backed up to disk using
 >
 > This will change to S3 snapshots when production is moved to AWS
 
-## Creating a backup
+### Creating a backup
 
 Sometimes you may need to take a backup before a critical operation. To do
 this, SSH to a `rummager-elasticsearch` box and run:
@@ -30,7 +46,7 @@ permission to write to this directory.
 The [env-sync-and-backup job](https://github.com/alphagov/env-sync-and-backup/blob/master/jobs/elasticsearch-rummager.sh)
 creates daily copies of the Elasticsearch snapshots and stores them in S3 for 5 days.
 
-## Restoring a backup
+### Restoring a backup
 
 Before restoring a backup, make sure you are
 [monitoring the cluster](/manual/alerts/elasticsearch-cluster-health.html).
@@ -71,16 +87,47 @@ memory. It's OK to keep an old index around for a few days in case you need to
 roll back. You can delete all the unaliased indices by running the rummager
 task: `rummager:clean`.
 
-### Replaying rummager traffic
+## AWS Managed Elasticsearch 5.x
 
-By restoring an older backup, you will lose any documents that have been
-updated since the backup was taken.
+Daily snapshots of the Elasticsearch indices are taken automatically by AWS
+as part of the managed service.  These are stored in a S3 bucket that is
+not made available to us.  Restoration is done by making HTTP requests to
+the `_snapshot` endpoint.
 
-After restoring a backup, follow
-[Replaying traffic to correct an out of sync search index](/manual/rummager-traffic-replay.html)
-to bring the search index back in sync with the publishing apps.
+To restore a snapshot, follow these steps:
 
-### Elasticsearch 5.x support
+1. Log into a `search` machine
 
-[es_dump_restore](https://github.com/patientslikeme/es_dump_restore) does not support
-Elasticseach 5.x. This applies to both creating a backup and restoring from a backup.
+    ```
+    govukcli set-context <environment>
+    govukcli ssh search
+    ```
+
+2. Query the `_snapshot` endpoint of Elasticsearch to get the snapshot repository
+name:
+
+    ```
+    curl http://elasticsearch5/_snapshot?pretty
+    ```
+
+3. Query the `_all` endpoint to identify the available snapshots in the named
+repository:
+
+    ```
+    curl http://elasticsearch5/_snapshot/<repository-name>/_all?pretty
+    ```
+
+4. If an index already exists with the same name as the one being restored,
+delete the existing index:
+
+    ```
+    curl -XDELETE http://elasticsearch5/<index-name>
+    ```
+
+5. Restore the index from the snapshot:
+
+    ```
+    curl -XPOST 'http://elasticsearch5/_snapshot/<repository-name>/<snapshot-id>/_restore' -d '{"indices": "<index-name>"}' -H 'Content-Type: application/json'
+    ```
+
+> Further information about Elasticsearch snapshots can be found in the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html)
