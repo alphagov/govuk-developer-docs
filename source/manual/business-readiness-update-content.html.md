@@ -38,6 +38,20 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 
 If your commit includes some items being removed from the content spreadsheet then you should take a note of the `base_paths` for these items and once you have run the `tag_metadata` rake task in the above instructions, you should also run [destroy_metadata_for_base_paths][destroy-metadata] ([e.g. on staging][metadata-rake-task]), passing in the `base_paths` that need removing.
 
+## Pinning content to sections in the business readiness finder
+
+Requests from Zendesk can specify that content is pinned within the finder. Pinning an item means that it appears at the top of whatever business finder facet(s) it is tagged to. The process for adding a pinned item:
+
+1. Using the base path of the content item to be pinned, get the content id. You can do this via the publishing-api:
+```Edition.includes(:document).where(base_path: paths).pluck(:content_id).uniq```
+2. Add the content id to the list of [ordered related items for the business finder](https://github.com/alphagov/govuk-app-deployment-secrets/blob/master/shared_config/find-eu-exit-guidance-business.yml#L222-L244), within govuk-app-deployment-secrets.
+3. Create a pull request and get it reviewed & merged.
+4. Re-deploy rummager.
+5. Update the finder content by running the [`tag_metadata` rake task][staging-rake-task] in rummager to index the contents of the new CSV, it should take 2 to 3 minutes.
+6. Check the results on e.g. [https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business](https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business)
+
+The same process applies for removing a pinned item: get the content item and remove it from the list within the ordered-related items.
+
 [govuk-app-deployment-secrets]: https://github.com/alphagov/govuk-app-deployment-secrets
 [destroy-metadata]: https://github.com/alphagov/rummager/blob/605b08bc96999b58d3a5eb57967ffc7a8de1e41c/lib/tasks/metadata_tagger.rake#L9
 [metadata-rake-task]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=destroy_metadata_for_base_paths
