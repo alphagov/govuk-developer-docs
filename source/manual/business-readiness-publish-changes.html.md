@@ -46,6 +46,6 @@ The content item for the business readiness finder is published by rummager. How
 
 
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
-[finder-fronted]: https://github.com/alphagov/finder-frontend/blob/3d7f25ddca4bedd9d9fb750fb1d651964cf2a34b/lib/prepare_business_uk_leaving_eu.yaml
+[finder-frontend]: https://github.com/alphagov/finder-frontend/blob/3d7f25ddca4bedd9d9fb750fb1d651964cf2a34b/lib/prepare_business_uk_leaving_eu.yaml
 [govuk-app-deployment-secrets]: https://github.com/alphagov/govuk-app-deployment-secrets/blob/9a39969d504543e040ffc1afc70924e23d249033/shared_config/find-eu-exit-guidance-business.yml
 [staging-rake-task]:https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=DOCUMENT_FINDER_CONFIG=find-eu-exit-guidance-business.yml%20publishing_api:publish_document_finder
