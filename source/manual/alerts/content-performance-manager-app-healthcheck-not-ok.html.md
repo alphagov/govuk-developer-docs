@@ -12,11 +12,20 @@ Please notify Data Informed Content via Slack `#govuk-data-informed` about the a
 
 If there is a health check error showing for Content Performance Manager, you can click on the alert to find out more details about what’s wrong. Here are the possible problems you may see:
 
+## ETL :: no monthly aggregations of metrics for yesterday
+
+This means that [the ETL master process][1] that runs daily that creates aggregations of the metrics failed.
+
+To fix this problem run the [following rake task][5]:
+```bash
+etl:repopulate_aggregations_month["2019-02-14", "2019-02-14"]
+```
+
 ## ETL :: no daily metrics for yesterday
 
-This means that [the ETL master process][1] that runs daily to retrieve metrics for content items has failed.  
+This means that [the ETL master process][1] that runs daily to retrieve metrics for content items has failed.
 
-To fix this problem [re-run the master process again][1] 
+To fix this problem [re-run the master process again][1]
 
 ## ETL :: no pviews for yesterday
 
@@ -62,3 +71,4 @@ rake etl:repopulate_feedex[2018-01-01 2018-01-01]
 [2]: https://github.com/alphagov/content-performance-manager/blob/87116d3ab6f75c0d3dd8be9d4aff80865702f1b9/lib/tasks/etl.rake#L8
 [3]: https://github.com/alphagov/content-performance-manager/blob/8dd689e6917d7bbbf23a99387b85bfe1ce04d7b1/lib/tasks/etl.rake#L18
 [4]: https://github.com/alphagov/content-performance-manager/blob/b886c5489c79a6b5a58190e305ea9746fd7db666/lib/tasks/etl.rake#L29
+[5]: https://github.com/alphagov/content-performance-manager/blob/1dc3f7becf146bbd5f346634e98d05ad76477a8e/lib/tasks/etl.rake#L7
