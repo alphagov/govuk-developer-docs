@@ -5,8 +5,8 @@ section: Databases
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2018-11-13
-review_in: 3 months
+last_reviewed_on: 2019-02-27
+review_in: 6 months
 ---
 
 [Advisory locks][pgdocs] are a feature of PostgreSQL to achieve mutual
