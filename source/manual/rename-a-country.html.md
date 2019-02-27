@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-06-19
+last_reviewed_on: 2019-02-25
 review_in: 6 months
 related_applications: [travel-advice-publisher, content-tagger, whitehall]
 ---
@@ -12,39 +12,59 @@ related_applications: [travel-advice-publisher, content-tagger, whitehall]
 >
 > We recommend you test out these instructions in integration and then staging before using them in production.
 
-### 1. Update Foreign Travel Advice publisher
+Renaming a country affects these pages:
 
-**Example PR:** [https://github.com/alphagov/travel-advice-publisher/pull/381](https://github.com/alphagov/travel-advice-publisher/pull/381)
+* https://www.gov.uk/foreign-travel-advice/`<country_slug>`
+* https://www.gov.uk/world/`<country_slug>`
+* https://www.gov.uk/world/`<country_slug>`/news
+* https://www.gov.uk/foreign-travel-advice/`<country_slug>`/email-signup/
+* https://www.gov.uk/email/subscriptions/new?topic_id=`<country_slug>`
 
-This will update www.gov.uk/foreign-travel-advice/`<country_slug>`.
+
+### 1. Update Travel Advice publisher
+
+**Example PR:** [https://github.com/alphagov/travel-advice-publisher/pull/539/files](https://github.com/alphagov/travel-advice-publisher/pull/539/files)
+
+This will update www.gov.uk/foreign-travel-advice/`<country_slug>` to www.gov.uk/foreign-travel-advice/`<new_country_slug>`.
 
 In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher):
 
-1. Create a pull request with:
-    * A migration to update the relevant `country_slug` of TravelAdviceEdition. [Example](https://github.com/alphagov/travel-advice-publisher/pull/346/commits/b28ff7b4eae96543324f61be700dca32f1ffdba5)
-    * A change of the relevant name and slug in the `lib/data/countries.yml` file. Keep the same `content_id` and `email_signup_content_id`, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/346/commits/3eb10a8519638850760698992dd1f6467b041ab0)
+1. Create a [pull request](https://github.com/alphagov/travel-advice-publisher/pull/539/files) with:
+    * A migration to update the relevant `country_slug` of TravelAdviceEdition. [Example](https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-dafdd21fd31a2f3a5d3eac5e2bdaeb08)
+    * A change of the relevant name and slug in the `lib/data/countries.yml` file. Keep `content_id` and `email_signup_content_id` the same, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-e7c0733c6cf5a1d6fc1f2589a6d9f0f7)
 
 2. Deploy Travel Advice publisher
-    * Once the above PRs are ready, deploy Travel Advice Publisher. Perform a `deploy` and then an `app:migrate_and_hard_restart`, as a hard restart is required to update the `.yml` file.
+    * Once the above PRs are ready, [deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=deploy) Travel Advice Publisher
+    * Then follow with another [deploy with app:migrate_and_hard_restart](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=app:migrate_and_hard_restart), as a hard restart is required to update the `.yml` file.
+    * You will see the country has updated in the list in [Travel Advice Publisher](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin)
 
 3. Run rake tasks
     * Run [publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[new_country_slug]) to update the PublishingApi.
-    * Run [publishing_api:republish_email_signups:editions](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:editions) to update email subscriptions.
+    * Run [publishing_api:republish_email_signups:country_edition[country-slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[country-slug]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
 
 4. Update the search metadata
     * In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin), go to the country and create a new edition
-    * Tick the "minor update" checkbox and update the `Search title` and `Search description` fields to ensure search results have the updated name.
+    * Tick the "minor update" checkbox and update the `Search title` and `Search description` fields with the updated country name.
     * Save and publish.
 
 ### 2. Update Worldwide Taxons
 
-**Example PR:** [https://github.com/alphagov/rummager/pull/1265](https://github.com/alphagov/rummager/pull/1265)
+**Example PR:** [https://github.com/alphagov/rummager/pull/1436](https://github.com/alphagov/rummager/pull/1436)
 
-This will update /world/countryname.
+This will update www.gov.uk/foreign-travel-advice/world/`<country_slug>` to www.gov.uk/foreign-travel-advice/world/`<new_country_slug>`.
 
-Rename the taxon in the [Rummager index list](https://github.com/alphagov/rummager/blob/master/config/govuk_index/migrated_formats.yaml#L51-L277).
+In [Rummager](https://github.com/alphagov/rummager):
 
-Once the Rummager change is deployed, open the relevant country in [Content Tagger](https://content-tagger.integration.publishing.service.gov.uk/), tick "minor update" and update all the relevant fields with the new country name. Save the draft and publish.
+1. Create a [pull request](https://github.com/alphagov/rummager/pull/1436) with a change to the relevant country taxon in `config/govuk_index/migrated_formats.yaml`
+2. Deploy Rummager
+
+In [Content Tagger](https://content-tagger.integration.publishing.service.gov.uk/):
+
+1. View the taxon from the list
+2. Under `Tasks` go to `Edit taxon`, and update the `base path`, `internal taxon name`, `external taxon name` and any others with the new country name
+3. Save the draft and publish.
+
+The old slug might still appear as a duplicate in our internal GOV.UK search,
 
 > **Note**
 >
@@ -52,30 +72,64 @@ Once the Rummager change is deployed, open the relevant country in [Content Tagg
 
 ### 3. Update Whitehall
 
-**Example PR:** [https://github.com/alphagov/whitehall/pull/4245](https://github.com/alphagov/whitehall/pull/4245) and [https://github.com/alphagov/whitehall/pull/4259](https://github.com/alphagov/whitehall/pull/4259)
+**Example PR:** [https://github.com/alphagov/whitehall/pull/4643](https://github.com/alphagov/whitehall/pull/4643) and [https://github.com/alphagov/whitehall/pull/4647](https://github.com/alphagov/whitehall/pull/4647)
 
-This will update /world/countryname/news. In [Whitehall](https://github.com/alphagov/whitehall):
+This will update /world/`<country_slug>`/news.
 
-1. Data migration
-    * Create a data migration to update the `slug` and `name` fields of the WorldLocation table.
-    * Create a data migration to redirect the old slug.
-    * Deploy the data migrations
+In [Whitehall](https://github.com/alphagov/whitehall):
 
-2. Update in the UI
-Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations) and in the "Details" tab edit the Title, Mission statement and relevant Featured links.
+1. Create a [data migration](https://github.com/alphagov/whitehall/pull/4643/files) to update the `slug` and `name` fields of the WorldLocation table.
+2. Create another [data migration](https://github.com/alphagov/whitehall/pull/4647) to redirect the old slug
+3. Deploy the PR's
+  * After deploying, run the [Whitehall data migrations](https://deploy.integration.publishing.service.gov.uk/job/Run_Whitehall_Data_Migrations/) job
+4. Update [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations)
+  * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations) and in the "Details" tab edit the `Title`, `Mission statement` and relevant `Featured links`.
 
 ### 4. Update Smart-answers
 
-**Example PR:** [https://github.com/alphagov/smart-answers/pull/3619](https://github.com/alphagov/smart-answers/pull/3619)
+**Example PR:** [https://github.com/alphagov/smart-answers/pull/3899/](https://github.com/alphagov/smart-answers/pull/3899/)
 
-smart-answers validates country names against the production worldwide API, which is managed by whitehall.  So do this after deploying the whitehall change.
+> **Note**
+>
+> `smart-answers` validates country names against the production worldwide API, which is managed by `whitehall`.  So do this after deploying the Whitehall change.
 
-This will update content from pages served by smart-answers such as marriage-abroad/y/countryname.
+This will update content from pages served by `smart-answers` such as:
+
+- https://www.gov.uk/marriage-abroad
+- https://www.gov.uk/check-uk-visa
+- https://www.gov.uk/register-a-death/y/overseas
 
 In [Smart-answers](https://github.com/alphagov/smart-answers):
 
-1. Find and replace (case sensitive) `old_country_name` with `new_country_name`, then `Old_country_name` with `New_country_name`.
+1. Create a [pull request](https://github.com/alphagov/smart-answers/pull/3899/) that replaces all instances of `country_name` with `new_country_name`.
 
-2. Run `bundle exec rake checksums:update`
+2. Check changes are reflected in the affected smart answers
 
-3. Open and deploy a PR with these changes
+3. Deploy the PR
+
+### 5. Update Email-alert-api
+
+The country's subscription list(s) `title` and `slug` needs to be updated, such as:
+
+- "Publications related to `<country_name>`"
+- "`<country_name>` - travel advice"
+- "`<country_name>`"
+
+1. Run the rake task [manage:find_subscriber_list_by_title[title]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=manage:find_subscriber_list_by_title[country_name])
+  with the country name to see which subscription lists need to be updated
+2. Run the rake task [manage:update_subscriber_list[slug,new_title,new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=manage:update_subscriber_list[country_slug,new_title,new_country_slug])
+  to update the subscription lists
+
+  > **Note**
+  >
+  > You can test the emails are being sent out correctly in `integration` and `staging`
+    by following [Receive emails from Email Alert API in integration and staging](https://docs.publishing.service.gov.uk/manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html)
+
+### 6. Remove duplicate search results
+
+If the old country slug is still appearing in the search results, this can be removed through the [Search Admin](https://search-admin.integration.publishing.service.gov.uk/results) tool:
+
+1. Navigate to the `Search results` page and enter the path to be removed
+2. Remove result, it should now disappear from the listing.
+
+Failing this, there is a [rake task](https://github.com/alphagov/rummager/blob/4f106e40f2c1690d631f699bf8fc63dc39268866/lib/tasks/delete.rake#L9) that takes care of this.
