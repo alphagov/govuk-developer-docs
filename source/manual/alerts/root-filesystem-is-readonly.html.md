@@ -4,13 +4,14 @@ title: Root filesystem is readonly
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-02-10
 review_in: 6 months
 ---
 
 When Ubuntu is unable to write to disk, it switches the filesystem to be
 read only. This could be caused by a cloud hosting provider having
-problems with their Storage Area Network (SAN).
+problems with their Storage Area Network (SAN). It is possible for a machine
+to operate in a degraded way with a read only file system so this check serves as an early warning if that happens.
 
 The machine will need to have a filesystem check forced on reboot. To do
 this, you will need access to the vCloud Director instance for the
