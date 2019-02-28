@@ -4,7 +4,7 @@ title: High memory for application
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-02-25
 review_in: 6 months
 ---
 
@@ -32,11 +32,16 @@ If you can't find the source of the memory leak you can [restart the application
 ## Increase the alerting threshold
 
 Sometimes the alerting thresholds are too low. You can change them in
-[common.yml][common]
+[hieradata_aws/common.yaml][aws_common]
+[hieradata/common.yaml][common]
 
 ```yml
 govuk::apps::the_warning::nagios_memory_warning: 2500
 govuk::apps::the_warning::nagios_memory_critical: 2500
 ```
 
+An example of upping the threshholds can be found [here][static_nagios_memory]
+
+[aws_common]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml
 [common]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
+[static_nagios_memory]: https://github.com/alphagov/govuk-puppet/pull/8755
