@@ -5,7 +5,7 @@ section: Infrastructure
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-02-06
+last_reviewed_on: 2019-03-01
 review_in: 3 months
 ---
 
@@ -34,12 +34,3 @@ We currently use the `operations` pipeline to [mirror all GOV.UK GitHub reposito
 ### The info pipeline
 
 The `info` pipeline is a meta pipeline. Its main use is as a method to store secrets that can then be used in other pipelines. For example, the repository mirroring job uses GitHub and AWS credentials that are stored as secrets using this method.
-
-In order to add or change secrets:
-
-1. If this is your first time using Concourse, download the `fly` CLI by clicking the appropriate OS logo at the bottom right corner of the [team page](https://cd.gds-reliability.engineering/teams/govuk-tools) and move it to somewhere in your `$PATH`
-2. Go to the [info pipeline](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/info)
-3. Click the [show available pipeline variables](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/info/jobs/show-available-pipeline-variables) job
-4. In the top right corner, click the plus button - this starts a new build of the job
-5. After a few seconds, you'll see console output in the `hijack-me-to-add-secrets` section
-6. The console output will give instructions about how to connect to the temporary Docker container that has been created and add or change secrets
