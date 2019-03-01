@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: SSH into AWS machines
-section: AWS accounts 
+section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-28
+last_reviewed_on: 2019-02-28
 review_in: 2 months
 ---
 
