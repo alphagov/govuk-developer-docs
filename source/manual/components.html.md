@@ -5,11 +5,11 @@ section: Frontend
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-29
+last_reviewed_on: 2019-03-01
 review_in: 6 months
 ---
 
-Components are packages of template, style, behaviour and documentation. Components live in your application unless needed by multiple applications, then they are shared using the [govuk_publishing_components gem](https://github.com/alphagov/govuk_publishing_components). Legacy components live in static and are being deprecated.
+Components are packages of template, style, behaviour and documentation. Components live in your application unless needed by multiple applications, then they are shared using the [govuk_publishing_components gem](https://github.com/alphagov/govuk_publishing_components).
 
 ## Component guides
 
@@ -19,9 +19,9 @@ Find components in these guides:
 
 * [govuk_publishing_components component guide](https://govuk-publishing-components.herokuapp.com/component-guide)
 * [government-frontend component guide](https://government-frontend.herokuapp.com/component-guide/)
+* [calendars component guide](https://govuk-calendars.herokuapp.com/component-guide/)
 * [collections component guide](https://govuk-collections.herokuapp.com/component-guide/)
 * [finder-frontend component guide](https://finder-frontend.herokuapp.com/component-guide/)
-* [static component guide](https://govuk-static.herokuapp.com/component-guide/)
 
 ## Building components
 
@@ -36,7 +36,7 @@ The [govuk_publishing_components gem](https://github.com/alphagov/govuk_publishi
 bundle exec rails generate govuk_publishing_components:component [component_name]
 ```
 
-A lead paragraph component would be included in a template like this:
+For example, a lead paragraph component would be included in a template like this:
 
 ```erb
 <%= render 'components/lead-paragraph', text: "A description is one or two leading sentences" %>
