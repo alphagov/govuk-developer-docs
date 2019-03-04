@@ -4,7 +4,7 @@ title: Check process running
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-10
 review_in: 6 months
 ---
 
@@ -17,6 +17,8 @@ $ sudo service <process> status
 ```
 
 This will also tell you the status of the service.
+
+You can list all available services with `sudo service --status-all`.
 
 If you cannot immediately find which service the process is corresponding to, it may be helpful to look through any
 similar looking files in `/etc/init`, for example, the `postgresql` service runs the `postgres` process.
