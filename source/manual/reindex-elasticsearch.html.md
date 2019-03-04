@@ -4,7 +4,7 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2019-03-03
 review_in: 6 months
 related_applications: [rummager]
 ---
@@ -24,12 +24,18 @@ rummager
 0. If everything looks the same, switches the [alias][index-alias] to the new
 index
 
+**Note:** If you have changed the govuk_document_types gem, you do not need
+to migrate the schema for your changes to be applied to documents in
+elasticsearch. Instead, you can run the rake task `rummager:update_supertypes`
+to update documents inplace without locks. This can be done during working hours.
+
 ## How to reindex an Elasticsearch index
 
 **Do not reindex on production during working hours except in an emergency.**
 Reindexing locks the index for writes, so content is not updated in the search
 index. See the [Replay traffic](#replay-traffic) section below if you need to
-run a reindexing during working hours.
+run a reindexing during working hours. Reindexing takes around 40 minutes to
+an hour to complete.
 
 To reindex, run the `rummager:migrate_schema` rake task:
 
