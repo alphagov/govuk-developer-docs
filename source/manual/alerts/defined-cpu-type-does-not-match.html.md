@@ -4,11 +4,11 @@ title: Defined CPU type does not match
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-01-23
 review_in: 6 months
 ---
 
-We have two types of VM hosts that use either Intel or AMD processors.
+In Carrenza, and not in AWS, we have two types of VM hosts that use either Intel or AMD processors.
 Some VMs have significant performance degradation when on the AMD CPUs
 and thus should live on the more performant Intel processor-based hosts.
 
