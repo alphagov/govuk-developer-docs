@@ -4,7 +4,7 @@ title: Fetch analytics data for search failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-01
 review_in: 6 months
 ---
 
@@ -20,4 +20,4 @@ whilst people are publishing.
 The popularity data is used to promote more popular pages in search results.
 
 If the job is failing often, make sure the team currently responsible for search
-are aware of the problem.
+are aware of the problem (or Platform Health).
