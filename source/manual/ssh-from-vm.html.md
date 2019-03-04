@@ -4,7 +4,7 @@ title: SSH into GOV.UK servers from the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-04
+last_reviewed_on: 2019-03-10
 review_in: 6 months
 ---
 
@@ -20,10 +20,11 @@ Things to check if it doesn't work:
 
 - **Can you SSH directly onto the jumpbox?**
   `ssh jumpbox.integration.publishing.service.gov.uk` If not, check your ssh
-  version and config.
+  version (`ssh -V`) and config (`~/.ssh/config`). You can also try `ssh jumpbox.integration`.
 - **Do you get a permission denied error?** Make sure you're in the
-  user list in the [govuk-secrets repo][govuk-secrets] for production access,
-  or the [govuk-puppet repo][govuk-puppet] for access to other environments.
+  user list in the [govuk-secrets repo][govuk-secrets] for production access
+  (restricted access; ask your tech lead or line manager for access), or the
+  [govuk-puppet repo][govuk-puppet] for access to other environments.
   Alternatively, are you the correct user? If you're in the VM you might need to
   specify a username (example: `ssh joebloggs@jumpbox.integration.publishing.service.gov.uk`),
   as 'vagrant' might be the default ssh username.
