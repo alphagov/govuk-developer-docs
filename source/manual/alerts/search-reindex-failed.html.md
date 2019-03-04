@@ -4,7 +4,7 @@ title: Search reindex failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-05
 review_in: 6 months
 ---
 
@@ -14,8 +14,7 @@ to ensure the process works as expected when we need to run it in production.
 This task is manually run in production by the development team after they have
 made and changes to the Elasticsearch schema.
 
-If this process fails then please escalate to the Search team as they are responsible for ensuring this process
-works.
+If this process fails then please escalate to Platform Health for further investigation.
 
 This task can be manually run with the following command:
 
