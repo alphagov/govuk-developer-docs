@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-11-26
+last_reviewed_on: 2019-03-03
 review_in: 3 months
 ---
 
@@ -54,7 +54,7 @@ See "[Adding a new schema][adding-a-new-schema]"
 
 ## Make the new document type available to search
 
-Se§e "[Make a new document type available to search][new-doc-type-search]"
+See "[Make a new document type available to search][new-doc-type-search]"
 
 [document type]: https://docs.publishing.service.gov.uk/document-types.html
 [allowed-document-types]: https://github.com/alphagov/govuk-content-schemas/blob/master/lib/govuk_content_schemas/allowed_document_types.yml
