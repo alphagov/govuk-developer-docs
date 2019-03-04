@@ -72,17 +72,16 @@ The old slug might still appear as a duplicate in our internal GOV.UK search,
 
 ### 3. Update Whitehall
 
-**Example PR:** [https://github.com/alphagov/whitehall/pull/4643](https://github.com/alphagov/whitehall/pull/4643) and [https://github.com/alphagov/whitehall/pull/4647](https://github.com/alphagov/whitehall/pull/4647)
+**Example PR:** [https://github.com/alphagov/whitehall/pull/4643](https://github.com/alphagov/whitehall/pull/4643)
 
 This will update /world/`<country_slug>`/news.
 
 In [Whitehall](https://github.com/alphagov/whitehall):
 
 1. Create a [data migration](https://github.com/alphagov/whitehall/pull/4643/files) to update the `slug` and `name` fields of the WorldLocation table.
-2. Create another [data migration](https://github.com/alphagov/whitehall/pull/4647) to redirect the old slug
-3. Deploy the PR's
+2. Deploy the PR
   * After deploying, run the [Whitehall data migrations](https://deploy.integration.publishing.service.gov.uk/job/Run_Whitehall_Data_Migrations/) job
-4. Update [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations)
+3. Update [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations)
   * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations) and in the "Details" tab edit the `Title`, `Mission statement` and relevant `Featured links`.
 
 ### 4. Update Smart-answers
