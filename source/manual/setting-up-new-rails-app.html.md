@@ -4,7 +4,7 @@ title: Set up a new Rails application
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-04
+last_reviewed_on: 2019-02-01
 review_in: 6 months
 ---
 
