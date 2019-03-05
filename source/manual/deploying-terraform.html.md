@@ -30,6 +30,16 @@ Choose either steps 2 and 3, or step 4 to continue.
 
 Before deploying you'll have to assume a role for the environment you're deploying to.
 
+If you have the `govuk aws` script available, you can use this to get
+credentials corresponding to the profiles you have configured. For
+example, for the profile called `govuk-integration`, you would run:
+
+```sh
+govuk aws --profile govuk-integration
+```
+
+Otherwise you can use the `aws` command line tool:
+
 ```sh
 aws sts assume-role \
   --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" \
