@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-01-17
+last_reviewed_on: 2019-03-05
 review_in: 3 months
 ---
 
@@ -48,7 +48,8 @@ Requests from Zendesk can specify that content is pinned within the finder. Pinn
 3. Create a pull request and get it reviewed & merged.
 4. Re-deploy rummager.
 5. Update the finder content by running the [`tag_metadata` rake task][staging-rake-task] in rummager to index the contents of the new CSV, it should take 2 to 3 minutes.
-6. Check the results on e.g. [https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business](https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business)
+6. [Republish the finder][republish_finder] so that the finder content item is updated.
+7. Check the results on e.g. [https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business](https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business)
 
 The same process applies for removing a pinned item: get the content item and remove it from the list within the ordered-related items.
 
@@ -58,3 +59,4 @@ The same process applies for removing a pinned item: get the content item and re
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [spreadsheet]: https://docs.google.com/spreadsheets/d/1bFSDYFT5fBpDQTvAeqw4j7QhYXTnFmDuGCLGDwx-wYk/edit#gid=372225498
 [staging-rake-task]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
+[republish_finder]: https://docs.publishing.service.gov.uk/manual/business-readiness-publish-changes.html#updating-the-business-readiness-finder
