@@ -4,7 +4,7 @@ title: Troubleshoot data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-02
+last_reviewed_on: 2019-03-06
 review_in: 6 months
 ---
 [find]: apps/datagovuk_find
@@ -67,4 +67,34 @@ If you see a lot of tracebacks, it might be necessary to restart Celery.
 
 ```
 sudo initctl restart celery_bulk-procfile-worker
+```
+
+## Harvesters not processing or seem stuck
+
+The harvesting process runs as a single threaded program, if any harvesting
+process crashes by raising an exception, it will take out the entire process.
+We have configured Upstart to restart the process automatically, but if the
+service keeps crashing, Upstart will decide it's unhealthy and stop that after
+a while.
+
+You can check whether the process is still running by checking if entries are
+still being written to the log file:
+
+```bash
+$ sudo tail -f /var/log/ckan/procfile_harvester_fetch_consumer.err.log
+```
+
+Or you could check that the services are all showing as `started`:
+
+```bash
+$ sudo initctl list | grep harvester
+```
+
+If the server has stopped, there is a Fabric script that will restart it for
+you. This script first checks whether the harvesting process is running or not
+so if you suspect the process has crashed, you can run this script first to
+try and restart the process.
+
+```bash
+$ fab aws_production class:ckan ckan.restart_harvester
 ```
