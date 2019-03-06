@@ -61,6 +61,19 @@ Users are not permitted to remove their own datasets.  There are a [limited numb
 #### Bulk deleting datasets
 Sometimes a publisher will request a large deletion of datasets.  In these cases, you can bulk withdraw the datasets using the instructions contained in the [supporting CKAN](/manual/data-gov-uk-supporting-ckan.html#deleting-a-dataset) documentation.  Refer to the instructions for 'Deleting a dataset' (which is a soft-delete).  **Do not purge the dataset - this is a hard-delete.**
 
+### A dataset is wrong in some way
+Responsibility for individual datasets lies with the publishing organisation.  Unless it's clearly a data.gov.uk problem (eg, a dataset page is returning an error response when it shouldn't be), users who report a problem with a dataset should be directed to the publisher.
+
+This is a generic response for such cases:
+
+> Thanks for getting in touch.
+>
+> Individual datasets are the responsibility of the publishing organisation, rather than the data.gov.uk team. This means that you’ll need to get in touch with the publishing organisation directly to request any changes to the dataset.
+>
+> Contact details for each dataset are towards the bottom of the dataset page.
+>
+> I hope that helps. I’ll close this ticket now.
+
 ## Schema vocabulary definitions
 ### Add a schema vocabulary definition
 Users are not permitted to add their own schema vocabulary definitions.
