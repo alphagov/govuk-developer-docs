@@ -4,7 +4,7 @@ title: Edit an existing route in the Router
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-06
+last_reviewed_on: 2019-03-04
 review_in: 6 months
 ---
 
@@ -20,17 +20,9 @@ If there's a need to edit a route in the database:
 1. Connect to a router-backend machine
 
 ```console
-ssh router-backend-1.router.production
-```
-
-in Carrenza, and
-
-```console
-govukcli set-context integration
+govukcli set-context production
 govukcli ssh router_backend
 ```
-
-in AWS.
 
 2. Connect to router-api and get the route
 
