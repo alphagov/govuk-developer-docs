@@ -4,7 +4,7 @@ title: Redirect a route
 section: Routing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-06
+last_reviewed_on: 2019-02-25
 review_in: 6 months
 related_applications: [short-url-manager]
 ---
@@ -21,17 +21,9 @@ departments, usually for use with for campaign materials.
 To find if there is already a redirect for a particular path:
 
 ```console
-ssh router-backend-1.router.production
-```
-
-in Carrenza, and
-
-```console
-govukcli set-context integration
+govukcli set-context production
 govukcli ssh router_backend
 ```
-
-in AWS.
 
 Then:
 
