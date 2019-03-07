@@ -21,7 +21,7 @@ departments, usually for use with for campaign materials.
 To find if there is already a redirect for a particular path:
 
 ```console
-govukcli set-context production
+govukcli set-context production-aws
 govukcli ssh router_backend
 ```
 
