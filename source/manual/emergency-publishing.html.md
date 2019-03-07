@@ -131,7 +131,7 @@ You can manually check whether the data has been stored in Redis by the Jenkins 
 1. From your development machine, SSH into a frontend machine appropriate to the environment you want to check.
 
 ```
-ssh $(ssh integration "govuk_node_list --single-node -c frontend").staging
+ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
 ```
 
 2. Load a Rails console for static:
@@ -162,7 +162,7 @@ If you need to manually run the rake tasks to set the Redis keys, you can do so 
 deploying the banner on. For example:
 
 ```
-ssh $(ssh integration "govuk_node_list --single-node -c frontend").staging
+ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
 ```
 
 2. Change into the directory for `static`:
@@ -215,7 +215,7 @@ exit
 1. SSH into a frontend machine:
 
 ```
-ssh $(ssh integration "govuk_node_list --single-node -c frontend").staging
+ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
 ```
 
 2. Change into the directory for `static`:
