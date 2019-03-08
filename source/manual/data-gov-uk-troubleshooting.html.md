@@ -51,29 +51,6 @@ Check the Sidekiq queue (see [monitoring section](/manual/data-gov-uk-monitoring
 
 If the queue is too long, you should clear the queue.  The next sync process will repopulate the queue with any relevant datasets that require updating.
 
-## Celery not processing background tasks
-
-There are a few tasks run by Celery on AWS. This includes adding preview links
-to data files with a `WMS` format.
-
-You can first check to see if Celery is working properly by looking in the log
-files to determine if there any errors logged on the `ckan` machine:
-
-```bash
-$ govukcli set-context production-aws
-$ govukcli ssh ckan
-```
-
-```bash
-$ tail /var/log/ckan/procfile_celery_bulk.err.log
-```
-
-If you see a lot of tracebacks, it might be necessary to restart Celery.
-
-```bash
-$ sudo initctl restart celery_bulk-procfile-worker
-```
-
 ## Harvesters not processing or seem stuck
 
 The harvesting process runs as a single threaded program, if any harvesting
