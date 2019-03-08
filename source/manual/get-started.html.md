@@ -221,7 +221,7 @@ Most GOV.UK web applications and services are available via the public internet,
 
 The basic authentication username and password is widely known, so just ask somebody on your team if you don't know it.
 
-If you can't resolve `dev.gov.uk` domains, see [fix issues with vagrant-dns](vagrant-dns.html).
+If you can't resolve `dev.gov.uk` domains, see [fix issues with vagrant-dns](/manual/vagrant-dns.html) or [VM access after using VPN](/manual/vm-vpn-issues.html).
 
 ## 9. Keep your VM up to date
 
