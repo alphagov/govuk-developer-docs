@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2018-12-04
+last_reviewed_on: 2019-01-28
 review_in: 3 months
 ---
 
@@ -130,16 +130,8 @@ You can manually check whether the data has been stored in Redis by the Jenkins 
 
 1. From your development machine, SSH into a frontend machine appropriate to the environment you want to check.
 
-For staging or production:
-
 ```
-ssh frontend-1.frontend.staging
-```
-
-For integration:
-
-```
-ssh $(ssh integration "govuk_node_list --single-node -c frontend").integration
+ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
 ```
 
 2. Load a Rails console for static:
@@ -167,16 +159,10 @@ irb(main):001:0> Redis.new.hgetall("emergency_banner")
 If you need to manually run the rake tasks to set the Redis keys, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
 
 1. SSH into a `frontend` machine appropriate to the environment you are
-deploying the banner on. For example, for integration:
+deploying the banner on. For example:
 
 ```
-ssh $(ssh integration "govuk_node_list --single-node -c frontend").integration
-```
-
-For staging or production:
-
-```
-ssh frontend-1.frontend.staging
+ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
 ```
 
 2. Change into the directory for `static`:
@@ -228,16 +214,8 @@ exit
 
 1. SSH into a frontend machine:
 
-For staging or production:
-
 ```
-ssh frontend-1.frontend.staging
-```
-
-For integration:
-
-```
-ssh $(ssh integration "govuk_node_list --single-node -c frontend").integration
+ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
 ```
 
 2. Change into the directory for `static`:
