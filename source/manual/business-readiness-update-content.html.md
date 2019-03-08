@@ -44,7 +44,7 @@ Requests from Zendesk can specify that content is pinned within the finder. Pinn
 
 1. Using the base path of the content item to be pinned, get the content id. You can do this via the publishing-api:
 ```Edition.includes(:document).where(base_path: paths).pluck(:content_id).uniq```
-2. Add the content id to the list of [ordered related items for the business finder](https://github.com/alphagov/govuk-app-deployment-secrets/blob/master/shared_config/find-eu-exit-guidance-business.yml#L222-L244), within govuk-app-deployment-secrets.
+2. Add the content id to the list of [ordered related items for the business finder](https://github.com/alphagov/govuk-app-deployment-secrets/blob/master/shared_config/find-eu-exit-guidance-business.yml#L222-L244), within govuk-app-deployment-secrets.  Despite the name, the order of the `ordered_related_items` does not matter.
 3. Create a pull request and get it reviewed & merged.
 4. Re-deploy rummager.
 5. Update the finder content by running the [`tag_metadata` rake task][staging-rake-task] in rummager to index the contents of the new CSV, it should take 2 to 3 minutes.
