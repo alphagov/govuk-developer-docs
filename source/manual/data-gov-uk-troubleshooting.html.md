@@ -57,16 +57,21 @@ There are a few tasks run by Celery on AWS. This includes adding preview links
 to data files with a `WMS` format.
 
 You can first check to see if Celery is working properly by looking in the log
-files to determine if there any errors logged:
+files to determine if there any errors logged on the `ckan` machine:
 
+```bash
+$ govukcli set-context production-aws
+$ govukcli ssh ckan
 ```
-tail /var/log/ckan/procfile_celery_bulk.err.log
+
+```bash
+$ tail /var/log/ckan/procfile_celery_bulk.err.log
 ```
 
 If you see a lot of tracebacks, it might be necessary to restart Celery.
 
-```
-sudo initctl restart celery_bulk-procfile-worker
+```bash
+$ sudo initctl restart celery_bulk-procfile-worker
 ```
 
 ## Harvesters not processing or seem stuck
@@ -78,13 +83,19 @@ service keeps crashing, Upstart will decide it's unhealthy and stop that after
 a while.
 
 You can check whether the process is still running by checking if entries are
-still being written to the log file:
+still being written to the log file on the `ckan` machine:
+
+```bash
+$ govukcli set-context production-aws
+$ govukcli ssh ckan
+```
 
 ```bash
 $ sudo tail -f /var/log/ckan/procfile_harvester_fetch_consumer.err.log
 ```
 
-Or you could check that the services are all showing as `started`:
+Or you could check that the services are all showing as `started` on the `ckan`
+machine:
 
 ```bash
 $ sudo initctl list | grep harvester
