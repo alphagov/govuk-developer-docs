@@ -5,7 +5,7 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-08
+last_reviewed_on: 2019-01-11
 review_in: 6 months
 ---
 
@@ -26,13 +26,13 @@ If it goes down, these things will happen:
 
 ## VPN between live organisation and Licensing
 
-Licensing is hosted in Skyscape.
+Licensing is hosted in UKCloud.
 There's a VPN in each environment which connects it to the live (Carrenza) organisation. The VPN
-is managed by Carrenza and Skyscape.
+is managed by Carrenza and UKCloud.
 
 If it goes down, these things will happen:
 
-1. The machines on the disaster recovery (Skyscape) side of the connection will appear as
+1. The machines on the disaster recovery (UKCloud) side of the connection will appear as
    unreachable hosts in GOV.UK monitoring
 
 Applying for a licence should remain available because
@@ -114,7 +114,7 @@ If the VPN goes down, these things will happen:
    6. select the `enabled` (shown by a green tick in the enabled column) AWS VPN
       as shown in step 1 in Figure 2.1. Make a note of it so you remember which
       VPN you are going to disable.
-      **Do not select the Skyscape VPN**
+      **Do not select the UKCloud VPN**
 
    7. click on the `edit` button as shown in step 2 in Figure 2.1. A new pop-up
       window will appear where you can `uncheck` the
