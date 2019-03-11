@@ -19,9 +19,9 @@ review_in: 6 months
 [cf-docs]: https://docs.cloudfoundry.org
 [jenkins]: /manual/jenkins-ci.html
 [CKAN]: https://github.com/alphagov/ckanext-datagovuk
-[releases]: https://github.com/alphagov/datagovuk_find/releases
-[publish-travis]: https://github.com/alphagov/datagovuk_publish/blob/master/.travis.yml#L30-L50
-[find-travis]: https://github.com/alphagov/datagovuk_find/blob/af8cfa61584b16e4e1ad7bedbd1b7f890cec940d/.travis.yml#L44-L48
+[new release]: https://github.com/alphagov/datagovuk_find/releases
+[Publish's travis.yml]: https://github.com/alphagov/datagovuk_publish/blob/master/.travis.yml#L30-L50
+[Find's travis.yml]: https://github.com/alphagov/datagovuk_find/blob/af8cfa61584b16e4e1ad7bedbd1b7f890cec940d/.travis.yml#L44-L48
 
 ## Find and Publish (Rails Apps)
 
@@ -46,9 +46,9 @@ manually via command line tools.
 
 The deployment to staging is triggered when a PR gets merged into master. You
 can check the Travis logs of the `master` build to see progress. The deployment
-to production is triggered when a [new release](releases) with an appropriate
-version number is created in GitHub. This behaviour is defined in
-[Publish's travis.yml](publish-travis) and in [Find's travis.yml](find-travis).
+to production is triggered when a [new release] with an appropriate version
+number is created in GitHub. This behaviour is defined in [Publish's travis.yml]
+and in [Find's travis.yml].
 
 The process to manually deploy is as follows.
 
