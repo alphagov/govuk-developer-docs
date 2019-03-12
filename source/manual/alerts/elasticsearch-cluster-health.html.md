@@ -4,12 +4,12 @@ title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-20
 review_in: 6 months
 ---
 
 Elasticsearch reports cluster health as one of three possible states, based on
-the state of its [primary and replica shards](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/_basic_concepts.html#_shards_amp_replicas).
+the state of its [primary and replica shards][primary-and-replica-shards].
 
 - `green` - all primary and secondary (replica) shards are allocated. There are
   two (or more) copies of all shards across the nodes on the cluster.
@@ -20,6 +20,8 @@ the state of its [primary and replica shards](https://www.elastic.co/guide/en/el
   entire cluster is cold started, before it's initially allocated the primary
   shards. If it happens at other times this may be a sign of data loss.
 
+[primary-and-replica-shards]: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/_basic_concepts.html#_shards_amp_replicas
+
 More [comprehensive documentation on cluster health][cluster-health-endpoint]
 can be found in the Elasticsearch documentation.
 
@@ -27,10 +29,10 @@ Make sure you understand the consequences of the problem before jumping to a
 solution.
 
 Icinga uses the `check_elasticsearch` check from
-[nagios-plugins](https://github.com/alphagov/nagios-plugins/) to
-monitor the health of the Elasticsearch cluster. This plugin uses various
-endpoints of the Elasticsearch API, but also extrapolates additional information
-to help you diagnose any problems.
+[nagios-plugins](https://github.com/alphagov/nagios-plugins/) to monitor the
+health of the Elasticsearch cluster. This plugin uses various endpoints of the
+Elasticsearch API, but also extrapolates additional information to help you
+diagnose any problems.
 
 ### Investigating problems
 
@@ -41,28 +43,30 @@ name lookup in `licence-finder`.
 
 You can find hostnames by running:
 
-```
-fab production puppet_class:govuk_elasticsearch hosts
+```bash
+$ fab production puppet_class:govuk_elasticsearch hosts
 ```
 
 #### View a live dashboard
 
-The [elasticsearch-head](http://mobz.github.io/elasticsearch-head/) plugin is a nice UI for looking at current state of Elasticsearch.
+The [elasticsearch-head](http://mobz.github.io/elasticsearch-head/) plugin is a
+nice UI for looking at current state of Elasticsearch.
 
 To use this, forward port 9200 from the Elasticsearch box to your localhost:
 
-```
-ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging
+```bash
+$ ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.staging
 ```
 
 Access the UI at <http://localhost:9200/_plugin/head/>
 
-The tabs on top right corner for Cluster Status & Cluster Health come in handy
+The tabs on top right corner for Cluster Status & Cluster Health come in handy.
 
 #### Use the Elasticsearch API
 
-An alternative to using the dashboard is accessing the Elasticsearch health API yourself. Start with the
-[`/_cluster/health` endpoint][cluster-health-endpoint] and go from there.
+An alternative to using the dashboard is accessing the Elasticsearch health API
+yourself. Start with the [`/_cluster/health` endpoint][cluster-health-endpoint]
+and go from there.
 
 [cluster-health-endpoint]: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/cluster-health.html
 
@@ -94,15 +98,23 @@ Response JSON from the `/_cluster/health` endpoint looks like:
 #### Before you do anything
 
 Make sure a thorough analysis is done before fixing the problem,
-as any down time of the Elasticsearch cluster can result in loss of data. In general, avoid shutting down a node when there isn't any other node available with replicas of its shards.
+as any down time of the Elasticsearch cluster can result in loss of data. In
+general, avoid shutting down a node when there isn't any other node available
+with replicas of its shards.
 
 #### Unassigned replica shards
 
-When the health is yellow, i.e. replica shards are not allocated, Elasticsearch should automatically allocate another node to create replicas on, given enough time.
+When the health is yellow, i.e. replica shards are not allocated, Elasticsearch
+should automatically allocate another node to create replicas on, given enough
+time.
 
-You can manually interfere with this process using the [Cluster Reroute API](https://www.elastic.co/guide/en/elasticsearch/reference/2.4/cluster-reroute.html#cluster-reroute).
+You can manually interfere with this process using the
+[Cluster Reroute API][cluster-reroute-api].
+
+[cluster-reroute-api]: https://www.elastic.co/guide/en/elasticsearch/reference/2.4/cluster-reroute.html#cluster-reroute
 
 #### Unassigned primary shards
+
 We can have a red status on Elasticsearch cluster health when you have
 unassigned shards for some indices. (We have seen a similar scenario
 occur on the integration environment, when logs-es-1/3 ran out of space

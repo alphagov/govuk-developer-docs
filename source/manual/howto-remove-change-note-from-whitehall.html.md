@@ -4,7 +4,7 @@ title: Remove a change note in Whitehall
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-17
+last_reviewed_on: 2019-03-12
 review_in: 6 months
 ---
 
@@ -19,6 +19,7 @@ You can read more about this in the Publishing API [docs](https://docs.publishin
 You need to determine whether the request is referring to an `editorial_remark` in Whitehall Admin, or to a public-facing `change_note` in Publishing API.
 
 #### Editorial Remark
+
 1. Obtain the content ID of the document on which the change note was created.
 This document will contain multiple editions. You need to extract the
 `editorial_remark` from these editions.
@@ -46,7 +47,9 @@ There are two interfaces for dry and real runs, to ensure the correct change not
 
 ###### Dry run
 
-`$ bundle exec data_hygiene:remove_change_note:dry[content_id,locale,change note text]`
+```bash
+$ bundle exec 'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'
+```
 
 [Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
 
@@ -54,7 +57,9 @@ This attempts to locate the selected change note for the content, and if found, 
 
 ###### Real run
 
-`$ bundle exec data_hygiene:remove_change_note:real[content_id,locale,change note text]`
+```bash
+$ bundle exec 'data_hygiene:remove_change_note:real[content_id,locale,change note text]'
+```
 
 [Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
 
@@ -64,7 +69,9 @@ This will actually *delete* the selected change note and re-represent to the con
 
 ###### Dry run
 
-`$ bundle exec data_hygiene:remove_change_note:dry[content_id,locale,change note text]`
+```bash
+$ bundle exec 'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'
+```
 
 [Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
 
@@ -72,7 +79,9 @@ This attempts to locate the selected change note for the content, and if found, 
 
 ###### Real run
 
-`$ bundle exec data_hygiene:remove_change_note:real[content_id,locale,change note text]`
+```bash
+$ bundle exec 'data_hygiene:remove_change_note:real[content_id,locale,change note text]'
+```
 
 [Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
 

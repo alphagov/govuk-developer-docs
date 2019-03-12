@@ -4,7 +4,7 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2018-03-15
 review_in: 6 months
 ---
 
@@ -61,9 +61,9 @@ no new updates are made to the mirrors, but it will not stop the mirrors from wo
 
 To inspect the contents of the mirror:
 
-```
-ssh mirrorer-1.management.production
-cd /mnt/crawler_worker/www.gov.uk
+```bash
+$ ssh mirrorer-1.management.production
+$ cd /mnt/crawler_worker/www.gov.uk
 ```
 
 ## Forcing failover to the static mirrors
@@ -71,14 +71,14 @@ cd /mnt/crawler_worker/www.gov.uk
 Because the CDN will retry every request against the mirrors automatically if origin
 is unavailable, all you need to do is [stop Nginx on the cache machines with Fabric][fab-fail]:
 
-```
-fab $environment class:cache incident.fail_to_mirror
+```bash
+$ fab $environment class:cache incident.fail_to_mirror
 ```
 
 to disable to fallback:
 
-```
-fab $environment class:cache incident.recover_origin
+```bash
+$ fab $environment class:cache incident.recover_origin
 ```
 
 [fab-fail]: https://github.com/alphagov/fabric-scripts/blob/master/incident.py
@@ -92,16 +92,16 @@ HTML, it's hard to make broad changes to the site (like putting a banner on ever
 You'll be notified by the escalation on-call contact that you need to edit the site.
 
 1. If you're at home, connect to the [VPN][gds-vpn]
-2. Download a copy of the file you want to edit using [govuk_mirror-deployment][]:
+1. Download a copy of the file you want to edit using [govuk_mirror-deployment][]:
 
-        $ fab $environment get_file:path-to-file.html
+      $ fab $environment get_file:path-to-file.html
 
-3. Edit the file in `tmp/path-to-file.html` on your machine
-4. Put the file back to VCloud mirror:
+1. Edit the file in `tmp/path-to-file.html` on your machine
+1. Put the file back to VCloud mirror:
 
         $ fab $environment put_file:path-to-file.html
 
-5. Upload the file to the S3 mirror via AWS console or command line
+1. Upload the file to the S3 mirror via AWS console or command line
 
 Your manual changes to the mirror might be overwritten by the hourly copy from the
 mirrorer machine. You might need to ensure that the copy doesn't happen.
