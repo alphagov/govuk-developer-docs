@@ -4,7 +4,7 @@ title: Pingdom search check
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-23
 review_in: 6 months
 ---
 
@@ -17,5 +17,4 @@ serve static content from a secondary mirror at a second supplier (Skyscape).
 This is not as critical a problem as you might assume, because a large
 amount of traffic from external searches goes directly to static content
 and can be served from the mirror. Debug as normal by walking through the stack
-backwards from the user's perspective to find out where the
-failure is.
+backwards from the user's perspective to find out where the failure is.

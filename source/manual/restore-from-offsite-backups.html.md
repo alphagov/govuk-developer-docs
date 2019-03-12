@@ -4,7 +4,7 @@ title: Restore from offsite backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-17
+last_reviewed_on: 2018-03-13
 review_in: 6 months
 ---
 
@@ -66,7 +66,7 @@ credentials and GPG key to decrypt the backups.
     If you are performing the 2nd line backup drill, you will want to use the
     production credentials
 
-2. Ensure that you can connect to the S3 bucket:
+1. Ensure that you can connect to the S3 bucket:
 
     ```bash
     export AWS_ACCESS_KEY_ID=<access_key_id>
@@ -84,7 +84,7 @@ credentials and GPG key to decrypt the backups.
 
     > You will still need to use the full URL list above when using the below duplicity commands
 
-3. Now you can see the status of duplicity:
+1. Now you can see the status of duplicity:
 
     ```bash
     duplicity collection-status s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
@@ -97,7 +97,7 @@ On the machine where you'll be running the restore:
 1. Create a file containing the `backup::assets::backup_private_gpg_key`
    [GPG key](#gpg-keys-for-decrypting-backups).
 
-2. Import it with:
+1. Import it with:
 
     ```bash
     gpg --allow-secret-key-import --import <path to GPG key file>
@@ -109,7 +109,7 @@ On the machine where you'll be running the restore:
     gpg --list-secret-keys
     ```
 
-3. Once the key is imported, you'll be able to list files:
+1. Once the key is imported, you'll be able to list files:
 
     ```bash
     duplicity list-current-files s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
@@ -152,13 +152,13 @@ database.
     tar xvjf latest.tbz2
     ```
 
-2. Extract the dump that you want to restore:
+1. Extract the dump that you want to restore:
 
     ```bash
     bunzip2 latest/foo.sql.bz2
     ```
 
-3. Restore with:
+1. Restore with:
 
     ```bash
     sudo mysql < foo.sql
@@ -183,7 +183,7 @@ This shows the example process of restoring files for Whitehall attachments.
 1. SSH to the machine where you want to restore the backup, for example
  `asset-master-1.backend`.
 
-2. `ls` the destination bucket
+1. `ls` the destination bucket
 
     ```bash
     export AWS_ACCESS_KEY_ID=<access_key_id>
@@ -196,26 +196,26 @@ This shows the example process of restoring files for Whitehall attachments.
     The buckets are as described in [`hieradata/production.yaml` in the
     govuk-puppet repo][hieradata-production-yaml].
 
-3. Now you'll be able to see the status of duplicity:
+1. Now you'll be able to see the status of duplicity:
 
     ```bash
     duplicity collection-status s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/
     ```
 
-4. Import the GPG secret key from the credentials store as per the section to
-[Set up GPG keys to decrypt backups](#set-up-gpg-keys-to-decrypt-backups).
+1. Import the GPG secret key from the credentials store as per the section to
+   [Set up GPG keys to decrypt backups](#set-up-gpg-keys-to-decrypt-backups).
 
-5. Once the key is imported, you can list files:
+1. Once the key is imported, you can list files:
 
     ```bash
     duplicity list-current-files s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/
     ```
 
-5. In order to restore the files, you may need to change the owner of the
-`/mnt/uploads/whitehall` directory to your user temporarily, and remove any
-files that already exist in that directory.
+1. In order to restore the files, you may need to change the owner of the
+   `/mnt/uploads/whitehall` directory to your user temporarily, and remove any
+   files that already exist in that directory.
 
-6. Run a restore:
+1. Run a restore:
 
     ```bash
     duplicity restore --file-to-restore mnt/uploads/whitehall/ s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/ /mnt/uploads/whitehall
@@ -228,7 +228,7 @@ actions you've taken. These may include:
 
 1. Changing the owner of the assets files.
 
-2. Removing the secret key from the GPG keyring
+1. Removing the secret key from the GPG keyring
    (`gpg --delete-secret-key 12345678`).
 
 ## Rotating offsite backups GPG keys
