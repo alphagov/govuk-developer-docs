@@ -38,7 +38,8 @@ then
 
 Databases take a long time to download and use a lot of disk space (up to ~30GB uncompressed). The process also uses a lot of compute resource as you import the data.
 
-The downloaded backups will automatically be deleted after import (whether successful or not) unless the `-k` flag is specified.
+The downloaded backups can be deleted if the import is successful.
+To automatically delete them after import (whether successful or not) specify the `-x` flag.
 
 ## If you don't have AWS access
 
