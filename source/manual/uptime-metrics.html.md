@@ -5,8 +5,8 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-29
-review_in: 6 months
+last_reviewed_on: 2019-03-16
+review_in: 12 months
 related_applications:
   - content-store
   - hmrc-manuals-api
