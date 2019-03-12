@@ -21,6 +21,15 @@ To fix this problem run the [following rake task][5]:
 etl:repopulate_aggregations_month["2019-02-14", "2019-02-14"]
 ```
 
+## ETL :: no <range> searches updated from yesterday
+
+This means that [the Etl process][1] that runs daily and refreshes the Materialized Views failed to update those views.
+
+To fix this problem run the [following rake task][6]:
+```bash
+etl:repopulate_aggregations_search
+```
+
 ## ETL :: no daily metrics for yesterday
 
 This means that [the ETL master process][1] that runs daily to retrieve metrics for content items has failed.
@@ -72,3 +81,4 @@ rake etl:repopulate_feedex[2018-01-01 2018-01-01]
 [3]: https://github.com/alphagov/content-performance-manager/blob/8dd689e6917d7bbbf23a99387b85bfe1ce04d7b1/lib/tasks/etl.rake#L18
 [4]: https://github.com/alphagov/content-performance-manager/blob/b886c5489c79a6b5a58190e305ea9746fd7db666/lib/tasks/etl.rake#L29
 [5]: https://github.com/alphagov/content-performance-manager/blob/1dc3f7becf146bbd5f346634e98d05ad76477a8e/lib/tasks/etl.rake#L7
+[6]: https://github.com/alphagov/content-performance-manager/blob/3c73c534d1a42208d6b2bdaef57d3b79d1998ea3/lib/tasks/etl.rake
