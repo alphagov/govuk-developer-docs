@@ -4,7 +4,7 @@ title: Set up your AWS account
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2019-03-19
 review_in: 6 months
 old_paths:
   - /manual/user-management-in-aws.html
