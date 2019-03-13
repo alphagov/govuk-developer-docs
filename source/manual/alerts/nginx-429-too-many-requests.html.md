@@ -4,7 +4,7 @@ title: Nginx 429 too many requests
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-21
 review_in: 6 months
 ---
 
