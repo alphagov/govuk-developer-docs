@@ -22,21 +22,23 @@ $ bundle exec rake data_hygiene:document_status_check[content_id,locale]
 
 [Run this job in production Jenkins](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=data_hygiene:document_status_check[content_id,locale])
 
-### [If documents are published and links aren't updated][links]
+### How to intervene ...
+
+#### [If documents are published and links aren't updated][links]
 
 You might see this happening if the format is still showing as "Coming Soon"
 on some pages.
 
 [links]: documents-are-published-but-links-arent-updated.html
 
-### [If the cache (our Varnish or Fastly CDN) needs clearing][cache]
+#### [If the cache (our Varnish or Fastly CDN) needs clearing][cache]
 
 You may need to do this if the content is not showing on the live site quick
 enough.
 
 [cache]: cache-flush.html
 
-### [If guidance pages are expected to show on taxon pages but aren't][search]
+#### [If guidance pages are expected to show on taxon pages but aren't][search]
 
 The guidance pages visible on topic pages like
 [/government/brexit](https://www.gov.uk/government/brexit) are populated based
