@@ -49,11 +49,11 @@ will be logged to the file.
 The following command can be used to run the restore:
 
 ```bash
-$ sudo goreplay -input-file "20171031.log|6000%" -stats -output-http-stats -output-http "http://localhost:3009/|6000%" -verbose
+$ sudo goreplay -input-file "20171031.log|1000%" -stats -output-http-stats -output-http "http://localhost:3009/|6000%" -verbose
 ```
 
-This runs the restore at 60x the speed it was saved so each hour of logs takes
-1 minute to process.
+This runs the restore at 10x the speed it was saved so each hour of logs takes
+6 minutes to process.
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/rummager/blob/master/doc/new-indexing-process.md
