@@ -4,7 +4,7 @@ title: Retire an application
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-06
+last_reviewed_on: 2019-03-21
 review_in: 6 months
 ---
 
