@@ -5,7 +5,7 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-09-11
+last_reviewed_on: 2019-03-13
 review_in: 6 months
 ---
 
@@ -30,9 +30,9 @@ the various caches manually:
 - **Fastly**: [`rake cache:clear_fastly[/your-path-here]`][jenkins-fastly-task]
 - **Both**: [`rake cache:clear[/your-path-here]`][jenkins-both-task]
 
-[jenkins-varnish-task]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_varnish[/your-path-here]
-[jenkins-fastly-task]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[/your-path-here]
-[jenkins-both-task]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear[/your-path-here]
+[jenkins-varnish-task]: https://deploy.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_varnish[/your-path-here]
+[jenkins-fastly-task]: https://deploy.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[/your-path-here]
+[jenkins-both-task]: https://deploy.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear[/your-path-here]
 
 ## Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)
 
