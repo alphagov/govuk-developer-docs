@@ -34,7 +34,10 @@ These indexes are populated by whitehall calling an HTTP API in Rummager.
 We have also setup [Gor][gor] logging for `POST` and `GET` requests so that we
 can replay the traffic.
 
-The logs are stored on the rummager servers (1 file per server) location at:
+The logs are stored on the rummager servers. You will need to run the replay on
+each server.
+
+The location of the logs is:
 
 ```
 /var/log/gor_dump
