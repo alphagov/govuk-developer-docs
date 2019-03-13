@@ -15,7 +15,9 @@ future is different from the number currently in the queue. This can
 happen in Staging and Integration as a result of the data sync from
 Production. Run this rake task to re-queue all scheduled editions:
 
+```bash
+$ cd /var/apps/publisher
+$ sudo -u deploy govuk_setenv publisher bundle exec rake editions:requeue_scheduled_for_publishing
 ```
-cd /var/apps/publisher
-sudo -u deploy govuk_setenv publisher bundle exec rake editions:requeue_scheduled_for_publishing
-```
+
+[Run this job in production Jenkins ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=editions:requeue_scheduled_for_publishing)
