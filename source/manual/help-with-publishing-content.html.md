@@ -56,3 +56,18 @@ Email Alert API](https://github.com/alphagov/email-alert-api/blob/1aee9703bf303d
 We have an alert that checks that email alerts for Travel Advice and Medical
 Safety Alerts go out correctly. Although an alert won't be triggered for other
 kinds of documents, the [guidance will still apply](alerts/email-alerts.html).
+
+### [If scheduled publications haven't gone out][scheduled]
+
+If a scheduled publication hasn't gone out, you should start by following the
+instructions for [if documents aren't live after being published][live]. If it
+looks as though the content was never published from Whitehall, there is a
+Rake task available which will publish overdue documents.
+
+```bash
+$ bundle exec rake publishing:overdue:publish
+```
+
+[Run this job in production Jenkins ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing:overdue:publish)
+
+[scheduled]: alerts/whitehall-scheduled-publishing.html
