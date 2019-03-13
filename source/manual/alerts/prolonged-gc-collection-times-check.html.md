@@ -4,7 +4,7 @@ title: Prolonged GC collection times
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-21
 review_in: 6 months
 ---
 
@@ -18,8 +18,8 @@ period of 5 minutes and find the maximum value in that period.
 You can find the current value using curl if you SSH into the affected
 box:
 
-```
-curl localhost:9200/_nodes/stats/jvm?pretty
+```bash
+$ curl localhost:9200/_nodes/stats/jvm?pretty
 ```
 
 You need to look for the `collection_time_in_millis`. There will be two
@@ -38,14 +38,14 @@ On boxes where the data in Elasticsearch isn't critical (e.g. for
 `ci-master` and `ci-agent`, where it is only test data) freeing up heap
 space can be achieved by deleting indexes:
 
-```
-curl -XDELETE localhost:9200/<index name>
+```bash
+$ curl -XDELETE localhost:9200/<index name>
 ```
 
 to delete a specific index, or:
 
-```
-curl -XDELETE localhost:9200/_all
+```bash
+$ curl -XDELETE localhost:9200/_all
 ```
 
 to delete all indexes. Obviously run these with extreme care!
