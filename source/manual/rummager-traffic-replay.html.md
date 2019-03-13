@@ -43,9 +43,10 @@ The location of the logs is:
 /var/log/gor_dump
 ```
 
-A copy of the file should be taken for the restore, as the restore requests
-will be logged to the file. The following command can be used to run the
-restore:
+You must copy the file for the restore, as the restore requests
+will be logged to the file.
+
+The following command can be used to run the restore:
 
 ```bash
 $ sudo goreplay -input-file "20171031.log|6000%" -stats -output-http-stats -output-http "http://localhost:3009/|6000%" -verbose
