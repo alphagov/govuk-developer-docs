@@ -4,7 +4,7 @@ title: 'RabbitMQ: high watermark has been exceeded'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-04-01
 review_in: 6 months
 ---
 
