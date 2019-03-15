@@ -78,7 +78,7 @@ You can re-run the replication but skip non-Mongo imports like MySQL if it's alr
 For example, to run an import but skip MySQL and Elasticsearch:
 
 ```
-dev$ replicate-data-local.sh -q -e -d backups/2017-06-08 -s
+dev$ ./replicate-data-local.sh -q -e -d backups/2017-06-08 -s
 ```
 
 ## Broken AWS connection
