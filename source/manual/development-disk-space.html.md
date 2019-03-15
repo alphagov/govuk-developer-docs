@@ -51,3 +51,9 @@ Similarly, you can find large postgres databases with:
 $ sudo -u postgres psql
 > \l+
 ```
+
+You can also remove dependencies that were installed with applications but are no longer needed by running:
+
+```
+$ sudo apt-get autoremove
+```
