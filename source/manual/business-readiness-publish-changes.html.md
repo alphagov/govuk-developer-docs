@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-01-18
+last_reviewed_on: 2019-03-19
 review_in: 3 months
 ---
 
@@ -16,6 +16,7 @@ The full journey for the  [business readiness finder][business-readiness-finder]
 1. The start page: [`/business-uk-leaving-eu`](https://www.gov.uk/business-uk-leaving-eu)
 2. The Q&A: [`/prepare-business-uk-leaving-eu`](https://www.gov.uk/prepare-business-uk-leaving-eu)
 3. The finder: [`/find-eu-exit-guidance-business`](https://www.gov.uk/find-eu-exit-guidance-business)
+4. The email signup page: [`/find-eu-exit-guidance-business/email-signup`](https://www.gov.uk/find-eu-exit-guidance-business/email-signup)
 
 The content for the start page can be updated in Mainstream Publisher as you would any other start page.
 
@@ -30,7 +31,7 @@ The content item for the finder is updated from a [YAML file][govuk-app-deployme
 
 ## Updating the business readiness finder
 
-The content item for the business readiness finder is published by rummager. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
+The content item for the business readiness finder and its email signup page are published by rummager. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
 
 1. Update [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 2. Merge the changes to [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
