@@ -4,7 +4,7 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-03
+last_reviewed_on: 2019-03-15
 review_in: 6 months
 related_applications: [rummager]
 ---
@@ -49,7 +49,7 @@ the indices sequentially.
 You can run this task from Jenkins, but it will block other rake tasks from
 being run for 15 minutes to an hour. You can avoid this by running the command
 directly on a `search` machine, but you need to prefix the command with
-`govuk_setenv rummager` to make sure the Elasticsearch hostname is set
+`govuk_setenv search` to make sure the Elasticsearch hostname is set
 correctly.
 
 To monitor progress, SSH to an Elasticsearch box with port-forwarding:
