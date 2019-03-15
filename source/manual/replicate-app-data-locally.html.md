@@ -88,3 +88,20 @@ If you get an error saying download failed `"Connection broken: error(54, 'Conne
 mac$ pip3 install awscli --upgrade --user
 ```
 You may need to install Python3 and upgrade pip first.
+
+## INFO Skipping (…) messages during MongoDB import in the VM
+
+If you see this message when importing MongoDB data, check if the import was successful. For example by looking at the number of content items in the Content Store:
+```
+dev$ cd /var/govuk/content-store
+dev$ bundle install
+dev$ rails c
+dev$ irb(main):001:0> ContentItem.count
+```
+You are expecting to see over 588000 objects. If it's 0 you will need to reimport MongoDB data.
+
+First delete .extracted file that was created as a marker
+```
+mac$ rm ~/govuk/govuk-puppet/development-vm/replication/backups/YYYY-MM-DD/mongo/mongo/.extracted
+```
+and follow the steps described in the [Replication](/manual/replicate-app-data-locally.html#replication) instructions above. You can skip downloading data if you already have Mongo backups (if you run the script with `-k` flag). To only download and import MongoDB data include `-p` `-q` `-e` `-t` flags.
