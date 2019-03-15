@@ -4,7 +4,7 @@ title: Resync a PostgreSQL standby
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-04
+last_reviewed_on: 2019-03-15
 review_in: 6 months
 ---
 
@@ -13,6 +13,8 @@ To resync a standby from a primary run this on the affected standby:
 ```
 sudo pg_resync_slave
 ```
+
+It will ask you for a password. You can find this in the password store under `govuk::node::s_postgresql_primary::standby_password`.
 
 You will see something like this:
 
