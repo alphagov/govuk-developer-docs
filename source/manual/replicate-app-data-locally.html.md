@@ -73,10 +73,18 @@ Find your biggest Mongo collections by running:
 dev$ sudo ncdu /var/lib/mongodb
 ```
 
-You can re-run the replication but skip non-Mongo imports like MySQL if it's already succesfully imported. Use `replicate-data-local.sh --help `to see the options.
+You can re-run the replication but skip non-Mongo imports like MySQL if it's already successfully imported. Use `replicate-data-local.sh --help `to see the options.
 
 For example, to run an import but skip MySQL and Elasticsearch:
 
 ```
 dev$ replicate-data-local.sh -q -e -d backups/2017-06-08 -s
 ```
+
+## Broken AWS connection
+
+If you get an error saying download failed `"Connection broken: error(54, 'Connection reset by peer')", error(54, 'Connection reset by peer')` you may need to update the AWS CLI by running:
+```
+mac$ pip3 install awscli --upgrade --user
+```
+You may need to install Python3 and upgrade pip first.
