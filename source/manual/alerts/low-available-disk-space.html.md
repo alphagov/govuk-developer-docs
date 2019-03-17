@@ -106,7 +106,8 @@ If this continues to be a problem see if you need to [resize the disk](/manual/a
 
 ## Low available disk space on /mnt/elasticsearch
 
-Usually this is caused by old indices not being closed.
+This is often caused by old indices not being closed after reindexing
+[Elasticsearch](/manual/reindex-elasticsearch.html#cleanup).
 
 View the dashboard to see how many indices are active on the cluster:
 

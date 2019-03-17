@@ -95,6 +95,9 @@ Avoid leaving old indices around for more than a few days. Rummager performance
 starts to degrade once there are more than three or four old indices in the
 cluster.
 
+There is also information on using the Elasticsearch web interface to close and
+delete old indices on the [Low available disk space](/manual/alerts/low-available-disk-space.html#low-available-disk-space-on-mntelasticsearch) docs.
+
 ### Troubleshooting
 
 #### To stop the reindexing job
