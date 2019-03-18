@@ -51,6 +51,13 @@ dump. Then, from `govuk-puppet/development-vm/replication` run:
 
 See [running out of disk space in development](/manual/development-disk-space.html).
 
+### `govuk data` tool
+If you are not able to free up enough space to replicate all data, you may consider using the `govuk data` tool to list and load particular data, downloaded through the replication scripts. For more information see the [`govuk data` tool
+docs](https://github.com/alphagov/govuk-guix/blob/master/doc/local-data.md).
+
+You may need to set up your CLI access for AWS in the VM by creating `~/.aws/config` and `~/.aws/credentials` in the VM. You can copy the content of those files from your host machine.
+
+
 ## If you get a curl error when restoring Elasticsearch data
 
 Check the service is running:
