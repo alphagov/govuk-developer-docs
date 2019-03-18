@@ -51,6 +51,13 @@ dump. Then, from `govuk-puppet/development-vm/replication` run:
 
 See [running out of disk space in development](/manual/development-disk-space.html).
 
+### `govuk data` tool
+If you are not able to free up enough space to replicate all data, you may consider using the `govuk data` tool to list and load particular data, downloaded through the replication scripts. For more information see the [`govuk data` tool
+docs](https://github.com/alphagov/govuk-guix/blob/master/doc/local-data.md).
+
+You may need to set up your CLI access for AWS in the VM by creating `~/.aws/config` and `~/.aws/credentials` in the VM. You can copy the content of those files from your host machine.
+
+
 ## If you get a curl error when restoring Elasticsearch data
 
 Check the service is running:
@@ -73,10 +80,35 @@ Find your biggest Mongo collections by running:
 dev$ sudo ncdu /var/lib/mongodb
 ```
 
-You can re-run the replication but skip non-Mongo imports like MySQL if it's already succesfully imported. Use `replicate-data-local.sh --help `to see the options.
+You can re-run the replication but skip non-Mongo imports like MySQL if it's already successfully imported. Use `replicate-data-local.sh --help `to see the options.
 
 For example, to run an import but skip MySQL and Elasticsearch:
 
 ```
-dev$ replicate-data-local.sh -q -e -d backups/2017-06-08 -s
+dev$ ./replicate-data-local.sh -q -e -d backups/2017-06-08 -s
 ```
+
+## Broken AWS connection
+
+If you get an error saying download failed `"Connection broken: error(54, 'Connection reset by peer')", error(54, 'Connection reset by peer')` you may need to update the AWS CLI by running:
+```
+mac$ pip3 install awscli --upgrade --user
+```
+You may need to install Python3 and upgrade pip first.
+
+## INFO Skipping (…) messages during MongoDB import in the VM
+
+If you see this message when importing MongoDB data, check if the import was successful. For example by looking at the number of content items in the Content Store:
+```
+dev$ cd /var/govuk/content-store
+dev$ bundle install
+dev$ rails c
+dev$ irb(main):001:0> ContentItem.count
+```
+You are expecting to see over 588000 objects. If it's 0 you will need to reimport MongoDB data.
+
+First delete .extracted file that was created as a marker
+```
+mac$ rm ~/govuk/govuk-puppet/development-vm/replication/backups/YYYY-MM-DD/mongo/mongo/.extracted
+```
+and follow the steps described in the [Replication](/manual/replicate-app-data-locally.html#replication) instructions above. You can skip downloading data if you already have Mongo backups (if you run the script with `-k` flag). To only download and import MongoDB data include `-p` `-q` `-e` `-t` flags.
