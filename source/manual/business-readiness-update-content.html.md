@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-03-05
+last_reviewed_on: 2019-03-18
 review_in: 3 months
 ---
 
@@ -24,8 +24,12 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 2. `cd govuk-app-deployment-secrets`
 3. `bin/prep_csv ~/Downloads/your-downloaded-file.csv`
 4. Create a pull request and get it reviewed & merged.
-5. Re-deploy rummager and email-alert-api.
-6. Run the [`tag_metadata` rake task][staging-rake-task] in rummager to index the contents of the new CSV, it should take 2 to 3 minutes:
+5. Re-deploy rummager/search-api and email-alert-api via Jenkins.
+6. Run the `tag_metadata` rake task in rummager/search-api to index the contents of the new CSV, it should take 2 to 3 minutes:
+
+    * [integration][tag_metadata_integration]
+    * [staging-aws (search-api)][tag_metadata_staging_aws]
+    * [production][tag_metadata_production]
 
     ![rake_task](images/rake.png)
 
@@ -37,6 +41,8 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 ## Removing content from the business readiness finder
 
 If your commit includes some items being removed from the content spreadsheet then you should take a note of the `base_paths` for these items and once you have run the `tag_metadata` rake task in the above instructions, you should also run [destroy_metadata_for_base_paths][destroy-metadata] ([e.g. on staging][metadata-rake-task]), passing in the `base_paths` that need removing.
+
+There are also other useful [rake tasks][rake_tasks]. Remember to redeploy apps and re-run the `tag_metadata` task as above.
 
 ## Pinning content to sections in the business readiness finder
 
@@ -58,5 +64,8 @@ The same process applies for removing a pinned item: get the content item and re
 [metadata-rake-task]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=destroy_metadata_for_base_paths
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [spreadsheet]: https://docs.google.com/spreadsheets/d/1bFSDYFT5fBpDQTvAeqw4j7QhYXTnFmDuGCLGDwx-wYk/edit#gid=372225498
-[staging-rake-task]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
+[tag_metadata_integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
+[tag_metadata_staging_aws]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
+[tag_metadata_production]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
+[rake_tasks]: https://github.com/alphagov/rummager/blob/master/lib/tasks/metadata_tagger.rake#L18
 [republish_finder]: https://docs.publishing.service.gov.uk/manual/business-readiness-publish-changes.html#updating-the-business-readiness-finder
