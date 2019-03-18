@@ -120,8 +120,13 @@ ssh -A -t jumpbox.production.govuk.digital 'ssh `govuk_node_list -c <%= applicat
 <h3>Example pages published by <%= application.app_name %></h3>
 
 <ul>
+<% absolute_path = Regexp.new('^([a-z]+://|//)') %>
 <% application.example_published_pages.each do |example| %>
-  <li><%= link_to example['title'], "https://www.gov.uk#{example['link']}" %></li>
+  <% if absolute_path.match(example['link']) %>
+    <li><%= link_to example['title'], "#{example['link']}" %></li>
+  <% else %>
+    <li><%= link_to example['title'], "https://www.gov.uk#{example['link']}" %></li>
+  <% end %>
 <% end %>
 </ul>
 <% end %>
