@@ -5,8 +5,8 @@ section: Transition
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-17
-review_in: 3 months
+last_reviewed_on: 2019-03-18
+review_in: 6 months
 related_applications: [bouncer, transition]
 ---
 
