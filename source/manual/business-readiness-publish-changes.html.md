@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-01-18
+last_reviewed_on: 2019-03-19
 review_in: 3 months
 ---
 
@@ -16,6 +16,7 @@ The full journey for the  [business readiness finder][business-readiness-finder]
 1. The start page: [`/business-uk-leaving-eu`](https://www.gov.uk/business-uk-leaving-eu)
 2. The Q&A: [`/prepare-business-uk-leaving-eu`](https://www.gov.uk/prepare-business-uk-leaving-eu)
 3. The finder: [`/find-eu-exit-guidance-business`](https://www.gov.uk/find-eu-exit-guidance-business)
+4. The email signup page: [`/find-eu-exit-guidance-business/email-signup`](https://www.gov.uk/find-eu-exit-guidance-business/email-signup)
 
 The content for the start page can be updated in Mainstream Publisher as you would any other start page.
 
@@ -30,7 +31,7 @@ The content item for the finder is updated from a [YAML file][govuk-app-deployme
 
 ## Updating the business readiness finder
 
-The content item for the business readiness finder is published by rummager. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
+The content item for the business readiness finder and its email signup page are published by rummager. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
 
 1. Update [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 2. Merge the changes to [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
@@ -38,7 +39,7 @@ The content item for the business readiness finder is published by rummager. How
 
   N.B. If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
 
-4. Run the `publishing_api:publish_document_finder` [rake task][staging-rake-task] in rummager to publish the changes:
+4. Run the `publishing_api:publish_eu_exit_business_finder` [rake task][staging-rake-task] in rummager to publish the changes:
 
     ![download](images/publish-business-readiness.png)
 
@@ -48,4 +49,4 @@ The content item for the business readiness finder is published by rummager. How
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [finder-frontend]: https://github.com/alphagov/finder-frontend/blob/3d7f25ddca4bedd9d9fb750fb1d651964cf2a34b/lib/prepare_business_uk_leaving_eu.yaml
 [govuk-app-deployment-secrets]: https://github.com/alphagov/govuk-app-deployment-secrets/blob/9a39969d504543e040ffc1afc70924e23d249033/shared_config/find-eu-exit-guidance-business.yml
-[staging-rake-task]:https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=DOCUMENT_FINDER_CONFIG=find-eu-exit-guidance-business.yml%20publishing_api:publish_document_finder
+[staging-rake-task]:https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=publishing_api:publish_eu_exit_business_finder
