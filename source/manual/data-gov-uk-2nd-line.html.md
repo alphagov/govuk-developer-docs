@@ -54,7 +54,7 @@ Users are not permitted to remove their own datasets.  There are a [limited numb
 #### Deleting a single dataset
 1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
 2. Navigate to the relevant dataset (use the 'Datasets' button in the header).
-3. Click the 'Manange' button.
+3. Click the 'Manage' button.
 4. Click the red 'Delete' button.
 5. Once withdrawn, it will take up to 30 minutes to sync across to Find and clear the cache.
 
