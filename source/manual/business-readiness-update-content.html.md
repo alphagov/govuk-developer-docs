@@ -26,7 +26,6 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 4. Create a pull request and get it reviewed & merged.
 5. Re-deploy rummager/search-api and email-alert-api via Jenkins.
 6. Run the `tag_metadata` rake task in rummager/search-api to index the contents of the new CSV, it should take 2 to 3 minutes:
-
     * [integration][tag_metadata_integration]
     * [staging-aws (search-api)][tag_metadata_staging_aws]
     * [production][tag_metadata_production]
