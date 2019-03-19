@@ -39,7 +39,7 @@ The content item for the business readiness finder and its email signup page are
 
   N.B. If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
 
-4. Run the `publishing_api:publish_document_finder` [rake task][staging-rake-task] in rummager to publish the changes:
+4. Run the `publishing_api:publish_eu_exit_business_finder` [rake task][staging-rake-task] in rummager to publish the changes:
 
     ![download](images/publish-business-readiness.png)
 
@@ -49,4 +49,4 @@ The content item for the business readiness finder and its email signup page are
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [finder-frontend]: https://github.com/alphagov/finder-frontend/blob/3d7f25ddca4bedd9d9fb750fb1d651964cf2a34b/lib/prepare_business_uk_leaving_eu.yaml
 [govuk-app-deployment-secrets]: https://github.com/alphagov/govuk-app-deployment-secrets/blob/9a39969d504543e040ffc1afc70924e23d249033/shared_config/find-eu-exit-guidance-business.yml
-[staging-rake-task]:https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=DOCUMENT_FINDER_CONFIG=find-eu-exit-guidance-business.yml%20publishing_api:publish_document_finder
+[staging-rake-task]:https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=publishing_api:publish_eu_exit_business_finder
