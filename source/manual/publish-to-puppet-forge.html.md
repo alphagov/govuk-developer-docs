@@ -4,7 +4,7 @@ title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-15
+last_reviewed_on: 2019-02-19
 review_in: 6 months
 ---
 
@@ -30,9 +30,17 @@ The URL for our account is <http://forge.puppetlabs.com/gdsoperations>.
 
 ### Via the Forge website
 
-1.  Build the module with `bundle exec puppet module build`.
-2.  Click [Publish](https://forge.puppetlabs.com/upload).
-3.  Submit the tarball you just built from the `pkg/` directory.
+1. Build the new version with `bundle exec puppet module build`
+2. Click [Publish](https://forge.puppetlabs.com/upload)
+3. Submit the tarball you just built from the `pkg/` directory
+
+If you get the "this action has been replaced by Puppet Development
+Kit" error, run these commands instead:
+
+```sh
+$ brew cask install puppetlabs/puppet/pdk
+$ pdk build
+```
 
 ### Via the command line
 
