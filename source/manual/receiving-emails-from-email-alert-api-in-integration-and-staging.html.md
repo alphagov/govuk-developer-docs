@@ -12,13 +12,13 @@ In `integration` and `staging` Email Alert API defaults to sending emails
 to a single test address: `success@simulator.amazonses.com`. This is used to
 simulate a successful email sending.
 
-You can however override this for specific email addresses for testing
-purposes.
+However, you can override this for specific email addresses for testing
+purposes. To do this, you will need to be added as a team member to the GOV.UK Email Integration or Staging service in Notify and make changes to govuk-puppet.
 
 In [Notify][]:
 
 1. Log in using the 2nd-line-support account which is stored in [govuk-secrets][]
-  under `govuk-notify/2nd-line-support`. You should receive an email via 2nd Line
+  under `govuk-notify/2nd-line-support`. You should then receive an email via 2nd Line
    Support containing a link to sign in to Notify.
 2. Choose the service in the appropriate environment and navigate to "Team members".
   The members with the permission `Manage settings, team and usage` will be able to
@@ -26,9 +26,16 @@ In [Notify][]:
 
 In [govuk-puppet][]:
 
-1. Add your email address to the override whitelist. This is set as an
+1. Add your email address to the common.yml for [hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml#L442) and [hieradata_aws](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L488) (these lists need to be kept in sync with the team members list in Notify)
+2. Add your email address to the override whitelist in the YAML file for the environment you're testing on. This is set as an
    environment variable via hieradata under the key of
-   `govuk::apps::email_alert_api::email_address_override_whitelist`.
+   `govuk::apps::email_alert_api::email_address_override_whitelist`. It should look something like this:
+
+   ```
+    govuk::apps::email_alert_api::email_address_override_whitelist:
+      - your.name@digital.cabinet-office.gov.uk
+   ```
+  3. Create a branch with these changes and push them to Github. Deploy these changes by running [integration-puppet-deploy](https://ci.integration.publishing.service.gov.uk/job/integration-puppet-deploy/build?delay=0sec), providing your branch name instead of a release tag.
 
 Once these changes have been deployed and the environment variable
 `EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test
