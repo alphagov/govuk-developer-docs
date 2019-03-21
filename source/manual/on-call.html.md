@@ -45,6 +45,7 @@ You should do these things before going on call so you're prepared.
     - [So, you're having an incident](/manual/incident-what-to-do.html)
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
     - [Emergency publishing](/manual/emergency-publishing.html)
+    - [Non-emergency global banner](/manual/global-banner.html)
 
 [govuk_mirror-puppet]: https://github.com/alphagov/govuk_mirror-puppet
 
