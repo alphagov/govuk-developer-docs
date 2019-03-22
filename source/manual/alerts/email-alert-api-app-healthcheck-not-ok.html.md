@@ -89,6 +89,8 @@ This means that there are subscription contents being created without emails ass
 SubscriptionContent.where("subscription_contents.created_at < ?", 1.minute.ago).where(email: nil).joins(:subscription).merge(Subscription.active)
 ```
 
+Check the count, then run the above query again to see if the count has decreased. If it's decreasing, then it means that emails are going out and there's probably a lot being processed. You can also check the [Email Alert API Metrics dashboard](https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1).
+
 ## Technical failures (technical_failure)
 
 This means that we’ve received a technical failure status code back from Notify or a request to send an email via Notify failed within the last hour. This means that there may be a problem with our system or that Notify is unable to send emails.
