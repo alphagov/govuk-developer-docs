@@ -4,7 +4,7 @@ title: Low available disk inodes
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-21
 review_in: 6 months
 ---
 
@@ -18,14 +18,6 @@ which will give output like:
     /dev/mapper/os-root 3121152 151646 2969506    5% /
 
 with a row for each filesystem currently mounted.
-
-### Low available disk inodes (any machine)
-
-Gem documentation consumes a lot of inodes.
-[We no longer install it](https://github.com/alphagov/govuk-puppet/pull/7036),
-but there may still be some on the machine. You can remove it with:
-
-    find /usr/lib/rbenv/ -name *.ri -delete
 
 ### Low available disk inodes (Jenkins)
 
