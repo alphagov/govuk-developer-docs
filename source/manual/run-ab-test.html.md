@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: A/B testing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-01-31
+last_reviewed_on: 2019-03-22
 review_in: 6 months
 ---
 
@@ -12,9 +12,7 @@ review_in: 6 months
 
 ### Choose your test name
 
-The name should begin with `ABTest-`.  You will have to put a description on
-[the cookies page](https://www.gov.uk/help/cookies#multivariate-testing) so you
-can keep the name quite short.
+The name should begin with `ABTest-`.  Try to keep it short.
 
 You don't need to use the `ABTest-` prefix
 in [your code](https://github.com/alphagov/collections/blob/54dd7d22567ec932a16c262387ae609e9cc47aae/app/controllers/concerns/taxon_pages_testable.rb#L25)
@@ -44,7 +42,6 @@ need more data.
 
 ## 2. How to set up an A/B test
 
-1. Get your cookie listed on the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line GOV.UK content triage. They need to know the name of the cookie that you will be using, a description and the expiry time.
 1. Add your test to the [A/B test register][register].
 1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test.
 1. Create dictionary and A/B test files in [the govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example] and an [example for the A/B configuration][cdn-config-example] (these used to be in a different repo). For more details, see the [dictionaries README][dictionaries-readme].
@@ -67,7 +64,6 @@ Follow these steps:
 1. Remove your test from the [ab_tests configuration file][configuration-file] in the [govuk-cdn-config][govuk-cdn-config] repo and remove the dictionary files.
 1. Deploy the Fastly configuration to each environment using the [Deploy_CDN][deploy-cdn] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the govuk-secrets repo.
 1. Deploy the govuk-cdn-config changes to each environment using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. Use the same parameters as in step 2.
-1. Get your cookie removed from the [cookies page](https://www.gov.uk/help/cookies). Raise a ticket on [GOV.UK Zendesk](https://govuk.zendesk.com) and assign it to the content team's 2nd line GOV.UK content triage.
 1. Mark the end date in [A/B test register][register].
 
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
