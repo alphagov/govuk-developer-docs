@@ -1,6 +1,6 @@
 ---
 owner_slack: '#govuk-2ndline'
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2019-03-25
 review_in: 6 months
 title: Upgrade Rails to a new version
 section: Dependencies
