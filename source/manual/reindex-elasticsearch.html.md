@@ -34,8 +34,8 @@ to update documents inplace without locks. This can be done during working hours
 **Do not reindex on production during working hours except in an emergency.**
 Reindexing locks the index for writes, so content is not updated in the search
 index. See the [Replay traffic](#replay-traffic) section below if you need to
-run a reindexing during working hours. Reindexing takes around 40 minutes to
-an hour to complete.
+run a reindexing during working hours. Reindexing takes around 2 hours to
+complete.
 
 To reindex, run the `rummager:migrate_schema` rake task:
 
