@@ -5,7 +5,7 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-03-13
+last_reviewed_on: 2019-03-26
 review_in: 6 months
 ---
 
@@ -36,13 +36,8 @@ the various caches manually:
 
 ## Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)
 
-> **Note**
->
-> The following command *must* be run from one of the mirror boxes because we
-> restrict which IP addresses PURGE requests are accepted from.
-
-To purge content on the Fastly cache nodes, use the PURGE method against the
-URL you wish to purge. For instance:
+To purge content on the Fastly cache nodes, SSH onto a `cache` machine and use the
+PURGE method against the URL you wish to purge. For instance:
 
 ```sh
 $ curl -XPURGE https://www.gov.uk/bank-holidays
@@ -54,11 +49,6 @@ more verbose output using the `-i` switch:
 ```sh
 $ curl -i -XPURGE https://www.gov.uk/bank-holidays
 ```
-
-You can manually flush the cache from the following machines:
-
-> - mirror0.mirror.provider1.$environment.govuk.service.gov.uk
-> - mirror1.mirror.provider1.$environment.govuk.service.gov.uk
 
 ## Full Edge Flush on Fastly
 
