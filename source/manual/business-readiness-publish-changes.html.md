@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-03-19
+last_reviewed_on: 2019-03-26
 review_in: 3 months
 ---
 
@@ -31,15 +31,15 @@ The content item for the finder is updated from a [YAML file][govuk-app-deployme
 
 ## Updating the business readiness finder
 
-The content item for the business readiness finder and its email signup page are published by rummager. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
+The content item for the business readiness finder and its email signup page are published by search-api. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
 
 1. Update [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 2. Merge the changes to [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
-3. Re-deploy Rummager so it can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
+3. Re-deploy Search API so it can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 
   N.B. If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
 
-4. Run the `publishing_api:publish_eu_exit_business_finder` [rake task][staging-rake-task] in rummager to publish the changes:
+4. Run the `publishing_api:publish_eu_exit_business_finder` [rake task][staging-rake-task] in search-api to publish the changes:
 
     ![download](images/publish-business-readiness.png)
 
@@ -49,4 +49,4 @@ The content item for the business readiness finder and its email signup page are
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [finder-frontend]: https://github.com/alphagov/finder-frontend/blob/3d7f25ddca4bedd9d9fb750fb1d651964cf2a34b/lib/prepare_business_uk_leaving_eu.yaml
 [govuk-app-deployment-secrets]: https://github.com/alphagov/govuk-app-deployment-secrets/blob/9a39969d504543e040ffc1afc70924e23d249033/shared_config/find-eu-exit-guidance-business.yml
-[staging-rake-task]:https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=publishing_api:publish_eu_exit_business_finder
+[staging-rake-task]:https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=publishing_api:publish_eu_exit_business_finder

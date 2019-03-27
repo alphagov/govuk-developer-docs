@@ -2,12 +2,8 @@
 layout: api_layout
 title: Search API field reference
 parent: /search-api.html
-source_url: https://github.com/alphagov/rummager/blob/master/config/schema/field_definitions.json
+source_url: https://github.com/alphagov/search-api/blob/master/config/schema/field_definitions.json
 ---
-
-Documents in an Elasticsearch index have a type, and each type can have different fields.
-
-In Search API, the field is named `elasticsearch_type` to avoid confusion with [content_store_document_type](/document-types.html).
 
 ## All fields
 <%= table_of_properties(SearchApiReference.fetch_field_definitions) %>

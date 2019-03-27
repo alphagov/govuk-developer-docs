@@ -4,7 +4,7 @@ title: Name a new application or gem
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-22
+last_reviewed_on: 2019-03-26
 review_in: 12 months
 ---
 
@@ -63,7 +63,7 @@ Good:
 
 Not so good:
 
-- rummager (became search-api)
+- rummager (renamed to search-api)
 
 ### Admin applications
 
@@ -76,7 +76,7 @@ Good:
 - local-links-manager
 - content-tagger
 
-No so good:
+Not so good:
 
 - signonotron2000
 - maslow (needs-manager)

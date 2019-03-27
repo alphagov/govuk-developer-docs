@@ -80,7 +80,7 @@ Desired behaviour: user gets feedback, error is not reported to Sentry
 
 ### Incorrect bubbling up of errors
 
-Rummager crashes on date parsing, returns `422`, which raises an error in finder-frontend.
+Search API crashes on date parsing, returns `422`, which raises an error in finder-frontend.
 
 Example: <https://sentry.io/govuk/app-finder-frontend/issues/400074507>
 

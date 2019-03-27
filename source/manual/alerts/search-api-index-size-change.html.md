@@ -1,16 +1,16 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Rummager index size has significantly increased/decreased
+title: Search API index size has significantly increased/decreased
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-related_applications: [rummager]
-last_reviewed_on: 2019-01-14
+related_applications: [search-api]
+last_reviewed_on: 2019-03-26
 review_in: 6 months
 ---
 
 This alert indicates that a large number of documents have been added to or
-removed from the [rummager][rummager] search index.
+removed from the [search-api][search-api] search index.
 
 It compares the current size of the index with the size from one week ago, and
 triggers the alert if the difference is more than the thresholds [configured in
@@ -46,7 +46,7 @@ investigation guide][debug_elasticsearch] for help.
 [cluster_health]: /manual/alerts/elasticsearch-cluster-health.html
 [duplicate_documents]: /manual/incorrect-content-in-search-or-navigation.html#content-is-duplicated-in-search-results
 [debug_elasticsearch]: /manual/alerts/elasticsearch-cluster-health.html#investigating-problems
-[index_size_dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rummager_index_size.json
-[rummager]: /apps/rummager.html
+[index_size_dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/search-api_index_size.json
+[search-api]: /apps/search-api.html
 [search_index_checks]: https://deploy.publishing.service.gov.uk/job/search_index_checks/
 [thresholds]: https://github.com/alphagov/govuk-puppet/blob/1f482d137f27afbbe4509c19791667f8d74eea11/modules/monitoring/manifests/checks.pp#L120

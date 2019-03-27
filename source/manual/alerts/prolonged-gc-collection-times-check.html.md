@@ -4,7 +4,7 @@ title: Prolonged GC collection times
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-03-21
+last_reviewed_on: 2019-03-27
 review_in: 6 months
 ---
 
@@ -15,8 +15,12 @@ graphite via collectd from the Elasticsearch API.
 Currently the check uses graphite function to summarise over a time
 period of 5 minutes and find the maximum value in that period.
 
-You can find the current value using curl if you SSH into the affected
-box:
+You can find the current value using curl if you create a tunnel to
+Elasticsearch then use curl to query the stats API:
+
+```bash
+$ ssh -At jumpbox.production.govuk.digital -L 9200:localhost:9200 "ssh -q \`govuk_node_list --single-node -c search\` -L 9200:elasticsearch5.blue.production.govuk-internal.digital:80"
+```
 
 ```bash
 $ curl localhost:9200/_nodes/stats/jvm?pretty
@@ -31,36 +35,6 @@ completing.
 
 ### Solutions
 
-Solving this problem largely depends on what the particular box is being
-used for.
-
-On boxes where the data in Elasticsearch isn't critical (e.g. for
-`ci-master` and `ci-agent`, where it is only test data) freeing up heap
-space can be achieved by deleting indexes:
-
-```bash
-$ curl -XDELETE localhost:9200/<index name>
-```
-
-to delete a specific index, or:
-
-```bash
-$ curl -XDELETE localhost:9200/_all
-```
-
-to delete all indexes. Obviously run these with extreme care!
-
-### Places to investigate?
-
-- Make sure this is not affecting the gov.uk site search if coming
-  from Elasticsearch search boxes.
-- Make sure not leading to loss of log lines if coming from
-  Elasticsearch logging boxes.
-
-### Further reading
-
-If you are still struggling these links might help but they are very
-in-depth.
-
-- <http://www.oracle.com/technetwork/java/javase/memorymanagement-whitepaper-150215.pdf>
-- <http://pubs.vmware.com/vfabric52/index.jsp?topic=/com.vmware.vfabric.em4j.1.2/em4j/conf-heap-management.html>
+GOV.UK has a support contract with AWS for the managed Elasticsearch
+service.  See ['Fixing issues with the cluster'](/manual/alerts/elasticsearch-cluster-health.html#fixing-issues-with-the-cluster)
+for further information.

@@ -49,14 +49,14 @@ In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher
 
 ### 2. Update Worldwide Taxons
 
-**Example PR:** [https://github.com/alphagov/rummager/pull/1436](https://github.com/alphagov/rummager/pull/1436)
+**Example PR:** [https://github.com/alphagov/search-api/pull/1436](https://github.com/alphagov/search-api/pull/1436)
 
 This will update www.gov.uk/foreign-travel-advice/world/`<country_slug>` to www.gov.uk/foreign-travel-advice/world/`<new_country_slug>`.
 
-In [Rummager](https://github.com/alphagov/rummager):
+In [Search API](https://github.com/alphagov/search-api):
 
-1. Create a [pull request](https://github.com/alphagov/rummager/pull/1436) with a change to the relevant country taxon in `config/govuk_index/migrated_formats.yaml`
-2. Deploy Rummager
+1. Create a [pull request](https://github.com/alphagov/search-api/pull/1436) with a change to the relevant country taxon in `config/govuk_index/migrated_formats.yaml`
+2. Deploy Search API
 
 In [Content Tagger](https://content-tagger.integration.publishing.service.gov.uk/):
 
@@ -131,4 +131,4 @@ If the old country slug is still appearing in the search results, this can be re
 1. Navigate to the `Search results` page and enter the path to be removed
 2. Remove result, it should now disappear from the listing.
 
-Failing this, there is a [rake task](https://github.com/alphagov/rummager/blob/4f106e40f2c1690d631f699bf8fc63dc39268866/lib/tasks/delete.rake#L9) that takes care of this.
+Failing this, there is a [rake task](https://github.com/alphagov/search-api/blob/4f106e40f2c1690d631f699bf8fc63dc39268866/lib/tasks/delete.rake#L9) that takes care of this.

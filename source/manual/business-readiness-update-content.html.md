@@ -5,15 +5,15 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-03-18
+last_reviewed_on: 2019-03-26
 review_in: 3 months
 ---
 
-The [business readiness finder][business-readiness-finder] relies on metadata tags in rummager to filter content.
+The [business readiness finder][business-readiness-finder] relies on metadata tags in search-api to filter content.
 
 ## Updating content
 
-Content is curated and added to a [spreadsheet][] by the content team. Developer help is needed to upload the content. We do this by converting the spreadsheet into a CSV, including it in [govuk-app-deplopment-secrets][govuk-app-deployment-secrets] and then releasing rummager.
+Content is curated and added to a [spreadsheet][] by the content team. Developer help is needed to upload the content. We do this by converting the spreadsheet into a CSV, including it in [govuk-app-deplopment-secrets][govuk-app-deployment-secrets] and then releasing search-api.
 
 The process of converting the spreadsheet into a CSV involves removing a header row and converting windows encoded line breaks if present.  There is a [script](https://github.com/alphagov/govuk-app-deployment-secrets/blob/master/bin/prep_csv) to do this.
 
@@ -24,8 +24,8 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 2. `cd govuk-app-deployment-secrets`
 3. `bin/prep_csv ~/Downloads/your-downloaded-file.csv`
 4. Create a pull request and get it reviewed & merged.
-5. Re-deploy rummager/search-api and email-alert-api via Jenkins.
-6. Run the `tag_metadata` rake task in rummager/search-api to index the contents of the new CSV, it should take 2 to 3 minutes:
+5. Re-deploy search-api and email-alert-api via Jenkins.
+6. Run the `tag_metadata` rake task in search-api to index the contents of the new CSV, it should take 2 to 3 minutes:
     * [integration][tag_metadata_integration]
     * [staging-aws (search-api)][tag_metadata_staging_aws]
     * [production (rummager)][tag_metadata_production_r] *and* [production (search-api)][tag_metadata_production_sa]
@@ -51,21 +51,23 @@ Requests from Zendesk can specify that content is pinned within the finder. Pinn
 ```Edition.includes(:document).where(base_path: paths).pluck(:content_id).uniq```
 2. Add the content id to the list of [ordered related items for the business finder](https://github.com/alphagov/govuk-app-deployment-secrets/blob/master/shared_config/find-eu-exit-guidance-business.yml#L222-L244), within govuk-app-deployment-secrets.  Despite the name, the order of the `ordered_related_items` does not matter.
 3. Create a pull request and get it reviewed & merged.
-4. Re-deploy rummager.
-5. Update the finder content by running the [`tag_metadata` rake task][staging-rake-task] in rummager to index the contents of the new CSV, it should take 2 to 3 minutes.
+4. Re-deploy search-api.
+5. Update the finder content by running the [`tag_metadata` rake task][staging-rake-task] in search-api to index the contents of the new CSV, it should take 2 to 3 minutes.
 6. [Republish the finder][republish_finder] so that the finder content item is updated.
 7. Check the results on e.g. [https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business](https://www-origin.integration.publishing.service.gov.uk/find-eu-exit-guidance-business)
 
 The same process applies for removing a pinned item: get the content item and remove it from the list within the ordered-related items.
 
 [govuk-app-deployment-secrets]: https://github.com/alphagov/govuk-app-deployment-secrets
-[destroy-metadata]: https://github.com/alphagov/rummager/blob/605b08bc96999b58d3a5eb57967ffc7a8de1e41c/lib/tasks/metadata_tagger.rake#L9
-[metadata-rake-task]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=destroy_metadata_for_base_paths
+[destroy-metadata]: https://github.com/alphagov/search-api/blob/605b08bc96999b58d3a5eb57967ffc7a8de1e41c/lib/tasks/metadata_tagger.rake#L9
+[metadata-rake-task]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=destroy_metadata_for_base_paths
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [spreadsheet]: https://docs.google.com/spreadsheets/d/1bFSDYFT5fBpDQTvAeqw4j7QhYXTnFmDuGCLGDwx-wYk/edit#gid=372225498
+<<<<<<< HEAD
 [tag_metadata_integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
 [tag_metadata_staging_aws]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
 [tag_metadata_production_r]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
 [tag_metadata_production_sa]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
 [rake_tasks]: https://github.com/alphagov/rummager/blob/master/lib/tasks/metadata_tagger.rake#L18
+[rake_tasks]: https://github.com/alphagov/search-api/blob/master/lib/tasks/metadata_tagger.rake#L18
 [republish_finder]: https://docs.publishing.service.gov.uk/manual/business-readiness-publish-changes.html#updating-the-business-readiness-finder
