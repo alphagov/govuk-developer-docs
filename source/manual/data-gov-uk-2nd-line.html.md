@@ -4,7 +4,7 @@ title: Common 2nd line support requests for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-21
+last_reviewed_on: 2019-03-27
 review_in: 6 months
 ---
 [ckan]: https://ckan.publishing.service.gov.uk
@@ -25,6 +25,22 @@ There are two routes for creating an new account for a new user:
 2. A sysadmin user (e.g. 2nd line) can create an account for the new user.  Follow the instructions in [Assign users to publishers](#assign-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.  An invite email is generated and sent to the publisher.
 
 > An account should only be created if the user intends to publish on data.gov.uk.  Previously users have been able to register accounts to follow publishers.  This is no longer offered.
+
+### Update a user account email address
+Since CKAN was upgraded users have needed to login using their email address instead of a username.  Some users have changed their email address and as such are no longer able to login to data.gov.uk. In order to update the email address associated with a user's account:
+
+1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
+2. Click the 'Publishers' button in the header.
+3. Search for the user's publishing organisation and click on it.
+4. Click on the 'Manage' button.
+5. Click on the 'Members' tab.
+6. Click on the user's username in the list.
+7. Click on the 'Manage' button.
+8. Fill in the email field with the user's new email address.
+9. Enter the password you used to log in to CKAN in the 'Sysadmin password' field.
+10. Set a new password for the user.
+11. Click 'Update profile'.
+12. Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.
 
 ### Create a publishing organisation
 1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
