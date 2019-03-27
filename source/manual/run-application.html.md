@@ -4,7 +4,7 @@ title: Run an application in the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-15
+last_reviewed_on: 2019-03-27
 review_in: 6 months
 ---
 
@@ -14,7 +14,7 @@ The applications are listed in the [Pinfile](https://github.com/alphagov/govuk-p
 
 ```shell
 $ cd /var/govuk/govuk-puppet/development-vm
-$ bowl rummager
+$ bowl search-api
 ```
 
 If you want to run an application in development mode with the static assets
@@ -31,13 +31,13 @@ the [Procfile](https://github.com/alphagov/govuk-puppet/blob/master/development-
 
 ```shell
 $ cd /var/govuk/govuk-puppet/development-vm
-$ foreman start rummager
+$ foreman start search-api
 ```
 
 Most apps also have a `startup.sh` script in their root folder, and you can
 run that directly too:
 
 ```shell
-$ cd /var/govuk/rummager
+$ cd /var/govuk/search-api
 $ ./startup.sh
 ```
