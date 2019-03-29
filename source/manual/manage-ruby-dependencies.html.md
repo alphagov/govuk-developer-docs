@@ -21,6 +21,8 @@ To help with this, we use a service called [Dependabot][] to perform automated d
 
 You can ignore pull requests from the bot by replying `@dependabot ignore this major version`, but you have to add the PR to the [tech debt Trello board][tech-debt]
 
+If a PR contains a mixture of GOV.UK-owned gems and other gems (which are not solely included in the `test` block of the Gemfile), it will need 2 reviews.
+
 ## Add Dependabot to a repo
 
 1. Give Dependabot [access to the repo][access] (only GitHub org owners can do this)
