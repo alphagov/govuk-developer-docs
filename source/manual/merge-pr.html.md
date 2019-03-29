@@ -4,7 +4,7 @@ title: Merge a Pull Request
 section: GitHub
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-15
+last_reviewed_on: 2019-08-28
 review_in: 6 months
 ---
 
@@ -15,6 +15,8 @@ There are five rules for reviewing and merging PRs, which apply to all applicati
 3. If a branch is force-pushed or rebased after a review on its PR, the author must dismiss the stale review and ask for a new one, unless the change is a rebase on top of a small piece of work and the author is confident there are no side effects.
 4. The GitHub review UI should be used to mark a PR as approved or requiring changes.
 5. The GitHub UI should be used to merge the PR. This ensures the PR number is added to the merge commit.
+
+Once a PR is merged, you should deploy your changes at the earliest convenience to ensure unreleased changes do not back up and to keep our applications deployable - regardless of the perceived size of the PR merged (including [Dependabot](#Dependabot) PRs). [Deploying](/manual/deploying.html) should be done in the regular way, taking the merged changes all the way through to production.
 
 ## Example scenarios
 
@@ -63,6 +65,14 @@ git push --set-upstream origin thomasjhughes-patch-1
 ```
 
 Change `thomasjhughes` to the GitHub username of the contributor and `patch-1` to the name of the branch in their fork.
+
+#### Dependabot
+
+Dependabot raises PRs whenever it sees new versions of gems available that are required by our applications.
+
+Dependabot is an external contributor and is therefore subject to the same due diligence checks set out above as any other external contributor would have to go through, requiring two people from GDS to approve the PR before it can be merged. Particular attention should be paid to the changelog(s) of the upgraded gem(s) to ensure that no unintended side-effects are introduced.
+
+The exception to the number of GDS people required to review the PR is if the gems being upgraded consist of **only** GOV.UK-owned gems or gems in the `test` block of the Gemfile. If the PR includes _any_ external gems which are not in the `test` block of the Gemfile, two approvals must be obtained. See [Manage Ruby dependencies with Dependabot](/manual/manage-ruby-dependencies.html) for more information.
 
 ### A change where two people worked on the same branch
 
