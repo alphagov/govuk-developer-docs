@@ -27,7 +27,7 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 5. Re-deploy search-api and email-alert-api via Jenkins.
 6. Run the `tag_metadata` rake task in search-api to index the contents of the new CSV, it should take 2 to 3 minutes:
     * [integration][tag_metadata_integration]
-    * [staging-aws (search-api)][tag_metadata_staging_aws]
+    * [staging][tag_metadata_staging]
     * [production (rummager)][tag_metadata_production_r] *and* [production (search-api)][tag_metadata_production_sa]
 
     ![rake_task](images/rake.png)
@@ -63,11 +63,9 @@ The same process applies for removing a pinned item: get the content item and re
 [metadata-rake-task]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=destroy_metadata_for_base_paths
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [spreadsheet]: https://docs.google.com/spreadsheets/d/1bFSDYFT5fBpDQTvAeqw4j7QhYXTnFmDuGCLGDwx-wYk/edit#gid=372225498
-<<<<<<< HEAD
 [tag_metadata_integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
-[tag_metadata_staging_aws]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
+[tag_metadata_staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
 [tag_metadata_production_r]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=rummager&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
 [tag_metadata_production_sa]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=tag_metadata
-[rake_tasks]: https://github.com/alphagov/rummager/blob/master/lib/tasks/metadata_tagger.rake#L18
 [rake_tasks]: https://github.com/alphagov/search-api/blob/master/lib/tasks/metadata_tagger.rake#L18
 [republish_finder]: https://docs.publishing.service.gov.uk/manual/business-readiness-publish-changes.html#updating-the-business-readiness-finder
