@@ -4,9 +4,9 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-15
+last_reviewed_on: 2019-03-25
 review_in: 6 months
-related_applications: [rummager]
+related_applications: [search-api]
 ---
 
 After updating an Elasticsearch index's schema by [changing the fields or
@@ -34,8 +34,8 @@ to update documents inplace without locks. This can be done during working hours
 **Do not reindex on production during working hours except in an emergency.**
 Reindexing locks the index for writes, so content is not updated in the search
 index. See the [Replay traffic](#replay-traffic) section below if you need to
-run a reindexing during working hours. Reindexing takes around 40 minutes to
-an hour to complete.
+run a reindexing during working hours. Reindexing takes around 2 hours to
+complete.
 
 To reindex, run the `rummager:migrate_schema` rake task:
 
@@ -49,27 +49,20 @@ the indices sequentially.
 You can run this task from Jenkins, but it will block other rake tasks from
 being run for 15 minutes to an hour. You can avoid this by running the command
 directly on a `search` machine, but you need to prefix the command with
-`govuk_setenv search` to make sure the Elasticsearch hostname is set
+`govuk_setenv search-api` to make sure the Elasticsearch hostname is set
 correctly.
 
-To monitor progress, SSH to an Elasticsearch box with port-forwarding:
+To monitor progress, SSH to a search box:
 
 ```
-ssh rummager-elasticsearch-1.api.staging -CNL 9200:127.0.0.1:9200
+ssh $(ssh integration "govuk_node_list --single-node -c search").integration
 ```
 
-#### On AWS
+Then check how many documents have been copied to the new index:
 
 ```
-ssh $(ssh integration "govuk_node_list --single-node -c rummager_elasticsearch").integration -CNL 9200:127.0.0.1:9200
+curl http://elasticsearch5/_cat/indices?v
 ```
-
-Then visit <http://localhost:9200/_plugin/head/> to check how many documents have
-been copied to the new index.
-
-Alternatively, to view a summary of the indices from inside the Elasticsearch instance:
-
-    curl http://localhost:9200/_cat/indices
 
 ### Replay traffic
 
@@ -91,12 +84,10 @@ Once you're confident that the reindexing was successful, delete the old
 rake rummager:clean RUMMAGER_INDEX=alias_of_index_to_clean_up
 ```
 
-Avoid leaving old indices around for more than a few days. Rummager performance
-starts to degrade once there are more than three or four old indices in the
-cluster.
-
-There is also information on using the Elasticsearch web interface to close and
-delete old indices on the [Low available disk space](/manual/alerts/low-available-disk-space.html#low-available-disk-space-on-mntelasticsearch) docs.
+Avoid leaving old indices around for more than a few days. Performance
+starts to degrade once there are more than three or four old indices
+in the cluster, and if enough old indices hang around, we may hit
+space limitations and be unable to index new documents.
 
 ### Troubleshooting
 
@@ -116,20 +107,19 @@ from switching the alias over to the new index once it has copied all the data,
 which is normally good enough.
 
 If you need to stop the reindexing process itself, for example because
-Elasticsearch is about to run out of disk space, port-forward to the
-rummager-elasticsearch box (see above) then use <http://localhost:9200/_plugin/head/>
-to send these requests to Elasticsearch:
+Elasticsearch is about to run out of disk space, connect to the
+search box (see above) then:
 
 0. Find the ID of the reindexing task:
 
     ```
-    GET /_tasks?actions=%2Areindex
+    curl 'http://elasticsearch5/_tasks?actions=%2Areindex&pretty'
     ```
 
 0. Stop the task:
 
     ```
-    POST /_tasks/{task_id}/_cancel
+    curl -XPOST http://elasticsearch5/_tasks/{task_id}/_cancel
     ```
 
 #### To switch back to the old index
