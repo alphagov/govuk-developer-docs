@@ -4,7 +4,7 @@ title: Replay traffic to correct an out-of-sync search index
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-02-12
+last_reviewed_on: 2019-03-27
 review_in: 3 months
 ---
 
@@ -29,12 +29,12 @@ Be aware that these options will replay the entire Publisher API history for tha
 **This will not be neccessary after whitehall content has been moved to the
 `govuk` index.**
 
-These indexes are populated by whitehall calling an HTTP API in Rummager.
+These indexes are populated by whitehall calling an HTTP API in Search API.
 
 We have also setup [Gor][gor] logging for `POST` and `GET` requests so that we
 can replay the traffic.
 
-The logs are stored on the rummager servers. You will need to run the replay on
+The logs are stored on the search-api servers. You will need to run the replay on
 each server.
 
 The location of the logs is:
@@ -49,12 +49,12 @@ will be logged to the file.
 The following command can be used to run the restore:
 
 ```bash
-$ sudo goreplay -input-file "20171031.log|1000%" -stats -output-http-stats -output-http "http://localhost:3009/|6000%" -verbose
+$ sudo goreplay -input-file "20171031.log|1000%" -stats -output-http-stats -output-http "http://localhost:3233/|6000%" -verbose
 ```
 
 This runs the restore at 10x the speed it was saved so each hour of logs takes
 6 minutes to process.
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
-[queue]: https://github.com/alphagov/rummager/blob/master/doc/new-indexing-process.md
+[queue]: https://github.com/alphagov/search-api/blob/master/doc/new-indexing-process.md
 [gor]: https://github.com/buger/goreplay

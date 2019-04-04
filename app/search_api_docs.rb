@@ -9,6 +9,6 @@ class SearchApiReference
   end
 
   def self.field_definitions_url
-    "https://raw.githubusercontent.com/alphagov/rummager/master/config/schema/field_definitions.json"
+    "https://raw.githubusercontent.com/alphagov/search-api/master/config/schema/field_definitions.json"
   end
 end

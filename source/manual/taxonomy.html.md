@@ -76,14 +76,14 @@ the `child_taxons` links.
 ## Accessing tagged content
 
 You can fetch content tagged to a particular taxon from the Search API
-([rummager][rummager]).
+([search-api][search-api]).
 
 This works with a `content_id` rather than URL. To find all content
 tagged to the above mentioned ["Education taxon"][education-taxon]:
 
 [https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0](https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0)
 
-By default rummager returns a handful of fields in a search result item.
+By default search-api returns a handful of fields in a search result item.
 You are able to override the default fields by naming which fields you want returned.
 If a content item does not have one of the named fields provided,
 it will be left out of the returned item.
@@ -136,7 +136,7 @@ Graphite (via StatsD).
 [edit-taxonomy]: https://content-tagger.publishing.service.gov.uk/taxons
 [content-tagger]: https://content-tagger.publishing.service.gov.uk/
 [whitehall]: /apps/whitehall.html
-[rummager]: /apps/rummager.html
+[search-api]: /apps/search-api.html
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/topic_taxonomy.json
 [record-taxonomy-metrics]: https://deploy.publishing.service.gov.uk/job/record-taxonomy-metrics/
 [override-fields]: /apis/search/search-api.html#returning-specific-document-fields
