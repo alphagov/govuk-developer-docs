@@ -17,6 +17,8 @@ next_review_notes: |
     machine you need to reboot.
 -   Do not reboot more than one machine of the same class at the
     same time.
+-   When rebooting clustered applications (such as RabbitMQ) wait
+    for the cluster to recover fully before rebooting the next machine.
 
 ## Unattended upgrades
 
