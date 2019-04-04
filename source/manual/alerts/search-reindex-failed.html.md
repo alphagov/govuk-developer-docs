@@ -19,7 +19,7 @@ If this process fails then please escalate to Platform Health for further invest
 This task can be manually run with the following command:
 
 ```
-bundle exec rake search-api:migrate_schema CONFIRM_INDEX_MIGRATION_START=true RUMMAGER_INDEX=<index_alias_name>
+bundle exec rake rummager:migrate_schema CONFIRM_INDEX_MIGRATION_START=true RUMMAGER_INDEX=<index_alias_name>
 ```
 
 [reindexing]: /manual/reindex-elasticsearch.html
