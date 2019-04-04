@@ -24,11 +24,11 @@ The process of converting the spreadsheet into a CSV involves removing a header 
 2. `cd govuk-app-deployment-secrets`
 3. `bin/prep_csv ~/Downloads/your-downloaded-file.csv`
 4. Create a pull request and get it reviewed & merged.
-5. Re-deploy search-api and email-alert-api via Jenkins.
+5. Re-deploy rummager / search-api and email-alert-api via Jenkins.
 6. Run the `tag_metadata` rake task in search-api to index the contents of the new CSV, it should take 2 to 3 minutes:
     * [integration][tag_metadata_integration]
     * [staging][tag_metadata_staging]
-    * [production (rummager)][tag_metadata_production_r] *and* [production (search-api)][tag_metadata_production_sa]
+    * [production (rummager)][tag_metadata_production_r] *and* [production (search-api)][tag_metadata_production_sa]---search-api doesn't yet trigger email alerts when new content is tagged to the business readiness finder, which is why you need to do both rummager and search-api for now.
 
     ![rake_task](images/rake.png)
 
