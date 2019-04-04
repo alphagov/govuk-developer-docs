@@ -35,11 +35,11 @@ The content item for the business readiness finder and its email signup page are
 
 1. Update [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 2. Merge the changes to [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
-3. Re-deploy Rummager and Search API so they can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
+3. Re-deploy search-api so it can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 
   N.B. If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
 
-4. Run the `publishing_api:publish_eu_exit_business_finder` [rake task][staging-rake-task] in rummager to publish the changes:
+4. Run the `publishing_api:publish_eu_exit_business_finder` [rake task][staging-rake-task] in search-api to publish the changes:
 
     ![download](images/publish-business-readiness.png)
 
