@@ -26,4 +26,4 @@ If the check fails:
 
 - Inspect the [console
 logs for the rake task](https://deploy.publishing.service.gov.uk/job/enhanced_ecommerce/).
-- Escalate to the team responsible for [rummager](/apps/rummager.html).
+- Escalate to the team responsible for [search-api](/apps/search-api.html).
