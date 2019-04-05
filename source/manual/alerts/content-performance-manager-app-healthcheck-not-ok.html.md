@@ -43,7 +43,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views[2018-01-01 2018-01-01]
+rake etl:repopulate_views["2018-01-01","2018-01-01"]
 ```
 
 ## ETL :: no upviews for yesterday
@@ -53,7 +53,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views[2018-01-01 2018-01-01]
+rake etl:repopulate_views["2018-01-01","2018-01-01"]
 ```
 
 ## ETL :: no searches for yesterday
@@ -63,7 +63,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][3]:
 
 ```bash
-rake etl:repopulate_searches[2018-01-01 2018-01-02]
+rake etl:repopulate_searches["2018-01-01","2018-01-02"]
 ```
 
 ## ETL :: no feedex for yesterday
@@ -73,7 +73,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][4]:
 
 ```bash
-rake etl:repopulate_feedex[2018-01-01 2018-01-01]
+rake etl:repopulate_feedex["2018-01-01","2018-01-01"]
 ```
 
 [1]: https://deploy.publishing.service.gov.uk/job/content_performance_manager_import_etl_master_process/
