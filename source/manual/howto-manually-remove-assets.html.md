@@ -35,4 +35,4 @@ follow these steps:
 
 [rake-delete]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
 [rake-delete-and-remove-from-s3]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
-[clear-cache]: https://docs.publishing.service.gov.uk/manual/cache-flush.html
+[clear-cache]: https://docs.publishing.service.gov.uk/manual/cache-flush.html#assets
