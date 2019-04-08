@@ -63,7 +63,7 @@ the previous version of the software.
         sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
         sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
 
-5.  [Purge the cache](https://docs.publishing.service.gov.uk/manual/cache-flush.html) for the test file.
+5.  [Purge the cache](https://docs.publishing.service.gov.uk/manual/cache-flush.html#assets) for the test file.
 
 6.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
@@ -87,9 +87,6 @@ the previous version of the software.
 
 9. Publish the content items.
 
-10.  Purge the cache, which will otherwise take up to 12 hours to
-    expire:
-
-        fab $environment class:cache cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-vXX.xml
+10. [Purge the cache](https://docs.publishing.service.gov.uk/manual/cache-flush.html#assets) for the new file.
 
 11.  Update and resolve the Zendesk ticket

@@ -34,6 +34,15 @@ the various caches manually:
 [jenkins-fastly-task]: https://deploy.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[/your-path-here]
 [jenkins-both-task]: https://deploy.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear[/your-path-here]
 
+### Assets
+
+If you need to clear the Fastly cache for a URL which is not `www.gov.uk` (e.g. for assets),
+you can provide a full URL to the Fastly cache clearing rake task:
+
+```
+rake cache:clear_fastly[https://assets.example.gov.uk/your-path-here]
+```
+
 ## Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)
 
 To purge content on the Fastly cache nodes, SSH onto a `cache` machine and use the
