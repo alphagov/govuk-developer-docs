@@ -5,10 +5,12 @@ layout: manual_layout
 type: learn
 section: Frontend
 owner_slack: "#govuk-frontenders"
-last_reviewed_on: 2018-12-07
+last_reviewed_on: 2018-04-08
 review_in: 3 months
 related_applications:
  - static
+ - slimmer
+ - govuk_publishing_components
 ---
 
 GOV.UK currently uses multiple systems to build frontends (HTML/CSS/JS).
@@ -28,8 +30,7 @@ Applications that serve pages for the public (everything on www.gov.uk) use:
 
 Most admin applications use:
 
-- [govuk_admin_template](https://github.com/alphagov/govuk_admin_template), built by GOV.UK
-- Which uses [Bootstrap](https://getbootstrap.com/)
+- [govuk_admin_template](https://github.com/alphagov/govuk_admin_template), built by GOV.UK, which uses [Bootstrap](https://getbootstrap.com/)
 
 New admin applications and some legacy admin applications that have been updated use:
 
