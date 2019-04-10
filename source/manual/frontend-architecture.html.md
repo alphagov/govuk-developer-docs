@@ -5,7 +5,7 @@ layout: manual_layout
 type: learn
 section: Frontend
 owner_slack: "#govuk-frontenders"
-last_reviewed_on: 2018-04-08
+last_reviewed_on: 2019-04-08
 review_in: 3 months
 related_applications:
  - static
