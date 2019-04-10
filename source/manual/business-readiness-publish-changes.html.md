@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-03-26
+last_reviewed_on: 2019-04-10
 review_in: 3 months
 ---
 
@@ -31,15 +31,15 @@ The content item for the finder is updated from a [YAML file][govuk-app-deployme
 
 ## Updating the business readiness finder
 
-The content item for the business readiness finder and its email signup page are published by search-api. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
+The content item for the business readiness finder and its email signup page are published by `search-api`. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets].
 
 1. Update [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 2. Merge the changes to [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
-3. Re-deploy search-api so it can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
+3. Re-deploy `search-api` so it can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
 
-  N.B. If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
+  >> If you have made changes to the facets, you may also need to re-deploy email-alert-api and finder-frontend
 
-4. Run the `publishing_api:publish_eu_exit_business_finder` [rake task][staging-rake-task] in search-api to publish the changes:
+4. Run the [`publishing_api:publish_eu_exit_business_finder` rake task][staging-rake-task] in `search-api` to publish the changes:
 
     ![download](images/publish-business-readiness.png)
 
