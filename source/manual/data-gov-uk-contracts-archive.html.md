@@ -41,3 +41,34 @@ ssh -i "aws-dd.pem" ubuntu@ip-address.eu-west-1.compute.amazonaws.com
 
 A database of the contracts archive is also accessible in a sqlite database on
 [data.gov.uk](https://data.gov.uk/dataset/97c75a0c-dd9b-42f9-969c-5e667d8c80f1/contracts-finder-archive-2011-to-2015)
+
+## Contract takedown requests
+
+To take down a contract, [`ssh`](#contracts-archive-finder-application) onto the
+contracts archive machine and then move the relevant contract attachements to
+the redacted folder.
+
+Contracts are located on the machine at `~/src/contracts-archive/instance/documents`. Find the directory for the contract you are trying to redact.
+It will be `~/src/contracts-archive/instance/documents/<contract_id>`.
+
+For example if the contract id is `12345` then you will find all the files under
+the directory `~/src/contracts-archive/instance/documents/12345`.
+
+Create a new directory in `~/src/contracts-archive/instance/redacted`. Name the
+directory the same as the contract id.
+
+Move all the attachments from the `documents/<contract_id>` into the `redacted/<contract_id>` folder.
+
+Note that this method will remove the downloadable attachments, but leave the
+contract page available to view on the website. This is fine. You can confirm
+that you've redacted the documents by navigating to the contract in the
+contracts archive finder application and clicking on the download links for each
+attachment. It should return a 404 Not Found.
+
+You should also remove it from Google cache (this will only work
+once we've reinstated the [contracts archive
+url](https://trello.com/c/T1aZMkTy/510-make-contracts-archive-accessible-on-former-url) and validated with google) using this page:
+
+https://www.google.com/webmasters/tools/url-removal?hl=en&siteUrl=https://data.gov.uk
+
+Click “Temporarily Hide” and provide the URL and then Submit.
