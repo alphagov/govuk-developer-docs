@@ -34,7 +34,7 @@ chmod 400 aws-dd.pem
 You will then be able to `ssh` onto the machine in aws by using the `.pem` file:
 
 ```
-ssh -i "aws-dd.pem" ubuntu@ip-address.eu-west-1.compute.amazonaws.com
+ssh -i "aws-dd.pem" ubuntu@ec2-34-249-103-20.eu-west-1.compute.amazonaws.com
 ```
 
 ## On data.gov.uk
