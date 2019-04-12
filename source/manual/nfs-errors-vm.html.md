@@ -19,9 +19,9 @@ To prevent this, start your VM with the command `VAGRANT_GOVUK_NFS=no vagrant up
 This will use a less efficient method of sharing folders, but it will work with
 the VPN.
 
-Once you disconnect from the VPN, you will need to restart your computer before
-you're able to use Vagrant with NFS again. Alternatively, after using the VPN
-[run the commands here](/manual/vm-vpn-issues.html).
+Once you disconnect from the VPN, you will need to [run these commands](/manual/vm-vpn-issues.html)
+before you're able to use Vagrant with NFS again.
+
 
 ## Vagrant error NFS is reporting that your exports file is invalid
 ```shell
