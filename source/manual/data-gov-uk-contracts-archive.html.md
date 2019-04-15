@@ -11,13 +11,13 @@ review_in: 6 months
 
 ## Contracts archive finder application
 
-The contracts archive currently sits on a publically accessible IP address on
-AWS.
+Visit the [contracts archive finder](https://data.gov.uk/data/contracts-finder-archive)
 
 Credentials for the AWS account are in the `govuk-secrets` repository under
-`2ndline/datagovuk/contracts-finder-archive-aws-console-pass`. Once logged in to the AWS
-console, you'll be able to list the EC2 instances and find the IP of the
-contracts archive finder.
+`2ndline/datagovuk/contracts-finder-archive-aws-console-pass`.
+
+Once logged in to the AWS console, you'll be able to list the EC2 instances and find the IP of the
+contracts archive finder. Currently the assigned elastic IP is 34.249.103.20.
 
 If you need to `ssh` on to the machine, you can do so by grabbing the private
 key from `govuk-secrets` under
@@ -36,6 +36,9 @@ You will then be able to `ssh` onto the machine in aws by using the `.pem` file:
 ```
 ssh -i "aws-dd.pem" ubuntu@ec2-34-249-103-20.eu-west-1.compute.amazonaws.com
 ```
+
+Remember this is an elastic IP and might change - log into the AWS web console
+to find the current IP address assigned.
 
 ## On data.gov.uk
 
