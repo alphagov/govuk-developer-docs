@@ -23,18 +23,21 @@ If you need to `ssh` on to the machine, you can do so by grabbing the private
 key from `govuk-secrets` under
 `2ndline/datagovuk/contracts-finder-archive-cert`.
 
-You will need to put the private key into a file and change the permissions to
-so it is not publically viewable. For example, if you name the file `aws-dd.pem`
-then you can set the permissions as follows:
+You will need to put the private key into a file and change the permissions
+so it is not publically viewable before you can use it.
+
+You can do this as follows:
 
 ```
-chmod 400 aws-dd.pem
+$ cd ~/govuk/govuk-secrets
+$ PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass datagovuk/contracts-finder-archive-cert > govuk-contracts-archive.pem
+$ chmod 400 govuk-contracts-archive.pem
 ```
 
 You will then be able to `ssh` onto the machine in aws by using the `.pem` file:
 
 ```
-ssh -i "aws-dd.pem" ubuntu@ec2-34-249-103-20.eu-west-1.compute.amazonaws.com
+ssh -i "govuk-contracts-archive.pem" ubuntu@ec2-34-249-103-20.eu-west-1.compute.amazonaws.com
 ```
 
 Remember this is an elastic IP and might change - log into the AWS web console
