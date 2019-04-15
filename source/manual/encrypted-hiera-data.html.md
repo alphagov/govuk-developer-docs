@@ -203,13 +203,7 @@ credentials.
     [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
     There are no staging recipient files since these are the same as the
     production recipient files.
-2.  Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
-    is something like "Removing key for Jane Smith".
-3.  Commit your changes and raise a pull request for review.
-4.  Take care when rebasing changes to master that have been merged since you
-    started your PR. The encrypted hieradata files are effectively binary data
-    that git's text diff may not correctly merge. You will likely have to
-    reset your recrypted versions and start again from the versions on master.
+2.  Commit your changes and raise a pull request for review.
 
 > **WARNING**
 >
