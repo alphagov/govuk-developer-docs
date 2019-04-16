@@ -75,6 +75,10 @@ To install VirtualBox on High Sierra 10.13 or later:
 3. Allow the blocked VirtualBox kernel extension
 4. Run the VirtualBox installer again
 
+If you have trouble installing the Vagrant DNS plugin due to Xcode version compatibility issues, you can try installing an older version of the plugin:
+
+    mac$ vagrant plugin install vagrant-dns --plugin-version 1.1.0
+
 ## 2. Create your GitHub account
 
 1. Set up a [GitHub][] account.
