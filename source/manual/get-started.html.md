@@ -97,6 +97,7 @@ To install VirtualBox on High Sierra 10.13 or later:
 
 Run the VM bootstrap script:
 
+    mac$ git clone git@github.com:alphagov/govuk-puppet.git
     mac$ cd govuk-puppet/development-vm
     mac$ vagrant up
     mac$ vagrant dns --install
