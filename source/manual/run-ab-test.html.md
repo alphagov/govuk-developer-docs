@@ -68,6 +68,6 @@ Follow these steps:
 
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [configuration-file]: https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml
-[update-cdn-dictionaries]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
-[deploy-cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
+[update-cdn-dictionaries]: https://deploy.staging.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
+[deploy-cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
 [register]: https://docs.google.com/spreadsheets/d/1voQzdoGAFO9Tnvl7Xq4ahLEAyGtkeAtvTC26SxEP6rE/edit
