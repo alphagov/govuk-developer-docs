@@ -45,13 +45,13 @@ need more data.
 1. Add your test to the [A/B test register][register].
 1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test.
 1. Create dictionary and A/B test files in [the govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example] and an [example for the A/B configuration][cdn-config-example] (these used to be in a different repo). For more details, see the [dictionaries README][dictionaries-readme].
-1. Deploy the dictionary changes to each environment using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the [govuk-secrets repo][govuk-secrets].
+1. Deploy the dictionary changes to each environment using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The `vhost` must be set to `www`, and the credentials are in the [govuk-secrets repo][govuk-secrets-fastly].
 1. Deploy the Fastly configuration to each environment using the [Deploy_CDN][deploy-cdn] Jenkins job. Use the same parameters as in step 4. You can test it on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately - there is no caching of the CDN config.
 1. Use the [govuk_ab_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
 1. To activate or deactivate the test, or to change the B percentage, update your test in [the govuk-cdn-config repo][govuk-cdn-config] and deploy the dictionaries.
 
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
-[govuk-secrets]: https://github.com/alphagov/govuk-secrets
+[govuk-secrets-fastly]: https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/deployment_shared_account.gpg
 [dictionaries-readme]: https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries
 [dictionary-config-example]: https://github.com/alphagov/govuk-cdn-config-secrets/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
@@ -68,6 +68,6 @@ Follow these steps:
 
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [configuration-file]: https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml
-[update-cdn-dictionaries]: https://deploy.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
-[deploy-cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
+[update-cdn-dictionaries]: https://deploy.staging.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
+[deploy-cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
 [register]: https://docs.google.com/spreadsheets/d/1voQzdoGAFO9Tnvl7Xq4ahLEAyGtkeAtvTC26SxEP6rE/edit
