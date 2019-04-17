@@ -34,7 +34,6 @@ Create a public key from this:
 Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you just created. Your username should use the `firstnamelastname.pp` format.
 
 ```
-# Creates the johnsmith user
 class users::johnsmith {
   govuk_user { 'johnsmith':
     fullname => 'John Smith',
