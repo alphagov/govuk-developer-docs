@@ -97,12 +97,19 @@ If you have trouble installing the Vagrant DNS plugin due to Xcode version compa
 [govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk/members
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 
-## 3. Boot your VM
+## 3. Set up your local workspace
+
+Some processes are dependent on your local gov.uk setup being in `~/govuk`:
+
+    mac$ mkdir ~/govuk
+    mac$ cd ~/govuk
+    mac$ git clone git@github.com:alphagov/govuk-puppet.git
+
+## 4. Boot your VM
 
 Run the VM bootstrap script:
 
-    mac$ git clone git@github.com:alphagov/govuk-puppet.git
-    mac$ cd govuk-puppet/development-vm
+    mac$ cd ~/govuk/govuk-puppet/development-vm
     mac$ vagrant up
     mac$ vagrant dns --install
 
@@ -127,7 +134,7 @@ You can assign your name and email to commits on the VM:
 
 If you use ZSH as your shell, you may find that the Ruby version on your VM is stuck on `1.9.3` and there seems to not be any other versions installed when you run `rbenv versions`.  To fix this, add `. /etc/profile` to your `.zshrc`.
 
-## 4. Set up your apps
+## 5. Set up your apps
 
 Begin by checking out all of the GOV.UK services. There's a handy shortcut:
 
@@ -155,13 +162,13 @@ If installing the Python dependencies for fabric-scripts fails, your version of 
 [Bundler]: http://bundler.io/rationale.html
 [PIP]: https://pip.pypa.io/en/stable/
 
-## 5. Get AWS access
+## 6. Get AWS access
 
 👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
 
 👉 Then, [set up your CLI access for AWS](/manual/aws-cli-access.html)
 
-## 6. Import production data
+## 7. Import production data
 
 Application data from production can be imported to be used within your development environment. Dumps of production data are generated in the early hours each day and made available from S3.
 
@@ -188,7 +195,7 @@ For more information or troubleshooting advice see the guide in the developer do
 [data-replication]: /manual/replicate-app-data-locally.html
 [data-replication-aws-access]: /manual/replicate-app-data-locally.html#aws-access
 
-## 7. Run your apps
+## 8. Run your apps
 
 You can run any of the GOV.UK apps from the `/var/govuk/govuk-puppet/development-vm` directory. You’ll first need to run `bundle install` in this folder to install the required gems.
 
@@ -215,7 +222,7 @@ You should be able to see Whitehall.
 [bowler]: https://github.com/JordanHatch/bowler
 [bowl-error]: bowl-error.html
 
-## 8. Access the web frontend 🚀
+## 9. Access the web frontend 🚀
 
 Most GOV.UK web applications and services are available via the public internet, on the following forms of URL:
 
@@ -228,7 +235,7 @@ The basic authentication username and password is widely known, so just ask some
 
 If you can't resolve `dev.gov.uk` domains, see [fix issues with vagrant-dns](/manual/vagrant-dns.html) or [VM access after using VPN](/manual/vm-vpn-issues.html).
 
-## 9. Keep your VM up to date
+## 10. Keep your VM up to date
 
 There are a few scripts that should be run regularly to keep your VM up to date. In `govuk-puppet/development-vm` there is `update-git.sh` and `update-bundler.sh` to help with this. Also, `govuk_puppet` should be run from anywhere on the VM regularly.
 
