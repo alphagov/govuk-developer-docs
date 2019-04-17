@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-10-02
+last_reviewed_on: 2019-05-17
 review_in: 6 months
 ---
 

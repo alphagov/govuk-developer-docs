@@ -4,7 +4,7 @@ title: Redis alerts
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
@@ -46,3 +46,15 @@ dashboard][whitehall-sidekiq-grafana].
 [redis-clients]: https://redis.io/topics/clients
 [unique-jobs]: https://github.com/alphagov/sidekiq-unique-jobs
 [whitehall-sidekiq-grafana]: https://grafana.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Queues=All
+
+### Redis in AWS
+
+In AWS we are using a hosted Redis cluster `blue-backend-redis` , provided by AWS ElastiCache.
+Monitoring information on the nodes can be obtained via the [AWS Console](https://eu-west-1.console.aws.amazon.com/elasticache/home?region=eu-west-1#redis-group-nodes:id=blue-backend-redis;clusters=blue-backend-redis-001!blue-backend-redis-002).
+
+In order to access the Redis command line interface in AWS, it is required to log in to the
+`db-admin` machine via the [primary endpoint url of the cluster](https://eu-west-1.console.aws.amazon.com/elasticache/home?region=eu-west-1#redis-group-detail:id=blue-backend-redis).
+
+```bash
+redis-cli -h <primary_endpoint url>
+```
