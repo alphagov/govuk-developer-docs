@@ -4,14 +4,14 @@ title: Documents are published, but the links aren't up to date
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-19
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
 This can happen when the Publishing API is still working through all of the
 pages that may have changed due to dependency resolution. You can find out if
 this is a problem [by monitoring Publishing API sidekiq queue][sidekiq-queue]
-and seeing if the downstream_low queue is high.
+and seeing if the `downstream_low` queue is high.
 
 To get things processed faster you can run the following Rake task on the
 Publishing API in Jenkins,
