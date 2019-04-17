@@ -57,10 +57,13 @@ First, install:
 * [VirtualBox][]
 * [Vagrant][]
 * The vagrant-dns plugin (`vagrant plugin install vagrant-dns`)
+* [rbenv][] (you may find it easier to [install via rbenv-installer][] than via Homebrew due to Xcode restrictions)
 
 [git-scm]: https://git-scm.com/downloads
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/downloads.html
+[rbenv]: https://github.com/rbenv/rbenv
+[install via rbenv-installer]: https://github.com/rbenv/rbenv-installer#rbenv-installer
 
 Starting with High Sierra 10.13, kernel extensions must be approved by
 the user (see [this Apple technical note][kext]).  This causes the
@@ -104,6 +107,42 @@ Some processes are dependent on your local gov.uk setup being in `~/govuk`:
     mac$ mkdir ~/govuk
     mac$ cd ~/govuk
     mac$ git clone git@github.com:alphagov/govuk-puppet.git
+
+### 3.1 Ensure your Ruby setup works
+
+You'll want to install the [specific version of Ruby in govuk-puppet][https://github.com/alphagov/govuk-puppet/blob/master/.ruby-version#L1] (currently `rbenv install 1.9.3-p550`), as the default system Ruby is too locked-down.
+
+Now verify that rbenv is working as expected:
+
+    mac$ cd ~/govuk/govuk-puppet
+    mac$ rbenv versions
+    
+This should output something like:
+
+```
+  system
+* 1.9.3-p550 (set by /Users/yourname/govuk/govuk-puppet/.ruby-version)
+```
+
+    mac$ which ruby
+
+This should output something like:
+
+```
+/Users/yourname/.rbenv/shims/ruby
+```
+
+If, instead, this outputs `/usr/bin/ruby`, then you'll need to update your `~/.bash_profile` to have `ruby` properly overridden in your `PATH`:
+
+```bash
+# Add rbenv (installed to ~/.rbenv/bin and ~/.rbenv/shims)
+export PATH="$PATH:~/.rbenv"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+```
+
+Don't forget to `source ~/.bash_profile` to update the `PATH` for your current terminal session.
+
+This Ruby setup is a pre-requisite for the "[Import production data](#6-import-production-data)" step.
 
 ## 4. Boot your VM
 
@@ -176,6 +215,8 @@ Download the data by running:
 
 ```
 mac$ cd ~/govuk/govuk-puppet/development-vm/replication
+mac$ gem install bundler -v 1.17 # specific version as modern bundler requires ruby >= 2.3.0
+mac$ bundle install
 mac$ ./replicate-data-local.sh -n
 ```
 
