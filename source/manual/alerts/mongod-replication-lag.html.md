@@ -27,7 +27,7 @@ information.:
 ### Possible fixes
 
 > Be mindful that load on the primary mongo node may be increased by
-> the replication and consider to limit restart one node at a time.
+> the replication and consider to limit restarts to one node at a time.
 
 -   Try restarting one of the lagging mongod secondaries:
 
