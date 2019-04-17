@@ -5,7 +5,7 @@ description: How we manage our Ruby dependencies using Dependabot, who can merge
 section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
@@ -18,6 +18,8 @@ To help with this, we use a service called [Dependabot][] to perform automated d
 - GOV.UK-owned gems (govuk_app_config, govspeak for example) need 1 reviewer
 - Gems found in the `test` block in the `Gemfile` (Capybara for example) need 1 reviewer
 - All other gems (Rails for example) are [considered to be from a external contributor][ext] and need 2 reviews
+
+> **Note:** there is currently [an rfc](https://github.com/alphagov/govuk-rfcs/pull/103) open to discuss merging in Dependabot PRs with only a single review.
 
 You can ignore pull requests from the bot by replying `@dependabot ignore this major version`, but you have to add the PR to the [tech debt Trello board][tech-debt]
 

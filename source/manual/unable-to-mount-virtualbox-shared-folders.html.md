@@ -4,7 +4,7 @@ title: Unable to mount VirtualBox shared folders
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-16
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
@@ -43,7 +43,7 @@ the guest additions.
 ```
 
 The "guest additions" are a set of Linux modules that are used inside
-the devleopment-vm. It is difficult to change the version of these
+the development-vm. It is difficult to change the version of these
 modules, so the easiest workaround may be to install a different
 version of VirtualBox, specifically one which best matches the version
 of the guest additions given in the above error message.
