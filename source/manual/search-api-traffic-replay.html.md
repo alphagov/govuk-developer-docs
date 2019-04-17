@@ -4,7 +4,7 @@ title: Replay traffic to correct an out-of-sync search index
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-03-27
+last_reviewed_on: 2019-04-17
 review_in: 3 months
 ---
 
@@ -30,11 +30,14 @@ Be aware that these options will replay the entire Publisher API history for tha
 `govuk` index.**
 
 These indexes are populated by whitehall calling an HTTP API in Search API.
+Missing documents can be recovered by resending the content to Search API directly. In
+Whitehall, run the following rake task (including the quotes) to replay traffic between
+two datestamps:
 
-We have also setup [Gor][gor] logging for `POST` and `GET` requests so that we
-can replay the traffic.
+    bundle exec rake 'rummager:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
 
-The logs are stored on the search-api servers. You will need to run the replay on
+Another option is [Gor][gor], which logs  `POST` and `GET` requests to Search API.
+The logs are stored on the Search API servers. You will need to run the replay on
 each server.
 
 The location of the logs is:
