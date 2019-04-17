@@ -19,7 +19,9 @@ If you already have an AWS user associated with a different team's account, you 
 
 GDS maintains a central account for AWS access. You will need to request an account from the Technology and Operations team.
 
-👉 [Request an account](https://gds-request-an-aws-account.cloudapps.digital)
+👉 [Request an AWS account](https://gds-request-an-aws-account.cloudapps.digital)
+
+You'll want to click "Request user access" - NOT "Request an account". After submitting the form, you should receive an email to say your account creation is in progress, and later another email saying the work has been completed. You can then move onto step 2.
 
 ## 2. Sign in to AWS
 

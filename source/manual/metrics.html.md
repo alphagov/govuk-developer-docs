@@ -5,7 +5,7 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-17
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
@@ -19,7 +19,7 @@ which will run on the local machine, and then the statsd service will
 forward the metrics to Graphite.
 
 Once metrics are stored, the Graphite web interface can then be used
-to query the metrics. There is another service, [Grafana], which
+to query the metrics. There is another service, [Grafana][], which
 doesn't store any data, but can access Graphite, and is another way in
 which you can view metrics about GOV.UK.
 
@@ -28,7 +28,7 @@ visualising metrics is that Grafana can present data Elasticsearch and
 Graphite, even on the same dashboard, whereas Graphite can only
 present data from Graphite.
 
-## [Graphite]
+## [Graphite][]
 
 Graphite stores metrics in a hierarchy, and the time intervals,
 retention periods and aggregation methods it uses are configurable.
@@ -53,7 +53,7 @@ it to Graphite. However, for gauges, it will only send it one time.
 [statsd-config]: https://github.com/alphagov/govuk-puppet/blob/master/modules/statsd/templates/etc/statsd.conf.erb
 [statsd-metric-types]: https://github.com/etsy/statsd/blob/master/docs/metric_types.md
 
-## [Grafana]
+## [Grafana][]
 
 Grafana on GOV.UK is used for dashboards. Dashboards can be created
 directly in the web interface (first you must login using the
