@@ -135,7 +135,6 @@ This should output something like:
 If, instead, this outputs `/usr/bin/ruby`, then you'll need to update your `~/.bash_profile` to have `ruby` properly overridden in your `PATH`:
 
 ```bash
-# Add rbenv (installed to ~/.rbenv/bin and ~/.rbenv/shims)
 export PATH="$PATH:~/.rbenv"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 ```
