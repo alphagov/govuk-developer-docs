@@ -5,16 +5,20 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-09-11
-review_in: 6 months
+last_reviewed_on: 2019-05-17
+review_in: 1 months
 next_review_notes: |
     We may be on AWS entirely by the next review. Lots of this is Carrenza specific.
+    Shortened the review_in to 1 months as AWS reboots require a fix.
 ---
 
 ## Rules of rebooting
 
 -   *Read this page first* to see if any special cases apply to the type of
     machine you need to reboot.
+-   Do not reboot machines in AWS without considering [RE docs](https://docs.google.com/document/d/1QhB9QIpePAoaQTrK-6d0dSMN0pK0wMUH8_KtZ8tAns8/edit?usp=sharing).
+    An issue with load balancer health checks requires additional manual intervention.
+    RE work on resolving this.
 -   Do not reboot more than one machine of the same class at the
     same time.
 -   When rebooting clustered applications (such as RabbitMQ) wait

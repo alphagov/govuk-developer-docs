@@ -68,3 +68,10 @@ environments.
 
 [graphite]: https://graphite.publishing.service.gov.uk/
 [grafana]: https://grafana.publishing.service.gov.uk/
+
+## Locations for AWS
+
+Metrics for applications migrated to AWS are accessible under new URLs:
+
+[graphite]: https://graphite.production.govuk.digital
+[grafana]: https://grafana.production.govuk.digital
