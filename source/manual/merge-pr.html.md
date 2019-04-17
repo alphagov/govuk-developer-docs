@@ -68,11 +68,21 @@ Change `thomasjhughes` to the GitHub username of the contributor and `patch-1` t
 
 #### Dependabot
 
-Dependabot raises PRs whenever it sees new versions of gems available that are required by our applications.
+As Dependabot changes the Gemfile/Gemfile.lock, or some other package
+management related manifests in the repository, when reviewing the
+diff, you should especially check if this is the case. Dependabot
+shouldn't be making changes other than these.
 
-Dependabot is an external contributor and is therefore subject to the same due diligence checks set out above as any other external contributor would have to go through, requiring two people from GDS to approve the PR before it can be merged. Particular attention should be paid to the changelog(s) of the upgraded gem(s) to ensure that no unintended side-effects are introduced.
+As well as reviewing the diff, take note of the version changes
+involved, and consider looking at the release notes or changelog for
+the affected packages.
 
-The exception to the number of GDS people required to review the PR is if the gems being upgraded consist of **only** GOV.UK-owned gems or gems in the `test` block of the Gemfile. If the PR includes _any_ external gems which are not in the `test` block of the Gemfile, two approvals must be obtained. See [Manage Ruby dependencies with Dependabot](/manual/manage-ruby-dependencies.html) for more information.
+If you decide that particular versions are inappropriate, then you can
+inform Dependabot through commands like `@dependabot ignore this major
+version`. If you do this, add the PR to the [tech debt Trello
+board][tech-debt].
+
+[tech-debt]: https://trello.com/b/oPnw6v3r
 
 ### A change where two people worked on the same branch
 
