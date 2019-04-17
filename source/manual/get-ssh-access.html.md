@@ -26,8 +26,23 @@ To create a new account, start by creating an SSH key at least 4096 bits long. F
 Import the SSH key into your keychain.
 
     mac$ /usr/bin/ssh-add -K ~/.ssh/alphagov
+    
+Create a public key from this:
 
-Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you just created. Your username should use the `firstnamelastname` format.
+    mac$ ssh-keygen -y -f ~/.ssh/alphagov > ~/.ssh/alphagov.pub
+
+Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you just created. Your username should use the `firstnamelastname.pp` format.
+
+```
+# Creates the johnsmith user
+class users::johnsmith {
+  govuk_user { 'johnsmith':
+    fullname => 'John Smith',
+    email    => 'john.smith.123@digital.cabinet-office.gov.uk',
+    ssh_key  => 'this public key will be a few lines long (copy the output from `more ~/.ssh/alphagov.pub`). It should begin with `ssh-rsa AAA` and end with `== john.smith.123@digital.cabinet-office.gov.uk`. You may need to add the email address to the end of your public key manually.',
+  }
+}
+```
 
 Add the name of your manifest (your username) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera] for integration and in [`hieradata/integration.yaml`][integration-hiera] for CI.
 
