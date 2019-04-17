@@ -4,7 +4,7 @@ title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-03
+last_reviewed_on: 2019-05-17
 review_in: 3 months
 ---
 
