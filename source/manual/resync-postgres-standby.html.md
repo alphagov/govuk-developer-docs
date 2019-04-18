@@ -4,10 +4,31 @@ title: Resync a PostgreSQL standby
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-15
+last_reviewed_on: 2019-04-18
 review_in: 6 months
 ---
+If you see those types of errors in the postgresql logs on the standby :
 
+```
+2019-04-08 05:56:43 UTC FATAL:  could not receive data from WAL stream: ERROR:  requested WAL segment 000000010000218
+C000000FA has already been removed
+```
+
+Then the replication between primary and standby is broken, if standby is not too far behind it is possible to catch up with primary and repair the replication by using the WAL that are archived on S3.
+
+Put the following line in /var/lib/postgresql/9.3/main/recovery.conf :
+
+```
+restore_command = 'envdir /etc/wal-e.d/env.d /usr/loca/bin/wal-e wal-fetch %f %p'
+```
+
+[Remove the password](https://docs.publishing.service.gov.uk/manual/postgresql.html) that protect the gpg key with which the WAL are encrypted.
+Restart the standby postgresql server.
+You should see the WAL being processed in the postgresql logs, at the end of the process the server should be back in sync.
+Restore the password on the gpg key.
+
+If this method fails, standby is probably now too far behind and you will need to restore a base backup using pg_resync_slave 
+Note that you might run out of disk space on the standby while doing this, if this happen you will need to temporarily [add more disks](https://docs.publishing.service.gov.uk/manual/adding-disks-in-vcloud.html) to the standby vm 
 To resync a standby from a primary run this on the affected standby:
 
 ```
