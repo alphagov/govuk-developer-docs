@@ -57,13 +57,12 @@ First, install:
 * [VirtualBox][]
 * [Vagrant][]
 * The vagrant-dns plugin (`vagrant plugin install vagrant-dns`)
-* [rbenv][] (you may find it easier to [install via rbenv-installer][] than via Homebrew due to Xcode restrictions)
+* [rbenv][] (via Homebrew - `brew install rbenv` - you can install Homebrew via the Managed Software Center)
 
 [git-scm]: https://git-scm.com/downloads
 [VirtualBox]: https://www.virtualbox.org/
 [Vagrant]: https://www.vagrantup.com/downloads.html
 [rbenv]: https://github.com/rbenv/rbenv
-[install via rbenv-installer]: https://github.com/rbenv/rbenv-installer#rbenv-installer
 
 Starting with High Sierra 10.13, kernel extensions must be approved by
 the user (see [this Apple technical note][kext]).  This causes the
@@ -116,7 +115,7 @@ Now verify that rbenv is working as expected:
 
     mac$ cd ~/govuk/govuk-puppet
     mac$ rbenv versions
-    
+
 This should output something like:
 
 ```
@@ -135,13 +134,12 @@ This should output something like:
 If, instead, this outputs `/usr/bin/ruby`, then you'll need to update your `~/.bash_profile` to have `ruby` properly overridden in your `PATH`:
 
 ```bash
-export PATH="$PATH:~/.rbenv"
+# force load rbenv to ensure correct version of ruby used
+export PATH="$PATH:~/.rbenv/shims"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 ```
 
-Don't forget to `source ~/.bash_profile` to update the `PATH` for your current terminal session.
-
-This Ruby setup is a pre-requisite for the "[Import production data](#6-import-production-data)" step.
+This Ruby setup is a pre-requisite for the "[Import production data](#7-import-production-data)" step.
 
 ## 4. Boot your VM
 
