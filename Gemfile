@@ -6,7 +6,7 @@ gem 'capybara'
 gem 'rake'
 gem 'rspec', '~> 3.8'
 gem 'webmock', '~> 3.5'
-gem 'activesupport', '~> 5.1'
+gem 'activesupport', '~> 5.0'
 gem 'govuk-lint', '~> 3.11'
 gem 'simplecov'
 
