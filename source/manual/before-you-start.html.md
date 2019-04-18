@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2019-02-15
+last_reviewed_on: 2019-04-18
 review_in: 2 months
 ---
 
@@ -32,6 +32,8 @@ Most alerts have some documentation in our [developer docs](https://docs.publish
 [Create an account](https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc) if you don't have one yet. Then ask a fellow 2nd liner to add a new ticket assigned to _2nd/3rd Line—Zendesk Administration_ asking to give you access to _2nd Line - GOV.UK Alerts and Issues_.
 
 This [diagram shows you how to process tickets](https://docs.google.com/presentation/d/1H8F9sTv283N_5j-3-LT2OW8Xvx0NrfCG1IjNA10vu2g/edit?usp=sharing).
+
+This [page is on how to manage Zendesk tickets](/https://docs.publishing.service.gov.uk/manual/managing-product-support-tickets-zendesk.html).
 
 ## PagerDuty
 This is our escalation workflow for some key alerts that are likely to require urgent attention. The escalation order is:
