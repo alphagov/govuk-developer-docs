@@ -4,9 +4,13 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-17
+last_reviewed_on: 2019-04-18
 review_in: 6 months
 ---
+
+Basic PAYE Tools is a free software package HMRC provide for small employers to run their payroll. It's updated annually at the start of April with 'uprated' tax rates and thresholds for the new tax year. These updates are critical for employers as if they're using the wrong version their employees could end up paying the wrong amount of tax. Sometimes HMRC release minor updates during the tax year but these are less regular.
+
+HMRC should submit the ticket to request updates to the exe files at least 2 weeks before the new versions are scheduled to go live. If you get a request with a tighter deadline than this, contact the 'green' content support team through their [Slack channel](https://gds.slack.com/messages/CADGKPQHJ/).
 
 HMRC have a [desktop application to submit
 PAYE](https://www.gov.uk/basic-paye-tools). This is available on Windows,
