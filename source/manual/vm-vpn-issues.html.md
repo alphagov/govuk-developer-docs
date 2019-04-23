@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Acccess the VM after using the VPN
+title: Access the VM after using the VPN
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
