@@ -4,8 +4,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-01-03
-review_in: 3 months
+last_reviewed_on: 2019-04-23
+review_in: 6 months
 related_applications: [search-api]
 ---
 
@@ -15,7 +15,7 @@ using it, including navigation pages and related links.
 
 ### Root cause
 
-For whitehall document formats (i.e. those that have not been [migrated to the
+For Whitehall document formats (i.e. those that have not been [migrated to the
 new index](https://github.com/alphagov/search-api/blob/master/config/govuk_index/migrated_formats.yaml)),
 Search API depends on requests from whitehall admin to stay up to date. This is a
 "fire and forget" task that doesn't block the user's publishing action, and if
