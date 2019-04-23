@@ -4,7 +4,7 @@ title: READMEs for GOV.UK applications
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-19
+last_reviewed_on: 2019-04-23
 review_in: 6 months
 ---
 
