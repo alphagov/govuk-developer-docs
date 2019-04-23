@@ -68,9 +68,12 @@ Test that it works by running:
     mac$ govukcli set-context integration
     mac$ govukcli ssh backend
 
-Next, follow the same steps inside your VM. You can choose whether to import your `alphagov` keypair to the VM or to use the built in key-forwarding. Test that you can reach integration from your VM:
+Next, you'll need to do the same thing inside your VM:
 
+    dev$ sudo ln -s /var/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
     dev$ govukcli set-context integration
     dev$ govukcli ssh backend
+
+The built-in key-forwarding should mean that you don't need to edit the `~/.ssh/config` file inside the VM (it will default to your host machine's config file instead).
 
 [ssh-config]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config
