@@ -12,7 +12,7 @@ review_in: 2 months
 Before you start your shift you’ll need access to the accounts we use and our communication channels.
 
 ## Dashboard
-The 2nd line dashboard can be viewed [here](http://dsingleton.github.io/frame-splits/index.html?title=&layout=2col-75-25&url%5B%5D=https%3A%2F%2Fgrafana.publishing.service.gov.uk%2Fdashboard%2Ffile%2F2ndline_health.json%3Frefresh%3D1m%26orgId%3D1&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.publishing.service.gov.uk%2Fdashboard%2Fdb%2Fapp-deployments%3Ffrom%3Dnow-7d%26to%3Dnow%26refresh%3D1m%26orgId%3D1&url%5B%5D=).
+The 2nd line dashboard can be viewed [here](https://alphagov.github.io/frame-splits/index.html?title=&layout=2x1-75-25&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&url%5B%5D=).
 
 ## Alerts
 We use Icinga to monitor our platform and alert us when things go wrong. Please ensure you can access (if remote you will need to be on the [VPN](https://docs.publishing.service.gov.uk/manual/vpn.html)):
