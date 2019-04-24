@@ -4,7 +4,7 @@ title: Connect to vCloud Director (Carrenza only)
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-12
+last_reviewed_on: 2019-04-24
 review_in: 6 months
 ---
 
@@ -57,13 +57,12 @@ You can use either Cisco AnyConnect or openconnect to do this.
 1. Run `sudo openconnect https://secure.carrenza.com -c vcloud.pem`.
    Make sure you provide the correct path to where you've saved the VPN client certificate.
 2. The first password is your machine password (requested by sudo).
-3. The second password (the PEM pass phrase) is the VPN password
-   (note, this is **not** the certificate passphrase).
+3. The second password (the PEM pass phrase) is the certificate passphrase from the password store.
 4. The third password is the 2FA code.
-5. The fourth password is the same password as in step 3.
+5. The fourth password is the password from the password store.
 
 ## Accessing vCloud Director
 
-Once you've connected to the VPN, visit https://vcloud.carrenza.com/cloud/org/<organisation>/.
+Once you've connected to the VPN, visit https://vcloud.carrenza.com/cloud/org/{organisation}/.
 You can get the organsation name from the 2nd line password store entry for the relevant
 vCloud environment.
