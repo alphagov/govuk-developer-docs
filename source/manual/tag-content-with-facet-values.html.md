@@ -5,7 +5,7 @@ layout: manual_layout
 section: Publishing
 type: learn
 owner_slack: "#govuk-platform-health"
-last_reviewed_on: 2019-03-2r9
+last_reviewed_on: 2019-03-29
 review_in: 3 months
 related_applications: [content-tagger]
 ---
