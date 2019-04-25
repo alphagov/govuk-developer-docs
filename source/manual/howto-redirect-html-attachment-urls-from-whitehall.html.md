@@ -4,7 +4,7 @@ title: Redirect an HTML attachment's URL in Whitehall
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-27
+last_reviewed_on: 2019-04-25
 review_in: 6 months
 ---
 
@@ -37,6 +37,12 @@ $ bundle exec 'publishing_api:redirect_html_attachments:dry[document_content_id,
 ```
 
 [Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27publishing_api:redirect_html_attachments:dry[DOCUMENT_CONTENT_ID,REDIRECTION_URL]%27)
+
+> You need to find the `content_id` of the Document the attachment belongs to via Rails console if the Document has already been unpublished and redirected.
+> Remember to use the relative path for an internal URL. Example:
+```
+publishing_api:redirect_html_attachments:dry[f8781a75-9fb7-409a-a37d-3a5877ad28fb,/government/collections/trading-with-the-eu-if-the-uk-leaves-without-a-deal]
+```
 
 This attempts to locate the HtmlAttachments for the latest unpublished Edition of the Document, and if found, report to the user the HtmlAttachment's slugs and where they would have been redirected to.
 
