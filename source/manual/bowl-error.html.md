@@ -4,7 +4,7 @@ title: Fix bundler errors when running `bowl`
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-12
+last_reviewed_on: 2019-04-25
 review_in: 6 months
 ---
 
