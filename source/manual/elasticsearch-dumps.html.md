@@ -4,23 +4,14 @@ title: Backup and restore Elasticsearch indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-03-25
+last_reviewed_on: 2019-04-26
 review_in: 4 weeks
 ---
 
-GOV.UK uses AWS Managed Elasticsearch which takes daily snapshots
-of the cluster.
-
-After a restore has taken place, traffic will need to be [replayed](/manual/rummager-traffic-replay.html)
-following the restore, since the index will be out-of-sync with the
-publishing apps.
-
-## AWS Managed Elasticsearch 5.x
-
-Daily snapshots of the Elasticsearch indices are taken automatically by AWS
-as part of the managed service.  These are stored in a S3 bucket that is
-not made available to us.  Restoration is done by making HTTP requests to
-the `_snapshot` endpoint.
+GOV.UK uses AWS Managed Elasticsearch which takes daily snapshots of
+the cluster as part of the managed service.  These are stored in a S3
+bucket that is not made available to us.  Restoration is done by
+making HTTP requests to the `_snapshot` endpoint.
 
 To restore a snapshot, follow these steps:
 
@@ -59,3 +50,7 @@ delete the existing index:
     ```
 
 > Further information about Elasticsearch snapshots can be found in the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html)
+
+After a restore has taken place, traffic will need to be [replayed](/manual/search-api-traffic-replay.html)
+following the restore, since the index will be out-of-sync with the
+publishing apps.
