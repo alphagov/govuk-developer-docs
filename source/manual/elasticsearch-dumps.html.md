@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Backups
 last_reviewed_on: 2019-04-26
-review_in: 4 weeks
+review_in: 3 months
 ---
 
 GOV.UK uses AWS Managed Elasticsearch which takes daily snapshots of
