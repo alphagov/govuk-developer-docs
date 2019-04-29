@@ -19,8 +19,8 @@ accessible via their original URL.
 
 ##### Whitehall
 
-A Rake Tasks exist in Whitehall to quickly redirect all HtmlAttachments for an unpublished Edition.
-The tasks takes the Edition's Document's content id, and the desired redirection URL.
+A Rake Task exists in Whitehall to quickly redirect all HtmlAttachments for an unpublished Edition.
+The task takes the Edition's Document's content id, and the desired redirection URL.
 
 There are two interfaces for dry and real runs, to ensure the correct HtmlAttachments are being targeted before redirecting.
 
