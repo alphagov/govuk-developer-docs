@@ -1,5 +1,5 @@
 ---
-owner_slack: "@vitalie.mogoreanu"
+owner_slack: "#govuk-developers"
 title: Architecture overview of GOV.UK applications
 section: Applications
 type: learn

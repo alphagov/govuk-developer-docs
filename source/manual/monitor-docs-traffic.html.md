@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen.brommet"
+owner_slack: "#govuk-2ndline"
 title: Monitor docs traffic
 section: Documentation
 layout: manual_layout
