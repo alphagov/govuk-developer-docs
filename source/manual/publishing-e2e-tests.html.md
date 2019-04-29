@@ -23,6 +23,8 @@ changes.  This branch should get pushed to automatically whenever a change is ma
 master branch has failed due to the flaky nature of the test suite causing test-against to
 [become behind master][compare-test-against-master].  [Rerunning the master branch build][rebuild-master-branch] should fix it.
 
+If you are making changes to publishing-e2e-tests itself, push your branch up to GitHub and then trigger a build of your branch from the [branch list](https://ci.integration.publishing.service.gov.uk/job/publishing-e2e-tests/).
+
 ## How to add new tests
 
 If you are writing a new publishing application or wanting to cover new end to end flows you are advised to
