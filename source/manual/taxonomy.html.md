@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 type: learn
-owner_slack: "#govuk-tax-and-nav"
+owner_slack: "#govuk-developers"
 last_reviewed_on: 2018-06-22
 review_in: 3 months
 related_applications: [content-tagger]
