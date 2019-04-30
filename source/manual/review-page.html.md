@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen.brommet"
+owner_slack: "#govuk-developers"
 title: Review a page in this manual
 section: Documentation
 layout: manual_layout
