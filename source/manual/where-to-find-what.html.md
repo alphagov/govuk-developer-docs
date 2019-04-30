@@ -1,5 +1,5 @@
 ---
-owner_slack: "@tijmen.brommet"
+owner_slack: "#govuk-developers"
 title: Where to find what documentation
 section: Learning GOV.UK
 type: learn
