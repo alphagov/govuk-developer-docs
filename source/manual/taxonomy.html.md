@@ -5,8 +5,8 @@ layout: manual_layout
 section: Publishing
 type: learn
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2018-06-22
-review_in: 3 months
+last_reviewed_on: 2019-04-29
+review_in: 6 months
 related_applications: [content-tagger]
 ---
 
@@ -44,12 +44,6 @@ tagging to the taxonomy.
 Content Tagger has a generic interface for tagging content to the
 taxonomy.
 
-At the moment only selected organisations (like those related to the
-education theme) are able to tag content to the taxonomy in [Whitehall][whitehall].
-Content created by these organisations must be tagged to at least one taxon before it
-can be published.
-Our goal is to have all organisations tagging to the new taxonomy in Q2 of 2018.
-
 The relationship between a page and a taxon is persisted in the
 publishing-api "links hash". For example, see the [taxons link in the
 content item for this guidance document][example-guidance].
@@ -78,7 +72,12 @@ the `child_taxons` links.
 You can fetch content tagged to a particular taxon from the Search API
 ([search-api][search-api]).
 
-This works with a `content_id` rather than URL. To find all content
+This is used in some GOV.UK search pages.  For example https://www.gov.uk/search/news-and-communications
+has a topic/subtopic facet that allows filtering. Advanced search pages like
+https://www.gov.uk/search/advanced?group=news_and_communications&topic=%2Feducation
+(which are accessed from topic pages) are prefiltered by topic.
+
+The filter works with a `content_id` rather than URL. To find all content
 tagged to the above mentioned ["Education taxon"][education-taxon]:
 
 [https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0](https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0)
