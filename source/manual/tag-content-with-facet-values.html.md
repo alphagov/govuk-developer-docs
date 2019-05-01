@@ -5,7 +5,7 @@ layout: manual_layout
 section: Publishing
 type: learn
 owner_slack: "#govuk-platform-health"
-last_reviewed_on: 2019-03-29
+last_reviewed_on: 2019-05-01
 review_in: 3 months
 related_applications: [content-tagger]
 ---
@@ -31,5 +31,5 @@ You'll need GDS Editor permissions for content tagger.
 
 ### How to bulk tag business readiness content to facet values
 
-1. SCP [the correct format CSV file](https://github.com/alphagov/govuk-app-deployment-secrets/blob/master/shared_config/business_readiness.csv) to a backend machine.
+1. SCP [the correct format CSV file](https://github.com/alphagov/search-api/blob/master/config/business_readiness.csv) to a backend machine.
 2. Run [this rake task](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE_CLASS=backend&RAKE_TASK=facets:tag_content_to_facet_values[%22/tmp/business-readiness.csv%22,%22lib/data/find-eu-exit-guidance-business.yml%22]) *
