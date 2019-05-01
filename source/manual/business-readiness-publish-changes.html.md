@@ -5,7 +5,7 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-04-29
+last_reviewed_on: 2019-05-01
 review_in: 3 months
 ---
 
@@ -22,7 +22,7 @@ The content for the start page can be updated in Mainstream Publisher as you wou
 
 The content item for the Q&A doesn't actually contain any details. The titles of the questions are defined in a YAML file in [finder frontend][finder-frontend]. However the body of the question, for example the options if the question is a checkbox, are read from the content item of the finder itself (content item 3 in the list). Finder frontend searches the content item for a facet "key" that matches the question, e.g. `sector_business_area` to find the question content.
 
-The content item for the finder is updated from a [YAML file][govuk-app-deployment-secrets]. Any changes to this YAML file affect both the facets in the finder and the options in the Q&A.
+The content item for the finder is updated from a [YAML file][search-api]. Any changes to this YAML file affect both the facets in the finder and the options in the Q&A.
 
 ## Updating question titles
 
@@ -31,15 +31,15 @@ The content item for the finder is updated from a [YAML file][govuk-app-deployme
 
 ## Updating the business readiness finder
 
-The content item for the business readiness finder and its email signup page are published by `search-api`. However the actual config is read in from [govuk-app-deployment-secrets][govuk-app-deployment-secrets], and config for the facet group is managed in [content-tagger][content-tagger].
+The content item for the business readiness finder and its email signup page are published by `search-api` and the config for the facet group is managed in [content-tagger][content-tagger].
 
 1. Update the facet group in [content-tagger][content-tagger]
 2. Merge the changes to [content-tagger][content-tagger]
 3. Deploy content-tagger
 4. [Import and Publish the facet group](/manual/publishing-a-facet-group.html#how-to-import-or-update-a-facet-group)
-5. Update [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
-6. Merge the changes to [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
-7. Re-deploy `search-api` so it can pick up the changes in [govuk-app-deployment-secrets][govuk-app-deployment-secrets]
+5. Update [search-api][search-api]
+6. Merge the changes to [search-api][search-api]
+7. Deploy search-api 
 8. Run the [`publishing_api:publish_facet_group_eu_exit_business_finder` rake task][staging-rake-task-facet-group] in `search-api` to publish the changes:
 
     ![download](images/publish-business-readiness.png)
@@ -50,5 +50,5 @@ The content item for the business readiness finder and its email signup page are
 [business-readiness-finder]: https://www.gov.uk/find-eu-exit-guidance-business
 [content-tagger]: https://github.com/alphagov/content-tagger/blob/master/lib/data/find-eu-exit-guidance-business.yml
 [finder-frontend]: https://github.com/alphagov/finder-frontend/blob/3d7f25ddca4bedd9d9fb750fb1d651964cf2a34b/lib/prepare_business_uk_leaving_eu.yaml
-[govuk-app-deployment-secrets]: https://github.com/alphagov/govuk-app-deployment-secrets/blob/9a39969d504543e040ffc1afc70924e23d249033/shared_config/find-eu-exit-guidance-business.yml
+[search-api]: https://github.com/alphagov/search-api/blob/master/config/find-eu-exit-guidance-business.yml
 [staging-rake-task-facet-group]:https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=publishing_api:publish_facet_group_eu_exit_business_finder
