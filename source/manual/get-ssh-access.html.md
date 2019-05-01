@@ -26,6 +26,8 @@ To create a new account, start by creating an SSH key at least 4096 bits long. F
 Import the SSH key into your keychain.
 
     mac$ /usr/bin/ssh-add -K ~/.ssh/alphagov
+
+You'll also want to add the above line into your `~/.bash_profile` so that it is persistent between restarts.
     
 Create a public key from this:
 
