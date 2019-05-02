@@ -4,7 +4,7 @@ title: How to deal with errors
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-08
+last_reviewed_on: 2019-05-02
 review_in: 6 months
 ---
 
