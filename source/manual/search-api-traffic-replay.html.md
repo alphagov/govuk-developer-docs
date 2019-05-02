@@ -34,7 +34,7 @@ Missing documents can be recovered by resending the content to Search API direct
 Whitehall, run the following rake task (including the quotes) to replay traffic between
 two datestamps:
 
-    bundle exec rake 'rummager:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
+    bundle exec rake 'search:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
 
 Another option is [Gor][gor], which logs  `POST` and `GET` requests to Search API.
 The logs are stored on the Search API servers. You will need to run the replay on
