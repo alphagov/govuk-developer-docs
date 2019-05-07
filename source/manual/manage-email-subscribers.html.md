@@ -4,7 +4,7 @@ title: Manage email subscribers (change email, unsubscribe, move lists)
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-11-05
+last_reviewed_on: 2019-05-07
 review_in: 6 months
 ---
 
