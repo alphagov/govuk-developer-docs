@@ -26,6 +26,9 @@ cf login -a api.cloud.service.gov.uk
 > **Don't have an account?**
 > If you don't have an account or if your account isn't recognised ask on #govuk-2ndline for an account.
 
+> **Forgot your password?**
+> If you forgot your password, visit [https://login.cloud.service.gov.uk/forgot_password](https://login.cloud.service.gov.uk/forgot_password)
+
 3. SSH into the relevant machine, e.g. `publish-data-beta-production-worker`.
 
 ```
