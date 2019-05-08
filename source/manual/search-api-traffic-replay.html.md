@@ -4,7 +4,7 @@ title: Replay traffic to correct an out-of-sync search index
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-04-17
+last_reviewed_on: 2019-05-08
 review_in: 3 months
 ---
 
