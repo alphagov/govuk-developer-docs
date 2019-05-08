@@ -36,5 +36,14 @@ two datestamps:
 
     bundle exec rake 'search:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
 
+## `metasearch` index
+
+This index is used for best bets, which are published by Search Admin
+communicating with Search API directly (like how whitehall updates the
+`government` and `detailed` indices directly).  In Search Admin, run
+the following rake task to resend all bets to Search API:
+
+    bundle exec rake reindex_best_bets
+
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/search-api/blob/master/doc/new-indexing-process.md
