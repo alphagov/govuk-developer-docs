@@ -36,28 +36,5 @@ two datestamps:
 
     bundle exec rake 'search:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
 
-Another option is [Gor][gor], which logs  `POST` and `GET` requests to Search API.
-The logs are stored on the Search API servers. You will need to run the replay on
-each server.
-
-The location of the logs is:
-
-```
-/var/log/gor_dump
-```
-
-You must copy the file for the restore, as the restore requests
-will be logged to the file.
-
-The following command can be used to run the restore:
-
-```bash
-$ sudo goreplay -input-file "20171031.log|1000%" -stats -output-http-stats -output-http "http://localhost:3233/|6000%" -verbose
-```
-
-This runs the restore at 10x the speed it was saved so each hour of logs takes
-6 minutes to process.
-
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/search-api/blob/master/doc/new-indexing-process.md
-[gor]: https://github.com/buger/goreplay
