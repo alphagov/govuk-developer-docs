@@ -4,7 +4,7 @@ title: Replay traffic to correct an out-of-sync search index
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-04-17
+last_reviewed_on: 2019-05-08
 review_in: 3 months
 ---
 
@@ -36,28 +36,14 @@ two datestamps:
 
     bundle exec rake 'search:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
 
-Another option is [Gor][gor], which logs  `POST` and `GET` requests to Search API.
-The logs are stored on the Search API servers. You will need to run the replay on
-each server.
+## `metasearch` index
 
-The location of the logs is:
+This index is used for best bets, which are published by Search Admin
+communicating with Search API directly (like how whitehall updates the
+`government` and `detailed` indices directly).  In Search Admin, run
+the following rake task to resend all bets to Search API:
 
-```
-/var/log/gor_dump
-```
-
-You must copy the file for the restore, as the restore requests
-will be logged to the file.
-
-The following command can be used to run the restore:
-
-```bash
-$ sudo goreplay -input-file "20171031.log|1000%" -stats -output-http-stats -output-http "http://localhost:3233/|6000%" -verbose
-```
-
-This runs the restore at 10x the speed it was saved so each hour of logs takes
-6 minutes to process.
+    bundle exec rake reindex_best_bets
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/search-api/blob/master/doc/new-indexing-process.md
-[gor]: https://github.com/buger/goreplay
