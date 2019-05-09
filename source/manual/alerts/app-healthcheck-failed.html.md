@@ -4,7 +4,7 @@ title: App healthcheck failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-03-15
+last_reviewed_on: 2019-05-08
 review_in: 6 months
 ---
 
@@ -15,3 +15,6 @@ endpoint doesn't respond successfully, it triggers this alert.
 
 To solve this issue, look at the logs of the application to see what
 is wrong.
+
+You can also find healthcheck failure documentation for individual apps by
+searching the developer docs.
