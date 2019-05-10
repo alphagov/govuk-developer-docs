@@ -8,13 +8,11 @@ last_reviewed_on: 2019-04-18
 review_in: 6 months
 ---
 
-Basic PAYE Tools is a free software package HMRC provide for small employers to run their payroll. It's updated annually at the start of April with 'uprated' tax rates and thresholds for the new tax year. These updates are critical for employers as if they're using the wrong version their employees could end up paying the wrong amount of tax. Sometimes HMRC release minor updates during the tax year but these are less regular.
+[Basic PAYE Tools](https://www.gov.uk/basic-paye-tools) is a free software package HMRC provide for small employers to run their payroll. This is available on Windows, Linux, and OS X.
+
+It's updated annually at the start of April with 'uprated' tax rates and thresholds for the new tax year. These updates are critical for employers as if they're using the wrong version their employees could end up paying the wrong amount of tax. Sometimes HMRC release minor updates during the tax year but these are less regular.
 
 HMRC should submit the ticket to request updates to the exe files at least 2 weeks before the new versions are scheduled to go live. If you get a request with a tighter deadline than this, contact the 'green' content support team through their [Slack channel](https://gds.slack.com/messages/CADGKPQHJ/).
-
-HMRC have a [desktop application to submit
-PAYE](https://www.gov.uk/basic-paye-tools). This is available on Windows,
-Linux, and OS X.
 
 As part of the initial tranche of ministerial department migration their
 upload site was switched off. However, we don't currently allow `exe`
@@ -78,7 +76,7 @@ the previous version of the software.
     item](https://www.gov.uk/basic-paye-tools) and [Welsh
     translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
     can be prepped by the content team with the new links, file sizes and version
-    number, ready to publish at the launch time.
+    number, ready to publish at the launch time. Pass the Zendesk ticket over to content support by reassigning it to '3rd line--GOV.UK Content' and adding the green team tag, 'business_defence_environment' . 
 
 8.  When the launch time comes (which should be specified in the Zendesk
     ticket), re-load the test file to the production path:
