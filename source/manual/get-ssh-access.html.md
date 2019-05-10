@@ -3,13 +3,15 @@ owner_slack: "#govuk-2ndline"
 title: Get SSH access to integration
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2019-02-08
-review_in: 3 months
+last_reviewed_on: 2019-05-10
+review_in: 6 months
 ---
 
 ## 1. Get access
 
 Ask somebody with access to add your SSH username (`firstnamelastname`) to the [user monitoring system][user-reviewer].
+
+[user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
 ## 2. Create a user to SSH into integration
 
