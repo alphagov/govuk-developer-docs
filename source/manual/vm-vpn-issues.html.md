@@ -4,7 +4,7 @@ title: Access the VM after using the VPN
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-08
+last_reviewed_on: 2019-05-10
 review_in: 6 months
 ---
 
@@ -16,7 +16,7 @@ your machine) reaching the guest (i.e. the VM).
 After disconnecting from the VPN, the routing can be restored using the following:
 
 ```
-mac$ sudo ipconfig vboxnet0 delete 10.1.1.1
+mac$ sudo ifconfig vboxnet0 delete 10.1.1.1
 mac$ sudo ipconfig set vboxnet0 manual 10.1.1.1
 ```
 
