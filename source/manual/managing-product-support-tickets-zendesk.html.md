@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-04-19
+last_reviewed_on: 2019-05-13
 review_in: 6 months
 ---
 2nd line Zendesk tickets are technical errors reported by our users, including government publishers and should be trusted by default. Any questions on the legitimacy or urgency of a ticket should be deferred to the delivery manager.
@@ -49,5 +49,5 @@ General rule of thumb: don’t write anything you wouldn’t say to someone publ
 2. Work on solving ‘Open tickets’ in the ‘high’ priority queue, starting with the oldest by date.  
   1. If external assistance from outside 2nd line is required then assign it to them on the ticket and move on to the next ticket (keep the ticket in the 2nd line queue)
   2. If you’re working on a long-running ticket, let your 2nd line crew know so they can keep an eye on the alerts.
-3. Apply the set macro: GOV.UK 2nd line tech: reply and close ticket as ‘pending’ for 5 days.  for tickets in ‘Normal’ and ‘High’ that have been ‘pending’ a response for more than 5 days.
-4. If the volume of Zendesk tickets is overwhelming, talk to the delivery manager or a senior tech member for assistance. 
+3. Apply the set macro: 'GOV.UK 2nd line tech:pending for 5+ days' to close tickets in ‘Normal’ and ‘High’ that have been 'pending’ a response for more than 5 days.
+4. If the volume of Zendesk tickets is overwhelming, talk to the delivery manager or a senior tech member for assistance.

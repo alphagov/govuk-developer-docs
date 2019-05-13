@@ -4,7 +4,7 @@ title: Ask for help
 parent: "/manual.html"
 layout: manual_layout
 section: Learning GOV.UK
-last_reviewed_on: 2018-11-20
+last_reviewed_on: 2019-05-13
 review_in: 6 months
 ---
 
@@ -36,6 +36,6 @@ If you and your colleagues can’t resolve a technical issue, problem or questio
 2. The Lead Developer on the programme
 3. The Lead Architect
 
-If 2nd Line instructs you to escalate something to Reliability Engineering, raise a ticket on Zendesk and assign it to the `3rd Line--Infrastructure` queue. You should also raise a ticket if the issue is related to an ongoing incident for tracking purposes, but you can speak to the team directly to get it more immediate attention.
+If 2nd Line instructs you to escalate something to Reliability Engineering, raise a ticket on Zendesk and assign it to the `3rd Line--GDS Reliability Engineering` queue. You should also raise a ticket if the issue is related to an ongoing incident for tracking purposes, but you can speak to the team directly to get it more immediate attention.
 
 If you speak to Reliability Engineering about a process only they know about, they will work with you to document the process for all of GOV.UK.
