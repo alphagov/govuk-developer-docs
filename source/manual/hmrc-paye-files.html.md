@@ -4,7 +4,7 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-18
+last_reviewed_on: 2019-05-10
 review_in: 6 months
 ---
 
@@ -78,7 +78,7 @@ the previous version of the software.
     item](https://www.gov.uk/basic-paye-tools) and [Welsh
     translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
     can be prepped by the content team with the new links, file sizes and version
-    number, ready to publish at the launch time. Pass the Zendesk ticket over to content support by reassigning it to '3rd line--GOV.UK Content' and adding the green team tag, 'business_defence_environment' . 
+    number, ready to publish at the launch time. Pass the Zendesk ticket over to content support by reassigning it to '3rd line--GOV.UK Content' and adding the green team tag, 'business_defence_environment' .
 
 1.  When the launch time comes (which should be specified in the Zendesk
     ticket), re-load the test file to the production path:
