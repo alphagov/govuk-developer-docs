@@ -10,6 +10,7 @@ review_in: 6 months
 2nd line Zendesk tickets are technical errors reported by our users, including government publishers and should be trusted by default. Any questions on the legitimacy or urgency of a ticket should be deferred to the delivery manager.
 
 We have the following Service Level Agreements:
+
 * 80% of tickets get a first reply to the ticket within 2 working days
 * 80% of general enquiries (public tickets) resolved within 5 working days
 * 70% of department tickets are closed within 5 working days
