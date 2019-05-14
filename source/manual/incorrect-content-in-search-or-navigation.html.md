@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-04-23
+last_reviewed_on: 2019-05-10
 review_in: 6 months
 related_applications: [search-api]
 ---
@@ -86,16 +86,6 @@ Try republishing the content.
 #### Unpublished content is still showing up in search
 
 Unpublished content can be removed from search manually using [search admin](https://search-admin.publishing.service.gov.uk/).
-
-#### Content is duplicated in search results
-
-This has happened before when either the Elasticsearch document type or id
-have changed.
-
-You'll need to look at the [raw Elasticsearch documents](https://docs.publishing.service.gov.uk/manual/alerts/elasticsearch-cluster-health.html#view-a-live-dashboard) to see what happened.
-
-There is a [rake task](https://github.com/alphagov/search-api/blob/master/lib/tasks/delete.rake)
-to remove unwanted duplicates.
 
 #### There are blank options on finder pages
 
