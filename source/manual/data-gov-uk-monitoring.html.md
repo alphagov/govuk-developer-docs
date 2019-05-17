@@ -59,7 +59,7 @@ Sidekiq UI is only accessible to the `localhost` domain, so you'll need an SSH t
 cf ssh -L 9000:localhost:8080 publish-data-beta-staging
 ```
 
-Then go to [localhost:9000/sidekiq](http://localhost:9000/sidekiq) in your browser to see active jobs, retries and to manually modify the schedule.
+Then go to [localhost:9000/sidekiq/recurring-jobs](http://localhost:9000/sidekiq/recurring-jobs) in your browser to see active jobs, retries and to manually modify the schedule.
 
 ## Analytics
 
