@@ -43,6 +43,32 @@ ssh -i "govuk-contracts-archive.pem" ubuntu@ec2-34-249-103-20.eu-west-1.compute.
 Remember this is an elastic IP and might change - log into the AWS web console
 to find the current IP address assigned.
 
+## Contracts archive finder snapshot
+
+There is a point in time snapshot of the contracts archive finder, should you
+need to access older log files.
+
+This is setup on the same AWS account as an EC2 instance called
+2019-contracts-archive. To access this machine, use the same certificate as
+above and `ssh` in as follows:
+
+```
+ssh -i "govuk-contracts-archive.pem" ubuntu@ec2-34-248-129-191.eu-west-1.compute.amazonaws.com
+```
+
+Again note that this is an elastic IP and might change.
+
+This machine includes nginx logs from two periods:
+
+* June 9 to June 26 2018 - available at `/mount-old-arch/var/log/nginx$`
+* March 9 to March 19 2019 - available at `/var/log/nginx`
+
+The machine was created from two snapshots that are sitting in the AWS account.
+These have the following descriptions:
+
+* contract-finder (started June 26 2018)
+* snapshot_contracts_20190319 (started March 19 2019)
+
 ## On data.gov.uk
 
 A database of the contracts archive is also accessible in a sqlite database on
