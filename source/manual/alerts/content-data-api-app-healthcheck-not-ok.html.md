@@ -77,8 +77,8 @@ rake etl:repopulate_feedex["2018-01-01","2018-01-01"]
 ```
 
 [1]: https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/
-[2]: https://github.com/alphagov/content-performance-manager/blob/87116d3ab6f75c0d3dd8be9d4aff80865702f1b9/lib/tasks/etl.rake#L8
-[3]: https://github.com/alphagov/content-performance-manager/blob/8dd689e6917d7bbbf23a99387b85bfe1ce04d7b1/lib/tasks/etl.rake#L18
-[4]: https://github.com/alphagov/content-performance-manager/blob/b886c5489c79a6b5a58190e305ea9746fd7db666/lib/tasks/etl.rake#L29
-[5]: https://github.com/alphagov/content-performance-manager/blob/1dc3f7becf146bbd5f346634e98d05ad76477a8e/lib/tasks/etl.rake#L7
-[6]: https://github.com/alphagov/content-performance-manager/blob/3c73c534d1a42208d6b2bdaef57d3b79d1998ea3/lib/tasks/etl.rake
+[2]: https://github.com/alphagov/content-data-api/blob/87116d3ab6f75c0d3dd8be9d4aff80865702f1b9/lib/tasks/etl.rake#L8
+[3]: https://github.com/alphagov/content-data-api/blob/8dd689e6917d7bbbf23a99387b85bfe1ce04d7b1/lib/tasks/etl.rake#L18
+[4]: https://github.com/alphagov/content-data-api/blob/b886c5489c79a6b5a58190e305ea9746fd7db666/lib/tasks/etl.rake#L29
+[5]: https://github.com/alphagov/content-data-api/blob/1dc3f7becf146bbd5f346634e98d05ad76477a8e/lib/tasks/etl.rake#L7
+[6]: https://github.com/alphagov/content-data-api/blob/3c73c534d1a42208d6b2bdaef57d3b79d1998ea3/lib/tasks/etl.rake
