@@ -54,7 +54,7 @@ Desired behaviour: apps handle these errors better, for example by offloading th
 
 Sidekiq worker sends something to the publishing-api, which times out. Sidekiq retries, the next time it works.
 
-Desired behaviour: errors are not reported to Sentry until retries are exhausted. See [this PR for an example](https://github.com/alphagov/content-performance-manager/pull/353).
+Desired behaviour: errors are not reported to Sentry until retries are exhausted. See [this PR for an example](https://github.com/alphagov/content-data-api/pull/353).
 
 Relevant: https://github.com/getsentry/raven-ruby/pull/784
 
