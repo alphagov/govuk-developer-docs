@@ -16,7 +16,7 @@ Ruby code needs to go into `/app`.
 
 You can pull down the latest version of the template by running:
 
-```
+```sh
 bin/update
 ```
 
@@ -28,13 +28,13 @@ bin/update
 
 The first time you'll need to bundle:
 
-```
+```sh
 bundle install
 ```
 
 To run the app locally:
 
-```
+```sh
 ./startup.sh
 ```
 
@@ -48,7 +48,7 @@ It doesn't need any permissions.
 
 Use it like this:
 
-```
+```sh
 export GITHUB_TOKEN=somethingsomething
 ./startup.sh
 ```
@@ -57,7 +57,7 @@ export GITHUB_TOKEN=somethingsomething
 
 Build the site with:
 
-```
+```sh
 NO_CONTRACTS=true bundle exec middleman build
 ```
 
@@ -76,27 +76,35 @@ Install [pre-commit][]:
 
 Homebrew:
 
-`brew install pre-commit`
-`pre-commit install`
+```sh
+brew install pre-commit
+pre-commit install
+```
 
 Pip:
 
-`pip install pre-commit`
+```sh
+pip install pre-commit
+```
 
 Install [vale][] linter:
 
 Homebrew:
 
-`brew tap ValeLint/vale`
-`brew install vale`
+```sh
+brew tap ValeLint/vale
+brew install vale
+```
 
 Install the binary:
 
 Download the [latest release](https://github.com/valelint/vale/releases).
 
-`wget https://github.com/ValeLint/vale/releases/download/0.9.0/vale_0.9.0_Linux_64-bit.tar.gz`
-`tar zxvf vale_0.9.0_Linux_64-bit.tar.gz`
-`chmod +x vale && mv vale /usr/local/bin/vale`
+```sh
+wget https://github.com/ValeLint/vale/releases/download/0.9.0/vale_0.9.0_Linux_64-bit.tar.gz
+tar zxvf vale_0.9.0_Linux_64-bit.tar.gz
+chmod +x vale && mv vale /usr/local/bin/vale
+```
 
 ## Licence
 
