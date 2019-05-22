@@ -59,9 +59,10 @@ Follow steps 1 - 7 in [Set up your MFA](#3-set-up-your-mfa). Then:
 
 An account in AWS doesn't give you access to anything, you'll need to be given rights.
 
-Add yourself to a lists of users found in [the data for the infra-security project][infra-terra]. There are 4 groups:
+Add yourself to a lists of users found in [the data for the infra-security project][infra-terra]. There are 5 groups:
 
-- `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure, Architects and Lead Developers of GOV.UK and anyone else working on the AWS migration
+- `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure
+- `govuk-internal-administrators`: people in GOV.UK who are working on GOV.UK infrastructure including Architects, Lead Developers and anyone else working on the AWS migration
 - `govuk-powerusers`: anyone else who can have production access on GOV.UK
 - `govuk-platformhealth-powerusers`: as above but for members of the GOV.UK Platform Health team
 - `govuk-users`: anyone else who needs integration access on GOV.UK
@@ -73,7 +74,9 @@ to the [users page in AWS IAM][iam] and selecting your profile.
 arn:aws:iam::<account-id>:user/<firstname.lastname>@digital.cabinet-office.gov.uk
 ```
 
-After your PR has been merged, someone from the `govuk-administrators` group needs to deploy the `infra-security` project.
+After your PR has been merged, someone from the `govuk-administrators`
+or `govuk-internal-administrators` group needs to deploy the
+`infra-security` project.
 
 👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
 
