@@ -37,6 +37,7 @@ Options for "Account":
 Options for "Role":
 
 - `govuk-administrators`
+- `govuk-internal-administrators`
 - `govuk-powerusers`
 - `govuk-platformhealth-powerusers`
 - `govuk-users`
