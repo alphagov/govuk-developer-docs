@@ -18,7 +18,7 @@ to our AWS environments. Specifically, the level of access your Amazon Resource 
 
 - `govuk-users` (`role_user_user_arns`) can't deploy anything
 - `govuk-powerusers` (`role_poweruser_user_arns`) and `govuk-platformhealth-powerusers` (`role_platformhealth_poweruser_user_arns`) can deploy everything except IAM (users and policies).
-- `govuk-administrators` (role_admin_user_arns) can deploy everything including IAM.
+- `govuk-administrators` (`role_admin_user_arns`) and `govuk-internal-administrators` (`role_internal_admin_user_arns`) can deploy everything including IAM.
 
 You can find which class of user you are (what your arn has been assigned to) [in the infra-security
 project in
