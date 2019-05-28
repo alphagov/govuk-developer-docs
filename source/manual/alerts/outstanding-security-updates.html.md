@@ -4,7 +4,7 @@ title: Outstanding security updates
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-04-17
+last_reviewed_on: 2019-05-28
 review_in: 1 months
 ---
 
@@ -54,7 +54,7 @@ assistance.
 
 You may see an alert telling you that a connection to NRPE could not be
 established. See [Nagios NRPE connection
-failures](alerts/nagios-nrpe-connection-failures.html) for more
+failures](/manual/nagios-nrpe-connection-failures.html) for more
 information.
 
 ### 'Problem with MergeList' error
