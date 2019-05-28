@@ -161,10 +161,16 @@ Once your VM is running, you can SSH into it with:
 
 ### Set your Git username and email
 
-You can assign your name and email to commits on the VM:
+You can associate your git credentials with commits on the VM by setting your global configs on the dev machine.
 
     dev$ git config --global user.email "friendly.giraffe@digital.cabinet-office.gov.uk"
     dev$ git config --global user.name "Friendly Giraffe"
+
+It's worth noting at this point that if you ever need to destroy and rebuild your machine, you'll need to follow these steps again. Therefore, it's probably worth creating a file on your host machine (e.g. `~/.bash_profile_vm`) and writing these commands in there so that you can easily transfer them into your VM when needed.
+
+    mac$ more ~/.bash_profile_vm | pbcopy
+    dev$ vi ~/.bash_profile # then paste the contents in
+    dev$ source ~/.bash_profile # load it for the current session (or 'exit' and 'vagrant ssh' again)
 
 ### Config for ZSH users
 
@@ -203,6 +209,13 @@ If installing the Python dependencies for fabric-scripts fails, your version of 
 👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
 
 👉 Then, [set up your CLI access for AWS](/manual/aws-cli-access.html)
+
+NB, this is another candidate for adding to your `~/.bash_profile_vm`:
+
+```sh
+# Set up govukcli alias
+sudo ln -sf /var/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
+```
 
 ## 7. Import production data
 
