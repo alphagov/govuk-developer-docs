@@ -4,13 +4,13 @@ title: 'RabbitMQ: Consumers not processing messages in queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-11-14
+last_reviewed_on: 2019-05-29
 review_in: 6 months
 ---
 
 [Read more about how we use RabbitMQ][rabbitmq]
 
-For some named RabitMQ queues, we run a check that messages are being
+For some named RabbitMQ queues, we run a check that messages are being
 consumed.  This is currently only the case for the
 `email_alert_service` and `email_unpublishing` queues.  The queue name
 should indicate the app responsible for consuming the queue.
@@ -41,8 +41,8 @@ they will be processed once the problem is resolved.
 
 ## Investigation
 
-The same approach as "[RabbitMQ: No consumers listening to
-queue][nocon]".
+The same approach as [RabbitMQ: No consumers listening to
+queue][nocon].
 
 [rabbitmq]: /manual/rabbitmq.html
 [rabbitmq_control_panel]: /manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel
