@@ -181,7 +181,7 @@ Most of our apps are written in Ruby and use [Bundler][] to manage their depende
 
     dev$ ./update-bundler.sh
 
-There are also some Python apps, which use [PIP][]. You’ll probably need to install those dependencies too, so run:
+There are also some Python apps, which use [pip][]. You’ll probably need to install those dependencies too, so run:
 
     dev$ ./update-pip.sh
 
@@ -196,7 +196,7 @@ If installing the Python dependencies for fabric-scripts fails, your version of 
 > `~/govuk/` on your host machine is mounted as `/var/govuk` inside the VM. Any app repositories you clone should go here.
 
 [Bundler]: http://bundler.io/rationale.html
-[PIP]: https://pip.pypa.io/en/stable/
+[pip]: https://pip.pypa.io/en/stable/
 
 ## 6. Get AWS access
 
