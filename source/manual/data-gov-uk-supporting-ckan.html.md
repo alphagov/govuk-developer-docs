@@ -4,7 +4,7 @@ title: Support tasks for CKAN
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-02
+last_reviewed_on: 2019-05-30
 review_in: 6 months
 ---
 [ckan]: https://ckan.org
