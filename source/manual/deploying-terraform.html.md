@@ -51,7 +51,12 @@ Always `plan` first, check the output is what you expect, then `apply`.
 
 The Ruby script `tools/deploy.rb` in the `govuk-aws` repository takes care of requesting temporary AWS credentials with an assumed role and queuing the deployment Jenkins job.
 
-To use this script, you need to have [set up AWS CLI correctly](/manual/aws-cli-access.html) and have a [GitHub personal access token](https://github.com/settings/tokens).
+To use this script, you need to have [set up AWS CLI
+correctly][aws-cli-access] and have a [GitHub personal access
+token][github-token] (with the `read:org` scope).
+
+[aws-cli-access]: /manual/aws-cli-access.html
+[github-token]: https://github.com/settings/tokens
 
 Then, run the script like the following example:
 
