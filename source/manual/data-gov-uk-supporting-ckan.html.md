@@ -11,6 +11,7 @@ review_in: 6 months
 [dgu-ckan]: https://ckan.publishing.service.gov.uk
 [ckanext-datagovuk]: /apps/ckanext-datagovuk.html
 [ckandocs]: http://docs.ckan.org/en/ckan-2.7.4/maintaining/paster.html
+[ckan-api]: https://docs.ckan.org/en/2.8/api/
 
 [CKAN][dgu-ckan] is the publishing application for data.gov.uk.  [ckanext-datagovuk] is the primary [CKAN] extension for data.gov.uk.
 
@@ -55,55 +56,30 @@ paster --plugin=ckanext-harvest harvester initdb -c /var/ckan/ckan.ini
 
 ### Accessing the CKAN API
 
-There are times when it can be useful to access the CKAN API when debugging or resolving issues.
+There are times when it can be useful to access the [CKAN API][ckan-api] when debugging or resolving issues. Note that the responses will be different depending on your access permissions.
 
-Note that the responses will be different depending on your access permissions.  The ID can be specified as either the GUID or the URL slug (referred to as a URL name in CKAN).
-
-####  Listing all datasets
-
-```
-https://data.gov.uk/api/3/action/package_list
-```
-
-#### Viewing a dataset
+For APIs that require an ID, the ID can be specified as either the GUID or the URL slug (referred to as a URL name in CKAN) e.g.
 
 ```
 https://data.gov.uk/api/3/action/package_show?id=f760008b-86d3-4bbb-89da-1dfe56101554
 ```
 
-#### Searching for a dataset
+Here are some more complex examples of using the API, as well as some where the documentation is more sparse.
 
 ```
-https://data.gov.uk/api/3/action/package_search?q=title:wine+cellar
-```
-
-#### Find all packages created during a specific timeframe
-
-```
+# Find all packages created during a specific timeframe
 https://data.gov.uk/api/3/action/package_search?q=metadata_created:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
-```
 
-#### Find all packages modified during a specific timeframe
-
-```
+# Find all packages modified during a specific timeframe
 https://data.gov.uk/api/3/action/package_search?q=metadata_modified:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
-```
 
-#### List all publishers
-
-```
+# List all publishers
 https://data.gov.uk/api/3/action/organization_list
-```
 
-#### View a publisher record
-
-```
+# View a publisher record
 https://data.gov.uk/api/3/action/organization_show?id=government_digital_service
-```
 
-#### View a user (e.g. to get CKAN API key for a publishing user)
-
-```
+# View a user (e.g. to get CKAN API key for a publishing user)
 https://data.gov.uk/api/3/action/user_show?id=user_d484581
 ```
 
