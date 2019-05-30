@@ -109,7 +109,7 @@ Some processes are dependent on your local gov.uk setup being in `~/govuk`:
 
 ### 3.1 Ensure your Ruby setup works
 
-You'll want to install the [specific version of Ruby in govuk-puppet][https://github.com/alphagov/govuk-puppet/blob/master/.ruby-version#L1] (currently `rbenv install 1.9.3-p550`), as the default system Ruby is too locked-down.
+You'll want to install the [specific version of Ruby in govuk-puppet](https://github.com/alphagov/govuk-puppet/blob/master/.ruby-version#L1) (currently `rbenv install 1.9.3-p550`), as the default system Ruby is too locked-down.
 
 Now verify that rbenv is working as expected:
 
