@@ -163,9 +163,10 @@ UUID.
 
 Deleting a dataset:
 
-```
-paster --plugin=ckan dataset delete DATASET_NAME -c /var/ckan/ckan.ini
-```
+1. Find the dataset in the CKAN UI
+2. Click on the 'Manage' button, then the 'Delete' button at the bottom of the page
+
+> The 'Delete' button is currently not available for draft datasets. In order to soft-delete a draft dataset, follow the above steps, but manually change 'edit' to 'delete' on the 'Manage' page for the dataset.
 
 Purging a dataset:
 
