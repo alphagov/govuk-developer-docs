@@ -4,12 +4,12 @@ title: Fetch analytics data for search failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-03-01
+last_reviewed_on: 2019-05-31
 review_in: 6 months
 ---
 
 This checks the latest build state of [a job in production
-Jenkins](https://deploy.publishing.service.gov.uk/job/search-fetch-analytics-data/)
+Jenkins](https://deploy.blue.production.govuk.digital/job/search-api-fetch-analytics-data/)
 which runs every night and updates all documents in the search index with pageview data from
 Google Analytics.
 
