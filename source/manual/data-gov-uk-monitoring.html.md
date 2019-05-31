@@ -39,7 +39,7 @@ Pingdom monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downti
 
 ## Log.it
 
-Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas]. Example query: `source_host: "gds-data-discovery.data-gov-uk.find-data-beta" && access.response_code: 500`.
+Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas]. Example query: `source_host: "gds-data-gov-uk.data-gov-uk.find-data-beta" && access.response_code: 500`.
 
 ## Sidekiq ([Publish])
 
