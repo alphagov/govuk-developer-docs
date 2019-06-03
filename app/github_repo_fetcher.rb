@@ -35,6 +35,7 @@ private
         builder.response :logger
         builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
         builder.use Octokit::Response::RaiseError
+        builder.use Faraday::Request::Retry, exceptions: Faraday::Request::Retry::DEFAULT_EXCEPTIONS + [Octokit::ServerError]
         builder.adapter Faraday.default_adapter
       end
 
