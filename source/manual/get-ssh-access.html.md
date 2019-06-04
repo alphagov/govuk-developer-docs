@@ -72,9 +72,8 @@ Test that it works by running:
     mac$ govukcli set-context integration
     mac$ govukcli ssh backend
 
-Next, you'll need to do the same thing inside your VM:
+You should be able to do the same thing in your VM:
 
-    dev$ sudo ln -s /var/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
     dev$ govukcli set-context integration
     dev$ govukcli ssh backend
 
