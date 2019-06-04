@@ -93,6 +93,11 @@ If you have trouble installing the Vagrant DNS plugin due to Xcode version compa
 
 1. Test that it all works by running `ssh -T git@github.com`.
 
+1. While you're here, associate your name and email to your git commits:
+
+    mac$ git config --global user.email "friendly.giraffe@digital.cabinet-office.gov.uk"
+    mac$ git config --global user.name "Friendly Giraffe"
+
 [GitHub]: https://www.github.com/
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 [alphagov]: https://github.com/alphagov
@@ -158,13 +163,6 @@ Once your VM is running, you can SSH into it with:
 > See the full command list by typing `vagrant --help`
 
 [govuk-tech-blog]: https://gdstechnology.blog.gov.uk/category/gov-uk/
-
-### Set your Git username and email
-
-You can assign your name and email to commits on the VM:
-
-    dev$ git config --global user.email "friendly.giraffe@digital.cabinet-office.gov.uk"
-    dev$ git config --global user.name "Friendly Giraffe"
 
 ### Config for ZSH users
 
