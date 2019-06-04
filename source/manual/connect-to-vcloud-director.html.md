@@ -16,10 +16,12 @@ You can use either Cisco AnyConnect or openconnect to do this.
 
 ## Prerequisites
 
-1. Get the VPN client certificate from the [2nd line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/carrenza).
+1. Get the VPN client certificate from the [2nd line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/carrenza/vpn-certificate.gpg).
 2. Save the certificate to a file on your machine (eg. `vcloud.pem`).
-3. Get the VPN credentials, also from the 2nd line password store.
-   You'll need to use an app (such as Google Authenticator) to turn the TOTP
+3. Get the VPN credentials, also from the 2nd line password store (e.g.
+for integration this would be in [vcloud-integration.gpg](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/carrenza) ). You can find
+additional instructions about decrypting these files [here](https://github.com/alphagov/govuk-secrets/blob/master/pass/README.md) under the heading "Get a password".
+4. You'll need to use an app (such as Google Authenticator) to turn the TOTP
    secret into a 2FA code.
 
 ## Connecting with Cisco AnyConnect
@@ -65,4 +67,4 @@ You can use either Cisco AnyConnect or openconnect to do this.
 
 Once you've connected to the VPN, visit https://vcloud.carrenza.com/cloud/org/{organisation}/.
 You can get the organsation name from the 2nd line password store entry for the relevant
-vCloud environment.
+vCloud environment (e.g. for the staging environment you would use [this file](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/carrenza/vcloud-staging.gpg) ).
