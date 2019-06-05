@@ -37,6 +37,7 @@ To configure an SSH action:
 
 - Go in to the Settings
 - Select the "Actions" tab
+- Delete all the existing actions (SSH, RDP, ...)
 - Click "New action..."
 - Select "Command" as the Action type.
 - Put "SSH " as the Name
