@@ -45,7 +45,7 @@ To configure an SSH action:
     - For MacOS, enter the following command in the "String" field:
         - `osascript -e 'tell app "Terminal" to do script "~/govuk/govuk-guix/bin/govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$"'`
         - This assumes you have the `govuk-guix` Git repository cloned in
-          the usual location, and that you've got `govuk connect` working.
+         `~/govuk/govuk-guix`, and that you've got `govuk connect` working.
     - For GNU/Linux, with the Gnome Terminal installed (which includes
       Ubuntu), use the following command:
         - `/usr/bin/gnome-terminal -x govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$`
