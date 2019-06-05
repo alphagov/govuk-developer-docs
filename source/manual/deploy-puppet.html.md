@@ -106,4 +106,4 @@ brief outage, e.g. MySQL.
 
         fab $environment class:mysql_master puppet.enable puppet
 
-5.  Schedule a time to actually restart the service if neccessary.
+5.  Schedule a time to actually restart the service if necessary.
