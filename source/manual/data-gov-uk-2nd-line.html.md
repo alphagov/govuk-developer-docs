@@ -21,8 +21,10 @@ There is a [user list](https://ckan.publishing.service.gov.uk/user) which can be
 ### Create a user account
 There are two routes for creating an new account for a new user:
 
-1. A publishing organisation's 'Admin' user(s) can invite new users to create an account.  The 'Admin' user should follow the instructions in [Assign users to publishers](#assign-users-to-publishers-setting-user-permissions), but login as themselves rather than a sysadmin user.  This route is also described in the [publisher guidance][dgu-docs].
-2. A sysadmin user (e.g. 2nd line) can create an account for the new user.  Follow the instructions in [Assign users to publishers](#assign-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.  An invite email is generated and sent to the publisher.
+1. A publishing organisation's 'admin' user(s) can invite new users to create an account.  The admin user should [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite the new user to join. We should encourage this approach as the organisation admin is best placed to know whether or not the new user should have access, as well as reducing the number of requests to 2nd line support.
+2. A sysadmin user (e.g. 2nd line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+ - Follow the instructions in [Assign users to publishers](#assign-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
+ - An invite email is generated and sent to the publisher.
 
 > An account should only be created if the user intends to publish on data.gov.uk.  Previously users have been able to register accounts to follow publishers.  This is no longer offered.
 
