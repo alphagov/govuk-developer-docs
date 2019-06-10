@@ -140,6 +140,8 @@ Organograms are files that allow the people structure of an organisation to be v
 
 Organograms are the only datasets in data.gov.uk where we host the data itself rather than linking to an external resource.  The data files are hosted in a S3 bucket (named `datagovuk-integration-ckan-organogram`, `datagovuk-staging-ckan-organogram` or `datagovuk-production-ckan-organogram`, depending on the environment).
 
+Read [publishing organograms](https://guidance.data.gov.uk/publish_and_manage_data/harvest_or_add_data/add_data/#publishing-organograms) to find out how to upload new organograms and datasets. You can direct user queries to that guidance.
+
 ### XLS to CSV Conversion
 Publishers upload their organograms as a Excel (XLS) file that contains macros.  A script is run which converts these to the two CSV files (junior staff and senior staff).
 
