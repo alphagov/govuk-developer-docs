@@ -5,7 +5,7 @@ section: Databases
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-14
+last_reviewed_on: 2019-06-10
 review_in: 1 month
 ---
 
@@ -17,7 +17,7 @@ of an app, it is talking to a regular PostgreSQL server.
 ## Where it lives
 
 * In Carrenza, it lives on `postgresql-primary-1.backend`
-* In AWS, it lives on `db-admin`
+* We do not use pgbouncer in AWS
 
 The [content-data-api](/apps/content-data-api.html),
 [mapit](/apps/mapit.html), and [transition](/apps/transition.html)
