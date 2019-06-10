@@ -29,11 +29,11 @@ Record critical alerts that aren't easily solved to the [GOV.UK 2nd line Trello 
 
 2nd line should investigate these alerts when there is downtime.
 
-You do not have to fix the issue necessarily.
+You do not necessarily have to fix the issue.
 
-We record these alerts here because so other developers are aware that they are likely to happen.
+We record these alerts here so that other developers are aware that they are likely to happen.
 
-These alerts shouldn't cause big issues but that's not to say it won't - which is why we should log it here.
+These alerts shouldn't cause big issues, but that's not to say they won't, which is why we should log them in Trello.
 
 ## Declaring and responding to an incident
 Find out [what to do if there’s an incident](/manual/incident-management-guidance.html).
