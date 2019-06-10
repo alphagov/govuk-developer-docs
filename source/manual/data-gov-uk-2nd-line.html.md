@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-platform-health"
 title: Common 2nd line support requests for data.gov.uk
-section: data.gov.uk
+section: 2nd line
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-03-27
