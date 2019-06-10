@@ -33,7 +33,7 @@ Most alerts have some documentation in our [developer docs](https://docs.publish
 
 This [diagram shows you how to process tickets](https://drive.google.com/a/digital.cabinet-office.gov.uk/file/d/0B72Q_z4wkLglYkVQd01LSWYwNjNha3NrYVVIMF91eXk3NU1r/view?usp=sharing).
 
-This [page is on how to manage Zendesk tickets](/https://docs.publishing.service.gov.uk/manual/managing-product-support-tickets-zendesk.html).
+This [page is on how to manage Zendesk tickets](https://docs.publishing.service.gov.uk/manual/managing-product-support-tickets-zendesk.html).
 
 ## PagerDuty
 This is our escalation workflow for some key alerts that are likely to require urgent attention. The escalation order is:
