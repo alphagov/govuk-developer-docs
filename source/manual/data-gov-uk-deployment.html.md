@@ -22,6 +22,7 @@ review_in: 6 months
 [new release]: https://github.com/alphagov/datagovuk_find/releases
 [Publish's travis.yml]: https://github.com/alphagov/datagovuk_publish/blob/master/.travis.yml#L30-L50
 [Find's travis.yml]: https://github.com/alphagov/datagovuk_find/blob/af8cfa61584b16e4e1ad7bedbd1b7f890cec940d/.travis.yml#L44-L48
+[cf-ssh]: https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html#ssh-env
 
 ## Find and Publish (Rails Apps)
 
@@ -72,6 +73,18 @@ $ ./scripts/deploy-production.sh
 ```
 
 For more advanced uses of the PaaS that are not covered in the PaaS internal documentation (e.g. provisioning an app using a buildpack that is not Ruby or Java), refer to the [Cloud Foundry documentation][cf-docs].
+
+### Set up interactive SSH session
+
+You may need this to run things such as rake tasks:
+
+```
+/tmp/lifecycle/shell
+```
+
+You need to run this every time you start an SSH session.
+
+For more information, refer to the [Cloud Foundry documentation on SSH Session Environment][cf-ssh].
 
 ## CKAN
 
