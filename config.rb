@@ -48,6 +48,10 @@ helpers do
     @related_things ||= RelatedThings.new(manual, current_page)
   end
 
+  def section_url
+    StringToId.convert(current_page.data.section)
+  end
+
   def page_title
     (defined?(locals) && locals[:title]) || [current_page.data.title, current_page.data.section].compact.join(' - ')
   end

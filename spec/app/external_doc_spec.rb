@@ -37,5 +37,10 @@ RSpec.describe ExternalDoc do
     it 'adds an id attribute to all headers so they can be accessed from a table of contents' do
       expect(html).to have_selector('h2#tldr')
     end
+
+    it 'converts heading IDs properly' do
+      expect(html).to have_selector('h3#data-gov-uk')
+      expect(html).to have_selector('h3#patterns-style-guides')
+    end
   end
 end
