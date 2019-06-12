@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-finding-brexit"
+owner_slack: "#govuk-searchandnav"
 title: How to debug underperforming search
 section: Monitoring
 layout: manual_layout
