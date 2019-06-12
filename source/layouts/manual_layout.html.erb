@@ -1,4 +1,5 @@
-<% html = "<h1 id='header'>#{current_page.data.title}</h1>#{yield}" %>
+<% breadcrumb = "<p><a href='/manual.html##{section_url}'>#{current_page.data.section}</a></p>" %>
+<% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1>#{yield}" %>
 
 <% content_for :page_description, Snippet.generate(html) %>
 

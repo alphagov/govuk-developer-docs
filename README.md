@@ -63,6 +63,10 @@ NO_CONTRACTS=true bundle exec middleman build
 
 This will create a bunch of static files in `/build`.
 
+### Testing
+
+`bundle exec rake`
+
 ### Deployment
 
 This project is re-deployed by a Jenkins task every hour (to pick up external

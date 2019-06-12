@@ -1,5 +1,6 @@
 require 'html/pipeline'
 require 'uri'
+require_relative './string_to_id'
 
 class ExternalDoc
   def self.fetch(repository:, path:)
@@ -118,11 +119,7 @@ class ExternalDoc
 
       doc.css('h1, h2, h3, h4, h5, h6').each do |node|
         text = node.text
-        id = text
-               .downcase # lower case
-               .gsub(/<[^>]*>/, '') # crudely remove html tags
-               .gsub(/[^\w\- ]/, '') # remove any non-word characters
-               .tr(' ', '-') # replace spaces with hyphens
+        id = StringToId.convert(text)
 
         headers[id] += 1
 
