@@ -19,7 +19,7 @@ If this process fails then please escalate to Platform Health for further invest
 This task can be manually run with the following command:
 
 ```
-bundle exec rake search:migrate_schema CONFIRM_INDEX_MIGRATION_START=true SEARCH_INDEX=<index_alias_name>
+bundle exec rake search:migrate_schema SEARCH_INDEX=<index_alias_name>
 ```
 
 [reindexing]: /manual/reindex-elasticsearch.html
