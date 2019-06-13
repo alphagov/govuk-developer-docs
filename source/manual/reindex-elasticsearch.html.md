@@ -40,7 +40,7 @@ complete.
 To reindex, run the `search:migrate_schema` rake task:
 
 ```
-bundle exec rake search:migrate_schema CONFIRM_INDEX_MIGRATION_START=1 SEARCH_INDEX=alias_of_index_to_migrate
+bundle exec rake search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate
 ```
 
 If you set the last parameter to `SEARCH_INDEX=all`, search-api will reindex all
