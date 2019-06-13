@@ -7,6 +7,11 @@ parent: "/manual.html"
 last_reviewed_on: 2019-05-02
 review_in: 6 months
 ---
+> **Note on AWS**
+>
+> For databases migrated to AWS RDS, the env-sync-and-backup was replaced by the [govuk_env_sync](/manual/govuk-env-sync.html).
+> The env-sync-and-backup data synchronisation is still in use for synchronisation of non-migrated
+> databases into the integration environment.
 
 Data and assets/attachments are synced from production to staging and integration every night.
 
