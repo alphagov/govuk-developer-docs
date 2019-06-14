@@ -69,7 +69,7 @@ This will create a bunch of static files in `/build`.
 
 ### Deployment
 
-This project is re-deployed by a Jenkins task every hour (to pick up external
+This project is re-deployed by a production Jenkins task every hour between 9am and 7pm (to pick up external
 changes). It is [hosted on S3][terraform].
 
 ## Pre-commit hooks
