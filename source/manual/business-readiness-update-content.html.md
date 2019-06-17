@@ -5,9 +5,11 @@ section: Business readiness finder
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-04-16
+last_reviewed_on: 2019-06-21
 review_in: 3 months
 ---
+
+*If you are trying to update the business finder facets or questions, see: [Publish changes to the business readiness finder](/manual/business-readiness-publish-changes.html)*
 
 Business readiness facet tagging happens in [content-tagger](https://content-tagger.integration.publishing.service.gov.uk/facet_groups).
 
