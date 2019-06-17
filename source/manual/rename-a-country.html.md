@@ -51,7 +51,7 @@ In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher
 
 **Example PR:** [https://github.com/alphagov/search-api/pull/1436](https://github.com/alphagov/search-api/pull/1436)
 
-This will update www.gov.uk/foreign-travel-advice/world/`<country_slug>` to www.gov.uk/foreign-travel-advice/world/`<new_country_slug>`.
+This will update www.gov.uk/world/`<country_slug>` to www.gov.uk/world/`<new_country_slug>`.
 
 In [Search API](https://github.com/alphagov/search-api):
 
