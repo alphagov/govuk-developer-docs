@@ -56,7 +56,7 @@ Go to the [Release application](https://release.publishing.service.gov.uk) and f
 - Check what you will be deploying. If there's other people's code to deploy, ask them whether they're okay for the changes to go out.
 - Check if there's a deploy note for the application, to see if there are any special instructions or reasons not to deploy. Individual app deploy freezes are usually announced here.
 - Check in `#govuk-deploy` if someone's already in the process of deploying the app. This is particularly important for Puppet where there is a delay of 30 minutes between staging and production deployments. Deployments attributed to "Jenkins" are AWS automated deployments and can be ignored for this purpose.
-- Announce in `#govuk-deploy` of your intention to deploy, and in `#govuk-2ndline` if you anticipate your release causing any issues.
+- Announce in `#govuk-2ndline` if you anticipate your release causing any issues.
 
 ### 4. Deploy to staging
 
