@@ -19,13 +19,15 @@ alerts, and allow you to easily act on them.
 
 To connect Nagstamon to an Icinga instance:
 
-- Go in to the Settings
-- Select "New server..."
-- Enter an appropriate "Monitor name", "Integration" for example.
+- Go in to the Settings.
+- Select "New server...".
+- Choose "Monitor Type" of "Icinga".
+- Enter an appropriate "Monitor name", "GOV.UK Integration" for example.
 - Enter the URL for the Icinga instance to the Monitor URL and Monitor
-  CGI URL fields.
-- Make the Username and Password blank, and tick "Save password"
-- Click "OK"
+  CGI URL fields (i.e. `https://alert.integration.publishing.service.gov.uk/`
+  should be entered in both fields for integration).
+- Leave the Username and Password blank, and tick "Save password".
+- Click "OK".
 
 ### Actions
 
