@@ -56,7 +56,7 @@ The `aptly publish` command requires the apt passphrase that can be found in the
 
 The version of the Terraform package that is installed in CI is managed in Puppet. Update the [govuk_jenkins::packages::terraform::version](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/packages/terraform.pp) parameter with the new version, after the package is available in Aptly.
 
-## Update the Terraform version in govuk-aws
+### Update the Terraform version in govuk-aws
 
 In [govuk-aws](https://github.com/alphagov/govuk-aws):
 
