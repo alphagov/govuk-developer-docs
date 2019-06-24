@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-02-25
+last_reviewed_on: 2019-06-20
 review_in: 6 months
 related_applications: [travel-advice-publisher, content-tagger, whitehall]
 ---
