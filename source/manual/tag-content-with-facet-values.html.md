@@ -22,12 +22,10 @@ You'll need GDS Editor permissions for content tagger.
 2. Click on the facet group you'd like to use for tagging content.
 3. Enter the page path you'd like to edit.
 4. Type to search available facets in the "Facets" select field and assign the appropriate values.
-5. (Optional) If you'd like to pin this content item to the top of finder results (currently only supported in the _Find EU Exit Guidance for Business_ finder) check the appropriate box.
-6. (Optional) If you'd like to notify subscribers to the finder using this facet group than new content has been added to the search results check the appropriate box and fill the notification message. This message appears in the resulting email notification telling users what has changed and why.
-7. Click "Update facet values". The changes will patch links in the Publishing API and take effect as soon as they reach the content-store.
+5. (Optional) If you'd like to notify subscribers to the finder using this facet group than new content has been added to the search results check the appropriate box and fill the notification message. This message appears in the resulting email notification telling users what has changed and why.
+6. Click "Update facet values". The changes will patch links in the Publishing API and take effect as soon as they reach the content-store.
 
 ![content-tagger screenshot](images/tagging-content-with-facets.png)
-
 
 ### How to bulk tag business readiness content to facet values
 
