@@ -43,6 +43,12 @@ SubscriptionContent.where(content_change: content_change).count
 SubscriptionContentWorker.new.perform(content_change.id)
 ```
 
+#### Resend the emails for a content change in bulk (ignore ones that have already gone out)
+
+```ruby
+ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |content_change| SubscriptionContentWorker.new.perform(content_change.id)  }
+```
+
 #### Check sent, pending and failed email counts for a content change
 ```bash
  $ bundle exec rake report:content_change_email_status_count[<content_change_id>]
