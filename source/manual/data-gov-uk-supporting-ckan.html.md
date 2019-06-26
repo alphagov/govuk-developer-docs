@@ -212,8 +212,10 @@ psql ckan_production -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
 
 #### Cancelling a current job
 
-To cancel a currently running job, you will require a JOB_ID from the
-[Listing current jobs](#listing-current-jobs) section.
+Sometimes a harvest job can get stuck and not complete, and it's not possible to
+restart/reharvest through the UI. You can get the `JOB_ID` from the
+[Listing current jobs](#listing-current-jobs) section, or from the harvest dashboard
+under "Last Harvest Job".
 
 ```
 paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
