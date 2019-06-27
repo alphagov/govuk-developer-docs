@@ -46,7 +46,7 @@ To fix this problem [re-run the master process again][1]
 
 ## ETL :: no pviews for yesterday
 
-This means the [the ETL master process][1] that runs daily has failed to collect `pageview` metrics from Google Analytics. The issue may originate from the ETL processor responsible for collecting core metrics.
+This means the [the ETL master process][1] that runs daily has failed to collect `pageview` metrics from Google Analytics. The issue may originate from the [ETL processor responsible for collecting core metrics][9].
 
 To fix this problem run the [following rake task][2]:
 
@@ -56,7 +56,7 @@ rake etl:repopulate_views["YYYY-MM-DD","YYYY-MM-DD"]
 
 ## ETL :: no upviews for yesterday
 
-This means the [the ETL master process][1] that runs daily has failed to collect `unique pageview` metrics from Google Analytics. The issue may originate from the ETL processor responsible for collecting core metrics.
+This means the [the ETL master process][1] that runs daily has failed to collect `unique pageview` metrics from Google Analytics. The issue may originate from the [ETL processor responsible for collecting core metrics][9].
 
 To fix this problem run the [following rake task][2]:
 
@@ -66,7 +66,7 @@ rake etl:repopulate_views["YYYY-MM-DD","YYYY-MM-DD"]
 
 ## ETL :: no searches for yesterday
 
-This means the [the ETL master process][1] that runs daily has failed to collect `number of searches` metrics from Google Analytics. The issue may originate from the ETL processor responsible for collecting Internal Searches.
+This means the [the ETL master process][1] that runs daily has failed to collect `number of searches` metrics from Google Analytics. The issue may originate from the [ETL processor responsible for collecting Internal Searches][10].
 
 To fix this problem run the [following rake task][3]:
 
@@ -76,7 +76,7 @@ rake etl:repopulate_searches["YYYY-MM-DD","YYYY-MM-DD"]
 
 ## ETL :: no feedex for yesterday
 
-This means the [the ETL master process][1] that runs daily has failed to collect `feedex` metrics from `support-api`. The issue may originate from the ETL processor responsible for collecting Feedex comments.
+This means the [the ETL master process][1] that runs daily has failed to collect `feedex` metrics from `support-api`. The issue may originate from the [ETL processor responsible for collecting Feedex comments][11].
 
 To fix this problem run the [following rake task][4]:
 
@@ -98,3 +98,6 @@ You can also check for any errors in [Sentry][7] or the [logs in kibana][8]
 [6]: https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L25
 [7]: https://sentry.io/organizations/govuk/issues/?environment=production&project=1461890
 [8]: https://kibana.logit.io/s/283f08f6-d117-48df-9667-c4aa492b81f9/app/kibana#/discover?_g=()&_a=(columns:!(_source),index:'*-*',interval:auto,query:(query_string:(query:'application:%20content-data-api')),sort:!('@timestamp',desc))
+[9]: https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/views_and_navigation_processor.rb
+[10]: https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/internal_search_processor.rb
+[11]: https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/feedex/processor.rb
