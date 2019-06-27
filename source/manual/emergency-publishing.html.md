@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2019-03-12
+last_reviewed_on: 2019-06-27
 review_in: 3 months
 ---
 

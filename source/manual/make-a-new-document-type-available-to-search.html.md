@@ -4,12 +4,12 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-03-25
+last_reviewed_on: 2019-06-27
 review_in: 3 months
 related_applications: [search-api]
 ---
 
-Any document type that the publishing-api knows about can be added to our
+Any document type that the Publishing API knows about can be added to our
 internal search. By default, all document types in internal search also get
 included in the GOV.UK sitemap, which tells external search engines about our
 content.
@@ -27,7 +27,7 @@ If in doubt, use "[edition][edition]", as this is used for most documents.
 Then, modify [mapped_document_types.yml][mapped-doc-types] with the mapping
 from the publishing api document type.
 
-If you want Search to be able to use metadata that isn’t defined in an any
+If you want search to be able to use metadata that isn’t defined in an any
 Search API document type, then you’ll need to add new fields to Search API.
 
 Search API knows how to handle most of the core fields from the publishing
@@ -36,7 +36,7 @@ platform, like `title`, `description`, and `public_updated_at`. It looks at the
 schema uses different fields to render the text of the page, update the
 [IndexableContentPresenter][i-c-presenter] as well.
 
-The part of Search API that translates between publishing api fields and search
+The part of Search API that translates between Publishing API fields and search
 fields is [ElasticsearchPresenter][e-s-presenter].
 Modify this if there is anything special you want search to do with your
 documents (for example: appending additional information to the title).
@@ -53,7 +53,7 @@ Reindex the `govuk` index following the instructions in
 ### 4. Republish all the documents
 
 Republish all the documents. If they have been published already, you can
-republish them with the [publishing-api represent_downstream][task] rake task:
+republish them with the [Publishing API represent_downstream][task] rake task:
 
 ```
 rake represent_downstream:document_type[new_document_type]

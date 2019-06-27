@@ -4,7 +4,7 @@ title: Reprovision a machine
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-17
+last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---
 
@@ -28,7 +28,7 @@ machine will result in downtime.
 
         fab $environment nagios.schedule_downtime:mybox-2.somevdc.production,20
 
-2.  Stop the machine in the vCloud Director using the Flash UI.
+2.  Stop the machine in the vCloud Director.
 3.  Delete the machine in the vCloud Director.
 4.  Remove the certificate for the relevant machine on the
     organisation's Puppet master, e.g.
@@ -71,9 +71,9 @@ machine will result in downtime.
 >
 > If you are still unable to connect to the newly reprovisioned VM after
 > a long period of time (e.g. 20 minutes), try connecting to the
-> machine's console from the vCloud Director Flash UI. VMs have been
-> known to wait at the Grub bootloader screen; if this is the case,
-> press the enter key in the console to start Linux.
+> machine's console from the vCloud Director. VMs have been known to
+> wait at the Grub bootloader screen; if this is the case, press the
+> enter key in the console to start Linux.
 >
 > You won't be able to connect to the Flash console if you're using the
 > "emergency" SSH tunnel to access vCloud.
