@@ -17,6 +17,7 @@ If there is a health check error showing for Content Data API, you can click on 
 This means that [the ETL master process][1] that runs daily that creates aggregations of the metrics failed.
 
 To fix this problem run the [following rake task][5]:
+
 ```bash
 etl:repopulate_aggregations_month["2019-02-14", "2019-02-14"]
 ```
@@ -26,6 +27,7 @@ etl:repopulate_aggregations_month["2019-02-14", "2019-02-14"]
 This means that [the Etl process][1] that runs daily and refreshes the Materialized Views failed to update those views.
 
 To fix this problem run the [following rake task][6]:
+
 ```bash
 etl:repopulate_aggregations_search
 ```
