@@ -66,7 +66,7 @@ rake etl:repopulate_views["YYYY-MM-DD","YYYY-MM-DD"]
 
 ## ETL :: no searches for yesterday
 
-This means the [the ETL master process][1] that runs daily has failed to collect `number of searches` metrics from Google Analytics. The issue may originate from the ELT processor responsible for collecting Internal Searches.
+This means the [the ETL master process][1] that runs daily has failed to collect `number of searches` metrics from Google Analytics. The issue may originate from the ETL processor responsible for collecting Internal Searches.
 
 To fix this problem run the [following rake task][3]:
 
