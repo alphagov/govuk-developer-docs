@@ -68,7 +68,7 @@ rake etl:repopulate_searches["2018-01-01","2018-01-02"]
 
 ## ETL :: no feedex for yesterday
 
-This means the [the ETL master process][1] that runs daily has failed to collect `feedex` metrics from Google Analytics. The issue may originate from the ETL processor responsible for collecting Feedex comments.
+This means the [the ETL master process][1] that runs daily has failed to collect `feedex` metrics from `support-api`. The issue may originate from the ETL processor responsible for collecting Feedex comments.
 
 To fix this problem run the [following rake task][4]:
 
