@@ -4,7 +4,7 @@ title: content-data-api app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-04
+last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---
 
