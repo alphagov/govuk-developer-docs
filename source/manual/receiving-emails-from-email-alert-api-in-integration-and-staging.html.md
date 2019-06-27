@@ -4,7 +4,7 @@ title: Receive emails from Email Alert API in integration and staging
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-26
+last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---
 
@@ -40,6 +40,24 @@ In [govuk-puppet][]:
 Once these changes have been deployed and the environment variable
 `EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test
 that you can receive emails by running the [deliver:to_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=deliver:to_test_email[name@example.com]) [rake task].
+
+## Testing digest emails
+
+It is possible to re-send an entire digest run (e.g. to test changes that have been made to the email template) in integration.  You will need to have added yourself to the whitelist and have a digest subscription (daily or weekly) to something that had a significant update during the time period the digest covers (e.g. daily would be 07:00 the previous day to 07:00 today).
+
+Using a Rails console for email-alert-api, retrieve the digest run that you wish to resend, then delete it, e.g.
+
+```
+digest = DigestRun.where(range: 'daily').last
+DigestRun.delete(digest)
+```
+
+Then rerun the relevant digest initiator worker (either daily or weekly):
+
+```
+DailyDigestInitiatorWorker.perform_async
+WeeklyDigestInitiatorWorker.perform_async
+```
 
 [Notify]: https://www.notifications.service.gov.uk
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
