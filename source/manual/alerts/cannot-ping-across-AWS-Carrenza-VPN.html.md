@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: cannot ping across AWS-Carrenza VPN
+title: Cannot ping across AWS-Carrenza VPN
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-12-13
+last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---
 
@@ -17,12 +17,12 @@ please consult the document
 
 If the VPN is up/active and the ping probes are failing, check the following:
 
-1. the security groups of the AWS EC2 instances allow ping packets, i.e. ICMP
+1. The security groups of the AWS EC2 instances allow ping packets, i.e. ICMP
    packets
 
-2. the firewall in the vCloud in Carrenza allows ping packets
+2. The firewall in the vCloud in Carrenza allows ping packets
 
-3. the VPN routes have been propagated to the subnet of the AWS EC2 instances
+3. The VPN routes have been propagated to the subnet of the AWS EC2 instances
 
-4. in the Carrenza vCloud Graphical User Interface (GUI), check that the subnet
+4. In the Carrenza vCloud Graphical User Interface (GUI), check that the subnet
    of the VPN includes the Carrenza endpoint that is being pinged.

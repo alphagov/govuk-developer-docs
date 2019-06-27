@@ -4,13 +4,9 @@ parent: "/manual.html"
 layout: manual_layout
 section: Applications
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-12-18
+last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---
-
-This document aims to provide instructions for adding authentication to both
-new applications and an existing application. The process of adding
-authentication is much simpler (and less scary) when the application is new.
 
 The process outlined here relies on the [data sync][] to synchronise
 credentials between production and staging which will mean that you will have
@@ -20,7 +16,7 @@ to wait overnight from starting this to completing.
 
 Prior to merging authentication into an existing application there are a
 [number of steps](#before-an-application-can-be-deployed-with-authentication)
-that need to be performed so that users/applications can access the app
+that need to be performed so that users and applications can access the app
 immediately.
 
 To set up an application:
@@ -29,8 +25,7 @@ To set up an application:
 2. Determine whether the whole application or just particular routes need
    authentication.
 3. Configure the application to require authentication. If you're using a
-   non-Rails app it'd be prudent to check [Omniauth][] documentation (GDS-SSO
-   uses Omniauth).
+   non-Rails app, check [OmniAuth][] documentation (GDS-SSO uses OmniAuth).
 4. Update the application tests so that there is a user created or mocked for
    tests. [Example commit][gds-sso-test-user].
 5. If the application is part of [Publishing End-to-end Tests][publishing-e2e]
@@ -58,7 +53,7 @@ To set up an application:
        application added in step 1;
      - Make a note of the created token;
      - Add any necessary app permissions to the application access.
-3. Add the tokens and oauth credentials you have created to [govuk-secrets][].
+3. Add the tokens and OAuth credentials you have created to [govuk-secrets][].
    This is so they can be used in Puppet hieradata. The production tokens should
    also be added to the staging secrets. [Example PR][secrets-example-pr].
 4. Create environment variables in [govuk-puppet][] for the tokens you have
@@ -77,20 +72,20 @@ To set up an application:
 
 ## Deploying
 
-If you are adding authentication to an existing application the deployment
+If you are adding authentication to an existing application, the deployment
 process should be approached with caution as a mistake in copying the
 tokens could break the app in any of the environments.
 
-Once you have completed all the steps above you should start by deploying the
+Once you have completed all the steps above, you should start by deploying the
 branch of your application to integration and check that:
 
-- Authentication is enabled - this can be achieved by doing a curl request on
+- Authentication is enabled - this can be achieved by doing a cURL request on
   the box against a known authenticated route of the application;
 - Check the logs to ensure the application is successfully processing requests.
 
 Once this is verified the branch can be merged.
 
-Prior to deploying to staging and production you should inform 2nd line so they
+Prior to deploying to staging and production, you should inform 2nd line so they
 are prepared for any problems. For each environment you deploy to you should
 repeat the same checks that authentication is enabled and that the application
 is still successfully processing requests.
