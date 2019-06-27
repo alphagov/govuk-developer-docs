@@ -5,24 +5,21 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-05-17
-review_in: 1 months
-next_review_notes: |
-    We may be on AWS entirely by the next review. Lots of this is Carrenza specific.
-    Shortened the review_in to 1 months as AWS reboots require a fix.
+last_reviewed_on: 2019-06-27
+review_in: 3 months
 ---
 
 ## Rules of rebooting
 
--   *Read this page first* to see if any special cases apply to the type of
-    machine you need to reboot.
--   Do not reboot machines in AWS without considering [RE docs](https://docs.google.com/document/d/1QhB9QIpePAoaQTrK-6d0dSMN0pK0wMUH8_KtZ8tAns8/edit?usp=sharing).
-    An issue with load balancer health checks requires additional manual intervention.
-    RE work on resolving this.
--   Do not reboot more than one machine of the same class at the
-    same time.
--   When rebooting clustered applications (such as RabbitMQ) wait
-    for the cluster to recover fully before rebooting the next machine.
+* *Read this page first* to see if any special cases apply to the type of
+  machine you need to reboot.
+* Do not reboot more than one machine of the same class at the
+  same time.
+* When rebooting clustered applications (such as RabbitMQ) wait
+  for the cluster to recover fully before rebooting the next machine.
+* If rebooting machines in AWS, extended reboot times may result in the
+  relevant machine being terminated automatically. If this happens, a
+  new machine will be created automatically.
 
 ## Unattended upgrades
 
@@ -44,8 +41,8 @@ You will then need to decide whether to:
 
 ### Deciding whether to reboot or silence
 
-This can be quite nuanced, before you go ahead with any course of action
-gather evidence and then ask in the \#reliability-eng slack room.
+This can be quite nuanced. Before you go ahead with any course of action,
+gather evidence and then ask in the \#reliability-eng Slack channel.
 
 Find details of the update from the [Ubuntu Security
 Notices](http://www.ubuntu.com/usn/).
@@ -189,29 +186,29 @@ to safely reboot these machines you'll need access to vCloud Director.
 
     > **Note**
     >
-    > Doing this may trigger a Pagerduty alert and trigger 5xx errors on fastly
+    > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
 
--   find the IP addresses of backend-lb-1 and backend-lb-2 for the
+-   Find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
     repo](https://github.com/alphagov/govuk-provisioning/)
--   use vCloud Director to update the NAT rule to point to backend-lb-2.
+-   Use vCloud Director to update the NAT rule to point to backend-lb-2.
     -   The Nat rule will be in [this
         repo](https://github.com/alphagov/govuk-provisioning/).
     -   Go to "Administration"
-    -   find 'GOV.UK Management' in the list of vdcs and click on it
-    -   select the "edge gateway" tab, right click on it and select
+    -   Find 'GOV.UK Management' in the list of vdcs and click on it
+    -   Select the "edge gateway" tab, right click on it and select
         "edge gateway services"
-    -   click the NAT tab.
+    -   Click the NAT tab.
     -   Find the rule corresponding to the rule defined in the
         vcloud-launcher file, and update the DNAT rules to point to the
         ip address of backend-lb-2 by clicking edit, and updating the
         "Translated (Internal) IP/range" field and click ok to save
         these rules
--   reboot backend-lb-1 and wait for it to recover
+-   Reboot backend-lb-1 and wait for it to recover
 
     `fab <environment> -H backend-lb-1.backend vm.reboot`
 
--   use vCloud Director to update the NAT rule to point back to the IP
+-   Use vCloud Director to update the NAT rule to point back to the IP
     address of backend-lb-1
 
 ## Rebooting MySQL backup machines (Carrenza only)
