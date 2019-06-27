@@ -4,7 +4,7 @@ title: Replace an asset's file
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-12
+last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---
 

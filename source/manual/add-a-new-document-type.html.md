@@ -4,8 +4,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-03-03
-review_in: 3 months
+last_reviewed_on: 2019-06-27
+review_in: 6 months
 ---
 
 The [document type] describes what a page on GOV.UK looks like.
