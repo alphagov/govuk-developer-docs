@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-data-informed"
+owner_slack: "#govuk-platform-health"
 title: content-data-api app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout
