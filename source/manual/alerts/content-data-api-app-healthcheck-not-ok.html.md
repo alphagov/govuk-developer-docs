@@ -10,6 +10,14 @@ review_in: 6 months
 
 If there is a health check error showing for Content Data API, you can click on the alert to find out more details about what’s wrong. Here are the possible problems you may see:
 
+#### Note
+
+* The ETL process runs at 7am (UK time) in production.
+* The ETL process runs at 11am (UK time) in staging.
+* The ETL process runs at 1pm (UK time) in integration.
+* All dates for the rake tasks below are inclusive.
+
+
 ## ETL :: no monthly aggregations of metrics for yesterday
 
 This means that [the ETL master process][1] that runs daily that creates aggregations of the metrics failed.
@@ -76,9 +84,17 @@ To fix this problem run the [following rake task][4]:
 rake etl:repopulate_feedex["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
+## Other troubleshooting tips
+
+For problems in the ETL process, you can check the output in [Jenkins][1].
+
+You can also check for any errors in [Sentry][7] or the [logs in kibana][8]
+
 [1]: https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/
 [2]: https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32
 [3]: https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L45
 [4]: https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L71
 [5]: https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L10
 [6]: https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L25
+[7]: https://sentry.io/organizations/govuk/issues/?environment=production&project=1461890
+[8]: https://kibana.logit.io/s/283f08f6-d117-48df-9667-c4aa492b81f9/app/kibana#/discover?_g=()&_a=(columns:!(_source),index:'*-*',interval:auto,query:(query_string:(query:'application:%20content-data-api')),sort:!('@timestamp',desc))
