@@ -8,8 +8,6 @@ last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 
-Please notify Data Informed Content via Slack `#govuk-data-informed` about the alarm. The product is currently in private beta, so the development team will help solve any issues.
-
 If there is a health check error showing for Content Data API, you can click on the alert to find out more details about what’s wrong. Here are the possible problems you may see:
 
 ## ETL :: no monthly aggregations of metrics for yesterday
