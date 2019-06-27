@@ -17,7 +17,7 @@ This means that [the ETL master process][1] that runs daily that creates aggrega
 To fix this problem run the [following rake task][5]:
 
 ```bash
-etl:repopulate_aggregations_month["2019-02-14", "2019-02-14"]
+etl:repopulate_aggregations_month["YYYY-MM-DD", "YYYY-MM-DD"]
 ```
 
 ## ETL :: no <range> searches updated from yesterday
@@ -43,7 +43,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views["2018-01-01","2018-01-01"]
+rake etl:repopulate_views["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
 ## ETL :: no upviews for yesterday
@@ -53,7 +53,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views["2018-01-01","2018-01-01"]
+rake etl:repopulate_views["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
 ## ETL :: no searches for yesterday
@@ -63,7 +63,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][3]:
 
 ```bash
-rake etl:repopulate_searches["2018-01-01","2018-01-02"]
+rake etl:repopulate_searches["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
 ## ETL :: no feedex for yesterday
@@ -73,7 +73,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][4]:
 
 ```bash
-rake etl:repopulate_feedex["2018-01-01","2018-01-01"]
+rake etl:repopulate_feedex["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
 [1]: https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/
