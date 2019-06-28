@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: How to use Logit for GOV.UK
+title: Use Logit for GOV.UK
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-11
+last_reviewed_on: 2019-01-03
 review_in: 6 months
 ---
 
@@ -19,11 +19,27 @@ on [logging](https://gds-way.cloudapps.digital/standards/logging.html).
 ## If Logit is down
 
 If there is a problem with Logit you should report it by following the
-instructions in the Reliability Engineering manual for [reporting an incident](https://reliability-engineering.cloudapps.digital/manuals/logit-incident-management.html).
+instructions in the Reliability Engineering manual for [reporting an incident](https://reliability-engineering.cloudapps.digital/logging.html#logit-incident-management).
+
+## If Logit's data falls off a cliff
+
+If there seems to be no recent data in Logit when there really should be, you can try "restarting" the logstash instance.
+
+You can get an visual indication of logs sent by navigating to the "Settings" for an environment and then looking at the "Statistics". If no logs are coming in, then this might indicate a restart is required.
+
+Navigate to the Logit dashboard and select the "Settings" button next to the environment that is experiencing issues. Next select "Logstash Filters" in the left hand menu. The "Restart Logstash" button is in the "Danger Zone".
+
+When we experienced this on 04/03/2019, the Logstash logs for our Staging environment reported the following error repeatedly:
+
+```
+Exception: io.netty.util.internal.OutOfDirectMemoryError: failed to allocate 16777216 byte(s) of direct memory
+```
+
+> If you don't have Settings option, speak to your tech lead/lead developer who will hopefully be able to help.
 
 ## Accessing Logit
 
-You can [access Logit](https://reliability-engineering.cloudapps.digital/manuals/logit-io-joiners.html) by following the instructions in the Reliability Engineering manual.
+You can [access Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit) by following the instructions in the Reliability Engineering manual.
 
 Logit stores the last environment you visited in a session. If you open any
 direct links externally they will take you to this stack.

@@ -4,7 +4,7 @@ title: mongod replication lag
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
@@ -25,6 +25,9 @@ information.:
     the last heartbeat error message for the secondaries.
 
 ### Possible fixes
+
+> Be mindful that load on the primary mongo node may be increased by
+> the replication and consider to limit restarts to one node at a time.
 
 -   Try restarting one of the lagging mongod secondaries:
 

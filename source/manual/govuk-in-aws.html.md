@@ -1,17 +1,21 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: GOV.UK in AWS
-section: Architecture
+section: Infrastructure
 layout: manual_layout
+type: learn
 parent: "/manual.html"
-last_reviewed_on: 2018-09-03
-review_in: 1 month
+last_reviewed_on: 2019-04-17
+review_in: 3 months
 ---
 
 To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
 it is being migrated to [Amazon Web Services](https://aws.amazon.com/).
 
-This is a transitional step before GOV.UK is migrated to the [Government PaaS](https://www.cloud.service.gov.uk/).
+At the moment, GOV.UK is running most frontend applications (excluding whitehall), the content-store
+and search-api in AWS, whereas publishing-api, asset-manager and publishers remain in Carrenza.
+
+Please refer to the [Release app](https://release.publishing.service.gov.uk/applications) to determine where an app is currently located.
 
 Most services run on [Amazon EC2](https://aws.amazon.com/ec2/), but there are some differences in the infrastructure that you should be aware of.
 

@@ -56,7 +56,6 @@
     - name: Routing
       repos:
         - authenticating-proxy
-        - fastly-configure
         - govuk-cdn-config
         - router
       sites:
@@ -64,9 +63,9 @@
           url: https://github.com/alphagov/router-data
           description: Send routes directly to the router-api (deprecated)
       sites:
-        - name: cdn-configs
-          url: https://github.com/alphagov/cdn-configs
-          description: Configuration for our Fastly
+        - name: govuk-cdn-config-secrets
+          url: https://github.com/alphagov/govuk-cdn-config-secrets
+          description: Configuration secrets for Fastly
 
     - name: Configuration
       repos:
@@ -125,3 +124,4 @@
         - govuk-dependencies
         - govuk-deploy-lag-badger
         - govuk-display-screen
+        - govuk-zendesk-display-screen

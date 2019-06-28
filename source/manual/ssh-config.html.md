@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: SSH Configuration
+title: Set up your SSH configuration
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2018-10-09
+last_reviewed_on: 2019-04-25
 review_in: 6 months
 ---
 

@@ -1,8 +1,9 @@
 ---
-title: Dictionary
+title: Dictionary of concepts on GOV.UK
 parent: /manual.html
 layout: false
-section: Architecture
+section: Learning GOV.UK
+type: learn
 source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/dictionary.yml
 ---
 
@@ -22,7 +23,7 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/di
   </ul>
 <% end %>
 
-<% wrap_layout :layout_with_sidebar do %>
+<% wrap_layout :core do %>
   <%= partial 'partials/header' %>
 
   <% data.dictionary.each do |entry| %>

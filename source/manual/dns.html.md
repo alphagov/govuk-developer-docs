@@ -2,9 +2,10 @@
 owner_slack: "#govuk-2ndline"
 title: Domain Name System (DNS) records
 section: DNS
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-31
+last_reviewed_on: 2019-02-04
 review_in: 6 months
 ---
 
@@ -12,7 +13,7 @@ The Reliability Engineering team is responsible for managing several DNS zones.
 
 By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS)
 
-As of Jul 2018, there are 40 hosted zones. A list is retrievable from a terminal using:
+As of Feb 2019, there are 40 hosted zones. A list is retrievable from a terminal using:
 
 ```
   aws route53 list-hosted-zones | grep Name
@@ -50,20 +51,12 @@ selected provider.
 When the changes have been reviewed and merged, you can deploy them using [the
 "Deploy DNS" Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
 
-You will need to copy and paste the below variables into Jenkins for each operation.
-These can be obtained using the [AWS CLI](user-management-in-aws.html#exporting-credentials-to-environment):
+You will need to assume the appropriate role and copy and paste the
+credentials in to the Jenkins job.
 
 ```sh
-aws sts assume-role \
-  --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" \
-  --role-arn <Role ARN> \
-  --serial-number <MFA ARN> \
-  --duration-seconds 28800 \
-  --profile gds \
-  --token-code <MFA token>
+govuk aws --profile <Profile>
 ```
-
-If you've [set up AWS CLI correctly](/manual/aws-cli-access.html) you can get the Role ARN and MFA ARN with `cat ~/.aws/config`.
 
 Changes should be deployed for each provider (AWS & Google) separately, first
 run a "plan" action, and when you're happy with the changes, run "apply".

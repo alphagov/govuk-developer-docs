@@ -4,8 +4,8 @@ title: Operation of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-11
-review_in: 8 weeks
+last_reviewed_on: 2018-12-21
+review_in: 6 months
 ---
 [find]: apps/datagovuk_find
 [publish]: apps/datagovuk_publish
@@ -25,6 +25,9 @@ cf login -a api.cloud.service.gov.uk
 
 > **Don't have an account?**
 > If you don't have an account or if your account isn't recognised ask on #govuk-2ndline for an account.
+
+> **Forgot your password?**
+> If you forgot your password, visit [https://login.cloud.service.gov.uk/forgot_password](https://login.cloud.service.gov.uk/forgot_password)
 
 3. SSH into the relevant machine, e.g. `publish-data-beta-production-worker`.
 
@@ -114,13 +117,3 @@ Verify the new password is being used:
 cf ssh find-data-beta-staging
 echo $VCAP_SERVICES
 ```
-
-### Bytemark
-
-You will need to arrange with 2nd line for your public SSH key to be added to the Bytemark production server.  Once this is done, you can connect by SSH with the username `co`.
-
-```
-ssh co@co-prod3.dh.bytemark.co.uk
-```
-
-**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**

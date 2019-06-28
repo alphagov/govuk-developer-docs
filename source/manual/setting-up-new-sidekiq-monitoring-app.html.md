@@ -4,7 +4,7 @@ title: Add sidekiq-monitoring to your application
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-12
+last_reviewed_on: 2019-01-03
 review_in: 6 months
 ---
 
@@ -12,7 +12,7 @@ review_in: 6 months
 applications](https://github.com/mperham/sidekiq/wiki/Monitoring) are
 Sinatra applications that ship with the [Sidekiq
 gem](http://sidekiq.org/). We have configured these to run as
-[Standalone](https://github.com/mperham/sidekiq/wiki/Monitoring#standalone)
+[standalone](https://github.com/mperham/sidekiq/wiki/Monitoring#standalone)
 apps on our backend machines.
 
 ## Prerequisites
@@ -39,12 +39,12 @@ apps on our backend machines.
 
 Add your application to the [govuk::apps::sidekiq\_monitoring
 module](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/sidekiq_monitoring.pp)
-in Puppet cross referencing the [Redis
+in Puppet, cross-referencing the [Redis
 configuration](https://github.com/alphagov/govuk-puppet/commit/9ffa90f571a43cba1e341c359111bf18db9cde1a).
 
 ## Configuring a path under the sidekiq-monitoring vhost
 
-The sidekiq-monitoring vhost in Nginx has one location for every
+The sidekiq-monitoring vhost in nginx has one location for every
 sidekiq-monitoring application. Add one for your application in [this
 puppet
 template](https://github.com/alphagov/govuk-puppet/blob/70a10190b/modules/govuk/templates/sidekiq_monitoring_nginx_config.conf.erb#L21-L23).

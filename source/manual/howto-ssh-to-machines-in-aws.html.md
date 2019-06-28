@@ -1,11 +1,11 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: SSH into AWS machines
-section: AWS accounts 
+section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-02
-review_in: 2 months
+last_reviewed_on: 2019-03-17
+review_in: 6 months
 ---
 
 This document explains how to SSH into machines in AWS, as it's markedly

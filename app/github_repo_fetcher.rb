@@ -24,7 +24,9 @@ class GitHubRepoFetcher
 private
 
   def all_alphagov_repos
-    @@all_alphagov_repos ||= client.repos("alphagov")
+    @@all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: 1.hour) do
+      client.repos("alphagov")
+    end
   end
 
   def client
@@ -33,6 +35,7 @@ private
         builder.response :logger
         builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
         builder.use Octokit::Response::RaiseError
+        builder.use Faraday::Request::Retry, exceptions: Faraday::Request::Retry::DEFAULT_EXCEPTIONS + [Octokit::ServerError]
         builder.adapter Faraday.default_adapter
       end
 

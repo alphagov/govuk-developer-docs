@@ -4,7 +4,7 @@ title: Low available disk space
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-02-01
 review_in: 6 months
 ---
 
@@ -104,34 +104,6 @@ For example: `\c email-alert-api_production`
 
 If this continues to be a problem see if you need to [resize the disk](/manual/adding-disks-in-vcloud.html).
 
-## Low available disk space on /mnt/elasticsearch
-
-Usually this is caused by old indices not being closed.
-
-View the dashboard to see how many indices are active on the cluster:
-
-`ssh -L9200:localhost:9200 rummager-elasticsearch-1.api.production`
-
-Then visit <http://localhost:9200/_plugin/head/>
-
-Go to the "Indices" tab to see all of the active indices. There should only be one index of each type.
-
-Most of out indices are aliased. The most cases the index in use is the one that the alias points to. This is usually the most recent index. On the dashboard the alias is represented by a colour label.
-
-![Screenshot of a healthy elasticsearch dashboard](images/elasticsearch/elasticsearch-healthy-dashboard.png)
-
-If old indices haven't been deleted, you'll see duplicates.
-
-![Screenshot of an elasticsearch dashboard with duplicate indices](images/elasticsearch/elasticsearch-dashboard-with-duplicate-indices.png)
-
-The indices apart from the ones in use can be closed and then, if no problems arise, deleted.
-
-To close an index, select `Actions -> Close` then wait a few minutes and monitor Icinga to make sure everything is ok. If there is a problem, the index can still be re-opened.
-
-Then scroll to the right of the dashboard to find the closed index and do `Actions -> Delete` to delete it.
-
-![Screenshot of an elasticsearch dashboard with closed indices](images/elasticsearch/elasticsearch-dashboard-with-closed-indices.png)
-
 ## No disk space in general
 
 If you cant find any of the above cases causing low disk spaces, it can
@@ -177,7 +149,7 @@ mount point which has free space) and then entirely truncate that log:
 and put it back in the log file directory.
 
 You can force a logrotate run afterwards:
-`logrotate -vf /etc/logrotate.d/<type of logs>`
+`sudo logrotate -vf /etc/logrotate.d/<type of logs>`
 
 **If you have nowhere to move the logs and it is causing an incident,
 uptime of the server takes precedent over logfiles, so just truncate the

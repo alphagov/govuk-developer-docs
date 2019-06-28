@@ -15,6 +15,13 @@ class Manual
     [["Common tasks", most_important_pages]] + grouped
   end
 
+  def manual_pages_about_learning_things
+    manual_pages
+      .select { |page| page.data.type == "learn" }
+      .group_by { |page| page.data.section || "Uncategorised" }
+      .sort_by { |group| group.first.downcase }
+  end
+
   def pages_for_application(app_name)
     manual_pages.select { |page| page.data.related_applications.to_a.include?(app_name) }
   end

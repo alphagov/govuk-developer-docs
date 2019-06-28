@@ -12,14 +12,15 @@ Dir.glob("source/manual/**/*.md").each do |filename|
       expect(frontmatter['owner_slack'][0]).to be_in(%[# @]), "`owner_slack` should be a @username or #channel"
     end
 
-    it "has a valid review date" do
-      review_by = PageReview.new(double(data: double(frontmatter)))
-
-      expect(review_by.review_by).to be_a(Date)
-    end
-
     it "has a title" do
       expect(frontmatter['title']).to be_present, "Page doesn't have `title` set"
+    end
+
+    unless frontmatter["section"] == "Icinga alerts"
+      it "follows the styleguide" do
+        expect(frontmatter['title'].split(" ").first).not_to end_with("ing"),
+          "Page title `#{frontmatter['title']}`: don't use 'ing' at the end of verbs - https://docs.publishing.service.gov.uk/manual/docs-style-guide.html#title"
+      end
     end
 
     it "has the correct suffix" do
@@ -32,8 +33,8 @@ Dir.glob("source/manual/**/*.md").each do |filename|
       source/manual/howto-merge-a-pull-request-from-an-external-contributor.html.md
     ])
       it "doesn't use H1 tags (the page title is already an H1)" do
-        expect(raw).not_to match(/\n#\s/), "This page contains an unnecessary H1." \
-          " This may have been triggered because of a # comment in a code block"
+        raw_without_code_blocks = raw.remove(/```[a-z]*\n[\s\S]*?\n```/) # want to allow `#` (comments) in code blocks
+        expect(raw_without_code_blocks).not_to match(/\n#\s/), "This page contains an unnecessary H1."
       end
     end
   end

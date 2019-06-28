@@ -2,9 +2,10 @@
 owner_slack: "#govuk-2ndline"
 title: PostgreSQL backups
 section: Backups
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-11-05
+last_reviewed_on: 2019-05-02
 review_in: 2 months
 ---
 
@@ -29,12 +30,12 @@ is imported you can watch postgres restoring WAL chunks by `tail -f` on the post
 
 Replication to the standby databases may fail after restoring a backup to the primary.
 The solution is to also restore the backup to the standby, at which point normal
-replication will take over.  You can also [resync it from the primary][syncing-a-standby].
+replication will take over. You can also [resync it from the primary][syncing-a-standby].
 
 ### WAL-E failing with errors about GPG
 
 WAL-E does not work with password-protected GPG secret keys, but ours
-are.  If backup restoration is failing with errors about GPG or things
+are. If backup restoration is failing with errors about GPG or things
 not being the expected format (eg, complaining that a file doesn't
 have a valid lzo or tar header), the key may be password-protected.
 

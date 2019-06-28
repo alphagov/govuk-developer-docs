@@ -4,7 +4,7 @@ title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2018-10-17
+last_reviewed_on: 2019-02-13
 review_in: 6 months
 ---
 
@@ -84,21 +84,21 @@ You can test your passphrase like this:
 echo "1234" | gpg2 -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
 ```
 
-If you have entered your passphrase correctly you will see "The correct passphrase was entered for this key".
+You will be prompted to enter your passphrase upon running this command then if you have entered your passphrase correctly you will see "The correct passphrase was entered for this key".
 
 ## Backup a GPG key
 
 ### Backup and transfer GPG key to another computer (using the GUI)
 
-To backup you key, select the key you want to backup in [GPG Keychain](https://gpgtools.org/) and then click on "Export". This will download your key in the following format:
+To backup your key, select the key you want to backup in [GPG Keychain](https://gpgtools.org/) and then click on "Export". This will download your key in the following format:
 
 `Name (keyID) – Public.asc` or `Name (keyID) – Secret.asc`
 
-Then add your key to an encrypted zip file (see below for how to do this) and store it in somewhere else, for example your Google Drive.
+Then add your key to an encrypted zip file (see below for how to do this) and store it somewhere else, for example your Google Drive.
 
 On your new machine, click on "Import" in GPG Keychain and select the `.asc` file your downloaded earlier.
 
-When you key has been imported you should see it listed on the main page.
+When your key has been imported you should see it listed on the main page.
 
 Instructions taken from [GPG Tools FAQ](https://gpgtools.tenderapp.com/kb/gpg-keychain-faq/backup-or-transfer-your-keys#transfer-keys-to-another-computer)
 

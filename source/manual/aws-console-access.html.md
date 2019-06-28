@@ -4,8 +4,8 @@ title: Access the AWS console
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-10
-review_in: 3 months
+last_reviewed_on: 2019-05-17
+review_in: 6 months
 old_paths:
   - /manual/seeing-things-in-the-aws-console.html
 ---
@@ -32,10 +32,12 @@ Options for "Account":
 - `govuk-infrastructure-staging`
 - `govuk-infrastructure-integration`
 - `govuk-infrastructure-test`
+- `govuk-tools`
 
 Options for "Role":
 
 - `govuk-administrators`
+- `govuk-internal-administrators`
 - `govuk-powerusers`
 - `govuk-platformhealth-powerusers`
 - `govuk-users`

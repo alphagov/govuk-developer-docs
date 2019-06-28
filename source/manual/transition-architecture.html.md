@@ -2,10 +2,11 @@
 owner_slack: '#govuk-platform-health'
 title: Transition architecture
 section: Transition
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-08
-review_in: 3 months
+last_reviewed_on: 2019-03-18
+review_in: 6 months
 related_applications: [bouncer, transition]
 ---
 
@@ -31,7 +32,7 @@ All the repositories involved in transition have been [tagged with govuk-transit
 - [transition-config][] contains YAML files to configure transitioning websites. It's imported into the Transition database by the [Transition_load_site_config job][]
 - The [cloudwatch / athena / lambda][infra-fastly-logs] trio process the logs from Fastly to produce the statistics. Those are then loaded into Transition by the [Transition_load_all_data job][stats-import]
 - [bouncer][] is the application that does the actual redirecting
-- [cdn-configs][] contains the script that the [Bouncer_CDN job][] uses to send the [hosts from transition][] to Fastly
+- [govuk-cdn-config][] contains the script that the [Bouncer_CDN job][] uses to send the [hosts from transition][] to Fastly
 
 [process_transition_logs]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_cdnlogs/templates/process_transition_logs.erb
 [Transition_load_site_config job]: https://deploy.publishing.service.gov.uk/job/Transition_load_site_config
@@ -137,8 +138,12 @@ on the Bouncer machines. The assets live in [two](https://github.com/alphagov/as
 rsynced](https://github.com/alphagov/govuk-app-deployment/blob/master/bouncer/config/deploy.rb#L16-L41)
 to the machines when Bouncer is deployed.
 
+#### HTTPS support for transitioned sites
+
+Bouncer does not support HTTPS for transitioned sites. This functionality is under investigation as of December 2018. This limitation should be investigated as part of any site transition, especially if the existing site uses HSTS to force secure connections.
+
 [Bouncer]: /apps/bouncer.html
 [transition]: /apps/transition.html
-[cdn-configs]: https://github.com/alphagov/cdn-configs
+[govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [Bouncer_CDN job]: https://deploy.publishing.service.gov.uk/job/Bouncer_CDN
 [hosts from transition]: https://transition.publishing.service.gov.uk/hosts.json

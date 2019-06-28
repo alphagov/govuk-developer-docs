@@ -1,15 +1,14 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Add a new Ruby version
-section: Infrastructure tasks
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-07-19
+last_reviewed_on: 2019-01-31
 review_in: 6 months
 ---
 
-The Ruby language is a core part of GOV.UK - most of our applications
-are written in it.
+The [Ruby language](https://www.ruby-lang.org/en/) is a core part of GOV.UK - most of our applications are written in it.
 
 ## Managing different versions of Ruby
 
@@ -33,17 +32,37 @@ We set up rbenv differently depending on what's going on:
 
 ## Add a new Ruby version in puppet
 
-Build a package using [fpm](debian-packaging.html#fpm) and make it
-available using our aptly repository.
+You will need to build a new [fpm](debian-packaging.html#fpm) package with the new Ruby version.
+This package can then be copied to Aptly machine, and the new version added to puppet.
 
-The package name includes the version of Ruby (eg `rbenv-ruby-2.3.1`) because
-we need to install multiple versions of Ruby at the same time.
+### Building the fpm package.
 
-Once it's available as a package you can
+- Add a new recipe for the ruby version in [Packager][packager].
+The folder name will be the Ruby version, and contain a `recipe.rb` file. See previous entries for examples.
+The recipe will require the [SHA256][sha256_checksum] of the version's `tar.gz`, available at [Ruby cache][ruby_cache].
+
+- Once the Packager change is merged, [build the package][jenkins].
+
+Use the VM to [test the recipe](debian-packaging.html#test-the-recipe)
+
+To make sure it has been successful
+ - `rbenv versions` to make sure your version is available
+ - `rbenv local X.X.X` to use your new version
+ - `ruby -v` to make sure your version is in use
+
+### Copying to Aptly
+
+### Add to Puppet
+
+Once it's available as a package in Aptly you can
 [install it everywhere using Puppet][puppet_rbenv_all]. Machines only run
 `apt-get update` periodically so it might take a little time for the package
 to become available.
 
+[packager]: https://github.com/alphagov/packager/tree/master/fpm/recipes
+[sha256_checksum]: https://emn178.github.io/online-tools/sha256_checksum.html
+[ruby_cache]: https://cache.ruby-lang.org/pub/ruby/
+[jenkins]: https://ci.integration.publishing.service.gov.uk/job/build_fpm_package
 [puppet_rbenv_all]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rbenv/manifests/all.pp
 
 ## Testing whether a version of Ruby is in use

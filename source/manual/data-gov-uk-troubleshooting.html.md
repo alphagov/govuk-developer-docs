@@ -1,11 +1,11 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Troubleshooting data.gov.uk
+title: Troubleshoot data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-16
-review_in: 8 weeks
+last_reviewed_on: 2019-03-06
+review_in: 6 months
 ---
 [find]: apps/datagovuk_find
 [publish]: apps/datagovuk_publish
@@ -51,52 +51,38 @@ Check the Sidekiq queue (see [monitoring section](/manual/data-gov-uk-monitoring
 
 If the queue is too long, you should clear the queue.  The next sync process will repopulate the queue with any relevant datasets that require updating.
 
-## Celery not processing background tasks
+## Harvesters not processing or seem stuck
 
-There are a few tasks run by Celery on the Bytemark machine. This includes
-adding preview links to data files with a `WMS` format.
+The harvesting process runs as a single threaded program, if any harvesting
+process crashes by raising an exception, it will take out the entire process.
+We have configured Upstart to restart the process automatically, but if the
+service keeps crashing, Upstart will decide it's unhealthy and stop that after
+a while.
 
-You can first check to see if Celery is working properly by looking in the log
-files:
+You can check whether the process is still running by checking if entries are
+still being written to the log file on the `ckan` machine:
 
-```
-(ckan)co@prod3 /vagrant/src/ckan (release-v2.2-dgu) $ tail /var/log/ckan/celeryd.log
-    from ckanext.harvest.harvesters.ckanharvester import CKANHarvester
-  File "/vagrant/src/ckanext-harvest/ckanext/harvest/harvesters/ckanharvester.py", line 4, in <module>
-    from urllib3.contrib import pyopenssl
-  File "/home/co/ckan/local/lib/python2.7/site-packages/urllib3/contrib/pyopenssl.py", line 48, in <module>
-    from cryptography.hazmat.backends.openssl import backend as openssl_backend
-  File "/home/co/ckan/local/lib/python2.7/site-packages/cryptography/hazmat/backends/openssl/__init__.py", line 7, in <module>
-    from cryptography.hazmat.backends.openssl.backend import backend
-  File "/home/co/ckan/local/lib/python2.7/site-packages/cryptography/hazmat/backends/openssl/backend.py", line 23, in <module>
-    from cryptography.hazmat.backends.openssl import aead
-ImportError: cannot import name aead
+```bash
+$ govukcli set-context production-aws
+$ govukcli ssh ckan
 ```
 
-If you see a lot of tracebacks, it might be necessary to restart Celery. You
-can do this by killing each Celery process one by one and they will get
-restarted automatically.
-
-```
-(ckan)co@prod3 /vagrant/src/ckanext-harvest (2.0) $ ps aux | grep celery
-co       14857  0.0  0.0  11472   964 pts/2    S+   13:51   0:00 grep --color=auto celery
-www-data 14898  0.0  0.6 846200 222476 ?       S    Oct12   0:04 /home/co/ckan/bin/python /home/co/ckan/bin/paster --plugin=ckan celeryd run concurrency=4 --queue bulk --config=/var/ckan/ckan.ini
-www-data 14917  0.0  0.3 715128 129060 ?       S    Oct12   0:01 /home/co/ckan/bin/python /home/co/ckan/bin/paster --plugin=ckan celeryd run concurrency=4 --queue bulk --config=/var/ckan/ckan.ini
-www-data 32359  3.6  0.2 704456 82932 ?        Sl   Apr26 9094:41 /home/co/ckan/bin/python /home/co/ckan/bin/paster --plugin=ckan celeryd run concurrency=4 --queue bulk --config=/var/ckan/ckan.ini
-www-data 32360  0.3  0.2 704260 82684 ?        Sl   Apr26 757:43 /home/co/ckan/bin/python /home/co/ckan/bin/paster --plugin=ckan celeryd run concurrency=1 --queue priority --config=/var/ckan/ckan.ini
-(ckan)co@prod3 /vagrant/src/ckanext-harvest (2.0) $ sudo kill 32360
-(ckan)co@prod3 /vagrant/src/ckanext-harvest (2.0) $ sudo kill 32359
-(ckan)co@prod3 /vagrant/src/ckanext-harvest (2.0) $ sudo kill 14917
-(ckan)co@prod3 /vagrant/src/ckanext-harvest (2.0) $ sudo kill 14898
+```bash
+$ sudo tail -f /var/log/ckan/procfile_harvester_fetch_consumer.err.log
 ```
 
-You would then expect to see something like this in the log file:
+Or you could check that the services are all showing as `started` on the `ckan`
+machine:
 
+```bash
+$ sudo initctl list | grep harvester
 ```
-(ckan)co@prod3 /vagrant/src/ckanext-harvest (2.0) $ tail /var/log/ckan/celeryd.log
-[2018-10-16 13:52:18,569: INFO/PoolWorker-1] child process calling self.run()
-[2018-10-16 13:52:18,570: INFO/PoolWorker-2] child process calling self.run()
-[2018-10-16 13:52:18,571: INFO/PoolWorker-3] child process calling self.run()
-[2018-10-16 13:52:18,573: INFO/PoolWorker-4] child process calling self.run()
-[2018-10-16 13:52:18,574: WARNING/MainProcess] celery@bulk has started.
+
+If the server has stopped, there is a Fabric script that will restart it for
+you. This script first checks whether the harvesting process is running or not
+so if you suspect the process has crashed, you can run this script first to
+try and restart the process.
+
+```bash
+$ fab aws_production class:ckan ckan.restart_harvester
 ```

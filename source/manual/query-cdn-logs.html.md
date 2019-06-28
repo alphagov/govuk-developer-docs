@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Query CDN Logs
+title: Query CDN logs
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-16
+last_reviewed_on: 2019-05-02
 review_in: 6 months
 ---
 
@@ -180,4 +180,3 @@ to your local machine and then parse each JSON blob in each of the files with a
 JSON tool (such as `JSON.parse` in Ruby) until you find the problem. Once
 identified you may need to need to contact Fastly about the
 problem or update the log formatting in Fastly to resolve the issue.
-

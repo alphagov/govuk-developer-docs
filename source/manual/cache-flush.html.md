@@ -5,7 +5,7 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-09-11
+last_reviewed_on: 2019-03-26
 review_in: 6 months
 ---
 
@@ -30,19 +30,23 @@ the various caches manually:
 - **Fastly**: [`rake cache:clear_fastly[/your-path-here]`][jenkins-fastly-task]
 - **Both**: [`rake cache:clear[/your-path-here]`][jenkins-both-task]
 
-[jenkins-varnish-task]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_varnish[/your-path-here]
-[jenkins-fastly-task]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[/your-path-here]
-[jenkins-both-task]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear[/your-path-here]
+[jenkins-varnish-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_varnish[/your-path-here]
+[jenkins-fastly-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[/your-path-here]
+[jenkins-both-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear[/your-path-here]
+
+### Assets
+
+If you need to clear the Fastly cache for a URL which is not `www.gov.uk` (e.g. for assets),
+you can provide a full URL to the Fastly cache clearing rake task:
+
+```
+rake cache:clear_fastly[https://assets.example.gov.uk/your-path-here]
+```
 
 ## Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)
 
-> **Note**
->
-> The following command *must* be run from one of the mirror boxes because we
-> restrict which IP addresses PURGE requests are accepted from.
-
-To purge content on the Fastly cache nodes, use the PURGE method against the
-URL you wish to purge. For instance:
+To purge content on the Fastly cache nodes, SSH onto a `cache` machine and use the
+PURGE method against the URL you wish to purge. For instance:
 
 ```sh
 $ curl -XPURGE https://www.gov.uk/bank-holidays
@@ -54,11 +58,6 @@ more verbose output using the `-i` switch:
 ```sh
 $ curl -i -XPURGE https://www.gov.uk/bank-holidays
 ```
-
-You can manually flush the cache from the following machines:
-
-> - mirror0.mirror.provider1.$environment.govuk.service.gov.uk
-> - mirror1.mirror.provider1.$environment.govuk.service.gov.uk
 
 ## Full Edge Flush on Fastly
 

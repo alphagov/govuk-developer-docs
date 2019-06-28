@@ -1,11 +1,11 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Monitoring for data.gov.uk
+title: Monitor data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-11
-review_in: 8 weeks
+last_reviewed_on: 2018-12-21
+review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
@@ -39,11 +39,7 @@ Pingdom monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downti
 
 ## Log.it
 
-Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas]. Example query: `source_host: "gds-data-discovery.data-gov-uk.find-data-beta" && access.response_code: 500`.
-
-## Bytemark
-
-Logs from CKAN on Bytemark are not sent to Log.it or Sentry.  These can be found in the `/var/log/ckan/` directory of the relevant Bytemark machine.
+Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas]. Example query: `source_host: "gds-data-gov-uk.data-gov-uk.find-data-beta" && access.response_code: 500`.
 
 ## Sidekiq ([Publish])
 
@@ -63,8 +59,8 @@ Sidekiq UI is only accessible to the `localhost` domain, so you'll need an SSH t
 cf ssh -L 9000:localhost:8080 publish-data-beta-staging
 ```
 
-Then go to `localhost:9000/sidekiq` in your browser to see active jobs, retries and to manually modify the schedule.
+Then go to [localhost:9000/sidekiq/recurring-jobs](http://localhost:9000/sidekiq/recurring-jobs) in your browser to see active jobs, retries and to manually modify the schedule.
 
 ## Analytics
 
-[Google Analytics][google-analytics] records traffic for [Find] and [CKAN]. Ask for 'read' access to all 'properties' in your request.
+[Google Analytics][google-analytics] records traffic for [Find]. Ask for 'read' access to all 'properties' in your request.

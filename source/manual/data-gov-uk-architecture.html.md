@@ -3,9 +3,10 @@ owner_slack: "#govuk-platform-health"
 title: Architecture of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
+type: learn
 parent: "/manual.html"
-last_reviewed_on: 2018-10-11
-review_in: 8 weeks
+last_reviewed_on: 2018-12-21
+review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find
@@ -34,21 +35,21 @@ review_in: 8 weeks
 [time-interval-service]: https://github.com/epimorphics/IntervalServer
 [heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#use-the-shared-heroku-account
 
-The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset is a document about a collection of links to documentation or data hosted somewhere on the Internet.
+The `data.gov.uk` (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.
 
 ## Architectural overview of data.gov.uk
 
 ![](/manual/images/dgu-architecture.png)
 
-The original for this diagram is available on the [Platform Health Google Drive](https://drive.google.com/open?id=1RoI6k6HA_GWUqRG3cC_REQu3BjeXcttp) and can be edited with draw.io.
+The original for this diagram is available on the [Platform Health Google Drive](https://drive.google.com/open?id=1xnwgUBrwnQI2aIfZ0FT8nBQ-pERNRo2r) and can be edited with draw.io.
 
 ## data.gov.uk Services
 
 Services owned by data.gov.uk
 
-  * [CKAN] is the legacy publishing and finder app for datasets ('packages'). It also runs Nginx to support [Find].
-  * [Find] is the public frontend for searching datasets using Elasticsearch. It replaces CKAN for certain routes.
-  * [Publish] is the prototype publishing app for datasets. It currently syncs with CKAN to populate Elasticsearch.
+  * [CKAN] is the publishing app for datasets ('packages').
+  * [Find] is the public frontend for searching datasets using Elasticsearch.
+  * [Publish] is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Elasticsearch for use in Find.
   * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
 
 Services with data.gov.uk sub-domains, but owned by other departments
@@ -83,4 +84,4 @@ We use [GOV.UK Signon][signon] for user authentication in [Publish Data][publish
 
 ## [CKAN]
 
-Legacy [CKAN] is hosted on Bytemark servers. New CKAN (still under development) will be hosted on GOV.UK infrastructure.
+[CKAN] is hosted on AWS and is maintained/deployed in the same way as most other GOV.UK applications.

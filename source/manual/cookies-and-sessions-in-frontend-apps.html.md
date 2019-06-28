@@ -2,6 +2,7 @@
 title: Cookies and sessions in GOV.UK frontend apps
 parent: "/manual.html"
 layout: manual_layout
+type: learn
 section: CDN & Caching
 owner_slack: "#govuk-developers"
 last_reviewed_on: 2018-11-26

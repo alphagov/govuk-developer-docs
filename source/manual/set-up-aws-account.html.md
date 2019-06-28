@@ -4,7 +4,7 @@ title: Set up your AWS account
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2019-03-19
 review_in: 6 months
 old_paths:
   - /manual/user-management-in-aws.html
@@ -19,7 +19,9 @@ If you already have an AWS user associated with a different team's account, you 
 
 GDS maintains a central account for AWS access. You will need to request an account from the Technology and Operations team.
 
-👉 [Request an account](https://gds-request-an-aws-account.cloudapps.digital)
+👉 [Request an AWS account](https://gds-request-an-aws-account.cloudapps.digital)
+
+You'll want to click "Request user access" - NOT "Request an account". After submitting the form, you should receive an email to say your account creation is in progress, and later another email saying the work has been completed. You can then move onto step 2.
 
 ## 2. Sign in to AWS
 
@@ -57,9 +59,10 @@ Follow steps 1 - 7 in [Set up your MFA](#3-set-up-your-mfa). Then:
 
 An account in AWS doesn't give you access to anything, you'll need to be given rights.
 
-Add yourself to a lists of users found in [the data for the infra-security project][infra-terra]. There are 4 groups:
+Add yourself to a lists of users found in [the data for the infra-security project][infra-terra]. There are 5 groups:
 
-- `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure, Architects and Lead Developers of GOV.UK and anyone else working on the AWS migration
+- `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure
+- `govuk-internal-administrators`: people in GOV.UK who are working on GOV.UK infrastructure including Architects, Lead Developers and anyone else working on the AWS migration
 - `govuk-powerusers`: anyone else who can have production access on GOV.UK
 - `govuk-platformhealth-powerusers`: as above but for members of the GOV.UK Platform Health team
 - `govuk-users`: anyone else who needs integration access on GOV.UK
@@ -71,7 +74,9 @@ to the [users page in AWS IAM][iam] and selecting your profile.
 arn:aws:iam::<account-id>:user/<firstname.lastname>@digital.cabinet-office.gov.uk
 ```
 
-After your PR has been merged, someone from the `govuk-administrators` group needs to deploy the `infra-security` project.
+After your PR has been merged, someone from the `govuk-administrators`
+or `govuk-internal-administrators` group needs to deploy the
+`infra-security` project.
 
 👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
 

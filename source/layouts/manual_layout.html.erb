@@ -1,4 +1,5 @@
-<% html = "<h1 id='header'>#{current_page.data.title}</h1>#{yield}" %>
+<% breadcrumb = "<p><a href='/manual.html##{section_url}'>#{current_page.data.section}</a></p>" %>
+<% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1>#{yield}" %>
 
 <% content_for :page_description, Snippet.generate(html) %>
 
@@ -7,7 +8,7 @@
   <%= single_page_table_of_contents html, max_level: 3 %>
 <% end %>
 
-<% wrap_layout :layout_with_sidebar do %>
+<% wrap_layout :core do %>
   <% if current_page.data.section == "Icinga alerts" %>
     <div class="information-callout">
       This page describes what to do in case of an
@@ -19,53 +20,7 @@
     </div>
   <% end %>
 
-  <% if page_review.expired? %>
-    <%= partial 'partials/page_expired' %>
-  <% end %>
-
   <%= html %>
 
-  <div class='grid-row'>
-    <div class='column-half'>
-      <% if current_page.data.related_applications %>
-        <h3>Related applications</h3>
-
-        <ul>
-        <% current_page.data.related_applications.to_a.each do |app| %>
-          <li><%= link_to "#{app} application", "/apps/#{app}.html" %></li>
-        <% end %>
-        </ul>
-      <% end %>
-    </div>
-
-    <div class='column-half'>
-      <h3>More about <%= current_page.data.section %></h3>
-
-      <ul>
-      <% manual.other_pages_from_section(current_page).each do |page| %>
-        <li><%= link_to page.data.title, page.url %></li>
-      <% end %>
-      </ul>
-    </div>
-  </div>
-
-  <% if page_review.reviewable? %>
-    <% if page_review.expired? %>
-      <%= partial 'partials/page_expired' %>
-    <% else %>
-      <div class='information-callout'>
-        This page was <%= link_to "last reviewed", "/manual/review-page.html" %>
-
-        <time data-module="datetime-relative" datetime="<%= page_review.last_reviewed_on %>">
-          on <%= page_review.last_reviewed_on %>
-        </time>.
-
-        It needs to be reviewed again
-        <time data-module="datetime-relative" datetime="<%= page_review.review_by %>">
-          on <%= page_review.review_by %>
-        </time>
-        by the page owner <%= link_to page_review.owner_slack, page_review.owner_slack_url  %>.
-      </div>
-    <% end %>
-  <% end %>
+  <%= partial 'partials/related_content' %>
 <% end %>

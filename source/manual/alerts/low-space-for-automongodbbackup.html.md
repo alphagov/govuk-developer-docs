@@ -4,7 +4,7 @@ title: Running out of space for automongodbbackup
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-10
 review_in: 6 months
 ---
 
@@ -34,5 +34,7 @@ none                         100M     0  100M   0% /run/user                    
 ```
 3. The number next to `/var/lib/automongodbbackup` is probably 100% if you're getting out of space alerts in Icinga.
 4. Go to `/var/lib/automongodbbackup` and visit the `daily` folder
-5. Check the size of the backups in that folder: `ls -ls`. The latest zipped backup should be smaller than the rest. You should also have an unzipped version of the backup lying around. Remove the zipped version and start zipping again. In order to be sure you are doing the compression the right way, you need to check what the script currently does and respect the naming convetion: https://github.com/alphagov/govuk-puppet/blob/master/modules/mongodb/templates/automongodbbackup#L364.
+5. Check the size of the backups in that folder: `ls -ls`. The latest zipped backup should be smaller than the rest. You should also have an unzipped version of the backup lying around. Remove the zipped version and start zipping again. In order to be sure you are doing the compression the right way, you need to check what the script currently does and respect the [naming convention][backup-script].
 6. You can also remove an older backup to clear some space.
+
+[backup-script]: https://github.com/alphagov/govuk-puppet/blob/master/modules/mongodb/templates/automongodbbackup#L364
