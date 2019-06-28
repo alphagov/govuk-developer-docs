@@ -4,7 +4,7 @@ title: Whitehall scheduled publishing
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-26
 review_in: 6 months
 ---
 
@@ -15,9 +15,8 @@ their publication due date but haven't been published by the scheduled
 publishing workers. Scheduled publishing is performed by sidekiq workers
 picking up jobs from a scheduled queue.
 
-You can see whether sidekiq picked up the job for processing, and the
-current state of the job using [Sidekiq monitoring
-apps](applications/sidekiq-monitoring.html).
+You can see whether sidekiq picked up the job for processing, and the current
+state of the job using [Sidekiq monitoring apps](applications/sidekiq-monitoring.html).
 
 You can verify that there are overdue published documents using:
 

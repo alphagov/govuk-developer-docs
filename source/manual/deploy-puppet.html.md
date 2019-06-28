@@ -4,38 +4,46 @@ title: Deploy Puppet
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-04
+last_reviewed_on: 2019-01-03
 review_in: 6 months
 ---
 
 You can deploy Puppet using the following steps:
 
-> **Note**
+> **NOTE**
 >
 > Puppet is automatically deployed to integration by a combination of the [integration-puppet-deploy job on Jenkins CI](https://ci.integration.publishing.service.gov.uk/job/integration-puppet-deploy/) and [Deploy Puppet job on Jenkins Deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/).
+
+> **WARNING**
+>
+> If you're deploying a change to [hiera.yml](https://github.com/alphagov/govuk-puppet/blob/master/hiera.yml) or [hiera_aws.yml](https://github.com/alphagov/govuk-puppet/blob/master/hiera_aws.yml), you will need to restart the Puppet server on the Puppet Master machine, otherwise these changes will not be picked up.
+>
+> In Carrenza, run `sudo service puppetmaster restart`. In AWS, run `sudo service puppetserver restart`.
 
 1. Get the [release tag of the build that you wish to deploy][tag] from the Release
 app (`release_18295` for example). Look at the diff you're going to deploy.
 
 2. Deploy the newer version to staging by using the 'Deploy to Staging' button in
-the Release app after clicking on the release tag.
+the Release app after clicking on the release tag. This will deploy to Carrenza.
+You also need to deploy to [AWS staging][stage-aws-deploy].
 
 3. You will either need to wait 30 minutes or read about [convergence](#convergence).
 You should monitor Icinga and Smokey, and test anything you're concerned about.
 
-4. Repeat steps 2 and 3 to [deploy to production][prod-deploy].
+4. Deploy the newer version to production by using the 'Deploy to Production' button in
+the Release app after clicking on the release tag. This will deploy to Carrenza.
+You also need to deploy to [AWS production][prod-aws-deploy].
 
-5. If required, deploy in AWS [staging][stage-aws-deploy] and [production][prod-aws-deploy].
+5. You will either need to wait 30 minutes or read about [convergence](#convergence).
+You should monitor Icinga and Smokey, and test anything you're concerned about.
 
 [tag]: https://release.publishing.service.gov.uk/applications/puppet
-[stage-deploy]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_Puppet
 [stage-aws-deploy]: https://deploy.blue.staging.govuk.digital/job/Deploy_Puppet
-[prod-deploy]: https://deploy.publishing.service.gov.uk/job/Deploy_Puppet
 [prod-aws-deploy]: https://deploy.blue.production.govuk.digital/job/Deploy_Puppet
 
 ## Convergence
 
-The deployment only pushes the new code to the Puppet master. Each node
+The deployment only pushes the new code to the Puppet Master. Each node
 runs a Puppet agent every 30 minutes (via cron), so it may be some time
 before the release takes effect. This has an implication on how
 quickly you can go from staging to production.
@@ -98,4 +106,4 @@ brief outage, e.g. MySQL.
 
         fab $environment class:mysql_master puppet.enable puppet
 
-5.  Schedule a time to actually restart the service if neccessary.
+5.  Schedule a time to actually restart the service if necessary.

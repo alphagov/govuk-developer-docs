@@ -9,9 +9,15 @@ end
 
 task default: [:spec]
 
+namespace :cache do
+  task :clear do
+    CACHE.clear
+  end
+end
+
 namespace :assets do
   task :precompile do
-    sh 'git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build'
+    sh 'git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build'
   end
 end
 

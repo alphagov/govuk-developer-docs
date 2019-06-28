@@ -4,7 +4,7 @@ title: Fix NFS errors in VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-25
+last_reviewed_on: 2019-04-25
 review_in: 6 months
 ---
 
@@ -19,8 +19,9 @@ To prevent this, start your VM with the command `VAGRANT_GOVUK_NFS=no vagrant up
 This will use a less efficient method of sharing folders, but it will work with
 the VPN.
 
-Once you disconnect from the VPN, you will need to restart your computer before
-you're able to use Vagrant with NFS again.
+Once you disconnect from the VPN, you will need to [run these commands](/manual/vm-vpn-issues.html)
+before you're able to use Vagrant with NFS again.
+
 
 ## Vagrant error NFS is reporting that your exports file is invalid
 ```shell

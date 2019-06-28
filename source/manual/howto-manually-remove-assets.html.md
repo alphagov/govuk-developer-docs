@@ -4,7 +4,7 @@ title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-15
+last_reviewed_on: 2019-02-27
 review_in: 6 months
 ---
 
@@ -24,7 +24,8 @@ follow these steps:
     1. Use the path identified in step 5 to check for the file by removing the `/var/apps/asset-manager/uploads/assets` prefix
     1. `sudo rm path/to/file`
 1. Add a cache bust and check that the asset responds with a 404 not found
-1. Wait 20 minutes so the cache clears and check the asset is not there
+1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache]
+1. Verify that the asset is not there
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 
 > **Note**
@@ -32,6 +33,6 @@ follow these steps:
 > You might need to look at the timestamps or other information to figure
 > out which records to delete if two assets share the same filename.
 
-[govuk-assets-production-bucket]: https://s3.console.aws.amazon.com/s3/buckets/govuk-assets-production/?region=eu-west-1&tab=overview
 [rake-delete]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
 [rake-delete-and-remove-from-s3]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
+[clear-cache]: https://docs.publishing.service.gov.uk/manual/cache-flush.html#assets

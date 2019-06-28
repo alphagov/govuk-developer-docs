@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: GitHub Enterprise
 section: GitHub
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2018-10-02

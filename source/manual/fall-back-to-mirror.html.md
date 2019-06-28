@@ -56,7 +56,6 @@ The crawler is entirely independent of the mirrors. Stopping the crawler means
 no new updates are made to the mirrors, but it will not stop the mirrors from working.
 
 To inspect the contents of the mirror:
-
 ```
 ssh <mirrorer_machine_name>
 cd /mnt/crawler_worker/www.gov.uk
@@ -69,14 +68,14 @@ on the jumpbox.
 Because the CDN will retry every request against the mirrors automatically if origin
 is unavailable, all you need to do is [stop Nginx on the cache machines with Fabric][fab-fail]:
 
-```
-fab $environment class:cache incident.fail_to_mirror
+```bash
+$ fab $environment class:cache incident.fail_to_mirror
 ```
 
 to disable to fallback:
 
-```
-fab $environment class:cache incident.recover_origin
+```bash
+$ fab $environment class:cache incident.recover_origin
 ```
 
 [fab-fail]: https://github.com/alphagov/fabric-scripts/blob/master/incident.py

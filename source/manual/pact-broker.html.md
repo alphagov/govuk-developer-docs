@@ -2,9 +2,10 @@
 owner_slack: "#govuk-2ndline"
 title: Pact Broker
 section: Testing
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-15
+last_reviewed_on: 2019-01-03
 review_in: 6 months
 ---
 
@@ -25,7 +26,7 @@ a repository for all the contracts. The consumers publish to it, and the produce
 ## Information you need to know
 
 * It runs on the Government PaaS at <https://pact-broker.cloudapps.digital/>
-* It is deployed from <https://github.com/alphagov/pact-broker>
+* It is deployed from <https://github.com/alphagov/govuk-pact-broker>
 
 ## Accessing and logging on
 
@@ -41,7 +42,7 @@ pacts to the broker.
 Pact Broker is a ruby app that's provided as [a
 gem](https://github.com/bethesque/pact_broker) that needs to be wrapped in a
 small rack app. The resulting 'application' lives at
-<https://github.com/alphagov/pact-broker>.
+<https://github.com/alphagov/govuk-pact-broker>.
 
 ### Persistence
 
@@ -62,7 +63,7 @@ branch builds of consumers can verify their pactfiles with the producers.
 Pact Broker allows us to [implement our own versioning
 scheme](https://github.com/bethesque/pact_broker/wiki/Configuration#version-parser)
 by providing a custom version parser.  We've [used
-this](https://github.com/alphagov/pact-broker/blob/master/config.ru#L23-L50)
+this](https://github.com/alphagov/govuk-pact-broker/blob/master/config.ru#L23-L50)
 to extend the versioning scheme to allow branch builds to be uploaded as well.
 In addition to numeric versions, our scheme allows for "master", and
 "branch-foo" versions to be uploaded. These will always be ordered after any

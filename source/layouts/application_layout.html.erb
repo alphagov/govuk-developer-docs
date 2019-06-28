@@ -1,23 +1,22 @@
 <% content_for :sidebar do %>
   <ul>
+    <li><%= link_to 'Application ownership by team', '/apps/by-team.html' %></li>
 
-  <li><%= link_to 'Application ownership by team', '/apps/by-team.html' %></li>
+    <% active_app_pages.group_by(&:type).each do |name, apps| %>
+      <li><%= link_to name, '/apps.html' %></li>
 
-  <% active_app_pages.group_by(&:type).each do |name, apps| %>
-    <li><%= link_to name, '/apps.html' %></li>
-
-    <li>
-      <ul class='subnav'>
-      <% apps.each do |app| %>
-        <li><%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %></li>
-      <% end %>
-      </ul>
-    </li>
-  <% end %>
+      <li>
+        <ul class='subnav'>
+        <% apps.each do |app| %>
+          <li><%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %></li>
+        <% end %>
+        </ul>
+      </li>
+    <% end %>
   </ul>
 <% end %>
 
-<% wrap_layout :layout_with_sidebar do %>
+<% wrap_layout :core do %>
   <%= partial 'partials/header' %>
   <%= yield %>
 <% end %>

@@ -1,111 +1,45 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Supporting CKAN
+title: Support tasks for CKAN
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-11
-review_in: 8 weeks
+last_reviewed_on: 2019-05-30
+review_in: 6 months
 ---
 [ckan]: https://ckan.org
+[dgu-ckan]: https://ckan.publishing.service.gov.uk
 [ckanext-datagovuk]: /apps/ckanext-datagovuk.html
-[ckanext-dgu]: https://github.com/datagovuk/ckanext-dgu
-[ckandocs]: http://docs.ckan.org/en/ckan-2.7.3/maintaining/paster.html
+[ckandocs]: http://docs.ckan.org/en/ckan-2.7.4/maintaining/paster.html
+[ckan-api]: https://docs.ckan.org/en/2.8/api/
+
+[CKAN][dgu-ckan] is the publishing application for data.gov.uk.  [ckanext-datagovuk] is the primary [CKAN] extension for data.gov.uk.
 
 ## Environments
 
-There are currently two environments for [CKAN]:
+There are three environments for [CKAN]:
 
-- [Live](https://data.gov.uk) — co-prod3.dh.bytemark.co.uk
-- Development — co-dev1.dh.bytemark.co.uk
+- [Production][dgu-ckan]
+- [Staging](https://ckan.staging.publishing.service.gov.uk)
+- [Integration](https://ckan.integration.publishing.service.gov.uk)
 
-You can ssh on to these machines with `ssh co@<machine-name>`.
-
-**When working on co-prod3, you must pair because we don't have a robust development environment for the current CKAN configuration.**
-
-If you cannot `ssh` as above, arrange with 2nd line to add your public SSH key to the servers.
-
-We are in the process of migrating [CKAN] to standard GOV.UK infrastructure.
-
-## Applications
-
-[ckanext-dgu] is the primary [CKAN] extension for the current environments.
-This is being replaced with [ckanext-datagovuk] as part of the migration process. Although other extensions are used
-in the deployment, [ckanext-dgu] and [ckanext-datagovuk] are the ones that contain our changes to functionality and
-styling.
+You can SSH onto these machines in [same way as all other GOV.UK AWS applications](/manual/howto-ssh-to-machines-in-aws.html#header).  The machine node class is `ckan`.
 
 ## Managing CKAN
 
-First check to see if it is possible to complete the task through the
-[system dashboard](https://data.gov.uk/data/system_dashboard). You will need a [system
- administrator account](#creating-a-system-administrator-account).
+First check to see if it is possible to complete the task through the [web interface][dgu-ckan]
+(credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
 
-For commands not available via the user interface you must connect to the server to run the commands. All of the
-commands to interact with [CKAN] use a tool called `paster`.
-
-Many of these commands take a path to the config file with the `-c` option, although you can instead use
-`-c $CKAN_INI` which should resolve to `/var/ckan/ckan.ini`.
-
-On Bytemark servers `paster` should be run with:
-
-```
-cd /vagrant/src/ckan
-. /home/co/ckan/bin/activate
-paster
-```
+For commands not available via the user interface you must connect to the server to perform these
+tasks.  Most of the commands to interact with [CKAN] use a tool called `paster`.  Many of these
+commands take a path to the config file with the `-c` option, which is located at `/var/ckan/ckan.ini`
+in our deployments.
 
 On GOV.UK servers `paster` should be run with:
 
 ```
 cd /var/apps/ckan
-sudo -u deploy govuk_setenv ckan venv/bin/paster
-```
-
-> A full guide to administering CKAN and Bytemark can be found in the [CKAN sysops document](https://docs.google.com/document/d/13U2m-f-mSy-CGeq9XplzhafdJK4Ptt6Pk4NfLWvn40k/edit?usp=sharing).
->
-> Further, less commonly used, commands can be found in the [CKAN documentation][ckandocs].
->
-> There is also a separate [historical document of previous admin tasks](https://docs.google.com/document/d/1V64IK9VoHU5w-xQmmmvKXF396FQViHM06iJWnRoAxzc/edit?usp=sharing)
-that you may wish to consult.
-
-### Updating CKAN extensions on Bytemark
-
-To update a CKAN extension that has been pushed to GitHub, you will need to
-navigate to it's directory on Bytemark then pull the relevant branch.
-
-Example for `ckanext-spatial`:
-
-```
-cd /vagrant/src/ckanext-spatial
-git pull
-```
-
-All the extensions live in the `/vagrant/src` directory.
-
-> There are numerous copies of CKAN extensions in various places on the machine
-> including `/vagrant/src/src` and `/home/co/ckan/src`. It's not clear why
-> these exist, we're not aware of anything using them, but we're not sure.
-
-They're installed in the virtual environment as "editable" meaning any code
-changes should be reflected automatically, if this is not the case, you can
-install it using:
-
-```
-/home/co/ckan/bin/pip install -e $PWD
-```
-
-If the extension is related to harvesting, you must restart both the `gather`
-and `fetch` queues:
-
-```
-sudo supervisorctl restart ckan_fetch_consumer_dgu
-sudo supervisorctl restart ckan_gather_consumer_dgu
-```
-
-If your change is not showing up on the website, it may be necessary to restart Apache:
-
-```
-sudo service apache2 restart
+sudo -u deploy govuk_setenv ckan venv/bin/paster [COMMAND] -c /var/ckan/ckan.ini
 ```
 
 ### Initialising the database
@@ -120,70 +54,39 @@ paster --plugin=ckan db init -c /var/ckan/ckan.ini
 paster --plugin=ckanext-harvest harvester initdb -c /var/ckan/ckan.ini
 ```
 
-### Switching between legacy CKAN and Find open data
-
-To access legacy CKAN, append `?legacy=1` to the URL.
-
-If viewing a dataset, the final part of the path must be removed, leaving only the GUID (e.g. `https://data.gov.uk/dataset/f760008b-86d3-4bbb-89da-1dfe56101554/gh-wine-cellar-data` on Find open data can be viewed in legacy CKAN at `https://data.gov.uk/dataset/f760008b-86d3-4bbb-89da-1dfe56101554?legacy=1`).
-
 ### Accessing the CKAN API
 
-There are times when it can be useful to access the CKAN API when debugging or resolving issues.
+There are times when it can be useful to access the [CKAN API][ckan-api] when debugging or resolving issues. Note that the responses will be different depending on your access permissions.
 
-Note that the responses will be different depending on your access permissions.  The ID can be specified as either the GUID or the URL slug (referred to as a URL name in CKAN).
-
-####  Listing all datasets
-
-```
-https://data.gov.uk/api/3/action/package_list
-```
-
-#### Viewing a dataset
+For APIs that require an ID, the ID can be specified as either the GUID or the URL slug (referred to as a URL name in CKAN) e.g.
 
 ```
 https://data.gov.uk/api/3/action/package_show?id=f760008b-86d3-4bbb-89da-1dfe56101554
 ```
 
-#### Searching for a dataset
+Here are some more complex examples of using the API, as well as some where the documentation is more sparse.
 
 ```
-https://data.gov.uk/api/3/action/package_search?q=title:wine+cellar
-```
-
-#### Find all packages created during a specific timeframe
-
-```
+# Find all packages created during a specific timeframe
 https://data.gov.uk/api/3/action/package_search?q=metadata_created:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
-```
 
-#### Find all packages modified during a specific timeframe
-
-```
+# Find all packages modified during a specific timeframe
 https://data.gov.uk/api/3/action/package_search?q=metadata_modified:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
-```
 
-#### List all publishers
-
-```
+# List all publishers
 https://data.gov.uk/api/3/action/organization_list
-```
 
-#### View a publisher record
-
-```
+# View a publisher record
 https://data.gov.uk/api/3/action/organization_show?id=government_digital_service
-```
 
-#### View a user (e.g. to get CKAN API key for a Drupal user)
-
-```
+# View a user (e.g. to get CKAN API key for a publishing user)
 https://data.gov.uk/api/3/action/user_show?id=user_d484581
 ```
 
 ### Creating a system administrator account
 
 ```
-paster --plugin=ckan sysadmin add USERNAME email=EMAIL_ADDRESS -c $CKAN_INI
+paster --plugin=ckan sysadmin add USERNAME email=EMAIL_ADDRESS -c /var/ckan/ckan.ini
 ```
 
 You will be prompted twice for a password.
@@ -191,7 +94,7 @@ You will be prompted twice for a password.
 ### Removing a system administrator account
 
 ```
-paster --plugin=ckan sysadmin remove USERNAME -c $CKAN_INI
+paster --plugin=ckan sysadmin remove USERNAME -c /var/ckan/ckan.ini
 ```
 
 ### Managing users
@@ -199,31 +102,31 @@ paster --plugin=ckan sysadmin remove USERNAME -c $CKAN_INI
 #### Listing users
 
 ```
-paster --plugin=ckan user list -c $CKAN_INI
+paster --plugin=ckan user list -c /var/ckan/ckan.ini
 ```
 
 #### Viewing a user
 
 ```
-paster --plugin=ckan user USERNAME -c $CKAN_INI
+paster --plugin=ckan user USERNAME -c /var/ckan/ckan.ini
 ```
 
 #### Adding a user
 
 ```
-paster --plugin=ckan user add USERNAME email=EMAIL_ADDRESS -c $CKAN_INI
+paster --plugin=ckan user add USERNAME email=EMAIL_ADDRESS -c /var/ckan/ckan.ini
 ```
 
 #### Removing a user
 
 ```
-paster --plugin=ckan user remove USERNAME -c $CKAN_INI
+paster --plugin=ckan user remove USERNAME -c /var/ckan/ckan.ini
 ```
 
 #### Changing a user's password
 
 ```
-paster --plugin=ckan user setpass USERNAME -c $CKAN_INI
+paster --plugin=ckan user setpass USERNAME -c /var/ckan/ckan.ini
 ```
 
 ### Deleting a dataset
@@ -236,55 +139,61 @@ UUID.
 
 Deleting a dataset:
 
-```
-paster --plugin=ckan dataset delete DATASET_NAME -c $CKAN_INI
-```
+1. Find the dataset in the CKAN UI
+2. Click on the 'Manage' button, then the 'Delete' button at the bottom of the page
+
+> The 'Delete' button is currently not available for draft datasets. In order to soft-delete a draft dataset, follow the above steps, but manually change 'edit' to 'delete' on the 'Manage' page for the dataset.
 
 Purging a dataset:
 
 ```
-paster --plugin=ckan dataset purge DATASET_NAME -c $CKAN_INI
+paster --plugin=ckan dataset purge DATASET_NAME -c /var/ckan/ckan.ini
 ```
 
 There may be times when a large number of datasets must be deleted.  This can be done remotely from your
-machine using the CKAN API.  Your API key is required, which can be obtained from the web interface.
-Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.
+machine using the CKAN API.  Your API key is required, which can be obtained from your user profile on
+the web interface.  Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then
+run the following.
 
 ```
 while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: <your_api_key>" https://data.gov.uk/api/3/action/package_delete; done < list_of_ids.txt
 ```
 
-After deleting or purging a dataset, it will take up to 10 minutes to update on Find.
+After deleting or purging a dataset, it will take up to 10 minutes to update on Find, due to the sync process.
 
 ### Rebuilding the search index
 
 [CKAN] uses Solr for its search index, and occasionally it may be necessary to interact with it
 to refresh the index, or rebuild it from scratch.
 
-Refresh the entire search index:
+Refresh the entire search index (this adds/removes datasets, but does not clear the index first):
 
 ```
-paster --plugin=ckan search-index rebuild -r -c $CKAN_INI
+paster --plugin=ckan search-index rebuild -r -c /var/ckan/ckan.ini
 ```
 
-Rebuild the entire search index:
+Rebuild the entire search index (this deletes the index before re-indexing begins):
 
 ```
-paster --plugin=ckan search-index rebuild -c $CKAN_INI
+paster --plugin=ckan search-index rebuild -c /var/ckan/ckan.ini
 ```
+
+> Rebuilding the entire search index immediately removes all records from the search before re-indexing
+> begins.  No datasets will be served from the `package_search` API endpoint until the re-index has
+> completed.  This command should therefore only be used as a last resort since it will cause the sync
+> process to assume there is no data for a period of time.
+
 
 Only reindex those packages that are not currently indexed:
 
 ```
-paster --plugin=ckan search-index -o rebuild -c $CKAN_INI
+paster --plugin=ckan search-index -o rebuild -c /var/ckan/ckan.ini
 ```
 
 ### Managing the harvest workers
 
 Although harvesters can mostly be managed from the [user interface](https://data.gov.uk/harvest), it is
-sometimes easier to perform these tasks from the command line. If using
-a system administrator account you will see > 400 harvest configs without
-a clear way of seeing which are currently running.
+sometimes easier to perform these tasks from the command line.
 
 #### Listing current jobs
 
@@ -292,28 +201,30 @@ Returns a list of currently running jobs.  This will contain the
 JOB_ID necessary to cancel jobs.
 
 ```
-paster --plugin=ckanext-harvest harvester jobs -c $CKAN_INI
+paster --plugin=ckanext-harvest harvester jobs -c /var/ckan/ckan.ini
 ```
 
 It may be faster to run a SQL query to get the ID of a specific harvest job.
 
 ```
-psql ckan -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
+psql ckan_production -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
 ```
 
 #### Cancelling a current job
 
-To cancel a currently running job, you will require a JOB_ID from the
-[Listing current jobs](#listing-current-jobs) section.
+Sometimes a harvest job can get stuck and not complete, and it's not possible to
+restart/reharvest through the UI. You can get the `JOB_ID` from the
+[Listing current jobs](#listing-current-jobs) section, or from the harvest dashboard
+under "Last Harvest Job".
 
 ```
-paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c $CKAN_INI
+paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
 ```
 
 This can also be done by running SQL:
 
 ```
-psql ckan -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
+psql ckan_production -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
 ```
 
 #### Purging all currently queued tasks
@@ -326,7 +237,7 @@ to purge the queues used in the various stages of harvesting
 > This command will empty the Redis queues
 
 ```
-paster --plugin=ckanext-harvest harvester purge_queues -c $CKAN_INI
+paster --plugin=ckanext-harvest harvester purge_queues -c /var/ckan/ckan.ini
 ```
 
 #### Restarting the harvest queues
@@ -338,45 +249,14 @@ The gather jobs retrieve the identifiers of the updated datasets and create
 jobs in the fetch queue.
 
 ```
-sudo supervisorctl restart ckan_gather_consumer_dgu
+sudo initctl restart harvester_gather_consumer-procfile-worker
 ```
 
 The fetch job retrieve the datasets from the remote source and perform the
 relevant updates in CKAN.
 
 ```
-sudo supervisorctl restart ckan_fetch_consumer_dgu
-```
-
-### Adding a new Schema
-
-Each new schema for the schema dropdown in [CKAN] needs a title and a URL ...
-
-```
-paster --plugin=pylons shell $CKAN_INI
-```
-
-Then in the REPL that loads:
-
-```
->>> from ckanext.dgu.model.schema_codelist import Schema
->>> model.Session.add(Schema(url="[URL]", title="[TITLE]"))
->>> model.repo.commit_and_remove()
-```
-
-### Find all packages where a resource has a partial URL
-
-```
-psql ckan
-```
-
-```sql
-SELECT DISTINCT (p.name)
-FROM package p
-INNER JOIN resource_group rg ON rg.package_id = p.id
-INNER JOIN resource r ON r.resource_group_id = rg.id
-WHERE r.url LIKE '%neighbourhood.statistics.gov.uk%'
-  AND p.state = 'active';
+sudo initctl restart harvester_fetch_consumer-procfile-worker
 ```
 
 ### Change a publisher's name
@@ -384,7 +264,7 @@ WHERE r.url LIKE '%neighbourhood.statistics.gov.uk%'
 Change the name in the publisher page then reindex that publisher:
 
 ```
-paster --plugin=ckan search-index rebuild-publisher [PUBLISHER} -c $CKAN_INI
+paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c /var/ckan/ckan.ini
 ```
 
 ### Register a brownfield dataset

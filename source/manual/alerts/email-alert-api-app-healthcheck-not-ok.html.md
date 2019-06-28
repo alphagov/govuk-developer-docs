@@ -4,15 +4,26 @@ title: email-alert-api app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-27
 review_in: 6 months
 ---
 
 If there is a health check error showing for Email Alert API, you can click on the alert to find out more details about what’s wrong. Here are the possible problems you may see:
 
+Some of the alerts below tend to trigger when emails are sent out. Check to see if emails have sent out by looking at the [Email Alert API Metrics Grafana dashboard](https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1)
+
+This affects the following alerts:
+
+* Unprocessed content changes
+* Subscription content
+* High queue alerts (all)
+* Subscription content
+
+In this case you can wait until the emails have all been sent out.
+
 ## Unprocessed content changes (content_changes)
 
-This means that there are some content changes which haven't been processed within the time we would expect. This may be fine and the emails will eventually go out, but it's worth some investigation. Some useful queries:
+This means that there are some content changes which haven't been processed within the time we would expect. This may be fine and the emails will eventually go out, but it's worth some investigation. Some useful queries and Rake tasks:
 
 #### Check which content changes are affected
 
@@ -30,6 +41,22 @@ SubscriptionContent.where(content_change: content_change).count
 
 ```ruby
 SubscriptionContentWorker.new.perform(content_change.id)
+```
+
+#### Resend the emails for a content change in bulk (ignore ones that have already gone out)
+
+```ruby
+ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |content_change| SubscriptionContentWorker.new.perform(content_change.id)  }
+```
+
+#### Check sent, pending and failed email counts for a content change
+```bash
+ $ bundle exec rake report:content_change_email_status_count[<content_change_id>]
+```
+
+#### Check failed email ids and failure reasons for a content change
+```bash
+ $ bundle exec rake report::content_change_failed_emails[<content_change_id>]
 ```
 
 ## Unprocessed digest runs (digest_runs)
@@ -67,6 +94,8 @@ This means that there are subscription contents being created without emails ass
 ```ruby
 SubscriptionContent.where("subscription_contents.created_at < ?", 1.minute.ago).where(email: nil).joins(:subscription).merge(Subscription.active)
 ```
+
+Check the count, then run the above query again to see if the count has decreased. If it's decreasing, then it means that emails are going out and there's probably a lot being processed. You can also check the [Email Alert API Metrics dashboard](https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1).
 
 ## Technical failures (technical_failure)
 

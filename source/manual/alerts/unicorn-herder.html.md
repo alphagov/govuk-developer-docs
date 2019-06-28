@@ -4,7 +4,7 @@ title: Unicorn Herder
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-03-13
 review_in: 6 months
 ---
 
@@ -21,9 +21,10 @@ as to why I say "At the moment".)
 Configure and activate your fabric environment as described in the
 [fabric-scripts README](https://github.com/alphagov/fabric-scripts/blob/master/README.md).
 
-Then run the `vm.bodge_unicorn` task for the affected machine and application,
-e.g.
+Then run the `vm.bodge_unicorn` task for the affected machine and application:
 
-    fab $environment -H whitehall-backend-1.backend vm.bodge_unicorn:whitehall
+```bash
+fab $environment -H whitehall-backend-1.backend vm.bodge_unicorn:whitehall
+```
 
 Job done. The Nagios alert should clear within a few minutes.

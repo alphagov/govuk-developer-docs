@@ -4,8 +4,8 @@ title: Give a content designer access to GitHub
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2018-09-11
-review_in: 3 months
+last_reviewed_on: 2019-01-04
+review_in: 6 months
 ---
 
 Content designers working on GOV.UK may need GitHub access to edit content
@@ -30,9 +30,9 @@ follow:
    GOV.UK - [example][user-example]
 1. Raise this as a pull request
 1. Once PR is merged email
-   govuk-senior-tech-members@digital.cabinet-office.gov.uk
+   `govuk-senior-tech-members@digital.cabinet-office.gov.uk`
    with the GitHub usernames asking for the users to be added to
-   https://github.com/orgs/alphagov/teams/gov-uk-content-designers
+   `https://github.com/orgs/alphagov/teams/gov-uk-content-designers`
    which is the "GOV.UK Content Designers" GitHub team
 1. Once added to the team the content designers will receive an invite that
    they will have to accept to join the team

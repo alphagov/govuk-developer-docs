@@ -4,7 +4,7 @@ title: How to deal with errors
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-08
+last_reviewed_on: 2019-05-02
 review_in: 6 months
 ---
 
@@ -54,7 +54,7 @@ Desired behaviour: apps handle these errors better, for example by offloading th
 
 Sidekiq worker sends something to the publishing-api, which times out. Sidekiq retries, the next time it works.
 
-Desired behaviour: errors are not reported to Sentry until retries are exhausted. See [this PR for an example](https://github.com/alphagov/content-performance-manager/pull/353).
+Desired behaviour: errors are not reported to Sentry until retries are exhausted. See [this PR for an example](https://github.com/alphagov/content-data-api/pull/353).
 
 Relevant: https://github.com/getsentry/raven-ruby/pull/784
 
@@ -80,7 +80,7 @@ Desired behaviour: user gets feedback, error is not reported to Sentry
 
 ### Incorrect bubbling up of errors
 
-Rummager crashes on date parsing, returns `422`, which raises an error in finder-frontend.
+Search API crashes on date parsing, returns `422`, which raises an error in finder-frontend.
 
 Example: <https://sentry.io/govuk/app-finder-frontend/issues/400074507>
 

@@ -4,16 +4,19 @@ title: Merge a Pull Request
 section: GitHub
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-04
+last_reviewed_on: 2019-08-28
 review_in: 6 months
 ---
 
-There are four rules for reviewing and merging PRs, which apply to all applications:
+There are five rules for reviewing and merging PRs, which apply to all applications:
 
 1. The `master` branch must be able to be released at any time.
 2. The change must have two reviews from people from GDS (preferably GOV.UK). This can (and normally will) include the author.
-3. The GitHub review UI should be used to mark a PR as approved or requiring changes.
-4. The GitHub UI should be used to merge the PR. This ensures the PR number is added to the merge commit.
+3. If a branch is force-pushed or rebased after a review on its PR, the author must dismiss the stale review and ask for a new one, unless the change is a rebase on top of a small piece of work and the author is confident there are no side effects.
+4. The GitHub review UI should be used to mark a PR as approved or requiring changes.
+5. The GitHub UI should be used to merge the PR. This ensures the PR number is added to the merge commit.
+
+Once a PR is merged, you should deploy your changes at the earliest convenience to ensure unreleased changes do not back up and to keep our applications deployable - regardless of the perceived size of the PR merged (including [Dependabot](#Dependabot) PRs). [Deploying](/manual/deploying.html) should be done in the regular way, taking the merged changes all the way through to production.
 
 ## Example scenarios
 
@@ -24,6 +27,14 @@ A small PR for a well-understood application, written by someone with good knowl
 ### A simple change for a repository that has a long-running test suite
 
 Similar to the above. If a PR is for an application that has a long-running test suite, you've approved the change and are confident that the suite will pass, the reviewer can approve the PR. The author of the PR now has approval to merge it themselves once the test suite has passed.
+
+### A simple change that needs a small rebase before being merged
+
+Similar to the above, but it includes a change in the Gemfile which then conflicts with another, unrelated Gemfile change that is merged before this one. The author of the PR can keep any existing approvals on the PR, rebase the branch to remove the conflict, and merge the PR.
+
+### A simple change that needs a large rebase before being merged
+
+Similar to the above, but the changes made conflict with a number of large refactoring-style changes made in another branch that is merged before this one. The author of the PR should rebase the branch to remove the conflicts, dismiss any existing (now stale) approvals, and ask for a new review.
 
 ### A change where a reviewer doesn't have the full context or knowledge required
 
@@ -54,6 +65,24 @@ git push --set-upstream origin thomasjhughes-patch-1
 ```
 
 Change `thomasjhughes` to the GitHub username of the contributor and `patch-1` to the name of the branch in their fork.
+
+#### Dependabot
+
+As Dependabot changes the Gemfile/Gemfile.lock, or some other package
+management related manifests in the repository, when reviewing the
+diff, you should especially check if this is the case. Dependabot
+shouldn't be making changes other than these.
+
+As well as reviewing the diff, take note of the version changes
+involved, and consider looking at the release notes or changelog for
+the affected packages.
+
+If you decide that particular versions are inappropriate, then you can
+inform Dependabot through commands like `@dependabot ignore this major
+version`. If you do this, add the PR to the [tech debt Trello
+board][tech-debt].
+
+[tech-debt]: https://trello.com/b/oPnw6v3r
 
 ### A change where two people worked on the same branch
 

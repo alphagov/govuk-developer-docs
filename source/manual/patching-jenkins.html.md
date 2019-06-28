@@ -3,8 +3,8 @@ owner_slack: "#govuk-2ndline"
 title: Patch Jenkins
 parent: "/manual.html"
 layout: manual_layout
-section: Infrastructure tasks
-last_reviewed_on: 2018-07-26
+section: Infrastructure
+last_reviewed_on: 2019-01-31
 review_in: 6 months
 ---
 

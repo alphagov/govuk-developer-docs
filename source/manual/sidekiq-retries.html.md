@@ -4,7 +4,8 @@ title: Sidekiq
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
-last_reviewed_on: 2018-06-14
+type: learn
+last_reviewed_on: 2019-01-04
 review_in: 6 months
 ---
 

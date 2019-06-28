@@ -4,7 +4,8 @@ title: MongoDB backups
 layout: manual_layout
 parent: "/manual.html"
 section: Backups
-last_reviewed_on: 2018-07-27
+type: learn
+last_reviewed_on: 2019-02-01
 review_in: 6 months
 ---
 

@@ -1,24 +1,25 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Reboot a machine
-section: Infrastructure tasks
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2018-09-11
-review_in: 6 months
-next_review_notes: |
-    We may be on AWS entirely by the next review. Lots of this is Carrenza specific.
+last_reviewed_on: 2019-06-27
+review_in: 3 months
 ---
 
 ## Rules of rebooting
 
--   *Read this page first* to see if any special cases apply to the type of
-    machine you need to reboot.
--   Do not reboot more than one machine of the same class at the
-    same time.
--   When rebooting clustered applications (such as Elasticsearch) wait
-    for the cluster to recover fully before rebooting the next machine.
+* *Read this page first* to see if any special cases apply to the type of
+  machine you need to reboot.
+* Do not reboot more than one machine of the same class at the
+  same time.
+* When rebooting clustered applications (such as RabbitMQ) wait
+  for the cluster to recover fully before rebooting the next machine.
+* If rebooting machines in AWS, extended reboot times may result in the
+  relevant machine being terminated automatically. If this happens, a
+  new machine will be created automatically.
 
 ## Unattended upgrades
 
@@ -40,8 +41,8 @@ You will then need to decide whether to:
 
 ### Deciding whether to reboot or silence
 
-This can be quite nuanced, before you go ahead with any course of action
-gather evidence and then ask in the \#reliability-eng slack room.
+This can be quite nuanced. Before you go ahead with any course of action,
+gather evidence and then ask in the \#reliability-eng Slack channel.
 
 Find details of the update from the [Ubuntu Security
 Notices](http://www.ubuntu.com/usn/).
@@ -63,6 +64,10 @@ is an example of a machine that cannot be safely rebooted. The
 [default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
 is `safe_to_reboot::can_reboot: 'yes'`, so if it does not say it is
 unsafe, or does not have a class in hieradata at all, then it is safe.
+
+> If there is an incident which requires the rebooting of a machine
+> otherwise marked as 'no', then it may be done provided any downstream
+> effects of this reboot have been considered.
 
 There is a Fabric task to schedule a machine for downtime in Nagios for
 20 minutes and then reboot it:
@@ -100,26 +105,6 @@ The general approach for rebooting machines in a MongoDB cluster is:
     down the primary and waiting for the cluster to recover
     before rebooting.
 
-## Rebooting Elasticsearch machines
-
-To reboot an Elasticsearch machine, run the following command:
-
-```sh
-$ fab $environment -H $hostname elasticsearch.safe_reboot
-```
-
-This will prevent you from rebooting a machine in a cluster which doesn't have
-a green cluster health status.
-
-> **Note**
->
-> Whilst the cluster is `yellow` (meaning one or more machines in the
-> cluster is unavailable), no reindexing will take place. Therefore you're
-> likely to see a backlog of jobs being created, particularly with Rummager.
-> This can take a long time to clear once the cluster is `green` again, and can
-> put extraneous load on the machines and it is therefore recommended to only
-> reboot these machines in hours if it is urgent.
-
 ## Rebooting Redis machines
 
 Unless there are urgent updates to apply, these machines should not be
@@ -127,7 +112,7 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-with Platform Health.
+with Platform Health and search-api workers must be restarted after the reboot.
 
 They may be rebooted in working hours in other environments, however you
 should notify colleagues before doing so as this may remove in-flight jobs
@@ -137,6 +122,15 @@ that Sidekiq has added to the Redis queues but not yet processed.
 
 There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
 waiting for the cluster to recover before rebooting the next node.
+
+> **Note**
+>
+> We have had a couple of incidents after running this script, so it should only
+> be done in-hours and requires careful monitoring. See:
+>
+> 1) [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#) - This required killing RabbitMQ processes to resolve.
+>
+> 2) [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv) - This required restarting Publishing API workers to resolve.
 
 If there are problems with the cluster (eg, a partition has happened),
 the `safe_reboot` script will not reboot anything, and you'll need to
@@ -192,29 +186,29 @@ to safely reboot these machines you'll need access to vCloud Director.
 
     > **Note**
     >
-    > Doing this may trigger a Pagerduty alert and trigger 5xx errors on fastly
+    > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
 
--   find the IP addresses of backend-lb-1 and backend-lb-2 for the
+-   Find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
     repo](https://github.com/alphagov/govuk-provisioning/)
--   use vCloud Director to update the NAT rule to point to backend-lb-2.
+-   Use vCloud Director to update the NAT rule to point to backend-lb-2.
     -   The Nat rule will be in [this
         repo](https://github.com/alphagov/govuk-provisioning/).
     -   Go to "Administration"
-    -   find 'GOV.UK Management' in the list of vdcs and click on it
-    -   select the "edge gateway" tab, right click on it and select
+    -   Find 'GOV.UK Management' in the list of vdcs and click on it
+    -   Select the "edge gateway" tab, right click on it and select
         "edge gateway services"
-    -   click the NAT tab.
+    -   Click the NAT tab.
     -   Find the rule corresponding to the rule defined in the
         vcloud-launcher file, and update the DNAT rules to point to the
         ip address of backend-lb-2 by clicking edit, and updating the
         "Translated (Internal) IP/range" field and click ok to save
         these rules
--   reboot backend-lb-1 and wait for it to recover
+-   Reboot backend-lb-1 and wait for it to recover
 
     `fab <environment> -H backend-lb-1.backend vm.reboot`
 
--   use vCloud Director to update the NAT rule to point back to the IP
+-   Use vCloud Director to update the NAT rule to point back to the IP
     address of backend-lb-1
 
 ## Rebooting MySQL backup machines (Carrenza only)

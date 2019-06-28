@@ -1,5 +1,6 @@
 host: https://docs.publishing.service.gov.uk
 service_link: /
+enable_search: true
 
 show_govuk_logo: true
 service_name: Developer docs
@@ -23,12 +24,15 @@ github_repo: alphagov/govuk-developer-docs
 redirects:
   /2nd-line/mirror-fallback.html: /manual/fall-back-to-mirror.html
   /apis/search-api.html: /apis/search/search-api.html
+  /apps/content-performance-manager.html: /apps/content-data-api.html
   /dictionary.html: /manual/dictionary.html
   /getting-started.html: /manual/get-started.html
   /guides.html: /manual.html
   /manual/alerts/applications/sidekiq-monitoring.html: /manual/setting-up-new-sidekiq-monitoring-app.html
   /manual/alerts/publisher-app-health-check-not-ok.html: /manual/alerts/publisher-app-healthcheck-not-ok.html
   /manual/alerts/data-sources-for-transition.html: /manual/transition-architecture.html
+  /manual/alerts/rummager-queue-latency.html: /manual/alerts/search-api-queue-latency.html
+  /manual/alerts/rummager-index-size-change.html: /manual/alerts/search-api-index-size-change.html
   /manual/alerts/whitehall-app-health-check-not-ok.html: /manual/alerts/whitehall-app-healthcheck-not-ok.html
   /manual/access-ci.html: /manual/access-jenkins.html
   /manual/archiving-and-redirecting-content.html: /manual/redirect-routes.html
@@ -37,7 +41,9 @@ redirects:
   /manual/create-page.html: /manual/docs-style-guide.html
   /manual/creating-a-new-environment.html: /manual.html
   /manual/creating-pages.html: /manual/docs-style-guide.html
+  /manual/data-gov-uk-backups.html: /manual/postgresql.html
   /manual/data-sources-for-transition.html: /manual/transition-architecture.html
+  /manual/data-gov-uk-hacks.html: /manual/data-gov-uk-2nd-line.html
   /manual/elasticsearch.html: /manual/elasticsearch-dumps.html
   /manual/emergency-publishing-redis.html: /manual/emergency-publishing.html
   /manual/fastly-error-rate.html: /manual/alerts/fastly-error-rate.html
@@ -52,6 +58,7 @@ redirects:
   /manual/releasing-software.html: /manual/deploying.html
   /manual/renew_ssl_certificates.html: /manual/renew-a-tls-certificate.html
   /manual/setup-postgresql-replication.html: /manual/resync-postgres-standby.html
+  /manual/rummager-traffic-replay.html: /manual/search-api-traffic-replay.html
   /manual/technical-setup.html: /manual/on-call.html
   /manual/troubleshooting-vagrant.html: /manual/fix-problems-with-vagrant.html
   /manual/upgrade-to-sentry.html: /manual/sentry.html

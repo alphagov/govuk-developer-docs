@@ -4,12 +4,12 @@ title: Fetch analytics data for search failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-05-31
 review_in: 6 months
 ---
 
 This checks the latest build state of [a job in production
-Jenkins](https://deploy.publishing.service.gov.uk/job/search-fetch-analytics-data/)
+Jenkins](https://deploy.blue.production.govuk.digital/job/search-api-fetch-analytics-data/)
 which runs every night and updates all documents in the search index with pageview data from
 Google Analytics.
 
@@ -20,4 +20,4 @@ whilst people are publishing.
 The popularity data is used to promote more popular pages in search results.
 
 If the job is failing often, make sure the team currently responsible for search
-are aware of the problem.
+are aware of the problem (or Platform Health).

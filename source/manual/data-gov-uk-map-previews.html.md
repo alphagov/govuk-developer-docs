@@ -4,8 +4,8 @@ title: WMS map previews on data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-11-01
-review_in: 8 weeks
+last_reviewed_on: 2018-12-21
+review_in: 6 months
 ---
 
 ## Previewing Web Map Service data on DGU maps

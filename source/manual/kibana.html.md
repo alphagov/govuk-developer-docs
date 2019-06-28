@@ -1,11 +1,11 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Useful Kibana queries
+title: Query Kibana (includes useful queries)
 layout: manual_layout
 parent: "/manual.html"
 section: Logging
 important: true
-last_reviewed_on: 2018-12-04
+last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---
 All logs for GOV.UK on all environments are collected in Kibana, which you can

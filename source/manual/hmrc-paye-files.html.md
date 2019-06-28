@@ -4,13 +4,15 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-02
+last_reviewed_on: 2019-05-10
 review_in: 6 months
 ---
 
-HMRC have a [desktop application to submit
-PAYE](https://www.gov.uk/basic-paye-tools). This is available on Windows,
-Linux, and OS X.
+[Basic PAYE Tools](https://www.gov.uk/basic-paye-tools) is a free software package HMRC provide for small employers to run their payroll. This is available on Windows, Linux, and OS X.
+
+It's updated annually at the start of April with 'uprated' tax rates and thresholds for the new tax year. These updates are critical for employers as if they're using the wrong version their employees could end up paying the wrong amount of tax. Sometimes HMRC release minor updates during the tax year but these are less regular.
+
+HMRC should submit the ticket to request updates to the exe files at least 2 weeks before the new versions are scheduled to go live. If you get a request with a tighter deadline than this, contact the 'green' content support team through their [Slack channel](https://gds.slack.com/messages/CADGKPQHJ/).
 
 As part of the initial tranche of ministerial department migration their
 upload site was switched off. However, we don't currently allow `exe`
@@ -49,46 +51,46 @@ the previous version of the software.
 
 1.  HMRC submit a ticket via Zendesk
     ([example](https://govuk.zendesk.com/tickets/771694))
-2.  Download all zip files and XML file in the ticket
-3.  Upload the new files:
+1.  Check that GOV.UK content teams are aware of the ticket.  They may
+    need to request further tickets to be raised to cover the content updates.
+1.  Download all zip files and XML file in the ticket
+1.  Upload the new files:
 
         ssh backend-1.production "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
         scp *.zip backend-1.production:/tmp/hmrc-paye
         scp *.xml backend-1.production:/tmp/hmrc-paye
 
-4.  Load the files into the Asset Manager, with "test-" at the start of the manifest file's name:
+1.  Load the files into the Asset Manager, with "test-" at the start of the manifest file's name:
 
         ssh backend-1.production
         cd /var/apps/asset-manager
         sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
         sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
 
-5.  [Purge the cache](https://docs.publishing.service.gov.uk/manual/cache-flush.html) for the test file.
+1.  [Purge the cache](https://docs.publishing.service.gov.uk/manual/cache-flush.html#assets) for the test file.
 
-6.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
+1.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
         https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
 
-7.  When Aspire or one of the other suppliers replies that the file
+1.  When Aspire or one of the other suppliers replies that the file
     works fine, the new edition of the [mainstream content
     item](https://www.gov.uk/basic-paye-tools) and [Welsh
     translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
     can be prepped by the content team with the new links, file sizes and version
-    number, ready to publish at the launch time.
+    number, ready to publish at the launch time. Pass the Zendesk ticket over to content support by reassigning it to '3rd line--GOV.UK Content' and adding the green team tag, 'business_defence_environment' .
 
-8.  When the launch time comes (which should be specified in the Zendesk
+1.  When the launch time comes (which should be specified in the Zendesk
     ticket), re-load the test file to the production path:
 
         ssh backend-1.production
-        sudo -udeploy govuk_setenv bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
+        cd /var/apps/asset-manager
+        sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
 
-    You will have to copy the file to she server again if it has been deleted since it was first uploaded.
+    You will have to copy the file to the server again if it has been deleted since it was first uploaded.
 
-9. Publish the content items.
+1. Publish the content items.
 
-10.  Purge the cache, which will otherwise take up to 12 hours to
-    expire:
+1. [Purge the cache](https://docs.publishing.service.gov.uk/manual/cache-flush.html#assets) for the new file.
 
-        fab $environment class:cache cdn.purge_all:/government/uploads/uploaded/hmrc/realtimepayetools-update-vXX.xml
-
-11.  Update and resolve the Zendesk ticket
+1.  Update and resolve the Zendesk ticket

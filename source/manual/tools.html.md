@@ -2,9 +2,10 @@
 owner_slack: "#govuk-2ndline"
 title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
 section: Monitoring
+type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-17
+last_reviewed_on: 2019-04-25
 review_in: 6 months
 ---
 
@@ -15,6 +16,7 @@ review_in: 6 months
 * [Integration](https://alert.integration.publishing.service.gov.uk)
 * [AWS Production](https://alert.blue.production.govuk.digital)
 * [AWS Staging](https://alert.blue.staging.govuk.digital)
+* [CI](https://ci-alert.integration.publishing.service.gov.uk)
 
 Icinga is used to monitor alerts that we have set up. It can be a bit hard to
 navigate but there are only a few views you need to know about (listed in the left-hand

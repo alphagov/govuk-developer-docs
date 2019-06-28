@@ -4,9 +4,9 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-09-03
+last_reviewed_on: 2019-05-01
 review_in: 6 months
-related_applications: [rummager]
+related_applications: [search-api]
 ---
 
 After updating an Elasticsearch index's schema by [changing the fields or
@@ -18,48 +18,51 @@ The reindexing process:
 0. Locks the Elasticsearch index to prevent writes to the index while data is
 being copied
 0. Creates a new index using the schema defined in the deployed version of
-rummager
+search-api
 0. Copies all the data from the old to the new index
 0. Compares the old and new data to check for inconsistencies
 0. If everything looks the same, switches the [alias][index-alias] to the new
 index
+
+**Note:** If you have changed the govuk_document_types gem, you do not need
+to migrate the schema for your changes to be applied to documents in
+elasticsearch. Instead, you can run the rake task `search:update_supertypes`
+to update documents inplace without locks. This can be done during working hours.
 
 ## How to reindex an Elasticsearch index
 
 **Do not reindex on production during working hours except in an emergency.**
 Reindexing locks the index for writes, so content is not updated in the search
 index. See the [Replay traffic](#replay-traffic) section below if you need to
-run a reindexing during working hours.
+run a reindexing during working hours. Reindexing takes around 2 hours to
+complete.
 
-To reindex, run the `rummager:migrate_schema` rake task:
+To reindex, run the `search:migrate_schema` rake task:
 
 ```
-bundle exec rake rummager:migrate_schema CONFIRM_INDEX_MIGRATION_START=1 RUMMAGER_INDEX=alias_of_index_to_migrate
+bundle exec rake search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate
 ```
 
-If you set the last parameter to `RUMMAGER_INDEX=all`, rummager will reindex all
+If you set the last parameter to `SEARCH_INDEX=all`, search-api will reindex all
 the indices sequentially.
 
 You can run this task from Jenkins, but it will block other rake tasks from
 being run for 15 minutes to an hour. You can avoid this by running the command
 directly on a `search` machine, but you need to prefix the command with
-`govuk_setenv rummager` to make sure the Elasticsearch hostname is set
+`govuk_setenv search-api` to make sure the Elasticsearch hostname is set
 correctly.
 
-To monitor progress, SSH to an Elasticsearch box with port-forwarding:
+To monitor progress, SSH to a search box:
 
 ```
-ssh rummager-elasticsearch-1.api.staging -CNL 9200:127.0.0.1:9200
+ssh $(ssh integration "govuk_node_list --single-node -c search").integration
 ```
 
-#### On AWS
+Then check how many documents have been copied to the new index:
 
 ```
-ssh $(ssh integration "govuk_node_list --single-node -c rummager_elasticsearch").integration -CNL 9200:127.0.0.1:9200
+curl http://elasticsearch5/_cat/indices?v
 ```
-
-Then visit <http://localhost:9200/_plugin/head/> to check how many documents have
-been copied to the new index.
 
 ### Replay traffic
 
@@ -75,15 +78,16 @@ Reindexing does not delete the old index. This lets us switch back to the old
 index if there is a serious problem with the new one.
 
 Once you're confident that the reindexing was successful, delete the old
-(unaliased) index using the rummager rake task:
+(unaliased) index using the search-api rake task:
 
 ```
-rake rummager:clean RUMMAGER_INDEX=alias_of_index_to_clean_up
+rake search:clean SEARCH_INDEX=alias_of_index_to_clean_up
 ```
 
-Avoid leaving old indices around for more than a few days. Rummager performance
-starts to degrade once there are more than three or four old indices in the
-cluster.
+Avoid leaving old indices around for more than a few days. Performance
+starts to degrade once there are more than three or four old indices
+in the cluster, and if enough old indices hang around, we may hit
+space limitations and be unable to index new documents.
 
 ### Troubleshooting
 
@@ -92,9 +96,9 @@ cluster.
 If you need to cancel the reindexing while it's in progress:
 
 0. Stop the reindexing rake task
-0. Unlock the old index by running the rummager rake task:
+0. Unlock the old index by running the search-api rake task:
     ```
-    rake rummager:unlock RUMMAGER_INDEX=alias_of_index_to_unlock
+    rake search:unlock SEARCH_INDEX=alias_of_index_to_unlock
     ```
 
 This doesn't actually stop the reindexing, because reindexing is an internal
@@ -103,44 +107,37 @@ from switching the alias over to the new index once it has copied all the data,
 which is normally good enough.
 
 If you need to stop the reindexing process itself, for example because
-Elasticsearch is about to run out of disk space, port-forward to the
-rummager-elasticsearch box (see above) then use <http://localhost:9200/_plugin/head/>
-to send these requests to Elasticsearch:
+Elasticsearch is about to run out of disk space, connect to the
+search box (see above) then:
 
 0. Find the ID of the reindexing task:
 
     ```
-    GET /_tasks?actions=%2Areindex
+    curl 'http://elasticsearch5/_tasks?actions=%2Areindex&pretty'
     ```
 
 0. Stop the task:
 
     ```
-    POST /_tasks/{task_id}/_cancel
+    curl -XPOST http://elasticsearch5/_tasks/{task_id}/_cancel
     ```
 
 #### To switch back to the old index
 
 If you discover a problem after reindexing and need to switch back to the old
-index, run this rummager rake task:
+index, run this search-api rake task:
 
 ```
-rake rummager:switch_to_named_index[full_index_name] RUMMAGER_INDEX=index_alias
+rake search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias
 ```
 
 where `full_index_name` is the full name of the new index, including the date
 and UUID, e.g. `govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498`.
 
 Switching back to an old index means that you'll **lose any content updates**
-that were published while the new index was live. To fix this:
-
-0. [Replay traffic from whitehall][traffic-replay]
-0. Republish other content using the publishing-api rake task:
-
-    ```
-    rake 'represent_downstream:published_between[2018-01-04T09:30:00, 2018-01-04T10:00:00]'
-    ```
+that were published while the new index was live. To fix this, [replay the
+traffic][traffic-replay] from both publishing-api and Whitehall.
 
 [update-fields-or-doc-types]: /apis/search/add-new-fields-or-document-types.html
 [index-alias]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html
-[traffic-replay]: rummager-traffic-replay.html
+[traffic-replay]: search-api-traffic-replay.html

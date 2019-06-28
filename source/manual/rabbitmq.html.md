@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Manage RabbitMQ
-section: Infrastructure tasks
+section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-05-17
+last_reviewed_on: 2019-01-04
 review_in: 6 months
 ---
 
@@ -31,6 +31,15 @@ in the `publishing-api` app.
 
 [heartbeat_rake_task]: https://github.com/alphagov/publishing-api/blob/012cb3f1ceb3b18e7059a367cc4030aa0763afb4/lib/tasks/heartbeat_messages.rake
 
+## Viewing RabbitMQ metrics
+
+Metrics from RabbitMQ are collected with a CollectD plugin, and are
+available in Graphite/Grafana. There is a [generic RabbitMQ
+dashboard][rabbitmq-dashboard] which shows the main metrics for queues
+and exchanges.
+
+[rabbitmq-dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rabbitmq.json
+
 ## Connecting to the RabbitMQ web control panel
 
 1.  Create an SSH tunnel to access the web control panel
@@ -54,7 +63,7 @@ in the `publishing-api` app.
     The username is root. The password you can obtain from the govuk-secrets
     repo if you have access. Look for govuk\_rabbitmq::root\_password in the file for the
     relevant environment in
-    <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata> or <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata_aws>
+    <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata> or <https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata>
 
 3.  Do your business
 4.  Tidy up

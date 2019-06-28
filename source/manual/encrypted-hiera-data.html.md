@@ -4,7 +4,7 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2018-10-24
+last_reviewed_on: 2019-05-10
 review_in: 6 months
 ---
 
@@ -170,23 +170,25 @@ recipient file pertains to.
 2.  Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
 3.  Add the joiners's GPG fingerprint to each of the recipient files
     for Carrenza
-    [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
-    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp),
+    [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
     AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp),
     and
     [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
-    There are no staging recipient files since these are the same as the
-    production recipient files.
 4.  Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
     is something like "Adding new key for Jane Smith".
 5.  Commit your changes and raise a pull request for review.
-6.  Check that the joiner has uploaded their gpg key.
+6.  Check that the joiner has uploaded their GPG key.
     If their key isn't on a public keyserver it interupts other people's workflow so please make sure it has been uploaded.
 7.  Take care when rebasing changes to master that have been merged since you
     started your PR. The encrypted hieradata files are effectively binary data
     that git's text diff may not correctly merge. You will likely have to
     reset your recrypted versions and start again from the versions on master.
+
+### What to do when someone gets production access
+
+Follow the steps above but add their GPG fingerprint to the production recipient files for Carrenza [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp) and AWS [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
+
+Note there are no staging recipient files - access to staging secrets is controlled by the production recipient files.
 
 ### What to do when someone leaves
 
@@ -203,13 +205,7 @@ credentials.
     [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
     There are no staging recipient files since these are the same as the
     production recipient files.
-2.  Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
-    is something like "Removing key for Jane Smith".
-3.  Commit your changes and raise a pull request for review.
-4.  Take care when rebasing changes to master that have been merged since you
-    started your PR. The encrypted hieradata files are effectively binary data
-    that git's text diff may not correctly merge. You will likely have to
-    reset your recrypted versions and start again from the versions on master.
+2.  Commit your changes and raise a pull request for review.
 
 > **WARNING**
 >

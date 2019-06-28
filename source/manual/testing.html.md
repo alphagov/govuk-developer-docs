@@ -4,7 +4,7 @@ title: Test Ruby projects
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-04-05
+last_reviewed_on: 2019-04-17
 review_in: 12 months
 ---
 
@@ -18,3 +18,6 @@ should be used in order to keep your RSpec features under control.
 
 Everything you need should be installed and configured if you use the
 [GOV.UK Rails templates](https://github.com/alphagov/govuk-rails-app-template).
+
+You can also use [govuk_test](https://github.com/alphagov/govuk_test) to
+setup frontend testing with Capybara and Selenium.

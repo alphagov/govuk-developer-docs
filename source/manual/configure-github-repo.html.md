@@ -4,7 +4,7 @@ parent: /manual.html
 layout: manual_layout
 section: GitHub
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2018-10-16
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
@@ -28,8 +28,8 @@ Almost all repos should:
 
 When your repo is tagged with `govuk`, it will be auto-configured by [govuk-saas-config][]. This will take care of the settings, branch protection and web hooks.
 
-If you create a new repo, [kick off a build of the Jenkins job][jj] and everything will be done for you.
+If you create a new repo, [kick off a build of the Jenkins job][jenkins-job] and everything will be done for you.
 
-[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config/tree/master/github
-[jj]: https://deploy.integration.publishing.service.gov.uk/job/configure-github-repos
+[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
+[jenkins-job]: https://deploy.integration.publishing.service.gov.uk/job/configure-github-repos
 [alphagov]: https://github.com/alphagov

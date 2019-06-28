@@ -1,10 +1,10 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Use database GUI tools
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-08
+last_reviewed_on: 2019-04-17
 review_in: 6 months
 ---
 
@@ -20,8 +20,8 @@ to generate a ssh config to be able to connect to the VM via the standard ssh
 command rather than `vagrant ssh`:
 
 ```bash
-cd ~/code/govuk-puppet/development-vm
-vagrant ssh-config --host dev >> ~/.ssh/config
+$ cd ~/code/govuk-puppet/development-vm
+$ vagrant ssh-config --host dev >> ~/.ssh/config
 ```
 
 If you can connect to your VM with `ssh dev` this is working correctly.

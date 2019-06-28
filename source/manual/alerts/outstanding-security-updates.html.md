@@ -4,14 +4,19 @@ title: Outstanding security updates
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
-review_in: 6 months
+last_reviewed_on: 2019-05-28
+review_in: 1 months
 ---
 
 Most security updates should be automagically applied overnight by
 [unattended-upgrades](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package)
 and our Nagios check accounts for that by delaying alerts for up to
 24hrs.
+
+> *Please note:*
+> At the moment, an issue with load balancer health checks in AWS prevents automatic reboots.
+> RE are working on this. In the mean time, manual intervention is required. Please refer to [RE docs](https://docs.google.com/document/d/1QhB9QIpePAoaQTrK-6d0dSMN0pK0wMUH8_KtZ8tAns8/edit?usp=sharing)
+> and contact #re-govuk on Slack if you require assistance.
 
 To see which packages are outstanding you can use the following fabric task:
 
@@ -49,7 +54,7 @@ assistance.
 
 You may see an alert telling you that a connection to NRPE could not be
 established. See [Nagios NRPE connection
-failures](alerts/nagios-nrpe-connection-failures.html) for more
+failures](/manual/nagios-nrpe-connection-failures.html) for more
 information.
 
 ### 'Problem with MergeList' error

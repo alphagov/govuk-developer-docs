@@ -4,7 +4,7 @@ title: READMEs for GOV.UK applications
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-19
+last_reviewed_on: 2019-04-23
 review_in: 6 months
 ---
 
@@ -82,6 +82,18 @@ Keep this section limited to core endpoints - if the app is complex link out to 
 - functionality is shown in screenshots and links to live services
 - it has quick start information for new developers or interested third parties
 
+## One-line summaries on GitHub repositories
+
+Who are these for? These are for people who scan the list in [alphagov](https://github.com/alphagov/) and need a quick overview.
+
+- Include information about whether it's on GOV.UK
+- Try to tone down technical language - 'Filtered search of content' is better than 'Faceted search interface'
+- Use the GitHub link field to link to the developer docs page for the repository, or otherwise the live service (if public facing)
+
+A good example:
+
+> GOV.UK filtered search of public content
+
 ## Things we shouldn't put in the README
 
 - Full documentation of the API - if the app is complex or has a complex API, use the `docs` directory liberally, and link out to it from the `README`
@@ -98,15 +110,3 @@ Keep this section limited to core endpoints - if the app is complex link out to 
   - When writing this document, always link to the [GOV.UK pull request style guide](https://github.com/alphagov/styleguides/blob/master/pull-requests.md)
   - Document any weirdness here (eg when to use Cucumber over something else)
 - Full licence - again, follow [GitHub convention](https://help.github.com/articles/open-source-licensing/#where-does-the-license-live-on-my-repository)
-
-## One-line summaries on GitHub repositories
-
-Who are these for? These are for people who scan the list in [alphagov](https://github.com/alphagov/) and need a quick overview.
-
-- Include information about whether it's on GOV.UK
-- Try to tone down technical language - 'Filtered search of content' is better than 'Faceted search interface'
-- Use the GitHub link field to link to the developer docs page for the repository, or otherwise the live service (if public facing)
-
-A good example:
-
-> GOV.UK filtered search of public content

@@ -4,7 +4,7 @@ title: Enhanced ecommerce data export
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2018-08-31
+last_reviewed_on: 2019-05-17
 review_in: 6 months
 ---
 
@@ -26,4 +26,4 @@ If the check fails:
 
 - Inspect the [console
 logs for the rake task](https://deploy.publishing.service.gov.uk/job/enhanced_ecommerce/).
-- Escalate to the team responsible for [rummager](/apps/rummager.html).
+- Escalate to the team responsible for [search-api](/apps/search-api.html).
