@@ -21,22 +21,26 @@ This is why we refer to switching off Nginx on the origin cache machines as
 ## Viewing
 
 Mirror sites can be viewed and navigated at:
+
 - Amazon S3 bucket `govuk-<environment>-mirror`,
   also replicated to `govuk-<environment>-mirror-replica` S3 bucket in another AWS region
+
 - Google GCS bucket `govuk-<environment>-mirror`
 
 ## Access
 
 Access to the:
-1. S3 buckets are restricted to Fastly, Office and Pingdom IP addresses for read-only Access
-   and AWS authenticated users in AWS web console
-2. Google GCS buckets are restricted by secret keys in govuk-secrets and GDS authenticated users
-   in Google GCP web console
+
+1. S3 buckets are restricted to Fastly, Office and Pingdom IP addresses for read-only Access and AWS authenticated users in AWS web console
+
+2. Google GCS buckets are restricted by secret keys in govuk-secrets and GDS authenticated users in Google GCP web console
 
 ## Hosting
 
 We currently support two types of mirror backends:
+
 - Amazon S3: the static mirror is hosted in a bucket and the content is retrieved via API
+
 - Google GCS: the static mirror is hosted in a bucket and the content is retrieved via API
 
 ## Updates to the mirror
@@ -56,10 +60,12 @@ The crawler is entirely independent of the mirrors. Stopping the crawler means
 no new updates are made to the mirrors, but it will not stop the mirrors from working.
 
 To inspect the contents of the mirror:
-```
+
+```bash
 ssh <mirrorer_machine_name>
 cd /mnt/crawler_worker/www.gov.uk
 ```
+
 where `<mirrorer_machine_name>` can be obtained from the `govuk_node_list -c mirrorer` command
 on the jumpbox.
 
@@ -89,21 +95,30 @@ HTML, it's hard to make broad changes to the site (like putting a banner on ever
 You'll be notified by the escalation on-call contact that you need to edit the site.
 
 1. If you're at home, connect to the [VPN][gds-vpn]
+
 2. ssh the Mirrorer machine by running:
-    ```
+
+    ```bash
     ssh <mirrorer_machine_name>
     ```
+
     where `<mirrorer_machine_name>` can be obtained from the `govuk_node_list -c mirrorer` command
     on the jumpbox.
+
 3. disable puppet on the machine by running:
-   ```
+
+   ```bash
    govuk_puppet --disable "stopping crawling to avoid mirror changes"
    ```
+
 4. stop the govuk_crawler_worker by running:
-   ```
+
+   ```bash
    initctl stop govuk_crawler_worker
    ```
+
 5. Modify the relevant file in the directory `/mnt/crawler_worker`
+
 6. Upload the file to the S3 mirror via AWS console or command line
 
 If you're notified that the edit you've made can be reverted, do that the same way.
