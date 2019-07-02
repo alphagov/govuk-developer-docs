@@ -39,11 +39,10 @@ the procedures particular to each machine.
 
 In production environment, you are normally dealing with variety of hosts.
 Some machines, like MongoDB and Elasticsearch, can be rebooted with caution.
-Others, like MySQL and PostgreSQL, require out-of-hours reboots by Platform
-Health.
+Others, like MySQL and PostgreSQL, require out-of-hours reboots by On Call staff.
 
 Work through the guide on [rebooting machines][reboot-machines] to
-safely reboot the machines that can be, and kindly ask Platform Health to
+safely reboot the machines that can be, and kindly ask On Call staff to
 schedule out-of-hours reboots for the other machines.
 
 ## Checking locking status
