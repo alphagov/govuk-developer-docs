@@ -5,7 +5,7 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-06-27
+last_reviewed_on: 2019-07-02
 review_in: 3 months
 ---
 
@@ -112,7 +112,7 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-with Platform Health and search-api workers must be restarted after the reboot.
+by On Call staff and search-api workers must be restarted after the reboot.
 
 They may be rebooted in working hours in other environments, however you
 should notify colleagues before doing so as this may remove in-flight jobs
@@ -153,7 +153,7 @@ for attachments to be uploaded.
 The slave machines can be rebooted as they hold a copy of data and are resynced
 regularly.
 
-Reboots of the master machine should be organised with Platform Health,
+Reboots of the master machine should be organised by On Call staff,
 for the production environment.
 
 You may reboot the master machine in the staging environment during working
@@ -249,7 +249,7 @@ When the app has been redeployed then the machine which is **not** being
 read from can be rebooted.
 
 Reboots of these machines, in the production environment, should be organised
-with Platform Health.
+by On Call staff.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
@@ -267,7 +267,7 @@ standby machines (with the exception of the slave within the DR
 environment).
 
 Reboots of these machines, in the production environment, should be organised
-with Platform Health.
+by On Call staff.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
