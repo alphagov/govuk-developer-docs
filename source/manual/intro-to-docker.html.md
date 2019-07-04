@@ -1,5 +1,5 @@
 ---
-title: Starter's guide to Docker
+title: Intro to Docker
 section: Docker
 layout: manual_layout
 parent: "/manual.html"
@@ -8,19 +8,18 @@ review_in: 6 months
 owner_slack: "#govuk-developers"
 ---
 
-## Intro
 If you are new to Docker here's a quick intro in the context of the GOV.UK stack.
 
-### Install Docker
+## Install Docker
 
 *   Download Docker [https://www.docker.com/get-started](https://www.docker.com/get-started)
 *   Docker for Mac intro [https://docs.docker.com/docker-for-mac/](https://docs.docker.com/docker-for-mac/)
 
-### Video explaining the concepts in Docker
+## Video explaining the concepts in Docker
 
 [https://www.youtube.com/watch?v=i7yoXqlg48M](https://www.youtube.com/watch?v=i7yoXqlg48M) - first 30 minutes
 
-## Learning docker with content-publisher
+## Learn docker with content-publisher
 This is a tutorial where we run a few things to get the [content-publisher] up and running in Docker. This is a convoluted example but it will help to explain and familiarise the concepts involved.
 
 > Note: in the examples to run shell commands:
