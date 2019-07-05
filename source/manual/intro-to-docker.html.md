@@ -79,7 +79,7 @@ $dev cd /app
 $dev bundle install
 ```
 
-You can see that the gems required for content-publisher are installed! However, anything you do here won't persist - if you were to quit the container and then re-enter in exactly the same way, all the gems would need to be re-installed again.
+You can see that the gems required for content-publisher are installed! However, anything you do here won't persist - if you were to quit the container and then go back in exactly the same way, all the gems would need to be re-installed again.
 
 By default gems are saved to `/usr/local/bundle` within the container. But everything in the container is destroyed and reset to the image when it's shut down.
 
@@ -298,7 +298,7 @@ $mac docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bun
 
 ### All in one line command
 
-Combining all of the above into a single line to exexcute:
+Combining all of the above into a single line to execute:
 
 ```
 docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle --privileged --network content-publisher-network -e TEST_DATABASE_URL=postgresql://postgres@postgres/content-publisher-test -e DATABASE_URL=postgresql://postgres@postgres/content-publisher-dev -w /app content-publisher:latest bash
