@@ -306,6 +306,12 @@ docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle -
 
 This is a lot to run in one command!
 
+Luckily, we can convert this long command into some YAML configuration which defines all the volumes and dependencies. We can then run that YAML file use [docker-compose](https://docs.docker.com/compose/), for example:
+
+`docker-compose run —rm content-publisher bundle exec rake`
+
+We can even run the above command as a CLI script to make it shorter and more reusable between our repos. This is what [govuk-docker][govuk-docker] does.
+
 ## Summary
 
 In this tutorial you have been introduced to the concept of:
