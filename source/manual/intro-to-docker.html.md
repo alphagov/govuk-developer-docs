@@ -36,9 +36,9 @@ $mac docker --version
 Docker version 18.09.2, build 6247962
 ```
 
-* Run from the root of the [content-publisher] project:
-
 #### What are Docker images and a container?
+
+* Run from the root of the [content-publisher] project:
 
 ```shell
 $mac docker run -it --rm ruby:2.6.3 bash
@@ -164,9 +164,9 @@ If we run the tests again, this time we see another problem about no database. T
 
 #### Use PostgreSQL image/container
 
-Our Javascript errors are now fixed, but we're getting new errors because we don't have a database. Docker containers are quick to start and it's possible for them to talk to each other, so let's set up a separate container for postgres.
+Docker containers are quick to start and it's possible for them to talk to each other, so let's set up a separate container for postgres.
 
-*  In another terminal, if we run
+*  In another terminal, if we run the following to start a new container based on the postgres image:
 
 ```shell
 $mac docker run -it --rm postgres
@@ -178,13 +178,21 @@ $mac docker run -it --rm postgres
 $mac docker ps
 ```
 
+And you should see (ignore any other containers you've got running):
+
+```shell
+$mac
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
+a7b87be3e1bc        postgres            "docker-entrypoint.s…"   21 minutes ago      Up 21 minutes       5432/tcp            jovial_matsumoto
+```
+
 * Find the ID for the postgres container, and with it run:
 
 ```shell
 $mac docker inspect [container ID for postgres]
 ```
 
-Grab the IP address from the output. We will use that IP address to point the content-publisher container to the one running postgres. We'll need it so that rails knows where the database to run tests against.
+Grab the IP address from the output. We will use that IP address to point the content-publisher container to the one running postgres. Rails will use this to run its tests against.
 
 
 *   Set these environment variables:
@@ -203,7 +211,7 @@ $dev bundle exec rake db:setup
 $dev bundle exec rake
 ```
 
-We have a database, but no where for the database to store data!
+We have a database, but nowhere for the database to store data!
 
 *   Create a volume to persist to for the data:
 
@@ -290,7 +298,7 @@ $mac docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bun
 
 ### All in one line command
 
-Run with cd-ing straight into /apps dir, with the `-w` flag:
+Combining all of the above into a single line to exexcute:
 
 ```
 docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle --privileged --network content-publisher-network -e TEST_DATABASE_URL=postgresql://postgres@postgres/content-publisher-test -e DATABASE_URL=postgresql://postgres@postgres/content-publisher-dev -w /app content-publisher:latest bash
