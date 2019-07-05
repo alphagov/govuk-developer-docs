@@ -70,7 +70,7 @@ Here we get a ruby image and specifying which version we want. The `bash` argume
 
 ### Volumes
 
-* Mount a volume by running:
+* Mount your current directory as a volume to the container by running:
 
 ```shell
 $mac docker run -it --rm -v $(pwd):/app ruby:2.6.3 bash
@@ -85,11 +85,11 @@ $dev cd /app
 $dev bundle install
 ```
 
- The problem is that next time we spin up a container all of the gems would need re-installing.
+ The problem is that next time we spin up a container all of the gems would need re-installing, because it will by default save the gems to `/usr/local/bundle` within the container. But the everything in the container is destroyed and reset to the image when it's shut down. We could mount that path to the same on your `$mac` but there is a Docker way of providing data storage.
 
 #### Persistent volumes
 
-Docker allows you create separate volumes for persistent data.
+Docker allows you create separate, named volumes for persistent data.
 
 * Create a persistent volume for our gems:
 
