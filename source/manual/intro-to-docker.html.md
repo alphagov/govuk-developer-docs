@@ -20,7 +20,7 @@ If you are new to Docker here's a quick intro in the context of the GOV.UK stack
 [https://www.youtube.com/watch?v=i7yoXqlg48M](https://www.youtube.com/watch?v=i7yoXqlg48M) - first 30 minutes
 
 ## Learn docker with content-publisher
-This is a tutorial where we run a few things to get the [content-publisher] up and running in Docker. This is a convoluted example but it will help to explain and familiarise the concepts involved.
+This is a tutorial where we run a few things to get [content-publisher] up and running in Docker. This is a convoluted example but it will help to explain and familiarise the concepts involved.
 
 > Note: in the examples to run shell commands:
 >
@@ -36,7 +36,7 @@ $mac docker --version
 Docker version 18.09.2, build 6247962
 ```
 
-* run from the root of the [content-publisher] project:
+* Run from the root of the [content-publisher] project:
 
 #### What are Docker images and a container?
 
@@ -70,7 +70,7 @@ $mac docker run --help
 $mac docker run -it --rm -v $(pwd):/app ruby:2.6.3 bash
 ```
 
-This will map your current directory (being the root of the [content-publisher] project) to `/app` inside of the container.
+This will map your current directory (the root of the [content-publisher] project) to `/app` inside of the container. So now the files on your `$mac` for the [content-publisher] are now also available inside of the container.
 
 * If you were to run bundle install for the app:
 
@@ -79,11 +79,15 @@ $dev cd /app
 $dev bundle install
 ```
 
- The problem is that next time we spin up a container all of the gems would need re-installing, because it will by default save the gems to `/usr/local/bundle` within the container. But the everything in the container is destroyed and reset to the image when it's shut down. We could mount that path to the same on your `$mac` but there is a Docker way of providing data storage.
+You can see that the gems required for content-publisher are installed! However, anything you do here won't persist - if you were to quit the container and then re-enter in exactly the same way, all the gems would need to be re-installed again.
+
+By default gems are saved to `/usr/local/bundle` within the container. But everything in the container is destroyed and reset to the image when it's shut down.
+
+We could mount that path to the same on your `$mac` but there is a Docker way of providing storage.
 
 #### Persistent volumes
 
-Docker allows you create separate, named volumes for persistent data.
+We don't want to be re-installing and doing setup every time we quit and re-enter a container. Docker allows you to create separate volumes for persistent data.
 
 * Create a persistent volume for our gems:
 
@@ -108,7 +112,7 @@ This time the gems will install on the `content-publisher-bundle` which is mappe
 
 ### Specifying dependencies (node, PostgreSQL, Chrome)
 
-* Try to run the tests:
+Now we have our gems installed, we can try and run the content-publisher tests:
 
 ```shell
 $dev cd /app
@@ -123,6 +127,9 @@ It seems like our Ruby image isn’t doing quite what we need, so we’re going 
 
  We are going to create our own Docker image based off of the ruby one, and add in other dependencies such as node.
 
+To create our own image, we need a Dockerfile. A Dockerfile normally starts with a `FROM [image]` which bases your new image off an existing image. We can then execute other commands by prefixing them with `RUN`. Each RUN command adds a new layer. You can think of it as each step creating a new image, but we only care about the final image to come out of the last step.
+Create a Dockerfile in the content-publisher project:
+
 > Note: there will likely already be a Dockerfile, so just remove it for the tutorial.
 
 *   Create a `Dockerfile` in the root of the [content-publisher] project:
@@ -135,7 +142,7 @@ RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
 RUN apt-get install nodejs && apt-get clean
 ```
 
-*   Then run:
+*   Build our new image:
 
 ```shell
 $mac docker build -t content-publisher
@@ -145,11 +152,13 @@ This creates an image based on the Dockerfile we just added.
 
 `-t` tags, or names it, as `content-publisher`.
 
-*   Now run a `content-publisher` container:
+*   Now we can start a container with our new image:
 
 ```shell
 $mac docker run -it --rm -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle content-publisher bash
 ```
+
+Each time you change the Dockerfile, you need to remember to rebuild the docker image.
 
 If we run the tests again, this time we see another problem about no database. That's because we haven't got PostgreSQL installed.
 
