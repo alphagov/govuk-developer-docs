@@ -38,12 +38,19 @@ Docker version 18.09.2, build 6247962
 
 * run from the root of the [content-publisher] project:
 
+#### What are Docker images and a container?
+
 ```shell
-$mac cd ~/govuk/content-publisher
-$mac docker run -it --rm ubuntu
+$mac docker run -it --rm ruby:2.6.3 bash
 ```
 
-##### What are the flags?
+`ruby` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
+
+The `ruby` image we are using is an ubuntu system with Ruby pre-installed. Images are downloaded from the Docker Registry. We are also specifying that we want the image that provides Ruby 2.6.3.
+
+The `bash` argument at the end is passed to the docker run command. It will execute this inside the container, which means we get a bash shell.
+
+What are the flags?
 
 ```shell
 $mac docker run --help
@@ -54,19 +61,6 @@ $mac docker run --help
 ...
     --rm                             Automatically remove the container when it exits
 ```
-
-#### What are Docker images and a container?
-The `ubuntu` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
-
-Images are downloaded from the Docker Registry.
-
-Another image is ruby:
-
-```shell
-$mac docker run -it --rm ruby:2.6.3 bash
-```
-
-Here we get a ruby image and specifying which version we want. The `bash` argument at the end is passed to the docker run command. It will execute this inside the container, which means we get a bash shell.
 
 ### Volumes
 
@@ -97,7 +91,7 @@ Docker allows you create separate, named volumes for persistent data.
 $mac docker volume create content-publisher-bundle
 ```
 
-*   Run docker with that volume:
+*   Run docker with that volume by using the `-v` flag and passing it the name of the volume:
 
 ```shell
 $mac docker run -it --rm -v $(pwd):/app -v `content-publisher-bundle`:/usr/local/bundle ruby:2.6.3 bash
@@ -121,7 +115,9 @@ $dev cd /app
 $dev bundle exec rake
 ```
 
- We get an error about “could not find javascript runtime” because we don't have node installed.
+We get an error: “could not find javascript runtime” - we need Node installed on our container. We can follow standard commands to install Node, but this won't persist and we'll have the same problem that we had above with installing gems.
+
+It seems like our Ruby image isn’t doing quite what we need, so we’re going to create our own image based off it.
 
 #### Create ruby + node image
 
@@ -158,6 +154,8 @@ $mac docker run -it --rm -v $(pwd):/app -v content-publisher-bundle:/usr/local/b
 If we run the tests again, this time we see another problem about no database. That's because we haven't got PostgreSQL installed.
 
 #### Use PostgreSQL image/container
+
+Our Javascript errors are now fixed, but we're getting new errors because we don't have a database. Docker containers are quick to start and it's possible for them to talk to each other, so let's set up a separate container for postgres.
 
 *  In another terminal, if we run
 
