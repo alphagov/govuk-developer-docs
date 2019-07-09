@@ -83,16 +83,6 @@ If the VPN goes down, these things will happen:
 
 2. Switching to the secondary VPN tunnel:
 
-   ```
-    **WARNINGS:**
-      1. The steps described below may render the VPN to be only _partly_
-         functional because the Carrenza vCloud interface allows only
-         a restrictive subnet to be selected but a `/16` subnet is needed
-         for the VPN to be fully functional. You may have to contact Carrenza
-         support so that they apply `/16` subnet on the VPN through their
-         backend system.
-   ```
-
    1. log in the Carrenza vCloud interface as described
       [here](connect-to-vcloud-director.html)
 
