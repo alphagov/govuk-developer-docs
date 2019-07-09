@@ -51,7 +51,7 @@ RSpec.describe AppDiagramGenerator do
     end
 
     it "get updated" do
-      expect(File.mtime(@files.first)).to be > Time.now - 1
+      expect(File.mtime(@files.first)).to be > Time.current - 1
     end
 
     it "have systems or containers" do
