@@ -1,0 +1,20 @@
+@startuml C4_GOVUK_Container_supporting_apps
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+System_Boundary(supporting_apps, "Supporting apps"){
+Container(authenticating_proxy, "authenticating-proxy", "optional technology", "")
+Container(content_audit_tool, "content-audit-tool", "optional technology", "")
+Container(content_data_admin, "content-data-admin", "optional technology", "")
+Container(content_data_api, "content-data-api", "optional technology", "")
+Container(release, "release", "optional technology", "")
+Container(router, "router", "optional technology", "")
+Container(search_admin, "search-admin", "optional technology", "")
+Container(signon, "signon", "optional technology", "")
+Container(support, "support", "optional technology", "")
+}
+System(publishing_apps, "Publishing apps", "Optional Description")
+System(apis, "APIs", "Optional Description")
+Rel_Up(signon, publishing_apps, " ")
+Rel_Up(support, apis, " ")
+
+@enduml
