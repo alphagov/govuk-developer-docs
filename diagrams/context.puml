@@ -1,0 +1,37 @@
+@startuml C4_GOVUK_System_Context
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+
+System(apis, "APIs", "Optional Description")
+System(supporting_apps, "Supporting apps", "Optional Description")
+System(utilities, "Utilities", "Optional Description")
+System(transition_apps, "Transition apps", "Optional Description")
+System(services, "Services", "Optional Description")
+System(frontend_apps, "Frontend apps", "Optional Description")
+System(data_gov_uk_apps, "data.gov.uk apps", "Optional Description")
+System(publishing_apps, "Publishing apps", "Optional Description")
+System(licensing_apps, "Licensing apps", "Optional Description")
+Rel_Up(apis, supporting_apps, " ")
+Rel_Up(apis, frontend_apps, " ")
+Rel_Up(apis, publishing_apps, " ")
+Rel_Down(supporting_apps, publishing_apps, " ")
+Rel_Down(supporting_apps, apis, " ")
+Rel_Down(services, apis, " ")
+Rel_Down(frontend_apps, apis, " ")
+Rel_Down(frontend_apps, supporting_apps, " ")
+Rel_Down(frontend_apps, publishing_apps, " ")
+Rel_Down(frontend_apps, licensing_apps, " ")
+Rel_Down(publishing_apps, apis, " ")
+Rel_Down(publishing_apps, supporting_apps, " ")
+Rel_Down(publishing_apps, frontend_apps, " ")
+skinparam rectangle {
+  borderColor transparent
+}
+rectangle Users {
+Person_Ext(public, "Public", "")
+Person_Ext(publisher, "Publisher", "")
+}
+Rel_Down(public, frontend_apps, " ")
+Rel_Down(publisher, publishing_apps, " ")
+Rel_Down(public, publishing_apps, " ")
+
+@enduml
