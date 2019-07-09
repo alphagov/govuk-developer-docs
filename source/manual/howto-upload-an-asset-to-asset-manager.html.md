@@ -8,7 +8,7 @@ last_reviewed_on: 2019-05-29
 review_in: 6 months
 ---
 
-Some publishing apps such as Mainstream Publisher do not provide the facility for editors to upload
+Some publishing apps such as [Mainstream Publisher](/apps/publisher.html) do not provide the facility for editors to upload
 assets such as images and PDFs. In these rare cases, we can upload assets to asset-manager manually
 and give the URL to content editors to embed.
 
