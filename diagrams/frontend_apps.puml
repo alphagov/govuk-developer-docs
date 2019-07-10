@@ -1,0 +1,43 @@
+@startuml C4_GOVUK_Container_frontend_apps
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+System_Boundary(frontend_apps, "Frontend apps"){
+Container(calculators, "calculators", "optional technology", "")
+Container(calendars, "calendars", "optional technology", "")
+Container(collections, "collections", "optional technology", "")
+Container(email_alert_frontend, "email-alert-frontend", "optional technology", "")
+Container(feedback, "feedback", "optional technology", "")
+Container(finder_frontend, "finder-frontend", "optional technology", "")
+Container(frontend, "frontend", "optional technology", "")
+Container(government_frontend, "government-frontend", "optional technology", "")
+Container(info_frontend, "info-frontend", "optional technology", "")
+Container(licence_finder, "licence-finder", "optional technology", "")
+Container(manuals_frontend, "manuals-frontend", "optional technology", "")
+Container(service_manual_frontend, "service-manual-frontend", "optional technology", "")
+Container(smart_answers, "smart-answers", "optional technology", "")
+Container(static, "static", "optional technology", "")
+}
+System(apis, "APIs", "Optional Description")
+System(supporting_apps, "Supporting apps", "Optional Description")
+System(publishing_apps, "Publishing apps", "Optional Description")
+System(licensing_apps, "Licensing apps", "Optional Description")
+Person_Ext(public, "Public", "")
+Rel_Up(calculators, apis, " ")
+Rel_Up(calendars, apis, " ")
+Rel_Up(collections, apis, " ")
+Rel_Up(email_alert_frontend, apis, " ")
+Rel_Up(feedback, supporting_apps, " ")
+Rel_Up(feedback, apis, " ")
+Rel_Up(finder_frontend, apis, " ")
+Rel_Up(frontend, apis, " ")
+Rel_Up(frontend, publishing_apps, " ")
+Rel_Up(frontend, licensing_apps, " ")
+Rel_Down(public, frontend, " ")
+Rel_Up(government_frontend, apis, " ")
+Rel_Up(licence_finder, apis, " ")
+Rel_Up(manuals_frontend, apis, " ")
+Rel_Up(service_manual_frontend, apis, " ")
+Rel_Up(smart_answers, apis, " ")
+Rel_Up(smart_answers, publishing_apps, " ")
+
+@enduml
