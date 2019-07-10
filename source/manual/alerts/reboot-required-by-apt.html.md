@@ -4,7 +4,7 @@ title: reboot required by apt
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-01-01
+last_reviewed_on: 2019-07-10
 review_in: 6 months
 ---
 
@@ -17,7 +17,7 @@ for the list.
 Under normal circumstances most machines reboot automatically and the list
 shows those that need to be [rebooted manually][reboot-machines], such as
 database clusters. If the list does not correlate with this there may be a
-[problem with the locking mechanism](#checking-locking-status)
+[problem with the locking mechanism](#checking-locking-status).
 
 ## When on 2nd Line
 
@@ -29,17 +29,17 @@ Typically you can manage this alert with the following steps:
 
 ### In staging
 
-It is acceptable for most, if not all, machines to be rebooted in staging during the
-working day. However, data loss can occur so apply caution.
+It is acceptable for most, if not all, machines to be rebooted in staging during
+the working day. However, data loss can occur so apply caution.
 
-Work through the documentation on [rebooting machines][reboot-machines], following
-the procedures particular to each machine.
+Work through the documentation on [rebooting machines][reboot-machines],
+following the procedures particular to each machine.
 
 ### In production
 
-In production environment, you are normally dealing with variety of hosts.
-Some machines, like MongoDB and Elasticsearch, can be rebooted with caution.
-Others, like MySQL and PostgreSQL, require out-of-hours reboots by On Call staff.
+In production, you are normally dealing with a variety of hosts. Some machines,
+like MongoDB and Elasticsearch, can be rebooted with caution. Others, like MySQL
+and PostgreSQL, require out-of-hours reboots by On Call staff.
 
 Work through the guide on [rebooting machines][reboot-machines] to
 safely reboot the machines that can be, and kindly ask On Call staff to
@@ -47,9 +47,11 @@ schedule out-of-hours reboots for the other machines.
 
 ## Checking locking status
 
-[locksmith](https://github.com/coreos/locksmith) manages unattended
-reboots to ensure that systems are available. It is possible that a problem
-could occur where they can't reboot automatically.
+[locksmith](https://github.com/coreos/locksmith) manages unattended reboots to
+ensure that systems are available. It is possible that a problem could occur
+where they can't reboot automatically.
+The following commands assume you have correctly
+[set up your fabric scripts][setup-fabric-scripts].
 
 ```command-line
 $ fab <environment> all locksmith.status
@@ -67,3 +69,4 @@ Machines that are safe to reboot should then do so at the scheduled
 time.
 
 [reboot-machines]: /manual/rebooting-machines.html
+[setup-fabric-scripts]: https://github.com/alphagov/fabric-scripts#setup
