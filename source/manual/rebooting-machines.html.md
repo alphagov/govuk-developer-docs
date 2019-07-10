@@ -29,7 +29,7 @@ become active.
 
 You can review the list of packages on machines (or classes of machines)
 with the following command. If you have not done so, you will need to
-[set up your fabric scripts first](emergency-publishing.html#set-up-your-fabric-scripts).
+[set up your fabric scripts first](https://github.com/alphagov/fabric-scripts#setup).
 
     fab $environment all apt.packages_with_reboots
 
