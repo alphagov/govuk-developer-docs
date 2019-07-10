@@ -5,7 +5,7 @@ section: CDN & Caching
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-02
+last_reviewed_on: 2019-07-10
 review_in: 6 months
 ---
 
@@ -39,6 +39,45 @@ endpoints are configured directly in the Fastly UI. There is
 [integration_cdn]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_CDN/
 [staging_cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
 [production_cdn]: https://deploy.publishing.service.gov.uk/job/Deploy_CDN/
+
+## Fastly Caching
+
+The main www.gov.uk cache is [Varnish](https://varnish-cache.org/docs/2.1/index.html), which Fastly run for us.
+
+Varnish lets us configure our caching logic with VCL (Varnish config language).
+
+It also lets us do fancy things, like [only allowing connections to staging from permitted IPs](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L193), [forcing SSL](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L214) and [blocking IP addresses](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L200), among other things.
+
+We set a default TTL of 5000s on cached objects. This means that pages such as the GOV.UK homepage will be cached for 83 mins. 5XX responses get cached for 1s; mirror responses get cached for 15 minutes.
+
+We also set a grace period of 24 hours. So if the homepage server is down, we'll continue to serve a stale homepage for 24 hours.
+
+See the [repo](https://github.com/alphagov/govuk-cdn-config) for the most up-to-date version of what we're running in Fastly. Refer to the Varnish 2.1 documentation when looking at the VCL code.
+
+**Testing VCL**
+
+VCL can be tricky to get right. When making changes to the VCL, add smoke tests [to smokey](https://github.com/alphagov/smokey/blob/master/features/caching.feature) and check that they don't fail in staging.
+
+You can also use Fastly's [Fiddle tool](https://fiddle.fastlydemo.net/) to manually test, and you can also test your changes with cURL by including a debug header:
+
+```bash
+curl -svo /dev/null -H "Fastly-Debug:1" https://www.gov.uk
+```
+
+This will give you various debugging headers that may be useful:
+
+```
+< Fastly-Debug-Path: <nodes you hit>
+< Fastly-Debug-TTL: <nodes with TTL>
+< Fastly-Debug-Digest: <hash>
+< X-Served-By: <node that responded>
+< X-Cache: HIT, HIT
+< X-Cache-Hits: 1
+< X-Timer: <time it took>
+< Vary: Accept-Encoding, Accept-Encoding
+```
+
+See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging guide](https://docs.fastly.com/guides/debugging/checking-cache#using-curl) for more details on testing.
 
 ## Fastly's IP ranges
 
