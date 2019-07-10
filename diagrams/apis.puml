@@ -1,0 +1,31 @@
+@startuml C4_GOVUK_Container_apis
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+System_Boundary(apis, "APIs"){
+Container(asset_manager, "asset-manager", "optional technology", "")
+Container(content_store, "content-store", "optional technology", "")
+Container(email_alert_api, "email-alert-api", "optional technology", "")
+Container(hmrc_manuals_api, "hmrc-manuals-api", "optional technology", "")
+Container(imminence, "imminence", "optional technology", "")
+Container(link_checker_api, "link-checker-api", "optional technology", "")
+Container(mapit, "mapit", "optional technology", "")
+Container(publishing_api, "publishing-api", "optional technology", "")
+Container(router_api, "router-api", "optional technology", "")
+Container(search_api, "search-api", "optional technology", "")
+Container(support_api, "support-api", "optional technology", "")
+}
+System(supporting_apps, "Supporting apps", "Optional Description")
+System(frontend_apps, "Frontend apps", "Optional Description")
+System(publishing_apps, "Publishing apps", "Optional Description")
+Rel_Up(asset_manager, supporting_apps, " ")
+Rel_Up(email_alert_api, supporting_apps, " ")
+Rel_Up(hmrc_manuals_api, frontend_apps, " ")
+Rel_Up(hmrc_manuals_api, supporting_apps, " ")
+Rel_Up(imminence, supporting_apps, " ")
+Rel_Up(link_checker_api, supporting_apps, " ")
+Rel_Up(publishing_api, supporting_apps, " ")
+Rel_Up(search_api, supporting_apps, " ")
+Rel_Up(support_api, supporting_apps, " ")
+Rel_Up(support_api, publishing_apps, " ")
+
+@enduml

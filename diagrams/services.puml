@@ -1,0 +1,12 @@
+@startuml C4_GOVUK_Container_services
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+System_Boundary(services, "Services"){
+Container(cache_clearing_service, "cache-clearing-service", "optional technology", "")
+Container(email_alert_service, "email-alert-service", "optional technology", "")
+Container(search_analytics, "search-analytics", "optional technology", "")
+}
+System(apis, "APIs", "Optional Description")
+Rel_Up(email_alert_service, apis, " ")
+
+@enduml

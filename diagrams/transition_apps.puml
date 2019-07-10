@@ -1,0 +1,9 @@
+@startuml C4_GOVUK_Container_transition_apps
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/release/1-0/C4_Container.puml
+
+System_Boundary(transition_apps, "Transition apps"){
+Container(bouncer, "bouncer", "optional technology", "")
+Container(transition, "transition", "optional technology", "")
+}
+
+@enduml
