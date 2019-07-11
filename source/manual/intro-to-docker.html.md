@@ -227,29 +227,6 @@ $mac docker volume create content-publisher-postgres
 docker run -it --rm -v content-publisher-postgres:/var/lib/postgresql/data postgres
 ```
 
-But we also need to specify a user to log into the database.
-
-#### Create a database user
-
-*   Add the `builder` user to Dockerfile:
-
-```docker
-RUN useradd -m builder
-USER builder
-```
-
-* Re-build content-publisher container:
-
-```shell
-$mac docker build -t content-publisher
-```
-
-* Re-run docker with a new flag, `--privileged`, which gives the build user elevated permissions to run postgres:
-
-```shell
-$mac docker run -it --rm -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle --privileged content-publisher bash
-```
-
 #### Install Chrome for feature tests
 
 Test will still be failing because we have one have another dependency for Chrome.
@@ -278,6 +255,29 @@ $dev cd /apps
 $dev bundle exec rake
 ```
 
+#### Create a user for running Selenium tests
+
+This is so that we aren't running a browser as the root user. Not a big deal in development, but worth learning how to do this.
+
+*   Add the `builder` user to Dockerfile:
+
+```docker
+RUN useradd -m builder
+USER builder
+```
+
+* Re-build content-publisher container:
+
+```shell
+$mac docker build -t content-publisher
+```
+
+* Re-run docker with a new flag, `--privileged`, which gives the build user elevated permissions to run low level syscalls. It can't otherwise work as it's running in 'sandbox' mode:
+
+```shell
+$mac docker run -it --rm -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle --privileged content-publisher bash
+```
+
 ### Fixing IP with Docker Network
 
 IP addresses will be randomly assigned each time the container starts up, which can be a pain when you want containers to talk to each other. As was the case between the [content-publisher] and PostgreSQL containers we've been using so far.
@@ -295,7 +295,7 @@ $mac docker network create content-publisher-network
 ```shell
 $mac docker run -it --rm -v content-publisher-postgres:/var/lib/postgresql/data --network content-publisher-network --network-alias postgres postgres
 
-$mac docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle --privileged --network content-publisher-network -e TEST_DATABASE_URL=postgresql://postgres@postgres/content-publisher-test -e DATABASE_URL=postgresql://postgres@postgres/content-publisher-dev content-publisher:latest bash
+$mac docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle --privileged --network content-publisher-network -e TEST_DATABASE_URL=postgresql://postgres@postgres/content-publisher-test -e DATABASE_URL=postgresql://postgres@postgres/content-publisher-dev content-publisher bash
 ```
 
 ### All in one line command
@@ -303,14 +303,31 @@ $mac docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bun
 Combining all of the above into a single line to execute:
 
 ```
-docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle --privileged --network content-publisher-network -e TEST_DATABASE_URL=postgresql://postgres@postgres/content-publisher-test -e DATABASE_URL=postgresql://postgres@postgres/content-publisher-dev -w /app content-publisher:latest bash
+docker run -it --rm -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle --privileged --network content-publisher-network -e TEST_DATABASE_URL=postgresql://postgres@postgres/content-publisher-test -e DATABASE_URL=postgresql://postgres@postgres/content-publisher-dev -w /app content-publisher bash
 ```
 
 This is a lot to run in one command!
 
-Luckily, we can convert this long command into some YAML configuration which defines all the volumes and dependencies. We can then run that YAML file use [docker-compose](https://docs.docker.com/compose/), for example:
+Luckily, we can convert this long command into some YAML configuration which defines all the volumes and dependencies. We can then run that YAML file use [docker-compose](https://docs.docker.com/compose/), for (non-working) example below we show a snippet that could be for the content-publisher:
 
-`docker-compose run —rm content-publisher bundle exec rake`
+```docker
+version: '1'
+
+services:
+  content-publisher:
+    privileged: true
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      DATABASE_URL: "postgresql://postgres@postgres/content-publisher"
+      TEST_DATABASE_URL: "postgresql://postgres@postgres/content-publisher-test"
+      REDIS_URL: redis://redis
+```
+
+```shell
+$mac docker-compose run —rm content-publisher bundle exec rake
+```
 
 We can even run the above command as a CLI script to make it shorter and more reusable between our repos. This is what [govuk-docker][govuk-docker] does.
 
@@ -323,7 +340,7 @@ In this tutorial you have been introduced to the concept of:
 * containers (like instances of a class)
 * building images
 * creating and adding volumes
-* specifying dependencies with a Dockerfile
+* installing extra libraries with a Dockerfile
 * creating a Network
 
 These concepts are useful to know when you start to use [govuk-docker], which you should use from this point on with GOV.UK.
