@@ -46,7 +46,7 @@ $mac docker run -it --rm ruby:2.6.3 bash
 
 `ruby` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
 
-The `ruby` image we are using is an ubuntu system with Ruby pre-installed. Images are downloaded from the Docker Registry. We are also specifying that we want the image that provides Ruby 2.6.3.
+The `ruby` image we are using is an debian system with Ruby pre-installed. Images are downloaded from the Docker Registry. We are also specifying that we want the image that provides Ruby 2.6.3.
 
 The `bash` argument at the end is passed to the docker run command. It will execute this inside the container, which means we get a bash shell.
 
@@ -79,11 +79,13 @@ $dev cd /app
 $dev bundle install
 ```
 
+> Note: this may take a while, so feel free to stop it by pressing Ctrl+c as the next step will show why it doesn't matter at this point.
+
 You can see that the gems required for content-publisher are installed! However, anything you do here won't persist - if you were to quit the container and then go back in exactly the same way, all the gems would need to be re-installed again.
 
 By default gems are saved to `/usr/local/bundle` within the container. But everything in the container is destroyed and reset to the image when it's shut down.
 
-We could mount that path to the same on your `$mac` but there is a Docker way of providing storage.
+We could mount that path to the same on your `$mac` but there is a Docker way of providing storage which is also [faster](https://docs.docker.com/docker-for-mac/osxfs-caching/).
 
 #### Persistent volumes
 
@@ -98,7 +100,7 @@ $mac docker volume create content-publisher-bundle
 *   Run docker with that volume by using the `-v` flag and passing it the name of the volume:
 
 ```shell
-$mac docker run -it --rm -v $(pwd):/app -v `content-publisher-bundle`:/usr/local/bundle ruby:2.6.3 bash
+$mac docker run -it --rm -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle ruby:2.6.3 bash
 ```
 
 *   Then install the gems again:
@@ -108,7 +110,7 @@ $dev cd /app
 $dev bundle install
 ```
 
-This time the gems will install on the `content-publisher-bundle` which is mapped to the container at the `/usr/local/bundle` path.
+This time the gems will install on the `content-publisher-bundle` which is mapped to the container at the `/usr/local/bundle` path. The gems will still be around if you shut down the container and restarted it.
 
 ### Specifying dependencies (node, PostgreSQL, Chrome)
 
@@ -139,7 +141,7 @@ FROM ruby:2.6.3
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
 
-RUN apt-get install nodejs && apt-get clean
+RUN apt-get install nodejs
 ```
 
 *   Build our new image:
@@ -164,7 +166,7 @@ If we run the tests again, this time we see another problem about no database. T
 
 #### Use PostgreSQL image/container
 
-Docker containers are quick to start and it's possible for them to talk to each other, so let's set up a separate container for postgres.
+Docker containers are quick to start and it's possible for them to talk to each other, so let's set up a separate container for postgres. This approach also follows the Docker way, which is to have one container per process.
 
 *  In another terminal, if we run the following to start a new container based on the postgres image:
 
