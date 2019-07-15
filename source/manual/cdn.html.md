@@ -52,7 +52,16 @@ We set a default TTL of 5000s on cached objects. This means that pages such as t
 
 We also set a grace period of 24 hours. So if the homepage server is down, we'll continue to serve a stale homepage for 24 hours.
 
-See the [repo](https://github.com/alphagov/govuk-cdn-config) for the most up-to-date version of what we're running in Fastly. Refer to the Varnish 2.1 documentation when looking at the VCL code.
+We will cache any non-GET/HEAD request that returns a 404 or 405 status for the default TTL.
+This means (for example) that a POST request that returns a
+405 (Method Not Allowed) will be cached.
+
+These are the GET request status codes that Varnish caches automatically:
+200, 203, 300, 301, 302, 404 or 410. See the [Varnish docs](https://varnish-cache.org/docs/2.1/reference/vcl.html#variables)
+for more detail. We have added to these: see the [repo](https://github.com/alphagov/govuk-cdn-config)
+VCL for special handling of certain status codes, and for the most up-to-date
+version of what we're running in Fastly.
+Refer to the Varnish 2.1 documentation when looking at the VCL code.
 
 **Testing VCL**
 
