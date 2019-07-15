@@ -69,6 +69,11 @@ need more data.
 1. Use the [govuk_ab_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
 1. To activate or deactivate the test, or to change the B percentage, update your test in [the govuk-cdn-config repo][govuk-cdn-config] and deploy the dictionaries.
 
+If you're making a change to Search API, you may also want to test using
+the [search performance explorer](https://github.com/alphagov/search-performance-explorer/).
+In which case, you'll need to [add your AB test](https://github.com/alphagov/search-performance-explorer/commit/01e3d21ceca96951425b5ddc87116f0756411691) to the application, and manually
+deploy it to Heroku.
+
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [govuk-secrets-fastly]: https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/deployment_shared_account.gpg
 [dictionaries-readme]: https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries
