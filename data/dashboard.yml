@@ -16,9 +16,11 @@
         - govuk-rails-app-template
         - govuk_admin_template
 
-    - name: Running on the VM
+    - name: Development environment
+      repos:
+        - govuk-docker
       sites:
-        - name: The GOV.UK Development VM
+        - name: GOV.UK Development VM (deprecated)
           url: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
           description: Tools and guide for running GOV.UK apps in the VM
 
