@@ -1,10 +1,10 @@
 ---
-owner_slack: "@hong.nguyen"
+owner_slack: "@michelle.carmody"
 title: Write an incident report
 parent: "/manual.html"
 layout: manual_layout
 section: Incidents
-last_reviewed_on: 2019-02-15
+last_reviewed_on: 2019-07-16
 review_in: 3 months
 ---
 
@@ -16,7 +16,7 @@ This page is for reference only. Use the [incident report template][tpl] on Goog
 
 * Ensure you make a copy of this document and edit the copy.
 * Read the [guidance for what to do if you are comms lead](https://docs.google.com/document/d/1ty12B5eBWB9YSfnD9xY1mr5rtTQxdNxRdmEGgibilN0/edit).
-* Share this report with the GOV.UK Incident list as soon as possible.
+* Share this report with the GOV.UK Incident Google mailing list as soon as possible.
 * Make it clear that it’s a draft version.
 * Include as much information as possible and a draft root cause ahead of the review.  
 * Ensure this document is viewable to anyone with a GDS email account.
@@ -80,7 +80,7 @@ Use this section to assign actions to individuals (not teams). These are actions
 ### Standing actions
 
 * Does it need a blogpost? (P1 or P2; P3 if interesting).
-* Present a summary of the incident at TSAD to share learning.
+* Present a summary of the incident at GOV.UK technologists fortnightly to share learning.
 Recommendations
 
 * ...
