@@ -1,11 +1,11 @@
 ---
-owner_slack: "@hong.nguyen"
+owner_slack: "@michelle.carmody"
 title: Welcome to 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2019-02-15
+last_reviewed_on: 2019-07-16
 review_in: 3 months
 ---
 
@@ -13,7 +13,7 @@ If you’re new to 2nd line or have not worked with us for a while, here’s a b
 
 Every Wednesday 3 people from GOV.UK - 2 developers and a shadow developer - join the team to work on 2nd line. An 'interruptible' reliability engineer from the [RE GOV.UK Infra team also sits with the team](/manual/raising-issues-with-reliability-engineering.html#header). You can check the [2nd line support rota](https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=10) to find out when your shift is.  
 
-Your main responsibility is to respond to alerts. You’ll be set up in PagerDuty so that you can be called if there are any urgent alerts during working hours.
+Your main responsibility is to respond to alerts. You’ll be set up in [PagerDuty](https://governmentdigitalservice.pagerduty.com/schedules#?offset=5) so that you can be called if there are any urgent alerts during working hours.
 
 It's also an important opportunity to learn about the GOV.UK stack.
 
@@ -25,7 +25,7 @@ You do not need to be at the 2nd line desks all the time. If you have meetings t
 
 ## Shift swaps, working patterns and sickness
 
-2nd line is a team sport.
+2nd line takes priority over mission work. 
 
 If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
 
