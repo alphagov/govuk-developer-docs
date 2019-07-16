@@ -1,11 +1,11 @@
 ---
-owner_slack: "@hong.nguyen"
+owner_slack: "@michelle.carmody"
 title: Incident management guidance
 parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Incidents
-last_reviewed_on: 2019-02-15
+last_reviewed_on: 2019-07-16
 review_in: 3 months
 ---
 
