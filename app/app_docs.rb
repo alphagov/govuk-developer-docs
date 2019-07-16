@@ -55,7 +55,7 @@ class AppDocs
 
     def aws_puppet_class
       AppDocs.aws_machines.each do |puppet_class, keys|
-        if keys["apps"].include?(app_name)
+        if keys["apps"].include?(app_name) || keys["apps"].include?(puppet_name)
           return puppet_class
         end
       end
@@ -64,7 +64,7 @@ class AppDocs
 
     def carrenza_machine
       AppDocs.carrenza_machines.each do |puppet_class, keys|
-        if keys["apps"].include?(app_name)
+        if keys["apps"].include?(app_name) || keys["apps"].include?(puppet_name)
           return puppet_class
         end
       end
