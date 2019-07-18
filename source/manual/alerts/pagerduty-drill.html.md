@@ -4,7 +4,7 @@ title: PagerDuty drill
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-01-09
+last_reviewed_on: 2019-07-18
 review_in: 6 months
 ---
 
