@@ -4,7 +4,7 @@ title: Give a content designer access to GitHub
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2019-01-04
+last_reviewed_on: 2019-07-16
 review_in: 6 months
 ---
 
@@ -25,8 +25,8 @@ When a content designer joins they will need to be added to our monitoring
 software and then can be added to the GitHub team. These are the steps to
 follow:
 
-1. Edit the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] with the following
-   details for each designer: their name, GitHub username and role in
+1. Edit the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] with the
+   following details for each designer: their name, GitHub username and role in
    GOV.UK - [example][user-example]
 1. Raise this as a pull request
 1. Once PR is merged email
@@ -42,8 +42,8 @@ follow:
 When a content designer leaves GOV.UK they need to be removed from the GitHub
 team to revoke their access.
 
-First, check the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] to see if the
-users are listed as having access. If they are not listed you are done.
+First, check the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] to see
+if the users are listed as having access. If they are not listed you are done.
 
 If they are listed follow these steps:
 
@@ -51,7 +51,8 @@ If they are listed follow these steps:
    with the GitHub usernames asking for the users to be removed from
    https://github.com/orgs/alphagov/teams/gov-uk-content-designers
    which is the "GOV.UK Content Designers" GitHub team
-1. Edit the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] to remove the users
+1. Edit the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] to remove
+   the users
 1. Raise this as a pull request
 1. Once merged 2nd Line will be alerted if the users continues to have
    access despite having left
