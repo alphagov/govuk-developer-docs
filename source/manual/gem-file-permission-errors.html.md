@@ -1,14 +1,15 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Fix issues with installing Ruby gems using Bundler
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-17
-review_in: 6 months
+last_reviewed_on: 2019-07-22
+review_in: 12 months
 ---
 
-If you have an older version of RubyGems installed in your development VM, you may see errors such as the following when attempting to run `bundle`:
+If you have an older version of RubyGems installed in your development VM, you
+may see errors such as the following when attempting to run `bundle`:
 
 ```
 Gem::FilePermissionError: You don't have write permissions for the
@@ -18,6 +19,9 @@ Make sure that `gem install rake -v '12.3.1' --source 'http://rubygems.org/'` su
 bundling.
 ```
 
-To fix these errors, upgrade RubyGems for each Ruby version installed in the VM by running `sudo gem update --system`.
+To fix these errors, upgrade RubyGems for each Ruby version installed in the VM
+by running `sudo gem update --system`.
 
-Run this command in the root folder of each app which displays errors when running `bundle` since they may be using different versions of Ruby with their own old copy of RubyGems.
+Run this command in the root folder of each app which displays errors when
+running `bundle` since they may be using different versions of Ruby with their
+own old copy of RubyGems.
