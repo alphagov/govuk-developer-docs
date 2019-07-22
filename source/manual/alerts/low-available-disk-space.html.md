@@ -4,7 +4,7 @@ title: Low available disk space
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-02-01
+last_reviewed_on: 2019-07-02
 review_in: 6 months
 ---
 
@@ -12,8 +12,8 @@ review_in: 6 months
 
 You can try clearing out the APT cache:
 
-```
-sudo apt-get clean
+```sh
+$ sudo apt-get clean
 ```
 
 ## Low available disc space on /mnt/uploads for asset-master-1 and asset-slave-1
@@ -23,23 +23,25 @@ asset-master-1.backend and asset-slave-1.backend. Usually, the culprit
 behind space-chomping is /mnt/uploads/whitehall, and there are two
 folders on which to focus clean-up efforts on:
 
--   /mnt/uploads/whitehall/attachment-cache
--   /mnt/uploads/whitehall/carrierwave-tmp
+- `/mnt/uploads/whitehall/attachment-cache`
+- `/mnt/uploads/whitehall/carrierwave-tmp`
 
 Running the following command from within the above folders (ie cd to
 /mnt/uploads...) usually works best as it means that we don't end up
 with the parent folders being deleted:
 
-`find -type d -ctime +1 -exec rm -rf {} +`
+```sh
+$ find -type d -ctime +1 -exec rm -rf {} +
+```
 
 In the above example, we:
 
--   `find -type d` - find all directories within the folder you are
-    currently cd'd in to
--   `-ctime +1` - limit the results of the above `find` to files created
-    over a day (24hrs) ago
--   `-exec rm -rf {} +` - execute a force removal on the folders found,
-    with the above conditions
+- `find -type d` - find all directories within the folder you are currently
+  cd'd in to
+- `-ctime +1` - limit the results of the above `find` to files created over a
+  day (24hrs) ago
+- `-exec rm -rf {} +` - execute a force removal on the folders found, with the
+  above conditions
 
 The + is a gnuism which allows the command to run more efficiently. This
 [man page](http://unixhelp.ed.ac.uk/CGI/man-cgi?find) explains the +
@@ -59,38 +61,35 @@ Nagios to re-check the service on each affected host.
 
 ## No disk space on the MySQL master
 
-If the MySQL master runs out of disk space, all of the apps that rely on
-MySQL may crash. You'll probably notice this in Nagios. There's a lot of
-red.
+If the MySQL master runs out of disk space, all of the apps that rely on MySQL
+may crash. You'll probably notice this in Icinga. There's a lot of red.
 
-Binary logs take up space that could be freed. If the slave and the
-backup are at a reasonably up-to-date binlog position
-(`SHOW SLAVE STATUS \G`), the older binlogs can be removed from the
-master.
+Binary logs take up space that could be freed. If the slave and the backup are
+at a reasonably up-to-date binlog position (`SHOW SLAVE STATUS \G`), the older
+binlogs can be removed from the master.
 
 To recover:
 
-1.  SSH to mysql-master-1.backend
-2.  Stop MySQL using `sudo service mysql stop` (this may never return)
-3.  At this point `service mysql status` may return `stop/killed`,
-    indicating that Upstart has tried to kill MySQL but it is refusing
-    to die
-4.  `cd /var/lib/mysql && ls`
-5.  Remove enough (5 to 10?) binlog files so that you can start MySQL
-6.  Edit the `mysql-bin.index` file to remove references to the binlog
-    files you removed manually
-7.  `sudo service mysql start`
-8.  `mysql -u root -p`
-9.  `PURGE BINARY LOGS TO 'mysql-bin.########';`
+1. SSH to mysql-master-1.backend
+1. Stop MySQL using `sudo service mysql stop` (this may never return)
+1. At this point `service mysql status` may return `stop/killed`, indicating
+   that Upstart has tried to kill MySQL but it is refusing to die
+1. `cd /var/lib/mysql && ls`
+1. Remove enough (5 to 10?) binlog files so that you can start MySQL
+1. Edit the `mysql-bin.index` file to remove references to the binlog files you
+   removed manually
+7. `sudo service mysql start`
+8. `mysql -u root -p`
+9. `PURGE BINARY LOGS TO 'mysql-bin.########';`
 
-If there's no disk space available, purging binary logs from within
-MySQL doesn't work - this is why we first need to manually delete some
-logs and update the index.
+If there's no disk space available, purging binary logs from within MySQL
+doesn't work - this is why we first need to manually delete some logs and
+update the index.
 
 ## Low available disk space on /var/lib/postgresql
 
-Check which databases are occupying a lot of space and discuss with the relevant owners
-about reducing size or exanding the size of the postgres drive.
+Check which databases are occupying a lot of space and discuss with the
+relevant owners about reducing size or exanding the size of the postgres drive.
 
 Steps to investigate postgres db size:
 
