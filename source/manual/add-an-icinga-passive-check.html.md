@@ -4,13 +4,13 @@ title: Add an Icinga passive check to a Jenkins job
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-03
+last_reviewed_on: 2019-07-12
 review_in: 6 months
 ---
 
 If you would like Icinga to raise an alert when a Jenkins job has not completed
-successfully in a while, you can add an Icinga passive check to the Jenkins
-job by configuring Puppet.
+successfully in a while, you can add an Icinga passive check to the Jenkins job
+by configuring Puppet.
 
 1. Add a [parameterized build trigger][] to the Jenkins job you wish to monitor
    in Puppet, so that the success or failure of the job builds will be reported
