@@ -4,7 +4,7 @@ title: Use Terraboard to monitor Terraform state
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-03
+last_reviewed_on: 2019-07-06
 review_in: 6 months
 ---
 
@@ -68,8 +68,9 @@ container.
 
 Since there is no official Docker image for OAuth2 Proxy, the
 [govuk-oauth2-proxy-docker](https://github.com/alphagov/govuk-oauth2-proxy-docker)
-repository contains a `Dockerfile` used to build a custom image from the original
-source. This image is then pushed to Docker Hub, from where it is downloaded and run.
+repository contains a `Dockerfile` used to build a custom image from the
+original source. This image is then pushed to Docker Hub, from where it is
+downloaded and run.
 
-There are instructions on how to update, build and push new versions of the image
-in the [README](https://github.com/alphagov/govuk-oauth2-proxy-docker/blob/master/README.md).
+There are instructions on how to update, build and push new versions of the
+image in the [README](https://github.com/alphagov/govuk-oauth2-proxy-docker/blob/master/README.md).

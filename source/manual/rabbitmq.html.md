@@ -4,7 +4,7 @@ title: Manage RabbitMQ
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-04
+last_reviewed_on: 2019-07-18
 review_in: 6 months
 ---
 
