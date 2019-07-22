@@ -4,7 +4,7 @@ title: Switch an app off temporarily
 layout: manual_layout
 section: Deployment
 parent: "/manual.html"
-last_reviewed_on: 2018-07-03
+last_reviewed_on: 2019-07-04
 review_in: 12 months
 ---
 
@@ -13,12 +13,12 @@ can be patched.
 
 Stop Puppet from running on the relevant machines:
 
-```
-fab $environment node_type:frontend puppet.disable:"Reason for disabling Puppet"
+```sh
+$ fab $environment node_type:frontend puppet.disable:"Reason for disabling Puppet"
 ```
 
 Stop the app on the relevant machines:
 
-```
-fab $environment node_type:frontend app.stop:frontend
+```sh
+$ fab $environment node_type:frontend app.stop:frontend
 ```
