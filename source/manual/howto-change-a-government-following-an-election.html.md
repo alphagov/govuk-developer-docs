@@ -8,13 +8,13 @@ last_reviewed_on: 2019-07-12
 review_in: 6 months
 ---
 
-### Change a government in Whitehall
+## Change a government in Whitehall
 
 Following a general election or other reason for governmental change
 the current Government in Whitehall will need to be closed, and a new
 one created.
 
-#### Closing a government
+### Closing a government
 
 Governments are listed at the [government path of Whitehall Admin][].
 
@@ -32,7 +32,7 @@ new government has been opened.
 
 [ministerial appointments]: https://www.integration.publishing.service.gov.uk/government/ministers
 
-#### Open a new government
+### Open a new government
 
 [Create a new government](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments/new)
 
@@ -44,7 +44,7 @@ The new government should also instantly appear in the response from
 
 [/api/governments]: https://www.integration.publishing.service.gov.uk/api/governments
 
-#### Applying a banner to political content published by the previous government
+### Applying a banner to political content published by the previous government
 
 Content in Whitehall can be marked as political. Political content
 which was published under a previous government is
@@ -62,7 +62,7 @@ can also be set manually.
 
 [PoliticalContentIdentifier]: https://github.com/alphagov/whitehall/blob/master/lib/political_content_identifier.rb
 
-##### Updating newly historic content
+#### Updating newly historic content
 
 There is a Rake task to republish all political content and ensure
 these banners are applied for political content which is now
