@@ -73,10 +73,12 @@ associated with a previous government..
 In Integration, this will republish around 92,000 documents. The
 Publishing API may take between 4 and 6 hours to process these.
 
-Grafana monitoring for
+Grafana monitoring for:
+
 * [Publishing API](https://grafana.integration.publishing.service.gov.uk/dashboard/file/publishing-api.json?refresh=5s&orgId=1&from=now-6h&to=now)
 * [Sidekiq](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&from=now-6h&to=now&var-Application=whitehall&var-Queues=All)
 
-This may trigger Icinga alerts for the publishing-api
+This may trigger Icinga alerts for the Publishing API:
+
 * [Established connections for publishing-api exceeds 8](https://graphite.integration.govuk.digital/render/?width=1000&height=600&colorList=red,orange,blue,green,purple,brown&target=alias%28dashed%28constantLine%2810%29%29,%22critical%22%29&target=alias%28dashed%28constantLine%288%29%29,%22warning%22%29&target=publishing_api-ip-10-1-4-39_eu-west-1_compute_internal.tcpconns-3093-local.tcp_connections-ESTABLISHED)
 * [high load on](https://grafana.integration.govuk.digital/dashboard/file/machine.json?refresh=1m&orgId=1&var-hostname=publishing_api-ip-10-1-4-39_eu-west-1_compute_internal)
