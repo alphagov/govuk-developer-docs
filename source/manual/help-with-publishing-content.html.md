@@ -71,3 +71,23 @@ $ bundle exec rake publishing:overdue:publish
 [Run this job in production Jenkins ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing:overdue:publish)
 
 [scheduled]: alerts/whitehall-scheduled-publishing.html
+
+### [If a document needs force publishing and bypassing queues]
+
+If there are a lot of items in the high priority queue, the usual process of moving an urgent item to that queue won't have the desired effect. Bypassing queues should only be done in extreme cases where content has to be published asap (travel advice).
+
+* SSH into the publishing_api machine
+* Open an app console for the Publishing API
+* Find the appropriate document/edition
+* Run the workers [here](https://github.com/alphagov/publishing-api/blob/793fb5888694117e9a7ee0c23d174d40d3a3d07d/app/commands/v2/represent_downstream.rb#L20-L53) synchronously depending on whether you want to update live or draft
+
+For example:
+
+```
+DownstreamLiveWorker.new.perform(
+  content_id: content_id,
+  locale: locale,
+  message_queue_event_type: "links",
+  update_dependencies: false,
+)
+```
