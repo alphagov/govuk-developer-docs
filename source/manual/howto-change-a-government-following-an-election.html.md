@@ -44,35 +44,34 @@ The new government should also instantly appear in the response from
 
 [/api/governments]: https://www.integration.publishing.service.gov.uk/api/governments
 
-#### Republishing Political Content
+#### Applying a banner to political content published by the previous government
 
-Political Content is encapsulated by Whitehall's
-[PoliticalContentIdentifier][]. You can identify a piece of political
-content by calling `PoliticalContentIdentifier.political?(edition)`.
+Content in Whitehall can be marked as political. Political content
+which was published under a previous government is
+[historic?][historic]. This is highlighted on the page, and in search
+results. See these pages for example.
 
-[PoliticalContentIdentifier]: https://github.com/alphagov/whitehall/blob/master/lib/political_content_identifier.rb
-
-Any political content published under a closed government is
-[historic][].
+[A content page](https://www.gov.uk/government/speeches/the-issuing-withdrawal-or-refusal-of-passports)
+[A search results page](https://www.gov.uk/search/all?keywords=The+issuing%2C+withdrawal+or+refusal+of+passports&order=relevance)
 
 [historic]: https://github.com/alphagov/whitehall/blob/e518218355d158bfff036a02e312dda714da0aa6/app/models/edition.rb#L647
 
-`historical` political content is given an explanatory banner on both
-the [content page][] and [search results][].
+Marking content as political can happen automatically through the
+[PoliticalContentIdentifier][]. The `political` flag on an `Edition`
+can also be set manually.
 
-[content page]: https://www.gov.uk/government/speeches/the-issuing-withdrawal-or-refusal-of-passports
-[search results]: https://www.gov.uk/search/all?keywords=The+issuing%2C+withdrawal+or+refusal+of+passports&order=relevance
+[PoliticalContentIdentifier]: https://github.com/alphagov/whitehall/blob/master/lib/political_content_identifier.rb
+
+##### Updating newly historic content
 
 There is a Rake task to republish all political content and ensure
-these banners are applied.
+these banners are applied for political content which is now
+associated with a previous government..
 
 [election:republish_political_content](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:republish_political_content)
 
-In Integration, this will republish around 92,000 documents.
-
-The Publishing-API may take between 4 and 6 hours to process
-these. Currently they are running on the high-queues, and block any
-other publishing activity.
+In Integration, this will republish around 92,000 documents. The
+Publishing API may take between 4 and 6 hours to process these.
 
 Grafana monitoring for
 * [Publishing API](https://grafana.integration.publishing.service.gov.uk/dashboard/file/publishing-api.json?refresh=5s&orgId=1&from=now-6h&to=now)
