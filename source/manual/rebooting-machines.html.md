@@ -23,13 +23,9 @@ review_in: 3 months
 
 ## Unattended upgrades
 
-Machines are configured with automatic security updates which install
-security updates overnight. Sometimes these require a reboot in order to
-become active.
+Machines are configured with [automatic security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package) which install security updates overnight. Sometimes these require a reboot in order to become active.
 
-You can review the list of packages on machines (or classes of machines)
-with the following command. If you have not done so, you will need to
-[set up your fabric scripts first](https://github.com/alphagov/fabric-scripts#setup).
+You can review the list of packages on machines (or classes of machines) with the [following command](https://github.com/alphagov/fabric-scripts#setup). Logs of the previous runs can be found in `/var/log/unattended-upgrades`.
 
     fab $environment all apt.packages_with_reboots
 
