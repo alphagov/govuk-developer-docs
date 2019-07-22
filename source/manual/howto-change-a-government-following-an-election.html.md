@@ -14,7 +14,7 @@ Following a general election or other reason for governmental change the current
 
 #### Closing a government
 
-Government's are listed at the [government path of Whitehall Admin](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments).
+Governments are listed at the [government path of Whitehall Admin](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments).
 
 1. Select the current government, and click the `Prepare to close this government` link.
 2. Close the government.
