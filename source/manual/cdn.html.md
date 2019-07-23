@@ -110,9 +110,17 @@ addresses in 2 places:
 - Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific
   IP addresses (otherwise anyone would be able to purge the cache).
 
+We have [a Jenkins job "Check CDN IP Ranges"][check-cdn-ip-ranges] which will
+start to fail if our Fastly IPs don't match the IPs returned from the Fastly
+API. If you see this alert, you can
+[let Reliability Engineering know][raise-with-re] and they will update our
+list of Fastly IPs to match the ones listed by Fastly.
+
 [fastly_ips]: https://api.fastly.com/public-ip-list
 [firewall rules]: https://github.com/alphagov/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
 [vcl_config]: https://github.com/alphagov/govuk-cdn-config/
+[check-cdn-ip-ranges]: https://deploy.publishing.service.gov.uk/job/Check_CDN_IP_Ranges/
+[raise-with-re]: raising-issues-with-reliability-engineering.html
 
 ## Banning IP addresses at the CDN edge
 
