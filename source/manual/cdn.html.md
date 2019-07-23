@@ -5,12 +5,12 @@ section: CDN & Caching
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-10
+last_reviewed_on: 2019-07-23
 review_in: 6 months
 ---
 
-GOV.UK uses Fastly as a CDN. Citizen users aren't accessing GOV.UK
-servers directly, they connect via the CDN. This is better because:
+GOV.UK uses Fastly as a CDN. Citizen users aren't accessing GOV.UK servers
+directly, they connect via the CDN. This is better because:
 
 - The CDN "edge nodes" (webservers) are closer to end users. Fastly has
   servers all around the world but our "origin" servers are only in the UK.
@@ -42,19 +42,24 @@ endpoints are configured directly in the Fastly UI. There is
 
 ## Fastly Caching
 
-The main www.gov.uk cache is [Varnish](https://varnish-cache.org/docs/2.1/index.html), which Fastly run for us.
+The main www.gov.uk cache is
+[Varnish](https://varnish-cache.org/docs/2.1/index.html), which Fastly run for
+us.
 
 Varnish lets us configure our caching logic with VCL (Varnish config language).
 
 It also lets us do fancy things, like [only allowing connections to staging from permitted IPs](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L193), [forcing SSL](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L214) and [blocking IP addresses](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L200), among other things.
 
-We set a default TTL of 5000s on cached objects. This means that pages such as the GOV.UK homepage will be cached for 83 mins. 5XX responses get cached for 1s; mirror responses get cached for 15 minutes.
+We set a default TTL of 5000s on cached objects. This means that pages such as
+the GOV.UK homepage will be cached for 83 mins. 5XX responses get cached for
+1s; mirror responses get cached for 15 minutes.
 
-We also set a grace period of 24 hours. So if the homepage server is down, we'll continue to serve a stale homepage for 24 hours.
+We also set a grace period of 24 hours. So if the homepage server is down,
+we'll continue to serve a stale homepage for 24 hours.
 
-We will cache any non-GET/HEAD request that returns a 404 or 405 status for the default TTL.
-This means (for example) that a POST request that returns a
-405 (Method Not Allowed) will be cached.
+We will cache any non-GET/HEAD request that returns a 404 or 405 status for the
+default TTL. This means (for example) that a POST request that returns a 405
+(Method Not Allowed) will be cached.
 
 These are the GET request status codes that Varnish caches automatically:
 200, 203, 300, 301, 302, 404 or 410. See the [Varnish docs](https://varnish-cache.org/docs/2.1/reference/vcl.html#variables)
@@ -65,12 +70,16 @@ Refer to the Varnish 2.1 documentation when looking at the VCL code.
 
 **Testing VCL**
 
-VCL can be tricky to get right. When making changes to the VCL, add smoke tests [to smokey](https://github.com/alphagov/smokey/blob/master/features/caching.feature) and check that they don't fail in staging.
+VCL can be tricky to get right. When making changes to the VCL, add smoke tests
+[to smokey](https://github.com/alphagov/smokey/blob/master/features/caching.feature)
+and check that they don't fail in staging.
 
-You can also use Fastly's [Fiddle tool](https://fiddle.fastlydemo.net/) to manually test, and you can also test your changes with cURL by including a debug header:
+You can also use Fastly's [Fiddle tool](https://fiddle.fastlydemo.net/) to
+manually test, and you can also test your changes with cURL by including a
+debug header:
 
-```bash
-curl -svo /dev/null -H "Fastly-Debug:1" https://www.gov.uk
+```sh
+$ curl -svo /dev/null -H "Fastly-Debug:1" https://www.gov.uk
 ```
 
 This will give you various debugging headers that may be useful:
@@ -86,26 +95,37 @@ This will give you various debugging headers that may be useful:
 < Vary: Accept-Encoding, Accept-Encoding
 ```
 
-See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging guide](https://docs.fastly.com/guides/debugging/checking-cache#using-curl) for more details on testing.
+See the Varnish/Fastly docs for what these mean. Check out the Fastly
+[debugging guide](https://docs.fastly.com/guides/debugging/checking-cache#using-curl)
+for more details on testing.
 
 ## Fastly's IP ranges
 
-Fastly publish their cache node [IP address ranges as JSON from their API][fastly_ips].
-We use these IP addresses in 2 places:
+Fastly publish their cache node
+[IP address ranges as JSON from their API][fastly_ips]. We use these IP
+addresses in 2 places:
 
 - Origin has [firewall rules][] in place so that only our office and Fastly
   can connect.
 - Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific
   IP addresses (otherwise anyone would be able to purge the cache).
 
+We have [a Jenkins job "Check CDN IP Ranges"][check-cdn-ip-ranges] which will
+start to fail if our Fastly IPs don't match the IPs returned from the Fastly
+API. If you see this alert, you can
+[let Reliability Engineering know][raise-with-re] and they will update our
+list of Fastly IPs to match the ones listed by Fastly.
+
 [fastly_ips]: https://api.fastly.com/public-ip-list
 [firewall rules]: https://github.com/alphagov/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
 [vcl_config]: https://github.com/alphagov/govuk-cdn-config/
+[check-cdn-ip-ranges]: https://deploy.publishing.service.gov.uk/job/Check_CDN_IP_Ranges/
+[raise-with-re]: raising-issues-with-reliability-engineering.html
 
 ## Banning IP addresses at the CDN edge
 
-We occasionally decide to ban an IP address at our CDN edge if they exhibit
-the following behaviour:
+We occasionally decide to ban an IP address at our CDN edge if they exhibit the
+following behaviour:
 
 - not respecting [our robots.txt directives][robots]
 - repeatedly receiving 429 (rate limit) error responses from origin and not
@@ -126,22 +146,21 @@ You can change the list of banned IP addresses by modifying the
 
 ## Bouncer's Fastly service
 
-A Fastly CDN service can normally handle up to 1000 domains (this limit
-was undocumented).
+A Fastly CDN service can normally handle up to 1000 domains (this limit was
+undocumented).
 
-We have asked them to increase this limit for Bouncer's service a few
-times as the number of domains it handled grew, and the limit is
+We have asked them to increase this limit for Bouncer's service a few times as
+the number of domains it handled grew, and the limit is
 [currently 3500](https://fastly.zendesk.com/requests/7356). We have
 [about 2000 domains](https://transition.publishing.service.gov.uk/hosts)
 so shouldn't need to increase it again for a while.
 
 If we reach the limit then the [Jenkins job to update Bouncer's CDN
-config](https://deploy.publishing.service.gov.uk/job/Bouncer_CDN/)
-should fail and new domains won't be added to the service.
+config](https://deploy.publishing.service.gov.uk/job/Bouncer_CDN/) should fail
+and new domains won't be added to the service.
 
-Configuring a new site in Transition generally adds at least 4 domains
-to the service, including the `aka` domain for each real domain. For
-example:
+Configuring a new site in Transition generally adds at least 4 domains to the
+service, including the `aka` domain for each real domain. For example:
 
 -   `www.foo.gov.uk`
 -   `aka.foo.gov.uk`
@@ -150,14 +169,13 @@ example:
 
 ### New solution for Bouncer and Fastly
 
-Fastly's new solution to get around the domain limit is a
-"service pinned map".
+Fastly's new solution to get around the domain limit is a "service pinned map".
 
 They have created a map which we access using
 `bouncer-cdn.production.govuk.service.gov.uk`.
-Domains that need to be transitioned can `CNAME` to this domain. It
-also has 4 IP addresses assigned, which at the time of writing are
-the same as the `A` records at that hostname:
+Domains that need to be transitioned can `CNAME` to this domain. It also has
+4 IP addresses assigned, which at the time of writing are the same as the `A`
+records at that hostname:
 
 - `151.101.2.30`
 - `151.101.66.30`
