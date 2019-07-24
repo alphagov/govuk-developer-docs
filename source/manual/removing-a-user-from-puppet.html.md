@@ -22,6 +22,7 @@ will remain on our servers forever more.
 4. Create another PR for Puppet that:
   - Removes the user manifest file
   - Removes the user from [Integration users][integration-users]
+  - Removes the user from [AWS training environment users][training-environment]
   - Removes the user from [CI users][ci-users]
 5. Create a PR in [GOV.UK secrets][govuk-secrets] that:
   - Removes the user from [production hieradata][production-hieradata]. Read [what to do when someone leaves][what-to-do-when-someone-leaves]
@@ -32,6 +33,7 @@ will remain on our servers forever more.
 [manifest-path]: https://github.com/alphagov/govuk-puppet/tree/master/modules/users/manifests
 [absent-example]: https://github.com/alphagov/govuk-puppet/commit/0757bad41ed577f15c7f5d9e508f55e78c612ddb
 [integration-users]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
+[training-environment]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/training.yaml
 [ci-users]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [production-hieradata]: https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata
