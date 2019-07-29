@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby File.read('.ruby-version').chomp
 
-gem 'capybara', '~> 3.26.0'
+gem 'capybara', '~> 3.27.0'
 gem 'rake'
 gem 'rspec', '~> 3.8'
 gem 'webmock', '~> 3.6'
