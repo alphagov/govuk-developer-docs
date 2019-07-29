@@ -16,3 +16,7 @@ website. This process varies per app.
 If the document is in Whitehall, there is a Rake task you can run.
 
 [`publishing_api:republish_document[slug]`](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug])
+
+For organisations, run:
+
+[`publishing_api:republish_organisation[slug]`](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_organisation[slug])
