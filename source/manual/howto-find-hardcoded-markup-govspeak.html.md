@@ -12,13 +12,17 @@ Usually to find usage of markup we can look in our source code.
 
 For example if we wanted to see which templates use a class called 'button' you could search in Github.
 
-However [GovSpeak (our variant of Markdown)](https://govuk-static.herokuapp.com/component-guide/govspeak) includes markup such as buttons that will be in published content.
+However [GovSpeak] (our variant of Markdown) includes markup such as buttons that will be in published content.
 
 So, with this in mind you'll need to search all published content.
 
+## Searching the Content Store via Jenkins
+
+See the Content Team's instruction on the wiki: [Find instances of a keyword on GOV.UK]
+
 ## Searching the Publishing API
 
-First make sure you can SSH into our integration environment, you can [follow the Getting Started guide](/manual/get-started.html#6-access-remote-environments)
+First make sure you can SSH into our integration environment, you can follow the [Getting Started] guide.
 
 Now if everything is setup you can ssh onto the machine with the publishing api using:
 
@@ -26,7 +30,7 @@ Now if everything is setup you can ssh onto the machine with the publishing api 
 $ ssh publishing-api-1.staging
 ```
 
-Then to get access to the console for the [publishing-api](https://github.com/alphagov/publishing-api) so you can execute commands do the following:
+Then to get access to the console for the [publishing-api] so you can execute commands do the following:
 
 ```shell
 $ govuk_app_console publishing-api
@@ -55,3 +59,9 @@ Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.ba
 ```ruby
 Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.base_path}" if e.details.to_s =~ /class=\\"button/ }
 ```
+
+
+[Govspeak]: http://govspeak-preview.herokuapp.com/
+[Getting Started]: /manual/get-started.html#6-access-remote-environments
+[publishing-api]: https://github.com/alphagov/publishing-api
+[Find instances of a keyword on GOV.UK]: https://gov-uk.atlassian.net/wiki/spaces/CC/pages/1314488405/Find+instances+of+a+keyword+on+GOV.UK
