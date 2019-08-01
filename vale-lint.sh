@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-set -eu
+set -u
 
+set +e
+ret=0
 for file in "$@"; do
-  lint=$(vale $file >/dev/null 2>/dev/null || echo "failed")
-
-  if [[ $lint == "failed" ]]; then
-    echo "${file} has failed linting. Results:"
-    vale $file
-    exit 1
+  if ! vale $file; then
+    echo "${file} has failed linting. See above"
+    ret=1
   fi
 done
+
+exit $ret
