@@ -54,6 +54,14 @@ paster --plugin=ckan db init -c /var/ckan/ckan.ini
 paster --plugin=ckanext-harvest harvester initdb -c /var/ckan/ckan.ini
 ```
 
+### Accessing the database
+
+In order to access the CKAN database to run queries on the `db_admin` machine:
+
+`psql -U ckan -h postgresql-primary -p 5432 ckan_production`
+
+The password can be found in the `/var/ckan/ckan.ini` file on the `ckan` machine for the environment you are targeting.
+
 ### Accessing the CKAN API
 
 There are times when it can be useful to access the [CKAN API][ckan-api] when debugging or resolving issues. Note that the responses will be different depending on your access permissions.
