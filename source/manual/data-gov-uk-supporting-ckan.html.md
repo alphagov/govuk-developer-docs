@@ -81,6 +81,22 @@ https://data.gov.uk/api/3/action/package_search?q=metadata_created:[2017-06-01T0
 # Find all packages modified during a specific timeframe
 https://data.gov.uk/api/3/action/package_search?q=metadata_modified:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
 
+# Count all packages and list a sample
+ https://ckan.publishing.service.gov.uk/api/search/dataset?fl=id,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&q=state:active%20and%20dataset_type:dataset&limit=20
+
+# Count harvested packages and list a sample
+ https://ckan.publishing.service.gov.uk/api/search/dataset?fl=id,state,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&q=state:active%20and%20extras_harvest_object_id:[%22%22%20TO%20*]%20and%20dataset_type:dataset&limit=20
+
+# Count manually published packages and list a sample
+ https://ckan.publishing.service.gov.uk/api/search/dataset?fl=id,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&q=state:active%20and%20-extras_harvest_object_id:*%20and%20dataset_type:dataset&limit=20
+
+# Count packages harvested in last 7 days and list a sample https://ckan.publishing.service.gov.uk/api/search/dataset?fl=id,state,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&q=state:active%20and%20extras_harvest_object_id:[%22%22%20TO%20*]%20and%20dataset_type:dataset%20and%20metadata_modified:[NOW-7DAY/DAY%20TO%20NOW]&limit=20
+
+# Count packages manually published in last 7 days and list a sample https://ckan.publishing.service.gov.uk/api/search/dataset?fl=id,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&q=state:active%20and%20-extras_harvest_object_id:*%20and%20dataset_type:dataset%20and%20metadata_modified:[NOW-7DAY/DAY%20TO%20NOW]&limit=20
+
+# Count packages from Daily harvest sources and list a sample
+https://ckan.publishing.service.gov.uk/api/search/dataset?fl=id,metadata_modified,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id,extras_frequency-of-update&q=state:active%20and%20extras_harvest_object_id:%5B%22%22%20TO%20*%5D%20and%20frequency-of-update:daily%20and%20dataset_type:dataset&limit=20
+
 # List all publishers
 https://data.gov.uk/api/3/action/organization_list
 
