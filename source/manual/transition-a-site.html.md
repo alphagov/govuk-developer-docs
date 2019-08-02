@@ -22,11 +22,20 @@ traffic to it.
 
 ## Checklist
 
-### 1) Add a site to the Transition app
+### 1) Ensure the department is aware of the technical limitation of HTTPS enabled sites
+
+Unless the domain being transitioned is a subdomain of one of our wildcard [SANs](https://en.wikipedia.org/wiki/Subject_Alternative_Name), we [do not support HTTPS](/manual/transition-architecture.html#https-support-for-transitioned-sites) for transitioned sites.
+
+For sites that wish to maintain HTTPS integrity that are not in our SANs,
+the best alternative is for them to set up redirects on their own server rather than relying on Bouncer.
+
+The content team might ask a developer to offer the department some guidance around this.
+
+### 2) Add a site to the Transition app
 
 Follow the instructions in the [transition-config README][transition-config].
 
-### 2) Get a list of old URLs
+### 3) Get a list of old URLs
 
 In order for us to redirect anything but the homepage, we need a list of
 URLs for the old site so that they can be mapped. In the past, this is
@@ -54,7 +63,7 @@ $ anemone url-list 'transitioning-site.gov.uk'
 >
 > This will include 404s, 301s, etc.
 
-### 3) Clean up URLs
+### 4) Clean up URLs
 
 **Strip paths and pattern**
 
@@ -90,7 +99,7 @@ Some common examples of non-significant parameters:
 -   analytics
 -   search queries
 
-### 4) Add the old URLs as mappings
+### 5) Add the old URLs as mappings
 
 Ideally, any significant query string parameters should be identified and
 added to the site before adding the mappings. This is because URLs are
@@ -108,7 +117,7 @@ rather than just ones belonging to your organisation. You can then go
 the [transition app](https://transition.publishing.service.gov.uk), find
 the site and click `Add mappings` to add them in bulk.
 
-### 5) Get the organisation to do the mapping work
+### 6) Get the organisation to do the mapping work
 
 By default, the mappings will present an archive page to users visiting
 the old URL. The objective is to get users to somewhere that best serves
@@ -116,7 +125,7 @@ the need fulfilled by the old page. Usually this means redirecting them
 to the page on GOV.UK or elsewhere. It is really important that this is
 done by people who understand the users and content.
 
-### 6) Get the organisation to lower the TTL on the DNS records a day ahead
+### 7) Get the organisation to lower the TTL on the DNS records a day ahead
 
 In order to cleanly switch the domain from the old site, the TTL needs
 to be low enough that there isn't a significant period where some users
@@ -127,7 +136,7 @@ advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.
 
-### 7) Point the domain at us
+### 8) Point the domain at us
 
 Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a `CNAME`
@@ -139,7 +148,7 @@ addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed55
 If the site is one that was [administered by GDS](https://github.com/alphagov/gds-dns-config/tree/master/zones)
 (e.g. theorytest.direct.gov.uk), you will need to [update and re-deploy the DNS config](/manual/dns.html#making-changes-to-publishing-service-gov-uk).
 
-### 8) Get the organisation to monitor the traffic data in the Transition app
+### 9) Get the organisation to monitor the traffic data in the Transition app
 
 There are two things that need to be responded to:
 
