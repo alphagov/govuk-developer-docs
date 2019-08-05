@@ -37,4 +37,4 @@ such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let a team that is working on the app
 know (or alert Platform Health).
 
-[nginx_5xx_grafana]: https://grafana.publishing.service.gov.uk/dashboard/file/nginx_logs.json?refresh=1m&orgId=1&var-Machines=All&var-Hostname=finder-frontend&var-Status=5xx&from=now-6h&to=now
+[nginx_5xx_grafana]: https://grafana.publishing.service.gov.uk/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&var-Machines=All&var-Hostname=All&var-Status=5xx
