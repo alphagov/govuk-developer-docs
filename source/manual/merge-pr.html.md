@@ -4,7 +4,7 @@ title: Merge a Pull Request
 section: GitHub
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-28
+last_reviewed_on: 2019-08-05
 review_in: 6 months
 ---
 
