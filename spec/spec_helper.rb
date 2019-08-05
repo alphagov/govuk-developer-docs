@@ -31,4 +31,10 @@ RSpec.configure do |config|
 
   config.order = :random
   Kernel.srand config.seed
+
+  class Date
+    def in_the_future?
+      self > Date.today
+    end
+  end
 end

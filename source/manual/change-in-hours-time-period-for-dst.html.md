@@ -5,8 +5,8 @@ section: 2nd line
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-10-25
-review_in: 1 day
+last_reviewed_on: 2019-08-05
+review_in: 81 days
 ---
 
 We call people for different things in-hours and out-of-hours.  The
