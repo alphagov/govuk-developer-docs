@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: PostgreSQL backups
 section: Backups
 type: learn
