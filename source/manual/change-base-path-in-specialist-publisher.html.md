@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-04-25
+last_reviewed_on: 2019-08-07
 review_in: 3 months
 ---
 
@@ -12,13 +12,7 @@ In [Specialist Publisher](https://specialist-publisher.publishing.service.gov.uk
 
 You can use the Jenkins rake task runner to run the task:
 
-```
-base_path:edit[content_id,/new_base_path]
-```
-
-[⚙ Run rake task on production][change]
-
-[change]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=base_path:edit[content_id,/new_base_path]
+[`base_path:edit[content_id,/new_base_path]`](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=base_path:edit[content_id,/new_base_path])
 
 > **Note**
 >
