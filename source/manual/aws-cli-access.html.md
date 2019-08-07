@@ -4,14 +4,14 @@ title: Use AWS on the command line
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-07
+last_reviewed_on: 2019-08-07
 review_in: 3 months
 ---
 
-💡 Before you can access something in AWS, you [need to set up your AWS
-account][set-up-account].
+Prerequisites:
 
-💡 You will need to [install the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html).
+- Access to the GOV.UK AWS Accounts (If you haven't done so before, [set up your AWS access][set-up-account])
+- [Installed the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 
 ---
 
