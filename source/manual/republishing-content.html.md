@@ -4,7 +4,7 @@ title: Republish content
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-24
+last_reviewed_on: 2019-08-07
 review_in: 6 months
 ---
 
