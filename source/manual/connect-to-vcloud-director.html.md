@@ -4,7 +4,7 @@ title: Connect to vCloud Director (Carrenza only)
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-24
+last_reviewed_on: 2019-08-08
 review_in: 6 months
 ---
 
@@ -12,31 +12,47 @@ vCloud Director is the interface we use to manage our infrastructure in Carrenza
 This includes virtual machines, gateways, firewalls and VPNs between providers.
 
 To access vCloud Director, you will need to connect to a Carrenza-provided VPN.
-You can use either Cisco AnyConnect or openconnect to do this.
+The instructions below are for using the Cisco AnyConnect VPN client, but it should also be possible to use OpenConnect.
 
-## Prerequisites
+## Setting up the Cisco AnyConnect VPN profile (one-off process)
 
-1. Get the VPN client certificate from the [2nd line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/carrenza/vpn-certificate.gpg).
-2. Save the certificate to a file on your machine (eg. `vcloud.pem`).
-3. Get the VPN credentials, also from the 2nd line password store (e.g.
-for integration this would be in [vcloud-integration.gpg](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/carrenza) ). You can find
-additional instructions about decrypting these files [here](https://github.com/alphagov/govuk-secrets/blob/master/pass/README.md) under the heading "Get a password".
-4. You'll need to use an app (such as Google Authenticator) to turn the TOTP
-   secret into a 2FA code.
-
-## Connecting with Cisco AnyConnect
-
-1. Convert the VPN client certificate from PEM format to PFX format by running
-   `openssl pkcs12 -export -in vcloud.pem -out vcloud.pfx`. You'll be asked for
-   two passwords. For the first one, enter the VPN password, and for the second
-   one, enter the certificate passphrase.
-2. Import the PFX format certificate into your Keychain by running
-   `security import vcloud.pfx -k ~/Library/Keychains/login.keychain-db`.
-   You'll be asked for a password. Enter the certificate passphrase.
-3. Create a new file on your machine at `/opt/cisco/anyconnect/profile/carrenza-secure.xml`.
+1. Clone the govuk-secrets private Git repo. The repo is very large but there is no need to download the full history.
+```
+mkdir -p ~/govuk && cd ~/govuk
+git clone --depth 10 git@github.com:alphagov/govuk-secrets.git
+```
+2. Get the VPN client certificate and private key from the 2nd line [password store](https://github.com/alphagov/govuk-secrets/tree/master/pass) and save the decrypted contents to a file on your machine (for example ~/carrenza-vpn-cert-and-key.pem).
+```
+cd govuk-secrets/pass
+export PASSWORD_STORE_DIR=2ndline
+pass carrenza/vpn-certificate >~/carrenza-vpn-cert-and-key.pem
+```
+3. Get the VPN credentials, also from the 2nd line password store.
+```
+pass carrenza/vpn-credentials
+Certificate passphrase: ...
+MFA key: ................
+Password: ...
+VPN gateway: ...
+```
+4. Add the MFA key to an app such as Google Authenticator in order to obtain a working second factor.
+5. Convert the VPN client certificate from PEM format to PFX format by running
+   `openssl pkcs12 -export -in ~/carrenza-vpn-cert-and-key.pem -out carrenza-vpn-cert-and-key.pfx`.
+   You'll be asked for two passwords (one for decrypting the PEM and one for encrypting the PFX). The first one is the `Certificate passphrase` field from `carrenza/vpn-credentials`. You can choose the second one, or use the same as the first.
+```
+openssl pkcs12 -export -in ~/carrenza-vpn-cert-and-key.pem -out ~/carrenza-vpn-cert-and-key.pfx
+Enter pass phrase for /Users/.../carrenza-vpn-cert-and-key.pem: <Certificate passphrase from vpn-credentials>
+Enter Export Password: <Password from vpn-credentials>
+Verifying - Enter Export Password:
+```
+6. Import the PFX format certificate into your Keychain by running
+   `security import ~/carrenza-vpn-cert-and-key.pfx`.
+   You'll be asked for a password. Enter the passphrase which you used to encrypt the PFX file (`Certificate passphrase` field from `carrenza/vpn-credentials`).
+7. Create a new file on your machine at `/opt/cisco/anyconnect/profile/carrenza-secure.xml`.
    and copy the following XML into that file:
 
-```xml
+```
+cat <<EOF >~/carrenza-secure.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <AnyConnectProfile xmlns="http://schemas.xmlsoap.org/encoding/">
   <ServerList>
@@ -47,24 +63,39 @@ additional instructions about decrypting these files [here](https://github.com/a
     </HostEntry>
   </ServerList>
 </AnyConnectProfile>
+EOF
+sudo cp ~/carrenza-secure.xml /opt/cisco/anyconnect/profile/
+```
+8. Restart Cisco AnyConnect if it's already running.
+9. Delete the key files created earlier as these are no longer needed. (The PEM file is needed if you plan to use OpenConnect, however.)
+```
+rm ~/carrenza-vpn-cert-and-key.{pem,pfx}
 ```
 
-4. Restart Cisco AnyConnect if it's already running.
-5. Choose "Carrenza - Secure" from the drop down list and click "Connect".
-6. The first password is the 2FA code.
-7. The second password is the VPN password.
+## Connecting with Cisco AnyConnect
+1. Choose "Carrenza - Secure" from the drop down list and click "Connect". The very first time you connect, you may be asked (multiple times) for your Mac OS X username and password (that is, your LDAP username and password). This is for AnyConnect to store credentials in the System keychain and to read the key and certs which you imported into your account keychain. Press Always Allow when the option appears.
+2. The first password is the second-factor (MFA) code. The second password is the VPN password. (Yes, they're the opposite way around compared to the GDS VPN.)
 
-## Connecting with openconnect
+## Connecting with OpenConnect
 
 1. Run `sudo openconnect https://secure.carrenza.com -c vcloud.pem`.
    Make sure you provide the correct path to where you've saved the VPN client certificate.
 2. The first password is your machine password (requested by sudo).
-3. The second password (the PEM pass phrase) is the certificate passphrase from the password store.
+3. The second password (the PEM passphrase) is the certificate passphrase from the password store.
 4. The third password is the 2FA code.
 5. The fourth password is the password from the password store.
 
 ## Accessing vCloud Director
 
-Once you've connected to the VPN, visit https://vcloud.carrenza.com/cloud/org/{organisation}/.
-You can get the organsation name from the 2nd line password store entry for the relevant
-vCloud environment (e.g. for the staging environment you would use [this file](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/carrenza/vcloud-staging.gpg) ).
+1. Fetch the VCloud Director credentials for the environment which you want to connect to.
+```
+cd govuk-secrets/pass
+export PASSWORD_STORE_DIR=2ndline
+pass carrenza/vcloud-integration
+......... <a long string which is the VCloud Director password>
+User: <username for logging into VCloud Director>
+Org: <this string goes in the URL path for accessing VCloud Director>
+```
+2. Ensure that you are connected to the Carrenza VPN (see above).
+3. Visit https://vcloud.carrenza.com/cloud/org/{organisation}/ (replacing {organisation} with the value of the `Org` field from the password store entry.
+4. Log in with the username and password from the password store entry.
