@@ -12,9 +12,9 @@ vCloud Director is the interface we use to manage our infrastructure in Carrenza
 This includes virtual machines, gateways, firewalls and VPNs between providers.
 
 To access vCloud Director, you will need to connect to a Carrenza-provided VPN.
-The instructions below are for using the Cisco AnyConnect VPN client, but it should also be possible to use OpenConnect.
+You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
 
-## Setting up the Cisco AnyConnect VPN profile (one-off process)
+## Setting up the Cisco AnyConnect VPN profile on a Mac
 
 1. Clone the govuk-secrets private Git repo. The repo is very large but there is no need to download the full history.
 ```
@@ -35,7 +35,7 @@ MFA key: ................
 Password: ...
 VPN gateway: ...
 ```
-4. Add the MFA key to an app such as Google Authenticator in order to obtain a working second factor.
+4. Add the MFA key to an app such as Google Authenticator. This will be your second factor for logging into the Carrenza VPN.
 5. Convert the VPN client certificate from PEM format to PFX format by running
    `openssl pkcs12 -export -in ~/carrenza-vpn-cert-and-key.pem -out carrenza-vpn-cert-and-key.pfx`.
    You'll be asked for two passwords (one for decrypting the PEM and one for encrypting the PFX). The first one is the `Certificate passphrase` field from `carrenza/vpn-credentials`. You can choose the second one, or use the same as the first.
@@ -45,7 +45,7 @@ Enter pass phrase for /Users/.../carrenza-vpn-cert-and-key.pem: <Certificate pas
 Enter Export Password: <Password from vpn-credentials>
 Verifying - Enter Export Password:
 ```
-6. Import the PFX format certificate into your Keychain by running
+6. Import the PFX format certificate into your OS X login keychain by running
    `security import ~/carrenza-vpn-cert-and-key.pfx`.
    You'll be asked for a password. Enter the passphrase which you used to encrypt the PFX file (`Certificate passphrase` field from `carrenza/vpn-credentials`).
 7. Create a new file on your machine at `/opt/cisco/anyconnect/profile/carrenza-secure.xml`.
@@ -78,7 +78,7 @@ rm ~/carrenza-vpn-cert-and-key.{pem,pfx}
 
 ## Connecting with OpenConnect
 
-1. Run `sudo openconnect https://secure.carrenza.com -c vcloud.pem`.
+1. Run `sudo openconnect https://secure.carrenza.com -c ~/carrenza-vpn-cert-and-key.pem`.
    Make sure you provide the correct path to where you've saved the VPN client certificate.
 2. The first password is your machine password (requested by sudo).
 3. The second password (the PEM passphrase) is the certificate passphrase from the password store.
