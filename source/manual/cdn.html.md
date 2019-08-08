@@ -116,11 +116,73 @@ API. If you see this alert, you can
 [let Reliability Engineering know][raise-with-re] and they will update our
 list of Fastly IPs to match the ones listed by Fastly.
 
+Updating the firewall rules in Carrenza with new Fastly IPs used to be done by
+committing the change to the govuk-provisioning repo and to then deploy the
+firewall through a jenkins job. This process is broken at the moment since the
+code base has diverged from the state of the firewall, while this is remedied
+we have to add the new rules manually, this is how to do it:
+
+1. You will need to install [vcd-cli][vcd-cli] to use the following scripts.
+2. Connect to the [Carrenza VPN][carrenza-vpn]
+3. Login to Vcloud director, you can find the organisation name and the credentials
+attached to it in the password store.
+
+```bash
+vcd login vcloud.carrenza.com {organisation} 2nd-line-support@digital.cabinet-office.gov.uk -V 27.0
+```
+
+4. Find the correct values for $stag_prefix and $prod_prefix in Carrenza and run this script, setting env to either staging or production and put the list
+of new Fastly IP ranges into fastly_ips as an array
+
+```bash
+env=$1
+fastly_ips=()
+
+case $env in
+        "staging")
+                dests=(${stag_prefix}.146 ${stag_prefix}.158 ${stag_prefix}.155 ${stag_prefix}.155 ${stag_prefix}.155 ${stag_prefix}.157 ${stag_prefix}.149)
+                gateway='0e7t-DR-GOVUK-Staging-gateway-LDN'
+                ;;
+        "production") 
+                dests=(${prod_prefix}.82 ${prod_prefix}.94 ${prod_prefix}.91 ${prod_prefix}.91 ${prod_prefix}.91 ${prod_prefix}.93 ${prod_prefix}.85)
+                gateway='0e7t-GOV_PRODUCTION-gateway01'
+                ;;
+        *)
+                echo "Environment should either be staging or production"
+                exit 1
+                ;;
+esac
+
+ports=(443 443 6514 6515 6516 80 443)
+names=(origin API monitoring-1_GOV.UK monitoring-1_Assets monitoring-1_Bouncer apt_mirror Backend_AWS)
+
+nb_rules=$(( ${#fastly_ips[@]} * 7 ))
+for i in $(seq $nb_rules $END)
+do
+        vcd gateway services firewall create --disabled --name "NewRule_$i" --action accept --type user $gateway
+done
+
+newrules_ids=(`vcd gateway services firewall list $gateway | grep 'NewRule_' | awk '{print $1'}`)
+
+seq=0
+for ip in ${fastly_ips[@]}
+do
+        for i in `seq 0 6`
+        do
+                name="'Fastly $ip to ${names[$i]}'"
+                vcd gateway services firewall update --enabled --name $name --source $ip:ip --destination ${dests[$i]}:ip --service tcp any ${ports[$i]} $gateway ${newrules_ids[$seq]}
+                seq=$((seq+1))
+        done    
+done
+```
+
 [fastly_ips]: https://api.fastly.com/public-ip-list
 [firewall rules]: https://github.com/alphagov/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
 [vcl_config]: https://github.com/alphagov/govuk-cdn-config/
 [check-cdn-ip-ranges]: https://deploy.publishing.service.gov.uk/job/Check_CDN_IP_Ranges/
 [raise-with-re]: raising-issues-with-reliability-engineering.html
+[vcd-cli]: https://github.com/vmware/vcd-cli
+[carrenza-vpn]: https://docs.publishing.service.gov.uk/manual/connect-to-vcloud-director.html#connecting-with-cisco-anyconnect
 
 ## Banning IP addresses at the CDN edge
 
