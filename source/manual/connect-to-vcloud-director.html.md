@@ -25,7 +25,7 @@ git clone --depth 10 git@github.com:alphagov/govuk-secrets.git
 ```
 cd govuk-secrets/pass
 export PASSWORD_STORE_DIR=2ndline
-pass carrenza/vpn-certificate >~/carrenza-vpn-cert-and-key.pem
+pass carrenza/vpn-certificate > ~/carrenza-vpn-cert-and-key.pem
 ```
 3. Get the VPN credentials, also from the 2nd line password store.
 ```
@@ -35,10 +35,15 @@ MFA key: ................
 Password: ...
 VPN gateway: ...
 ```
-4. Add the MFA key to an app such as Google Authenticator. This will be your second factor for logging into the Carrenza VPN.
+4. Add the MFA key to an app such as Google Authenticator. This will be your
+   second factor for logging into the Carrenza VPN.
 5. Convert the VPN client certificate from PEM format to PFX format by running
    `openssl pkcs12 -export -in ~/carrenza-vpn-cert-and-key.pem -out carrenza-vpn-cert-and-key.pfx`.
-   You'll be asked for two passwords (one for decrypting the PEM and one for encrypting the PFX). The first one is the `Certificate passphrase` field from `carrenza/vpn-credentials`. You can choose the second one, or use the same as the first.
+   You will be asked for two passwords (one for decrypting the PEM and one for
+   encrypting the PFX). The first password is the `Certificate passphrase` field
+   from `carrenza/vpn-credentials`. The second password can be of your own choice.
+   You will need it for the next few steps but you won't need to remember it
+   after that.
 ```
 openssl pkcs12 -export -in ~/carrenza-vpn-cert-and-key.pem -out ~/carrenza-vpn-cert-and-key.pfx
 Enter pass phrase for /Users/.../carrenza-vpn-cert-and-key.pem: <Certificate passphrase from vpn-credentials>
@@ -52,7 +57,7 @@ Verifying - Enter Export Password:
    and copy the following XML into that file:
 
 ```
-cat <<EOF >~/carrenza-secure.xml
+cat << EOF > ~/carrenza-secure.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <AnyConnectProfile xmlns="http://schemas.xmlsoap.org/encoding/">
   <ServerList>
