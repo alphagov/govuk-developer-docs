@@ -1,11 +1,11 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: MongoDB backups
 layout: manual_layout
 parent: "/manual.html"
 section: Backups
 type: learn
-last_reviewed_on: 2019-02-01
+last_reviewed_on: 2019-08-06
 review_in: 6 months
 ---
 
@@ -35,3 +35,7 @@ but for important MongoDB clusters these may be taken every 15 minutes. The mach
 These backups are encrypted using GPG, but the functionality is just a straightforward mongodump.
 
 To restore the very latest backup, there is a script available to use: `/usr/local/bin/mongodb-restore-s3`. The function essentially grabs the latest backup from the S3 bucket, decrypts and unpacks it, and does a `mongo restore`.
+
+### mongodumps via `govuk_env_sync` in AWS
+
+In AWS environments, the mongodump to S3 has been replaced by a very similar mechanism as part of the [`govuk_env_sync` environment sync][govuk-env-sync]. Here, the dump is not GPG encrypted anymore, but we rely on S3 for encryption at rest.
