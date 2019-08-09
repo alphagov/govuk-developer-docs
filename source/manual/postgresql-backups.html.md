@@ -5,8 +5,8 @@ section: Backups
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-02
-review_in: 2 months
+last_reviewed_on: 2019-08-09
+review_in: 6 months
 ---
 
 ## WAL-E Backups to S3
