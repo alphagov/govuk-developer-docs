@@ -1,10 +1,10 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Manage Debian packages
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-29
+last_reviewed_on: 2019-08-09
 review_in: 6 months
 ---
 
@@ -15,7 +15,7 @@ This page explains how we're managing our Debian packaging.
 Due to limited availability of up-to-date packages in long term support (LTS)
 distributions, requirements of software may make installation of a package
 outside of the distribution infrastructure (currently Ubuntu "Trusty" 14.04
-LTS) necessary.
+LTS/Extended Security Maintenance) necessary.
 
 GDS developers may also choose to use the Debian packaging system as a means to
 distribute and maintain their locally developed software.

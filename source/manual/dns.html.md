@@ -1,11 +1,11 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Domain Name System (DNS) records
 section: DNS
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-04
+last_reviewed_on: 2019-08-03
 review_in: 6 months
 ---
 
