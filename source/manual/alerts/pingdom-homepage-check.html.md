@@ -4,7 +4,7 @@ title: Pingdom check for homepage failing
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-02-02
+last_reviewed_on: 2019-08-12
 review_in: 6 months
 ---
 
@@ -14,8 +14,8 @@ indicate that DNS for www.gov.uk is not working, our CDN has failed or
 GOV.UK and all the static mirrors are inaccessible, which would 
 qualify as a major incident.
 
-If you can confirm that GOV.UK is globally inaccessible, then
-this is probably cause to first alert other people who may be able to
+If you can confirm that GOV.UK is globally inaccessible, 
+this is cause to first alert other people who may be able to
 help, then start troubleshooting to see if you can narrow down the
 failure.
 
