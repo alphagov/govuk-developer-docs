@@ -1,10 +1,10 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Patch Jenkins
 parent: "/manual.html"
 layout: manual_layout
 section: Infrastructure
-last_reviewed_on: 2019-01-31
+last_reviewed_on: 2019-08-07
 review_in: 6 months
 ---
 
