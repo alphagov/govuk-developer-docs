@@ -4,7 +4,7 @@ title: Add a new Ruby version
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-31
+last_reviewed_on: 2019-08-12
 review_in: 6 months
 ---
 
