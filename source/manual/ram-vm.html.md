@@ -4,7 +4,7 @@ title: Not enough RAM for the VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-04
+last_reviewed_on: 2019-08-13
 review_in: 6 months
 ---
 
