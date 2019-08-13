@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Monitoring
-last_reviewed_on: 2019-02-04
+last_reviewed_on: 2019-08-13
 review_in: 6 months
 ---
 
