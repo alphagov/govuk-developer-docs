@@ -372,7 +372,7 @@ gpg --keyserver keyserver.ubuntu.com --recv-keys <fingerprint>
 
 Alternatively, you can run the `govuk-secrets/pass/trust_all.sh` script. This
 will fetch all recipient keys from the keyserver.
-[More information](https://github.com/alphagov/govuk-secrets/tree/master/pass#trust-user-public-keys).
+[More information can be found in the govuk-secrets README](https://github.com/alphagov/govuk-secrets/tree/master/pass#trust-user-public-keys).
 
 ### Puppet fails because it can't find a usable GPG key
 
