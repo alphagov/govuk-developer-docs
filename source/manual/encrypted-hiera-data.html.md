@@ -359,6 +359,21 @@ before your one. If this is the case, the credentials will need to be
 re-encrypted again, making sure that your GPG key fingerprint is in the
 relevant recipient files.
 
+If you see this error:
+
+    [hiera-eyaml-core] No key found on keyring for <fingerprint>
+
+This means that you don't have one of the recipient's key on your keyring.
+You can download one or more keys with the following command:
+
+```shell
+gpg --keyserver keyserver.ubuntu.com --recv-keys <fingerprint>
+```
+
+Alternatively, you can run the `govuk-secrets/pass/trust_all.sh` script. This
+will fetch all recipient keys from the keyserver.
+[More information can be found in the govuk-secrets README](https://github.com/alphagov/govuk-secrets/tree/master/pass#trust-user-public-keys).
+
 ### Puppet fails because it can't find a usable GPG key
 
 When Puppet runs, you may see the following error:
