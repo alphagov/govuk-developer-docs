@@ -8,7 +8,7 @@ last_reviewed_on: 2019-08-15
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
-[operating-dgu]: /manual/data-gov-uk-operations
+[operating-dgu]: /manual/data-gov-uk-operations.html
 [find]: apps/datagovuk_find
 [paas-metric-exporter]: https://reliability-engineering.cloudapps.digital/manuals/set-up-paas-metric-exporter-with-prometheus.html#configure-container-metrics
 [grafana]: https://grafana-paas.cloudapps.digital/d/rk9fSapik/data-gov-uk-2nd-line?orgId=1
