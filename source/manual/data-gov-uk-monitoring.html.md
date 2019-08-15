@@ -4,10 +4,11 @@ title: Monitor data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-21
+last_reviewed_on: 2019-08-15
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
+[operating-dgu]: /manual/data-gov-uk-operations
 [find]: apps/datagovuk_find
 [paas-metric-exporter]: https://reliability-engineering.cloudapps.digital/manuals/set-up-paas-metric-exporter-with-prometheus.html#configure-container-metrics
 [grafana]: https://grafana-paas.cloudapps.digital/d/rk9fSapik/data-gov-uk-2nd-line?orgId=1
@@ -45,6 +46,8 @@ Each application sends logs to [Logit]. [Publish] and [Find] use the correspondi
 
 You can monitor the number of jobs in each queue using the following.
 
+First, follow the instructions on [logging into the paas][operating-dgu]
+
 ```
 cf ssh publish-data-beta-production-worker
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
@@ -54,6 +57,8 @@ cf ssh publish-data-beta-production-worker
 ## Sidekiq UI ([Publish])
 
 Sidekiq UI is only accessible to the `localhost` domain, so you'll need an SSH tunnel to see it on staging/production.
+
+First, follow the instructions on [logging into the paas][operating-dgu]
 
 ```
 cf ssh -L 9000:localhost:8080 publish-data-beta-staging
