@@ -9,7 +9,7 @@ last_reviewed_on: 2019-08-12
 review_in: 6 months
 ---
 
-Hubot is a bot on our Slack channel.
+Hubot is a bot on our Slack channel. It is currently used to implement the [gds-hubot commands](https://github.com/alphagov/gds-hubot/tree/master/scripts)
 
 Repo: [alphagov/gds-hubot](https://github.com/alphagov/gds-hubot)
 
