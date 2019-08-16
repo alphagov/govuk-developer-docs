@@ -109,7 +109,7 @@ The data sync operations are executed as cron-jobs attached to the `govuk-backup
 
 ```
 
-Wherein we are 
+Wherein we are
 
 1. Executing the data sync job ionice:
 `/usr/bin/ionice -c 2 -n 6`
@@ -117,6 +117,10 @@ Wherein we are
 `/usr/bin/setlock /etc/unattended-reboot/no-reboot/govuk_env_sync`
 3. Execute the data sync job with the configuration file as argument
 `/usr/local/bin/govuk_env_sync.sh -f /etc/govuk_env_sync/pull_content_data_admin_production_daily.cfg`
+
+> Traffic replay using [Gor]() is disabled between 23:00 and 5:45 daily whilst the
+data sync pull jobs take place. This is to prevent lots of errors while we are
+dropping databases.
 
 ### Icinga checks
 For every `govuk_env_sync::task:`, a passive Icinga alert `GOV.UK environment sync <title>` is created. They are updated on exit of the sync script.
