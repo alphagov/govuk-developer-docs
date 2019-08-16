@@ -120,3 +120,5 @@ Wherein we are
 
 ### Icinga checks
 For every `govuk_env_sync::task:`, a passive Icinga alert `GOV.UK environment sync <title>` is created. They are updated on exit of the sync script.
+
+If you get an Icinga alert about a failing task, investigate whether there were any new problems as it does occasionally fail. If not, it can be acked for 24 hours and left to run overnight again.
