@@ -4,13 +4,19 @@ title: WMS map previews on data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-21
+last_reviewed_on: 2019-08-08
 review_in: 6 months
 ---
 
+## Harvesting data for Web Map Service map previews
+
+In order to show map previews a harvest source needs to be created with the correct source type (`WAF`, `CSW`, etc) in the ckan publisher. 
+
+Manually uploading datasets will not generate map preview data, please create a harvest source with a `Single Gemini 2 document` source type.
+
 ## Previewing Web Map Service data on DGU maps
 
-[Data.gov.uk find](https://docs.publishing.service.gov.uk/apps/datagovuk_find.html) provides a map preview for Web Map Service (WMS) data. This data is represented as features on a map, eg. historic landfill sites in the UK.
+[Data.gov.uk find](https://data.gov.uk/search?q=&filters%5Bpublisher%5D=&filters%5Btopic%5D=&filters%5Bformat%5D=WMS&sort=best) provides a map preview for Web Map Service (WMS) data. This data is represented as features on a map, eg. historic landfill sites in the UK.
 
 The source code for the map rendering can be found in [alphagov/datagovuk_find javascript assets](https://github.com/alphagov/datagovuk_find/tree/master/app/assets/javascripts/map-preview). Maps are comprised of client-side javascript on top of [OpenLayers](https://openlayers.org/) and [Ext](https://www.sencha.com/extjs-for-open-source/) 3rd party javascript libraries.
 
@@ -22,7 +28,7 @@ Maps are comprised of a central map element which can be layered with additional
 The underlying map image is a series of tiled images which can be retrieved from an external service.  
 Similarly the features which are overlayed on the map may come from external sources.
 
-[Data.gov.uk find](https://docs.publishing.service.gov.uk/apps/datagovuk_find.html) maps typically group data features into sets which appear in a menu on the left hand side of the map. These controls allow the user to toggle visibility of the data features.
+[Data.gov.uk find](https://data.gov.uk/search?q=&filters%5Bpublisher%5D=&filters%5Btopic%5D=&filters%5Bformat%5D=WMS&sort=best) maps typically group data features into sets which appear in a menu on the left hand side of the map. These controls allow the user to toggle visibility of the data features.
 
 
 ## External WMS data
