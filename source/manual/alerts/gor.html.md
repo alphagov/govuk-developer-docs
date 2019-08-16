@@ -4,7 +4,7 @@ title: Gor
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-12
+last_reviewed_on: 2019-08-16
 review_in: 6 months
 ---
 
@@ -14,8 +14,9 @@ production to staging to give us greater confidence that our deploys are ok.
 Alerts for Gor might let you know that it's not running, in which case we have
 to be much more cautious with our deploys.
 
-The nightly data sync stops Gor while data is syncing, so that we don't get
-lots of errors in staging while we're dropping databases.
+Currently the [govuk_env_sync](/manual/govuk-env-sync.html) data sync jobs in AWS
+take place between 23:00 and 5:30 and Gor is disabled during this time period
+to prevent lots of errors while we are dropping databases.
 
 Puppet will [remove these alerts while the data sync runs][govuk-gor-data-sync]
 but you may see the alerts at the beginning of a data sync, before Puppet has
