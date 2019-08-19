@@ -214,6 +214,47 @@ Only reindex those packages that are not currently indexed:
 paster --plugin=ckan search-index -o rebuild -c /var/ckan/ckan.ini
 ```
 
+### `csw` endpoint unavailable
+
+The `csw` endpoint should be available on <https://data.gov.uk/csw> which
+should redirect to <https://ckan.publishing.service.gov.uk/csw>.
+
+If it is not showing xml with an error `Missing keyword: service` you can check
+that it is running on the `ckan` machine:
+
+```sh
+$ sudo service pycsw_web-procfile-worker status
+pycsw_web-procfile-worker start/running
+
+$ $ ps aux | grep pycsw
+root     29503  0.0  0.0  59652  2040 ?        Ss   06:04   0:00 sudo -u deploy -E sh -c PATH=/usr/lib/rbenv/shims:$PATH exec  unicornherder --gunicorn-bin ./venv/bin/gunicorn -p /var/run/ckan/pycsw_unicornherder.pid -- ckanext.datagovuk.pycsw_wsgi --bind localhost:${PYCSW_PORT} --timeout ${GUNICORN_TIMEOUT} --workers ${GUNICORN_WORKER_PROCESSES} --log-file /var/log/ckan/pycsw.out.log --error-logfile /var/log/ckan/pycsw.err.log 2>>'/var/log/ckan/procfile_pycsw_web.err.log' 1>>'/var/log/ckan/procfile_pycsw_web.out.log'
+...
+```
+
+If no running processes are found then you can restart it using this command:
+
+```sh
+$ sudo service pycsw_web-procfile_worker restart
+```
+
+It is worth checking the `pycsw` logs to investigate why it failed:
+
+```sh
+$ tail -f /var/log/ckan/pycsw.err.log
+```
+
+You can get a summary of `csw` records available from this url https://ckan.publishing.service.gov.uk/csw?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=brief
+
+### Syncing the `csw` records with `ckan` datasets
+
+Normally the sync between `csw` and `ckan` will start at 6 each day, but in
+case it should fail or if the sync needs to happen sooner you can manually
+trigger the sync after Solr has been reindexed.
+
+```sh
+$ paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
+```
+
 ### Managing the harvest workers
 
 Although harvesters can mostly be managed from the [user interface](https://data.gov.uk/harvest), it is
