@@ -92,6 +92,17 @@ This is a generic response for such cases:
 >
 > I hope that helps. I’ll close this ticket now.
 
+### Accessing withdrawn content
+Sometimes we get queries from users asking for data that is no longer publicly available, e.g. a withdrawn dataset.
+
+#### If the withdrawn content was a dataset
+Ask the user to email the organisation that originally published the dataset. You can find an email address for the organisation on CKAN.
+
+#### If the withdrawn content was a publication
+If the content was published under http://data.gov.uk/library, this was part of the former Drupal-based data.gov.uk publishing application, which is no longer being hosted on DGU.
+
+Whilst we do have a backup of the old bytemark server and can access the publications in an emergency, we recommend directing users to the relevant team in government, as the original documents were often incomplete and/or outdated.
+
 ## Schema vocabulary definitions
 ### Add a schema vocabulary definition
 Users are not permitted to add their own schema vocabulary definitions.
