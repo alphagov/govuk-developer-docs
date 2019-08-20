@@ -11,7 +11,7 @@ gem 'govuk-lint', '~> 3.11'
 gem 'simplecov'
 
 gem 'govuk_tech_docs'
-gem 'middleman', '~> 4.3.4'
+gem 'middleman', '~> 4.3.5'
 gem 'middleman-search_engine_sitemap', '~> 1.4'
 
 gem 'github-markdown'
