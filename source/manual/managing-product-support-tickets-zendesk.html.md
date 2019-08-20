@@ -8,6 +8,7 @@ type: learn
 last_reviewed_on: 2019-05-13
 review_in: 6 months
 ---
+
 2nd line Zendesk tickets are technical errors reported by our users, including government publishers and should be trusted by default. Any questions on the legitimacy or urgency of a ticket should be deferred to the delivery manager.
 
 We have the following Service Level Agreements:
@@ -19,6 +20,7 @@ We have the following Service Level Agreements:
 Always try to give the requester a first reply when you pick up and review a ticket, even if it's simply to say that it's being looked into. An update to the user may also be useful if there is a long internal thread.
 
 ## Internal notes
+
 Internal notes help provide useful context if you’re actively working on the ticket with other people.
 It’s also important to leave an internal note if you are:
 
