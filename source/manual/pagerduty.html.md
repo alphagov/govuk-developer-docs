@@ -1,15 +1,32 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: PagerDuty drill
-parent: "/manual.html"
+title: PagerDuty
+section: 2nd line
+type: learn
 layout: manual_layout
-section: Icinga alerts
-last_reviewed_on: 2019-07-18
-review_in: 6 months
+parent: "/manual.html"
+last_reviewed_on: 2019-08-16
+review_in: 3 months
 ---
 
+Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
+unavailable or large quantities of error pages being served. We use [PagerDuty](https://governmentdigitalservice.pagerduty.com)
+to escalate to these people (in order):
+
+1. Primary Engineer
+2. Secondary Engineer
+3. Programme Team member (might not be technical)
+
+It is the responsibility of the people above to make sure their details are up to date in PagerDuty
+and that they're correctly scheduled in.
+
+When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
+them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty. 
+
+## PagerDuty drill
+
 Every week we test PagerDuty to make sure it can phone to alert us to
-any issues.
+any issues. This happens every Wednesday morning at 10am UTC.
 
 Cron creates a file on disk. Icinga raises a critical alert when that
 file exists with an Icinga contact group set so that PagerDuty is
