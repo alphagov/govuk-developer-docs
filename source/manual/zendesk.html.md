@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Manage product support tickets (Zendesk)
+title: Zendesk
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
