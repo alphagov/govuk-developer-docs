@@ -40,8 +40,14 @@ To define the username and password, you will need [access to the shared Heroku 
 
 On the [Heroku dashboard](https://dashboard.heroku.com/), locate the relevant pipeline for your application. Add the authentication to the production deployment Heroku app by browsing to Settings -> Config Vars and adding a `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD`. This will cascade down to review apps.
 
-## 2. Update the developer docs
+## 2. Update the application in the developer docs
+
 Mark the application as being in a private repo by adding `private_repo: true` to the relevant application within [`applications.yml`](https://github.com/alphagov/govuk-developer-docs/blob/master/data/applications.yml).
 
-## 3. Make the repository private
+## 3. Make sure the developer docs still work
+
+The developer docs might pull in data directly from the repo using `ExternalDoc`. Make sure that those things are removed, as the Jenkins job doesn't have access to this repos.
+
+## 4. Make the repository private
+
 Within Github, navigate to Settings. The option to 'Mark this repository private' should appear at the bottom of the page, within the 'Danger Zone'.
