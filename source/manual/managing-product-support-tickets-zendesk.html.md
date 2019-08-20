@@ -4,6 +4,7 @@ title: Manage product support tickets (Zendesk)
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
+type: learn
 last_reviewed_on: 2019-05-13
 review_in: 6 months
 ---
