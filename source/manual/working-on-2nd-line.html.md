@@ -1,5 +1,5 @@
 ---
-owner_slack: "@hong.nguyen"
+owner_slack: "#govuk-2ndline"
 title: What we do on 2nd line
 parent: "/manual.html"
 layout: manual_layout

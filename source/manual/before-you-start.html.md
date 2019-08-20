@@ -1,5 +1,5 @@
 ---
-owner_slack: "@michelle.carmody"
+owner_slack: "#govuk-2ndline"
 title: Before you start on 2nd line
 parent: "/manual.html"
 layout: manual_layout

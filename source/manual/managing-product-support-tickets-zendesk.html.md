@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-2ndline"
 title: Manage product support tickets (Zendesk)
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2019-05-13
 review_in: 6 months
 ---
