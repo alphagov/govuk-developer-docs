@@ -126,9 +126,6 @@ The country's subscription list(s) `title` and `slug` needs to be updated, such 
 
 ### 6. Remove duplicate search results
 
-If the old country slug is still appearing in the search results, this can be removed through the [Search Admin](https://search-admin.integration.publishing.service.gov.uk/results) tool:
-
-1. Navigate to the `Search results` page and enter the path to be removed
-2. Remove result, it should now disappear from the listing.
+In [Whitehall](https://github.com/alphagov/whitehall) run `SearchIndexDeleteWorker.perform_async(instance.search_index['slug'], instance.rummager_index)`
 
 Failing this, there is a [rake task](https://github.com/alphagov/search-api/blob/4f106e40f2c1690d631f699bf8fc63dc39268866/lib/tasks/delete.rake#L9) that takes care of this.
