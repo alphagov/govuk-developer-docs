@@ -24,6 +24,8 @@ Check the output of the production Jenkins job to see which part of the sync fai
 > to back to their staging equivalents.  This means that any deploys to staging
 > that rely on GDS API Adapters are likely to fail due to authentication
 > failures, as well as Smokey tests that attempt to use Signon.
+>
+>  Running the [data_sync_complete](https://deploy.staging.publishing.service.gov.uk/job/Data_Sync_Complete/) job may fix this.
 
 The Jenkins jobs included in the sync are:
 
