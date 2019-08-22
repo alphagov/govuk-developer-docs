@@ -4,8 +4,8 @@ title: Content store times out in VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-04
-review_in: 6 months
+last_reviewed_on: 2019-08-22
+review_in: 12 months
 related_applications:
   - content-store
 ---
