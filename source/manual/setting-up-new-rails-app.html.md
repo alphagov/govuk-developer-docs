@@ -4,7 +4,7 @@ title: Set up a new Rails application
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-01
+last_reviewed_on: 2019-08-22
 review_in: 6 months
 ---
 
@@ -162,9 +162,7 @@ Create a `Jenkinsfile` in your repo with the following content.
 library("govuk")
 
 node {
-  govuk.buildProject(
-    brakeman: true
-  )
+  govuk.buildProject()
 }
 ```
 
