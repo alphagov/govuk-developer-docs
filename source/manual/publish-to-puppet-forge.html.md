@@ -4,7 +4,7 @@ title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-19
+last_reviewed_on: 2019-08-22
 review_in: 6 months
 ---
 
