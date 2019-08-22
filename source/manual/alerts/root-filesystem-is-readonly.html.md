@@ -4,7 +4,7 @@ title: Root filesystem is readonly
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-02-10
+last_reviewed_on: 2019-08-22
 review_in: 6 months
 ---
 
@@ -13,8 +13,12 @@ read only. This could be caused by a cloud hosting provider having
 problems with their Storage Area Network (SAN). It is possible for a machine
 to operate in a degraded way with a read only file system so this check serves as an early warning if that happens.
 
-The machine will need to have a filesystem check forced on reboot. To do
-this, you will need access to the vCloud Director instance for the
+The machine will need to have a filesystem check forced on reboot. 
+
+## Carrenza Resolution
+
+To resolve this issue on Carrenza hosted virtual machines
+you will need access to the vCloud Director instance for the
 environment. If you do on-call, you should have access to the vCloud Production environment.
 
 In the vCloud Director instance:
