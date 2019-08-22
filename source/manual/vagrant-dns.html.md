@@ -4,8 +4,8 @@ title: Fix issues with vagrant-dns
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-31
-review_in: 6 months
+last_reviewed_on: 2019-08-22
+review_in: 12 months
 ---
 
 If after updating Vagrant, you get errors regarding vagrant-dns when
