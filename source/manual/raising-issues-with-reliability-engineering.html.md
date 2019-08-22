@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
