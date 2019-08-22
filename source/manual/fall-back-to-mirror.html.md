@@ -107,15 +107,15 @@ You'll be notified by the escalation on-call contact that you need to edit the s
 
 3. disable puppet on the machine by running:
 
-   ```bash
-   govuk_puppet --disable "stopping crawling to avoid mirror changes"
-   ```
+    ```bash
+    govuk_puppet --disable "stopping crawling to avoid mirror changes"
+    ```
 
 4. stop the govuk_crawler_worker by running:
 
-   ```bash
-   initctl stop govuk_crawler_worker
-   ```
+    ```bash
+    initctl stop govuk_crawler_worker
+    ```
 
 5. Modify the relevant file in the directory `/mnt/crawler_worker`
 
