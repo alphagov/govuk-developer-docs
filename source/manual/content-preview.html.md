@@ -5,13 +5,11 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2019-02-01
+last_reviewed_on: 2019-08-22
 review_in: 6 months
 ---
 
-## Overview
-
-The Content Preview site, also known as Draft GOV.UK, is intended to be
+The "draft stack" on GOV.UK, is intended to be
 a full version of GOV.UK that includes content that has not yet been
 sent for publication. This allows content editors to preview their
 content before making it live, without having to manually copy it into a
@@ -65,13 +63,13 @@ and so on.
 ## Authentication
 
 Because Whitehall permits content to be access-limited before
-publication, the draft environment enforces signon authentication for
+publication, the draft environment enforces Signon authentication for
 all routes. This is performed by the
 [authenticating-proxy](https://github.com/alphagov/authenticating-proxy)
 app, which sits between Varnish and the router.
 
 Draft content items can contain an optional `access_limited` hash in
-their metadata, which contains a list of signon user UIDs corresponding
+their metadata, which contains a list of Signon user UIDs corresponding
 to the users who are permitted to see that content. All other users will
 see a 403 Forbidden page.
 
