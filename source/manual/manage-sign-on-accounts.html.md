@@ -4,8 +4,8 @@ title: Manage Signon accounts
 section: Accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-31
-review_in: 6 months
+last_reviewed_on: 2019-08-22
+review_in: 12 months
 ---
 
 [Signon](https://github.com/alphagov/signon) is the Single sign-on service for our admin applications.
