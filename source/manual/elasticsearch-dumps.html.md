@@ -4,8 +4,8 @@ title: Backup and restore Elasticsearch indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-04-26
-review_in: 3 months
+last_reviewed_on: 2019-08-22
+review_in: 6 months
 ---
 
 GOV.UK uses AWS Managed Elasticsearch which takes daily snapshots of

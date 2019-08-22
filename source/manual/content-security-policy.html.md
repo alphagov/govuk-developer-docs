@@ -4,7 +4,7 @@ title: 'Content Security Policy on GOV.UK'
 section: Security
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-02
+last_reviewed_on: 2019-08-22
 review_in: 3 months
 ---
 

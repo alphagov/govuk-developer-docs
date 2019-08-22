@@ -4,8 +4,10 @@ title: Publish special routes
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-04
+last_reviewed_on: 2019-08-22
 review_in: 6 months
+old_paths:
+ - /manual/publish_special_routes.html
 ---
 
 The [Special Route Publisher](https://github.com/alphagov/special-route-publisher) is the home for all special routes that are currently published by a variety of apps to the Publishing API.
