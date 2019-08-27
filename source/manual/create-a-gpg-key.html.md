@@ -22,7 +22,7 @@ Once installed, you will likely have both `gpg` and `gpg2` on your machine. Alwa
 
 [GPGtools](https://gpgtools.org/) comes with a GUI which can perform most of the operations you need.
 
-To create a new key, click "New". The `Name` field should your name. For `Length`, you should have at least 4096.
+To create a new key, click "New". The `Name` field should be your name. For `Length`, you should have at least 4096.
 
 The creation process will give you the option to upload to a public server. Say yes. You can check your key has been uploaded using the Lookup Key button in the GUI.
 
