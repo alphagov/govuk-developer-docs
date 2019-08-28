@@ -5,7 +5,7 @@ layout: manual_layout
 section: Deployment
 type: learn
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-02-18
+last_reviewed_on: 2019-08-28
 review_in: 6 months
 ---
 
