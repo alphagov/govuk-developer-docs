@@ -5,7 +5,7 @@ section: Databases
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-02-27
+last_reviewed_on: 2019-08-28
 review_in: 6 months
 ---
 
