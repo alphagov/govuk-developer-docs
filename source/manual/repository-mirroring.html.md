@@ -5,7 +5,7 @@ section: GitHub
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-05-07
+last_reviewed_on: 2019-09-02
 review_in: 3 months
 ---
 
