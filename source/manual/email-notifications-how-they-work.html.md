@@ -4,7 +4,7 @@ title: "Email notifications: how they work"
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-04
+last_reviewed_on: 2019-09-02
 review_in: 6 months
 ---
 
