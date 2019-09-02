@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Backup and restore databases in AWS RDS
 section: Backups
 layout: manual_layout
