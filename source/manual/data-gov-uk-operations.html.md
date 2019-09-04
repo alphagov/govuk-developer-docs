@@ -4,7 +4,7 @@ title: Operation of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-12-21
+last_reviewed_on: 2019-09-02
 review_in: 6 months
 ---
 [find]: apps/datagovuk_find
