@@ -26,8 +26,7 @@ traffic to it.
 
 Unless the domain being transitioned is a subdomain of one of our wildcard [SANs](https://en.wikipedia.org/wiki/Subject_Alternative_Name), we [do not support HTTPS](/manual/transition-architecture.html#https-support-for-transitioned-sites) for transitioned sites.
 
-For sites that wish to maintain HTTPS integrity that are not in our SANs,
-the best alternative is for them to set up redirects on their own server rather than relying on Bouncer.
+If a domain is not in our SAN but wants to keep HTTPS integrity, the best alternative is to set up redirects on their own server.
 
 The content team might ask a developer to offer the department some guidance around this.
 
