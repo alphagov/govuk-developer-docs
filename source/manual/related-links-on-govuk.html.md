@@ -5,7 +5,7 @@ layout: manual_layout
 type: learn
 section: Related links
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2019-07-22
+last_reviewed_on: 2019-08-16
 review_in: 6 months
 ---
 
@@ -43,7 +43,7 @@ Currently, this job is scheduled to run once every three weeks via a `time` reso
 
 This job runs the process of ingesting related links via the Publishing API.
 
-Links are retrieved from the environment-specific S3 bucket mentioned previously and then fed (in batches) to the Publishing API. There is a 20 minute delay between batches.
+Links are retrieved from the environment-specific S3 bucket mentioned previously and then fed (in batches) to the Publishing API. There is a 20 minute delay between batches. Exclusions are applied during this stage from a `related_link_exclusions.json` file which is available in S3; for these links, we obtain the respective content ids and use them to remove any suggested links that may exist for the current batch of links being ingested.
 
 Currently, this job is triggered manually after reviewing a spreadsheet of the generated related links; it will be scheduled to run automatically by the end of September 2019.
 
