@@ -27,7 +27,11 @@ The easiest way to develop on GOV.UK is to use [govuk-docker][]. Until July 2019
 
 👉 [See the govuk-docker README][govuk-docker]
 
-## 3. Get AWS access
+## 3. Get SSH access to integration
+
+👉 [Get SSH access to integration](/manual/get-ssh-access.html)
+
+## 4. Get AWS access
 
 👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
 
