@@ -8,6 +8,10 @@ last_reviewed_on: 2019-04-25
 review_in: 6 months
 ---
 
+> If you're using Docker, you may wish to consider [this
+ guide](/manual/replicating-whitehall-data-with-docker.html) if importing
+ Whitehall data.
+
 Dumps are generated from production data in the early hours each day, and can
 then be downloaded.  You'll use the
 [replicate-data-local.sh script](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/replication/replicate-data-local.sh)
