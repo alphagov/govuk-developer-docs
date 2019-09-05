@@ -21,14 +21,6 @@
   }
 }
 
-.column-third {
-  @include grid-column( 1/3 );
-}
-
-.column-half {
-  @include grid-column( 1/2 );
-}
-
 .technical-documentation.full-width {
   max-width: 1024px;
 }
@@ -45,7 +37,7 @@
   .entry-list__key {
     display: block;
   }
-  @include media(tablet) {
+  @include govuk-media-query(tablet) {
     .entry-list {
       display: table;
     }
