@@ -4,7 +4,7 @@ title: datagovuk_publish app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-05-17
+last_reviewed_on: 2019-09-05
 review_in: 3 months
 ---
 
