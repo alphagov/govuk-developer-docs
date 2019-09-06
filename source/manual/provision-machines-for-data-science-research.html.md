@@ -4,7 +4,7 @@ title: Provision machines for data science research
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-02-14
+last_reviewed_on: 2019-09-05
 review_in: 6 months
 ---
 
