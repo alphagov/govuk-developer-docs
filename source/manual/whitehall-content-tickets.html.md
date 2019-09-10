@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Whitehall Content Tickets
+title: Add Historical Accounts
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
@@ -8,14 +8,31 @@ last_reviewed_on: 2019-09-09
 review_in: 6 months
 ---
 
-## Whitehall Content Tickets
+## Adding Historical Accounts to Whitehall
 
-It's not entirely uncommon in Platform Health to get tickets asking for changes to various bits of information
-hosted on Whitehall, for example Prime Minister's biographies, Embassy names etc. The default approach seems
-to be to write a data migration, which would normally be correct, however it's often much easier.
+People in Whitehall can have a biography attached to each role they have held. These are called Historical Accounts. We primarily use Historical Accounts to add information to our History of Government's [Notable People](https://www.gov.uk/government/history#notable-people) section. For example, most [past prime ministers](https://www.gov.uk/government/history/past-prime-ministers) have one.
 
-If you have access to the [Whitehall admin console](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin) then it's highly likely the item you are looking for is listed under the 'more' tab on the far right.
 
-Items can then be added/edited using a simple form.
+Historical accounts can be added though the [Whitehall Admin Interface. ](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin)
 
-The Content Team should have access to this so at this point you can either triage it back to the content team, or quickly do it yourself and inform them that they can do this in the future. 
+Log in to Whitehall Admin and click the 'More' tab in the top right of the page, then select the 'People' option.
+
+![](images/whitehall-how-to-people.png)
+
+You should see this page.
+
+![](images/whitehall-how-to-people-list.png)
+
+Then `cmd + f` the name of the person you are looking for and click through to their main page. Click on the 'Historical Accounts' tab.
+
+![](images/whitehall-how-to-people-david.png)
+
+Press the 'Add an Historical Account' button.
+
+![](images/whitehall-how-to-historical-account.png)
+
+You should then be presented with the form shown below.
+
+![](images/whitehall-how-to-historical-form.png)
+
+Fill out the form with the biography you have been supplied with and press save.  
