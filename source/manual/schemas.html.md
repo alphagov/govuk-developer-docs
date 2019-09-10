@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2018-09-10
+last_reviewed_on: 2019-09-10
 review_in: 12 months
 ---
 
