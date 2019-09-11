@@ -23,6 +23,11 @@ the load.
 
 ## Manually scaling up/down
 
+> **Note:** If you anticipate this change being permanent, you [should make
+> sure to raise a PR against govuk-aws-data][pr] once it's all working to
+> ensure the number doesn't get put back to the old value if Terraform gets
+> deployed.
+
 1. [Access the AWS Console][aws-console] and [go to the EC2 service][ec2-home].
 
 2. Select "Auto Scaling Groups" from the bottom of the menu on the left hand
@@ -53,9 +58,10 @@ the load.
 7. If any of the machines aren't recognised by `govuk_node_list` you can
    [destroy the machine][reprovision] and wait for a new one to spawn.
 
-If you anticipate this change being permanent, you [should make sure to raise a
-PR against govuk-aws-data][pr] once it's all working to ensure the number
-doesn't get put back to the old value if Terraform gets deployed.
+> **Note:** If you anticipate this change being permanent, you [should make
+> sure to raise a PR against govuk-aws-data][pr] once it's all working to
+> ensure the number doesn't get put back to the old value if Terraform gets
+> deployed.
 
 [aws-console]: /manual/aws-console-access.html
 [ec2-home]: https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1
