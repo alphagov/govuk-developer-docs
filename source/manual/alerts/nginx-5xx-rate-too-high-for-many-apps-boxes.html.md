@@ -21,12 +21,13 @@ know (or alert Platform Health).
 ## Scaling up
 
 Sometimes a high 5xx rate can be because of a sudden increase in traffic to the
-site. You can use the [Nginx Requests][nginx-requests] dashboard to see if
-there are an unusually high number of requests to a particular machine class.
-If there are, you may want to consider [scaling up the number of machines
-available][scaling-up] to handle the requests.
+site. You can use the [Nginx Requests (AWS)][nginx-requests]) dashboard to see
+if there are an unusually high number of requests to a particular machine
+class. If there are, you may want to consider [scaling up the number of
+machines available][scaling-up] to handle the requests. **Note:** that this is
+only possible in AWS.
 
-[nginx-requests]: https://grafana.publishing.service.gov.uk/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&from=now-6h&to=now
+[nginx-requests]: https://grafana.production.govuk.digital/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&from=now-30m&to=now
 [scaling-up]: /manual/auto-scaling-groups.html#manually-scaling
 
 ## `UNKNOWN: INTERNAL ERROR`
