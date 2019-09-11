@@ -11,6 +11,26 @@ review_in: 6 months
 You can view the 5xx logs across all machines on [this dashboard][nginx_5xx_grafana]
 (change the hostname to view different apps).
 
+## Spikes
+
+The alert should link to a graphite graph - often certain applications
+such as Whitehall can have spikes - if you can determine this is a spike
+it is best to acknowledge the alert and let a team that is working on the app
+know (or alert Platform Health).
+
+## Scaling up
+
+Sometimes a high 5xx rate can be because of a sudden increase in traffic to the
+site. You can use the [Nginx Requests][nginx-requests] dashboard to see if
+there are an unusually high number of requests to a particular machine class.
+If there are, you may want to consider [scaling up the number of machines
+available][scaling-up] to handle the requests.
+
+[nginx-requests]: https://grafana.publishing.service.gov.uk/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&from=now-6h&to=now
+[scaling-up]: /manual/auto-scaling-groups.html#manually-scaling
+
+## `UNKNOWN: INTERNAL ERROR`
+
 If the message is "UNKNOWN: INTERNAL ERROR: RuntimeError: no valid
 datapoints" or "UNKNOWN: INTERNAL ERROR: RuntimeError: no data returned
 for target", it probably means that statsd or collectd stopped
@@ -29,12 +49,5 @@ counter gets created. You should *not* create a statsd counter for
 
 For collectd metrics (those without a leading `stats.` prefix), you
 probably just need to wait for the metric to get created.
-
-### Spikes
-
-The alert should link to a graphite graph - often certain applications
-such as Whitehall can have spikes - if you can determine this is a spike
-it is best to acknowledge the alert and let a team that is working on the app
-know (or alert Platform Health).
 
 [nginx_5xx_grafana]: https://grafana.publishing.service.gov.uk/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&var-Machines=All&var-Hostname=All&var-Status=5xx
