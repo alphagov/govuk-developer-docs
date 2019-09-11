@@ -169,10 +169,6 @@ sync to fail.
 
 ## Rebooting backend-lb machines (Carrenza only)
 
-> **Note**
->
-> These machines don't exist in AWS environments.
-
 NAT rule points directly at backend-lb-1 for backend services. In order
 to safely reboot these machines you'll need access to vCloud Director.
 
@@ -209,10 +205,6 @@ to safely reboot these machines you'll need access to vCloud Director.
 
 ## Rebooting MySQL backup machines (Carrenza only)
 
-> **Note**
->
-> These machines are managed by Amazon in AWS and do not require manual intervention.
-
 The MySQL backup machines [create a file during the backup
 process](https://github.com/alphagov/govuk-puppet/commit/0e1615bf31f714994b43142ecf915330d4d46af5).
 If that file exists, the machine isn't safe to reboot.
@@ -227,10 +219,6 @@ If that file exists, the machine isn't safe to reboot.
         fab <environment> -H mysql-backup-1.backend vm.reboot
 
 ## Rebooting MySQL master and slave machines (Carrenza only)
-
-> **Note**
->
-> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted during working hours in production. Applications write to the
@@ -251,10 +239,6 @@ They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
 
 ## Rebooting PostgreSQL primary and standby machines (Carrenza only)
-
-> **Note**
->
-> These machines are managed by Amazon in AWS and do not require manual intervention.
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted in production during working hours. Applications read and write
