@@ -148,6 +148,17 @@ Harvesting is where publishers can automatically import their data to data.gov.u
 4. Click the 'Manage' button.
 5. If the harvester is currently running, click the 'Stop' button to stop it.  Once it has stopped, or if it is not currently running, click the 'Reharvest' button.  You will know if the harvester is running because the 'Reharvest' button will be disabled.
 
+### Harvest job is hanging
+If the harvest job is hanging and the 'Stop' button is not responding you will have to log on to the `ckan` machine and run the harvest job manually.
+
+1. Log on to `ckan` machine using `govukcli`.
+2. Assume the deploy user - `sudo su deploy`
+3. Activate the virtual environment - `. /var/apps/ckan/venv/bin/activate`
+4. Run the harvest job manually - `paster --plugin=ckanext-harvest harvester run_test <harvest source> -c /var/ckan/ckan.ini`
+  - where `harvest source` is from the url when visiting the harvest source page, it will be something like `cabinet-office`
+
+If the job fails to complete the ticket should be updated with comments and prioritised to low for the product owner to review.
+
 ## Organogram Publishing
 Organograms are files that allow the people structure of an organisation to be visualised.  They are split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades).  The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.
 
