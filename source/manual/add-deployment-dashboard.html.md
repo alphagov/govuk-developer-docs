@@ -65,9 +65,9 @@ Parameters:
 
 - `has_workers`: Adds a row with worker failure and success panels. This is required for applications that have Sidekiq workers. Defaults to `false`.
 
-- `show_controller_errors`: Adds a row which graphs 5XX responses broken down by Rails controller and action. For this graph to contain data, the application must report response statuses to Kibana as `@fields.status`, and also report the controller and action as `@fields.controller` and `@fields.action`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
+- `show_controller_errors`: Adds a row which graphs 5XX responses broken down by Rails controller and action. For this graph to contain data, the application must report response statuses to Kibana as `status`, and also report the controller and action as `controller` and `action`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
 
-- `show_slow_requests`: Adds a row which graphs response times broken down by Rails controller. For this graph to contain data, the application must report response times to Kibana as `@fields.duration` and the controller as `@fields.controller`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
+- `show_slow_requests`: Adds a row which graphs response times broken down by Rails controller. For this graph to contain data, the application must report response times to Kibana as `duration` and the controller as `controller`. You may wish to set this to `false` for apps with very low request rates to avoid having an empty and potentially confusing graph. Defaults to `true`.
 
 - `docs_name`: This is the name of the application used in the developer documentation. Often the same as the repository name on GitHub. This defaults to the `app_name`.
 
