@@ -28,7 +28,7 @@ originating request.
 
 For example, the nginx logs in `/var/log/nginx/<service>-json.event.access.log`
 will include a `govuk_request_id` field. You can also filter on
-`@fields.govuk_request_id` in [Kibana][].
+`govuk_request_id` in [Kibana][].
 
 [gds-api-adapters]: https://github.com/alphagov/gds-api-adapters
 [Kibana]: /manual/logit.html#viewing-kibana
