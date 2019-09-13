@@ -65,7 +65,7 @@ tags:"nginx" AND application:frontend*
 
 > **Note**
 >
-> The `@timestamp` field records the request END time. To calculate request start time subtract `@fields.request_time`.
+> The `@timestamp` field records the request END time. To calculate request start time subtract `request_time`.
 
 ### Application upstart logs
 
@@ -108,7 +108,7 @@ syslog_program:"govuk_sync_mirror"
 ### Publishing API timeouts
 
 ```rb
-@fields.error:"TimedOutException" AND (application:"specialist-publisher" OR application:"whitehall" OR application:"content-tagger")
+message:"TimedOutException" AND (application:"specialist-publisher" OR application:"whitehall" OR application:"content-tagger")
 ```
 
 ## Syslog program names
@@ -116,11 +116,11 @@ syslog_program:"govuk_sync_mirror"
 If you're looking for specific program outputs, use `syslog_program:FOO`:
 
 - `audispd`:	This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.
-- `clamd`	 
-- `cron`	 
+- `clamd`
+- `cron`
 - `govuk_sync_mirror`: Records information from govuk_sync_mirror script
 - `puppet-agent`:	Records output for govuk_puppet script on various servers
-- `puppet-master`	 
+- `puppet-master`
 - `smokey`
 
 ## Gotchas
