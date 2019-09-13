@@ -8,11 +8,15 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/da
   <ul>
     <% dashboard.chapters.each do |chapter| %>
       <li>
-        <a href='#<%= chapter.id %>'><%= chapter.name %></a>
+        <a href='#<%= chapter.id %>'>
+          <span><%= chapter.name %></span>
+        </a>
         <ul>
           <% chapter.sections.each do |section| %>
             <li>
-              <a href='#<%= section.id %>'><%= section.name %></a>
+              <a href='#<%= section.id %>'>
+                <span><%= section.name %></span>
+              </a>
             </li>
           <% end %>
         </ul>

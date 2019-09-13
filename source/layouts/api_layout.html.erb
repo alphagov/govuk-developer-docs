@@ -1,8 +1,20 @@
 <% content_for :sidebar do %>
   <ul>
-    <li><%= link_to 'Content Store', '/apis/content-store.html' %></li>
-    <li><%= link_to 'Email Alert API', '/apis/email-alert-api.html' %></li>
-    <li><%= link_to 'Link Checker API', '/apis/link-checker-api.html' %></li>
+    <li>
+      <a href="/apis/content-store.html">
+        <span>Content Store</span>
+      </a>
+    </li>
+    <li>
+      <a href="/apis/email-alert-api.html">
+        <span>Email Alert API</span>
+      </a>
+    </li>
+    <li>
+      <a href="/apis/link-checker-api.html">
+        <span>Link Checker API</span>
+      </a>
+    </li>
     <li>
       <%= sidebar_link 'Publishing API', '/apis/publishing-api.html' %>
       <ul>
