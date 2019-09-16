@@ -4,7 +4,7 @@ title: Locally replicating Whitehall data with Docker
 section: Docker
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 
+last_reviewed_on:
 review_in: 6 months
 ---
 
@@ -37,12 +37,14 @@ to be changed in order to handle the weight of the tool. By default, Docker
 defaults to using 2 CPU cores and 2GB of RAM, and this is simply not enough
 to render Whitehall in a Docker container.
 
-Ideally, you should set it to use at least 4 CPU cores and 8GB of RAM - the more
+You should set it to use at least 4 CPU cores and 8GB of RAM - the more
 the better. You can do this by opening the Docker dropdown via the whale icon in
 the OSX menu bar and selecting the `Advanced` option.
 
+You should also increase the Docker disk image size to the maximum.
+
 You may feel it beneficial to increase swap space size, though we have found no
-tangible improvement in doing so compared to CPU and RAM allocation.
+tangible improvement in doing so compared to CPU, RAM allocation.
 
 **Be aware that Whitehall is still large and will still time out on first load.**
  We have found that performance in Docker is faster than on the old development
@@ -90,6 +92,24 @@ If you have an error about migration, run the following in the Whitehall folder:
 ```shell
 $ govuk-docker be rake db:migrate
 ```
+
+## Run the app
+
+You will need to build and start up the search-api first, then whitehall separately:
+
+```shell
+$ cd ~/govuk/search-api
+$ govuk-docker build
+$ govuk-docker startup
+```
+
+```shell
+$ cd ~/govuk/whitehall
+$ govuk-docker build
+$ govuk-docker startup
+```
+
+
 
 All tasks that involve the environment need to be performed on the Docker
 container, including bundling and testing. Bare this in mind and read the
