@@ -44,6 +44,8 @@ This means that [the ETL master process][1] that runs daily to retrieve metrics 
 
 To fix this problem [re-run the master process again][1]
 
+**Note** This will first delete any metrics that had been successfully retrieved before re-running the task to regather all metrics.
+
 ## ETL :: no pviews for yesterday
 
 This means the [the ETL master process][1] that runs daily has failed to collect `pageview` metrics from Google Analytics. The issue may originate from the [ETL processor responsible for collecting core metrics][9].
