@@ -15,7 +15,7 @@ review_in: 6 months
 
 Data and assets/attachments are synced from production to staging and integration every night.
 
-Check the output of the production Jenkins job to see which part of the sync failed. It may be safe to re-run part of the sync.
+Check the output of the production Jenkins job to see which part of the sync failed. It may be safe to re-run part of the sync. You can specify which part of the job to run by selecting a `JOBLIST` argument when running the Jenkins job.
 
 > **WARNING**
 >
