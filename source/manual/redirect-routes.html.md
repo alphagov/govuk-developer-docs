@@ -84,6 +84,12 @@ For the deleted routes to take effect, you need to reload the router.
 
     > RouterReloader.reload
 
+## Redirects for HMRC manuals
+
+There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be [found in the hmrc-manuals-api repo](https://github.com/alphagov/hmrc-manuals-api/tree/master/lib/tasks). These can be run via the `Run rake task` jenkins job.
+
+[See example of redirecting a HMRC manual section to another section](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=hmrc-manuals-api&MACHINE_CLASS=backend&RAKE_TASK=redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug])
+
 ## Redirects from campaign sites
 
 The campaigns platform is a WordPress site managed by dxw. Redirects from a
