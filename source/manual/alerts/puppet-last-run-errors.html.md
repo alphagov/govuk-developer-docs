@@ -12,7 +12,7 @@ This alert triggers when there's an error while running Puppet on a machine.
 
 To view the errors in Kibana, first login to [Logit](/manual/logit.html), and then
 run the following query (where `$hostname` is the short name of the machine
-linked to the alert, for example `backend-1` in Carrenza or `10-1-2-3` in AWS):
+linked to the alert, for example `backend-1` in Carrenza or `ip-10-1-2-3` in AWS):
 
 `syslog_program:"puppet-agent" AND host:$hostname`
 
