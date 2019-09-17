@@ -4,7 +4,7 @@ title: Locally replicating Whitehall data with Docker
 section: Docker
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on:
+last_reviewed_on: 2019-09-17
 review_in: 6 months
 ---
 
