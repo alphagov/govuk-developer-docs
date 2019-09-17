@@ -4,7 +4,7 @@ title: Remove a change note in Whitehall
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-12
+last_reviewed_on: 2019-09-12
 review_in: 6 months
 ---
 
