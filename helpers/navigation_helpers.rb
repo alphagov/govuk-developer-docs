@@ -6,7 +6,8 @@ module NavigationHelpers
   end
 
   def sidebar_link(name, page_path)
-    link_to name, page_path,
-      class: "/#{current_page.path}" == page_path ? 'toc-link--in-view' : nil
+    link_to(page_path, class: page_path == "/#{current_page.path}" ? 'toc-link--in-view' : nil) do
+      content_tag(:span, name)
+    end
   end
 end
