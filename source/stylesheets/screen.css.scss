@@ -1,19 +1,11 @@
 @import "govuk_tech_docs";
 
-.warning {
-  padding: 10px;
-  margin-top: 40px;
-  background-color: $error-background;
-  border: 1px solid $error-colour;
-  color: $error-colour;
-}
-
 .information-callout {
-  padding: $gutter;
-  margin-top: $gutter;
-  margin-bottom: $gutter;
-  background-color: $govuk-blue;
-  color: $page-colour;
+  padding: govuk-spacing(6);
+  margin-top: govuk-spacing(6);
+  margin-bottom: govuk-spacing(6);
+  background-color: $govuk-brand-colour;
+  color: govuk-colour("white");
 
   a:link,
   a:visited {
@@ -21,33 +13,16 @@
   }
 
   a:hover {
-    color: $link-hover-colour;
+    color: $govuk-link-hover-colour;
   }
 
   a:active {
-    color: $link-active-colour;
+    color: $govuk-link-active-colour;
   }
-}
-
-.grid-row {
-  @extend %grid-row;
-}
-
-.column-third {
-  @include grid-column( 1/3 );
-}
-
-.column-half {
-  @include grid-column( 1/2 );
 }
 
 .technical-documentation.full-width {
   max-width: 1024px;
-}
-
-.top-tasks {
-  background-color: $canvas-colour;
-  padding: 0 20px 20px 20px;
 }
 
 .technical-documentation {
@@ -57,12 +32,12 @@
   }
   .entry-list__item {
     margin-top: 0;
-    margin-bottom: $gutter-half;
+    margin-bottom: govuk-spacing(3);
   }
   .entry-list__key {
     display: block;
   }
-  @include media(tablet) {
+  @include govuk-media-query(tablet) {
     .entry-list {
       display: table;
     }
@@ -79,35 +54,21 @@
     }
     .entry-list__value {
       width: 100%;
-      padding-left: $gutter;
+      padding-left: govuk-spacing(6);
     }
   }
 }
 
-.visually-hidden {
-  position: absolute;
-  left: -9999em;
-  top: auto;
-  width: 1px;
-  height: 1px;
-  overflow: hidden
-}
-
 .related-content {
   border-top: 1px solid #090909;
-  margin: 40px 0 0 0;
-  padding: 10px 0 0 0;
+  margin-top: 40px;
+}
 
-  .column-half {
-    padding-left: 0;
-  }
+.toc__back-link {
+  display: inline-block;
+  margin: govuk-spacing(1) 0 govuk-spacing(2) govuk-spacing(1);
+}
 
-  ul {
-    padding: 0;
-  }
-
-  ul li {
-    list-style: none;
-    padding: 0;
-  }
+.technical-documentation > p:first-child {
+  margin: govuk-spacing(3) 0 0 0;
 }

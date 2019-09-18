@@ -5,10 +5,18 @@ title: Manual
 
 <% content_for :sidebar do %>
   <ul>
-    <li><%= link_to "Manual", "/manual.html" %></li>
+    <li>
+      <a href="/manual.html">
+        <span>Manual</span>
+      </a>
+    </li>
     <ul>
       <% manual.manual_pages_grouped_by_section.each do |section_name, pages| %>
-        <li><%= link_to section_name, "##{section_name.parameterize}" %></li>
+        <li>
+          <a href="##{section_name.parameterize}">
+            <span><%= section_name %></span>
+          </a>
+        </li>
       <% end %>
     </ul>
   </ul>
