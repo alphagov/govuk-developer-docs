@@ -111,9 +111,9 @@ ssh -A -t jumpbox.production.govuk.digital 'ssh `govuk_node_list -c <%= applicat
 <% if application.can_run_rake_tasks_in_jenkins? %>
   <h3>Run a rake task</h3>
 
-  - <%= link_to "Run on Integration Jenkins", "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
-  - <%= link_to "Run on Staging Jenkins", "https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
-  - <%= link_to "Run on Production Jenkins", "https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.carrenza_machine}" %>
+  - <%= link_to "Run on Integration Jenkins", "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.machine_class}" %>
+  - <%= link_to "Run on Staging Jenkins", "https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.machine_class}" %>
+  - <%= link_to "Run on Production Jenkins", "https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=#{application.app_name}&MACHINE_CLASS=#{application.machine_class}" %>
 <%end %>
 
 <% if application.example_published_pages %>
