@@ -71,6 +71,10 @@ class AppDocs
       'Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml'
     end
 
+    def machine_class
+      production_hosted_on == "aws" ? aws_puppet_class : carrenza_machine
+    end
+
     def production_hosted_on
       app_data["production_hosted_on"]
     end
