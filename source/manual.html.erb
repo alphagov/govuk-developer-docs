@@ -13,7 +13,7 @@ title: Manual
     <ul>
       <% manual.manual_pages_grouped_by_section.each do |section_name, pages| %>
         <li>
-          <a href="##{section_name.parameterize}">
+          <a href="<%= "##{section_name.parameterize}" %>">
             <span><%= section_name %></span>
           </a>
         </li>
