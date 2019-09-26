@@ -17,6 +17,20 @@ which listen to the exchanges, and gather the messages sent to the
 exchanges together. Applications then run "consumers" which receive
 messages from the queues.
 
+While the migration of gov.uk to AWS is in progress we actually run
+two clusters, one in carrenza and one in AWS.
+The published_documents exchange is federated in both directions, which
+means that the cluster in AWS connects as a client to the exchange in 
+Carrenza and forward messages to its own exchange, and the same thing 
+happens the other way around, there is no loop because max-hops is set to 1.
+Each cluster has a list of the other's nodes IPs, those are private IP
+and connection goes through the VPN between Carrenza and AWS.
+Since the nodes in AWS use non fixed IPs, they have additional
+network interfaces with a fixed IP associated to it.
+If a consumer is trying to get to a queue that originates on the other
+side of the VPN and the queue is empty, you should check if the 
+federation is ok.
+
 In order to ensure that our consumers remain active, we publish
 "heartbeat" messages to the exchanges every minute. This helps to avoid
 problems with consumers dropping their connections due to inactivity,
@@ -30,6 +44,24 @@ exchange. These heartbeats are sent via a [rake task][heartbeat_rake_task]
 in the `publishing-api` app.
 
 [heartbeat_rake_task]: https://github.com/alphagov/publishing-api/blob/012cb3f1ceb3b18e7059a367cc4030aa0763afb4/lib/tasks/heartbeat_messages.rake
+
+### Checking if the federation is ok
+
+Connect to one of the cluster's nodes through ssh via the jumpbox.
+As root run:
+
+```bash
+$ rabbitmqctl eval 'rabbit_federation_status:status().'
+```
+
+you should get: {status,running}
+If not something is wrong and the federation is broken.
+Check the logs in /var/log/rabbitmq and verify that the credentials and
+IPs address for the federation are correct by running as root :
+
+```bash
+$ rabbitmqctl list_parameters
+```
 
 ## Viewing RabbitMQ metrics
 
