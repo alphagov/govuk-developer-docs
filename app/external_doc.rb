@@ -1,6 +1,6 @@
-require 'html/pipeline'
-require 'uri'
-require_relative './string_to_id'
+require "html/pipeline"
+require "uri"
+require_relative "./string_to_id"
 
 class ExternalDoc
   def self.fetch(repository:, path:)
@@ -12,21 +12,21 @@ class ExternalDoc
       # Turn off hardbreaks as they behave different to github rendering
       gfm: false,
       base_url: URI.join(
-        'https://github.com',
+        "https://github.com",
         "#{repository}/blob/master/",
       ),
 
       image_base_url: URI.join(
-        'https://raw.githubusercontent.com',
+        "https://raw.githubusercontent.com",
         "#{repository}/master/",
       ),
     }
 
     context[:subpage_url] =
-      URI.join(context[:base_url], File.join('.', File.dirname(path), '/'))
+      URI.join(context[:base_url], File.join(".", File.dirname(path), "/"))
 
     context[:image_subpage_url] =
-      URI.join(context[:image_base_url], File.join('.', File.dirname(path), '/'))
+      URI.join(context[:image_base_url], File.join(".", File.dirname(path), "/"))
 
     filters = [
       HTML::Pipeline::MarkdownFilter,
@@ -51,21 +51,21 @@ class ExternalDoc
   # https://github.com/alphagov/publishing-api/blob/master/lib/link_expansion.rb
   class AbsoluteLinkFilter < HTML::Pipeline::Filter
     def call
-      doc.search('a').each do |element|
-        next if element['href'].nil? || element['href'].empty?
+      doc.search("a").each do |element|
+        next if element["href"].nil? || element["href"].empty?
 
-        href = element['href'].strip
+        href = element["href"].strip
         uri = URI.parse(href)
         path = uri.path
 
-        unless uri.scheme || href.start_with?('#') || path.end_with?('.md')
-          base = if path.start_with? '/'
+        unless uri.scheme || href.start_with?("#") || path.end_with?(".md")
+          base = if path.start_with? "/"
                    base_url
                  else
                    subpage_url
                  end
 
-          element['href'] = URI.join(base, href).to_s
+          element["href"] = URI.join(base, href).to_s
         end
       end
 
@@ -87,15 +87,15 @@ class ExternalDoc
   # `link-expansion.html`
   class MarkdownLinkFilter < HTML::Pipeline::Filter
     def call
-      doc.search('a').each do |element|
-        next if element['href'].nil? || element['href'].empty?
+      doc.search("a").each do |element|
+        next if element["href"].nil? || element["href"].empty?
 
-        href = element['href'].strip
+        href = element["href"].strip
         uri = URI.parse(href)
 
-        if uri.path.end_with?('.md')
-          uri.path.sub!(/.md$/, '.html')
-          element['href'] = uri.to_s
+        if uri.path.end_with?(".md")
+          uri.path.sub!(/.md$/, ".html")
+          element["href"] = uri.to_s
         end
       end
 
@@ -106,7 +106,7 @@ class ExternalDoc
   # Removes the H1 from the page so that we can choose our own title
   class PrimaryHeadingFilter < HTML::Pipeline::Filter
     def call
-      doc.at('h1:first-of-type').unlink
+      doc.at("h1:first-of-type").unlink
       doc
     end
   end
@@ -117,7 +117,7 @@ class ExternalDoc
     def call
       headers = Hash.new(0)
 
-      doc.css('h1, h2, h3, h4, h5, h6').each do |node|
+      doc.css("h1, h2, h3, h4, h5, h6").each do |node|
         text = node.text
         id = StringToId.convert(text)
 

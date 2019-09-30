@@ -1,5 +1,5 @@
 class AppData
-  SEARCH_URL = 'https://www.gov.uk/api/search.json?facet_publishing_app=100,examples:10,example_scope:global&facet_rendering_app=100,examples:10,example_scope:global&count=0'.freeze
+  SEARCH_URL = "https://www.gov.uk/api/search.json?facet_publishing_app=100,examples:10,example_scope:global&facet_rendering_app=100,examples:10,example_scope:global&count=0".freeze
 
   def publishing_examples
     extract_examples_from_search_result("publishing_app")
