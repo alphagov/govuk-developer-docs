@@ -1,6 +1,6 @@
 class Supertypes
   def self.all
-    @all_supertypes ||= begin
+    @all ||= begin
       data = HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk_document_types/master/data/supertypes.yml")
       data.map { |id, config| Supertype.new(id, config) }
     end
