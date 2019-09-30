@@ -1,7 +1,7 @@
 RSpec.describe Snippet do
   describe ".generate" do
     it "generates a proper snippet without the opsmanual warning" do
-      html = <<~html
+      html = <<~HTML
         <blockquote>
         <p><strong>This page was imported from <a href="https://github.com/alphagov/govuk-legacy-opsmanual">the opsmanual on GitHub Enterprise</a></strong>.
         It hasn&rsquo;t been reviewed for accuracy yet.
@@ -10,7 +10,7 @@ RSpec.describe Snippet do
         <h1 id='remove-an-asset'>Remove an asset</h1>
         <p>If you need to remove an asset manually from <code>assets.publishing.sevice.gov.uk</code>,
         follow these steps:</p>
-      html
+      HTML
 
       snippet = Snippet.generate(html)
 
@@ -18,7 +18,7 @@ RSpec.describe Snippet do
     end
 
     it "removes headings" do
-      html = <<~html
+      html = <<~HTML
         <h1 id='deploy-an-application-to-govuk'>Deploy an application to GOV.UK</h1>
         <h2 id='introduction'>Introduction</h2>
         <p>2nd line is responsible for:</p>
@@ -31,7 +31,7 @@ RSpec.describe Snippet do
         <p>As far as possible, teams are responsible for deploying their own work. We believe that
         <a href="https://gds.blog.gov.uk/2012/11/02/regular-releases-reduce-risk/">regular releases minimise the risk of major problems</a> and
         improve recovery time.</p>
-      html
+      HTML
 
       snippet = Snippet.generate(html)
 
