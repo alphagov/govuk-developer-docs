@@ -5,7 +5,7 @@ section: Infrastructure
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-06-27
+last_reviewed_on: 2019-09-30
 review_in: 3 months
 ---
 
@@ -31,6 +31,6 @@ GOV.UK currently has two pipelines named [info](https://cd.gds-reliability.engin
 
 We currently use the `operations` pipeline to [mirror all GOV.UK GitHub repositories to AWS CodeCommit](repository-mirroring.html).
 
-### The info pipeline
+### The info pipeline
 
 The `info` pipeline is a meta pipeline. Its main use is as a method to store secrets that can then be used in other pipelines. For example, the repository mirroring job uses GitHub and AWS credentials that are stored as secrets using this method.

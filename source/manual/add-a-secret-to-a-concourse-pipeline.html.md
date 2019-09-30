@@ -4,7 +4,7 @@ title: Add a secret to a Concourse pipeline
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-06-27
+last_reviewed_on: 2019-09-30
 review_in: 3 months
 ---
 
