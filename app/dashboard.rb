@@ -14,11 +14,11 @@ class Dashboard
     end
 
     def name
-      data.fetch('name')
+      data.fetch("name")
     end
 
     def id
-      data.fetch('name').parameterize
+      data.fetch("name").parameterize
     end
 
     def description
@@ -28,7 +28,7 @@ class Dashboard
 
   class Chapter < Thing
     def sections
-      data['sections'].map { |section| Section.new(section) }
+      data["sections"].map { |section| Section.new(section) }
     end
   end
 
@@ -51,14 +51,14 @@ class Dashboard
     end
 
     def repos
-      data['repos'].to_a.map do |app_name|
+      data["repos"].to_a.map do |app_name|
         repo = GitHubRepoFetcher.client.repo(app_name)
         Repo.new(repo)
       end
     end
 
     def sites
-      data['sites'].to_a.map do |site_data|
+      data["sites"].to_a.map do |site_data|
         Site.new(site_data)
       end
     end

@@ -1,10 +1,10 @@
-require 'simplecov'
+require "simplecov"
 SimpleCov.start
 
-require 'webmock/rspec'
+require "webmock/rspec"
 
-require 'govuk_tech_docs'
-require_relative './../app/requires'
+require "govuk_tech_docs"
+require_relative "./../app/requires"
 
 RSpec.configure do |config|
   config.before do
@@ -26,7 +26,7 @@ RSpec.configure do |config|
   config.disable_monkey_patching!
 
   if config.files_to_run.one?
-    config.default_formatter = 'doc'
+    config.default_formatter = "doc"
   end
 
   config.order = :random

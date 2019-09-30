@@ -1,4 +1,4 @@
-require_relative './string_to_id'
+require_relative "./string_to_id"
 
 class DeveloperDocsRenderer < GovukTechDocs::TechDocsHTMLRenderer
   def header(text, header_level)

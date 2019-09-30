@@ -27,7 +27,7 @@ class PublishingApiDocs
     end
 
     def repository
-      'alphagov/publishing-api'
+      "alphagov/publishing-api"
     end
   end
 end

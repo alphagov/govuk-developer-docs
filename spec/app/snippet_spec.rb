@@ -1,6 +1,6 @@
 RSpec.describe Snippet do
-  describe '.generate' do
-    it 'generates a proper snippet without the opsmanual warning' do
+  describe ".generate" do
+    it "generates a proper snippet without the opsmanual warning" do
       html = <<~html
         <blockquote>
         <p><strong>This page was imported from <a href="https://github.com/alphagov/govuk-legacy-opsmanual">the opsmanual on GitHub Enterprise</a></strong>.
@@ -17,7 +17,7 @@ RSpec.describe Snippet do
       expect(snippet).to eql("If you need to remove an asset manually from assets.publishing.sevice.gov.uk, follow these steps:")
     end
 
-    it 'removes headings' do
+    it "removes headings" do
       html = <<~html
         <h1 id='deploy-an-application-to-govuk'>Deploy an application to GOV.UK</h1>
         <h2 id='introduction'>Introduction</h2>

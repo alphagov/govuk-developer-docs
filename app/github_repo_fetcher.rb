@@ -1,4 +1,4 @@
-require 'octokit'
+require "octokit"
 
 class GitHubRepoFetcher
   # Fetch a repo from GitHub.
@@ -42,7 +42,7 @@ private
       Octokit.middleware = stack
       Octokit.default_media_type = "application/vnd.github.mercy-preview+json"
 
-      github_client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'])
+      github_client = Octokit::Client.new(access_token: ENV["GITHUB_TOKEN"])
       github_client.auto_paginate = true
       github_client
     end

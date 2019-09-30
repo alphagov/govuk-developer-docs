@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 class DocumentTypesCsv
   def initialize(pages)
@@ -22,14 +22,14 @@ class DocumentTypesCsv
       csv << row
 
       @pages.each do |page|
-        example_url = page.examples.first ? "https://www.gov.uk" + page.examples.first['link'] : nil
+        example_url = page.examples.first ? "https://www.gov.uk" + page.examples.first["link"] : nil
 
         row = [
           page.name,
           page.url,
           page.total_count,
           example_url,
-          page.rendering_apps.join(', '),
+          page.rendering_apps.join(", "),
         ]
 
         Supertypes.all.each do |supertype|
