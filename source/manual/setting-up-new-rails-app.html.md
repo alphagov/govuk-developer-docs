@@ -166,7 +166,7 @@ node {
 }
 ```
 
-You also need to add a Jenkins integration to the repo on Github:
+You also need to add a Jenkins integration to the repo on GitHub:
 
 1.  In GitHub, go to Settings -&gt; Integrations & Services
 2.  Add Jenkins (GitHub plugin)
