@@ -40,7 +40,6 @@ You should do these things before going on call so you're prepared.
    on your phone.
 1. Ensure you can [decrypt secrets][govuk-secrets] with your GPG setup.
 1. Ensure you can access [vCloud Director][vcloud] in production.
-1. Ensure you can access [govuk_mirror-puppet][] by [adding your SSH key to hierdata](https://github.com/alphagov/govuk_mirror-puppet/blob/master/hieradata/common.yaml#L126).
 1. Read these documents:
     - [So, you're having an incident](/manual/incident-what-to-do.html)
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
