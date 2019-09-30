@@ -50,4 +50,4 @@ The developer docs might pull in data directly from the repo using `ExternalDoc`
 
 ## 4. Make the repository private
 
-Within Github, navigate to Settings. The option to 'Mark this repository private' should appear at the bottom of the page, within the 'Danger Zone'.
+Within GitHub, navigate to Settings. The option to 'Mark this repository private' should appear at the bottom of the page, within the 'Danger Zone'.
