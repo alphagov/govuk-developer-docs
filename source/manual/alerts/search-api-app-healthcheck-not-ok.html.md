@@ -48,7 +48,7 @@ This alert triggers when there are jobs in the Sidekiq queue that are waiting
 too long to be processed. This could mean that documents aren't appearing
 in search results after they've been published.
 
-The thresholds are set in the Search API [Github repository][search-github-repo].
+The thresholds are set in the Search API [GitHub repository][search-github-repo].
 
 ##### How do I investigate this?
 

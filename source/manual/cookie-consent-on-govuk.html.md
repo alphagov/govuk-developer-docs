@@ -29,7 +29,7 @@ The cookie consent mechanism is made up of 4 main pieces:
 
 *   [Cookie banner component]
 *   [Page template which pulls in the cookie banner]
-*   [cookie settings page]. This is published as a [special route]. See the [Cookie settings page in Frontend Github repo].
+*   [cookie settings page]. This is published as a [special route]. See the [Cookie settings page in Frontend GitHub repo].
 *   [Cookie details page]. This is a standard help page, created in Publisher.
 
 When a user first lands on GOV.UK, they are given a default consent cookie that looks like this:
@@ -107,7 +107,7 @@ Regardless of how your cookie is set, you need to do the following:
 
 ## Adding a cookie category
 
-*   Add the new cookie category to the [Cookie settings page in Frontend Github repo]
+*   Add the new cookie category to the [Cookie settings page in Frontend GitHub repo]
 * 	Add the new cookie category to the [Cookie details page] using Publisher.
 *   Add to the default consent cookie
 *   Add to ‘approve all’ consent cookie function
@@ -117,7 +117,7 @@ Regardless of how your cookie is set, you need to do the following:
 
 ## Removing a cookie category
 
-*   Remove the cookie category from [Cookie settings page in Frontend Github repo]
+*   Remove the cookie category from [Cookie settings page in Frontend GitHub repo]
 *   Remove the cookie category from [Cookie details page] using Publisher. Delete cookies or move to another relevant category
 *   Remove the cookie category from default consent cookie
 *   Remove the cookie category from 'approve all consent cookie' function
@@ -125,7 +125,7 @@ Regardless of how your cookie is set, you need to do the following:
 
 
 [cookie settings page]: https://www.gov.uk/help/cookies
-[Cookie settings page in Frontend Github repo]: https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb
+[Cookie settings page in Frontend GitHub repo]: https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb
 [Page template which pulls in the cookie banner]: https://github.com/alphagov/static/blob/54706a6eddcf71e2d6cd36b3239798293530d4e6/app/views/layouts/govuk_template.html.erb#L50
 [Cookie banner component]: https://govuk-publishing-components.herokuapp.com/component-guide/cookie_banner
 [special route]: publish_special_routes.html

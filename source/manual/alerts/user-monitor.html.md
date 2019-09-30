@@ -19,7 +19,7 @@ When the check fails, look at the console logs for the monitor task:
 [User monitor]: https://deploy.publishing.service.gov.uk/job/user-monitor
 [rev]: https://github.com/alphagov/govuk-user-reviewer
 
-When a new person joins, they are added on github, but they still have to open a number of PRs to give themselves access elsewhere (ex: in `govuk-puppet`).
+When a new person joins, they are added on GitHub, but they still have to open a number of PRs to give themselves access elsewhere (ex: in `govuk-puppet`).
 If they're new, they might not have gotten to that yet so you should check with them before attempting to remove their access.
 
 ## Resolving issues

@@ -10,7 +10,7 @@ review_in: 6 months
 
 ## Update and Add Panels to Existing Dashboards
 
-[Application dashboards](deployment-dashboards.html) are configured in `govuk-puppet`. Each dashboard panel is configured by a .json.erb template in `modules/grafana/templates/dashboards/application_dashboard_panels` ([Github link][application_dashboard_panels]) and these are combined to generate the JSON config for each application dashboard.
+[Application dashboards](deployment-dashboards.html) are configured in `govuk-puppet`. Each dashboard panel is configured by a .json.erb template in `modules/grafana/templates/dashboards/application_dashboard_panels` ([GitHub link][application_dashboard_panels]) and these are combined to generate the JSON config for each application dashboard.
 
 It’s best to duplicate an existing dashboard in Grafana to test your changes.
 

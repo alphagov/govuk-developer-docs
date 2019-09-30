@@ -10,7 +10,7 @@ review_in: 6 months
 
 Usually to find usage of markup we can look in our source code.
 
-For example if we wanted to see which templates use a class called 'button' you could search in Github.
+For example if we wanted to see which templates use a class called 'button' you could search in GitHub.
 
 However [GovSpeak] (our variant of Markdown) includes markup such as buttons that will be in published content.
 
