@@ -14,7 +14,7 @@ class AppDocs
   end
 
   def self.app_data
-    @publishing_app_data ||= AppData.new
+    @app_data ||= AppData.new
   end
 
   def self.topics_on_github

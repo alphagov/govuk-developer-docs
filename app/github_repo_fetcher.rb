@@ -30,7 +30,7 @@ private
   end
 
   def client
-    @_github_client ||= begin
+    @client ||= begin
       stack = Faraday::RackBuilder.new do |builder|
         builder.response :logger
         builder.use Faraday::HttpCache, serializer: Marshal, shared_cache: false
