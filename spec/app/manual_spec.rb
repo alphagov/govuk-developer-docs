@@ -1,5 +1,5 @@
 RSpec.describe Manual do
-  describe '#manual_pages_grouped_by_section' do
+  describe "#manual_pages_grouped_by_section" do
     it "returns the correct groups" do
       sitemap = double(resources: [
         double(path: "foo.html", data: double(title: "Won't be included", important: true, review_by: Date.today, section: "Foo")),
@@ -13,7 +13,7 @@ RSpec.describe Manual do
     end
   end
 
-  describe '#other_pages_from_section' do
+  describe "#other_pages_from_section" do
     it "returns the correct groups" do
       one = double(path: "manual/foo.html", data: double(title: "Foo", important: true, section: "A section"))
       other = double(path: "manual/bar.html", data: double(title: "Bar", important: true, section: "A section"))
@@ -30,7 +30,7 @@ RSpec.describe Manual do
     end
   end
 
-  describe '#pages_for_application' do
+  describe "#pages_for_application" do
     it "returns the pages that are relevant to an application" do
       sitemap = double(resources: [
         double(path: "foo.html", data: double(title: "Won't be included", important: true, review_by: Date.today, section: "Foo")),

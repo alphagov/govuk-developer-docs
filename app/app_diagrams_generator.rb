@@ -1,6 +1,6 @@
-require 'yaml'
-require 'fileutils'
-require 'active_support/all'
+require "yaml"
+require "fileutils"
+require "active_support/all"
 
 class AppDiagramGenerator
   def initialize
@@ -28,7 +28,7 @@ class AppDiagramGenerator
           apps.map { |app| app["actors"] }
           .flatten
           .reject(&:nil?)
-          .uniq
+          .uniq,
         ]
       }.to_h
   end

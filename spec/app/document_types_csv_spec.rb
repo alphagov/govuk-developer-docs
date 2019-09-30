@@ -5,8 +5,8 @@ RSpec.describe DocumentTypesCsv do
         to_return(
           body: File.read("spec/fixtures/search-api-app-search-response.json"),
           headers: {
-            content_type: "application/json"
-          }
+            content_type: "application/json",
+          },
         )
 
       stub_request(:get, "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/lib/govuk_content_schemas/allowed_document_types.yml").
@@ -17,7 +17,7 @@ RSpec.describe DocumentTypesCsv do
 
       csv = DocumentTypes.to_csv
 
-      expect(csv).to eql(File.read('spec/fixtures/document-types-export.csv'))
+      expect(csv).to eql(File.read("spec/fixtures/document-types-export.csv"))
     end
   end
 end

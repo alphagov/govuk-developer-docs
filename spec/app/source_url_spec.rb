@@ -1,4 +1,4 @@
-Dir.glob(::File.expand_path('../../helpers/**/*.rb', __FILE__)).each { |f| require_relative f }
+Dir.glob(::File.expand_path("../../helpers/**/*.rb", __FILE__)).each { |f| require_relative f }
 
 RSpec.describe SourceUrl do
   describe "#source_url" do
@@ -19,7 +19,7 @@ RSpec.describe SourceUrl do
     end
 
     it "returns the source from this repository" do
-      current_page = double(data: double(source_url: nil), file_descriptor: { relative_path: 'foo.html.md' })
+      current_page = double(data: double(source_url: nil), file_descriptor: { relative_path: "foo.html.md" })
 
       source_url = SourceUrl.new({}, current_page).source_url
 

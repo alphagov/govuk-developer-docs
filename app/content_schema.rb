@@ -1,4 +1,4 @@
-require 'govuk_schemas'
+require "govuk_schemas"
 
 class ContentSchema
   attr_reader :schema_name
@@ -42,7 +42,7 @@ class ContentSchema
     end
 
     def properties
-      Utils.inline_definitions(raw_schema['properties'], raw_schema['definitions'])
+      Utils.inline_definitions(raw_schema["properties"], raw_schema["definitions"])
     end
 
   private
@@ -69,7 +69,7 @@ class ContentSchema
     end
 
     def properties
-      Utils.inline_definitions(raw_schema['properties'], raw_schema['definitions'])
+      Utils.inline_definitions(raw_schema["properties"], raw_schema["definitions"])
     end
 
   private
@@ -96,7 +96,7 @@ class ContentSchema
     end
 
     def properties
-      Utils.inline_definitions(raw_schema['properties'], raw_schema['definitions'])
+      Utils.inline_definitions(raw_schema["properties"], raw_schema["definitions"])
     end
 
   private
@@ -110,16 +110,18 @@ class ContentSchema
     # Inline any keys that use definitions
     def self.inline_definitions(original_properties, definitions)
       original_properties.to_h.each do |k, v|
-        next unless v['$ref']
-        original_properties[k] = definitions[v['$ref'].gsub('#/definitions/', '')]
+        next unless v["$ref"]
+
+        original_properties[k] = definitions[v["$ref"].gsub("#/definitions/", "")]
       end
 
       # Inline any keys that use definitions
-      if original_properties.to_h.dig('details', 'properties')
-        original_properties['details']['properties'].each do |k, v|
-          next unless v['$ref']
-          definition_name = v['$ref'].gsub('#/definitions/', '')
-          original_properties['details']['properties'][k] = definitions.fetch(definition_name)
+      if original_properties.to_h.dig("details", "properties")
+        original_properties["details"]["properties"].each do |k, v|
+          next unless v["$ref"]
+
+          definition_name = v["$ref"].gsub("#/definitions/", "")
+          original_properties["details"]["properties"][k] = definitions.fetch(definition_name)
         end
       end
 
