@@ -1,6 +1,6 @@
 class DocumentTypes
-  FACET_QUERY = 'https://www.gov.uk/api/search.json?facet_content_store_document_type=500,examples:10,example_scope:global&count=0'.freeze
-  DOCUMENT_TYPES_URL = 'https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/lib/govuk_content_schemas/allowed_document_types.yml'.freeze
+  FACET_QUERY = "https://www.gov.uk/api/search.json?facet_content_store_document_type=500,examples:10,example_scope:global&count=0".freeze
+  DOCUMENT_TYPES_URL = "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/lib/govuk_content_schemas/allowed_document_types.yml".freeze
 
   def self.pages
     @@pages ||= begin

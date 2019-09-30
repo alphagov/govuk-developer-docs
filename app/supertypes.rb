@@ -1,6 +1,6 @@
 class Supertypes
   def self.all
-    @all_supertypes ||= begin
+    @all ||= begin
       data = HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk_document_types/master/data/supertypes.yml")
       data.map { |id, config| Supertype.new(id, config) }
     end
@@ -19,7 +19,7 @@ class Supertypes
 
     def for_document_type(document_type)
       document_type_item = items.find { |item| item.fetch("document_types").include?(document_type) }
-      document_type_item ? document_type_item['id'] : default
+      document_type_item ? document_type_item["id"] : default
     end
   end
 end

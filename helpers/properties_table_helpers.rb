@@ -14,22 +14,25 @@ private
   def display_attribute_value(attrs)
     return unless attrs
 
-    if attrs['properties']
-      table_of_properties(attrs['properties'])
+    if attrs["properties"]
+      table_of_properties(attrs["properties"])
     else
-      [attrs['description'], enums(attrs)].join("<br/>")
+      [attrs["description"], enums(attrs)].join("<br/>")
     end
   end
 
   def enums(attrs)
-    return unless attrs['enum']
-    "Allowed values: " + attrs['enum'].map { |value| "<code>#{value}</code>" }.join(", ")
+    return unless attrs["enum"]
+
+    "Allowed values: " + attrs["enum"].map { |value| "<code>#{value}</code>" }.join(", ")
   end
 
   def possible_types(attrs)
     return unless attrs
-    possible_types = attrs['type'] ? [attrs] : attrs['anyOf']
+
+    possible_types = attrs["type"] ? [attrs] : attrs["anyOf"]
     return unless possible_types
+
     possible_types.map { |a| "<code>#{a['type']}</code>" }.join(" or ")
   end
 end

@@ -8,13 +8,13 @@ class AppDocs
   }.freeze
 
   def self.pages
-    @pages ||= YAML.load_file('data/applications.yml').map do |app_data|
+    @pages ||= YAML.load_file("data/applications.yml").map do |app_data|
       App.new(app_data)
     end
   end
 
   def self.app_data
-    @publishing_app_data ||= AppData.new
+    @app_data ||= AppData.new
   end
 
   def self.topics_on_github
@@ -22,12 +22,12 @@ class AppDocs
   end
 
   def self.aws_machines
-    @common_aws ||= HTTP.get_yaml('https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml')
+    @common_aws ||= HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml")
     @common_aws["node_class"]
   end
 
   def self.carrenza_machines
-    @common ||= HTTP.get_yaml('https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml')
+    @common ||= HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
     @common["node_class"]
   end
 
@@ -49,7 +49,7 @@ class AppDocs
           html_url: html_url,
           repo_url: repo_url,
           sentry_url: sentry_url,
-        }
+        },
       }
     end
 
@@ -59,7 +59,7 @@ class AppDocs
           return puppet_class
         end
       end
-      'Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml'
+      "Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml"
     end
 
     def carrenza_machine
@@ -68,7 +68,7 @@ class AppDocs
           return puppet_class
         end
       end
-      'Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml'
+      "Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml"
     end
 
     def machine_class
@@ -209,6 +209,7 @@ class AppDocs
 
     def github_repo_data
       return {} if private_repo?
+
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
     end
   end

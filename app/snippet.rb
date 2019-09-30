@@ -1,7 +1,7 @@
 class Snippet
   def self.generate(html)
     body_text = html
-      .split('</h1>')[1..-1].join # make sure we skip anything before <h1>
+      .split("</h1>")[1..-1].join # make sure we skip anything before <h1>
       .gsub(/<h.+?>.+?<\/h.>/, "") # remove headings
       .gsub(/<\/?[^>]*>/, "") # remove other HTML but keep the contents
       .squish # remove whitespace

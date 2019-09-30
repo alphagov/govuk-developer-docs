@@ -1,9 +1,9 @@
-require 'faraday-http-cache'
-require 'faraday_middleware'
+require "faraday-http-cache"
+require "faraday_middleware"
 
 module HTTP
   def self.get_yaml(url)
-    YAML.load(get(url))
+    YAML.safe_load(get(url))
   end
 
   def self.get(url)

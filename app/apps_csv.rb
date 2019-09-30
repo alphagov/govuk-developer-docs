@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 class AppsCSV
   attr_reader :hash

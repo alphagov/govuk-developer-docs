@@ -3,7 +3,7 @@ RSpec.describe AppDiagramGenerator do
     # generate actual diagrams
     dg = AppDiagramGenerator.new
     dg.generate
-    @files = Dir.glob('diagrams/*.puml')
+    @files = Dir.glob("diagrams/*.puml")
     @parsed_diagrams = []
     parse_output
   end
