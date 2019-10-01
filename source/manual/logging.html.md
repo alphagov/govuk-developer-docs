@@ -5,7 +5,7 @@ section: Logging
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-03-25
+last_reviewed_on: 2019-09-28
 review_in: 6 months
 ---
 
