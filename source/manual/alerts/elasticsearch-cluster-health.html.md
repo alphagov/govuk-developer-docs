@@ -4,7 +4,7 @@ title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-03-25
+last_reviewed_on: 2019-09-25
 review_in: 6 months
 ---
 
@@ -28,11 +28,12 @@ can be found in the Elasticsearch documentation.
 Make sure you understand the consequences of the problem before jumping to a
 solution.
 
-Icinga uses the `check_elasticsearch_aws` check from
-[nagios-plugins](https://github.com/alphagov/nagios-plugins/) to monitor the
-health of the AWS managed Elasticsearch cluster. This plugin uses various
-endpoints of the Elasticsearch API, but also extrapolates additional
+Icinga uses the `check_elasticsearch_aws` check from [nagios-plugins][] to
+monitor the health of the AWS managed Elasticsearch cluster. This plugin uses
+various endpoints of the Elasticsearch API, but also extrapolates additional
 information to help you diagnose any problems.
+
+[nagios-plugins]: https://github.com/alphagov/nagios-plugins/
 
 ### Investigating problems
 
@@ -88,10 +89,10 @@ Access to logs is detailed in the [logging documentation](/manual/logging.html#e
 
 ### Fixing issues with the cluster
 
-GOV.UK have a Enterprise level support plan with AWS for staging and production.
-Since we are using a managed service, AWS should be the first point of contact
-for fixing issues with the Elasticsearch cluster.  They can be contacted by
-telephone, live chat or support request.
+GOV.UK have a Enterprise level support plan with AWS for staging and
+production. Since we are using a managed service, AWS should be the first point
+of contact for fixing issues with the Elasticsearch cluster.  They can be
+contacted by telephone, live chat or support request.
 
 Response times are:
 
