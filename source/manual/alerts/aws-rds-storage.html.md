@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: AWS RDS Instance Storage Utilization
 parent: "/manual.html"
 layout: manual_layout
