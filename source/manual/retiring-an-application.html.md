@@ -4,7 +4,7 @@ title: Retire an application
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-21
+last_reviewed_on: 2019-09-27
 review_in: 6 months
 ---
 
@@ -40,9 +40,8 @@ Remove necessary scripts from the [alphagov-deployment][alphagov-deployment]
 
 Mark the application as archived in the Release app.
 
-Edit the application in the release app (you'll need the `deploy`
-permission to do this), and check the `archived` checkbox. This will
-hide it from the UI.
+Edit the application in the release app (you'll need the `deploy` permission to
+do this), and check the `archived` checkbox. This will hide it from the UI.
 
 ## 5. Remove from deploy Jenkins
 
@@ -55,18 +54,18 @@ Remove entry from the deploy Jenkinses. This is managed
 
 Mark the application as "retired" in signon, if it used it.
 
-Click on the Applications tab. Find the application that is being
-retired and click the "edit" button. Tick the box that says "This
-application is being retired", then save your changes.
+Click on the Applications tab. Find the application that is being retired and
+click the "edit" button. Tick the box that says "This application is being
+retired", then save your changes.
 
 ## 7. Update development scripts
 
 Remove from the [development-vm directory][development] `Procfile` and
 `Pinfile`:
 
-Leave a comment in the `Procfile` indicating that the port used to be
-used by this app, to avoid port conflicts causing a problem running
-this app locally in the future.
+Leave a comment in the `Procfile` indicating that the port used to be used by
+this app, to avoid port conflicts causing a problem running this app locally in
+the future.
 
 [development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
 
@@ -84,8 +83,8 @@ Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the `publishing.service.gov.uk` domain.
 
 Follow the [instructions for DNS changes][dns-changes] in order to remove
-these, and ask the Reliability Engineering team to approve any necessary
-Pull Requests.
+these, and ask the Reliability Engineering team to approve any necessary Pull
+Requests.
 
 [dns-changes]:
 https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
