@@ -5,7 +5,7 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2019-03-26
+last_reviewed_on: 2019-09-30
 review_in: 6 months
 ---
 
@@ -39,8 +39,8 @@ the various caches manually:
 If you need to clear the Fastly cache for a URL which is not `www.gov.uk` (e.g. for assets),
 you can provide a full URL to the Fastly cache clearing rake task:
 
-```
-rake cache:clear_fastly[https://assets.example.gov.uk/your-path-here]
+```sh
+$ rake cache:clear_fastly[https://assets.example.gov.uk/your-path-here]
 ```
 
 ## Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)

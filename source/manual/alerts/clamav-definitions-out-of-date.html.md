@@ -4,7 +4,7 @@ title: ClamAV definitions out of date
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-03-18
+last_reviewed_on: 2019-10-01
 review_in: 6 months
 ---
 
