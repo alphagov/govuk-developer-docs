@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Re-create an AWS mongo instance
 section: Icinga alerts
 layout: manual_layout
@@ -8,14 +8,14 @@ last_reviewed_on: 2019-03-22
 review_in: 6 months
 ---
 
-## Re-create an AWS mongo instance
-
 ## Symptom
 
-Mongo log file error similar to the below text.
+Mongo log file error similar to the below text:
+
 ```
 can't get local.system.replset config from self or any seed (EMPTYCONFIG)
 ```
+
 When you access the mongo shell and execute `rs.status()`, you can only see
 your instance and no other members of the cluster.
 
@@ -80,5 +80,5 @@ In this example we are looking at the `integration` environment.
    This will recreate the deleted instance.
 
    ```bash
-   tools/build-terraform-project.sh -c apply  -p app-mongo -s blue -d data -e integration # you can do a targeted apply but it is not necessary
+   $ tools/build-terraform-project.sh -c apply  -p app-mongo -s blue -d data -e integration # you can do a targeted apply but it is not necessary
    ```
