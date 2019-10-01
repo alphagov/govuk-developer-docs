@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-06-27
+last_reviewed_on: 2019-09-27
 review_in: 3 months
 related_applications: [search-api]
 ---
@@ -14,8 +14,8 @@ internal search. By default, all document types in internal search also get
 included in the GOV.UK sitemap, which tells external search engines about our
 content.
 
-The app responsible for search is [Search API][search-api]. Search API listens to
-RabbitMQ messages about published documents to know when to index documents.
+The app responsible for search is [Search API][search-api]. Search API listens
+to RabbitMQ messages about published documents to know when to index documents.
 For the new document type to be indexed, you need to add it to a whitelist.
 
 ### 1. Decide what fields you want to make available to search
@@ -43,7 +43,8 @@ documents (for example: appending additional information to the title).
 
 ### 2. Add the document type to migrated_formats.yaml
 
-Add the document_type name to the [`migrated` list][migrated-list] in Search API.
+Add the document_type name to the [`migrated` list][migrated-list] in Search
+API.
 
 ### 3. Reindex
 
@@ -55,8 +56,8 @@ Reindex the `govuk` index following the instructions in
 Republish all the documents. If they have been published already, you can
 republish them with the [Publishing API represent_downstream][task] rake task:
 
-```
-rake represent_downstream:document_type[new_document_type]
+```sh
+$ rake represent_downstream:document_type[new_document_type]
 ```
 
 You can test that the documents appear in search through the API using a query such as:
