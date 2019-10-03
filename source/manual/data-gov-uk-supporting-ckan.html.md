@@ -60,7 +60,9 @@ In order to access the CKAN database to run queries on the `db_admin` machine:
 
 `psql -U ckan -h postgresql-primary -p 5432 ckan_production`
 
-The password can be found in the `/var/ckan/ckan.ini` file on the `ckan` machine for the environment you are targeting.
+The password can be extracted from the configuration file on the `ckan` machine for the environment you are targeting:
+
+`more /var/ckan/ckan.ini | grep sqlalchemy`
 
 ### Accessing the CKAN API
 
