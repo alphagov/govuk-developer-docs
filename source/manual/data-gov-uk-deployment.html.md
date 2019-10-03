@@ -4,7 +4,7 @@ title: Deployments for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-30
+last_reviewed_on: 2019-10-03
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
@@ -23,6 +23,9 @@ review_in: 6 months
 [Publish's travis.yml]: https://github.com/alphagov/datagovuk_publish/blob/master/.travis.yml#L30-L50
 [Find's travis.yml]: https://github.com/alphagov/datagovuk_find/blob/af8cfa61584b16e4e1ad7bedbd1b7f890cec940d/.travis.yml#L44-L48
 [cf-ssh]: https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html#ssh-env
+[ckanext-datagovuk]: https://github.com/alphagov/ckanext-datagovuk
+[install-dependencies]: https://github.com/alphagov/ckanext-datagovuk/blob/master/bin/install-dependencies.sh
+[ckan-publisher]: https://ckan.publishing.service.gov.uk
 
 ## Find and Publish (Rails Apps)
 
@@ -35,6 +38,8 @@ Travis is configured for both [Publish (CI)][publish-ci] and [Find (CI)][find-ci
 Heroku has a pipeline for each of [Publish][publish-heroku] and [Find][find-heroku], with each app set to run in its 'integration' environment. Each pipeline has a permanent instance of the app, providing a common instance of Elasticsearch for us by the [Find] PR apps.
 
 Each repo has a `Procfile` and an `app.json` file, which help to specify how the app is deployed. The environment variables ('Config Vars') are then set via the website, both for the permanent app instance, and the review app template.
+
+Note: At the moment the Heroku deployed apps do not have much data in them as they are not hooked up with the Integration environment so should be purely used to test frontend changes and not as an end to end test of the Integration stack.
 
 ### PaaS Staging and Production Environments
 
@@ -91,3 +96,26 @@ For more information, refer to the [Cloud Foundry documentation on SSH Session E
 [CKAN] uses GOV.UK infrastructure, which includes [Jenkins][jenkins] for CI.
 
 Integration, staging and production environments behave like all other GOV.UK applications on AWS.
+
+Deployments for ckan are initiated via updates to [ckanext-datagovuk][ckanext-datagovuk], whenever a ckan extension is updated the [install-dependencies][install-dependencies] file will need an update with the relevant extensions (eg. spatial, harvest, dcat) commit or version number.
+
+### CSW
+
+When deploying changes that affect the CSW service, (OWSLib or PyCSW updates), provided at the `/csw` endpoint for the [CKAN publisher][ckan-publisher] you should make sure that the endpoint is still running correctly by curling it, `curl "https://ckan.publishing.service.gov.uk/csw"`, or view it in Firefox. Chrome and Safari do not show the XML on the page correctly. 
+
+The daily sync between pycsw and ckan should also be tested:
+
+```
+sudo su deploy
+cd /var/apps/ckan && ./venv/bin/paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
+```
+
+At the moment the pycsw web worker needs to be restarted in order to pick up changes which affect PyCSW:
+
+```
+# show running csw workers
+sudo initctl list | grep csw
+
+# restart the pycsw web worker
+sudo service pycsw_web-procfile-worker restart
+```
