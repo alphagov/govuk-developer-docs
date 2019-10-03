@@ -155,7 +155,19 @@ paster --plugin=ckan user remove USERNAME -c /var/ckan/ckan.ini
 paster --plugin=ckan user setpass USERNAME -c /var/ckan/ckan.ini
 ```
 
-### Deleting a dataset
+### Managing publishers
+
+#### Change a publisher's name
+
+Change the name in the publisher page then reindex that publisher:
+
+```
+paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c /var/ckan/ckan.ini
+```
+
+### Managing datasets
+
+#### Deleting a dataset
 
 [CKAN] has two types of deletions, the default soft-delete, and a purge.  The soft delete gives the option of
 undeleting a dataset but the purge will remove all trace of it from the system.
@@ -187,6 +199,10 @@ while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authori
 
 After deleting or purging a dataset, it will take up to 10 minutes to update on Find, due to the sync process.
 
+#### Register a brownfield dataset
+
+See the [supporting manual](https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing).
+
 ### Rebuilding the search index
 
 [CKAN] uses Solr for its search index, and occasionally it may be necessary to interact with it
@@ -216,10 +232,12 @@ Only reindex those packages that are not currently indexed:
 paster --plugin=ckan search-index -o rebuild -c /var/ckan/ckan.ini
 ```
 
-### `csw` endpoint unavailable
+### `csw` endpoint
 
 The `csw` endpoint should be available on <https://data.gov.uk/csw> which
 should redirect to <https://ckan.publishing.service.gov.uk/csw>.
+
+#### `csw` endpoint unavailable
 
 If it is not showing xml with an error `Missing keyword: service` you can check
 that it is running on the `ckan` machine:
@@ -247,7 +265,7 @@ $ tail -f /var/log/ckan/pycsw.err.log
 
 You can get a summary of `csw` records available from this url https://ckan.publishing.service.gov.uk/csw?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=brief
 
-### Syncing the `csw` records with `ckan` datasets
+#### Syncing the `csw` records with `ckan` datasets
 
 Normally the sync between `csw` and `ckan` will start at 6 each day, but in
 case it should fail or if the sync needs to happen sooner you can manually
@@ -388,15 +406,3 @@ running, so is safe to run immediately if you suspect the process has crashed:
 ```bash
 $ fab aws_production class:ckan ckan.restart_harvester
 ```
-
-### Change a publisher's name
-
-Change the name in the publisher page then reindex that publisher:
-
-```
-paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c /var/ckan/ckan.ini
-```
-
-### Register a brownfield dataset
-
-See the [supporting manual](https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing).
