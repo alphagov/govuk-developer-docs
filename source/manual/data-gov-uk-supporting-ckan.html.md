@@ -311,21 +311,54 @@ paster --plugin=ckanext-harvest harvester purge_queues -c /var/ckan/ckan.ini
 
 #### Restarting the harvest queues
 
-If the queues stall, it may be necessary to restart one or both of the harvest
-queues.
+The harvesting process runs as a single threaded program, if any harvesting
+process crashes by raising an exception, it will take out the entire process.
+We have configured Upstart to restart the process automatically, but if the
+service keeps crashing, Upstart will decide it's unhealthy and stop that after
+a while.
 
-The gather jobs retrieve the identifiers of the updated datasets and create
-jobs in the fetch queue.
+You can check whether the process is still running by checking if entries are
+still being written to the log file on the `ckan` machine:
+
+```bash
+$ govukcli set-context production-aws
+$ govukcli ssh ckan
+```
+
+```bash
+$ sudo tail -f /var/log/ckan/procfile_harvester_fetch_consumer.err.log
+```
+
+Or you could check that the services are all showing as `started` on the `ckan`
+machine:
+
+```bash
+$ sudo initctl list | grep harvester
+```
+
+If any of the services are not showing as `started`, you will need to restart
+them. There are both 'gather' and 'fetch' jobs that may need restarting:
+
+'Gather' jobs retrieve the identifiers of the updated datasets and create jobs
+in the fetch queue. To restart, run:
 
 ```
-sudo initctl restart harvester_gather_consumer-procfile-worker
+$ sudo initctl restart harvester_gather_consumer-procfile-worker
 ```
 
-The fetch job retrieve the datasets from the remote source and perform the
-relevant updates in CKAN.
+'Fetch' jobs retrieve the datasets from the remote source and perform the relevant
+updates in CKAN. To restart, run:
 
 ```
-sudo initctl restart harvester_fetch_consumer-procfile-worker
+$ sudo initctl restart harvester_fetch_consumer-procfile-worker
+```
+
+Alternatively, if the server has stopped, there is a Fabric script that will restart
+it for you. It will only restart if it detects the harvesting process is no longer
+running, so is safe to run immediately if you suspect the process has crashed:
+
+```bash
+$ fab aws_production class:ckan ckan.restart_harvester
 ```
 
 ### Change a publisher's name
