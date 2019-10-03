@@ -257,12 +257,12 @@ trigger the sync after Solr has been reindexed.
 $ paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
 ```
 
-### Managing the harvest workers
+### Harvesting
 
 Although harvesters can mostly be managed from the [user interface](https://data.gov.uk/harvest), it is
 sometimes easier to perform these tasks from the command line.
 
-#### Listing current jobs
+#### List current jobs
 
 Returns a list of currently running jobs.  This will contain the
 JOB_ID necessary to cancel jobs.
@@ -279,12 +279,40 @@ and passing a `-c` argument:
 <psql_ckan_production_command> -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
 ```
 
-#### Cancelling a current job
+#### Get the status of a harvester
 
-Sometimes a harvest job can get stuck and not complete, and it's not possible to
-restart/reharvest through the UI. You can get the `JOB_ID` from the
-[Listing current jobs](#listing-current-jobs) section, or from the harvest dashboard
-under "Last Harvest Job".
+1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
+1. Navigate to the relevant harvester (use the 'Harvest' button in the header).
+1. You will see a list of the datasets imported by this harvest source.
+1. Click the 'Manage' button to get the status.
+1. A summary of the current status will be shown.  Individual runs (and the error messages logged) can be access from the 'Jobs' tab.
+
+#### Restart a harvest job
+
+1. Follow the steps to [get the status of a harvester](#get-the-status-of-a-harvester).
+1. If the harvester is currently running, click the 'Stop' button to stop it.
+   Once it has stopped, or if it is not currently running, click the 'Reharvest' button.
+   You will know if the harvester is running because the 'Reharvest' button will be disabled.
+
+If the harvest job is hanging and the 'Stop' button is not responding, you will have to log on to the `ckan` machine to restart it:
+
+1. Log on to `ckan` machine using `govukcli`.
+1. Assume the deploy user - `sudo su deploy`
+1. Activate the virtual environment - `. /var/apps/ckan/venv/bin/activate`
+1. Run the harvest job manually - `paster --plugin=ckanext-harvest harvester run_test <harvest source> -c /var/ckan/ckan.ini`
+  - where `harvest source` is from the url when visiting the harvest source page, it will be something like `cabinet-office`
+
+If the job fails to complete the ticket should be updated with comments and prioritised to low for the product owner to review.
+
+#### Cancel a harvest job
+
+1. Follow the steps to [get the status of a harvester](#get-the-status-of-a-harvester).
+1. Click the 'Stop' button to stop it.
+
+Sometimes a harvest job can get stuck and not complete, and it's not possible to cancel it through the UI.
+You can get the `JOB_ID` from the harvest dashboard under "Last Harvest Job" (or from [Listing current jobs](#listing-current-jobs)).
+
+Then cancel the job by running:
 
 ```
 paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
@@ -309,7 +337,7 @@ to purge the queues used in the various stages of harvesting
 paster --plugin=ckanext-harvest harvester purge_queues -c /var/ckan/ckan.ini
 ```
 
-#### Restarting the harvest queues
+#### Restarting the harvest service
 
 The harvesting process runs as a single threaded program, if any harvesting
 process crashes by raising an exception, it will take out the entire process.
