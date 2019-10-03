@@ -272,9 +272,11 @@ paster --plugin=ckanext-harvest harvester jobs -c /var/ckan/ckan.ini
 ```
 
 It may be faster to run a SQL query to get the ID of a specific harvest job.
+You can do this by running the command from [Accessing the database](#accessing-the-database)
+and passing a `-c` argument:
 
 ```
-psql ckan_production -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
+<psql_ckan_production_command> -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
 ```
 
 #### Cancelling a current job
@@ -291,7 +293,7 @@ paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
 This can also be done by running SQL:
 
 ```
-psql ckan_production -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
+<psql_ckan_production_command> -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
 ```
 
 #### Purging all currently queued tasks
