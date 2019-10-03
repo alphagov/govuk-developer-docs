@@ -4,7 +4,7 @@ title: Common 2nd line support requests for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-27
+last_reviewed_on: 2019-10-03
 review_in: 6 months
 ---
 [ckan]: https://ckan.publishing.service.gov.uk
@@ -158,6 +158,21 @@ If the harvest job is hanging and the 'Stop' button is not responding you will h
   - where `harvest source` is from the url when visiting the harvest source page, it will be something like `cabinet-office`
 
 If the job fails to complete the ticket should be updated with comments and prioritised to low for the product owner to review.
+
+## Map previews issues
+Datagovuk Find supports links to show a map preview, but sometimes the map link is not available. 
+There may be a number of reasons for this:
+
+1. The harvest source is broken.
+2. The harvest source WMS version is incompatible.
+  - Only 1.1.1 or 1.3.0 WMS versions are supported
+  - the error should be available to users from the harvest jobs page:
+    - `https://ckan.publishing.service.gov.uk/harvest/<harvest name>/job/<harvest job id>`
+  - if the error is not shown you can investigate the harvest source by using the ckan api:
+    - `https://ckan.publishing.service.gov.uk/api/action/package_show?id=<id or name of dataset>`
+    - the URL in each resource should provide a version number which might be part of the link
+
+In both of these cases 2ndine should ask the user to fix the issue on their harvest server.
 
 ## Organogram Publishing
 Organograms are files that allow the people structure of an organisation to be visualised.  They are split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades).  The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.
