@@ -65,7 +65,7 @@ ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).m
 #### Check failed email ids and failure reasons for a content change
 
 ```sh
- $ bundle exec rake report::content_change_failed_emails[<content_change_id>]
+ $ bundle exec rake report:content_change_failed_emails[<content_change_id>]
 ```
 
 ## Unprocessed digest runs (digest_runs)
