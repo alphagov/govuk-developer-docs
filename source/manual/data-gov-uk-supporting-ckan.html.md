@@ -60,7 +60,9 @@ In order to access the CKAN database to run queries on the `db_admin` machine:
 
 `psql -U ckan -h postgresql-primary -p 5432 ckan_production`
 
-The password can be found in the `/var/ckan/ckan.ini` file on the `ckan` machine for the environment you are targeting.
+The password can be extracted from the configuration file on the `ckan` machine for the environment you are targeting:
+
+`more /var/ckan/ckan.ini | grep sqlalchemy`
 
 ### Accessing the CKAN API
 
@@ -153,7 +155,19 @@ paster --plugin=ckan user remove USERNAME -c /var/ckan/ckan.ini
 paster --plugin=ckan user setpass USERNAME -c /var/ckan/ckan.ini
 ```
 
-### Deleting a dataset
+### Managing publishers
+
+#### Change a publisher's name
+
+Change the name in the publisher page then reindex that publisher:
+
+```
+paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c /var/ckan/ckan.ini
+```
+
+### Managing datasets
+
+#### Deleting a dataset
 
 [CKAN] has two types of deletions, the default soft-delete, and a purge.  The soft delete gives the option of
 undeleting a dataset but the purge will remove all trace of it from the system.
@@ -185,6 +199,10 @@ while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authori
 
 After deleting or purging a dataset, it will take up to 10 minutes to update on Find, due to the sync process.
 
+#### Register a brownfield dataset
+
+See the [supporting manual](https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing).
+
 ### Rebuilding the search index
 
 [CKAN] uses Solr for its search index, and occasionally it may be necessary to interact with it
@@ -214,10 +232,12 @@ Only reindex those packages that are not currently indexed:
 paster --plugin=ckan search-index -o rebuild -c /var/ckan/ckan.ini
 ```
 
-### `csw` endpoint unavailable
+### `csw` endpoint
 
 The `csw` endpoint should be available on <https://data.gov.uk/csw> which
 should redirect to <https://ckan.publishing.service.gov.uk/csw>.
+
+#### `csw` endpoint unavailable
 
 If it is not showing xml with an error `Missing keyword: service` you can check
 that it is running on the `ckan` machine:
@@ -245,7 +265,7 @@ $ tail -f /var/log/ckan/pycsw.err.log
 
 You can get a summary of `csw` records available from this url https://ckan.publishing.service.gov.uk/csw?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=brief
 
-### Syncing the `csw` records with `ckan` datasets
+#### Syncing the `csw` records with `ckan` datasets
 
 Normally the sync between `csw` and `ckan` will start at 6 each day, but in
 case it should fail or if the sync needs to happen sooner you can manually
@@ -255,12 +275,12 @@ trigger the sync after Solr has been reindexed.
 $ paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
 ```
 
-### Managing the harvest workers
+### Harvesting
 
 Although harvesters can mostly be managed from the [user interface](https://data.gov.uk/harvest), it is
 sometimes easier to perform these tasks from the command line.
 
-#### Listing current jobs
+#### List current jobs
 
 Returns a list of currently running jobs.  This will contain the
 JOB_ID necessary to cancel jobs.
@@ -270,17 +290,47 @@ paster --plugin=ckanext-harvest harvester jobs -c /var/ckan/ckan.ini
 ```
 
 It may be faster to run a SQL query to get the ID of a specific harvest job.
+You can do this by running the command from [Accessing the database](#accessing-the-database)
+and passing a `-c` argument:
 
 ```
-psql ckan_production -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
+<psql_ckan_production_command> -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
 ```
 
-#### Cancelling a current job
+#### Get the status of a harvester
 
-Sometimes a harvest job can get stuck and not complete, and it's not possible to
-restart/reharvest through the UI. You can get the `JOB_ID` from the
-[Listing current jobs](#listing-current-jobs) section, or from the harvest dashboard
-under "Last Harvest Job".
+1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
+1. Navigate to the relevant harvester (use the 'Harvest' button in the header).
+1. You will see a list of the datasets imported by this harvest source.
+1. Click the 'Manage' button to get the status.
+1. A summary of the current status will be shown.  Individual runs (and the error messages logged) can be access from the 'Jobs' tab.
+
+#### Restart a harvest job
+
+1. Follow the steps to [get the status of a harvester](#get-the-status-of-a-harvester).
+1. If the harvester is currently running, click the 'Stop' button to stop it.
+   Once it has stopped, or if it is not currently running, click the 'Reharvest' button.
+   You will know if the harvester is running because the 'Reharvest' button will be disabled.
+
+If the harvest job is hanging and the 'Stop' button is not responding, you will have to log on to the `ckan` machine to restart it:
+
+1. Log on to `ckan` machine using `govukcli`.
+1. Assume the deploy user - `sudo su deploy`
+1. Activate the virtual environment - `. /var/apps/ckan/venv/bin/activate`
+1. Run the harvest job manually - `paster --plugin=ckanext-harvest harvester run_test <harvest source> -c /var/ckan/ckan.ini`
+  - where `harvest source` is from the url when visiting the harvest source page, it will be something like `cabinet-office`
+
+If the job fails to complete the ticket should be updated with comments and prioritised to low for the product owner to review.
+
+#### Cancel a harvest job
+
+1. Follow the steps to [get the status of a harvester](#get-the-status-of-a-harvester).
+1. Click the 'Stop' button to stop it.
+
+Sometimes a harvest job can get stuck and not complete, and it's not possible to cancel it through the UI.
+You can get the `JOB_ID` from the harvest dashboard under "Last Harvest Job" (or from [Listing current jobs](#listing-current-jobs)).
+
+Then cancel the job by running:
 
 ```
 paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
@@ -289,7 +339,7 @@ paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
 This can also be done by running SQL:
 
 ```
-psql ckan_production -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
+<psql_ckan_production_command> -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
 ```
 
 #### Purging all currently queued tasks
@@ -305,33 +355,54 @@ to purge the queues used in the various stages of harvesting
 paster --plugin=ckanext-harvest harvester purge_queues -c /var/ckan/ckan.ini
 ```
 
-#### Restarting the harvest queues
+#### Restarting the harvest service
 
-If the queues stall, it may be necessary to restart one or both of the harvest
-queues.
+The harvesting process runs as a single threaded program, if any harvesting
+process crashes by raising an exception, it will take out the entire process.
+We have configured Upstart to restart the process automatically, but if the
+service keeps crashing, Upstart will decide it's unhealthy and stop that after
+a while.
 
-The gather jobs retrieve the identifiers of the updated datasets and create
-jobs in the fetch queue.
+You can check whether the process is still running by checking if entries are
+still being written to the log file on the `ckan` machine:
 
-```
-sudo initctl restart harvester_gather_consumer-procfile-worker
-```
-
-The fetch job retrieve the datasets from the remote source and perform the
-relevant updates in CKAN.
-
-```
-sudo initctl restart harvester_fetch_consumer-procfile-worker
+```bash
+$ govukcli set-context production-aws
+$ govukcli ssh ckan
 ```
 
-### Change a publisher's name
-
-Change the name in the publisher page then reindex that publisher:
-
-```
-paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c /var/ckan/ckan.ini
+```bash
+$ sudo tail -f /var/log/ckan/procfile_harvester_fetch_consumer.err.log
 ```
 
-### Register a brownfield dataset
+Or you could check that the services are all showing as `started` on the `ckan`
+machine:
 
-See the [supporting manual](https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing).
+```bash
+$ sudo initctl list | grep harvester
+```
+
+If any of the services are not showing as `started`, you will need to restart
+them. There are both 'gather' and 'fetch' jobs that may need restarting:
+
+'Gather' jobs retrieve the identifiers of the updated datasets and create jobs
+in the fetch queue. To restart, run:
+
+```
+$ sudo initctl restart harvester_gather_consumer-procfile-worker
+```
+
+'Fetch' jobs retrieve the datasets from the remote source and perform the relevant
+updates in CKAN. To restart, run:
+
+```
+$ sudo initctl restart harvester_fetch_consumer-procfile-worker
+```
+
+Alternatively, if the server has stopped, there is a Fabric script that will restart
+it for you. It will only restart if it detects the harvesting process is no longer
+running, so is safe to run immediately if you suspect the process has crashed:
+
+```bash
+$ fab aws_production class:ckan ckan.restart_harvester
+```
