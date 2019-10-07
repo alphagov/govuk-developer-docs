@@ -26,27 +26,27 @@ To restore a snapshot, follow these steps:
 name:
 
     ```
-    curl http://elasticsearch5/_snapshot?pretty
+    curl http://elasticsearch6/_snapshot?pretty
     ```
 
 3. Query the `_all` endpoint to identify the available snapshots in the named
 repository:
 
     ```
-    curl http://elasticsearch5/_snapshot/<repository-name>/_all?pretty
+    curl http://elasticsearch6/_snapshot/<repository-name>/_all?pretty
     ```
 
 4. If an index already exists with the same name as the one being restored,
 delete the existing index:
 
     ```
-    curl -XDELETE http://elasticsearch5/<index-name>
+    curl -XDELETE http://elasticsearch6/<index-name>
     ```
 
 5. Restore the index from the snapshot:
 
     ```
-    curl -XPOST 'http://elasticsearch5/_snapshot/<repository-name>/<snapshot-id>/_restore' -d '{"indices": "<index-name>"}' -H 'Content-Type: application/json'
+    curl -XPOST 'http://elasticsearch6/_snapshot/<repository-name>/<snapshot-id>/_restore' -d '{"indices": "<index-name>"}' -H 'Content-Type: application/json'
     ```
 
 > Further information about Elasticsearch snapshots can be found in the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html)
