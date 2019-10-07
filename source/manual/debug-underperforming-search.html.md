@@ -18,6 +18,6 @@ Useful metrics to look at are:
 
 - The [machine dashboard](https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&orgId=1) for search.
 
-- The [AWS dashboard for Elasticsearch](https://eu-west-1.console.aws.amazon.com/es/home?region=eu-west-1#domain:resource=blue-elasticsearch5-domain;action=dashboard) in the AWS console.
+- The [AWS dashboard for Elasticsearch](https://eu-west-1.console.aws.amazon.com/es/home?region=eu-west-1#domain:resource=blue-elasticsearch6-domain;action=dashboard) in the AWS console.
 
     There are a lot of metrics here.  A capacity issue could be suggested by the "Index thread pool" or "Search thread pool" graphs being consistently above the red dashed line, which means that requests are queueing.  Talk to RE in that case.
