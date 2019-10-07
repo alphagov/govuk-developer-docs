@@ -26,6 +26,9 @@ indicate in your message that a problem is time critical.
 
 Failing slack communication you can also walk over to the RE GOV.UK team desks and talk to the interruptible person directly - they are currently on the 6th floor near bank 27-28.
 
+Both in- and out-of-hours you can furthermore use the PagerDuty option "Run a Play" available as a tab on the incident page to escalate to the RE engineer currently on call.
+![](images/pagrduty_re_run_a_play.png)
+
 You may be advised to create a
 [Zendesk ticket](#raising-a-zendesk-ticket-with-reliability-engineering).
 

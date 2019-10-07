@@ -4,9 +4,17 @@ title: Re-create an AWS mongo instance
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-22
-review_in: 6 months
+last_reviewed_on: 2019-10-08
+review_in: 3 months
 ---
+
+> Note (Deprecated):
+>
+> The issue described in this page was found to be caused by a race-
+> condition in configuring additional network interfaces used by Mongo
+> and RabbitMQ clusters. A [fix](https://github.com/alphagov/govuk-aws/pull/1097) was merged in September. If you en-
+> counter a similar problem, please inform RE:GOV.UK via Slack #re-govuk.
+
 
 ## Re-create an AWS mongo instance
 
