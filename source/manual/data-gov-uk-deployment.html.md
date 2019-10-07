@@ -110,7 +110,9 @@ sudo su deploy
 cd /var/apps/ckan && ./venv/bin/paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
 ```
 
-At the moment the pycsw web worker needs to be restarted in order to pick up changes which affect PyCSW:
+The pycsw web process should be automatically restarted after each ckan deployment. 
+
+If changes are not appearing, you can try these commands.
 
 ```
 # show running csw workers
