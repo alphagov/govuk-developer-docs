@@ -42,7 +42,7 @@ see if it is present and has the expected fields:
 0. Create a tunnel to Elasticsearch:
 
     ```
-    ssh -At jumpbox.staging.govuk.digital -L 9200:localhost:9200 "ssh -q \`govuk_node_list --single-node -c search\` -L 9200:elasticsearch5.blue.staging.govuk-internal.digital:80"
+    ssh -At jumpbox.staging.govuk.digital -L 9200:localhost:9200 "ssh -q \`govuk_node_list --single-node -c search\` -L 9200:elasticsearch6.blue.staging.govuk-internal.digital:80"
     ```
 
 0. Send a `POST` request to `http://localhost:9200/govuk/_search`:

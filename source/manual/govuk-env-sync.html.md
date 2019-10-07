@@ -57,7 +57,7 @@ ensure:         | One of 'present', 'disabled' or 'absent' to control the task.|
 hour:           | Hour of (daily) cron-job execution.|
 minute:         | Minute of (daily) cron-job execution|
 action:         | One of 'push' (dump db and upload to store) or 'pull' (download from store and restore db).|
-dbms:           | One of 'postgresql', 'mysql', 'mongo', 'elasticsearch5'.|
+dbms:           | One of 'postgresql', 'mysql', 'mongo', 'elasticsearch'.|
 storagebackend: | One of 's3','rsync','es_snapshot'.|
 database:       | Database name.|
 temppath:       | Temporary storage path on the local machine.|

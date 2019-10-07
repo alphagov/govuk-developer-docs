@@ -12,7 +12,7 @@ To look up the popularity of an item you can query Elasticsearch by creating a
 tunnel to the cluster:
 
 ```
-ssh -At jumpbox.production.govuk.digital -L 9200:localhost:9200 "ssh -q \`govuk_node_list --single-node -c search\` -L 9200:elasticsearch5.blue.production.govuk-internal.digital:80"
+ssh -At jumpbox.production.govuk.digital -L 9200:localhost:9200 "ssh -q \`govuk_node_list --single-node -c search\` -L 9200:elasticsearch6.blue.production.govuk-internal.digital:80"
 ```
 
 To looking up popularity of a particular item you will need its `base_path` URL
