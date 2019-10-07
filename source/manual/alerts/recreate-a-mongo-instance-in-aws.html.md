@@ -4,9 +4,12 @@ title: Re-create an AWS mongo instance
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-22
-review_in: 6 months
+last_reviewed_on: 2019-10-08
+review_in: 3 months
 ---
+> Deprecation note:
+> We expect this to be fixed by https://github.com/alphagov/govuk-aws/pull/1097
+> If you see a similar issue, please let RE know in Slack #re-govuk.
 
 ## Symptom
 
