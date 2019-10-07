@@ -25,13 +25,13 @@ For information on how to log in and view stacks, please see the
 ### Elasticsearch
 
 Elasticsearch in AWS uses a managed service.  Logs are exported to
-[AWS Cloudwatch][aws-cloudwatch-es5] and retained for 3 days.
+[AWS Cloudwatch][aws-cloudwatch-es] and retained for 3 days.
 
-Logs are also written to a [S3 bucket][s3-es5] which is used to import the logs
+Logs are also written to a [S3 bucket][s3-es] which is used to import the logs
 into Logit.
 
-[aws-cloudwatch-es5]: https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logs:prefix=/aws/aes/domains/blue-elasticsearch5-domain
-[s3-es5]: https://s3.console.aws.amazon.com/s3/buckets/govuk-integration-aws-logging/elasticsearch5/?region=eu-west-1&tab=overview
+[aws-cloudwatch-es]: https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logs:prefix=/aws/aes/domains/blue-elasticsearch6-domain
+[s3-es]: https://s3.console.aws.amazon.com/s3/buckets/govuk-integration-aws-logging/elasticsearch6/?region=eu-west-1&tab=overview
 [gds-way-logging]: https://gds-way.cloudapps.digital/standards/logging.html#content
 [logit]: https://logit.io
 [logit-docs]: /manual/logit.html

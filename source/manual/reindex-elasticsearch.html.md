@@ -61,7 +61,7 @@ ssh $(ssh integration "govuk_node_list --single-node -c search").integration
 Then check how many documents have been copied to the new index:
 
 ```
-curl http://elasticsearch5/_cat/indices?v
+curl http://elasticsearch6/_cat/indices?v
 ```
 
 ### Replay traffic
@@ -113,13 +113,13 @@ search box (see above) then:
 0. Find the ID of the reindexing task:
 
     ```
-    curl 'http://elasticsearch5/_tasks?actions=%2Areindex&pretty'
+    curl 'http://elasticsearch6/_tasks?actions=%2Areindex&pretty'
     ```
 
 0. Stop the task:
 
     ```
-    curl -XPOST http://elasticsearch5/_tasks/{task_id}/_cancel
+    curl -XPOST http://elasticsearch6/_tasks/{task_id}/_cancel
     ```
 
 #### To switch back to the old index
