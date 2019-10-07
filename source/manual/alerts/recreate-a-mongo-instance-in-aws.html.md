@@ -4,7 +4,7 @@ title: Re-create an AWS mongo instance
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-08
+last_reviewed_on: 2019-10-07
 review_in: 3 months
 ---
 > Deprecation note:
