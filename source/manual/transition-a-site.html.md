@@ -1,34 +1,40 @@
 ---
-owner_slack: '#govuk-platform-health'
+owner_slack: "#govuk-platform-health"
 title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-04
+last_reviewed_on: 2019-10-08
 review_in: 6 months
 related_applications: [bouncer, transition]
 ---
 
-When a site is going to move to GOV.UK, there are two ways that
-the old site can be redirected. They can do it themselves, or they can
-repoint the domain at us. This page is about the latter.
+When a site is going to move to GOV.UK, there are two ways that the old site
+can be redirected. They can do it themselves, or they can repoint the domain at
+us. This page is about the latter.
 
 The [Transition][] app exists to allow editing of mapping of old URLs to pages
 on GOV.UK. These mappings are stored in a database and used by [Bouncer][] to
 handle requests to those old domains.
 
-This page covers the details of adding a site so that we can handle
-traffic to it.
+This page covers the details of adding a site so that we can handle traffic to
+it.
 
 ## Checklist
 
 ### 1) Ensure the department is aware of the technical limitation of HTTPS enabled sites
 
-Unless the domain being transitioned is a subdomain of one of our wildcard [SANs](https://en.wikipedia.org/wiki/Subject_Alternative_Name), we [do not support HTTPS](/manual/transition-architecture.html#https-support-for-transitioned-sites) for transitioned sites.
+Unless the domain being transitioned is a subdomain of one of our wildcard
+[SANs][], we [do not support HTTPS][https] for transitioned sites.
 
-If a domain is not in our SAN but wants to keep HTTPS integrity, the best alternative is to set up redirects on their own server.
+[SANs]: https://en.wikipedia.org/wiki/Subject_Alternative_Name
+[https]: /manual/transition-architecture.html#https-support-for-transitioned-sites
 
-The content team might ask a developer to offer the department some guidance around this.
+If a domain is not in our SAN but wants to keep HTTPS integrity, the best
+alternative is to set up redirects on their own server.
+
+The content team might ask a developer to offer the department some guidance
+around this.
 
 ### 2) Add a site to the Transition app
 
@@ -36,52 +42,49 @@ Follow the instructions in the [transition-config README][transition-config].
 
 ### 3) Get a list of old URLs
 
-In order for us to redirect anything but the homepage, we need a list of
-URLs for the old site so that they can be mapped. In the past, this is
-something GDS did for the organisation as it requires some
-technical skill and experience.
+In order for us to redirect anything but the homepage, we need a list of URLs
+for the old site so that they can be mapped. In the past, this is something
+GDS did for the organisation as it requires some technical skill and
+experience.
 
-Getting traffic logs from a transitioning organisation is the best
-option, as we can get a list of URLs we know are actively used. If we
-can't get this then there are other options.
+Getting traffic logs from a transitioning organisation is the best option, as
+we can get a list of URLs we know are actively used. If we can't get this then
+there are other options.
 
 One option is to get a list of the URLs from the Internet Archive. The
-[archive_lister](https://github.com/rgarner/archive_lister) gem can do
-this for you. Sometimes the Internet Archive doesn't have any data, so
-try the domain name with `http` or `https`, or with and without the `www.`.
+[archive_lister](https://github.com/rgarner/archive_lister) gem can do this for
+you. Sometimes the Internet Archive doesn't have any data, so try the domain
+name with `http` or `https`, or with and without the `www.`.
 
 An alternative is to crawl the site with a crawler like
-[Anemone](https://github.com/chriskite/anemone), though for a large site
-this might take several hours. This will give you a list of URLs for a domain:
+[Anemone](https://github.com/chriskite/anemone), though for a large site this
+might take several hours. This will give you a list of URLs for a domain:
 
-```
+```sh
 $ anemone url-list 'transitioning-site.gov.uk'
 ```
 
-> **Note**
->
-> This will include 404s, 301s, etc.
+> **Note:** This will include 404s, 301s, etc.
 
 ### 4) Clean up URLs
 
 **Strip paths and pattern**
 
-There are lots of file formats we don't want to provide mappings for,
-like static assets, images, or common spammy/malicious crawlers. These
-can be stripped using the [strip_mappings.sh][smsh] script.
+There are lots of file formats we don't want to provide mappings for, like
+static assets, images, or common spammy/malicious crawlers. These can be
+stripped using the [strip_mappings.sh][smsh] script.
 
 [smsh]: https://github.com/alphagov/transition-config/blob/master/tools/strip_mappings.sh
 
 **Query parameter analysis**
 
-From your set of URLs, you can attempt to identify significant
-query string parameter names and then add them to the site configuration
-file in transition-config. A query string parameter is considered
-significant if it significantly changes the content seen on the old site
-and/or it would be mapped to a different new URL.
+From your set of URLs, you can attempt to identify significant query string
+parameter names and then add them to the site configuration file in
+`transition-config`. A query string parameter is considered significant if it
+significantly changes the content seen on the old site and/or it would be
+mapped to a different new URL.
 
-There are some transition-config scripts to help analyse query param
-usage:
+There are some transition-config scripts to help analyse query param usage:
 
 -   [analyse_query_params.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_params.sh)
 -   [analyse_query_usage.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_usage.sh)
