@@ -264,3 +264,11 @@ by On Call staff.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
+
+## Rebooting Docker Management machines
+
+These currently just run etcd which is used to coorindate automatic
+out of hours reboots.
+
+Reboots of these machines should be organised by 2nd line and happen
+in hours.
