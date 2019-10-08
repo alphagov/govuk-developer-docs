@@ -16,7 +16,7 @@ and [`ckan_v26_ckan_org_sync`](https://github.com/alphagov/datagovuk_publish/blo
 The healthcheck alert notifies us if one or both of these jobs are not running in
 the expected timeframe set. This means latest [dataset](https://ckan.publishing.service.gov.uk/dataset)
 or [publisher](https://ckan.publishing.service.gov.uk/publisher) updates are
-not appearing on data.gov.uk - see [Troubleshoot data.gov.uk](https://docs.publishing.service.gov.uk/manual/data-gov-uk-troubleshooting.html#datasets-published-in-ckan-are-not-appearing-on-find)
+not appearing on data.gov.uk - see [Datasets published in CKAN are not appearing on Find](/manual/data-gov-uk-2nd-line.html#datasets-published-in-ckan-are-not-appearing-on-find)
 
 You can monitor the number of jobs in the Sidekiq queue
 [using the console](https://docs.publishing.service.gov.uk/manual/data-gov-uk-monitoring.html#sidekiq-publish)
