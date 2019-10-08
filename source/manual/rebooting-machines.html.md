@@ -231,6 +231,12 @@ by On Call staff.
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
 
+### Whitehall MySQL slave machines
+
+The whitehall-mysql-slave-1 machine is used by the frontend component
+of Whitehall, so this'll be impacted when rebooting. The other
+whitehall-mysql-slave machines are not used by Whitehall frontend.
+
 ## Rebooting PostgreSQL primary and standby machines (Carrenza only)
 
 Unless there are urgent updates to apply, these machines should not be
