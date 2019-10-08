@@ -30,7 +30,7 @@ on some pages.
 You may need to do this if the content is not showing on the live site quick
 enough.
 
-[cache]: cache-flush.html
+[cache]: purge-cache.html
 
 ### [If guidance pages are expected to show on taxon pages but aren't][search]
 
