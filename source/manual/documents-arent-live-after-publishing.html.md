@@ -4,7 +4,7 @@ title: If documents aren't live after being published
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-13
+last_reviewed_on: 2019-10-08
 review_in: 6 months
 ---
 
