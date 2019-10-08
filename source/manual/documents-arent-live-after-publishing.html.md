@@ -87,6 +87,6 @@ $ bundle exec rake routes:register[base_path]
 ## If the document isn't live after all this
 
 If the document appears to be correct in all these places, it may just be
-necessary to [clear the cache](cache-flush.html) for that document. 404 pages
+necessary to [clear the cache](purge-cache.html) for that document. 404 pages
 will be cached, although with a shorter expiration time, so if a publisher
 tries to view the page before it's live, they may end up caching the 404 page.
