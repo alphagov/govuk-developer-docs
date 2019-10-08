@@ -58,7 +58,7 @@ Click the "take it" link under "Assignee", followed by "Submit as Open", to form
 If you know you cannot solve a ticket immediately, fill in a "Public reply" to the requester to let them
 know you’re looking into it.
 
-Read [Common 2nd line support requests for data.gov.uk](/manual/data-gov-uk-2nd-line.html), which outlines
+Read [Common 2nd line support tasks for data.gov.uk](/manual/data-gov-uk-2nd-line.html), which outlines
 some of the common DGU tickets that come in and how to fix them.
 
 You can use Internal Notes to keep a log of actions you've taken so far: this can make it easier for other

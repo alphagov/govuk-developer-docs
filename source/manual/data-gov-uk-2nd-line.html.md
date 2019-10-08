@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-platform-health"
-title: Common 2nd line support requests for data.gov.uk
+title: Common 2nd line support tasks for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
@@ -8,7 +8,10 @@ last_reviewed_on: 2019-10-03
 review_in: 6 months
 ---
 [ckan]: https://ckan.publishing.service.gov.uk
+[ckan-app]: apps/ckanext-datagovuk
 [dgu-docs]: https://guidance.data.gov.uk
+[find]: apps/datagovuk_find
+[publish]: apps/datagovuk_publish
 
 This document details some of the requests that GOV.UK 2nd line support may receive regarding data.gov.uk.  [Separate documentation][dgu-docs] exists for publishers.
 
@@ -92,6 +95,46 @@ This is a generic response for such cases:
 >
 > I hope that helps. I’ll close this ticket now.
 
+### Different number of datasets in [CKAN-app] to [Find]
+
+Determine the number of datasets in CKAN using the API:
+
+[https://data.gov.uk/api/3/search/dataset](https://data.gov.uk/api/3/search/dataset)
+
+
+Determine the number of datasets in the Publish Postgres database using the Rails console.
+
+```
+cf ssh publish-data-beta-production
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+>>> Dataset.count
+```
+
+If these numbers match, but the number of datasets served on Find is still different, identify the number of published in the Publish Postgres database.
+
+```
+cf ssh publish-data-beta-production
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+>>> Dataset.published.count
+```
+
+With the current set up, all datasets that are available through the CKAN API will be marked as public in the Publish Postgres database.  Therefore, if you get a different number of datasets, you should mark them all as published in the Publish Postgres database.
+
+```
+cf ssh publish-data-beta-production
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+>>> Dataset.update(status: 'published')
+```
+
+A [reindex](/manual/data-gov-uk-operations.html#reindexing-find) must then be done to update the status with the Elastic instance that serves Find.
+
+### Datasets published in CKAN are not appearing on Find
+
+Check the Sidekiq queue (see [monitoring section](/manual/data-gov-uk-monitoring.html#sidekiq-publish)) length to ensure the queue length is not too long.  You should not be seeing more jobs than the number of datasets in CKAN.
+
+If the queue is too long, you should [clear the queue](https://github.com/mperham/sidekiq/wiki/API).  The next sync process will repopulate the queue with any relevant datasets that require updating.
+
+
 ### Accessing withdrawn content
 Sometimes we get queries from users asking for data that is no longer publicly available, e.g. a withdrawn dataset.
 
@@ -137,7 +180,7 @@ Harvesting is where publishers can automatically import their data to data.gov.u
 See the ["Harvesting" section in "Support tasks for CKAN"](data-gov-uk-supporting-ckan.html#harvesting) for troubleshooting.
 
 ## Map previews issues
-Datagovuk Find supports links to show a map preview, but sometimes the map link is not available. 
+Datagovuk Find supports links to show a map preview, but sometimes the map link is not available.
 There may be a number of reasons for this:
 
 1. The harvest source is broken.
