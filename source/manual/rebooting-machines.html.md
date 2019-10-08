@@ -225,13 +225,6 @@ rebooted during working hours in production. Applications write to the
 masters and read from the slaves (with the exception of the slave within
 the DR environment).
 
-If urgently required, applications can have their database configuration
-amended by editing the relevant configuration in
-<https://github.com/alphagov/govuk-app-deployment>
-
-When the app has been redeployed then the machine which is **not** being
-read from can be rebooted.
-
 Reboots of these machines, in the production environment, should be organised
 by On Call staff.
 
