@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Cookies
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-frontenders"
 last_reviewed_on: 2018-11-26
 review_in: 6 months
 ---
