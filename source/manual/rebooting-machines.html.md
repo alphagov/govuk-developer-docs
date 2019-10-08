@@ -21,6 +21,20 @@ review_in: 3 months
   relevant machine being terminated automatically. If this happens, a
   new machine will be created automatically.
 
+### Rebooting guidance for 2ndline
+
+Most machines in Production should be rebooted out of hours, and this
+is handled by those who are on call out of hours.
+
+Some machines in Production may need to be rebooted in hours though,
+and machines in other environments can usually be rebooted in hours as
+well.
+
+Additionally, for machines running MongoDB, they may be automatically
+rebooted out of hours, but only if they're not the primary. So it can
+be helpful to step down the primary MongoDB machine to allow it to
+reboot out of hours.
+
 ## Unattended upgrades
 
 Machines are configured with [automatic security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package) which install security updates overnight. Sometimes these require a reboot in order to become active.
@@ -225,18 +239,17 @@ rebooted during working hours in production. Applications write to the
 masters and read from the slaves (with the exception of the slave within
 the DR environment).
 
-If urgently required, applications can have their database configuration
-amended by editing the relevant configuration in
-<https://github.com/alphagov/govuk-app-deployment>
-
-When the app has been redeployed then the machine which is **not** being
-read from can be rebooted.
-
 Reboots of these machines, in the production environment, should be organised
 by On Call staff.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
+
+### Whitehall MySQL slave machines
+
+The whitehall-mysql-slave-1 machine is used by the frontend component
+of Whitehall, so this'll be impacted when rebooting. The other
+whitehall-mysql-slave machines are not used by Whitehall frontend.
 
 ## Rebooting PostgreSQL primary and standby machines (Carrenza only)
 
@@ -251,3 +264,11 @@ by On Call staff.
 
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
+
+## Rebooting Docker Management machines
+
+These currently just run etcd which is used to coorindate automatic
+out of hours reboots.
+
+Reboots of these machines should be organised by 2nd line and happen
+in hours.
