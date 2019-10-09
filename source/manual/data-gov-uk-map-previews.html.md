@@ -4,7 +4,7 @@ title: WMS map previews on data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-08
+last_reviewed_on: 2019-10-09
 review_in: 6 months
 ---
 
@@ -42,6 +42,20 @@ Map previews rely on two Ext.js libraries, proj4j and OpenLayers plus some accom
 
 
 ## Common problems
+
+### Map preview link not available
+
+There are some cases where the map preview link is not showing despite the WMS service being available, this may be due to an incompatibility of the WMS service or the resource type being a dataset rather than a service.
+
+Harvesting errors might be available in the harvest job logs:
+
+https://ckan.publishing.service.gov.uk/harvest/<dataset name>/job
+
+In order to begin investigating this issue you can use the link below which will provide further information:
+
+https://ckan.publishing.service.gov.uk/api/action/package_show?id=<dataset name or uuid>
+
+### Map preview not showing
 
 Some communication with external endpoints is handled by OpenLayers WMS functionality. It's important that the external API can process the call for the corresponding version. OpenLayers is configured to use the latest version of the WMS spec (1.3.0) it's possible that some WMS endpoints will respond with an error unless the correct type of request is made.
 
