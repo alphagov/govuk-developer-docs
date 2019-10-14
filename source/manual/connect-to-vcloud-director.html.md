@@ -92,7 +92,7 @@ You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
 
 ## Connecting with Cisco AnyConnect
 
-1. Choose "Carrenza - Secure" from the drop down list and click "Connect". The very first time you connect, you may be asked (multiple times) for your Mac OS X username and password (that is, your LDAP username and password). This is for AnyConnect to store credentials in the System keychain and to read the key and certs which you imported into your account keychain. Press Always Allow when the option appears.
+1. Choose "Carrenza - Secure" from the drop down list and click "Connect". The very first time you connect, you may be asked (multiple times) for your Mac OS X username and password (that is, your LDAP username and password). Press Always Allow when the option appears. If this happens every time you connect, try [this fix](https://superuser.com/questions/1306893/).
 
 1. The first password is the second-factor (MFA) code. The second password is the VPN password. (Yes, they're the opposite way around compared to the GDS VPN.)
 
