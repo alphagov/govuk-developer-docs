@@ -10,7 +10,12 @@ old_paths:
   - /manual/seeing-things-in-the-aws-console.html
 ---
 
-💡 Before you can access something in AWS, you [need to set up your AWS account](/manual/set-up-aws-account.html).
+💡 Before you can access something in AWS, you need:
+
+1. [to set up your AWS account](/manual/set-up-aws-account.html)
+
+2. **ensure that you are on a GDS approved network or otherwise, Cyber will
+   be alerted**
 
 ---
 
