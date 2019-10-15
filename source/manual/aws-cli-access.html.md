@@ -11,7 +11,8 @@ review_in: 3 months
 Prerequisites:
 
 - Access to the GOV.UK AWS Accounts (If you haven't done so before, [set up your AWS access][set-up-account])
-- [Installed the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)
+- [Installed the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html)  
+- **ensure that you are on a GDS approved network or otherwise, Cyber will be alerted**
 
 ---
 
