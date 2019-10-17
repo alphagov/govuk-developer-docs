@@ -4,7 +4,7 @@ title: Can't connect to Mongo in VM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-16
+last_reviewed_on: 2019-10-17
 review_in: 6 months
 ---
 
