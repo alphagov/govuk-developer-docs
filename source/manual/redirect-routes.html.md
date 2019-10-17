@@ -93,5 +93,5 @@ There are rake tasks for redirecting HMRC manuals and HMRC manual sections, whic
 ## Redirects from campaign sites
 
 The campaigns platform is a WordPress site managed by dxw. Redirects from a
-`*.campaign.gov.uk` site require a support ticket. Currently, Mark McLeod or
+`*.campaign.gov.uk` site require a support ticket. Currently, James Whitmarsh or
 Kelvin Gan can raise a ticket.
