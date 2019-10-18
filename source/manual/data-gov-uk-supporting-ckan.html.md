@@ -297,6 +297,18 @@ and passing a `-c` argument:
 <psql_ckan_production_command> -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
 ```
 
+#### Find the harvest source of a dataset
+
+The harvest source of a dataset can be found using the CKAN API. Once you have
+the slug of the dataset, you can go to the following URL:
+
+```
+https://ckan.publishing.service.gov.uk/api/action/package_show?id=<slug>
+```
+
+In the JSON response there should be a `harvest` field which will tell you the
+ID and name of the harvest source.
+
 #### Get the status of a harvester
 
 1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
