@@ -29,7 +29,11 @@ Owned by team **<%= application.team %>**.
 
 ### Hosting
 
+<% if application.hosting_name == "None" %>
+There is no production version of this application yet.
+<% else %>
 The production version of this application is hosted on **<%= application.hosting_name %>**.
+<% end %>
 
 ### Links
 
