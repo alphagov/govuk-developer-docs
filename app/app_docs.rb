@@ -5,6 +5,7 @@ class AppDocs
     "carrenza" => "Carrenza",
     "ukcloud" => "UK Cloud",
     "heroku" => "Heroku",
+    "none" => "None",
   }.freeze
 
   def self.pages
