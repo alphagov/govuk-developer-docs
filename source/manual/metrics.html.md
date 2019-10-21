@@ -5,7 +5,7 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-17
+last_reviewed_on: 2019-10-17
 review_in: 6 months
 ---
 
@@ -58,7 +58,8 @@ it to Graphite. However, for gauges, it will only send it one time.
 Grafana on GOV.UK is used for dashboards. Dashboards can be created
 directly in the web interface (first you must login using the
 credentials username: admin password: admin), or added through
-govuk-puppet.
+govuk-puppet. If a dashboard is only created through the web interface
+it will be lost when puppet is next run on the machine.
 
 Usually you would want to develop dashboards in Grafana by editing
 them through the web interface, and then export them and add them to
