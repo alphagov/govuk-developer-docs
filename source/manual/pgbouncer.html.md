@@ -5,13 +5,13 @@ section: Databases
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-20
+last_reviewed_on: 2019-10-21
 review_in: 3 months
 ---
 
 [PgBouncer](https://pgbouncer.github.io/) sits between our apps and PostgreSQL.
 It performs connection pooling, and can also treat databases on remote hosts as
-if they were local.  From the perspective of an app, it is talking to a regular
+if they were local. From the perspective of an app, it is talking to a regular
 PostgreSQL server.
 
 ## Where it lives
