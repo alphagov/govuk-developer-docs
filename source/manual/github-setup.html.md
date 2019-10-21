@@ -3,13 +3,13 @@ owner_slack: "#govuk-2ndline"
 title: Set up your GitHub account
 layout: manual_layout
 section: Learning GOV.UK
-last_reviewed_on: 2019-07-09
+last_reviewed_on: 2019-10-21
 review_in: 6 months
 ---
 
 1. Set up a [GitHub][] account.
+1. Ask your tech lead to add you to the [alphagov organisation][alphagov]. You will have to be added to the [GOV.UK team][govuk-team] to get access to repos & CI. Remember to click accept in the Github email invitation.
 1. Ask somebody with access to add your GitHub username to the [user monitoring system][user-reviewer].
-1. Ask your tech lead to add you to the [alphagov organisation][alphagov]. You will have to be added to the [GOV.UK team][govuk-team] to get access to repos & CI.
 1. [Generate and register an SSH key pair][register-ssh-key] for your Mac for your GitHub account (use a `4096` bit key)
 1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
 
