@@ -55,16 +55,14 @@ You should also thank the contributor with an amount of emoji proportional to th
 Finally, clean up by deleting the branch you created.
 
 ```bash
-git pull
+brew install hub
 
-git fetch https://github.com/thomasjhughes/publisher patch-1:thomasjhughes-patch-1
+hub pr checkout <PR-NUMBER>
 
-git checkout thomasjhughes-patch-1
-
-git push --set-upstream origin thomasjhughes-patch-1
+git push --set-upstream origin <BRANCH-NAME>
 ```
 
-Change `thomasjhughes` to the GitHub username of the contributor and `patch-1` to the name of the branch in their fork.
+where <BRANCH-NAME> is the name of the branch that's checked out.
 
 #### Dependabot
 
