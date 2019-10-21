@@ -4,7 +4,7 @@ title: Jenkins agent not connected to master
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-04-15
+last_reviewed_on: 2019-10-21
 review_in: 6 months
 ---
 
