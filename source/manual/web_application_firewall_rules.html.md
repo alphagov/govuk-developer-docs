@@ -13,7 +13,7 @@ malicious/suspect requests at the edge of the network before they can reach the 
 
 ## How to configure WAF rules
 
-WAF rules are configured via terraform and associated to load balancers.
+WAF rules are configured via Terraform and associated to load balancers.
 
 The rules are maintained alongside the configuration for the public load
 balancers in [govuk-aws/terraform/projects/infra-public-services](https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-public-services).
@@ -41,7 +41,7 @@ Example query links:
 * [BLOCKED requests](https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D"govuk_waf"%20action%3DBLOCK)
 * [ALLOWED requests](https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D"govuk_waf"%20action%3DALLOW)
 
-If you do not have access to splunk, you can request access by raising a
+If you do not have access to Splunk, you can request access by raising a
 support ticket with IT and asking them to enable Splunk for your Google account
 and saying you work on GOV.UK.
 
@@ -50,7 +50,7 @@ and saying you work on GOV.UK.
 
 If for some reason Splunk is down, the logs will be requeued and retried for
 several minutes, before falling back to storage in an S3 bucket. The S3 bucket has a
-very short expiry of 3 days since it's primary use is to troubleshoot issues in
+very short expiry of 3 days since its primary use is to troubleshoot issues in
 scenerios where Splunk delivery is failing.
 
 In addition to the previous 3 days of backup logs, the s3 bucket will also dump
