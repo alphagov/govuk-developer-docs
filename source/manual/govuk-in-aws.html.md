@@ -45,6 +45,10 @@ Please see [the documentation](howto-ssh-to-machines-in-aws.html) about accessin
 
 #### Service resolution
 
+> Please note
+> During the migration to AWS, the presence and value of the app_domain, app_domain_internal and Plek service environment variables are dependent on the migration state of an application as well as its dependencies and can be non-intuitive.
+> If in doubt, please talk to RE:GOV.UK (e.g. in Slack #re-govuk) to make sure your configuration change is consistent with your intention.
+
 Traditionally resolving a service name to an IP would be handled by hardcoding names and IPs in `/etc/hosts`.
 
 To make use of the dynamic environment in AWS, we are using [Amazon Route 53](https://aws.amazon.com/route53/) to resolve service names to their appropriate ELB. Each node group (a set of instances within an autoscaling group) will resolve a main service name, along with any application service names that belong to that group. For example, the `calculators-frontend` node group, will resolve `calculators-frontend` as the service name:
