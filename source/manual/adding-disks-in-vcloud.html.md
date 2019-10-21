@@ -4,7 +4,7 @@ title: Add a disk to a vCloud machine (Carrenza only)
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-18
+last_reviewed_on: 2019-10-21
 review_in: 6 months
 ---
 
