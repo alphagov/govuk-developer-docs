@@ -4,7 +4,7 @@ title: Get started on GOV.UK
 description: Get started with the development VM (deprecated)
 layout: manual_layout
 section: Development VM
-last_reviewed_on: 2019-07-09
+last_reviewed_on: 2019-10-21
 review_in: 3 months
 ---
 
