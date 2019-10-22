@@ -4,7 +4,7 @@ title: Get access to Jenkins
 section: Accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2018-10-18
+last_reviewed_on: 2019-10-22
 review_in: 12 months
 ---
 
