@@ -71,7 +71,7 @@ token][github-token] (with the `read:org` scope).
 Then, run the script like the following example:
 
 ```
-GITHUB_USERNAME=<your GitHub username> GITHUB_TOKEN=<your GitHub personal access token> ruby tools/deploy.rb plan integration blue app-backend
+GITHUB_USERNAME=<your GitHub username> GITHUB_TOKEN=<your GitHub personal access token> ruby tools/deploy.rb blue app-backend integration plan  
 ```
 
 If your AWS session has expired, you'll be asked for your MFA code. Once the script has run, you can visit the [Jenkins job][deploy-integration] to see it running or queued.
