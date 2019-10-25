@@ -1,0 +1,52 @@
+---
+title: Knowledge Graph
+parent: "/manual.html"
+layout: manual_layout
+type: learn
+section: Knowledge Graph
+owner_slack: "#govuk-developers"
+last_reviewed_on: 2019-10-25
+review_in: 6 months
+---
+
+## Overview
+
+GOV.UK is currently experimenting with a graph database of GOV.UK content and the different ways this content is linked. This can be used to create associations between content, find unknown associations that already exist and run queries of our content in a performant way. Content items are represented as _nodes_, with relationships between these nodes represented as _edges_ and facts about content items represented as _properties_ of a node. Taken together, this is a _graph_, or _network_, of GOV.UK content.
+
+In the GOV.UK graph, we include a number of different types of data which together form what is called the _knowledge graph_. These different data types include the _structural network_, _functional network_, _semantic network_, _taxonomy_ and _ontology_ of content data, which are explained in more detail below.
+
+- The _structural network_ represents how pages on GOV.UK link to each other, which is comprised further of the embedded links (from the main body) and the sidebar links (from related links)
+- The _functional network_ represents user behaviour between pages on GOV.UK (i.e. how users navigate content on the site)
+- The _semantic network_ is a representation of how similar content is, based on cosine similarity which is encoded as a 512-dimensional array and which can then be used to quickly compare different content
+- The _taxonomy_ is the GOV.UK topic taxonomy, which is a tree representing the aboutness of content, with similar or related content being grouped together. For example, VAT is a topic within Business Tax, which is itself a topic within Money (the top-level taxon)
+- The _ontology_ is a representation of how different people, roles and organisations within government link to each other (i.e. a minister is appointed to a ministerial department, which executes policies of the government)
+
+The _knowledge graph_ is a structured representation of GOV.UK content and related information which can be used for a number of different purposes. For example, you might use the knowledge graph to run a query to find all of the content produced during the time that a minister was in post at a department, or perhaps to understand how users are navigating a particular piece of content vs how that content is structurally linked together.
+
+## Knowledge graph usage
+
+The knowledge graph is currently in discovery whilst we gain better understanding of the types of problems it can solve and the value it can bring to GOV.UK.
+
+One of the ways we're currently using the knowledge graph is to help a number of teams quickly get the data they need relating to particular queries of GOV.UK content.
+
+In addition, we're continuing to iterate on the knowledge graph and apply it to new problems.
+
+## Current infrastructure
+
+The knowledge graph is currently running solely within integration environment. It is available weekdays 9AM-6PM and uses the latest content backups when it spins up to ensure that it has current data for that day, which are ingested after all the pre-requisite data has either been downloaded or computed. As part of this, the knowledge graph has some limited access to our databases, which it uses to compute the peoples, roles and organisations (the ontology as described previously) and is ingested into the graph.
+
+[Neo4j](http://www.neo4j.com) is the graph database technology used to run the knowledge graph, which is a piece of software that data scientists are familiar with and provides many built-in algorithms that can be used for analysis of data. We are using the community edition, which can be accessed through a web browser or via the [Neo4j Desktop application](https://neo4j.com/developer/neo4j-desktop/), and provides a central source of truth of the graph.
+
+### RFCs and lifetime of the knowledge graph
+
+At present, we are purely evaluating the benefits of the knowledge graph and have no plans to productionise. If and when the knowledge graph were to be productionised, there is likely to be a large difference between the current setup for testing and what might actually be put in place for a production environment. This, in combination with the current unknown long-term value the graph might provide, is the reason why no RFCs have yet been raised in relation to the knowledge graph.
+
+Once the long-term value of the knowledge graph has been evaluated, a decision will be made as to whether to  productionise _a_ knowledge graph (whilst not presuming _this_ graph to be the solution). At this point, regardless of the decision, the current integration-only knowledge graph will be retired.
+
+## Using the knowledge graph
+
+To start using the knowledge graph, get in touch with the Data Labs team (#govuk-data-labs) and we'll provide you with the credentials to access the graph and some tips on how to get started querying the content.
+
+## Questions
+
+If you have any questions about the knowledge graph, get in touch with the Data Labs team (#govuk-data-labs) and we'll be happy to help.
