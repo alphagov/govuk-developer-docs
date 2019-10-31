@@ -15,19 +15,19 @@ user from Puppet itself. If the user is just removed from Puppet their files
 will remain on our servers forever more.
 
 1. First find the user manifest in: [modules/users/manifests][manifest-path].
-2. Add an entry to the govuk_user class of `ensure => absent`. Here is an
+1. Add an entry to the govuk_user class of `ensure => absent`. Here is an
    [example][absent-example].
-3. Once this has been raised as a PR and merged, deploy Puppet to all
+1. Once this has been raised as a PR and merged, deploy Puppet to all
    environments.
-4. Create another PR for Puppet that:
+1. Create a PR in [GOV.UK secrets][govuk-secrets] that:
+  - Removes the user from [production hieradata][production-hieradata]. Read [what to do when someone leaves][what-to-do-when-someone-leaves]
+  - Removes the user from [AWS production hieradata][aws-production-hieradata]. Read [what to do when someone leaves][what-to-do-when-someone-leaves]
+1. Create another PR for Puppet that:
   - Removes the user manifest file
   - Removes the user from [Integration users][integration-users]
   - Removes the user from [AWS training environment users][training-environment]
   - Removes the user from [CI users][ci-users]
-5. Create a PR in [GOV.UK secrets][govuk-secrets] that:
-  - Removes the user from [production hieradata][production-hieradata]. Read [what to do when someone leaves][what-to-do-when-someone-leaves]
-  - Removes the user from [AWS production hieradata][aws-production-hieradata]. Read [what to do when someone leaves][what-to-do-when-someone-leaves]
-6. Once these have been merged, deploy Puppet again to all environments.
+1. Once these have been merged, deploy Puppet again to all environments.
 
 [what-to-do-when-someone-leaves]: https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-leaves
 [manifest-path]: https://github.com/alphagov/govuk-puppet/tree/master/modules/users/manifests
