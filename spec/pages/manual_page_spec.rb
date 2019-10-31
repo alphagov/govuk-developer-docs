@@ -34,16 +34,5 @@ Dir.glob("source/manual/**/*.md").each do |filename|
     it "has the correct suffix" do
       expect(filename).to match(/\.html\.md$/)
     end
-
-    unless filename.in?(%w[
-      source/manual/readmes.html.md
-      source/manual/kibana.html.md
-      source/manual/howto-merge-a-pull-request-from-an-external-contributor.html.md
-    ])
-      it "doesn't use H1 tags (the page title is already an H1)" do
-        raw_without_code_blocks = raw.remove(/```[a-z]*\n[\s\S]*?\n```/) # want to allow `#` (comments) in code blocks
-        expect(raw_without_code_blocks).not_to match(/\n#\s/), "This page contains an unnecessary H1."
-      end
-    end
   end
 end
