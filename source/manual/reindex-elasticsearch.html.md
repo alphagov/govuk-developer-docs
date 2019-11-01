@@ -4,7 +4,7 @@ title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-01
+last_reviewed_on: 2019-11-01
 review_in: 6 months
 related_applications: [search-api]
 ---
