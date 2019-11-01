@@ -4,7 +4,7 @@ title: Change a slug and create redirect in Whitehall
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-29
+last_reviewed_on: 2019-11-01
 review_in: 6 months
 ---
 
