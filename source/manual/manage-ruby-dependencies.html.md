@@ -5,7 +5,7 @@ description: How we manage our Ruby dependencies using Dependabot, who can merge
 section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-17
+last_reviewed_on: 2019-11-04
 review_in: 6 months
 ---
 
@@ -16,7 +16,7 @@ To help with this, we use a service called [Dependabot][] to perform automated d
 ## Add Dependabot to a repo
 
 1. Give Dependabot [access to the repo][access] (only GitHub org owners can do this)
-2. Go to [Dependabot admin][admin] and click "Add project"
+1. Go to [Dependabot admin][admin] and click "Add project"
 
 ## Ask Dependabot to bump dependencies
 
