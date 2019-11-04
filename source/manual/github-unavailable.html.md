@@ -4,7 +4,7 @@ title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-27
+last_reviewed_on: 2019-11-04
 review_in: 6 months
 ---
 
