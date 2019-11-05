@@ -30,10 +30,10 @@ Changes you may have to make to your project include:
 + gem 'rubocop-govuk'
 ```
 
-- Add the following lines to your project's `.rubocop` config file (you may need to create this):
+- Add the following lines to your project's `.rubocop.yml` config file (you may need to create this):
 
 ```yaml
-# .rubocop
+# .rubocop.yml
 inherit_gem:
   rubocop-govuk:
     - config/default.yml
@@ -55,7 +55,7 @@ previously in `govuk-lint` have moved to `scss-lint-govuk` and can be imported w
 
 Changes you may have to make to your project include:
 
-- Replace the `govuk-lint` gem with the `scss-lint-govuk` gem in your Gemfile:
+- Replace the `govuk-lint` gem with the `scss_lint-govuk` gem in your Gemfile:
 
 ```diff
 # Gemfile
@@ -63,7 +63,7 @@ Changes you may have to make to your project include:
 + gem 'scss_lint-govuk'
 ```
 
-- Add the following lines to your project's `.rubocop` config file (you may need to create this):
+- Add the following lines to your project's `.rubocop.yml` config file (you may need to create this):
 
 ```yaml
 # .scss-lint.yml

@@ -54,8 +54,9 @@ end
 
 group :development, :test do
   gem "byebug", "~> 10"
-  gem "govuk-lint", "~> 3"
   gem "rspec-rails", "~> 3"
+  gem "rubocop-govuk"
+  gem "scss-lint-govuk"
 end
 ```
 
@@ -132,10 +133,10 @@ end
 Now is a good time to run `bin/setup`. Lastly, create `lib/tasks/lint.rake` with this.
 
 ```
-desc "Run govuk-lint on all files"
+desc "Lint files"
 task "lint" do
-  sh "govuk-lint-ruby --format clang"
-  sh "govuk-lint-sass app/assets/stylesheets"
+  sh "rubocop --format clang"
+  sh "scss-lint app/assets/stylesheets"
 end
 ```
 

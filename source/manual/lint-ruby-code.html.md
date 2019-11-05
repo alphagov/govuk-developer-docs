@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Lint your Ruby code with govuk-lint
+title: Lint your Ruby code
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"
@@ -8,30 +8,16 @@ last_reviewed_on: 2019-07-02
 review_in: 6 months
 ---
 
-The [govuk-lint](https://github.com/alphagov/govuk-lint) gem uses Rubocop to
-enforce consistency with the GOV.UK style guide.
+To lint Ruby code we recommend using [Rubocop](https://github.com/bbatsov/rubocop).
+It is an open-source gem that performs static analysis of Ruby code according to
+rules that can be granularly configured. Each validation, or rule, is called a "cop".
+Some of those cops come with the ability to auto-correct issues.
 
-[Rubocop](https://github.com/bbatsov/rubocop) is an open-source gem that
-performs static analysis of Ruby code according to rules that can be granularly
-configured. Each validation, or rule, is called a "cop". Some of those cops
-come with the ability to auto-correct issues.
-
-## How to use govuk-lint
-
-- Add `govuk-lint` to your Gemfile
-- Run `govuk-lint-ruby` in your project root folder
-
-## Existing projects
-
-If you have an existing Ruby project that has a number of violations of the
-GOV.UK style guide, a way of addressing those issues is:
-
-1. Run `govuk-lint-ruby --auto-correct` in your project root folder, check that
-   you are happy with those changes and commit.
-2. For the remainder of the violations, manually fix the issues before
-   committing the code containing those fixes.
+The [rubocop-govuk](https://github.com/alphagov/rubocop-govuk) gem is a set of Rubocop
+style rules to enforce consistency with the GOV.UK style guide. See the readme for
+details on installation and usage.
 
 ## Jenkins builds
 
-The default Jenkins build script will detect if you are using `govuk-lint` and
+The default Jenkins build script will detect if you are using `rubocop` and
 will run it automatically.
