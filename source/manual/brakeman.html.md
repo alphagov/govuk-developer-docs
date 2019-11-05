@@ -10,11 +10,11 @@ review_in: 12 months
 
 [Brakeman][brakeman] is a static analysis tool which checks Rails applications
 for security vulnerabilities. It is effectively a type of linter, similar to
-[govuk-lint][]. It is [configured to run automatically][automatic-brakeman] as
+[rubocop][]. It is [configured to run automatically][automatic-brakeman] as
 part of the CI build process of any Rails application.
 
 [brakeman]: https://github.com/presidentbeef/brakeman
-[govuk-lint]: https://github.com/alphagov/govuk-lint
+[rubocop]: https://github.com/rubocop-hq/rubocop 
 [automatic-brakeman]: https://github.com/alphagov/govuk-jenkinslib/pull/19
 
 ## Dealing with false positives

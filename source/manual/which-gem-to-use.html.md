@@ -19,10 +19,10 @@ tests into RSpec tests, but never mix RSpec and MiniTest in projects.
 
 ## Linting Ruby code
 
-- Projects must use [govuk-lint](https://github.com/alphagov/govuk-lint).
+- Projects must use [RuboCop](https://github.com/rubocop-hq/rubocop) with
+[rubocop-govuk](https://github.com/alphagov/rubocop-govuk) style rules.
 
-See [Lint your Ruby code with govuk-lint](/manual/lint-ruby-code.html) for more
-instructions.
+See [Lint your Ruby code](/manual/lint-ruby-code.html) for more instructions.
 
 ## Background processing
 
