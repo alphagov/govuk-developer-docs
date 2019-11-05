@@ -11,6 +11,8 @@ review_in: 3 months
 
 GOV.UK has several environments with different purposes.
 
+For a quick view of what's where, you can use the release app.
+
 ## Continuous integration (CI)
 
 Runs tests for applications. Hosted by Carrenza.
