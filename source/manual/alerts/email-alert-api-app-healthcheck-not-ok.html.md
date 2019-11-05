@@ -125,27 +125,4 @@ decreased. If it's decreasing, then it means that emails are going out and
 there's probably a lot being processed. You can also check the
 [Email Alert API Metrics dashboard][dashboard].
 
-## Technical failures (technical_failure)
-
-This means that we’ve received a technical failure status code back from Notify
-or a request to send an email via Notify failed within the last hour. This
-means that there may be a problem with our system or that Notify is unable to
-send emails.
-
-In non-production environments, this failure may also mean that we’re
-attempting to send emails to people who are not members of the Notify team for
-the relevant environment.
-
-In this case, ensure the contents of the
-`govuk::apps::email_alert_api::email_address_override_whitelist` key in
-[hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml)
-and [hieradata_aws](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml)
-matches the members of the staging/integration Notify teams.
-
-You can login to the Notify account by going to the
-[GOV.UK Notify Admin Interface](https://www.notifications.service.gov.uk).
-The login credentials are in the [2nd line password store][password-store]
-under `govuk-notify/2nd-line-support`.
-
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
-[password-store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/govuk-notify
