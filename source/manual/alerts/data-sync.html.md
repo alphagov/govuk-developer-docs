@@ -4,7 +4,7 @@ title: Data sync
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-02
+last_reviewed_on: 2019-11-05
 review_in: 6 months
 ---
 > **Note on AWS**
@@ -33,7 +33,6 @@ The Jenkins jobs included in the sync are:
 * [Copy Attachments to Staging](https://deploy.publishing.service.gov.uk/job/Copy_Attachments_to_Staging/)
 * [Copy Data to Integration](https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Integration/)
 * [Copy Attachments to Integration](https://deploy.publishing.service.gov.uk/job/Copy_Attachments_to_Integration/)
-* [Copy Licensify Data to Staging](https://deploy.publishing.service.gov.uk/job/Copy_Licensify_Data_to_Staging/)
 * [Copy and Sync sanitised whitehall database](https://deploy.publishing.service.gov.uk/job/copy_sanitised_whitehall_database/) (production to integration only)
 
 See the [source code](https://github.com/alphagov/env-sync-and-backup/tree/master/jobs) of the jobs for more information about how they work.
