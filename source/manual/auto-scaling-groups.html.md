@@ -4,7 +4,7 @@ title: Auto Scaling Groups
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-16
+last_reviewed_on: 2019-11-06
 review_in: 6 months
 ---
 
@@ -49,17 +49,39 @@ the load.
 
    ![Editing auto-scaling groups](images/auto-scaling-groups-edit.png)
 
-1. Click "Save". This should trigger the creation of new machines and
-   automatically run the appropriate [`Deploy_Node_Apps`][deploy-node-apps]
-   jobs.
+1. Click "Save".
 
-1. To check the machines are recognised, you can [use
-   `govuk_node_list -c <class>` on the jumpbox][jumpbox] and check the IP
-   addresses printed match those in the [EC2 machine listing][ec2-machines]
-   (you can filter the listing by machine class and sort by the date created).
+1. If you have:
 
-1. If any of the machines aren't recognised by `govuk_node_list` you can
-   [destroy the machine][reprovision] and wait for a new one to spawn.
+   1. increased the number of instances (a.k.a scale out):
+
+        This should trigger the creation of new machines and
+        automatically run the appropriate [`Deploy_Node_Apps`][deploy-node-apps]
+        jobs.
+
+        To check the machines are recognised, you can [use
+        `govuk_node_list -c <class>` on the jumpbox][jumpbox] and check the IP
+        addresses printed match those in the [EC2 machine listing][ec2-machines]
+        (you can filter the listing by machine class and sort by the date created).
+
+        If any of the machines aren't recognised by `govuk_node_list` you can
+        [destroy the machine][reprovision] and wait for a new one to spawn.
+
+   2. decreased the number of instances (a.k.a scale in):
+
+        The number of instances to be terminated will be equally distributed  
+        among the 3 availability zones.
+
+        Before any instance is terminated, any active connection through the
+        load balancer(s) associated with the instance will be drained so that
+        the instance can be terminated without negative impact on user traffic.
+        For e.g. there should be no HTTP 5xx errors when an instance is terminated
+        via autoscaling scale in.
+
+        You may want to speed up the removal of terminated instances in Icinga
+        by following the documentation
+        [here](https://docs.publishing.service.gov.uk/manual/remove-machines.html)
+
 
 > **Note:** If you anticipate this change being permanent, you [should make
 > sure to raise a PR against govuk-aws-data][pr] once it's all working to
