@@ -4,7 +4,7 @@ title: Access apps on the shared Heroku account
 section: Accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-02
+last_reviewed_on: 2019-11-06
 review_in: 6 months
 ---
 
