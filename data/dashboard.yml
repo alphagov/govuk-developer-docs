@@ -47,10 +47,10 @@
 
     - name: Ensuring quality
       repos:
-        - govuk_security_audit
         - govuk-rfcs
         - govuk-lint
         - publishing-e2e-tests
+        - rubocop-govuk
         - styleguides
 
 - name: Infrastructure
@@ -61,7 +61,7 @@
         - govuk-cdn-config
         - router
       sites:
-        - name: alphagov/router-data
+        - name: router-data
           url: https://github.com/alphagov/router-data
           description: Send routes directly to the router-api (deprecated)
       sites:
@@ -78,7 +78,6 @@
       repos:
         - email-alert-monitoring
         - govuk-tagging-monitor
-        - kibana-gds
         - sidekiq-monitoring
         - govuk-saas-config
         - govuk_app_config
@@ -87,16 +86,16 @@
         - name: Sentry
           url: https://sentry.io/govuk
           description: Our error tracking service
-        - name: alphagov/govuk-user-reviewer
+        - name: govuk-user-reviewer
           url: https://www.github.com/alphagov/govuk-user-reviewer
           description: Monitor user lists to make sure leavers are removed from all systems
 
     - name: Deployment
       sites:
-        - name: alphagov/alphagov-deployment
+        - name: alphagov-deployment
           url: https://github.com/alphagov/alphagov-deployment
           description: (Deprecated) Capistrano scripts for deploying GOV.UK apps
-        - name: alphagov/govuk-secrets
+        - name: govuk-secrets
           url: https://github.com/alphagov/govuk-secrets
           description: Encrypted secrets for GOV.UK infrastucture
 
@@ -109,11 +108,11 @@
     - name: Transition apps
     - name: Supporting transition
       repos:
-        - alphagov/transition-config
-        - alphagov/optic14n
-        - alphagov/assets-directgov
-        - alphagov/assets-businesslink
-        - alphagov/side-by-side-browser
+        - transition-config
+        - optic14n
+        - assets-directgov
+        - assets-businesslink
+        - side-by-side-browser
 
 - name: Team tools
   sections:
