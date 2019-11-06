@@ -315,7 +315,7 @@ $mac docker run -it -v content-publisher-postgres:/var/lib/postgresql/data --net
 $mac docker run -it -v $PWD:/app -v content-publisher-bundle:/usr/local/bundle --privileged --network content-publisher-network -e TEST_DATABASE_URL=postgresql://postgres@postgres/content-publisher-test -e DATABASE_URL=postgresql://postgres@postgres/content-publisher content-publisher-demo bash
 ```
 
-This is a lot to run in one command! Luckily, other people have had this exact problem, and came up with [docker-compose]. With 'compose', we can convert our long commands into some YAML configuration.
+This is a lot to run in one command! Luckily, other people have had this exact problem, and came up with [docker-compose]. With 'compose', we can convert our long commands into a YAML configuration file called `docker-compose.yml`.
 
 ```docker
 version: '3'
@@ -330,7 +330,7 @@ services:
     volumes:
       - postgres:/var/lib/postgresql/data
 
-  content-publisher:
+  content-publisher-demo:
     privileged: true
     build:
       context: .
