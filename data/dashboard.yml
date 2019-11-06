@@ -47,10 +47,10 @@
 
     - name: Ensuring quality
       repos:
-        - govuk_security_audit
         - govuk-rfcs
         - govuk-lint
         - publishing-e2e-tests
+        - rubocop-govuk
         - styleguides
 
 - name: Infrastructure
@@ -78,7 +78,6 @@
       repos:
         - email-alert-monitoring
         - govuk-tagging-monitor
-        - kibana-gds
         - sidekiq-monitoring
         - govuk-saas-config
         - govuk_app_config
