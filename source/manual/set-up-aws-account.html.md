@@ -13,7 +13,7 @@ old_paths:
 To work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data),
 you will require an account in AWS.
 
-If you already have an AWS user associated with a different team's account, you can continue using it to log in to the AWS console, and then [switch roles](aws-console-access.html) where necessary.
+If you already have an AWS user associated with a different team's account, you can continue using it to log in to the AWS console, and then switch roles where necessary using the [`gds-cli`][gds-cli].
 
 ## 1. Request a GDS AWS account
 
@@ -54,7 +54,6 @@ Follow steps 1 - 7 in [Set up your MFA](#3-set-up-your-mfa). Then:
 2. Click on the "Manage" link next to "Assigned MFA device"
 3. Follow the steps to set up your MFA device
 
-
 ## 4. Get the appropriate access
 
 An account in AWS doesn't give you access to anything, you'll need to be given rights.
@@ -84,10 +83,9 @@ or `govuk-internal-administrators` group needs to deploy the
 
 You can now:
 
-👉 [Access the AWS console](/manual/aws-console-access.html)
+👉 [Access AWS via the web interface or on the command line][gds-cli]
 
-👉 [Use AWS on the command line](/manual/aws-cli-access.html)
-
+[gds-cli]: /manual/gds-cli.html
 [infra-terra]: https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security
 [MFA]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication
 [iam]: https://console.aws.amazon.com/iam/home?region=eu-west-1#/users
