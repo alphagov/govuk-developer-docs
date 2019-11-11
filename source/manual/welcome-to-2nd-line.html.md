@@ -1,11 +1,11 @@
 ---
-owner_slack: "@michelle.carmody"
+owner_slack: "@nila.patel"
 title: Welcome to 2nd line
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2019-07-16
+last_reviewed_on: 2019-11-11
 review_in: 3 months
 ---
 
@@ -25,7 +25,7 @@ You do not need to be at the 2nd line desks all the time. If you have meetings t
 
 ## Shift swaps, working patterns and sickness
 
-2nd line takes priority over mission work. 
+2nd line takes priority over mission work.
 
 If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
 
