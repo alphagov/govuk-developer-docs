@@ -4,7 +4,7 @@ title: Redirect an HTML attachment's URL in Whitehall
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-25
+last_reviewed_on: 2019-11-11
 review_in: 6 months
 ---
 
