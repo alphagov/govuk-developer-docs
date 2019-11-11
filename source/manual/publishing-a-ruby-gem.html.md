@@ -46,7 +46,7 @@ railscast](http://railscasts.com/episodes/245-new-gem-with-bundler?view=asciicas
 
 The default Jenkins build script will automatically detect the presence of a
 `gemspec` file and publish the gem to rubygems.org. See the
-[Jenkinsfile for govuk-lint](https://github.com/alphagov/govuk-lint/blob/master/Jenkinsfile)
+[Jenkinsfile for rubocop-govuk](https://github.com/alphagov/rubocop-govuk/blob/master/Jenkinsfile)
 for an example.
 
 ## Clearing the gemstash cache
