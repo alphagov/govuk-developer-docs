@@ -1,10 +1,10 @@
 ---
-owner_slack: "@michelle.carmody"
+owner_slack: "@nila.patel"
 title: So, you're having an incident
 parent: "/manual.html"
 layout: manual_layout
 section: Incidents
-last_reviewed_on: 2019-07-16
+last_reviewed_on: 2019-11-11
 review_in: 3 months
 ---
 
