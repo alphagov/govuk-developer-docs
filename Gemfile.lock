@@ -65,11 +65,6 @@ GEM
     fastimage (2.1.7)
     ffi (1.11.2)
     github-markdown (0.6.9)
-    govuk-lint (4.2.0)
-      rubocop (~> 0.76)
-      rubocop-rails (~> 2)
-      rubocop-rspec (~> 1.28)
-      scss_lint
     govuk_schemas (4.0.0)
       json-schema (~> 2.8.0)
     govuk_tech_docs (2.0.8)
@@ -196,8 +191,7 @@ GEM
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
-    rainbow (2.2.2)
-      rake
+    rainbow (3.0.0)
     rake (13.0.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
@@ -225,6 +219,10 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-govuk (1.0.0)
+      rubocop (~> 0.76)
+      rubocop-rails (~> 2)
+      rubocop-rspec (~> 1.28)
     rubocop-rails (2.3.2)
       rack (>= 1.1)
       rubocop (>= 0.72.0)
@@ -240,9 +238,6 @@ GEM
     sawyer (0.8.2)
       addressable (>= 2.3.5)
       faraday (> 0.8, < 2.0)
-    scss_lint (0.43.2)
-      rainbow (~> 2.0)
-      sass (~> 3.4.15)
     servolux (0.13.0)
     simplecov (0.17.1)
       docile (~> 1.1)
@@ -277,7 +272,6 @@ DEPENDENCIES
   faraday-http-cache (~> 2.0.0)
   faraday_middleware (~> 0.13.1)
   github-markdown
-  govuk-lint (~> 4.2)
   govuk_schemas (~> 4.0.0)
   govuk_tech_docs
   html-pipeline (~> 2.5.0)
@@ -288,6 +282,7 @@ DEPENDENCIES
   rake
   redcarpet (~> 3.3.2)
   rspec (~> 3.9)
+  rubocop-govuk
   simplecov
   webmock (~> 3.7)
 
