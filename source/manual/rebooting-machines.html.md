@@ -35,6 +35,16 @@ rebooted out of hours, but only if they're not the primary. So it can
 be helpful to step down the primary MongoDB machine to allow it to
 reboot out of hours.
 
+### Rebooting guidance for AWS
+
+If you are rebooting a machine in AWS (either out of hours or in hours) it's
+advised to pair with the RE interruptible/on call person.
+
+There have been a few cases when a reboot in AWS has not come back successfully
+and RE will be able to help in these cases. It also means RE can investigate
+any problems so it doesn't happen again and we have confidence in our ability
+to reboot machines in AWS.
+
 ## Unattended upgrades
 
 Machines are configured with [automatic security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package) which install security updates overnight. Sometimes these require a reboot in order to become active.
