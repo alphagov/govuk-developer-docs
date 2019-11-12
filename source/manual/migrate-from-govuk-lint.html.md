@@ -63,7 +63,7 @@ Changes you may have to make to your project include:
 + gem 'scss_lint-govuk'
 ```
 
-- Add the following lines to your project's `.rubocop.yml` config file (you may need to create this):
+- Add the following lines to your project's `.scss-lint.yml` config file (you may need to create this):
 
 ```yaml
 # .scss-lint.yml
