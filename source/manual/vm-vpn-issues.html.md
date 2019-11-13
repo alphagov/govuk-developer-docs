@@ -4,7 +4,7 @@ title: Access the VM after using the VPN
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-10
+last_reviewed_on: 2019-11-13
 review_in: 6 months
 ---
 

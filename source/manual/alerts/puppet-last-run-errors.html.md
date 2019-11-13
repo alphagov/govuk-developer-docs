@@ -4,7 +4,7 @@ title: Puppet last run errors
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-5-13
+last_reviewed_on: 2019-11-13
 review_in: 6 months
 ---
 
