@@ -76,38 +76,12 @@ changes). It is [hosted on S3][terraform].
 
 There are pre-commit hooks available to help when creating or editing markdown.
 
-Install [pre-commit][]:
-
-Homebrew:
+Install [pre-commit][] and the [vale][] linter:
 
 ```sh
+brew install ValeLint/vale/vale
 brew install pre-commit
 pre-commit install
-```
-
-Pip:
-
-```sh
-pip install pre-commit
-```
-
-Install [vale][] linter:
-
-Homebrew:
-
-```sh
-brew tap ValeLint/vale
-brew install vale
-```
-
-Install the binary:
-
-Download the [latest release](https://github.com/valelint/vale/releases).
-
-```sh
-wget https://github.com/ValeLint/vale/releases/download/0.9.0/vale_0.9.0_Linux_64-bit.tar.gz
-tar zxvf vale_0.9.0_Linux_64-bit.tar.gz
-chmod +x vale && mv vale /usr/local/bin/vale
 ```
 
 ## Licence
