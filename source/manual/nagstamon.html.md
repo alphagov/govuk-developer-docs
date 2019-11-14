@@ -44,7 +44,7 @@ To configure an SSH action:
 - Select "Command" as the Action type.
 - Put "SSH " as the Name
 - The command depends on what operating system you're using:
-    - For MacOS, enter the following command in the "String" field:
+    - For macOS, enter the following command in the "String" field:
         - `osascript -e 'tell app "Terminal" to do script "~/govuk/govuk-guix/bin/govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$"'`
         - This assumes you have the `govuk-guix` Git repository cloned in
          `~/govuk/govuk-guix`, and that you've got `govuk connect` working.
