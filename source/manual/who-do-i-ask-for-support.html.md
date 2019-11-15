@@ -4,7 +4,7 @@ title: Ask for help
 parent: "/manual.html"
 layout: manual_layout
 section: Learning GOV.UK
-last_reviewed_on: 2019-05-13
+last_reviewed_on: 2019-11-15
 review_in: 6 months
 ---
 
