@@ -88,6 +88,6 @@ pre-commit install
 
 [MIT License](LICENCE.md)
 
-[terraform]: https://github.com/alphagov/govuk-terraform-provisioning/tree/master/projects/developer_docs/resources
+[terraform]: https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/app-developer-docs
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [vale]: https://github.com/ValeLint/vale
