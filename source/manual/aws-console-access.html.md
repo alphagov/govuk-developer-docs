@@ -4,7 +4,7 @@ title: Access the AWS console
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-17
+last_reviewed_on: 2019-11-17
 review_in: 6 months
 old_paths:
   - /manual/seeing-things-in-the-aws-console.html

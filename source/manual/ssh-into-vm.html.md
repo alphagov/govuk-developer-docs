@@ -4,7 +4,7 @@ title: SSH into your VM directly
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-17
+last_reviewed_on: 2019-11-17
 review_in: 6 months
 ---
 
