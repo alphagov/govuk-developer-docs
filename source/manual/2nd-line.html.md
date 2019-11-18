@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2019-08-16
+last_reviewed_on: 2019-11-18
 review_in: 3 months
 ---
 
