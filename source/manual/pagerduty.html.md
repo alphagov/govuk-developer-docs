@@ -5,8 +5,8 @@ section: 2nd line
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-16
-review_in: 3 months
+last_reviewed_on: 2019-11-18
+review_in: 6 months
 ---
 
 Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
