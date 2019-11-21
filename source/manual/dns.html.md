@@ -51,11 +51,11 @@ selected provider.
 When the changes have been reviewed and merged, you can deploy them using [the
 "Deploy DNS" Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
 
-You will need to assume the appropriate role and copy and paste the
-credentials in to the Jenkins job.
+You will need to [assume the appropriate role](/manual/gds-cli.html)
+and copy and paste the credentials in to the Jenkins job.
 
 ```sh
-govuk aws --profile <Profile>
+gds aws govuk-production-admin -e
 ```
 
 Changes should be deployed for each provider (AWS & Google) separately, first
