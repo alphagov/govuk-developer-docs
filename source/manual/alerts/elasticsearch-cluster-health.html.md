@@ -39,11 +39,7 @@ information to help you diagnose any problems.
 
 #### View a live dashboard
 
-The [AWS Console](https://eu-west-1.console.aws.amazon.com/es/home?region=eu-west-1#)
-provides a dashboard with graphical UI showing the state of the cluster and
-individual instances.  After logging into the console, you must [assume a
-role](/manual/aws-console-access.html#1-click-quotswitch-rolequot-in-the-top-right-corner)
-for the relevant environment to see the cluster (referred to as a 'domain' by AWS).
+Follow the [instructions to login to the AWS Console UI](/manual/gds-cli.html).
 
 There are tabs for 'Cluster health' and 'Instance health'.  The graphs in the
 console link to AWS Cloudwatch, where historic metrics can be viewed over custom

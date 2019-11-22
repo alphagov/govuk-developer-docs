@@ -22,7 +22,8 @@ script in the [govuk-puppet repository](https://github.com/alphagov/govuk-puppet
 ## Pre-requisites to importing data
 
 👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
-👉 Then, [set up your CLI access for AWS](/manual/aws-cli-access.html)
+
+👉 Then, [get credentials for CLI access to AWS](/manual/gds-cli.html)
 
 ## Replication
 

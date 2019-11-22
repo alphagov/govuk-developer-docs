@@ -171,7 +171,7 @@ If installing the Python dependencies fails, try and `cd` into each failing repo
 
 👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
 
-👉 Then, [set up your CLI access for AWS](/manual/aws-cli-access.html)
+👉 Then, [get credentials for CLI access to AWS](/manual/gds-cli.html)
 
 ## 7. Import production data
 
