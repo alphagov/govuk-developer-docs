@@ -24,4 +24,4 @@ There is a Jenkins job that can be used to run any rake task:
 
 Jenkins jobs are also linkable. For example:
 
-<https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE=backend-1.backend&RAKE_TASK=routes>
+<https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE_CLASS=backend-1.backend&RAKE_TASK=routes>
