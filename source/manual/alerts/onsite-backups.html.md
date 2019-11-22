@@ -4,7 +4,7 @@ title: Onsite backups failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-04-17
+last_reviewed_on: 2019-11-21
 review_in: 6 months
 ---
 
@@ -22,5 +22,7 @@ sudo su - govuk-backup
 cd /etc/backup/
 ./001_directory_backup_postgresql_backups_postgresql_primary_1 # Or whichever script is relevant
 ```
+
+There will be no output whilst the script is running. You should see a backup being created in the backup location, e.g. if the graphite backup is being re-run, check: `/data/backups/graphite-1.management.publishing.service.gov.uk/opt/graphite/storage/backups`
 
 If after running the script you find that you get some "Permission denied" errors on the files that the script is trying to copy, this probably means that the backup on the machine that the script is trying to copy from hasn't finished yet. Only after that has finished will it change permissions to the `govuk-backup` user.
