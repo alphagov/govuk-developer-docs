@@ -122,7 +122,7 @@ Unlike gems, our install of Node won't need to change in the foreseeable future.
 
 ### Create ruby + node image
 
-We are going to create our own Docker image based off of the ruby one, and add in other dependencies such as node.
+We are going to create our own Docker image based off of the ruby one, and add in other dependencies such as `nodejs`, which includes a JavaScript runtime, and `yarn`, which is the JS package manager used by Content Publisher.
 
 To create our own image, we need a Dockerfile. A Dockerfile normally starts with a `FROM [image]` which bases your new image off an existing image. We can then execute other commands by prefixing them with `RUN`.
 
@@ -138,8 +138,9 @@ Create a Dockerfile in the content-publisher project:
 FROM ruby:2.6.3
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
-
-RUN apt-get install nodejs
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq && apt-get install -y yarn nodejs
 ```
 
 *   Build our new image:
@@ -163,7 +164,7 @@ This creates an image based on the Dockerfile we just added. `-t` tags, or names
 ```shell
 $mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle content-publisher-demo bash
 $mac cd /app
-$mac npm install
+$mac yarn
 ```
 
 If we try and run the tests again (`bundle exec rake`), they will still be failing because we have another dependency for Chrome. Like with Node, we can extend our image to fix that.
@@ -172,9 +173,7 @@ If we try and run the tests again (`bundle exec rake`), they will still be faili
 
 ```docker
 RUN apt-get install -y libxss1 libappindicator1 libindicator7 && apt-get clean
-
 RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
 RUN dpkg -i google-chrome-stable_current_amd64.deb; apt-get -fy install
 ```
 
