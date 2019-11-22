@@ -31,7 +31,7 @@ the load.
 1. Scaling up/down machines in AWS will trigger [Icinga alerts](icinga) so let
    developers in `#govuk-2ndline` know you are about to do this.
 
-1. [Access the AWS Console][aws-console] and [go to the EC2 service][ec2-home].
+1. [Access the AWS Console](/manual/gds-cli.html) and [go to the EC2 service][ec2-home].
 
 1. Select "Auto Scaling Groups" from the bottom of the menu on the left hand
    side and find the right machine class in the list (you can filter on the
@@ -89,7 +89,6 @@ the load.
 > deployed.
 
 [icinga]: /manual/icinga.html
-[aws-console]: /manual/aws-console-access.html
 [ec2-home]: https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1
 [ec2-machines]: https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#Instances:sort=tag:Name
 [jumpbox]: /manual/howto-ssh-to-machines-in-aws.html#jumpbox
