@@ -1,14 +1,17 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Renew a TLS certificate for GOV.UK
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-18
+last_reviewed_on: 2019-11-25
 review_in: 6 months
 ---
 
-This document covers how to renew wildcard TLS certificates for `*.publishing.service.gov.uk`, `*.staging.publishing.service.gov.uk` and `*.integration.publishing.service.gov.uk`. It is a task performed by Reliability Engineering.
+This document covers how to renew wildcard TLS certificates for
+`*.publishing.service.gov.uk`, `*.staging.publishing.service.gov.uk`
+and `*.integration.publishing.service.gov.uk`. It is a task performed
+by Reliability Engineering.
 
 Credentials for the Fastly dashboard and Zendesk support sites are in the
 [2nd line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly).
@@ -28,7 +31,7 @@ Credentials for the Fastly dashboard and Zendesk support sites are in the
 7. Next, choose DNS validation to validate it and follow the instructions to add
    the relevant DNS records.
 8. Pay for it - we don't have a stored payment method, so find the person with
-   the GOV.UK credit card.
+   the GDS credit card.
 9. Once the certificate has been renewed, paste the contents of the resulting
    .crt file into Puppet hiera data for the relevant environment in the
    [govuk-secrets](https://github.com/alphagov/govuk-secrets) repository.

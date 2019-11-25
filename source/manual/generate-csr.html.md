@@ -1,10 +1,10 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Generate a Certificate Signing Request (CSR) for GOV.UK
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-18
+last_reviewed_on: 2019-11-25
 review_in: 6 months
 ---
 
