@@ -177,30 +177,32 @@ If installing the Python dependencies fails, try and `cd` into each failing repo
 
 Application data from production can be imported to be used within your development environment. Dumps of production data are generated in the early hours each day and made available from S3.
 
-Download the data by running:
+The scripts to download and import data in the dev VM directly no longer work, due to changes in how we manage AWS accounts.  Importing data is now a manual process.
+
+Download the data using the scripts in govuk-docker:
 
 ```
-mac$ cd ~/govuk/govuk-puppet/development-vm/replication
-mac$ gem install bundler -v 1.17 # specific version as modern bundler requires ruby >= 2.3.0
-mac$ bundle install
-mac$ ./replicate-data-local.sh -n
+mac$ git clone git@github.com:alphagov/govuk-docker.git
+# or whatever database you want
+mac$ SKIP_IMPORT=1 ./govuk-docker/bin/replicate-elasticsearch.sh
 ```
+
+The replication scripts are:
+
+- `replicate-elasticsearch.sh`
+- `replicate-mongodb.sh APP-NAME`
+- `replicate-mysql.sh APP-NAME`
+- `replicate-postgresql.sh APP-NAME`
+
+All the scripts, other than `replicate-elasticsearch.sh`, take the name of the app to replicate data for.
+
+Draft data can be replicated with `replicate-mongodb.sh draft-content-store` and `replicate-mongodb.sh draft-router`.
 
 If you've [set up your AWS account correctly](/manual/set-up-aws-account.html), you should then be prompted to enter your MFA token.
 
-Once you have downloaded or obtained the data, run the following to load the data into your databases:
+Once you have downloaded the data, it will be available in your dev VM at `/var/govuk/govuk-docker/replication`.
 
-```
-dev$ cd /var/govuk/govuk-puppet/development-vm/replication
-dev$ ./replicate-data-local.sh -d backups/YYYY-MM-DD/ -s
-```
-
-> Downloading and decompressing the data may take a long time. Depending on your application you may not need all the data. Run `./replicate-data-local.sh --help` for options to skip databases.
-
-For more information or troubleshooting advice see the guide in the developer docs on [replicating application data locally for development][data-replication].
-
-[data-replication]: /manual/replicate-app-data-locally.html
-[data-replication-aws-access]: /manual/replicate-app-data-locally.html#aws-access
+Import the data by looking at the replication script and seeing what it does with govuk-docker.  Good luck.
 
 ## 8. Run your apps
 
