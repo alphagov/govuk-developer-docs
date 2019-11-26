@@ -79,8 +79,7 @@ There are pre-commit hooks available to help when creating or editing markdown.
 Install [pre-commit][] and the [vale][] linter:
 
 ```sh
-brew install ValeLint/vale/vale
-brew install pre-commit
+brew install vale pre-commit
 pre-commit install
 ```
 
@@ -90,4 +89,4 @@ pre-commit install
 
 [terraform]: https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/app-developer-docs
 [pre-commit]: https://github.com/pre-commit/pre-commit
-[vale]: https://github.com/ValeLint/vale
+[vale]: https://errata-ai.github.io/vale/
