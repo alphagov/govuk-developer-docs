@@ -21,9 +21,9 @@ every 3 months.
 
 > **Note**
 >
-> Rotating AWS IAM keys requires permissions which are available
-> with the `internal-admin` or `admin` roles. If you can't assume
-> one of these roles, you won't be able to rotate keys.
+> Rotating AWS IAM keys requires permissions which are available with the
+> `admin`, `internal-admin`, `platformhealth-poweruser` or `poweruser` roles.
+> If you can't assume one of these roles, you won't be able to rotate keys.
 
 Log in to the [IAM Management Console](https://console.aws.amazon.com/iam/home?region=eu-west-1#/users)
 for the environment you want to rotate keys for and you'll see a list of users
