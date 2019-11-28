@@ -5,7 +5,7 @@ layout: manual_layout
 type: learn
 section: Cookies
 owner_slack: "#govuk-frontenders"
-last_reviewed_on: 2018-11-26
+last_reviewed_on: 2019-11-28
 review_in: 6 months
 ---
 
