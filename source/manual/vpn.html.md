@@ -25,24 +25,6 @@ If it goes down, these things will happen:
    unreachable hosts in GOV.UK monitoring
 2. Data replication will pause
 
-## VPN between live organisation and Licensing
-
-Licensing is hosted in UKCloud.
-There's a VPN in each environment which connects it to the live (Carrenza)
-organisation. The VPN is managed by Carrenza and UKCloud.
-
-If it goes down, these things will happen:
-
-1. The machines on the disaster recovery (UKCloud) side of the connection will
-   appear as unreachable hosts in GOV.UK monitoring
-
-Applying for a licence should remain available because the connection between
-GOV.UK (the router and content store) and the Licensify organisation is made
-over the internet rather than over the VPN.
-
-[carrenza-secure]: connect-to-vcloud-director.html
-[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/how-to/connect-to-the-aviation-house-vpn
-
 ## VPN between live organisation in Carrenza and AWS during AWS migration
 
 During the staged migration of the GOV.UK from Carrenza to AWS, there is a VPN
