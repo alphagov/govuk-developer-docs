@@ -25,6 +25,21 @@ If it goes down, these things will happen:
    unreachable hosts in GOV.UK monitoring
 2. Data replication will pause
 
+## VPN between AWS and UKCloud for Licensify Civica payment status requests
+
+There's a VPN between AWS Production (only) and UKCloud Production which exists
+only as a workaround for routing certain requests from Licensify to Civica, one
+of Licensify's payment gateways.
+
+If this VPN is down:
+
+ * The [check_uk_cloud_vpn_up](https://alert.production.govuk.digital/cgi-bin/icinga/status.cgi?search_string=vpn.*licensify) alert will fire in Icinga.
+ * Users who are paying for licence applications to certain licencing authorities will still be able to complete their application but the last step of their journey will display a message saying "We have received your application, but were unable to confirm payment with the authority." ([source](https://github.com/alphagov/licensify/blob/master/frontend/app/views/licensing/payments/unknown.scala.html))
+ * The page still gives the user a reference number for their transaction and asks the user to contact the licencing authority to confirm that they have received the payment.
+ * Payments will still be processed as normal. The only difference is that Licensify is unable to tell the user whether the payment went through or not.
+ * Only those licencing authorities which use Civica as their payment processor are affected. This is a small but significant minority.
+ * Licencing authorities who do not use Civica are not affected.
+
 ## VPN between live organisation in Carrenza and AWS during AWS migration
 
 During the staged migration of the GOV.UK from Carrenza to AWS, there is a VPN
