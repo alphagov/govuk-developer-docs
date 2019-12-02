@@ -4,7 +4,7 @@ title: Renew a TLS certificate for GOV.UK
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-25
+last_reviewed_on: 2019-12-02
 review_in: 6 months
 ---
 
@@ -36,15 +36,9 @@ Credentials for the Fastly dashboard and Zendesk support sites are in the
    .crt file into Puppet hiera data for the relevant environment in the
    [govuk-secrets](https://github.com/alphagov/govuk-secrets) repository.
 10. Deploy Puppet to update the certificate in the relevant environment.
-11. *For staging and integration only:* Use Fastly's
-    [TLS Uploader](https://manage.fastly.com/sslupload/) to upload the newly
-    generated certificate and private key. You need to split the contents of the
-    .crt file into the first certificate (the actual certificate you've just
-    renewed) and everything else (the certificate chain) and upload these as
-    separate files.
-12. *For staging and integration only:* Make a note of the reference ID returned
-    by the TLS Uploader. Open a new ticket with
-    [Fastly support](https://fastly.zendesk.com/hc/en-us) quoting the reference
-    ID and the service ID for the Fastly service the certificate is for
-    (such as for "Staging GOV.UK") and asking them to make the certificate live.
-    This process may take up to a week.
+11. *For staging and integration only:*
+    Go to the Fastly interface and then to Configure -> HTTPS and network.
+    Go to TLS certificates and upload your new cert.
+12. *For staging and integration only:*
+    In TLS domains click on more details and then select your new certificate
+    under CERTIFICATE BEING USED.
