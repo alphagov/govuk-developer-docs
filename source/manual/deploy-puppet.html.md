@@ -48,23 +48,8 @@ runs a Puppet agent every 30 minutes (via cron), so it may be some time
 before the release takes effect. This has an implication on how
 quickly you can go from staging to production.
 
-If you would like to know which version of Puppet is running in a
-specific environment, there is a script in the
-[fabric-scripts](https://github.com/alphagov/fabric-scripts) repository
-to help.
-
-In order to run it, create a [GitHub access token](https://github.com/settings/tokens)
-and run the following inside the `fabric-scripts` repository:
-
-    GITHUB_ACCESS_TOKEN=<YOUR-GITHUB-TOKEN> ./bin/puppet_versions.sh
-
-The script will prompt you for an environment (integration, staging or
-production) and it will query all servers in that environment for the
-version of Puppet and the last time the Puppet agent ran.
-
 If you'd rather not wait and you're able to safely determine from the
-diff what classes of machines the change will affect, or which ones are
-still on an older version of Puppet using the script above, you can use
+diff what classes of machines the change will affect, you can use
 [Fabric](https://github.com/alphagov/fabric-scripts) to force a run of
 Puppet. For example:
 
