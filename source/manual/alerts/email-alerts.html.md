@@ -13,20 +13,18 @@ There is [a check][email-check] to verify that emails are sent for
 are run via Jenkins: [Drug and medical device alerts check][drug-alerts-check]
 and [Travel advice alerts check][travel-advice-check].
 
-## Troubleshooting Icinga alerts for unsent emails
+## Troubleshooting failed checks
 
-* Inspect the console logs for the Jenkins job to confirm the reason for the
-  failure.
+First inspect the console logs for the Jenkins job to confirm the reason for the
+  failure. The email check looks in two different mailboxes and the failure message
+should describe which mailbox is seeing an issue.
+
 * Check the mailbox that is used for the check to rule out an issue searching
   for the message: `govuk_email_check@digital.cabinet-office.gov.uk`
   This email address is subscribed to travel advice alerts and drug and medical
   device alerts. Its credentials can be found in the [2nd line password store][]
   under `google-accounts/govuk_email_check@digital.cabinet-office.gov.uk`.
-* If the email has been received by the mailbox but the subject of the email
-  doesn't match the title of the content item, this means that the title of the
-  content was updated after it was first published and after the emails went out.
-  To stop the check from constantly failing, add the subject of the email to the
-  [acknowledged email list][] and then re-run the Jenkins job.
+
 * Check whether the email was sent to the [courtesy copies google group][]. Its
   presence here doesn't mean that the email was sent to users, just that Email
   Alert API processed the content change.
