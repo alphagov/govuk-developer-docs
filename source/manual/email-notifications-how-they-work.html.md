@@ -19,9 +19,12 @@ The applications that comprise the email notifications system are:
 
 ### Email Alert API
 
-* Stores the persistent data involved in email alerts, such as processed content changes, subscribers and their subscriptions.
-* Provides an HTTP JSON API to alter stored data, such as: create alerts, set up lists and set up subscription preferences.
-* Coordinates sending of notifications with the underlying email sending service, which is currently GOV.UK Notify.
+* Stores the persistent data involved in email alerts, such as processed
+  content changes, subscribers and their subscriptions.
+* Provides an HTTP JSON API to alter stored data, such as: create alerts,
+  set up lists and set up subscription preferences.
+* Coordinates sending of notifications with the underlying email sending
+  service, which is currently GOV.UK Notify.
 
 ### Email Alert Frontend
 
@@ -32,7 +35,9 @@ The applications that comprise the email notifications system are:
 ### Email Alert Service
 
 * Listens to the Publishing API message queue.
-* Communicates with Email Alert API when an appropriate Publishing API event occurs to trigger an alert. This is usually a ‘major’ edit to some content.
+* Communicates with Email Alert API when an appropriate Publishing API
+  event occurs to trigger an alert. This is usually a ‘major’ edit to
+  some content.
 
 ### GOV.UK Notify
 
@@ -57,8 +62,8 @@ and at a later time Notify will inform the Email Alert API whether that
 was successful.
 
 Notify will also inform the Email Alert API whenever a subscriber reports
-an email as spam. Email Alert API will then unsubscribe the affected subscriber
-from all emails.
+an email as spam. Email Alert API will then unsubscribe the affected
+subscriber from all emails.
 
 Communication from Email Alert API to Notify is done via a HTTP API
 which is authenticated by an API key. Communication from Notify to Email
@@ -67,12 +72,14 @@ Email Alert API is an internal application, so to enable callbacks two
 endpoints are exposed publicly through
 https://email-alert-api-public.publishing.service.gov.uk.
 
-A courtesy copy of every email sent is available in [a Google Group][google-group].
+A courtesy copy of every email sent is available in
+[a Google Group][google-group].
 
 You can login to the Notify account by going to
 <https://www.notifications.service.gov.uk>. The login credentials are
-in the [2nd line password store][password-store] under `govuk-notify/2nd-line-support`.
-Two-factor authentication links for logging in are sent to the 2nd line email address.
+in the [2nd line password store][password-store] under
+`govuk-notify/2nd-line-support`. Two-factor authentication links for
+logging in are sent to the 2nd line email address.
 
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
 [password-store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/govuk-notify
