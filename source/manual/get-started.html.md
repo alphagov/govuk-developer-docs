@@ -35,8 +35,6 @@ The easiest way to develop on GOV.UK is to use [govuk-docker][]. Until July 2019
 
 ## 4. Get AWS access
 
-👉 First, [set up your AWS account](/manual/set-up-aws-account.html)
-
-👉 Then, [get credentials for CLI access to AWS](/manual/gds-cli.html)
+👉 [Setup your AWS account](/manual/set-up-aws-account.html)
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker
