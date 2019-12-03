@@ -70,9 +70,13 @@ check Email Alert API to see if it has created records in its database.
 
 ```
 $ govuk_app_console email-alert-api
-> ContentChange.last
-> Email.last
-> DeliveryAttempt.last
+
+# Note that we are not using `Email.last` because its primary key is `id`,
+# which is a string and alphabetically ordered rather than by create date
+
+> ContentChange.where(created_at: DateTime.now - 15.minutes...DateTime.now)
+> Email.where(created_at: DateTime.now - 15.minutes...DateTime.now)
+> DeliveryAttempt.where(created_at: DateTime.now - 15.minutes...DateTime.now)
 ```
 
 Emails won't be sent if no one is subscribed, so you'll need to do that
