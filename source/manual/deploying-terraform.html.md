@@ -30,7 +30,7 @@ You can find which class of user you are (that is, which roles your ARN has been
 
 ### 2. Install `gds-cli`
 
-See [instructions for installing `gds-cli`](/manual/gds-cli.html).
+See [instructions for installing `gds-cli`](/manual/access-aws-console.html).
 
 ### 3. Create a read-only GitHub personal access token
 

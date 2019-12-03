@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: How to use the GDS CLI
+title: Access AWS Console
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
