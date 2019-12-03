@@ -27,6 +27,16 @@ The applications that comprise the email notifications system are:
 * Coordinates sending of notifications with the underlying email sending
   service, which is currently GOV.UK Notify.
 
+Frontend applications use Email Alert API to create new mailing lists and
+as a redirect destination for signing up. Publishing apps tend not to use
+email alert API, instead relying on Email Alert Service to be triggered
+by Publishing API. The exceptions are [Travel Advice Publisher][] and
+[Specialist Publisher][], which require a greater degree of control, so
+communicate directly with the Email Alert API.
+
+To have a near real-time overview of the status of data passing through
+the Email Alert API, view the [metrics dashboard][dashboard].
+
 ### Email Alert Frontend
 
 * Provides a user interface to sign up to a mailing list.
@@ -45,24 +55,10 @@ The applications that comprise the email notifications system are:
 * Used as a means to send emails.
 * Does not know about subscribers or lists.
 
-Other than these applications, a number of frontend and publishing apps
-communicate with the service. Frontend applications use Email Alert API
-to create new mailing lists and as a redirect destination for signing
-up. Travel Advice Publisher and Specialist Publisher communicate
-directly with Email Alert API to send alerts to have a greater degree of
-control.
+Email Alert API will request Notify to send an email and at a later time
+Notify will inform the Email Alert API whether that was successful.
 
-To have a near real-time overview of the status of data passing through
-the Email Alert API, view the [metrics dashboard][dashboard].
-
-## Integration with GOV.UK Notify
-
-The email notifications system uses GOV.UK Notify as a means to send
-emails to users. Email Alert API will request Notify to send an email
-and at a later time Notify will inform the Email Alert API whether that
-was successful.
-
-Notify will also inform the Email Alert API whenever a subscriber reports
+Notify also informs the Email Alert API whenever a subscriber reports
 an email as spam. Email Alert API will then unsubscribe the affected
 subscriber from all emails.
 
@@ -85,3 +81,5 @@ logging in are sent to the 2nd line email address.
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
 [password-store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/govuk-notify
 [google-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
+[Specialist Publisher]: /apps/specialist-publisher.html
+[Travel Advice Publisher]: /apps/travel-advice-publisher.html
