@@ -25,9 +25,8 @@ should describe which mailbox is seeing an issue.
   device alerts. Its credentials can be found in the [2nd line password store][]
   under `google-accounts/govuk_email_check@digital.cabinet-office.gov.uk`.
 
-* Check whether the email was sent to the [courtesy copies google group][]. Its
-  presence here doesn't mean that the email was sent to users, just that Email
-  Alert API processed the content change.
+* [Check the courtesy copy inbox][]. Its presence here doesn't mean that the
+  email was sent to users, just that Email Alert API processed the content change.
 
 If the email has been received by the mailbox but the subject of the email
 doesn't match the title of the content item, this means that the title of the
@@ -37,8 +36,8 @@ To stop the check from constantly failing, add the subject of the email to the
 
 ## Troubleshooting unsent emails
 
-If the check is reporting correctly then emails are not being sent. Techniques
-for debugging this are described in [the general documentation for email-alert-api][unprocessed-content-changes].
+If the check is reporting correctly then emails are not being sent. Try the
+[general troubleshooting tips for unsent emails][].
 
 ## Resending travel advice emails
 
@@ -50,11 +49,11 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 
 [2nd line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline
 [acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L6-L14
-[courtesy copies google group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
+[check the courtesy copy inbox]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#check-the-courtesy-copy-inbox
 [drug-alerts-check]: https://deploy.publishing.service.gov.uk/job/email-alert-check/
 [drug and medical device alerts]: https://www.gov.uk/drug-device-alerts
 [email-check]: https://github.com/alphagov/email-alert-monitoring
+[general troubleshooting tips for unsent emails]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#general-troubleshooting-tips
 [resend-travel-advice-job]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=email_alerts:trigger%5BPUT_EDITION_ID_HERE%5D
 [travel-advice-check]: https://deploy.publishing.service.gov.uk/job/travel-advice-email-alert-check/
 [travel advice updates]: https://www.gov.uk/foreign-travel-advice
-[unprocessed-content-changes]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#unprocessed-content-changes-content_changes
