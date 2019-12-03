@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: "Email notifications: how they work"
 section: Emails
+type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-09-02
