@@ -16,7 +16,7 @@ and [Travel advice alerts check][travel-advice-check].
 ## Troubleshooting failed checks
 
 First inspect the console logs for the Jenkins job to confirm the reason for the
-  failure. The email check looks in two different mailboxes and the failure message
+failure. The email check looks in two different mailboxes and the failure message
 should describe which mailbox is seeing an issue.
 
 * Check the mailbox that is used for the check to rule out an issue searching
