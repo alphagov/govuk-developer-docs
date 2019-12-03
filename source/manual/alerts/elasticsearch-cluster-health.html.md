@@ -39,7 +39,7 @@ information to help you diagnose any problems.
 
 #### View a live dashboard
 
-Follow the [instructions to login to the AWS Console UI](/manual/gds-cli.html).
+Follow the [instructions to login to the AWS Console UI](/manual/access-aws-console.html).
 
 There are tabs for 'Cluster health' and 'Instance health'.  The graphs in the
 console link to AWS Cloudwatch, where historic metrics can be viewed over custom

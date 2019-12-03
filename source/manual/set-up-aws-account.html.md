@@ -13,7 +13,7 @@ old_paths:
 To work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data),
 you will require an account in AWS.
 
-If you already have an AWS user associated with a different team's account, you can continue using it to log in to the AWS console, and then switch roles where necessary using the [`gds-cli`][gds-cli].
+If you already have an AWS user associated with a different team's account, you can continue using it to log in to the AWS console, and then switch roles where necessary using the [`gds-cli`][access-aws-console].
 
 ## 1. Request a GDS AWS account
 
@@ -83,9 +83,9 @@ or `govuk-internal-administrators` group needs to deploy the
 You can now:
 
 👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
-👉 [Access AWS via the web interface or on the command line][gds-cli]
+👉 [Access AWS via the web interface or on the command line][access-aws-console]
 
-[gds-cli]: /manual/gds-cli.html
+[access-aws-console]: /manual/access-aws-console.html
 [infra-terra]: https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security
 [MFA]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication
 [iam]: https://console.aws.amazon.com/iam/home?region=eu-west-1#/users
