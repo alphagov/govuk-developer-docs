@@ -9,12 +9,13 @@ review_in: 6 months
 ---
 
 If there is a health check error showing for Email Alert API, you can click on
-the alert to find out more details about what’s wrong. Here are the possible
-problems you may see:
+the alert to find out more details about what’s wrong. We've listed some common
+problems and remedies later on in this document.
 
-Some of the alerts below tend to trigger when emails are sent out. Check to see
-if emails have sent out by looking at the
-[Email Alert API Metrics Grafana dashboard][dashboard].
+## You may not need to do anything
+
+Some alerts tend to trigger when emails are sent out. Check to see if emails have
+sent out by looking at the [Email Alert API Metrics Grafana dashboard][dashboard].
 
 This affects the following alerts:
 
@@ -25,7 +26,9 @@ This affects the following alerts:
 
 In this case you can wait until the emails have all been sent out.
 
-## Unprocessed content changes (content_changes)
+## Common alerts
+
+### Unprocessed content changes (content_changes)
 
 This means that there are some content changes which haven't been processed
 within the time we would expect. This may be fine and the emails will
@@ -68,7 +71,7 @@ ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).m
  $ bundle exec rake report:content_change_failed_emails[<content_change_id>]
 ```
 
-## Unprocessed digest runs (digest_runs)
+### Unprocessed digest runs (digest_runs)
 
 This means that there are some digest runs which haven't been processed within
 the time we would expect. Some useful queries:
@@ -79,21 +82,21 @@ the time we would expect. Some useful queries:
 DigestRun.where("created_at < ?", 1.hour.ago).where(completed_at: nil)
 ```
 
-## High queue size (queue_size)
+### High queue size (queue_size)
 
 This means that there are a high number of items in the queue. This may
 indicate a problem down the line which is preventing workers from being
 processed. It may also imply the threshold is too low if a large number of
 emails have being sent out due to a content change.
 
-## High queue latency (queue_latency)
+### High queue latency (queue_latency)
 
 This means the time it takes for a job to be processed is unusually high. This
 may indicate a problem down the line which is preventing workers from being
 processed. It may also imply the threshold is too low if a large number of
 emails have being sent out due to a content change.
 
-## High retry queue size (retry_size)
+### High retry queue size (retry_size)
 
 This means there are a high number of items in the retry queue. The Email Alert
 API relies on the retry queue for rate limiting, so it’s not unusual to see
@@ -102,13 +105,13 @@ problem down the line which is preventing jobs from being processed. It may
 also imply the threshold is too low if a large number of emails have been sent
 out due to a content change.
 
-## Status updates (status_update)
+### Status updates (status_update)
 
 This means that we haven’t received status updates from Notify on some emails
 and it’s been 72 hours since the emails were sent out. This could mean there is
 a problem with our system, or there could be a problem with Notify.
 
-## Subscription contents without emails (subscription_content)
+### Subscription contents without emails (subscription_content)
 
 This means that there are subscription contents being created without emails
 associated with them, this implies that emails aren't being sent out. Some
