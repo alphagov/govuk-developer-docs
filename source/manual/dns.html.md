@@ -51,7 +51,7 @@ selected provider.
 When the changes have been reviewed and merged, you can deploy them using [the
 "Deploy DNS" Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
 
-You will need to [assume the appropriate role](/manual/gds-cli.html)
+You will need to [assume the appropriate role](/manual/access-aws-console.html)
 and copy and paste the credentials in to the Jenkins job.
 
 ```sh

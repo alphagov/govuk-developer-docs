@@ -1,6 +1,6 @@
 ---
 owner_slack: "#re-govuk"
-title: GOV.UK in AWS
+title: Migration to AWS
 section: Infrastructure
 layout: manual_layout
 type: learn
