@@ -22,7 +22,6 @@ This affects the following alerts:
 * Unprocessed content changes
 * Subscription content
 * High queue alerts (all)
-* Subscription content
 
 In this case you can wait until the emails have all been sent out.
 
