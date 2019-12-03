@@ -77,12 +77,12 @@ After your PR has been merged, someone from the `govuk-administrators`
 or `govuk-internal-administrators` group needs to deploy the
 `infra-security` project.
 
-👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
 
 ## 5. Do your thing 🚀
 
 You can now:
 
+👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
 👉 [Access AWS via the web interface or on the command line][gds-cli]
 
 [gds-cli]: /manual/gds-cli.html
