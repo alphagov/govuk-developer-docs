@@ -22,17 +22,23 @@ The (private) GitHub repo is [alphagov/gds-cli](https://github.com/alphagov/gds-
 
 If you have `bash-completion` installed and configured, the gds-cli tab completions will work out of the box. They're especially useful for long commands like AWS account names.
 
-## Usage for AWS
+## Get Your Role
 
 Work out which [list of users you're part of in govuk-aws-data][govuk-aws-data-users-group].
+
+## Usage
+
+### Web Console
 
 If you're new to GOV.UK and want to look around in integration:
 
         gds aws govuk-integration-readonly -l
 
-If you're a PlatformHealthPowerUser and want to generate tokens for deploying Terraform in production, run:
+### Terraform
 
-        gds aws govuk-production-platformhealth-poweruser -e
+👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
+
+### Terminal Commands
 
 You can also chain commands, like this one to list S3 buckets in integration:
 
