@@ -31,7 +31,7 @@ the load.
 1. Scaling up/down machines in AWS will trigger [Icinga alerts](icinga) so let
    developers in `#govuk-2ndline` know you are about to do this.
 
-1. [Access the AWS Console](/manual/gds-cli.html) and [go to the EC2 service][ec2-home].
+1. [Access the AWS Console](/manual/access-aws-console.html) and [go to the EC2 service][ec2-home].
 
 1. Select "Auto Scaling Groups" from the bottom of the menu on the left hand
    side and find the right machine class in the list (you can filter on the
@@ -69,7 +69,7 @@ the load.
 
    2. decreased the number of instances (a.k.a scale in):
 
-        The number of instances to be terminated will be equally distributed  
+        The number of instances to be terminated will be equally distributed
         among the 3 availability zones.
 
         Before any instance is terminated, any active connection through the
