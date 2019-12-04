@@ -56,7 +56,17 @@ Create a pull request with these changes. Once it has been [reviewed by a member
 [integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
 [merging]: /manual/merge-pr.html
 
-## 3. Access remote environments
+## 3. Set up govukcli
+
+Clone the `govuk-aws` repository and add a symlink to make `govukcli` executable globally:
+
+```sh
+cd ~/govuk
+git clone https://github.com/alphagov/govuk-aws
+ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
+```
+
+## 4. Access remote environments
 
 Your pull request from earlier will hopefully have been merged by now. It's time to test your access to servers via SSH.
 
@@ -64,8 +74,7 @@ Your pull request from earlier will hopefully have been merged by now. It's time
 
 While the applications are available directly via the public internet, SSH access to remote environments is via a ‘jumpbox’. You’ll need to configure your machine to use this jumpbox and use `govukcli` to SSH into server.
 
-1. Copy the [example SSH config file][ssh-config] into the `~/.ssh/config` file on your host machine.
-1. Run `ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli` on your host machine to be able to use the `govukcli` tool from any directory.
+Copy the [example SSH config file][ssh-config] into the `~/.ssh/config` file on your host machine.
 
 Test that it works by running:
 
