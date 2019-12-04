@@ -1,85 +1,87 @@
 ---
 owner_slack: "#re-govuk"
-title: Deploy AWS infrastructure with Terraform
+title: Deploy Terraform
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-08
-review_in: 3 months
+last_reviewed_on: 2019-12-04
+review_in: 6 months
 ---
 
 We use [Terraform](https://terraform.io) for configuring GOV.UK infrastructure in AWS.
-This document describes:
-
- * How to set up your machine to run Terraform.
- * How to deploy infrastructure changes using Terraform.
 
 ## One-time setup
 
 ### 1. Check that you have sufficient access
 
 Which changes you can deploy depends on the level of access you have
-to our AWS environments. Specifically, the level of access your Amazon Resource Name (ARN) has been given.
+to our AWS environments.
 
-- `govuk-users` (`role_user_user_arns`) can't deploy anything.
-- `govuk-powerusers` (`role_poweruser_user_arns`) and `govuk-platformhealth-powerusers` (`role_platformhealth_poweruser_user_arns`) can deploy everything except IAM (users and policies).
-- `govuk-administrators` (`role_admin_user_arns`) and `govuk-internal-administrators` (`role_internal_admin_user_arns`) can deploy everything including IAM.
+- `govuk-users` can't deploy anything.
+- `*-powerusers` can deploy anything except IAM.
+- `*-administrators` can deploy anything.
 
-You can find which class of user you are (that is, which roles your ARN has been assigned to) in the
-[infra-security project in govuk-aws-data](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
+You can find which class of user you are [infra-security project in govuk-aws-data](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
 
-### 2. Install `gds-cli`
+## Deploying on Jenkins
 
-See [instructions for installing `gds-cli`](/manual/access-aws-console.html).
+> **This is not the recommended approach.**
+>
+> It's slightly easier to start with, but you'll quickly want to switch to deploying locally (see the next section) using the `deploy.rb` helper script, to avoid pasting secrets over and again!
 
-### 3. Create a read-only GitHub personal access token
+### 1. Generate an AWS token and key
 
-Create a [Github personal access token](https://github.com/settings/tokens) with the `read:org` scope.
+First make sure you have [`gds-cli`](/manual/access-aws-console.html) installed.
 
-  * Follow the link above and press the `Generate a new token` button near the
-    top of the page.
-  * Enter a suitable description for the token under `Note`, for example `Token
-    for Jenkins Terraform deployments`.
-  * Under `Select scopes`, tick the `read:org` box **only**.
-  * Press `Generate token` at the bottom of the form.
-  * Please take care to store and handle the token securely. It allows access
-    to Jenkins. If you accidentally share your token,
-    [revoke it immediately](https://github.com/settings/tokens) and follow the
-    [instructions for reporting a potential data security incident][security-incidents].
+👉 [Instructions for installing `gds-cli`](/manual/access-aws-console.html)
 
-[security-incidents]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents
+Run the following to generate a token and key.
 
-## Plan and deploy a Terraform project via Jenkins using `deploy.rb`
+```
+gds aws <your-role e.g. govuk-integration-poweruser> -e
+```
 
-The Ruby script [`tools/deploy.rb`][deploy-rb] in the `govuk-aws` repository takes care of requesting temporary AWS credentials with an assumed role and queuing the deployment Jenkins job.
-
-To follow these instructions you will need:
-
-* The name of the Terraform project which you want to deploy, for example `app-backend`.
-* The stackname of the Terraform project which you want to deploy. Usually, this is `blue` for `app-` projects and `govuk` for `infra-` projects.
-* Your GitHub username.
-* Your GitHub personal access token (see setup instruction above).
-* The name of your AWS role (`govuk-powerusers` or `govuk-adminstrators`).
-* A local copy of the `govuk-aws` Git repo, which contains the `deploy.rb` script. The example command assumes that your local repo is in the directory `~/govuk/govuk-aws`.
+### 2. Run the Jenkins job
 
 **Always `plan` first, check that the output is what you expect, then `apply`.**
 
-1. To start the Terraform plan job, run `deploy.rb` like this.
+Manually run the Jenkins job, pasting the token and key from the previous step.
 
-    ```
-    GITHUB_USERNAME=<your GitHub username> \
-      GITHUB_TOKEN=<your GitHub personal access token> \
-      gds aws govuk-integration-admin -- \
-      ~/govuk/govuk-aws/tools/deploy.rb blue app-backend integration plan
-    ```
+👉 [Deploy terraform directly from Jenkins][ci-deploy-jenkins]
 
-1. If your AWS session has expired, you'll be asked for your MFA (two-factor authentication) code.
+## Deploying with `deploy.rb`
 
-1. Once the script has run, visit the [`ci-deploy` Jenkins job][ci-deploy-jenkins] to see the job running or queued.
+### 1. Create a read-only GitHub personal access token
 
-1. If the results of the plan look good, repeat the command with `apply` instead of `plan`.
+Create a [GitHub personal access token](https://github.com/settings/tokens) with the `read:org` scope.
 
-1. Visit the Jenkins again to check that the `apply` succeeded.
+> Take care to store and handle the token securely. If you accidentally share your token,
+  [revoke it immediately](https://github.com/settings/tokens) and follow the
+  [instructions for reporting a potential data security incident][security-incidents].
+
+### 2. Remotely trigger a terraform deploy via Jenkins
+
+The Ruby script [`tools/deploy.rb`][deploy-rb] in the `govuk-aws` repository takes care of requesting temporary AWS credentials with an assumed role and queuing the deployment Jenkins job.
+
+**Always `plan` first, check that the output is what you expect, then `apply`.**
+
+```
+GITHUB_USERNAME=<your GitHub username> \
+  GITHUB_TOKEN=<your GitHub personal access token> \
+  gds aws <your role e.g. govuk-integration-admin> -- \
+  ~/govuk/govuk-aws/tools/deploy.rb blue app-backend integration plan
+```
+
+You will need to change the arguments to the `deploy.rb` script.
+
+* `app-backend` should be the name of the project you want to deploy
+* `blue` is for `app-` projects, `govuk` is for `infra-` projects
+* `integration` is the starting point, then `staging`, etc.
+
+### 3. Visit Jenkins to check the output of the job
+
+Once the script has run, visit the [`ci-deploy` Jenkins job][ci-deploy-jenkins] to see the job running or queued.
 
 [deploy-rb]: https://github.com/alphagov/govuk-aws/blob/master/tools/deploy.rb
 [ci-deploy-jenkins]: https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS
+[security-incidents]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents
