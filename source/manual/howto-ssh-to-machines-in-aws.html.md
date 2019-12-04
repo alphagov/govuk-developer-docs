@@ -26,16 +26,7 @@ context, any subsequent `govukcli` commands will be tied to the environment you 
 
 ## Setup
 
-Clone the `govuk-aws` repository and add a symlink to make `govukcli` executable globally:
-
-```sh
-cd ~/govuk
-git clone https://github.com/alphagov/govuk-aws
-ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
-```
-
-You will also need to have followed the [Get SSH access to integration](/manual/get-ssh-access.html)
-instructions.
+Follow the [set up govukcli](/manual/get-ssh-access.html#3-set-up-govukcli) instructions.
 
 ## Usage
 
