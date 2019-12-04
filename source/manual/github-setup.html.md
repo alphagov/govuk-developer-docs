@@ -7,16 +7,18 @@ last_reviewed_on: 2019-10-21
 review_in: 6 months
 ---
 
-1. Set up a [GitHub][] account.
+1. Set up a [GitHub][] account. Existing personal accounts are fine to use.
 1. Ask your tech lead to add you to the [alphagov organisation][alphagov]. You will have to be added to the [GOV.UK team][govuk-team] to get access to repos & CI. Remember to click accept in the GitHub email invitation.
 1. Ask somebody with access to add your GitHub username to the [user monitoring system][user-reviewer].
-1. [Generate and register an SSH key pair][register-ssh-key] for your Mac for your GitHub account (use a `4096` bit key)
-1. Import the SSH key into your keychain. Once you’ve done this, it’ll be available to the VM you'll install in the next step.
+1. [Generate and register an SSH key pair][register-ssh-key] for your laptop for your GitHub account. You should use a `4096` bit key.
+1. Import the SSH key into your keychain. Once you’ve done this, you'll be able to clone repos over SSH.
 
     ```
     $ /usr/bin/ssh-add -K your-private-key
     ```
 
+1. Add the above line into your `~/.bash_profile` or equivalent so that it is persistent between restarts.
+    
 1. Test that it all works by running `ssh -T git@github.com`.
 
 1. While you're here, associate your name and email to your git commits:

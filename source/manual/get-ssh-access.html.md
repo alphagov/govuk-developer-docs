@@ -21,21 +21,7 @@ User accounts in our integration environments are managed in the [govuk-puppet][
     mac$ cd ~/govuk
     mac$ git clone git@github.com:alphagov/govuk-puppet.git
 
-To create a new account, start by creating an SSH key at least 4096 bits long. For example:
-
-    mac$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/alphagov
-
-Import the SSH key into your keychain.
-
-    mac$ /usr/bin/ssh-add -K ~/.ssh/alphagov
-
-You'll also want to add the above line into your `~/.bash_profile` so that it is persistent between restarts.
-    
-Create a public key from this:
-
-    mac$ ssh-keygen -y -f ~/.ssh/alphagov > ~/.ssh/alphagov.pub
-
-Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you just created. Your username should use the `firstnamelastname.pp` format.
+Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you [created when you set up your GitHub account](/manual/github-setup.html). Your username should use the `firstnamelastname.pp` format.
 
 ```
 class users::johnsmith {
