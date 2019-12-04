@@ -62,7 +62,7 @@ Clone the `govuk-aws` repository and add a symlink to make `govukcli` executable
 
 ```sh
 cd ~/govuk
-git clone https://github.com/alphagov/govuk-aws
+git clone git@github.com:alphagov/govuk-aws
 ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
 ```
 
