@@ -47,7 +47,8 @@ and proxies requests to Jenkins. It is also running on port 80 to serve a monito
 
 ## Access
 
-Ensure your [SSH configuration](ssh-config.html) include the CI section.
+Ensure your SSH configuration (`~/.ssh/config`) includes the CI section.
+It should if you've followed the [SSH setup instructions](/manual/get-ssh-access.html).
 
 SSH to parts of the CI stack:
 
