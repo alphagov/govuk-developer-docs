@@ -17,6 +17,8 @@ review_in: 6 months
     $ /usr/bin/ssh-add -K your-private-key
     ```
 
+1. Add the above line into your `~/.bash_profile` or equivalent so that it is persistent between restarts.
+    
 1. Test that it all works by running `ssh -T git@github.com`.
 
 1. While you're here, associate your name and email to your git commits:
