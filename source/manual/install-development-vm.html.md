@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Get started on GOV.UK
+title: GOV.UK Development VM setup instructions
 description: Get started with the development VM (deprecated)
 layout: manual_layout
 section: Development VM
