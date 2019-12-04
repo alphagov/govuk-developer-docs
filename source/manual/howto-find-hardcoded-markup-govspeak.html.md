@@ -62,6 +62,6 @@ Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.ba
 
 
 [Govspeak]: http://govspeak-preview.herokuapp.com/
-[Getting Started]: /manual/get-started.html#6-access-remote-environments
+[Getting Started]: /manual/get-started.html
 [publishing-api]: https://github.com/alphagov/publishing-api
 [Find instances of a keyword on GOV.UK]: https://gov-uk.atlassian.net/wiki/spaces/CC/pages/1314488405/Find+instances+of+a+keyword+on+GOV.UK
