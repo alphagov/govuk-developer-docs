@@ -13,6 +13,10 @@ review_in: 6 months
 Following a General Election or other reason for governmental change the
 current Government in Whitehall will need to be closed, and a new one created.
 
+The Content Support team will normally be the ones who close the government and
+re-assign ministers once a new government has been opened. However, a developer
+will often be required to monitor the queues, as detailed below.
+
 ### Closing a government
 
 Governments are listed at the [government path of Whitehall Admin][].
@@ -24,10 +28,21 @@ Governments are listed at the [government path of Whitehall Admin][].
 2. Close the government.
 
 This will close the current government and remove all [ministerial
-appointments][]. Changes will instantly appear on the live site.
+appointments][].
 
-The Content Support team will be able to re-assign ministers once the new
-government has been opened.
+This will cause a high number of documents to be represented by the Publishing
+API which might mean some delays on content being up to date on the website.
+Previous tests have shown that it takes around 3.5 hours for the queues to
+clear in integration.
+
+Grafana monitoring for:
+
+- [Publishing API in Integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/publishing-api.json?refresh=5s&orgId=1)
+- [Publishing API in Staging](https://grafana.staging.govuk.digital/dashboard/file/publishing-api.json?refresh=5s&orgId=1)
+- [⚠️ Publishing API in Production ⚠️](https://grafana.production.govuk.digital/dashboard/file/publishing-api.json?refresh=5s&orgId=1)
+- [Sidekiq in Integration](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Aggregation=$__auto_interval)
+- [Sidekiq in Staging](https://grafana.staging.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Aggregation=$__auto_interval)
+- [⚠️ Sidekiq in Production ⚠️](https://grafana.production.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Aggregation=$__auto_interval)
 
 [ministerial appointments]: https://www.integration.publishing.service.gov.uk/government/ministers
 
@@ -60,23 +75,11 @@ be set manually.
 
 [PoliticalContentIdentifier]: https://github.com/alphagov/whitehall/blob/master/lib/political_content_identifier.rb
 
-#### Updating newly historic content
+#### Reindexing political content in search
 
-There is a Rake task to republish all political content and ensure these
-banners are applied for political content which is now associated with a
-previous government.
+There is a Rake task to reindex all political content in search. This must be
+done after a government is closed.
 
-[election:republish_political_content](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:republish_political_content)
-
-In Integration, this will republish around 92,000 documents. The Publishing API
-may take between 4 and 6 hours to process these.
-
-Grafana monitoring for:
-
-* [Publishing API](https://grafana.integration.publishing.service.gov.uk/dashboard/file/publishing-api.json?refresh=5s&orgId=1&from=now-6h&to=now)
-* [Sidekiq](https://grafana.integration.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&from=now-6h&to=now&var-Application=whitehall&var-Queues=All)
-
-This may trigger Icinga alerts for the Publishing API:
-
-* [Established connections for publishing-api exceeds 8](https://graphite.integration.govuk.digital/render/?width=1000&height=600&colorList=red,orange,blue,green,purple,brown&target=alias%28dashed%28constantLine%2810%29%29,%22critical%22%29&target=alias%28dashed%28constantLine%288%29%29,%22warning%22%29&target=publishing_api-ip-10-1-4-39_eu-west-1_compute_internal.tcpconns-3093-local.tcp_connections-ESTABLISHED)
-* [high load on](https://grafana.integration.govuk.digital/dashboard/file/machine.json?refresh=1m&orgId=1&var-hostname=publishing_api-ip-10-1-4-39_eu-west-1_compute_internal)
+- [Run `search:political` in Integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=search:political)
+- [Run `search:political` in Staging](https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=search:political)
+- [⚠️ Run `search:political` in Production ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=search:political)
