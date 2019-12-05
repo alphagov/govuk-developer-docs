@@ -4,7 +4,7 @@ title: Change a government following a general election
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-12
+last_reviewed_on: 2019-12-05
 review_in: 6 months
 ---
 
