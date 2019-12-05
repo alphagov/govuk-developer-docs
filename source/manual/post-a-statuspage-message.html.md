@@ -4,7 +4,7 @@ title: Post a message on the status page
 section: Incidents
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-22
+last_reviewed_on: 2019-12-05
 review_in: 3 months
 important: true
 ---
@@ -14,7 +14,7 @@ As part of that we update our status page [status.publishing.service.gov.uk][sta
 
 The page is managed using a third party service called [Statuspage][sp].
 
-Use [manage.statuspage.io][man] to post messages.
+Use [manage.statuspage.io][man] to post messages. 2nd line delivery manager can grant you access.
 
 Remember: government publishers are the main audience of the page.
 They'll want to know what isn't working, and how long it will take to fix. Write in non-technical language.
