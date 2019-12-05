@@ -4,7 +4,7 @@ title: 'RabbitMQ: Consumers not processing messages in queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-05-29
+last_reviewed_on: 2019-12-05
 review_in: 6 months
 ---
 
@@ -19,7 +19,7 @@ This is different to [the check that there are consumers][nocon].
 This alert catches the case where a consumer is connected to the queue
 but failing to process messages in a timely fashion.
 
-The check is performed by connecting to RabbitMQ's admin API, so the
+The Icinga check is performed by connecting to RabbitMQ's admin API, so the
 information given is from Rabbit's point of view.  It looks at the
 number of messages still to be delivered.
 
