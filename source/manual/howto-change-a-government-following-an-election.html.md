@@ -62,7 +62,10 @@ The new government should also instantly appear in the response from
 
 Content in Whitehall can be marked as political. Political content which was
 published under a previous government is [`historic?`][historic]. This is
-highlighted on the page, and in search results. See these pages for example.
+highlighted on the page, and in search results. This feature is also known as
+_history mode_.
+
+See these pages for example:
 
 [A content page](https://www.gov.uk/government/speeches/the-issuing-withdrawal-or-refusal-of-passports)
 [A search results page](https://www.gov.uk/search/all?keywords=The+issuing%2C+withdrawal+or+refusal+of+passports&order=relevance)
