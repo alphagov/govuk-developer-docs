@@ -4,7 +4,7 @@ title: 'RabbitMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-29
+last_reviewed_on: 2019-12-05
 review_in: 6 months
 ---
 
@@ -14,7 +14,7 @@ We run a check that there is at least one non-idle consumer for a named
 RabbitMQ queue. (For example, for the `email_alert_service` queue.) The queue
 name should indicate the app responsible for consuming the queue.
 
-The check is performed by connecting to RabbitMQ's admin API, so the
+The Icinga check is performed by connecting to RabbitMQ's admin API, so the
 information given is from Rabbit's point of view.
 
 Since we send heartbeats every minute (from each instance of the Publishing
