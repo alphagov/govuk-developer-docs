@@ -10,9 +10,8 @@ review_in: 6 months
 
 ## Change a government in Whitehall
 
-Following a general election or other reason for governmental change
-the current Government in Whitehall will need to be closed, and a new
-one created.
+Following a General Election or other reason for governmental change the
+current Government in Whitehall will need to be closed, and a new one created.
 
 ### Closing a government
 
@@ -27,8 +26,8 @@ Governments are listed at the [government path of Whitehall Admin][].
 This will close the current government and remove all [ministerial
 appointments][]. Changes will instantly appear on the live site.
 
-The Content Support team will be able to re-assign ministers once the
-new government has been opened.
+The Content Support team will be able to re-assign ministers once the new
+government has been opened.
 
 [ministerial appointments]: https://www.integration.publishing.service.gov.uk/government/ministers
 
@@ -36,8 +35,8 @@ new government has been opened.
 
 [Create a new government](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/governments/new)
 
-This will instantly create a new government. Changes can be seen in
-the Rails console by running `Government.current`.
+This will instantly create a new government. Changes can be seen in the Rails
+console by running `Government.current`.
 
 The new government should also instantly appear in the response from
 [/api/governments][].
@@ -46,10 +45,9 @@ The new government should also instantly appear in the response from
 
 ### Applying a banner to political content published by the previous government
 
-Content in Whitehall can be marked as political. Political content
-which was published under a previous government is
-[historic?][historic]. This is highlighted on the page, and in search
-results. See these pages for example.
+Content in Whitehall can be marked as political. Political content which was
+published under a previous government is [`historic?`][historic]. This is
+highlighted on the page, and in search results. See these pages for example.
 
 [A content page](https://www.gov.uk/government/speeches/the-issuing-withdrawal-or-refusal-of-passports)
 [A search results page](https://www.gov.uk/search/all?keywords=The+issuing%2C+withdrawal+or+refusal+of+passports&order=relevance)
@@ -57,21 +55,21 @@ results. See these pages for example.
 [historic]: https://github.com/alphagov/whitehall/blob/e518218355d158bfff036a02e312dda714da0aa6/app/models/edition.rb#L647
 
 Marking content as political can happen automatically through the
-[PoliticalContentIdentifier][]. The `political` flag on an `Edition`
-can also be set manually.
+[PoliticalContentIdentifier][]. The `political` flag on an `Edition` can also
+be set manually.
 
 [PoliticalContentIdentifier]: https://github.com/alphagov/whitehall/blob/master/lib/political_content_identifier.rb
 
 #### Updating newly historic content
 
-There is a Rake task to republish all political content and ensure
-these banners are applied for political content which is now
-associated with a previous government..
+There is a Rake task to republish all political content and ensure these
+banners are applied for political content which is now associated with a
+previous government.
 
 [election:republish_political_content](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:republish_political_content)
 
-In Integration, this will republish around 92,000 documents. The
-Publishing API may take between 4 and 6 hours to process these.
+In Integration, this will republish around 92,000 documents. The Publishing API
+may take between 4 and 6 hours to process these.
 
 Grafana monitoring for:
 
