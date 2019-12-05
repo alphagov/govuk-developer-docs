@@ -4,7 +4,7 @@ title: How to debug underperforming search
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-05
+last_reviewed_on: 2019-12-05
 review_in: 3 months
 ---
 
