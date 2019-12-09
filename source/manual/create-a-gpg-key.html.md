@@ -12,9 +12,7 @@ We use GPG keys to encrypt our secrets. Documentation for using your GPG key can
 
 ## Prerequisites
 
-Install `gpg` if you don't already have it. [GPGtools](https://gpgtools.org/) is recommended if you are on a Mac.
-
-Do not use the homebrew version. Mac users note there have been problems experienced by some when using homebrew installed `gnupg2`, where `gpg` can't connect to the `gpg-agent` and your passphrase doesn't get cached. For decrypting one credential that's ok, but when decrypting the [Hiera eYAML](encrypted-hiera-data.html) file it will ask you for your passphrase for each of the credentials.
+Install `gpg` if you don't already have it. Use `brew cask install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/).
 
 Once installed, you will likely have both `gpg` and `gpg2` on your machine. Always use `gpg2`.
 
