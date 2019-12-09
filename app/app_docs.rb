@@ -43,6 +43,7 @@ class AppDocs
       {
         app_name: app_name,
         team: team,
+        dependencies_team: dependencies_team,
         puppet_name: puppet_name,
         production_hosted_on: production_hosted_on,
         links: {
@@ -180,6 +181,11 @@ class AppDocs
 
     def team
       app_data["team"]
+    end
+
+    def dependencies_team
+      app_data
+        .fetch("dependencies_team", team)
     end
 
     def description
