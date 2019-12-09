@@ -27,6 +27,13 @@ GitHub topics: <%= application.topics.map { |topic| link_to(topic, "https://gith
 Owned by team **<%= application.team %>**.
 <% end %>
 
+<% if application.dependencies_team %>
+
+### Dependencies Team
+
+The team responsible for updating dependencies is **<%= application.dependencies_team %>**.
+<% end %>
+
 ### Hosting
 
 <% if application.hosting_name == "None" %>
