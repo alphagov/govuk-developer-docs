@@ -1,0 +1,55 @@
+---
+owner_slack: "#re-govuk"
+title: Restore an Individual Postgres Database in AWS RDS
+section: Backups
+layout: manual_layout
+parent: "/manual.html"
+last_reviewed_on: 2019-12-10
+review_in: 3 months
+---
+
+> If you need to restore an entire RDS instance please see these [instructions](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html) instead.
+
+### Restoring From S3 Backups
+
+We take nightly database backups and save them to govuk-production-database-backups S3 bucket inside the postgresql-backend folder.
+
+To restore a backup from the most recent copy follow the steps below:
+1. SSH into the db_admin machine. If you are using GDS CLI you can run the following command to ssh into the correct machine:
+```
+gds govuk connect ssh -e <environment> db_admin```
+
+2. To find the command you need to run to restore a specific database, list the the govuk-backup user's cronjobs, then grep for the database name you need:
+```
+sudo -iu govuk-backup crontab -l | grep <database_name>
+```
+  E.g.
+```
+sudo -iu govuk-backup crontab -l | grep publishing_api
+```
+
+3. Copy the command that starts with "pull". For example, if you were restoring the publishing_api database you'd need this line:
+```
+/usr/bin/ionice -c 2 -n 6 /usr/local/bin/with_reboot_lock /usr/bin/envdir /etc/govuk_env_sync/env.d /usr/local/bin/govuk_env_sync.sh -f /etc/govuk_env_sync/pull_publishing_api_production_daily.cfg
+```
+
+4. Start a tmux session as the govuk-backup user:
+```
+sudo -iu govuk-backup tmux
+```
+
+5. Then run the command you copied previously.
+
+6. The script will inform you when it's complete. To switch between tmux windows, press `Control-B` then `n`. To disconnect from tmux, press `Control-B` then press `d`. To reconnect, run `sudo -iu govuk-backup tmux a`
+
+More information on govuk_env_sync can be found [here](https://docs.publishing.service.gov.uk/manual/govuk-env-sync.html).
+
+
+### Restoring a Database to Production - Extra Steps
+
+You will need to ensure the Production db_admin machine has permission to read the Production PostgreSQL backups from S3 before you run the commands on db_admin (this is disabled by default as a safe guard). To do so, attach the govuk-production-s3-sync and blue-db-admin users to the  govuk-production-dbadmin_database_backups-reader-policy. You can do this by following the steps below:
+1. Go to the IAM section in the AWS console.
+2. Select "Polices" from the righthand menu then search for `govuk-production-dbadmin_database_backups-reader-policy` then click the policy name to select it.
+3. Select the tab "Policy Usage"
+4. Click "Attach" then filter for and select the `govuk-production-s3-sync` and `blue-db-admin users`.
+5. Finally click "Attach Policy"
