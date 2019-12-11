@@ -33,4 +33,4 @@ We currently use the `operations` pipeline to [mirror all GOV.UK GitHub reposito
 
 ### The info pipeline
 
-The `info` pipeline is a meta pipeline. Its main use is as a method to store secrets that can then be used in other pipelines. For example, the repository mirroring job uses GitHub and AWS credentials that are stored as secrets using this method.
+The `info` pipeline is a meta pipeline. Its main use is as a method to store secrets that can then be used in other pipelines. For example, the repository mirroring job uses GitHub and AWS credentials that are stored as secrets using this method. How to add and remove secrets is documented [in the Reliability Engineering manual](https://reliability-engineering.cloudapps.digital/continuous-deployment.html#secrets).
