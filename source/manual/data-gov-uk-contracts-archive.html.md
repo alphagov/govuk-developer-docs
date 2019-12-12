@@ -96,7 +96,8 @@ Note that this method will remove the downloadable attachments, but leave the
 contract page available to view on the website. This is fine. You can confirm
 that you've redacted the documents by navigating to the contract in the
 contracts archive finder application and clicking on the download links for
-each attachment. It should return a 404 Not Found.
+each attachment. It should return a 404 Not Found.  This may require adding a
+cachebust string to the download URL.
 
 You should also remove it from Google cache (this will only work once we've
 reinstated the using this page:
