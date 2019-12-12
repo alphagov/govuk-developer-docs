@@ -17,8 +17,7 @@ Credentials for the AWS account are in the `govuk-secrets` repository under
 `2ndline/datagovuk/contracts-finder-archive-aws-console-pass`.
 
 Once logged in to the AWS console, you'll be able to list the EC2 instances and
-find the IP of the contracts archive finder. Currently the assigned elastic IP
-is [34.249.103.20](http://34.249.103.20/).
+find the IP of the contracts archive finder.
 
 If you need to `ssh` on to the machine, you can do so by grabbing the private
 key from `govuk-secrets` under
@@ -39,11 +38,8 @@ You will then be able to `ssh` onto the machine in AWS by using the `.pem`
 file:
 
 ```sh
-$ ssh -i "govuk-contracts-archive.pem" ubuntu@ec2-34-249-103-20.eu-west-1.compute.amazonaws.com
+$ ssh -i "govuk-contracts-archive.pem" ubuntu@<ip address>
 ```
-
-Remember this is an elastic IP and might change - log into the AWS web console
-to find the current IP address assigned.
 
 ## Snapshot
 
@@ -55,10 +51,8 @@ This is setup on the same AWS account as an EC2 instance called
 above and `ssh` in as follows:
 
 ```sh
-$ ssh -i "govuk-contracts-archive.pem" ubuntu@ec2-34-248-129-191.eu-west-1.compute.amazonaws.com
+$ ssh -i "govuk-contracts-archive.pem" ubuntu@<ip address>
 ```
-
-Again note that this is an elastic IP and might change.
 
 This machine includes Nginx logs from two periods:
 
