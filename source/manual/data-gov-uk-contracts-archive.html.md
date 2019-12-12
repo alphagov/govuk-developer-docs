@@ -89,7 +89,7 @@ under the directory `~/src/contracts-archive/instance/documents/12345`.
 Create a new directory in `~/src/contracts-archive/instance/redacted`. Name the
 directory the same as the contract id.
 
-Move all the attachments from the `documents/<contract_id>` into the
+Move all the files from the `documents/<contract_id>` into the
 `redacted/<contract_id>` folder.
 
 Note that this method will remove the downloadable attachments, but leave the
