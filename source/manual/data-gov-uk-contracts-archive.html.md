@@ -5,7 +5,7 @@ section: data.gov.uk
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-10-08
+last_reviewed_on: 2019-12-12
 review_in: 6 months
 ---
 
@@ -17,8 +17,7 @@ Credentials for the AWS account are in the `govuk-secrets` repository under
 `2ndline/datagovuk/contracts-finder-archive-aws-console-pass`.
 
 Once logged in to the AWS console, you'll be able to list the EC2 instances and
-find the IP of the contracts archive finder. Currently the assigned elastic IP
-is [34.249.103.20](http://34.249.103.20/).
+find the IP of the contracts archive finder.
 
 If you need to `ssh` on to the machine, you can do so by grabbing the private
 key from `govuk-secrets` under
@@ -39,11 +38,8 @@ You will then be able to `ssh` onto the machine in AWS by using the `.pem`
 file:
 
 ```sh
-$ ssh -i "govuk-contracts-archive.pem" ubuntu@ec2-34-249-103-20.eu-west-1.compute.amazonaws.com
+$ ssh -i "govuk-contracts-archive.pem" ubuntu@<ip address>
 ```
-
-Remember this is an elastic IP and might change - log into the AWS web console
-to find the current IP address assigned.
 
 ## Snapshot
 
@@ -55,10 +51,8 @@ This is setup on the same AWS account as an EC2 instance called
 above and `ssh` in as follows:
 
 ```sh
-$ ssh -i "govuk-contracts-archive.pem" ubuntu@ec2-34-248-129-191.eu-west-1.compute.amazonaws.com
+$ ssh -i "govuk-contracts-archive.pem" ubuntu@<ip address>
 ```
-
-Again note that this is an elastic IP and might change.
 
 This machine includes Nginx logs from two periods:
 
@@ -95,14 +89,15 @@ under the directory `~/src/contracts-archive/instance/documents/12345`.
 Create a new directory in `~/src/contracts-archive/instance/redacted`. Name the
 directory the same as the contract id.
 
-Move all the attachments from the `documents/<contract_id>` into the
+Move all the files from the `documents/<contract_id>` into the
 `redacted/<contract_id>` folder.
 
 Note that this method will remove the downloadable attachments, but leave the
 contract page available to view on the website. This is fine. You can confirm
 that you've redacted the documents by navigating to the contract in the
 contracts archive finder application and clicking on the download links for
-each attachment. It should return a 404 Not Found.
+each attachment. It should return a 404 Not Found.  This may require adding a
+cachebust string to the download URL.
 
 You should also remove it from Google cache (this will only work once we've
 reinstated the using this page:
