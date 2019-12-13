@@ -22,14 +22,19 @@ JavaScript and markup to activate and render the banner.
 
 In `app/views/notifications/_global_bar.html.erb`,
 
-1. Update the variables `title`, `information`, `link_href` and `link_text`
-   with the relevant information.
+1. Update the variables `title`, `title_href`, `link_href` and `link_text` with the relevant info where applicable, otherwise set to `false`.
 1. Update the `show_global_bar` variable to `true`
 1. Deploy static
 
 The usual rules apply with static template caching.
 
 ![screenshot](images/global_banner.png)
+
+### Versioning the global banner
+
+The number of times a user has viewed the banner is stored in a `global_bar_seen` cookie. Once the view count reaches 3, a user will not see the cookie again, even if the banner is re-deployed. The only way a user will see the banner again is if 1) the `global_bar_seen` cookie expires or 2) the global banner is versioned.
+
+To version the global banner, increase the `BANNER_VERSION` in `global-bar-init.js` by one.
 
 ## Removing the global banner
 
