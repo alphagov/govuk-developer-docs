@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-05-10
+last_reviewed_on: 2019-12-13
 review_in: 6 months
 related_applications: [search-api]
 ---
@@ -86,7 +86,3 @@ Try republishing the content.
 #### Unpublished content is still showing up in search
 
 Unpublished content can be removed from search manually using [search admin](https://search-admin.publishing.service.gov.uk/).
-
-#### There are blank options on finder pages
-
-See the instructions for [fixing blank finder filter options](fix-blank-finder-filter-options.html).
