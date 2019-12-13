@@ -22,11 +22,11 @@ It's also possible for this alert to trigger even if there are no free memory is
 
 Under the hood, the alert queries the [RabbitMQ Management API](https://www.rabbitmq.com/management.html) and checks if the response contains `mem_alert` and `disk_free_alarm`.
 
-The RabbitMQ Management API depends on the `rabbitmq_management` plugin being enabled. If it isn't enabled then it won't generate response which contains `mem_alert` and `disk_free_alarm`.
+The RabbitMQ Management API depends on the `rabbitmq_management` plugin being enabled. If it isn't enabled then it won't generate a response which contains `mem_alert` and `disk_free_alarm`.
 
 To enable the plugin, connect to the server which is alerting and first disable then enable the plugin:
 
-```shell script
+```
 $ rabbitmq-plugins disable rabbitmq_management
 $ rabbitmq-plugins enable rabbitmq_management
 ```
