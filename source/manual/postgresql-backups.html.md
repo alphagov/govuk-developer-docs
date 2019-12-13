@@ -5,11 +5,21 @@ section: Backups
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-09
+last_reviewed_on: 2019-12-06
 review_in: 6 months
 ---
 
-## WAL-E Backups to S3
+## RDS or Carrenza/6DG  
+
+To determine which restore method you should be using, first check where the app you're attempting to restore the database for is located. You can find this information by selecting your application from this [list](https://docs.publishing.service.gov.uk/apps/by-team.html) and looking at the information under the "Hosting" heading. You see something like:
+
+ "The production version of this application is hosted on..."
+
+## AWS RDS PostgreSQL Backups
+
+Instructions for restoring RDS databases can be found [here](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html)
+
+## Carrenza/6DG WAL-E Backups to S3
 
 We use [WAL-E][wal-e] to do continuous archiving to an Amazon S3 bucket.
 PostgreSQL uses a method of [archiving][archiving] transaction logs: this means
