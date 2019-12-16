@@ -86,3 +86,26 @@ done after a government is closed.
 - [Run `search:political` in Integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=search:political)
 - [Run `search:political` in Staging](https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=search:political)
 - [⚠️ Run `search:political` in Production ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=search:political)
+
+### Backdating
+
+If we need to backdate a government or split a single government into two
+distinct dates, we need to run a rake task to republish all political content
+from Whitehall to properly associate content with the government at it's first
+published date:
+
+- [Run `election:republish_political_content` in Integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:republish_political_content)
+- [Run `election:republish_political_content` in Staging](https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:republish_political_content)
+- [⚠️ Run `election:republish_political_content` in Production ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:republish_political_content)
+
+### Ending ministerial roles without closing a government
+
+If we need to end all ministerial roles without explicitly closing a government,
+we can run a rake task:
+
+- [Run `election:end_ministerial_appointments` in Integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:end_ministerial_appointments)
+- [Run `election:end_ministerial_appointments` in Staging](https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:end_ministerial_appointments)
+- [⚠️ Run `election:end_ministerial_appointments` in Production ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=election:end_ministerial_appointments)
+
+This will end all ministerial roles except the Prime Minister. You might have to
+do that one manually.
