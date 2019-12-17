@@ -5,7 +5,7 @@ section: Transition
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-01
+last_reviewed_on: 2019-12-17
 review_in: 6 months
 related_applications: [bouncer, transition]
 ---
@@ -124,7 +124,7 @@ to allow it isn't present on the master.
 
 #### Special cases
 
-- We reverse-proxy requests for [some paths on www.mhra.gov.uk](https://github.com/alphagov/govuk-puppet/blob/master/modules/bouncer/templates/www.mhra.gov.uk_nginx.conf.erb#L16-L56)
+- We reverse-proxy requests for [some paths on www.mhra.gov.uk](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/templates/www.mhra.gov.uk_nginx.conf.erb#L16-L50)
 to the old site because some tools had not yet been redeveloped when they
 transitioned and they needed to continue to be served; their site is often slow
 to respond and may time out. This proxying is handled by Nginx so these requests
