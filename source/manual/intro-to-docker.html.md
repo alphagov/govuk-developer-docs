@@ -189,7 +189,7 @@ $mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle
 * Run the tests again:
 
 ```shell
-$dev cd /apps
+$dev cd /app
 $dev bundle exec rake
 ```
 
