@@ -124,11 +124,6 @@ to allow it isn't present on the master.
 
 #### Special cases
 
-- We reverse-proxy requests for [some paths on www.mhra.gov.uk](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/templates/www.mhra.gov.uk_nginx.conf.erb#L16-L50)
-to the old site because some tools had not yet been redeveloped when they
-transitioned and they needed to continue to be served; their site is often slow
-to respond and may time out. This proxying is handled by Nginx so these requests
-are not routed to Bouncer.
 - We serve some assets which were previously on directgov and businesslink
 [via Nginx](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer.pp#L56-L146)
 on the Bouncer machines. The assets live in [two](https://github.com/alphagov/assets-directgov)
