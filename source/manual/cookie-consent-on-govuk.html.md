@@ -5,7 +5,7 @@ layout: manual_layout
 type: learn
 section: Cookies
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2019-06-28
+last_reviewed_on: 2019-12-19
 review_in: 6 months
 ---
 
