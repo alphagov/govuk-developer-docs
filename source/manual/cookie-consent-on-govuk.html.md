@@ -14,11 +14,9 @@ Digital Service (GDS)](https://gds.blog.gov.uk/about/).
 
 ## Overview
 
-(On 2 July 2019 the ICO clarified their position on cookie consent. As and when any changes are made to GOV.UK this guidance will be updated)
-
 GOV.UK sets 4 types of cookies: essential (also called "strictly necessary"); website usage; communications and marketing; settings. These are detailed on the [cookie settings page on GOV.UK][cookie settings page].
 
-Cookies are set from the first point of entry on GOV.UK and users can manage their consent via the banner or [cookie settings page]. "Strictly necessary" cookies cannot be switched off by users as they're essential to site functionality.
+Users can manage their consent via the banner or [cookie settings page]. "Strictly necessary" cookies cannot be switched off by users as they're essential to site functionality.
 
 Cookie consent is set to last for 1 year, after which the consent cookie will expire and users will be shown the cookie banner and prompted for consent again.
 
@@ -34,9 +32,9 @@ The cookie consent mechanism is made up of 4 main pieces:
 
 When a user first lands on GOV.UK, they are given a default consent cookie that looks like this:
 
-`cookie_policy={"essential":true,"settings":true,"usage":true,"campaigns":true}`
+`cookies_policy={"essential":true,"settings":false,"usage":false,"campaigns":false}`
 
-This cookie_policy cookie is the key to the GOV.UK cookie consent mechanism. If any of these values read as false, cookies of that type will be denied.
+This cookie_policy cookie is the key to the GOV.UK cookie consent mechanism. If any of these values read as false, cookies of that type will not be set.
 
 For example, the below cookie will result in Google Analytics tracking being disabled for that user:
 
@@ -44,18 +42,17 @@ For example, the below cookie will result in Google Analytics tracking being dis
 
 If the user clicks “Accept cookies” within the cookie banner or changes their cookie settings on the settings page, they get an additional cookie that ensures they don’t see the cookie banner again:
 
-`seen_cookie_message=true`
+`cookies_preferences_set`
+
+Users can still change their consent via the [cookie settings page].
 
 ## Special Cases
-### AB Tests
-
-AB Test cookies are set by Fastly. These cookies are categorised as strictly necessary because they provide users with a consistent experience between visits to GOV.UK. If the categorisation of these cookies was to change in the future, this would require additional implementation of cookie consent within Fastly.
 
 ### Google Analytics
 
 GOV.UK uses [Google Analytics](https://docs.publishing.service.gov.uk/manual/analytics.html) to track user journeys.
 
-Unlike other cookies on GOV.UK, Google Analytics (GA) cookies are not set using our cookie helpers. GA cookies are automatically initialised on page load, within Static. Therefore, as well as deleting the GA cookies, we also need to [wrap the initialisation of GOVUK.Analytics](https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/static-analytics.js#L21) to ensure the cookies are not recreated.
+Unlike other cookies on GOV.UK, Google Analytics (GA) cookies are not set using our cookie helpers. GA cookies are initialised within Static. Therefore, as well as deleting the GA cookies, we also need to [wrap the initialisation of GOVUK.Analytics](https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/static-analytics.js#L21) to ensure the cookies are not recreated.
 
 We also set the following property to disable tracking:
 
@@ -73,7 +70,7 @@ If a user does not consent to campaign cookies, we [swap the embedded video for 
 
 ### No Javascript
 
-If Javascript is turned off the “accept” button is removed from the banner and the cookie settings form is removed and a message shown instead.
+If Javascript is turned off, the “accept” button is removed from the banner and the cookie settings form is removed. A message is shown instead.
 
 
 ## Adding a new cookie
