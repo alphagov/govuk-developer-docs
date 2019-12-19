@@ -34,7 +34,7 @@ When a user first lands on GOV.UK, they are given a default consent cookie that 
 
 `cookies_policy={"essential":true,"settings":false,"usage":false,"campaigns":false}`
 
-This cookie_policy cookie is the key to the GOV.UK cookie consent mechanism. If any of these values read as false, cookies of that type will not be set.
+This cookies_policy cookie is the key to the GOV.UK cookie consent mechanism. If any of these values read as false, cookies of that type will not be set.
 
 For example, the below cookie will result in Google Analytics tracking being disabled for that user:
 
