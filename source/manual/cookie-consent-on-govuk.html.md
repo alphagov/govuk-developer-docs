@@ -38,7 +38,7 @@ This cookies_policy cookie is the key to the GOV.UK cookie consent mechanism. If
 
 For example, the below cookie will result in Google Analytics tracking being disabled for that user:
 
-`cookie_policy={"essential":true,"settings":true,"usage":false,"campaigns":true}`
+`cookies_policy={"essential":true,"settings":true,"usage":false,"campaigns":true}`
 
 If the user clicks “Accept cookies” within the cookie banner or changes their cookie settings on the settings page, they get an additional cookie that ensures they don’t see the cookie banner again:
 
