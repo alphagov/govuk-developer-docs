@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Resync a PostgreSQL standby
+title: Resync a PostgreSQL Standby in Carrenza/6DG
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-18
+last_reviewed_on: 2019-12-06
 review_in: 6 months
 ---
 

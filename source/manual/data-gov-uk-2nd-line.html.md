@@ -68,7 +68,7 @@ Since CKAN was upgraded users have needed to login using their email address ins
 
 ## Datasets
 ### Delete or withdraw a dataset
-Users are not permitted to remove their own datasets.  There are a [limited number of circumstances](https://guidance.data.gov.uk/deleting_datasets.html) in which a dataset will be withdrawn.  This is to be done by 2nd line, following a request from the publisher.  Datasets are never hard-deleted (known as "purged" in CKAN), instead they are marked as "withdrawn" (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).
+Users are not permitted to remove their own datasets.  There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn.  This is to be done by 2nd line, following a request from the publisher.  Datasets are never hard-deleted (known as "purged" in CKAN), instead they are marked as "withdrawn" (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).
 
 > Before making any deletions, you should check that the person making the request actually belongs to the organisation who own the document (or are from a superseding department, e.g. someone from BEIS could request a withdrawal for a dataset published by BIS).
 
