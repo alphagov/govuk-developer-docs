@@ -4,7 +4,7 @@ title: Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-17
+last_reviewed_on: 2019-12-27
 review_in: 6 months
 ---
 
@@ -47,7 +47,7 @@ If the agent is running ok, next check that you can connect from the
 monitoring server:
 
 ```
-$ ssh ssh monitoring-1.management.staging
+$ ssh monitoring-1.management.staging
 $ nc -v broken-machine-1.broken 5666
 Connection to localhost 5666 port [tcp/nrpe] succeeded!
 ```
