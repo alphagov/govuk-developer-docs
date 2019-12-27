@@ -5,7 +5,7 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-06-19
+last_reviewed_on: 2019-12-27
 review_in: 6 months
 ---
 
@@ -25,7 +25,7 @@ We should also keep an eye on new versions and update regularly in a similar way
 
 Before/during the upgrade:
 
-- Read the Terraform CHANGELOG carefully, make sure there aren't backwards incompatible changes, or the code is updated if required.
+- Read the Terraform [CHANGELOG](https://github.com/terraform-providers/terraform-provider-aws/blob/master/CHANGELOG.md) carefully, make sure there aren't backwards incompatible changes, or the code is updated if required.
 - If you are planning a Terraform AWS provider upgrade, also read the CHANGELOG carefully. This provider is updated very often.
 - Test the new versions in a local branch first. Probably a `terraform plan` of the `infra-*` and a few `app-*` projects can provide enough test coverage.
 - Check for DEPRECATION messages and try to fix them.
@@ -45,7 +45,7 @@ and upload it to `apt-1.management` in Production.
 Run the following commands to add it to the Terraform repo:
 
 ```
-sudo -i aptly repo add terraform /home/anafernandez/terraform_0.11.14_amd64.deb
+sudo -i aptly repo add terraform /home/your_user_name/terraform_0.11.14_amd64.deb
 sudo aptly snapshot create terraform-$(date +%Y%m%d) from repo terraform
 sudo -i aptly publish switch trusty terraform terraform-$(date +%Y%m%d)
 ```
@@ -92,4 +92,3 @@ provider "aws" {
 
 Upgrading the provider only requires a change of this version parameter in the `.tf` files. This version is downloaded to the client
 when the `terraform init` command runs, which happens automatically when we deploy Terraform with the Jenkins job or the `tools/build-terraform-project.sh` script.
-
