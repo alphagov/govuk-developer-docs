@@ -5,7 +5,7 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-06-19
+last_reviewed_on: 2019-12-27
 review_in: 6 months
 ---
 
@@ -82,10 +82,10 @@ flag|argument|
 -p  |path|
 -t  |timestamp|
 
-Here the timestamp argument is optional and allow to specify which timestamp (iso-datetime string of the form YYYY-MM-DDTHH:MM) should be restored druing a `pull` operation (default is using the latest available dump).
+Here the timestamp argument is optional and specifies which timestamp (iso-datetime string of the form YYYY-MM-DDTHH:MM) should be restored during a `pull` operation (default is using the latest available dump).
 
 ### Configuration file
-A configuration file providing the job parametrisation given in the hieradata `govuk_env_sync::tasks:` block is created in the directory `/etc/govuk_env_sync/`. It consists of simple `source`-able variable assignments of the form:
+A configuration file providing the job parametrisation given in the hieradata `govuk_env_sync::tasks:` block is created in the directory `/etc/govuk_env_sync/` (you can see an example [here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/integration/db_admin.yaml)). It consists of simple `source`-able variable assignments of the form:
 
 ```
 action="pull"
