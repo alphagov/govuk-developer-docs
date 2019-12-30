@@ -24,6 +24,10 @@ By default Dependabot will bump dependencies once a day, but you can ask it to b
 
 Go to [Dependabot admin][admin] and click "Bump now" for your project
 
+## Audit Dependabot PRs
+
+We have the [govuk-dependencies app][app] to monitor outstanding Dependabot PRs on govuk repos.
+
 ## Security
 
 There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we [explicitly allow on GitHub][access]. This prevents code changes to other repos. Secondly, we've [set up branch protection](/manual/configure-github-repo.html#auto-configuration) for all repos with the `govuk` label. This prevents Dependabot from writing directly to master.
@@ -33,3 +37,4 @@ There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot
 [current]: /manual/keeping-software-current.html
 [Dependabot]: https://dependabot.com
 [admin]: https://app.dependabot.com/accounts/alphagov/repos
+[app]: /apps/govuk-dependencies.html
