@@ -4,12 +4,12 @@ title: Migrate from govuk-lint
 section: Team tools
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-02
+last_reviewed_on: 2020-01-02
 review_in: 6 months
 ---
 This is a guide to help you migrate from [govuk-lint][govuk-lint],
 which has been deprecated in favour of [rubocop-govuk][rubocop-govuk] and
-[scss-lint-govuk][scss-lint-govuk]. 
+[scss-lint-govuk][scss-lint-govuk].
 
 ## Ruby Projects
 
@@ -40,7 +40,7 @@ inherit_gem:
     - config/rails.yml # add this line for Rails projects
 ```
 
-- Replace usage of `govuk-lint-ruby` with `rubocop` in your project. 
+- Replace usage of `govuk-lint-ruby` with `rubocop` in your project.
 All flags and options should be supported, except the `--diff` flag which should be
 removed.
 
@@ -70,7 +70,7 @@ Changes you may have to make to your project include:
 plugin_gems: ['scss_lint-govuk']
 ```
 
-- Replace usage of `govuk-lint-scss` with `scss-lint` in your project. 
+- Replace usage of `govuk-lint-scss` with `scss-lint` in your project.
 
 [govuk-lint]: https://github.com/alphagov/govuk-lint
 [rubocop]: https://github.com/bbatsov/rubocop
