@@ -3,7 +3,7 @@ title: Intro to Docker
 section: Docker
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-01
+last_reviewed_on: 2020-01-02
 review_in: 6 months
 owner_slack: "#govuk-developers"
 ---
