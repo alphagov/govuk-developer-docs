@@ -50,10 +50,10 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 [2nd line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline
 [acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L6-L14
 [check the courtesy copy inbox]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#check-the-courtesy-copy-inbox
-[drug-alerts-check]: https://deploy.publishing.service.gov.uk/job/email-alert-check/
+[drug-alerts-check]: https://deploy.blue.production.govuk.digital/job/email-alert-check/
 [drug and medical device alerts]: https://www.gov.uk/drug-device-alerts
 [email-check]: https://github.com/alphagov/email-alert-monitoring
 [general troubleshooting tips for unsent emails]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#general-troubleshooting-tips
 [resend-travel-advice-job]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=email_alerts:trigger%5BPUT_EDITION_ID_HERE%5D
-[travel-advice-check]: https://deploy.publishing.service.gov.uk/job/travel-advice-email-alert-check/
+[travel-advice-check]: https://deploy.blue.production.govuk.digital/job/travel-advice-email-alert-check/
 [travel advice updates]: https://www.gov.uk/foreign-travel-advice
