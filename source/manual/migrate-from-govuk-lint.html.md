@@ -27,7 +27,7 @@ Changes you may have to make to your project include:
 ```diff
 # Gemfile
 - gem 'govuk-lint'
-+ gem 'rubocop-govuk'
++ gem "rubocop-govuk"
 ```
 
 - Add the following lines to your project's `.rubocop.yml` config file (you may need to create this):
@@ -60,7 +60,7 @@ Changes you may have to make to your project include:
 ```diff
 # Gemfile
 - gem 'govuk-lint'
-+ gem 'scss_lint-govuk'
++ gem "scss_lint-govuk"
 ```
 
 - Add the following lines to your project's `.scss-lint.yml` config file (you may need to create this):
