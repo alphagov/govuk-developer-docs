@@ -9,21 +9,12 @@ last_reviewed_on: 2019-08-22
 review_in: 6 months
 ---
 
+> See [So, you're having an incident]!
+>
+> This page is for before you go on call to prep for incident handling.
+
 GOV.UK developers and web operations staff are part of an on-call rota
 to keep GOV.UK running at night, on the weekends and on public holidays.
-
-## On call charter
-
-- Be available to be phoned in the evenings and at weekends
-- Be able to be online to start investigating a problem within half an hour
-  of being notified about it
-- Don't worry if you're not able to answer the phone immediately - that's
-  why we have more than one person on-call
-- Nobody is expected to understand every part of GOV.UK - you don't need to
-  know how to fix every issue on your own
-- Logs are not as important as being available - if you need to lose some logs
-  in order to bring the site back up, that's probably a good trade-off to make
-- Get paid. Make sure you submit your [payment claim form][] after your shift.
 
 ## On call checklist
 
@@ -104,6 +95,20 @@ If you're phoned by somebody who works on GOV.UK it's likely that this is becaus
 There's a separate process for urgent changes to content which doesn't require technical
 support (assuming everything is working).
 
+## On call charter
+
+- Be available to be phoned in the evenings and at weekends
+- Be able to be online to start investigating a problem within half an hour
+  of being notified about it
+- Don't worry if you're not able to answer the phone immediately - that's
+  why we have more than one person on-call
+- Nobody is expected to understand every part of GOV.UK - you don't need to
+  know how to fix every issue on your own
+- Logs are not as important as being available - if you need to lose some logs
+  in order to bring the site back up, that's probably a good trade-off to make
+- Get paid. Make sure you submit your [payment claim form][] after your shift.
+
+[So, you're having an incident]: /manual/incident-what-to-do.html
 [docs]: https://github.com/alphagov/govuk-developer-docs/
 [fabric]: https://github.com/alphagov/fabric-scripts/
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets/
