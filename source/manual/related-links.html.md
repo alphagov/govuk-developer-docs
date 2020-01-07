@@ -1,5 +1,5 @@
 ---
-title: Related links on GOV.UK
+title: Related links
 parent: "/manual.html"
 layout: manual_layout
 type: learn
