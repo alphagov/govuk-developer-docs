@@ -5,7 +5,7 @@ layout: manual_layout
 type: learn
 section: Publishing
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2019-08-16
+last_reviewed_on: 2020-01-07
 review_in: 6 months
 ---
 
