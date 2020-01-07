@@ -3,7 +3,7 @@ title: Related links on GOV.UK
 parent: "/manual.html"
 layout: manual_layout
 type: learn
-section: Related links
+section: Publishing
 owner_slack: "#govuk-developers"
 last_reviewed_on: 2019-08-16
 review_in: 6 months
