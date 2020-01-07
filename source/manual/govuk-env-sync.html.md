@@ -5,11 +5,11 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-06
+last_reviewed_on: 2020-01-07
 review_in: 6 months
 ---
 
-The govuk_env_sync data sync has been created to replace the [env-sync-and-backup]() data sync in context of the GOV.UK AWS migration work. It is currently in use for backup and sync tasks in the GOV.UK AWS environments.
+The govuk_env_sync data sync has been created to replace the [env-sync-and-backup] data sync in context of the GOV.UK AWS migration work. It is currently in use for backup and sync tasks in the GOV.UK AWS environments.
 
 ## Overview
 
@@ -20,15 +20,15 @@ The govuk_env_sync data sync works by `push`ing a source database to S3 (except 
 
 The environment synchronisation is achieved by granting cross-account access of the `govuk-<environment>-database-backups` S3 buckets. Figure 1 below illustrates the intended data flow between environments.
 
-Data sanitisation (removal of sensitive data) for the Integration environment is done by SQL scripts which run as part of the restore transaction at the destination. While not ideal, this is the same approach as [env-sync-and-backup]() and allows reuse of the same sanitisation scripts.
+Data sanitisation (removal of sensitive data) for the Integration environment is done by SQL scripts which run as part of the restore transaction at the destination. While not ideal, this is the same approach as [env-sync-and-backup] and allows reuse of the same sanitisation scripts.
 
 
 ![Schematic of the data flow of the govuk_env_sync data synchronisation](images/govuk_env_sync.png)
-Figure 1:  Schematic of the data flow of the govuk_env_sync data synchronisaton.
+Figure 1:  Schematic of the data flow of the govuk_env_sync data synchronisation.
 
 In practice, some Integration databases pull from Production (with sanitisation) rather than from Staging. This is done to reduce the number of cron job timing dependencies and to save resources where large databases do not need to be backed up from Staging.
 
-Unlike env-sync-and-backup, govuk_env_sync currently has separate cron jobs for backup and restore, and for each database in each environments.
+Unlike [env-sync-and-backup], govuk_env_sync currently has separate cron jobs for backup and restore, and for each database in each environments.
 
 ## Code base and deployment
 
@@ -145,5 +145,6 @@ For every `govuk_env_sync::task:`, a passive Icinga alert `GOV.UK environment sy
 If you get an Icinga alert about a failing task, check `/var/log/syslog` and `/var/log/syslog.1` on the machine which runs the job (usually `db_admin`). If the problem appears to be a one-off, consider acking the alert and seeing if it fails again the next day before investing time in debugging.
 
 
+[env-sync-and-backup]: alerts/data-sync.html
 [govuk_env_sync.sh]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_env_sync/files/govuk_env_sync.sh
 [transformation-sql]: https://github.com/alphagov/govuk-puppet/tree/master/modules/govuk_env_sync/files/transformation_sql
