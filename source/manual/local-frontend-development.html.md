@@ -15,7 +15,7 @@ In the instructions below we are running the [frontend] app, but this would work
 
 ## Under docker
 
-1. repoint static and frontend to the local version of `govuk_app_config`:
+1. Repoint static and frontend to the local version of `govuk_app_config`:
 
   ```ruby
   gem 'govuk_app_config', path: '../govuk_app_config'
@@ -38,8 +38,8 @@ In the instructions below we are running the [frontend] app, but this would work
   ].uniq.freeze
   ```
 
-4. set `config.assets.debug` to `false` in `development.rb` for static and frontend
-5. run from govuk-docker directory:
+4. Set `config.assets.debug` to `false` in `development.rb` for static and frontend
+5. Run from govuk-docker directory:
 
   ```shell
   $ make frontend
@@ -47,11 +47,11 @@ In the instructions below we are running the [frontend] app, but this would work
   ```
 
   (or you can run the last command from the frontend directory as just `govuk-docker-up`)
-6. changes should be ok for http://frontend.dev.gov.uk/help
+6. Changes should be ok for http://frontend.dev.gov.uk/help
 
 ## Without docker
 
-A small numver of frontend devs prefer to not use Docker locally, so we are keeping these instructions for a little while longer.
+A small number of frontend devs prefer to not use Docker locally, so we are keeping these instructions for a little while longer.
 
 ### Running just a frontend app against live data
 
