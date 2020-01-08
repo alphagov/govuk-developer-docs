@@ -18,8 +18,6 @@ Some alerts tend to trigger when emails are sent out. Check to see if emails hav
 sent out by looking at the [Email Alert API Metrics Grafana dashboard][dashboard].
 
 This affects the following alerts:
-
-* Unprocessed content change
 * High queue alerts (all)
 
 In this case you can wait until the emails have all been sent out.
@@ -84,49 +82,6 @@ sent to a small number of email addresses so you cannot test using your
 own email address in these environments.
 
 ## Common alerts
-
-### Unprocessed content changes (content_changes)
-
-This means that there are some content changes which haven't been processed
-within the time we would expect. This may be fine and the emails will
-eventually go out, but it's worth some investigation. Some useful queries and
-Rake tasks:
-
-#### Check which content changes are affected
-
-```ruby
-ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil)
-```
-
-#### Check number of subscription contents built for a content change (you would expect this number to keep going up)
-
-```ruby
-SubscriptionContent.where(content_change: content_change).count
-```
-
-#### Resend the emails for a content change (ignore ones that have already gone out)
-
-```ruby
-ProcessContentChangeWorker.new.perform(content_change.id)
-```
-
-#### Resend the emails for a content change in bulk (ignore ones that have already gone out)
-
-```ruby
-ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |content_change| ProcessContentChangeWorker.new.perform(content_change.id)  }
-```
-
-#### Check sent, pending and failed email counts for a content change
-
-```sh
- $ bundle exec rake report:content_change_email_status_count[<content_change_id>]
-```
-
-#### Check failed email ids and failure reasons for a content change
-
-```sh
- $ bundle exec rake report:content_change_failed_emails[<content_change_id>]
-```
 
 ### Unprocessed digest runs (digest_runs)
 
