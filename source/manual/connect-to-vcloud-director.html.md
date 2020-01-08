@@ -66,55 +66,17 @@ You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
    $ security import ~/carrenza-vpn-cert-and-key.pfx
    ```
 
-1. Create a new file on your machine at
-   `/opt/cisco/anyconnect/profile/carrenza-secure.xml` and copy the following
-   XML into that file:
-
-    ```
-    cat << EOF > ~/carrenza-secure.xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <AnyConnectProfile xmlns="http://schemas.xmlsoap.org/encoding/">
-      <ServerList>
-        <HostEntry>
-          <HostName>Carrenza - Secure</HostName>
-          <HostAddress>https://secure.carrenza.com</HostAddress>
-          <PrimaryProtocol>SSL</PrimaryProtocol>
-        </HostEntry>
-      </ServerList>
-    </AnyConnectProfile>
-    EOF
-    sudo cp ~/carrenza-secure.xml /opt/cisco/anyconnect/profile/
-    ```
-
-1. Restart Cisco AnyConnect if it's already running.
-
-1. Delete the key files created earlier as these are no longer needed. (The PEM
-   file is needed if you plan to use OpenConnect, however.)
+1. Delete the PFX file as it is no longer needed.
 
     ```sh
-    $ rm ~/carrenza-vpn-cert-and-key.{pem,pfx}
+    $ rm ~/carrenza-vpn-cert-and-key.pfx
     ```
-
-## Connecting with Cisco AnyConnect
-
-1. Choose "Carrenza - Secure" from the drop down list and click "Connect".
-
-   **Note:** The very first time you connect, you may be asked (multiple times)
-   for your macOS username and password (that is, your LDAP username and
-   password). Press Always Allow when the option appears. If this happens every
-   time you connect, try [this fix](https://superuser.com/a/1306894).
-
-1. The first password is a second-factor (MFA) code. The second password is
-   the VPN password. (Yes, they're the opposite way around compared to the GDS
-   VPN.)
-
-   **Note:** To generate a two factor code, you can use `oathtool`:
-   `oathtool -b <MFA key> --totp`
 
 ## Connecting with OpenConnect
 
-1. Run openconnect. Make sure you provide the correct path to where you've
-   saved the VPN client certificate.
+1. Install OpenConnect: `brew install openconnect`
+1. Run OpenConnect. Make sure you provide the correct path to where
+   you've saved the VPN client certificate.
 
    ```sh
    $ sudo openconnect https://secure.carrenza.com -c ~/carrenza-vpn-cert-and-key.pem
@@ -123,11 +85,8 @@ You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
 1. The first password is your machine password (requested by sudo).
 1. The second password (the PEM passphrase) is the certificate passphrase from
    the password store.
-1. The third password is the 2FA code.
-
-   **Note:** To generate a two factor code, you can use `oathtool`:
-   `oathtool -b <MFA key> --totp`
-
+1. The third password is the 2FA code (use `oathtool -b
+   <MFA-key-from-password-store> --totp`).
 1. The fourth password is the password from the password store.
 
 ## Accessing vCloud Director
