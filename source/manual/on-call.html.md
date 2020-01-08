@@ -30,7 +30,9 @@ You should do these things before going on call so you're prepared.
    to install the [PagerDuty App](https://www.pagerduty.com/features/mobile-incident-management/)
    on your phone.
 1. Ensure you can [decrypt secrets][govuk-secrets] with your GPG setup.
-1. Ensure you can access [vCloud Director][vcloud] in production.
+1. Ensure you know how to escalate an issue to RE, ie infrastructure
+   issues or if you need to [access the Carrenza vCloud
+   Director][vcloud].
 1. Read these documents:
     - [So, you're having an incident](/manual/incident-what-to-do.html)
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
