@@ -83,17 +83,6 @@ own email address in these environments.
 
 ## Common alerts
 
-### Unprocessed digest runs (digest_runs)
-
-This means that there are some digest runs which haven't been processed within
-the time we would expect. Some useful queries:
-
-#### Check which digest runs are affected
-
-```ruby
-DigestRun.where("created_at < ?", 1.hour.ago).where(completed_at: nil)
-```
-
 ### High queue size (queue_size)
 
 This means that there are a high number of items in the queue. This may
