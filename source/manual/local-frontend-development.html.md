@@ -56,39 +56,35 @@ govuk-docker up government-frontend-app-live
 
 If you want to test changes in static against a frontend app, you need to tell Docker to look at your local version of static rather than live:
 
-1. Repoint static and frontend to the local version of `govuk_app_config`:
+```shell
+cd /var/govuk/govuk-docker/projects/government-frontend
+vim docker-compose.yml
+```
+Edit the docker-compose.yml live config to depend on static and remove the live static environment:
 
-  ```ruby
-  gem 'govuk_app_config', path: '../govuk_app_config'
-  ```
+```yaml
+  government-frontend-app-live:
+    <<: *government-frontend-app
+  depends_on:
+    ...
+    - static-app # This tells docker that the app relies on static running locally
+  environment:
+    ...
+    # Comment out this line to stop pointing to live static
+    #PLEK_SERVICE_STATIC_URI: assets.publishing.service.gov.uk
+```
 
-2. Repoint frontend to local `govuk_publishing_components` if you are making changes there:
+We can now run the frontend application as normal:
+```shell
+cd /var/govuk/govuk-docker
+make government-frontend
 
-  ```ruby
-  gem 'govuk_publishing_components', path: '../govuk_publishing_components'
-  ```
+cd /var/govuk/government-frontend
+govuk-docker up government-frontend-app-live
+```
 
-3. Update in `govuk_app_config` the file `govuk_content_security_policy.rb` to allow all domains:
-
-  ```ruby
-  GOVUK_DOMAINS = [
-  '.publishing.service.gov.uk',
-  ".#{ENV['GOVUK_APP_DOMAIN_EXTERNAL'] || ENV['GOVUK_APP_DOMAIN'] || 'dev.gov.uk'}",
-  ".dev.gov.uk",
-  ""
-  ].uniq.freeze
-  ```
-
-4. Set `config.assets.debug` to `false` in `development.rb` for static and frontend
-5. Run from govuk-docker directory:
-
-  ```shell
-  $ make frontend
-  $ govuk-docker-up frontend-app
-  ```
-
-  (or you can run the last command from the frontend directory as just `govuk-docker-up`)
-6. Changes should be ok for http://frontend.dev.gov.uk/help
+## Troubleshooting
+Set `config.assets.debug` to `false` in `development.rb` for static and frontend
 
 > Note: You might sometimes find that you have something running on a port still, which stops you from starting up an app. To kill a process running on a port:
 
