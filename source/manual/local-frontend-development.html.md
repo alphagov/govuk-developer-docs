@@ -42,6 +42,18 @@ cd /var/govuk/government-frontend
 govuk-docker up government-frontend-app-live
 ```
 
+If you want to test changes in [govuk_publishing_components] against a frontend app, you need to edit your frontend app Gemfile first:
+
+```ruby
+gem 'govuk_publishing_components', path: '../govuk_publishing_components'
+```
+
+```shell
+cd /var/govuk/government-frontend
+bundle install
+govuk-docker up government-frontend-app-live
+```
+
 If you want to test changes in static against a frontend app, you need to tell Docker to look at your local version of static rather than live:
 
 1. Repoint static and frontend to the local version of `govuk_app_config`:
