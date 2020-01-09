@@ -30,6 +30,20 @@ bundle install
 
 ## Using govuk-docker
 
+This assumes that you have already installed and setup [govuk-docker]. We will use [government-frontend] as an example here, but these instructions apply to any frontend app.
+
+If you are making changes to a frontend app and nothing else, you can view these changes by running the following:
+
+```shell
+cd /var/govuk-docker
+make government-frontend
+
+cd /var/govuk/government-frontend
+govuk-docker up government-frontend-app-live
+```
+
+If you want to test changes in static against a frontend app, you need to tell Docker to look at your local version of static rather than live:
+
 1. Repoint static and frontend to the local version of `govuk_app_config`:
 
   ```ruby
@@ -76,3 +90,4 @@ sudo fuser -k [port number]/tcp
 [static]: https://github.com/alphagov/static
 [govuk_publishing_components]: https://github.com/alphagov/govuk_publishing_components
 [government-frontend]: https://github.com/alphagov/government-frontend
+[govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/docs/installation.md
