@@ -85,6 +85,7 @@ or `govuk-internal-administrators` group needs to deploy the
 You can now:
 
 👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
+
 👉 [Access AWS via the web interface or on the command line][access-aws-console]
 
 [access-aws-console]: /manual/access-aws-console.html
