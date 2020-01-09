@@ -83,6 +83,9 @@ cd /var/govuk/government-frontend
 govuk-docker up government-frontend-app-live
 ```
 
+## Components pulled in by Static
+Some components, such as the cookie banner, are pulled in by Static. To test changes to this component locally, we need to run a frontend app against both local static and local [govuk_publishing_components]. This can be done by combining the approaches above - just remember to update the Gemfile in Static too!
+
 ## Troubleshooting
 
 ### 504 Timeout Errors
