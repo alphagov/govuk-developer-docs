@@ -74,4 +74,11 @@ You should be able to do the same thing in your VM:
 
 The built-in key-forwarding should mean that you don't need to edit the `~/.ssh/config` file inside the VM (it will default to your host machine's config file instead).
 
+## Running a console
+Once you have SSH'd into a machine, you can also open a console for a particular application so you can execute commands, for example:
+
+```
+govuk_app_console publishing-api
+```
+
 [ssh-config]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config
