@@ -21,6 +21,14 @@ review_in: 12 months
 - Uses content from GitHub and public APIs to generate documentation
 - Contains content on architecture, common tasks and alerts
 
+## GDS Wiki
+
+<https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/>
+
+- Internal IT
+- Estates, meeting rooms etc
+- News and Communities
+
 ## Confluence Wiki
 
 <https://gov-uk.atlassian.net/wiki> (private)
