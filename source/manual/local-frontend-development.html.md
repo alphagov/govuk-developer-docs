@@ -84,9 +84,16 @@ govuk-docker up government-frontend-app-live
 ```
 
 ## Troubleshooting
-Set `config.assets.debug` to `false` in `development.rb` for static and frontend
 
-> Note: You might sometimes find that you have something running on a port still, which stops you from starting up an app. To kill a process running on a port:
+### 504 Timeout Errors
+Assets can load slowly, which means we get frequent timeouts when running apps locally. Some developers find that the following workaround can help:
+
+1. Set `config.assets.debug` to `false` in the `development.rb` file in your frontend app
+1. Run `bundle exec rake assets:precompile` manually
+1. Start your app as normal
+
+### Port already in use
+You might sometimes find that you have something running on a port still, which stops you from starting up an app. To kill a process running on a port:
 
 ```shell
 # replace [port number]
