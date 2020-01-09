@@ -9,11 +9,26 @@ last_reviewed_on: 2019-12-27
 review_in: 6 months
 ---
 
-Make the following changes to your setup if you are making changes to frontend apps and need to view those changes locally.
+## Using startup scripts
+If you are making changes to a frontend app and nothing else, you can view these changes by running the application `./startup.sh` script:
 
-In the instructions below we are running the [frontend] app, but this would work for any of the other frontend apps such as [government-frontend].
+```shell
+cd /var/govuk/frontend
+./startup.sh --live
+```
 
-## Under docker
+If you want to test changes in [govuk_publishing_components] against a frontend app, you need to edit your frontend app Gemfile and then run the startup script:
+
+```ruby
+gem 'govuk_publishing_components', path: '../govuk_publishing_components'
+```
+
+```shell
+bundle install
+./startup.sh --live
+```
+
+## Using govuk-docker
 
 1. Repoint static and frontend to the local version of `govuk_app_config`:
 
@@ -48,66 +63,6 @@ In the instructions below we are running the [frontend] app, but this would work
 
   (or you can run the last command from the frontend directory as just `govuk-docker-up`)
 6. Changes should be ok for http://frontend.dev.gov.uk/help
-
-## Without docker
-
-A small number of frontend devs prefer to not use Docker locally, so we are keeping these instructions for a little while longer.
-
-### Running just a frontend app against live data
-
-```shell
-cd /var/govuk/frontend
-./startup.sh --live
-```
-
-### Running a frontend app against changes in `govuk_publishing_components`
-
-Update the Gemfile for the frontend app to point to your local `govuk_publishing_components` gem:
-
-```ruby
-gem 'govuk_publishing_components', path: '../govuk_publishing_components'
-```
-
-Then run your frontend app again pointing to live:
-
-```shell
-./startup.sh --live
-```
-
-### Running a frontend app against changes in `static`
-
-Make changes to the Gemfile of the frontend app you're working on as per [changes to govuk_publishing_components above](#running-a-frontend-app-against-changes-in-govuk_publishing_components), then set in `development.rb`:
-
-```ruby
-...
-config.assets.debug = false
-...
-```
-
-If you're making changes to the [govuk_publishing_components] gem that affect [static] and are likely things across the whole site, e.g: cookie banner (and survey banner possibly), update the Gemfile of [static] to point to the gem:
-
-```ruby
-...
-gem 'govuk_publishing_components', path: '../govuk_publishing_components'
-...
-```
-
-Run up static:
-
-```shell
-cd /var/govuk/static
-govuk_setenv static ./startup.sh --live
-```
-
-Run up frontend against local static (the `--live` flag means the rest runs against live data):
-
-```shell
-PLEK_SERVICE_STATIC_URI=localhost:3013 ./startup.sh --live
-```
-
-And you can see frontend running up locally with the right local dependencies:
-
-[http://frontend.dev.gov.uk/](http://frontend.dev.gov.uk/)
 
 > Note: You might sometimes find that you have something running on a port still, which stops you from starting up an app. To kill a process running on a port:
 
