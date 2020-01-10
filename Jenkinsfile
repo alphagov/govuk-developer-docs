@@ -3,5 +3,5 @@
 library("govuk")
 
 node {
-  govuk.buildProject()
+  govuk.buildProject(skipDeployToIntegration: true)
 }
