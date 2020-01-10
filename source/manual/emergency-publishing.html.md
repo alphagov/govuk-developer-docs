@@ -63,8 +63,6 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
-You can automate this by using the [emergency publishing scraper](https://github.com/alphagov/emergency-publishing-scraper).
-
 For each page:
 
 - Check the banner displays as expected
