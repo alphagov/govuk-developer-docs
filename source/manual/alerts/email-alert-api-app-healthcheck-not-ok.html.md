@@ -4,7 +4,7 @@ title: email-alert-api app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-03
+last_reviewed_on: 2020-01-10
 review_in: 6 months
 ---
 
@@ -14,13 +14,10 @@ problems and remedies later on in this document.
 
 ## You may not need to do anything
 
-Some alerts tend to trigger when emails are sent out. Check to see if emails have
-sent out by looking at the [Email Alert API Metrics Grafana dashboard][dashboard].
-
-This affects the following alerts:
-* High queue alerts (all)
-
-In this case you can wait until the emails have all been sent out.
+The high queue alerts tend to trigger when emails are sent out. Normally Notify
+sends out a bulk of emails around 9.30am, which can cause a spike but this returns
+to normal after 10.15am. You can monitor emails have been sent by looking at the
+[Email Alert API Metrics Grafana dashboard][dashboard].
 
 ## General troubleshooting tips
 
@@ -105,23 +102,6 @@ items in the queue, but if it is very high it suggests that there may be a
 problem down the line which is preventing jobs from being processed. It may
 also imply the threshold is too low if a large number of emails have been sent
 out due to a content change.
-
-### Subscription contents without emails (subscription_content)
-
-This means that there are subscription contents being created without emails
-associated with them, this implies that emails aren't being sent out. Some
-useful queries:
-
-#### Check which subscription contents this affects
-
-```ruby
-SubscriptionContent.where("subscription_contents.created_at < ?", 1.minute.ago).where(email: nil).joins(:subscription).merge(Subscription.active)
-```
-
-Check the count, then run the above query again to see if the count has
-decreased. If it's decreasing, then it means that emails are going out and
-there's probably a lot being processed. You can also check the
-[Email Alert API Metrics dashboard][dashboard].
 
 [dashboard]: https://grafana.staging.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
 [google-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
