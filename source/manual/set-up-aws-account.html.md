@@ -66,6 +66,8 @@ Add yourself to a lists of users found in [the data for the infra-security proje
 - `govuk-platformhealth-powerusers`: as above but for members of the GOV.UK Platform Health team
 - `govuk-users`: anyone else who needs integration access on GOV.UK
 
+> Note: There is a limit on the number of people that can be in each group. If you find that the limit has been hit, try and identify any users who no longer need access and can be removed. Otherwise, a new group will need to be created.
+
 The identifier you need to add is called the "User ARN". You can find this by going
 to the [users page in AWS IAM][iam] and selecting your profile.
 
@@ -83,6 +85,7 @@ or `govuk-internal-administrators` group needs to deploy the
 You can now:
 
 👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
+
 👉 [Access AWS via the web interface or on the command line][access-aws-console]
 
 [access-aws-console]: /manual/access-aws-console.html
