@@ -15,6 +15,7 @@ If you are making changes to a frontend app and nothing else, you can view these
 ```shell
 cd /govuk/frontend
 ./startup.sh --live
+# Check the output to see what port the app is running on, e.g: localhost:3005
 ```
 
 If you want to test changes in [govuk_publishing_components] against a frontend app, you need to edit your frontend app Gemfile and then run the startup script:
@@ -26,6 +27,7 @@ gem 'govuk_publishing_components', path: '../govuk_publishing_components'
 ```shell
 bundle install
 ./startup.sh --live
+# Check the output to see what port the app is running on, e.g: localhost:3005
 ```
 
 ## Using govuk-docker
@@ -40,6 +42,7 @@ make government-frontend
 
 cd /govuk/government-frontend
 govuk-docker up government-frontend-app-live
+# You can now view the app on government-frontend.dev.gov.uk
 ```
 
 If you want to test changes in [govuk_publishing_components] against a frontend app, you need to edit your frontend app Gemfile first:
@@ -52,6 +55,7 @@ gem 'govuk_publishing_components', path: '../govuk_publishing_components'
 cd /govuk/government-frontend
 bundle install
 govuk-docker up government-frontend-app-live
+# You can now view the app on government-frontend.dev.gov.uk
 ```
 
 If you want to test changes in static against a frontend app, you need to tell Docker to look at your local version of static rather than live:
@@ -81,6 +85,7 @@ make government-frontend
 
 cd /govuk/government-frontend
 govuk-docker up government-frontend-app-live
+# You can now view the app on government-frontend.dev.gov.uk
 ```
 
 ## Components pulled in by Static
