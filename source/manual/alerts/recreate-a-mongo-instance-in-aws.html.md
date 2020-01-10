@@ -4,7 +4,7 @@ title: Re-create an AWS mongo instance
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-07
+last_reviewed_on: 2020-01-10
 review_in: 3 months
 ---
 > Deprecation note:
@@ -37,17 +37,17 @@ In this example we are looking at the `integration` environment.
    - https://github.com/alphagov/govuk-aws-data
    - https://github.com/alphagov/govuk-secrets
 
-1. It is very useful to have access to the AWS console, to observer the changes
+2. It is very useful to have access to the AWS console, to observe the changes
    as they happen.
 
-1. You can now execute a `terraform plan` to view the actual module names.
+3. You can now execute a `terraform plan` to view the actual module names.
 
    ```bash
    $ cd govuk-aws
    $ tools/build-terraform-project.sh -c plan  -p app-mongo -s blue -d data -e integration # Please check the script to identify the keys
    ```
 
-1. The out-put, will show you the components and how they are named by `terraform`.
+4. The output, will show you the components and how they are named by `terraform`.
 
   ```
   Initializing modules...
@@ -56,7 +56,7 @@ In this example we are looking at the `integration` environment.
   ....
   ```
 
-1. The instance of interest to us at this point is **mongo-1**.
+5. The instance of interest to us at this point is **mongo-1**.
 
 6. We can now execute a targeted plan to see details related to that specific
    component and make sure that we are working on the correct instance.
