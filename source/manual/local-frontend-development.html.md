@@ -13,7 +13,7 @@ review_in: 6 months
 If you are making changes to a frontend app and nothing else, you can view these changes by running the application `./startup.sh` script:
 
 ```shell
-cd /var/govuk/frontend
+cd /govuk/frontend
 ./startup.sh --live
 ```
 
@@ -35,10 +35,10 @@ This assumes that you have already installed and setup [govuk-docker]. We will u
 If you are making changes to a frontend app and nothing else, you can view these changes by running the following:
 
 ```shell
-cd /var/govuk-docker
+cd /govuk/govuk-docker
 make government-frontend
 
-cd /var/govuk/government-frontend
+cd /govuk/government-frontend
 govuk-docker up government-frontend-app-live
 ```
 
@@ -49,7 +49,7 @@ gem 'govuk_publishing_components', path: '../govuk_publishing_components'
 ```
 
 ```shell
-cd /var/govuk/government-frontend
+cd /govuk/government-frontend
 bundle install
 govuk-docker up government-frontend-app-live
 ```
@@ -57,7 +57,7 @@ govuk-docker up government-frontend-app-live
 If you want to test changes in static against a frontend app, you need to tell Docker to look at your local version of static rather than live:
 
 ```shell
-cd /var/govuk/govuk-docker/projects/government-frontend
+cd /govuk/govuk-docker/projects/government-frontend
 vim docker-compose.yml
 ```
 Edit the docker-compose.yml live config to depend on static and remove the live static environment:
@@ -76,10 +76,10 @@ Edit the docker-compose.yml live config to depend on static and remove the live 
 
 We can now run the frontend application as normal:
 ```shell
-cd /var/govuk/govuk-docker
+cd /govuk/govuk-docker
 make government-frontend
 
-cd /var/govuk/government-frontend
+cd /govuk/government-frontend
 govuk-docker up government-frontend-app-live
 ```
 
