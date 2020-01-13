@@ -4,8 +4,8 @@ title: Use Terraboard to monitor Terraform state
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-06
-review_in: 6 months
+last_reviewed_on: 2020-01-13
+review_in: 1 month
 ---
 
 We use [Terraboard](https://camptocamp.github.io/terraboard/) for monitoring
@@ -48,7 +48,7 @@ from the configured S3 bucket (`govuk-terraform-steppingstone-<environment>`)
 and caches their content in the PostgreSQL database. This decreases the amount
 of S3 traffic and makes the app faster.
 
-### Authentication
+### Authentication
 
 OAuth2 Proxy is configured to authenticate users using GitHub. A GitHub OAuth
 app for each environment exists and is owned by `alphagov`, which provides the
@@ -65,6 +65,10 @@ then proxies all authenticated requests on to port 8080 of the Terraboard
 container.
 
 ### Docker image for OAuth2 Proxy
+
+> The following section needs improvement and engineering work. See
+> [PR 2227](https://github.com/alphagov/govuk-developer-docs/pull/2227)
+> for things you can do to fix it!
 
 Since there is no official Docker image for OAuth2 Proxy, the
 [govuk-oauth2-proxy-docker](https://github.com/alphagov/govuk-oauth2-proxy-docker)
