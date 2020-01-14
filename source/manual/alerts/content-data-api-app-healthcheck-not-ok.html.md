@@ -4,19 +4,21 @@ title: content-data-api app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-06-27
+last_reviewed_on: 2020-01-13
 review_in: 6 months
 ---
 
-If there is a health check error showing for Content Data API, you can click on the alert to find out more details about what’s wrong. Here are the possible problems you may see:
+If there is a health check error showing for Content Data API, you can click on the alert to find out more details about what’s wrong.
 
-#### Note
+Note that:
 
 * The ETL process runs at 7am (UK time) in production.
 * The ETL process runs at 11am (UK time) in staging.
 * The ETL process runs at 1pm (UK time) in integration.
-* All dates for the rake tasks below are inclusive.
+* **All dates for the rake tasks below are inclusive.** In other words, if you only need to reprocess data for a specific day, you'll need to use the same the date for both the 'from' and 'to' parameters (for example: `etl:repopulate_aggregations_month["2019-12-15","2019-12-15"]`).
+* The rake task should be run on the `content-data-api` TARGET_APPLICATION and the `backend` MACHINE_CLASS.
 
+Here are the possible problems you may see:
 
 ## ETL :: no monthly aggregations of metrics for yesterday
 
@@ -25,7 +27,7 @@ This means that [the ETL master process][1] that runs daily that creates aggrega
 To fix this problem run the [following rake task][5]:
 
 ```bash
-etl:repopulate_aggregations_month["YYYY-MM-DD", "YYYY-MM-DD"]
+etl:repopulate_aggregations_month["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
 ## ETL :: no <range> searches updated from yesterday
@@ -53,7 +55,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views["YYYY-MM-DD","YYYY-MM-DD"]
+rake etl:repopulateviews["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
 ## ETL :: no upviews for yesterday
@@ -63,7 +65,7 @@ This means the [the ETL master process][1] that runs daily has failed to collect
 To fix this problem run the [following rake task][2]:
 
 ```bash
-rake etl:repopulate_views["YYYY-MM-DD","YYYY-MM-DD"]
+rake etl:repopulateviews["YYYY-MM-DD","YYYY-MM-DD"]
 ```
 
 ## ETL :: no searches for yesterday
