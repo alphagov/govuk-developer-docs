@@ -36,7 +36,7 @@ These presentations are repeated semi-regularly at the GOV.UK Tech Fortnightly m
 
 ## Opsmanual (legacy)
 
-<https://github.com/alphagov/govuk-legacy-opsmanual>
+<https://docs.google.com/document/d/17XUuPaZ5FufyXH00S9qukl6Kf3JbJtAqwHR3eOBVBpI/edit>
 
 - Contains private information on operations, such as phone numbers and account IDs
 
