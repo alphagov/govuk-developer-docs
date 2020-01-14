@@ -4,7 +4,7 @@ title: Enhanced Ecommerce ETL from Search API to Google Analytics
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-08-15
+last_reviewed_on: 2020-01-14
 review_in: 6 months
 ---
 
@@ -35,6 +35,7 @@ Currently, the rake task will generate the file and upload it in one step.
 
 If the check fails:
 
-- Inspect the [console
-logs for the rake task](https://deploy.publishing.service.gov.uk/job/enhanced_ecommerce/).
+- Inspect the [console logs for the rake task](https://deploy.blue.production.govuk.digital/job/enhanced_ecommerce_search_api/).
 - Escalate to the team responsible for [search-api](/apps/search-api.html).
+- It is safe to re-run the rake task to make the alert go away.
+  You may see some 'high load' alerts while the task is running.
