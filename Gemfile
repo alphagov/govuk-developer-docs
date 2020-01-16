@@ -8,7 +8,7 @@ gem "rake"
 gem "rspec", "~> 3.9"
 gem "rubocop-govuk"
 gem "simplecov"
-gem "webmock", "~> 3.7"
+gem "webmock", "~> 3.8"
 
 gem "govuk_tech_docs"
 gem "middleman", "~> 4.3.5"
