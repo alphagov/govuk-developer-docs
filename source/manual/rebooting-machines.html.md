@@ -45,6 +45,8 @@ and RE will be able to help in these cases. It also means RE can investigate
 any problems so it doesn't happen again and we have confidence in our ability
 to reboot machines in AWS.
 
+There's a [section on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws).
+
 ## Unattended upgrades
 
 Machines are configured with [automatic security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package) which install security updates overnight. Sometimes these require a reboot in order to become active.
@@ -102,6 +104,24 @@ There is a Fabric task to schedule a machine for downtime in Nagios for
 > not boot when the affected VM is restarted. See the
 > manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
 > more info.
+
+## Rebooting Cache machines in AWS
+
+The `cache` machines run the `router` app which handles live user traffic.
+To safely reboot them without serving too many errors to users, we must
+remove them from the AWS load balancer target groups before rebooting:
+
+1. Login to the AWS Console for the relevant environment (`gds aws govuk-<environment>-<your-role> -l`).
+1. Find the [Instance ID](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime) of the critical machine(s) (probably all 8 `blue-cache` machines)
+1. `ssh [ip].eu-west-1.compute.internal` (find this from the reboots required alert listing)
+1. Remove the machine from the following [Target Groups](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#TargetGroups:sort=targetGroupName):
+   1. cache-assets-origin
+   1. cache-www
+   1. cache-www-origin
+1. Check the traffic has reduced to only be the Smokey healthchecks now: `tail -f /var/log/nginx/lb-access.log`.
+1. Run the `vm.reboot` fab script on your local machine like normal.
+1. Re-add the machine to the above target groups.
+1. Check the traffic is flowing from the load balancer with `tail -f `/var/log/nginx/lb-access.log` again.
 
 ## Rebooting MongoDB machines
 
