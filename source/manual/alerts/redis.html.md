@@ -58,16 +58,3 @@ In order to access the Redis command line interface in AWS, it is required to lo
 ```bash
 redis-cli -h <primary_endpoint url>
 ```
-
-#### Application Resiliency to ElastiCache/Redis Cluster Restarts
-
-Due to a previous incident where some apps did not handle the reboot of the
-ElastiCache/Redis cluster gracefully, it was decided to reboot the ElastiCache
-cluster in AWS integration daily at 11 00 GMT in order to catch any apps
-which exhibit this unwanted behaviour.
-
-If you see any app depending on ElastiCache breaking around 11 00 GMT,
-you should investigate whether this is due to the reboot of the cluster. If so,
-you should inform the [team](https://docs.publishing.service.gov.uk/apps/by-team.html)
- responsible for that app so that they modify the app to handle gracefully
-ElastiCache/Redis cluster reboots.
