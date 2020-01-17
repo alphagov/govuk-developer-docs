@@ -5,7 +5,7 @@ section: 2nd line
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-18
+last_reviewed_on: 2020-01-17
 review_in: 6 months
 ---
 
@@ -21,7 +21,7 @@ It is the responsibility of the people above to make sure their details are up t
 and that they're correctly scheduled in.
 
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
-them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty. 
+them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty.
 
 ## PagerDuty drill
 
@@ -34,12 +34,35 @@ notified. After a short amount of time, cron will remove the file to
 resolve the alert. The [code that does this is in
 Puppet](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/pagerduty_drill.pp).
 
-> **Note**: The drill runs within the AWS environment while we migrate
-> our apps to AWS. If you need to trigger the drill manually, make sure
-> you're logged in to the AWS monitoring instance.
-
 You don't need to take any action for this alert. The primary in-office
 2nd line should escalate the call to the secondary who should escalate
 it to "escalations" to ensure that phone redirection is working. The
 person on "escalations" will resolve the PagerDuty alert to prevent
 anyone else being phoned.
+
+### Triggering the drill manually
+
+> **Note**: The drill runs within the AWS environment while we migrate
+> our apps to AWS. If you need to trigger the drill manually, make sure
+> you're logged in to the AWS monitoring instance.
+
+To trigger the drill manually, follow these steps:
+
+1. Shell onto the monitoring box:
+
+```shell
+$ govukcli set-context production
+$ govukcli ssh monitoring
+```
+
+2. Generate the file that the Icinga monitor looks for which triggers the alert:
+
+```shell
+$ sudo touch /var/run/pagerduty_drill
+```
+
+3. Delete the file once the test drill is triggered:
+
+```shell
+sudo rm pagerduty_drill
+```
