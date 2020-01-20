@@ -79,6 +79,7 @@ Edit the docker-compose.yml live config to depend on static and remove the live 
 ```
 
 We can now run the frontend application as normal:
+
 ```shell
 cd /govuk/govuk-docker
 make government-frontend
