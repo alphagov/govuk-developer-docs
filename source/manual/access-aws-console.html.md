@@ -37,6 +37,10 @@ If you're new to GOV.UK and want to look around in integration:
 
         gds aws govuk-integration-readonly -l
 
+If it's the first time you've run this, you'll be prompted for some
+access keys and an aws-vault keychain password. Follow the
+instructions [on the Set Up AWS Account page](/manual/set-up-aws-account.html).
+
 Replace `readonly` with the non-pluralised version of your role name. For example,
 if you want to assume the `govuk-powerusers` role on Staging, you would run
 `gds aws govuk-staging-poweruser -l`.
