@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: 'High number of messages on sidekiq queue'
+title: 'Email Alert API: High number of messages on sidekiq queue'
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
