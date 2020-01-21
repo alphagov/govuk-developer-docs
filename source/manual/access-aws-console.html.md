@@ -25,6 +25,7 @@ If you have `bash-completion` installed and configured, the gds-cli tab completi
 ## Get Your Role
 
 Work out which [list of users you're part of in govuk-aws-data][govuk-aws-data-users-group].
+You're about to use it in the 'Web Console' section below.
 
 ## Usage
 
@@ -33,6 +34,13 @@ Work out which [list of users you're part of in govuk-aws-data][govuk-aws-data-u
 If you're new to GOV.UK and want to look around in integration:
 
         gds aws govuk-integration-readonly -l
+
+Replace `readonly` with the non-pluralised version of your role name. For example,
+if you want to assume the `govuk-powerusers` role on Staging, you would run
+`gds aws govuk-staging-poweruser -l`.
+
+`-l` opens the web browser and logs you in. For a full list of CLI parameters,
+consult the [gds-cli README](https://github.com/alphagov/gds-cli).
 
 ### Terraform
 
