@@ -4,7 +4,7 @@ title: Operation of data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-02
+last_reviewed_on: 2020-01-21
 review_in: 6 months
 ---
 [find]: apps/datagovuk_find
@@ -17,10 +17,14 @@ review_in: 6 months
 
 1. Download and install [Cloud Foundry CLI](https://github.com/cloudfoundry/cli#downloads)
 
-2. Sign into the PaaS. You will be prompted for your username and password. After authenticating, a list of your accessible spaces will be shown, select `data-gov-uk`.
+2. Sign into the PaaS. You can either do this via username and password, or single sign-on. After authenticating, a list of your accessible spaces will be shown, select `data-gov-uk`.
 
 ```
+# To sign in using username and password
 cf login -a api.cloud.service.gov.uk
+
+# To sign in using SSO
+cf login -a api.cloud.service.gov.uk --sso
 ```
 
 > **Don't have an account?**
@@ -28,6 +32,8 @@ cf login -a api.cloud.service.gov.uk
 
 > **Forgot your password?**
 > If you forgot your password, visit [https://login.cloud.service.gov.uk/forgot_password](https://login.cloud.service.gov.uk/forgot_password)
+
+> For more details, see the [PaaS documentation on signing in](https://docs.cloud.service.gov.uk/get_started.html#sign-in-to-cloud-foundry).
 
 3. SSH into the relevant machine, e.g. `publish-data-beta-production-worker`.
 
