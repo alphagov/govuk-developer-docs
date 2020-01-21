@@ -46,6 +46,18 @@ You have to set up [Multi-Factor Authentication (MFA)][MFA].
 7. Click on the "Manage" link next to "Assigned MFA device"
 8. Follow the steps to set up your MFA device
 
+## 4. Generate a pair of access keys
+
+You have to generate an AWS Access Key and Secret Key to be able to
+perform operations with AWS on the command-line.
+
+1. [Sign in to the gds-users AWS Console](https://gds-users.signin.aws.amazon.com/console).
+1. Click on your email address in the top right.
+1. Click 'My Security Credentials'.
+1. Click 'Create access key'.
+1. Copy/paste them into the inputs that the gds-cli provides for you,
+   if you're following [the setup instructions](/manual/access-aws-console.html).
+
 ### Changing your MFA device
 
 Follow steps 1 - 7 in [Set up your MFA](#3-set-up-your-mfa). Then:
