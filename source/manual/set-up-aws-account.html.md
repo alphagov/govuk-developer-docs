@@ -64,7 +64,9 @@ Follow steps 1 - 7 in [Set up your MFA](#3-set-up-your-mfa). Then:
 
 1. Choose one of the two options (Remove or Resync)
 2. Click on the "Manage" link next to "Assigned MFA device"
-3. Follow the steps to set up your MFA device
+3. Follow the steps to set up your MFA device. If you're using a
+   Yubikey, you must choose "TOTP" device, not "U2F" device, for the
+   gds-cli to continue working.
 
 ## 4. Get the appropriate access
 
