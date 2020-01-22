@@ -4,8 +4,8 @@ title: GOV.UK Development VM setup instructions
 description: Get started with the development VM (deprecated)
 layout: manual_layout
 section: Development VM
-last_reviewed_on: 2019-10-21
-review_in: 3 months
+last_reviewed_on: 2020-01-22
+review_in: 6 months
 ---
 
 **Note that these instructions are deprecated in favour of [using govuk-docker](/manual/get-started.html), as of July 2019. Proceed at your own risk.**
