@@ -4,7 +4,7 @@ title: Jenkins agent not connected to master
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-10-21
+last_reviewed_on: 2020-01-23
 review_in: 6 months
 ---
 
@@ -13,17 +13,30 @@ if it's possible to diagnose and solve the problem from there.
 
 [jenkins-nodes]: https://ci.integration.publishing.service.gov.uk/computer/
 
-If there doesn't seem to be way to solve the problem it may be necessary to restart either the agent or master process:
+View the log for the relevant agent, for example by clicking on the hostname of the agent and then choosing Log from the menu on the left-hand side.
+
+Logs can also be found on the agent machine under `/var/lib/jenkins/remoting/logs`.
+
+If the agent process is repeatedly starting up and failing with messages like:
 
 ```
-$ ssh ci-agent-<n>.ci
-$ sudo service jenkins-agent restart
+deleting obsolete workspace /var/lib/jenkins/workspace/ishing-e2e-tests_govuk-test-TBY2AGKJXBE42MNITWCQM63I6R6XJSSGHBHBPH6P4IOBGXQK5OMA
+...
+Unexpected termination of the channel
 ```
 
+then try clearing out the workspace directory on the agent:
+
 ```
-$ ssh ci-master-1.ci
+$ gds govuk connect ssh -e ci ci_agent:0
+$ sudo rm -r /var/lib/jenkins/workspace/*
+```
+
+If there doesn't seem to be way to solve the problem it may be necessary to restart the master process:
+
+```
+$ gds govuk connect ssh -e ci_master
 $ sudo service jenkins restart
 ```
 
-Caution that restarting the master process will cause all CI jobs to be temporarily suspended and all agents will need
-to reconnect.
+Restarting the master process will temporarily suspend all CI jobs while the master reconnects to the agents, but it should not cause any jobs to fail.
