@@ -5,7 +5,7 @@ layout: manual_layout
 section: Publishing
 type: learn
 owner_slack: "#govuk-developers"
-last_reviewed_on: 2019-04-29
+last_reviewed_on: 2020-01-23
 review_in: 6 months
 related_applications: [content-tagger]
 ---
@@ -73,8 +73,8 @@ You can fetch content tagged to a particular taxon from the Search API
 ([search-api][search-api]).
 
 This is used in some GOV.UK search pages.  For example https://www.gov.uk/search/news-and-communications
-has a topic/subtopic facet that allows filtering. Advanced search pages like
-https://www.gov.uk/search/advanced?group=news_and_communications&topic=%2Feducation
+has a topic/subtopic facet that allows filtering.  In addition, search pages like
+https://www.gov.uk/search/guidance-and-regulation?parent=%2Feducation%2Fschools-forums&topic=57c6ba08-a31a-4a7a-9cd6-3d571e91f1ab
 (which are accessed from topic pages) are prefiltered by topic.
 
 The filter works with a `content_id` rather than URL. To find all content

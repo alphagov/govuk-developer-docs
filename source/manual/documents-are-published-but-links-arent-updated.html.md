@@ -4,7 +4,7 @@ title: Documents are published, but the links aren't up to date
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-04-17
+last_reviewed_on: 2020-01-23
 review_in: 6 months
 ---
 

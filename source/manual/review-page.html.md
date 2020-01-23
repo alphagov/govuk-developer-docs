@@ -4,7 +4,7 @@ title: Review a page in this manual
 section: Documentation
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-01-03
+last_reviewed_on: 2020-01-23
 review_in: 12 months
 ---
 
