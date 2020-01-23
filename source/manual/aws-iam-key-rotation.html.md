@@ -127,6 +127,11 @@ In production systems, this could prevent minor outages scaling into incidents.
 - Notify [2ndline] that you are about to delete a key or make a key inactive.
 - Click `Make inactive` to inactivate the key or click the `X` to delete it.
 
+### 7. Record where the key is used
+
+- Record your findings of where the key is used in the
+[GOV.UK AWS User Keys spreadsheet](user-keys-list)
+
 ## Command Line Interface
 
 It's also possible to view and update access keys with the [AWS CLI].
@@ -143,3 +148,4 @@ It's also possible to view and update access keys with the [AWS CLI].
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
 [2ndline]: /manual/2nd-line.html
 [AWS CLI]: https://aws.amazon.com/blogs/security/how-to-rotate-access-keys-for-iam-users/
+[user-keys-list]: https://docs.google.com/spreadsheets/d/1L6H3-wh9J1p18fjnODmit2WbGOA8wZgr5wL-5wN0IgE/edit#gid=0
