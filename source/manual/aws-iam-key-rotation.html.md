@@ -130,7 +130,7 @@ In production systems, this could prevent minor outages scaling into incidents.
 ### 7. Record where the key is used
 
 - Record your findings of where the key is used in the
-[GOV.UK AWS User Keys spreadsheet](user-keys-list)
+[GOV.UK AWS User Keys spreadsheet][user-keys-list].
 
 ## Command Line Interface
 
