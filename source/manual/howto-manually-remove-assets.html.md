@@ -4,7 +4,7 @@ title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-08
+last_reviewed_on: 2020-01-24
 review_in: 6 months
 ---
 
@@ -27,6 +27,12 @@ follow these steps:
 1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache]
 1. Verify that the asset is not there
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
+1. Remove the asset from the mirrors.
+    1. Log into the [AWS console](https://docs.publishing.service.gov.uk/manual/access-aws-console.html) as admin for production
+    1. Go to the govuk-production-mirror bucket in S3 and manually delete the asset
+    1. Log into the [GCP console](https://console.cloud.google.com/)
+    1. Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
+    1. Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
 
 > **Note**
 >
