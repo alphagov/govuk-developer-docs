@@ -13,7 +13,7 @@ The app-by-app migration plan to move GOV.UK to AWS introduced an `$app_domain_i
 
 This is necessary because in AWS we use a `<environment>.govuk-internal.digital` domain in addition to the `<environment>.govuk.digital` domain.
 
-Furthermore, the `app_domain` parameter may be set to the `<environment>.publishing.service.gov.uk` for migrated apps as well. The exact configuration depends on the current state of the migrated app and its dependencies. 
+Furthermore, the `app_domain` parameter may be set to `<environment>.publishing.service.gov.uk` for migrated apps as well. The exact configuration depends on the current state of the migrated app and its dependencies. 
 
 For example, migrated backend applications, such as Support, may be configured to use the `<environment>.publishing.service.gov.uk` `$app_domain` to facilitate access to Signon over the internet. 
 
