@@ -73,8 +73,12 @@ class AppDocs
       "Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml"
     end
 
+    def production_hosted_on_aws?
+      production_hosted_on == "aws"
+    end
+
     def machine_class
-      production_hosted_on == "aws" ? aws_puppet_class : carrenza_machine
+      production_hosted_on_aws? ? aws_puppet_class : carrenza_machine
     end
 
     def production_hosted_on
@@ -154,7 +158,13 @@ class AppDocs
     def dashboard_url
       return if app_data["dashboard_url"] == false
 
-      app_data["dashboard_url"] || "https://grafana.publishing.service.gov.uk/dashboard/file/deployment_#{puppet_name}.json"
+      app_data["dashboard_url"] || (
+        if production_hosted_on_aws?
+          "https://grafana.production.govuk.digital/dashboard/file/#{puppet_name}.json"
+        else
+          "https://grafana.publishing.service.gov.uk/dashboard/file/#{puppet_name}.json"
+        end
+      )
     end
 
     def publishing_e2e_tests_url
