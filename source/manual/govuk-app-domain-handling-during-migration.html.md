@@ -9,7 +9,7 @@ last_reviewed_on: 2020-01-23
 review_in: 3 months
 ---
 
-The app-by-app migration plan to move GOV.UK to AWS introduced an `$app_domain_internal` parameter in addition to the `$app_domain` used previously. 
+The app-by-app migration plan to move GOV.UK to AWS introduced an `$app_domain_internal` parameter in addition to the previously used `$app_domain`. 
 
 This is necessary because in AWS we use a `<environment>.govuk-internal.digital` domain in addition to the `<environment>.govuk.digital` domain.
 
