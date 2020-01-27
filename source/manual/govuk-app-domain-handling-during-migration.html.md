@@ -17,13 +17,17 @@ Furthermore, the `app_domain` parameter may be set to `<environment>.publishing.
 
 For example, migrated backend applications, such as Support, may be configured to use the `<environment>.publishing.service.gov.uk` `$app_domain` to facilitate access to Signon over the internet. 
 
-Applications in Carrenza which talk to AWS over the VPN need to resolve `<environment>.govuk-internal.digital`. This internal domain is resolved to the private IP CIDR in AWS (at the moment this is only done for RabbitMQ exchange federation).
+Applications in Carrenza which talk to AWS over the VPN need to resolve `<environment>.govuk-internal.digital`. The names under `govuk-internal.digital` point to private IP addresses in AWS. 
+
+At the moment this is only done for RabbitMQ exchange federation because the performance platform (backdrop) still depends on RabbitMQ.
 
 As a rule of thumb:
 
 - Applications which have been moved to AWS and have all their dependencies in AWS will use `$app_domain=<environment>.govuk.digital` and `$app_domain_internal=<environment>.govuk-internal.digital`.
 - Applications which remain in Carrenza, including all their dependencies, will only use `app_domain=<environment>.publishing.service.gov.uk`.
 - Applications having dependencies in both AWS and Carrenza will require some customisation of service resolution in form of a Plek URI override and may use either `$app_domain=<environment>.govuk.digital` or `$app_domain=<environment>.publishing.service.gov.uk`.
+
+Note: we use [Plek](https://github.com/alphagov/plek) to generate the correct base URLs for internal GOV.UK services. These URLs can be overridden when a [Plek instance is instantiated](https://github.com/alphagov/plek/blob/master/lib/plek.rb#L29).
 
 Since setting the correct service discovery environment for a particular app is complicated due to the migration to AWS, please take extra care to make sure you understand the effects of changes to the app_domain parameter and Plek URI overrides via environment variables. 
 
