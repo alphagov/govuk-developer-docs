@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Change a government following a general election
+title: Government Changes
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-05
+last_reviewed_on: 2020-01-27
 review_in: 6 months
 ---
 
