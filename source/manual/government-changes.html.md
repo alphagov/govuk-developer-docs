@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Change a government following a general election
+title: Government Changes
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-05
+last_reviewed_on: 2020-01-27
 review_in: 6 months
 ---
 
@@ -109,3 +109,47 @@ we can run a rake task:
 
 This will end all ministerial roles except the Prime Minister. You might have to
 do that one manually.
+
+## Machinery of Government Changes
+
+Following machinery of government changes, developers can help content
+designers make bulk changes to documents and users.
+
+### Bulk changing users
+
+There is a Rake task in Signon to change the organisation that a user belongs
+to in bulk:
+[`data_hygiene:bulk_update_organisation[csv_file]`][signon-bulk-update-organisation].
+
+It accepts a CSV file which should have at least the following columns (in any
+order):
+
+| Column Header | Description |
+| --- | --- |
+| `Old email` | The old email address of the user. |
+| `New email` | The new email address of the user. |
+| `New organisation` | The slug of the new organisations for the user. |
+
+**Note:** It may be necessary to leave the old users around so they can still
+edit content for the old organisation. In that case you can bulk invite new
+users [using the interface in Signon][signon-batch-invitations].
+
+[signon-bulk-update-organisation]: https://github.com/alphagov/signon/blob/256ede9caa6061fd68b1daffd7123fff49df679f/lib/tasks/data_hygiene.rake#L3
+[signon-batch-invitations]: https://signon.publishing.service.gov.uk/batch_invitations/new
+
+### Bulk retagging documents
+
+There is a Rake task in Whitehall to change the lead and supporting
+organisations that a document is tagged to in bulk:
+[`data_hygiene:bulk_update_organisation[csv_file]`][whitehall-bulk-update-organisation].
+
+It accepts a CSV file which should have at least the following columns (in any
+order):
+
+| Column Header | Description |
+| --- | --- |
+| `Slug` | The slug of the document. |
+| `New leading organisations` | The slugs of the new leading organisations (separated by a comma). |
+| `New supporting organisations` | The slugs of the new supporting organisations (separated by a comma). |
+
+[whitehall-bulk-update-organisation]: https://github.com/alphagov/whitehall/blob/917085dca58fb58dbf65c7e226ad445cc1f27bdd/lib/tasks/data_hygiene.rake#L37
