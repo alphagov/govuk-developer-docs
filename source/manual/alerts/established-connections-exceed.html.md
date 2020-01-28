@@ -4,7 +4,7 @@ title: Established connections exceed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-05-17
+last_reviewed_on: 2020-01-28
 review_in: 6 months
 ---
 
@@ -19,3 +19,8 @@ If this alert is firing, it can suggest that requests are coming in to
 the application faster than it can handle, and they're beginning to
 back up. This is bad, as it means that the requests will be slower, as
 the application wasn't able to start processing it immediately.
+
+If you're seeing this alert regularly for an app and the machine it's on has
+enough memory to cope with more workers then you can increase this amount via
+puppet. An example of increasing the unicorn workers for an app can be
+found [here](https://github.com/alphagov/govuk-puppet/pull/9831).
