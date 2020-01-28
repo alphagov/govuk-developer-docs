@@ -4,8 +4,8 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2019-05-10
-review_in: 6 months
+last_reviewed_on: 2020-01-28
+review_in: 9 months
 ---
 
 [Hiera](https://docs.puppetlabs.com/hiera/1/) is a key-value lookup tool
@@ -28,19 +28,10 @@ changed in a git commit.
 
 Currently, we only encrypt the data in the credentials files found in the
 [hieradata/](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
-directories of the [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) and [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets)
+directories of the
+[alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) and
+[alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets)
 repositories. These files contain secrets such as passwords and private keys.
-
-Only secrets for the production, staging and integration environments
-are sensitive. The
-[vagrant_credentials.yml](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/vagrant_credentials.yaml)
-file, used with the [Vagrant test VMs](https://github.com/alphagov/govuk-puppet/blob/master/Vagrantfile),
-should not contain any sensitive data but you can use it to test Hiera
-eYAML GPG using dummy data.
-
-There is currently no support for encrypted Hiera data using the
-[development VM](https://github.com/alphagov/govuk-puppet/tree/master/development-vm);
-this is intentional for reasons of simplicity.
 
 ## Why do we encrypt Hiera data?
 
@@ -92,17 +83,16 @@ You must use the rake tasks to change encrypted Hiera data.
 1.  Pull the latest changes from the
     [govuk-secrets](https://github.com/alphagov/govuk-secrets) repository.
 
-2.  Run `bundler` to install dependencies:
-
-        cd puppet/
-        bundle install
-        cd puppet_aws/
-        bundle install
+2.  Run `bundle` to install dependencies.
 
 ### Encrypting a Hiera key
 
 1.  Where `integration` is the name of the environment whose credentials
-    you wish to edit, run:
+    you wish to edit, cd into the relevant directory:
+
+        cd puppet_aws
+
+    and run:
 
         bundle exec rake eyaml:edit[integration]
 
@@ -155,8 +145,6 @@ and [AWS](https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/gpg_r
 There is no separate staging file; the production file is used for both
 staging and production.
 
-The `.rcp` file for Vagrant is stored in the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_recipients).
-
 Each line in a recipient file corresponds to a [GPG fingerprint](http://en.wikipedia.org/wiki/Public_key_fingerprint) and
 usually is identified by a comment after the hash (\#) symbol denoting
 its owner. Each GPG key (and owner of that key) listed in the recipient
@@ -172,8 +160,6 @@ recipient file pertains to.
     for Carrenza
     [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
     AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-    and
-    [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
 4.  Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
     is something like "Adding new key for Jane Smith".
 5.  Commit your changes and raise a pull request for review.
@@ -200,9 +186,7 @@ credentials.
     [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
     and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp),
     AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp),
-    and
-    [Vagrant](https://github.com/alphagov/govuk-puppet/blob/master/gpg_recipients/vagrant_hiera_gpg.rcp).
+    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
     There are no staging recipient files since these are the same as the
     production recipient files.
 2.  Commit your changes and raise a pull request for review.
@@ -262,7 +246,7 @@ To generate a new key:
 
         You should store this key in the appropriate location in govuk-secrets:
         e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/integration)
-        and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)  
+        and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)
 
     5.  Extract the passphrase protected private key (`secring.gpg`) of the GPG
         key pair by running (you will have to supply the passphrase):
@@ -400,7 +384,7 @@ to Puppet:
     1.  `secring_unprotected.gpg` as `/etc/puppet/gpg/secring.gpg` on puppetmaster
 
     2.  `pubring.gpg` (obtained from the appropriate environment/directory in [here]
-        (https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.    
+        (https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
 
 10.  Make sure the new files have the correct permissions:
      `sudo chown -R puppet:puppet /etc/puppet/gpg` and
@@ -517,8 +501,7 @@ This error can occur for the following reasons:
 
 -   Puppet cannot find a GPG keyring in `/etc/puppet/gpg`. This
     should only occur in development or test VMs **or** on the
-    Puppet Master. If this is a non-Vagrant environment (e.g.
-    production), check that you have copied the GPG keys from the
+    Puppet Master. Check that you have copied the GPG keys from the
     2ndline pass store to `/etc/puppet/gpg` - see [configuring the Puppet Master](#configuring-the-puppet-master).
     Servers running `puppet-agent` do not require a GPG key as they
     rely on the Puppet Master to provide and, when necessary, decrypt
@@ -533,29 +516,9 @@ This error can occur for the following reasons:
 
         GNUPGHOME=/etc/puppet/gpg gpg --fingerprint
 
--   The shared folder configured in the
-    [Vagrantfile](https://github.com/alphagov/govuk-puppet/blob/master/Vagrantfile)
-    for Vagrant boxes is not being mounted correctly at `/etc/puppet/gpg`.
-    Check the output of `mount` and try reloading the machine using:
-
-        vagrant reload
-
-    You should also check that the version of VirtualBox guest additions
-    you are using is current and compatible with the VirtualBox version
-    you are using.
-
 ### Puppet fails because it can't find gpgme
 
-The error occurs because the Ruby load path is missing a directory
-containing a shared object file belonging to the gpgme Ruby gem.
-
-To fix this, you should destroy and re-provision your VM. For example,
-for the development VM:
-
-    vagrant destroy
-    vagrant up
-
-Alternatively, you can add the `$LOAD_PATH` to `/usr/bin/puppet` as shown
+You can add the `$LOAD_PATH` to `/usr/bin/puppet` as shown
 in [this commit](https://github.com/alphagov/govuk-puppet/commit/b7743452875b1dd83fda982e28ae8e776bc3a8b8).
 
 ### zsh: no matches found
