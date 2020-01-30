@@ -4,7 +4,7 @@ title: Deploy Terraform
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-04
+last_reviewed_on: 2020-01-28
 review_in: 6 months
 ---
 
@@ -23,11 +23,11 @@ to our AWS environments.
 
 You can find which class of user you are [infra-security project in govuk-aws-data](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
 
-## Deploying on Jenkins
+## Deploying manually on Jenkins
 
 > **This is not the recommended approach.**
 >
-> It's slightly easier to start with, but you'll quickly want to switch to deploying locally (see the next section) using the `deploy.rb` helper script, to avoid pasting secrets over and again!
+> It's slightly easier to start with, but you'll quickly want to switch to using the `deploy.rb` helper script (see next section), to avoid pasting secrets over and again!
 
 ### 1. Generate an AWS token and key
 
