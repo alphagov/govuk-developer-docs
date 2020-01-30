@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 type: learn
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-searchandnav"
 last_reviewed_on: 2019-10-28
 review_in: 3 months
 related_applications: [content-tagger]
