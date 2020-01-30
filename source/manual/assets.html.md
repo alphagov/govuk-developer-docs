@@ -5,8 +5,6 @@ section: Assets
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-30
-review_in: 6 months
 related_applications: [asset-manager]
 ---
 
