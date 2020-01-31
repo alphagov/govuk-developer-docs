@@ -103,7 +103,7 @@ You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
 
 1. Ensure that you are connected to the Carrenza VPN (see above).
 
-1. Visit https://vcloud.carrenza.com/cloud/org/{organisation}/ (replacing
+1. Visit https://vcloud.carrenza.com/tenant/{organisation}/ (replacing
    {organisation} with the value of the `Org` field from the password store
    entry.
 
