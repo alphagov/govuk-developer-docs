@@ -4,7 +4,7 @@ title: Retire an application
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-27
+last_reviewed_on: 2020-01-31
 review_in: 6 months
 ---
 
@@ -60,6 +60,14 @@ retired", then save your changes.
 
 ## 7. Update development scripts
 
+### GOV.UK Docker
+Remove from the [projects directory][] and any references
+in [docker compose][] or throughout the repo.
+
+[projects directory]: https://github.com/alphagov/govuk-docker/tree/master/projects
+[docker compose]: https://github.com/alphagov/govuk-docker/blob/master/docker-compose.yml
+
+### VM
 Remove from the [development-vm directory][development] `Procfile` and
 `Pinfile`:
 
