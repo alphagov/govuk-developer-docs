@@ -5,7 +5,7 @@ section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-07-10
-review_in: 1 year
+review_in: 12 months
 ---
 
 ## Testing a Ruby project
