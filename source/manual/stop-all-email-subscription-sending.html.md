@@ -5,7 +5,7 @@ section: Emails
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-12-05
-review_in: 6 month
+review_in: 6 months
 ---
 
 In an emergency, the following steps will immediately stop all emails being sent
