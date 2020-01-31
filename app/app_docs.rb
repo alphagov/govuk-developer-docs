@@ -78,7 +78,7 @@ class AppDocs
     end
 
     def machine_class
-      production_hosted_on_aws? ? aws_puppet_class : carrenza_machine
+      app_data["machine_class"] || (production_hosted_on_aws? ? aws_puppet_class : carrenza_machine)
     end
 
     def production_hosted_on
@@ -212,6 +212,18 @@ class AppDocs
 
     def can_run_rake_tasks_in_jenkins?
       production_hosted_on.in?(%w[aws carrenza])
+    end
+
+    def rake_task_url(environment, rake_task = "")
+      query_params = "?TARGET_APPLICATION=#{app_name}&MACHINE_CLASS=#{machine_class}&RAKE_TASK=#{rake_task}"
+
+      case production_hosted_on
+      when "aws"
+        "https://deploy.blue.#{environment}.govuk.digital/job/run-rake-task/parambuild/#{query_params}"
+      when "carrenza"
+        environment_prefix = environment == "production" ? "" : ".#{environment}"
+        "https://deploy#{environment_prefix}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
+      end
     end
 
   private
