@@ -122,9 +122,7 @@ ssh -A -t jumpbox.production.govuk.digital 'ssh `govuk_node_list -c <%= applicat
 <% if application.can_run_rake_tasks_in_jenkins? %>
   <h3>Run a rake task</h3>
 
-  - <%= link_to "Run on Integration Jenkins", application.rake_task_url("integration") %>
-  - <%= link_to "Run on Staging Jenkins", application.rake_task_url("staging") %>
-  - <%= link_to "Run on Production Jenkins", application.rake_task_url("production") %>
+  <%= RunRakeTask.links(application) %>
 <% end %>
 
 <% if application.example_published_pages %>
