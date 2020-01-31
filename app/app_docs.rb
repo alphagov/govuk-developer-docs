@@ -160,9 +160,9 @@ class AppDocs
 
       app_data["dashboard_url"] || (
         if production_hosted_on_aws?
-          "https://grafana.production.govuk.digital/dashboard/file/#{puppet_name}.json"
+          "https://grafana.production.govuk.digital/dashboard/file/#{app_name}.json"
         else
-          "https://grafana.publishing.service.gov.uk/dashboard/file/#{puppet_name}.json"
+          "https://grafana.publishing.service.gov.uk/dashboard/file/#{app_name}.json"
         end
       )
     end
