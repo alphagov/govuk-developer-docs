@@ -31,10 +31,11 @@ to update documents inplace without locks. This can be done during working hours
 
 ## How to reindex an Elasticsearch index
 
-**Do not reindex on production during working hours except in an emergency.**
-Reindexing locks the index for writes, so content is not updated in the search
-index. See the [Replay traffic](#replay-traffic) section below if you need to
-run a reindexing during working hours. Reindexing takes around 2 hours to
+**Do not reindex on production during working hours except in an
+emergency.** Reindexing locks the index for writes, so content is not
+updated in the search index. See the [out-of-date search
+indices](#out-of-date-search-indices) section below if you need to run
+a reindexing during working hours. Reindexing takes around 2 hours to
 complete.
 
 To reindex, run the `search:migrate_schema` rake task:
@@ -64,12 +65,12 @@ Then check how many documents have been copied to the new index:
 curl http://elasticsearch6/_cat/indices?v
 ```
 
-### Replay traffic
+### Out-of-date search indices
 
 This step is only necessary if you ran reindexing job during working hours,
-which means that content published in whitehall will be missing from search.
+which means that content updated in whitehall will be missing from search.
 
-See [Replaying traffic to correct an out of sync search index][traffic-replay]
+See [Fix out-of-date search indices][fix-out-of-date-search-indices]
 for details.
 
 ### Cleanup
@@ -135,9 +136,8 @@ where `full_index_name` is the full name of the new index, including the date
 and UUID, e.g. `govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498`.
 
 Switching back to an old index means that you'll **lose any content updates**
-that were published while the new index was live. To fix this, [replay the
-traffic][traffic-replay] from both publishing-api and Whitehall.
+that were published while the new index was live. To fix this, [replay traffic][fix-out-of-date-search-indices] from both publishing-api and Whitehall.
 
 [update-fields-or-doc-types]: /apis/search/add-new-fields-or-document-types.html
 [index-alias]: https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html
-[traffic-replay]: search-api-traffic-replay.html
+[fix-out-of-date-search-indices]: fix-out-of-date-search-indices.html
