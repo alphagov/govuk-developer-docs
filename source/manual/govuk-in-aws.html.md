@@ -5,7 +5,7 @@ section: Infrastructure
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-10-25
+last_reviewed_on: 2020-02-03
 review_in: 3 months
 ---
 
@@ -102,11 +102,22 @@ We are using [Amazon Relational Database Service (RDS)](https://aws.amazon.com/r
 
 To run Puppet against these databases, we have a new instance class: [db_admin](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_db_admin.pp)
 
-Both PostgreSQL and MySQL databases are managed through this instance. They are also used to take textual backups, which are then stored in an [Amazon S3](https://aws.amazon.com/s3/) bucket.
+`db_admin` manages MySQL and PostgreSQL RDS instances. It runs nightly backups of all of these to S3 using [govuk_env_sync](govuk-env-sync.html).
 
 Transition has its own class for management: [transition_db_admin](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_transition_db_admin.pp)
 
 Please see [the documentation](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html) about administering RDS databases.
+
+#### DocumentDB
+
+Applications in AWS are gradually being migrated from self-hosted MongoDB to Amazon DocumentDB. Notable differences include:
+
+* DocumentDB implements the MongoDB 3.6 API, whereas our self-hosted MongoDB is version 2.4.
+* DocumentDB instances do not support unauthenticated connections; they require a username and password.
+* Storage is allocated automatically and scales automatically.
+* DocumentDB does not support arbitrary binary data in fields of type `String` because it doesn't allow strings to contain NUL characters (`\\u+0000`).
+
+DocumentDB instances are managed and backed up via the `db_admin` bastion hosts, similarly to Postgres and MySQL.
 
 #### Redis
 
@@ -124,12 +135,6 @@ our own nginx load balancers, and so these have been removed from the stack. See
 
 Traditionally, we had a separate MySQL server for Whitehall. Rather than manage multiple RDS instances,
 we have merged this into the main MySQL server. See the [relevant ADR](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0019-centralise-mysql-databases.md) for details.
-
-#### Splitting of PostgreSQL database servers
-
-Traditonally, one server hosted all of our PostgreSQL databases. Due to increasing load, the databases for
-email-alert-api and publishing-api have been split out onto their own RDS instances. The third RDS instance
-hosts all remaining databases.
 
 ### Deploying infrastructure
 
@@ -149,4 +154,8 @@ If an instance is having issues, terminating the instance may be the quickest wa
 Be aware of instances that run a lot of applications that this may block ongoing deployments due to the time it takes to deploy multiple
 applications.
 
-For a list of what applications run on which instance types, see the [relevant hieradata](https://github.com/alphagov/govuk-puppet/blob/d4c536868918519e7b78b1ba1dcd7002a6d7cdc5/hieradata_aws/common.yaml#L12-L116).
+For a list of what applications run on which instance types, see the `node_class:` entry in the relevant hieradata for the environment:
+
+ * [Integration (common.yaml)](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L13-L121).
+ * [Staging](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/staging.yaml#L14)
+ * [Production](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/production.yaml#L14).
