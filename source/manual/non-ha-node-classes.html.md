@@ -5,21 +5,24 @@ layout: manual_layout
 parent: "/manual.html"
 section: Applications
 important: true
-last_reviewed_on: 2019-07-29
+last_reviewed_on: 2020-02-03
 review_in: 6 months
 ---
 
-Below we provide a list of node classes that are not configured to be highly available (HA). This means, that short outages of these machines are architecturally considered acceptable. Recently, the installation of a critical software componenent on a non-redundant node class did cause an incident.
+Below we provide a list of node classes that are not configured to be highly available (HA). This means that short outages of these machines are architecturally considered acceptable.
 
-The situation in question involved pgbouncer, required for all Postgresql database accesses at the time, to be installed on the db-admin machines. Because the architectural design anticipated machines of the db-admin node class to be used as jumpboxes for administrative database access only, a high load introduced on a database created a Postgresql outage for GOV.UK.
+Installation of a critical software component on a non-redundant node class has caused an incident in the past. This happened when `pgbouncer`, required for all Postgresql database accesses at the time, was installed on `db_admin`, a single EC2 instance. That single instance became unavailable and took down Postgres in Production.
 
-When adding new services and applications to GOV.UK, please be aware that machines of the node classes below are considered non-critical to the operation of the platform. If you require your service to be highly available (HA), please consider deployment to another node class or contact RE GOV.UK to create a dedicated infrastructure solution if necessary.
+**Please do not install new services or applications on any of the following machines unless it's OK for your service to be down 5% of the time:**
 
 - db-admin
 - transition-db-admin
 - content-data-api-db-admin
 - asset-master
-- jumpbox (In AWS, only - There exist two in the Carrenza environments)
+- jumpbox
 - ckan
 - apt
 - mirrorer
+- licensing_backend
+
+If in doubt, please discuss your requirements with RE GOV.UK (#re-govuk on Slack).
