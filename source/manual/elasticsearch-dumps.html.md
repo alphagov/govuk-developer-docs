@@ -51,6 +51,5 @@ delete the existing index:
 
 > Further information about Elasticsearch snapshots can be found in the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html)
 
-After a restore has taken place, traffic will need to be [replayed](/manual/search-api-traffic-replay.html)
-following the restore, since the index will be out-of-sync with the
-publishing apps.
+After a restore has taken place, you will need to [fix the out-of-date search indices](/manual/fix-out-of-date-search-indices.html)
+following the restore, since any changes made in publishing apps since the backup was taken will be missing.

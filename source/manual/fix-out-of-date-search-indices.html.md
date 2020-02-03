@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Replay traffic to correct an out-of-sync search index
+title: Fix out-of-date search indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-12-13
+last_reviewed_on: 2020-02-03
 review_in: 3 months
 ---
 
