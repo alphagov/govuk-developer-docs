@@ -4,7 +4,7 @@ title: High Search API Sidekiq queue latency
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-29
+last_reviewed_on: 2020-02-04
 review_in: 6 months
 ---
 
@@ -26,4 +26,4 @@ that jobs are failing. You can then look at [Sentry][sentry] or
 
 [search-api-grafana]: https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=search-api&var-Queues=All
 [sentry]: /manual/error-reporting.html
-[sidekiq-web]: https://docs.publishing.service.gov.uk/manual/monitor-sidekiq-workers.html
+[sidekiq-web]: /manual/sidekiq.html#sidekiq-web
