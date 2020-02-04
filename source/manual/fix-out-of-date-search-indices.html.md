@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-searchandnav"
 title: Fix out-of-date search indices
 parent: "/manual.html"
 layout: manual_layout

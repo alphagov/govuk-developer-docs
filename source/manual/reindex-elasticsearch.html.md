@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-searchandnav"
 title: Reindex an Elasticsearch index
 section: Publishing
 layout: manual_layout
