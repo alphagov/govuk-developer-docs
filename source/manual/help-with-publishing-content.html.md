@@ -32,15 +32,6 @@ enough.
 
 [cache]: purge-cache.html
 
-### [If guidance pages are expected to show on taxon pages but aren't][search]
-
-The guidance pages visible on topic pages like
-[/government/brexit](https://www.gov.uk/government/brexit) are populated based
-on search ranking, which is only updated over night, so it may be necessary to
-set it manually.
-
-[search]: manually-setting-search-popularity-of-content.html
-
 ### If emails haven't been sent for a published document
 
 If it looks as though emails haven't been sent out for a publication, there
