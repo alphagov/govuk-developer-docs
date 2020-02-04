@@ -1,10 +1,10 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-searchandnav"
 title: Backup and restore Elasticsearch indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2019-08-22
+last_reviewed_on: 2020-02-04
 review_in: 6 months
 ---
 
@@ -15,38 +15,41 @@ making HTTP requests to the `_snapshot` endpoint.
 
 To restore a snapshot, follow these steps:
 
-1. Log into a `search` machine
+0. SSH to a `search` box:
 
     ```
-    govukcli set-context <environment>
-    govukcli ssh search
+    ssh $(ssh integration "govuk_node_list --single-node -c search").integration
     ```
 
-2. Query the `_snapshot` endpoint of Elasticsearch to get the snapshot repository
-name:
+0. Query the `_snapshot` endpoint of Elasticsearch to get the snapshot
+   repository name:
 
     ```
-    curl http://elasticsearch6/_snapshot?pretty
+    govuk_setenv search-api \
+    bash -c 'curl "$ELASTICSEARCH_URI/_snapshot?pretty"'
     ```
 
-3. Query the `_all` endpoint to identify the available snapshots in the named
-repository:
+0. Query the `_all` endpoint to identify the available snapshots in
+   the named repository:
 
     ```
-    curl http://elasticsearch6/_snapshot/<repository-name>/_all?pretty
+    govuk_setenv search-api \
+    bash -c 'curl "$ELASTICSEARCH_URI/_snapshot/<repository-name>/_all?pretty"'
     ```
 
-4. If an index already exists with the same name as the one being restored,
-delete the existing index:
+0. If an index already exists with the same name as the one being
+   restored, delete the existing index:
 
     ```
-    curl -XDELETE http://elasticsearch6/<index-name>
+    govuk_setenv search-api \
+    bash -c 'curl -XDELETE "$ELASTICSEARCH_URI/<index-name>"'
     ```
 
-5. Restore the index from the snapshot:
+0. Restore the index from the snapshot:
 
     ```
-    curl -XPOST 'http://elasticsearch6/_snapshot/<repository-name>/<snapshot-id>/_restore' -d '{"indices": "<index-name>"}' -H 'Content-Type: application/json'
+    govuk_setenv search-api \
+    bash -c 'curl -XPOST -H 'Content-Type: application/json' "$ELASTICSEARCH_URI/_snapshot/<repository-name>/<snapshot-id>/_restore"  -d "{\"indices\": \"<index-name>\"}"'
     ```
 
 > Further information about Elasticsearch snapshots can be found in the [AWS documentation](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-managedomains-snapshots.html)
