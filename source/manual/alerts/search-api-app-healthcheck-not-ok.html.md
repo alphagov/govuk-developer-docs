@@ -4,7 +4,7 @@ title: Search API app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-12-13
+last_reviewed_on: 2020-02-04
 review_in: 6 months
 ---
 
@@ -79,11 +79,33 @@ Find out why the Search API can't connect to elasticsearch.
 - Check the status of the Elasticsearch cluster in the AWS console
 
 
+## Reranker is not OK
+
+The Search API uses machine learning to rank search results based on
+analytics data.  If this alert fires, something has gone wrong with
+that process and we're serving results as they were ordered by
+elasticsearch.
+
+Unlike the other healthcheck failures, this does not mean that Search
+API is serving errors.  Only that it is serving potentially worse
+results.
+
+The machine learning model is hosted in [Amazon SageMaker][aws-sagemaker].
+
+#### How do I investigate this?
+
+Find out why the Search API can't connect to elasticsearch.
+
+- Look at the error message in the healthcheck response
+- Look at the Search API logs
+- Check the status of the SageMaker endpoint in the AWS console
+
 [search-api]: /apps/search-api.html
 [redis]: /manual/alerts/redis.html#header
 [sidekiq-grafana-dashboard]: https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=search-api&var-Queues=All
 [sentry]: /manual/error-reporting.html
-[sidekiq-web]: /manual/monitor-sidekiq-workers.html
+[sidekiq-web]: /manual/sidekiq.html#sidekiq-web
 [search-github-repo]: https://github.com/alphagov/search-api/
 [cluster-health]: /manual/alerts/elasticsearch-cluster-health.html
 [aws-elasticsearch]: https://aws.amazon.com/elasticsearch-service/
+[aws-sagemaker]: https://aws.amazon.com/sagemaker/
