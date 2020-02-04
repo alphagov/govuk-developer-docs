@@ -128,7 +128,7 @@ we have to add the new rules manually, this is how to do it:
 attached to it in the password store.
 
 ```bash
-vcd login vcloud.carrenza.com {organisation} 2nd-line-support@digital.cabinet-office.gov.uk -V 27.0
+vcd login vcloud.carrenza.com {organisation} 2nd-line-support@digital.cabinet-office.gov.uk -V 32.0
 ```
 
 4. Find the correct values for $stag_prefix and $prod_prefix in Carrenza and run this script, setting env to either staging or production and put the list
