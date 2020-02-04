@@ -4,11 +4,11 @@ title: Search reindex failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-11-01
+last_reviewed_on: 2020-02-04
 review_in: 6 months
 ---
 
-The reindex task is run weekly on a Monday at 12pm on integration. It
+The reindex task is run weekly on a Monday at 9pm on integration. It
 [reindexes][reindexing] every Elasticsearch index used by [search-api][]. This is
 to ensure the process works as expected when we need to run it in production.
 This task is manually run in production by the development team after they have
