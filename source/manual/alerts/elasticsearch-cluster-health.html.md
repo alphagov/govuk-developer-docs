@@ -4,7 +4,7 @@ title: Elasticsearch cluster health
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-25
+last_reviewed_on: 2020-02-04
 review_in: 6 months
 ---
 
