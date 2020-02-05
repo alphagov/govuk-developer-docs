@@ -27,7 +27,7 @@ To restore from this method:
 
 ## xtrabackup to S3
 
-We are required to have frequent data backups therefore we created a way to stream MySQL backups to S3.
+We are required to have frequent data backups so we created a way to stream MySQL backups to S3.
 
 We use a tool called [Innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html) which is a wrapper for [Xtrabackup](https://www.percona.com/doc/percona-xtrabackup/2.3/index.html). 
 
