@@ -16,7 +16,7 @@ We use a third-party script called [automysqlbackup](https://github.com/alphagov
 
 This script takes a nightly `mysqldump` and stores it on a dedicated mount point on the MySQL backup machines (`mysql-backup-1.backend` and `whitehall-mysql-backup-1.backend`).
 
-The on-site backup machine (`backup-1.management`) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/), runs nightly to send encrypted backups to an Amazon S3 bucket.
+The on-site backup machine (`backup-1.management`) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/) runs nightly to send encrypted backups to an Amazon S3 bucket.
 
 ### Restoring
 To restore from this method:
