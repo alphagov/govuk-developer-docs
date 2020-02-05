@@ -38,7 +38,7 @@ Each night we take a "base" backup, and then every _n_ time after that (default:
 
 ### Restoring
 
-To restore the backup we use a [script](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/usr/local/bin/xtrabackup_s3_restore.erb) to retrieve the base backup and then apply any number of incremental backups on top of it. 
+To restore the backup we use a [script to retrieve the base backup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/usr/local/bin/xtrabackup_s3_restore.erb) and then apply any number of incremental backups on top of it. 
 
 Under the hood the script completes the following steps:
 
