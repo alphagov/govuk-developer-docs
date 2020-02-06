@@ -31,8 +31,8 @@ should describe which mailbox is seeing an issue.
 If the email has been received by the mailbox but the subject of the email
 doesn't match the title of the content item, this means that the title of the
 content was updated after it was first published and after the emails went out.
-To stop the check from constantly failing, add the subject of the email to the
-[acknowledged email list][] and then re-run the Jenkins job.
+To stop the check from constantly failing, add the updated content item title
+to the [acknowledged email list][] and then re-run the Jenkins job.
 
 ## Troubleshooting unsent emails
 
