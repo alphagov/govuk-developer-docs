@@ -5,49 +5,55 @@ section: Backups
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-02
+last_reviewed_on: 2020-02-05
 review_in: 6 months
 ---
 
 ## automysqlbackup
 
-This is how MySQL backups have traditionally been taken on the GOV.UK Infrastructure.
+### Backing up
+We use a third-party script called [automysqlbackup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/automysqlbackup) to take MySQL backups of GOV.UK infrastructure.
 
-A third-party script called [automysqlbackup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/automysqlbackup) takes a `mysqldump` every night and stores them on disk
-on a dedicated mount point on the MySQL backup machines (mysql-backup-1.backend and whitehall-mysql-backup-1.backend).
+This script takes a nightly `mysqldump` and stores it on a dedicated mount point on the MySQL backup machines (`mysql-backup-1.backend` and `whitehall-mysql-backup-1.backend`).
 
-The onsite backup machine (backup-1.management) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/)
-runs each night to send encrypted backups to an Amazon S3 bucket.
+The on-site backup machine (`backup-1.management`) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/) runs nightly to send encrypted backups to an Amazon S3 bucket.
 
+### Restoring
 To restore from this method:
 
- - Fetch a backup from either the dedicated mount point, the onsite machine or the S3 bucket [using duplicity](restore-from-offsite-backups.html) (to decrypt you may need a password kept in encrypted hieradata).
+ - Using [duplicity](restore-from-offsite-backups.html), fetch a backup from either the dedicated mount point, the on-site machine, or the S3 bucket. To decrypt this you may need a password kept in encrypted hieradata.
  - Unzip the file
- - Import into MySQL using `mysql < <file>`
+ - Import into MySQL using `mysql < file` - see these [MySQL docs on using file imports](https://dev.mysql.com/doc/refman/8.0/en/mysql-batch-commands.html).
 
 ## xtrabackup to S3
 
-There is a requirement to have data backups which are taken more frequently. Streaming MySQL backups to S3 was created to satisfy this requirement.
+We are required to have frequent data backups so we created a way to stream MySQL backups to S3.
 
-To take the backup, we use a tool written by Percona called [Innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html)
-which is a wrapper for [Xtrabackup](https://www.percona.com/doc/percona-xtrabackup/2.3/index.html). This takes binary
-"hot" backups and uses the [xbstream](https://www.percona.com/doc/percona-xtrabackup/2.3/xbstream/xbstream.html) tool to stream data to STDOUT. We redirect this output
-into a file stored in an Amazon S3 bucket using a tool written in Go called [gof3r](https://github.com/rlmcpherson/s3gof3r). Xtrabackup has an encryption
-function that we can use to encrypt the backups by providing an encryption key, and we also ensure we have serverside encryption in the S3 bucket. The way that
-the backups are piped straight to S3 means that they never touch the disk so we do not have to worry about stuff like disk usage.
+We use a tool called [Innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html) which is a wrapper for [Xtrabackup](https://www.percona.com/doc/percona-xtrabackup/2.3/index.html). 
 
-This method was inspired by this [blog post from MariaDB](https://mariadb.com/blog/streaming-mariadb-backups-cloud).
+### Backing up
+Innobackupex takes binary "hot" backups and uses the [xbstream](https://www.percona.com/doc/percona-xtrabackup/2.3/xbstream/xbstream.html) tool to stream data to STDOUT. We redirect this output into a file stored in an Amazon S3 bucket using a tool written in Go called [gof3r](https://github.com/rlmcpherson/s3gof3r). 
 
-We use the concept of [incremental backups which are built in the toolset](https://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html).
-Each night we take a "base" backup, and then every n time after that (default: 15 minutes) we take an "incremental" backup. To restore the backup we would be able to get
-the "base" backup, and then apply any number of "incremental" backups on top of it.
+Each night we take a "base" backup, and then every _n_ time after that (default: 15 minutes) we take an "incremental" backup. 
 
-The drawback of this method is that restores are more complicated.
+### Restoring
 
-To make this easier, a [script has been written](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/usr/local/bin/xtrabackup_s3_restore.erb) which will automatically get the very latest base backup, prepare it, and then fetch the latest incremental backup, prepare there and then copy them both back to the MySQL
-data directory.
+To restore the backup we use a [script to retrieve the base backup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/usr/local/bin/xtrabackup_s3_restore.erb) and then apply any number of incremental backups on top of it. 
 
-An advantage of this method is that because it is a binary type of backup, restores are much quicker than having to import SQL text based backups.
+Under the hood the script completes the following steps:
+
+- Retrieve the latest base backup.
+- Fetch the latest incremental backups.
+- Copy the consolidated backup (base plus incremental) to the MySQL data directory.
+
+
+### Why this approach
+
+The streaming method was inspired by this [blog post from MariaDB](https://mariadb.com/blog/streaming-mariadb-backups-cloud). We also drew on the [incremental backups concept provided by the toolset](https://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html).
+
+The streaming method is advantageous because it's a binary backup and restores are faster than having to import SQL text-based backups.
+
+Note: we use [Xtrabackup's encryption functionality](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/encrypted_backups_innobackupex.html) to encrypt the backups by providing an encryption key. The S3 bucket is also encrypted.
 
 Related documentation:
 
