@@ -5,7 +5,7 @@ layout: manual_layout
 section: A/B testing
 type: learn
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-08-22
+last_reviewed_on: 2020-02-07
 review_in: 6 months
 ---
 
