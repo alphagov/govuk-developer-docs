@@ -3,7 +3,7 @@ title: Intro to Docker
 section: Docker
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-02
+last_reviewed_on: 2020-02-03
 review_in: 6 months
 owner_slack: "#govuk-developers"
 ---
@@ -352,19 +352,18 @@ $mac docker-compose run content-publisher-demo bundle exec rake
 
 If we continue this iterative process add keep tidying up, adding more services, and consolidating the commands we have to run, like `bundle install` and `rake db:setup`, we end up [govuk-docker][govuk-docker] :-).
 
-## Summary
+## What now?
 
-In this tutorial you have been introduced to the concept of:
+In this tutorial we used Docker to create an environment for running tests against the Content Publisher repo. We started with a simple `docker run` command and added various flags to give us:
 
-* the `docker run` command
-* images (like a class)
-* containers (like instances of a class)
-* building images
-* creating and adding volumes
-* installing extra libraries with a Dockerfile
-* creating a Network
+* **volumes** the repo and gems
+* a **network** to communicate with Postgres
+* **environment variables** for Postgres
+* a **working directory** to reduce typing
 
-These concepts are useful to know when you start to use [govuk-docker], which you should use from this point on with GOV.UK.
+We also explored how to write and build an **image** that has the essential libraries and presets, using a **Dockerfile**. The end result is a single, relatively short command that we can use for day-to-day tasks, such as `bundle exec rake`.
+
+But there's more! Check out the [next tutorial in this series](/manual/intro-to-docker-even-more.html).
 
 [content-publisher]: https://github.com/alphagov/content-publisher
 [Fixing IP with Docker Network]: #fixing-ip-with-docker-network
