@@ -4,7 +4,7 @@ title: SSH into AWS machines
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-12
+last_reviewed_on: 2020-02-10
 review_in: 6 months
 ---
 
@@ -34,11 +34,15 @@ Follow the [set up govukcli](/manual/get-ssh-access.html#3-set-up-govukcli) inst
 
 To view all possible contexts, run:
 
-`local$ govukcli list-contexts`
+```sh
+local$ govukcli list-contexts
+```
 
 To set a persistent context:
 
-`local$ govukcli set-context integration`
+```sh
+local$ govukcli set-context integration
+```
 
 Now when you SSH into an instance, it will be to one running on the specified environment:
 
@@ -59,7 +63,9 @@ You can find out which class you need by finding the corresponding [app page](ht
 
 `govukcli` finds a matching machine via the 'jumpbox', which you can also SSH into directly:
 
-`local$ govukcli ssh jumpbox`
+```sh
+local$ govukcli ssh jumpbox
+```
 
 ### Jumpbox
 
@@ -67,24 +73,34 @@ The jumpbox is a special node that knows about all of the other nodes in its env
 
 List the IP addresses of every node in the environment:
 
-`jumpbox$ govuk_node_list`
+```sh
+jumpbox$ govuk_node_list
+```
 
 This long list of IPs is not very useful on its own, but you can filter it by node class:
 
-`jumpbox$ govuk_node_list -c backend`
+```sh
+jumpbox$ govuk_node_list -c backend
+```
 
 And if you can't remember the names of the node classes, there's a built-in helper:
 
-`jumpbox$ govuk_node_list --classes`
+```sh
+jumpbox$ govuk_node_list --classes
+```
 
 Once you have found the IP of the machine you want to SSH into, you can manually SSH
 directly from the jumpbox machine:
 
-`jumpbox$ ssh ip-10-1-5-22.eu-west-1.compute.internal`
+```sh
+jumpbox$ ssh ip-10-1-5-22.eu-west-1.compute.internal
+```
 
 You can also do this from your local machine by appending the environment to the address:
 
-`local$ ssh ip-10-1-5-22.eu-west-1.compute.internal.integration`
+```sh
+local$ ssh ip-10-1-5-22.eu-west-1.compute.internal.integration
+```
 
 Note that in Carrenza, there are no dynamic IPs, so you can SSH into a specific node by name.
 There are no Carrenza machines on Integration anymore, so these examples assume you've set
@@ -109,11 +125,15 @@ ways of interacting with the running application.
 
 You can start up an application console (typically Rails):
 
-`node$ govuk_app_console`
+```sh
+node$ govuk_app_console
+```
 
 ...or you can start up a database console (typically PostgreSQL):
 
-`node$ govuk_app_dbconsole`
+```sh
+node$ govuk_app_dbconsole
+```
 
 These common commands, along with `govuk_node_list`, live in
 [govuk-puppet](https://github.com/alphagov/govuk-puppet).
