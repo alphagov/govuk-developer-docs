@@ -4,7 +4,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 owner_slack: "#govuk-2ndline"
-last_reviewed_on: 2019-06-20
+last_reviewed_on: 2020-02-10
 review_in: 6 months
 related_applications: [travel-advice-publisher, content-tagger, whitehall]
 ---
@@ -23,7 +23,7 @@ Renaming a country affects these pages:
 
 ### 1. Update Travel Advice publisher
 
-**Example PR:** [https://github.com/alphagov/travel-advice-publisher/pull/539/files](https://github.com/alphagov/travel-advice-publisher/pull/539/files)
+**Example pull request:** [https://github.com/alphagov/travel-advice-publisher/pull/539/files](https://github.com/alphagov/travel-advice-publisher/pull/539/files)
 
 This will update www.gov.uk/foreign-travel-advice/`<country_slug>` to www.gov.uk/foreign-travel-advice/`<new_country_slug>`.
 
@@ -34,13 +34,13 @@ In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher
     * A change of the relevant name and slug in the `lib/data/countries.yml` file. Keep `content_id` and `email_signup_content_id` the same, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-e7c0733c6cf5a1d6fc1f2589a6d9f0f7)
 
 2. Deploy Travel Advice publisher
-    * Once the above PRs are ready, [deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=deploy) Travel Advice Publisher
+    * Once the above pull requests are ready, [deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=deploy) Travel Advice Publisher
     * Then follow with another [deploy with app:migrate_and_hard_restart](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=app:migrate_and_hard_restart), as a hard restart is required to update the `.yml` file.
     * You will see the country has updated in the list in [Travel Advice Publisher](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin)
 
 3. Run rake tasks
-    * Run [publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[new_country_slug]) to update the PublishingApi.
-    * Run [publishing_api:republish_email_signups:country_edition[country-slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[country-slug]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
+    * Run [publishing_api:republish_edition[<new_country_slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[<new_country_slug>]) to update the PublishingApi.
+    * Run [publishing_api:republish_email_signups:country_edition[<country-slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[<country-slug>]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
 
 4. Update the search metadata
     * In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin), go to the country and create a new edition
@@ -49,9 +49,9 @@ In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher
 
 ### 2. Update Worldwide Taxons
 
-**Example PR:** [https://github.com/alphagov/search-api/pull/1436](https://github.com/alphagov/search-api/pull/1436)
+**Example pull request:** [https://github.com/alphagov/search-api/pull/1436](https://github.com/alphagov/search-api/pull/1436)
 
-This will update www.gov.uk/world/`<country_slug>` to www.gov.uk/world/`<new_country_slug>`.
+This will update `www.gov.uk/world/<country_slug>` to `www.gov.uk/world/<new_country_slug>`.
 
 In [Search API](https://github.com/alphagov/search-api):
 
@@ -72,25 +72,25 @@ The old slug might still appear as a duplicate in our internal GOV.UK search,
 
 ### 3. Update Whitehall
 
-**Example PR:** [https://github.com/alphagov/whitehall/pull/4643](https://github.com/alphagov/whitehall/pull/4643)
+**Example pull request:** [https://github.com/alphagov/whitehall/pull/4643](https://github.com/alphagov/whitehall/pull/4643)
 
-This will update /world/`<country_slug>`/news.
+This will update `www.gov.uk/world/<country_slug>/news`.
 
 In [Whitehall](https://github.com/alphagov/whitehall):
 
-1. Create a [data migration](https://github.com/alphagov/whitehall/pull/4643/files) to update the `slug` and `name` fields of the WorldLocation table.
-2. Deploy the PR
+1. Create a [data migration](https://github.com/alphagov/whitehall/pull/4643/files) to update the `slug` and `name` fields of the `WorldLocation` table.
+2. Deploy the pull request
   * After deploying, run the [Whitehall data migrations](https://deploy.integration.publishing.service.gov.uk/job/Run_Whitehall_Data_Migrations/) job
-3. Update [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations)
-  * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations) and in the "Details" tab edit the `Title`, `Mission statement` and relevant `Featured links`.
+3. Update World Location News
+  * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations). In the "Details" tab, edit the `Title`, `Mission statement` and relevant `Featured links`.
 
 ### 4. Update Smart-answers
 
-**Example PR:** [https://github.com/alphagov/smart-answers/pull/3899/](https://github.com/alphagov/smart-answers/pull/3899/)
+**Example pull request:** [https://github.com/alphagov/smart-answers/pull/3899/](https://github.com/alphagov/smart-answers/pull/3899/)
 
 > **Note**
 >
-> `smart-answers` validates country names against the production worldwide API, which is managed by `whitehall`.  So do this after deploying the Whitehall change.
+> `smart-answers` validates country names against the production worldwide API, which is managed by `whitehall`.  So do this *after* deploying the Whitehall change.
 
 This will update content from pages served by `smart-answers` such as:
 
@@ -104,7 +104,7 @@ In [Smart-answers](https://github.com/alphagov/smart-answers):
 
 2. Check changes are reflected in the affected smart answers
 
-3. Deploy the PR
+3. Deploy the pull request
 
 ### 5. Update Email-alert-api
 
