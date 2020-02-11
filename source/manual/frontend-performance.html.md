@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-frontenders"
 title: Track frontend performance with SpeedCurve
 parent: "/manual.html"
 layout: manual_layout
 section: Frontend
-owner_slack: "#govuk-frontenders"
 last_reviewed_on: 2019-07-16
 review_in: 12 months
 ---

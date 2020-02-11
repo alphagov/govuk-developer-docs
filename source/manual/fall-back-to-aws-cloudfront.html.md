@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-2ndline"
 title: Fall back to AWS CloudFront
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2019-06-28
 review_in: 6 months
 ---

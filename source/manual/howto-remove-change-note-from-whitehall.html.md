@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Remove a change note in Whitehall
 section: Publishing
 layout: manual_layout

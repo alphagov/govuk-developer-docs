@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-data-labs"
 title: Provision machines for data science research
 section: Infrastructure
 layout: manual_layout

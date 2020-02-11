@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Change an organisation's slug
 parent: "/manual.html"
 layout: manual_layout

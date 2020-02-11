@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-dev-tools"
 title: Fix low disk space in development
 parent: "/manual.html"
 layout: manual_layout
 section: Development VM
-owner_slack: "#govuk-developers"
 last_reviewed_on: 2019-10-08
 review_in: 6 months
 ---

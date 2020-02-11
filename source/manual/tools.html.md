@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
 section: Monitoring
 type: learn

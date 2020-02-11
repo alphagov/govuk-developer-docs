@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-data-labs"
 title: Knowledge Graph
 parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Knowledge Graph
-owner_slack: "#govuk-developers"
 last_reviewed_on: 2019-10-25
 review_in: 6 months
 ---

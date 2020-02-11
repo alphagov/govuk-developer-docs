@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Redirect an HTML attachment's URL in Whitehall
 section: Publishing
 layout: manual_layout

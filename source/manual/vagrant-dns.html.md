@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-dev-tools"
 title: Fix issues with vagrant-dns
 section: Development VM
 layout: manual_layout

@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-frontenders"
 title: Which browsers we support
 parent: "/manual.html"
 layout: manual_layout
 section: Frontend
 type: learn
-owner_slack: "#govuk-frontenders"
 last_reviewed_on: 2019-10-08
 review_in: 12 months
 ---

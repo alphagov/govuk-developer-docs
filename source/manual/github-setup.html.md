@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Set up your GitHub account
 layout: manual_layout
 section: Learning GOV.UK

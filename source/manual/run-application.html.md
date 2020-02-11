@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-dev-tools"
 title: Run an application in the VM
 section: Development VM
 layout: manual_layout

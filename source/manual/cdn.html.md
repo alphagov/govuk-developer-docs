@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Our content delivery network (CDN)
 section: CDN & Caching
 type: learn

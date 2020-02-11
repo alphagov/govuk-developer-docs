@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Switch an app off temporarily
 layout: manual_layout
 section: Deployment

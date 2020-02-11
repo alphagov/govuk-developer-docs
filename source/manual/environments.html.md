@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: GOV.UK's environments (integration, staging, production)
 section: Infrastructure
 type: learn

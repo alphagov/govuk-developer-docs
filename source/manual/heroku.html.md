@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Access apps on the shared Heroku account
 section: Accounts
 layout: manual_layout

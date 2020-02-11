@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-searchandnav"
 title: Make a new document type available to search
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#govuk-searchandnav"
 last_reviewed_on: 2020-02-04
 review_in: 3 months
 related_applications: [search-api]

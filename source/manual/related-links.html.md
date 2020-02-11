@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-data-labs"
 title: Related links
 parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-owner_slack: "#govuk-developers"
 last_reviewed_on: 2020-01-07
 review_in: 6 months
 ---
