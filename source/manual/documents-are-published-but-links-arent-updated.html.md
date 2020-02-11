@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Documents are published, but the links aren't up to date
+title: Debug published documents with incorrect links
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"

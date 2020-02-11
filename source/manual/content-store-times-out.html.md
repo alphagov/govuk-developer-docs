@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: Content store times out in VM
+title: Fix Content Store timeout issues
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"

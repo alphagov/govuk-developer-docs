@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: Unable to mount VirtualBox shared folders
+title: Fix 'unable to mount VirtualBox shared folders'
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"
