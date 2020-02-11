@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-developers"
 title: Add a new document type
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2020-01-17
 review_in: 6 months
 ---

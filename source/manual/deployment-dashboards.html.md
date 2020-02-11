@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Monitor your app during deployment
 section: Deployment
 layout: manual_layout

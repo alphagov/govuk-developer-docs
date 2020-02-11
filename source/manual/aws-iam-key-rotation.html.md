@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-developers"
 title: AWS IAM Key Rotation
 parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: AWS
-owner_slack: "#govuk-developers"
 last_reviewed_on: 2020-01-20
 review_in: 6 months
 ---

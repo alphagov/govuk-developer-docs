@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Add a dashboard for an application
 section: Monitoring
 layout: manual_layout

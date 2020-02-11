@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-dev-tools"
 title: Problems provisioning and fetching packages in VM
 section: Development VM
 layout: manual_layout

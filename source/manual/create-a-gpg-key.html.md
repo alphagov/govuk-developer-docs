@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout

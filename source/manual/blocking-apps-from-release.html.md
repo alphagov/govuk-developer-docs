@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Block apps from being deployed
 section: Deployment
 layout: manual_layout

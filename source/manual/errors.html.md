@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: How to deal with errors
 section: Monitoring
 layout: manual_layout

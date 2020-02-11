@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Merge a Pull Request
 section: GitHub
 layout: manual_layout

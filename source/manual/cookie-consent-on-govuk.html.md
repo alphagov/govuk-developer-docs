@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-developers"
 title: Cookie consent on GOV.UK
 parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Cookies
-owner_slack: "#govuk-developers"
 last_reviewed_on: 2019-12-19
 review_in: 6 months
 ---

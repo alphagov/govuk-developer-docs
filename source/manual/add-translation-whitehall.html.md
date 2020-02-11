@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-developers"
 title: Add support for a new translation in Whitehall
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2020-01-27
 review_in: 9 months
 ---

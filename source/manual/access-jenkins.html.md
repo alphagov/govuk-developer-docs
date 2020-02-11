@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Get access to Jenkins
 section: Accounts
 layout: manual_layout

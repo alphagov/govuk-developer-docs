@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Monitor docs traffic
 section: Documentation
 layout: manual_layout

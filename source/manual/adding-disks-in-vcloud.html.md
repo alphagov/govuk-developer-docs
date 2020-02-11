@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Add a disk to a vCloud machine (Carrenza only)
 section: Infrastructure
 layout: manual_layout

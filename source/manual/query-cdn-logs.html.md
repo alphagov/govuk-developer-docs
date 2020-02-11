@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Query CDN logs
 section: CDN & Caching
 layout: manual_layout

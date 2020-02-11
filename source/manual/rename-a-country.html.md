@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-developers"
 title: Rename a country
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2020-02-10
 review_in: 6 months
 related_applications: [travel-advice-publisher, content-tagger, whitehall]
