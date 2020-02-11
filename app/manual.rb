@@ -40,6 +40,6 @@ private
     sitemap.resources
       .reject { |page| page.data.section == ICINGA_ALERTS }
       .select { |page| page.path.start_with?("manual/") && page.path.end_with?(".html") && page.data.title }
-      .sort_by { |page| page.data.title.downcase }
+      .sort_by { |page| [page.data.type || "how to", page.data.title.downcase] }
   end
 end

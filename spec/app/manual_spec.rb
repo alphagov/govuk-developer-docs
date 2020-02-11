@@ -2,9 +2,9 @@ RSpec.describe Manual do
   describe "#manual_pages_grouped_by_section" do
     it "returns the correct groups" do
       sitemap = double(resources: [
-        double(path: "foo.html", data: double(title: "Won't be included", important: true, review_by: Date.today, section: "Foo")),
-        double(path: "manual/foo.html", data: double(title: "Foo", important: true, review_by: Date.today, section: "Foo")),
-        double(path: "manual/bar.html", data: double(title: "Bar", important: true, review_by: Date.today, section: "Bar")),
+        double(path: "foo.html", data: double(title: "Won't be included", important: true, review_by: Date.today, section: "Foo", type: nil)),
+        double(path: "manual/foo.html", data: double(title: "Foo", important: true, review_by: Date.today, section: "Foo", type: nil)),
+        double(path: "manual/bar.html", data: double(title: "Bar", important: true, review_by: Date.today, section: "Bar", type: nil)),
       ])
 
       manual_pages_grouped_by_section = Manual.new(sitemap).manual_pages_grouped_by_section
@@ -15,13 +15,13 @@ RSpec.describe Manual do
 
   describe "#other_pages_from_section" do
     it "returns the correct groups" do
-      one = double(path: "manual/foo.html", data: double(title: "Foo", important: true, section: "A section"))
-      other = double(path: "manual/bar.html", data: double(title: "Bar", important: true, section: "A section"))
+      one = double(path: "manual/foo.html", data: double(title: "Foo", important: true, section: "A section", type: nil))
+      other = double(path: "manual/bar.html", data: double(title: "Bar", important: true, section: "A section", type: nil))
 
       sitemap = double(resources: [
         one,
         other,
-        double(path: "manual/baz.html", data: double(title: "Baz", section: "B section")),
+        double(path: "manual/baz.html", data: double(title: "Baz", section: "B section", type: nil)),
       ])
 
       other_pages_from_section = Manual.new(sitemap).other_pages_from_section(one)
@@ -33,9 +33,9 @@ RSpec.describe Manual do
   describe "#pages_for_application" do
     it "returns the pages that are relevant to an application" do
       sitemap = double(resources: [
-        double(path: "foo.html", data: double(title: "Won't be included", important: true, review_by: Date.today, section: "Foo")),
-        double(path: "manual/foo.html", data: double(title: "Foo", related_applications: %w[publisher], section: "Foo")),
-        double(path: "manual/bar.html", data: double(title: "Bar", related_applications: %w[collections], section: "Bar")),
+        double(path: "foo.html", data: double(title: "Won't be included", important: true, review_by: Date.today, section: "Foo", type: nil)),
+        double(path: "manual/foo.html", data: double(title: "Foo", related_applications: %w[publisher], section: "Foo", type: nil)),
+        double(path: "manual/bar.html", data: double(title: "Bar", related_applications: %w[collections], section: "Bar", type: nil)),
       ])
 
       pages_for_application = Manual.new(sitemap).pages_for_application("publisher")
