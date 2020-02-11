@@ -1,4 +1,5 @@
 ---
+owner_slack: "#govuk-dev-tools"
 title: Intro to Docker (Even More)
 section: Docker
 layout: manual_layout
@@ -6,7 +7,6 @@ type: learn
 parent: "/manual.html"
 last_reviewed_on: 2020-02-03
 review_in: 6 months
-owner_slack: "#govuk-developers"
 ---
 
 In the [Intro to Docker tutorial](/manual/intro-to-docker.html) we began with a generic container running the `ruby` image, and finished with a powerful `docker-compose` command to run the [content-publisher][] tests against a Postgres DB.

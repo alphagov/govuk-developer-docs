@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: PostgreSQL Advisory Locks
 section: Databases
 layout: manual_layout

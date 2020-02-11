@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Change a slug and create redirect in Whitehall
 section: Publishing
 layout: manual_layout

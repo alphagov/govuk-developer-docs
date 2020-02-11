@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: smokey.json older than 30m
-section: Development VM
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-09-12

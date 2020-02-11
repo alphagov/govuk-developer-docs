@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Get SSH access to integration
 layout: manual_layout
 section: Accounts

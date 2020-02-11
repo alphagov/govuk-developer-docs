@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-dev-tools"
 title: Fix issues with installing Ruby gems using Bundler
 section: Development VM
 layout: manual_layout

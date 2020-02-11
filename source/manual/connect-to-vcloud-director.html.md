@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Connect to vCloud Director (Carrenza only)
 section: Infrastructure
 layout: manual_layout

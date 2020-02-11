@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Clone a MySQL instance from one slave to another (Carrenza only)
 section: Databases
 layout: manual_layout

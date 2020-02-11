@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-developers"
 title: Run an A/B or multivariate test
 parent: "/manual.html"
 layout: manual_layout
 section: A/B testing
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2020-02-07
 review_in: 6 months
 ---

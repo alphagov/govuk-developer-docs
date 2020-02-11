@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Set up your AWS account
 section: AWS accounts
 layout: manual_layout

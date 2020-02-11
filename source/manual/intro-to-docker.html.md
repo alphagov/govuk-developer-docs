@@ -1,4 +1,5 @@
 ---
+owner_slack: "#govuk-dev-tools"
 title: Intro to Docker
 section: Docker
 layout: manual_layout
@@ -6,7 +7,6 @@ type: learn
 parent: "/manual.html"
 last_reviewed_on: 2020-02-03
 review_in: 6 months
-owner_slack: "#govuk-developers"
 ---
 
 We use [govuk-docker] to help us develop stuff on GOV.UK. If you're new to Docker, this will provide useful insights into how we use it in the context of the GOV.UK stack.

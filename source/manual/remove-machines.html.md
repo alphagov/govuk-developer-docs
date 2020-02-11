@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Remove a machine
 parent: "/manual.html"
 layout: manual_layout

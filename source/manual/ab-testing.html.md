@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-developers"
 title: How A/B testing works
 parent: "/manual.html"
 layout: manual_layout
 section: A/B testing
 type: learn
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2020-02-07
 review_in: 6 months
 ---

@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-2ndline"
 title: Restrict PaaS applications to GDS office IPs
 parent: /manual.html
 layout: manual_layout
 section: PaaS
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2020-02-06
 review_in: 6 months
 ---

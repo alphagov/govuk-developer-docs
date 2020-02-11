@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Edit an existing route in the Router
 section: Routing
 layout: manual_layout

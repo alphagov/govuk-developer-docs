@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Use Logit for GOV.UK
 section: Logging
 layout: manual_layout

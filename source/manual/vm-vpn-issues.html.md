@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-dev-tools"
 title: Access the VM after using the VPN
 section: Development VM
 layout: manual_layout

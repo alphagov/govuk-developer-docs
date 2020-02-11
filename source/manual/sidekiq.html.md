@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Sidekiq
 parent: "/manual.html"
 layout: manual_layout

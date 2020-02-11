@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-developers"
 title: Add authentication to an application
 parent: "/manual.html"
 layout: manual_layout
 section: Applications
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2019-06-27
 review_in: 6 months
 ---

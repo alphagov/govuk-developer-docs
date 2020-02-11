@@ -1,9 +1,9 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Unknown error with postgresql in mapit
-section: Development VM
 layout: manual_layout
 parent: "/manual.html"
+section: Icinga alerts
 last_reviewed_on: 2019-09-12
 review_in: 6 months
 ---

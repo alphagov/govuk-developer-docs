@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-dev-tools"
 title: Can't connect to Mongo in VM
 section: Development VM
 layout: manual_layout

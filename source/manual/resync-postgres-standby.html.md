@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Resync a PostgreSQL Standby in Carrenza/6DG
 section: Databases
 layout: manual_layout

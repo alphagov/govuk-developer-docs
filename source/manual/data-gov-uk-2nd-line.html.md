@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-2ndline"
 title: Common 2nd line support tasks for data.gov.uk
 section: data.gov.uk
 layout: manual_layout

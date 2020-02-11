@@ -1,5 +1,5 @@
 ---
-owner_slack: '#govuk-2ndline'
+owner_slack: '#govuk-developers'
 title: Find hardcoded markup in GovSpeak
 section: Publishing
 layout: manual_layout

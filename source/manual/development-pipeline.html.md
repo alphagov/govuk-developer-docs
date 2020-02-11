@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-developers"
 title: The development and deployment pipeline
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 type: learn
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2019-08-28
 review_in: 6 months
 ---

@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-developers"
 title: End to end testing publishing apps
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-owner_slack: "#govuk-developers"
 last_reviewed_on: 2019-09-11
 review_in: 6 months
 ---

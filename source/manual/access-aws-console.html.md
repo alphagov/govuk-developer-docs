@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Access AWS Console
 section: AWS accounts
 layout: manual_layout

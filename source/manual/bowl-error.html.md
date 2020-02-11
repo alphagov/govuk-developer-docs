@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-dev-tools"
 title: Fix bundler errors when running `bowl`
 section: Development VM
 layout: manual_layout

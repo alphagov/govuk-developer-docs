@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-developers"
 title: Change a specialist document base path
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2019-12-05
 review_in: 3 months
 ---

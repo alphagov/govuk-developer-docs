@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-searchandnav"
 title: How to tag content with facet values
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 type: learn
-owner_slack: "#govuk-searchandnav"
 last_reviewed_on: 2019-10-08
 review_in: 6 months
 related_applications: [content-tagger]
