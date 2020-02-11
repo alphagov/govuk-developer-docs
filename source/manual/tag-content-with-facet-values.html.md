@@ -32,10 +32,3 @@ You'll need GDS Editor permissions for content tagger.
    API and take effect as soon as they reach the content-store.
 
 ![content-tagger screenshot](images/tagging-content-with-facets.png)
-
-### How to bulk tag business readiness content to facet values
-
-1. SCP [the correct format CSV file](https://github.com/alphagov/search-api/blob/master/config/business_readiness.csv) to a backend machine.
-2. Run [this rake task](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE_CLASS=backend&RAKE_TASK=facets:tag_content_to_facet_values[%22/tmp/business-readiness.csv%22,%22lib/data/find-eu-exit-guidance-business.yml%22]) *
-
-[content-tagger]: https://content-tagger.integration.publishing.service.gov.uk/facet_groups
