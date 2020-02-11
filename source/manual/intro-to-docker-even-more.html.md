@@ -2,6 +2,7 @@
 title: Intro to Docker (Even More)
 section: Docker
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2020-02-03
 review_in: 6 months

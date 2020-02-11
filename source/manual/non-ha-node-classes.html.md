@@ -2,6 +2,7 @@
 owner_slack: "#re-govuk"
 title: Node classes without redundancy
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 section: Applications
 important: true
