@@ -27,7 +27,7 @@ title: Manual
 <% manual.manual_pages_grouped_by_section.each do |section_name, pages| %>
   <h2 id='<%= section_name.parameterize %>'><%= section_name %></h2>
 
-  <% pages.sort_by { |page| page.data.type || 'how to' }.group_by { |page| page.data.type }.each do |type, pages| %>
+  <% pages.group_by { |page| page.data.type }.each do |type, pages| %>
     <h3><%= type == "learn" ? "Learn" : "How to..." %></h3>
     <ul>
       <% pages.each do |page| %>
