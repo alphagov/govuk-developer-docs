@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Packer Vagrant Dev VM / Image Creation
 section: Packaging
 layout: manual_layout

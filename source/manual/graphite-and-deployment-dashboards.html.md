@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Graphite and deployment dashboards
 section: Monitoring
 type: learn

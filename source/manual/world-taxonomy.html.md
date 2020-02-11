@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-developers"
 title: How the world taxonomy works
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 type: learn
-owner_slack: "#govuk-developers"
 last_reviewed_on: 2020-02-05
 review_in: 6 months
 related_applications: [content-tagger]

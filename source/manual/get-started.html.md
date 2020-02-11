@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout

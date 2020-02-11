@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: Publish to Puppet Forge
 section: Packaging
 layout: manual_layout

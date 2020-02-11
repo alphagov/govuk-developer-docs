@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-dev-tools"
 title: SSH into your VM directly
 section: Development VM
 layout: manual_layout

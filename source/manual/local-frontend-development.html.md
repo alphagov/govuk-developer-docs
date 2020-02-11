@@ -1,10 +1,10 @@
 ---
+owner_slack: "#govuk-developers"
 title: Local frontend development
 parent: "/manual.html"
 layout: manual_layout
 section: Frontend
 type: learn
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2020-01-09
 review_in: 6 months
 ---

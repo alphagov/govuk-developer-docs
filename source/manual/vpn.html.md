@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: GOV.UK and Virtual Private Networks (VPNs)
 section: Infrastructure
 type: learn

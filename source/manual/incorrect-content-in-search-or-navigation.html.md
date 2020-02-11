@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-searchandnav"
 title: Content that doesn't show up correctly in search or list pages
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-owner_slack: "#govuk-searchandnav"
 last_reviewed_on: 2020-02-04
 review_in: 6 months
 related_applications: [search-api]

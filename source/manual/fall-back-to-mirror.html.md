@@ -1,9 +1,9 @@
 ---
+owner_slack: "#govuk-2ndline"
 title: Fall back to the static mirrors
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-owner_slack: "#govuk-2ndline"
 last_reviewed_on: 2019-08-22
 review_in: 6 months
 ---

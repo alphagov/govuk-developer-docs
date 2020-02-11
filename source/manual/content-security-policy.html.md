@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-developers"
 title: 'Content Security Policy on GOV.UK'
 section: Security
 layout: manual_layout
