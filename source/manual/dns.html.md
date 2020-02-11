@@ -5,7 +5,7 @@ section: DNS
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-03
+last_reviewed_on: 2020-02-11
 review_in: 6 months
 ---
 
@@ -13,28 +13,24 @@ The Reliability Engineering team is responsible for managing several DNS zones.
 
 By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS)
 
-As of Feb 2019, there are 40 hosted zones. A list is retrievable from a terminal using:
+As of Feb 2020, there are 40 hosted zones. A list is retrievable from a terminal using:
 
 ```
-  aws route53 list-hosted-zones | grep Name
+  gds aws govuk-production-admin -- aws route53 list-hosted-zones | grep Name
 ```
 
 Some individual records within these zones are managed by other teams.
 
-## Amazon Route 53
+## Amazon Route 53 and Google Cloud DNS
 
-Use the "production" account. Speak to Infrastructure if you require access.
-
-## Google Cloud DNS
-
-Use the "production" account. Speak to Infrastructure if you require access.
+Use the "production" account. [Speak to Infrastructure if you require access](/manual/raising-issues-with-reliability-engineering.html).
 
 ## Records for GOV.UK systems
 
-There are a few domains that we use:
+We use a few domains:
 
-- `alphagov.co.uk` is the old domain name that GOV.UK publishing used to live on.
-  We maintain records that point to Bouncer so that these URLs redirect.
+- `alphagov.co.uk` is the old domain name GOV.UK publishing used to live on.
+  We maintain records which point to Bouncer so that these URLs redirect.
 - `publishing.service.gov.uk` and `govuk.service.gov.uk` are where GOV.UK lives.
 
 ## Making changes to publishing.service.gov.uk
@@ -42,7 +38,7 @@ There are a few domains that we use:
 To make a change to this zone, begin by adding the records to the yaml file for
 the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
 
-We use a Jenkins job that publishes changes to publishing.service.gov.uk. The
+We use a Jenkins job that publishes changes to `publishing.service.gov.uk`. The
 job uses [Terraform](https://www.terraform.io/) and pushes changes to the
 selected provider.
 
@@ -61,13 +57,13 @@ gds aws govuk-production-admin -e
 Changes should be deployed for each provider (AWS & Google) separately, first
 run a "plan" action, and when you're happy with the changes, run "apply".
 
-Within the Jenkins job, select the provider, zone & action. Once build is complete,
+Within the Jenkins job (under "Configure"), select the provider, zone & action. Once build is complete,
 examine the logs before progressing to the next stage (Apply).
 
 > **Note**
 >
 > - Due to the Terraform state being held in an S3 bucket, you
-> will require access to the GOVUK AWS "production" account to roll changes for
+> will require access to the GOV.UK AWS "production" account to roll changes for
 > both Amazon and Google.
 > - The order in which you deploy to providers is not important.
 > - You will not require credentials for Google Cloud. These credentials are stored
@@ -98,7 +94,7 @@ make a change and don't have access.
 - `gov.uk.` is a top-level domain so it cannot contain a CNAME record
   (see [RFC 1912 section 2.4](https://tools.ietf.org/html/rfc1912#section-2.4)).
   Instead, it contains A records that point to anycast IP addresses for our CDN provider.
-- `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which means that we
+- `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which means we
   do not need to make a request to Jisc if we want to change CDN providers. Just change where
   the CNAME points to.
 
@@ -115,7 +111,7 @@ In Route 53, create a new node for the service domain underneath `service.gov.uk
 and add `NS` records for that node.
 
 We __do not__ manage DNS for service domains. If you get a request asking you to add
-anything other than `NS` records, it should be rejected. This is so that we're not
+anything other than `NS` records, it should be rejected. This is so we're not
 the single point of DNS for government.
 
 There are ongoing plans to move this responsibility to a different part of GDS.
