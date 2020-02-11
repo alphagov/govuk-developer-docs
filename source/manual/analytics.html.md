@@ -3,6 +3,7 @@ owner_slack: "#govuk-frontenders"
 title: 'Analytics on GOV.UK'
 section: Analytics
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2019-10-29
 review_in: 6 months

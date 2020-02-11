@@ -3,6 +3,7 @@ owner_slack: "#govuk-platform-health"
 title: WMS map previews on data.gov.uk
 section: data.gov.uk
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2019-10-09
 review_in: 6 months
