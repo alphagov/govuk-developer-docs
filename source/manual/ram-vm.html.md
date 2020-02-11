@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: Not enough RAM for the VM
+title: Give the VM more RAM
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"

@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: Can't connect to Mongo in VM
+title: Fix Mongo connection issues
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"

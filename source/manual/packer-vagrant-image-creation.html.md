@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Packer Vagrant Dev VM / Image Creation
+title: Use Packer for the dev VM
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"

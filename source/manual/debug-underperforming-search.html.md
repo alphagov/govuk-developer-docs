@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-searchandnav"
-title: How to debug underperforming search
+title: Debug underperforming search
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"

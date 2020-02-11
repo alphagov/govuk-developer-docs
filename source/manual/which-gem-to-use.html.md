@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Which gem to use
+title: Figure out which gem to use
 section: Patterns & Style Guides
 layout: manual_layout
 parent: "/manual.html"

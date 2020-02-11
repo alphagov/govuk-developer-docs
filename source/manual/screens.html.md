@@ -2,6 +2,7 @@
 owner_slack: "#govuk-developers"
 title: Screens that we have in the office
 parent: "/manual.html"
+type: learn
 layout: manual_layout
 section: Monitoring
 last_reviewed_on: 2019-04-24
