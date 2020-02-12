@@ -4,7 +4,7 @@ title: Deploy Puppet
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-03
+last_reviewed_on: 2020-02-12
 review_in: 6 months
 ---
 
@@ -18,28 +18,25 @@ You can deploy Puppet using the following steps:
 >
 > If you're deploying a change to [hiera.yml](https://github.com/alphagov/govuk-puppet/blob/master/hiera.yml) or [hiera_aws.yml](https://github.com/alphagov/govuk-puppet/blob/master/hiera_aws.yml), you will need to restart the Puppet server on the Puppet Master machine, otherwise these changes will not be picked up.
 >
-> In Carrenza, run `sudo service puppetmaster restart`. In AWS, run `sudo service puppetserver restart`.
+> To restart the server, run `sudo service puppetserver restart`.
 
 1. Get the [release tag of the build that you wish to deploy][tag] from the Release
 app (`release_18295` for example). Look at the diff you're going to deploy.
 
-2. Deploy the newer version to staging by using the 'Deploy to Staging' button in
-the Release app after clicking on the release tag. This will deploy to Carrenza.
-You also need to deploy to [AWS staging][stage-aws-deploy].
+2. Deploy the newer version to staging by using the 'Deploy to Staging (Carrenza)'
+and 'Deploy to Staging (AWS)' buttons in the Release app after clicking on the release
+tag.
 
 3. You will either need to wait 30 minutes or read about [convergence](#convergence).
 You should monitor Icinga and Smokey, and test anything you're concerned about.
 
-4. Deploy the newer version to production by using the 'Deploy to Production' button in
-the Release app after clicking on the release tag. This will deploy to Carrenza.
-You also need to deploy to [AWS production][prod-aws-deploy].
+4. Deploy the newer version to production by using the 'Deploy to Production' buttons in
+the Release app after clicking on the release tag.
 
 5. You will either need to wait 30 minutes or read about [convergence](#convergence).
 You should monitor Icinga and Smokey, and test anything you're concerned about.
 
 [tag]: https://release.publishing.service.gov.uk/applications/puppet
-[stage-aws-deploy]: https://deploy.blue.staging.govuk.digital/job/Deploy_Puppet
-[prod-aws-deploy]: https://deploy.blue.production.govuk.digital/job/Deploy_Puppet
 
 ## Convergence
 
