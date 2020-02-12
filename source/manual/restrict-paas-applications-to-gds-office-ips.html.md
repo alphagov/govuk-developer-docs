@@ -14,7 +14,7 @@ You need to create your application on the PaaS and then bind the route to the [
 To bind the route to your application to the route service, do the following:
 
 ```
-cf bind-route-service cloudapps.digital govuk-paas-office-ip-route-service --hostname APP_NAME
+cf bind-route-service cloudapps.digital govuk-paas-office-ip-router-service --hostname APP_NAME
 ```
 
 Comprehensive documentation can be found in the [PaaS tech docs](https://docs.cloud.service.gov.uk/deploying_services/route_services/#example-route-service-to-add-ip-address-authentication).
