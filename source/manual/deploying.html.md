@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 important: true
-last_reviewed_on: 2019-07-31
+last_reviewed_on: 2020-02-12
 review_in: 6 months
 ---
 
@@ -23,7 +23,7 @@ It can be useful to test your branch in a non-local environment before it is mer
 
 As you'll be deploying to Integration, note that your deployment could get overwritten at any time as apps on Integration are automatically overwritten by their master branches when PRs are merged.
 
-Before deploying anything, check whether there is already a non-master branch deployed by looking at the Release application on production, or look at the [build history in Jenkins](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/). The Release app on staging and integration won't tell you, as they're synced from production overnight and aren't otherwise updated. If a non-master branch has been deployed, try and ask the person who deployed it if they're finished.
+Before deploying anything, check whether there is already a non-master branch deployed by looking at the Release application on production, or look at the [build history in Jenkins](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/). The Release app on staging and integration won't tell you, as they're synced from production overnight and aren't otherwise updated. If a non-master branch has been deployed, try to ask the person who deployed it if they're finished.
 
 If you are deploying to staging or production, announce your deployment in `#govuk-deploy` so that people are aware a non-master branch is being built. It is not necessary to announce if you're deploying to Integration.
 
