@@ -3,6 +3,7 @@ owner_slack: "#govuk-developers"
 title: Brakeman
 section: Testing
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2019-02-15
 review_in: 12 months

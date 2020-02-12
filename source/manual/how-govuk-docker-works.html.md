@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: Intro to Docker (Even More)
+title: How govuk-docker works
 section: Docker
 layout: manual_layout
 type: learn

@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Access AWS Console
+title: Access the AWS Console
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"

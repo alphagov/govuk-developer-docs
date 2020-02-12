@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: End to end testing publishing apps
+title: Work with the end to end publishing tests
 section: Testing
 layout: manual_layout
 parent: "/manual.html"

@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Email callbacks from Notify fails
+title: Manually query the status of emails
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
