@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: Problems provisioning and fetching packages in VM
+title: Fix package installation problems
 section: Development VM
 layout: manual_layout
 parent: "/manual.html"

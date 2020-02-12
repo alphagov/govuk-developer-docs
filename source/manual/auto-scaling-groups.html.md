@@ -1,6 +1,6 @@
 ---
 owner_slack: "#re-govuk"
-title: Auto Scaling Groups
+title: Manually resize ASGs (auto scaling groups)
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"

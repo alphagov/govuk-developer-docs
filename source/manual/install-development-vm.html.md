@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: GOV.UK Development VM setup instructions
+title: Install the development VM
 description: Get started with the development VM (deprecated)
 layout: manual_layout
 section: Development VM

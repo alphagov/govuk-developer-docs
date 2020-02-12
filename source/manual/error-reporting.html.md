@@ -4,6 +4,7 @@ title: Error reporting with Sentry
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
+type: learn
 last_reviewed_on: 2019-11-05
 review_in: 6 months
 ---

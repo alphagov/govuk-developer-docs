@@ -1,6 +1,6 @@
 ---
 owner_slack: "@christopherbaines"
-title: Nagstamon
+title: Use Nagstamon for monitoring Icinga
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"

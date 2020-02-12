@@ -3,6 +3,7 @@ owner_slack: "#govuk-developers"
 title: READMEs for GOV.UK applications
 section: Patterns & Style Guides
 layout: manual_layout
+type: learn
 parent: "/manual.html"
 last_reviewed_on: 2019-11-04
 review_in: 12 months
