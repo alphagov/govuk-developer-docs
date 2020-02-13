@@ -38,6 +38,8 @@ everything is working OK.
 
 ### Decide how the variants should be split
 
+**Bear in mind that users who have not opted in to analytics cookies will not be assigned to a variant by Fastly and will not have a cookie set.**
+
 A higher percentage on your B variant will reduce the time that you need to run
 the test.  Your performance analyst can help here.
 
