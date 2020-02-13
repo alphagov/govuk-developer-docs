@@ -21,6 +21,8 @@ _Source: [GOV.UK Architecture Google Drive](https://docs.google.com/drawings/d/1
 
 ## How A/B testing works
 
+**A/B tests are only enabled for users who have opted in to analytics cookies.**
+
 ### Fastly receives the request
 
 When the user requests a GOV.UK page that has A/B testing enabled, they will reach Fastly first.
