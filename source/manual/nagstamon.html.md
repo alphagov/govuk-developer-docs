@@ -4,7 +4,7 @@ title: Use Nagstamon for monitoring Icinga
 section: AWS accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-22
+last_reviewed_on: 2020-02-14
 review_in: 6 months
 ---
 
@@ -35,6 +35,10 @@ Nagstamon supports performing actions, you can configure it to connect
 to the relevant host via SSH, which can make it easier to investigate
 and resolve issues.
 
+Both these commands assume that you have run [`gem install
+govuk-connect`](https://github.com/alphagov/govuk-connect) and have
+the [`gds-cli` set up](https://github.com/alphagov/gds-cli).
+
 To configure an SSH action:
 
 - Go in to the Settings
@@ -45,12 +49,8 @@ To configure an SSH action:
 - Put "SSH " as the Name
 - The command depends on what operating system you're using:
     - For macOS, enter the following command in the "String" field:
-        - `osascript -e 'tell app "Terminal" to do script "~/govuk/govuk-guix/bin/govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$"'`
-        - This assumes you have the `govuk-guix` Git repository cloned in
-         `~/govuk/govuk-guix`, and that you've got `govuk connect` working.
+        - `osascript -e 'tell app "Terminal" to do script "gds govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$"'`
     - For GNU/Linux, with the Gnome Terminal installed (which includes
       Ubuntu), use the following command:
-        - `/usr/bin/gnome-terminal -x govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$`
-        - This assumes you have the `govuk` wrapper script on your PATH,
-          and you've got `govuk connect` working
+        - `/usr/bin/gnome-terminal -x gds govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$`
 - Click "OK"
