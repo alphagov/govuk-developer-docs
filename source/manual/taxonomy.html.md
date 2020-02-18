@@ -66,21 +66,20 @@ An example of a level one taxon is the "Education" taxon:
 You can use this to find the structure of the taxonomy by following
 the `child_taxons` links.
 
-
 ## Accessing tagged content
 
 You can fetch content tagged to a particular taxon from the Search API
 ([search-api][search-api]).
 
-This is used in some GOV.UK search pages.  For example https://www.gov.uk/search/news-and-communications
+This is used in some GOV.UK search pages.  For example <https://www.gov.uk/search/news-and-communications>
 has a topic/subtopic facet that allows filtering.  In addition, search pages like
-https://www.gov.uk/search/guidance-and-regulation?parent=%2Feducation%2Fschools-forums&topic=57c6ba08-a31a-4a7a-9cd6-3d571e91f1ab
+<https://www.gov.uk/search/guidance-and-regulation?parent=%2Feducation%2Fschools-forums&topic=57c6ba08-a31a-4a7a-9cd6-3d571e91f1ab>
 (which are accessed from topic pages) are prefiltered by topic.
 
 The filter works with a `content_id` rather than URL. To find all content
 tagged to the above mentioned ["Education taxon"][education-taxon]:
 
-[https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0](https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0)
+<https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0>
 
 By default search-api returns a handful of fields in a search result item.
 You are able to override the default fields by naming which fields you want returned.
@@ -88,24 +87,23 @@ If a content item does not have one of the named fields provided,
 it will be left out of the returned item.
 [See full documentation here.][override-fields]
 
-
 You can filter on multiple different field names if you wish to narrow
 down what you are searching for. You are able to filter by one or many
 field names and multiple values can be given for each field name.
 To find all `speech` content tagged to ["Education taxon"][education-taxon]:
 
-[https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&filter_content_store_document_type[]=speech&fields[]=title,description,link,content_store_document_type,format](https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&filter_content_store_document_type[]=speech&fields[]=title,description,link,content_store_document_type,format)
+<https://www.gov.uk/api/search.json?filter_taxons[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&filter_content_store_document_type[]=speech&fields[]=title,description,link,content_store_document_type,format>
 
 You can also access all content tagged to a taxon and the part of the
 taxonomy below it. The following will give you everything tagged to
 topics in the "Education" taxonomy:
 
-[https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&fields=title,taxons,part_of_taxonomy_tree](https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&fields=title,taxons,part_of_taxonomy_tree)
+<https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree[]=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&fields=title,taxons,part_of_taxonomy_tree>
 
 You can see the number of documents in each topic by using `taxons` as
 a facet:
 
-[https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&facet_taxons=1000&count=0](https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&facet_taxons=1000&count=0)
+<https://www.gov.uk/api/search.json?filter_part_of_taxonomy_tree=c58fdadd-7743-46d6-9629-90bb3ccc4ef0&facet_taxons=1000&count=0>
 
 ## Visibility
 
