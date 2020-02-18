@@ -4,7 +4,7 @@ title: Change an organisation's slug
 parent: "/manual.html"
 layout: manual_layout
 section: Routing
-last_reviewed_on: 2019-09-26
+last_reviewed_on: 2020-02-18
 review_in: 6 months
 ---
 
@@ -17,9 +17,9 @@ multiple apps.
 
 ### 1. Change the organisation's slug in Whitehall
 
-Create a data migration that uses the `DataHygiene::OrganisationReslugger`
-class.
-See [this PR for an example](https://github.com/alphagov/whitehall/pull/2245).
+Run the appropriate rake task:
+- [Organisation][organisation-rake-task]
+- [Worldwide Organisation][worldwide-organisation-rake-task]
 
 ### 2. Update the organisation in transition/transition-config:
 
@@ -60,4 +60,6 @@ permissions for the renamed organisation.
 Search the best bets in [search-admin][search-admin] for references to the old
 organisation name and update them.
 
+[organisation-rake-task]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/122585/rebuild/parameterized
+[worldwide-organisation-rake-task]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/122581/rebuild/parameterized
 [search-admin]: https://search-admin.publishing.service.gov.uk/
