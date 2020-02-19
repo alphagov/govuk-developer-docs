@@ -226,8 +226,8 @@ deploy Terraform to Staging and make the same manual changes in the
 Fastly UI. Then do Production.
 
 [infra-fasty-logs-terraform]: https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-fastly-logs/main.tf
-[cache-response-vcl]: https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-fastly-logs/main.tf#L251
-[cache-response-json]: https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-fastly-logs/main.tf#L330-L334
+[cache-response-vcl]: https://github.com/alphagov/govuk-aws/blob/6a37004ff23b7da3b90b20b30a2068499b7904ed/terraform/projects/infra-fastly-logs/main.tf#L205
+[cache-response-json]: https://github.com/alphagov/govuk-aws/blob/6a37004ff23b7da3b90b20b30a2068499b7904ed/terraform/projects/infra-fastly-logs/main.tf#L284-L288
 [glue-crawler]: https://eu-west-1.console.aws.amazon.com/glue/home?region=eu-west-1#catalog:tab=crawlers
 [fastly-logs-list]: https://docs.fastly.com/en/guides/useful-variables-to-log
 
