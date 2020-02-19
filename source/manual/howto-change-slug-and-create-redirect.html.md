@@ -4,7 +4,7 @@ title: Change a slug and create redirect in Whitehall
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-01
+last_reviewed_on: 2020-02-19
 review_in: 6 months
 ---
 
@@ -20,7 +20,9 @@ The task takes the Document's old slug and the Document's new slug.
 $ bundle exec 'reslug:document[old_slug,new_slug]'
 ```
 
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27reslug:document[old_slug,new_slug]%27)
+* [Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27reslug:document[old_slug,new_slug]%27)
+* [Jenkins - staging](https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27reslug:document[old_slug,new_slug]%27)
+* [Jenkins - production](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27reslug:document[old_slug,new_slug]%27)
 
 
 > This rake task also works for Person, Role, PolicyGroup, Organisation, WorldOrganisation and WorldLocation.
