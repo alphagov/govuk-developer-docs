@@ -71,12 +71,8 @@ There's some documentation on [useful Kibana queries for 2nd line][kibana-docs].
 
 ## Fastly
 
-Fastly sends logs to multiple locations for the www, assets and bouncer
-services:
-
-- via syslog to the monitoring-1 boxes in all environments (`/var/log/cdn`),
-  available immediately
-- to an S3 bucket per environment, available every 10 minutes
+Fastly sends logs to S3 for the www, assets and bouncer
+services. These can be [queried through Athena](/manual/query-cdn-logs.html).
 
 ## Graphite
 
