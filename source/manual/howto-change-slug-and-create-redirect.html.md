@@ -30,7 +30,7 @@ For example: `reslug:world_location[old_slug,new_slug]`
 
 #### Issues
 
-If you run the task and find the redirect has worked, but the new location returns a 404, it's likely because the republish command is languishing in the low-priority queue ([check queue volumes in Grafana](https://grafana.publishing.service.gov.uk/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Queues=All&from=now-30m&to=now). Whitehall appears to put the redirect in the high priority queue, so there can be a delay between the redirect being applied and the content being republished.
+If you run the task and find the redirect has worked, but the new location returns a 404, it's likely because the republish command is languishing in the low-priority queue ([check queue volumes in Grafana](https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Queues=All&from=now-30m&to=now). Whitehall appears to put the redirect in the high priority queue, so there can be a delay between the redirect being applied and the content being republished.
 
 This should resolve itself over time, but if you need to process the content change more quickly, run a rake task to put it in the high priority queue:
 
