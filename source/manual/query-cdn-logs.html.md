@@ -12,9 +12,10 @@ The [CDN](/manual/cdn.html) log files are sent to Amazon S3 every 15 minutes
 and are stored for 90 days. The data in these log files can be queried via
 [Amazon Athena][] to gain a variety of insights into GOV.UK traffic.
 
-If you need to access the logs within 15 minutes of the request you can
-access the log files on the `monitoring-1` server. These are sent via syslog and
-are available in the `/var/log/cdn/` directory.
+Previously, the log files were sent via syslog and available in real time
+in the `/var/log/cdn` directory of the `monitoring` server. Due to low use now
+we have Athena, these were [removed](https://github.com/alphagov/govuk-puppet/pull/10126),
+but the behaviour can be restored if necessary.
 
 [Amazon Athena]: https://aws.amazon.com/athena/
 
