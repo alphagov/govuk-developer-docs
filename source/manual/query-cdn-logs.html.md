@@ -9,7 +9,7 @@ review_in: 6 months
 ---
 
 The [CDN](/manual/cdn.html) log files are sent to Amazon S3 every 15 minutes
-and are stored for 90 days. The data in these log files can be queried via
+and are stored for 120 days. The data in these log files can be queried via
 [Amazon Athena][] to gain a variety of insights into GOV.UK traffic.
 
 Previously, the log files were sent via syslog and available in real time
