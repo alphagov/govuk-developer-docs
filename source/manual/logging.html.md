@@ -5,8 +5,8 @@ section: Logging
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-09-28
-review_in: 6 months
+last_reviewed_on: 2020-02-20
+review_in: 12 months
 ---
 
 ![](/manual/images/logging.png)
@@ -22,20 +22,19 @@ the approved vendor [Logit][logit].
 For information on how to log in and view stacks, please see the
 [GOV.UK Logit documentation][logit-docs].
 
-### Elasticsearch
-
-Elasticsearch in AWS uses a managed service.  Logs are exported to
-[AWS Cloudwatch][aws-cloudwatch-es] and retained for 3 days.
-
-Logs are also written to a [S3 bucket][s3-es] which is used to import the logs
-into Logit.
-
-[aws-cloudwatch-es]: https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#logs:prefix=/aws/aes/domains/blue-elasticsearch6-domain
-[s3-es]: https://s3.console.aws.amazon.com/s3/buckets/govuk-integration-aws-logging/elasticsearch6/?region=eu-west-1&tab=overview
 [gds-way-logging]: https://gds-way.cloudapps.digital/standards/logging.html#content
 [logit]: https://logit.io
 [logit-docs]: /manual/logit.html
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
+
+## Kibana
+
+Kibana is the interface for viewing logs in Elasticsearch. Use the Logit
+interface to log into Kibana.
+
+There's some documentation on [useful Kibana queries for 2nd line][kibana-docs].
+
+[kibana-docs]: /manual/kibana.html
 
 ## Filebeat
 
@@ -60,21 +59,7 @@ In the future this will be replaced.
 
 [logship]: https://github.com/alphagov/tagalog/blob/master/tagalog/command/logship.py
 
-## Kibana
-
-Kibana is the interface for viewing logs in Elasticsearch. Use the Logit
-interface to login to Kibana.
-
-There's some documentation on [useful Kibana queries for 2nd line][kibana-docs].
-
-[kibana-docs]: /manual/kibana.html
-
 ## Fastly
 
 Fastly sends logs to S3 for the www, assets and bouncer
 services. These can be [queried through Athena](/manual/query-cdn-logs.html).
-
-## Graphite
-
-Data from statsd goes to Graphite instances which is then displayed using
-Grafana.
