@@ -6,7 +6,7 @@ layout: manual_layout
 section: 2nd line
 type: learn
 last_reviewed_on: 2020-02-21
-review_in: 3 months
+review_in: 6 months
 ---
 
 2nd line has three main reponsibilities:
