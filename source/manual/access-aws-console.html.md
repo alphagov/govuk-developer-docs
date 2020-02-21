@@ -19,11 +19,42 @@ The (private) GitHub repo is [alphagov/gds-cli](https://github.com/alphagov/gds-
 1. Install [Homebrew](https://brew.sh) on macOS or Linux.
 1. Run `brew install alphagov/gds/gds-cli` to install from the [GDS Homebrew tap](https://github.com/alphagov/homebrew-gds).
 1. Run `gds config yubikey false` if you type AWS MFA codes from your phone.
-   (If you see `fatal: yubikey: no such path in the working tree`, it's because you're using ZSH, which has `gds` set up as
-   a Git alias. You can either remove that alias by adding `unalias gds` to your `~/.zshrc`, or use
-   `gds-cli` instead of `gds` for all the commands below.)
+
+### First run
+
+You'll be asked for credentials on first run:
+
+```shell
+$ gds aws govuk-integration-poweruser -l
+Welcome to the GDS CLI! We will now store your AWS credentials in the keychain using aws-vault.
+Enter Access Key ID: AK-YOUR-ACCESS-KEY-ID
+Enter Secret Access Key: blah blah
+Added credentials to profile "gds-users" in vault
+Successfully initialised gds-cli
+Enter token for arn:aws:iam::123456789012:mfa/firstname.lastname@digital.cabinet-office.gov.uk: 123456
+```
+
+Your Access Key is from the AWS console:
+
+![AWS Access Key](images/aws/access-key.png)
+
+If you've forgotten the secret, regenerate it and save your key's secret somewhere safe!
+
+You'll also be prompted to save credentials to your Mac's Keyvault as `aws-vault` and set a password for it. Save that password somewhere safe too!
+
+> Note:  If you see `fatal: yubikey: no such path in the working tree`, it's because you're using ZSH, which has `gds` set up as a Git alias. You can either remove that alias by adding `unalias gds` to your `~/.zshrc`, or use `gds-cli` instead of `gds` for all the commands below.
 
 If you have `bash-completion` installed and configured, the gds-cli tab completions will work out of the box. They're especially useful for long commands like AWS account names.
+
+## Re-initialising
+
+If you have problems, like forgetting your `aws-vault` password, delete the local creds:
+
+```shell
+rm ~/Library/Keychains/aws-vault.keychain-db
+```
+
+and re-run the "First run" section above.
 
 ## Get Your Role
 
@@ -31,6 +62,7 @@ Work out which [list of users you're part of in govuk-aws-data][govuk-aws-data-u
 You're about to use it in the 'Web Console' section below.
 
 ## Usage
+
 
 ### Web Console
 
@@ -48,6 +80,7 @@ if you want to assume the `govuk-powerusers` role on Staging, you would run
 
 `-l` opens the web browser and logs you in. For a full list of CLI parameters,
 consult the [gds-cli README](https://github.com/alphagov/gds-cli).
+
 
 ### Terraform
 
