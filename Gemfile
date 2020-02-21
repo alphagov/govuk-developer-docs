@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby File.read(".ruby-version").chomp
 
 gem "activesupport", "~> 5.0"
-gem "capybara", "~> 3.30.0"
+gem "capybara", "~> 3.31.0"
 gem "rake"
 gem "rspec", "~> 3.9"
 gem "rubocop-govuk"
