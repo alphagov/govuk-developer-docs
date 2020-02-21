@@ -4,12 +4,12 @@ title: Query CDN logs
 section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-05
-review_in: 6 months
+last_reviewed_on: 2020-02-20
+review_in: 12 months
 ---
 
 The [CDN](/manual/cdn.html) log files are sent to Amazon S3 every 15 minutes
-and are stored for 90 days. The data in these log files can be queried via
+and are stored for 120 days. The data in these log files can be queried via
 [Amazon Athena][] to gain a variety of insights into GOV.UK traffic.
 
 Previously, the log files were sent via syslog and available in real time
@@ -164,6 +164,72 @@ GROUP BY user_agent, host
 ORDER BY count DESC
 LIMIT 50
 ```
+
+## Adding a new field to the CDN logs
+
+Adding a new field to the CDN logs is a half manual, half automated
+process and is [tracked as tech debt](https://trello.com/c/7pAvfM8R/167).
+
+You should do this in the Integration environment first and wait until
+you see the logs coming through to Athena from Fastly. Only then
+should you change Staging and next Production. This helps us catch
+syntax errors and incidents early. Note that the `bouncer` logs are
+only available in Production.
+
+Firstly, make the manual changes via Terraform and a PR. This ensures that
+you've had two pairs of eyes on both the Athena/AWS Glue config changes and the
+eventual JSON you will manually put into the Fastly web UI:
+
+1. Edit the [`infra-fastly-logs` Terraform][infra-fastly-logs-terraform].
+1. Find the `aws_glue_catalog_table` resource for the Fastly logs you want to
+   add a column to (`govuk_www`, `govuk_assets` or `bouncer`).
+1. Copy the VCL for the log from
+   [Fastly's list of available logs][fastly-logs-list] and add it to the list
+   of commented (`//`) columns. It's important that these are in the same
+   format as the preceding commented lines (that is, JSON, with quotes)
+   otherwise Athena won't parse the logs correctly. Here's an
+   [example for the `govuk_www.cache_response` column][cache-response-vcl].
+1. Add your new column name, type and description to the JSON below the
+   comments ([example
+   for the `govuk_www.cache_response` column][cache-response-json]).
+1. Raise a PR, get a review, merge and [deploy](manual/deploying-terraform.html).
+
+The manual steps to make Fastly send the log data:
+
+1. Log in to Fastly using the credentials from
+   `fastly/deployment_shared_credentials` in the 2ndline password store.
+1. Search for the environment, for example "staging".
+1. On the environment page, click "Real Time Stats".
+1. Click "Configure" on the page with the graphs.
+1. Click the blue "Edit Configuration" button on the far right to reveal a
+   dropdown menu.
+1. Click "Clone version xxx (active) to edit".
+1. Click "Logging" in the left hand menu.
+1. Find and click the link for the relevant log, for example "GOV.UK Fastly
+   Logs S3 Bucket".
+1. Paste the new log format (found [in the list of available Fastly
+   logs][fastly-logs-list]) into the "Log Format" text box.
+1. Click "Update".
+1. Click the purple "ACTIVATE" button in the top right corner to make the new
+   configuration live.
+
+Both these sets of steps must be done! Check the S3 bucket and
+query Athena to see the added column and confirm that there's data for
+it. As the crawler runs on a schedule every four hours, it can take a
+while for Athena to recognise that there have been changes to the
+configuration. Due to this, it's advisable to manually [run the AWS
+Glue Crawler][glue-crawler] for the logs config you have changed once you
+know that Fastly is correct.
+
+Once you're happy that the Integration configuration works, you can
+deploy Terraform to Staging and make the same manual changes in the
+Fastly UI. Then do Production.
+
+[infra-fasty-logs-terraform]: https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-fastly-logs/main.tf
+[cache-response-vcl]: https://github.com/alphagov/govuk-aws/blob/6a37004ff23b7da3b90b20b30a2068499b7904ed/terraform/projects/infra-fastly-logs/main.tf#L205
+[cache-response-json]: https://github.com/alphagov/govuk-aws/blob/6a37004ff23b7da3b90b20b30a2068499b7904ed/terraform/projects/infra-fastly-logs/main.tf#L284-L288
+[glue-crawler]: https://eu-west-1.console.aws.amazon.com/glue/home?region=eu-west-1#catalog:tab=crawlers
+[fastly-logs-list]: https://docs.fastly.com/en/guides/useful-variables-to-log
 
 ## Troubleshooting
 
