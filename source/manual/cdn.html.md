@@ -27,7 +27,7 @@ Most of the CDN config is versioned and scripted:
 
 These are deployed to [integration][integration_cdn], [staging][staging_cdn] and [production][production_cdn].
 
-Some configuration isn't scripted, such as logging. The www, bouncer and assets services send logs to S3 and stream them to `monitoring-1`. These logging endpoints are configured directly in the Fastly UI. There is [documentation on how to query the CDN logs](/manual/query-cdn-logs.html).
+Some configuration isn't scripted, such as logging. The www, bouncer and assets services send logs to S3 which can be [queried](/manual/query-cdn-logs.html). These logging endpoints are configured directly in the Fastly UI.
 
 [integration_cdn]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_CDN/
 [staging_cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
@@ -44,8 +44,6 @@ It also lets us do fancy things, like [only allowing connections to staging from
 We set a default TTL of 3600s on cached objects. This means that pages such as the GOV.UK homepage will be cached for 1 hour. 5XX responses get cached for 1s; mirror responses get cached for 15 minutes.
 
 We also set a grace period of 24 hours. So if the homepage server is down, we'll continue to serve a stale homepage for 24 hours.
-
-We will cache any non-GET/HEAD request that returns a 404 or 405 status for the default TTL. This means (for example) that a POST request that returns a 405 (Method Not Allowed) will be cached.
 
 These are the GET request status codes that Varnish caches automatically: 200, 203, 300, 301, 302, 404 or 410. (See the [Varnish docs](https://varnish-cache.org/docs/2.1/reference/vcl.html#variables) for more detail.)
 
