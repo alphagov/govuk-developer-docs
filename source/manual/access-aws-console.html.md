@@ -48,7 +48,7 @@ If you have `bash-completion` installed and configured, the gds-cli tab completi
 
 ## Re-initialising
 
-If you have problems, like forgetting your `aws-vault` password, delete the local creds:
+If you forget your `aws-vault` password, delete the aws-vault keychain with `rm ~/Library/Keychains/aws-vault-keychain-db` and re-initialise the `gds-cli` by changing `initialised: true` to `initialised: false` in `~/.gds/config.yml`. Then re-run the "First run" commands above.
 
 ```shell
 rm ~/Library/Keychains/aws-vault.keychain-db
