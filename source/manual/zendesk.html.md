@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2019-08-16
+last_reviewed_on: 2020-02-21
 review_in: 6 months
 ---
 
@@ -14,7 +14,7 @@ and general queries from users of data.gov.uk ("DGU"), for whom 2nd line provide
 
 ## Get started
 
-[Create an account](zendesk-create-account), then ask a fellow 2nd liner to assign a new ticket to
+[Create an account][zendesk-create-account], then ask a fellow 2nd liner to assign a new ticket to
 "2nd/3rd Line—Zendesk Administration" asking to give you access to "2nd Line - GOV.UK Alerts and Issues".
 
 When you're logged in, you should be looking at the ['2nd Line--GOV.UK Alerts and Issues' queue][zendesk-queue].
