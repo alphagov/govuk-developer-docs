@@ -68,7 +68,6 @@ You're about to use it in the 'Web Console' section below.
 
 ## Usage
 
-
 ### Web Console
 
 If you're new to GOV.UK and want to look around in integration:
