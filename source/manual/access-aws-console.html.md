@@ -40,7 +40,7 @@ Your Access Key is from the AWS console:
 
 If you've forgotten the secret, regenerate it and save your key's secret somewhere safe!
 
-You'll also be prompted to save credentials to your Mac's Keyvault as `aws-vault` and set a password for it. Save that password somewhere safe too!
+You'll also be prompted to save credentials to your Mac's Keychain as `aws-vault` and set a password for it. Save that password somewhere safe too, like a password manager.
 
 > Note:  If you see `fatal: yubikey: no such path in the working tree`, it's because you're using ZSH, which has `gds` set up as a Git alias. You can either remove that alias by adding `unalias gds` to your `~/.zshrc`, or use `gds-cli` instead of `gds` for all the commands below.
 
