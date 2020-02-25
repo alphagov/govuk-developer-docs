@@ -4,15 +4,14 @@ title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-24
+last_reviewed_on: 2020-02-25
 review_in: 6 months
 ---
 
 If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
 follow these steps:
 
-1. `ssh backend-1.production`
-1. `govuk_app_console asset-manager`
+1. Get a Rails console for Asset Manager
 1. `asset = Asset.find("asset-id-from-url")` (e.g. `57a9c52b40f0b608a700000a`) or for a Whitehall asset `asset = WhitehallAsset.find_by(legacy_url_path: '/government/uploads/system/uploads/attachment_data/file/id/path.extension')`
 1. Make a note of the path of the asset: `asset.file.path` - this will be used to delete the file from the file system
 1. Mark the asset as deleted (and remove it from S3 if necessary - this will prevent restoration)
@@ -41,6 +40,6 @@ follow these steps:
 >
 > HM Courts & Tribunals Service (HMCTS) occasionally request this through Zendesk.
 
-[rake-delete]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
-[rake-delete-and-remove-from-s3]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
+[rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
+[rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
 [clear-cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets
