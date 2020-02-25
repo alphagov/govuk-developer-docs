@@ -50,10 +50,19 @@ deployed.
 The deployment for both apps can be triggered automatically via GitHub flow, or
 manually via command line tools.
 
+#### Staging
 The deployment to staging is triggered when a PR gets merged into master. You
-can check the Travis logs of the `master` build to see progress. The deployment
-to production is triggered when a [new release] with an appropriate version
-number is created in GitHub. This behaviour is defined in [Publish's travis.yml]
+can check the [Travis logs of the `master` build](https://travis-ci.org/alphagov/datagovuk_find) to see progress.
+
+You can check the deployment on [staging.data.gov.uk](https://staging.data.gov.uk/)
+
+#### Production
+The deployment to production is triggered when a [new release] with an appropriate version
+number is created in GitHub.
+
+To create a new release, provide a new version number, release title and description.
+
+This deployment behaviour is defined in [Publish's travis.yml]
 and in [Find's travis.yml].
 
 The process to manually deploy is as follows.
@@ -101,7 +110,7 @@ Deployments for ckan are initiated via updates to [ckanext-datagovuk][ckanext-da
 
 ### CSW
 
-When deploying changes that affect the CSW service, (OWSLib or PyCSW updates), provided at the `/csw` endpoint for the [CKAN publisher][ckan-publisher] you should make sure that the endpoint is still running correctly by curling it, `curl "https://ckan.publishing.service.gov.uk/csw"`, or view it in Firefox. Chrome and Safari do not show the XML on the page correctly. 
+When deploying changes that affect the CSW service, (OWSLib or PyCSW updates), provided at the `/csw` endpoint for the [CKAN publisher][ckan-publisher] you should make sure that the endpoint is still running correctly by curling it, `curl "https://ckan.publishing.service.gov.uk/csw"`, or view it in Firefox. Chrome and Safari do not show the XML on the page correctly.
 
 The daily sync between pycsw and ckan should also be tested:
 
@@ -110,7 +119,7 @@ sudo su deploy
 cd /var/apps/ckan && ./venv/bin/paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
 ```
 
-The pycsw web process should be automatically restarted after each ckan deployment. 
+The pycsw web process should be automatically restarted after each ckan deployment.
 
 If changes are not appearing, you can try these commands.
 
