@@ -60,7 +60,7 @@ You can check the deployment on [staging.data.gov.uk](https://staging.data.gov.u
 The deployment to production is triggered when a [new release] with an appropriate version
 number is created in GitHub.
 
-To create a new release, provide a new version number, release title and description.
+To create a new release, provide a new version number, release title and description. The version number must include the leading 'v' to trigger a deployment, for example: `v1.0.0`
 
 This deployment behaviour is defined in [Publish's travis.yml]
 and in [Find's travis.yml].
