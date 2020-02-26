@@ -5,7 +5,7 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-16
+last_reviewed_on: 2020-02-26
 review_in: 6 months
 ---
 
@@ -19,7 +19,6 @@ Grafana lets us create nice dashboards using Graphite data.
   - [Carrenza](https://grafana.staging.publishing.service.gov.uk)
 - Integration
   - [AWS](https://grafana.integration.publishing.service.gov.uk)
-  - There is no Carrenza Integration anymore
 - CI
   - [Carrenza](https://ci-grafana.integration.publishing.service.gov.uk)
 
