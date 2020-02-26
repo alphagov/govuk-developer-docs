@@ -4,7 +4,7 @@ title: Block apps from being deployed
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-06-27
+last_reviewed_on: 2020-02-26
 review_in: 6 months
 related_applications: [release]
 ---
