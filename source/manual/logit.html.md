@@ -4,8 +4,6 @@ title: Use Logit for GOV.UK
 section: Logging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-26
-review_in: 6 months
 ---
 
 ## How GOV.UK use Logit
