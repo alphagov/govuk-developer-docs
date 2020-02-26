@@ -69,6 +69,20 @@ examine the logs before progressing to the next stage (Apply).
 > - You will not require credentials for Google Cloud. These credentials are stored
 > in Jenkins itself.
 
+> **Google-based caveats**
+>
+> - When deploying to Google it's normal to see changes in TXT records
+> relating to escaping of quotes. You can safely ignore these if
+> they don't change any of the content of the record. This is a bug
+> in the way we handle splitting long TXT records between AWS and
+> GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
+> - To change a DNS record, the Google provider deletes and
+> re-adds that record. This can sometimes cause a [race
+> condition](https://github.com/alphagov/govuk-dns/issues/67) where
+> Google tries to create the new one before it has sucessfully deleted
+> the old one. In this case, the build will fail, and you need to
+> re-run the GCP `apply` job.
+
 ### Making changes to internal DNS (govuk.digital and govuk-internal.digital)
 
 Currently these zones are only used in environments running on AWS.
