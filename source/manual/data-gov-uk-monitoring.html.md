@@ -21,6 +21,7 @@ review_in: 6 months
 [ckan]: apps/ckanext-datagovuk
 [dgu-queue-monitor]: https://github.com/alphagov/datagovuk_publish_queue_monitor
 [dgu-elastic-monitor]: https://github.com/alphagov/datagovuk_publish_elasticsearch_monitor
+[dgu-dashboard](https://grafana-paas.cloudapps.digital/d/rk9fSapik/data-gov-uk-2nd-line?orgId=1)
 
 ## Prometheus
 
@@ -41,6 +42,10 @@ Pingdom monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downti
 ## Log.it
 
 Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas]. Example query: `source_host: "gds-data-gov-uk.data-gov-uk.find-data-beta" && access.response_code: 500`.
+
+## Data.gov.uk production dashboard
+
+You can view the [DGU dashboard](https://grafana-paas.cloudapps.digital/d/rk9fSapik/data-gov-uk-2nd-line?orgId=1) to get an overview of DGU that includes Find 4xx and 5xx, Publish elasticsearch index size and Sidekiq metrics.
 
 ## Sidekiq ([Publish])
 
