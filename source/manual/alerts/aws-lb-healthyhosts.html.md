@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: AWS LB Healthy Hosts
 parent: "/manual.html"
 layout: manual_layout
