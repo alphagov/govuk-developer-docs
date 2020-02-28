@@ -4,7 +4,7 @@ title: datagovuk_publish app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-05
+last_reviewed_on: 2020-02-27
 review_in: 3 months
 ---
 
@@ -19,5 +19,4 @@ or [publisher](https://ckan.publishing.service.gov.uk/publisher) updates are
 not appearing on data.gov.uk - see [Datasets published in CKAN are not appearing on Find](/manual/data-gov-uk-2nd-line.html#datasets-published-in-ckan-are-not-appearing-on-find)
 
 You can monitor the number of jobs in the Sidekiq queue
-[using the console](https://docs.publishing.service.gov.uk/manual/data-gov-uk-monitoring.html#sidekiq-publish)
-or accessing the [SidekiqUI](https://docs.publishing.service.gov.uk/manual/data-gov-uk-monitoring.html#sidekiq-ui-publish).
+via [the DGU dashboard](https://grafana-paas.cloudapps.digital/d/rk9fSapik/data-gov-uk-2nd-line?orgId=1).
