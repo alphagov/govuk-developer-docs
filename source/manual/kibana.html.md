@@ -5,7 +5,7 @@ layout: manual_layout
 parent: "/manual.html"
 section: Logging
 important: true
-last_reviewed_on: 2019-02-27
+last_reviewed_on: 2020-02-28
 review_in: 6 months
 ---
 All logs for GOV.UK on all environments are collected in Kibana, which you can
