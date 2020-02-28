@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 type: learn
-last_reviewed_on: 2019-08-28
+last_reviewed_on: 2020-02-28
 review_in: 6 months
 ---
 
@@ -15,15 +15,15 @@ Our development and deployment pipeline looks like this:
 
 ## 1. Local development
 
-Developers develop the code on their laptop. Most of the time, they [use the Development VM](/manual/get-started.html) for this.
+Developers write code locally on their laptops via [GOV.UK Docker](/manual/get-started.html).
 
-Once the tests pass locally you push the code to GitHub and open a Pull Request. The Pull Request [should conform to the guidelines in the styleguides](https://github.com/alphagov/styleguides/blob/master/pull-requests.md).
+Once the tests pass locally, developers push the code to GitHub and open a Pull Request (PR). The style of this PR should [conform to the GDS Way guidance](https://gds-way.cloudapps.digital/standards/pull-requests.html).
 
 ## 2. GitHub Pull Request
 
 Once the Pull Request is opened, a job starts running on Jenkins, our Continuous Integration tool (CI). For a detailed look, you should [read about the CI infrastructure](/manual/jenkins-ci.html).
 
-In most cases the CI job will run 3 different checks on the repo: a [Ruby linter](/manual/lint-ruby-code.html), a [static security analysis tool](/manual/brakeman.html), and the [unit tests of the repo](/manual/testing.html).
+In most cases the CI job will run 3 different checks on the repo: a [Ruby linter](https://github.com/alphagov/rubocop-govuk), a [static security analysis tool](/manual/brakeman.html), and the [unit tests of the repo](/manual/testing.html).
 
 For some applications, Jenkins also runs the [end-to-end tests](/manual/publishing-e2e-tests.html).
 
