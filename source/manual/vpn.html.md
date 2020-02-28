@@ -1,12 +1,12 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#re-govuk"
 title: GOV.UK and Virtual Private Networks (VPNs)
 section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-20
-review_in: 6 months
+last_reviewed_on: 2020-02-28
+review_in: 3 months
 ---
 
 GOV.UK uses several VPNs to connect environments. This page explains what they
