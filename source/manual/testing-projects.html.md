@@ -4,7 +4,7 @@ title: Test & build a project on Jenkins CI
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-19
+last_reviewed_on: 2020-02-28
 review_in: 6 months
 ---
 
