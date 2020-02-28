@@ -4,8 +4,6 @@ title: Add an Icinga passive check to a Jenkins job
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-28
-review_in: 6 months
 ---
 
 If you would like Icinga to raise an alert when a Jenkins job has not completed
