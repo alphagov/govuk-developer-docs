@@ -5,17 +5,9 @@ parent: "/manual.html"
 type: learn
 layout: manual_layout
 section: Monitoring
-last_reviewed_on: 2019-04-24
+last_reviewed_on: 2020-03-02
 review_in: 12 months
 ---
-
-Most teams in GOV.UK have screens set up to show data about pull requests, released and/or current work.
-
-Most often displayed are the [deploy lag radiator][deploy-lag], the [fourth wall][fourth-wall] and the team's
-Trello board.
-
-[deploy-lag]: https://github.com/dsingleton/deploy-lag-radiator
-[fourth-wall]: https://github.com/alphagov/fourth-wall
 
 ## Search screen
 
@@ -35,12 +27,13 @@ The username and password can be obtained by logging in to Heroku and viewing th
 
 There are two screens by the 2nd line desks.
 
-The top screen is a webpage running [frame splits][frame-splits] with three splits: production health, open Zendesk
-tickets and Icinga alert summary per environment.
+The top screen is a webpage running [frame splits][frame-splits] with three splits: [production health, open Zendesk
+tickets and Icinga alert summary per environment][2ndline-dash].
 
 The bottom screen is a PaaS-hosted Grafana dashboard showing statistics for data.gov.uk.
 
 [frame-splits]: https://github.com/alphagov/frame-splits
+[2ndline-dash]: https://alphagov.github.io/frame-splits/index.html?title=&layout=2x1-75-25&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&url%5B%5D=
 
 ### Production health
 
