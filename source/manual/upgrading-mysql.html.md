@@ -20,7 +20,7 @@ Monday to Friday).
 It is safe to reboot the `_backup` and `_slave-2` machines on production
 as they are not actively used by sites and will not cause 500 errors.
 
-The following Puppet classes will need upgrading:
+The following Puppet classes will need upgrading in [`govuk-puppet`](https://github.com/alphagov/govuk-puppet):
 
 MySQL cluster:
 
@@ -38,31 +38,22 @@ Whitehall cluster:
 >
 > whitehall_mysql_master
 
-To do the upgrade, use this [Fabric](https://github.com/alphagov/fabric-scripts) command:
+To upgrade the version of MySQL, use this fabric command from the [`fabric-scripts` repo](https://github.com/alphagov/fabric-scripts):
 
 `fab $environment -H <hostname> sdo:"apt-get install mysql-server-5.5"`
 
-It's best to do the backup machines first, followed by second slave,
-first slave and then the master.
+Complete the upgrade for the backup machines first, followed by second slave, first slave, and finally the master.
 
-Before upgrading the master, stop the slow query logs on
-the slave machines. This can be done with the following Fabric command (or a
-similar one replacing the classes for Whitehall). 
+Before upgrading the master, stop the slow query logs on the slave machines. **Note**: only do this on staging – slow query logs are not enabled in production.
 
-Only do this on
-staging - slow query logs are not enabled in production:
+Stopping the slow query logs can be done with the following Fabric command (or a similar one replacing the classes for Whitehall):
 
 `fab $environment class:mysql_backup class:mysql_slave mysql.stop_slow_query_log`
 
-The upgrade task can then be run on the master. Stopping the slow query
-log should allow replication to continue - if alerts occur about
-replication not running, then run the following Fabric task:
+The upgrade task can then be run on the master. Stopping the slow query log should allow replication to continue - if alerts occur about replication not running, then run the following Fabric task:
 
 `fab $environment class:mysql_backup class:mysql_slave mysql.fix_replication_from_slow_query_log_after_upgrade`
 
-Once the master has safely upgraded and replication is running, then
-turn the slow query log back on. 
-
-Only do this on staging - slow query logs are not enabled in production:
+Once the master has safely upgraded and replication is running, then turn the slow query log back on. **Note**: only do this on staging - slow query logs are not enabled in production:
 
 `fab $environment class:mysql_backup class:mysql_slave mysql.start_slow_query_log`
