@@ -4,7 +4,7 @@ title: Patch Jenkins
 parent: "/manual.html"
 layout: manual_layout
 section: Infrastructure
-last_reviewed_on: 2019-08-07
+last_reviewed_on: 2020-03-02
 review_in: 6 months
 ---
 
@@ -83,4 +83,4 @@ sudo mv jenkins.war /usr/share/jenkins/jenkins.war
 sudo service jenkins restart
 ```
 
-When this has completed, complete the Puppet and apt steps above.
+When this has completed, complete the Puppet and apt steps above. Remember to re-enable Puppet once the task is finished.
