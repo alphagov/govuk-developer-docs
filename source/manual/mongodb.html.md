@@ -38,7 +38,7 @@ Use the `/usr/local/bin/mongodb-restore-s3` script available on MongoDB machines
 
 This script grabs the latest backup from the S3 bucket, decrypts and unpacks it, and does a `mongo restore`.
 
-Machines which have enabled S3 backups and contain the script will have `mongodb::backup::s3_backups` set to `true` in the yaml configuration (see [`govuk-puppet`](https://github.com/alphagov/govuk-puppet)).
+Machines which have enabled S3 backups and contain the script will have `mongodb::backup::s3_backups` set to `true` in their yaml configuration (see [`govuk-puppet`](https://github.com/alphagov/govuk-puppet)).
 
 ### mongodumps via `govuk_env_sync` in AWS
 
