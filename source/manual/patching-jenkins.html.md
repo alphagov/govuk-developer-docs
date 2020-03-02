@@ -83,4 +83,4 @@ sudo mv jenkins.war /usr/share/jenkins/jenkins.war
 sudo service jenkins restart
 ```
 
-When this has completed, complete the Puppet and apt steps above.
+When this has completed, complete the Puppet and apt steps above. Remember to re-enable Puppet once the task is finished.
