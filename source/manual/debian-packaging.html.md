@@ -4,11 +4,11 @@ title: Manage Debian packages
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-09
+last_reviewed_on: 2020-03-02
 review_in: 6 months
 ---
 
-This page explains how we're managing our Debian packaging.
+This page explains how we manage our Debian packaging.
 
 ## Considerations before creating or importing a package
 
@@ -21,7 +21,9 @@ GDS developers may also choose to use the Debian packaging system as a means to
 distribute and maintain their locally developed software.
 
 As always when considering the addition of new software, the first question has to be:
-"Is this really necessary?" Adding a package should be motivated by
+**"Is this really necessary?"** 
+
+Adding a package should be motivated by
 security or architecture requirements and aim to minimise unnecessary
 dependencies.
 
@@ -81,8 +83,8 @@ See section [Creating Packages](#creating-packages) for details on implementatio
 - If great care is taken, it may be possible to make use of a software version
   which has been packaged for another Linux distribution, e.g. Debian.
 
-- Despite Ubuntu being based on Debian experimental, no Debian repository should ever
-  be directly mirrored and made available through aptly to a Ubuntu system _ever_.
+- Despite Ubuntu being based on Debian experimental, **no Debian repository should ever
+  be directly mirrored and made available through aptly to a Ubuntu system** _ever_.
   There will be severe complications including failing or erroneous package upgrades,
   broken dependencies and likely complete system failure.
 
@@ -112,16 +114,18 @@ The new way we prefer to build packages is using
 ### Launchpad
 
 We are using [Launchpad](https://launchpad.net/~gds/+archive/govuk) as
-the source of all our Debian packages. We are using
+the source of all our Debian packages and
 [alphagov/packager](https://github.com/alphagov/packager) which provides
-an easy interface to build packages. It creates intermediate files
-(.changes/.dsc) which can be uploaded to Launchpad which uses the files
+an easy interface to build packages. 
+
+`alphagov/packager` creates intermediate files
+(.changes/.dsc) which can be uploaded to Launchpad and which uses the files
 to build the Debian package. The README for the repository explains how
 to create packages for Launchpad.
 
-Once a package is imported (published) from a given source (eg the Nginx
+Once a package is imported (published) from a given source (e.g. the Nginx
 package is published from `nginx-stable-testing`) it cannot be
-republished/superceded (even if deleted and published again) from a
+republished/superseded (even if deleted and published again) from a
 different source on the same version number. To do so the version has to
 be bumped up.
 
@@ -222,7 +226,7 @@ when we choose to do so. This also guards us against some vendors/projects
 who remove old packages without warning.
 
 **Bandwidth**:   This is the least important, but is good netizen practice. We
-shouldn't need to go out to the internet everytime we install a package.
+shouldn't need to go out to the internet every time we install a package.
 Especially if we're doing it 40x for all hosts in an environment. We also
 shouldn't hit them with `apt-get update` every 30mins.
 
@@ -243,7 +247,7 @@ serve aptly repos.
 
 We only manage *some* parts of aptly using Puppet, because it requires
 GPG keys and passwords, and updating repositories is something that
-should be done ad-hoc rather than a regular schedule.
+should be done ad-hoc rather than on a regular schedule.
 
     $ PASSWORD_STORE_DIR=~/govuk/deployment/pass/2ndline pass apt/key > apt-1.management.key
 
@@ -257,7 +261,7 @@ the password. This can be found in the same place. You will need to use
 
 > **WARNING**
 >
-> Please make sure that you use `sudo` and NOT a root shell, so that we
+> Please make sure that you use `sudo` and NOT a root shell so we
 > have a record of the actions performed.
 
 ### Local repos
@@ -407,11 +411,13 @@ Publish the new snapshot:
     $ sudo -i aptly publish switch precise collectd collectd-20140102
 
 Finally, since we cache the mirror with Fastly, you'll need to purge the
-content in the UI as described above under Local repos\_.
+content in the UI as described above under [Local repos](#local-repos).
+
+For more about aptly and aptly commands please see their [documentation](https://www.aptly.info/doc/overview/).
 
 ### PPAs
 
-We use Launchpad PPAs mostly for their good build pipeline; sandboxed
+We use Launchpad PPAs mostly for their good build pipeline; sand-boxed
 builds in well maintained environments. Even if they can be slow.
 
 However PPAs have a restriction that you can only have one active
@@ -464,7 +470,7 @@ If you're happy with the results on Preview then you can repeat the
 publish step for Production (Staging uses the production mirror).
 
 Finally, since we cache the mirror with Fastly, you'll need to purge the
-content in the UI as described above under Local repos\_.
+content in the UI as described above under [Local repos](#local-repos).
 
 ### Removing mirrors no longer in use
 
