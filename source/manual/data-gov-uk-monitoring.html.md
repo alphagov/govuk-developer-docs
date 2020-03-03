@@ -4,7 +4,7 @@ title: Monitor data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-15
+last_reviewed_on: 2020-03-03
 review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
@@ -58,18 +58,6 @@ cf ssh publish-data-beta-production-worker
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 >>> Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
 ```
-
-## Sidekiq UI ([Publish])
-
-Sidekiq UI is only accessible to the `localhost` domain, so you'll need an SSH tunnel to see it on staging/production.
-
-First, follow the instructions on [logging into the paas][operating-dgu]
-
-```
-cf ssh -L 9000:localhost:8080 publish-data-beta-staging
-```
-
-Then go to [localhost:9000/sidekiq/recurring-jobs](http://localhost:9000/sidekiq/recurring-jobs) in your browser to see active jobs, retries and to manually modify the schedule.
 
 ## Analytics
 
