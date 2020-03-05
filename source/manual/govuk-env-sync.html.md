@@ -5,7 +5,7 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-07
+last_reviewed_on: 2020-03-05
 review_in: 6 months
 ---
 
@@ -117,32 +117,9 @@ path="postgresql-backend"
 ### Lock
 The govuk_env_sync cron jobs prevent automated reboots by `unattended-upgrades` by running under `/usr/local/bin/with_reboot_lock`, which creates the file `/etc/unattended-reboot/no-reboot/govuk_env_sync` and removes it when the process exits.
 
-### Cron job
-The data sync operations are executed as cron-jobs attached to the `govuk-backup` user. Currently they are limited to daily execution at a given hour and minute. The crontab entries take the form
-
-```
-# Puppet Name: pull_content_data_admin_production_daily
-18 0 * * * /usr/bin/ionice -c 2 -n 6 /usr/local/bin/with_reboot_lock /usr/bin/envdir /etc/govuk_env_sync/env.d /usr/local/bin/govuk_env_sync.sh -f /etc/govuk_env_sync/pull_content_data_admin_production_daily.cfg
-
-```
-
-The cron job command does the following:
-
-1. Runs the data sync job at low I/O priority:
-`/usr/bin/ionice -c 2 -n 6`. This only really matters when running on a database server, as opposed to a `db_admin` bastion host, but the command is the same in both cases.
-2. Prevents reboot by `unattended-upgrades` while the sync job is running:
-`/usr/local/bin/with_reboot_lock`
-3. Runs the data sync job with the appropriate configuration file:
-`/usr/local/bin/govuk_env_sync.sh -f /etc/govuk_env_sync/pull_content_data_admin_production_daily.cfg`
-
 > **Traffic replay using [Gor](alerts/gor.html) is disabled between 23:00 and
 > 05:45 daily whilst the data sync pull jobs take place. This is to prevent
 > lots of errors while we are dropping databases.**
-
-### Icinga checks
-For every `govuk_env_sync::task:`, a passive Icinga alert `GOV.UK environment sync <title>` is created. They are updated on exit of the sync script.
-
-If you get an Icinga alert about a failing task, check `/var/log/syslog` and `/var/log/syslog.1` on the machine which runs the job (usually `db_admin`). If the problem appears to be a one-off, consider acking the alert and seeing if it fails again the next day before investing time in debugging.
 
 
 [env-sync-and-backup]: alerts/data-sync.html
