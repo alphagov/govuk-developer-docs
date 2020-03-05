@@ -5,15 +5,14 @@ section: Infrastructure
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-02-03
+last_reviewed_on: 2020-03-05
 review_in: 3 months
 ---
 
 To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
 it is being migrated to [Amazon Web Services](https://aws.amazon.com/).
 
-At the moment, GOV.UK is running most frontend applications (excluding whitehall), the content-store
-and search-api in AWS, whereas publishing-api, asset-manager and publishers remain in Carrenza.
+At the moment, all GOV.UK applications are running in AWS except for Signon and most of the publisher apps.
 
 Please refer to the [Release app](https://release.publishing.service.gov.uk/applications) to determine where an app is currently located.
 
