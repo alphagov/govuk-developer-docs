@@ -4,7 +4,8 @@ title: Backup passive checks
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-01-27
+last_reviewed_on: 2020-03-05
+
 review_in: 6 months
 ---
 
@@ -16,7 +17,7 @@ within the last 28 hours).
 If the backup has failed, you can try re-running it on the associated machine.
 
 ```shell
-sudo su govuk-backup -c '/usr/bin/setlock /etc/unattended-reboot/no-reboot/mongodb-s3backup /usr/local/bin/mongodb-backup-s3 daily'
+sudo su - govuk-backup -c '/usr/bin/setlock /etc/unattended-reboot/no-reboot/mongodb-s3backup /usr/local/bin/mongodb-backup-s3 daily'
 ```
 
 > **NOTE**: You might want to run this in a `screen` session, as it can take a while.
