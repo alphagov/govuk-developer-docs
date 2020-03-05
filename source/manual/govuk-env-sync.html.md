@@ -117,6 +117,10 @@ path="postgresql-backend"
 ### Lock
 The govuk_env_sync cron jobs prevent automated reboots by `unattended-upgrades` by running under `/usr/local/bin/with_reboot_lock`, which creates the file `/etc/unattended-reboot/no-reboot/govuk_env_sync` and removes it when the process exits.
 
+### Cron jobs and Icinga checks
+
+See [data sync playbook](alerts/data-sync.html#govuk_env_sync-the-new-way).
+
 > **Traffic replay using [Gor](alerts/gor.html) is disabled between 23:00 and
 > 05:45 daily whilst the data sync pull jobs take place. This is to prevent
 > lots of errors while we are dropping databases.**
