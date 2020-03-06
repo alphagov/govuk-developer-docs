@@ -5,40 +5,35 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2020-01-23
+last_reviewed_on: 2020-03-06
 review_in: 3 months
 ---
 
-## Rules of rebooting
+Under normal circumstances most machines reboot automatically when an update is required. Some machines need to be rebooted manually.
+
+> If machines are not rebooting automatically, there there may be a [problem with the locking mechanism](#checking-locking-status).
+
+## Rules of manual rebooting
 
 * *Read this page first* to see if any special cases apply to the type of
   machine you need to reboot.
+* Most machines in Production should be rebooted out of hours, and this
+is handled by those who are on call out of hours.
+* Some machines in Production may need to be rebooted in hours though,
+and machines in other environments can usually be rebooted in hours as
+well.
 * Do not reboot more than one machine of the same class at the
   same time.
 * When rebooting clustered applications (such as RabbitMQ) wait
   for the cluster to recover fully before rebooting the next machine.
-* If rebooting machines in AWS, extended reboot times may result in the
-  relevant machine being terminated automatically. If this happens, a
-  new machine will be created automatically.
-
-### Rebooting guidance for 2ndline
-
-Most machines in Production should be rebooted out of hours, and this
-is handled by those who are on call out of hours.
-
-Some machines in Production may need to be rebooted in hours though,
-and machines in other environments can usually be rebooted in hours as
-well.
-
-Additionally, for machines running MongoDB, they may be automatically
-rebooted out of hours, but only if they're not the primary. So it can
-be helpful to step down the primary MongoDB machine to allow it to
-reboot out of hours.
+* If you are rebooting a machine in AWS (either out of hours or in hours) it's
+advised to pair with the RE interruptible/on call person.
 
 ### Rebooting guidance for AWS
 
-If you are rebooting a machine in AWS (either out of hours or in hours) it's
-advised to pair with the RE interruptible/on call person.
+If rebooting machines in AWS, extended reboot times may result in the
+relevant machine being terminated automatically. If this happens, a
+new machine will be created automatically.
 
 There have been a few cases when a reboot in AWS has not come back successfully
 and RE will be able to help in these cases. It also means RE can investigate
@@ -64,7 +59,7 @@ You will then need to decide whether to:
 ### Deciding whether to reboot or silence
 
 This can be quite nuanced. Before you go ahead with any course of action,
-gather evidence and then ask in the \#reliability-eng Slack channel.
+gather evidence and then ask in the \#re-govuk Slack channel.
 
 Find details of the update from the [Ubuntu Security
 Notices](http://www.ubuntu.com/usn/).
@@ -77,6 +72,30 @@ There is a Fabric task to find all processes using a deprecated library:
 
     fab $environment all vm.deprecated_library:dbus
 
+### Checking locking status
+
+[locksmith](https://github.com/coreos/locksmith) manages unattended reboots to
+ensure that systems are available. It is possible that a problem could occur
+where they can't reboot automatically.
+The following commands assume you have correctly
+[set up your fabric scripts][setup-fabric-scripts].
+
+```command-line
+$ fab <environment> all locksmith.status
+```
+
+If a lock is in place, it will detail which machine holds the lock.
+
+You can remove it with:
+
+```command-line
+$ fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
+```
+
+Machines that are safe to reboot should then do so at the scheduled
+time.
+
+
 ## Rebooting one machine
 
 First check whether the machine is safe to reboot. This is stored in
@@ -84,8 +103,7 @@ puppet in hieradata. For example,
 [here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/mysql_master.yaml)
 is an example of a machine that cannot be safely rebooted. The
 [default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
-is `safe_to_reboot::can_reboot: 'yes'`, so if it does not say it is
-unsafe, or does not have a class in hieradata at all, then it is safe.
+is `safe_to_reboot::can_reboot: 'yes'`.
 
 > If there is an incident which requires the rebooting of a machine
 > otherwise marked as 'no', then it may be done provided any downstream
@@ -113,15 +131,15 @@ remove them from the AWS load balancer target groups before rebooting:
 
 1. Login to the AWS Console for the relevant environment (`gds aws govuk-<environment>-<your-role> -l`).
 1. Find the [Instance ID](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime) of the critical machine(s) (probably all 8 `blue-cache` machines)
-1. `ssh [ip].eu-west-1.compute.internal` (find this from the reboots required alert listing)
 1. Remove the machine from the following [Target Groups](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#TargetGroups:sort=targetGroupName):
    1. cache-assets-origin
    1. cache-www
    1. cache-www-origin
+1. SSH onto the machine (find this from the reboots required alert listing)
 1. Check the traffic has reduced to only be the Smokey healthchecks now: `tail -f /var/log/nginx/lb-access.log`.
 1. Run the `vm.reboot` fab script on your local machine like normal.
 1. Re-add the machine to the above target groups.
-1. Check the traffic is flowing from the load balancer with `tail -f `/var/log/nginx/lb-access.log` again.
+1. Check the traffic is flowing from the load balancer with `tail -f /var/log/nginx/lb-access.log` again.
 
 ## Rebooting MongoDB machines
 
@@ -139,11 +157,8 @@ The general approach for rebooting machines in a MongoDB cluster is:
 
 -   Check cluster status with `fab $environment -H $hostname mongo.status`
 -   Using `fab $environment -H $hostname mongo.safe_reboot`
-    - reboot the secondaries
-    - reboot the primary waiting for the cluster to recover after
-    each reboot. The `mongo.safe_reboot` Fabric task automates stepping
-    down the primary and waiting for the cluster to recover
-    before rebooting.
+    - Reboot the secondaries
+    - Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
 ## Rebooting Redis machines
 
@@ -152,7 +167,7 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-by On Call staff and search-api workers must be restarted after the reboot.
+by On Call staff and search-api workers must be restarted (by re-deploying the latest release) after the reboot.
 
 They may be rebooted in working hours in other environments, however you
 should notify colleagues before doing so as this may remove in-flight jobs
@@ -213,39 +228,29 @@ sync to fail.
 
 ## Rebooting backend-lb machines (Carrenza only)
 
-NAT rule points directly at backend-lb-1 for backend services. In order
-to safely reboot these machines you'll need access to vCloud Director.
+In order to safely reboot these machines you'll need access to [vCloud Director][vcloud], in order to switch traffic away from backend-lb-1 before rebooting it - all traffic goes through this machine unless it fails.
 
--   reboot backend-lb-2 and wait for it to recover
+- Reboot backend-lb-2 and wait for it to recover.
 
-    `fab <environment> -H backend-lb-2.backend vm.reboot`
+      fab <environment> -H backend-lb-2.backend vm.reboot
 
-    > **Note**
-    >
-    > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
+  > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
 
--   Find the IP addresses of backend-lb-1 and backend-lb-2 for the
+- Find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
-    repo](https://github.com/alphagov/govuk-provisioning/)
--   Use vCloud Director to update the NAT rule to point to backend-lb-2.
-    -   The Nat rule will be in [this
-        repo](https://github.com/alphagov/govuk-provisioning/).
-    -   Go to "Administration"
-    -   Find 'GOV.UK Management' in the list of vdcs and click on it
-    -   Select the "edge gateway" tab, right click on it and select
-        "edge gateway services"
-    -   Click the NAT tab.
-    -   Find the rule corresponding to the rule defined in the
-        vcloud-launcher file, and update the DNAT rules to point to the
-        ip address of backend-lb-2 by clicking edit, and updating the
-        "Translated (Internal) IP/range" field and click ok to save
-        these rules
--   Reboot backend-lb-1 and wait for it to recover
+    repo](https://github.com/alphagov/govuk-provisioning/).
+- Use vCloud Director to update the NAT rule to point to backend-lb-2.
+    - The Nat rule will be in [this repo](https://github.com/alphagov/govuk-provisioning/).
+    - Go to "Administration".
+    - Find 'GOV.UK Management' in the list of vdcs and click on it
+    - Select the "edge gateway" tab, right click on it and select "edge gateway services".
+    - Click the NAT tab.
+    - Find the rule corresponding to the rule defined in the vcloud-launcher file, and update the DNAT rules to point to the IP address of backend-lb-2 by clicking edit, and updating the "Translated (Internal) IP/range" field and click OK to save these rules.
+- Reboot backend-lb-1 and wait for it to recover
 
-    `fab <environment> -H backend-lb-1.backend vm.reboot`
+      fab <environment> -H backend-lb-1.backend vm.reboot
 
--   Use vCloud Director to update the NAT rule to point back to the IP
-    address of backend-lb-1
+- Use [vCloud Director][vcloud] to update the NAT rule to point back to the IP address of backend-lb-1.
 
 ## Rebooting MySQL backup machines (Carrenza only)
 
@@ -267,7 +272,7 @@ If that file exists, the machine isn't safe to reboot.
 Unless there are urgent updates to apply, these machines should not be
 rebooted during working hours in production. Applications write to the
 masters and read from the slaves (with the exception of the slave within
-the DR environment).
+the Disaster Recovery environment).
 
 Reboots of these machines, in the production environment, should be organised
 by On Call staff.
@@ -286,7 +291,7 @@ whitehall-mysql-slave machines are not used by Whitehall frontend.
 Unless there are urgent updates to apply, these machines should not be
 rebooted in production during working hours. Applications read and write
 to the primary machines, and some applications (e.g. Bouncer) read from the
-standby machines (with the exception of the slave within the DR
+standby machines (with the exception of the slave within the Disaster Recovery
 environment).
 
 Reboots of these machines, in the production environment, should be organised
@@ -302,3 +307,5 @@ out of hours reboots.
 
 Reboots of these machines should be organised by 2nd line and happen
 in hours.
+
+[vcloud]: /manual/connect-to-vcloud-director.html
