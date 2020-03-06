@@ -9,36 +9,31 @@ last_reviewed_on: 2020-01-23
 review_in: 3 months
 ---
 
-## Rules of rebooting
+Under normal circumstances most machines reboot automatically when an update is required. Some machines need to be rebooted manually.
+
+> If machines are not rebooting automatically, there there may be a [problem with the locking mechanism](#checking-locking-status).
+
+## Rules of manual rebooting
 
 * *Read this page first* to see if any special cases apply to the type of
   machine you need to reboot.
+* Most machines in Production should be rebooted out of hours, and this
+is handled by those who are on call out of hours.
+* Some machines in Production may need to be rebooted in hours though,
+and machines in other environments can usually be rebooted in hours as
+well.
 * Do not reboot more than one machine of the same class at the
   same time.
 * When rebooting clustered applications (such as RabbitMQ) wait
   for the cluster to recover fully before rebooting the next machine.
-* If rebooting machines in AWS, extended reboot times may result in the
-  relevant machine being terminated automatically. If this happens, a
-  new machine will be created automatically.
-
-### Rebooting guidance for 2ndline
-
-Most machines in Production should be rebooted out of hours, and this
-is handled by those who are on call out of hours.
-
-Some machines in Production may need to be rebooted in hours though,
-and machines in other environments can usually be rebooted in hours as
-well.
-
-Additionally, for machines running MongoDB, they may be automatically
-rebooted out of hours, but only if they're not the primary. So it can
-be helpful to step down the primary MongoDB machine to allow it to
-reboot out of hours.
+* If you are rebooting a machine in AWS (either out of hours or in hours) it's
+advised to pair with the RE interruptible/on call person.
 
 ### Rebooting guidance for AWS
 
-If you are rebooting a machine in AWS (either out of hours or in hours) it's
-advised to pair with the RE interruptible/on call person.
+If rebooting machines in AWS, extended reboot times may result in the
+relevant machine being terminated automatically. If this happens, a
+new machine will be created automatically.
 
 There have been a few cases when a reboot in AWS has not come back successfully
 and RE will be able to help in these cases. It also means RE can investigate
