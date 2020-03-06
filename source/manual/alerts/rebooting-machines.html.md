@@ -77,6 +77,30 @@ There is a Fabric task to find all processes using a deprecated library:
 
     fab $environment all vm.deprecated_library:dbus
 
+### Checking locking status
+
+[locksmith](https://github.com/coreos/locksmith) manages unattended reboots to
+ensure that systems are available. It is possible that a problem could occur
+where they can't reboot automatically.
+The following commands assume you have correctly
+[set up your fabric scripts][setup-fabric-scripts].
+
+```command-line
+$ fab <environment> all locksmith.status
+```
+
+If a lock is in place, it will detail which machine holds the lock.
+
+You can remove it with:
+
+```command-line
+$ fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
+```
+
+Machines that are safe to reboot should then do so at the scheduled
+time.
+
+
 ## Rebooting one machine
 
 First check whether the machine is safe to reboot. This is stored in
