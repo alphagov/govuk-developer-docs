@@ -103,8 +103,7 @@ puppet in hieradata. For example,
 [here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/mysql_master.yaml)
 is an example of a machine that cannot be safely rebooted. The
 [default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
-is `safe_to_reboot::can_reboot: 'yes'`, so if it does not say it is
-unsafe, or does not have a class in hieradata at all, then it is safe.
+is `safe_to_reboot::can_reboot: 'yes'`.
 
 > If there is an incident which requires the rebooting of a machine
 > otherwise marked as 'no', then it may be done provided any downstream
@@ -132,15 +131,15 @@ remove them from the AWS load balancer target groups before rebooting:
 
 1. Login to the AWS Console for the relevant environment (`gds aws govuk-<environment>-<your-role> -l`).
 1. Find the [Instance ID](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime) of the critical machine(s) (probably all 8 `blue-cache` machines)
-1. `ssh [ip].eu-west-1.compute.internal` (find this from the reboots required alert listing)
 1. Remove the machine from the following [Target Groups](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#TargetGroups:sort=targetGroupName):
    1. cache-assets-origin
    1. cache-www
    1. cache-www-origin
+1. SSH onto the machine (find this from the reboots required alert listing)
 1. Check the traffic has reduced to only be the Smokey healthchecks now: `tail -f /var/log/nginx/lb-access.log`.
 1. Run the `vm.reboot` fab script on your local machine like normal.
 1. Re-add the machine to the above target groups.
-1. Check the traffic is flowing from the load balancer with `tail -f `/var/log/nginx/lb-access.log` again.
+1. Check the traffic is flowing from the load balancer with `tail -f /var/log/nginx/lb-access.log` again.
 
 ## Rebooting MongoDB machines
 
@@ -171,7 +170,7 @@ rebooted during working hours in production. Other services rely directly on
 particular Redis hosts and may error if they are unvailable.
 
 Reboots of these machines, in the production environment, should be organised
-by On Call staff and search-api workers must be restarted after the reboot.
+by On Call staff and search-api workers must be restarted (by re-deploying the latest release) after the reboot.
 
 They may be rebooted in working hours in other environments, however you
 should notify colleagues before doing so as this may remove in-flight jobs
@@ -286,7 +285,7 @@ If that file exists, the machine isn't safe to reboot.
 Unless there are urgent updates to apply, these machines should not be
 rebooted during working hours in production. Applications write to the
 masters and read from the slaves (with the exception of the slave within
-the DR environment).
+the Disaster Recovery environment).
 
 Reboots of these machines, in the production environment, should be organised
 by On Call staff.
@@ -305,7 +304,7 @@ whitehall-mysql-slave machines are not used by Whitehall frontend.
 Unless there are urgent updates to apply, these machines should not be
 rebooted in production during working hours. Applications read and write
 to the primary machines, and some applications (e.g. Bouncer) read from the
-standby machines (with the exception of the slave within the DR
+standby machines (with the exception of the slave within the Disaster Recovery
 environment).
 
 Reboots of these machines, in the production environment, should be organised
