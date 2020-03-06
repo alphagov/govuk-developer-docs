@@ -59,7 +59,7 @@ You will then need to decide whether to:
 ### Deciding whether to reboot or silence
 
 This can be quite nuanced. Before you go ahead with any course of action,
-gather evidence and then ask in the \#reliability-eng Slack channel.
+gather evidence and then ask in the \#re-govuk Slack channel.
 
 Find details of the update from the [Ubuntu Security
 Notices](http://www.ubuntu.com/usn/).
