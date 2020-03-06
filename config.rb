@@ -1,5 +1,5 @@
-require 'govuk_tech_docs'
-require_relative './app/requires'
+require "govuk_tech_docs"
+require_relative "./app/requires"
 
 GovukTechDocs.configure(self)
 
@@ -21,7 +21,7 @@ end
 # Configure the sitemap for Google
 set :url_root, config[:tech_docs][:host]
 activate :search_engine_sitemap,
-  default_change_frequency: 'weekly'
+         default_change_frequency: "weekly"
 
 helpers do
   def dashboard
@@ -53,11 +53,11 @@ helpers do
   end
 
   def page_title
-    (defined?(locals) && locals[:title]) || [current_page.data.title, current_page.data.section].compact.join(' - ')
+    (defined?(locals) && locals[:title]) || [current_page.data.title, current_page.data.section].compact.join(" - ")
   end
 end
 
-ignore 'templates/*'
+ignore "templates/*"
 
 PublishingApiDocs.pages.each do |page|
   proxy "/apis/publishing-api/#{page.filename}.html", "templates/publishing_api_template.html", locals: {
