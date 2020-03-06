@@ -157,11 +157,8 @@ The general approach for rebooting machines in a MongoDB cluster is:
 
 -   Check cluster status with `fab $environment -H $hostname mongo.status`
 -   Using `fab $environment -H $hostname mongo.safe_reboot`
-    - reboot the secondaries
-    - reboot the primary waiting for the cluster to recover after
-    each reboot. The `mongo.safe_reboot` Fabric task automates stepping
-    down the primary and waiting for the cluster to recover
-    before rebooting.
+    - Reboot the secondaries
+    - Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
 ## Rebooting Redis machines
 
@@ -231,39 +228,29 @@ sync to fail.
 
 ## Rebooting backend-lb machines (Carrenza only)
 
-NAT rule points directly at backend-lb-1 for backend services. In order
-to safely reboot these machines you'll need access to vCloud Director.
+In order to safely reboot these machines you'll need access to [vCloud Director][vcloud], in order to switch traffic away from backend-lb-1 before rebooting it - all traffic goes through this machine unless it fails.
 
--   reboot backend-lb-2 and wait for it to recover
+- Reboot backend-lb-2 and wait for it to recover.
 
-    `fab <environment> -H backend-lb-2.backend vm.reboot`
+      fab <environment> -H backend-lb-2.backend vm.reboot
 
-    > **Note**
-    >
-    > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
+  > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
 
--   Find the IP addresses of backend-lb-1 and backend-lb-2 for the
+- Find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
-    repo](https://github.com/alphagov/govuk-provisioning/)
--   Use vCloud Director to update the NAT rule to point to backend-lb-2.
-    -   The Nat rule will be in [this
-        repo](https://github.com/alphagov/govuk-provisioning/).
-    -   Go to "Administration"
-    -   Find 'GOV.UK Management' in the list of vdcs and click on it
-    -   Select the "edge gateway" tab, right click on it and select
-        "edge gateway services"
-    -   Click the NAT tab.
-    -   Find the rule corresponding to the rule defined in the
-        vcloud-launcher file, and update the DNAT rules to point to the
-        ip address of backend-lb-2 by clicking edit, and updating the
-        "Translated (Internal) IP/range" field and click ok to save
-        these rules
--   Reboot backend-lb-1 and wait for it to recover
+    repo](https://github.com/alphagov/govuk-provisioning/).
+- Use vCloud Director to update the NAT rule to point to backend-lb-2.
+    - The Nat rule will be in [this repo](https://github.com/alphagov/govuk-provisioning/).
+    - Go to "Administration".
+    - Find 'GOV.UK Management' in the list of vdcs and click on it
+    - Select the "edge gateway" tab, right click on it and select "edge gateway services".
+    - Click the NAT tab.
+    - Find the rule corresponding to the rule defined in the vcloud-launcher file, and update the DNAT rules to point to the IP address of backend-lb-2 by clicking edit, and updating the "Translated (Internal) IP/range" field and click OK to save these rules.
+- Reboot backend-lb-1 and wait for it to recover
 
-    `fab <environment> -H backend-lb-1.backend vm.reboot`
+      fab <environment> -H backend-lb-1.backend vm.reboot
 
--   Use vCloud Director to update the NAT rule to point back to the IP
-    address of backend-lb-1
+- Use [vCloud Director][vcloud] to update the NAT rule to point back to the IP address of backend-lb-1.
 
 ## Rebooting MySQL backup machines (Carrenza only)
 
@@ -320,3 +307,5 @@ out of hours reboots.
 
 Reboots of these machines should be organised by 2nd line and happen
 in hours.
+
+[vcloud]: /manual/connect-to-vcloud-director.html
