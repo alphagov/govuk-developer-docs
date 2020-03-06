@@ -4,7 +4,7 @@ title: Support tasks for CKAN
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-13
+last_reviewed_on: 2020-03-05
 review_in: 6 months
 ---
 [ckan]: https://ckan.org
@@ -68,15 +68,21 @@ The password can be extracted from the configuration file on the `ckan` machine 
 
 There are times when it can be useful to access the [CKAN API][ckan-api] when debugging or resolving issues. Note that the responses will be different depending on your access permissions.
 
-For APIs that require an ID, the ID can be specified as either the GUID or the URL slug (referred to as a URL name in CKAN) e.g.
+Queries can use the package ID or name (the slug) e.g.
 
 ```
-https://data.gov.uk/api/3/action/package_show?id=f760008b-86d3-4bbb-89da-1dfe56101554
+https://data.gov.uk/api/3/action/package_search?q=id:93a39f01-7bba-430f-aa35-c30bf2d88b2f
+returns the same as
+https://data.gov.uk/api/3/action/package_search?q=name:north-lincolnshire-brown-field-register
+
 ```
 
-Here are some more complex examples of using the API, as well as some where the documentation is more sparse.
+Here are some more complex examples of using the API, as well as some where the documentation is more sparse:
 
 ```
+# Retrieve full details about a package (dataset)
+https://data.gov.uk/api/3/action/package_search?q=name:north-lincolnshire-brown-field-register
+
 # Find all packages created during a specific timeframe
 https://data.gov.uk/api/3/action/package_search?q=metadata_created:[2017-06-01T00:00:00Z%20TO%202017-06-30T00:00:00Z]
 
