@@ -38,6 +38,13 @@ inherit_gem:
   rubocop-govuk:
     - config/default.yml
     - config/rails.yml # add this line for Rails projects
+
+# If RuboCop finds any more Excludes: directives in rails.yml or in
+# the app's `.rubocop.yml`, merge them with the original ones instead of
+# overwriting.
+inherit_mode:
+  merge:
+    - Exclude
 ```
 
 - Replace usage of `govuk-lint-ruby` with `rubocop` in your project.
