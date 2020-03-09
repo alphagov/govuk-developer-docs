@@ -90,6 +90,20 @@ Avoid leaving old indices around for more than a few days. If enough
 old indices hang around, we may hit space limitations and be unable to
 index new documents.
 
+#### Automatic Cleanup
+
+However,
+in the case wherein we end up with multiple copies of the same index left behind,
+we have an automated clean up task that removes any extra indexes over a given
+age:
+
+```
+rake search:timed_clean MAX_INDEX_AGE=number_of_days SEARCH_INDEX=alias_of_index_to_clean_up
+```
+
+This is running in a Jenkins job that clears any index over 7 days old, and will always leave at least one inactive index available (typically the
+  newest one created) alongside the active index for backup purposes.
+
 ### Troubleshooting
 
 #### To stop the reindexing job
