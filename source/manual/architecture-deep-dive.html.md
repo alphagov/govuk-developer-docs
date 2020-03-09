@@ -21,23 +21,28 @@ We can cover most of the GOV.UK architecture by asking ourselves three questions
 
 ### DNS
 
-When you visit a URL, the browser's query finds its way to a Top Level Domain (TLD)
-DNS server, which in turn queries the authoritative nameserver that translates the
-domain name to an IP address.
+The browser queries a local DNS server to turn the domain name into an IP address.
+The local DNS server might be able to answer immediately from its cache. If not,
+it will query the authoritative name servers for the domain.
 
-"GOV.UK" is a TLD (just like "CO.UK"), and its TLD DNS server is managed by [Jisc][].
-Unlike other TLDs, "GOV.UK" is also a website. GOV.UK uses [Amazon Route 53][route53]
-as its authoritative nameserver (configured in [govuk-dns-config][]), which also
-manages subdomains such as https://glob.gov.uk. This config is synchronised with the
-Fastly CDN (continued in next section) using [govuk-dns][].
+`gov.uk.` is a country-code second-level domain or ccSLD (like `co.uk.`) and its
+authoritative servers are hosted by [Jisc][]. Unusually for a ccSLD, `gov.uk` is
+also a website, and hosts the redirect from `gov.uk` to `www.gov.uk`. The records
+for these two domains are within the `gov.uk` second-level zone hosted by Jisc.
 
-Read more [dev documentation about the GOV.UK DNS][dns-dev-docs].
+GDS hosts several third-level domains under `gov.uk` on [Amazon Route53][], for
+example `service.gov.uk`. The configuration for these is in the
+[govuk-dns-config repo][] and is deployed using code from the [govuk-dns repo][].
 
-[dns-dev-docs]: /manual/dns.html#dns-for-the-gov-uk-top-level-domain
-[govuk-dns]: https://github.com/alphagov/govuk-dns
-[govuk-dns-config]: https://github.com/alphagov/govuk-dns-config
+`www.gov.uk` is a CNAME record which ultimately points to `www-gov-uk.map.fastly.net.`
+The `fastly.net` domain name is hosted by special nameservers at the Fastly content
+delivery network, which aim to respond with the IP address of the Fastly cache node
+which is "closest" to the user. Read more about Fastly in the next section.
+
+[govuk-dns repo]: https://github.com/alphagov/govuk-dns
+[govuk-dns-config repo]: https://github.com/alphagov/govuk-dns-config
 [Jisc]: https://www.jisc.ac.uk/domain-registry
-[route53]: https://aws.amazon.com/route53/
+[Amazon Route53]: https://aws.amazon.com/route53/
 
 ### CDN and caching
 
@@ -90,15 +95,10 @@ This is configured via [transition][] and [transition-config][].
 
 Some requests make it through the CDN and cache layers to 'origin'. Origin is
 a stack of computers in the cloud - in this case, AWS - and its entry point is
-a load balancer. The AWS load balancer knows based on the hostname whether to
-proxy the request to another cloud provider (such as Carrenza), or keep it
-within AWS. This is configured in govuk-dns-config; see an
-[example][govuk-dns-config-example]. Most applications are now in AWS - see
-[Hosting][] for more details.
+a load balancer.
 
-Once a request has been routed to the right stack, the load balancer in that
-stack routes the request to a machine (node/server) of the right 'class'.
-Different classes of machine run different sets of GOV.UK applications.
+The load balancer knows based on the hostname which machine 'class' to route
+to. Different classes of machine run different sets of GOV.UK applications.
 How many machines are allocated to a class - and how big those machines are -
 is configured using [Terraform][], in [govuk-aws][]. What runs on each machine
 class is configured in govuk-puppet, a file and process management system we'll
@@ -114,29 +114,28 @@ application running on the cache machines. However, Nginx does proxy some
 routes directly to other apps, such as image URLs routing to asset-manager.
 
 [govuk-aws]: https://github.com/alphagov/govuk-aws
-[govuk-dns-config-example]: https://github.com/alphagov/govuk-dns-config/blob/19a46eb827cb6eb79c81013ee7af06bfe7933dc5/publishing.service.gov.uk.yaml#L38-L45
-[Hosting]: /apps.html#hosting
 [Nginx]: https://www.nginx.com/
 [router]: https://github.com/alphagov/router
 [Terraform]: https://www.terraform.io/
 
 #### Routing via 'router'
 
-'router' is a reverse proxy app written in Go. It stores all known routes in
-memory using [redis][]. Matched routes are proxied through to the relevant
+'router' is a reverse proxy app written in Go. It stores all known routes
+in memory using a [prefix trie][]. The routes are loaded into the trie from
+[redis][] at startup. Matched routes are proxied through to the relevant
 rendering app based on the `backend_id` of the route, which is derived from
 the `rendering_app` field in the corresponding content item in the content
 store (which we'll cover later). For example, if the route has a `backend_id`
 of `frontend`, it will forward the request to the [frontend][] application.
 
 When routes are deleted, they're marked as `gone` in router, and router
-returns a 410 response. When routes are changed (which can happen when a
+returns a 410 Gone response. When routes are changed (which can happen when a
 document's title is changed, affecting its slug), it is marked as `redirect`
-in router, serving a 301 response. It's worth noting the [short-url-manager]
-app, whose sole purpose is to allow the creation of short, memorable URLs that
-redirect to longer URLs, often as part of a media campaign. It publishes routes
-to the content store (via the publishing API, which we'll also cover later)
-like other apps publish pages.
+in router, serving a 301 Moved Permanently response. It's worth noting the
+[short-url-manager] app, whose sole purpose is to allow the creation of short,
+memorable URLs that redirect to longer URLs, often as part of a media campaign.
+It publishes routes to the content store (via the publishing API, which we'll
+also cover later) like other apps publish pages.
 
 Routes are added and updated in real time via [router-api][]. The content
 store talks to router-api [directly][register-route] whenever there is a new
@@ -144,6 +143,7 @@ piece of content router needs to know about. router-api stores this information
 in its own database and then sends these routes to router.
 
 [frontend]: https://github.com/alphagov/frontend
+[prefix trie]: https://en.wikipedia.org/wiki/Trie
 [redis]: https://redis.io/
 [register-route]: https://github.com/alphagov/content-store/blob/08f02f990e621c9d2fd473e12a70a6805ddd8dcb/app/models/route_set.rb#L58-L82
 [router-api]: https://github.com/alphagov/router-api
@@ -400,33 +400,41 @@ and processes.
 
 Puppet runs in a master/agent setup. There is a single "puppetmaster" running
 on its own class of machine, whereas the agents run on all the other machines
-(irrespective of class). Each puppet agent is responsible for sending alerts
-and logs to our various [monitoring systems][], and for running health check
-tests against the GOV.UK applications running on the node. The puppet master
-is in charge of keeping all of the puppet agents in sync with itself.
+(irrespective of class). Each puppet agent is responsible for running
+[health check][] tests against the GOV.UK applications running on the node,
+and for ensuring the presence of certain files and processes. The puppet
+master is in charge of keeping all of the puppet agents in sync with itself.
+
+[Icinga][] alerts us to problems with our machines and apps. There is a wide
+variety of different alerts, all of which are configured in Puppet. For
+monitoring, 'filebeat' is used to send logs to [Logit][], and 'statsd' exports
+most monitoring metrics, which can be viewed in [Grafana][]. Read more about
+[tooling for monitoring][tools].
 
 If an app release contains a major change such as a renamed environment
 variable, then it will require an application restart, which would bring the
-application offline on that machine. The machine would fail its [healthcheck]
-and our load balancer would begin serving traffic from different nodes of the
-same class: for this reason it is important that all machines are updated at
-different times. Therefore, each puppet instance
-[runs itself every half hour][puppet-cronjob], with the puppet agents
-configured to run after the puppetmaster _at randomised times_. 
+application offline on that machine. The load balancer would begin serving
+traffic from different nodes of the same class: for this reason it is
+important that all machines are updated at different times. Therefore, each
+instance [runs puppet every half hour][puppet-cronjob], with the puppet
+agents configured to run after the puppetmaster at randomised times.
 
-What actually happens when puppet runs itself? The puppetmaster copies the
-latest versions of govuk-puppet and govuk-secrets to itself (this is why
-you must wait 30 minutes between [deploying Puppet][] between environments).
-The puppet agents, on the other hand, compare their configuration with the
+What actually happens on a puppet run? The puppetmaster copies the latest
+versions of govuk-puppet and govuk-secrets to itself (this is why you must
+wait 30 minutes between [deploying Puppet][] between environments). The
+puppet agents, on the other hand, compare their configuration with the
 puppet master to see if they have diverged ("configuration drift") and
-resets against the master.
+reset themselves against the master.
 
 [deploying Puppet]: /manual/deploy-puppet.html
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[healthcheck]: https://github.com/alphagov/govuk-puppet/blob/0b20c7efe7e0c3855d4821e55a914ab577d3b84e/modules/govuk_containers/manifests/app.pp
-[monitoring systems]: /manual/tools.html
+[Grafana]: /manual/grafana.html
+[health check]: https://github.com/alphagov/govuk-puppet/blob/0b20c7efe7e0c3855d4821e55a914ab577d3b84e/modules/govuk_containers/manifests/app.pp
+[Icinga]: /manual/icinga.html
+[Logit]: /manual/logit.html
 [puppet]: https://puppet.com/open-source/#osp
 [puppet-cronjob]: https://github.com/alphagov/govuk-puppet/blob/9dda11ec245e882ed879cdb7abb7ffe70df015ce/modules/puppet/manifests/cronjob.pp
+[tools]: /manual/tools.html
 
 ### Summary
 
