@@ -4,7 +4,7 @@ title: Give a content designer access to GitHub
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2019-07-16
+last_reviewed_on: 2020-03-09
 review_in: 6 months
 ---
 
@@ -49,7 +49,7 @@ If they are listed follow these steps:
 
 1. Email govuk-senior-tech-members@digital.cabinet-office.gov.uk
    with the GitHub usernames asking for the users to be removed from
-   https://github.com/orgs/alphagov/teams/gov-uk-content-designers
+   `https://github.com/orgs/alphagov/teams/gov-uk-content-designers`
    which is the "GOV.UK Content Designers" GitHub team
 1. Edit the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] to remove
    the users
