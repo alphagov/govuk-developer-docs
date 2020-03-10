@@ -1,7 +1,7 @@
 ---
 owner_slack: "#re-govuk"
 title: Domain Name System (DNS) records
-section: DNS
+section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
