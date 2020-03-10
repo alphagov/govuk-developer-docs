@@ -4,7 +4,7 @@ title: Nginx requests too low
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-06
+last_reviewed_on: 2020-03-10
 review_in: 6 months
 ---
 
