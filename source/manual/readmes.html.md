@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: READMEs for GOV.UK applications
-section: Patterns & Style Guides
+section: Documentation
 layout: manual_layout
 type: learn
 parent: "/manual.html"
