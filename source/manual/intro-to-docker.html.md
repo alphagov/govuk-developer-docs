@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-dev-tools"
-title: Intro to Docker
+title: Intro to GOV.UK Docker
 section: Docker
 layout: manual_layout
 type: learn
@@ -364,7 +364,7 @@ In this tutorial we used Docker to create an environment for running tests again
 
 We also explored how to write and build an **image** that has the essential libraries and presets, using a **Dockerfile**. The end result is a single, relatively short command that we can use for day-to-day tasks, such as `bundle exec rake`.
 
-But there's more! Check out the [next tutorial in this series](/manual/intro-to-docker-even-more.html).
+But there's more! Check out the [next tutorial in this series](/manual/intro-to-docker-advanced.html).
 
 [content-publisher]: https://github.com/alphagov/content-publisher
 [Fixing IP with Docker Network]: #fixing-ip-with-docker-network
