@@ -3,7 +3,6 @@ owner_slack: "#govuk-2ndline"
 title: Change in-hours time period for daylight savings
 section: 2nd line
 layout: manual_layout
-type: learn
 parent: "/manual.html"
 last_reviewed_on: 2020-03-10
 review_in: 17 days
