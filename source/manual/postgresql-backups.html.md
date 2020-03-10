@@ -5,7 +5,7 @@ section: Backups
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-06
+last_reviewed_on: 2020-03-10
 review_in: 6 months
 ---
 
@@ -79,32 +79,8 @@ Do you really want to do this? (y/N) y
 gpg> save
 ```
 
-## autopostgresqlbackup
-
-This is how PostgreSQL backups have traditionally been taken on the GOV.UK
-Infrastructure. It is now deprecated. We are continuing to use it as well
-alongside WAL-E until we are certain that the restores from WAL-E are working
-ok.
-
-A third-party script called [autopostgresqlbackup][autopostgresqlbackup] takes
-a `pg_dump` every night and stores them on disk on a dedicated mount point on
-the PostgreSQL primary machines.
-
-The onsite backup machine (backup-1.management) pulls the latest backup and
-stores it on disk. [Duplicity][duplicity] runs each night to send encrypted
-backups to an S3 bucket.
-
-To restore from this method:
-
-- Fetch a backup from either the dedicated mount point, the onsite machine,
-or the S3 bucket, [using duplicity](restore-backups).
-To decrypt, you may need a password kept in encrypted hieradata.
-- Unzip the file
-- Import into a PostgreSQL primary using `psql <dbname> < <file>`
-
 [wal-e]: https://github.com/wal-e/wal-e
 [archiving]: https://www.postgresql.org/docs/9.3/static/continuous-archiving.html
 [syncing-a-standby]: /manual/setup-postgresql-replication.html#syncing-a-standby
-[autopostgresqlbackup]: http://manpages.ubuntu.com/manpages/wily/man8/autopostgresqlbackup.8.html
 [duplicity]: http://duplicity.nongnu.org/
 [restore-backups]: restore-from-offsite-backups.html
