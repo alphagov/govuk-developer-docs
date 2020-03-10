@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-frontenders"
 title: 'Analytics on GOV.UK'
-section: Analytics
+section: Frontend
 layout: manual_layout
 type: learn
 parent: "/manual.html"
