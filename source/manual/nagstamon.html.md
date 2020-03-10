@@ -1,7 +1,7 @@
 ---
 owner_slack: "@christopherbaines"
 title: Use Nagstamon for monitoring Icinga
-section: AWS accounts
+section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-02-14
