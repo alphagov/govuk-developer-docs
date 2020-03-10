@@ -4,7 +4,7 @@ title: Manually resize ASGs (auto scaling groups)
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-06
+last_reviewed_on: 2020-03-09
 review_in: 6 months
 ---
 
@@ -23,11 +23,6 @@ the load.
 
 ## Manually scaling up/down
 
-> **Note:** If you anticipate this change being permanent, you [should make
-> sure to raise a PR against govuk-aws-data][pr] once it's all working to
-> ensure the number doesn't get put back to the old value if Terraform gets
-> deployed.
-
 1. Scaling up/down machines in AWS will trigger [Icinga alerts](icinga) so let
    developers in `#govuk-2ndline` know you are about to do this.
 
@@ -38,6 +33,13 @@ the load.
    name).
 
    ![Filtering auto-scaling groups](images/auto-scaling-groups-filter.png)
+
+### Changing the size of the ASG
+
+> **Note:** If you anticipate this change being permanent, you [should make
+> sure to raise a PR against govuk-aws-data][pr] once it's all working to
+> ensure the number doesn't get put back to the old value if Terraform gets
+> deployed.
 
 1. In the "Details" tab at the bottom, you will see "Desired Capacity", "Min"
    and "Max" which shows the existing configuration. Scroll right and then
@@ -82,11 +84,21 @@ the load.
         by following the documentation
         [here](https://docs.publishing.service.gov.uk/manual/remove-machines.html)
 
+### Removing a specific instance
 
-> **Note:** If you anticipate this change being permanent, you [should make
-> sure to raise a PR against govuk-aws-data][pr] once it's all working to
-> ensure the number doesn't get put back to the old value if Terraform gets
-> deployed.
+You may want to remove a specific instance from the ASG if it is
+having problems.
+
+1. In the "Instances" tab at the bottom, you will see a list of
+   instances.  Select the instance you want to remove, and click
+   "Detach" in the "Actions" drop-down.
+
+2. In the box that appears, check "Add a new instance to the Auto
+   Scaling group to balance the load" and confirm that you want to
+   detach the instance.
+
+> **Note:** The removed instance will stick around, so make sure to
+> terminate it when you no longer need it.
 
 [icinga]: /manual/icinga.html
 [ec2-home]: https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1
