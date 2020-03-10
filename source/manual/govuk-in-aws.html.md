@@ -1,7 +1,7 @@
 ---
 owner_slack: "#re-govuk"
 title: Migration to AWS
-section: Infrastructure
+section: AWS
 layout: manual_layout
 type: learn
 parent: "/manual.html"
