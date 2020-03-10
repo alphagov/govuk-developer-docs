@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: Access the AWS Console
-section: AWS accounts
+section: AWS
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-11-08
