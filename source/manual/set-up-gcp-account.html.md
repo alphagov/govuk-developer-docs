@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: Set up your GCP account
-section: AWS accounts
+section: AWS
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-02-26
