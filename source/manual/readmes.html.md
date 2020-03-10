@@ -5,8 +5,6 @@ section: Documentation
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-11-04
-review_in: 12 months
 ---
 
 This is a guide to writing and maintaining README documents for GOV.UK's public repositories.
