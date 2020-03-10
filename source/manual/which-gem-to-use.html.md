@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-developers"
 title: Figure out which gem to use
-section: Patterns & Style Guides
+section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-07-10
