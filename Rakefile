@@ -1,11 +1,8 @@
-require 'govuk_tech_docs'
-require_relative './app/requires'
+require "govuk_tech_docs"
+require "rspec/core/rake_task"
+require_relative "./app/requires"
 
-begin
-  require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new(:spec)
-rescue LoadError
-end
+RSpec::Core::RakeTask.new(:spec)
 
 task default: [:spec]
 
@@ -17,14 +14,14 @@ end
 
 namespace :assets do
   task :precompile do
-    sh 'git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build'
+    sh "git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build"
   end
 end
 
 desc "Find deployable applications that are not in this repo"
 task :verify_deployable_apps do
   common_yaml = HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
-  deployable_applications = common_yaml["deployable_applications"].map { |k, v| v['repository'] || k }
+  deployable_applications = common_yaml["deployable_applications"].map { |k, v| v["repository"] || k }
   our_applications = AppDocs.pages.map(&:github_repo_name)
 
   intentionally_missing =
