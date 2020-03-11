@@ -81,4 +81,4 @@ choosing the "GOV.UK 2nd line tech: pending for 5+ days" option.
 
 [zendesk-create-account]: https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc
 [zendesk-queue]: https://govuk.zendesk.com/agent/filters/360000051009
-[zendesk-triage-diagram]: https://drive.google.com/a/digital.cabinet-office.gov.uk/file/d/0B72Q_z4wkLglYkVQd01LSWYwNjNha3NrYVVIMF91eXk3NU1r/view?usp=sharing
+[zendesk-triage-diagram]: https://drive.google.com/drive/folders/1s8suOS0v9tZEu-syakqcejD6EATbLZDX
