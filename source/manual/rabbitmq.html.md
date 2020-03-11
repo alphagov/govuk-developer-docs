@@ -4,7 +4,7 @@ title: Manage RabbitMQ
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-07-18
+last_reviewed_on: 2020-03-11
 review_in: 6 months
 ---
 
@@ -54,7 +54,8 @@ As root run:
 $ rabbitmqctl eval 'rabbit_federation_status:status().'
 ```
 
-you should get: {status,running}
+On one of the nodes, you should get: `{status,running}`
+
 If not something is wrong and the federation is broken.
 Check the logs in /var/log/rabbitmq and verify that the credentials and
 IPs address for the federation are correct by running as root :
