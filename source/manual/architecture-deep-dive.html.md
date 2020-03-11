@@ -26,13 +26,13 @@ The local DNS server might be able to answer immediately from its cache. If not,
 it will query the authoritative name servers for the domain.
 
 `gov.uk.` is a country-code second-level domain or ccSLD (like `co.uk.`) and its
-authoritative servers are hosted by [Jisc][]. Unusually for a ccSLD, `gov.uk` is
+authoritative servers are hosted by [Jisc]. Unusually for a ccSLD, `gov.uk` is
 also a website, and hosts the redirect from `gov.uk` to `www.gov.uk`. The records
 for these two domains are within the `gov.uk` second-level zone hosted by Jisc.
 
-GDS hosts several third-level domains under `gov.uk` on [Amazon Route53][], for
+GDS hosts several third-level domains under `gov.uk` on [Amazon Route53], for
 example `service.gov.uk`. The configuration for these is in the
-[govuk-dns-config repo][] and is deployed using code from the [govuk-dns repo][].
+[govuk-dns-config repo] and is deployed using code from the [govuk-dns repo].
 
 `www.gov.uk` is a CNAME record which ultimately points to `www-gov-uk.map.fastly.net.`
 The `fastly.net` domain name is hosted by special nameservers at the Fastly content
@@ -46,15 +46,15 @@ which is "closest" to the user. Read more about Fastly in the next section.
 
 ### CDN and caching
 
-GOV.UK uses the [Fastly][] CDN to handle the majority of requests, which - as
+GOV.UK uses the [Fastly] CDN to handle the majority of requests, which - as
 well as reducing load on GOV.UK ('origin') by around 70% - provides 'edge nodes'
 (servers) that are closer to our end users (particularly those outside the UK).
 
-Fastly uses [Varnish][] for caching, with a default cache time of 1 hour. (Read
+Fastly uses [Varnish] for caching, with a default cache time of 1 hour. (Read
 ["Our content delivery network"][our-cdn] for more information). If Fastly
 doesn't have a page in its cache, it fetches the page from origin.
 
-Caches can be purged using the [cache-clearing-service][], which tells Fastly to
+Caches can be purged using the [cache-clearing-service], which tells Fastly to
 soft-purge (i.e. only remove the cached version once it has received the new
 version from origin). This cache clearing service is triggered automatically
 when pages are updated - more on that later.
@@ -68,7 +68,7 @@ when pages are updated - more on that later.
 
 If a Fastly request to origin returns a 5xx response, Fastly will request
 content from the mirror, which is static HTML hosted in an S3 bucket on AWS.
-The contents of the mirror are updated daily via a [govuk-crawler-worker][],
+The contents of the mirror are updated daily via a [govuk-crawler-worker],
 which recursively crawls GOV.UK URLs from a message queue, visiting the pages
 and saving the output to disk.
 
@@ -78,11 +78,11 @@ and saving the output to disk.
 
 As well as for caching, Varnish is used for the redirection from `gov.uk` to
 `www.gov.uk`, which is configured in Varnish Configuration Language (VCL) and
-uploaded directly to Fastly via [govuk-cdn-config][].
+uploaded directly to Fastly via [govuk-cdn-config].
 
-Other redirects that happen at the Fastly level include [bouncer][]: a GOV.UK
+Other redirects that happen at the Fastly level include [bouncer]: a GOV.UK
 application responsible for redirecting traffic from old pre-GOV.UK websites.
-This is configured via [transition][] and [transition-config][].
+This is configured via [transition] and [transition-config].
 
 [bouncer]: https://github.com/alphagov/bouncer
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
@@ -100,16 +100,16 @@ a load balancer.
 The load balancer knows based on the hostname which machine 'class' to route
 to. Different classes of machine run different sets of GOV.UK applications.
 How many machines are allocated to a class - and how big those machines are -
-is configured using [Terraform][], in [govuk-aws][]. What runs on each machine
+is configured using [Terraform], in [govuk-aws]. What runs on each machine
 class is configured in govuk-puppet, a file and process management system we'll
 cover in more detail later.
 
 External requests are routed to a 'cache' machine, which uses Varnish for its
 caching. If Varnish has the route response in its cache, it returns that,
-otherwise it forwards the request to [Nginx][], a web server running on the
+otherwise it forwards the request to [Nginx], a web server running on the
 machine. Nginx is configured with govuk-puppet.
 
-Nginx proxies most requests to [router][], which is a GOV.UK maintained
+Nginx proxies most requests to [router], which is a GOV.UK maintained
 application running on the cache machines. However, Nginx does proxy some
 routes directly to other apps, such as image URLs routing to asset-manager.
 
@@ -121,12 +121,12 @@ routes directly to other apps, such as image URLs routing to asset-manager.
 #### Routing via 'router'
 
 'router' is a reverse proxy app written in Go. It stores all known routes
-in memory using a [prefix trie][]. The routes are loaded into the trie from
-[redis][] at startup. Matched routes are proxied through to the relevant
+in memory using a [prefix trie]. The routes are loaded into the trie from
+[redis] at startup. Matched routes are proxied through to the relevant
 rendering app based on the `backend_id` of the route, which is derived from
 the `rendering_app` field in the corresponding content item in the content
 store (which we'll cover later). For example, if the route has a `backend_id`
-of `frontend`, it will forward the request to the [frontend][] application.
+of `frontend`, it will forward the request to the [frontend] application.
 
 When routes are deleted, they're marked as `gone` in router, and router
 returns a 410 Gone response. When routes are changed (which can happen when a
@@ -137,7 +137,7 @@ memorable URLs that redirect to longer URLs, often as part of a media campaign.
 It publishes routes to the content store (via the publishing API, which we'll
 also cover later) like other apps publish pages.
 
-Routes are added and updated in real time via [router-api][]. The content
+Routes are added and updated in real time via [router-api]. The content
 store talks to router-api [directly][register-route] whenever there is a new
 piece of content router needs to know about. router-api stores this information
 in its own database and then sends these routes to router.
@@ -153,7 +153,7 @@ in its own database and then sends these routes to router.
 
 Once the router has forwarded the request to the right rendering app, the
 rendering app itself has to do some routing. Most GOV.UK front-end apps are
-built in [Rails][], which means typically there is a `routes.rb` file that
+built in [Rails], which means typically there is a `routes.rb` file that
 maps the route to a controller. The controller takes the URL path and any
 parameters and decides how to render the page.
 
@@ -164,7 +164,7 @@ static collection, such as a homepage which references several news stories,
 then this remains just one content item that has been expanded via "link
 expansion" (which we'll cover later) to 'include' the other content items
 within it. If it is a dynamic collection, such as a search results page,
-then content items are retrieved via the [search-api][].
+then content items are retrieved via the [search-api].
 
 [Rails]: https://rubyonrails.org/
 [search-api]: https://github.com/alphagov/search-api
@@ -172,13 +172,13 @@ then content items are retrieved via the [search-api][].
 #### Static assets
 
 Whilst views can be any arbitrary HTML, GOV.UK pages are typically constructed
-from components defined in [govuk_publishing_components][], set in a standard
-page template (header, footer, JavaScript and CSS) defined in [static][].
+from components defined in [govuk_publishing_components], set in a standard
+page template (header, footer, JavaScript and CSS) defined in [static].
 
 Static JS/CSS is delivered over https://assets.publishing.service.gov.uk.
 Custom assets, such as images, are delivered over the same domain and uploaded
-by content designers via [asset-manager][]. Under the hood, all of these assets
-live in an [AWS S3 bucket][] (read ["Assets: how they work"][]).
+by content designers via [asset-manager]. Under the hood, all of these assets
+live in an [AWS S3 bucket] (read ["Assets: how they work"]).
 
 [asset-manager]: https://github.com/alphagov/asset-manager
 ["Assets: how they work"]: /manual/assets.html
@@ -202,7 +202,7 @@ draft and live. These are very similar to each other: each is a collection
 of machines in the cloud, running GOV.UK applications. Everything that runs in
 the live stack also runs in the draft stack, in order to have a way of
 previewing content in a non-public-facing way. However, the draft stack also
-has additional machines that run the [publishing apps][].
+has additional machines that run the [publishing apps].
 
 Applications shouldn't know what stack they're in - they're simply configured
 to talk to other applications in their stack.
@@ -210,16 +210,16 @@ to talk to other applications in their stack.
 The live stack entry point is the 'router' app. You can swap `www` for
 `www-origin` to bypass Fastly and view the live stack at origin. This is
 only available to office IPs / VPN, and to Fastly IP addresses (configured in
-[govuk-provisioning][]).
+[govuk-provisioning]).
 
-The draft stack entry point is [authenticating-proxy][], which sits in front
+The draft stack entry point is [authenticating-proxy], which sits in front
 of 'router'. You can swap `www` for `draft-origin` to view the draft stack at
 origin. The draft stack is not IP-restricted, as we need to be able to share
 links to be reviewed ("2i'd") or fact-checked by non-Government departments.
 It is, however, only visible to users who have been verified through
-authenticating-proxy, by signing into [signon][] (an authentication and
+authenticating-proxy, by signing into [signon] (an authentication and
 authorisation portal) or by providing a valid `auth_bypass_id` (as a URI
-parameter or session cookie). Read more about previews in ["How the draft stack works"][].
+parameter or session cookie). Read more about previews in ["How the draft stack works"].
 
 Signon doubles up as an authorisation platform, as it associates users with
 arbitrary permissions, so a publishing app can query if the current user has
@@ -235,14 +235,14 @@ content.
 ### Publishing API vs Content Store
 
 At this point it's probably worth summarising what "content" is. Almost every
-piece of content on GOV.UK lives in a database called the "[content store][]",
+piece of content on GOV.UK lives in a database called the "[content store]",
 which stores only the latest "edition" of that content. Internally the content
 is referred to as a "document", even if it is not itself a document.
 
-Content is published to the content store via the [publishing API][], which
+Content is published to the content store via the [publishing API], which
 stores all of the editions of the document, and performs validation checks
 whenever it receives a new edition. Every piece of content has a `document_type`
-corresponding to a particular JSON schema defined in [govuk-content-schemas][].
+corresponding to a particular JSON schema defined in [govuk-content-schemas].
 Most backend apps have their own databases modelling documents in their own
 way; at the point of sending the document to publishing API, they transform the
 document to a JSON payload conforming to the appropriate schema.
@@ -252,7 +252,7 @@ the draft content store, replacing whatever contents existed for that document
 beforehand. An edition must be explicitly published for it to go to the live
 content store, where it becomes visible to the outside world.
 
-[Link expansion][], mentioned in [Rendering][rendering] is the process of
+[Link expansion], mentioned in [Rendering][rendering] is the process of
 joining related content items (such as the title and details of a document's
 parent, used for navigational breadcrumbs) into a single JSON payload, so that
 rendering apps don't need to handle the complexity of pulling all of that data
@@ -273,8 +273,8 @@ process to be processed when resources become available. In addition, when we
 publish a new edition, we often want to trigger some other actions as a result.
 For example, we want to send an email to anyone subscribed to that content.
 
-We use [Sidekiq][] to manage the background processing. When each Sidekiq
-process is evaluated, a message is put onto a [RabbitMQ][] queue (which runs
+We use [Sidekiq] to manage the background processing. When each Sidekiq
+process is evaluated, a message is put onto a [RabbitMQ] queue (which runs
 on its own machines in Carrenza and AWS). RabbitMQ is a message broker: when
 a message is broadcast to a RabbitMQ exchange, it forwards the message to its
 consumers. These consumers retrieve the content item and do something in
@@ -314,17 +314,17 @@ content items; it just tends to take longer as there are more items to
 process.
 
 The process for finding the content items affected by a content change is
-known as [dependency resolution][]. Content items can be associated with
+known as [dependency resolution]. Content items can be associated with
 other content items in a number of ways. For example, you may provide an
 [array of organisation IDs][schema-organisations-example] in your payload
 when sending to publishing API, to indicate that those organisations are
 responsible for the content (this is stored on the content item in content
 store as `links.organisations`).
 
-Content can also be tagged to [taxonomies][], which are used to describe where
+Content can also be tagged to [taxonomies], which are used to describe where
 in the site hierarchy the content sits. These are stored on the content item
 as `links.taxons`. Some apps have their own interface for tagging, or you can
-tag content independently using [content-tagger][].
+tag content independently using [content-tagger].
 
 [content-tagger]: https://github.com/alphagov/content-tagger
 [dependency resolution]: https://github.com/alphagov/publishing-api/blob/master/doc/dependency-resolution.md
@@ -353,7 +353,7 @@ Data is copied from Production to Staging - and from Staging to Integration - ev
 24 hours via [automated Jenkins jobs][copy-data-to-staging]. This way our
 environments are always roughly in sync, although it's worth noting that email
 addresses are anonymised and access-limited documents are obfuscated before data is
-copied. The data copying is partly configured in [env-sync-and-backup][], however
+copied. The data copying is partly configured in [env-sync-and-backup], however
 we're gradually [configuring this in govuk-puppet][govuk-env-sync] in the move to AWS.
 
 [copy-data-to-staging]: https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging/
@@ -365,16 +365,16 @@ we're gradually [configuring this in govuk-puppet][govuk-env-sync] in the move t
 We have detailed docs on [how to deploy an application][deploy]. But what happens
 under the hood?
 
-When a change is merged to an application's 'master' branch, a [Jenkins job][]
+When a change is merged to an application's 'master' branch, a [Jenkins job]
 runs the tests. If successful, Jenkins pushes a git tag to GitHub (the "release
-tag"), then sends a message to the [govuk-app-deployment][] Jenkins job to clone
+tag"), then sends a message to the [govuk-app-deployment] Jenkins job to clone
 the repository, check out the tag and deploy the code to the corresponding nodes
-on Integration using [Capistrano][] (a Ruby-based server automation and deployment
+on Integration using [Capistrano] (a Ruby-based server automation and deployment
 tool). Capistrano does deployments only by default, but can also do deployments
 'with migration' or 'with hard restart', etc, depending on the nature of the change.
 
 A developer must manually trigger a deployment to Staging and Production through
-the [release][] app. This uses the same Jenkins/Capistrano pipeline as for
+the [release] app. This uses the same Jenkins/Capistrano pipeline as for
 Integration, but on the Staging and Production Jenkins environments respectively.
 
 Some apps require extra care when deploying. 'static', for example, requires a
@@ -394,21 +394,21 @@ app UI for this.
 
 As discussed in the routing section, we have different 'classes' of machines
 running in the cloud; to recap, the "cache" machines run the "router"
-application. These classes are configured in [govuk-puppet][], which uses
-[puppet][] under the hood: tooling which configures resources such as files
+application. These classes are configured in [govuk-puppet], which uses
+[puppet] under the hood: tooling which configures resources such as files
 and processes.
 
 Puppet runs in a master/agent setup. There is a single "puppetmaster" running
 on its own class of machine, whereas the agents run on all the other machines
 (irrespective of class). Each puppet agent is responsible for running
-[health check][] tests against the GOV.UK applications running on the node,
+[health check] tests against the GOV.UK applications running on the node,
 and for ensuring the presence of certain files and processes. The puppet
 master is in charge of keeping all of the puppet agents in sync with itself.
 
-[Icinga][] alerts us to problems with our machines and apps. There is a wide
+[Icinga] alerts us to problems with our machines and apps. There is a wide
 variety of different alerts, all of which are configured in Puppet. For
-monitoring, 'filebeat' is used to send logs to [Logit][], and 'statsd' exports
-most monitoring metrics, which can be viewed in [Grafana][]. Read more about
+monitoring, 'filebeat' is used to send logs to [Logit], and 'statsd' exports
+most monitoring metrics, which can be viewed in [Grafana]. Read more about
 [tooling for monitoring][tools].
 
 If an app release contains a major change such as a renamed environment
@@ -421,7 +421,7 @@ agents configured to run after the puppetmaster at randomised times.
 
 What actually happens on a puppet run? The puppetmaster copies the latest
 versions of govuk-puppet and govuk-secrets to itself (this is why you must
-wait 30 minutes between [deploying Puppet][] between environments). The
+wait 30 minutes between [deploying Puppet] between environments). The
 puppet agents, on the other hand, compare their configuration with the
 puppet master to see if they have diverged ("configuration drift") and
 reset themselves against the master.
