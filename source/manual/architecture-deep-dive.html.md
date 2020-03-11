@@ -419,12 +419,14 @@ important that all machines are updated at different times. Therefore, each
 instance [runs puppet every half hour][puppet-cronjob], with the puppet
 agents configured to run after the puppetmaster at randomised times.
 
-What actually happens on a puppet run? The puppetmaster copies the latest
-versions of govuk-puppet and govuk-secrets to itself (this is why you must
-wait 30 minutes between [deploying Puppet] between environments). The
-puppet agents, on the other hand, compare their configuration with the
-puppet master to see if they have diverged ("configuration drift") and
-reset themselves against the master.
+When [deploying Puppet], the latest versions of govuk-puppet and
+govuk-secrets are copied to the puppetmaster. On each puppet run, the puppet
+agent checks for differences between what is sees and what the puppetmaster
+says should be there to see if they have diverged ("configuration drift")
+and whether they should reset themselves against the master. Only after all
+the puppet agents have updated can you be confident that your puppet change
+hasn't broken anything, which is why you must wait 30 minutes between puppet
+deploys.
 
 [deploying Puppet]: /manual/deploy-puppet.html
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
