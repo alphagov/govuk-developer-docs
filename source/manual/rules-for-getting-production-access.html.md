@@ -5,8 +5,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2019-10-23
-review_in: 3 months
+last_reviewed_on: 2020-03-10
+review_in: 12 months
 ---
 
 These rules apply to developers in the GOV.UK programme and SREs in the TechOps programme.
