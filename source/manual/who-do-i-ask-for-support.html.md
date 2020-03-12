@@ -18,7 +18,6 @@ The GOV.UK 2nd Line team:
 
 The GOV.UK development community:
 
-- supports each other with development VM issues
 - helps each other with specialised knowledge about specific areas of the platform
 - supports each other with issues deploying changes to GOV.UK
 - ensures missions are delivered technically in the best and most appropriate way

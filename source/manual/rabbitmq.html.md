@@ -148,10 +148,3 @@ last public_updated_at) for the entered document type:
 ```bash
 $ bundle exec rake queue:preview_recent_message[<document_type>]
 ```
-
-## Connecting to your local RabbitMQ
-
-Your local RabbitMQ is running as long as your development VM is running.
-To see the control panel go to <http://dev.gov.uk:15672>.
-
-On the development VM the credentials are just root/root.
