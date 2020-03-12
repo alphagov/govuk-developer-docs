@@ -23,7 +23,7 @@ If you're having trouble with this guide, you can ask your colleagues or the #go
 
 ## 2. Set up govuk-docker
 
-The easiest way to develop on GOV.UK is to use [govuk-docker][]. Until July 2019 we used a [GOV.UK Vagrant development VM](/manual/install-development-vm.html), but this is now deprecated.
+We use a Docker environment - [govuk-docker][] - for local development.
 
 👉 [Learn about how we use Docker](/manual/intro-to-docker.html)
 
