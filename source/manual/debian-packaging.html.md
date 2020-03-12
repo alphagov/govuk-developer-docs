@@ -133,8 +133,7 @@ be bumped up.
 
 Add an fpm recipe to packager and then use [the Jenkins
 job](https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/) to
-create a Debian package. You can use the Vagrant development-VM to test
-the recipe.
+create a Debian package.
 
 #### Test the recipe
 
