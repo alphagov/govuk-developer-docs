@@ -25,13 +25,11 @@ On the machine where you want to restore the backup:
 For the backup and restore drill, you will restore and unpack a MySQL database
 on a Vagrant VM.
 
-On a fresh VM, you may require the following packages for this exercise:
+1. Install Vagrant and VirtualBox with `brew cask install virtualbox vagrant`
+1. In the root of the `govuk-puppet` directory, run `vagrant up mysql-master-1.backend to create a new mySQL VM
+1. Access the new VM with `vagrant ssh mysql-master-1.backend`
 
-> You can use either your dev VM or if you have the space you can create a new mysql server VM using the following command:
-> `vagrant up mysql-master-1.backend`
-> This needs to be run from the root of the `govuk-puppet` repository
-> Access the new VM using:
-> `vagrant ssh mysql-master-1.backend`
+On a fresh VM, you may require the following packages for this exercise:
 
 #### Packages via `apt-get`
 
@@ -140,10 +138,6 @@ On the machine where you'll be running the restore:
     ignored.
 
 ### Restore a backup
-
-To make space, first drop your dev VM's `whitehall_development` database. Note
-after you import the sql, you will end up with a `whitehall_production`
-database.
 
 1. Extract the downloaded backup
 
