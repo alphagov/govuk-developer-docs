@@ -48,21 +48,6 @@ $ ssh $(ssh integration "govuk_node_list --single-node -c backend").integration 
 Then visit [http://127.0.0.1:9000](http://127.0.0.1:9000) to see a list of
 [Sidekiq] configurations you can monitor.
 
-#### Local use
-
-To view your local Sidekiq queue, go to the [sidekiq-monitoring
-app](https://github.com/alphagov/sidekiq-monitoring) in the vm and run
-`./bin/foreman start` for all applications, or `./bin/foreman
-run <app_name>` for a specific app.
-
-Then visit:
-
-* [`http://sidekiq-monitoring.dev.gov.uk:3211/`](http://sidekiq-monitoring.dev.gov.uk:3211/)
-to see a list of all the GOV.UK applications whose Sidekiq status you
-can monitor
-* `http://sidekiq-monitoring.dev.gov.uk/<app_name>` to directly
-monitor a specific app
-
 ### Sidekiq Grafana Dashboard
 
 You can also monitor Sidekiq queue lengths using [this Grafana
