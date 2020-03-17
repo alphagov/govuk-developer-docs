@@ -5,7 +5,7 @@ section: 2nd line
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-08-22
+last_reviewed_on: 2020-03-17
 review_in: 6 months
 ---
 
@@ -55,7 +55,7 @@ There are 2 ways that this might contact you:
   like the homepage and site search. They are useful when network access to all the
   machines running GOV.UK is down.
 
-PagerDuty list [the phone numbers that notifications come from][pagerduty-numbers]. The number at the moment is +1 (415) 349-5750.
+PagerDuty list [the phone numbers that notifications come from][pagerduty-numbers].
 
 [pagerduty-numbers]: https://support.pagerduty.com/hc/en-us/articles/202828870-Phone-numbers-notifications-are-sent-from
 
