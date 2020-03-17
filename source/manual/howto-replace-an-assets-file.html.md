@@ -4,21 +4,21 @@ title: Replace an asset's file
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-23
-review_in: 1 month
+last_reviewed_on: 2020-03-17
+review_in: 3 months
 ---
 
 If you need to replace the file of an existing attachment without
 changing the URL, follow these steps:
 
 
-0. Copy the new file from your computer to the server:
+0. Copy the new file from your computer to a `backend` server:
 
     ```
-    scp filename.ext backend-1.production:/tmp/filename.ext
+    scp filename.ext <hostname>:/tmp/filename.ext
     ```
 
-0. `ssh backend-1.production`
+0. `ssh <hostname>`
 
 0. `govuk_app_console asset-manager`
 
