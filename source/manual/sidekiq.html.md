@@ -17,8 +17,8 @@ help you set it up.
 
 ## Monitoring
 
-There are two approaches for monitoring Sidekiq, via the Sidekiq Web interface,
-or the Grafana dashboard.
+There are three approaches for monitoring Sidekiq, via the [Sidekiq Web interface](#sidekiq-web),
+or the [Grafana dashboard](#sidekiq-grafana-dashboard) or the [Console](#sidekiq-from-the-console).
 
 ### Sidekiq Web
 
@@ -58,6 +58,38 @@ See also: [Add sidekiq-monitoring to your application](setting-up-new-sidekiq-mo
 
 [gov.uk]: https://www.gov.uk
 [sidekiq]: http://sidekiq.org
+
+### Sidekiq from the console
+
+Where possible you should use Sidekiq's web interface or Grafana to view Sidekiq
+stats and queues. SSHing into machines to interrogate things should be a last
+resort.
+
+Sidekiq can be queried from the rails console. It exposes a `Stats`
+class that you can query:
+
+```
+Sidekiq::Stats.new
+
+# => #<Sidekiq::Stats:0x00007fbdf0ac4a30 @stats={:processed=>114999987, :failed=>15129, :scheduled_size=>22741, :retry_size=>1, :dead_size=>0, :processes_size=>3, :default_queue_latency=>10162.526781797409, :workers_size=>90, :enqueued=>1508687}>
+
+Sidekiq::Stats.new.queues
+
+# => {"delivery_immediate_high"=>949953, "default"=>451201, "delivery_immediate"=>101006, "email_generation_immediate"=>0, "email_generation_digest"=>0, "cleanup"=>0, "process_and_generate_emails"=>0, "delivery_digest"=>0}
+
+```
+
+You can also query and iterate through the Queues directly:
+
+```
+Sidekiq::Queue.all
+
+# => [#<Sidekiq::Queue:0x00007fe98b133590 @name="cleanup", @rname="queue:cleanup">, #<Sidekiq::Queue:0x00007fe98b133518 @name="default", @rname="queue:default">, etc...
+
+Sidekiq::Queue.all.collect {|q| [q.name, q.size] }
+
+# => [["cleanup", 0], ["default", 0], ["delivery_digest", 0], ["delivery_immediate", 0], ["delivery_immediate_high", 0], ["email_generation_digest", 0], ["process_and_generate_emails", 0]]
+```
 
 ## Retry logic
 
