@@ -48,7 +48,8 @@ $ ssh $(ssh integration "govuk_node_list --single-node -c backend").integration 
 or using `govuk-connect`:
 
 ```bash
-$ govuk-connect sidekiq-monitoring -e production aws/backend 
+$ brew install alphagov/gds/govuk-connect
+$ gds govuk connect sidekiq-monitoring -e production aws/backend 
 ```
 
 Then visit [http://127.0.0.1:9000](http://127.0.0.1:9000) to see a list of
