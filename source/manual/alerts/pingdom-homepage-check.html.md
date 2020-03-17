@@ -4,7 +4,7 @@ title: Pingdom check for homepage failing
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-08-12
+last_reviewed_on: 2020-03-17
 review_in: 6 months
 ---
 
@@ -23,7 +23,7 @@ failure.
     they have announced issues
 -   [Fastly Service status](http://status.fastly.com/) - check if the
     CDN has global issues
--   [Carrenza status](https://servicedesk.carrenza.com/) - check if our
+-   [AWS status](https://status.aws.amazon.com/) - check if our
     main provider has issues
 
 [Pingdom]: https://www.pingdom.com/

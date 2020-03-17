@@ -4,7 +4,7 @@ title: Manually query the status of emails
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-13
+last_reviewed_on: 2020-03-17
 review_in: 3 months
 ---
 
