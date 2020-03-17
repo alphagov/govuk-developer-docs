@@ -15,8 +15,11 @@ technical involvement in content changes should usually be unnecessary.
 In some situations, such as site wide changes or urgent new features, we may
 need engineers to help make changes outside working hours.
 
-To reduce the stress around this process and the risk of things going wrong, we
-have a standard process, as follows.
+Planned out of hours work is separate to the primary and secondary on-call
+rotas. These should only be used for responding to unplanned incidents.
+
+To reduce stress and risk, we have a standard process for requesting technical
+work out of hours.
 
 ## Work out what needs to be done
 
