@@ -13,7 +13,7 @@ review_in: 6 months
 >
 > This page is for before you go on call to prep for incident handling.
 
-GOV.UK developers and web operations staff are part of an on-call rota
+GOV.UK developers and reliability engineers are part of an on-call rota
 to keep GOV.UK running at night, on the weekends and on public holidays.
 
 ## On call checklist
