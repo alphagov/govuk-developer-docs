@@ -4,7 +4,7 @@ title: Fall back to the static mirrors
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-08-22
+last_reviewed_on: 2020-03-17
 review_in: 6 months
 ---
 
@@ -116,9 +116,9 @@ You'll be notified by the escalation on-call contact that you need to edit the s
 
 1. Modify the relevant file in the directory `/mnt/crawler_worker`.
 
-1. Upload the file to the AWS S3 bucket ([detailed in the 'Viewing' section](#viewing)) via AWS console.
+1. Upload the file to the AWS S3 bucket via the AWS console.
 
-1. Upload the file to Google Cloud Storage ([detailed in the 'Viewing' section](#viewing)) using the GCP
+1. Upload the file to Google Cloud Storage using the GCP
    console.  Credentials are located in the govuk-secrets password store, under `google-accounts`.
 
 If you're notified that the edit you've made can be reverted, do that the same way.
