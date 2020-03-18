@@ -7,6 +7,10 @@ last_reviewed_on: 2019-11-11
 review_in: 6 months
 ---
 
+## 0. Pre-requisites
+
+Install the [Homebrew](https://brew.sh) package manager on macOS or Linux.
+
 ## 1. Get access
 
 Ask somebody with access to add your SSH username (`firstnamelastname`) to the [user monitoring system][user-reviewer].
@@ -42,37 +46,34 @@ Create a pull request with these changes. Once it has been [reviewed by a member
 [integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
 [merging]: /manual/merge-pr.html
 
-## 3. Set up govukcli
+## 3. Set up SSH access
 
-Clone the `govuk-aws` repository and add a symlink to make `govukcli` executable globally:
+Install GDS-wide and GOV.UK tooling via the GDS Homebrew tap:
 
-```sh
-cd ~/govuk
-git clone git@github.com:alphagov/govuk-aws
-ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
 ```
+brew tap alphagov/gds
+brew install gds-cli govuk-connect
+```
+
+You'll be using more of the GDS CLI's features when you [set up your
+AWS account](/manual/set-up-aws-account.html). For now, we're focusing
+on SSH.
+
+The easiest way to use `govuk-connect` is via the GDS CLI, so you
+don't have to context-switch between tools for AWS access vs. SSH.
+
+The `gds govuk connect --help` command will get you started. This
+shortens to `gds govuk c`.
 
 ## 4. Access remote environments
 
 Your pull request from earlier will hopefully have been merged by now. It's time to test your access to servers via SSH.
 
+```
+gds govuk connect -e integration ssh backend
+```
+
 > If you're not in the office right now, you'll need to be connected to the GDS Office VPN for SSH access to integration.
-
-While the applications are available directly via the public internet, SSH access to remote environments is via a ‘jumpbox’. You’ll need to configure your machine to use this jumpbox and use `govukcli` to SSH into server.
-
-Copy the [example SSH config file][ssh-config] into the `~/.ssh/config` file on your host machine.
-
-Test that it works by running:
-
-    mac$ govukcli set-context integration
-    mac$ govukcli ssh backend
-
-You should be able to do the same thing in your VM:
-
-    dev$ govukcli set-context integration
-    dev$ govukcli ssh backend
-
-The built-in key-forwarding should mean that you don't need to edit the `~/.ssh/config` file inside the VM (it will default to your host machine's config file instead).
 
 ## Running a console
 Once you have SSH'd into a machine, you can also open a console for a particular application so you can execute commands, for example:
