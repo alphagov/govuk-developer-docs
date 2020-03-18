@@ -72,8 +72,9 @@ Where possible you should use Sidekiq's web interface or Grafana to view Sidekiq
 stats and queues. SSHing into machines to interrogate things should be a last
 resort.
 
-Sidekiq can be queried from the rails console. It exposes a `Stats`
-class that you can query:
+Sidekiq [exposes a rich API](https://github.com/mperham/sidekiq/wiki/API) which can be queried from the rails console.
+
+The `Stats` class gives a nice overview.
 
 ```
 Sidekiq::Stats.new
@@ -86,7 +87,7 @@ Sidekiq::Stats.new.queues
 
 ```
 
-You can also query and iterate through the Queues directly:
+You can also query and iterate through the `Queue`s directly:
 
 ```
 Sidekiq::Queue.all
