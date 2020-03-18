@@ -13,7 +13,8 @@ We try to make the GOV.UK publishing platforms as self-service as possible, so
 technical involvement in content changes should usually be unnecessary.
 
 In some situations, such as site wide changes or urgent new features, we may
-need engineers to help make changes outside working hours.
+need engineers to help make changes outside working hours (before 9am or
+after 6pm on weekdays, or at weekends).
 
 Planned out of hours work is separate to the primary and secondary on-call
 rotas. These should only be used for responding to unplanned incidents.
