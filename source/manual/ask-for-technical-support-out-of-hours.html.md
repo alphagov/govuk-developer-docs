@@ -29,12 +29,21 @@ Talk to [the team that owns the application](/apps/by-team.html) you need to
 change to confirm that this is something that needs to be done by engineers in
 overtime.
 
+## Give us as much notice as possible
+
+Please give us as much notice as you can.
+
+We appreciate this may not always be possible in urgent situations, but the
+more notice we have the better we can prepare and look after people.
+
 ## Ask us for help on Slack
 
 [#govuk-tech-overtime](https://gds.slack.com/archives/C0105S28F7A)
 
 This slack channel is monitored by senior members of the technical team, who
 can help triage your request and find the right people to help you.
+
+We'll keep a close eye on the channel during working hours.
 
 You should be able to explain:
 
