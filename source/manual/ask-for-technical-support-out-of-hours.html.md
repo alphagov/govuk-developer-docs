@@ -27,8 +27,7 @@ work out of hours.
 First of all, make sure you understand the user need that's being addressed by the change.
 
 Talk to [the team that owns the application](/apps/by-team.html) you need to
-change to confirm that this is something that needs to be done by engineers in
-overtime.
+change to confirm that this is something that needs to be done by engineers out of hours.
 
 ## Give us as much notice as possible
 
@@ -78,8 +77,9 @@ channel for communications during the change.
 
 ## Time off in lieu and overtime payments
 
-We will make sure that everyone who works overtime is compensated with time off
-in lieu and overtime payments, in line with Cabinet Office and GDS policies.
+We will make sure that everyone who works out of hours is compensated with time
+off in lieu and overtime payments, in line with Cabinet Office and GDS
+policies.
 
 See the [Cabinet Office Intranet page on excess hours](https://intranet.cabinetoffice.gov.uk/task/excess-hours-weekends-and-travelling-time/policy/#excesshoursemployeesatgrade67)
 for more details.
