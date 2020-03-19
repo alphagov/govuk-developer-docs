@@ -64,11 +64,11 @@ RSpec.describe AppDocs::App do
       let(:production_hosted_on) { "aws" }
       let(:environment) { "integration" }
 
-      it { is_expected.to eql("https://deploy.blue.integration.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=") }
+      it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=") }
 
       describe "with a Rake task" do
         let(:rake_task) { "task" }
-        it { is_expected.to eql("https://deploy.blue.integration.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=task") }
+        it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=task") }
       end
     end
 
