@@ -69,6 +69,13 @@ Test that both tools work by running `gds --help` and `gds govuk connect --help`
 
 > If you see `fatal: no such path in the working tree`, it's because you're using ZSH, which has `gds` set up as a Git alias. You can either remove that alias by adding `unalias gds` to your `~/.zshrc`, or use `gds-cli` instead of `gds` for all the relevant commands.
 
+The GDS CLI requires some initial configuration:
+
+```bash
+gds config email firstname.lastname@digital.cabinet-office.gov.uk
+gds config yubikey false # If you type MFA codes from your phone
+```
+
 ## 3. Set up govuk-docker
 
 We use a Docker environment - [govuk-docker][] - for local development.
@@ -175,6 +182,8 @@ You have to set up [Multi-Factor Authentication (MFA)][MFA].
 7. Click on the "Manage" link next to "Assigned MFA device"
 8. Follow the steps to set up your MFA device
 
+> If you have a GDS-issued Yubikey, follow the [cross-GDS Yubikey docs](https://re-team-manual.cloudapps.digital/yubikeys.html#use-yubikey-for-2fa-in-amazon-web-services).
+
 ### Generate a pair of access keys
 
 You have to generate an AWS Access Key and Secret Key to be able to
@@ -191,10 +200,6 @@ perform operations with AWS on the command-line.
 
 1. Follow steps 1 to 7 in [set up your MFA](#set-up-your-mfa)
 1. Choose one of the two options (Remove or Resync)
-2. Click on the "Manage" link next to "Assigned MFA device"
-3. Follow the steps to set up your MFA device. If you're using a
-   Yubikey, you must choose "TOTP" device, not "U2F" device, for the
-   gds-cli to continue working.
 
 ### Get the appropriate access
 
@@ -237,7 +242,7 @@ Successfully initialised gds-cli
 Enter token for arn:aws:iam::123456789012:mfa/firstname.lastname@digital.cabinet-office.gov.uk: 123456
 ```
 
-Your (Secret) Access Key is from the AWS console. Follow [the instructions to generate one](#generate-a-pair-of-access-keys).
+Your (Secret) Access Key is from the AWS console. Follow [the instructions to generate one](#generate-a-pair-of-access-keys). The token requested at the end is the [MFA token](#set-up-your-mfa). If you have a GDS-issued Yubikey (you probably don't at this stage), set `gds config yubikey true` and the GDS CLI will automatically pull the MFA code from your Yubikey.
 
 You'll be prompted to save credentials to your Mac's Keychain as `aws-vault` and set a password for it. Save that password somewhere safe, like a password manager.
 
