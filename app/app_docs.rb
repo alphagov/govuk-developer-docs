@@ -219,7 +219,11 @@ class AppDocs
 
       case production_hosted_on
       when "aws"
-        "https://deploy.blue.#{environment}.govuk.digital/job/run-rake-task/parambuild/#{query_params}"
+        if environment == "integration"
+          "https://deploy.#{environment}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
+        else
+          "https://deploy.blue.#{environment}.govuk.digital/job/run-rake-task/parambuild/#{query_params}"
+        end
       when "carrenza"
         environment_prefix = environment == "production" ? "" : ".#{environment}"
         "https://deploy#{environment_prefix}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
