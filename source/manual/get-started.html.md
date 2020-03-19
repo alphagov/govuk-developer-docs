@@ -185,7 +185,7 @@ perform operations with AWS on the command-line.
 1. Click 'My Security Credentials'.
 1. Click 'Create access key'.
 1. Copy/paste them into the inputs that the gds-cli provides for you,
-   if you're following [the setup instructions](/manual/access-aws-console.html).
+   if you're following [the setup instructions](#first-run).
 
 #### Changing your MFA device
 
@@ -221,15 +221,70 @@ After your PR has been merged, someone from the `govuk-administrators`
 or `govuk-internal-administrators` group needs to deploy the
 `infra-security` project.
 
-### Do your thing 🚀
+## 6. Use your AWS access
 
-You can now:
+### First run
 
-👉 [Access AWS via the web interface or on the command line][access-aws-console]
+Here, you will use the GDS CLI you installed and set up earlier. You'll be asked for AWS credentials on the first run:
+
+```shell
+$ gds aws govuk-integration-poweruser -l
+Welcome to the GDS CLI! We will now store your AWS credentials in the keychain using aws-vault.
+Enter Access Key ID: AK-YOUR-ACCESS-KEY-ID
+Enter Secret Access Key: blah blah
+Added credentials to profile "gds-users" in vault
+Successfully initialised gds-cli
+Enter token for arn:aws:iam::123456789012:mfa/firstname.lastname@digital.cabinet-office.gov.uk: 123456
+```
+
+Your (Secret) Access Key is from the AWS console. Follow [the instructions to generate one](#generate-a-pair-of-access-keys).
+
+You'll be prompted to save credentials to your Mac's Keychain as `aws-vault` and set a password for it. Save that password somewhere safe, like a password manager.
+
+If you have `bash-completion` installed and configured, the gds-cli tab completions will work out of the box. They're especially useful for long commands like AWS account names.
+
+### Re-initialising
+
+If you forget your `aws-vault` password:
+
+1. Delete the aws-vault keychain with `rm ~/Library/Keychains/aws-vault-keychain-db`
+1. Re-initialise the `gds-cli` by changing `initialised: true` in `~/.gds/config.yml` to `initialised: false`.
+1. Then re-run the "First run" commands above.
+
+### Get Your Role
+
+Work out which [list of users you're part of in govuk-aws-data][govuk-aws-data-users-group].
+You're about to use it in the 'Web Console' section below.
+
+### Usage
+
+#### Web Console
+
+If you're new to GOV.UK and want to look around in integration:
+
+```bash
+gds aws govuk-integration-readonly -l
+```
+
+Replace `readonly` with the non-pluralised version of your role name. For example,
+if you want to assume the `govuk-powerusers` role on Staging, you would run
+`gds aws govuk-staging-poweruser -l`.
+
+`-l` opens the web browser and logs you in. For a full list of CLI parameters,
+consult the [gds-cli README](https://github.com/alphagov/gds-cli).
+
+#### Terraform
 
 👉 [Deploy AWS infrastructure with Terraform](/manual/deploying-terraform.html)
 
-[access-aws-console]: /manual/access-aws-console.html
+#### Terminal commands
+
+You can also chain commands, like this one to list S3 buckets in integration:
+
+        gds aws govuk-integration-poweruser aws s3 ls
+
+[govuk-aws-data-users-group]: /manual/set-up-aws-account.html#4-get-the-appropriate-access
+
 [infra-terra]: https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security
 [MFA]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication
 [iam]: https://console.aws.amazon.com/iam/home?region=eu-west-1#/users
