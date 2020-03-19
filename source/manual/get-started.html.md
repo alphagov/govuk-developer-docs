@@ -87,9 +87,11 @@ Ask somebody with access to add your SSH username (`firstnamelastname`) to the [
 
 User accounts in our integration environments are managed in the [govuk-puppet][] repository.
 
-    mac$ mkdir ~/govuk
-    mac$ cd ~/govuk
-    mac$ git clone git@github.com:alphagov/govuk-puppet.git
+``bash
+mkdir ~/govuk
+cd ~/govuk
+git clone git@github.com:alphagov/govuk-puppet.git
+```
 
 Now create a user manifest in `~/govuk/govuk-puppet/modules/users/manifests` with your username and the public key you created when you set up your GitHub account above. Your file should use the `firstnamelastname.pp` format.
 
@@ -126,23 +128,12 @@ ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
 
 Your pull request from earlier will hopefully have been merged by now. If it's been longer than 30 minutes since the merge, it would have been deployed, too. It's time to test your access to servers via SSH.
 
-> If you're not in the office right now, you'll need to be connected to the GDS Office VPN for SSH access to integration.
-
-While the applications are available directly via the public internet, SSH access to remote environments is via a ‘jumpbox’. You’ll need to configure your machine to use this jumpbox and use `govukcli` to SSH into server.
-
-Copy the [example SSH config file][ssh-config] into the `~/.ssh/config` file on your host machine.
+> If you're not in the office right now, you'll need to be connected to the GDS office VPN for SSH access to integration.
 
 Test that it works by running:
 
     mac$ govukcli set-context integration
     mac$ govukcli ssh backend
-
-You should be able to do the same thing in your VM:
-
-    dev$ govukcli set-context integration
-    dev$ govukcli ssh backend
-
-The built-in key-forwarding should mean that you don't need to edit the `~/.ssh/config` file inside the VM (it will default to your host machine's config file instead).
 
 #### Running a console
 Once you have SSH'd into a machine, you can also open a console for a particular application so you can execute commands, for example:
@@ -150,8 +141,6 @@ Once you have SSH'd into a machine, you can also open a console for a particular
 ```
 govuk_app_console publishing-api
 ```
-
-[ssh-config]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config
 
 ## 5. Get AWS access
 
