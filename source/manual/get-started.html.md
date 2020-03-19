@@ -65,6 +65,10 @@ brew install gds-cli govuk-connect
 
 The GDS CLI repository is private, so you'll need to follow the GitHub setup instructions above for the download to work.
 
+Test that both tools work by running `gds --help` and `gds govuk connect --help`.
+
+> If you see `fatal: no such path in the working tree`, it's because you're using ZSH, which has `gds` set up as a Git alias. You can either remove that alias by adding `unalias gds` to your `~/.zshrc`, or use `gds-cli` instead of `gds` for all the relevant commands.
+
 ## 3. Set up govuk-docker
 
 We use a Docker environment - [govuk-docker][] - for local development.
