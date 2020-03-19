@@ -17,6 +17,12 @@ If you're having trouble with this guide, you can ask your colleagues or the #go
 [GDS]: https://gds.blog.gov.uk/about/
 [overview-slides]: https://docs.google.com/presentation/d/1nAE65Og04JYNAc0VjYaUYLqNLuUOM9r3Mvo0PGFy_Zk
 
+## 0. Install the [Homebrew package manager](https://brew.sh) (on macOS or Linux)
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
 ## 1. Set up your GitHub account
 
 1. Set up a [GitHub] account. Existing personal accounts are fine to use.
@@ -46,7 +52,20 @@ If you're having trouble with this guide, you can ask your colleagues or the #go
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
-## 2. Set up govuk-docker
+## 2. Install GDS tooling
+
+On GOV.UK we use two command-line tools day-to-day: [`govuk-connect`](https://github.com/alphagov/govuk-connect) and the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS, SSH and VPN access.
+
+To install these, run:
+
+```bash
+brew tap alphagov/gds
+brew install gds-cli govuk-connect
+```
+
+The GDS CLI repository is private, so you'll need to follow the GitHub setup instructions above for the download to work.
+
+## 3. Set up govuk-docker
 
 We use a Docker environment - [govuk-docker][] - for local development.
 
@@ -56,7 +75,7 @@ We use a Docker environment - [govuk-docker][] - for local development.
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/docs/installation.md
 
-## 3. Get SSH access to integration
+## 4. Get SSH access to integration
 
 ### Get access
 
@@ -134,7 +153,7 @@ govuk_app_console publishing-api
 
 [ssh-config]: https://github.com/alphagov/govuk-puppet/blob/master/development-vm/ssh_config
 
-## 4. Get AWS access
+## 5. Get AWS access
 
 To work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data),
 you will require an account in AWS.
