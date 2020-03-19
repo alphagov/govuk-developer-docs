@@ -114,16 +114,6 @@ Create a pull request with these changes. Once it has been [reviewed by a member
 [integration-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
 [merging]: /manual/merge-pr.html
 
-### Set up govukcli
-
-Clone the `govuk-aws` repository and add a symlink to make `govukcli` executable globally:
-
-```sh
-cd ~/govuk
-git clone git@github.com:alphagov/govuk-aws
-ln -s ~/govuk/govuk-aws/tools/govukcli /usr/local/bin/govukcli
-```
-
 ### Access remote environments
 
 Your pull request from earlier will hopefully have been merged by now. If it's been longer than 30 minutes since the merge, it would have been deployed, too. It's time to test your access to servers via SSH.
@@ -132,13 +122,16 @@ Your pull request from earlier will hopefully have been merged by now. If it's b
 
 Test that it works by running:
 
-    mac$ govukcli set-context integration
-    mac$ govukcli ssh backend
+```bash
+gds govuk connect --environment integration ssh backend
+```
+
+The commands can be shortened to `gds govuk c -e integration ssh backend` if you wish.
 
 #### Running a console
 Once you have SSH'd into a machine, you can also open a console for a particular application so you can execute commands, for example:
 
-```
+```bash
 govuk_app_console publishing-api
 ```
 
