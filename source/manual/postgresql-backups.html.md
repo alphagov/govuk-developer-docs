@@ -79,7 +79,7 @@ Do you really want to do this? (y/N) y
 gpg> save
 ```
 
-**NOTE**: if you are reverting the key to the original GPG passphrase as part of a [postgres resync](manual/resync-postgres-standby.html#restore-from-wal-e-backups-stored-in-s3), remember to enter the passphrase from `postgresql-backups/<environment>/postgresql-primary` and not by pressing `<enter>`. 
+**NOTE**: if you are reverting the key to the original GPG passphrase as part of a [postgres resync](/manual/resync-postgres-standby.html#restore-from-wal-e-backups-stored-in-s3), remember to enter the passphrase from `postgresql-backups/<environment>/postgresql-primary` and not by pressing `<enter>`. 
 
 [wal-e]: https://github.com/wal-e/wal-e
 [archiving]: https://www.postgresql.org/docs/9.3/static/continuous-archiving.html
