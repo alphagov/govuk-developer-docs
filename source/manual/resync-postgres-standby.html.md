@@ -56,7 +56,7 @@ can automatically decrypt the backups from S3.
    sudo /etc/init.d/postgresql restart
    ```
 
-7. **Re-protect the GPG key**. Reset the passphrase to use the original GPG passphrase by following the steps again in this [doc](/manual/postgresql-backups.html#wal-e-failing-with-errors-about-gpg).
+7. **Re-protect the GPG key**. Reset the passphrase from a blank value to use the original GPG passphrase by following the steps in this [doc](/manual/postgresql-backups.html#wal-e-failing-with-errors-about-gpg).
 
 8. You can restart `collectd` by following the steps in the [Restarting collectd section](#restarting-collectd).
 
