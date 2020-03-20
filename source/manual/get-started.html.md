@@ -17,13 +17,13 @@ If you're having trouble with this guide, you can ask your colleagues or the #go
 [GDS]: https://gds.blog.gov.uk/about/
 [overview-slides]: https://docs.google.com/presentation/d/1nAE65Og04JYNAc0VjYaUYLqNLuUOM9r3Mvo0PGFy_Zk
 
-## 0. Install the [Homebrew package manager](https://brew.sh) (on macOS or Linux)
+## 1. Install the [Homebrew package manager](https://brew.sh) (on macOS or Linux)
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
-## 1. Set up your GitHub account
+## 2. Set up your GitHub account
 
 1. Set up a [GitHub] account. Existing personal accounts are fine to use.
 1. Ask your tech lead to add you to the [alphagov organisation][alphagov]. You will have to be added to the [GOV.UK team][govuk-team] to get access to repos & CI. Remember to click accept in the GitHub email invitation.
@@ -52,7 +52,7 @@ If you're having trouble with this guide, you can ask your colleagues or the #go
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
-## 2. Install GDS tooling
+## 3. Install GDS tooling
 
 On GOV.UK we use two command-line tools day-to-day: [`govuk-connect`](https://github.com/alphagov/govuk-connect) and the [`gds-cli`](https://github.com/alphagov/gds-cli) for AWS, SSH and VPN access.
 
@@ -76,7 +76,7 @@ gds config email firstname.lastname@digital.cabinet-office.gov.uk
 gds config yubikey false # If you type MFA codes from your phone
 ```
 
-## 3. Set up govuk-docker
+## 4. Set up govuk-docker
 
 We use a Docker environment - [govuk-docker][] - for local development.
 
@@ -86,7 +86,7 @@ We use a Docker environment - [govuk-docker][] - for local development.
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/docs/installation.md
 
-## 4. Get SSH access to integration
+## 5. Get SSH access to integration
 
 ### Get access
 
@@ -146,7 +146,7 @@ Once you have SSH'd into a machine, you can also open a console for a particular
 govuk_app_console transition
 ```
 
-## 5. Get AWS access
+## 6. Get AWS access
 
 To work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data),
 you will require an account in AWS.
@@ -174,13 +174,13 @@ To sign in, go to [the GDS AWS Sign page](https://gds-users.signin.aws.amazon.co
 You have to set up [Multi-Factor Authentication (MFA)][MFA].
 
 1. [Sign in to AWS GDS account](https://gds-users.signin.aws.amazon.com/console)
-2. Select or go to IAM service.
-3. Click on "Users" in the menu bar on the left hand side
-4. Enter your name
-5. Click on the link for your email address
-6. Click on the security credentials tab
-7. Click on the "Manage" link next to "Assigned MFA device"
-8. Follow the steps to set up your MFA device
+1. Select or go to IAM service.
+1. Click on "Users" in the menu bar on the left hand side
+1. Enter your name
+1. Click on the link for your email address
+1. Click on the security credentials tab
+1. Click on the "Manage" link next to "Assigned MFA device"
+1. Follow the steps to set up your MFA device
 
 > If you have a GDS-issued Yubikey, follow the [cross-GDS Yubikey docs](https://re-team-manual.cloudapps.digital/yubikeys.html#use-yubikey-for-2fa-in-amazon-web-services).
 
@@ -226,7 +226,7 @@ After your PR has been merged, someone from the `govuk-administrators`
 or `govuk-internal-administrators` group needs to deploy the
 `infra-security` project.
 
-## 6. Use your AWS access
+## 7. Use your AWS access
 
 ### First run
 
