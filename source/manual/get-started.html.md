@@ -161,19 +161,17 @@ You'll want to click "Request user access" - NOT "Request an account". After sub
 
 ### Sign in to AWS
 
-To sign in, go to [the GDS AWS Sign page](https://gds-users.signin.aws.amazon.com/console), and use the following credentials:
+To sign in, go to [the GDS AWS Sign page][gds-users-aws-signin], and use the following credentials:
 
 - "Account ID or alias": `gds-users`
 - Username: your `@digital.cabinet-office.gov.uk` email address
 - Password: your password
 
-👉 [Sign in to AWS GDS account](https://gds-users.signin.aws.amazon.com/console)
-
 ### Set up your MFA
 
 You have to set up [Multi-Factor Authentication (MFA)][MFA].
 
-1. [Sign in to AWS GDS account](https://gds-users.signin.aws.amazon.com/console)
+1. [Sign in to AWS GDS account][gds-users-aws-signin]
 1. Select or go to IAM service.
 1. Click on "Users" in the menu bar on the left hand side
 1. Enter your name
@@ -189,12 +187,14 @@ You have to set up [Multi-Factor Authentication (MFA)][MFA].
 You have to generate an AWS Access Key and Secret Key to be able to
 perform operations with AWS on the command-line.
 
-1. [Sign in to the gds-users AWS Console](https://gds-users.signin.aws.amazon.com/console).
+1. [Sign in to the gds-users AWS Console][gds-users-aws-signin].
 1. Click on your email address in the top right.
 1. Click 'My Security Credentials'.
 1. Click 'Create access key'.
 1. Copy/paste them into the inputs that the gds-cli provides for you,
    if you're following [the setup instructions](#first-run).
+
+[gds-users-aws-signin]: https://gds-users.signin.aws.amazon.com/console
 
 #### Changing your MFA device
 
