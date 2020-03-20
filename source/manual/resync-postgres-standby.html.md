@@ -22,44 +22,45 @@ there are 2 methods:
 
 Follow the following steps on the Postgresql standby machine:
 
-1. disable puppet by doing
+1. Disable puppet by running:
    ```
    govuk_puppet --disable "resyncing postgresql from wal-e S3 backups"
    ```
 
-2. follow the steps in this [doc][https://docs.publishing.service.gov.uk/manual/postgresql.html#wal-e-failing-with-errors-about-gpg] to remove the password from the GPG key so that the WAL-E restoration process
+2. Follow the steps in this [doc](/manual/postgresql-backups.html#wal-e-failing-with-errors-about-gpg) to remove the password from the GPG key so that the WAL-E restoration process
 can automatically decrypt the backups from S3.
 
    The passphrase is in the pass store of the GOV.UK secrets under:
    `postgresql-backups/<environment>/postgresql-primary`
    where `<environment>` is the GOV.UK environment where you are doing the restoration.
 
-3. edit the file `/var/lib/postgresql/9.3/main/recovery.conf` by appending the
+3. Edit the file `/var/lib/postgresql/9.3/main/recovery.conf` by appending the
    following line:
    ```
    restore_command = 'envdir /etc/wal-e/env.d /usr/local/bin/wal-e wal-fetch %f %p'
    ```
 
-4. restart Postgresql service by doing:
+4. Restart Postgresql service by running:
    ```
    sudo /etc/init.d/postgresql restart
    ```
 
-5. you can then tail the log to see if the process of restoration is working and when
-   it has finished by doing:
+5. Tail the log to see if the process of restoration is working and when
+   it has finished. Run:
    ```
    tail -f /var/log/postgresql/postgresql-9.3-main.log
    ```
 
-6. after the restoration has finished, you should revert step 3 above and restart
-   Postgresql using Step 4.
+6. After the restoration has finished, remove the appended line from `/var/lib/postgresql/9.3/main/recovery.conf` and restart Postgresql:
+   ```
+   sudo /etc/init.d/postgresql restart
+   ```
 
-7. You must revert step 2 also to re-protect the GPG key using the original
-   passphrase.
+7. **Re-protect the GPG key**. Reset the passphrase to use the original GPG passphrase by following the steps again in this [doc](/manual/postgresql-backups.html#wal-e-failing-with-errors-about-gpg).
 
-8. You can restart `collectd` by following the steps in the next section.
+8. You can restart `collectd` by following the steps in the [Restarting collectd section](#restarting-collectd).
 
-9. re-enable puppet using:
+9. Re-enable puppet:
    ```
    govuk_puppet --enable
    ```
