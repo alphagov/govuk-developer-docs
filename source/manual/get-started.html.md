@@ -143,7 +143,7 @@ The commands can be shortened to `gds govuk c -e integration ssh backend` if you
 Once you have SSH'd into a machine, you can also open a console for a particular application so you can execute commands, for example:
 
 ```bash
-govuk_app_console publishing-api
+govuk_app_console transition
 ```
 
 ## 5. Get AWS access
