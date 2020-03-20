@@ -76,7 +76,24 @@ gds config email firstname.lastname@digital.cabinet-office.gov.uk
 gds config yubikey false # If you type MFA codes from your phone
 ```
 
-## 4. Set up govuk-docker
+## 4. Connecting to the GDS VPN
+
+Access to our infrastructure and internal services is controlled by IP safelisting. If you're outside of the office or not on the Brattain network (ie, you're on GovWiFi), you'll need to connect to the GDS VPN to access our stuff.
+
+To do this, read [the GDS Wiki page about the VPN][gds-vpn-wiki] to ensure you have the required pre-requisites, for example the Cisco AnyConnect software installed on your computer, and an MFA token given to you when you arrived by GDS IT. If you don't have these, [contact the IT helpdesk][gds-it-helpdesk].
+
+The `gds-cli` tool that we installed earlier has a `vpn` subcommand.
+
+To connect to the VPN, run `gds vpn connect` and you'll be asked for a password and MFA code. The password is the one you use to login to your GDS-issued laptop, printers, or the Cisco AnyConnect VPN GUI.
+
+To disconnect, run `gds vpn disconnect`.
+
+If you're here, you're probably using a GDS-issued laptop. If for any reason you're on your own device, or a GDS-issued Linux laptop, you'll need to run `gds vpn configure-byod-profiles` first as the non-GDS-assured VPN is a little different.
+
+[gds-it-helpdesk]: https://gdshelpdesk.digital.cabinet-office.gov.uk/helpdesk/WebObjects/Helpdesk.woa
+[gds-vpn-wiki]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/it-the-white-chapel-building/how-to/gds-vpn
+
+## 5. Set up govuk-docker
 
 We use a Docker environment - [govuk-docker][] - for local development.
 
@@ -86,7 +103,7 @@ We use a Docker environment - [govuk-docker][] - for local development.
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/docs/installation.md
 
-## 5. Get SSH access to integration
+## 6. Get SSH access to integration
 
 ### Get access
 
@@ -129,7 +146,7 @@ Create a pull request with these changes. Once it has been [reviewed by a member
 
 Your pull request from earlier will hopefully have been merged by now. If it's been longer than 30 minutes since the merge, it would have been deployed, too. It's time to test your access to servers via SSH.
 
-> If you're not in the office right now, you'll need to be connected to the GDS office VPN for SSH access to integration.
+> If you're not in the office right now, you'll need to be [connected to the GDS office VPN](#connect-to-gds-vpn) for SSH access to integration.
 
 Test that it works by running:
 
@@ -146,7 +163,7 @@ Once you have SSH'd into a machine, you can also open a console for a particular
 govuk_app_console transition
 ```
 
-## 6. Get AWS access
+## 7. Get AWS access
 
 To work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data),
 you will require an account in AWS.
@@ -226,7 +243,7 @@ After your PR has been merged, someone from the `govuk-administrators`
 or `govuk-internal-administrators` group needs to deploy the
 `infra-security` project.
 
-## 7. Use your AWS access
+## 8. Use your AWS access
 
 ### First run
 
