@@ -150,9 +150,13 @@ class AppDocs
     end
 
     def deploy_url
-      return if app_data["deploy_url"] == false || production_hosted_on.in?(%w[paas heroku])
+      return if app_data["deploy_url"] == false || production_hosted_on == "heroku"
 
-      "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
+      if production_hosted_on == "paas"
+        app_data["deploy_url"]
+      else
+        "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
+      end
     end
 
     def dashboard_url

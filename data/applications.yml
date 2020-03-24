@@ -659,6 +659,28 @@
   dashboard_url: false
   description: 'GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)'
 
+# Coronavirus
+
+- github_repo_name: govuk-coronavirus-vulnerable-people-form
+  private_repo: false
+  type: Specialist apps
+  production_hosted_on: paas
+  team: "#govuk-vulnerable-people-tech"
+  sentry_url: false # TODO - can the reviewer let me know what this should be?
+  deploy_url: 'https://github.com/alphagov/govuk-coronavirus-vulnerable-people-form/blob/master/concourse/pipeline.yml'
+  dashboard_url: 'https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/d006_coronavirus?form.main.earliest=-7d%40h&form.main.latest=now&form.xhost=coronavirus-vulnerable-people.service.gov.uk'
+  description: 'Helps citizens get support during the Covid-19 pandemic'
+
+- github_repo_name: govuk-coronavirus-business-volunteer-form
+  private_repo: false
+  type: Specialist apps
+  production_hosted_on: paas
+  team: "#govuk-corona-forms-tech"
+  sentry_url: false # TODO - can the reviewer let me know what this should be?
+  deploy_url: 'https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/concourse/pipeline.yml'
+  dashboard_url: false
+  description: 'Lets businesses volunteer with the response to the Covid-19 pandemic'
+
 # Utility Heroku apps (don't add apps that are only for review here)
 
 - github_repo_name: seal
