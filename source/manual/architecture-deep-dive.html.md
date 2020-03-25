@@ -21,6 +21,8 @@ We can cover most of the GOV.UK architecture by asking ourselves three questions
 
 ### DNS
 
+![](images/dns.png)
+
 The browser queries a local DNS server to turn the domain name into an IP address.
 The local DNS server might be able to answer immediately from its cache. If not,
 it will query the authoritative name servers for the domain.
@@ -93,6 +95,8 @@ This is configured via [transition] and [transition-config].
 
 #### Getting to the 'router' application
 
+![](images/load-balancer.png)
+
 Some requests make it through the CDN and cache layers to 'origin'. Origin is
 a stack of computers in the cloud - in this case, AWS - and its entry point is
 a load balancer.
@@ -103,6 +107,8 @@ How many machines are allocated to a class - and how big those machines are -
 is configured using [Terraform], in [govuk-aws]. What runs on each machine
 class is configured in govuk-puppet, a file and process management system we'll
 cover in more detail later.
+
+![](images/nginx-routing.png)
 
 External requests are routed to a 'cache' machine, which uses Varnish for its
 caching. If Varnish has the route response in its cache, it returns that,
@@ -197,6 +203,8 @@ to handle the request.
 
 ### Draft and live stacks
 
+![](images/draft-live-stacks.png)
+
 Everything you've just read about in the first section exists in two stacks:
 draft and live. These are very similar to each other: each is a collection
 of machines in the cloud, running GOV.UK applications. Everything that runs in
@@ -234,6 +242,8 @@ content.
 
 ### Publishing API vs Content Store
 
+![](images/publishing-api-content-store.png)
+
 At this point it's probably worth summarising what "content" is. Almost every
 piece of content on GOV.UK lives in a database called the "[content store]",
 which stores only the latest "edition" of that content. Internally the content
@@ -246,6 +256,8 @@ corresponding to a particular JSON schema defined in [govuk-content-schemas].
 Most backend apps have their own databases modelling documents in their own
 way; at the point of sending the document to publishing API, they transform the
 document to a JSON payload conforming to the appropriate schema.
+
+![](images/content-store-draft-live.png)
 
 When a new edition is sent to publishing API, it is automatically published to
 the draft content store, replacing whatever contents existed for that document
@@ -391,6 +403,8 @@ app UI for this.
 [release]: https://github.com/alphagov/release
 
 ### Puppet on GOV.UK
+
+![](images/puppet.png)
 
 As discussed in the routing section, we have different 'classes' of machines
 running in the cloud; to recap, the "cache" machines run the "router"
