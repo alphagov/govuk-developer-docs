@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: How to send a bulk email
+title: Send a bulk email
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
@@ -51,7 +51,10 @@ staging to send out a test email. First make sure that you have subscribed to
 one of the subscriber lists and then use [the Send bulk emails job in
 staging][send-bulk-staging] to send the email.
 
+**Make sure you are [able to receive emails in staging][staging-emails].**
+
 [send-bulk-staging]: https://deploy.blue.staging.govuk.digital/job/send-bulk-email/
+[staging-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 
 ## 4. Send the real email
 
@@ -71,4 +74,4 @@ are the lowest priority of email.
 At the time of writing, an email to all travel advice subscribers (~560,000
 subscribers) takes around 4-5 hours to send to everyone.
 
-[sidekiq]: /sidekiq.html
+[sidekiq]: /manual/sidekiq.html
