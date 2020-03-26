@@ -74,4 +74,4 @@ are the lowest priority of email.
 At the time of writing, an email to all travel advice subscribers (~560,000
 subscribers) takes around 4-5 hours to send to everyone.
 
-[sidekiq]: /sidekiq.html
+[sidekiq]: /manual/sidekiq.html
