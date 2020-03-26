@@ -42,3 +42,14 @@ recently restored, perhaps due to the data sync. In that case, you can try
 running the following Rake task on a `whitehall_backend` machine:
 
 <%= RunRakeTask.links("whitehall", "publishing:scheduled:requeue_all_jobs") %>
+
+Due to the overnight [data anonymisation process](https://github.com/alphagov/whitehall/blob/7b5c5a086b89cb62ffba62b152a0a8dcfc10c8e6/script/scrub-database) you may notice
+that some of the pending documents have one or more edition that is in a
+`scheduled` state, is `access_limited`, and may have one or more attachments
+with the filename `redacted.pdf`.
+
+These documents cannot be published and will cause a
+`RestClient::UnprocessableEntity: 422 Unprocessable Entity` error.
+
+The situation is likely to be re-created the next day by the above process on
+the same documents/editions.
