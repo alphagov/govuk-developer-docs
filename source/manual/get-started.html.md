@@ -247,7 +247,7 @@ or `govuk-internal-administrators` group needs to deploy the
 
 ### First run
 
-Here, you will use the GDS CLI you installed and set up earlier. You'll be asked for AWS credentials on the first run:
+Here, you will use the GDS CLI you [installed and set up earlier](#3-install-gds-tooling). You'll be asked for AWS credentials on the first run:
 
 ```shell
 $ gds aws govuk-integration-poweruser -l
