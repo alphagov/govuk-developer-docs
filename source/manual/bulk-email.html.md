@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: How to send a bulk email
+title: Send a bulk email
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
