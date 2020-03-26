@@ -254,6 +254,21 @@ following dashboards:
 GOV.UK Production Corona Forms *TODO: where?*
 GOV.UK Staging Corona Forms *TODO: where?*
 
+## Extracting form responses (business only)
+
+Cabinet Office will require data exports at regular intervals.
+
+There is a rake task to export the data for a single day in JSON
+format.  This can then be sent to the relevant team (TODO: who?).
+
+```
+cf v3-ssh govuk-coronavirus-business-volunteer-form
+$ /tmp/lifecycle/shell
+$ rake export:form_responses["<date>"]
+```
+
+Date to be included in the format 2020-03-26.
+
 
 ## Troubleshooting
 
@@ -288,6 +303,12 @@ Restart an app:
 
 ```
 cf v3-restart <app-name>
+```
+
+Access a Postgres console (for business form only):
+
+```
+cf conduit govuk-coronavirus-business-volunteer-form-db -- psql
 ```
 
 *TODO: anything else?*
