@@ -80,7 +80,7 @@ cookie, persisted in the browser and sent back to the server for every
 question.  Cookies have a limit of 4KB, so this approach could cause
 errors if the user submits large inputs.
 
-For the business volunteering form, we store the following for 2
+For both the business volunteering and vulnerable people forms, we store the following for 2
 hours:
 
 - the session id in an encrypted cookie
