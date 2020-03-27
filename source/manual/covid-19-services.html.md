@@ -48,7 +48,7 @@ for them.
 Both applications have a similar architecture of:
 
 - **Framework:** Ruby on Rails
-- **Database:** AWS RDS (business) and DynamoDB (vulnerable people)
+- **Database:** AWS RDS (business volunteering) and DynamoDB (vulnerable people)
 - **Hosting:** PaaS
 - **CDN:** AWS CloudFront
 - **CI:** Travis
