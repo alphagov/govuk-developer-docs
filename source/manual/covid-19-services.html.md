@@ -309,17 +309,17 @@ Access a Postgres console (for business form only):
 cf conduit govuk-coronavirus-business-volunteer-form-db -- psql
 ```
 
-*TODO: anything else?*
-
 ### Escalating to PaaS support
 
-*TODO: how?*
+PaaS support contact details are in the [legacy opsmanual doc][legacy-opsmanual] under the
+heading "PaaS Support (COVID-19 forms)".
 
 [`ruby_buildpack`]: https://docs.cloud.service.gov.uk/deploying_apps.html#deploy-a-ruby-on-rails-app
 [big-concourse]: https://cd.gds-reliability.engineering/
 [big-concourse-docs]: https://reliability-engineering.cloudapps.digital/continuous-deployment.html#getting-started-with-concourse
 [cf-cli]: https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line
 [concourse-docs]: https://concourse-ci.org/fly.html
+[legacy-opsmanual]: https://docs.google.com/document/d/17XUuPaZ5FufyXH00S9qukl6Kf3JbJtAqwHR3eOBVBpI/edit
 [paas-docs]: https://docs.cloud.service.gov.uk/
 [paas-managing]: https://docs.cloud.service.gov.uk/managing_apps.html#managing-apps
 [paas-monitoring]: https://docs.cloud.service.gov.uk/monitoring_apps.html#monitoring-apps
