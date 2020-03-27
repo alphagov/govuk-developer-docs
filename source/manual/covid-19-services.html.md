@@ -108,7 +108,7 @@ technical documentation][paas-docs].
 
 #### Get access
 
-To get access, ask an organisation manager to invite you to the
+To get access, email govuk-senior-tech-members@digital.cabinet-office.gov.uk and ask for an invite to the
 `govuk_development` organisation.  They need to give you a role that
 lets you access both `staging` and `production` spaces and the
 applications inside.
@@ -232,8 +232,6 @@ cd ~/govuk/govuk-secrets/pass
 
 ## Monitoring
 
-Grafana (there's a separate Grafana to look at) *TODO: where?*
-
 There's a [Splunk dashboard][splunk] for both of these services.  To
 access Splunk, you need to have the `GDS-006-GOVUK` permission on your
 Google account.  To get this permission, raise an IT Helpdesk ticket
@@ -274,7 +272,7 @@ Date to be included in the format 2020-03-26.
 
 ### What things will call you
 
-*TODO: what?*
+The GOV.UK PagerDuty will page on-call/2ndline if these applications go down. It's connected up to a Pingdom check in the GOV.UK account that checks if the first form page is up.
 
 ### Useful commands
 
