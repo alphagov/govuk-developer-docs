@@ -178,7 +178,7 @@ To administer pipelines you must have the `pipeline-operator` role.
 Pipelines are administered using the `fly` CLI tool.  `fly` can be
 downloaded directly from the Concourse dashboard using the links in
 the bottom bottom right of the screen (you probably want to click the
-apple).
+apple). If that doesn't download an executable file, you can install with `brew cask install fly`.
 
 To get started, firstly configure a target and log in:
 
