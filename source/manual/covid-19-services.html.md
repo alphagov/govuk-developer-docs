@@ -75,7 +75,7 @@ To run one of the applications locally, see the README in the GitHub repo.
 While the user is filling out the form, we use session storage to
 store the user's data.
 
-For the vulnerable people form, we store session data in an encrypted
+For the vulnerable people form, we store session data for 2 hours in an encrypted
 cookie, persisted in the browser and sent back to the server for every
 question.  Cookies have a limit of 4KB, so this approach could cause
 errors if the user submits large inputs.
