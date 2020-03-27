@@ -249,7 +249,7 @@ your Google Account.
 Logs for both applications are streamed to Logit and can be found in
 following dashboards:
 
-GOV.UK Production Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/04b46992-f653-4c14-965c-236e9a6c2777/kibana/access)
+[GOV.UK Production Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/04b46992-f653-4c14-965c-236e9a6c2777/kibana/access)
 [GOV.UK Staging Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/7a0be476-6535-4544-8318-4c7a130948e8/kibana/access)
 
 ## Extracting form responses (business only)
