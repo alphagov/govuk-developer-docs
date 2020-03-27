@@ -90,12 +90,20 @@ hours:
 
 For both applications, when the user submits the form on the "Check
 your answers" page, the application writes user data to the database.
-The application only has permission to write items to the database.
-For security and privacy reasons, there's no way to read or change
-already-submitted user data.
 
-Developers should not have access to the production database.
+The vulnerable people form application only has permission to write
+items to the database. For security and privacy reasons, there's no
+way to read or change already-submitted user data.
 
+Developers should not have access to the production database for
+the vulnerable people form application.
+
+The business volunteering form application can both read and write
+to it's database as the security and privacy requirements are lower.
+
+Developers may treat data in the business volunteering form to the
+same standards as any other GOV.UK personal data store, and are able
+to access it for legitimate development duties.
 
 ## Hosting
 
