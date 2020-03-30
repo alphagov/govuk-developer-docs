@@ -4,11 +4,11 @@ title: Fall back to AWS CloudFront
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-06-28
-review_in: 6 months
+last_reviewed_on: 2020-03-30
+review_in: 3 months
 ---
 
-There is a backup Content Delivery Network (CDN) that can be used in case Fastly is down.
+There is a backup Content Delivery Network (CDN) that can be used if Fastly is down.
 This backup CDN is currently provided by AWS CloudFront.
 
 **Important** At the time of writing, GOV.UK will be served

@@ -4,7 +4,7 @@ title: 'Web Application Firewall (WAF) configuration'
 section: Security
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-21
+last_reviewed_on: 2020-03-30
 review_in: 3 months
 ---
 
@@ -48,11 +48,10 @@ and saying you work on GOV.UK.
 
 ## Debugging issues with logs delivery
 
-If for some reason Splunk is down, the logs will be requeued and retried for
-several minutes, before falling back to storage in an S3 bucket. The S3 bucket has a
-very short expiry of 3 days since its primary use is to troubleshoot issues in
-scenerios where Splunk delivery is failing.
+If Splunk is down the logs will be requeued and retried for several
+minutes before falling back to storage in an S3 bucket. The S3 bucket
+has a very short expiry of 3 days since its primary use is to
+troubleshoot issues in scenerios where Splunk delivery is failing.
 
 In addition to the previous 3 days of backup logs, the s3 bucket will also dump
 any errors encountered into `failed-delivery` and `failed-processing` folders.
-
