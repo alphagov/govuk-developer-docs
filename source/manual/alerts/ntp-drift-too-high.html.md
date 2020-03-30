@@ -4,7 +4,7 @@ title: ntp drift too high
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-10
+last_reviewed_on: 2020-03-30
 review_in: 6 months
 ---
 
