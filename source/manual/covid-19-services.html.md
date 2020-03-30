@@ -263,12 +263,15 @@ following dashboards:
 [GOV.UK Production Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/04b46992-f653-4c14-965c-236e9a6c2777/kibana/access)
 [GOV.UK Staging Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/7a0be476-6535-4544-8318-4c7a130948e8/kibana/access)
 
-## Extracting form responses (business only)
+## Extracting form responses (business volunteering only)
 
-Cabinet Office will require data exports at regular intervals.
+Cabinet Office require data exports at regular intervals.  A
+[recurring Concourse job](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/5aed27777a22035b1b4f7ea9eafe612b105469a1/concourse/pipeline.yml#L99-L107)
+exports the data to a S3 bucket each day between midnight and 1am.
+Details of the bucket can be obtained using `cf services` and `cf env`.
 
-There is a rake task to export the data for a single day in JSON
-format.  This can then be sent to the relevant team (TODO: who?).
+Should further exports be required, there is a rake task to export
+the data for a single day in JSON format.
 
 ```
 cf v3-ssh govuk-coronavirus-business-volunteer-form
@@ -277,7 +280,6 @@ $ rake export:form_responses["<date>"]
 ```
 
 Date to be included in the format 2020-03-26.
-
 
 ## Troubleshooting
 
