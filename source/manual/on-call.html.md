@@ -30,6 +30,9 @@ You should do these things before going on call so you're prepared.
    to install the [PagerDuty App](https://www.pagerduty.com/features/mobile-incident-management/)
    on your phone.
 1. Ensure you can [decrypt secrets][govuk-secrets] with your GPG setup.
+1. Ensure you have single-sign-on set up for GOV.UK PaaS ([instructions on setting up single-sign-on](https://docs.cloud.service.gov.uk/get_started.html#use-single-sign-on))
+1. Ensure you can access the `govuk_development` organisation in GOV.UK PaaS
+   from the command line ([instructions for setting up the cloud foundry command line](https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line)).
 1. Ensure you know how to escalate an issue to RE, ie infrastructure
    issues or if you need to [access the Carrenza vCloud
    Director][vcloud].
