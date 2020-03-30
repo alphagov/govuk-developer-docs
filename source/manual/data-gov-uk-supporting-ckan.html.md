@@ -424,3 +424,32 @@ running, so is safe to run immediately if you suspect the process has crashed:
 ```bash
 $ fab aws_production class:ckan ckan.restart_harvester
 ```
+
+### CKAN publisher on Staging environment responds with Nginx 504 timeout:
+
+Sometimes CKAN publisher on Staging environemt responds with a 504 from Nginx, this is due to it timing out when connecting to the database as there are too many connections, current limit is 1000.
+
+#### Trying to log on to the database will result in this error:
+
+    FATAL:  too many connections for role "ckan"
+
+#### Log in as another user:
+
+    sudo psql -U aws_db_admin -h postgresql-primary --no-password -d ckan_production
+
+#### View the number of connections and types of queries:
+
+    SELECT COUNT(*) FROM pg_stat_activity WHERE datname = 'ckan_production';
+
+#### It has been observed that during an overnight sync one of the queries caused a large number of db connections:
+
+The following query captures part of that query and uses it to target the pid:
+
+    SELECT pid FROM pg_stat_activity WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%';
+
+#### To terminate the connections it is best to target the pid:
+
+    SELECT pg_terminate_backend(pid) 
+    FROM pg_stat_activity
+    WHERE pid IN (
+    SELECT pid FROM pg_stat_activity WHERE datname = 'ckan_production' AND query LIKE 'SELECT "user".password AS user_password%');
