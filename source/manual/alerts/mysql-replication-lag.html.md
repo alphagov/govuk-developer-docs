@@ -43,3 +43,8 @@ ps auxwww | grep mysqldump
 
 In such cases, the alert should return to normal once the backup
 completes.
+
+If replication is completely broken and the `mysql.reset_slave` Fabric
+task didn't help, there is a
+[`mysql.replicate_slave_from_master`](https://github.com/alphagov/fabric-scripts/search?q=replicate_slave_from_master)
+Fabric task which reinitialises the replica from scratch by running a dump/restore.
