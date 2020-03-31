@@ -40,8 +40,9 @@ more notice we have the better we can prepare and look after people.
 
 [#govuk-tech-overtime](https://gds.slack.com/archives/C0105S28F7A)
 
-This slack channel is monitored by senior members of the technical team, who
-can help triage your request and find the right people to help you.
+This slack channel is monitored by GOV.UK delivery managers and senior members
+of the technical team, who can help triage your request and find the right
+people to help you.
 
 We'll keep a close eye on the channel during working hours.
 
@@ -62,9 +63,13 @@ to people for advice, or had people help prepare a change).
 
 If we agree that a change needs out of hours technical support, we will:
 
+* find a delivery manager to lead on planning the work
 * find someone from the technical team to lead on the work, so you have a
-single point of contact.
-* help the lead person determine how many other people need to be involved (and who they should be)
+  single technical point of contact
+* help the lead person determine how many other people need to be involved (and
+  who they should be)
+* help the delivery manager plan when work should happen, including planning
+  how this will affect teams for at least the next two weeks
 
 ## How to communicate during technical changes out of hours
 
