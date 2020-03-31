@@ -427,7 +427,7 @@ $ fab aws_production class:ckan ckan.restart_harvester
 
 ### CKAN publisher on Staging environment responds with Nginx 504 timeout:
 
-Sometimes CKAN publisher on Staging environemt responds with a 504 from Nginx, this is due to it timing out when connecting to the database as there are too many connections, current limit is 1000.
+Sometimes CKAN publisher on Staging environment responds with a 504 from Nginx, this is due to it timing out when connecting to the database as there are too many connections, current limit is 1000.
 
 #### Trying to log on to the database will result in this error:
 
