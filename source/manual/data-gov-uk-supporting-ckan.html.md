@@ -427,7 +427,7 @@ $ fab aws_production class:ckan ckan.restart_harvester
 
 ### CKAN publisher on Staging environment responds with Nginx 504 timeout:
 
-Sometimes CKAN publisher on Staging environment responds with a 504 from Nginx, this is due to it timing out when connecting to the database as there are too many connections, current limit is 1000, though under normal working the number of connections should be under 10 if the system is not under load testing.
+Sometimes CKAN publisher on Staging environment responds with a 504 from Nginx, this is due to it timing out when connecting to the database as there are too many connections, current limit is 1000, though under normal working the number of connections should be under 100 if the system is not under load testing.
 
     SELECT rolname, rolconnlimit FROM pg_roles WHERE rolname='ckan';`
 
@@ -455,9 +455,45 @@ The following query captures part of that query and uses it to target the pid:
 
     SELECT pid FROM pg_stat_activity WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%';
 
-#### To terminate the connections it is best to target the pid:
+#### To cancel these queries 
+
+    SELECT pg_cancel_backend(pid) 
+    FROM pg_stat_activity
+    WHERE pid IN
+    (SELECT pid 
+    FROM pg_stat_activity 
+    WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%');
+
+#### To identify long running queries
+
+    SELECT
+    pid,
+    now() - pg_stat_activity.query_start AS duration,
+    query,
+    state
+    FROM pg_stat_activity
+    WHERE 
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND
+    datname = 'ckan_production';
+
+#### Cancel long running queries
+
+This will take a few seconds to be processed
+
+    SELECT pg_cancel_backend(pid) 
+    FROM pg_stat_activity
+    WHERE 
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND 
+    state = 'active' AND
+    datname = 'ckan_production';
+
+#### If cancelling does not work you can terminate the query
+
+Note - this must be used with caution as may cause the database to restart to recover consistency.
 
     SELECT pg_terminate_backend(pid) 
     FROM pg_stat_activity
-    WHERE pid IN (
-    SELECT pid FROM pg_stat_activity WHERE datname = 'ckan_production' AND query LIKE 'SELECT "user".password AS user_password%');
+    WHERE 
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND 
+    state = 'active' AND
+    datname = 'ckan_production';
