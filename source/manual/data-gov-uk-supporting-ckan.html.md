@@ -424,3 +424,76 @@ running, so is safe to run immediately if you suspect the process has crashed:
 ```bash
 $ fab aws_production class:ckan ckan.restart_harvester
 ```
+
+### CKAN publisher on Staging environment responds with Nginx 504 timeout:
+
+Sometimes CKAN publisher on Staging environment responds with a 504 from Nginx, this is due to it timing out when connecting to the database as there are too many connections, current limit is 1000, though under normal working the number of connections should be under 100 if the system is not under load testing.
+
+    SELECT rolname, rolconnlimit FROM pg_roles WHERE rolname='ckan';`
+
+#### Changing the connection limit
+
+The connection limit can be updated, but should not exceed the hard limit which is around 3000.
+
+    ALTER USER ckan WITH CONNECTION LIMIT 1001;
+
+#### Trying to log on to the database will result in this error:
+
+    FATAL:  too many connections for role "ckan"
+
+#### Log in as another user:
+
+    sudo psql -U aws_db_admin -h postgresql-primary --no-password -d ckan_production
+
+#### View the number of connections and types of queries:
+
+    SELECT COUNT(*) FROM pg_stat_activity WHERE datname = 'ckan_production';
+
+#### It has been observed that during an overnight sync one of the queries caused a large number of db connections:
+
+The following query captures part of that query and uses it to target the pid:
+
+    SELECT pid FROM pg_stat_activity WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%';
+
+#### To cancel these queries 
+
+    SELECT pg_cancel_backend(pid) 
+    FROM pg_stat_activity
+    WHERE pid IN
+    (SELECT pid 
+    FROM pg_stat_activity 
+    WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%');
+
+#### To identify long running queries
+
+    SELECT
+    pid,
+    now() - pg_stat_activity.query_start AS duration,
+    query,
+    state
+    FROM pg_stat_activity
+    WHERE 
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND
+    datname = 'ckan_production';
+
+#### Cancel long running queries
+
+This will take a few seconds to be processed
+
+    SELECT pg_cancel_backend(pid) 
+    FROM pg_stat_activity
+    WHERE 
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND 
+    state = 'active' AND
+    datname = 'ckan_production';
+
+#### If cancelling does not work you can terminate the query
+
+Note - this must be used with caution as may cause the database to restart to recover consistency.
+
+    SELECT pg_terminate_backend(pid) 
+    FROM pg_stat_activity
+    WHERE 
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND 
+    state = 'active' AND
+    datname = 'ckan_production';
