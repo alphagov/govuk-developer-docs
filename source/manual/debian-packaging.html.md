@@ -174,10 +174,11 @@ deb file to aptly.
 4. Create a snapshot:
 
     ```
-      $ sudo aptly snapshot create rbenv-ruby-$(date +%Y%m%d) from repo rbenv-ruby
+      $ snapshot="rbenv-ruby-$(date +%Y%m%d)"
+      $ sudo aptly snapshot create $snapshot from repo rbenv-ruby
         Snapshot rbenv-ruby-20190212 successfully created.
 
-      $ sudo aptly snapshot show rbenv-ruby-20190212
+      $ sudo aptly snapshot show $snapshot
         Name: rbenv-ruby-20190212
         Created At: 2019-02-12 15:36:23 UTC
         Description: Snapshot from local repo [rbenv-ruby]
@@ -187,16 +188,16 @@ deb file to aptly.
 by checking the diff. You can find the previous snapshot by running `sudo aptly snapshot list`
 
     ```
-      $ sudo aptly snapshot diff rbenv-ruby-20181023 rbenv-ruby-20190212
+      $ sudo aptly snapshot diff rbenv-ruby-20181023 $snapshot
         Arch   | Package          | Version in A  | Version in B
       + amd64  | rbenv-ruby-2.6.1 | -             | 1
 
     ```
 6. Publish the new snapshot, you will be prompted to enter the passphrase for our
-APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass apt`
+APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `./edit.sh 2ndline apt/passphrase`
 
     ```
-    $ sudo -i aptly publish switch trusty rbenv-ruby rbenv-ruby-$(date +%Y%m%d)
+    $ sudo -i aptly publish switch trusty rbenv-ruby $snapshot
       Loading packages...
       Generating metadata files and linking package files...
       Finalizing metadata files...
