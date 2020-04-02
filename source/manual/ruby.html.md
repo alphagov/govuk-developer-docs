@@ -4,7 +4,7 @@ title: Add a new Ruby version
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-28
+last_reviewed_on: 2020-04-02
 review_in: 6 months
 ---
 
@@ -51,6 +51,8 @@ To make sure it has been successful
  - `ruby -v` to make sure your version is in use
 
 ### Copying to Aptly
+
+See [Uploading a new package](debian-packaging.html#uploading-a-new-package)
 
 ### Add to Puppet
 
