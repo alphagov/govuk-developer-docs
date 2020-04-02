@@ -56,16 +56,26 @@ the previous version of the software.
 1.  Download all zip files and XML file in the ticket
 1.  Upload the new files:
 
-        ssh backend-1.production "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
-        scp *.zip backend-1.production:/tmp/hmrc-paye
-        scp *.xml backend-1.production:/tmp/hmrc-paye
+      ```shell
+      govukcli set-context production-aws
+      govukcli ssh backend
+      "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
+      ```
+
+      ```shell
+      $mac scp -oProxyJump=jumpbox.production.govuk.digital *.zip <aws_machine_ip_address>:/tmp/hmrc-paye
+      $mac scp -oProxyJump=jumpbox.production.govuk.digital *.xml <aws_machine_ip_address>:/tmp/hmrc-paye
+      ```
 
 1.  Load the files into the Asset Manager, with "test-" at the start of the manifest file's name:
 
-        ssh backend-1.production
-        cd /var/apps/asset-manager
-        sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
-        sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
+      ```shell
+      govukcli set-context production-aws
+      govukcli ssh backend
+      cd /var/apps/asset-manager
+      sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
+      sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
+      ```
 
 1.  [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets) for the test file.
 
@@ -83,9 +93,12 @@ the previous version of the software.
 1.  When the launch time comes (which should be specified in the Zendesk
     ticket), re-load the test file to the production path:
 
-        ssh backend-1.production
-        cd /var/apps/asset-manager
-        sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
+      ```shell
+      govukcli set-context production-aws
+      govukcli ssh backend
+      cd /var/apps/asset-manager
+      sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
+      ```
 
     You will have to copy the file to the server again if it has been deleted since it was first uploaded.
 
