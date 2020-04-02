@@ -19,52 +19,37 @@ hostnames like `ip-10-1-5-53.eu-west-1.compute.internal`. Each Puppeted instance
 "node class" (backend, frontend, ...) and the list of instances belonging to these
 classes is accessible via `govuk_node_list` when logged onto the environment.
 
-To help connecting to the environments, there is a wrapper tool called
-[`govukcli`](https://github.com/alphagov/govuk-aws/blob/master/tools/govukcli). The tool
-uses the idea of "contexts", where a "context" is a specific environment. By setting a
-context, any subsequent `govukcli` commands will be tied to the environment you chose.
-
-## Setup
-
-Follow the [set up govukcli](/manual/get-ssh-access.html#3-set-up-govukcli) instructions.
-
 ## Usage
 
 ### Local dev machine
 
-To view all possible contexts, run:
+If you know the class of machine you want, you can SSH straight from the command line:
 
 ```sh
-local$ govukcli list-contexts
+$ gds govuk connect ssh -e staging cache
 ```
 
-To set a persistent context:
+This will automatically SSH into a random `cache` machine on AWS.
+If a class exists in multiple clouds, you will need to choose which one to SSH into:
 
 ```sh
-local$ govukcli set-context integration
+$ gds govuk connect ssh -e staging backend
+error: ambiguous hosting for backend in staging
 ```
 
-Now when you SSH into an instance, it will be to one running on the specified environment:
+You'll need to prefix it with `aws/` or `carrenza/`:
 
 ```sh
-# SSH into a 'calculators_frontend' node in current context (Integration)
-local$ govukcli ssh calculators_frontend
+$ gds govuk connect ssh -e staging aws/backend
 ```
 
-Alternatively, you can set a context for the current command only by passing a CLI parameter:
+You can find out which class of machine you need (and which cloud it lives in)
+by finding the corresponding [app page](https://docs.publishing.service.gov.uk/apps.html).
+
+Alternatively, you can use the jumpbox.
 
 ```sh
-# SSH into a 'calculators_frontend' node in Staging, ignoring local context
-local$ govukcli ssh --context staging calculators_frontend
-```
-
-Note that the SSH examples above will SSH you into a random machine of the right node class.
-You can find out which class you need by finding the corresponding [app page](https://docs.publishing.service.gov.uk/apps.html).
-
-`govukcli` finds a matching machine via the 'jumpbox', which you can also SSH into directly:
-
-```sh
-local$ govukcli ssh jumpbox
+$ gds govuk connect ssh -e integration jumpbox
 ```
 
 ### Jumpbox
@@ -102,22 +87,6 @@ You can also do this from your local machine by appending the environment to the
 local$ ssh ip-10-1-5-22.eu-west-1.compute.internal.integration
 ```
 
-Note that in Carrenza, there are no dynamic IPs, so you can SSH into a specific node by name.
-There are no Carrenza machines on Integration anymore, so these examples assume you've set
-context to `staging`:
-
-```sh
-# SSH into the `backend-1.backend.staging` node
-local$ govukcli ssh backend-1
-```
-
-...or as with AWS, you can SSH into a random machine of the right node class:
-
-```sh
-# This may SSH into `backend-1.backend.staging` or into a different node
-local$ govukcli ssh backend
-```
-
 ### Application node
 
 Now you're on the node running the application you want to explore. There are two main
@@ -145,5 +114,3 @@ have added the key into the keychain like so: `ssh-add -K ~/.ssh/id_rsa`.
 
 Make sure you have been granted access. For example, if you have yet to be granted access
 to production, your attempt to SSH into a production node will fail silently.
-
-If in doubt, run `GOVUKCLI_OUTPUT=debug govukcli ssh backend` to help you to debug.
