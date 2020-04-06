@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2019-08-22
+last_reviewed_on: 2020-04-06
 review_in: 6 months
 ---
 
@@ -19,7 +19,7 @@ Content Preview contains [most frontend applications][preview-puppet].
 
 Content Preview exists in each of integration, staging and production.
 
-[preview-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/draft_frontend.yaml
+[preview-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/draft_frontend.yaml
 
 ## Design
 
@@ -50,15 +50,6 @@ Content Preview is available in all three environments.
 -   <https://draft-origin.publishing.service.gov.uk>
 -   <https://draft-origin.staging.publishing.service.gov.uk>
 -   <https://draft-origin.integration.publishing.service.gov.uk>
-
-The machines are available in the same organisations as their live
-counterparts, and use a `draft-` prefix, eg:
-
--   draft-cache-1.router.integration
--   draft-frontend-2.frontend.production
--   draft-content-store.1.api.integration
-
-and so on.
 
 ## Authentication
 
