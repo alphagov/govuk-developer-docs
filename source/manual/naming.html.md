@@ -4,7 +4,7 @@ title: Name a new application or gem
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-03-26
+last_reviewed_on: 2020-04-06
 review_in: 12 months
 ---
 
