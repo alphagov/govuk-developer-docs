@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Dependencies
 type: learn
-last_reviewed_on: 2019-09-11
+last_reviewed_on: 2020-04-06
 review_in: 6 months
 ---
 
