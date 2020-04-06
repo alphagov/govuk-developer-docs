@@ -50,7 +50,7 @@ class AppDiagramGenerator
     end
     file.puts "}"
 
-    @actors_by_application_type.keys.each do |key|
+    @actors_by_application_type.each_key do |key|
       app_type_actors = @actors_by_application_type[key]
       app_type_alias = get_valid_alias(key)
 
@@ -70,13 +70,13 @@ class AppDiagramGenerator
       file.puts "!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml"
       file.puts ""
 
-      @applications_by_type.keys.each do |key|
+      @applications_by_type.each_key do |key|
         system_alias = get_valid_alias(key)
         system_label = key
         file.puts "System(#{system_alias}, \"#{system_label}\", \"Optional Description\")"
       end
 
-      @system_dependencies.keys.each do |key|
+      @system_dependencies.each_key do |key|
         system_alias = get_valid_alias(key)
         dependencies = @system_dependencies[key]
         dependencies.each do |dep|
@@ -102,7 +102,7 @@ class AppDiagramGenerator
     @system_dependencies = {}
     @app_system_dependencies = {}
 
-    @applications_by_type.keys.each do |key|
+    @applications_by_type.each_key do |key|
       system_dependencies = []
       system_apps = @applications_by_type[key]
 
@@ -113,7 +113,7 @@ class AppDiagramGenerator
         app_dependencies = app["dependencies"]
         next if app_dependencies.nil?
 
-        app_dependencies.keys.each do |dep_app|
+        app_dependencies.each_key do |dep_app|
           dep_app_type = @application_type[dep_app]
 
           if dep_app_type != key
@@ -210,7 +210,7 @@ class AppDiagramGenerator
     init_system_dependencies
     generate_system_context_diagram
 
-    @applications_by_type.keys.each do |key|
+    @applications_by_type.each_key do |key|
       generate_container_diagram(key)
     end
   end
