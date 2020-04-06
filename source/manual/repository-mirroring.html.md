@@ -5,8 +5,8 @@ section: GitHub
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-12-09
-review_in: 3 months
+last_reviewed_on: 2020-04-06
+review_in: 6 months
 ---
 
 We mirror all GitHub repositories tagged with `govuk` to AWS CodeCommit every 2 hours using a [Concourse pipeline configured in alphagov/govuk-repo-mirror](https://github.com/alphagov/govuk-repo-mirror).
