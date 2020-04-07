@@ -4,7 +4,7 @@ title: smokey.json older than 30m
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-12
+last_reviewed_on: 2020-04-07
 review_in: 6 months
 ---
 
@@ -44,6 +44,6 @@ you should see it clear up.
 
 In the very rare occurrence that the smokey.json 30m error returns half an hour
 after the above steps are followed, retry the steps and then run
-`sudo govuk_puppet --test` after starting the service. This is ultimately a
+`govuk_puppet --test` after starting the service. This is ultimately a
 solution with very little testing, as we only saw this happen once, but it worked
 in that case and may work again.
