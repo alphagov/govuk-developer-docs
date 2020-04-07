@@ -21,7 +21,7 @@ gem "redcarpet", "~> 3.3.2"
 gem "govuk_schemas", "~> 4.0.0"
 
 # GitHub API
-gem "faraday-http-cache", "~> 2.0.0"
+gem "faraday-http-cache", "~> 2.1.0"
 gem "faraday_middleware", "~> 0.14.0"
 gem "octokit", "~> 4.18.0"
 
