@@ -23,7 +23,7 @@ class PublishingApiDocs
     end
 
     def path
-      "/doc/#{filename}.md"
+      "doc/#{filename}.md"
     end
 
     def repository
