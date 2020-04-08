@@ -4,7 +4,7 @@ title: Whitehall app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-02
+last_reviewed_on: 2020-04-08
 review_in: 6 months
 ---
 
@@ -13,11 +13,14 @@ edition(s); 840 job(s) queued', this alert means that the number of
 editions in the database which are scheduled to be published in the
 future is different from the number currently in the queue. This can
 happen in Staging and Integration as a result of the data sync from
-Production. Run this Rake task to requeue all scheduled editions:
+Production.
 
-SSH into `whitehall_backend` and then:
+Run the `publishing:scheduled:requeue_all_jobs` Rake task to requeue all
+scheduled editions:
 
-```
-cd /var/apps/whitehall
-sudo -u deploy govuk_setenv whitehall bundle exec rake publishing:scheduled:requeue_all_jobs
-```
+- [Integration][]
+- [Staging][]
+
+
+[Integration]: https://deploy.integration.publishing.service.gov.uk//job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing:scheduled:requeue_all_jobs
+[Staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing:scheduled:requeue_all_jobs
