@@ -4,7 +4,7 @@ title: Resync a MongoDB database
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-02
+last_reviewed_on: 2020-04-08
 review_in: 6 months
 ---
 
@@ -18,7 +18,7 @@ review_in: 6 months
 
 To
 [resync](https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/)
-a member of a MongoDB cluster, run our force\_resync
+a member of a MongoDB cluster, run our `force_resync`
 [Fabric](https://github.com/alphagov/fabric-scripts) script:
 
     fab $environment -H $hostname mongo.force_resync
@@ -26,6 +26,6 @@ a member of a MongoDB cluster, run our force\_resync
 The `mongo.force_resync` command checks that you are not trying to
 perform a resync on the primary member.
 
-You can run mongo.status at any time to see the status of the cluster:
+You can run `mongo.status` at any time to see the status of the cluster:
 
     fab $environment -H $hostname mongo.status
