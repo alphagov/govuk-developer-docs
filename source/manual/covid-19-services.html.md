@@ -165,14 +165,15 @@ settings and credentials for the backing service automatically.
 We have two AWS accounts (staging and production) for CDN and data
 storage. They contain DynamoDB, IAM and CloudFront resources,
 which were provisioned by Terraform in the [tech-ops-private
-repository](techops-repo).
+repository](techops-repo). Members of the GOV.UK Coronavirus Services
+team have access.
 
 To log in to AWS:
 
 1. [Install and set up the gds-cli](/manual/get-started.html#8-use-your-aws-access), then log in to the AWS Console with either:
 
-   - `gds aws govuk-corona-data-staging -l` for staging
-   - `gds aws govuk-corona-data-prod -l` for production
+   - `gds aws govuk-corona-data-staging-poweruser -l` for staging
+   - `gds aws govuk-corona-data-prod-poweruser -l` for production
 
 ## Deployment
 
