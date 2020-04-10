@@ -13,11 +13,6 @@ We recently launched 2 new services:
 - Offer coronavirus support from your business
 - Get coronavirus support as an extremely vulnerable person
 
-There is also an interactive voice response (IVR) automated phone
-service provided by AWS.  This is for users who do not have access to
-the internet.
-
-
 ## Offer coronavirus support from your business
 
 This service allows businesses to tell us how they might be able to
@@ -28,7 +23,6 @@ services such as medical equipment, hotel rooms or childcare.
 - [Service](https://coronavirus-business-volunteers.service.gov.uk/medical-equipment)
 - [GitHub](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form)
 
-
 ## Get coronavirus support as an extremely vulnerable person
 
 This service allows citizens identified as vulnerable by the NHS to
@@ -38,17 +32,32 @@ message from the NHS, or been advised by their GP to fill in the form.
 They can fill the form in themselves, or someone else can fill it in
 for them.
 
+There is also an interactive voice response (IVR) automated phone
+service provided by AWS. This is for users who do not have access to
+the internet.
+
 - [Start page](https://www.gov.uk/coronavirus-extremely-vulnerable)
 - [Service](https://coronavirus-vulnerable-people.service.gov.uk/live-in-england)
 - [GitHub](https://github.com/alphagov/govuk-coronavirus-vulnerable-people-form)
 
+## Find support if you're affected by coronavirus
+
+This service allows all citizens - who may not have been eligible for
+the extremely vulnerable service - to find information about what help
+is available if they're struggling with unemployment, an inability to
+get food, having somewhere to live, or their general wellbeing as a
+result of coronavirus.
+
+- [Start page](https://www.gov.uk/find-coronavirus-support)
+- [Service](https://find-coronavirus-support.service.gov.uk/urgent-medical-help)
+- [GitHub](https://github.com/alphagov/govuk-coronavirus-find-support)
 
 ## Architecture
 
 Both applications have a similar architecture of:
 
 - **Framework:** Ruby on Rails
-- **Database:** AWS RDS (business volunteering) and DynamoDB (vulnerable people)
+- **Database:** AWS RDS (business volunteering, find support) and DynamoDB (vulnerable people)
 - **Hosting:** PaaS
 - **CDN:** AWS CloudFront
 - **CI:** Travis
@@ -66,7 +75,6 @@ Each application is a standard Rails application with:
 - a privacy page
 
 To run one of the applications locally, see the README in the GitHub repo.
-
 
 ## Session and data storage
 
@@ -91,8 +99,13 @@ This is also stored for 2 hours.
 
 ### Data storage
 
-For both applications, when the user submits the form on the "Check
-your answers" page, the application writes user data to the database.
+For all but the find support form, when the user submits the form on
+the "Check your answers" page, the application writes user data to the
+database.
+
+For the find support form, user responses are written to the database
+on submission of the final question. There is no "Check your answers"
+page.
 
 The vulnerable people form application only has permission to write
 items to the database. For security and privacy reasons, there's no
@@ -110,7 +123,7 @@ to access it for legitimate development duties.
 
 ## Hosting
 
-### Paas
+### PaaS
 
 Both applications are hosted on GOV.UK Platform as a Service (PaaS) in
 the Ireland region.  PaaS provides a scalable hosting platform based
@@ -119,10 +132,11 @@ technical documentation][paas-docs].
 
 #### Get access
 
-To get access, email govuk-senior-tech-members@digital.cabinet-office.gov.uk and ask for an invite to the
-`govuk_development` organisation.  They need to give you a role that
-lets you access both `staging` and `production` spaces and the
-applications inside.
+To get access, email
+govuk-senior-tech-members@digital.cabinet-office.gov.uk and ask for an
+invite to the `govuk_development` organisation.  They need to give you
+a role that lets you access both `staging` and `production` spaces and
+the applications inside.
 
 #### Log in
 
@@ -151,15 +165,15 @@ settings and credentials for the backing service automatically.
 We have two AWS accounts (staging and production) for CDN and data
 storage. They contain DynamoDB, IAM and CloudFront resources,
 which were provisioned by Terraform in the [tech-ops-private
-repository](techops-repo).
+repository](techops-repo). Members of the GOV.UK Coronavirus Services
+team have access.
 
 To log in to AWS:
 
 1. [Install and set up the gds-cli](/manual/get-started.html#8-use-your-aws-access), then log in to the AWS Console with either:
 
-   - `gds aws govuk-corona-data-staging -l` for staging
-   - `gds aws govuk-corona-data-prod -l` for production
-
+   - `gds aws govuk-corona-data-staging-poweruser -l` for staging
+   - `gds aws govuk-corona-data-prod-poweruser -l` for production
 
 ## Deployment
 
@@ -179,6 +193,7 @@ Links to Concourse Pipelines:
 
 - [`govuk-corona-business-volunteer-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-business-volunteer-form)
 - [`govuk-corona-vulnerable-people-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-vulnerable-people-form)
+- [`govuk-corona-find-support-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-find-support-form)
 
 For access login with your GitHub account, you need to be a part of
 the GOV.UK Production team.  You'll also need to be on the VPN.
@@ -232,6 +247,7 @@ previous deployment, run: `cf v3-cancel-zdt-push <app-name>`.
 
 - [`govuk-coronavirus-business-volunteer-form`](https://govuk-coronavirus-business-volunteer-form-stg.cloudapps.digital/medical-equipment)
 - [`govuk-coronavirus-vulnerable-people-form`](https://govuk-coronavirus-vulnerable-people-form-stg.cloudapps.digital/live-in-england)
+- [`govuk-coronavirus-find-support-form`](https://govuk-coronavirus-find-support-stg.cloudapps.digital/urgent-medical-help)
 
 These are protected by HTTP basic auth.  You can find the credentials
 in govuk-secrets and get them by running:
@@ -253,11 +269,12 @@ Application errors are sent to the GOV.UK hosted Sentry:
 
 - [`govuk-coronavirus-business-volunteer-form`](https://sentry.io/organizations/govuk/issues/?project=5172100)
 - [`govuk-coronavirus-vulnerable-people-form`](https://sentry.io/organizations/govuk/issues/?project=5170680)
+- [`govuk-coronavirus-find-support-form`](https://sentry.io/organizations/govuk/issues/?project=5192076)
 
 These are under the GOV.UK Sentry account and you can sign in with
 your Google Account.
 
-Logs for both applications are streamed to Logit and can be found in
+Logs for all applications are streamed to Logit and can be found in
 following dashboards:
 
 [GOV.UK Production Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/04b46992-f653-4c14-965c-236e9a6c2777/kibana/access)
