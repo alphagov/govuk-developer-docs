@@ -164,9 +164,9 @@ settings and credentials for the backing service automatically.
 
 We have two AWS accounts (staging and production) for CDN and data
 storage. They contain DynamoDB, IAM and CloudFront resources,
-which were provisioned by Terraform in the [tech-ops-private
-repository](techops-repo). Members of the GOV.UK Coronavirus Services
-team have access.
+which were provisioned by Terraform in the [alphagov/covid-engineering
+repository][covid-engineering-repo]. Members of the GOV.UK Coronavirus
+Services team have access.
 
 To log in to AWS:
 
@@ -355,4 +355,4 @@ heading "PaaS Support (COVID-19 forms)".
 [paas-monitoring]: https://docs.cloud.service.gov.uk/monitoring_apps.html#monitoring-apps
 [paas-redis]: https://docs.cloud.service.gov.uk/deploying_services/redis/#redis
 [splunk]: https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/d006_coronavirus
-[techops-repo]: https://github.com/alphagov/tech-ops-private/blob/master/reliability-engineering/terraform/deployments/corona-data-prod/account/iam.tf#L57-L184
+[covid-engineering-repo]: https://github.com/alphagov/covid-engineering/blob/master/reliability-engineering/terraform/deployments/corona-data-prod/account/iam.tf#L296-L386
