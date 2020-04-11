@@ -23,7 +23,7 @@ and that they're correctly scheduled in.
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
 them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty.
 
-## PagerDuty drill
+## PagerDuty drill
 
 Every week we test PagerDuty to make sure it can phone to alert us to
 any issues. This happens every Wednesday morning at 10am UTC.
@@ -48,11 +48,10 @@ anyone else being phoned.
 
 To trigger the drill manually, follow these steps:
 
-1. Shell onto the monitoring box:
+1. SSH onto the monitoring box:
 
 ```shell
-$ govukcli set-context production
-$ govukcli ssh monitoring
+$ gds govuk connect -e production ssh aws/monitoring
 ```
 
 2. Generate the file that the Icinga monitor looks for which triggers the alert:

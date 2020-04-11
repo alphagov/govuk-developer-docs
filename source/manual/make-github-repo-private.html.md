@@ -43,9 +43,8 @@ Perform these actions on staging first, before rolling out to production.
 
 In the relevant environment, disable Puppet on the Jenkins machine, otherwise Puppet will overwrite your changes.  This can be done by SSHing into the Jenkins machine:
 
-
 ```
-$ govukcli ssh jenkins
+$ gds govuk connect -e <environment> ssh jenkins
 $ govuk_puppet --disable
 ```
 
@@ -68,7 +67,7 @@ The app can now be deployed as normal.
 After deployment is complete, Puppet can be re-enabled:
 
 ```
-$ govukcli ssh jenkins
+$ gds govuk connect -e <environment> ssh jenkins
 $ govuk_puppet --enable
 ```
 
