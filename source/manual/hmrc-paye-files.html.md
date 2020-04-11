@@ -57,8 +57,7 @@ the previous version of the software.
 1.  Upload the new files:
 
       ```shell
-      govukcli set-context production-aws
-      govukcli ssh backend
+      gds govuk connect -e production ssh aws/backend
       "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
       ```
 
@@ -70,8 +69,7 @@ the previous version of the software.
 1.  Load the files into the Asset Manager, with "test-" at the start of the manifest file's name:
 
       ```shell
-      govukcli set-context production-aws
-      govukcli ssh backend
+      gds govuk connect -e production ssh aws/backend
       cd /var/apps/asset-manager
       sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
       sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
@@ -94,8 +92,7 @@ the previous version of the software.
     ticket), re-load the test file to the production path:
 
       ```shell
-      govukcli set-context production-aws
-      govukcli ssh backend
+      gds govuk connect -e production ssh aws/backend
       cd /var/apps/asset-manager
       sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
       ```

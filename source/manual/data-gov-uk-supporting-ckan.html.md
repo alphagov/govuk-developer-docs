@@ -332,7 +332,7 @@ ID and name of the harvest source.
 
 If the harvest job is hanging and the 'Stop' button is not responding, you will have to log on to the `ckan` machine to restart it:
 
-1. Log on to `ckan` machine using `govukcli`.
+1. SSH into the ckan machine with `gds govuk connect -e production ssh ckan`
 1. Assume the deploy user - `sudo su deploy`
 1. Activate the virtual environment - `. /var/apps/ckan/venv/bin/activate`
 1. Run the harvest job manually - `paster --plugin=ckanext-harvest harvester run_test <harvest source> -c /var/ckan/ckan.ini`
@@ -385,11 +385,7 @@ You can check whether the process is still running by checking if entries are
 still being written to the log file on the `ckan` machine:
 
 ```bash
-$ govukcli set-context production-aws
-$ govukcli ssh ckan
-```
-
-```bash
+$ gds govuk connect -e production ssh ckan
 $ sudo tail -f /var/log/ckan/procfile_harvester_fetch_consumer.err.log
 ```
 

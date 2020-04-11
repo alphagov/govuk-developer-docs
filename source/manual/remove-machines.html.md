@@ -99,15 +99,14 @@ puppetmaster and then on the monitoring machine, which could be up to
 an hour.  You can force this by running Puppet on the puppetmaster:
 
 ```console
-$ govukcli set-context <environment>
-$ govukcli ssh puppetmaster
+$ gds govuk connect -e <environment> ssh puppetmaster
 $ govuk_puppet --verbose
 ```
 
 And then on the monitoring machine:
 
 ```console
-$ govukcli ssh monitoring
+$ gds govuk connect -e <environment> ssh monitoring
 $ govuk_puppet --verbose
 ```
 
