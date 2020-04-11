@@ -13,6 +13,15 @@ RSpec.describe AppDocs::App do
     end
   end
 
+  describe "apps_on_host" do
+    it "should return apps hosted on the named host" do
+      production_apps_count = AppDocs::pages.count { |app| app.production_hosted_on.present? }
+      apps_by_host = AppDocs::HOSTERS.map { |key, _val| AppDocs::apps_on_host(key) }.flatten
+      expect(apps_by_host).to all(be_an(AppDocs::App))
+      expect(apps_by_host.count).to eq(production_apps_count)
+    end
+  end
+
   describe "dashboard_url" do
     let(:production_hosted_on) { nil }
     let(:app) do

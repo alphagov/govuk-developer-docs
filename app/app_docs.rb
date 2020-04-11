@@ -14,6 +14,10 @@ class AppDocs
     end
   end
 
+  def self.apps_on_host(host)
+    AppDocs.pages.select { |app| app.production_hosted_on == host }
+  end
+
   def self.app_data
     @app_data ||= AppData.new
   end
