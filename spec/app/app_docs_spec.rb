@@ -13,6 +13,19 @@ RSpec.describe AppDocs::App do
     end
   end
 
+  describe "hosters_descending" do
+    it "should return hosters in descending order of repo count" do
+      expect(AppDocs::hosters_descending.keys).to eq(%w[
+        aws
+        carrenza
+        heroku
+        paas
+        none
+        ukcloud
+      ])
+    end
+  end
+
   describe "apps_on_host" do
     it "should return apps hosted on the named host" do
       production_apps_count = AppDocs::pages.count { |app| app.production_hosted_on.present? }
