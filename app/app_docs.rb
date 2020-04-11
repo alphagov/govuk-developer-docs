@@ -15,7 +15,9 @@ class AppDocs
   end
 
   def self.apps_on_host(host)
-    AppDocs.pages.select { |app| app.production_hosted_on == host }
+    AppDocs.pages
+      .select { |app| app.production_hosted_on == host }
+      .sort_by(&:app_name)
   end
 
   def self.app_data

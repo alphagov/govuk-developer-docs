@@ -20,6 +20,12 @@ RSpec.describe AppDocs::App do
       expect(apps_by_host).to all(be_an(AppDocs::App))
       expect(apps_by_host.count).to eq(production_apps_count)
     end
+
+    it "should return apps in alphabetical order" do
+      apps_on_aws = AppDocs::apps_on_host("aws")
+      expect(apps_on_aws.first.app_name).to eq("asset-manager")
+      expect(apps_on_aws.last.app_name).to eq("whitehall")
+    end
   end
 
   describe "dashboard_url" do
