@@ -8,10 +8,10 @@ separate applications. Most of them are built using [Ruby on Rails][rails].
 
 ## Hosting
 
-| Hosting | Number of applications |
-| --- | --- |
+| Hosting | Count | Applications |
+| --- | --- | --- |
 <% AppDocs::HOSTERS.each do |id, name| %>
-| <%= name %> | <%= AppDocs::apps_on_host(id).count %> |
+| <%= name %> | <%= AppDocs::apps_on_host(id).count %> | <%= AppDocs::apps_on_host(id).map { |app| "[#{app.app_name}](/apps/#{app.app_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Reuse this data
