@@ -13,9 +13,7 @@ RSpec.describe AppDocs::App do
       { github_repo_name: "govuk-frontend", production_hosted_on: "aws" },
       { github_repo_name: "collections-publisher", production_hosted_on: "carrenza" },
       { github_repo_name: "second-app-on-carrenza", production_hosted_on: "carrenza" },
-      { github_repo_name: "third-app-on-carrenza", production_hosted_on: "carrenza" },
       { github_repo_name: "app-on-heroku", production_hosted_on: "heroku" },
-      { github_repo_name: "second-app-on-heroku", production_hosted_on: "heroku" },
       { github_repo_name: "app-on-paas", production_hosted_on: "paas" },
       { github_repo_name: "some-retired-application" },
     ]
@@ -42,8 +40,8 @@ RSpec.describe AppDocs::App do
         carrenza
         heroku
         paas
-        ukcloud
         none
+        ukcloud
       ])
     end
   end
