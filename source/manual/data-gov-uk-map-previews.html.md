@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-datagovuk"
 title: WMS map previews on data.gov.uk
 section: data.gov.uk
 layout: manual_layout
