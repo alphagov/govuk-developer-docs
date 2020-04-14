@@ -14,6 +14,19 @@ class AppDocs
     end
   end
 
+  def self.hosters_descending
+    ordered_keys = HOSTERS.keys.sort do |a, b|
+      [apps_on_host(b).count, a] <=> [apps_on_host(a).count, b]
+    end
+    ordered_keys.map { |key| [key, HOSTERS[key]] }.to_h
+  end
+
+  def self.apps_on_host(host)
+    AppDocs.pages
+      .select { |app| app.production_hosted_on == host }
+      .sort_by(&:app_name)
+  end
+
   def self.app_data
     @app_data ||= AppData.new
   end
