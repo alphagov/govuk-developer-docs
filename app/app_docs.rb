@@ -16,7 +16,7 @@ class AppDocs
 
   def self.hosters_descending
     ordered_keys = HOSTERS.keys.sort do |a, b|
-      apps_on_host(b).count <=> apps_on_host(a).count
+      [apps_on_host(b).count, a] <=> [apps_on_host(a).count, b]
     end
     ordered_keys.map { |key| [key, HOSTERS[key]] }.to_h
   end
