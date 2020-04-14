@@ -17,5 +17,7 @@ review_in: 6 months
 
 <em>[Source diagram][src] in the [GOV.UK architecture folder][arch-folder].</em>
 
+If you'd like to explore further, read the [architectural deep-dive](/architecture-deep-dive.html).
+
 [src]: https://drive.google.com/open?id=1qTEpv2kCzghqZpUF86UyQj4o0dZ97gTm
 [arch-folder]: https://drive.google.com/drive/folders/1xIjPkD_MSKMR65FbDAb-ToXy2GmBcaJ5
