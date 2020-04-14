@@ -5,7 +5,7 @@ section: Frontend
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-08
+last_reviewed_on: 2020-04-13
 review_in: 6 months
 ---
 
