@@ -22,6 +22,11 @@ RSpec.describe ExternalDoc do
       expect(html).to have_link("turpis ultrices", href: "/ultrices.html")
     end
 
+    it "does not rewrite links to markdown pages with a host" do
+      expect(html).to have_link("Nam eget dui", href: "https://nam.com/eget/dui/uploading.md")
+      expect(html).not_to have_link("Nam eget dui", href: "https://nam.com/eget/dui/uploading.html")
+    end
+
     it "rewrites relative images" do
       expect(html).to have_css('img[src="https://raw.githubusercontent.com/example/lipsum/master/suspendisse_iaculis.png"]')
     end
