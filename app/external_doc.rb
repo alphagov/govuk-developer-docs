@@ -81,7 +81,7 @@ class ExternalDoc
   # contain links to other pages of documentation also formatted with Markdown.
   # When the documentation is rendered as part of GOV.UK Developer Docs we
   # render it as HTML so we need to rewrite the links so that they have a .html
-  # extension to match out routing.
+  # extension to match our routing.
   #
   # For example a link to `link-expansion.md` would be rewritten to
   # `link-expansion.html`
