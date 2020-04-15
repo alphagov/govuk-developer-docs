@@ -20,8 +20,7 @@ If there's a need to edit a route in the database:
 1. Connect to a router-backend machine
 
 ```console
-govukcli set-context production-aws
-govukcli ssh router_backend
+gds govuk connect -e production ssh aws/router_backend
 ```
 
 2. Connect to router-api and get the route

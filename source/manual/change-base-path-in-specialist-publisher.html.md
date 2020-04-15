@@ -21,8 +21,7 @@ if necessary). For the change to be permanent, you need to publish the draft, wh
 either do in the Specialist Publisher UI or by using the CLI:
 
 ```sh
-local$      govukcli set-context production
-local$      govukcli ssh backend
+local$      gds govuk connect -e production ssh backend
 
 production$ govuk_app_console specialist-publisher
 
