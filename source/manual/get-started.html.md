@@ -115,7 +115,7 @@ Ask somebody with access to add your SSH username (`firstnamelastname`) to the [
 
 User accounts in our integration environments are managed in the [govuk-puppet][] repository.
 
-``bash
+```bash
 mkdir ~/govuk
 cd ~/govuk
 git clone git@github.com:alphagov/govuk-puppet.git
@@ -303,10 +303,11 @@ consult the [gds-cli README](https://github.com/alphagov/gds-cli).
 
 You can also chain commands, like this one to list S3 buckets in integration:
 
-        gds aws govuk-integration-poweruser aws s3 ls
+```bash
+gds aws govuk-integration-poweruser aws s3 ls
+```
 
 [govuk-aws-data-users-group]: /manual/set-up-aws-account.html#4-get-the-appropriate-access
-
 [infra-terra]: https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security
 [MFA]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication
 [iam]: https://console.aws.amazon.com/iam/home?region=eu-west-1#/users
