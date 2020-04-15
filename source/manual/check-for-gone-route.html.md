@@ -14,7 +14,7 @@ is shown a 'Gone' page, follow these instructions:
 ## Connect to a router-backend machine
 
 ```bash
-$ govukcli ssh --context production router_backend
+gds govuk connect -e production ssh router_backend
 ```
 
 ## Check the router API for a `gone` route
