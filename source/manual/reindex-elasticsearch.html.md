@@ -50,15 +50,11 @@ the indices sequentially.
 
 You can also run this task from Jenkins.
 
-To monitor progress, SSH to a search box:
+To monitor progress, SSH to a search box and check how many documents
+have been copied to the new index:
 
-```
-ssh $(ssh integration "govuk_node_list --single-node -c search").integration
-```
-
-Then check how many documents have been copied to the new index:
-
-```
+```bash
+gds govuk connect ssh -e integration search
 govuk_setenv search-api \
 bash -c 'curl "$ELASTICSEARCH_URI/_cat/indices?v"'
 ```
