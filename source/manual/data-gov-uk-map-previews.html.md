@@ -5,7 +5,7 @@ section: data.gov.uk
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-10-09
+last_reviewed_on: 2020-04-15
 review_in: 6 months
 ---
 
@@ -50,11 +50,11 @@ There are some cases where the map preview link is not showing despite the WMS s
 
 Harvesting errors might be available in the harvest job logs:
 
-https://ckan.publishing.service.gov.uk/harvest/<dataset name>/job
+https://ckan.publishing.service.gov.uk/harvest/[dataset name]/job
 
 In order to begin investigating this issue you can use the link below which will provide further information:
 
-https://ckan.publishing.service.gov.uk/api/action/package_show?id=<dataset name or uuid>
+https://ckan.publishing.service.gov.uk/api/action/package_show?id=[dataset name or uuid]
 
 ### Map preview not showing
 
