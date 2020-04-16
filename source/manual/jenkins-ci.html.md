@@ -47,16 +47,9 @@ and proxies requests to Jenkins. It is also running on port 80 to serve a monito
 
 ## Access
 
-Ensure your SSH configuration (`~/.ssh/config`) includes the CI section.
-It should if you've followed the [SSH setup instructions](/manual/get-ssh-access.html).
-
-SSH to parts of the CI stack:
-
-`ssh ci-agent-1.ci`
-
-To view available nodes:
-
-`ssh ci "govuk_node_list"`
+SSH to a random CI machine with `gds govuk connect ssh -e ci ci-agent`.
+If you know the agent you want, append `:number` to the end of
+`ci_agent` to go straight to that machine.
 
 ## Configuration
 
