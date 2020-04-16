@@ -307,6 +307,13 @@ You can also chain commands, like this one to list S3 buckets in integration:
 gds aws govuk-integration-poweruser aws s3 ls
 ```
 
+## You're all done!
+
+You're set up and ready to go. It might be worth reading and bookmarking
+the [architectural deep-dive of GOV.UK][architectural-deep-dive] to
+familiarise yourself with how things fit together.
+
+[architectural-deep-dive]: /manual/architecture-deep-dive.html
 [govuk-aws-data-users-group]: /manual/set-up-aws-account.html#4-get-the-appropriate-access
 [infra-terra]: https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security
 [MFA]: https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication
