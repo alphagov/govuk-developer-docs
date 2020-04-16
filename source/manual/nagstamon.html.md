@@ -35,9 +35,8 @@ Nagstamon supports performing actions, you can configure it to connect
 to the relevant host via SSH, which can make it easier to investigate
 and resolve issues.
 
-Both these commands assume that you have run [`gem install
-govuk-connect`](https://github.com/alphagov/govuk-connect) and have
-the [`gds-cli` set up](https://github.com/alphagov/gds-cli).
+Both these commands assume that you have the [`gds-cli` and
+`govuk-connect` set up](/manual/get-started.html).
 
 To configure an SSH action:
 
