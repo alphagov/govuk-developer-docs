@@ -17,7 +17,7 @@ It's likely that this is failing because one of the backups it's trying to colle
 To rerun an individual backup:
 
 ```
-gds govuk connect ssh -e production <backup-hostname-from-alert>
+gds govuk connect ssh -e production <backup-hostname-from-alert> (for example, ip-1-2-3-4.eu-west-1.compute.internal)
 sudo su - govuk-backup
 cd /etc/backup/
 ./001_directory_backup_postgresql_backups_postgresql_primary_1 # Or whichever script is relevant
