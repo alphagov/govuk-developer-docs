@@ -41,4 +41,4 @@ When we configure a load balancer, we create target groups, then register target
 
 Sometimes we decommission applications but the configuration hasn't been updated in the Terraform/AWS side. If this is the case, some target groups will appear as unhealthy because the app is no longer active. If this happens, it's preferable to update the Terraform configuration to remove DNS entries and rules/target groups linked to the service, but we can also ignore that target group from the checks with the `healthyhosts_ignore` option.
 
-[aws-console]: /manual/access-aws-console.html.md
+[aws-console]: /manual/access-aws-console.html
