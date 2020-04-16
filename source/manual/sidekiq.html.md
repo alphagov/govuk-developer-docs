@@ -29,31 +29,14 @@ that can display the current state of a [Sidekiq] installation. We have
 multiple [Sidekiq] configurations used throughout [GOV.UK].
 
 We have restricted public access as the Web UI allows modifying the state of
-[Sidekiq] queues.
-
-To gain access you should setup SSH port forwarding to a backend box belonging
-to the environment you wish to monitor when connected to the office wireless
-network or the VPN:
+[Sidekiq] queues. To access the Sidekiq monitoring UI for Production AWS,
+run:
 
 ```bash
-$ ssh backend-1.backend.staging -CNL 9000:127.0.0.1:3211
-```
-
-Or on AWS:
-
-```bash
-$ ssh $(ssh integration "govuk_node_list --single-node -c backend").integration -CNL 9000:127.0.0.1:3211
-```
-
-or using `govuk-connect`:
-
-```bash
-$ brew install alphagov/gds/govuk-connect
 $ gds govuk connect sidekiq-monitoring -e production aws/backend 
 ```
 
-Then visit [http://127.0.0.1:9000](http://127.0.0.1:9000) to see a list of
-[Sidekiq] configurations you can monitor.
+Go to the `127.0.0.1:port` URL in the command output to see the UI.
 
 ### Sidekiq Grafana Dashboard
 
