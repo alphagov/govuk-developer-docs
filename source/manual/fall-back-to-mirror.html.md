@@ -59,12 +59,9 @@ to the mirrors, but it will not stop the mirrors from working.
 To inspect the contents of the mirror:
 
 ```bash
-ssh <mirrorer_machine_name>
+gds govuk connect -e production ssh mirrorer
 cd /mnt/crawler_worker/www.gov.uk
 ```
-
-where `<mirrorer_machine_name>` can be obtained from the `govuk_node_list -c mirrorer` command
-on the jumpbox.
 
 ## Forcing failover to the static mirrors
 
@@ -93,14 +90,11 @@ You'll be notified by the escalation on-call contact that you need to edit the s
 
 1. If you're at home, connect to the [VPN][gds-vpn].
 
-1. ssh to the Mirrorer machine by running:
+1. SSH to the mirrorer machine:
 
     ```bash
-    ssh <mirrorer_machine_name>
+    gds govuk connect -e production ssh mirrorer
     ```
-
-    where `<mirrorer_machine_name>` can be obtained from the `govuk_node_list -c mirrorer` command
-    on the jumpbox.
 
 1. Disable puppet on the machine by running:
 
