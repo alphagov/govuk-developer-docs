@@ -90,32 +90,28 @@ The production version of this application is hosted on **<%= application.hostin
 
 <% case application.production_hosted_on %>
 <% when  "carrenza" %>
-
 ### SSH Access (Carrenza & AWS)
 
 This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
 
-To SSH to one of these machines:
-
-```
-ssh -A -t jumpbox.staging.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
-ssh -A -t jumpbox.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.carrenza_machine %> --single-node`'
+```bash
+gds govuk connect ssh -e staging carrenza/<%= application.carrenza_machine %>
+gds govuk connect ssh -e production carrenza/<%= application.carrenza_machine %>
 ```
 
 This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
 
-To SSH to one of these machines [via the jumpbox](/manual/howto-ssh-to-machines-in-aws.html), use this command:
+```bash
+gds govuk connect ssh -e integration <%= application.aws_puppet_class %>
+```
 
-```
-ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
-```
 <% when  "aws" %>
 ### SSH Access (AWS)
 
-```
-ssh -A -t jumpbox.integration.publishing.service.gov.uk 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
-ssh -A -t jumpbox.staging.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
-ssh -A -t jumpbox.production.govuk.digital 'ssh `govuk_node_list -c <%= application.aws_puppet_class %> --single-node`'
+```bash
+gds govuk connect ssh -e integration <%= application.aws_puppet_class %>
+gds govuk connect ssh -e staging aws/<%= application.aws_puppet_class %>
+gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
 ```
 <% end %>
 
