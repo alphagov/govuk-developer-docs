@@ -453,7 +453,9 @@ If you see this error:
 
     General error
 
-Check if any of the GPG keys in the recipients list have expired.
+Try pulling `master` again - there's a good chance someone has made a
+change since you made your changes. Otherwise, check if any of the GPG
+keys in the recipients list have expired.
 
 If you see this error:
 
