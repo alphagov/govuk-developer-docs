@@ -92,8 +92,7 @@ class ExternalDoc
 
         href = element["href"].strip
         uri = URI.parse(href)
-
-        if uri.path.end_with?(".md")
+        if uri.path.end_with?(".md") && uri.host == nil
           uri.path.sub!(/.md$/, ".html")
           element["href"] = uri.to_s
         end
