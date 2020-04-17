@@ -7,12 +7,14 @@ RSpec::Core::RakeTask.new(:spec)
 task default: [:spec]
 
 namespace :cache do
+  desc "Clear the cache of external content"
   task :clear do
     CACHE.clear
   end
 end
 
 namespace :assets do
+  desc "Build the static site"
   task :precompile do
     sh "git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build"
   end
