@@ -60,8 +60,8 @@ Both applications have a similar architecture of:
 - **Database:** AWS RDS (business volunteering, find support) and DynamoDB (vulnerable people)
 - **Hosting:** PaaS
 - **CDN:** AWS CloudFront
-- **CI:** Travis
-- **CD:** Concourse
+- **CI:** GitHub Actions (branches and PRs)
+- **CD:** Concourse (master builds and production deploys)
 - **Logging:** Sentry and Logit
 
 ### Application structure
@@ -195,8 +195,7 @@ Links to Concourse Pipelines:
 - [`govuk-corona-vulnerable-people-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-vulnerable-people-form)
 - [`govuk-corona-find-support-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-find-support-form)
 
-For access login with your GitHub account, you need to be a part of
-the GOV.UK Production team.  You'll also need to be on the VPN.
+For access, you'll need to be on the VPN and part of the GOV.UK GitHub team.
 
 ### Administering Pipelines
 
