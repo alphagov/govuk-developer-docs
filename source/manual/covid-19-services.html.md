@@ -195,8 +195,7 @@ Links to Concourse Pipelines:
 - [`govuk-corona-vulnerable-people-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-vulnerable-people-form)
 - [`govuk-corona-find-support-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-find-support-form)
 
-For access login with your GitHub account, you need to be a part of
-the GOV.UK Production team.  You'll also need to be on the VPN.
+For access, you'll need to be on the VPN and part of the GOV.UK GitHub team.
 
 ### Administering Pipelines
 
