@@ -60,8 +60,8 @@ Both applications have a similar architecture of:
 - **Database:** AWS RDS (business volunteering, find support) and DynamoDB (vulnerable people)
 - **Hosting:** PaaS
 - **CDN:** AWS CloudFront
-- **CI:** Travis
-- **CD:** Concourse
+- **CI:** GitHub Actions (branches and PRs)
+- **CD:** Concourse (master builds and production deploys)
 - **Logging:** Sentry and Logit
 
 ### Application structure
