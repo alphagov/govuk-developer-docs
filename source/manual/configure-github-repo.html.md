@@ -4,13 +4,13 @@ title: Configure a GitHub repo
 parent: /manual.html
 layout: manual_layout
 section: GitHub
-last_reviewed_on: 2019-10-21
+last_reviewed_on: 2020-04-21
 review_in: 6 months
 ---
 
 Repositories in GOV.UK must:
 
-- Have the [GOV.UK team][team] as `Admin`
+- Have the [GOV.UK CI Bots][govuk-ci-bots-team] and [GOV.UK Production][govuk-production-team] teams as `Admin`
 - Have a good description
 - Link to relevant documentation
 - Be tagged with [`govuk`](https://github.com/search?q=topic:govuk)
@@ -19,10 +19,11 @@ Repositories in GOV.UK must:
 Almost all repos should:
 
 - Have [branch protection](https://help.github.com/articles/about-protected-branches) on master
-- Have [Jenkins CI](/manual/testing-projects.html) configured
+- Have [Jenkins CI](/manual/testing-projects.html) configured, if a Jenkinsfile exists in the repo
 - Have [GitHub Trello Poster](/manual/github-trello-poster.html) enabled
 
-[team]: https://github.com/orgs/alphagov/teams/gov-uk/members
+[govuk-ci-bots]: https://github.com/orgs/alphagov/teams/gov-uk-ci-bots
+[govuk-production-team]: https://github.com/orgs/alphagov/teams/gov-uk-production
 
 ## Auto configuration
 
