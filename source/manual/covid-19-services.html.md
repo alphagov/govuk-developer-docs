@@ -4,14 +4,15 @@ title: COVID-19 Services
 section: Services
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-25
+last_reviewed_on: 2020-04-21
 review_in: 1 month
 ---
 
-We recently launched 2 new services:
+GOV.UK operates three standalone services for COVID-19 response:
 
 - Offer coronavirus support from your business
 - Get coronavirus support as an extremely vulnerable person
+- Find support if you're affected by coronavirus
 
 ## Offer coronavirus support from your business
 
@@ -54,7 +55,7 @@ result of coronavirus.
 
 ## Architecture
 
-Both applications have a similar architecture of:
+All applications have a similar architecture of:
 
 - **Framework:** Ruby on Rails
 - **Database:** AWS RDS (business volunteering, find support) and DynamoDB (vulnerable people)
@@ -63,13 +64,15 @@ Both applications have a similar architecture of:
 - **CI:** GitHub Actions (branches and PRs)
 - **CD:** Concourse (master builds and production deploys)
 - **Logging:** Sentry and Logit
+- **Email**: GOV.UK Notify
+- **Queuing**: Sidekiq (business volunteering only)
 
 ### Application structure
 
 Each application is a standard Rails application with:
 
 - question pages, each has their own controller, view and route
-- a check your answers page
+- a check your answers page (except find support form)
 - a confirmation ("Thank you") page
 - ineligible pages (vulnerable people form only)
 - a privacy page
@@ -83,19 +86,15 @@ To run one of the applications locally, see the README in the GitHub repo.
 While the user is filling out the form, we use session storage to
 store the user's data.
 
-For the vulnerable people form, we store session data for 2 hours in an encrypted
-cookie, persisted in the browser and sent back to the server for every
-question.  Cookies have a limit of 4KB, so this approach could cause
-errors if the user submits large inputs.
+For the vulnerable people form and find support form, we store session data for
+4 hours in an encrypted cookie, persisted in the browser and sent back to the
+server for every question.  Cookies have a limit of 4KB, so this approach could
+cause errors if the user submits large inputs.
 
-For the business volunteering form, we store the following for 2
-hours:
+For the business volunteering form, we store the following for 4 hours:
 
 - the session id in an encrypted cookie
 - the session data in Redis
-
-For the vulnerable people form we use a single session cookie to encrypt user responses.
-This is also stored for 2 hours.
 
 ### Data storage
 
@@ -114,18 +113,18 @@ way to read or change already-submitted user data.
 Developers should not have access to the production database for
 the vulnerable people form application.
 
-The business volunteering form application can both read and write
-to it's database as the security and privacy requirements are lower.
+The business volunteering form and find support form applications can both read
+and write to their databases as the security and privacy requirements are lower.
 
-Developers may treat data in the business volunteering form to the
-same standards as any other GOV.UK personal data store, and are able
+Developers may treat data in the business volunteering form and find support
+form to the same standards as any other GOV.UK personal data store, and are able
 to access it for legitimate development duties.
 
 ## Hosting
 
 ### PaaS
 
-Both applications are hosted on GOV.UK Platform as a Service (PaaS) in
+All applications are hosted on GOV.UK Platform as a Service (PaaS) in
 the Ireland region.  PaaS provides a scalable hosting platform based
 on CloudFoundry managed by GDS.  You can read more in the [PaaS
 technical documentation][paas-docs].
@@ -145,7 +144,7 @@ Before you start, [install the CloudFoundry CLI][cf-cli].
 1. Log in with `cf login -a api.cloud.service.gov.uk --sso`
 2. Select staging or production with `cf target -s <staging or production>`
 
-Both applications are Rails applications, and use the
+All applications are Rails applications, and use the
 [`ruby_buildpack`][] to build and deploy to PaaS.  You can read more
 about [managing PaaS applications][paas-managing] and [monitoring PaaS
 applications][paas-monitoring].
@@ -258,7 +257,7 @@ cd ~/govuk/govuk-secrets/pass
 
 ## Monitoring
 
-There's a [Splunk dashboard][splunk] for both of these services.  To
+There's a [Splunk dashboard][splunk] for all of these services.  To
 access Splunk, you need to have the `GDS-006-GOVUK` permission on your
 Google account.  To get this permission, raise an IT Helpdesk ticket
 and post in `#cyber-security-help` to get them to confirm the request
@@ -278,6 +277,27 @@ following dashboards:
 
 [GOV.UK Production Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/04b46992-f653-4c14-965c-236e9a6c2777/kibana/access)
 [GOV.UK Staging Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/7a0be476-6535-4544-8318-4c7a130948e8/kibana/access)
+
+## Confirmation emails
+
+### GOV.UK Notify
+
+The business volunteering service sends confirmation emails on form submission,
+using GOV.UK Notify.
+
+Sidekiq is used to manage the queuing of email jobs. The application [README](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form#running-sidekiq)
+details how to manage the Sidekiq queue.
+
+To login to the [GOV.UK Notify Dashboard](https://www.notifications.service.gov.uk/sign-in)
+obtain the credentials using govuk-secrets:
+
+```
+cd ~/govuk/govuk-secrets/pass
+pass govuk-notify/govuk-coronavirus-services
+```
+
+In staging only, emails are sent to `coronavirus-services-smoke-tests@digital.cabinet-office.gov.uk`
+rather than the form submitter.
 
 ## Extracting form responses (business volunteering only)
 
