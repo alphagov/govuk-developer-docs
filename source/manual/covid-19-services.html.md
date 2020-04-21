@@ -63,6 +63,8 @@ Both applications have a similar architecture of:
 - **CI:** GitHub Actions (branches and PRs)
 - **CD:** Concourse (master builds and production deploys)
 - **Logging:** Sentry and Logit
+- **Email**: GOV.UK Notify
+- **Queuing**: Sidekiq (business volunteering only)
 
 ### Application structure
 
@@ -278,6 +280,27 @@ following dashboards:
 
 [GOV.UK Production Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/04b46992-f653-4c14-965c-236e9a6c2777/kibana/access)
 [GOV.UK Staging Corona Forms](https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/7a0be476-6535-4544-8318-4c7a130948e8/kibana/access)
+
+## Confirmation emails
+
+### GOV.UK Notify
+
+The business volunteering service sends confirmation emails on form submission,
+using GOV.UK Notify.
+
+Sidekiq is used to manage the queuing of email jobs. The application [README](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form#running-sidekiq)
+details how to manage the Sidekiq queue.
+
+To login to the [GOV.UK Notify Dashboard](https://www.notifications.service.gov.uk/sign-in)
+obtain the credentials using govuk-secrets:
+
+```
+cd ~/govuk/govuk-secrets/pass
+pass govuk-notify/govuk-coronavirus-services
+```
+
+In staging only, emails are sent to `coronavirus-services-smoke-tests@digital.cabinet-office.gov.uk`
+rather than the form submitter.
 
 ## Extracting form responses (business volunteering only)
 
