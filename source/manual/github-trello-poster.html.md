@@ -5,8 +5,6 @@ section: Team tools
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-04-22
-review_in: 6 months
 ---
 
 This app uses GitHub webhooks to be notified when a pull request is opened or changed on GitHub. When it finds a link to a Trello card in the pull request, it posts a link to that pull request to a checklist on the given card. When a pull request is merged or closed the app checks the pull request off the checklist.
