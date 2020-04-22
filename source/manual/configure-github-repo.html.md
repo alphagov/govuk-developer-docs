@@ -19,7 +19,7 @@ Repositories in GOV.UK must:
 Almost all repos should:
 
 - Have [branch protection](https://help.github.com/articles/about-protected-branches) on master
-- Have [Jenkins CI](/manual/testing-projects.html) configured, if a Jenkinsfile exists in the repo
+- Have [Jenkins CI](/manual/testing-projects.html) configured, if the repo uses Jenkins
 - Have [GitHub Trello Poster](/manual/github-trello-poster.html) enabled
 
 [govuk-ci-bots]: https://github.com/orgs/alphagov/teams/gov-uk-ci-bots
