@@ -4,14 +4,14 @@ title: Running out of space for automongodbbackup
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-10
+last_reviewed_on: 2020-04-22
 review_in: 6 months
 ---
 
-### Running out of space for automongodbbackup
+### Running out of space for `automongodbbackup`
 
-The box where the backups are stored by automongodbbackup can sometimes run out of space.
-The automongodbbackup script can fail ungracefully when zipping the backup if it runs out of space. If it does, it will fail to clean up after itself so it will leave the half-zipped backup lying around. In addition to this, if it fails it won't clear older backups. You will have to remove an older backup manually as well as re-zip the latest backup.
+The box where the backups are stored by `automongodbbackup` can sometimes run out of space.
+The `automongodbbackup` script can fail ungracefully when zipping the backup if it runs out of space. If it does, it will fail to clean up after itself so it will leave the half-zipped backup lying around. In addition to this, if it fails it won't clear older backups. You will have to remove an older backup manually as well as re-zip the latest backup.
 Another cause of us running out of space is that we keep backups around for the past 7 days which can occupy a lot of space.
 
 In order to clear some space you have to do the following steps:
