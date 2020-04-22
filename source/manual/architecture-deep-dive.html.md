@@ -444,8 +444,9 @@ puppet agent is responsible for [configuring Icinga alerts] using the
 [low available disk space], or a number of other reasons.
 
 For monitoring, 'filebeat' is used to send logs to [Logit], and 'statsd'
-exports most monitoring metrics, which can be viewed in [Grafana]. Read more
-about [tooling for monitoring][tools].
+exports most monitoring metrics, which can be viewed in [Grafana]. This is
+configured in [govuk_app_config], which is included in most GOV.UK apps.
+Read more about [tooling for monitoring][tools].
 
 If an app release contains a major change such as a renamed environment
 variable, then it will require an application restart, which would bring the
@@ -467,6 +468,7 @@ deploys.
 [configuring Icinga alerts]: https://github.com/alphagov/govuk-puppet/blob/0b20c7efe7e0c3855d4821e55a914ab577d3b84e/modules/govuk_containers/manifests/app.pp
 [deploying Puppet]: /manual/deploy-puppet.html
 [health check endpoint]: https://github.com/alphagov/content-publisher/blob/5b968f1bbfd4fa7e577ea535bb2dc23fcf0c99b8/spec/requests/healthcheck_spec.rb
+[govuk_app_config]: https://github.com/alphagov/govuk_app_config
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
 [Grafana]: /manual/grafana.html
 [Icinga]: /manual/icinga.html
