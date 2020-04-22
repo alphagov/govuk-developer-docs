@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: Restore from offsite backups
 section: Backups
 layout: manual_layout
