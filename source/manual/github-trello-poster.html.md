@@ -5,7 +5,7 @@ section: Team tools
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2019-10-21
+last_reviewed_on: 2020-04-22
 review_in: 6 months
 ---
 
@@ -19,7 +19,7 @@ This app was created by Emma Beynon as a [20% time project](https://sites.google
 
 The credentials for the Trello account that posts to Trello cards and for PaaS can be found in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/github-trello-poster).
 
-The app currently uses Emma's GitHub personal access token.
+The app uses the `govuk-ci` user's GitHub Personal Access Token.
 
 ## Using GitHub Trello Poster
 
