@@ -4,8 +4,8 @@ title: High memory for application
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-05
-review_in: 6 months
+last_reviewed_on: 2020-04-22
+review_in: 12 months
 ---
 
 This alert triggers when the application process uses too much memory.
@@ -21,26 +21,27 @@ when a machine is out of memory][mem].
 ## Fix memory leaks
 
 A common cause of the alerts are memory leaks. For Rails applications you
-can try diagnosing the error with [the derailed gem][derailed].
+can try diagnosing the error with [the derailed gem].
 
-[derailed]: https://github.com/schneems/derailed_benchmarks
+[the derailed gem]: https://github.com/schneems/derailed_benchmarks
 
 ## Restart the application
 
-If you can't find the source of the memory leak you can [restart the application](/manual/restart-application.html).
+If you can't find the source of the memory leak you can
+[restart the application](/manual/restart-application.html).
 
 ## Increase the alerting threshold
 
 Sometimes the alerting thresholds are too low. You can change them in
-[hieradata_aws/common.yaml][aws_common]
-[hieradata/common.yaml][common]
+[hieradata_aws/common.yaml][aws_common] or
+[hieradata/common.yaml][common].
 
-```yml
+```yaml
 govuk::apps::the_warning::nagios_memory_warning: 2500
 govuk::apps::the_warning::nagios_memory_critical: 2500
 ```
 
-An example of upping the threshholds can be found [here][static_nagios_memory]
+An example of upping the thresholds can be found [here][static_nagios_memory].
 
 [aws_common]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml
 [common]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
