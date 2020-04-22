@@ -1,10 +1,10 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#re-govuk"
 title: MySQL Xtrabackups to S3
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-09-17
+last_reviewed_on: 2020-04-22
 review_in: 6 months
 ---
 
