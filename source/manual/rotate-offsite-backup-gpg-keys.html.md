@@ -4,8 +4,8 @@ title: Rotate offsite backup GPG keys
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-05
-review_in: 3 months
+last_reviewed_on: 2020-04-22
+review_in: 6 months
 ---
 
 To encrypt our offsite backups, we use GPG keys which are valid for a year. For
@@ -13,8 +13,9 @@ good security practice we rotate these keys each year.
 
 ## Generate a new key
 
-When creating a new key it is important you reuse the existing `passphrase` as otherwise the incremental backup will fail as
-historical data is unable to be access/unencrypted previous diffs.
+When creating a new key it is important you reuse the existing `passphrase` as
+otherwise the incremental backup will fail as historical data is unable to be
+access/unencrypted previous diffs.
 
 1. Pull the [govuk-secrets repo](https://github.com/alphagov/govuk-secrets).
 2. `cd puppet`
