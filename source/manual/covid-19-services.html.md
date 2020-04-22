@@ -177,54 +177,27 @@ To log in to AWS:
 ## Deployment
 
 Deployment is managed via [TechOps shared Concourse][big-concourse].
-CI/CD pipelines are configured under the `govuk-tools` team.  Any
-changes to application code on the master branch are continuously
-deployed to staging.  Smoke tests are set up to run on staging, if
-these pass the applications are automatically deployed to production.
-The smoke tests are the feature tests within the application
-repository.
+CI/CD pipelines are configured under the `govuk-tools` team. You can
+read about what Concourse is, its access controls, and how to
+administer it, on the [Concourse](/manual/concourse.html) developer
+docs page.
+
+In terms of these applications, any changes to application code on the
+master branch are continuously deployed to staging.  Smoke tests are
+set up to run on staging, if these pass the applications are
+automatically deployed to production.  The smoke tests are the feature
+tests within the application repository.
 
 The Concourse deployment pipeline and task configuration for each
 application is stored in the "concourse" directory at the root of each
-repository.
+repository. Changes to these pipelines apply automatically when pushed
+to `master`.
 
 Links to Concourse Pipelines:
 
 - [`govuk-corona-business-volunteer-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-business-volunteer-form)
 - [`govuk-corona-vulnerable-people-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-vulnerable-people-form)
 - [`govuk-corona-find-support-form`](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-corona-find-support-form)
-
-For access, you'll need to be on the VPN and part of the GOV.UK GitHub team.
-
-### Administering Pipelines
-
-To administer pipelines you must have the `pipeline-operator` role.
-Pipelines are administered using the `fly` CLI tool.  `fly` can be
-downloaded directly from the Concourse dashboard using the links in
-the bottom bottom right of the screen (you probably want to click the
-apple). If that doesn't download an executable file, you can install with `brew cask install fly`.
-
-To get started, firstly configure a target and log in:
-
-```
-fly --target cd-govuk-tools login --team-name govuk-tools --concourse-url https://cd.gds-reliability.engineering
-```
-
-Changes to the pipeline have to be applied manually using the
-`set-pipeline` command.  To apply changes, run the following command
-from the project root:
-
-```
-fly set-pipeline --pipeline <pipeline-name> --config concourse/pipeline.yml
-```
-
-Committing the changes to master will not update the pipeline
-automatically.
-
-GDS Reliability Engineering provide [further
-documentation][big-concourse-docs].  More information on working with
-Concourse and the Fly CLI can be found in [the official
-documentation][concourse-docs].
 
 ### Zero-Downtime Deployment
 
@@ -365,9 +338,7 @@ heading "PaaS Support (COVID-19 forms)".
 
 [`ruby_buildpack`]: https://docs.cloud.service.gov.uk/deploying_apps.html#deploy-a-ruby-on-rails-app
 [big-concourse]: https://cd.gds-reliability.engineering/
-[big-concourse-docs]: https://reliability-engineering.cloudapps.digital/continuous-deployment.html#getting-started-with-concourse
 [cf-cli]: https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line
-[concourse-docs]: https://concourse-ci.org/fly.html
 [legacy-opsmanual]: https://docs.google.com/document/d/17XUuPaZ5FufyXH00S9qukl6Kf3JbJtAqwHR3eOBVBpI/edit
 [paas-docs]: https://docs.cloud.service.gov.uk/
 [paas-managing]: https://docs.cloud.service.gov.uk/managing_apps.html#managing-apps
