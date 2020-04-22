@@ -37,6 +37,9 @@ There is also an interactive voice response (IVR) automated phone
 service provided by AWS. This is for users who do not have access to
 the internet.
 
+The service is also known as the Shielded Vulnerable service, or
+SV.
+
 - [Start page](https://www.gov.uk/coronavirus-extremely-vulnerable)
 - [Service](https://coronavirus-vulnerable-people.service.gov.uk/live-in-england)
 - [GitHub](https://github.com/alphagov/govuk-coronavirus-vulnerable-people-form)
@@ -48,6 +51,9 @@ the extremely vulnerable service - to find information about what help
 is available if they're struggling with unemployment, an inability to
 get food, having somewhere to live, or their general wellbeing as a
 result of coronavirus.
+
+The service is also known as the Non-Shielded Vulnerable service, or
+NSV.
 
 - [Start page](https://www.gov.uk/find-coronavirus-support)
 - [Service](https://find-coronavirus-support.service.gov.uk/urgent-medical-help)
