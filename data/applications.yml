@@ -665,7 +665,7 @@
   private_repo: false
   type: Specialist apps
   production_hosted_on: paas
-  team: "#govuk-vulnerable-people-tech"
+  team: "#govuk-corona-services-tech"
   sentry_url: https://sentry.io/organizations/govuk/issues/?project=5170680
   deploy_url: 'https://github.com/alphagov/govuk-coronavirus-vulnerable-people-form/blob/master/concourse/pipeline.yml'
   dashboard_url: 'https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/d006_coronavirus?form.main.earliest=-7d%40h&form.main.latest=now&form.xhost=coronavirus-vulnerable-people.service.gov.uk'
@@ -675,11 +675,21 @@
   private_repo: false
   type: Specialist apps
   production_hosted_on: paas
-  team: "#govuk-corona-forms-tech"
+  team: "#govuk-corona-services-tech"
   sentry_url: https://sentry.io/organizations/govuk/issues/?project=5172100
   deploy_url: 'https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/concourse/pipeline.yml'
   dashboard_url: false
   description: 'Lets businesses volunteer with the response to the Covid-19 pandemic'
+
+- github_repo_name: govuk-coronavirus-find-support
+  private_repo: false
+  type: Specialist apps
+  production_hosted_on: paas
+  team: "#govuk-corona-services-tech"
+  sentry_url: https://sentry.io/organizations/govuk/issues/?project=5192076
+  deploy_url: 'https://github.com/alphagov/govuk-coronavirus-find-support/blob/master/concourse/pipeline.yml'
+  dashboard_url: false
+  description: 'Helps people in the UK find relevant support during the COVID-19 pandemic'
 
 # Utility Heroku apps (don't add apps that are only for review here)
 
