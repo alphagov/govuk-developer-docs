@@ -67,16 +67,6 @@ in [docker compose][] or throughout the repo.
 [projects directory]: https://github.com/alphagov/govuk-docker/tree/master/projects
 [docker compose]: https://github.com/alphagov/govuk-docker/blob/master/docker-compose.yml
 
-### VM
-Remove from the [development-vm directory][development] `Procfile` and
-`Pinfile`:
-
-Leave a comment in the `Procfile` indicating that the port used to be used by
-this app, to avoid port conflicts causing a problem running this app locally in
-the future.
-
-[development]: https://github.com/alphagov/govuk-puppet/tree/master/development-vm
-
 ## 8. Check replication script
 
 Check the data replication scripts for anything specific to this application.
