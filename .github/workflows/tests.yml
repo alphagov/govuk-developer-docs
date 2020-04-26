@@ -9,6 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: Clone govuk-content-schemas
+        uses: actions/checkout@v2
+        with:
+          repository: alphagov/govuk-content-schemas
+          ref: deployed-to-production
+          path: ./govuk-content-schemas
       - uses: ruby/setup-ruby@v1
       - uses: actions/cache@v1
         with:
@@ -22,4 +29,6 @@ jobs:
           bundle install --jobs 4 --retry 3
 
       - run: bundle exec rake
+        env:
+          GOVUK_CONTENT_SCHEMAS_PATH: ./govuk-content-schemas
       - run: bundle exec rubocop
