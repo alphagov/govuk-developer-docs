@@ -15,17 +15,11 @@ gem](http://sidekiq.org/). We have configured these to run as
 [standalone](https://github.com/mperham/sidekiq/wiki/Monitoring#standalone)
 apps on our backend machines.
 
-## Prerequisites
-
-- Identify a port you want to allocate to the sidekiq-monitoring
-  instance for your application and reserve it in
-  [development-vm/Procfile](https://github.com/alphagov/govuk-puppet/blob/master/development-vm/Procfile).
-
 ## Adding configuration for your application in sidekiq-monitoring repository
 
-- Add a line to the Procfile with the port you reserved earlier in the
-  [sidekiq-monitoring
-  repository](https://github.com/alphagov/sidekiq-monitoring)
+- Choose a port that isn't already taken for the Sidekiq Monitoring
+  app to be served from.
+- Add it to the Procfile in the [sidekiq-monitoring repository](https://github.com/alphagov/sidekiq-monitoring)
   maintaining the alphabetical order of the processes.
 - Update
   [index.html](https://github.com/alphagov/sidekiq-monitoring/blob/master/public/index.html#L26-L29)
