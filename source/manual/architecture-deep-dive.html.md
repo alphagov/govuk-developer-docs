@@ -393,16 +393,21 @@ although apps not hosted on AWS are configured in [env-sync-and-backup].
 
 ### Deploying
 
-We have detailed docs on [how to deploy an application][deploy]. But what happens
-under the hood?
+We have detailed docs on [how to deploy an application][how-to-deploy]. But
+what happens under the hood?
 
-When a change is merged to an application's 'master' branch, a [Jenkins job]
-runs the tests. If successful, Jenkins pushes a git tag to GitHub (the "release
-tag"), then sends a message to the [govuk-app-deployment] Jenkins job to clone
-the repository, check out the tag and deploy the code to the corresponding nodes
-on Integration using [Capistrano] (a Ruby-based server automation and deployment
-tool). Capistrano does deployments only by default, but can also do deployments
-'with migration' or 'with hard restart', etc, depending on the nature of the change.
+When a change is merged to an application's 'master' branch, the corresponding
+Jenkins job on [CI Jenkins] runs the tests. The job was created in the first
+place by being [added to govuk-puppet][create-jenkins-job], and is configured
+to use the [govuk-jenkinslib] library to build the project and run the tests.
+
+If the tests pass, the job [creates and pushes a git tag][push-tag] to GitHub,
+then [sends a message][send-deploy-message] to the [deploy Jenkins] environment
+to build the [govuk-app-deployment] job. This clones the repository, checks out
+the tag and deploys the code to the corresponding nodes on Integration using
+[Capistrano] (a Ruby-based server automation and deployment tool). Capistrano
+does deployments only by default, but can also do deployments 'with migration'
+or 'with hard restart', etc, depending on the nature of the change.
 
 A developer must manually trigger a deployment to Staging and Production through
 the [release] app. This uses the same Jenkins/Capistrano pipeline as for
@@ -416,10 +421,15 @@ may not be visible until after this period. There are instructions in the releas
 app UI for this.
 
 [Capistrano]: https://capistranorb.com/
-[deploy]: /manual/deploying.html
+[CI Jenkins]: https://ci.integration.publishing.service.gov.uk/
+[create-jenkins-job]: https://github.com/alphagov/govuk-puppet/blob/6a0b05aa1f9a90c01cefd5fc5b9c8e5f0aa030f2/hieradata/common.yaml#L422
+[deploy Jenkins]: https://deploy.integration.publishing.service.gov.uk/
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
-[Jenkins job]: https://github.com/alphagov/govuk-jenkinslib
+[govuk-jenkinslib]: https://github.com/alphagov/govuk-jenkinslib
+[how-to-deploy]: /manual/deploying.html
+[push-tag]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L122-L124
 [release]: https://github.com/alphagov/release
+[send-deploy-message]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L132-L135
 
 ### Puppet on GOV.UK
 
