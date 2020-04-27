@@ -396,13 +396,18 @@ although apps not hosted on AWS are configured in [env-sync-and-backup].
 We have detailed docs on [how to deploy an application][deploy]. But what happens
 under the hood?
 
-When a change is merged to an application's 'master' branch, a [Jenkins job]
-runs the tests. If successful, Jenkins pushes a git tag to GitHub (the "release
-tag"), then sends a message to the [govuk-app-deployment] Jenkins job to clone
-the repository, check out the tag and deploy the code to the corresponding nodes
-on Integration using [Capistrano] (a Ruby-based server automation and deployment
-tool). Capistrano does deployments only by default, but can also do deployments
-'with migration' or 'with hard restart', etc, depending on the nature of the change.
+Jenkins is configured to load the [govuk-jenkinslib] library, which defines some
+defaults on how to build projects and run their tests; apps can configure this
+in their `Jenkinsfile`. When a change is merged to an application's 'master'
+branch, a [Jenkins job] runs the tests. If successful, Jenkins pushes the
+"release" git tag to GitHub, then sends a message to the [govuk-app-deployment]
+Jenkins job.
+
+That job clones the repository, checks out the tag and deploys the code to the
+corresponding nodes on Integration using [Capistrano] (a Ruby-based server
+automation and deployment tool). Capistrano does deployments only by default,
+but can also do deployments 'with migration' or 'with hard restart', etc,
+depending on the nature of the change.
 
 A developer must manually trigger a deployment to Staging and Production through
 the [release] app. This uses the same Jenkins/Capistrano pipeline as for
@@ -418,6 +423,7 @@ app UI for this.
 [Capistrano]: https://capistranorb.com/
 [deploy]: /manual/deploying.html
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
+[govuk-jenkinslib]: https://github.com/alphagov/govuk-jenkinslib
 [Jenkins job]: https://github.com/alphagov/govuk-jenkinslib
 [release]: https://github.com/alphagov/release
 
