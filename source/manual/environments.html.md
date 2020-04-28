@@ -39,6 +39,13 @@ Staging is primarily hosted by Carrenza in their London datacentre.
 It is currently being migrated to [AWS][govuk-in-aws]. Check individual application developer
 docs to see if it is hosted with AWS or Carrenza.
 
+Access to Staging is restricted to office IPs, so you'll need to [be
+on the VPN](manual/get-started.html#4-connecting-to-the-gds-vpn).
+Carrenza configuration can be found in
+[govuk-provisioning](https://github.com/alphagov/govuk-provisioning/blob/master/vcloud-edge_gateway/rules/includes/firewall.mustache#L34),
+and AWS configuration in
+[govuk-aws-data](https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-security-groups/cache.tf).
+
 ## Production
 
 The thing that runs the website for real people.
