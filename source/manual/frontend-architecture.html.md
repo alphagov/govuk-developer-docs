@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Frontend
-last_reviewed_on: 2020-01-17
+last_reviewed_on: 2020-04-28
 review_in: 3 months
 related_applications:
  - static
@@ -26,7 +26,7 @@ Applications that serve pages for the public (everything on www.gov.uk) use:
 - [govuk_publishing_components](https://github.com/alphagov/govuk_publishing_components), the preferred way to share HTML, CSS and JS
 - [Static](https://github.com/alphagov/static) and [Slimmer](https://github.com/alphagov/slimmer) for layouts
 - Static uses [govuk_frontend_toolkit](https://github.com/alphagov/govuk_frontend_toolkit) and [govuk_template](https://github.com/alphagov/govuk_template), two deprecated projects built by GDS (not GOV.UK)
-- [Calculators](https://github.com/alphagov/calculators) and [service-manual-frontend](https://github.com/alphagov/service-manual-frontend) still use [govuk_elements](https://github.com/alphagov/govuk_elements), which is also deprecated
+- [licence-finder](https://github.com/alphagov/licence-finder) is the only frontend application that still relies on [govuk_frontend_toolkit](https://github.com/alphagov/govuk_frontend_toolkit)
 
 Most admin applications use:
 
