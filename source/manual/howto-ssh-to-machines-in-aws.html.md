@@ -74,17 +74,23 @@ And if you can't remember the names of the node classes, there's a built-in help
 jumpbox$ govuk_node_list --classes
 ```
 
-Once you have found the IP of the machine you want to SSH into, you can manually SSH
-directly from the jumpbox machine:
+Once you have found the IP of the machine you want to SSH into, you'll need to return to
+your local machine...
 
 ```sh
-jumpbox$ ssh ip-10-1-5-22.eu-west-1.compute.internal
+jumpbox$ exit
 ```
 
-You can also do this from your local machine by appending the environment to the address:
+...and then SSH into the machine from there.
 
 ```sh
-local$ ssh ip-10-1-5-22.eu-west-1.compute.internal.integration
+$ gds govuk connect ssh -e integration ip-10-1-5-22.eu-west-1.compute.internal
+```
+
+To avoid this cumbersome workflow, you could pass an additional argument to the CLI:
+
+```sh
+gds govuk connect ssh -e integration jumpbox "govuk_node_list -c backend"
 ```
 
 ### Application node
@@ -108,9 +114,6 @@ These common commands, along with `govuk_node_list`, live in
 [govuk-puppet](https://github.com/alphagov/govuk-puppet).
 
 ## Troubleshooting
-
-Sometimes you might try to ssh into a server and nothing happens. Double-check that you
-have added the key into the keychain like so: `ssh-add -K ~/.ssh/id_rsa`.
 
 Make sure you have been granted access. For example, if you have yet to be granted access
 to production, your attempt to SSH into a production node will fail silently.
