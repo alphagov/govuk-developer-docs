@@ -4,7 +4,7 @@ title: Receive emails from Email Alert API in integration and staging
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-28
+last_reviewed_on: 2020-04-29
 review_in: 6 months
 ---
 
@@ -13,20 +13,11 @@ to a single test address: `success@simulator.amazonses.com`. This is used to
 simulate a successful email sending.
 
 However, you can override this for specific email addresses for testing
-purposes. To do this, you will need to be added as a team member to
-the GOV.UK Email Integration or Staging service in Notify and make
-changes to govuk-puppet.
+purposes. To do this, [you will need to be added as a team member to
+the GOV.UK Email Integration or Staging service in Notify][add-in-notify] and
+make changes to govuk-puppet.
 
-In [Notify][]:
-
-1. Log in using the 2nd-line-support account which is stored in
-   [govuk-secrets][] under `govuk-notify/2nd-line-support`. You should
-   then receive an email via 2nd Line Support containing a link to
-   sign in to Notify.
-2. Choose the service (GOV.UK Email) in the appropriate environment
-   and navigate to "Team members".  The members with the permission
-   `Manage settings, team and usage` will be able to add you to this
-   team.
+[add-in-notify]: /manual/govuk-notify.html#receiving-emails-from-govuk-notify
 
 In [govuk-puppet][]:
 
