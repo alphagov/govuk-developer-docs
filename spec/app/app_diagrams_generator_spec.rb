@@ -19,7 +19,7 @@ RSpec.describe AppDiagramGenerator do
   end
 
   def parse_output
-    @files.each do|file_path|
+    @files.each do |file_path|
       parsed_diagram = ParsedDiagram.new
       @parsed_diagrams.push parsed_diagram
 

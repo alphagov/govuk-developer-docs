@@ -1,8 +1,8 @@
 RSpec.describe GitHubRepoFetcher do
   describe "#repo" do
     it "returns a repo if the user is specified" do
-      stub_request(:get, "https://api.github.com/repos/some-user/some-repo").
-        to_return(body: "{}", headers: { content_type: "application/json" })
+      stub_request(:get, "https://api.github.com/repos/some-user/some-repo")
+        .to_return(body: "{}", headers: { content_type: "application/json" })
 
       repo = GitHubRepoFetcher.new.repo("some-user/some-repo")
 
@@ -10,8 +10,8 @@ RSpec.describe GitHubRepoFetcher do
     end
 
     it "raises if no alphagov repo is found" do
-      stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100").
-        to_return(body: "[]", headers: { content_type: "application/json" })
+      stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
+        .to_return(body: "[]", headers: { content_type: "application/json" })
 
       expect {
         GitHubRepoFetcher.new.repo("something-not-here")

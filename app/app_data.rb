@@ -16,9 +16,8 @@ private
   end
 
   def extract_examples_from_search_result(facet_name)
-    result.dig("facets", facet_name, "options").reduce({}) do |hash, option|
+    result.dig("facets", facet_name, "options").each_with_object({}) do |option, hash|
       hash[option.dig("value", "slug")] = option.dig("value", "example_info", "examples")
-      hash
     end
   end
 end
