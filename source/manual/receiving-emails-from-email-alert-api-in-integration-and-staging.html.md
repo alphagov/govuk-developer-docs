@@ -15,11 +15,9 @@ simulate a successful email sending.
 However, you can override this for specific email addresses for testing
 purposes. To do this, [you will need to be added as a team member to
 the GOV.UK Email Integration or Staging service in Notify][add-in-notify] and
-make changes to govuk-puppet.
+make changes to [govuk-puppet].
 
 [add-in-notify]: /manual/govuk-notify.html#receiving-emails-from-govuk-notify
-
-In [govuk-puppet][]:
 
 1. Add your email address to the common.yml for [hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml#L442) and [hieradata_aws](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L488) (these lists need to be kept in sync with the team members list in Notify)
 2. Add your email address to the override whitelist in the YAML file for the environment you're testing on. This is set as an
