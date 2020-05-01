@@ -35,7 +35,7 @@ RSpec.describe AppDocs::App do
 
   describe "hosters_descending" do
     it "should return hosters in descending order of repo count" do
-      expect(AppDocs::hosters_descending.keys).to eq(%w[
+      expect(AppDocs.hosters_descending.keys).to eq(%w[
         aws
         carrenza
         heroku
@@ -48,19 +48,19 @@ RSpec.describe AppDocs::App do
 
   describe "apps_on_host" do
     it "should return apps hosted on the named host" do
-      paas_app = AppDocs::apps_on_host("paas").first
+      paas_app = AppDocs.apps_on_host("paas").first
       expect(paas_app).to be_an(AppDocs::App)
       expect(paas_app.app_name).to eq("app-on-paas")
     end
 
     it "should return all apps in production" do
       production_apps_count = applications.count { |app| app[:production_hosted_on].present? }
-      apps_by_host = AppDocs::HOSTERS.map { |key, _val| AppDocs::apps_on_host(key) }.flatten
+      apps_by_host = AppDocs::HOSTERS.map { |key, _val| AppDocs.apps_on_host(key) }.flatten
       expect(apps_by_host.count).to eq(production_apps_count)
     end
 
     it "should return apps in alphabetical order" do
-      apps_on_aws = AppDocs::apps_on_host("aws")
+      apps_on_aws = AppDocs.apps_on_host("aws")
       expect(apps_on_aws.map(&:app_name)).to eq(%w[
         asset-manager
         content-store

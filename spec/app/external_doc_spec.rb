@@ -10,8 +10,8 @@ RSpec.describe ExternalDoc do
     let(:path) { "markdown.md" }
 
     before do
-      stub_request(:get, "https://raw.githubusercontent.com/example/lipsum/master/markdown.md").
-        to_return(body: File.read("spec/fixtures/markdown.md"))
+      stub_request(:get, "https://raw.githubusercontent.com/example/lipsum/master/markdown.md")
+        .to_return(body: File.read("spec/fixtures/markdown.md"))
     end
 
     it "removes the title of the page" do
