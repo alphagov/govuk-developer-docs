@@ -83,7 +83,7 @@ class AppDiagramGenerator
           system_dep_alias = get_valid_alias(dep)
 
           if key.downcase.include? "api"
-            #helps to push API's down on the diagram
+            # helps to push API's down on the diagram
             file.puts "Rel_Up(#{system_alias}, #{system_dep_alias}, \" \")"
           else
             file.puts "Rel_Down(#{system_alias}, #{system_dep_alias}, \" \")"
@@ -119,7 +119,7 @@ class AppDiagramGenerator
           if dep_app_type != key
             system_dependencies.push dep_app_type unless system_dependencies.include? dep_app_type
             app_system_dependencies.push dep_app_type unless app_system_dependencies.include? dep_app_type
-            #puts "#{key}:#{app_name} -> #{dep_app_type}:#{dep_app}"
+            # puts "#{key}:#{app_name} -> #{dep_app_type}:#{dep_app}"
           end
         end
 
@@ -133,7 +133,7 @@ class AppDiagramGenerator
   def add_dep_systems(file, app_system)
     # add all systems this system depends on
     system_dependencies = @system_dependencies[app_system]
-    if not system_dependencies.nil?
+    if !system_dependencies.nil?
       system_dependencies.each do |dep_system|
         dep_system_alias = get_valid_alias(dep_system)
         file.puts "System(#{dep_system_alias}, \"#{dep_system}\", \"Optional Description\")"
@@ -143,7 +143,7 @@ class AppDiagramGenerator
 
   def add_system_actors_for(file, app_system)
     app_type_actors = @actors_by_application_type[app_system]
-    if not app_type_actors.nil?
+    if !app_type_actors.nil?
       app_type_actors.each do |actor|
         actor_alias = get_valid_alias(actor)
         file.puts "Person_Ext(#{actor_alias}, \"#{actor}\", \"\")"
@@ -156,7 +156,7 @@ class AppDiagramGenerator
     app_alias = get_valid_alias(app_name)
 
     app_system_dependencies = @app_system_dependencies[app_name]
-    if not app_system_dependencies.nil?
+    if !app_system_dependencies.nil?
       app_system_dependencies.each do |system_dep|
         system_dep_alias = get_valid_alias(system_dep)
         file.puts "Rel_Up(#{app_alias}, #{system_dep_alias}, \" \")"
@@ -164,7 +164,7 @@ class AppDiagramGenerator
     end
 
     app_actors = app["actors"]
-    if not app_actors.nil?
+    if !app_actors.nil?
       app_actors.each do |actor|
         actor_alias = get_valid_alias(actor)
         file.puts "Rel_Down(#{actor_alias}, #{app_alias}, \" \")"

@@ -17,7 +17,7 @@ Dir.glob("source/manual/**/*.md").each do |filename|
 
     it "has an owner" do
       expect(frontmatter["owner_slack"]).to be_present, "Page doesn't have `owner_slack` set"
-      expect(frontmatter["owner_slack"][0]).to be_in(%[# @]), "`owner_slack` should be a @username or #channel"
+      expect(frontmatter["owner_slack"][0]).to be_in(%(# @)), "`owner_slack` should be a @username or #channel"
     end
 
     it "has a title" do
