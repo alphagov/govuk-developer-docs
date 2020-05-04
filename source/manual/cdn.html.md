@@ -9,7 +9,7 @@ last_reviewed_on: 2020-02-11
 review_in: 6 months
 ---
 
-GOV.UK uses Fastly as a CDN. Citizen users aren't accessing GOV.UK servers directly, they connect via the CDN. This is better because:
+GOV.UK uses Fastly as a CDN. Public users aren't accessing GOV.UK servers directly, they connect via the CDN. This is better because:
 
 - The CDN "edge nodes" (webservers) are closer to end users. Fastly has servers all around the world but our "origin" servers are only in the UK.
 - It reduces load on our origin. Fastly uses Varnish to cache responses.

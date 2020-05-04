@@ -11,9 +11,9 @@ review_in: 6 months
 
 [GOV.UK Notify][notify] is a Government-as-a-Platform service that allows
 clients of their API to send emails, text messages and letters. We use GOV.UK
-Notify to send emails to users - both citizens and publishers. Historically
-we've also used AWS SES to send emails, but that's being phased out in favour
-of GOV.UK Notify.
+Notify to send emails to users - both members of the public and publishers.
+Historically, we've also used AWS SES to send emails, but that's being phased
+out in favour of GOV.UK Notify.
 
 [notify]: https://www.notifications.service.gov.uk/
 
@@ -22,7 +22,7 @@ for each environment):
 
 - **GOV.UK Emails**
 
-  This service is used by Email Alert API only. It's used to send citizen-facing
+  This service is used by Email Alert API only. It's used to send public-facing
   email updates about pieces of content on GOV.UK. It's our biggest sender of
   emails and regularly exceeds one million emails per day.
 
@@ -34,7 +34,7 @@ for each environment):
   been automatically published.
 
 _In the future we may set up a new 'GOV.UK Public' service which is used to
-send citizen-facing emails which haven't gone through Email Alert API._
+send public-facing emails which haven't gone through Email Alert API._
 
 ## Accessing the dashboard
 
