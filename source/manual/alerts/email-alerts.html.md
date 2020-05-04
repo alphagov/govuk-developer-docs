@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Email alerts not sent
+title: Travel Advice or Drug and Medical Device email alerts not sent
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
