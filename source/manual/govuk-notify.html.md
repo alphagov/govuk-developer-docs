@@ -41,7 +41,7 @@ send citizen-facing emails which haven't gone through Email Alert API._
 **[👉 Sign in to the GOV.UK Notify dashboard](https://www.notifications.service.gov.uk/sign-in)**
 
 You can either use your own credentials (if you have them) or you can use the
-credentials in [govuk-secrets] (found in the `govuk-notify/2nd-line-support`
+credentials in [govuk-secrets][] (found in the `govuk-notify/2nd-line-support`
 entry).
 
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
