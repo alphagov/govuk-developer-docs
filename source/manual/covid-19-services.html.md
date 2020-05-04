@@ -26,7 +26,7 @@ services such as medical equipment, hotel rooms or childcare.
 
 ## Get coronavirus support as an extremely vulnerable person
 
-This service allows citizens identified as vulnerable by the NHS to
+This service allows people identified as vulnerable by the NHS to
 tell us if they need help accessing essential supplies and support.
 Users will have received a link to the service in a letter or a text
 message from the NHS, or been advised by their GP to fill in the form.
@@ -46,7 +46,7 @@ SV.
 
 ## Find support if you're affected by coronavirus
 
-This service allows all citizens - who may not have been eligible for
+This service allows the public - who may not have been eligible for
 the extremely vulnerable service - to find information about what help
 is available if they're struggling with unemployment, an inability to
 get food, having somewhere to live, or their general wellbeing as a
