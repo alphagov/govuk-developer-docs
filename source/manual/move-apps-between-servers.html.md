@@ -4,13 +4,39 @@ title: Move apps between servers
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-07
+last_reviewed_on: 2020-05-04
 review_in: 6 months
 ---
 
 Most frontend and backend apps on GOV.UK share a small number of servers. In some circumstances, apps may use more than their share of resources and may affect other apps on the same server. In these cases, apps can be moved to their own servers using the appropriate steps for either Carrenza or AWS.
 
+
+
+## AWS
+
+> **Note**
+>
+> You need to be at least a Power User in AWS to be able to run the following procedure. You can check by looking in the [govuk-aws-data] repository. Some IAM changes may require Administrator access, so you'll need to ask someone in the Reliability Engineering team to run these for you.
+
+1. Add Terraform configuration ([1][aws-terraform-config-1], [2][aws-terraform-config-2], [3][aws-terraform-config-3]) to create the new servers, load balancers, security groups, DNS entries etc.
+1. Add data to complement the configuration above ([1][aws-terraform-data-1], [2][aws-terraform-data-2]).
+1. [Deploy][] the Terraform configuration. You need to do this three times for each environment:
+  1. `infra-security-groups` project in the `govuk` stack.
+  1. `app-name-of-your-app` project in the `blue` stack (replace `app-name-of-your-app` with the name you configured above).
+  1. `infra-public-services` project in the `govuk` stack (only if your app is accessible directly from the public internet).
+
+For each deployment, set the environment to one of `integration`, `staging` or `production` and run the `plan` command first to double-check the changes before running the `apply` command to make the changes.
+
+👉 [Deploy AWS infrastructure with Terraform][deploy-aws]
+
+
 ## Carrenza
+
+> **WARNING**
+>
+> Any new apps should be added to our AWS environment. The instructions for Carrenza
+> are left for reference purposes only and will be removed in a few months.
+
 
 ### Create the new servers (if required)
 
@@ -89,23 +115,6 @@ Once all the load balancers have been updated, requests to the app(s) will be us
 Once everything is done, make some final changes to the [puppet configuration and hieradata][puppet-changes] to clean up the temporary changes you made above.
 
 [puppet-changes]: https://github.com/alphagov/govuk-puppet/pull/7311
-
-## AWS
-
-> **Note**
->
-> You need to be at least a Power User in AWS to be able to run the following procedure. You can check by looking in the [govuk-aws-data] repository. Some IAM changes may require Administrator access, so you'll need to ask someone in the Reliability Engineering team to run these for you.
-
-1. Add Terraform configuration ([1][aws-terraform-config-1], [2][aws-terraform-config-2], [3][aws-terraform-config-3]) to create the new servers, load balancers, security groups, DNS entries etc.
-1. Add data to complement the configuration above ([1][aws-terraform-data-1], [2][aws-terraform-data-2]).
-1. [Deploy][] the Terraform configuration. You need to do this three times for each environment:
-  1. `infra-security-groups` project in the `govuk` stack.
-  1. `app-name-of-your-app` project in the `blue` stack (replace `app-name-of-your-app` with the name you configured above).
-  1. `infra-public-services` project in the `govuk` stack (only if your app is accessible directly from the public internet).
-
-For each deployment, set the environment to one of `integration`, `staging` or `production` and run the `plan` command first to double-check the changes before running the `apply` command to make the changes.
-
-👉 [Deploy AWS infrastructure with Terraform][deploy-aws]
 
 [govuk-aws-data]: https://github.com/alphagov/govuk-aws-data/search?utf8=✓&q=role_poweruser_user_arns
 [aws-terraform-config-1]: https://github.com/alphagov/govuk-aws/pull/494
