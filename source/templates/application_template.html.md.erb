@@ -16,21 +16,23 @@ This application is retired.
 
 <% else %>
 
-<% if application.team %>
+<% if application.team || application.dependencies_team %>
+## Ownership
 
-### Ownership
-
-Owned by team **<%= application.team %>**.
+<% if application.team == application.dependencies_team %>
+**<%= application.team %>** owns the application and is responsible for updating its dependencies.
+<% elsif application.team && application.dependencies_team %>
+**<%= application.team %>** owns the application, but **<%= application.dependencies_team %>** is responsible for updating its dependencies.
+<% elsif application.team %>
+**<%= application.team %>** owns the application.
+<% elsif application.dependencies_team %>
+**<%= application.dependencies_team %>** is responsible for updating its dependencies.
+<% else %>
+Nobody owns this application.
+<% end %>
 <% end %>
 
-<% if application.dependencies_team %>
-
-### Dependencies Team
-
-The team responsible for updating dependencies is **<%= application.dependencies_team %>**.
-<% end %>
-
-### Hosting
+## Hosting
 
 <% if application.hosting_name == "None" %>
 There is no production version of this application yet.
@@ -38,8 +40,40 @@ There is no production version of this application yet.
 The production version of this application is hosted on **<%= application.hosting_name %>**.
 <% end %>
 
-### Links
+<% case application.production_hosted_on %>
+<% when  "carrenza" %>
+### SSH Access (Carrenza & AWS)
 
+This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
+
+```bash
+gds govuk connect ssh -e staging carrenza/<%= application.carrenza_machine %>
+gds govuk connect ssh -e production carrenza/<%= application.carrenza_machine %>
+```
+
+This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
+
+```bash
+gds govuk connect ssh -e integration <%= application.aws_puppet_class %>
+```
+
+<% when  "aws" %>
+### SSH Access (AWS)
+
+```bash
+gds govuk connect ssh -e integration <%= application.aws_puppet_class %>
+gds govuk connect ssh -e staging aws/<%= application.aws_puppet_class %>
+gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
+```
+<% end %>
+
+<% if application.can_run_rake_tasks_in_jenkins? %>
+## Run a rake task
+
+<%= RunRakeTask.links(application) %>
+<% end %>
+
+<h2>Links</h2><!--FIXME - markdown not working-->
 <ul>
   <li><%= link_to "GitHub repo", application.repo_url %></li>
 
@@ -84,41 +118,18 @@ The production version of this application is hosted on **<%= application.hostin
   <% end %>
 </ul>
 
-<% case application.production_hosted_on %>
-<% when  "carrenza" %>
-### SSH Access (Carrenza & AWS)
+<% if manual.pages_for_application(application.app_name).any? %>
+### Relevant manual pages
 
-This application lives on `<%= application.carrenza_machine %>` machines in Carrenza.
-
-```bash
-gds govuk connect ssh -e staging carrenza/<%= application.carrenza_machine %>
-gds govuk connect ssh -e production carrenza/<%= application.carrenza_machine %>
-```
-
-This application lives on `<%= application.aws_puppet_class %>` machines on the integration environment in AWS.
-
-```bash
-gds govuk connect ssh -e integration <%= application.aws_puppet_class %>
-```
-
-<% when  "aws" %>
-### SSH Access (AWS)
-
-```bash
-gds govuk connect ssh -e integration <%= application.aws_puppet_class %>
-gds govuk connect ssh -e staging aws/<%= application.aws_puppet_class %>
-gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
-```
+<ul>
+<% manual.pages_for_application(application.app_name).each do |page| %>
+  <li><%= link_to page.data.title, page.url %></li>
 <% end %>
-
-<% if application.can_run_rake_tasks_in_jenkins? %>
-  <h3>Run a rake task</h3>
-
-  <%= RunRakeTask.links(application) %>
+</ul>
 <% end %>
 
 <% if application.example_published_pages %>
-<h3>Example pages published by <%= application.app_name %></h3>
+## Example pages published by <%= application.app_name %>
 
 <ul>
 <% absolute_path = Regexp.new('^([a-z]+://|//)') %>
@@ -132,18 +143,8 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
 </ul>
 <% end %>
 
-<% if manual.pages_for_application(application.app_name).any? %>
-<h3>Relevant manual pages</h3>
-
-<ul>
-<% manual.pages_for_application(application.app_name).each do |page| %>
-  <li><%= link_to page.data.title, page.url %></li>
-<% end %>
-</ul>
-<% end %>
-
 <% if application.example_rendered_pages %>
-<h3>Example pages rendered by <%= application.app_name %></h3>
+## Example pages rendered by <%= application.app_name %>
 
 <ul>
 <% application.example_rendered_pages.each do |example| %>
@@ -152,7 +153,7 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
 </ul>
 <% end %>
 
-### README
+## README
 
 <div class="govuk-warning-text">
   <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
