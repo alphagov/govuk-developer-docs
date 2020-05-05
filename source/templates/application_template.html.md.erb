@@ -156,6 +156,21 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
 </ul>
 <% end %>
 
+### README
+
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">Warning</span>
+    The content below is pulled in directly from the repository.<br />
+    Links might not function properly.
+  </strong>
+</div>
+
+<div class="embedded-readme">
+  <%= ExternalDoc.parse(application.readme) %>
+</div>
+
 <% end %>
 
 [app-yaml]: https://github.com/alphagov/govuk-developer-docs/edit/master/data/applications.yml

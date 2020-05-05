@@ -227,6 +227,10 @@ class AppDocs
       github_repo_data["topics"]
     end
 
+    def readme
+      github_readme
+    end
+
     def can_run_rake_tasks_in_jenkins?
       production_hosted_on.in?(%w[aws carrenza])
     end
@@ -261,6 +265,12 @@ class AppDocs
       return {} if private_repo?
 
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
+    end
+
+    def github_readme
+      return nil if private_repo?
+
+      @github_readme ||= GitHubRepoFetcher.client.readme(github_repo_name)
     end
   end
 end
