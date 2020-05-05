@@ -17,6 +17,16 @@ class GitHubRepoFetcher
     end
   end
 
+  # Fetch a README for an alphagov application and cache it.
+  # Note that it is cached as pure markdown and requires further processing.
+  def readme(app_name)
+    CACHE.fetch("alphagov/#{app_name} README", expires_in: 1.hour) do
+      Base64.decode64(client.readme("alphagov/#{app_name}").content)
+    rescue Octokit::NotFound
+      nil
+    end
+  end
+
   def self.client
     @client ||= GitHubRepoFetcher.new
   end
