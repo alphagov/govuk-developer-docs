@@ -19,7 +19,6 @@ Find components in these guides:
 
 * [govuk_publishing_components component guide](https://govuk-publishing-components.herokuapp.com/component-guide)
 * [government-frontend component guide](https://government-frontend.herokuapp.com/component-guide/)
-* [calendars component guide](https://govuk-calendars.herokuapp.com/component-guide/)
 * [collections component guide](https://govuk-collections.herokuapp.com/component-guide/)
 * [finder-frontend component guide](https://finder-frontend.herokuapp.com/component-guide/)
 
