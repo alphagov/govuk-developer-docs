@@ -119,7 +119,7 @@
   dependencies:
     publishing-api:
       description: ''
-    calendars:
+    frontend:
       description: ''
     link-checker-api:
       description: ''
@@ -424,17 +424,6 @@
   production_hosted_on: aws
   dependencies:
     static:
-      description: ''
-    content-store:
-      description: ''
-    publishing-api:
-      description: ''
-- github_repo_name: calendars
-  type: Frontend apps
-  team: "#govuk-platform-health"
-  production_hosted_on: aws
-  dependencies:
-    calendars:
       description: ''
     content-store:
       description: ''
@@ -873,3 +862,10 @@
     finance support schemes. In March 2017, it was replaced with a new-style finder
     rendered by [finder-frontend](/apps/finder-frontend.html) and published by
     [specialist-publisher](/apps/specialist-publisher.html).
+- github_repo_name: calendars
+  retired: true
+  type: Frontend apps
+  description: |
+    calendars used to render the bank-holidays and
+    when-do-the-clocks-change pages. Since May 2020 those pages are
+    rendered by frontend.
