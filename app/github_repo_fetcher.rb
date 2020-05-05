@@ -8,7 +8,7 @@ class GitHubRepoFetcher
   # cache all alphagov-repos and save on API calls.
   def repo(app_name)
     if app_name =~ %r{/}
-      # Not on alpghagov, make a separate call to the API. Cache it for
+      # Not on alphagov, make a separate call to the API. Cache it for
       # development speed.
       @@cache ||= {}
       @@cache[app_name] ||= client.repo(app_name)
