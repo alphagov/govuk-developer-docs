@@ -5,7 +5,7 @@ section: Infrastructure
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-02-04
+last_reviewed_on: 2020-05-05
 review_in: 3 months
 ---
 
@@ -23,7 +23,7 @@ At the moment this is only done for RabbitMQ exchange federation because the per
 
 As a rule of thumb:
 
-- Applications which have been moved to AWS and have all their dependencies in AWS will use `$app_domain=<environment>.govuk.digital` and `<$app_domain_internal=<environment>.govuk-internal.digital`.
+- Applications which have been moved to AWS and have all their dependencies in AWS will use `$app_domain=<environment>.govuk.digital` and `$app_domain_internal=<environment>.govuk-internal.digital`.
 - Applications which remain in Carrenza, including all their dependencies, will only use `app_domain=<environment>.publishing.service.gov.uk`.
 - Applications having dependencies in both AWS and Carrenza will require some customisation of service resolution in form of a Plek URI override and may use either `$app_domain=<environment>.govuk.digital` or `$app_domain=<environment>.publishing.service.gov.uk`.
 
