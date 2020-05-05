@@ -59,14 +59,14 @@ calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.
 calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.5.238
 ```
 
-It will also resolve for an application service name, such as `calendars`:
+It will also resolve for an application service name, such as `finder-frontend`:
 
 ```
-lauramartin@ec2-integration-blue-backend-ip-10-1-5-53:~$ host calendars
-calendars.integration.govuk-internal.digital is an alias for calculators-frontend.integration.govuk-internal.digital.
+lauramartin@ec2-integration-blue-backend-ip-10-1-5-53:~$ host finder-frontend
+finder-frontend.integration.govuk-internal.digital is an alias for calculators-frontend.integration.govuk-internal.digital.
 calculators-frontend.integration.govuk-internal.digital is an alias for calculators-frontend.blue.integration.govuk-internal.digital.
-calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.5.238
-calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.27
+calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.4.222
+calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.202
 ```
 
 The service name will first resolve the top level environment domain name (`integration.govuk-internal.digital`), which will be a [CNAME record](https://en.wikipedia.org/wiki/CNAME_record) to a stack specific DNS record. Please see the documentation about [the concept of stacks in the infrastructure](concept-of-stacks.html).
