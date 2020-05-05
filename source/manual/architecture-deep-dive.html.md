@@ -289,7 +289,7 @@ rendering apps don't need to handle the complexity of pulling all of that data
 together manually. Link expansion happens in Publishing API at the point of
 sending an edition downstream to the Content Store.
 
-[Content API]: /apis/content-store.html
+[Content API]: /apps/content-store.html
 [content-store]: https://github.com/alphagov/content-store
 [govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
 [Link expansion]: https://github.com/alphagov/publishing-api/blob/master/doc/link-expansion.md
