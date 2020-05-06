@@ -124,10 +124,10 @@ the previous version of the software.
    likely been rebooted and you'll need to repeat some of the earlier steps
    to copy the XML file onto the machine again.
 
+1. [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets) for the new file.
+
 1. Publish the [English](https://publisher.publishing.service.gov.uk/editions/5e7e2e44e5274a6fbfebfbc2)
    and [Welsh](https://publisher.publishing.service.gov.uk/editions/5d72732f40f0b66279dc1ce8)
    content items, updating the version number in the body to refer to the new number.
-
-1. [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets) for the new file.
 
 1. Update and resolve the Zendesk ticket.
