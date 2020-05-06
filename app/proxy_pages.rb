@@ -1,6 +1,7 @@
 class ProxyPages
   def self.resources
     publishing_api_docs +
+      email_alert_api_docs +
       govuk_schema_names +
       app_docs +
       app_docs_json +
@@ -17,6 +18,22 @@ class ProxyPages
           title: "Publishing API: #{page.title}",
           locals: {
             title: "Publishing API: #{page.title}",
+            page: page,
+          },
+        },
+      }
+    end
+  end
+
+  def self.email_alert_api_docs
+    EmailAlertApiDocs.pages.map do |page|
+      {
+        path: "/apis/email-alert-api/#{page.filename}.html",
+        template: "templates/publishing_api_template.html",
+        frontmatter: {
+          title: "Email Alert API: #{page.title}",
+          locals: {
+            title: "Email Alert API: #{page.title}",
             page: page,
           },
         },
