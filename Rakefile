@@ -28,22 +28,22 @@ task :verify_deployable_apps do
 
   intentionally_missing =
     %w[
-    backdrop
-    spotlight
-    stagecraft
-    performanceplatform-admin
-    performanceplatform-big-screen-view
+      backdrop
+      spotlight
+      stagecraft
+      performanceplatform-admin
+      performanceplatform-big-screen-view
 
-    EFG
+      EFG
 
-    govuk-cdn-logs-monitor
-    govuk-content-schemas
-    govuk_crawler_worker
-    smokey
+      govuk-cdn-logs-monitor
+      govuk-content-schemas
+      govuk_crawler_worker
+      smokey
 
-    kibana-gds
-    sidekiq-monitoring
-  ]
+      kibana-gds
+      sidekiq-monitoring
+    ]
 
   puts "Deployables is not included in applications.yml:"
 
