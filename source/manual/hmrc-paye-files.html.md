@@ -4,7 +4,7 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-11
+last_reviewed_on: 2020-05-06
 review_in: 6 months
 ---
 
@@ -19,7 +19,7 @@ upload site was switched off. However, we don't currently allow `exe`
 files or other executable binary types to be uploaded to GOV.UK.
 Therefore we determined the quickest course of action to meet the user
 need of keeping their desktop software up to date was to manually upload
-and host the files ourselves.
+and host the files ourselves, bundled inside ZIP files.
 
 This document describes the process by which this is actioned.
 
@@ -49,58 +49,85 @@ The manifest file version vXX is given as an example. You should confirm the
 version number to use with HMRC because it must match the URL hard-coded into
 the previous version of the software.
 
-1.  HMRC submit a ticket via Zendesk
-    ([example](https://govuk.zendesk.com/tickets/771694))
-1.  Check that GOV.UK content teams are aware of the ticket.  They may
-    need to request further tickets to be raised to cover the content updates.
-1.  Download all zip files and XML file in the ticket
-1.  Upload the new files:
+1. HMRC submit a ticket via Zendesk
+   ([example](https://govuk.zendesk.com/tickets/771694))
+1. Check that GOV.UK content teams are aware of the ticket. They may
+   need to request further tickets to be raised to cover the content updates.
+1. Download all zip files and XML file in the ticket
+1. Log into a backend machine: `gds govuk connect ssh -e production aws/backend`.
+   **Yes, production - don't use integration or staging to test. There's a test procedure on production.**
+1. Make a note of the IP address you just SSH'd into, e.g. `ip-10-13-4-77.eu-west-1.compute.internal`
+1. Create a directory for the files to go into: `mkdir hmrc-paye`
+1. Either `exit` to return to your dev machine, or open another shell
+1. Upload the new files:
 
-      ```shell
-      gds govuk connect -e production ssh aws/backend
-      "mkdir -p /tmp/hmrc-paye && rm -rf /tmp/hmrc-paye/*"
-      ```
+   ```shell
+   $mac scp -oProxyJump=jumpbox.production.govuk.digital *.zip yourname@<aws_machine_ip_address>:/home/yourname/hmrc-paye
+   $mac scp -oProxyJump=jumpbox.production.govuk.digital *.xml yourname@<aws_machine_ip_address>:/home/yourname/hmrc-paye
+   ```
 
-      ```shell
-      $mac scp -oProxyJump=jumpbox.production.govuk.digital *.zip <aws_machine_ip_address>:/tmp/hmrc-paye
-      $mac scp -oProxyJump=jumpbox.production.govuk.digital *.xml <aws_machine_ip_address>:/tmp/hmrc-paye
-      ```
+1. SSH back into the machine if you exited earlier:
+   `gds govuk connect ssh -e production <aws_machine_ip_address>`
 
-1.  Load the files into the Asset Manager, with "test-" at the start of the manifest file's name:
+1. Verify that the files copied over correctly: `ls ~/hmrc-paye`
 
-      ```shell
-      gds govuk connect -e production ssh aws/backend
-      cd /var/apps/asset-manager
-      sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
-      sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
-      ```
+1. Move the files over to the `/tmp` directory: `sudo mv ~/hmrc-paye /tmp`
+   **(The deploy doesn't work if you try to do it directly from your home directory)**.
 
-1.  [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets) for the test file.
+1. Upload the ZIP files into Asset Manager
 
-1.  Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
+   ```shell
+   cd /var/apps/asset-manager
+   sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
+   ```
+ 
+   The command should take a few seconds to run, and the output will look something like this
+   (it can be safely ignored):
+    > `/home/yourname` is not writable.
+    > Bundler will use `/tmp/user/2899/bundler/home/deploy' as your home directory temporarily.
 
-        https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
+1. You should be able to access your zip, e.g. at
+   https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/payetools-rti-[version-and-os].zip
+   You may also see some "high memory for asset-manager app" alerts in the meantime.
 
-1.  When Aspire or one of the other suppliers replies that the file
-    works fine, the new edition of the [mainstream content
-    item](https://www.gov.uk/basic-paye-tools) and [Welsh
-    translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
-    can be prepped by the content team with the new links, file sizes and version
-    number, ready to publish at the launch time. Pass the Zendesk ticket over to content support by reassigning it to '3rd line--GOV.UK Content' and adding the green team tag, 'business_defence_environment' .
+1. Now upload the manifest, **but with "test-" at the start of the filename**:
 
-1.  When the launch time comes (which should be specified in the Zendesk
-    ticket), re-load the test file to the production path:
+   ```shell
+   sudo -udeploy govuk_setenv asset-manager bundle exec rake \
+   govuk_assets:create_hmrc_paye_asset[/home/yourname/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
+   ```
 
-      ```shell
-      gds govuk connect -e production ssh aws/backend
-      cd /var/apps/asset-manager
-      sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
-      ```
+1. [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets) for the test file.
 
-    You will have to copy the file to the server again if it has been deleted since it was first uploaded.
+1. Reply to the Zendesk ticket, providing the `test-*.xml` URL of:
 
-1. Publish the content items.
+   https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
+
+1. When Aspire or one of the other suppliers replies that the file
+   works fine, the new edition of the [mainstream content item](https://www.gov.uk/basic-paye-tools)
+   and [Welsh translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem) can be
+   prepped by the content team with the new links, file sizes and version number, ready to
+   publish at the launch time. Pass the Zendesk ticket over to content support by
+   reassigning it to `3rd line--GOV.UK Content` and adding the green team tag,
+   `business_defence_environment`.
+
+1. When the launch time comes (which should be specified in the Zendesk
+   ticket), re-load the test file to the production path:
+
+   ```shell
+   gds govuk connect ssh -e production <aws_machine_ip_address>
+   cd /var/apps/asset-manager
+   sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
+   ```
+
+   If the SSH connection fails, or if the file is missing, the machine has
+   likely been rebooted and you'll need to repeat some of the earlier steps
+   to copy the XML file onto the machine again.
+
+1. Publish the [English](https://publisher.publishing.service.gov.uk/editions/5e7e2e44e5274a6fbfebfbc2)
+   and [Welsh](https://publisher.publishing.service.gov.uk/editions/5d72732f40f0b66279dc1ce8)
+   content items, updating the version number in the body to refer to the new number.
 
 1. [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets) for the new file.
 
-1.  Update and resolve the Zendesk ticket
+1. Update and resolve the Zendesk ticket.
