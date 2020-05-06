@@ -184,9 +184,9 @@ To log in to AWS:
 
 Deployment is managed via [TechOps shared Concourse][big-concourse].
 CI/CD pipelines are configured under the `govuk-tools` team. You can
-read about what Concourse is, its access controls, and how to
-administer it, on the [Concourse](/manual/concourse.html) developer
-docs page.
+read about what Concourse is, its access controls, [configuring secrets][re-secrets],
+and how to administer it, on the [Concourse](/manual/concourse.html)
+developer docs page.
 
 In terms of these applications, any changes to application code on the
 master branch are continuously deployed to staging.  Smoke tests are
@@ -352,3 +352,4 @@ heading "PaaS Support (COVID-19 forms)".
 [paas-redis]: https://docs.cloud.service.gov.uk/deploying_services/redis/#redis
 [splunk]: https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/d006_coronavirus
 [covid-engineering-repo]: https://github.com/alphagov/covid-engineering/blob/master/reliability-engineering/terraform/deployments/corona-data-prod/account/iam.tf#L296-L386
+[re-secrets]: https://reliability-engineering.cloudapps.digital/continuous-deployment.html#secrets
