@@ -103,16 +103,19 @@ the previous version of the software.
 
    https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml
 
-1. When Aspire or one of the other suppliers replies that the file
-   works fine, the new edition of the [mainstream content item](https://www.gov.uk/basic-paye-tools)
-   and [Welsh translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem) can be
-   prepped by the content team with the new links, file sizes and version number, ready to
-   publish at the launch time. Pass the Zendesk ticket over to content support by
+1. Wait for HMRC to confirm that it (and/or its suppliers) have tested the file
+   and would like to proceed. Pass the Zendesk ticket over to content support by
    reassigning it to `3rd line--GOV.UK Content` and adding the green team tag,
    `business_defence_environment`.
+   In your handover comment, link to the [mainstream content item](https://www.gov.uk/basic-paye-tools)
+   ([publisher link](https://publisher.publishing.service.gov.uk/editions/5e7e2e44e5274a6fbfebfbc2))
+   and [Welsh translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
+   ([publisher link](https://publisher.publishing.service.gov.uk/editions/5d72732f40f0b66279dc1ce8)).
+   The content team will prep these pages with the new links, file sizes and
+   version number, ready to publish at the launch time.
 
-1. When the launch time comes (which should be specified in the Zendesk
-   ticket), re-load the test file to the production path:
+1. When the launch time comes (which should be specified in the Zendesk ticket),
+   re-load the test file to the production path:
 
    ```shell
    gds govuk connect ssh -e production <aws_machine_ip_address>
@@ -124,10 +127,8 @@ the previous version of the software.
    likely been rebooted and you'll need to repeat some of the earlier steps
    to copy the XML file onto the machine again.
 
-1. Publish the [English](https://publisher.publishing.service.gov.uk/editions/5e7e2e44e5274a6fbfebfbc2)
-   and [Welsh](https://publisher.publishing.service.gov.uk/editions/5d72732f40f0b66279dc1ce8)
-   content items, updating the version number in the body to refer to the new number.
+1. [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets)
+   for the new file.
 
-1. [Purge the cache](https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets) for the new file.
-
-1. Update and resolve the Zendesk ticket.
+1. Reassign back to the content team to publish the content items. They will
+   then resolve the Zendesk ticket.
