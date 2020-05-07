@@ -37,8 +37,7 @@ the various caches manually:
 ### Assets
 
 If you need to clear the Fastly cache for a URL which is not `www.gov.uk` (e.g. for assets),
-you can provide a full URL to the Fastly cache clearing rake task.
-(Target application: `cache-clearing-service`, Machine class: `backend`)
+you can provide a full URL to the [Fastly cache clearing rake task](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[%22https://assets.example.gov.uk/your-path-here%22]).
 
 ```sh
 $ rake cache:clear_fastly["https://assets.example.gov.uk/your-path-here"]
