@@ -4,8 +4,8 @@ title: Make a GitHub repo private
 parent: /manual.html
 layout: manual_layout
 section: GitHub
-last_reviewed_on: 2019-10-31
-review_in: 6 months
+last_reviewed_on: 2020-05-08
+review_in: 3 months
 ---
 
 In cases of an ongoing security incident, or when working on politically sensitive changes, we may want to work in private rather than public. We do this by creating a private fork of the application.
@@ -23,6 +23,8 @@ To fork an existing GOV.UK repository and make it private perform the following 
  1. Click on 'Settings' and then 'Collaborators' to set the permissions on the repository.
  1. Add the 'GOV.UK - CI Bots' team so that Jenkins can access the repository for deployment. Make sure it is set to 'write' access because Jenkins needs to access the repository and set the release tag.
  1. Add the 'gov-uk' team and set it 'write' access so that developers can create and merge pull requests.
+ 1. Consider adding [a GitHub action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to replace Jenkins CI that will not be running on this new repo.
+ 1. Add a branch protection rule against the master branch. You can [use the settings in another repo](https://github.com/alphagov/government-frontend/settings/branches) as a template.
 
 ## Deploying the private repository
 
@@ -73,12 +75,14 @@ $ govuk_puppet --enable
 
 ### Testing in private
 
-We do not have CI builds on our private repos, so all code must be fully tested and linted locally.
+We do not have CI builds on our private repos by default, so all code must be fully tested and linted locally. You can add either:
+- Add [a GitHub action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to do these things for you
+- or make sure that you have run these steps:
 
 ```
-rake # run all the tests
-rake lint # sometimes this doesn't get run with rake
-govuk-lint-ruby app lib spec # sometimes there's no 'lint' task
+bundle exec rubocop # run the linter
+RAILS_ENV=production bundle exec rake assets:precompile # make sure production assets compilation works
+bundle exec rake # run all the tests
 ```
 
 ## Keeping repositories in sync
@@ -103,7 +107,7 @@ $ git push origin update
 
 In order to make our private changes public, we need to incorporate them into the public repo.
 
- 1.  Make sure you have pulled in the latest changes from the public repo into the private repo (detailed in 'Keeping repositories in sync'). 
+ 1.  Make sure you have pulled in the latest changes from the public repo into the private repo (detailed in 'Keeping repositories in sync').
  1.  Merge any pending pull requests into the master branch of the private repo.
  1.  On the public repo, add the private repo as a new upstream remote: e.g. `git remote add upstream https://github.com/alphagov/frontend-private.git`
  1.  Create a new branch on the public repo.
