@@ -75,9 +75,10 @@ $ govuk_puppet --enable
 
 ### Testing in private
 
-We do not have CI builds on our private repos by default, so all code must be fully tested and linted locally. You can add either:
-- Add [a GitHub action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to do these things for you
-- or make sure that you have run these steps:
+We do not have CI builds on our private repos by default. To mitigate the risks of this, you can either:
+
+- Add [a GitHub Action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to do these things for you
+- Or, run the following manual steps locally before pushing:
 
 ```
 bundle exec rubocop # run the linter
