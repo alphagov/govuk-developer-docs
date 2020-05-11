@@ -4,7 +4,12 @@ require_relative "./app/requires"
 
 RSpec::Core::RakeTask.new(:spec)
 
-task default: [:spec]
+desc "Run RuboCop"
+task :lint, :environment do
+  sh "bundle exec rubocop --format clang"
+end
+
+task default: %i[lint spec]
 
 namespace :cache do
   desc "Clear the cache of external content"
