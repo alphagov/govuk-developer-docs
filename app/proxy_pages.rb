@@ -13,7 +13,7 @@ class ProxyPages
     PublishingApiDocs.pages.map do |page|
       {
         path: "/apis/publishing-api/#{page.filename}.html",
-        template: "templates/publishing_api_template.html",
+        template: "templates/external_doc_template.html",
         frontmatter: {
           title: "Publishing API: #{page.title}",
           locals: {
@@ -29,7 +29,7 @@ class ProxyPages
     EmailAlertApiDocs.pages.map do |page|
       {
         path: "/apis/email-alert-api/#{page.filename}.html",
-        template: "templates/publishing_api_template.html",
+        template: "templates/external_doc_template.html",
         frontmatter: {
           title: "Email Alert API: #{page.title}",
           locals: {
