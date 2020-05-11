@@ -4,13 +4,13 @@ class DocumentTypes
 
   def self.pages
     @@pages ||= begin
-      known_from_search = facet_query.dig("facets", "content_store_document_type", "options").map { |o|
+      known_from_search = facet_query.dig("facets", "content_store_document_type", "options").map do |o|
         Page.new(
           name: o.dig("value", "slug"),
           total_count: o.dig("documents"),
           examples: o.dig("value", "example_info", "examples"),
         )
-      }
+      end
 
       all_document_types.map do |document_type|
         from_search = known_from_search.find { |p| p.name == document_type }
