@@ -9,8 +9,17 @@ review_in: 6 months
 ---
 
 The high priority tests [come from Smokey][smokey] and [the Icinga check is defined in Puppet][icinga].
+Smokey can fail with an error message "Run high priority tests", or simply with "Smokey failed".
 
-### Tests failing
+## Tests failing
+
+### Application code change
+
+If the error was "Smokey failed", the first thing worth looking at is the log for the
+failed Smokey run on Jenkins. If it's an application error, it's quite possible that
+Smokey is just doing its job and has caught an issue to investigate further.
+
+### Nginx
 
 If many of the tests are failing in an AWS environment, it may be because the Nginx services haven't registered new
 boxes coming online or old ones going offline. You can try to restart the following services:
@@ -32,9 +41,11 @@ $ ssh monitoring-1.production
 > sudo less /var/log/upstart/smokey-loop.log
 ```
 
-If you see recent log entries like `HTTP status code 550 (RestClient::RequestFailed)` this usually means that
-the BrowserMob Proxy java process is running as part of a previously aborted smokey-loop and the new smoke tests
-cannot start a new proxy. It's necessary to kill the existing java process and restart smokey-loop.
+### `HTTP status code 550 (RestClient::RequestFailed)`
+
+This usually means that the BrowserMob Proxy java process is running as part of a previously aborted
+smokey-loop and the new smoke tests cannot start a new proxy. It's necessary to kill the existing
+java process and restart smokey-loop.
 
 Replace process numbers as appropriate:
 
@@ -46,6 +57,17 @@ $ ps -ef | grep java
 $ sudo kill -9 6385
 $ sudo service smokey-loop start
 ```
+
+If Smokey fails with simply "Smokey failed", SSH into the Jenkins machine, then perform
+these same steps:
+
+```shell
+$ ps -ef | grep java
+> smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browsermob-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browsermob-dist-2.1.4.jar --port 3222
+$ sudo kill -9 6385
+```
+
+...then re-run the Jenkins build.
 
 ### Integration with Signon
 
