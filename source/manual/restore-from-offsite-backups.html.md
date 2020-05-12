@@ -4,7 +4,7 @@ title: Restore from offsite backups
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-09-13
+last_reviewed_on: 2020-05-12
 review_in: 6 months
 ---
 
@@ -69,12 +69,6 @@ credentials and GPG key to decrypt the backups.
     ```bash
     export AWS_ACCESS_KEY_ID=<access_key_id>
     export AWS_SECRET_ACCESS_KEY=<secret_access_key>
-    s3cmd ls s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/govuk-datastores/
-    ```
-
-    If you receive a `403` error, try:
-
-    ```bash
     s3cmd ls s3://govuk-offsite-backups-production/govuk-datastores/
     ```
 
