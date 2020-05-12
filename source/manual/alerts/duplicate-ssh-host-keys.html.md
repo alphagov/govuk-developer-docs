@@ -4,7 +4,7 @@ title: Duplicate SSH host keys
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-10-07
+last_reviewed_on: 2020-05-12
 review_in: 6 months
 ---
 
@@ -32,4 +32,4 @@ the facts 'sshdsakey', 'sshecdsakey' and 'sshrsakey' and find duplicated values.
 The check assumes some default values that might change with the time, or there
 could be a problem with Puppetdb itself.
 
-For more information, check the source of the check in https://github.com/alphagov/nagios-plugins/blob/master/plugins/command/check_puppetdb_ssh_host_keys.py
+For more information, check the source of the check [here](https://github.com/alphagov/nagios-plugins/blob/master/plugins/command/check_puppetdb_ssh_host_keys.py)
