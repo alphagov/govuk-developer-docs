@@ -4,8 +4,6 @@ title: AWS RDS Instance Storage Utilization
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-05-12
-review_in: 6 months
 ---
 
 This alert relates to disk usage of our databases (RDS) in AWS. There are two
