@@ -24,10 +24,11 @@ So far we've received requests that have asked for information on:
 ### Email subscriptions
 
 We've had requests to get information on what is held about an email address
-in terms of subscriptions. We have [some documented queries that can help get
-this][email-alert-api-analytics].
+in terms of subscriptions. [There is a rake task for that][rake-task].
+We also have [some documented queries that can help get this][email-alert-api-analytics].
 
 [email-alert-api-analytics]: /manual/email-alert-api-analytics.html
+[rake-task]: /apis/email-alert-api/tasks.html#view-subscribers-subscriptions
 
 ### Others
 
