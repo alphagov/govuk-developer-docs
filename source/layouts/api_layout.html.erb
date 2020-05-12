@@ -6,9 +6,12 @@
       </a>
     </li>
     <li>
-      <a href="/apis/email-alert-api.html">
-        <span>Email Alert API</span>
-      </a>
+      <%= sidebar_link 'Email Alert API', '/apis/email-alert-api.html' %>
+      <ul>
+        <% email_alert_api_pages.each do |page| %>
+          <li><%= sidebar_link page.title, "/apis/email-alert-api/#{page.filename}.html" %></li>
+        <% end %>
+      </ul>
     </li>
     <li>
       <a href="/apis/link-checker-api.html">

@@ -32,6 +32,10 @@ helpers do
     PublishingApiDocs.pages.sort_by(&:title)
   end
 
+  def email_alert_api_pages
+    EmailAlertApiDocs.pages.sort_by(&:title)
+  end
+
   def active_app_pages
     AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
   end
