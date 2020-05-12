@@ -4,7 +4,7 @@ title: AWS RDS Instance Memory Utilization
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-10-07
+last_reviewed_on: 2020-05-12
 review_in: 6 months
 ---
 
