@@ -4,7 +4,7 @@ title: AWS RDS Instance CPU Utilization
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-10-07
+last_reviewed_on: 2020-05-13
 review_in: 6 months
 ---
 
@@ -17,6 +17,8 @@ various RDS instances.
 
 There are two ways to check the current usage:
 
-1. Access the AWS web console and view the statistics.
-2. Access a "db-admin" instance via SSH and access the database console. Then
-   you should be able to view the current queries in action.
+The first is to access the AWS web console and view the statistics. These are available
+under Amazon RDS -> Databases -> your-database-name -> Monitoring.
+
+The second is to access a "db-admin" instance via SSH and access the database console. Then
+you should be able to view the current queries in action.
