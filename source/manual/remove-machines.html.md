@@ -4,11 +4,11 @@ title: Remove a machine
 parent: "/manual.html"
 layout: manual_layout
 section: Infrastructure
-last_reviewed_on: 2019-11-13
+last_reviewed_on: 2020-05-13
 review_in: 6 months
 ---
 
-Before you start, make sure that the machines you are removing are no longer 
+Before you start, make sure that the machines you are removing are no longer
 needed for anything.
 
 ## Carrenza
@@ -86,6 +86,10 @@ relevant project in [govuk-aws-data][]
 Carrenza, it is not possible to disable alerts for the machine before
 it is removed, as the ASG will terminate arbitrary instances to shrink
 to the desired size.
+
+If there are particular machines in the ASG that you do not want terminated
+you can enable "Scale in Protection" on them before you reduce the size of the ASG. You
+can find [more information on this in the AWS Docs](https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-instance-termination.html).
 
 [terraform]: /manual/deploying-terraform.html#ci-jenkins
 [govuk-aws]: https://github.com/alphagov/govuk-aws/tree/master/terraform/projects
