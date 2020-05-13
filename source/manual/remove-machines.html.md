@@ -4,8 +4,6 @@ title: Remove a machine
 parent: "/manual.html"
 layout: manual_layout
 section: Infrastructure
-last_reviewed_on: 2020-05-13
-review_in: 6 months
 ---
 
 Before you start, make sure that the machines you are removing are no longer
