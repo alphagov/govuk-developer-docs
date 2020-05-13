@@ -4,8 +4,6 @@ title: AWS RDS Instance CPU Utilization
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-05-13
-review_in: 6 months
 ---
 
 This alert relates to the AWS relational database service (RDS) CPU
