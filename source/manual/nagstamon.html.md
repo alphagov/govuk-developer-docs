@@ -15,6 +15,20 @@ alerts, and allow you to easily act on them.
 
 [Nagstamon]: https://nagstamon.ifw-dresden.de/
 
+## Installation
+
+Download the relevant release from the Nagstamon website.
+
+### Mac users
+
+Double-click the downloaded `.dmg`. Drag the app into your
+Apps folder, then double-click the app.
+
+On first run, it may be blocked as an unverified app.
+Go to "Security & Privacy", and under the "General" tab there
+should be a message relating to your attempt to open Nagstamon.
+Click "Open anyway".
+
 ## Connecting to Icinga
 
 To connect Nagstamon to an Icinga instance:
