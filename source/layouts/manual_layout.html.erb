@@ -1,4 +1,10 @@
-<% breadcrumb = "<p><a href='/manual.html##{section_url}'>#{current_page.data.section}</a></p>" %>
+<%
+  breadcrumb = if current_page.data.section == "Icinga alerts"
+                 ""
+               else
+                 "<p><a href='/manual.html##{section_url}'>#{current_page.data.section}</a></p>"
+               end
+%>
 <% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1>#{yield}" %>
 
 <% content_for :page_description, Snippet.generate(html) %>
