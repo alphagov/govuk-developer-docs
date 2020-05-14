@@ -2,11 +2,15 @@
 owner_slack: "#govuk-2ndline"
 title: 'Email Alert API: High number of delivery attempts'
 section: Icinga alerts
+subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-11-05
 review_in: 6 months
 ---
+
+The first thing to do is determine what kind of failure is affecting the
+delivery attempts.
 
 ## Internal failures (`internal_failure`)
 
@@ -35,6 +39,11 @@ You can login to the Notify account by going to the
 [2nd line password store][password-store] under
 `govuk-notify/2nd-line-support`.
 
+## Still stuck?
+
+Read [email troubleshooting].
+
+[email troubleshooting]: /manual/email-troubleshooting.html
 [notify]: https://www.notifications.service.gov.uk
 [hieradata]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
 [hieradata_aws]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml

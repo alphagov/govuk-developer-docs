@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: 'Email Alert API: Unprocessed content changes'
 section: Icinga alerts
+subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-01-08
@@ -55,4 +56,9 @@ ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).m
  $ bundle exec rake report:content_change_failed_emails[<content_change_id>]
 ```
 
+### Still stuck?
+
+Read [email troubleshooting].
+
 [content-change-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_content_change_worker.rb
+[email troubleshooting]: /manual/email-troubleshooting.html
