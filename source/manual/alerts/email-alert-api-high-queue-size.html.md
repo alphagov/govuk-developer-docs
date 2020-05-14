@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: 'Email Alert API: High number of messages on sidekiq queue'
 section: Icinga alerts
+subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-01-21
