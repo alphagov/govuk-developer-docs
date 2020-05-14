@@ -12,14 +12,21 @@ Callbacks from Notify may fail and require us to manually query the status of
 emails.
 
 There are two rake tasks that can do this using either the `reference` or the
-`email_id`
+`email_id`.
 
 ## Query the Notify API for email(s) by reference
 
+```
+report:get_notifications_from_notify[reference]
+```
+
 [⚙ Run rake task on production][reference]
 
-
 ## Query the Notify API for email(s) by email ID
+
+```
+report:get_notifications_from_notify_by_email_id[id]
+```
 
 [⚙ Run rake task on production][email_id]
 
@@ -52,6 +59,10 @@ delivered, pending, failed, technical-failure, temporary-failure,
 permanent-failure, accepted, received]"}]
 ```
 
+## Still stuck?
 
-[reference]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:get_notifications_from_notify[reference]
+Read [email troubleshooting].
+
+[email troubleshooting]: /manual/email-troubleshooting.html
 [email_id]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:get_notifications_from_notify_by_email_id[id]
+[reference]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:get_notifications_from_notify[reference]

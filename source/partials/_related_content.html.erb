@@ -36,6 +36,18 @@
           </ul>
         </div>
       <% end %>
+
+      <% if related_things.related_alerts.any? %>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Related alerts...</h4>
+
+          <ul class="govuk-list">
+          <% related_things.related_alerts.each do |page| %>
+            <li><%= link_to page.data.title, page.url %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>

@@ -30,12 +30,14 @@ The applications that comprise the email notifications system are:
 Frontend applications use Email Alert API to create new mailing lists and
 as a redirect destination for signing up. Publishing apps tend not to use
 email alert API, instead relying on Email Alert Service to be triggered
-by Publishing API. The exceptions are [Travel Advice Publisher][] and
-[Specialist Publisher][], which require a greater degree of control, so
+by Publishing API. The exceptions are [Travel Advice Publisher] and
+[Specialist Publisher], which require a greater degree of control, so
 communicate directly with the Email Alert API.
 
 To have a near real-time overview of the status of data passing through
 the Email Alert API, view the [metrics dashboard][dashboard].
+
+There is more detail about how this works in the [Email Alert API docs].
 
 ### Email Alert Frontend
 
@@ -70,5 +72,6 @@ endpoints are exposed publicly through
 https://email-alert-api-public.publishing.service.gov.uk.
 
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
+[Email Alert API docs]: /apis/email-alert-api/troubleshooting.html
 [Specialist Publisher]: /apps/specialist-publisher.html
 [Travel Advice Publisher]: /apps/travel-advice-publisher.html
