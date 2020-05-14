@@ -32,5 +32,5 @@ See the [General troubleshooting tips][troubleshooting] section for more informa
 
 [notify-documentation]: https://docs.notifications.service.gov.uk/ruby.html#status-text-and-email
 [dashboard]: https://grafana.staging.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
-[troubleshooting]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#general-troubleshooting-tips
+[troubleshooting]: /manual/email-troubleshooting.html
 [sidekiq]: /manual/sidekiq.html#sidekiq-web

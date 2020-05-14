@@ -72,4 +72,9 @@ digest_run.mark_complete!
 You may also need to run `DigestRunWorker.new.perform` to re-send the counts
 to statsd so that the alert gets removed from Icinga.
 
+### Still stuck?
+
+Read [email troubleshooting].
+
 [digest-email-generation-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/digest_email_generation_worker.rb
+[email troubleshooting]: /manual/email-troubleshooting.html

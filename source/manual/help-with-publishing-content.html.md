@@ -46,7 +46,7 @@ Email Alert API](https://github.com/alphagov/email-alert-api/blob/1aee9703bf303d
 
 We have an alert that checks that email alerts for Travel Advice and Medical
 Safety Alerts go out correctly. Although an alert won't be triggered for other
-kinds of documents, the [guidance will still apply](alerts/email-alerts.html).
+kinds of documents, the [guidance will still apply](alerts/email-alerts-travel-medical.html).
 
 ### [If scheduled publications haven't gone out][scheduled]
 

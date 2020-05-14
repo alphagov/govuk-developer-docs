@@ -18,6 +18,8 @@ problem down the line which is preventing jobs from being processed. It may
 also imply the threshold is too low if a large number of emails have been sent
 out due to a content change.
 
-See the [sidekiq][sidekiq] section for more information about the Sidekiq queues.
+See the [sidekiq][sidekiq] section for more information about the Sidekiq queues,
+or read [email troubleshooting].
 
+[email troubleshooting]: /manual/email-troubleshooting.html
 [sidekiq]: /manual/sidekiq.html
