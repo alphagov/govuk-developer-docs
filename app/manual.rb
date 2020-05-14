@@ -30,6 +30,15 @@ class Manual
     manual_pages.select { |page| page.data.section == other_page.data.section } - [other_page]
   end
 
+  def other_alerts_from_subsection(current_page)
+    return [] if current_page.data.subsection.nil?
+
+    sitemap.resources
+      .select { |page| page.data.section == ICINGA_ALERTS }
+      .select { |page| page.data.subsection == current_page.data.subsection }
+      .sort_by { |page| page.data.title.downcase } - [current_page]
+  end
+
 private
 
   def most_important_pages

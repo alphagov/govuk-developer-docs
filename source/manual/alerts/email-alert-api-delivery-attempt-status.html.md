@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: 'Email Alert API: High number of delivery attempts'
 section: Icinga alerts
+subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-11-05

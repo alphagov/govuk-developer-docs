@@ -2,6 +2,7 @@
 owner_slack: "#govuk-2ndline"
 title: Travel Advice or Drug and Medical Device email alerts not sent
 section: Icinga alerts
+subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-12-03

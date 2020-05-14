@@ -30,6 +30,30 @@ RSpec.describe Manual do
     end
   end
 
+  describe "#other_alerts_from_subsection" do
+    it "returns other Icinga Alert pages that have the same subsection" do
+      def stub_page(data_args)
+        double(path: "manual/#{SecureRandom.uuid}.html", data: double({ important: true, type: nil, subsection: nil }.merge(data_args)))
+      end
+
+      matching_subsection_and_alert = stub_page(title: "Foo", section: "Icinga alerts", subsection: "Emails")
+      another_matching_subsection_and_alert = stub_page(title: "Bar", section: "Icinga alerts", subsection: "Emails")
+      alert_but_not_matching_subsection = stub_page(title: "Alert about something else", section: "Icinga alerts", subsection: "Some other subject")
+      matching_subsection_but_not_alert = stub_page(title: "NOT an alert", section: "Sausages", subsection: "Emails")
+
+      sitemap = double(resources: [
+        matching_subsection_and_alert,
+        another_matching_subsection_and_alert,
+        alert_but_not_matching_subsection,
+        matching_subsection_but_not_alert,
+      ])
+
+      other_alerts_from_subsection = Manual.new(sitemap).other_alerts_from_subsection(matching_subsection_and_alert)
+
+      expect(other_alerts_from_subsection).to eql([another_matching_subsection_and_alert])
+    end
+  end
+
   describe "#pages_for_application" do
     it "returns the pages that are relevant to an application" do
       sitemap = double(resources: [
