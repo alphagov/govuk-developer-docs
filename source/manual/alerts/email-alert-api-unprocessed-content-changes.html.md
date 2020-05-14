@@ -56,4 +56,9 @@ ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).m
  $ bundle exec rake report:content_change_failed_emails[<content_change_id>]
 ```
 
+### Still stuck?
+
+Read [email troubleshooting].
+
 [content-change-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_content_change_worker.rb
+[email troubleshooting]: /manual/email-troubleshooting.html

@@ -64,4 +64,4 @@ section for more information.
 [adr-messages]: https://github.com/alphagov/email-alert-api/blob/master/doc/arch/adr-004-message-concept.md
 [process-message-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb
 [dashboard]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
-[troubleshooting]: https://docs.publishing.service.gov.uk/manual/alerts/email-alert-api-app-healthcheck-not-ok.html#general-troubleshooting-tips
+[troubleshooting]: /manual/email-troubleshooting.html

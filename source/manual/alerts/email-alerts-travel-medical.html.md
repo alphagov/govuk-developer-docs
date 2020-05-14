@@ -26,19 +26,19 @@ should describe which mailbox is seeing an issue.
   device alerts. Its credentials can be found in the [2nd line password store][]
   under `google-accounts/govuk_email_check@digital.cabinet-office.gov.uk`.
 
-* [Check the courtesy copy inbox][]. Its presence here doesn't mean that the
+* [Check the courtesy copy inbox]. Its presence here doesn't mean that the
   email was sent to users, just that Email Alert API processed the content change.
 
 If the email has been received by the mailbox but the subject of the email
 doesn't match the title of the content item, this means that the title of the
 content was updated after it was first published and after the emails went out.
 To stop the check from constantly failing, add the updated content item title
-to the [acknowledged email list][] and then re-run the Jenkins job.
+to the [acknowledged email list] and then re-run the Jenkins job.
 
 ## Troubleshooting unsent emails
 
 If the check is reporting correctly then emails are not being sent. Try the
-[general troubleshooting tips for unsent emails][].
+[general troubleshooting tips for unsent emails][troubleshooting].
 
 ## Resending travel advice emails
 
@@ -50,11 +50,11 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 
 [2nd line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline
 [acknowledged email list]: https://github.com/alphagov/email-alert-monitoring/blob/master/lib/email_verifier.rb#L6-L14
-[check the courtesy copy inbox]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#check-the-courtesy-copy-inbox
+[check the courtesy copy inbox]: /manual/email-troubleshooting.html#check-the-courtesy-copy-inbox
 [drug-alerts-check]: https://deploy.blue.production.govuk.digital/job/email-alert-check/
 [drug and medical device alerts]: https://www.gov.uk/drug-device-alerts
 [email-check]: https://github.com/alphagov/email-alert-monitoring
-[general troubleshooting tips for unsent emails]: /manual/alerts/email-alert-api-app-healthcheck-not-ok.html#general-troubleshooting-tips
 [resend-travel-advice-job]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=email_alerts:trigger%5BPUT_EDITION_ID_HERE%5D
 [travel-advice-check]: https://deploy.blue.production.govuk.digital/job/travel-advice-email-alert-check/
 [travel advice updates]: https://www.gov.uk/foreign-travel-advice
+[troubleshooting]: /manual/email-troubleshooting.html
