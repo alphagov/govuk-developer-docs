@@ -44,57 +44,40 @@ to production, your attempt to SSH into a production node will fail silently.
 
 ### CLI Problems
 
-The jumpbox is a special node that knows about all of the other nodes in its environment.
+[GOV.UK Connect] is a tool we use to make working with our machines quicker and easier. If
+it's not working, you can try manually running the commands it normally runs for you.
 
-List the IP addresses of every node in the environment:
+- [Find the class of machine you need (and which cloud it lives in)](https://docs.publishing.service.gov.uk/apps.html).
 
-```sh
-jumpbox$ govuk_node_list
-```
+- Find [the jumpbox for the environment you need](https://github.com/alphagov/govuk-connect/blob/fcbe054874c84968b6af97e45005b00bc5aa285a/lib/govuk_connect/cli.rb#L81).
 
-This long list of IPs is not very useful on its own, but you can filter it by node class:
+- SSH to the jumpbox.
+  ```sh
+  $ ssh -A jumpbox.staging.govuk.digital
+  ```
 
-```sh
-jumpbox$ govuk_node_list -c backend
-```
+- On the jumpbox, run `govuk_node_list` to find the machine you want.
 
-And if you can't remember the names of the node classes, there's a built-in helper:
+  ```sh
+  $ govuk_node_list backend
+  ip-10-12-4-106.eu-west-1.compute.internal
+  ip-10-12-5-205.eu-west-1.compute.internal
+  ip-10-12-6-44.eu-west-1.compute.internal
+  ```
 
-```sh
-jumpbox$ govuk_node_list --classes
-```
+- Still on the jumpbox, SSH to one of the machines in the list.
 
-Once you have found the IP of the machine you want to SSH into, you can manually SSH
-directly from the jumpbox machine:
+  ```sh
+  $ ssh ip-10-12-4-106.eu-west-1.compute.internal
+  ```
 
-```sh
-jumpbox$ ssh ip-10-1-5-22.eu-west-1.compute.internal
-```
+- Once you're on the machine you need, you can start a Rails console.
 
-You can also do this from your local machine by appending the environment to the address:
-
-```sh
-local$ ssh ip-10-1-5-22.eu-west-1.compute.internal.integration
-```
-
-### Application node
-
-Now you're on the node running the application you want to explore. There are two main
-ways of interacting with the running application.
-
-You can start up an application console (typically Rails):
-
-```sh
-node$ govuk_app_console
-```
-
-...or you can start up a database console (typically PostgreSQL):
-
-```sh
-node$ govuk_app_dbconsole
-```
+  ```sh
+  $ govuk_app_console publishing-api
+  ```
 
 These common commands, along with `govuk_node_list`, live in
-[govuk-puppet](https://github.com/alphagov/govuk-puppet).
+[govuk-puppet](https://github.com/alphagov/govuk-puppet/tree/master/modules/govuk_scripts).
 
 [GOV.UK Connect]: https://github.com/alphagov/govuk-connect
