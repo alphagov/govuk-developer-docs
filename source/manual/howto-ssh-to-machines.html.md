@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: SSH into AWS machines
+title: SSH into machines
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
