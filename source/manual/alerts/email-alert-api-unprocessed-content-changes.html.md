@@ -5,7 +5,7 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-08
+last_reviewed_on: 2020-05-15
 review_in: 6 months
 ---
 
@@ -16,9 +16,16 @@ This may be fine and the emails will eventually go out, but it's worth some inve
 * `warning` - `content_changes` unprocessed for over 5 minutes
 * `critical` - `content_changes` unprocessed for over 10 minutes
 
-See the [ProcessContentChangeWorker][content-change-worker] for more information.
+See the [ProcessContentChangeAndGenerateEmailsWorker][content-change-worker] for
+more information.
 
-Some useful queries and Rake tasks:
+### Useful queries
+
+First, enter an Email Alert Api Rails console:
+
+```bash
+$ gds govuk connect app-console -e production email-alert-api
+```
 
 #### Check which content changes are affected
 
@@ -35,30 +42,30 @@ SubscriptionContent.where(content_change: content_change).count
 #### Resend the emails for a content change (ignore ones that have already gone out)
 
 ```ruby
-ProcessContentChangeWorker.new.perform(content_change.id)
+ProcessContentChangeAndGenerateEmailsWorker.new.perform(content_change.id)
 ```
 
 #### Resend the emails for a content change in bulk (ignore ones that have already gone out)
 
 ```ruby
-ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |content_change| ProcessContentChangeWorker.new.perform(content_change.id)  }
+ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |content_change| ProcessContentChangeAndGenerateEmailsWorker.new.perform(content_change.id)  }
 ```
+
+### Useful rake tasks
 
 #### Check sent, pending and failed email counts for a content change
 
-```sh
- $ bundle exec rake report:content_change_email_status_count[<content_change_id>]
-```
+- [content_change_email_status_count][]
 
 #### Check failed email ids and failure reasons for a content change
 
-```sh
- $ bundle exec rake report:content_change_failed_emails[<content_change_id>]
-```
+- [content_change_failed_emails][]
 
 ### Still stuck?
 
 Read [email troubleshooting].
 
-[content-change-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_content_change_worker.rb
+[content-change-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_content_change_and_generate_emails_worker.rb
 [email troubleshooting]: /manual/email-troubleshooting.html
+[content_change_email_status_count]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:content_change_email_status_count['one_required_content_change_id','optional_second_content_change_id','and_so_on']
+[content_change_failed_emails]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:content_change_failed_emails['one_required_content_change_id','optional_second_content_change_id','and_so_on']
