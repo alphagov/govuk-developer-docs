@@ -8,12 +8,9 @@ last_reviewed_on: 2020-02-10
 review_in: 6 months
 ---
 
-This document explains how to SSH into machines, and what commands exist
-to navigate machines and applications quickly.
+This document explains how to SSH into machines, and what commands exist to navigate machines and applications quickly. We use a tool called [GOV.UK Connect] to make this easier.
 
 ## Usage
-
-### Local dev machine
 
 If you know the class of machine you want, you can SSH straight from the command line:
 
@@ -35,7 +32,17 @@ $ gds govuk connect -e staging app-console publishing-api
 
 For a full list of commands, run `gds govuk connect --help`.
 
-### Jumpbox
+## Troubleshooting
+
+### SSH Key
+
+Sometimes you might try to ssh into a server and nothing happens. Double-check that you
+have added the key into the keychain like so: `ssh-add -K ~/.ssh/id_rsa`.
+
+Make sure you have been granted access. For example, if you have yet to be granted access
+to production, your attempt to SSH into a production node will fail silently.
+
+### CLI Problems
 
 The jumpbox is a special node that knows about all of the other nodes in its environment.
 
@@ -90,10 +97,4 @@ node$ govuk_app_dbconsole
 These common commands, along with `govuk_node_list`, live in
 [govuk-puppet](https://github.com/alphagov/govuk-puppet).
 
-## Troubleshooting
-
-Sometimes you might try to ssh into a server and nothing happens. Double-check that you
-have added the key into the keychain like so: `ssh-add -K ~/.ssh/id_rsa`.
-
-Make sure you have been granted access. For example, if you have yet to be granted access
-to production, your attempt to SSH into a production node will fail silently.
+[GOV.UK Connect]: https://github.com/alphagov/govuk-connect
