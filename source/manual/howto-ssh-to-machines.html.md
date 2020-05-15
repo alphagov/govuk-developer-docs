@@ -18,31 +18,22 @@ to navigate machines and applications quickly.
 If you know the class of machine you want, you can SSH straight from the command line:
 
 ```sh
-$ gds govuk connect ssh -e staging cache
+$ gds govuk connect -e staging ssh cache
 ```
 
-This will automatically SSH into a random `cache` machine on AWS.
-If a class exists in multiple clouds, you will need to choose which one to SSH into:
+This will automatically SSH into a random `cache` machine on AWS. To see all classes, run:
 
 ```sh
-$ gds govuk connect ssh -e staging backend
-error: ambiguous hosting for backend in staging
+$ gds govuk connect -e staging ssh *
 ```
 
-You'll need to prefix it with `aws/` or `carrenza/`:
+You can also start a Rails Console on a remote server, from your local machine:
 
 ```sh
-$ gds govuk connect ssh -e staging aws/backend
+$ gds govuk connect -e staging app-console publishing-api
 ```
 
-You can find out which class of machine you need (and which cloud it lives in)
-by finding the corresponding [app page](https://docs.publishing.service.gov.uk/apps.html).
-
-Alternatively, you can use the jumpbox.
-
-```sh
-$ gds govuk connect ssh -e integration jumpbox
-```
+For a full list of commands, run `gds govuk connect --help`.
 
 ### Jumpbox
 
