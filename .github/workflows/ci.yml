@@ -1,12 +1,9 @@
-name: Continuous Integration
 on: [push, pull_request]
-
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Clone govuk-content-schemas
         uses: actions/checkout@v2
         with:
@@ -16,15 +13,10 @@ jobs:
       - uses: ruby/setup-ruby@v1
       - uses: actions/cache@v1
         with:
-          path: tmp/bundle
-          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-gems-
-
-      - run: |
-          bundle config path tmp/bundle
-          bundle install --jobs 4 --retry 3
-
+          path: vendor/bundle
+          key: bundle-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: bundle
+      - run: bundle install --jobs 4 --retry 3 --deployment
       - run: bundle exec rake
         env:
           GOVUK_CONTENT_SCHEMAS_PATH: tmp/govuk-content-schemas
