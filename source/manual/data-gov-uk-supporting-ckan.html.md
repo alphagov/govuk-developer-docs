@@ -23,7 +23,7 @@ There are three environments for [CKAN]:
 - [Staging](https://ckan.staging.publishing.service.gov.uk)
 - [Integration](https://ckan.integration.publishing.service.gov.uk)
 
-You can SSH onto these machines in [same way as all other GOV.UK AWS applications](/manual/howto-ssh-to-machines-in-aws.html#header).  The machine node class is `ckan`.
+You can SSH onto these machines in [same way as all other GOV.UK AWS applications](/manual/howto-ssh-to-machines.html).  The machine node class is `ckan`.
 
 ## Managing CKAN
 
@@ -451,13 +451,13 @@ The following query captures part of that query and uses it to target the pid:
 
     SELECT pid FROM pg_stat_activity WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%';
 
-#### To cancel these queries 
+#### To cancel these queries
 
-    SELECT pg_cancel_backend(pid) 
+    SELECT pg_cancel_backend(pid)
     FROM pg_stat_activity
     WHERE pid IN
-    (SELECT pid 
-    FROM pg_stat_activity 
+    (SELECT pid
+    FROM pg_stat_activity
     WHERE datname = 'ckan_production' and query LIKE 'SELECT "user".password AS user_password%');
 
 #### To identify long running queries
@@ -468,7 +468,7 @@ The following query captures part of that query and uses it to target the pid:
     query,
     state
     FROM pg_stat_activity
-    WHERE 
+    WHERE
     (now() - pg_stat_activity.query_start) > interval '5 minutes' AND
     datname = 'ckan_production';
 
@@ -476,10 +476,10 @@ The following query captures part of that query and uses it to target the pid:
 
 This will take a few seconds to be processed
 
-    SELECT pg_cancel_backend(pid) 
+    SELECT pg_cancel_backend(pid)
     FROM pg_stat_activity
-    WHERE 
-    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND 
+    WHERE
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND
     state = 'active' AND
     datname = 'ckan_production';
 
@@ -487,9 +487,9 @@ This will take a few seconds to be processed
 
 Note - this must be used with caution as may cause the database to restart to recover consistency.
 
-    SELECT pg_terminate_backend(pid) 
+    SELECT pg_terminate_backend(pid)
     FROM pg_stat_activity
-    WHERE 
-    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND 
+    WHERE
+    (now() - pg_stat_activity.query_start) > interval '5 minutes' AND
     state = 'active' AND
     datname = 'ckan_production';
