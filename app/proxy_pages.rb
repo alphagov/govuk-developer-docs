@@ -49,7 +49,8 @@ class ProxyPages
         path: "/content-schemas/#{schema_name}.html",
         template: "templates/schema_template.html",
         frontmatter: {
-          # title: "Schema: #{schema.schema_name}", # FIXME - this slows down the search index too much
+          title: "Schema: #{schema.schema_name}",
+          content: "",
           locals: {
             title: "Schema: #{schema.schema_name}",
             description: "Everything about the '#{schema.schema_name}' schema",
