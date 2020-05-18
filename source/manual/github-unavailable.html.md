@@ -4,7 +4,7 @@ title: Deploy when GitHub is unavailable
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-04
+last_reviewed_on: 2020-05-18
 review_in: 6 months
 ---
 
@@ -36,16 +36,10 @@ GOV.UK AWS admin users can give access to developers who need to make changes to
    git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/<app>
    ```
 
-1. [Get some AWS credentials](/manual/deploying-terraform.html#2-get-your-credentials)
-   for the `govuk-tools` AWS account
-
-1. Export the access key ID, secret access key and session token from the last step,
-   for example:
+1. Get some credentials for the GOV.UK Tools AWS account:
 
    ```
-   export AWS_ACCESS_KEY_ID=...
-   export AWS_SECRET_ACCESS_KEY=...
-   export AWS_SESSION_TOKEN=...
+   gds aws govuk-tools-poweruser -e
    ```
 
 1. Fetch the AWS upstream by running `git fetch aws`
@@ -83,8 +77,8 @@ GOV.UK AWS admin users can give access to developers who need to make changes to
 #### Troubleshooting
 
 If running any `git` commands against CodeCommit returns you a 403, you probably
-have expired credentials stored in your MacOS keychain from a previous attempt.
-Apparently MacOS stores these the first time you use it and subsequently tries
+have expired credentials stored in your macOS keychain from a previous attempt.
+Apparently macOS stores these the first time you use it and subsequently tries
 to use them again despite you setting new AWS credentials.
 
 To fix this:
@@ -121,8 +115,6 @@ In this scenario, Jenkins security should be disabled to enable deployment:
 gds govuk connect -e production ssh carrenza/jenkins
 gds govuk connect -e production ssh aws/jenkins
 ```
-
-in AWS.
 
 2. Disable Puppet: `govuk_puppet -r "Emergency Jenkins deploy" --disable`
 3. Edit the Jenkins configuration file: `sudo vim /var/lib/jenkins/config.xml`
