@@ -296,11 +296,71 @@ $ rake export:form_responses["<date>"]
 
 Date to be included in the format 2020-03-26.
 
+## Alerting
+
+GOV.UK on-call operators will be paged for two reasons:
+
+- if Pingdom thinks a service is down
+- if a service has a high rate of 5xx errors
+
+You should find the Monitoring and Useful commands sections in this
+document helpful when investigating this issue.
+
+Useful Slack channels:
+
+- #govuk-corona-services-tech (builds the forms)
+- #re-prometheus-support (runs the Prometheus infra)
+
+### Service downtime**
+
+The GOV.UK Pingdom account is configured to checks if the first of
+each form service page is up. If it can't reach a page for a
+configured period of time, it will call you.
+
+The login credentials for the service are in govuk-secrets pass.
+
+### High 5xx rate**
+
+> **Note:** Connect to the VPN to view Prometheus and AlertManager UIs.
+
+These alerts are triggered by [Reliability Engineering's Prometheus][]
+when the applications are serving a high number of 5xx errors.
+
+The configuration for the alert is stored in the
+[prometheus-aws-configuration-beta][] repository.
+
+You can also view the alert in [AlertManager][], which sends
+the Prometheus alerts to PagerDuty. You can silence the alert through
+the user interface, or use the `amtool` cli to end the alert.
+
+This alert indicates a problem with the application origin servers.
+
+Steps you could take:
+
+- See the monitoring section, to look at some graphs
+- Check the logs to see which requests are failing
+- Check the commit log to see if there was a recent change
+- Check the concourse pipeline to see if there was a recent deploy, or
+  if the smoke test is failing
+- Check the `/metrics` endpoints on the apps, to see if they are
+  serving metrics to prometheus correctly
+
+**Deactivate Prometheus alerts for these services**
+
+> **Note:** you should only do this if you have confirmed that there is
+a problem with the alert.
+
+You can deactivate the alert in the PagerDuty UI.
+
+1. Go to the [PagerDuty ruleset][]
+2. Disable the Event Rule that is triggering alerts on the GOV.UK COVID-19 Forms service
+
 ## Troubleshooting
 
 ### What things will call you
 
-The GOV.UK PagerDuty will page on-call/2ndline if these applications go down. It's connected up to a Pingdom check in the GOV.UK account that checks if the first form page is up.
+The GOV.UK PagerDuty will page on-call/2ndline if these services
+experience issues. See the Alerting section above.
 
 ### Useful commands
 
@@ -353,3 +413,7 @@ heading "PaaS Support (COVID-19 forms)".
 [splunk]: https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/d006_coronavirus
 [covid-engineering-repo]: https://github.com/alphagov/covid-engineering/blob/master/reliability-engineering/terraform/deployments/corona-data-prod/account/iam.tf#L296-L386
 [re-secrets]: https://reliability-engineering.cloudapps.digital/continuous-deployment.html#secrets
+[PagerDuty ruleset]: https://governmentdigitalservice.pagerduty.com/rules/rulesets/a63974aa-a89f-439e-93b9-8ff13565799f
+[Reliability Engineering's Prometheus]: https://prom-1.monitoring.gds-reliability.engineering/alerts
+[prometheus-aws-configuration-beta]: https://github.com/alphagov/prometheus-aws-configuration-beta/blob/b33139a4ed06fc77e4687f8b6dee20577717fdb8/terraform/modules/prom-ec2/alerts-config/alerts/govuk-coronavirus-services-alerts.yml
+[AlertManager]: https://alerts.monitoring.gds-reliability.engineering/#/alerts
