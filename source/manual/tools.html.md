@@ -1,11 +1,11 @@
 ---
 owner_slack: "#govuk-developers"
-title: 'Tools: Icinga, Grafana and Graphite, Kibana and Fabric'
+title: 'Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends'
 section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-11
+last_reviewed_on: 2020-05-17
 review_in: 6 months
 ---
 
@@ -75,6 +75,12 @@ Check the `app.py` class for different methods you can use. To run more specific
 `fab $environment class:backend sdo:"service content-store reload"`
 
 For more information, check out the [Fabric scripts README](https://github.com/alphagov/fabric-scripts#readme>).
+
+## Prometheus, Grafana and AlertManager for COVID-19 Forms
+
+The three coronavirus forms are hosted on the GOV.UK PaaS, so have had to diverge from the usual built-in GOV.UK infrastructure monitoring stack. Instead, these make use of the [GDS Prometheus for PaaS](https://reliability-engineering.cloudapps.digital/monitoring-alerts.html#metrics-and-alerting) service, with alerts routed through AlertManager and graphs displayed using Grafana.
+
+For more detailed information, read the [COVID-19 Services "alerting" page section](https://docs.publishing.service.gov.uk/manual/covid-19-services.html#alerting).
 
 ## On the blog
 
