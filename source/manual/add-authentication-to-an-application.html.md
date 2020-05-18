@@ -4,7 +4,7 @@ title: Add authentication to an application
 parent: "/manual.html"
 layout: manual_layout
 section: Applications
-last_reviewed_on: 2019-06-27
+last_reviewed_on: 2020-05-18
 review_in: 6 months
 ---
 
@@ -91,7 +91,7 @@ repeat the same checks that authentication is enabled and that the application
 is still successfully processing requests.
 
 [gds-sso-gem]: https://github.com/alphagov/gds-sso
-[data sync]: https://github.com/alphagov/env-sync-and-backup
+[data sync]: https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html
 [Omniauth]: https://github.com/omniauth/omniauth
 [gds-sso-test-user]: https://github.com/alphagov/content-store/pull/498/commits/f405ca84940efe9705ee48fc21f373dacc05da63
 [publishing-e2e]: https://github.com/alphagov/publishing-e2e-tests
