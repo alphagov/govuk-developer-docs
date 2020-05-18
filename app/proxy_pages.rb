@@ -98,6 +98,7 @@ class ProxyPages
         template: "templates/document_type_template.html",
         frontmatter: {
           title: "Document type: #{document_type.name}",
+          content: "",
           locals: {
             title: "Document type: #{document_type.name}",
             description: "Everything about the '#{document_type.name}' document type",
@@ -115,6 +116,7 @@ class ProxyPages
         template: "templates/supertype_template.html",
         frontmatter: {
           title: "#{supertype.name} supertype",
+          content: "",
           locals: {
             title: "#{supertype.name} supertype",
             description: supertype.description,
