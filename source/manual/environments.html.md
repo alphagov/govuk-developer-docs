@@ -5,8 +5,6 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-18
-review_in: 3 months
 ---
 
 GOV.UK has several environments with different purposes.
