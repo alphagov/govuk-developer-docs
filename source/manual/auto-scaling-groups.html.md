@@ -103,7 +103,7 @@ having problems.
 [icinga]: /manual/icinga.html
 [ec2-home]: https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1
 [ec2-machines]: https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#Instances:sort=tag:Name
-[jumpbox]: /manual/howto-ssh-to-machines-in-aws.html#jumpbox
+[jumpbox]: /manual/howto-ssh-to-machines.html
 [deploy-node-apps]: https://deploy.blue.production.govuk.digital/job/Deploy_Node_Apps/
 [reprovision]: /manual/reprovision.html#aws
 [pr]: https://github.com/alphagov/govuk-aws-data/pull/562
