@@ -4,7 +4,7 @@ title: Make a new document type available to search
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-last_reviewed_on: 2020-02-04
+last_reviewed_on: 2020-05-19
 review_in: 3 months
 related_applications: [search-api]
 ---
@@ -47,6 +47,8 @@ Add the document_type name to the [`migrated` list][migrated-list] in Search
 API.
 
 ### 3. Reindex
+
+**If your new document uses an existing schema this is not necessary**
 
 Reindex the `govuk` index following the instructions in
 [Reindex an Elasticsearch index][reindex].
