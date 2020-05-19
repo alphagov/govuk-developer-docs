@@ -18,16 +18,16 @@ departments, usually for use with for campaign materials.
 
 ## Getting information on current redirects
 
-To find if there is already a redirect for a particular path:
+To find if there is already a redirect for a particular path, open a router-api
+console:
 
 ```console
-gds govuk connect -e production ssh aws/router_backend
+$ gds govuk connect app-console -e production router_backend/router-api
 ```
 
-Then:
+Then search for the incoming path you are interested in:
 
 ```console
-govuk_app_console router-api
 > Route.where(incoming_path: '/path-to-item')
 ```
 
