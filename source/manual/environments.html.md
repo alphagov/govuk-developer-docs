@@ -5,17 +5,17 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-12
+last_reviewed_on: 2020-05-18
 review_in: 3 months
 ---
 
 GOV.UK has several environments with different purposes.
 
-For a quick view of what's where, you can use the release app.
+For a quick view of what's where, you can use the [release app](https://release.publishing.service.gov.uk).
 
 ## Continuous integration (CI)
 
-Runs tests for applications. Hosted by Carrenza.
+Runs tests for applications. Hosted on Carrenza.
 
 ## Integration
 
