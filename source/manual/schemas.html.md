@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2019-11-05
+last_reviewed_on: 2020-05-19
 review_in: 6 months
 ---
 
@@ -47,6 +47,10 @@ Google indicates that [Article pages may be displayed as a rich result](https://
 ### Breadcrumb
 
 This is implemented within [the Breadcrumb component](https://github.com/alphagov/govuk_publishing_components/blob/c0a1add0a222ab105a08133967f0d362e86b5604/app/views/govuk_publishing_components/components/_breadcrumbs.html.erb#L11). This is often shown in Google results, indicating the hierarchy of the site structure leading to the page.
+
+### Dataset
+
+[The Dataset schema](https://schema.org/Dataset) is implemented on [transparency](https://www.gov.uk/government/publications/latest-figures-show-millions-benefitting-from-treasury-coronavirus-support-schemes), [statistical data set](https://www.gov.uk/government/statistical-data-sets/unclaimed-estates-list), and [statistics](https://www.gov.uk/government/statistics/labour-market-in-the-regions-of-the-uk-may-2020) pages to expose a list of attachments.  This is shown in the [Google Dataset Search](https://datasetsearch.research.google.com/search?query=site%3Awww.gov.uk).
 
 ### FAQPage
 
