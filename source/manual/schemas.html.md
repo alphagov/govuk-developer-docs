@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2020-05-19
-review_in: 6 months
 ---
 
 [Schema.org](https://schema.org/) is a community driven vocabulary (founded by Google, Microsoft et al) that allows us to add structured data to content.
