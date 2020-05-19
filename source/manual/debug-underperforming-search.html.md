@@ -4,7 +4,7 @@ title: Debug underperforming search
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-04
+last_reviewed_on: 2020-05-19
 review_in: 3 months
 ---
 
@@ -29,11 +29,6 @@ Useful metrics to look at are:
       performance issue with SageMaker.
 
     - **Search:** if this has increased, all queries will be slower.
-      This could indicate a performance issue with Elasticsearch.
-
-    - **Completion suggestion:** if this has increased, autocomplete
-      suggestions on finder-frontend pages will be slower.  Other
-      search-powered pages, like taxon pages, would not be affected.
       This could indicate a performance issue with Elasticsearch.
 
     - **Spelling suggestion:** if this has increased, finder-frontend
