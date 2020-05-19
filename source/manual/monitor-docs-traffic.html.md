@@ -4,8 +4,6 @@ title: Monitor docs traffic
 section: Documentation
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-18
-review_in: 12 months
 ---
 
 This site is served by S3 via a [proxy defined in govuk-puppet][proxy].
