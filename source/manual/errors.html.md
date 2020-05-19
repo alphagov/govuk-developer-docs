@@ -4,7 +4,7 @@ title: Triage and handle errors
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-11
+last_reviewed_on: 2020-05-18
 review_in: 6 months
 ---
 

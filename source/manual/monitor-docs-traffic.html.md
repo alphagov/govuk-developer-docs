@@ -4,7 +4,7 @@ title: Monitor docs traffic
 section: Documentation
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-05-02
+last_reviewed_on: 2020-05-18
 review_in: 12 months
 ---
 
