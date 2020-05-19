@@ -4,7 +4,7 @@ title: Fix out-of-date search indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2020-02-04
+last_reviewed_on: 2020-05-19
 review_in: 3 months
 ---
 
