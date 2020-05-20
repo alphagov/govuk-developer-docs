@@ -116,11 +116,11 @@ class AppDiagramGenerator
         app_dependencies.each_key do |dep_app|
           dep_app_type = @application_type[dep_app]
 
-          if dep_app_type != key
-            system_dependencies.push dep_app_type unless system_dependencies.include? dep_app_type
-            app_system_dependencies.push dep_app_type unless app_system_dependencies.include? dep_app_type
-            # puts "#{key}:#{app_name} -> #{dep_app_type}:#{dep_app}"
-          end
+          next unless dep_app_type != key
+
+          system_dependencies.push dep_app_type unless system_dependencies.include? dep_app_type
+          app_system_dependencies.push dep_app_type unless app_system_dependencies.include? dep_app_type
+          # puts "#{key}:#{app_name} -> #{dep_app_type}:#{dep_app}"
         end
 
         @app_system_dependencies[app_name] = app_system_dependencies
