@@ -63,6 +63,7 @@ reindexing via a rake task in the publishing app.
 
 Try republishing the content.
 
-#### Unpublished content is still showing up in search
+#### Unpublished, deleted, or redirected content is still showing up in search
 
-Unpublished content can be removed from search manually using [search admin](https://search-admin.publishing.service.gov.uk/).
+Unpublished, deleted, or redirected content can be removed from search manually
+using [search admin](https://search-admin.publishing.service.gov.uk/).
