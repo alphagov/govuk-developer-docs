@@ -48,4 +48,15 @@ RSpec.describe ExternalDoc do
       expect(html).to have_selector("h3#patterns-style-guides")
     end
   end
+
+  describe ".parse" do
+    it "converts arbitrary markdown to HTML" do
+      markdown = <<~MD
+        # Title
+        [link](#anchor)
+      MD
+      expected_html = "\n\n<p><a href=\"#anchor\">link</a></p>"
+      expect(described_class.parse(markdown).to_s).to eq(expected_html)
+    end
+  end
 end

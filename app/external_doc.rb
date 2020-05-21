@@ -42,6 +42,18 @@ class ExternalDoc
       .to_html(contents, context)
   end
 
+  def self.parse(markdown)
+    filters = [
+      HTML::Pipeline::MarkdownFilter,
+      HTML::Pipeline::AbsoluteSourceFilter,
+      PrimaryHeadingFilter,
+      HeadingFilter,
+      MarkdownLinkFilter,
+    ]
+
+    HTML::Pipeline.new(filters).call(markdown)[:output]
+  end
+
   # When we import external documentation it can contain relative links to
   # source files within the repository that the documentation resides. We need
   # to filter out these types of links and make them absolute so that they
