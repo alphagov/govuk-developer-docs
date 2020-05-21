@@ -31,10 +31,6 @@ class AppDocs
     @app_data ||= AppData.new
   end
 
-  def self.topics_on_github
-    pages.reject(&:retired?).reject(&:private_repo?).flat_map(&:topics).sort.uniq
-  end
-
   def self.aws_machines
     @common_aws ||= HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml")
     @common_aws["node_class"]
@@ -223,8 +219,8 @@ class AppDocs
       app_data["production_url"] || (type.in?(["Publishing app", "Admin app"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
     end
 
-    def topics
-      github_repo_data["topics"]
+    def readme
+      github_readme
     end
 
     def can_run_rake_tasks_in_jenkins?
@@ -261,6 +257,12 @@ class AppDocs
       return {} if private_repo?
 
       @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
+    end
+
+    def github_readme
+      return nil if private_repo?
+
+      @github_readme ||= GitHubRepoFetcher.client.readme(github_repo_name)
     end
   end
 end
