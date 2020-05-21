@@ -31,6 +31,10 @@ They are available broken down into a day by day view, highlighted in different
 colours representing the level of uptime. Green means 100%, orange means above
 99.31% (equivalent to 10 minutes of downtime) and red for everything else.
 
+>**Note** These metrics aren't a true reflection of availability. Loadbalancing means that 
+>even if a particular healthcheck fails, and the metrics change as a result, publishing is
+> unlikely to be affected.
+
 ## Further Reading
 
 The service which collects the uptime data runs on the monitoring machines and
