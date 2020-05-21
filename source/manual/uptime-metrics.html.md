@@ -23,10 +23,6 @@ Uptime metrics are collected for `content-store`, `hmrc-manuals-api`,
 `travel-advice-publisher` and `whitehall-admin`, they are available as
 [a Grafana dashboard][grafana-dashboard].
 
-<p>
-  <iframe src="https://grafana.publishing.service.gov.uk/dashboard-solo/file/application_uptime.json?panelId=4" width="720" height="340" frameborder="0"></iframe>
-</p>
-
 They are available broken down into a day by day view, highlighted in different
 colours representing the level of uptime. Green means 100%, orange means above
 99.31% (equivalent to 10 minutes of downtime) and red for everything else.
