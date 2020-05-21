@@ -16,7 +16,11 @@ class RunRakeTask
       .map { |body, url| "<li><a href=\"#{url}\">#{body}</a></li>" }
       .join("\n")
 
-    "<ul>#{html_lis}</ul>"
+    <<~ERB
+      <ul>
+        #{html_lis}
+      </ul>
+    ERB
   end
 
   def self.find_application(name)
