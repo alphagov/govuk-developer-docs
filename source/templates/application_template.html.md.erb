@@ -16,10 +16,6 @@ This application is retired.
 
 <% else %>
 
-<% unless application.topics.nil? %>
-GitHub topics: <%= application.topics.map { |topic| link_to(topic, "https://github.com/search?q=topic:#{topic}+org:alphagov") }.to_sentence %>
-<% end %>
-
 <% if application.team %>
 
 ### Ownership
