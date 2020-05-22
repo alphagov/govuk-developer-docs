@@ -45,7 +45,6 @@ class ExternalDoc
   def self.parse(markdown)
     filters = [
       HTML::Pipeline::MarkdownFilter,
-      HTML::Pipeline::AbsoluteSourceFilter,
       PrimaryHeadingFilter,
       HeadingFilter,
       MarkdownLinkFilter,
