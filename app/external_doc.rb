@@ -115,7 +115,8 @@ class ExternalDoc
   # Removes the H1 from the page so that we can choose our own title
   class PrimaryHeadingFilter < HTML::Pipeline::Filter
     def call
-      doc.at("h1:first-of-type").unlink
+      h1 = doc.at("h1:first-of-type")
+      h1.unlink if h1.present?
       doc
     end
   end
