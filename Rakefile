@@ -9,8 +9,6 @@ task :lint, :environment do
   sh "bundle exec rubocop --format clang"
 end
 
-task default: %i[lint spec]
-
 namespace :cache do
   desc "Clear the cache of external content"
   task :clear do
@@ -63,3 +61,5 @@ task :check_puppet_names do
     HTTP.get(app.puppet_url)
   end
 end
+
+task default: %i[lint spec cache:clear assets:precompile]
