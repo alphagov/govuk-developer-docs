@@ -47,7 +47,6 @@ class ExternalDoc
       HTML::Pipeline::MarkdownFilter,
       PrimaryHeadingFilter,
       HeadingFilter,
-      MarkdownLinkFilter,
     ]
 
     HTML::Pipeline.new(filters).call(markdown)[:output]
