@@ -396,13 +396,19 @@ although apps not hosted on AWS are configured in [env-sync-and-backup].
 We have detailed docs on [how to deploy an application][how-to-deploy]. But
 what happens under the hood?
 
-When a change is merged to an application's 'master' branch, the corresponding
-Jenkins job on [CI Jenkins] runs the tests. The job was created in the first
-place by being [added to govuk-puppet][create-jenkins-job], and is configured
-to use the [govuk-jenkinslib] library to build the project and run the tests.
+When a PR is opened against a GOV.UK repository, the corresponding Jenkins job
+on [CI Jenkins] runs the tests (although we're gradually
+[moving to GitHub Actions][github-actions-rfc]). The Jenkins jobs are created
+in the first place by being [added to govuk-puppet][create-jenkins-job], and
+configured to use the [govuk-jenkinslib] library to build and run the tests. 
 
-If the tests pass, the job [creates and pushes a git tag][push-tag] to GitHub,
-then [sends a message][send-deploy-message] to the [deploy Jenkins] environment
+The tests report back to the PR as a [GitHub check], though other checks may
+also be required before the PR can be merged ([govuk-saas-config] defines things
+such as whether branches must be up to date with 'master' before merging).
+
+On merge, the same Jenkins job that ran the tests runs the tests again, then
+[creates and pushes a git tag][push-tag] to GitHub, then
+[sends a message][send-deploy-message] to the [deploy Jenkins] environment
 to build the [govuk-app-deployment] job. This clones the repository, checks out
 the tag and deploys the code to the corresponding nodes on Integration using
 [Capistrano] (a Ruby-based server automation and deployment tool). Capistrano
@@ -424,8 +430,11 @@ app UI for this.
 [CI Jenkins]: https://ci.integration.publishing.service.gov.uk/
 [create-jenkins-job]: https://github.com/alphagov/govuk-puppet/blob/6a0b05aa1f9a90c01cefd5fc5b9c8e5f0aa030f2/hieradata/common.yaml#L422
 [deploy Jenkins]: https://deploy.integration.publishing.service.gov.uk/
+[GitHub check]: https://developer.github.com/v3/checks/
+[github-actions-rfc]: https://github.com/alphagov/govuk-rfcs/blob/master/rfc-123-github-actions-ci.md
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 [govuk-jenkinslib]: https://github.com/alphagov/govuk-jenkinslib
+[govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
 [how-to-deploy]: /manual/deploying.html
 [push-tag]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L122-L124
 [release]: https://github.com/alphagov/release
