@@ -18,6 +18,12 @@ review_in: 6 months
 [deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
 [docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/master/data/applications.yml
 
+## Familiarise yourself with the conventions
+
+We have documented [conventions for Rails
+applications](/manual/conventions-for-rails-applications.html) and
+[conventions for naming applications](/manual/naming.html) in GOV.UK.
+
 ## Bootstrapping a new application
 
 To create a rails app, run the following (skip uncommon stuff).
