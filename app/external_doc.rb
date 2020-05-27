@@ -68,15 +68,15 @@ class ExternalDoc
         uri = URI.parse(href)
         path = uri.path
 
-        unless uri.scheme || href.start_with?("#") || path.end_with?(".md")
-          base = if path.start_with? "/"
-                   base_url
-                 else
-                   subpage_url
-                 end
+        next if uri.scheme || href.start_with?("#") || path.end_with?(".md")
 
-          element["href"] = URI.join(base, href).to_s
-        end
+        base = if path.start_with? "/"
+                 base_url
+               else
+                 subpage_url
+               end
+
+        element["href"] = URI.join(base, href).to_s
       end
 
       doc
