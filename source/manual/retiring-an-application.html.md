@@ -58,9 +58,8 @@ Click on the Applications tab. Find the application that is being retired and
 click the "edit" button. Tick the box that says "This application is being
 retired", then save your changes.
 
-## 7. Update development scripts
+## 7. Remove from GOV.UK Docker
 
-### GOV.UK Docker
 Remove from the [projects directory][] and any references
 in [docker compose][] or throughout the repo.
 
