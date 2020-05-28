@@ -24,7 +24,7 @@ RSpec.describe GitHubRepoFetcher do
       repo_name = SecureRandom.uuid
       api_endpoint = "https://api.github.com/repos/alphagov/#{repo_name}/readme"
       stubbed_request = stub_request(:get, api_endpoint)
-        .to_return(status: 200, body: '{ "content": {} }', headers: { content_type: "application/json" })
+        .to_return(status: 200, body: '{ "content": "" }', headers: { content_type: "application/json" })
 
       GitHubRepoFetcher.new.readme(repo_name)
       GitHubRepoFetcher.new.readme(repo_name)
@@ -40,6 +40,18 @@ RSpec.describe GitHubRepoFetcher do
         .to_return(status: 200, body: response.to_json, headers: { content_type: "application/json" })
 
       expect(GitHubRepoFetcher.new.readme(repo_name)).to eq(readme_contents)
+    end
+
+    it "forces encoding to UTF-8" do
+      repo_name = SecureRandom.uuid
+      stub_request(:get, "https://api.github.com/repos/alphagov/#{repo_name}/readme")
+        .to_return(status: 200, body: '{ "content": "" }', headers: { content_type: "application/json" })
+      encoded_input = "abc½½½".force_encoding("iso-8859-1")
+      allow(Base64).to receive(:decode64).and_return(encoded_input.dup)
+
+      decoded_output = GitHubRepoFetcher.new.readme(repo_name)
+      expect(encoded_input.encoding.name).to eq("ISO-8859-1")
+      expect(decoded_output.encoding.name).to eq("UTF-8")
     end
 
     it "returns nil if no README exists" do
