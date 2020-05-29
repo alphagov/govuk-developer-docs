@@ -75,9 +75,13 @@ If a Fastly request to origin returns a 5xx response, Fastly will request
 content from the mirror, which is static HTML hosted in an S3 bucket on AWS.
 The contents of the mirror are updated daily via a [govuk-crawler-worker],
 which recursively crawls GOV.UK URLs from a message queue, visiting the pages
-and saving the output to disk. Read more about [fallback to the static mirrors].
+and saving the output to disk.
+
+- Read more about [fallback to the static mirrors].
+- Read more about [how errors are handled on GOV.UK].
 
 [fallback to the static mirrors]: /manual/fall-back-to-mirror.html
+[how errors are handled on GOV.UK]: /manual/errors.html
 [govuk-crawler-worker]: https://github.com/alphagov/govuk_crawler_worker
 
 #### Routing on the CDN
