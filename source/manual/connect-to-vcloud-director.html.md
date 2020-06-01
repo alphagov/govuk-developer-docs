@@ -77,6 +77,9 @@ please ensure you renew certificate beforehand via Carrenza service portal**
 
 ## Connecting with OpenConnect
 
+**Make sure to read these instructions carefully before login on Carrenza VPN.
+If you enter the wrong credentials too many times, we will be locked out!***
+
 1. Install OpenConnect: `brew install openconnect`
 1. Run OpenConnect. Make sure you provide the correct path to where
    you've saved the VPN client certificate.
