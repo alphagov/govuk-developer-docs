@@ -4,7 +4,7 @@ title: Generate a Certificate Signing Request (CSR) for GOV.UK
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-11-25
+last_reviewed_on: 2020-06-01
 review_in: 6 months
 ---
 
