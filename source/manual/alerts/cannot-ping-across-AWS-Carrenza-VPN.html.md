@@ -4,8 +4,8 @@ title: Cannot ping across AWS-Carrenza VPN
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-02-28
-review_in: 3 months
+last_reviewed_on: 2020-06-01
+review_in: 6 months
 ---
 
 There is a VPN tunnel between AWS and Carrenza for both the Staging and
