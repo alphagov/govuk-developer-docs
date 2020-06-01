@@ -5,8 +5,8 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-28
-review_in: 3 months
+last_reviewed_on: 2020-06-01
+review_in: 6 months
 ---
 
 GOV.UK uses several VPNs to connect environments. This page explains what they
