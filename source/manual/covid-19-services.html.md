@@ -4,7 +4,7 @@ title: COVID-19 Services
 section: Services
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-21
+last_reviewed_on: 2020-06-03
 review_in: 1 month
 ---
 
@@ -309,6 +309,7 @@ document helpful when investigating this issue.
 Useful Slack channels:
 
 - #govuk-corona-services-tech (builds the forms)
+- #covid-engineering-team (runs the data pipeline)
 - #re-prometheus-support (runs the Prometheus infra)
 
 ### Service downtime**
