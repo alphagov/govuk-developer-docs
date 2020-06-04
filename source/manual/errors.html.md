@@ -14,33 +14,24 @@ When a request to GOV.UK fails, we need to handle the error in some way, so that
 
 > Note that publishing apps do not have these same layers of error handling; they are not behind a CDN. A publishing app is expected to handle all errors itself, according to the policy in the next section.
 
-1. **CDN**. There are a few scenarios here:
-
+- **CDN**. There are a few scenarios here:
   - When the origin servers are offline, we:
-
       - [Skip normal request handling and begin error handling](https://varnish-cache.org/docs/trunk/users-guide/vcl-built-in-subs.html#vcl-backend-error)
       - Try to [serve the page from a sequence of static mirrors](https://github.com/alphagov/govuk-cdn-config/blob/d77313abdb5098e2b350de7a0992375e50ff03a3/vcl_templates/www.vcl.erb#L274)
       - Serve [a basic inline error page](https://github.com/alphagov/govuk-cdn-config/blob/d77313abdb5098e2b350de7a0992375e50ff03a3/vcl_templates/www.vcl.erb#L531) if [all the mirrors fail](https://github.com/alphagov/govuk-cdn-config/blob/d77313abdb5098e2b350de7a0992375e50ff03a3/vcl_templates/www.vcl.erb#L363) (uh oh!)
-
   - When the origin servers are online but return a 5xx response:
-
     - For [GET or HEAD requests](https://github.com/alphagov/govuk-cdn-config/blob/d77313abdb5098e2b350de7a0992375e50ff03a3/vcl_templates/www.vcl.erb#L339), we try the mirrors, or else serve an error (as above)
-
     - For [other requests](https://github.com/alphagov/govuk-cdn-config/blob/d77313abdb5098e2b350de7a0992375e50ff03a3/vcl_templates/www.vcl.erb#L367), we [serve the response as-is from the origin](https://github.com/alphagov/govuk-cdn-config/blob/d77313abdb5098e2b350de7a0992375e50ff03a3/vcl_templates/www.vcl.erb#L374) (see below)
-
   - When the origin servers return a 4xx response, we:
       - Serve the response as-is from the origin (no special handling)
 
-2. **Origin**. When a request fails in an upstream app, we:
-
+- **Origin**. When a request fails in an upstream app, we:
   - [Intercept the response in Nginx](https://github.com/alphagov/govuk-puppet/blob/7dafec7cccd8308ec90c28835de70243d79b323b/modules/router/templates/router_include.conf.erb#L81)
   - Replace the response with [a pre-rendered one from Static](https://github.com/alphagov/govuk-puppet/blob/7dafec7cccd8308ec90c28835de70243d79b323b/modules/router/manifests/errorpage.pp#L14)
 
-3. **App**. When an app raises an exception:
-
+- **App**. When an app raises an exception:
   - If we have chosen to handle it, we:
     - [Catch it and return a more helpful error response page](https://github.com/alphagov/email-alert-frontend/blob/a2bd35b5b17b7da40cd43df9c2756b564597b66e/app/controllers/application_controller.rb#L10)\*
-
   - Otherwise, we:
     - Let Rails return a "500 Internal Server Error" (by default)
 
