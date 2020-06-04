@@ -5,13 +5,15 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-15
+last_reviewed_on: 2020-06-04
 review_in: 6 months
 ---
 
 This means that there are some emails informing users of content changes
 which haven't been processed within the time we would expect.
 This may be fine and the emails will eventually go out, but it's worth some investigation.
+
+### Icinga checks
 
 * `warning` - `content_changes` unprocessed for over 5 minutes
 * `critical` - `content_changes` unprocessed for over 10 minutes
