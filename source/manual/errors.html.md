@@ -44,7 +44,7 @@ This policy describes what we should do for different types of errors. It applie
 
 ### High priority errors
 
-1. **When something goes wrong, we should be notified**. Applications should report exceptions to Sentry. Applications must not swallow errors.
+1. **When something goes wrong, we should be notified**. Applications should [report exceptions to Sentry](/manual/error-reporting.html). Applications must not swallow errors.
 
 1. **Notifications should be actionable**. Sentry notifications should be something that requires a developer of the app to do something about it. Not just a piece of information.
 
