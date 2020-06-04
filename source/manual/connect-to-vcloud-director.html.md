@@ -15,8 +15,10 @@ providers.
 To access vCloud Director, you will need to connect to a Carrenza-provided VPN.
 You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
 
-**Expiry date of current Carrenza VPN certificate is May 27 16:29:58 2021 GMT,
-please ensure you renew certificate beforehand via Carrenza service portal**
+**Please ensure you renew certificate beforehand via Carrenza service portal:**
+1. Expiry date of primary Carrenza VPN certificate is May 27 16:29:58 2021 GMT
+1. Expiry date of backup Carrenza VPN certificate is Jun  4 12:14:47 2021 GMT
+
 
 ## Setting up the Cisco AnyConnect VPN profile on a Mac
 
@@ -69,6 +71,8 @@ please ensure you renew certificate beforehand via Carrenza service portal**
    $ security import ~/carrenza-vpn-cert-and-key.pfx
    ```
 
+   This allows you to use Cisco AnyConnect as VPN client.
+
 1. Delete the PFX file as it is no longer needed.
 
     ```sh
@@ -114,5 +118,25 @@ If you enter the wrong credentials too many times, we will be locked out!***
    entry.
 
 1. Log in with the username and password from the password store entry.
+
+## Backup VPN account
+
+There is a backup VPN account to be used primarily by reliability engineers.
+
+The VPN certificate can be obtained from the infra pass, e.g.
+```sh
+PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/infra pass carrenza/vpn-backup-certificate
+```
+
+The VPN credentials can be obtained from the infra pass, e.g.
+```sh
+PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/infra pass carrenza/vpn-backup-credentials
+```
+
+You should not import the certificate into your macOS login keychain because this
+can cause confusion for the Cisco AnyConnect VPN client. The certificate will
+work with OpenConnect VPN client without importing in your macOS keychain.
+
+The rest of the instructions remain the same as for the primary VPN account.
 
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
