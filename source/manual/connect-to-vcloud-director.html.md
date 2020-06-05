@@ -15,10 +15,10 @@ providers.
 To access vCloud Director, you will need to connect to a Carrenza-provided VPN.
 You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
 
-**Please ensure you renew certificate beforehand via Carrenza service portal:**
+**Please ensure VPN certificates are renewed via Carrenza service portal before expiry:**
+
 1. Expiry date of primary Carrenza VPN certificate is May 27 16:29:58 2021 GMT
 1. Expiry date of backup Carrenza VPN certificate is Jun  4 12:14:47 2021 GMT
-
 
 ## Setting up the Cisco AnyConnect VPN profile on a Mac
 
@@ -82,7 +82,7 @@ You can use either Cisco AnyConnect or OpenConnect as a VPN client for this.
 ## Connecting with OpenConnect
 
 **Make sure to read these instructions carefully before login on Carrenza VPN.
-If you enter the wrong credentials too many times, we will be locked out!***
+If you enter the wrong credentials too many times, we will be locked out!**
 
 1. Install OpenConnect: `brew install openconnect`
 1. Run OpenConnect. Make sure you provide the correct path to where
