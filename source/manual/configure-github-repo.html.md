@@ -4,7 +4,7 @@ title: Configure a GitHub repo
 parent: /manual.html
 layout: manual_layout
 section: GitHub
-last_reviewed_on: 2020-04-21
+last_reviewed_on: 2020-06-05
 review_in: 6 months
 ---
 
@@ -22,7 +22,7 @@ Almost all repos should:
 - Have [Jenkins CI](/manual/test-and-build-a-project-on-jenkins-ci.html) configured, if the repo uses Jenkins
 - Have [GitHub Trello Poster](/manual/github-trello-poster.html) enabled
 
-[govuk-ci-bots]: https://github.com/orgs/alphagov/teams/gov-uk-ci-bots
+[govuk-ci-bots-team]: https://github.com/orgs/alphagov/teams/gov-uk-ci-bots
 [govuk-production-team]: https://github.com/orgs/alphagov/teams/gov-uk-production
 
 ## Auto configuration
