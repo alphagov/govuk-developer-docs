@@ -18,19 +18,9 @@ The existing deployment dashboards are written by Puppet every 30 minutes and lo
 
 You can also see further tips on [how we use Graphite][graphite-dashboards] to present the data below.
 
-## Deploy the Dashboards
+## Change the Dashboards
 
 Each dashboard panel is configured by a .json.erb template in [Puppet][application_dashboard_panels] and these are combined to generate the JSON config for each application dashboard.
-
-It’s best to duplicate an existing dashboard in Grafana to test your changes.
-
-![Duplicate dashboard](images/deployment_dashboards/duplicate_dashboard.png)
-
-Then, either add the panel to an existing row, or create a new row with your panel in.
-
-![Panel rows](images/deployment_dashboards/panel_rows.png)
-
-Once you are happy with your changes, export the JSON partial of what you want to add in order to add it to `govuk-puppet`.
 
 You can export the entire dashboard by clicking on the cog:
 
@@ -41,12 +31,6 @@ Or you can export a single panel by clicking on the panel title to add it to a p
 ![Panel JSON](images/deployment_dashboards/panel_json.png)
 
 Please delete any temporary dashboards after you’ve finished.
-
-### If you’re changing an existing panel…
-
-Find the partial in Puppet and replace the contents with the exported JSON. Replace any application specific text/urls/queries in the partial with template variables.
-
-Use `git add -p` to avoid unnecessary changes being committed
 
 ### If you’re adding a new panel
 
