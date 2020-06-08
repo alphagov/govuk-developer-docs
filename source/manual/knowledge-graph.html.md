@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Knowledge Graph
-last_reviewed_on: 2020-06-08
-review_in: 6 months
 ---
 
 ## Overview
