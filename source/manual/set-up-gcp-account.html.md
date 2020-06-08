@@ -10,7 +10,7 @@ review_in: 6 months
 
 [Static mirrors of GOV.UK](/manual/fall-back-to-mirror.html) are hosted in storage buckets within AWS and Google Cloud Platform (GCP). You may need login to GCP to [remove an asset](/manual/howto-manually-remove-assets.html) or to [emergency publish content using the static mirrors](/manual/fall-back-to-mirror.html#emergency-publishing-using-the-static-mirror).
 
-## 1. Request GCP access
+## Request GCP access
 
 Permission to Google Cloud Platform (GCP) is managed by RE GOV.UK team. Access to GCP is granted when [permanent Production access](manual/rules-for-getting-production-access.html) is approved and merged to 
 [GOV.UK user reviewer](https://github.com/alphagov/govuk-user-reviewer) repository. 
