@@ -5,7 +5,7 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-11
+last_reviewed_on: 2020-06-05
 review_in: 6 months
 ---
 
@@ -42,23 +42,44 @@ We use a Jenkins job that publishes changes to `publishing.service.gov.uk`. The
 job uses [Terraform](https://www.terraform.io/) and pushes changes to the
 selected provider.
 
-### Jenkins
+### Deployment
 
-When the changes have been reviewed and merged, you can deploy them using [the
-"Deploy DNS" Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/).
+**Always `plan` first, check that the output is what you expect, then `apply`.**
 
-You will need to [assume the appropriate role](/manual/access-aws-console.html)
-and copy and paste the credentials in to the Jenkins job.
+When the changes have been reviewed and merged, you can deploy them in your terminal
+by using at least version `v2.15.0` of [`gds-cli`][gds-cli].
+
+You should **always**:
+
+1. `plan` in each DNS provider and check the console output is what you expect.
+2. `apply` in each DNS provider until you see that your changes has been applied.
+    There are circumstances where terraform is not able to apply the changes in 1
+    run and need **multiple** runs.
+
+Deployment is done by first obtaining (first time set up) your GitHub credentials
+by creating a read-only GitHub personal access token. This [GitHub personal access token](https://github.com/settings/tokens) should be created with the `read:org`
+scope only.
+
+> Take care to store and handle the token securely. If you accidentally share your token,
+  [revoke it immediately](https://github.com/settings/tokens) and follow the
+  [instructions for reporting a potential data security incident][security-incidents].
+
+You can then run [`gds-cli`][gds-cli]:
 
 ```sh
-gds aws govuk-production-admin -e
+GITHUB_USERNAME=<github_username> GITHUB_TOKEN=<github_token> \
+gds govuk dns -p <dns_provider> -z <dns_zone> -a <action> -r <aws_role>
 ```
+Where:
 
-Changes should be deployed for each provider (AWS & Google) separately, first
-run a "plan" action, and when you're happy with the changes, run "apply".
+1. `<github_username>` is the name of your GitHub account
+1. `<github_token>` is the GitHub token that you created as described above
+1. `<dns_provider>` is one of the 2 DNS provider of govuk, i.e. `gcp` or `aws`
+1. `<dns_zone>` is the govuk DNS zone to be deployed. E.g. `direct.gov.uk`
+1. `<action>` is the terraform action you want to perform. E.g. `plan`, `apply`
+1. `<aws_role>` is the govuk aws role you want to use for terraforming. E.g. `govuk-production-admin`
 
-Within the Jenkins job (under "Configure"), select the provider, zone & action. Once build is complete,
-examine the logs before progressing to the next stage (Apply).
+After you deploy, you can visit the [Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/) to see the job running or queued.
 
 > **Note**
 >
@@ -134,3 +155,5 @@ There are ongoing plans to move this responsibility to a different part of GDS.
 
 If you receive a request to change any other DNS that hasn't come from the GOV.UK
 Proposition team, send it to them using the Zendesk group "3rd Line--GOV.UK Proposition".
+
+[gds-cli]: https://github.com/alphagov/gds-cli
