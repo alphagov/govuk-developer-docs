@@ -41,14 +41,6 @@ Replace any application specific text/urls/queries in the partial with template 
 
 Adding your partial name to this structure will result in it being rendered in Grafana.
 
-### Test the dashboard
-
-Any new partials or dashboards should be tested on Integration with multiple applications.
-
-It is also possible to test that the Puppet generates the dashboard JSON you expect by spinning up a `graphite-1.management` VM. Run `vagrant up graphite-1.management` from inside the `govuk-puppet` repo. You will need to run `vagrant provision` whenever you make changes to your local dashboard in order for them to be picked up by the virtual machine.
-
-Deployed dashboards live in `/etc/grafana/dashboards` on the `graphite-1.management` machine and any local virtual machines.
-
 ## Add a new application
 
 The list of applications that have dashboards generated is stored in the [hiera data](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml) inside Puppet under `grafana::dashboards::deployment_applications`.
