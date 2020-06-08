@@ -1,10 +1,10 @@
 ---
 owner_slack: "#govuk-developers"
-title: Monitor your app during deployment
+title: Deployment dashboards
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-07
+last_reviewed_on: 2020-06-08
 review_in: 6 months
 ---
 
