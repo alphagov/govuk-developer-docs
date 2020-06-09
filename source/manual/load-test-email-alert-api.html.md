@@ -9,7 +9,11 @@ review_in: 12 months
 ---
 
 You may wish to load test email-alert-api to get a realistic idea of how the system performs under high load, or if your're making changes to how emails are processed to ensure your changes have the desired effect.
- 
+
+> Rake tasks for load testing can be found [here](https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/load_testing.rake).
+
+## Testing with Notify
+
 You can load test email-alert-api with the staging version of Notify so that it won’t put unnecessary load on their production version. Let them know if you’re planning on doing a large scale test (anything more than a few thousand emails) and they can scale it up as necessary.
 
 ### Setting up for the test
@@ -23,13 +27,13 @@ You can load test email-alert-api with the staging version of Notify so that it 
 | GOVUK_NOTIFY_BASE_URL    | https://api.staging-notify.works/    | We need to send requests to the correct endpoint                               |
 | GOVUK_NOTIFY_API_KEY     | Key from govuk-secrets               | The production key will not be correct for staging                             |
 | GOVUK_NOTIFY_TEMPLATE_ID | 76d21ce7-54c3-4fb7-8830-ba3b79287985 | Requests will fail if it cannot find the template, this exists only on staging |
-  
+
 4. You need to set the following environment variable key value pairs whether or not you're sending emails to Notify staging:
 
 | Key                    | Value                           | Reason                                                            |
 |------------------------|---------------------------------|-------------------------------------------------------------------|
 | EMAIL_ADDRESS_OVERRIDE | success@simulator.amazonses.com | Sends all emails to Amazon SES, preventing it going to real users |
- 
+
 
 5. Use fabric to restart the workers so they'll pick up the new environment variables by running `fab aws_staging node_type:email_alert_api app.restart:email-alert-api-procfile-worker`
 6. Now you're ready to start, open a rails console on an email-alert-api machine on staging. How you perform the test may depend on what you want to test, in the past we've duplicated content changes from a few hours or a day.
