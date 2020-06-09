@@ -5,7 +5,7 @@ section: AWS
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-03-05
+last_reviewed_on: 2020-06-09
 review_in: 3 months
 ---
 
@@ -69,7 +69,7 @@ calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.4.
 calculators-frontend.blue.integration.govuk-internal.digital has address 10.1.6.202
 ```
 
-The service name will first resolve the top level environment domain name (`integration.govuk-internal.digital`), which will be a [CNAME record](https://en.wikipedia.org/wiki/CNAME_record) to a stack specific DNS record. Please see the documentation about [the concept of stacks in the infrastructure](concept-of-stacks.html).
+The service name will first resolve the top level environment domain name (`integration.govuk-internal.digital`), which will be a [CNAME record](https://en.wikipedia.org/wiki/CNAME_record) to a stack specific DNS record.
 
 GOV.UK applications use [Plek](https://github.com/alphagov/plek) for service discovery. Plek will return the fully-qualified domain name (FQDN) of the service it is discovering.
 
