@@ -12,6 +12,27 @@ You may wish to load test email-alert-api to get a realistic idea of how the sys
 
 > Rake tasks for load testing can be found [here](https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/load_testing.rake).
 
+## Testing without Notify
+
+email-alert-api has [a DelayProvider](https://github.com/alphagov/email-alert-api/blob/master/app/providers/delay_provider.rb) to simulate the delay of actual requests to Notify, so we can focus on internal load testing, without Notify being a factor. You will need to:
+
+- Deploy [this PR or similar](https://github.com/alphagov/govuk-puppet/pull/10412) to the Staging environment.
+
+- Run Puppet on each of the machines.
+  ```
+  fab -P staging_aws class:email_alert_api puppet
+  ```
+
+- Disable Puppet to persist the temporary change.
+  ```
+  fab -P staging_aws class:email_alert_api 'puppet.disable:"<date> load testing"'
+  ```
+
+- Manualy restart the workers to pick up the change.
+  ```
+  fab -P staging_aws class:email_alert_api app.restart:email-alert-api-procfile-worker
+  ```
+
 ## Testing with Notify
 
 You can load test email-alert-api with the staging version of Notify so that it won’t put unnecessary load on their production version. Let them know if you’re planning on doing a large scale test (anything more than a few thousand emails) and they can scale it up as necessary.
