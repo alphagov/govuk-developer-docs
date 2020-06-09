@@ -58,9 +58,6 @@ Normally emails from the Staging environment are [severely rate limited](https:/
   fab -P staging_aws class:email_alert_api app.restart:email-alert-api-procfile-worker
   ```
 
-### During the test
-You can keep an eye on the [Grafana dashboard](https://grafana.staging.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1&from=now-1h&to=now) to see how it's performing. If it's a large test, a lot of logs can be produced in a short amount of time so use the [machine dashboard](https://grafana.blue.staging.govuk.digital/dashboard/file/machine.json) filtered by email-alert-api machines to check disk space usage.
+## After the test
 
-
-### After the test
 Once you've finished the test and the queues have been cleared, re-enable puppet runs, run puppet in order to overwrite the environment variables you've set, restart the workers again and let 2nd line and Notify know you've finished.
