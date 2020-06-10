@@ -64,7 +64,7 @@ RSpec.describe GitHubRepoFetcher do
       expected_output = [
         {
           title: "Analytics",
-          filename: "analytics",
+          path: "/apis/#{repo_name}/analytics.html",
           markdown: markdown_fixture,
         },
       ]
