@@ -91,7 +91,7 @@ publishing-api.blue.integration.govuk-internal.digital has address 10.1.5.50
 
 We are unable to set the internal domain as the default because some applications do self-referred Plek lookups that affect how applications are presented to the user. We have determined it is safer to set specific overrides for services until this behaviour is changed within the applications.
 
-Please see the related [ADR for DNS Infrastructure](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0015-dns-infrastructure.md) for further detail.
+Please see the related [ADR for DNS Infrastructure](https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0015-dns-infrastructure.md) for further detail.
 
 ### Databases
 
@@ -128,12 +128,12 @@ instances.
 #### Removal of load balancer tiers
 
 Due to the use of [Elastic Load Balancing](https://aws.amazon.com/elasticloadbalancing/) we no longer have a need to maintain
-our own nginx load balancers, and so these have been removed from the stack. See the [related ADR](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0026-remove-load-balancer-tier.md) for further details.
+our own nginx load balancers, and so these have been removed from the stack. See the [related ADR](https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0026-remove-load-balancer-tier.md) for further details.
 
 #### Merging of MySQL database servers
 
 Traditionally, we had a separate MySQL server for Whitehall. Rather than manage multiple RDS instances,
-we have merged this into the main MySQL server. See the [relevant ADR](https://github.com/alphagov/govuk-aws/blob/master/doc/architecture/decisions/0019-centralise-mysql-databases.md) for details.
+we have merged this into the main MySQL server. See the [relevant ADR](https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0019-centralise-mysql-databases.md) for details.
 
 ### Deploying infrastructure
 

@@ -16,7 +16,7 @@ end-to-end testing.
 "Consumer-driven" means that the consumer of a service sets expectations about
 behaviour it needs from the provider.
 
-For example, [the publishing API is set up to run pact tests](https://github.com/alphagov/publishing-api/blob/master/doc/pact_testing.md).
+For example, [the publishing API is set up to run pact tests](https://github.com/alphagov/publishing-api/blob/master/docs/pact_testing.md).
 This means that any consumer of the publishing API can create contracts using the pact gem,
 and the publishing api deployment pipeline will check that consumers' contracts are still met by new builds.
 
