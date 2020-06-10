@@ -4,7 +4,7 @@ title: Load Test Email Alert API
 parent: "/manual.html"
 layout: manual_layout
 section: Emails
-last_reviewed_on: 2020-01-13
+last_reviewed_on: 2020-06-10
 review_in: 12 months
 ---
 
