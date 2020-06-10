@@ -50,4 +50,52 @@ RSpec.describe GitHubRepoFetcher do
       expect(GitHubRepoFetcher.new.readme(repo_name)).to eq(nil)
     end
   end
+
+  describe "#docs" do
+    it "returns an array of hashes including title derived from markdown contents" do
+      repo_name = SecureRandom.uuid
+      markdown_fixture = "# Analytics \n Foo"
+      api_response = [
+        {
+          name: "analytics.md",
+          download_url: "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/docs/analytics.md",
+        },
+      ]
+      expected_output = [
+        {
+          title: "Analytics",
+          filename: "analytics",
+          markdown: markdown_fixture,
+        },
+      ]
+      stub_request(:get, "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs")
+        .to_return(body: api_response.to_json, headers: { content_type: "application/json" })
+      stub_request(:get, "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/docs/analytics.md")
+        .to_return(body: markdown_fixture)
+
+      expect(GitHubRepoFetcher.new.docs(repo_name)).to eq(expected_output)
+    end
+
+    it "skips over any non-markdown files" do
+      repo_name = SecureRandom.uuid
+      api_response = [
+        {
+          "name": "digests.png",
+          "download_url": "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/docs/digests.png",
+        },
+      ]
+      stub_request(:get, "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs")
+        .to_return(body: api_response.to_json, headers: { content_type: "application/json" })
+
+      expect(GitHubRepoFetcher.new.docs(repo_name)).to eq([])
+    end
+
+    it "returns nil if no docs folder exists" do
+      repo_name = SecureRandom.uuid
+      stub_request(:get, "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs")
+        .to_return(status: 404, body: "{}", headers: { content_type: "application/json" })
+
+      expect(GitHubRepoFetcher.new.docs(repo_name)).to be_nil
+    end
+  end
 end
