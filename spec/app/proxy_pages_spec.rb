@@ -1,5 +1,7 @@
 RSpec.describe ProxyPages do
   before do
+    allow(AppDocs).to receive(:apps_with_docs)
+      .and_return([double("App with docs", app_name: "", page_title: "", description: "")])
     allow(AppDocs).to receive(:pages)
       .and_return([double("App", app_name: "", page_title: "", description: "")])
     allow(DocumentTypes).to receive(:pages)
@@ -10,18 +12,9 @@ RSpec.describe ProxyPages do
       .and_return([{ title: "A doc page", filename: "doc", markdown: "# A doc page\n Foo" }])
   end
 
-  describe ".publishing_api_docs" do
+  describe ".api_docs" do
     it "is indexed in search by its default contents" do
-      expect(described_class.publishing_api_docs).to all(
-        include(frontmatter: hash_including(:title))
-        .and(include(frontmatter: hash_excluding(:content))),
-      )
-    end
-  end
-
-  describe ".email_alert_api_docs" do
-    it "is indexed in search by its default contents" do
-      expect(described_class.email_alert_api_docs).to all(
+      expect(described_class.api_docs).to all(
         include(frontmatter: hash_including(:title))
         .and(include(frontmatter: hash_excluding(:content))),
       )

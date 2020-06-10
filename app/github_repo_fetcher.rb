@@ -36,7 +36,7 @@ class GitHubRepoFetcher
         filename = doc.name.match(/(.+)\..+$/)[1]
         title = ExternalDoc.title(contents) || filename
         {
-          filename: filename,
+          path: "/apis/#{app_name}/#{filename}.html",
           title: title,
           markdown: contents,
         }

@@ -1,34 +1,15 @@
 <% content_for :sidebar do %>
   <ul>
+    <% AppDocs.apps_with_docs.each do |app| %>
     <li>
-      <%= sidebar_link 'Email Alert API', '/apis/email-alert-api.html' %>
+      <%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %>
       <ul>
-        <% email_alert_api_pages.each do |page| %>
-          <li><%= sidebar_link page[:title], "/apis/email-alert-api/#{page[:filename]}.html" %></li>
+        <% GitHubRepoFetcher.new.docs(app.app_name).each do |page| %>
+          <li><%= sidebar_link page[:title], page[:path] %></li>
         <% end %>
       </ul>
     </li>
-    <li>
-      <a href="/apis/link-checker-api.html">
-        <span>Link Checker API</span>
-      </a>
-    </li>
-    <li>
-      <%= sidebar_link 'Publishing API', '/apis/publishing-api.html' %>
-      <ul>
-        <% publishing_api_pages.each do |page| %>
-          <li><%= sidebar_link page[:title], "/apis/publishing-api/#{page[:filename]}.html" %></li>
-        <% end %>
-      </ul>
-    </li>
-    <li><%= sidebar_link 'Search API', '/apis/search/search-api.html' %></li>
-    <ul>
-      <li><%= sidebar_link "Add new fields or document types", "/apis/search/add-new-fields-or-document-types.html" %></li>
-      <li><%= sidebar_link "Content indexed in search", "/apis/search/content.html" %></li>
-      <li><%= sidebar_link "Faceted search", "/apis/search/faceted-search.html" %></li>
-      <li><%= sidebar_link "Field reference", "/apis/search/fields.html" %></li>
-    </ul>
-    <li><%= sidebar_link 'Whitehall API', '/apis/whitehall.html' %></li>
+    <% end %>
   </ul>
 <% end %>
 

@@ -1,7 +1,6 @@
 class ProxyPages
   def self.resources
-    publishing_api_docs +
-      email_alert_api_docs +
+    api_docs +
       govuk_schema_names +
       app_docs +
       app_docs_json +
@@ -9,36 +8,27 @@ class ProxyPages
       supertypes
   end
 
-  def self.publishing_api_docs
-    GitHubRepoFetcher.client.docs("publishing-api").map do |page|
-      {
-        path: "/apis/publishing-api/#{page[:filename]}.html",
-        template: "templates/external_doc_template.html",
-        frontmatter: {
-          title: "Publishing API: #{page[:title]}",
-          locals: {
-            title: "Publishing API: #{page[:title]}",
-            markdown: page[:markdown],
-          },
-        },
-      }
-    end
-  end
+  def self.api_docs
+    docs = AppDocs.apps_with_docs.map do |app|
+      docs_for_app = GitHubRepoFetcher.client.docs(app.app_name)
+      return [] unless docs_for_app.present?
 
-  def self.email_alert_api_docs
-    GitHubRepoFetcher.client.docs("email-alert-api").map do |page|
-      {
-        path: "/apis/email-alert-api/#{page[:filename]}.html",
-        template: "templates/external_doc_template.html",
-        frontmatter: {
-          title: "Email Alert API: #{page[:title]}",
-          locals: {
-            title: "Email Alert API: #{page[:title]}",
-            markdown: page[:markdown],
+      docs_for_app.map do |page|
+        {
+          path: page[:path],
+          template: "templates/external_doc_template.html",
+          frontmatter: {
+            title: "#{app.app_name}: #{page[:title]}",
+            locals: {
+              title: "#{app.app_name}: #{page[:title]}",
+              markdown: page[:markdown],
+            },
           },
-        },
-      }
+        }
+      end
     end
+
+    docs.flatten.compact
   end
 
   def self.govuk_schema_names
