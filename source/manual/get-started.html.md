@@ -227,7 +227,7 @@ Add yourself to a lists of users found in [the data for the infra-security proje
 - `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure
 - `govuk-internal-administrators`: people in GOV.UK who are working on GOV.UK infrastructure including Architects, Lead Developers and anyone else working on the AWS migration
 - `govuk-powerusers`: anyone else who can have production access on GOV.UK
-- `govuk-platformhealth-powerusers`: as above but for members of the GOV.UK Platform Health team
+- `govuk-platformhealth-powerusers`: as above but for members of the GOV.UK Platform Health team. (Same access rights as above, we just have limits on the number of users per role).
 - `govuk-users`: anyone else who needs integration access on GOV.UK
 
 > Note: There is a limit on the number of people that can be in each group. If you find that the limit has been hit, try and identify any users who no longer need access and can be removed. Otherwise, a new group will need to be created.
