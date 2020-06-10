@@ -10,6 +10,8 @@ review_in: 12 months
 
 You may wish to load test email-alert-api to get a realistic idea of how the system performs under high load, or if your're making changes to how emails are processed to ensure your changes have the desired effect.
 
+Before you begin, you should post in the #2nd-line channel that you’re about to do some load testing and that as part of that you’ll be disabling puppet runs on Staging for email-alert-api.
+
 > Rake tasks for load testing can be found [here](https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/load_testing.rake).
 
 ## Testing without Notify
@@ -28,7 +30,7 @@ email-alert-api has [a DelayProvider](https://github.com/alphagov/email-alert-ap
   fab -P staging_aws class:email_alert_api 'puppet.disable:"<date> load testing"'
   ```
 
-- Manualy restart the workers to pick up the change.
+- Manually restart the workers to pick up the change.
   ```
   fab -P staging_aws class:email_alert_api app.restart:email-alert-api-procfile-worker
   ```
@@ -53,11 +55,15 @@ Normally emails from the Staging environment are [severely rate limited](https:/
   fab -P staging_aws class:email_alert_api 'puppet.disable:"<date> load testing"'
   ```
 
-- Manualy restart the workers to pick up the change.
+- Manually restart the workers to pick up the change.
   ```
   fab -P staging_aws class:email_alert_api app.restart:email-alert-api-procfile-worker
   ```
 
 ## After the test
 
-Once you've finished the test and the queues have been cleared, re-enable puppet runs, run puppet in order to overwrite the environment variables you've set, restart the workers again and let 2nd line and Notify know you've finished.
+Once you've finished the test and the queues have been cleared, re-enable puppet runs, run puppet in order to overwrite the environment variables you've set and restart the workers again.
+
+You can manually clear a large backlog of content changes by running the [clear_emails rake task](https://github.com/alphagov/email-alert-api/blob/25fdc3be525170ad44bce5e8f6aa1529994af143/lib/tasks/load_testing.rake#L40), and then wiping all active jobs with `fab -P class:email_alert_api sdo:"pkill -9 --full sidekiq"`.
+
+Let 2nd line and Notify know you've finished, and if you were using Notify, let them know too.
