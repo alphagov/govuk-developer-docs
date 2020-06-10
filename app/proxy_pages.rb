@@ -10,15 +10,15 @@ class ProxyPages
   end
 
   def self.publishing_api_docs
-    PublishingApiDocs.pages.map do |page|
+    GitHubRepoFetcher.client.docs("publishing-api").map do |page|
       {
-        path: "/apis/publishing-api/#{page.filename}.html",
+        path: "/apis/publishing-api/#{page[:filename]}.html",
         template: "templates/external_doc_template.html",
         frontmatter: {
-          title: "Publishing API: #{page.title}",
+          title: "Publishing API: #{page[:title]}",
           locals: {
-            title: "Publishing API: #{page.title}",
-            page: page,
+            title: "Publishing API: #{page[:title]}",
+            markdown: page[:markdown],
           },
         },
       }
@@ -26,15 +26,15 @@ class ProxyPages
   end
 
   def self.email_alert_api_docs
-    EmailAlertApiDocs.pages.map do |page|
+    GitHubRepoFetcher.client.docs("email-alert-api").map do |page|
       {
-        path: "/apis/email-alert-api/#{page.filename}.html",
+        path: "/apis/email-alert-api/#{page[:filename]}.html",
         template: "templates/external_doc_template.html",
         frontmatter: {
-          title: "Email Alert API: #{page.title}",
+          title: "Email Alert API: #{page[:title]}",
           locals: {
-            title: "Email Alert API: #{page.title}",
-            page: page,
+            title: "Email Alert API: #{page[:title]}",
+            markdown: page[:markdown],
           },
         },
       }

@@ -29,11 +29,11 @@ helpers do
   end
 
   def publishing_api_pages
-    PublishingApiDocs.pages.sort_by(&:title)
+    GitHubRepoFetcher.client.docs("publishing-api").sort_by { |doc| doc[:title] }
   end
 
   def email_alert_api_pages
-    EmailAlertApiDocs.pages.sort_by(&:title)
+    GitHubRepoFetcher.client.docs("email-alert-api").sort_by { |doc| doc[:title] }
   end
 
   def active_app_pages

@@ -9,7 +9,7 @@
       <%= sidebar_link 'Email Alert API', '/apis/email-alert-api.html' %>
       <ul>
         <% email_alert_api_pages.each do |page| %>
-          <li><%= sidebar_link page.title, "/apis/email-alert-api/#{page.filename}.html" %></li>
+          <li><%= sidebar_link page[:title], "/apis/email-alert-api/#{page[:filename]}.html" %></li>
         <% end %>
       </ul>
     </li>
@@ -22,7 +22,7 @@
       <%= sidebar_link 'Publishing API', '/apis/publishing-api.html' %>
       <ul>
         <% publishing_api_pages.each do |page| %>
-          <li><%= sidebar_link page.title, "/apis/publishing-api/#{page.filename}.html" %></li>
+          <li><%= sidebar_link page[:title], "/apis/publishing-api/#{page[:filename]}.html" %></li>
         <% end %>
       </ul>
     </li>
