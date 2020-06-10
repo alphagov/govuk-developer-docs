@@ -16,9 +16,9 @@ First you need to find out who 'owns' the dashboard. The best place to do this i
 
 ## Keeping dashboards temporarily
 
-If the dashboard was temporary or experimental, then you should delete it to resolve the alert. Having too many temporary dashboards makes it harder to find the ones we need.
+Having too many temporary dashboards makes it harder to find the ones we need. **If the dashboard was temporary or experimental, you should include the word `TEMPORARY` in the title.**
 
-You can [export your dashboard][grafana-export] to avoid deleting it completely. This means you can import it again in the future and continue editing, ideally in a non-production environment.
+Alternatively, you can [export your dashboard][grafana-export] and delete the original. This means you can import it again in the future and continue editing, ideally in a non-production environment.
 
 ## Keeping dashboards permanently
 
