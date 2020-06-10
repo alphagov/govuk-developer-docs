@@ -98,7 +98,7 @@ is still successfully processing requests.
 [e2e-database-seeds]: https://github.com/alphagov/content-store/pull/498/commits/cf41056f3cee446ef94043f3a3b074c71bcfa7d6
 [signon-integration]: http://signon.integration.publishing.service.gov.uk
 [signon-production]: http://signon.publishing.service.gov.uk
-[app-create-rake]: https://github.com/alphagov/signon/blob/master/doc/usage.md#setup-rake-tasks
+[app-create-rake]: https://github.com/alphagov/signon/blob/master/docs/usage.md#setup-rake-tasks
 [arch-overview]: https://docs.publishing.service.gov.uk/manual/architecture.html
 [api-user-production]: https://signon.publishing.service.gov.uk/api_users
 [api-user-integration]: https://signon.integration.publishing.service.gov.uk/api_users
