@@ -27,6 +27,25 @@ class GitHubRepoFetcher
     end
   end
 
+  # Fetch all markdown files under the repo's 'docs' folder
+  def docs(app_name)
+    CACHE.fetch("alphagov/#{app_name} docs", expires_in: 1.hour) do
+      docs = client.contents("alphagov/#{app_name}", path: "docs")
+      docs.select { |doc| doc.name.end_with?(".md") }.map do |doc|
+        contents = HTTP.get(doc.download_url)
+        filename = doc.name.match(/(.+)\..+$/)[1]
+        title = ExternalDoc.title(contents) || filename
+        {
+          path: "/apis/#{app_name}/#{filename}.html",
+          title: title,
+          markdown: contents,
+        }
+      end
+    rescue Octokit::NotFound
+      nil
+    end
+  end
+
   def self.client
     @client ||= GitHubRepoFetcher.new
   end
