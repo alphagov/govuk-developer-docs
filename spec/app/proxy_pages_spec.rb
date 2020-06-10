@@ -1,11 +1,13 @@
 RSpec.describe ProxyPages do
-  before :each do
+  before do
     allow(AppDocs).to receive(:pages)
       .and_return([double("App", app_name: "", page_title: "", description: "")])
     allow(DocumentTypes).to receive(:pages)
       .and_return([double("Page", name: "")])
     allow(Supertypes).to receive(:all)
       .and_return([double("Supertype", name: "", description: "", id: "")])
+    allow(GitHubRepoFetcher.client).to receive(:docs)
+      .and_return([{ title: "A doc page", filename: "doc", markdown: "# A doc page\n Foo" }])
   end
 
   describe ".publishing_api_docs" do
