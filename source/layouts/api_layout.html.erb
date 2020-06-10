@@ -1,11 +1,6 @@
 <% content_for :sidebar do %>
   <ul>
     <li>
-      <a href="/apps/content-store.html">
-        <span>Content Store</span>
-      </a>
-    </li>
-    <li>
       <%= sidebar_link 'Email Alert API', '/apis/email-alert-api.html' %>
       <ul>
         <% email_alert_api_pages.each do |page| %>
