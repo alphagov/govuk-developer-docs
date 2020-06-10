@@ -59,4 +59,24 @@ RSpec.describe ExternalDoc do
       expect(described_class.parse(markdown).to_s).to eq(expected_html)
     end
   end
+
+  describe ".title" do
+    it "returns the title from markdown" do
+      markdown = <<~MD
+        #Title
+        [link](#anchor)
+      MD
+      expect(described_class.title(markdown)).to eq("Title")
+    end
+
+    it "strips extra spaces from the title markdown" do
+      markdown = "#  My Title"
+      expect(described_class.title(markdown)).to eq("My Title")
+    end
+
+    it "returns nil if no title is found" do
+      markdown = ""
+      expect(described_class.title(markdown)).to be_nil
+    end
+  end
 end

@@ -296,7 +296,7 @@ sending an edition downstream to the Content Store.
 [Content API]: /apps/content-store.html
 [content-store]: https://github.com/alphagov/content-store
 [govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
-[Link expansion]: https://github.com/alphagov/publishing-api/blob/master/doc/link-expansion.md
+[Link expansion]: https://github.com/alphagov/publishing-api/blob/master/docs/link-expansion.md
 [Publishing API]: https://github.com/alphagov/publishing-api
 [rendering]: #rendering
 
@@ -362,7 +362,7 @@ as `links.taxons`. Some apps have their own interface for tagging, or you can
 tag content independently using [content-tagger].
 
 [content-tagger]: https://github.com/alphagov/content-tagger
-[dependency resolution]: https://github.com/alphagov/publishing-api/blob/master/doc/dependency-resolution.md
+[dependency resolution]: https://github.com/alphagov/publishing-api/blob/master/docs/dependency-resolution.md
 [schema-organisations-example]: https://github.com/alphagov/govuk-content-schemas/blob/d9684140462e4a138668539c04829cd808636ed5/dist/formats/news_article/publisher_v2/schema.json#L70-L73
 [taxonomies]: /manual/taxonomy.html
 

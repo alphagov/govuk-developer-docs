@@ -44,7 +44,7 @@ The javascript function
 GOVUK.analytics.addLinkedTrackerDomain('UA-43888888-1', 'someServiceTracker', ['some.service.gov.uk'])
 ```
 
-registers a _linked_ (cross domain) tracker and sends a pageview to the tracker. The [current cross domain configuration on GOV.UK](https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/init.js.erb#L160) contains only those domains that have turned on cross domain tracking. More information is included in [static's analytics documentation](https://github.com/alphagov/static/blob/master/doc/analytics.md#tracking-across-domains).
+registers a _linked_ (cross domain) tracker and sends a pageview to the tracker. The [current cross domain configuration on GOV.UK](https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/init.js.erb#L160) contains only those domains that have turned on cross domain tracking. More information is included in [static's analytics documentation](https://github.com/alphagov/static/blob/master/docs/analytics.md#tracking-across-domains).
 
 Some cross domain tracking existed prior to this work to link 19 services to GOV.UK. It exists on some transaction start pages such as [Change your driving test appointment](https://www.gov.uk/change-driving-test), where the start button contains data attributes, such as:
 

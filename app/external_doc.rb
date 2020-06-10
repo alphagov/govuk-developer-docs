@@ -52,6 +52,13 @@ class ExternalDoc
     HTML::Pipeline.new(filters).call(markdown)[:output]
   end
 
+  def self.title(markdown)
+    markdown_title = markdown.split("\n")[0].to_s.match(/#(.+)/)
+    return nil unless markdown_title
+
+    markdown_title[1].strip
+  end
+
   # When we import external documentation it can contain relative links to
   # source files within the repository that the documentation resides. We need
   # to filter out these types of links and make them absolute so that they

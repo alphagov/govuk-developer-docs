@@ -63,4 +63,4 @@ You can also run this task from Jenkins.
 
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
-[queue]: https://github.com/alphagov/search-api/blob/master/doc/new-indexing-process.md
+[queue]: https://github.com/alphagov/search-api/blob/master/docs/new-indexing-process.md

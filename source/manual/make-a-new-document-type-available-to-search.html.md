@@ -67,7 +67,7 @@ You can test that the documents appear in search through the API using a query s
 - [https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide][query-2]
 
 [search-api]: https://github.com/alphagov/search-api
-[doc-types]: https://github.com/alphagov/search-api/blob/master/doc/schemas.md#elasticsearch-document-types
+[doc-types]: https://github.com/alphagov/search-api/blob/master/docs/schemas.md#elasticsearch-document-types
 [edition]: https://github.com/alphagov/search-api/blob/master/config/schema/elasticsearch_types/edition.json
 [mapped-doc-types]: https://github.com/alphagov/search-api/blob/master/config/govuk_index/mapped_document_types.yaml
 [i-c-presenter]: https://github.com/alphagov/search-api/blob/master/lib/govuk_index/presenters/indexable_content_presenter.rb
