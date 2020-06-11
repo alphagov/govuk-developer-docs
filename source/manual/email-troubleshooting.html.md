@@ -26,7 +26,8 @@ The login credentials are in the [2nd line password store][password-store] under
 `govuk-notify/2nd-line-support`. Two-factor authentication links for logging in are
 sent to the 2nd line email address.
 
-From the dashboard, you can search by email address.
+Click "GOV.UK Email" to visit the dashboard, then click on "emails sent", which
+will take you to a form where you can search by email address.
 
 ### Check the courtesy copy inbox
 
