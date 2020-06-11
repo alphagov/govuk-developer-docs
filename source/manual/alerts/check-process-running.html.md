@@ -8,22 +8,27 @@ last_reviewed_on: 2020-04-07
 review_in: 6 months
 ---
 
-This alert means that a process which should be running is not.
+This alert means that a process which should be running is not. It's highly likely that this process corresponds to a service.
 
-It's likely that this process corresponds to a service, which you can check by looking in `/etc/init` or try running:
+If the process doesn't correspond to a service then it will be necessary to find out more about how the process runs. Read [troubleshooting the process](#troubleshooting-the-process) at the end of this page.
+
+## Check the status of the service
 
 ```bash
 $ sudo service <process> status
 ```
 
-This will also tell you the status of the service.
+If this doesn't work, you may need to do some digging to find out the name of the service. For example, the `postgresql` service runs the `postgres` process.
 
-You can list all available services with `sudo service --status-all`.
+### Determining the name of the service
 
-If you cannot immediately find which service the process is corresponding to, it may be helpful to look through any
-similar looking files in `/etc/init`, for example, the `postgresql` service runs the `postgres` process.
+Look in `/etc/init` for services that may be in charge of the process.
 
-Often, it can be enough to just restart the service by using:
+You can also list services with `sudo service --status-all`, though this doesn't show processes started with [upstart](http://upstart.ubuntu.com/).
+
+## Fixing the issue
+
+If the service isn't running, it can be enough to just restart the service by using:
 
 ```bash
 sudo service <service> start
@@ -35,7 +40,18 @@ If the service is referring to a GOV.UK application, it may be necessary to also
 sudo service <service>-procfile-worker restart
 ```
 
-If the process doesn't correspond to a service then it will be necessary to find out more about how the process runs.
+Sometimes, a process might appear to be running, but is actually stalled by a child process that has completed but not been garbage collected:
+
+```bash
+$ ps -ef | grep defunct
+root      2735     1  0 Jun08 ?        00:02:09 [prometheus] <defunct>
+```
+
+You can confirm this is a child process of the process in the alert by running `ps faux` to see where it is descended from.
+
+Running `sudo service <service> restart` should bring the process down, kill of any child processes and start it up again, but if the defunct process is still hanging around (and especially if its parent process is now `init`/`1`), you may need to [reboot the machine](/manual/alerts/rebooting-machines.html).
+
+## Troubleshooting the process
 
 If the process doesn't come back, then it's more likely that there is something going wrong with it. You can start
 investigating by looking in the log files which could be in one of the following places:
