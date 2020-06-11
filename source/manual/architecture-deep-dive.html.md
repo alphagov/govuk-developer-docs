@@ -439,7 +439,7 @@ app UI for this.
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 [govuk-jenkinslib]: https://github.com/alphagov/govuk-jenkinslib
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
-[how-to-deploy]: /manual/deploying.html
+[how-to-deploy]: /manual/development-pipeline.html
 [push-tag]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L122-L124
 [release]: https://github.com/alphagov/release
 [send-deploy-message]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L132-L135

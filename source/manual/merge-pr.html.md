@@ -16,7 +16,7 @@ There are five rules for reviewing and merging PRs, which apply to all applicati
 4. The GitHub review UI should be used to mark a PR as approved or requiring changes.
 5. The GitHub UI should be used to merge the PR. This ensures the PR number is added to the merge commit.
 
-Once a PR is merged, you should deploy your changes at the earliest convenience to ensure unreleased changes do not back up and to keep our applications deployable - regardless of the perceived size of the PR merged (including [Dependabot](#Dependabot) PRs). [Deploying](/manual/deploying.html) should be done in the regular way, taking the merged changes all the way through to production.
+Once a PR is merged, you should deploy your changes at the earliest convenience to ensure unreleased changes do not back up and to keep our applications deployable - regardless of the perceived size of the PR merged (including [Dependabot](#Dependabot) PRs). [Deploying](/manual/development-pipeline.html) should be done in the regular way, taking the merged changes all the way through to production.
 
 ## Example scenarios
 
