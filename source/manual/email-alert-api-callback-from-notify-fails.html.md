@@ -17,7 +17,7 @@ There are two rake tasks that can do this using either the `reference` or the
 ## Query the Notify API for email(s) by reference
 
 ```
-report:get_notifications_from_notify[reference]
+troubleshoot:get_notifications_from_notify[reference]
 ```
 
 [⚙ Run rake task on production][reference]
@@ -25,7 +25,7 @@ report:get_notifications_from_notify[reference]
 ## Query the Notify API for email(s) by email ID
 
 ```
-report:get_notifications_from_notify_by_email_id[id]
+troubleshoot:get_notifications_from_notify_by_email_id[id]
 ```
 
 [⚙ Run rake task on production][email_id]
@@ -64,5 +64,5 @@ permanent-failure, accepted, received]"}]
 Read [email troubleshooting].
 
 [email troubleshooting]: /manual/email-troubleshooting.html
-[email_id]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:get_notifications_from_notify_by_email_id[id]
-[reference]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:get_notifications_from_notify[reference]
+[email_id]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=troubleshoot:get_notifications_from_notify_by_email_id[id]
+[reference]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=troubleshoot:get_notifications_from_notify[reference]
