@@ -32,7 +32,7 @@ make changes to [govuk-puppet].
 
 Once these changes have been deployed and the environment variable
 `EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test
-that you can receive emails by running the [troubleshoot:to_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=deliver:to_test_email[name@example.com]) [rake task].
+that you can receive emails by running the [troubleshoot:deliver_to_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=troubleshoot:deliver_to_test_email[name@example.com]) [rake task].
 
 ## Testing digest emails
 
@@ -55,4 +55,4 @@ WeeklyDigestInitiatorWorker.perform_async
 [Notify]: https://www.notifications.service.gov.uk
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[rake task]: https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/deliver.rake#L19
+[rake task]: https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/troubleshoot.rake#L19
