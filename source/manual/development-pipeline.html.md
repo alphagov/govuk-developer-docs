@@ -60,6 +60,12 @@ We've got [guidelines on merging of Pull Requests](/manual/merge-pr.html).
 
 Code that is merged to `master` is tested again on CI. This is because the `master` branch may have changed since the tests last ran on the PR. If the tests on `master` pass, Jenkins pushes a `release_123` git tag to GitHub.
 
+> **WARNING**: some applications have Continuous Deployment enabled, which means the deployment process is fully automated. You should do any manual testing with [a temporary, branch deployment](#branch-deploy-review), before you merge.
+>
+> - Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
+> - You should still monitor the progress of your deployment in the [Release app][release] to check it succeeds.
+> - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
+
 ## Deployment
 
 Teams are responsible for deploying their own work. We believe that [regular releases minimise the risk of major problems](https://gds.blog.gov.uk/2012/11/02/regular-releases-reduce-risk) and improve recovery time. The [2nd line team](/manual/welcome-to-2nd-line.html) is responsible for providing access to deploy software for teams who can't deploy it themselves.
