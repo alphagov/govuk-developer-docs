@@ -109,8 +109,15 @@ is `safe_to_reboot::can_reboot: 'yes'`.
 > otherwise marked as 'no', then it may be done provided any downstream
 > effects of this reboot have been considered.
 
-There is a Fabric task to schedule a machine for downtime in Nagios for
-20 minutes and then reboot it:
+If you just want to reboot the machine, you can SSH into the machine
+and run:
+
+```sh
+sudo reboot
+```
+
+Alternatively, there is a Fabric task to schedule a machine for downtime
+in Nagios for 20 minutes and then reboot it:
 
     fab $environment -H graphite-1.management vm.reboot
 
