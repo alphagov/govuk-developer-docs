@@ -423,12 +423,7 @@ A developer must manually trigger a deployment to Staging and Production through
 the [release] app. This uses the same Jenkins/Capistrano pipeline as for
 Integration, but on the Staging and Production Jenkins environments respectively.
 
-Some apps require extra care when deploying. Static, for example, requires a
-30 minute wait between environment deploys. This is because Static is consumed
-directly by GOV.UK applications at runtime - not a gem version like a normal
-dependency - and responses from Static are cached for half an hour, so problems
-may not be visible until after this period. There are instructions in the release
-app UI for this.
+Some apps require extra care when deploying; see ['Static' deployment rules][static-deploy].
 
 [Capistrano]: https://capistranorb.com/
 [CI Jenkins]: https://ci.integration.publishing.service.gov.uk/
@@ -443,6 +438,7 @@ app UI for this.
 [push-tag]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L122-L124
 [release]: https://github.com/alphagov/release
 [send-deploy-message]: https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L132-L135
+[static-deploy]: /manual/deploy-static.html
 
 ### Puppet on GOV.UK
 

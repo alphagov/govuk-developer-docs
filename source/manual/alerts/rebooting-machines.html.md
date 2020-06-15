@@ -5,80 +5,26 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2020-03-06
+last_reviewed_on: 2020-06-15
 review_in: 3 months
 ---
 
-Under normal circumstances most machines reboot automatically when an update is required. Some machines need to be rebooted manually.
+Under normal circumstances most machines reboot automatically when an update is required.
+Some machines need to be rebooted manually.
 
-> If machines are not rebooting automatically, there there may be a [problem with the locking mechanism](#checking-locking-status).
+Note that much of the following documentation assumes you have correctly
+[set up your fabric scripts](https://github.com/alphagov/fabric-scripts#setup).
 
-## Rules of manual rebooting
+## Automatic rebooting
 
-* *Read this page first* to see if any special cases apply to the type of
-  machine you need to reboot.
-* Most machines in Production should be rebooted out of hours, and this
-is handled by those who are on call out of hours.
-* Some machines in Production may need to be rebooted in hours though,
-and machines in other environments can usually be rebooted in hours as
-well.
-* Do not reboot more than one machine of the same class at the
-  same time.
-* When rebooting clustered applications (such as RabbitMQ) wait
-  for the cluster to recover fully before rebooting the next machine.
-* If you are rebooting a machine in AWS (either out of hours or in hours) it's
-advised to pair with the RE interruptible/on call person.
-
-### Rebooting guidance for AWS
-
-If rebooting machines in AWS, extended reboot times may result in the
-relevant machine being terminated automatically. If this happens, a
-new machine will be created automatically.
-
-There have been a few cases when a reboot in AWS has not come back successfully
-and RE will be able to help in these cases. It also means RE can investigate
-any problems so it doesn't happen again and we have confidence in our ability
-to reboot machines in AWS.
-
-There's a [section on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws).
-
-## Unattended upgrades
-
-Machines are configured with [automatic security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package) which install security updates overnight. Sometimes these require a reboot in order to become active.
-
-You can review the list of packages on machines (or classes of machines) with the [following command](https://github.com/alphagov/fabric-scripts#setup). Logs of the previous runs can be found in `/var/log/unattended-upgrades`.
-
-    fab $environment all apt.packages_with_reboots
-
-You will then need to decide whether to:
-
--   Reboot the machine
--   Silence the check until the next package requires update
-    (`fab $environment all apt.reset_reboot_needed`)
-
-### Deciding whether to reboot or silence
-
-This can be quite nuanced. Before you go ahead with any course of action,
-gather evidence and then ask in the \#re-govuk Slack channel.
-
-Find details of the update from the [Ubuntu Security
-Notices](http://www.ubuntu.com/usn/).
-
--   Is it a remote or local exploit?
--   Is it a kernel update?
--   If it's a shared library, are we using it (see below)?
-
-There is a Fabric task to find all processes using a deprecated library:
-
-    fab $environment all vm.deprecated_library:dbus
+If machines are not rebooting automatically, there may be a problem with the locking mechanism.
+See next section.
 
 ### Checking locking status
 
 [locksmith](https://github.com/coreos/locksmith) manages unattended reboots to
 ensure that systems are available. It is possible that a problem could occur
 where they can't reboot automatically.
-The following commands assume you have correctly
-[set up your fabric scripts][setup-fabric-scripts].
 
 ```command-line
 $ fab <environment> all locksmith.status
@@ -95,11 +41,26 @@ $ fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
 Machines that are safe to reboot should then do so at the scheduled
 time.
 
+## Manual rebooting
 
-## Rebooting one machine
+> Before rebooting anything manually, see if any [special cases][#special-cases] apply to the type of machine you need to reboot.
 
-First check whether the machine is safe to reboot. This is stored in
-puppet in hieradata. For example,
+### Rules of manual rebooting
+
+* Do not reboot more than one machine of the same class at the
+  same time.
+* Most machines in Production should be rebooted out of hours, and this
+is handled by those who are on call out of hours.
+  * In emergencies, machines in Production may need to be rebooted in-hours.
+  * Machines in other environments can be rebooted in hours.
+* There is [extra guidance if the machine you are rebooting is in AWS](#rebooting-guidance-for-aws).
+  You may wish to pair with the RE interruptible/on call person.
+* There are also [things to consider when rebooting Carrenza machines](#rebooting-guidance-for-carrenza).
+
+### Rebooting one machine
+
+First check whether the machine is safe to reboot. This information is
+stored in puppet in hieradata. For example,
 [here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/mysql_master.yaml)
 is an example of a machine that cannot be safely rebooted. The
 [default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
@@ -109,8 +70,7 @@ is `safe_to_reboot::can_reboot: 'yes'`.
 > otherwise marked as 'no', then it may be done provided any downstream
 > effects of this reboot have been considered.
 
-If you just want to reboot the machine, you can SSH into the machine
-and run:
+If you want to reboot the machine immediately, you can SSH into it and run:
 
 ```sh
 sudo reboot
@@ -119,18 +79,74 @@ sudo reboot
 Alternatively, there is a Fabric task to schedule a machine for downtime
 in Nagios for 20 minutes and then reboot it:
 
-    fab $environment -H graphite-1.management vm.reboot
+```
+fab $environment -H graphite-1.management vm.reboot
+```
 
-> **Note (Carrenza only)**
->
-> There is a known issue whereby adding an extra disk using the LSI
-> Logic Parallel (SCSI) controller to a VM causes the BIOS boot order to
-> change, meaning that the system disk cannot be found and the OS does
-> not boot when the affected VM is restarted. See the
-> manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
-> more info.
+### Rebooting guidance for AWS
 
-## Rebooting Cache machines in AWS
+If rebooting machines in AWS, extended reboot times may result in the
+relevant machine being terminated automatically. If this happens, a
+new machine will be created automatically.
+
+There have been a few cases when a reboot in AWS has not come back successfully
+and RE will be able to help in these cases. It also means RE can investigate
+any problems so it doesn't happen again and we have confidence in our ability
+to reboot machines in AWS.
+
+There's a [section on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws).
+
+### Rebooting guidance for Carrenza
+
+There is a known issue whereby adding an extra disk using the LSI
+Logic Parallel (SCSI) controller to a VM causes the BIOS boot order to
+change, meaning that the system disk cannot be found and the OS does
+not boot when the affected VM is restarted. See the
+manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
+more info.
+
+## Rebooting to apply unattended upgrades
+
+Machines are configured with [automatic security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package)
+which install security updates overnight. Sometimes these require a reboot
+in order to become active.
+
+You can review the list of packages on machines (or classes of machines)
+by running:
+
+```
+fab $environment all apt.packages_with_reboots
+```
+
+NB, logs of the previous runs can be found in `/var/log/unattended-upgrades`.
+
+You will then need to decide whether to:
+
+- Reboot the machine, or
+- Silence the check until the next package requires update
+  (`fab $environment all apt.reset_reboot_needed`)
+
+### Deciding whether to reboot or silence
+
+This can be quite nuanced. Before you go ahead with any course of action,
+gather evidence and then ask in the \#re-govuk Slack channel.
+
+Find details of the update from the [Ubuntu Security
+Notices](http://www.ubuntu.com/usn/).
+
+- Is it a remote or local exploit?
+- Is it a kernel update?
+- If it's a shared library, are we using it (see below)?
+
+There is a Fabric task to find all processes using a deprecated library:
+
+```
+fab $environment all vm.deprecated_library:dbus
+```
+
+## Special cases
+
+### Rebooting Cache machines in AWS
 
 The `cache` machines run the `router` app which handles live user traffic.
 To safely reboot them without serving too many errors to users, we must
@@ -148,7 +164,7 @@ remove them from the AWS load balancer target groups before rebooting:
 1. Re-add the machine to the above target groups.
 1. Check the traffic is flowing from the load balancer with `tail -f /var/log/nginx/lb-access.log` again.
 
-## Rebooting MongoDB machines
+### Rebooting MongoDB machines
 
 You can see our MongoDB machines by running:
 
@@ -167,7 +183,7 @@ The general approach for rebooting machines in a MongoDB cluster is:
     - Reboot the secondaries
     - Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
-## Rebooting Redis machines
+### Rebooting Redis machines
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted during working hours in production. Other services rely directly on
@@ -180,7 +196,7 @@ They may be rebooted in working hours in other environments, however you
 should notify colleagues before doing so as this may remove in-flight jobs
 that Sidekiq has added to the Redis queues but not yet processed.
 
-## Rebooting RabbitMQ machines
+### Rebooting RabbitMQ machines
 
 There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
 waiting for the cluster to recover before rebooting the next node.
@@ -206,7 +222,7 @@ If any applications start alerting due to `rabbitmq-1` being rebooted
 then either add a note here about how to make that application recover,
 or get the team responsible to make it point to the cluster.
 
-## Rebooting asset master and slave machines
+### Rebooting asset master and slave machines
 
 Unless there are urgent updates to apply the master machine should not be
 rebooted in production during working hours - as the master machine is required
@@ -222,18 +238,18 @@ You may reboot the master machine in the staging environment during working
 hours however it is prudent to warn colleagues that uploading attachments will
 be unavailable during this period.
 
-## Rebooting router-backend machines
+### Rebooting router-backend machines
 
 Router backend machines are instances of MongoDB machines and can be rebooted
 as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
 
-## Rebooting jumpbox machines
+### Rebooting jumpbox machines
 
 These machines are safe to reboot during the day. During the night they
 are involved in a data sync processes and rebooting could cause the data
 sync to fail.
 
-## Rebooting backend-lb machines (Carrenza only)
+### Rebooting backend-lb machines (Carrenza only)
 
 In order to safely reboot these machines you'll need access to [vCloud Director][vcloud], in order to switch traffic away from backend-lb-1 before rebooting it - all traffic goes through this machine unless it fails.
 
@@ -259,7 +275,7 @@ In order to safely reboot these machines you'll need access to [vCloud Director]
 
 - Use [vCloud Director][vcloud] to update the NAT rule to point back to the IP address of backend-lb-1.
 
-## Rebooting MySQL backup machines (Carrenza only)
+### Rebooting MySQL backup machines (Carrenza only)
 
 The MySQL backup machines [create a file during the backup
 process](https://github.com/alphagov/govuk-puppet/commit/0e1615bf31f714994b43142ecf915330d4d46af5).
@@ -274,7 +290,7 @@ If that file exists, the machine isn't safe to reboot.
 
         fab <environment> -H mysql-backup-1.backend vm.reboot
 
-## Rebooting MySQL master and slave machines (Carrenza only)
+### Rebooting MySQL master and slave machines (Carrenza only)
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted during working hours in production. Applications write to the
@@ -287,13 +303,13 @@ by On Call staff.
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
 
-### Whitehall MySQL slave machines
+### Rebooting Whitehall MySQL slave machines
 
 The whitehall-mysql-slave-1 machine is used by the frontend component
 of Whitehall, so this'll be impacted when rebooting. The other
 whitehall-mysql-slave machines are not used by Whitehall frontend.
 
-## Rebooting PostgreSQL primary and standby machines (Carrenza only)
+### Rebooting PostgreSQL primary and standby machines (Carrenza only)
 
 Unless there are urgent updates to apply, these machines should not be
 rebooted in production during working hours. Applications read and write
@@ -307,7 +323,7 @@ by On Call staff.
 They may be rebooted in working hours in the staging environment, however you
 should notify colleagues before doing so.
 
-## Rebooting Docker Management machines
+### Rebooting Docker Management machines
 
 These currently just run etcd which is used to coorindate automatic
 out of hours reboots.
