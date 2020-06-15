@@ -4,7 +4,7 @@ title: Common 2nd line support tasks for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-03
+last_reviewed_on: 2020-06-15
 review_in: 6 months
 ---
 [ckan]: https://ckan.publishing.service.gov.uk

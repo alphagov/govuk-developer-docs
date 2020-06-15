@@ -4,7 +4,7 @@ title: Run high priority tests
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-10-24
+last_reviewed_on: 2020-06-15
 review_in: 6 months
 ---
 
@@ -71,10 +71,14 @@ $ sudo kill -9 6385
 
 ### Integration with Signon
 
-These tests rely on a user in [GOV.UK Signon][signon]. All Signon users have their passphrase expire periodically. This will cause the tests to fail.
+These tests rely on a user in [GOV.UK Signon][signon]. All Signon users have
+their passphrase expire periodically. This will cause the tests to fail.
 
-You can either change the passphrase of the account and rotate it in encrypted
-hieradata, or you can fake a passphrase change in the Signon Rails console:
+You should change the passphrase of the account and rotate it in encrypted
+hieradata. Here's an [example PR in govuk-secrets](https://github.com/alphagov/govuk-secrets/pull/307).
+
+Alternatively, you can fake a passphrase change in the Signon Rails console,
+though this will only fix the alert temporarily.
 
 ```
 $ govuk_app_console signon
