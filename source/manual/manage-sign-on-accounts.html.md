@@ -28,3 +28,8 @@ through the users section in the signon app:
 - [integration signon](https://signon.integration.publishing.service.gov.uk/users)
 - [staging signon](https://signon.staging.publishing.service.gov.uk/users)
 - [production signon](https://signon.publishing.service.gov.uk/users)
+
+2FA is encouraged for all, including editors, however it is only
+[mandatory for admins and superadmins][2fa-rules].
+
+[2fa-rules]: https://github.com/alphagov/signon/commit/83cb90132831441fa4fb10027a03aa122a18502f#diff-4676c008b11a5480d73d4a6de01e45b9R233
