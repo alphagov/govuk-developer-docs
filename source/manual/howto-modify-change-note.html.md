@@ -4,8 +4,6 @@ title: Modify a change note in Publishing API
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-16
-review_in: 6 months
 ---
 
 Spelling mistakes can creep into change notes, and we are often asked
