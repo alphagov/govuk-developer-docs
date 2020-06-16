@@ -70,6 +70,39 @@ RSpec.describe AppDocs::App do
     end
   end
 
+  describe "aws_puppet_class" do
+    before do
+      app_data = {
+        "calculators_frontend" => {
+          "apps" => %w[
+            calculators
+            finder-frontend
+            licencefinder
+            smartanswers
+          ],
+        },
+      }
+      allow(AppDocs).to receive(:aws_machines).and_return(app_data)
+    end
+
+    it "should find puppet class via github repo name if neither app name nor puppet name provided" do
+      expect(AppDocs::App.new("github_repo_name" => "calculators").aws_puppet_class).to eq("calculators_frontend")
+    end
+
+    it "should find puppet class via app name" do
+      expect(AppDocs::App.new("app_name" => "calculators").aws_puppet_class).to eq("calculators_frontend")
+    end
+
+    it "should find puppet class via puppet name" do
+      expect(AppDocs::App.new("puppet_name" => "smartanswers", "github_repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
+    end
+
+    it "should return error message if no puppet class found" do
+      expect(AppDocs::App.new("github_repo_name" => "foo").aws_puppet_class)
+        .to eq("Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml")
+    end
+  end
+
   describe "apps_with_docs" do
     it "should return apps that have specified we can consume their docs folder, alphabetically" do
       expect(AppDocs.apps_with_docs.map(&:app_name)).to eq(%w[app-on-paas whitehall])
