@@ -1,6 +1,8 @@
 require "octokit"
 
 class GitHubRepoFetcher
+  include Singleton
+
   # Fetch a repo from GitHub.
   #
   # If the app_name is just a repo name we'll assume that it's in the alphagov
@@ -10,8 +12,8 @@ class GitHubRepoFetcher
     if app_name =~ %r{/}
       # Not on alphagov, make a separate call to the API. Cache it for
       # development speed.
-      @@cache ||= {}
-      @@cache[app_name] ||= client.repo(app_name)
+      @cache ||= {}
+      @cache[app_name] ||= client.repo(app_name)
     else
       all_alphagov_repos.find { |repo| repo.name == app_name } || raise("alphagov/#{app_name} not found")
     end
@@ -46,14 +48,10 @@ class GitHubRepoFetcher
     end
   end
 
-  def self.client
-    @client ||= GitHubRepoFetcher.new
-  end
-
 private
 
   def all_alphagov_repos
-    @@all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: 1.hour) do
+    @all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: 1.hour) do
       client.repos("alphagov")
     end
   end

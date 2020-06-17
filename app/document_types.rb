@@ -3,7 +3,7 @@ class DocumentTypes
   DOCUMENT_TYPES_URL = "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/lib/govuk_content_schemas/allowed_document_types.yml".freeze
 
   def self.pages
-    @@pages ||= begin
+    @pages ||= begin
       known_from_search = facet_query.dig("facets", "content_store_document_type", "options").map do |o|
         Page.new(
           name: o.dig("value", "slug"),
@@ -24,11 +24,11 @@ class DocumentTypes
   end
 
   def self.facet_query
-    @@facet_query ||= HTTP.get(FACET_QUERY)
+    @facet_query ||= HTTP.get(FACET_QUERY)
   end
 
   def self.all_document_types
-    @@all_document_types ||= HTTP.get_yaml(DOCUMENT_TYPES_URL).sort
+    @all_document_types ||= HTTP.get_yaml(DOCUMENT_TYPES_URL).sort
   end
 
   def self.rendering_apps_from_content_store
