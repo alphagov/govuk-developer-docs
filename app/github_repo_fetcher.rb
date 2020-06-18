@@ -39,6 +39,7 @@ class GitHubRepoFetcher
           path: "/apis/#{app_name}/#{filename}.html",
           title: title,
           markdown: contents,
+          source_url: doc.html_url,
         }
       end
     rescue Octokit::NotFound
