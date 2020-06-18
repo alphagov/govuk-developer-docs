@@ -59,6 +59,7 @@ RSpec.describe GitHubRepoFetcher do
         {
           name: "analytics.md",
           download_url: "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/docs/analytics.md",
+          html_url: "https://github.com/alphagov/#{repo_name}/blob/master/docs/analytics.md",
         },
       ]
       expected_output = [
@@ -66,6 +67,7 @@ RSpec.describe GitHubRepoFetcher do
           title: "Analytics",
           path: "/apis/#{repo_name}/analytics.html",
           markdown: markdown_fixture,
+          source_url: "https://github.com/alphagov/#{repo_name}/blob/master/docs/analytics.md",
         },
       ]
       stub_request(:get, "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs")
