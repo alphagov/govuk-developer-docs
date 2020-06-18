@@ -19,6 +19,12 @@ RSpec.describe ProxyPages do
         .and(include(frontmatter: hash_excluding(:content))),
       )
     end
+
+    it "sets the correct source_url for the doc" do
+      expect(described_class.api_docs).to all(
+        include(frontmatter: hash_including(data: hash_including(:source_url))),
+      )
+    end
   end
 
   describe ".app_docs" do

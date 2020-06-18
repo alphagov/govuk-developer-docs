@@ -23,6 +23,9 @@ class ProxyPages
               title: "#{app.app_name}: #{page[:title]}",
               markdown: page[:markdown],
             },
+            data: {
+              source_url: page[:source_url],
+            },
           },
         }
       end
