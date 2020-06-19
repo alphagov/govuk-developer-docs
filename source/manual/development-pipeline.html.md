@@ -16,15 +16,10 @@ Our development and deployment pipeline looks like this:
 1. Open a Pull Request (PR)
 1. [Wait for Continuous Integration to pass](#wait-for-continuous-integration-to-pass)
 1. [Get someone to review your Pull Request](#get-someone-to-review-your-pull-request)
+1. [Check if there is a deploy freeze](#check-if-there-is-a-deploy-freeze)
 1. [Merge your own Pull Request](#merge-your-own-pull-request)
 1. [Wait for the release to deploy to Integration](#wait-for-the-release-to-deploy-to-integration)
 1. [Manually deploy to Staging, then Production](#manually-deploy-to-staging-then-production)
-
-In exceptional circumstances, we may wish to block or _freeze_ deployments for a short period of time. In this case, add a note to the application in the [Release app][release]. This should explain:
-
-- Why the app is not deployable at the moment
-- Who to contact about deploying the app
-- When you expect the app to be deployable again
 
 ## Wait for Continuous Integration to pass
 
@@ -49,11 +44,27 @@ Sometimes you may need to deploy your change in Integration in order to test it 
 - `TAG` - put the name of your branch
 - Typically you can leave the checkboxes as they are
 
+## Check if there is a deploy freeze
+
+In exceptional circumstances, we may wish to block or _freeze_ deployments for a short period of time. This should be done by checking "Freeze deployments?" and adding an explanatory note to the application in the [Release app][release].
+
+> Checking "Freeze deployments?" will turn off all automatic deployments for the application. You can still deploy urgent changes manually if necessary.
+
+When a deploy freeze is in effect, you should avoid merging any PRs. This is because your changes may block other, urgent changes related to the deploy freeze. Your changes will also remain undeployed for a long time.
+
+> People don't always check the Release app before merging their PRs. If you need to freeze deployments for an application, you should also make people aware using other channels.
+
 ## Merge your own Pull Request
 
 We've got [guidelines on merging of Pull Requests](/manual/merge-pr.html).
 
 Code that is merged to `master` is tested again on CI. This is because the `master` branch may have changed since the tests last ran on the PR. If the tests on `master` pass, Jenkins pushes a `release_123` git tag to GitHub.
+
+> **WARNING**: some applications have Continuous Deployment enabled, which means the deployment process is fully automated. You should do any manual testing with [a temporary, branch deployment](#branch-deploy-review), before you merge.
+>
+> - Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
+> - You should still monitor the progress of your deployment in the [Release app][release] to check it succeeds.
+> - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
 
 ## Deployment
 
