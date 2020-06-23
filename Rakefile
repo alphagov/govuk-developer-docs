@@ -48,17 +48,28 @@ task :verify_deployable_apps do
       sidekiq-monitoring
     ]
 
-  puts "Deployables is not included in applications.yml:"
-
-  (deployable_applications - (our_applications + intentionally_missing)).uniq.each do |missing_app|
-    puts missing_app
+  missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq
+  if missing_apps.count.zero?
+    puts "No deployable apps missing from applications.yml ✅"
+  else
+    errors = missing_apps.map { |missing_app| "\n\t #{missing_app}" }
+    abort("The following deployable apps are missing from applications.yml: #{errors.join('')}")
   end
 end
 
 desc "Check all puppet names are valid, will error when not"
 task :check_puppet_names do
+  invalid_puppet_names = []
   AppDocs.pages.reject(&:retired?).each do |app|
-    HTTP.get(app.puppet_url)
+    HTTP.get(app.puppet_url) unless app.puppet_url.nil?
+  rescue Octokit::NotFound
+    invalid_puppet_names << app.puppet_url
+  end
+  if invalid_puppet_names.count.zero?
+    puts "All AWS/Carrenza apps have a valid puppet manifest ✅"
+  else
+    errors = invalid_puppet_names.map { |url| "\n\t #{url}" }
+    abort("Expected the following puppet manifests to exist: #{errors.join('')}")
   end
 end
 
