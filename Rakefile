@@ -73,4 +73,4 @@ task :check_puppet_names do
   end
 end
 
-task default: %i[lint spec cache:clear assets:precompile]
+task default: %i[verify_deployable_apps check_puppet_names lint spec cache:clear assets:precompile]
