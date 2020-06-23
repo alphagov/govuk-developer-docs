@@ -25,6 +25,3 @@ gem "govuk_schemas", "~> 4.0.0"
 gem "faraday-http-cache", "~> 2.2.0"
 gem "faraday_middleware", "~> 1.0.0"
 gem "octokit", "~> 4.18.0"
-
-# For hosting on Heroku
-gem "rack-contrib", "~> 2.2.0"
