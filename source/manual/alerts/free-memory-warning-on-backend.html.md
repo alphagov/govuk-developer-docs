@@ -4,8 +4,6 @@ title: Free memory warning on backend
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-06-24
-review_in: 6 months
 ---
 
 This alert is often caused by an application slowly leaking memory, which
