@@ -58,6 +58,8 @@ When a deploy freeze is in effect, you should avoid merging any PRs. This is bec
 
 We've got [guidelines on merging of Pull Requests](/manual/merge-pr.html).
 
+> Some applications [have restrictions on who can merge PRs](https://github.com/alphagov/govuk-saas-config/blob/master/github/repo_overrides.yml). If you are unable to merge your own PR, you should ask [someone else](https://github.com/orgs/alphagov/teams/gov-uk-production/members) to merge (and deploy) it for you.
+
 Code that is merged to `master` is tested again on CI. This is because the `master` branch may have changed since the tests last ran on the PR. If the tests on `master` pass, Jenkins pushes a `release_123` git tag to GitHub.
 
 > **WARNING**: some applications have Continuous Deployment enabled, which means the deployment process is fully automated. You should do any manual testing with [a temporary, branch deployment](#branch-deploy-review), before you merge.
