@@ -8,7 +8,7 @@ RSpec.describe ProxyPages do
       .and_return([double("Page", name: "")])
     allow(Supertypes).to receive(:all)
       .and_return([double("Supertype", name: "", description: "", id: "")])
-    allow(GitHubRepoFetcher.client).to receive(:docs)
+    allow(GitHubRepoFetcher.instance).to receive(:docs)
       .and_return([{ title: "A doc page", filename: "doc", markdown: "# A doc page\n Foo" }])
   end
 
