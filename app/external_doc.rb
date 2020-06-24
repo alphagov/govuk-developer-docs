@@ -50,7 +50,7 @@ class ExternalDoc
 
     HTML::Pipeline
       .new(filters)
-      .to_html(markdown.force_encoding("UTF-8"))
+      .to_html(markdown.to_s.force_encoding("UTF-8"))
   end
 
   def self.title(markdown)
