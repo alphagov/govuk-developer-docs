@@ -4,4 +4,4 @@ parent: /apis.html
 hide_from_sitemap: true
 ---
 
-<%= ExternalDoc.parse(markdown) %>
+<%= ExternalDoc.parse(markdown, context: { repository: repository }) %>

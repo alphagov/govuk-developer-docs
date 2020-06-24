@@ -22,6 +22,9 @@ class ProxyPages
             locals: {
               title: "#{app.app_name}: #{page[:title]}",
               markdown: page[:markdown],
+              context: {
+                repository: "alphagov/#{app.app_name}",
+              },
             },
             data: {
               source_url: page[:source_url],

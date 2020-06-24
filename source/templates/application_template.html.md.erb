@@ -167,7 +167,7 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
 
 <% if ENV["GITHUB_TOKEN"] %>
 <div class="embedded-readme">
-  <%= ExternalDoc.parse(application.readme) %>
+  <%= ExternalDoc.parse(application.readme, context: { repository: "alphagov/#{application.app_name}" }) %>
 </div>
 <% else %>
 <span class="govuk-error-message">

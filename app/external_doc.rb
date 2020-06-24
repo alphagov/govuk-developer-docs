@@ -8,49 +8,41 @@ class ExternalDoc
       "https://raw.githubusercontent.com/#{repository}/master/#{path}",
     )
 
+    parse(contents, repository: repository, path: path)
+  end
+
+  def self.parse(markdown, params = {})
     context = {
       # Turn off hardbreaks as they behave different to github rendering
       gfm: false,
-      base_url: URI.join(
-        "https://github.com",
-        "#{repository}/blob/master/",
-      ),
-      image_base_url: URI.join(
-        "https://raw.githubusercontent.com",
-        "#{repository}/master/",
-      ),
     }
 
-    context[:subpage_url] =
-      URI.join(context[:base_url], File.join(".", File.dirname(path), "/"))
-
-    context[:image_subpage_url] =
-      URI.join(context[:image_base_url], File.join(".", File.dirname(path), "/"))
-
-    filters = [
-      HTML::Pipeline::MarkdownFilter,
-      HTML::Pipeline::AbsoluteSourceFilter,
-      PrimaryHeadingFilter,
-      HeadingFilter,
-      AbsoluteLinkFilter,
-      MarkdownLinkFilter,
-    ]
-
-    HTML::Pipeline
-      .new(filters)
-      .to_html(contents.force_encoding("UTF-8"), context)
-  end
-
-  def self.parse(markdown)
     filters = [
       HTML::Pipeline::MarkdownFilter,
       PrimaryHeadingFilter,
       HeadingFilter,
     ]
 
+    if (repository = params[:repository]) && (path = params[:path])
+      context[:base_url] =
+        URI.join("https://github.com", "#{repository}/blob/master/")
+      context[:image_base_url] =
+        URI.join("https://raw.githubusercontent.com", "#{repository}/master/")
+      context[:subpage_url] =
+        URI.join(context[:base_url], File.join(".", File.dirname(path), "/"))
+      context[:image_subpage_url] =
+        URI.join(context[:image_base_url], File.join(".", File.dirname(path), "/"))
+
+      filters += [
+        HTML::Pipeline::AbsoluteSourceFilter,
+        AbsoluteLinkFilter,
+        MarkdownLinkFilter,
+      ]
+    end
+
     HTML::Pipeline
       .new(filters)
-      .to_html(markdown.to_s.force_encoding("UTF-8"))
+      .to_html(markdown.to_s.force_encoding("UTF-8"), context)
   end
 
   def self.title(markdown)
