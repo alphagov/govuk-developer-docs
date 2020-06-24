@@ -55,7 +55,16 @@ RSpec.describe ExternalDoc do
         # Title
         [link](#anchor)
       MD
-      expected_html = "\n\n<p><a href=\"#anchor\">link</a></p>"
+      expected_html = "\n<p><a href=\"#anchor\">link</a></p>"
+      expect(described_class.parse(markdown).to_s).to eq(expected_html)
+    end
+
+    it "forces encoding to UTF-8 " do
+      markdown = String.new(
+        "These curly quotes “make commonmarker throw an exception”",
+        encoding: "ASCII-8BIT",
+      )
+      expected_html = "<p>These curly quotes “make commonmarker throw an exception”</p>"
       expect(described_class.parse(markdown).to_s).to eq(expected_html)
     end
   end
