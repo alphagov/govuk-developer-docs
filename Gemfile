@@ -16,7 +16,7 @@ gem "middleman", "~> 4.3.7"
 gem "middleman-search_engine_sitemap", "~> 1.4"
 
 gem "github-markdown"
-gem "html-pipeline", "~> 2.5.0"
+gem "html-pipeline"
 gem "redcarpet", "~> 3.5.0"
 
 gem "govuk_schemas", "~> 4.0.0"
