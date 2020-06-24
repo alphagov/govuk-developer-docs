@@ -15,7 +15,6 @@ class ExternalDoc
         "https://github.com",
         "#{repository}/blob/master/",
       ),
-
       image_base_url: URI.join(
         "https://raw.githubusercontent.com",
         "#{repository}/master/",
@@ -39,7 +38,7 @@ class ExternalDoc
 
     HTML::Pipeline
       .new(filters)
-      .to_html(contents, context)
+      .to_html(contents.force_encoding("UTF-8"), context)
   end
 
   def self.parse(markdown)
@@ -49,7 +48,9 @@ class ExternalDoc
       HeadingFilter,
     ]
 
-    HTML::Pipeline.new(filters).call(markdown)[:output]
+    HTML::Pipeline
+      .new(filters)
+      .to_html(markdown.force_encoding("UTF-8"))
   end
 
   def self.title(markdown)
