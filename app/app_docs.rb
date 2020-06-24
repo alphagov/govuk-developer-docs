@@ -266,13 +266,13 @@ class AppDocs
     def github_repo_data
       return {} if private_repo?
 
-      @github_repo_data ||= GitHubRepoFetcher.client.repo(github_repo_name)
+      @github_repo_data ||= GitHubRepoFetcher.instance.repo(github_repo_name)
     end
 
     def github_readme
       return nil if private_repo?
 
-      @github_readme ||= GitHubRepoFetcher.client.readme(github_repo_name)
+      @github_readme ||= GitHubRepoFetcher.instance.readme(github_repo_name)
     end
   end
 end

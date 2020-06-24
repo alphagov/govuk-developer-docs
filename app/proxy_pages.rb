@@ -10,7 +10,7 @@ class ProxyPages
 
   def self.api_docs
     docs = AppDocs.apps_with_docs.map do |app|
-      docs_for_app = GitHubRepoFetcher.client.docs(app.app_name)
+      docs_for_app = GitHubRepoFetcher.instance.docs(app.app_name)
       return [] unless docs_for_app.present?
 
       docs_for_app.map do |page|
