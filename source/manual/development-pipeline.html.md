@@ -65,8 +65,12 @@ Code that is merged to `master` is tested again on CI. This is because the `mast
 > **WARNING**: some applications have Continuous Deployment enabled, which means the deployment process is fully automated. You should do any manual testing with [a temporary, branch deployment](#branch-deploy-review), before you merge.
 >
 > - Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
-> - You should still monitor the progress of your deployment in the [Release app][release] to check it succeeds.
-> - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
+> - You should monitor the progress of your deployment in the [Release app][release] to check it succeeds:
+>   - It may take a while to see the release tag. Check the build job on [CI Jenkins](https://ci.integration.publishing.service.gov.uk/).
+> - After the release tag is built, you should see a deployment to integration happen on [deploy Jenkins](https://deploy.integration.publishing.service.gov.uk/).
+> - Keep an eye on [staging Grafana](https://grafana.staging.govuk.digital/) and [Smokey on staging](https://deploy.integration.publishing.service.gov.uk/job/Smokey/).
+>   - Note that if the Smokey test fails, you may need to [manually deploy your change](https://deploy.blue.staging.govuk.digital/job/Deploy_App/) if it is not the cause of the failure.
+> - You will eventually see your deployment on [production Grafana](https://grafana.production.govuk.digital/).
 
 ## Deployment
 
