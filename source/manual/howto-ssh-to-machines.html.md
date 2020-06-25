@@ -59,7 +59,7 @@ it's not working, you can try manually running the commands it normally runs for
 - On the jumpbox, run `govuk_node_list` to find the machine you want.
 
   ```sh
-  $ govuk_node_list backend
+  $ govuk_node_list -c backend
   ip-10-12-4-106.eu-west-1.compute.internal
   ip-10-12-5-205.eu-west-1.compute.internal
   ip-10-12-6-44.eu-west-1.compute.internal
