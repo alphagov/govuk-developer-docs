@@ -204,7 +204,7 @@ For more details, read about the GOV.UK [Frontend architecture].
 Static JS/CSS is delivered over <https://assets.publishing.service.gov.uk>.
 Custom assets, such as images, are delivered over the same domain and uploaded
 by content designers via [asset-manager]. Under the hood, all of these assets
-live in an [AWS S3 bucket] (read ["Assets: how they work"]).
+live in an [AWS S3 bucket]; read ["Assets: how they work"].
 
 [asset-manager]: https://github.com/alphagov/asset-manager
 ["Assets: how they work"]: /manual/assets.html
