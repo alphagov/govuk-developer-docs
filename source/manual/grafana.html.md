@@ -5,8 +5,6 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-30
-review_in: 6 months
 ---
 
 [Grafana](https://grafana.com/) is an open-source visualisation tool.
