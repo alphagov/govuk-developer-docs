@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Cookies
-last_reviewed_on: 2020-06-30
-review_in: 6 months
 ---
 
 GOV.UK frontend applications, with the exception of Licensing and Email Alert Frontend, do not currently require cookies.
