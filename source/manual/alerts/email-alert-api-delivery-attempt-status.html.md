@@ -25,6 +25,9 @@ or a request to send an email via Notify failed within the last hour. This
 means that there may be a problem with our system or that Notify is unable to
 send emails.
 
+Emails given a `technical_failure` status will **not** be retried automatically.
+To retry these you will need to use the [resend tasks].
+
 In non-production environments, this failure may also mean that we’re
 attempting to send emails to people who are not members of the Notify team for
 the relevant environment.
@@ -48,3 +51,4 @@ Read [email troubleshooting].
 [hieradata]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
 [hieradata_aws]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml
 [password-store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/govuk-notify
+[resend tasks]: /apis/email-alert-api/support-tasks.html#resend-failed-emails
