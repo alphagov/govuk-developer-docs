@@ -26,6 +26,13 @@ for each environment):
   email updates about pieces of content on GOV.UK. It's our biggest sender of
   emails and regularly exceeds one million emails per day.
 
+  **Note:** currently (as of 30/06/2020) GOV.UK Notify has a maximum rate limit
+  of 350 requests per second meaning we should adhere to this limit when using
+  Notify to deliver emails for our applications. This is set in email-alert-api
+  and can be found in the [DeliveryRequestWorker][DeliveryRequestWorker]. If you
+  wish to double check this figure you could ask in their slack channel
+  #govuk-notify.
+
 - **GOV.UK Publishing**
 
   This service is used by our publishing applications. It's used to send
@@ -33,8 +40,7 @@ for each environment):
   example might be to receive an email when a scheduled document on GOV.UK has
   been automatically published.
 
-_In the future we may set up a new 'GOV.UK Public' service which is used to
-send public-facing emails which haven't gone through Email Alert API._
+[DeliveryRequestWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/delivery_request_worker.rb#L52
 
 ## Accessing the dashboard
 
