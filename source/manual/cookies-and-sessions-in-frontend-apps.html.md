@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Cookies
-last_reviewed_on: 2019-11-28
+last_reviewed_on: 2020-06-30
 review_in: 6 months
 ---
 
