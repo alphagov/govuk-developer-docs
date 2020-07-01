@@ -213,7 +213,6 @@ jobs:
           restore-keys: bundle
       - run: bundle install --jobs 4 --retry 3 --deployment
       - uses: actions/setup-node@v1
-      - run: npm install -g yarn
       - name: Check for cached node modules
         uses: actions/cache@v1
         with:
