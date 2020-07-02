@@ -4,7 +4,7 @@ title: Fall back to AWS CloudFront
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-30
+last_reviewed_on: 2020-07-01
 review_in: 3 months
 ---
 
@@ -22,6 +22,6 @@ You will have to make 2 DNS changes to GOV.UK:
    the cname of `www.gov.uk` to the `www` AWS CloudFront distribution domain.
    You can log into the AWS web console to find the `www` AWS CloudFront distribution domain.
 
-2. you will have to change the cname of `assets.publishing.service.gov.uk` to the
+2. you will have to change the cname of `assets.publishing.service.gov.uk` to 
    the `assets` AWS CloudFront distribution domain using the usual gov.uk processes.
    You can log into the AWS web console to find the `assets` AWS CloudFront distribution domain.
