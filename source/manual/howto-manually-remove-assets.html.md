@@ -18,7 +18,7 @@ follow these steps:
    - [`rake assets:delete[<asset.id>]`][rake-delete]
    - [`rake assets:delete_and_remove_from_s3[<asset.id>]`][rake-delete-and-remove-from-s3]
 1. Remove the asset from asset-manager file system (it may not be here as these are automatically removed after S3 upload)
-    1. `ssh asset-master-1.production`
+    1. `gds govuk connect ssh -e production aws/asset_master`
     1. `cd /mnt/uploads/asset-manager/assets`
     1. Use the path identified in step 5 to check for the file by removing the `/var/apps/asset-manager/uploads/assets` prefix
     1. `sudo rm path/to/file`
