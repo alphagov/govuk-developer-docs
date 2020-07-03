@@ -18,7 +18,7 @@ follow these steps:
    - [`rake assets:delete[<asset.id>]`][rake-delete]
    - [`rake assets:delete_and_remove_from_s3[<asset.id>]`][rake-delete-and-remove-from-s3]
 1. Remove the asset from asset-manager file system (it may not be here as these are automatically removed after S3 upload)
-    1. `ssh asset-master-1.production`
+    1. `gds govuk connect ssh -e production aws/asset_master`
     1. `cd /mnt/uploads/asset-manager/assets`
     1. Use the path identified in step 5 to check for the file by removing the `/var/apps/asset-manager/uploads/assets` prefix
     1. `sudo rm path/to/file`
@@ -27,8 +27,7 @@ follow these steps:
 1. Verify that the asset is not there
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 1. Remove the asset from the mirrors.
-    1. Log into the [AWS console](https://docs.publishing.service.gov.uk/manual/access-aws-console.html) as admin for production
-    1. Go to the govuk-production-mirror bucket in S3 and manually delete the asset
+    1. Remove from AWS: `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
     1. Log into the [GCP console](https://console.cloud.google.com/)
     1. Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
     1. Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
