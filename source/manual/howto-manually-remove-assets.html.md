@@ -27,8 +27,7 @@ follow these steps:
 1. Verify that the asset is not there
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 1. Remove the asset from the mirrors.
-    1. Log into the [AWS console](https://docs.publishing.service.gov.uk/manual/access-aws-console.html) as admin for production
-    1. Go to the govuk-production-mirror bucket in S3 and manually delete the asset
+    1. Remove from AWS: `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
     1. Log into the [GCP console](https://console.cloud.google.com/)
     1. Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
     1. Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
