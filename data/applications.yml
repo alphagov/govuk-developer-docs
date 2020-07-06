@@ -360,7 +360,7 @@
 - github_repo_name: search-analytics
   type: Services
   team: "#govuk-platform-health"
-  production_hosted_on: carrenza
+  production_hosted_on: none
 
 # Support
 
@@ -630,7 +630,7 @@
   team: "#govuk-data-labs"
   type: Data science
   description: "Machine learning model to recommend related content"
-  production_hosted_on: aws
+  production_hosted_on: none
   dashboard_url: false
   deploy_url: false
   sentry_url: false
@@ -652,6 +652,7 @@
   type: Licensing apps
   production_hosted_on: aws
   team: "#govuk-licensing"
+  puppet_url: https://github.com/alphagov/govuk-puppet/blob/master/modules/licensify/manifests/apps/licensify.pp
   sentry_url: false
   deploy_url: false
   dashboard_url: false
@@ -721,6 +722,12 @@
   team: "#govuk-platform-health"
   management_url: https://dashboard.heroku.com/apps/govuk-dependencies
   production_hosted_on: heroku
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+- github_repo_name: govuk-puppet
+  team: "#govuk-developers"
+  production_hosted_on: none
   type: Utilities
   sentry_url: false
   dashboard_url: false

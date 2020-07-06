@@ -161,6 +161,8 @@ class AppDocs
     def puppet_url
       return unless production_hosted_on.in?(%w[aws carrenza])
 
+      return app_data["puppet_url"] if app_data["puppet_url"]
+
       "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
     end
 
