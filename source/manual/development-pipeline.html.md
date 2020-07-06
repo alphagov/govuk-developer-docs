@@ -63,10 +63,12 @@ We've got [guidelines on merging of Pull Requests](/manual/merge-pr.html).
 Code that is merged to `master` is tested again on CI. This is because the `master` branch may have changed since the tests last ran on the PR. If the tests on `master` pass, Jenkins pushes a `release_123` git tag to GitHub.
 
 > **WARNING**: some applications have Continuous Deployment enabled, which means the deployment process is fully automated. You should do any manual testing with [a temporary, branch deployment](#branch-deploy-review), before you merge.
->
-> - Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
-> - You should still monitor the progress of your deployment in the [Release app][release] to check it succeeds.
-> - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
+
+- Check the notes in the [Release app][release] to see if Continuous Deployment is enabled.
+- If so, after merging, you should check the Release app to see if the deployment succeeds.
+- If the latest release is not on Production within about 15 minutes, something went wrong:
+  - Refer to the [Continuous Deployment Demo slides][slides] for details of the deployment process so you can pinpoint where in the pipeline it failed.
+  - You can manually deploy your change if the automation fails e.g. due to a flakey [Smokey test][smokey].
 
 ## Deployment
 
@@ -98,4 +100,5 @@ After a deployment:
 - Check the results of the [smoke tests][smokey].
 
 [release]: https://release.publishing.service.gov.uk
+[slides]: https://docs.google.com/presentation/d/1A0zdYHwOxV2jO_0YVsKplySXvd777pXDwn1YnETXSh8/edit
 [smokey]: https://github.com/alphagov/smokey
