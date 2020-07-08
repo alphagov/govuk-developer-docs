@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Run high priority tests
+title: Smokey loop tests
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
@@ -8,8 +8,12 @@ last_reviewed_on: 2020-06-15
 review_in: 6 months
 ---
 
-The high priority tests [come from Smokey][smokey] and [the Icinga check is defined in Puppet][icinga].
-Smokey can fail with an error message "Run high priority tests", or simply with "Smokey failed".
+[Smokey][smokey] runs in a continuous loop in each environment.
+We have [Icinga checks] for [most Smokey features], so that
+we are alerted when some aspect of GOV.UK may be in trouble.
+
+Smokey can fail with an error message "Smokey loop for \<feature\>",
+or simply with "Smokey failed".
 
 ## Tests failing
 
@@ -88,4 +92,5 @@ irb(main):002:0> smokey.update_attribute(:password_changed_at, Time.now)
 
 [signon]: https://github.com/alphagov/signon
 [smokey]: https://github.com/alphagov/smokey
-[icinga]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp
+[most Smokey features]: https://github.com/alphagov/smokey/blob/master/docs/writing-tests.md#alerting-in-icinga
+[Icinga checks]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp
