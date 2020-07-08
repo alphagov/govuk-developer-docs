@@ -63,6 +63,10 @@ ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).m
 
 - [content_change_failed_emails][]
 
+### Requeue content changes and messages over 1-hour old for which jobs have been lost
+
+- [content_change_and_messages_recover_lost_jobs][]
+
 ### Still stuck?
 
 Read [email troubleshooting].
@@ -71,3 +75,4 @@ Read [email troubleshooting].
 [email troubleshooting]: /manual/email-troubleshooting.html
 [content_change_email_status_count]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:content_change_email_status_count['one_required_content_change_id','optional_second_content_change_id','and_so_on']
 [content_change_failed_emails]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:content_change_failed_emails['one_required_content_change_id','optional_second_content_change_id','and_so_on']
+[content_change_and_messages_recover_lost_jobs]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=recovery:recover_lost_jobs
