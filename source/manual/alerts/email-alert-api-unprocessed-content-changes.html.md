@@ -5,7 +5,7 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-04
+last_reviewed_on: 2020-07-09
 review_in: 6 months
 ---
 
@@ -15,8 +15,8 @@ This may be fine and the emails will eventually go out, but it's worth some inve
 
 ### Icinga checks
 
-* `warning` - `content_changes` unprocessed for over 5 minutes
-* `critical` - `content_changes` unprocessed for over 10 minutes
+* `warning` - `content_changes` unprocessed for over 90 minutes
+* `critical` - `content_changes` unprocessed for over 120 minutes
 
 See the [ProcessContentChangeAndGenerateEmailsWorker][content-change-worker] for
 more information.
@@ -32,7 +32,7 @@ $ gds govuk connect app-console -e production email-alert-api
 #### Check which content changes are affected
 
 ```ruby
-ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil)
+ContentChange.where("created_at < ?", 120.minutes.ago).where(processed_at: nil)
 ```
 
 #### Check number of subscription contents built for a content change (you would expect this number to keep going up)
@@ -50,7 +50,7 @@ ProcessContentChangeAndGenerateEmailsWorker.new.perform(content_change.id)
 #### Resend the emails for a content change in bulk (ignore ones that have already gone out)
 
 ```ruby
-ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |content_change| ProcessContentChangeAndGenerateEmailsWorker.new.perform(content_change.id)  }
+ContentChange.where("created_at < ?", 120.minutes.ago).where(processed_at: nil).map { |content_change| ProcessContentChangeAndGenerateEmailsWorker.new.perform(content_change.id)  }
 ```
 
 ### Useful rake tasks
@@ -63,6 +63,14 @@ ContentChange.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).m
 
 - [content_change_failed_emails][]
 
+#### Resend failed emails by email ids
+
+- [resend_failed_emails:by_id][]
+
+#### Resend failed emails by date range
+
+- [resend_failed_emails:by_date][]
+
 ### Still stuck?
 
 Read [email troubleshooting].
@@ -71,3 +79,5 @@ Read [email troubleshooting].
 [email troubleshooting]: /manual/email-troubleshooting.html
 [content_change_email_status_count]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:content_change_email_status_count['one_required_content_change_id','optional_second_content_change_id','and_so_on']
 [content_change_failed_emails]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=report:content_change_failed_emails['one_required_content_change_id','optional_second_content_change_id','and_so_on']
+[resend_failed_emails:by_id]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=troubleshoot:resend_failed_emails:by_id['some-id,%20another-id']
+[resend_failed_emails:by_date]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=troubleshoot:resend_failed_emails:by_date[%272020-01-01T10:00:00Z,%202020-01-01T11:00:00Z%27]
