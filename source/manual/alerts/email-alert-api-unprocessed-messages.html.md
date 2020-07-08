@@ -5,7 +5,7 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-07
+last_reviewed_on: 2020-07-09
 review_in: 6 months
 ---
 
@@ -17,8 +17,8 @@ events that may not be represented by a content change. See the [ADR for Message
 This alert is triggered when these messages are not processed within the time we
 would expect. This may be fine and the emails will eventually go out, but it's worth some investigation.
 
-* `warning` - unprocessed `messages` created more than 5 minutes ago
-* `critical` - unprocessed `messages` created more than 10 minutes ago
+* `warning` - unprocessed `messages` created more than 90 minutes ago
+* `critical` - unprocessed `messages` created more than 120 minutes ago
 
 See the [ProcessMessageWorker][process-message-worker] for more information.
 
@@ -27,7 +27,7 @@ See the [ProcessMessageWorker][process-message-worker] for more information.
 ### Check which messages this affects
 
 ```ruby
-Message.where("created_at < ?", 5.minutes.ago).where(processed_at: nil)
+Message.where("created_at < ?", 120.minutes.ago).where(processed_at: nil)
 ```
 
 Check the count, then run the above query again to see if the count has
@@ -51,8 +51,19 @@ ProcessMessageWorker.new.perform(message.id)
 ### Resend the emails for a message in bulk (ignore ones that have already gone out)
 
 ```ruby
-Message.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |message| ProcessMessageWorker.new.perform(message.id)  }
+Message.where("created_at < ?", 120.minutes.ago).where(processed_at: nil).map { |message| ProcessMessageWorker.new.perform(message.id)  }
 ```
+
+### Useful rake tasks
+
+#### Resend failed emails by email ids
+
+- [resend_failed_emails:by_id][]
+
+#### Resend failed emails by date range
+
+- [resend_failed_emails:by_date][]
+
 
 You can also check the [Email Alert API Metrics dashboard][dashboard] to monitor
 if emails are going out and see the [general troubleshooting tips][troubleshooting]
@@ -65,3 +76,5 @@ section for more information.
 [process-message-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb
 [dashboard]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
 [troubleshooting]: /manual/email-troubleshooting.html
+[resend_failed_emails:by_id]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=troubleshoot:resend_failed_emails:by_id['some-id,%20another-id']
+[resend_failed_emails:by_date]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=troubleshoot:resend_failed_emails:by_date[%272020-01-01T10:00:00Z,%202020-01-01T11:00:00Z%27]
