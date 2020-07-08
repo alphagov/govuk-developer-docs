@@ -4,7 +4,7 @@ title: Smokey loop tests
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-06-15
+last_reviewed_on: 2020-07-08
 review_in: 6 months
 ---
 
@@ -67,15 +67,6 @@ their passphrase expire periodically. This will cause the tests to fail.
 
 You should change the passphrase of the account and rotate it in encrypted
 hieradata. Here's an [example PR in govuk-secrets](https://github.com/alphagov/govuk-secrets/pull/307).
-
-Alternatively, you can fake a passphrase change in the Signon Rails console,
-though this will only fix the alert temporarily.
-
-```
-$ govuk_app_console signon
-irb(main):001:0> smokey = User.find_by(name: "Smokey (test user)")
-irb(main):002:0> smokey.update_attribute(:password_changed_at, Time.now)
-```
 
 [signon]: https://github.com/alphagov/signon
 [smokey]: https://github.com/alphagov/smokey
