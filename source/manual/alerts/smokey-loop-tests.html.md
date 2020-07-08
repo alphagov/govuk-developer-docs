@@ -9,21 +9,19 @@ review_in: 6 months
 ---
 
 [Smokey][smokey] runs in a continuous loop in each environment.
+and dumps the output of each run into a `tmp/smokey.json` file.
 We have [Icinga checks] for [most Smokey features], so that
 we are alerted when some aspect of GOV.UK may be in trouble.
 
-Smokey can fail with an error message "Smokey loop for \<feature\>",
-or simply with "Smokey failed".
+When a test fails, you should see a "Smokey loop for \<feature\>"
+alert. The alert description should contain the reason for the
+failure, so you can diagnose the problem.
 
-## Tests failing
+> **NOTE**: we have [a separate "Smokey" alert] for manual runs
+> of the Smokey job in Jenkins. This alert covers all Smokey
+> features, while "Smokey loop" alerts are more granular.
 
-### Application code change
-
-If the error was "Smokey failed", the first thing worth looking at is the log for the
-failed Smokey run on Jenkins. If it's an application error, it's quite possible that
-Smokey is just doing its job and has caught an issue to investigate further.
-
-### Nginx
+## Nginx
 
 If many of the tests are failing in an AWS environment, it may be because the Nginx services haven't registered new
 boxes coming online or old ones going offline. You can try to restart the following services:
@@ -54,7 +52,7 @@ java process and restart smokey-loop.
 Replace process numbers as appropriate:
 
 ```shell
-$ ssh monitoring-1.production
+$ gds govuk connect -e production ssh aws/monitoring
 > sudo service smokey-loop stop
 $ ps -ef | grep java
 > smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browsermob-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browsermob-dist-2.1.4.jar --port 3222
@@ -62,18 +60,7 @@ $ sudo kill -9 6385
 $ sudo service smokey-loop start
 ```
 
-If Smokey fails with simply "Smokey failed", SSH into the Jenkins machine, then perform
-these same steps:
-
-```shell
-$ ps -ef | grep java
-> smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browsermob-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browsermob-dist-2.1.4.jar --port 3222
-$ sudo kill -9 6385
-```
-
-...then re-run the Jenkins build.
-
-### Integration with Signon
+## Smokey user
 
 These tests rely on a user in [GOV.UK Signon][signon]. All Signon users have
 their passphrase expire periodically. This will cause the tests to fail.
@@ -94,3 +81,4 @@ irb(main):002:0> smokey.update_attribute(:password_changed_at, Time.now)
 [smokey]: https://github.com/alphagov/smokey
 [most Smokey features]: https://github.com/alphagov/smokey/blob/master/docs/writing-tests.md#alerting-in-icinga
 [Icinga checks]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp
+[a separate "Smokey" alert]: https://github.com/alphagov/govuk-puppet/blob/master/modules/icinga/manifests/config/smokey.pp
