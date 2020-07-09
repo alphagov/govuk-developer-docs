@@ -17,10 +17,14 @@ The [Transition][] app exists to allow editing of mapping of old URLs to pages
 on GOV.UK. These mappings are stored in a database and used by [Bouncer][] to
 handle requests to those old domains.
 
-This page covers the details of adding a site so that we can handle traffic to
-it.
+This page covers adding a site so that we can handle traffic to
+it, or changing the configuration of an existing site in the Transition app.
 
-## Checklist
+##Changing the configuration of a site that is already in the Transition app
+
+Edit the relevant [transition configuration file](https://github.com/alphagov/transition-config/tree/master/data/transition-sites). The [transition-config README][transition-config] gives more details. 
+
+## Checklist for transitioning a new site
 
 ### 1) Ensure the department is aware of the technical limitation of HTTPS enabled sites
 
