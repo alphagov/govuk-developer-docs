@@ -73,4 +73,7 @@ task :check_puppet_names do
   end
 end
 
-task default: %i[verify_deployable_apps check_puppet_names lint spec cache:clear assets:precompile]
+desc "Clear out and rebuild the build/ folder"
+task build: %i[cache:clear assets:precompile]
+
+task default: %i[verify_deployable_apps check_puppet_names lint spec build]
