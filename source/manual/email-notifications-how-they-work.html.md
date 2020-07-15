@@ -5,7 +5,7 @@ section: Emails
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-03
+last_reviewed_on: 2019-07-13
 review_in: 6 months
 ---
 
@@ -14,7 +14,7 @@ review_in: 6 months
 The purpose of the email notifications system is to inform users when
 content they are interested in is added to or changed on GOV.UK. Users
 indicate their interest by subscribing to receive updates for an area of
-interest (such as topic or government department).
+interest, such as topic or government department.
 
 The applications that comprise the email notifications system are:
 
@@ -37,7 +37,8 @@ communicate directly with the Email Alert API.
 To have a near real-time overview of the status of data passing through
 the Email Alert API, view the [metrics dashboard][dashboard].
 
-There is more detail about how this works in the [Email Alert API docs].
+For more information about how content changes trigger emails, as well as
+common issues and troubleshooting, view [Email Alert API docs].
 
 ### Email Alert Frontend
 

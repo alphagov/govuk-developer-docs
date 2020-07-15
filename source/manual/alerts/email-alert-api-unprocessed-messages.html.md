@@ -5,63 +5,49 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-07
+last_reviewed_on: 2020-07-14
 review_in: 6 months
 ---
 
-`Messages` are similar to [content changes][content-changes], introduced in
-September 2019 to support the [GOV.UK Get ready for Brexit checker][brexit-checker].
+`Messages` are similar to [content changes], introduced in September 2019 to support the [Brexit checker].
 It is intended to provide a means for applications to alert subscribers to ad hoc
 events that may not be represented by a content change. See the [ADR for Messages][adr-messages] for more information.
 
-This alert is triggered when these messages are not processed within the time we
-would expect. This may be fine and the emails will eventually go out, but it's worth some investigation.
+This alert is triggered when these messages are not processed within the time we would expect. This
+may be fine and the emails will eventually go out, but it's worth investigating.
 
-* `warning` - unprocessed `messages` created more than 5 minutes ago
-* `critical` - unprocessed `messages` created more than 10 minutes ago
+* `warning` - unprocessed `messages` created more than 90 minutes ago
+* `critical` - unprocessed `messages` created more than 120 minutes ago
 
-See the [ProcessMessageWorker][process-message-worker] for more information.
+Every 30 minutes, [RecoverLostJobsWorker] automatically requeues jobs for any
+unprocessed content changes and messages that are over 1-hour old.
 
-## Useful queries
+If you see this alert it is likely that something has broken in Email Alert API
+that is either blocking one or all recovery attempts.
 
-### Check which messages this affects
+To diagnose this problem, consult [Sentry](https://sentry.io/organizations/govuk/issues/?project=202220)
+to see if there are errors reported.
 
-```ruby
-Message.where("created_at < ?", 5.minutes.ago).where(processed_at: nil)
-```
+If you find nothing conclusive in Sentry, go to [Email Alert API sidekiq logs] and check the jobs are running correctly.
 
-Check the count, then run the above query again to see if the count has
-decreased. If it's decreasing, then it means that emails are going out and
-there's probably a lot being processed.
-If it's not decreasing the Sidekiq worker might be stuck, see the [sidekiq][sidekiq]
-section on how to view the Sidekiq queues.
+If the problem persists, run the [RecoverLostJobsWorker] and/or [ProcessMessageWorker] [directly](https://stackoverflow.com/a/48543738)
+to see if any problems occur.
 
-### Check number of subscription contents built for a message (you would expect this number to keep going up)
+### Still stuck?
 
-```ruby
-SubscriptionContent.where(message: message).count
-```
+* [General troubleshooting tips]
+* [Email Alert API troubleshooting] for more information
+* [Email Alert API Metrics dashboard] to check if emails are going out
 
-### Resend the emails for a message (ignore ones that have already gone out)
 
-```ruby
-ProcessMessageWorker.new.perform(message.id)
-```
-
-### Resend the emails for a message in bulk (ignore ones that have already gone out)
-
-```ruby
-Message.where("created_at < ?", 10.minutes.ago).where(processed_at: nil).map { |message| ProcessMessageWorker.new.perform(message.id)  }
-```
-
-You can also check the [Email Alert API Metrics dashboard][dashboard] to monitor
-if emails are going out and see the [general troubleshooting tips][troubleshooting]
-section for more information.
-
-[sidekiq]: /manual/sidekiq.html#sidekiq-web
-[content-changes]: https://docs.publishing.service.gov.uk/manual/alerts/email-alert-api-unprocessed-content-changes.html
-[brexit-checker]: https://www.gov.uk/get-ready-brexit-check
+[content changes]: https://docs.publishing.service.gov.uk/manual/alerts/email-alert-api-unprocessed-content-changes.html
+[Brexit checker]: https://www.gov.uk/get-ready-brexit-check
 [adr-messages]: https://github.com/alphagov/email-alert-api/blob/master/docs/arch/adr-004-message-concept.md
-[process-message-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb
-[dashboard]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
-[troubleshooting]: /manual/email-troubleshooting.html
+
+[Email Alert API sidekiq logs]: https://docs.publishing.service.gov.uk/manual/logging.html#kibana
+[RecoverLostJobsWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/recover_lost_jobs_worker.rb
+[ProcessMessageWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb
+
+[General troubleshooting tips]: /manual/email-troubleshooting.html
+[Email Alert API troubleshooting]: /apis/email-alert-api/troubleshooting.html
+[Email Alert API Metrics dashboard]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
