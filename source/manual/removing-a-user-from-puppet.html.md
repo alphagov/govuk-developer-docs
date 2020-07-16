@@ -4,7 +4,7 @@ title: Remove a user from Puppet
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2019-05-29
+last_reviewed_on: 2020-07-16
 review_in: 12 months
 ---
 
