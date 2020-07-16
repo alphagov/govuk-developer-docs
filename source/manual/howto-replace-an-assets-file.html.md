@@ -4,8 +4,8 @@ title: Replace an asset's file
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-17
-review_in: 3 months
+last_reviewed_on: 2020-07-16
+review_in: 6 months
 ---
 
 If you need to replace the file of an existing attachment without
