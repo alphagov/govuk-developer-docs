@@ -5,7 +5,7 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-07-14
+last_reviewed_on: 2020-07-16
 review_in: 6 months
 ---
 
@@ -30,7 +30,7 @@ to see if there are errors reported.
 
 If you find nothing conclusive in Sentry, go to [Email Alert API sidekiq logs] and check the jobs are running correctly.
 
-If the problem persists, run the [RecoverLostJobsWorker] and/or [ProcessMessageWorker] [directly](https://stackoverflow.com/a/48543738)
+If the problem persists, run the [RecoverLostJobsWorker] and/or [ProcessMessageWorker][process-message-worker] [directly](https://stackoverflow.com/a/48543738)
 to see if any problems occur.
 
 ### Still stuck?
@@ -46,7 +46,7 @@ to see if any problems occur.
 
 [Email Alert API sidekiq logs]: https://docs.publishing.service.gov.uk/manual/logging.html#kibana
 [RecoverLostJobsWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/recover_lost_jobs_worker.rb
-[ProcessMessageWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb
+[process-message-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb
 
 [General troubleshooting tips]: /manual/email-troubleshooting.html
 [Email Alert API troubleshooting]: /apis/email-alert-api/troubleshooting.html
