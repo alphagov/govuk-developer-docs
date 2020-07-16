@@ -4,8 +4,6 @@ title: Puppet last run errors
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-07-16
-review_in: 6 months
 ---
 
 This alert triggers when there's an error while running Puppet on a machine.
