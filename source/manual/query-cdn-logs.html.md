@@ -100,6 +100,22 @@ GROUP BY url
 ORDER BY count DESC
 ```
 
+### Find out the number of requests per status per hour for a GOV.UK URL
+
+```sql
+SELECT date_trunc('hour', request_received) as "timestamp",
+    COUNT(CASE WHEN status/100=2 THEN 1 ELSE NULL END) as "2xx",
+    COUNT(CASE WHEN status/100=3 THEN 1 ELSE NULL END) as "3xx",
+    COUNT(CASE WHEN status/100=4 THEN 1 ELSE NULL END) as "4xx",
+    COUNT(CASE WHEN status/100=5 THEN 1 ELSE NULL END) as "5xx",
+    COUNT(*) AS total
+FROM fastly_logs.govuk_www
+WHERE url = '/vat-rates'
+AND date = 16 AND month = 7 AND year = 2020
+GROUP BY date_trunc('hour', request_received)
+ORDER BY timestamp;
+```
+
 ### Which GOV.UK pages changed from 200 to a 410 status codes
 
 ```sql
