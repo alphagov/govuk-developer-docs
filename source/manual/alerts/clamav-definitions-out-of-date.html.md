@@ -4,15 +4,16 @@ title: ClamAV definitions out of date
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-10-01
+last_reviewed_on: 2020-07-16
 review_in: 6 months
 ---
 
 This could be because of a number of reasons. Check that the database is up to
-date by calling the freshclam command directly with verbose:
+date by [logging into a backend machine][] and calling the freshclam command directly with verbose:
 
 ```bash
-$ fab $environment -H backend-1 sdo:'freshclam -v'
+$ gds govuk connect ssh -e production backend
+$ freshclam -v
 ```
 
 If it reports the virus databases are up to date then you may need to check the
@@ -29,4 +30,5 @@ $ sudo rm /var/lib/clamav/mirrors.dat
 
 After doing this, running `freshclam -v` as above may well work again.
 
+[logging into a backend machine]: /manual/howto-ssh-to-machines.html
 [clamav-virusdb-archive]: http://lists.clamav.net/pipermail/clamav-virusdb/
