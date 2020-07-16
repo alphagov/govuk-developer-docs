@@ -5,7 +5,7 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-12-03
+last_reviewed_on: 2020-07-16
 review_in: 6 months
 ---
 
