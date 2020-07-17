@@ -16,13 +16,13 @@ Production assets are replicated to staging and integration nightly, so it is be
 the upload directly in production. First, upload the asset to a backend machine:
 
 ```
-scp my_file.jpg backend-1.backend.production:/tmp/
+gds govuk connect scp-push -e production aws/backend:1 my_file.jpg /tmp
 ```
 
 Then SSH to the same machine and run the upload command:
 
 ```
-ssh backend-1.backend.production
+gds govuk connect ssh -e production aws/backend:1
 cd /var/apps/asset-manager
 sudo -u deploy govuk_setenv asset-manager bin/create_asset /tmp/my_file.jpg
 ```
