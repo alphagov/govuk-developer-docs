@@ -15,12 +15,15 @@ changing the URL, follow these steps:
 0. Copy the new file from your computer to a `backend` server:
 
     ```
-    scp filename.ext <hostname>:/tmp/filename.ext
+    gds govuk connect scp-push -e <environment> aws/backend:1 filename.ext /tmp
     ```
 
-0. `ssh <hostname>`
+0. Get an app console on that same server:
 
-0. `govuk_app_console asset-manager`
+    ```
+    gds govuk connect ssh -e <environment> aws/backend:1
+    govuk_app_console asset-manager
+    ```
 
 0. Find the asset:
 
