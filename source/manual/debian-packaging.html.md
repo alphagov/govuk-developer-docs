@@ -162,12 +162,12 @@ deb file to aptly.
 2. Upload the package to the aptly machine:
 
     ```
-      $ scp ~/Downloads/rbenv-ruby-2.6.1_1_amd64.deb username@<inet_addr>.<environment>:/home/username/
+      $ gds govuk connect scp-push -e <environment> aws/apt ~/Downloads/rbenv-ruby-2.6.1_1_amd64.deb /tmp
     ```
 3. In the machine, add the package to the repo:
 
     ```
-      $ sudo -i aptly repo add rbenv-ruby /home/username/rbenv-ruby-2.6.1_1_amd64.deb
+      $ sudo -i aptly repo add rbenv-ruby /tmp/rbenv-ruby-2.6.1_1_amd64.deb
         Loading packages...
         [+] rbenv-ruby-2.6.1_1_amd64 added
     ```

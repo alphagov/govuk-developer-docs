@@ -28,7 +28,7 @@ Find the name of the database you want to back up. Start the PostgreSQL console
 Then create a dump:
 
 ```sh
-pg_dump name_of_database > name_of_database.bak
+pg_dump name_of_database > /tmp/name_of_database.bak
 ```
 
 Return to being a normal user on the instance:
@@ -37,45 +37,36 @@ Return to being a normal user on the instance:
 exit
 ```
 
-Now move the backup into your home directory:
+Now fix the permissions so that you own it:
 
 ```sh
-sudo mv /var/lib/postgresql/name_of_database.bak .
-```
-
-And fix the permissions so that you own it:
-
-```sh
-sudo chown $(whoami):$(whoami) name_of_database.bak
+sudo chown $(whoami):$(whoami) /tmp/name_of_database.bak
 ```
 
 Now `exit` the instance and move on to the next step.
 
 ## Download the backup to your local machine
 
-Use `scp` to download the file - you'll need to proxy via the jumpbox
-to hit the internal IP address. For example:
+Use `govuk-connect` to download the file. For example:
 
 ```sh
-scp -oProxyJump=jumpbox.staging.govuk.digital \
-johnsmith@ip-10-12-4-80.eu-west-1.compute.internal:name_of_database.bak .
+gds govuk connect scp-pull -e <environment> <ip> /tmp/name_of_database.bak
 ```
 
 ## Upload your backup to the desired machine
 
-Use `scp` to upload the file. For example:
+Use `govuk-connect` to upload the file. For example:
 
 ```sh
-scp -oProxyJump=jumpbox.integration.publishing.service.gov.uk \
-name_of_database.bak johnsmith@ip-10-1-4-71.eu-west-1.compute.internal:/home/johnsmith/
+gds govuk connect scp-push -e <environment> <ip> name_of_database.bak /tmp
 ```
 
 ## Import the backup to overwrite your PostgreSQL database
 
-SSH into the machine, and then move the backup away from the user home:
+SSH into the machine, and then move the backup away from `/tmp`:
 
 ```sh
-sudo mv name_of_database.bak /var/lib/postgresql/
+sudo mv /tmp/name_of_database.bak /var/lib/postgresql/
 ```
 
 Pass ownership over to the PostgreSQL user:

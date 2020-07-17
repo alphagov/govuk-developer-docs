@@ -4,7 +4,7 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-06
+last_reviewed_on: 2020-07-17
 review_in: 6 months
 ---
 
@@ -54,25 +54,21 @@ the previous version of the software.
 1. Check that GOV.UK content teams are aware of the ticket. They may
    need to request further tickets to be raised to cover the content updates.
 1. Download all zip files and XML file in the ticket
-1. Log into a backend machine: `gds govuk connect ssh -e production aws/backend`.
+1. Log into a backend machine: `gds govuk connect ssh -e production aws/backend:1`.
    **Yes, production - don't use integration or staging to test. There's a test procedure on production.**
-1. Make a note of the IP address you just SSH'd into, e.g. `ip-10-13-4-77.eu-west-1.compute.internal`
-1. Create a directory for the files to go into: `mkdir hmrc-paye`
+1. Create a directory for the files to go into: `mkdir /tmp/hmrc-paye`
 1. Either `exit` to return to your dev machine, or open another shell
 1. Upload the new files:
 
    ```shell
-   $mac scp -oProxyJump=jumpbox.production.govuk.digital *.zip yourname@<aws_machine_ip_address>:/home/yourname/hmrc-paye
-   $mac scp -oProxyJump=jumpbox.production.govuk.digital *.xml yourname@<aws_machine_ip_address>:/home/yourname/hmrc-paye
+   $mac gds govuk connect scp-push -e production aws/backend:1 *.zip /tmp/hmrc-paye
+   $mac gds govuk connect scp-push -e production aws/backend:1 *.xml /tmp/hmrc-paye
    ```
 
 1. SSH back into the machine if you exited earlier:
-   `gds govuk connect ssh -e production <aws_machine_ip_address>`
+   `gds govuk connect ssh -e production aws/backend:1`
 
-1. Verify that the files copied over correctly: `ls ~/hmrc-paye`
-
-1. Move the files over to the `/tmp` directory: `sudo mv ~/hmrc-paye /tmp`
-   **(The deploy doesn't work if you try to do it directly from your home directory)**.
+1. Verify that the files copied over correctly: `ls /tmp/hmrc-paye`
 
 1. Upload the ZIP files into Asset Manager
 
