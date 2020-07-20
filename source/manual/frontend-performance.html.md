@@ -4,7 +4,7 @@ title: Track frontend performance with SpeedCurve
 parent: "/manual.html"
 layout: manual_layout
 section: Frontend
-last_reviewed_on: 2019-07-16
+last_reviewed_on: 2020-07-20
 review_in: 12 months
 ---
 
