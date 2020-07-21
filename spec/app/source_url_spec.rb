@@ -1,4 +1,4 @@
-Dir.glob(::File.expand_path("../../helpers/**/*.rb", __FILE__)).each { |f| require_relative f }
+Dir.glob(::File.expand_path("../helpers/**/*.rb", __dir__)).each { |f| require_relative f }
 
 RSpec.describe SourceUrl do
   describe "#source_url" do
