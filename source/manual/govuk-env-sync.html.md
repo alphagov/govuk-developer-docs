@@ -121,10 +121,9 @@ The govuk_env_sync cron jobs prevent automated reboots by `unattended-upgrades` 
 
 See [data sync playbook](alerts/data-sync.html#govuk_env_sync-the-new-way).
 
-> **Traffic replay using [Gor](alerts/gor.html) is disabled between 23:00 and
-> 05:45 daily whilst the data sync pull jobs take place. This is to prevent
+> **Traffic replay using [Gor](alerts/gor.html) is disabled between 22:00 and
+> 08:00 UTC daily whilst the data sync pull jobs take place. This is to prevent
 > lots of errors while we are dropping databases.**
-
 
 [env-sync-and-backup]: alerts/data-sync.html
 [govuk_env_sync.sh]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_env_sync/files/govuk_env_sync.sh
