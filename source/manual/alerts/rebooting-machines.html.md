@@ -105,45 +105,6 @@ not boot when the affected VM is restarted. See the
 manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
 more info.
 
-## Rebooting to apply unattended upgrades
-
-Machines are configured with [automatic security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package)
-which install security updates overnight. Sometimes these require a reboot
-in order to become active.
-
-You can review the list of packages on machines (or classes of machines)
-by running:
-
-```
-fab $environment all apt.packages_with_reboots
-```
-
-NB, logs of the previous runs can be found in `/var/log/unattended-upgrades`.
-
-You will then need to decide whether to:
-
-- Reboot the machine, or
-- Silence the check until the next package requires update
-  (`fab $environment all apt.reset_reboot_needed`)
-
-### Deciding whether to reboot or silence
-
-This can be quite nuanced. Before you go ahead with any course of action,
-gather evidence and then ask in the \#re-govuk Slack channel.
-
-Find details of the update from the [Ubuntu Security
-Notices](http://www.ubuntu.com/usn/).
-
-- Is it a remote or local exploit?
-- Is it a kernel update?
-- If it's a shared library, are we using it (see below)?
-
-There is a Fabric task to find all processes using a deprecated library:
-
-```
-fab $environment all vm.deprecated_library:dbus
-```
-
 ## Special cases
 
 ### Rebooting Cache machines in AWS
