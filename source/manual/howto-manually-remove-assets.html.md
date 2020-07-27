@@ -11,12 +11,9 @@ review_in: 6 months
 If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
 follow these steps:
 
-1. Get a Rails console for Asset Manager
-1. `asset = Asset.find("asset-id-from-url")` (e.g. `57a9c52b40f0b608a700000a`) or for a Whitehall asset `asset = WhitehallAsset.find_by(legacy_url_path: '/government/uploads/system/uploads/attachment_data/file/id/path.extension')`
-1. Make a note of the path of the asset: `asset.file.path` - this will be used to delete the file from the file system
-1. Mark the asset as deleted (and remove it from S3 if necessary - this will prevent restoration)
-   - [`rake assets:delete[<asset.id>]`][rake-delete]
-   - [`rake assets:delete_and_remove_from_s3[<asset.id>]`][rake-delete-and-remove-from-s3]
+1. Mark the asset as deleted and remove it from S3
+   - [`rake assets:delete_and_remove_from_s3[<asset.id>]`][rake-delete-and-remove-from-s3] (non-Whitehall assets)
+   - [`rake assets:whitehall_delete_and_remove_from_s3[<full URL path>]`][whitehall-rake-delete-and-remove-from-s3] (Whitehall assets)
 1. Remove the asset from asset-manager file system (it may not be here as these are automatically removed after S3 upload)
     1. `gds govuk connect ssh -e production aws/asset_master`
     1. `cd /mnt/uploads/asset-manager/assets`
@@ -39,6 +36,6 @@ follow these steps:
 >
 > HM Courts & Tribunals Service (HMCTS) occasionally request this through Zendesk.
 
-[rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
-[rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
+[whitehall-rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
+[rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete_and_remove_from_s3[]
 [clear-cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets
