@@ -19,7 +19,7 @@ gem "github-markdown"
 gem "html-pipeline"
 gem "redcarpet", "~> 3.5.0"
 
-gem "govuk_schemas", "~> 4.0.0"
+gem "govuk_schemas", "~> 4.1.0"
 
 # GitHub API
 gem "faraday-http-cache", "~> 2.2.0"
