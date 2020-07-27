@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Nginx 5xx rate too high for many apps/boxes
+title: High Nginx 5xx rate
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
