@@ -14,11 +14,6 @@ follow these steps:
 1. Mark the asset as deleted and remove it from S3
    - [`rake assets:delete_and_remove_from_s3[<asset.id>]`][rake-delete-and-remove-from-s3] (non-Whitehall assets)
    - [`rake assets:whitehall_delete_and_remove_from_s3[<full URL path>]`][whitehall-rake-delete-and-remove-from-s3] (Whitehall assets)
-1. Remove the asset from asset-manager file system (it may not be here as these are automatically removed after S3 upload)
-    1. `gds govuk connect ssh -e production aws/asset_master`
-    1. `cd /mnt/uploads/asset-manager/assets`
-    1. Use the path identified in step 5 to check for the file by removing the `/var/apps/asset-manager/uploads/assets` prefix
-    1. `sudo rm path/to/file`
 1. Add a cache bust and check that the asset responds with a 404 not found
 1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache]
 1. Verify that the asset is not there
@@ -28,13 +23,6 @@ follow these steps:
     1. Log into the [GCP console](https://console.cloud.google.com/)
     1. Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
     1. Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
-
-> **Note**
->
-> You might need to look at the timestamps or other information to figure
-> out which records to delete if two assets share the same filename.
->
-> HM Courts & Tribunals Service (HMCTS) occasionally request this through Zendesk.
 
 [whitehall-rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
 [rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete_and_remove_from_s3[]
