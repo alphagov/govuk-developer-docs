@@ -17,7 +17,7 @@ out in favour of GOV.UK Notify.
 
 [notify]: https://www.notifications.service.gov.uk/
 
-We have two main services on GOV.UK Notify (six in total as we have a service
+We have three main services on GOV.UK Notify (nine in total as we have a service
 for each environment):
 
 - **GOV.UK Emails**
@@ -39,6 +39,14 @@ for each environment):
   publisher-facing emails. The type of email can vary a lot, but a typical
   example might be to receive an email when a scheduled document on GOV.UK has
   been automatically published.
+
+- **GOV.UK**
+
+  This service is for any public-facing application that does not use the Email Alert Api
+  to send emails.
+
+  Currently it is used by [Feedback](https://github.com/alphagov/feedback) to email a survey link
+  to users who click a survey banner or use the `Is this page useful?` feature.
 
 [DeliveryRequestWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/delivery_request_worker.rb#L52
 
