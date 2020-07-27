@@ -4,7 +4,7 @@ title: Remove an asset
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-25
+last_reviewed_on: 2020-07-27
 review_in: 6 months
 ---
 
