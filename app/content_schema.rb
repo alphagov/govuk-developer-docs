@@ -1,26 +1,27 @@
 require "govuk_schemas"
 
 class ContentSchema
-  attr_reader :schema_name
+  attr_reader :schema_name, :seed
 
-  def initialize(schema_name)
+  def initialize(schema_name, seed = 777)
     @schema_name = schema_name
+    @seed = seed
   end
 
   def frontend_schema
-    FrontendSchema.new(schema_name)
+    FrontendSchema.new(schema_name, seed)
   rescue Errno::ENOENT
     nil
   end
 
   def publisher_content_schema
-    PublisherContentSchema.new(schema_name)
+    PublisherContentSchema.new(schema_name, seed)
   rescue Errno::ENOENT
     nil
   end
 
   def publisher_links_schema
-    PublisherLinksSchema.new(schema_name)
+    PublisherLinksSchema.new(schema_name, seed)
   rescue Errno::ENOENT
     nil
   end
@@ -28,8 +29,9 @@ class ContentSchema
   class FrontendSchema
     attr_reader :schema_name
 
-    def initialize(schema_name)
+    def initialize(schema_name, seed)
       @schema_name = schema_name
+      @seed = seed
       raw_schema
     end
 
@@ -38,7 +40,7 @@ class ContentSchema
     end
 
     def random_example
-      GovukSchemas::RandomExample.new(schema: raw_schema).payload
+      GovukSchemas::RandomExample.new(schema: raw_schema, seed: @seed).payload
     end
 
     def properties
@@ -55,8 +57,9 @@ class ContentSchema
   class PublisherContentSchema
     attr_reader :schema_name
 
-    def initialize(schema_name)
+    def initialize(schema_name, seed)
       @schema_name = schema_name
+      @seed = seed
       raw_schema
     end
 
@@ -65,7 +68,7 @@ class ContentSchema
     end
 
     def random_example
-      GovukSchemas::RandomExample.new(schema: raw_schema).payload
+      GovukSchemas::RandomExample.new(schema: raw_schema, seed: @seed).payload
     end
 
     def properties
@@ -82,8 +85,9 @@ class ContentSchema
   class PublisherLinksSchema
     attr_reader :schema_name
 
-    def initialize(schema_name)
+    def initialize(schema_name, seed)
       @schema_name = schema_name
+      @seed = seed
       raw_schema
     end
 
@@ -92,7 +96,7 @@ class ContentSchema
     end
 
     def random_example
-      GovukSchemas::RandomExample.new(schema: raw_schema).payload
+      GovukSchemas::RandomExample.new(schema: raw_schema, seed: @seed).payload
     end
 
     def properties
