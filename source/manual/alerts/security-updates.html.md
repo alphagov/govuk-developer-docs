@@ -1,7 +1,7 @@
 ---
 owner_slack: "#govuk-2ndline"
 title: Outstanding security updates
-section: Infrastructure
+section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 important: true
