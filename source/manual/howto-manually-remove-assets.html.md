@@ -11,9 +11,11 @@ review_in: 6 months
 If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
 follow these steps:
 
-1. Mark the asset as deleted and remove it from S3
-   - [`rake assets:delete_and_remove_from_s3[<asset.id>]`][rake-delete-and-remove-from-s3] (non-Whitehall assets)
-   - [`rake assets:whitehall_delete_and_remove_from_s3[<full URL path>]`][whitehall-rake-delete-and-remove-from-s3] (Whitehall assets)
+1. Mark the asset as deleted. Sometimes it may be necessary to completely scrub an asset from our systems e.g. if it contains secret information. In this case, add `,true` to the appropriate rake task:
+
+   - [`rake assets:delete[<asset.id>]`][rake-delete] (non-Whitehall assets)
+   - [`rake assets:whitehall_delete[<legacy URL path>]`][whitehall-rake-delete] (Whitehall assets)
+
 1. Add a cache bust and check that the asset responds with a 404 not found
 1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache]
 1. Verify that the asset is not there
@@ -24,6 +26,6 @@ follow these steps:
     1. Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
     1. Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
 
-[whitehall-rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete_and_remove_from_s3[]
-[rake-delete-and-remove-from-s3]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete_and_remove_from_s3[]
+[whitehall-rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
+[rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[]
 [clear-cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets
