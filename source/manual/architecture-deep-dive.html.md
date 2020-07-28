@@ -415,9 +415,9 @@ On merge, the same Jenkins job that ran the tests runs the tests again, then
 [sends a message][send-deploy-message] to the [deploy Jenkins] environment
 to build the [govuk-app-deployment] job. This clones the repository, checks out
 the tag and deploys the code to the corresponding nodes on Integration using
-[Capistrano] (a Ruby-based server automation and deployment tool). Capistrano
-does deployments only by default, but can also do deployments 'with migration'
-or 'with hard restart', etc, depending on the nature of the change.
+[Capistrano][Capistrano] (a Ruby-based server automation and deployment tool).
+Capistrano does deployments only by default, but can also do deployments 'with
+migration' or 'with hard restart', etc, depending on the nature of the change.
 
 A developer must manually trigger a deployment to Staging and Production through
 the [release] app. This uses the same Jenkins/Capistrano pipeline as for
