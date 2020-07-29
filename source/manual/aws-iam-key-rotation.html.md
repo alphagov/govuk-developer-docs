@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: AWS
-last_reviewed_on: 2020-01-20
+last_reviewed_on: 2020-07-29
 review_in: 6 months
 ---
 
@@ -59,6 +59,11 @@ time.
 isn't used.
 
 ### 3. Find where the key is used
+
+The first place you should look is the [GOV.UK AWS User Keys spreadsheet][user-keys-list].
+Someone may already have done the work of logging where the key is used.
+If they haven't, you'll need to follow the manual steps below (and should
+update the spreadsheet with your findings when you're done).
 
 When searching for keys, keep in consideration that they may be present in
 [govuk-secrets] or in the control panel of 3rd party services, such as Fastly or
@@ -126,11 +131,6 @@ In production systems, this could prevent minor outages scaling into incidents.
 
 - Notify [2ndline] that you are about to delete a key or make a key inactive.
 - Click `Make inactive` to inactivate the key or click the `X` to delete it.
-
-### 7. Record where the key is used
-
-- Record your findings of where the key is used in the
-[GOV.UK AWS User Keys spreadsheet][user-keys-list].
 
 ## Command Line Interface
 
