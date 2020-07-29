@@ -49,12 +49,14 @@ selected provider.
 When the changes have been reviewed and merged, you can deploy them in your terminal
 by using at least version `v2.15.0` of [`gds-cli`][gds-cli].
 
+**You MUST deploy to BOTH DNS providers. We use both for redundancy.**
+
 You should **always**:
 
 1. `plan` in each DNS provider and check the console output is what you expect.
 2. `apply` in each DNS provider until you see that your changes has been applied.
-    There are circumstances where terraform is not able to apply the changes in 1
-    run and need **multiple** runs.
+    There are [circumstances where terraform is not able to apply the changes](#google-based-caveats)
+    in 1 run and need **multiple** runs.
 
 Deployment is done by first obtaining (first time set up) your GitHub credentials
 by creating a read-only GitHub personal access token. This [GitHub personal access token](https://github.com/settings/tokens) should be created with the `read:org`
@@ -76,8 +78,8 @@ Where:
 1. `<github_token>` is the GitHub token that you created as described above
 1. `<dns_provider>` is one of the 2 DNS provider of govuk, i.e. `gcp` or `aws`
 1. `<dns_zone>` is the govuk DNS zone to be deployed. E.g. `direct.gov.uk`
-1. `<action>` is the terraform action you want to perform. E.g. `plan`, `apply`
-1. `<aws_role>` is the govuk aws role you want to use for terraforming. E.g. `govuk-production-admin`
+1. `<action>` is the terraform action you want to perform. i.e. `plan` or `apply`
+1. `<aws_role>` is the govuk aws role you want to use for terraforming. i.e. `govuk-production-admin` or `govuk-production-poweruser`
 
 After you deploy, you can visit the [Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/) to see the job running or queued.
 
@@ -90,8 +92,8 @@ After you deploy, you can visit the [Jenkins job](https://deploy.publishing.serv
 > - You will not require credentials for Google Cloud. These credentials are stored
 > in Jenkins itself.
 
-> **Google-based caveats**
->
+#### Google-based caveats
+
 > - When deploying to Google it's normal to see changes in TXT records
 > relating to escaping of quotes. You can safely ignore these if
 > they don't change any of the content of the record. This is a bug
@@ -158,4 +160,3 @@ Proposition team, send it to them using the Zendesk group "3rd Line--GOV.UK Prop
 
 [security-incidents]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents
 [gds-cli]: https://github.com/alphagov/gds-cli
-
