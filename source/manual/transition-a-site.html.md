@@ -4,8 +4,8 @@ title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-30
-review_in: 6 months
+last_reviewed_on: 2020-07-28
+review_in: 1 year
 related_applications: [bouncer, transition]
 ---
 
@@ -20,9 +20,12 @@ handle requests to those old domains.
 This page covers adding a site so that we can handle traffic to
 it, or changing the configuration of an existing site in the Transition app.
 
-##Changing the configuration of a site that is already in the Transition app
+## Changing the configuration of a site that is already in the Transition app
 
-Edit the relevant [transition configuration file](https://github.com/alphagov/transition-config/tree/master/data/transition-sites). The [transition-config README][transition-config] gives more details. 
+The [transition-config README][transition-config] gives more details on how to
+edit the relevant [transition configuration file].
+
+[transition configuration file]: https://github.com/alphagov/transition-config/tree/master/data/transition-sites
 
 ## Checklist for transitioning a new site
 
@@ -55,9 +58,12 @@ preview according to the following pattern:
 - www.domain.gov.uk → aka.domain.gov.uk
 - sub.domain.gov.uk → aka-sub.domain.gov.uk
 
-There are lots of examples of these in [hosts currently configured in Transition](https://transition.publishing.service.gov.uk/hosts)
+There are lots of examples of these in [hosts currently configured in
+Transition][transition-hosts].
 
 These AKA domains should be CNAMEd to: `redirector-cdn.production.govuk.service.gov.uk`
+
+[transition-hosts]: https://transition.publishing.service.gov.uk/hosts
 
 ### 4) Get a list of old URLs
 
@@ -162,8 +168,8 @@ the day after.
 Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a `CNAME`
 record, this is `redirector-cdn.production.govuk.service.gov.uk`.
-Domains at the root of their zone can't use `CNAME` records, so must use an `A`
-record and point at one of the [Fastly GOV.UK IP
+Domains at the root of their zone can't use `CNAME` records, so must use
+an `A` record and point at one of the [Fastly GOV.UK IP
 addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22).
 
 If the site is one that was [administered by GDS](https://github.com/alphagov/gds-dns-config/tree/master/zones)
