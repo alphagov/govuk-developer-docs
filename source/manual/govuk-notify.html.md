@@ -26,7 +26,7 @@ for each environment):
   email updates about pieces of content on GOV.UK. It's our biggest sender of
   emails and averages around 4 million emails per day.
 
-  This [dashboard][Email Alert API Product dashboard] shows usage over time.
+  The [Email Alert API Product dashboard] shows usage over time.
 
   **Note:** currently (as of 30/06/2020) GOV.UK Notify has a maximum rate limit
   of 350 requests per second meaning we should adhere to this limit when using
