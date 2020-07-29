@@ -24,7 +24,9 @@ for each environment):
 
   This service is used by Email Alert API only. It's used to send public-facing
   email updates about pieces of content on GOV.UK. It's our biggest sender of
-  emails and regularly exceeds one million emails per day.
+  emails and averages around 4 million emails per day.
+
+  The [Email Alert API Product dashboard] shows usage over time.
 
   **Note:** currently (as of 30/06/2020) GOV.UK Notify has a maximum rate limit
   of 350 requests per second meaning we should adhere to this limit when using
@@ -75,3 +77,4 @@ of protection and [there is an extra step][email-alert-api-receive-emails]
 before you can receive emails through Email Alert API.
 
 [email-alert-api-receive-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
+[Email Alert API Product dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_product.json?refresh=1m&orgId=1
