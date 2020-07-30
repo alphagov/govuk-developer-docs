@@ -69,8 +69,8 @@ This will create a bunch of static files in `/build`.
 
 ### Deployment
 
-This project is re-deployed by a production Jenkins task every hour between 9am and 7pm (to pick up external
-changes). It is [hosted on S3][terraform].
+This project is hosted on GitHub Pages. It is [redeployed hourly on weekdays][actions]
+(to pick up changes to external docs) and whenever a PR is merged.
 
 ## Pre-commit hooks
 
@@ -87,6 +87,6 @@ pre-commit install
 
 [MIT License](LICENCE.md)
 
-[terraform]: https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/app-developer-docs
+[actions]: https://github.com/alphagov/govuk-developer-docs/blob/master/.github/workflows/ci.yml
 [pre-commit]: https://github.com/pre-commit/pre-commit
 [vale]: https://errata-ai.github.io/vale/
