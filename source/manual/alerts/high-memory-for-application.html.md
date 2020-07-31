@@ -4,19 +4,20 @@ title: High memory for application
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-04-22
+last_reviewed_on: 2020-07-31
 review_in: 12 months
 ---
 
-This alert triggers when the application process uses too much memory.
+This alert triggers when the application process uses too much memory. If this
+alert triggers either with a warning or critical state then Icinga is
+configured to automatically restart the application, the command that is run is
+[here][restart_script].
 
 For more info, you can also read [the page for the alert that triggers
 when a machine is out of memory][mem].
 
-**If you're having trouble with Mapit, see [the Mapit specific page][mapit]**
-
 [mem]: /manual/alerts/free-memory-warning-on-backend.html
-[mapit]: /manual/alerts/high-memory-for-mapit.html
+[restart_script]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/files/usr/local/bin/event_handlers/govuk_app_high_memory.sh
 
 ## Fix memory leaks
 
@@ -32,8 +33,9 @@ If you can't find the source of the memory leak you can
 
 ## Increase the alerting threshold
 
-Sometimes the alerting thresholds are too low. You can change them in
-[hieradata_aws/common.yaml][aws_common] or
+Each application has it's own thresholds and sometimes these can be too low
+which can cause an app getting into a cycle of constant restarting. You can
+change them in [hieradata_aws/common.yaml][aws_common] or
 [hieradata/common.yaml][common].
 
 ```yaml
