@@ -12,8 +12,23 @@ review_in: 6 months
 [ckanext-datagovuk]: /apps/ckanext-datagovuk.html
 [ckandocs]: http://docs.ckan.org/en/ckan-2.7.4/maintaining/paster.html
 [ckan-api]: https://docs.ckan.org/en/2.8/api/
+[security_policy]: https://github.com/ckan/ckan/security/policy
+[issues]: https://github.com/ckan/ckan/issues
+[ckan_repo]: https://github.com/ckan/ckan
 
 [CKAN][dgu-ckan] is the publishing application for data.gov.uk.  [ckanext-datagovuk] is the primary [CKAN] extension for data.gov.uk.
+
+## Support
+
+If you find an issue with CKAN that you believe may be a potential security
+vulnerability please contact security@ckan.org rather than disclosing the
+information publicly (as per their [security policy][security_policy]).
+
+If you find an issue that does not appear to be a security vulnerability you
+should first search the [issues][issues] of the upstream [CKAN
+repository][ckan_repo] to see if it has already been reported and if there is a
+workaround. If there is not an issue, considering opening a new one or - if you
+know how to fix it - open a PR to resolve the problem.
 
 ## Environments
 
