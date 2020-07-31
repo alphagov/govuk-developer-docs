@@ -4,27 +4,83 @@ title: content-data-api app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-07-07
+last_reviewed_on: 2020-07-30
 review_in: 6 months
 ---
 
-If there is a health check error showing for Content Data API, you can click
+If there is a health check error showing for Content Data API, click
 on the alert to find out more details about what’s wrong.
 
-Note that:
+## What is the ETL process
 
-* The ETL process runs at 7am (UK time) in production.
-* The ETL process runs at 11am (UK time) in staging.
-* The ETL process runs at 1pm (UK time) in integration.
-* **All dates for the rake tasks below are inclusive.** In other words, if you
-  only need to reprocess data for a specific day, you'll need to use the same
-  the date for both the 'from' and 'to' parameters
-  (for example: `etl:repopulate_aggregations_month["2019-12-15","2019-12-15"]`).
-* The rake task should be run on the `content-data-api` TARGET_APPLICATION and the `backend` MACHINE_CLASS.
+ETL stands for [Extract, Transform, Load][etl_definition].
+Every day, data is copied from multiple sources (the [publishing platform],
+[user feedback], and Google Analytics) into the Content Data API warehouse.
 
-Here are the possible problems you may see:
+A rake task called [`etl:master`][etl_master] calls the `Etl::Master::MasterProcessor`
+which [processes all the data][etl_master_class]. This rake task is run daily
+(see ["When does ETL run"](#when-does-etl-run) section below) so that the
+[Content Data] app has up to date figures.
 
-## ETL :: no monthly aggregations of metrics for yesterday
+The Jenkins job that calls this rake task is [content_data_api][content_data_api_job]
+([configured here][content_data_api_job_config]).
+
+There is also a special 're-run' task called [`etl:rerun_master`][etl_rerun],
+which takes an inclusive range of dates as arguments, and runs the same task
+as above but overriding the previously held data. We can run this if we have
+reason to believe the historical data is no longer accurate.
+
+The Jenkins job for this rake task is [content_data_api_re_run][content_data_api_re_run_job]
+([configured here][content_data_api_re_run_job_config]).
+
+[Content Data]: /apps/content-data-admin.html
+[content_data_api_job]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api.pp
+[content_data_api_job_config]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/content_data_api.yaml.erb
+[content_data_api_re_run_job]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api_re_run.pp
+[content_data_api_re_run_job_config]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/content_data_api_re_run.yaml.erb
+[etl_definition]: https://en.wikipedia.org/wiki/Extract,_transform,_load
+[etl_master]: https://github.com/alphagov/content-data-api/commit/bcfeed7b207770498c88d955d02227f444666853
+[etl_master_class]: https://github.com/alphagov/content-data-api/blob/26e316cab5c4b5e5663c50dbf120e291405f6177/app/domain/etl/master/master_processor.rb#L16-L43
+[etl_rerun]: https://github.com/alphagov/content-data-api/commit/f80f3f3b669f441651dbaa52665771dae9cd0c3e
+[publishing platform]: https://github.com/alphagov/publishing-api
+[user_feedback]: https://github.com/alphagov/feedback
+
+## When does ETL run
+
+The [content_data_api job][content_data_api_job] runs at:
+
+* [7am in production][cron_production]
+* [11am in staging][cron_staging]
+* [1pm in integration][cron_integration] 
+
+These jobs are spread out for rate limiting reasons, and production is run
+outside of normal hours so as not to impact database performance during the day.
+
+The [content_data_api_re_run job][content_data_api_re_run_job]
+[runs at 3AM][cron_rerun] in every environment. This job was added
+because of a [delay in results showing up in Google Analytics][google_delay],
+meaning results can take between 24-48 hours to appear in GA. The production
+ETL running at 7am allowed only 7 hours for the data to appear in GA. The
+re-run job collects the data after 2 days, leaving time for the data to appear
+correctly in GA.
+
+[cron_integration]: https://github.com/alphagov/govuk-puppet/blob/f421952cbc95cff6a79776a3a3beaec8befcca81/hieradata_aws/integration.yaml#L82
+[cron_production]: https://github.com/alphagov/govuk-puppet/blob/18ec81c917c16bb10e759039bda9c3afdd5f0815/hieradata_aws/production.yaml#L237
+[cron_rerun]: https://github.com/alphagov/govuk-puppet/commit/f0539d9c113c4a530c9a33494f2e1d683f1032e6
+[cron_staging]: https://github.com/alphagov/govuk-puppet/blob/888ecfb2e5ab846461219377309d17b9a31eb50c/hieradata_aws/staging.yaml#L199
+[google_delay]: https://support.google.com/analytics/answer/1070983?hl=en#:~:text=Data%20processing%20latency,for%20up%20to%20two%20days
+
+## Troubleshooting
+
+Below are the possible problems you may see. Note that the rake tasks should
+be run on the `content-data-api` TARGET_APPLICATION and the `backend` MACHINE_CLASS.
+
+> **All dates for the rake tasks below are inclusive.**
+> In other words, if you only need to reprocess data for a specific day, you’ll need
+> to use the same the date for both the 'from' and 'to' parameters
+> (for example: `etl:repopulate_aggregations_month["2019-12-15","2019-12-15"]`).
+
+### ETL :: no monthly aggregations of metrics for yesterday
 
 This means that [the ETL master process][1] that runs daily that creates
 aggregations of the metrics failed.
@@ -33,7 +89,7 @@ To fix this problem run the [following rake task][5]:
 
 <%= RunRakeTask.links("content-data-api", "etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD]") %>
 
-## ETL :: no <range> searches updated from yesterday
+### ETL :: no <range> searches updated from yesterday
 
 This means that [the Etl process][1] that runs daily and refreshes the
 Materialized Views failed to update those views.
@@ -42,7 +98,7 @@ To fix this problem run the [following rake task][6]:
 
 <%= RunRakeTask.links("content-data-api", "etl:repopulate_aggregations_search") %>
 
-## ETL :: no daily metrics for yesterday
+### ETL :: no daily metrics for yesterday
 
 This means that [the ETL master process][1] that runs daily to retrieve
 metrics for content items has failed.
@@ -52,7 +108,7 @@ To fix this problem [re-run the master process again][1]
 **Note** This will first delete any metrics that had been successfully
 retrieved before re-running the task to regather all metrics.
 
-## ETL :: no pviews for yesterday
+### ETL :: no pviews for yesterday
 
 This means the [the ETL master process][1] that runs daily has failed to
 collect `pageview` metrics from Google Analytics. The issue may originate
@@ -62,7 +118,7 @@ To fix this problem run the [following rake task][2]:
 
 <%= RunRakeTask.links("content-data-api", "etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]") %>
 
-## ETL :: no upviews for yesterday
+### ETL :: no upviews for yesterday
 
 This means the [the ETL master process][1] that runs daily has failed to
 collect `unique pageview` metrics from Google Analytics. The issue may
@@ -72,7 +128,7 @@ To fix this problem run the [following rake task][2]:
 
 <%= RunRakeTask.links("content-data-api", "etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]") %>
 
-## ETL :: no searches for yesterday
+### ETL :: no searches for yesterday
 
 This means the [the ETL master process][1] that runs daily has failed to
 collect `number of searches` metrics from Google Analytics. The issue may
@@ -82,7 +138,7 @@ To fix this problem run the [following rake task][3]:
 
 <%= RunRakeTask.links("content-data-api", "etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD]") %>
 
-## ETL :: no feedex for yesterday
+### ETL :: no feedex for yesterday
 
 This means the [the ETL master process][1] that runs daily has failed to
 collect `feedex` metrics from `support-api`. The issue may originate from the
@@ -92,7 +148,7 @@ To fix this problem run the [following rake task][4]:
 
 <%= RunRakeTask.links("content-data-api", "etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD]") %>
 
-## Other troubleshooting tips
+### Other troubleshooting tips
 
 For problems in the ETL process, you can check the output in [Jenkins][1].
 
