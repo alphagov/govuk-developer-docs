@@ -11,12 +11,14 @@ review_in: 6 months
 
 ### High retry queue size (retry_size)
 
-This means there are a high number of items in the retry queue. The Email Alert
-API relies on the retry queue for rate limiting, so it’s not unusual to see
-items in the queue, but if it is very high it suggests that there may be a
-problem down the line which is preventing jobs from being processed. It may
-also imply the threshold is too low if a large number of emails have been sent
-out due to a content change.
+This means there are a high number of items in the retry queue. This happens
+when an error occurs running a Sidekiq worker and the job is queued to retry.
+A high amount of items indicates that there is a potential problem in
+communicating with Notify. To investigate the cause you should consult the
+Email Alert API Sidekiq logs in [Kibana][kibana]
+(`application:email-alert-api AND tags:sidekiq`) and
+[Email Alert API Sentry][sentry]. Note, that due to transitory network issues
+communicating with Notify there are often a small amount of items in the queue.
 
 See the [sidekiq][sidekiq] section for more information about the Sidekiq queues,
 or read [email troubleshooting].
