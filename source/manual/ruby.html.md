@@ -4,8 +4,6 @@ title: Add a new Ruby version
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-02
-review_in: 6 months
 ---
 
 The [Ruby language](https://www.ruby-lang.org/en/) is a core part of GOV.UK - most of our applications are written in it.
