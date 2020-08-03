@@ -15,6 +15,10 @@ jobs:
           repository: alphagov/govuk-content-schemas
           ref: deployed-to-production
           path: tmp/govuk-content-schemas
+      - name: Vale (Markdown linting)
+        uses: errata-ai/vale-action@v1.2.0
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - uses: ruby/setup-ruby@v1
       - uses: actions/cache@v1
         with:
