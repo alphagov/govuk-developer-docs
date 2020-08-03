@@ -20,7 +20,7 @@ using the [`app-data-science`][app-data-science] Terraform project.
 > and costly. Therefore, please ensure they are destroyed once the
 > research has been completed.
 
-## Autoscaling
+## Autoscaling
 
 Machines created using this project are created in autoscaling groups
 that ensure at least 1 instance of each machine is running at all times.

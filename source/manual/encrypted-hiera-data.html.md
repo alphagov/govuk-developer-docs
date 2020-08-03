@@ -170,7 +170,7 @@ recipient file pertains to.
     that git's text diff may not correctly merge. You will likely have to
     reset your recrypted versions and start again from the versions on master.
 
-### What to do when someone gets production access
+### What to do when someone gets production access
 
 Follow the steps above but add their GPG fingerprint to the production recipient files for Carrenza [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp) and AWS [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
 

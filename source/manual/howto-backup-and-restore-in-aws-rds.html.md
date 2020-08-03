@@ -17,7 +17,7 @@ and `transition_db_admin`, encompassing all the databases on those instances.
 
 Follow [the AWS documentation on Restoring from a DB Snapshot](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html).
 
-### Restore an RDS instance via the AWS CLI
+### Restore an RDS instance via the AWS CLI
 
 Retrieve the ARNs (unique identifiers) of the snapshots into a variable.
 
