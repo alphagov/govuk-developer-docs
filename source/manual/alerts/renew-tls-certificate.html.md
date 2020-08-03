@@ -4,8 +4,6 @@ title: Check the TLS certificate is valid and not due to expire
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-06-15
-review_in: 6 months
 ---
 
 These checks look at the validity of the TLS certificates for:
