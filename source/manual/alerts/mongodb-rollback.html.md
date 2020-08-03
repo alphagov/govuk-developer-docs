@@ -41,10 +41,10 @@ doesn't conflict with any existing records, then you can use
 
 The following arguments are necessary:
 
--   `-h`: Hostname of the current `PRIMARY` node, from `rs.status()`.
--   `-d`: Name of the database, from the BSON filename.
--   `-c`: Name of the collection, from the BSON filename.
--   `--objcheck`: Validate BSON. Not the default in MongoDB 2.2
+- `-h`: Hostname of the current `PRIMARY` node, from `rs.status()`.
+- `-d`: Name of the database, from the BSON filename.
+- `-c`: Name of the collection, from the BSON filename.
+- `--objcheck`: Validate BSON. Not the default in MongoDB 2.2
 
 For example:
 

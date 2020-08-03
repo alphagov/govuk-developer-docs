@@ -139,8 +139,8 @@ to reboot overnight:
 
 The general approach for rebooting machines in a MongoDB cluster is:
 
--   Check cluster status with `fab $environment -H $hostname mongo.status`
--   Using `fab $environment -H $hostname mongo.safe_reboot`
+- Check cluster status with `fab $environment -H $hostname mongo.status`
+- Using `fab $environment -H $hostname mongo.safe_reboot`
     - Reboot the secondaries
     - Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
@@ -175,7 +175,7 @@ If there are problems with the cluster (eg, a partition has happened),
 the `safe_reboot` script will not reboot anything, and you'll need to
 take manual action to resolve the problem.
 
--   Reboot the nodes in the cluster:
+- Reboot the nodes in the cluster:
 
         fab <environment> class:rabbitmq rabbitmq.safe_reboot
 
@@ -242,11 +242,11 @@ The MySQL backup machines [create a file during the backup
 process](https://github.com/alphagov/govuk-puppet/commit/0e1615bf31f714994b43142ecf915330d4d46af5).
 If that file exists, the machine isn't safe to reboot.
 
--   Check if the file exists:
+- Check if the file exists:
 
         fab <environment> -H mysql-backup-1.backend sdo:'test -e /var/lock/mysql-backup.lock'
 
--   If the file doesn't exist (that command returns non-0), reboot the
+- If the file doesn't exist (that command returns non-0), reboot the
     machine:
 
         fab <environment> -H mysql-backup-1.backend vm.reboot

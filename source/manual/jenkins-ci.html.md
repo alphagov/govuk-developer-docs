@@ -112,12 +112,12 @@ The credential IDs are referenced in our Puppet code, we shouldn't update this f
 We use this with the GitHub and GitHub Branch Source plugins to define the source code repositories of
 our jobs.
 
-1.  Manage Jenkins -\> Configure Global Security
-    -   GitHub -\> Add GitHub Server
-        -   API URL: 'https://api.github.com'
-        -   Credentials: select 'GitHub token for govuk-ci'
-        -   Untick 'Manage hooks'
-        -   Click 'Test connection' to confirm the settings
+1. Manage Jenkins -\> Configure Global Security
+    - GitHub -\> Add GitHub Server
+        - API URL: 'https://api.github.com'
+        - Credentials: select 'GitHub token for govuk-ci'
+        - Untick 'Manage hooks'
+        - Click 'Test connection' to confirm the settings
 
 With this configuration, in our jobs we can use 'GitHub' API endpoints to
 access the source code repository. The API endpoint name is referenced in

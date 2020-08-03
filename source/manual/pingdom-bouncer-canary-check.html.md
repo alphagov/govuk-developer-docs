@@ -18,22 +18,20 @@ case.
 
 Possible causes of errors on the canary route include:
 
--   DNS problems for `www.direct.gov.uk` or
-    `bouncer.publishing.service.gov.uk` - check Bouncer's Nginx
-    logs via the [logit.io dashboard](https://logit.io)
-    to see which requests are getting through
--   CDN problems resulting in requests for `www.direct.gov.uk` not being
-    correctly passed to `https://bouncer.publishing.service.gov.uk`
--   `bouncer-*` or `transition-postgresql-slave-1` machines being
-    unavailable
--   Bouncer's dependencies being missing or having errors in its
-    configuration
--   [memory](https://graphite.publishing.service.gov.uk/render/?width=600&height=300&target=alias(dashed(constantLine(6442450944)),%22critical%22)&target=alias(dashed(constantLine(4294967296)),%22warning%22)&target=bouncer-*_redirector.processes-app-bouncer.ps_rss&from=-2days)
-    leaks in Bouncer
--   the app being unable to connect or authorise to the database
--   the database or the required tables being missing or empty
--   the `bouncer` role not having `SELECT` privileges on the required
-    tables
+- DNS problems for `www.direct.gov.uk` or
+  `bouncer.publishing.service.gov.uk` - check Bouncer's Nginx
+  logs via the [logit.io dashboard](https://logit.io)
+  to see which requests are getting through
+- CDN problems resulting in requests for `www.direct.gov.uk` not being
+  correctly passed to `https://bouncer.publishing.service.gov.uk`
+- `bouncer-*` or `transition-postgresql-slave-1` machines being
+  unavailable
+- Bouncer's dependencies being missing or having errors in its
+  configuration
+- [memory leaks in Bouncer](https://graphite.publishing.service.gov.uk/render/?width=600&height=300&target=alias(dashed(constantLine(6442450944)),%22critical%22)&target=alias(dashed(constantLine(4294967296)),%22warning%22)&target=bouncer-*_redirector.processes-app-bouncer.ps_rss&from=-2days)
+- the app being unable to connect or authorise to the database
+- the database or the required tables being missing or empty
+- the `bouncer` role not having `SELECT` privileges on the required tables
 
 The database tables checked by the canary route (in order) and the
 effect on requests for transitioned sites of errors when querying them:

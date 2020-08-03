@@ -175,9 +175,9 @@ node {
 
 You also need to add a Jenkins integration to the repo on GitHub:
 
-1.  In GitHub, go to Settings -&gt; Integrations & Services
-2.  Add Jenkins (GitHub plugin)
-3.  Add the link to the CI GitHub webhook
-4.  Make sure Active is ticked
+1. In GitHub, go to Settings -&gt; Integrations & Services
+2. Add Jenkins (GitHub plugin)
+3. Add the link to the CI GitHub webhook
+4. Make sure Active is ticked
 
 Finally, add your app to the list of deployable applications in [govuk-puppet].

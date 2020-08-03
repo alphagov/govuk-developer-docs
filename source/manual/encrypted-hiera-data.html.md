@@ -47,15 +47,15 @@ Deploying puppet copies govuk-secrets over the files in the
 Even though we restrict who can see govuk-secrets, there are still downsides
 to storing secrets in plain text:
 
--   It's dangerous to leave sensitive data unencrypted on disk. Even if
-    everyone who has access to the govuk-secrets repository uses
-    full disk encryption, secrets would be readable if a laptop is infected by
-    malware, or if someone accidentally commits to a public repository or
-    copies to an unencrypted disk.
--   GitHub notifications send secrets over plain text email if users comment
-    on specific lines of a pull request that include changes to sensitive data.
--   A vulnerability in GitHub or an administrative error when setting
-    access permissions could expose secrets.
+- It's dangerous to leave sensitive data unencrypted on disk. Even if
+  everyone who has access to the govuk-secrets repository uses
+  full disk encryption, secrets would be readable if a laptop is infected by
+  malware, or if someone accidentally commits to a public repository or
+  copies to an unencrypted disk.
+- GitHub notifications send secrets over plain text email if users comment
+  on specific lines of a pull request that include changes to sensitive data.
+- A vulnerability in GitHub or an administrative error when setting
+  access permissions could expose secrets.
 
 By encrypting Hiera data using GPG, we can define who has access to these
 secrets (using GPG keys) and we have the extra protection of GPG encryption,
@@ -80,59 +80,59 @@ You must use the rake tasks to change encrypted Hiera data.
 
 ### Prerequisites
 
-1.  Pull the latest changes from the
-    [govuk-secrets](https://github.com/alphagov/govuk-secrets) repository.
+1. Pull the latest changes from the
+   [govuk-secrets](https://github.com/alphagov/govuk-secrets) repository.
 
-2.  Run `bundle` to install dependencies.
+2. Run `bundle` to install dependencies.
 
 ### Encrypting a Hiera key
 
-1.  Where `integration` is the name of the environment whose credentials
-    you wish to edit, cd into the relevant directory:
+1. Where `integration` is the name of the environment whose credentials
+   you wish to edit, cd into the relevant directory:
 
-        cd puppet_aws
+       cd puppet_aws
 
-    and run:
+   and run:
 
-        bundle exec rake eyaml:edit[integration]
+       bundle exec rake eyaml:edit[integration]
 
-    It will ask you for your GPG passphrase. If you get an
-    error, please see the troubleshooting section below.
+   It will ask you for your GPG passphrase. If you get an
+   error, please see the troubleshooting section below.
 
-    The above command will open a text editor (as determined by the
-    `$EDITOR` environment variable) showing the undecrypted Hiera data in
-    YAML format.
+   The above command will open a text editor (as determined by the
+   `$EDITOR` environment variable) showing the undecrypted Hiera data in
+   YAML format.
 
-    An unencrypted Hiera key and value looks like:
+   An unencrypted Hiera key and value looks like:
 
-        password: 'thisisasecret'
+       password: 'thisisasecret'
 
-2.  To encrypt the Hiera value, enclose it in square brackets prefixed
-    with the string DEC::GPG and suffixed with a trailing exclamation
-    mark (!).
+2. To encrypt the Hiera value, enclose it in square brackets prefixed
+   with the string DEC::GPG and suffixed with a trailing exclamation
+   mark (!).
 
-    The above example would look as follows:
+   The above example would look as follows:
 
-        password: DEC::GPG[thisisasecret]!
+       password: DEC::GPG[thisisasecret]!
 
-    Do not enclose it in single or double quotes as this will get
-    interpreted as part of the secret.
+   Do not enclose it in single or double quotes as this will get
+   interpreted as part of the secret.
 
-    Once you have finished, save the file and quit the editor.
-    Hiera eYAML will encrypt your changes. If you get an error, please see the
-    troubleshooting section below.
+   Once you have finished, save the file and quit the editor.
+   Hiera eYAML will encrypt your changes. If you get an error, please see the
+   troubleshooting section below.
 
-    > **Note**
-    >
-    > When editing a Hiera key that has been encrypted before, you will
-    > notice a number in parentheses after the word GPG; for
-    > example: DEC::GPG(1). You should not make any changes to the number, as
-    > Hiera eYAML GPG uses this to identify existing encrypted data.
+   > **Note**
+   >
+   > When editing a Hiera key that has been encrypted before, you will
+   > notice a number in parentheses after the word GPG; for
+   > example: DEC::GPG(1). You should not make any changes to the number, as
+   > Hiera eYAML GPG uses this to identify existing encrypted data.
 
-3.  Check that the value is really encrypted! If you make a typo in your markup,
-    Hiera eYAML doesn't always treat it as an error.
+3. Check that the value is really encrypted! If you make a typo in your markup,
+   Hiera eYAML doesn't always treat it as an error.
 
-        GIT_PAGER='less -S' git diff
+       GIT_PAGER='less -S' git diff
 
 ## Managing access to encrypted Hiera data
 
@@ -153,22 +153,22 @@ recipient file pertains to.
 
 ### What to do when someone joins
 
-1.  Ask the joiner to [create a GPG key](create-a-gpg-key.html) and upload it
-    to a public key server (such as <https://pgp.mit.edu/>).
-2.  Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
-3.  Add the joiners's GPG fingerprint to each of the recipient files
-    for Carrenza
-    [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
-    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-4.  Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
-    is something like "Adding new key for Jane Smith".
-5.  Commit your changes and raise a pull request for review.
-6.  Check that the joiner has uploaded their GPG key.
+1. Ask the joiner to [create a GPG key](create-a-gpg-key.html) and upload it
+   to a public key server (such as <https://pgp.mit.edu/>).
+2. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
+3. Add the joiners's GPG fingerprint to each of the recipient files
+   for Carrenza
+   [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
+   AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
+4. Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
+   is something like "Adding new key for Jane Smith".
+5. Commit your changes and raise a pull request for review.
+6. Check that the joiner has uploaded their GPG key.
     If their key isn't on a public keyserver it interupts other people's workflow so please make sure it has been uploaded.
-7.  Take care when rebasing changes to master that have been merged since you
-    started your PR. The encrypted hieradata files are effectively binary data
-    that git's text diff may not correctly merge. You will likely have to
-    reset your recrypted versions and start again from the versions on master.
+7. Take care when rebasing changes to master that have been merged since you
+   started your PR. The encrypted hieradata files are effectively binary data
+   that git's text diff may not correctly merge. You will likely have to
+   reset your recrypted versions and start again from the versions on master.
 
 ### What to do when someone gets production access
 
@@ -181,15 +181,15 @@ Note there are no staging recipient files - access to staging secrets is control
 Remove leavers from all recipient files, so that they can no longer change
 credentials.
 
-1.  Delete the leaver's GPG fingerprint from each of the recipient files
-    for Carrenza
-    [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
-    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp),
-    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
-    There are no staging recipient files since these are the same as the
-    production recipient files.
-2.  Commit your changes and raise a pull request for review.
+1. Delete the leaver's GPG fingerprint from each of the recipient files
+   for Carrenza
+   [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
+   and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp),
+   AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
+   and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
+   There are no staging recipient files since these are the same as the
+   production recipient files.
+2. Commit your changes and raise a pull request for review.
 
 > **WARNING**
 >
@@ -217,102 +217,102 @@ To ensure consistency, new GPG keys are generated using a template
 
 To generate a new key:
 
-1.  Generate a random passphrase using a secure method (such as openssl with
-    command `openssl rand -base64 65 | tr -d '\n' | awk '{ print $0 }'` to
-    generate a 65 characters random string).
+1. Generate a random passphrase using a secure method (such as openssl with
+   command `openssl rand -base64 65 | tr -d '\n' | awk '{ print $0 }'` to
+   generate a 65 characters random string).
 
-2.  Generate the GPG key pair (this assumes you are using GPG 2.x):
-    1.  Git clone the [govuk-secret](https://github.com/alphagov/govuk-secrets)
+2. Generate the GPG key pair (this assumes you are using GPG 2.x):
+    1. Git clone the [govuk-secret](https://github.com/alphagov/govuk-secrets)
 
-    2.  Create a new directory where the GPG key pair will be created:
-        e.g. `mkdir ~/new_hiera_gpg && cd ~/new_hiera_gpg`
+    2. Create a new directory where the GPG key pair will be created:
+       e.g. `mkdir ~/new_hiera_gpg && cd ~/new_hiera_gpg`
 
-    3.  Create the GPG key ring (`pubring.kbx`) based on the appropriate template
-        (this will depend on the environment that you want to create the GPG key
-        for) in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_templates):
+    3. Create the GPG key ring (`pubring.kbx`) based on the appropriate template
+       (this will depend on the environment that you want to create the GPG key
+       for) in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_templates):
 
-        ```shell
-        gpg --homedir $PWD --verbose --batch --gen-key <path_to_selected_template>
-        ```
+       ```shell
+       gpg --homedir $PWD --verbose --batch --gen-key <path_to_selected_template>
+       ```
 
-        where `<path_to_selected_template>` is the file path of the template you
-        want to use. You will be prompted for the passphrase
+       where `<path_to_selected_template>` is the file path of the template you
+       want to use. You will be prompted for the passphrase
 
-    4.  Extract the public key (`pubring.gpg`) of the GPG key pair by running:
+    4. Extract the public key (`pubring.gpg`) of the GPG key pair by running:
 
-        ```shell
-        gpg --homedir $PWD --keyring ./pubring.kbx --export > ./pubring.gpg
-        ```
+       ```shell
+       gpg --homedir $PWD --keyring ./pubring.kbx --export > ./pubring.gpg
+       ```
 
-        You should store this key in the appropriate location in govuk-secrets:
-        e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/integration)
-        and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)
+       You should store this key in the appropriate location in govuk-secrets:
+       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/integration)
+       and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)
 
-    5.  Extract the passphrase protected private key (`secring.gpg`) of the GPG
-        key pair by running (you will have to supply the passphrase):
+    5. Extract the passphrase protected private key (`secring.gpg`) of the GPG
+       key pair by running (you will have to supply the passphrase):
 
-        ```shell
-        gpg --homedir $PWD --keyring ./pubring.kbx --export-secret-key > ./secring.gpg
-          ```
+       ```shell
+       gpg --homedir $PWD --keyring ./pubring.kbx --export-secret-key > ./secring.gpg
+       ```
 
-        You should store this key in the appropriate location in govuk-secrets:
-        e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/integration)
-        and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)
+       You should store this key in the appropriate location in govuk-secrets:
+       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/integration)
+       and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)
 
-    6.  You can obtain the fingerprint of the GPG key pair by running:
+    6. You can obtain the fingerprint of the GPG key pair by running:
 
-        ```shell
-        gpg -n -q --import --import-options import-show pubring.gpg
-        ```
+       ```shell
+       gpg -n -q --import --import-options import-show pubring.gpg
+       ```
 
-        and noting the 41 character string in the output.
+       and noting the 41 character string in the output.
 
-    7.  Send the key to the ubuntu key server by running:
+    7. Send the key to the ubuntu key server by running:
 
-        ```shell
-        gpg --homedir $PWD --keyserver keyserver.ubuntu.com --send-key <fingerprint>
-        ```
+       ```shell
+       gpg --homedir $PWD --keyserver keyserver.ubuntu.com --send-key <fingerprint>
+       ```
 
-        where `<fingerprint>` was obtained above.
+       where `<fingerprint>` was obtained above.
 
-3.  Add the passphrase you used when creating the new GPG key to the 2nd line
-    password store by running inside the [pass](https://github.com/alphagov/govuk-secrets/tree/master/pass) directory of the govuk-secrets:
+3. Add the passphrase you used when creating the new GPG key to the 2nd line
+   password store by running inside the [pass](https://github.com/alphagov/govuk-secrets/tree/master/pass) directory of the govuk-secrets:
 
-    ```shell
-    PASSWORD_STORE_GPG_OPTS="--trust-model always" ./edit.sh 2ndline hiera-eyaml-gpg/<environment_passphrase_key>
-    ```
+   ```shell
+   PASSWORD_STORE_GPG_OPTS="--trust-model always" ./edit.sh 2ndline hiera-eyaml-gpg/<environment_passphrase_key>
+   ```
 
-    where the `<environment_passphrase_key>` can be: `production-gpg-key-passphrase`
-    or `integration-gpg-key-passphrase` depending on which environment you are
-    modifying.
-    Note that `PASSWORD_STORE_GPG_OPTS` is required here or otherwise GPG will
-    refuse to encrypt the data since the new GPG key isn't trusted by default.
+   where the `<environment_passphrase_key>` can be: `production-gpg-key-passphrase`
+   or `integration-gpg-key-passphrase` depending on which environment you are
+   modifying.
+   Note that `PASSWORD_STORE_GPG_OPTS` is required here or otherwise GPG will
+   refuse to encrypt the data since the new GPG key isn't trusted by default.
 
-    If you get any error message, you should read the stored secret passphrase
-    again to ensure that the correct value has been stored.
+   If you get any error message, you should read the stored secret passphrase
+   again to ensure that the correct value has been stored.
 
-4.  Change the relevant files to remove the fingerprint of the old
-    key and add the new fingerprint (as obtained above). If you changed:
-    1.  integration:
+4. Change the relevant files to remove the fingerprint of the old
+   key and add the new fingerprint (as obtained above). If you changed:
+    1. integration:
          - [carrenza puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
          - [aws puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
          - [common puppet ruby recipient file](https://github.com/alphagov/govuk-secrets/blob/master/puppet_common/gpg_recipients.rb)
 
-    2.  production:
+    2. production:
          - [carrenza puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
          - [aws puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
 
-5.  Add and commit locally your changes to govuk-secrets. You can then use
-    the [re-encrypt-all.sh](https://github.com/alphagov/govuk-secrets/blob/master/re-encrypt-all.sh)
-    to re-encrypt all the relevant parts of govuk-secrets.
+5. Add and commit locally your changes to govuk-secrets. You can then use
+   the [re-encrypt-all.sh](https://github.com/alphagov/govuk-secrets/blob/master/re-encrypt-all.sh)
+   to re-encrypt all the relevant parts of govuk-secrets.
 
-6.  Open a pull request with all the changes so far and get it approved and
-    merged.
+6. Open a pull request with all the changes so far and get it approved and
+   merged.
 
-7.  Next, you need, as detailed in subsequent sections, to:
-    1.  Configure the Puppet Master in the relevant environment
+7. Next, you need, as detailed in subsequent sections, to:
+    1. Configure the Puppet Master in the relevant environment
 
-    2.  Upload the non-passphrase protected private GPG key to AWS parameter store
+    2. Upload the non-passphrase protected private GPG key to AWS parameter store
 
 > **WARNING**
 >
@@ -328,69 +328,69 @@ store](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-
 must be installed on the Puppet Master so that encrypted Hiera data is available
 to Puppet:
 
-1.  Create a new directory to do the GPG operations:
+1. Create a new directory to do the GPG operations:
 
-    ```shell
-    mkdir ~/unprotected_gpg && cd ~/unprotected_gpg
-    ```
+   ```shell
+   mkdir ~/unprotected_gpg && cd ~/unprotected_gpg
+   ```
 
-2.  Copy in the new directory the private GPG key `secring.gpg` of the relevant
+2. Copy in the new directory the private GPG key `secring.gpg` of the relevant
     environment from the [directory](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)
-    in govuk-secrets.
+   in govuk-secrets.
 
-3.  In the new directory, get the fingerprint of the GPG key by running:
+3. In the new directory, get the fingerprint of the GPG key by running:
 
-    ```shell
-    gpg -n -q --import --import-options import-show secring.gpg
-    ```
+   ```shell
+   gpg -n -q --import --import-options import-show secring.gpg
+   ```
 
-    and noting the 41 character string in the output.
+   and noting the 41 character string in the output.
 
-4.  Import the private GPG key:
+4. Import the private GPG key:
 
-    ```shell
-    gpg --homedir $PWD --import secring.gpg
-    ```
+   ```shell
+   gpg --homedir $PWD --import secring.gpg
+   ```
 
-5.  Extract the non-passphrase protected private key (`secring_unprotected.gpg`)
-    by running: `gpg --homedir $PWD --edit-key <finderprint>`
-    where `<fingerprint>` was obtained in the previous step. You will then
-    enter the GPG prompt where you should type `passwd`. You will then be
-    asked to provide the current passphrase of the private key and afterwards,
-    you will be asked to provide a new passphrase which should be
-    empty/nothing. You may get a prompt asking to confirm that you want to
-    unprotect the key and you should confirm yes. You can quit the GPG prompt
-    by typing `quit`
+5. Extract the non-passphrase protected private key (`secring_unprotected.gpg`)
+   by running: `gpg --homedir $PWD --edit-key <finderprint>`
+   where `<fingerprint>` was obtained in the previous step. You will then
+   enter the GPG prompt where you should type `passwd`. You will then be
+   asked to provide the current passphrase of the private key and afterwards,
+   you will be asked to provide a new passphrase which should be
+   empty/nothing. You may get a prompt asking to confirm that you want to
+   unprotect the key and you should confirm yes. You can quit the GPG prompt
+   by typing `quit`
 
-    You can extract the unprotected key by exporting it:
+   You can extract the unprotected key by exporting it:
 
-    ```shell
-    gpg --homedir $PWD --export-secret-key <fingerprint> > secring_unprotected.gpg
-    ```
+   ```shell
+   gpg --homedir $PWD --export-secret-key <fingerprint> > secring_unprotected.gpg
+   ```
 
-    where `<fingerprint>` is the fingerprint obtained above.
+   where `<fingerprint>` is the fingerprint obtained above.
 
-5.  SSH to the Puppet Master (for example,
-    `puppetmaster-1.management.staging`).
+5. SSH to the Puppet Master (for example,
+   `puppetmaster-1.management.staging`).
 
-6.  Change to the root user (`sudo su -`).
+6. Change to the root user (`sudo su -`).
 
-7.  Go to `/etc/puppet/gpg` directory.
+7. Go to `/etc/puppet/gpg` directory.
 
-8.  Create a new folder (for example, `old`) and move all files currently in the
-    `gpg` folder into there as a backup.
+8. Create a new folder (for example, `old`) and move all files currently in the
+   `gpg` folder into there as a backup.
 
-9.  Copy the following files to the Puppet Master using from your local machine:
-    1.  `secring_unprotected.gpg` as `/etc/puppet/gpg/secring.gpg` on puppetmaster
+9. Copy the following files to the Puppet Master using from your local machine:
+    1. `secring_unprotected.gpg` as `/etc/puppet/gpg/secring.gpg` on puppetmaster
 
-    2.  `pubring.gpg` (obtained from the appropriate environment/directory in [here]
+    2. `pubring.gpg` (obtained from the appropriate environment/directory in [here]
         (https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
 
-10.  Make sure the new files have the correct permissions:
-     `sudo chown -R puppet:puppet /etc/puppet/gpg` and
-     `sudo chmod -R 0700 /etc/puppet/gpg`.
+10. Make sure the new files have the correct permissions:
+    `sudo chown -R puppet:puppet /etc/puppet/gpg` and
+    `sudo chmod -R 0700 /etc/puppet/gpg`.
 
-11.  Re-deploy Puppet to pick up the changes.
+11. Re-deploy Puppet to pick up the changes.
 
 > **WARNING**
 >
@@ -411,30 +411,30 @@ puppet will automatically get the private GPG key to decrypt the secret hiera.
 
 This can be done by:
 
-1.  Follow the steps in section `Configuring the Puppet Master` to get the
-    non-passphrase protected private GPG key.
+1. Follow the steps in section `Configuring the Puppet Master` to get the
+   non-passphrase protected private GPG key.
 
-2.  Split the non-passphrase protected GPG key into 3 parts due
-    to the issue that the AWS parameter store has a size limit per item.
-    This can be done by running:
+2. Split the non-passphrase protected GPG key into 3 parts due
+   to the issue that the AWS parameter store has a size limit per item.
+   This can be done by running:
 
-    ```shell
-    base64 secring_unprotected.gpg > secring_unprotected.gpg.base64
-    tr -d 'n' < secring_unprotected.gpg.base64 > secring_unprotected.gpg.base64.trimmed
-    split -b 4096 secring_unprotected.gpg.base64.trimmed secring_unprotected_part_
-    ```
+   ```shell
+   base64 secring_unprotected.gpg > secring_unprotected.gpg.base64
+   tr -d 'n' < secring_unprotected.gpg.base64 > secring_unprotected.gpg.base64.trimmed
+   split -b 4096 secring_unprotected.gpg.base64.trimmed secring_unprotected_part_
+   ```
 
-    You will obtained a number of files with name starting with
-    `secring_unprotected_part_`.
+   You will obtained a number of files with name starting with
+   `secring_unprotected_part_`.
 
-3.  Upload the `secring_unprotected_part_` parts to AWS parameter store:
-    1.  Login to the AWS web console of the environment to be modified
+3. Upload the `secring_unprotected_part_` parts to AWS parameter store:
+    1. Login to the AWS web console of the environment to be modified
 
-    2.  Browse to the AWS Systems Manager and then to the Parameter Store (
-        link is usually at the bottom of the left column of the Systems Manager)
+    2. Browse to the AWS Systems Manager and then to the Parameter Store (
+       link is usually at the bottom of the left column of the Systems Manager)
 
-    3.  There will be 3 keys with prefix: `govuk_base64_gpg_` which you should
-        update with the content of the files `secring_unprotected_part_`
+    3. There will be 3 keys with prefix: `govuk_base64_gpg_` which you should
+       update with the content of the files `secring_unprotected_part_`
 
 ## Troubleshooting
 
@@ -502,22 +502,22 @@ When Puppet runs, you may see the following error:
 
 This error can occur for the following reasons:
 
--   Puppet cannot find a GPG keyring in `/etc/puppet/gpg`. This
-    should only occur in development or test VMs **or** on the
-    Puppet Master. Check that you have copied the GPG keys from the
-    2ndline pass store to `/etc/puppet/gpg` - see [configuring the Puppet Master](#configuring-the-puppet-master).
-    Servers running `puppet-agent` do not require a GPG key as they
-    rely on the Puppet Master to provide and, when necessary, decrypt
-    Hiera data.
--   The GPG key has expired; it should be replaced with a new key -
-    see [how to (re)generate GPG keys for an environment](#how-to-regenerate-gpg-keys-for-an-environment).
--   The Hiera YAML files contain encrypted data for which the GPG keys
-    in `/etc/puppet/gpg` is not listed as a recipient. Check the GPG
-    recipient files and compare the fingerprint there to the fingerprint
-    of the GPG keyring in `/etc/puppet/gpg`. You can find the fingerprint
-    by executing the following command on the server:
+- Puppet cannot find a GPG keyring in `/etc/puppet/gpg`. This
+  should only occur in development or test VMs **or** on the
+  Puppet Master. Check that you have copied the GPG keys from the
+  2ndline pass store to `/etc/puppet/gpg` - see [configuring the Puppet Master](#configuring-the-puppet-master).
+  Servers running `puppet-agent` do not require a GPG key as they
+  rely on the Puppet Master to provide and, when necessary, decrypt
+  Hiera data.
+- The GPG key has expired; it should be replaced with a new key -
+  see [how to (re)generate GPG keys for an environment](#how-to-regenerate-gpg-keys-for-an-environment).
+- The Hiera YAML files contain encrypted data for which the GPG keys
+  in `/etc/puppet/gpg` is not listed as a recipient. Check the GPG
+  recipient files and compare the fingerprint there to the fingerprint
+  of the GPG keyring in `/etc/puppet/gpg`. You can find the fingerprint
+  by executing the following command on the server:
 
-        GNUPGHOME=/etc/puppet/gpg gpg --fingerprint
+      GNUPGHOME=/etc/puppet/gpg gpg --fingerprint
 
 ### Puppet fails because it can't find gpgme
 

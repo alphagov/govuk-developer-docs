@@ -173,10 +173,10 @@ If we reach the limit then the [Jenkins job to update Bouncer's CDN config](http
 
 Configuring a new site in Transition generally adds at least 4 domains to the service, including the `aka` domain for each real domain. For example:
 
--   `www.foo.gov.uk`
--   `aka.foo.gov.uk`
--   `foo.gov.uk`
--   `aka-foo.gov.uk`
+- `www.foo.gov.uk`
+- `aka.foo.gov.uk`
+- `foo.gov.uk`
+- `aka-foo.gov.uk`
 
 ### New solution for Bouncer and Fastly
 

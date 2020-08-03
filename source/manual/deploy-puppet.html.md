@@ -69,23 +69,23 @@ brief outage, e.g. MySQL.
 > to and you MUST have some plan for restarting the service in the near
 > future so that it's not inconsistent with its configuration.
 
-1.  Disable normal Puppet runs on the affected nodes:
+1. Disable normal Puppet runs on the affected nodes:
 
         fab $environment class:mysql_master puppet.disable:'Preventing service restart'
 
-2.  Change the file content to match what Puppet wants it to be. If it's
-    a plain file you can probably apply the diff from git using
-    `sudo patch source.diff dest`. If it's a template then you may need
-    to refer to an existing environment or figure it out yourself.
-3.  Verify that Puppet won't change the file or notify the service by
-    running it in `noop` mode. You will need to provide a different lock
-    path to bypass the disable:
+2. Change the file content to match what Puppet wants it to be. If it's
+   a plain file you can probably apply the diff from git using
+   `sudo patch source.diff dest`. If it's a template then you may need
+   to refer to an existing environment or figure it out yourself.
+3. Verify that Puppet won't change the file or notify the service by
+   running it in `noop` mode. You will need to provide a different lock
+   path to bypass the disable:
 
         govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
 
-4.  If you're happy with the results then re-enable Puppet and run it
-    again:
+4. If you're happy with the results then re-enable Puppet and run it
+   again:
 
         fab $environment class:mysql_master puppet.enable puppet
 
-5.  Schedule a time to actually restart the service if necessary.
+5. Schedule a time to actually restart the service if necessary.

@@ -24,8 +24,8 @@ regenerating them with `dpkg-reconfigure openssh-server`.
 
 However, bear in mind that the:
 
--   root cause in templating/provisioning also needs to be fixed
--   key change should be communicated to all people with login accounts
+- root cause in templating/provisioning also needs to be fixed
+- key change should be communicated to all people with login accounts
 
 It is also important to keep in mind that this check uses Puppetdb to query
 the facts 'sshdsakey', 'sshecdsakey' and 'sshrsakey' and find duplicated values.
