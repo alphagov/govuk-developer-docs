@@ -18,6 +18,7 @@ jobs:
       - name: Vale (Markdown linting)
         uses: errata-ai/vale-action@v1.2.0
         with:
+          config: https://raw.githubusercontent.com/alphagov/govuk-developer-docs/vale-linting/.vale.ini
           files: source/manual
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
