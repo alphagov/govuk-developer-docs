@@ -4,8 +4,6 @@ title: How we handle errors
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-18
-review_in: 6 months
 ---
 
 ## How we serve errors on GOV.UK
