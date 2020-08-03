@@ -4,8 +4,6 @@ title: Generate a Certificate Signing Request (CSR) for GOV.UK
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-01
-review_in: 6 months
 ---
 
 A certificate signing request is required when buying or renewing a TLS certificate for a GOV.UK domain.
