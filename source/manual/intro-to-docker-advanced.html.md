@@ -148,7 +148,7 @@ $mac docker-compose run -p 80:3000 content-publisher-demo bin/rails s -b 0.0.0.0
 ```
 
 > If you see a `Bind for 0.0.0.0:80 failed` error, you need to stop the process on your local machine that's using this port. This is probably GOV.UK Docker, so try doing `govuk-docker down`.
-
+>
 > If you see a `A server is already running` error, you need an additional `--restart` flag to tell Rails to cleanup its `tmp/pids` directory, which sometimes fails when containers exit too quickly.
 
 If you visit `localhost` in your browser, you should see some Rails logs in the terminal, and the Content Publisher homepage should (eventually) be visible. Now let's tidy up.
