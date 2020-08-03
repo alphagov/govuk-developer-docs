@@ -4,8 +4,6 @@ title: Retire an application
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-31
-review_in: 6 months
 ---
 
 ## 1. Remove app from puppet
