@@ -48,7 +48,7 @@ If they are listed follow these steps:
 
 1. Email govuk-senior-tech-members@digital.cabinet-office.gov.uk
    with the GitHub usernames asking for the users to be removed from
-   https://github.com/orgs/alphagov/teams/gov-uk-content-designers
+   <https://github.com/orgs/alphagov/teams/gov-uk-content-designers>
    which is the "GOV.UK Content Designers" GitHub team
 1. Edit the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] to remove
    the users

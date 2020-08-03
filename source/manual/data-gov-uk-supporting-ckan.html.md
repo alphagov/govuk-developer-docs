@@ -268,7 +268,7 @@ It is worth checking the `pycsw` logs to investigate why it failed:
 $ tail -f /var/log/ckan/pycsw.err.log
 ```
 
-You can get a summary of `csw` records available from this url https://ckan.publishing.service.gov.uk/csw?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=brief
+You can get a summary of `csw` records available from this url <https://ckan.publishing.service.gov.uk/csw?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=brief>
 
 #### Syncing the `csw` records with `ckan` datasets
 

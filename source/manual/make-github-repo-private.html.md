@@ -14,7 +14,7 @@ In cases of an ongoing security incident, or when working on politically sensiti
 
 To fork an existing GOV.UK repository and make it private perform the following steps:
 
-1. Visit https://github.com/alphagov and click the green 'New' button to create a new repository.
+1. Visit <https://github.com/alphagov> and click the green 'New' button to create a new repository.
 1. Click on the 'import repository' link to import the existing repository.
 1. Change the owner to `alphagov`.
 1. Set the repository name to the new private name.

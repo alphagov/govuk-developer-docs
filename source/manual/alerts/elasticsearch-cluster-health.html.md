@@ -77,7 +77,7 @@ using the following:
 ssh -At jumpbox.staging.govuk.digital -L 9200:localhost:9200 "ssh -q \`govuk_node_list --single-node -c search\` -L 9200:elasticsearch6.blue.staging.govuk-internal.digital:80"
 ```
 
-Elasticsearch will then be available at http://localhost:9200.
+Elasticsearch will then be available at <http://localhost:9200>.
 
 #### Logging
 

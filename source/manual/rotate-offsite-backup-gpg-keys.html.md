@@ -23,7 +23,7 @@ access/unencrypted previous diffs.
 4. Ensure you make a copy of the password you use.
 5. Get the key ID you just generated with `gpg2 --list-keys --fingerprint`, and make a copy of the full fingerprint ID.
 6. Export _secret_ key: Copy the output of `gpg2 --export-secret-key --armor <key id>`
-7. Export _public_ key: Copy the output of `gpg2 --export --armor <key id>` to a public key server, for instance https://pgp.mit.edu/
+7. Export _public_ key: Copy the output of `gpg2 --export --armor <key id>` to a public key server, for instance <https://pgp.mit.edu/>
 
 > **NOTE**
 >

@@ -40,7 +40,7 @@ Components:
     in to the environment and run any other adhoc tasks.
   - [Graphite](https://ci-graphite.integration.publishing.service.gov.uk) and [Grafana](https://ci-grafana.integration.publishing.service.gov.uk)
     for metrics in the environment.
-  - Puppetmaster which deploys the latest version of [https://github.com/alphagov/govuk-puppet].
+  - Puppetmaster which deploys the latest version of <https://github.com/alphagov/govuk-puppet>.
   - Apt instance for Gemstash
 
 ![image](images/ci_infrastructure.png)

@@ -10,7 +10,7 @@ review_in: 6 months
 related_applications: [content-tagger]
 ---
 
-GOV.UK aims to organise content with a single taxonomy, [the topic taxonomy][topic-taxonomy], however due to legacy reasons there is a disassociated branch of this taxonomy known as the world taxonomy. The world taxonomy is used to tag guidance to particular world locations, for example [Latvia: doctors][latvia-doctors] is content tagged to the [Living in Latvia][live-latvia] section of the world taxonomy. The full list of world location pages can be seen on https://www.gov.uk/world.
+GOV.UK aims to organise content with a single taxonomy, [the topic taxonomy][topic-taxonomy], however due to legacy reasons there is a disassociated branch of this taxonomy known as the world taxonomy. The world taxonomy is used to tag guidance to particular world locations, for example [Latvia: doctors][latvia-doctors] is content tagged to the [Living in Latvia][live-latvia] section of the world taxonomy. The full list of world location pages can be seen on <https://www.gov.uk/world>.
 
 For each world location in the world taxonomy there are a number of consistent child entities such as [Passports][passports-nz], [Trade and Invest][trade-lt], [Coming to the UK][coming-uk], etc. This varies for some place, for example [Syria][syria]. There are also generic versions of the world location child pages that aren't tailored to a specific location, for example [Passports][passports] and [Trade and Invest][trade].
 
@@ -37,7 +37,7 @@ GOV.UK has approximately 4000 published taxons, of those nearly 2500 are world t
 
 Unlike the topic taxonomy only content associated with [specific organisations][spec-orgs] is allowed to be tagged to world taxons and only [particular document types][specific-doc-types] may be tagged to them. This is because the world pages are intended to be curation mechanisms for the Foreign Commonwealth Office and organisations that have similar concerns, rather than content tagged to a topic.
 
-World taxons are rendered differently on the frontend to topic taxons. Compare https://www.gov.uk/education/running-and-managing-a-school with https://www.gov.uk/world/yemen.
+World taxons are rendered differently on the frontend to topic taxons. Compare <https://www.gov.uk/education/running-and-managing-a-school> with <https://www.gov.uk/world/yemen>.
 
 [topic-taxonomy]: https://docs.publishing.service.gov.uk/manual/taxonomy.html
 [content-api]: https://www.gov.uk/api/content

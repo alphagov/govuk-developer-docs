@@ -93,9 +93,9 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 
 This will update content from pages served by `smart-answers` such as:
 
-* https://www.gov.uk/marriage-abroad
-* https://www.gov.uk/check-uk-visa
-* https://www.gov.uk/register-a-death/y/overseas
+* <https://www.gov.uk/marriage-abroad>
+* <https://www.gov.uk/check-uk-visa>
+* <https://www.gov.uk/register-a-death/y/overseas>
 
 In [Smart-answers](https://github.com/alphagov/smart-answers):
 

@@ -154,7 +154,7 @@ Ask the user to email the organisation that originally published the dataset. Yo
 
 #### If the withdrawn content was a publication
 
-If the content was published under http://data.gov.uk/library, this was part of the former Drupal-based data.gov.uk publishing application, which is no longer being hosted on DGU.
+If the content was published under <http://data.gov.uk/library>, this was part of the former Drupal-based data.gov.uk publishing application, which is no longer being hosted on DGU.
 
 Whilst we do have a backup of the old bytemark server and can access the publications in an emergency, we recommend directing users to the relevant team in government, as the original documents were often incomplete and/or outdated.
 
