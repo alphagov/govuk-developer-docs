@@ -16,15 +16,15 @@ To do this, you can click on the **Edit a page** link at the top and enter the
 base path of the content item you need to edit. You will then see a section
 titled **Related content items** where you can add, edit or remove related links.
 
-It's important to note that the automatically generated related links are 
-contained in the section titled **Suggested related content items**. Related 
-links in this section can be re-ordered or removed, but no new links can be 
-added here. The links in this section (if any) will only be shown if there are no 
+It's important to note that the automatically generated related links are
+contained in the section titled **Suggested related content items**. Related
+links in this section can be re-ordered or removed, but no new links can be
+added here. The links in this section (if any) will only be shown if there are no
 manually-curated links in the **Related content items** section.
 
 If a request comes in a from a content designer to edit the related links of a
 page, you can send them to Content Tagger so they can edit the links
-themselves. You may also wish to point them to this guidance for managing related 
+themselves. You may also wish to point them to this guidance for managing related
 links using Content Tagger.
 
 [Content Tagger]: https://content-tagger.publishing.service.gov.uk

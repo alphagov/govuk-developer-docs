@@ -76,7 +76,7 @@ the previous version of the software.
    cd /var/apps/asset-manager
    sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
    ```
- 
+
    The command should take a few seconds to run, and the output will look something like this
    (it can be safely ignored):
     > `/home/yourname` is not writable.

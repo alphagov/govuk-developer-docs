@@ -29,16 +29,16 @@ To restore from this method:
 
 We are required to have frequent data backups so we created a way to stream MySQL backups to S3.
 
-We use a tool called [Innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html) which is a wrapper for [Xtrabackup](https://www.percona.com/doc/percona-xtrabackup/2.3/index.html). 
+We use a tool called [Innobackupex](https://www.percona.com/doc/percona-xtrabackup/2.2/innobackupex/incremental_backups_innobackupex.html) which is a wrapper for [Xtrabackup](https://www.percona.com/doc/percona-xtrabackup/2.3/index.html).
 
 ### Backing up
-Innobackupex takes binary "hot" backups and uses the [xbstream](https://www.percona.com/doc/percona-xtrabackup/2.3/xbstream/xbstream.html) tool to stream data to STDOUT. We redirect this output into a file stored in an Amazon S3 bucket using a tool written in Go called [gof3r](https://github.com/rlmcpherson/s3gof3r). 
+Innobackupex takes binary "hot" backups and uses the [xbstream](https://www.percona.com/doc/percona-xtrabackup/2.3/xbstream/xbstream.html) tool to stream data to STDOUT. We redirect this output into a file stored in an Amazon S3 bucket using a tool written in Go called [gof3r](https://github.com/rlmcpherson/s3gof3r).
 
-Each night we take a "base" backup, and then every _n_ time after that (default: 15 minutes) we take an "incremental" backup. 
+Each night we take a "base" backup, and then every _n_ time after that (default: 15 minutes) we take an "incremental" backup.
 
 ### Restoring
 
-To restore the backup we use a [script to retrieve the base backup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/usr/local/bin/xtrabackup_s3_restore.erb) and then apply any number of incremental backups on top of it. 
+To restore the backup we use a [script to retrieve the base backup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/usr/local/bin/xtrabackup_s3_restore.erb) and then apply any number of incremental backups on top of it.
 
 Under the hood the script completes the following steps:
 

@@ -11,7 +11,7 @@ review_in: 6 months
 
 ## Harvesting data for Web Map Service map previews
 
-In order to show map previews a harvest source needs to be created with the correct source type (`WAF`, `CSW`, etc) in the ckan publisher. 
+In order to show map previews a harvest source needs to be created with the correct source type (`WAF`, `CSW`, etc) in the ckan publisher.
 
 Manually uploading datasets will not generate map preview data, please create a harvest source with a `Single Gemini 2 document` source type.
 
@@ -24,9 +24,9 @@ The source code for the map rendering can be found in [alphagov/datagovuk_find j
 
 ## Key OpenLayers map preview concepts
 
-OpenLayers is a slip map javascript framework, conceptually similar to Google Maps.  
-Maps are comprised of a central map element which can be layered with additional data features such as bounded boxes, polygons and data points.  
-The underlying map image is a series of tiled images which can be retrieved from an external service.  
+OpenLayers is a slip map javascript framework, conceptually similar to Google Maps.
+Maps are comprised of a central map element which can be layered with additional data features such as bounded boxes, polygons and data points.
+The underlying map image is a series of tiled images which can be retrieved from an external service.
 Similarly the features which are overlayed on the map may come from external sources.
 
 [Data.gov.uk find](https://data.gov.uk/search?q=&filters%5Bpublisher%5D=&filters%5Btopic%5D=&filters%5Bformat%5D=WMS&sort=best) maps typically group data features into sets which appear in a menu on the left hand side of the map. These controls allow the user to toggle visibility of the data features.

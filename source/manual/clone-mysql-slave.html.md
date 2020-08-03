@@ -8,7 +8,7 @@ last_reviewed_on: 2020-02-11
 review_in: 6 months
 ---
 
-> **Note** 
+> **Note**
 >
 > This process is only applicable to Carrenza environments.
 
