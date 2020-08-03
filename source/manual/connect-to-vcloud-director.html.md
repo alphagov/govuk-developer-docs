@@ -124,11 +124,13 @@ If you enter the wrong credentials too many times, we will be locked out!**
 There is a backup VPN account to be used primarily by reliability engineers.
 
 The VPN certificate can be obtained from the infra pass, e.g.
+
 ```sh
 PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/infra pass carrenza/vpn-backup-certificate
 ```
 
 The VPN credentials can be obtained from the infra pass, e.g.
+
 ```sh
 PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/infra pass carrenza/vpn-backup-credentials
 ```

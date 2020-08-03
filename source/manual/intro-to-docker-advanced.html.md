@@ -386,6 +386,7 @@ sudo rm /etc/resolver/intro-to-docker.gov.uk
 cd ~/govuk/govuk-docker
 bin/setup
 ```
+
 [Bundler]: https://bundler.io/
 [content-publisher]: https://github.com/alphagov/content-publisher
 [dnsmasq]: http://www.thekelleys.org.uk/dnsmasq/doc.html

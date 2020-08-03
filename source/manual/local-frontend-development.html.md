@@ -64,6 +64,7 @@ If you want to test changes in static against a frontend app, you need to tell D
 cd /govuk/govuk-docker/projects/government-frontend
 vim docker-compose.yml
 ```
+
 Edit the docker-compose.yml live config to depend on static and remove the live static environment:
 
 ```yaml

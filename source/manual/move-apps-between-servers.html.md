@@ -42,10 +42,12 @@ If you're moving an app to new servers, start by creating those servers.
 1. Add the IP addresses for the new servers and a new Puppet node class in [govuk-puppet][].
 1. Deploy puppet in staging.
 1. SSH to the puppetmaster in staging and run a loop to sign SSL certificates for the new servers as they're created:
+
     ```bash
     $ ssh puppetmaster-1.management.staging
     $ while true; do sudo puppet cert sign --all; sleep 10; done
     ```
+
 1. Run the [Launch VMs][launch-vms-jenkins] Jenkins job, using the [Carrenza staging username and password][carrenza-credentials], to create the new servers.
 1. Once the job has completed, terminate the loop on the puppetmaster.
 1. Re-run everything in production once you've checked everything works.

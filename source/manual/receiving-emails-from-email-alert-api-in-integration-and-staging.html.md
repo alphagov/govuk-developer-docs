@@ -28,6 +28,7 @@ make changes to [govuk-puppet].
     govuk::apps::email_alert_api::email_address_override_whitelist:
       - your.name@digital.cabinet-office.gov.uk
    ```
+
   3. Create a branch with these changes and push them to GitHub. Deploy these changes by running [integration-puppet-deploy](https://ci.integration.publishing.service.gov.uk/job/integration-puppet-deploy/build?delay=0sec), providing your branch name instead of a release tag.
 
 Once these changes have been deployed and the environment variable

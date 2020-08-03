@@ -98,6 +98,7 @@ slave:mysql> SLAVE START;
 ```
 
 The original slave should then begin to catch up with master. You can monitor this with:
+
 ```mysql
 slave:mysql> SHOW SLAVE STATUS\G
 ```
