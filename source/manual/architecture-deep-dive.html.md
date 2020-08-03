@@ -9,7 +9,7 @@ last_reviewed_on: 2020-04-08
 review_in: 12 months
 ---
 
-Testing Markdown linting, by saying 'all of a sudden'. Wordiness.yml defines
+Testing Markdown linting, by saying all of a sudden. Wordiness.yml defines
 this as too wordy, and to be replaced with 'suddenly'.
 
 We can cover a lot of GOV.UK architecture by asking ourselves three questions:
