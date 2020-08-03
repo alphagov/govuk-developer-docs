@@ -48,7 +48,7 @@ API.
 
 ### 3. Reindex
 
-**If your new document uses an existing schema this is not necessary**
+If your new document uses an existing schema, **this is not necessary**.
 
 Reindex the `govuk` index following the instructions in
 [Reindex an Elasticsearch index][reindex].

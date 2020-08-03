@@ -23,6 +23,7 @@ This page is for reference only. Use the [incident report template][tpl] on Goog
 
 ## Incident report
 
+```
 Start Date|YYYY-MM-DD
 ----------|----------
 End Date|YYYY-MM-DD
@@ -53,6 +54,7 @@ Time|Description
 HH:MM|
 Total duration of incident (time from when problem started to incident marked as resolved)|
 Time to fix (time from when incident declared to marked as resolved)|
+```
 
 ## Incident Review
 

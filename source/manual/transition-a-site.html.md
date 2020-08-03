@@ -93,7 +93,7 @@ $ anemone url-list 'transitioning-site.gov.uk'
 
 ### 5) Clean up URLs
 
-**Strip paths and pattern**
+#### Strip paths and pattern
 
 There are lots of file formats we don't want to provide mappings for, like
 static assets, images, or common spammy/malicious crawlers. These can be
@@ -101,7 +101,7 @@ stripped using the [strip_mappings.sh][smsh] script.
 
 [smsh]: https://github.com/alphagov/transition-config/blob/master/tools/strip_mappings.sh
 
-**Query parameter analysis**
+#### Query parameter analysis
 
 From your set of URLs, you can attempt to identify significant query string
 parameter names and then add them to the site configuration file in
