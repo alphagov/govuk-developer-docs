@@ -4,8 +4,6 @@ title: Add Historical Accounts
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-11
-review_in: 6 months
 ---
 
 ## Adding Historical Accounts to Whitehall
