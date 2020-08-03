@@ -308,9 +308,9 @@ document helpful when investigating this issue.
 
 Useful Slack channels:
 
-- #govuk-corona-services-tech (builds the forms)
-- #covid-engineering-team (runs the data pipeline)
-- #re-prometheus-support (runs the Prometheus infra)
+- `#govuk-corona-services-tech` (builds the forms)
+- `#covid-engineering-team` (runs the data pipeline)
+- `#re-prometheus-support` (runs the Prometheus infra)
 
 ### Service downtime**
 
