@@ -35,6 +35,7 @@ Now follow the steps below to restore the database using the data sync script.
 ```
 gds govuk connect ssh -e <environment> db_admin
 ```
+
 2. To find the command you need to run to restore a specific database, list the the govuk-backup user's cronjobs, then grep for the database name you need:
 
 ```

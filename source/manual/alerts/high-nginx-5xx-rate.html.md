@@ -9,6 +9,7 @@ review_in: 6 months
 ---
 
 You can view the 5xx logs across all machines on these two dashboards:
+
 - [Nginx 5xx Requests (Carrenza)][nginx-5xx-grafana-carrenza]
 - [Nginx 5xx Requests (AWS)][nginx-5xx-grafana-aws]
 

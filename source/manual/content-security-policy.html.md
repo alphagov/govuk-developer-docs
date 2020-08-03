@@ -59,8 +59,8 @@ This zip file can be uploaded to Lambda using the AWS console:
 5. Scroll down to the "Function code" section
 6. Select "Upload a file from Amazon S3" from the drop down menu
 7. Paste the S3 URL in the text box - `s3://govuk-integration-artefact-replication-destination/govuk-csp-forwarder/release/csp_forwarder.zip`
-![Function code section of the Lambda function page](images/govuk-csp-forwarder-function-code.png)
+   ![Function code section of the Lambda function page](images/govuk-csp-forwarder-function-code.png)
 8. Click the orange "Save" button on the top right-hand side
-![Top bar of the Lambda function page](images/govuk-csp-forwarder-function-save.png)
+   ![Top bar of the Lambda function page](images/govuk-csp-forwarder-function-save.png)
 9. You should see a green "saved" text and tick on the Lambda function
-![Lambda function saved](images/govuk-csp-forwarder-function-saved.png)
+   ![Lambda function saved](images/govuk-csp-forwarder-function-saved.png)

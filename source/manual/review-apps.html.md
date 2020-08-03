@@ -38,7 +38,7 @@ There are 3 things needed to be configured before you can deploy your app to
 Heroku:
 
 - Add a [Procfile](https://devcenter.heroku.com/articles/procfile) that tells
-Heroku how to run your application;
+  Heroku how to run your application;
 - Add a file called `app.json` with the expected app configuration.
 - Ensure the Gemfile references the correct Ruby version
 

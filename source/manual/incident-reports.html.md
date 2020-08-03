@@ -65,6 +65,7 @@ Time to fix (time from when incident declared to marked as resolved)|
 A root cause is an underlying factor why an incident occurred, which when fixed would prevent a recurrence. Identify and summarise all of the root causes that led to the incident in a short paragraph, aimed at a non-technical audience.
 
 Reference all root cause categories that apply, for instance;
+
 * Unexpected effect of code change
 * Configuration fault (configuration change, pre-existing fault, etc)
 * Capacity issue (insufficient capacity to meet demand, implementation issue, etc)

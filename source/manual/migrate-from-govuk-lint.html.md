@@ -48,8 +48,8 @@ inherit_mode:
 ```
 
 - Replace usage of `govuk-lint-ruby` with `rubocop` in your project.
-All flags and options should be supported, except the `--diff` flag which should be
-removed.
+  All flags and options should be supported, except the `--diff` flag which should be
+  removed.
 
 ## SASS Projects
 

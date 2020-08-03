@@ -8,10 +8,11 @@ last_reviewed_on: 2020-01-27
 review_in: 9 months
 ---
 
-Useful links: 
-  - [List of ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-  - [Rails Translation Manager](https://github.com/alphagov/rails_translation_manager)
-  - [Internationalisation guide](https://github.com/alphagov/whitehall/blob/master/docs/internationalisation_guide.md)
+Useful links:
+
+- [List of ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+- [Rails Translation Manager](https://github.com/alphagov/rails_translation_manager)
+- [Internationalisation guide](https://github.com/alphagov/whitehall/blob/master/docs/internationalisation_guide.md)
 
 ### 1. Update GOV.UK Content Schemas
 

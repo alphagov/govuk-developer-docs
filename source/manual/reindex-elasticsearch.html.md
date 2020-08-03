@@ -16,13 +16,13 @@ index before the new fields and types can be used.
 The reindexing process:
 
 0. Locks the Elasticsearch index to prevent writes to the index while data is
-being copied
+   being copied
 0. Creates a new index using the schema defined in the deployed version of
-search-api
+   search-api
 0. Copies all the data from the old to the new index
 0. Compares the old and new data to check for inconsistencies
 0. If everything looks the same, switches the [alias][index-alias] to the new
-index
+   index
 
 **You don't need to do this if you have changed the
 govuk_document_types gem,** instead run the rake task

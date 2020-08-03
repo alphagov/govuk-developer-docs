@@ -129,7 +129,7 @@ to allow it isn't present on the master.
 
 #### Special cases
 
-- We serve some assets which were previously on directgov and businesslink
+We serve some assets which were previously on directgov and businesslink
 [via Nginx](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer.pp#L56-L146)
 on the Bouncer machines. The assets live in [two](https://github.com/alphagov/assets-directgov)
 [repos](https://github.com/alphagov/assets-businesslink) which are [fetched and

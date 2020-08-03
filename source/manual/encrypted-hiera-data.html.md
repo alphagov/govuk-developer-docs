@@ -216,6 +216,7 @@ To ensure consistency, new GPG keys are generated using a template
 ([example](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_templates/production_hiera_gpg_template.txt)).
 
 To generate a new key:
+
 1.  Generate a random passphrase using a secure method (such as openssl with
     command `openssl rand -base64 65 | tr -d '\n' | awk '{ print $0 }'` to
     generate a 65 characters random string).
@@ -410,6 +411,7 @@ parameter store so that if puppet is re-provisioned in AWS, the new instance of
 puppet will automatically get the private GPG key to decrypt the secret hiera.
 
 This can be done by:
+
 1.  Follow the steps in section `Configuring the Puppet Master` to get the
     non-passphrase protected private GPG key.
 

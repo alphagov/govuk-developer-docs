@@ -50,7 +50,7 @@ time.
 * Do not reboot more than one machine of the same class at the
   same time.
 * Most machines in Production should be rebooted out of hours, and this
-is handled by those who are on call out of hours.
+  is handled by those who are on call out of hours.
   * In emergencies, machines in Production may need to be rebooted in-hours.
   * Machines in other environments can be rebooted in hours.
 * There is [extra guidance if the machine you are rebooting is in AWS](#rebooting-guidance-for-aws).
