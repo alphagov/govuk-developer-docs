@@ -23,7 +23,7 @@ on GitHub][repos].
 
 ![Overview of the elements involved in transition](images/transition-architecture.png)
 
-<em>Source diagram in the [GOV.UK architecture folder][arch-folder].</em>
+Source diagram in the [GOV.UK architecture folder][arch-folder].
 
 [arch-folder]: https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00
 

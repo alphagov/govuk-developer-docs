@@ -26,7 +26,6 @@ Contact numbers for those people are in the [legacy Ops manual](https://docs.goo
 
 ## Adding emergency publishing banners
 
-<a name="prerequisites"></a>
 ### 1. Get the content you will need
 
 The GOV.UK on-call escalations contact will supply you with:
@@ -57,7 +56,6 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 >
 > The Jenkins job will also clear all caches. The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
 
-<a name="test-with-cache-bust"></a>
 ### 3. Test with cache bust strings
 
 Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
