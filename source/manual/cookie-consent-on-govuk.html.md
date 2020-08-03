@@ -77,9 +77,10 @@ If your cookie is set using Javascript:
 2. Add the cookie to the [list of known cookies](https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/lib/cookie-functions.js#L14)
 3. When reading and setting the cookie, make sure you use the cookie helper functions within govuk_publishing_components, e.g:
 
-	`window.GOVUK.cookie(‘please set this cookie’, ‘to this value’)`
-
-	`window.GOVUK.cookie(‘please fetch this cookie’)`
+  ```js
+  window.GOVUK.cookie(‘please set this cookie’, ‘to this value’)
+  window.GOVUK.cookie(‘please fetch this cookie’)
+  ```
 
 Regardless of how your cookie is set, you need to update the cookie details page to list the new cookie. A content designer should be able to help with that.
 
