@@ -5,8 +5,6 @@ section: Testing
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-02-26
-review_in: 12 months
 ---
 
 [Brakeman][brakeman] is a static analysis tool which checks Rails applications
