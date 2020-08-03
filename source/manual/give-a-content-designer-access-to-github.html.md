@@ -4,8 +4,6 @@ title: Give a content designer access to GitHub
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2020-03-10
-review_in: 12 months
 ---
 
 Content designers working on GOV.UK may need GitHub access to edit content
