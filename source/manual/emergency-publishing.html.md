@@ -251,9 +251,11 @@ deceased and the years of their life, for example 'His Royal Highness Henry VIII
 1491 to 1547'. The text should link to their official biography.
 
 #### GOV.UK Homepage
+
 ![GOV.UK Homepage](images/emergency_publishing/notable-death-homepage.png)
 
 #### Other pages
+
 ![](images/emergency_publishing/notable-death.png)
 
 ### National emergency (level 1 or category 2)
@@ -261,9 +263,11 @@ deceased and the years of their life, for example 'His Royal Highness Henry VIII
 A large **red** banner is displayed on all GOV.UK pages, including the homepage.
 
 #### GOV.UK Homepage
+
 ![GOV.UK Homepage](images/emergency_publishing/national-emergency-homepage.png)
 
 #### Other pages
+
 ![](images/emergency_publishing/national-emergency.png)
 
 ### Localised large-scale emergency (level 2 or category 1)
@@ -273,7 +277,9 @@ A large **green** banner is displayed on all GOV.UK pages, including the homepag
 These incidents will not be processed outside of business hours.
 
 #### GOV.UK Homepage
+
 ![GOV.UK Homepage](images/emergency_publishing/local-emergency_homepage.png)
 
 #### Other pages
+
 ![](images/emergency_publishing/local-emergency.png)

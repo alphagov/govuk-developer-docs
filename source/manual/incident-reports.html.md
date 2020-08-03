@@ -57,7 +57,9 @@ Time to fix (time from when incident declared to marked as resolved)|
 ## Incident Review
 
 ### Date:
+
 ### Time:
+
 ### Attendance:
 
 ### Root cause analysis
@@ -75,6 +77,7 @@ Reference all root cause categories that apply, for instance;
 * Other (please specify)
 
 ...
+
 ### Actions
 
 Use this section to assign actions to individuals (not teams). These are actions to be taken to fix the root cause of the issue, for preventative measures and for any other improvements.

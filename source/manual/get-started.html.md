@@ -157,6 +157,7 @@ gds govuk connect --environment integration ssh backend
 The commands can be shortened to `gds govuk c -e integration ssh backend` if you wish.
 
 #### Running a console
+
 Once you have SSH'd into a machine, you can also open a console for a particular application so you can execute commands, for example:
 
 ```bash
