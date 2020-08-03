@@ -78,7 +78,6 @@ Find out why the Search API can't connect to elasticsearch.
 - Look at the [elasticsearch cluster health][cluster-health]
 - Check the status of the Elasticsearch cluster in the AWS console
 
-
 ## Reranker is not OK
 
 The Search API uses machine learning to rank search results based on

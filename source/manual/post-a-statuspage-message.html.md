@@ -57,7 +57,6 @@ Example messages:
 <!-- -->
 > We're looking into a problem that means email alerts aren't being sent out as quickly as they should. We'll update this page as soon as we know what's causing it.
 
-
 ### "Identified" status
 
 This is where we state that we've found the problem.

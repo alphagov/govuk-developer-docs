@@ -20,7 +20,6 @@ Users can manage their consent via the banner or [cookie settings page]. "Strict
 
 Cookie consent is set to last for 1 year, after which the consent cookie will expire and users will be shown the cookie banner and prompted for consent again.
 
-
 ## Cookie consent mechanism
 
 The cookie consent mechanism is made up of 4 main pieces:
@@ -60,18 +59,15 @@ We also set the following property to disable tracking:
 
 This is the [recommended approach](https://developers.google.com/analytics/devguides/collection/analyticsjs/user-opt-out) by Google for user opt-out of tracking.
 
-
 ### Youtube
 
 Some pages on GOV.UK contain embedded Youtube videos. On these pages, Youtube sets third-party cookies which we are unable to delete.
 
 If a user does not consent to campaign cookies, we [swap the embedded video for a link to the video on Youtube](https://govuk-publishing-components.herokuapp.com/component-guide/govspeak/with_youtube_embed_disabled). This means that Youtube does not set any third-party cookies because the video is no longer embedded.
 
-
 ### No Javascript
 
 If Javascript is turned off, the “accept” button is removed from the banner and the cookie settings form is removed. A message is shown instead.
-
 
 ## Adding a new cookie
 
@@ -87,7 +83,6 @@ If your cookie is set using Javascript:
 
 Regardless of how your cookie is set, you need to update the cookie details page to list the new cookie. A content designer should be able to help with that.
 
-
 ## Changing a cookie’s category
 
 If your cookie is set using Javascript:
@@ -101,7 +96,6 @@ Regardless of how your cookie is set, you need to do the following:
 *   Update the category descriptions on the cookie settings page if they are no longer correct
 *   Reset the banner for all users. Otherwise the consent cookie will stay as the old value reflecting the user’s previous decision, which could change given the new category.
 
-
 ## Adding a cookie category
 
 *   Add the new cookie category to the [Cookie settings page in Frontend GitHub repo]
@@ -111,7 +105,6 @@ Regardless of how your cookie is set, you need to do the following:
 *   Add relevant cookies within the list of known cookies
 *   Reset the banner for all users. Otherwise the consent cookie will stay as the old value (without the new category) for people who already have the consent cookie, so setting cookies of that new type will fail for those users
 
-
 ## Removing a cookie category
 
 *   Remove the cookie category from [Cookie settings page in Frontend GitHub repo]
@@ -119,7 +112,6 @@ Regardless of how your cookie is set, you need to do the following:
 *   Remove the cookie category from default consent cookie
 *   Remove the cookie category from 'approve all consent cookie' function
 *   Remove cookies from known list OR move to another relevant category
-
 
 [cookie settings page]: https://www.gov.uk/help/cookies
 [Cookie settings page in Frontend GitHub repo]: https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb

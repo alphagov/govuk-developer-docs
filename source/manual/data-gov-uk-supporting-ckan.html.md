@@ -231,7 +231,6 @@ paster --plugin=ckan search-index rebuild -c /var/ckan/ckan.ini
 > completed.  This command should therefore only be used as a last resort since it will cause the sync
 > process to assume there is no data for a period of time.
 
-
 Only reindex those packages that are not currently indexed:
 
 ```

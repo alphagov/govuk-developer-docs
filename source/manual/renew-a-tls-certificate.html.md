@@ -16,7 +16,6 @@ by Reliability Engineering.
 Credentials for the Fastly dashboard and Zendesk support sites are in the
 [2nd line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly).
 
-
 1. [Generate a Certificate Signing Request (CSR)](generate-csr.html) for a
    *renewal*.
 2. Log into Gandi [using the credentials in the infra password

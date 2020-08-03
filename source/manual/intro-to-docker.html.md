@@ -25,7 +25,6 @@ Before you start, make sure you:
 > * `$mac` shell prompt denotes running the command in a terminal on your Mac
 > * `$dev` shell prompt denotes running the command in the docker container
 
-
 ## Step 1: Docker "run"
 
 * Make sure you have docker running:
@@ -259,7 +258,6 @@ $mac docker run -it -v content-publisher-postgres:/var/lib/postgresql/data postg
 ## Step 5: (Mostly) passing tests!
 
 We're nearly there! If we run the tests again, we'll get a somewhat unintuitive error about Chrome. Debugging this error is quite hard - a simple Google search won't turn up much - so let's skip to the solution:
-
 
 *   Run our tests (and thus Chrome) as a non-root user
 

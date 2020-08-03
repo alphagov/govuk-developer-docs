@@ -32,7 +32,6 @@ $ ps -ef | grep chromedriver # To find the process ID to kill
 $ sudo kill -15 $processID # Use the first number from the top line of grep
 ```
 
-
 With `ps -ef | grep smokey` you should only see a running series of Postgres
 services. These are not actually Smokey tasks, but Docker tasks that are being
 misreported in the process list and it is advised to leave them running.

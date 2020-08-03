@@ -136,7 +136,6 @@ In production systems, this could prevent minor outages scaling into incidents.
 
 It's also possible to view and update access keys with the [AWS CLI].
 
-
 [AWS IAM]: https://docs.aws.amazon.com/en_pv/IAM/latest/UserGuide/id_users.html
 [Access Keys]: https://docs.aws.amazon.com/en_pv/IAM/latest/UserGuide/id_credentials_access-keys.html
 [rotated]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_RotateAccessKey

@@ -20,7 +20,6 @@ Renaming a country affects these pages:
 * https://www.gov.uk/foreign-travel-advice/`<country_slug>`/email-signup/
 * https://www.gov.uk/email/subscriptions/new?topic_id=`<country_slug>`
 
-
 ### 1. Update Travel Advice publisher
 
 **Example pull request:** [https://github.com/alphagov/travel-advice-publisher/pull/539/files](https://github.com/alphagov/travel-advice-publisher/pull/539/files)

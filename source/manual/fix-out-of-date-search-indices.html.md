@@ -46,7 +46,6 @@ rake 'search:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
 
 You can also run this task from Jenkins.
 
-
 ## `metasearch` index
 
 This index is used for best bets, which are published by Search Admin
@@ -60,7 +59,6 @@ rake reindex_best_bets
 ```
 
 You can also run this task from Jenkins.
-
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/search-api/blob/master/docs/new-indexing-process.md

@@ -29,7 +29,6 @@ There are two interfaces for dry and real runs, to ensure the correct HtmlAttach
 > The task will throw an `EditionNotUnpublished` error if the Edition is not `unpublished` or `withdrawn`.
 > The task will throw a `HTMLAttachmentsNotFound` error if the Edition has no HtmlAttachments.
 
-
 ###### Dry run
 
 ```bash

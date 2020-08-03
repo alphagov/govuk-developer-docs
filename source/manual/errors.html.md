@@ -37,7 +37,6 @@ When a request to GOV.UK fails, we need to handle the error in some way, so that
 
 \* Due to the way errors are handled by the origin servers, it's not currently possible for a frontend app to render a contextual error page for an error response. One option to get around this is to deviate from normal web semantics, and [return a 200 response](https://github.com/alphagov/email-alert-frontend/blob/a2bd35b5b17b7da40cd43df9c2756b564597b66e/app/controllers/email_alert_signups_controller.rb#L10). This should be avoided because such responses are cacheable, indexable (by search engines), and surprising for anyone trying to look for errors in logs.
 
-
 ## How we handle errors in our apps
 
 This policy describes what we should do for different types of errors. It applies to all apps, irrespective of other error handling by downstream servers. This policy was first proposed in [RFC 87](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-087-dealing-with-errors.md).

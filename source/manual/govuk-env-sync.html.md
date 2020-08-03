@@ -22,7 +22,6 @@ The environment synchronisation is achieved by granting cross-account access of 
 
 Data sanitisation (removal of sensitive data) for the Integration environment is done by SQL scripts which run as part of the restore transaction at the destination. While not ideal, this is the same approach as [env-sync-and-backup] and allows reuse of the same sanitisation scripts.
 
-
 ![Schematic of the data flow of the govuk_env_sync data synchronisation](images/govuk_env_sync.png)
 Figure 1:  Schematic of the data flow of the govuk_env_sync data synchronisation.
 

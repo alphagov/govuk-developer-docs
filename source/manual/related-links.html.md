@@ -48,7 +48,6 @@ Machine learning generated related links are created exclusively for Whitehall c
 - If links exist with `ordered_related_items` for a content item, we do not show generated related links.
 - Requests need to have the header `Govuk-Use-Recommended-Related-Links` header set to `True` in order to show suggested related links - [this is set by the CDN for all requests](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L242).
 
-
 ### Concourse pipeline details
 
 Related links are generated and ingested via the following jobs, which are defined in the [govuk-related-links pipeline on Concourse](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-related-links).
