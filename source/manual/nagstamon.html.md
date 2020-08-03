@@ -4,8 +4,6 @@ title: Use Nagstamon for monitoring Icinga
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-14
-review_in: 6 months
 ---
 
 ![nagstamon](images/nagstamon.png)
