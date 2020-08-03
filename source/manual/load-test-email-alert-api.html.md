@@ -8,7 +8,7 @@ last_reviewed_on: 2020-06-10
 review_in: 12 months
 ---
 
-You may wish to load test email-alert-api to get a realistic idea of how the system performs under high load, or if your're making changes to how emails are processed to ensure your changes have the desired effect.
+You may wish to load test email-alert-api to get a realistic idea of how the system performs under high load, or if you're making changes to how emails are processed to ensure your changes have the desired effect.
 
 Before you begin, you should post in the #2nd-line channel that you’re about to do some load testing and that as part of that you’ll be disabling puppet runs on Staging for email-alert-api.
 
@@ -21,16 +21,19 @@ email-alert-api has [a DelayProvider](https://github.com/alphagov/email-alert-ap
 - Deploy [this PR or similar](https://github.com/alphagov/govuk-puppet/pull/10412) to the Staging environment.
 
 - Run Puppet on each of the machines.
+
   ```
   fab -P staging_aws class:email_alert_api puppet
   ```
 
 - Disable Puppet to persist the temporary change.
+
   ```
   fab -P staging_aws class:email_alert_api 'puppet.disable:"<date> load testing"'
   ```
 
 - Manually restart the workers to pick up the change.
+
   ```
   fab -P staging_aws class:email_alert_api app.restart:email-alert-api-procfile-worker
   ```
@@ -46,16 +49,19 @@ Normally emails from the Staging environment are [severely rate limited](https:/
 - Deploy [this PR or similar](https://github.com/alphagov/govuk-puppet/pull/10413) to the Staging environment.
 
 - Run Puppet on each of the machines.
+
   ```
   fab -P staging_aws class:email_alert_api puppet
   ```
 
 - Disable Puppet to persist the temporary change.
+
   ```
   fab -P staging_aws class:email_alert_api 'puppet.disable:"<date> load testing"'
   ```
 
 - Manually restart the workers to pick up the change.
+
   ```
   fab -P staging_aws class:email_alert_api app.restart:email-alert-api-procfile-worker
   ```

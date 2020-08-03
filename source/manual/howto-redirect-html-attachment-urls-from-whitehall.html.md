@@ -39,9 +39,11 @@ $ bundle exec 'publishing_api:redirect_html_attachments:dry[document_content_id,
 
 > You need to find the `content_id` of the Document the attachment belongs to via Rails console if the Document has already been unpublished and redirected.
 > Remember to use the relative path for an internal URL. Example:
+
 ```
 publishing_api:redirect_html_attachments:dry[f8781a75-9fb7-409a-a37d-3a5877ad28fb,/government/collections/trading-with-the-eu-if-the-uk-leaves-without-a-deal]
 ```
+
 > Note: Please make sure the REDIRECTION_URL starts with a `/`, otherwise the redirection will not work.
 
 This attempts to locate the HtmlAttachments for the latest unpublished Edition of the Document, and if found, report to the user the HtmlAttachment's slugs and where they would have been redirected to.

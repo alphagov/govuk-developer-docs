@@ -22,6 +22,7 @@ there are 2 methods:
 Follow the following steps on the Postgresql standby machine:
 
 1. Disable puppet by running:
+
    ```
    govuk_puppet --disable "resyncing postgresql from wal-e S3 backups"
    ```
@@ -36,22 +37,26 @@ Follow the following steps on the Postgresql standby machine:
 
 3. Edit the file `/var/lib/postgresql/9.3/main/recovery.conf` by appending the
    following line:
+
    ```
    restore_command = 'envdir /etc/wal-e/env.d /usr/local/bin/wal-e wal-fetch %f %p'
    ```
 
 4. Restart Postgresql service by running:
+
    ```
    sudo /etc/init.d/postgresql restart
    ```
 
 5. Tail the log to see if the process of restoration is working and when
    it has finished. Run:
+
    ```
    tail -f /var/log/postgresql/postgresql-9.3-main.log
    ```
 
 6. After the restoration has finished, remove the appended line from `/var/lib/postgresql/9.3/main/recovery.conf` and restart Postgresql:
+
    ```
    sudo /etc/init.d/postgresql restart
    ```
@@ -61,6 +66,7 @@ Follow the following steps on the Postgresql standby machine:
 8. You can restart `collectd` by following the steps in the [Restarting collectd section](#restarting-collectd).
 
 9. Re-enable puppet:
+
    ```
    govuk_puppet --enable
    ```

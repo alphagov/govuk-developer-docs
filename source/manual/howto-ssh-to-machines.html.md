@@ -52,6 +52,7 @@ it's not working, you can try manually running the commands it normally runs for
 - Find [the jumpbox for the environment you need](https://github.com/alphagov/govuk-connect/blob/fcbe054874c84968b6af97e45005b00bc5aa285a/lib/govuk_connect/cli.rb#L81).
 
 - SSH to the jumpbox.
+
   ```sh
   $ ssh -A jumpbox.staging.govuk.digital
   ```

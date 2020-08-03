@@ -38,14 +38,15 @@ gds govuk connect ssh -e <environment> db_admin
 
 2. To find the command you need to run to restore a specific database, list the the govuk-backup user's cronjobs, then grep for the database name you need:
 
-```
-sudo -iu govuk-backup crontab -l | grep <database_name>
-```
+  ```
+  sudo -iu govuk-backup crontab -l | grep <database_name>
+  ```
+
   E.g.
 
-```
-sudo -iu govuk-backup crontab -l | grep publishing_api
-```
+  ```
+  sudo -iu govuk-backup crontab -l | grep publishing_api
+  ```
 
 3. Copy the command that starts with "pull". For example, if you were restoring the publishing_api database you'd need this line:
 
