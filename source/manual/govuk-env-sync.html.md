@@ -101,6 +101,7 @@ Here the timestamp argument is optional and allow to specify which timestamp (is
 ## Resources managed by Puppet
 
 ### Configuration files on machines
+
 Puppet creates a configuration file in `/etc/govuk_env_sync/` for each job in hieradata `govuk_env_sync::tasks:`. These files consist of simple `source`-able variable assignments of the form:
 
 ```
@@ -114,6 +115,7 @@ path="postgresql-backend"
 ```
 
 ### Lock
+
 The govuk_env_sync cron jobs prevent automated reboots by `unattended-upgrades` by running under `/usr/local/bin/with_reboot_lock`, which creates the file `/etc/unattended-reboot/no-reboot/govuk_env_sync` and removes it when the process exits.
 
 ### Cron jobs and Icinga checks

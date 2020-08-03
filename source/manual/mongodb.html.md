@@ -34,6 +34,7 @@ The timings are defined by parameters [set in the manifest](https://github.com/a
 These backups are encrypted using GPG, but the functionality is similar to mongodump.
 
 ### Restoring
+
 Use the `/usr/local/bin/mongodb-restore-s3` script available on MongoDB machines which have S3 backup enabled.
 
 This script grabs the latest backup from the S3 bucket, decrypts and unpacks it, and does a `mongo restore`.

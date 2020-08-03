@@ -79,6 +79,7 @@ Don't say:
 > Data can be exported to CSV.
 
 ### Acronyms
+
 Spell out acronyms the first time they're used on the page unless they're very widely known.
 
 Examples of widely known acronyms:
