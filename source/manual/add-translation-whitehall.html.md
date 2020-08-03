@@ -29,7 +29,7 @@ In [GOV.UK Content Schemas](https://github.com/alphagov/govuk-content-schemas):
 
 In [Content Store](https://github.com/alphagov/content-store):
 
-* Add the locale key to `config/application.rb`
+- Add the locale key to `config/application.rb`
 
 ### 3. Update Publishing API
 
@@ -37,7 +37,7 @@ In [Content Store](https://github.com/alphagov/content-store):
 
 In [Publishing API](https://github.com/alphagov/publishing-api):
 
-* Add the locale key to `config/application.rb`
+- Add the locale key to `config/application.rb`
 
 ### 4. Update Government Frontend
 
