@@ -4,8 +4,6 @@ title: Resync a PostgreSQL Standby in Carrenza/6DG
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-09
-review_in: 6 months
 ---
 
 If there is a need to resync the Postgresql standby machine from its primary,
