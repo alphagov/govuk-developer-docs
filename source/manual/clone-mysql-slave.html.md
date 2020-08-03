@@ -75,7 +75,7 @@ You should set `<username>` to your short name as set in puppet (e.g. 'bobwalker
 > **WARNING**
 >
 > Forwarding your ssh-agent (`-A`) means that anyone with sufficient access on the remote server can authenticate as you. Do not use it on un-trusted servers.
-
+>
 > **Note**
 >
 > This forwards your ssh-agent to slave (`-A`) then, passing that agent to sudo's environment (`-E`), rsyncs the mysql files to backup.

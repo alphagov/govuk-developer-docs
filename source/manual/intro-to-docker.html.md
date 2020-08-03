@@ -74,7 +74,7 @@ $dev bundle install
 ```
 
 > Note: you may need to use a different image (e.g. `ruby:2.6.5`) depending on the version specified in [`.ruby-version`][content-publisher-ruby] in [content-publisher].
-
+>
 > Note: this may take a while, so feel free to stop it by pressing Ctrl+c as the next step will show why it doesn't matter at this point.
 
 You can see that the gems required for content-publisher are installed! However, anything you do here won't persist - if you were to quit the container and then go back in exactly the same way, all the gems would need to be re-installed again.

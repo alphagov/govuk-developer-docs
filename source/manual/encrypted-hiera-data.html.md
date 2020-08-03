@@ -395,7 +395,7 @@ to Puppet:
 > **WARNING**
 >
 > Make sure **not** to copy the production GPG key to the integration environment.
-
+>
 > **Note**
 >
 > In the time between adding the new keys to the Puppet Master, deploying
