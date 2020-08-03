@@ -15,7 +15,9 @@ A certificate signing request is required when buying or renewing a TLS certific
 Execute the following on a POSIX-compliant machine, for example your
 Mac:
 
-    DOMAIN_NAME=example.service.gov.uk sh -c 'openssl req -nodes -newkey rsa:2048 -keyout ${DOMAIN_NAME//[^a-zA-Z0-9]/_}.key -out ${DOMAIN_NAME//[^a-zA-Z0-9]/_}.csr -subj "/C=GB/ST=England/L=London/O=UK government/OU=Government Digital Service/CN=${DOMAIN_NAME}/"'
+```
+DOMAIN_NAME=example.service.gov.uk sh -c 'openssl req -nodes -newkey rsa:2048 -keyout ${DOMAIN_NAME//[^a-zA-Z0-9]/_}.key -out ${DOMAIN_NAME//[^a-zA-Z0-9]/_}.csr -subj "/C=GB/ST=England/L=London/O=UK government/OU=Government Digital Service/CN=${DOMAIN_NAME}/"'
+```
 
 Be sure to replace the value 'example.service.gov.uk' set in the
 `DOMAIN_NAME` environment variable to the domain name the TLS
@@ -38,7 +40,9 @@ and find the `wildcard_publishing` key. Save this to a file, for the next step.
 Execute the following on a POSIX-compliant machine, for example your
 Mac:
 
-    DOMAIN_NAME=*.publishing.service.gov.uk sh -c 'openssl req -nodes -new -key /path/to/wildcard_publishing.key -out ${DOMAIN_NAME//[^a-zA-Z0-9]/_}.csr -subj "/C=GB/ST=England/L=London/O=UK government/OU=Government Digital Service/CN=${DOMAIN_NAME}/"'
+```
+DOMAIN_NAME=*.publishing.service.gov.uk sh -c 'openssl req -nodes -new -key /path/to/wildcard_publishing.key -out ${DOMAIN_NAME//[^a-zA-Z0-9]/_}.csr -subj "/C=GB/ST=England/L=London/O=UK government/OU=Government Digital Service/CN=${DOMAIN_NAME}/"'
+```
 
 Be sure to replace the value 'example.service.gov.uk' set in the
 `DOMAIN_NAME` environment variable to the domain name the TLS

@@ -66,22 +66,30 @@ There have been a few occasions where Corporate Information pages have
 started redirecting the English version to a translation. Should this
 happen, the redirects can be identified with:
 
-    > Route.where(incoming_path: /\/about/).each do |route|
-    >   puts "#{route.id} #{route.incoming_path} -> #{route.redirect_to}" if route.handler == "redirect"
-    > end
+```ruby
+Route.where(incoming_path: /\/about/).each do |route|
+  puts "#{route.id} #{route.incoming_path} -> #{route.redirect_to}" if route.handler == "redirect"
+end
+```
 
 That will list the id and paths for each redirect. Redirects from the
 English version to a translation, for example:
 
-    579a109cd068b406250014e4 /government/organisations/companies-house/about/access-and-opening -> /government/organisations/companies-house/about/access-and-opening.cy
+```
+579a109cd068b406250014e4 /government/organisations/companies-house/about/access-and-opening -> /government/organisations/companies-house/about/access-and-opening.cy
+```
 
 ...can be deleted with
 
-    > Route.find('579a109cd068b406250014e4').destroy
+```ruby
+Route.find('579a109cd068b406250014e4').destroy
+```
 
 For the deleted routes to take effect, you need to reload the router.
 
-    > RouterReloader.reload
+```ruby
+RouterReloader.reload
+```
 
 ## Redirects for HMRC manuals
 

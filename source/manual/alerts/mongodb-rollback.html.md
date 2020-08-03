@@ -48,11 +48,13 @@ The following arguments are necessary:
 
 For example:
 
-    dcarley@production-licensing-mongo-1:/var/lib/mongodb/rollback$ mongorestore -h licensing-mongo-2 -d licensify-audit -c audit --objcheck licensify-audit.audit.2013-05-30T12-45-42.1.bson
-    connected to: licensing-mongo-2
-    Thu May 30 13:56:52 licensify-audit.audit.2013-05-30T12-45-42.1.bson
-    Thu May 30 13:56:52 going into namespace [licensify-audit.audit]
-    1 objects found
+```
+dcarley@production-licensing-mongo-1:/var/lib/mongodb/rollback$ mongorestore -h licensing-mongo-2 -d licensify-audit -c audit --objcheck licensify-audit.audit.2013-05-30T12-45-42.1.bson
+connected to: licensing-mongo-2
+Thu May 30 13:56:52 licensify-audit.audit.2013-05-30T12-45-42.1.bson
+Thu May 30 13:56:52 going into namespace [licensify-audit.audit]
+1 objects found
+```
 
 Unfortunately `mongorestore` may not give any feedback about whether the
 restore was successful. It is advisable to check the logs on the host

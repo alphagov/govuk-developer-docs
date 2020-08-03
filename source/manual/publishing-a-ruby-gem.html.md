@@ -56,7 +56,9 @@ This is due to [gemstash][], our gem mirror. It caches versions for up to 30
 minutes. To force it to clear, run this on `apt-1.management` in the relevant
 environment:
 
-    $ sudo docker restart gemstash
+```
+$ sudo docker restart gemstash
+```
 
 To clear the cache for the CI Jenkins instance, run this in integration.
 
