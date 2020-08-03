@@ -4,8 +4,6 @@ title: Handle encrypted hieradata
 parent: "/manual.html"
 layout: manual_layout
 section: Deployment
-last_reviewed_on: 2020-01-28
-review_in: 9 months
 ---
 
 [Hiera](https://docs.puppetlabs.com/hiera/1/) is a key-value lookup tool
