@@ -9,9 +9,6 @@ last_reviewed_on: 2020-04-08
 review_in: 12 months
 ---
 
-Testing Markdown linting, by saying all of a sudden. Wordiness.yml defines
-this as too wordy, and to be replaced with 'suddenly'.
-
 We can cover a lot of GOV.UK architecture by asking ourselves three questions:
 
 1. What happens when a user visits a page on GOV.UK?
