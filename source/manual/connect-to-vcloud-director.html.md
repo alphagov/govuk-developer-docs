@@ -95,8 +95,8 @@ If you enter the wrong credentials too many times, we will be locked out!**
 1. The first password is your machine password (requested by sudo).
 1. The second password (the PEM passphrase) is the certificate passphrase from
    the password store.
-1. The third password is the 2FA code (use `oathtool -b
-   <MFA-key-from-password-store> --totp`).
+1. The third password is the 2FA code (use
+   `oathtool -b <MFA-key-from-password-store> --totp`).
 1. The fourth password is the password from the password store.
 
 ## Accessing vCloud Director
