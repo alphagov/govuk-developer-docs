@@ -184,18 +184,18 @@ $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[ca
 
 The `campaign_class` is directly injected into the HTML as a `class` and must be one of
 
-* notable-death
-* national-emergency
-* local-emergency
+- notable-death
+- national-emergency
+- local-emergency
 
 For example, if you are deploying an emergency banner for which you have the
 following information:
 
-* Type: Death
-* Heading: Alas poor Yorick
-* Short description: I knew him Horatio
-* URL: https://www.gov.uk
-* Link text: Click for more information
+- Type: Death
+- Heading: Alas poor Yorick
+- Short description: I knew him Horatio
+- URL: https://www.gov.uk
+- Link text: Click for more information
 
 You would enter the following command:
 

@@ -68,20 +68,20 @@ can manage credentials via Jenkins CLI, but currently not all types of credentia
 
 To configure our credentials manually, from the Jenkins Credentials section add the following entries:
 
-* GitHub token for govuk-ci
+- GitHub token for govuk-ci
   - ID: github-token-govuk-ci
   - Type: Secret text
   - Description: GitHub token for govuk-ci
   - Scope: Global
   - Secret: *\<personal access token for govuk-ci user on GitHub\>*
-* GitHub token for govuk-ci with username
+- GitHub token for govuk-ci with username
   - ID: github-token-govuk-ci-username
   - Type: Username with password
   - Description: GitHub token for govuk-ci with username
   - Scope: Global
   - Username: govuk-ci
   - Password: *\<personal access token for govuk-ci user on GitHub\>*
-* govuk-ci SSH key
+- govuk-ci SSH key
   - ID: govuk-ci-ssh-key
   - Type: SSH Username with private key
   - Description: govuk-ci SSH key
@@ -89,14 +89,14 @@ To configure our credentials manually, from the Jenkins Credentials section add 
   - Username: govuk-ci
   - Private Key: From the Jenkins master ~/.ssh
   - Passphrase: *\<private key passphrase\>*
-* Pact broker creds for ci.dev.publishing.service.gov.uk
+- Pact broker creds for ci.dev.publishing.service.gov.uk
   - ID: pact-broker-ci-dev
   - Type: Username with password
   - Description: Pact broker creds for ci.dev.publishing.service.gov.uk
   - Scope: Global
   - Username: pact_ci
   - Password: *\<pact_ci user password on ci.dev.publishing.service.gov.uk\>*
-* Jenkins user that connects to SSH slaves
+- Jenkins user that connects to SSH slaves
   - ID: jenkins-ssh-slave
   - Type: SSH Username with private key
   - Description: Jenkins user that connects to SSH slaves
@@ -112,7 +112,7 @@ The credential IDs are referenced in our Puppet code, we shouldn't update this f
 We use this with the GitHub and GitHub Branch Source plugins to define the source code repositories of
 our jobs.
 
-* Manage Jenkins -\> Configure Global Security
+- Manage Jenkins -\> Configure Global Security
   - GitHub -\> Add GitHub Server
   - API URL: 'https://api.github.com'
   - Credentials: select 'GitHub token for govuk-ci'

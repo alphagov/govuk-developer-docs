@@ -109,8 +109,8 @@ transitioned sites (but see [Special cases](#special-cases) below).
 
 In the case of a data centre failure, within the disaster recovery (DR) vCloud organisation we have:
 
-* Bouncer application servers which read from the DR database slave
-* a second PostgreSQL slave for the Transition database
+- Bouncer application servers which read from the DR database slave
+- a second PostgreSQL slave for the Transition database
 
 #### Application
 

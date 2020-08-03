@@ -93,9 +93,9 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 
 This will update content from pages served by `smart-answers` such as:
 
-- https://www.gov.uk/marriage-abroad
-- https://www.gov.uk/check-uk-visa
-- https://www.gov.uk/register-a-death/y/overseas
+* https://www.gov.uk/marriage-abroad
+* https://www.gov.uk/check-uk-visa
+* https://www.gov.uk/register-a-death/y/overseas
 
 In [Smart-answers](https://github.com/alphagov/smart-answers):
 
@@ -109,9 +109,9 @@ In [Smart-answers](https://github.com/alphagov/smart-answers):
 
 The country's subscription list(s) `title` and `slug` needs to be updated, such as:
 
-- "Publications related to `<country_name>`"
-- "`<country_name>` - travel advice"
-- "`<country_name>`"
+* "Publications related to `<country_name>`"
+* "`<country_name>` - travel advice"
+* "`<country_name>`"
 
 1. Run the rake task [manage:find_subscriber_list_by_title[title]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=manage:find_subscriber_list_by_title[country_name])
   with the country name to see which subscription lists need to be updated
