@@ -4,8 +4,6 @@ title: Connect to vCloud Director (Carrenza only)
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-15
-review_in: 6 months
 ---
 
 vCloud Director is the interface we use to manage our infrastructure in
