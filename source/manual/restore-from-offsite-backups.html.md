@@ -209,7 +209,7 @@ This shows the example process of restoring files for Whitehall attachments.
     duplicity restore --file-to-restore mnt/uploads/whitehall/ s3://s3-eu-west-1.amazonaws.com/govuk-offsite-backups-production/assets-whitehall/ /mnt/uploads/whitehall
     ```
 
-#### Clean up
+### Clean up
 
 Once the backup has restored correctly, make sure you revert all the manual
 actions you've taken. These may include:
