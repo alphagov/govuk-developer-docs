@@ -4,7 +4,7 @@ ruby File.read(".ruby-version").chomp
 
 gem "activesupport", "~> 5.2"
 gem "capybara", "~> 3.33.0"
-gem "ffi", "1.13.1"
+gem "ffi", "1.12"
 gem "rake"
 gem "rspec", "~> 3.9"
 gem "rubocop-govuk"
