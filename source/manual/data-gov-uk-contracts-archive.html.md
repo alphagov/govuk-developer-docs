@@ -102,6 +102,6 @@ cachebust string to the download URL.
 You should also remove it from Google cache (this will only work once we've
 reinstated the using this page:
 
-https://www.google.com/webmasters/tools/url-removal?hl=en&siteUrl=https://data.gov.uk
+<https://www.google.com/webmasters/tools/url-removal?hl=en&siteUrl=https://data.gov.uk>
 
 Click “Temporarily Hide” and provide the URL and then Submit.

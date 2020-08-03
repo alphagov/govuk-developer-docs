@@ -17,7 +17,7 @@ If the alert is `CRITICAL`, you should take the following actions to investigate
 
 1. Check the [CloudWatch dashboard](https://eu-west-1.console.aws.amazon.com/cloudwatch/home?region=eu-west-1#cw:dashboard=DDoSProtection). This should show the rate of DDoS requests, data throughput and packets which Amazon is detecting.
     * The dashboard might not display any graphs at all if no DDoS activity has been detected recently. This is a known issue and there is a [support ticket](https://console.aws.amazon.com/support/cases#/6554017771/en) open with Amazon about it. If the DDoSDetected alert is firing and the graphs are still not displayed, contact AWS support.
-1. If the attack is ongoing, contact AWS support: https://console.aws.amazon.com/support/home
+1. If the attack is ongoing, contact AWS support: <https://console.aws.amazon.com/support/home>
 1. Inform them that the DDOSDetected alarm has been triggered.
 1. Enquire about the nature of the attack.
 1. Follow their instructions (if any).

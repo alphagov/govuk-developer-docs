@@ -83,8 +83,7 @@ Follow the [instructions for DNS changes][dns-changes] in order to remove
 these, and ask the Reliability Engineering team to approve any necessary Pull
 Requests.
 
-[dns-changes]:
-https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
+[dns-changes]: https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
 
 ## 10. Update docs
 

@@ -43,7 +43,7 @@ The code for the process of generating and ingesting related links can be found 
 
 Machine learning generated related links are created exclusively for Whitehall content, with a number of measures in place to ensure that we always show manually curated links set by publishers.
 
-- Related links are only generated for a number of content types, with exclusions in place for content that should not be linked _from_, linked _to_, or both. These exclusions can be found at https://github.com/alphagov/govuk-related-links-recommender/tree/master/src/config.
+- Related links are only generated for a number of content types, with exclusions in place for content that should not be linked _from_, linked _to_, or both. These exclusions can be found at <https://github.com/alphagov/govuk-related-links-recommender/tree/master/src/config>.
 - Generated related links are stored within the `suggested_ordered_related_items` property of a content item, while all existing and manually curated links continue to be stored within the `ordered_related_items` property.
 - If links exist with `ordered_related_items` for a content item, we do not show generated related links.
 - Requests need to have the header `Govuk-Use-Recommended-Related-Links` header set to `True` in order to show suggested related links - [this is set by the CDN for all requests](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L242).

@@ -194,7 +194,7 @@ following information:
 - Type: Death
 - Heading: Alas poor Yorick
 - Short description: I knew him Horatio
-- URL: https://www.gov.uk
+- URL: <https://www.gov.uk>
 - Link text: Click for more information
 
 You would enter the following command:

@@ -383,8 +383,7 @@ to Puppet:
 9. Copy the following files to the Puppet Master using from your local machine:
     1. `secring_unprotected.gpg` as `/etc/puppet/gpg/secring.gpg` on puppetmaster
 
-    2. `pubring.gpg` (obtained from the appropriate environment/directory in [here]
-        (https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
+    2. `pubring.gpg` (obtained from the appropriate environment/directory in [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
 
 10. Make sure the new files have the correct permissions:
     `sudo chown -R puppet:puppet /etc/puppet/gpg` and
