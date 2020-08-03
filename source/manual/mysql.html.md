@@ -23,9 +23,9 @@ The on-site backup machine (`backup-1.management`) pulls the latest backup and s
 
 To restore from this method:
 
- - Using [duplicity](restore-from-offsite-backups.html), fetch a backup from either the dedicated mount point, the on-site machine, or the S3 bucket. To decrypt this you may need a password kept in encrypted hieradata.
- - Unzip the file
- - Import into MySQL using `mysql < file` - see these [MySQL docs on using file imports](https://dev.mysql.com/doc/refman/8.0/en/mysql-batch-commands.html).
+- Using [duplicity](restore-from-offsite-backups.html), fetch a backup from either the dedicated mount point, the on-site machine, or the S3 bucket. To decrypt this you may need a password kept in encrypted hieradata.
+- Unzip the file
+- Import into MySQL using `mysql < file` - see these [MySQL docs on using file imports](https://dev.mysql.com/doc/refman/8.0/en/mysql-batch-commands.html).
 
 ## xtrabackup to S3
 

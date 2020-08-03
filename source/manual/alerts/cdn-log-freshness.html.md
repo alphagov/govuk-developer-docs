@@ -15,9 +15,9 @@ CDN logs from Fastly might not be getting uploaded to the
 
 ## Possible causes
 
- * Configuration change to Fastly may have stopped the log upload from working.
- * Access controls might have changed on the S3 bucket.
- * There might be a problem with the alert itself. It was added in Feb 2020.
+* Configuration change to Fastly may have stopped the log upload from working.
+* Access controls might have changed on the S3 bucket.
+* There might be a problem with the alert itself. It was added in Feb 2020.
 
 ## Investigation
 

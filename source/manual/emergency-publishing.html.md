@@ -43,7 +43,6 @@ The GOV.UK on-call escalations contact will supply you with:
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
 1. Go to the Jenkins task:
-
   - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
   - [Deploy the emergency banner on Staging](https://deploy.blue.staging.govuk.digital/job/deploy-emergency-banner/)
   - [⚠️ Deploy the emergency banner on Production ⚠️](https://deploy.blue.production.govuk.digital/job/deploy-emergency-banner/)
@@ -96,9 +95,9 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 1. Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
 
-  - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
-  - [Remove the emergency banner from Staging](https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/)
-  - [⚠️ Remove the emergency banner from Production ⚠️](https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/)
+- [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
+- [Remove the emergency banner from Staging](https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/)
+- [⚠️ Remove the emergency banner from Production ⚠️](https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/)
 
 2. Click `Build now` in the left hand menu.
 

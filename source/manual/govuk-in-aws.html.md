@@ -155,6 +155,6 @@ applications.
 
 For a list of what applications run on which instance types, see the `node_class:` entry in the relevant hieradata for the environment:
 
- * [Integration (common.yaml)](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L13-L121).
- * [Staging](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/staging.yaml#L14)
- * [Production](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/production.yaml#L14).
+* [Integration (common.yaml)](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L13-L121).
+* [Staging](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/staging.yaml#L14)
+* [Production](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/production.yaml#L14).
