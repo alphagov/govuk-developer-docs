@@ -31,8 +31,8 @@ govuk_app_console router-api
 ```
 
 3. Manipulate the `r` object directly (see the
-[documentation](https://github.com/alphagov/router#data-structure) for
-available options), for example:
+   [documentation](https://github.com/alphagov/router#data-structure) for
+   available options), for example:
 
 ```console
 > r.route_type = 'exact'

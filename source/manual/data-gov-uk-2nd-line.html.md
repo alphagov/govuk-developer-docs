@@ -48,6 +48,7 @@ Since CKAN was upgraded users have needed to login using their email address ins
 12. Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.
 
 ### Create a publishing organisation
+
 1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
 2. Click the 'Publishers' button in the header.
 3. Click 'Add Publisher' and complete the form.
@@ -56,6 +57,7 @@ Since CKAN was upgraded users have needed to login using their email address ins
 > Check the authenticity of a request before adding a user as a publishing admin (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).
 
 ### Assign users to publishers (setting user permissions)
+
 1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
 2. Navigate to the relevant page for the publisher (use the 'Publishers' button in the header).
 3. Click the 'Manage' button.
@@ -73,6 +75,7 @@ Users are not permitted to remove their own datasets.  There are a [limited numb
 > Before making any deletions, you should check that the person making the request actually belongs to the organisation who own the document (or are from a superseding department, e.g. someone from BEIS could request a withdrawal for a dataset published by BIS).
 
 #### Deleting a single dataset
+
 1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
 2. Navigate to the relevant dataset (use the 'Datasets' button in the header).
 3. Click the 'Manage' button.

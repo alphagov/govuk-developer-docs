@@ -18,10 +18,10 @@ When this alert fires, the Postgres standby replication process may be
 struggling to keep up (due to load) or may have stopped altogether.
 
   - If one node is down (resulting in Graphite having NULL values for one
-metric), you should see a CRITICAL alert.
+    metric), you should see a CRITICAL alert.
 
   - If both nodes are down then Graphite will return no data and an UNKNOWN
-alert will be raised.
+    alert will be raised.
 
 The replication lag is measured by examining the difference in the [XLOG
 location in bytes](https://wiki.postgresql.org/wiki/Streaming_Replication).

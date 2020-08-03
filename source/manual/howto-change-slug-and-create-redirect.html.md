@@ -103,6 +103,7 @@ be a delay between the redirect being applied and the content being republished.
 This should resolve itself over time, but if you need to process the content
 change more quickly, run `represent_downstream:high_priority:content_id[CONTENT_ID]`
 to put it in the high priority queue:
+
 - in [integration][high-priority-queue-integration]
 - in [staging][high-priority-queue-staging]
 - in [⚠️ production ⚠️][high-priority-queue-production]

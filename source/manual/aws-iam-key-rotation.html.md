@@ -54,9 +54,9 @@ time.
 
 - Check the `Last used` value.
 - If the value is a date,
-[find where the key is used](#3-find-where-the-key-is-used).
+  [find where the key is used](#3-find-where-the-key-is-used).
 - If it's `N/A`, you can safely [remove the key](#6-remove-the-old-key) as it
-isn't used.
+  isn't used.
 
 ### 3. Find where the key is used
 

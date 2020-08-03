@@ -26,13 +26,13 @@ Components:
 - The CI environment runs in the Integration environment in the "CI" vDC
 - Jenkins master:
   - Nginx, listening on port 443, serves <https://ci.integration.publishing.service.gov.uk>
-and proxies requests to Jenkins. It is also running on port 80 to serve a monitoring page.
+    and proxies requests to Jenkins. It is also running on port 80 to serve a monitoring page.
   - Jenkins master, listening on port 8080
 - Jenkins agents:
   - The master instance connects with the agent box via SSH to manage the process
   - The agent machines run a set of services for application tests. Not all the boxes run
     the same services, this is managed with Puppet. Check the `govuk_ci::master::ci_agents` label keys in
-[Hiera](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml) for more information.
+    [Hiera](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml) for more information.
 - Supporting services:
   - An [Icinga instance](https://ci-alert.integration.publishing.service.gov.uk) to monitor the
     status of CI and the supporting infrastructure.

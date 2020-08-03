@@ -21,20 +21,20 @@ You can deploy Puppet using the following steps:
 > To restart the server, run `sudo service puppetserver restart`.
 
 1. Get the [release tag of the build that you wish to deploy][tag] from the Release
-app (`release_18295` for example). Look at the diff you're going to deploy.
+   app (`release_18295` for example). Look at the diff you're going to deploy.
 
 2. Deploy the newer version to staging by using the 'Deploy to Staging (Carrenza)'
-and 'Deploy to Staging (AWS)' buttons in the Release app after clicking on the release
-tag.
+   and 'Deploy to Staging (AWS)' buttons in the Release app after clicking on the release
+   tag.
 
 3. You will either need to wait 30 minutes or read about [convergence](#convergence).
-You should monitor Icinga and Smokey, and test anything you're concerned about.
+   You should monitor Icinga and Smokey, and test anything you're concerned about.
 
 4. Deploy the newer version to production by using the 'Deploy to Production' buttons in
-the Release app after clicking on the release tag.
+   the Release app after clicking on the release tag.
 
 5. You will either need to wait 30 minutes or read about [convergence](#convergence).
-You should monitor Icinga and Smokey, and test anything you're concerned about.
+   You should monitor Icinga and Smokey, and test anything you're concerned about.
 
 [tag]: https://release.publishing.service.gov.uk/applications/puppet
 

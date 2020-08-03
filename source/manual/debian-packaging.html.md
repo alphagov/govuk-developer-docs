@@ -139,12 +139,11 @@ create a Debian package.
 
 - The Jenkins job will produce a `.deb` package in the `Build Artifacts`.
 - With Packager cloned to your local `govuk` folder, download your new package to
-the Packager root folder.
+  the Packager root folder.
 - Start the VM, move to the Packager project and run:
-
-    ```
-      $ sudo dpkg -i ./your_package_name.deb`
-    ```
+  ```
+    $ sudo dpkg -i ./your_package_name.deb`
+  ```
 - Ensure your package has been successfully installed.
 
 If successful, you can copy this package to the aptly machine and then add the
@@ -185,8 +184,7 @@ deb file to aptly.
         Number of packages: 11
     ```
 5. Check the package doesn't remove or replace a version we are currently using
-by checking the diff. You can find the previous snapshot by running `sudo aptly snapshot list`
-
+   by checking the diff. You can find the previous snapshot by running `sudo aptly snapshot list`
     ```
       $ sudo aptly snapshot diff rbenv-ruby-20181023 $snapshot
         Arch   | Package          | Version in A  | Version in B
@@ -194,7 +192,7 @@ by checking the diff. You can find the previous snapshot by running `sudo aptly 
 
     ```
 6. Publish the new snapshot, you will be prompted to enter the passphrase for our
-APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `./edit.sh 2ndline apt/passphrase`
+   APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `./edit.sh 2ndline apt/passphrase`
 
     ```
     $ sudo -i aptly publish switch trusty rbenv-ruby $snapshot
@@ -204,7 +202,7 @@ APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secret
       Publish for snapshot rbenv-ruby/trusty [amd64] publishes {main: [rbenv-ruby-20190212]: Snapshot from local repo [rbenv-ruby]} has been successfully switched to new snapshot.
     ```
 7. You can check it has been published by going to [https://apt.publishing.service.gov.uk](https://apt.publishing.service.gov.uk/).
-For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/](https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
+   For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/](https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
 
     ```
       $ sudo apt-get install rbenv-ruby-2.6.1

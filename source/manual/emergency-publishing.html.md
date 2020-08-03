@@ -164,7 +164,7 @@ irb(main):001:0> Redis.new.hgetall("emergency_banner")
 If you need to manually run the rake tasks to set the Redis keys, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
 
 1. SSH into a `frontend` machine appropriate to the environment you are
-deploying the banner on. For example:
+   deploying the banner on. For example:
 
 ```bash
 $ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
@@ -177,7 +177,7 @@ $ cd /var/apps/static
 ```
 
 3. Run the rake task to create the emergency banner hash in Redis, substituting
-the quoted data for the parameters:
+   the quoted data for the parameters:
 
 ```bash
 $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
