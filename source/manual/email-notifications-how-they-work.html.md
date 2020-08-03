@@ -46,7 +46,7 @@ common issues and troubleshooting, view [Email Alert API docs].
 * Provides a user interface for a user to manage their subscriptions.
 * Communicates with Email Alert API to make changes.
 
-### Email Alert Service
+### Email Alert Service
 
 * Listens to the Publishing API message queue.
 * Communicates with Email Alert API when an appropriate Publishing API
