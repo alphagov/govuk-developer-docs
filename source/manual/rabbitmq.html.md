@@ -75,34 +75,33 @@ and exchanges.
 
 ## Connecting to the RabbitMQ web control panel
 
-1.  Create an SSH tunnel to access the web control panel
+1. Create an SSH tunnel to access the web control panel
 
-    For Carenza environments:
+   For Carenza environments:
 
-    ```bash
-    $ ssh rabbitmq-1.backend.staging -L 15672:127.0.0.1:15672
-    ```
+   ```bash
+   $ ssh rabbitmq-1.backend.staging -L 15672:127.0.0.1:15672
+   ```
 
-    For AWS environments:
+   For AWS environments:
 
-    ```bash
-    $ ssh $(ssh integration "govuk_node_list --single-node -c rabbitmq").integration -CNL 15672:127.0.0.1:15672
-    ```
+   ```bash
+   $ ssh $(ssh integration "govuk_node_list --single-node -c rabbitmq").integration -CNL 15672:127.0.0.1:15672
+   ```
 
-2.  Log in to the web control panel
+2. Log in to the web control panel
 
-    Point your browser at <http://127.0.0.1:15672>
+   Point your browser at <http://127.0.0.1:15672>
 
-    The username is root. The password you can obtain from the govuk-secrets
-    repo if you have access. Look for govuk\_rabbitmq::root\_password in the file for the
-    relevant environment in
-    <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata> or <https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata>
+   The username is root. The password you can obtain from the govuk-secrets
+   repo if you have access. Look for govuk\_rabbitmq::root\_password in the file for the
+   relevant environment in
+   <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata> or <https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata>
 
-3.  Do your business
-4.  Tidy up
+3. Do your business
+4. Tidy up
 
-    Close the SSH connection you set up earlier with CTRL+C or by typing
-    "exit".
+   Close the SSH connection you set up earlier with CTRL+C or by typing "exit".
 
 ## Inspecting/removing items from a queue
 
@@ -111,28 +110,28 @@ in the queue, but left the message on the queue. This meant it was
 backing up. Removing the message from the queue was the right solution
 in our case.
 
-1.  Find the queue
+1. Find the queue
 
-    Click on the "Queues" tab. Then click on the name of the queue.
+   Click on the "Queues" tab. Then click on the name of the queue.
 
-2.  Find the messages
+2. Find the messages
 
-    Scroll down and click "Get messages". Clicking the "Get Message(s)"
-    button that appears will fetch however many messages you ask for.
+   Scroll down and click "Get messages". Clicking the "Get Message(s)"
+   button that appears will fetch however many messages you ask for.
 
-    > **Note**
-    >
-    > Fetching messages actually removes them from the queue. By leaving
-    the "Requeue" option set to "Yes", they will be added back to queue.
+   > **Note**
+   >
+   > Fetching messages actually removes them from the queue. By leaving
+   > the "Requeue" option set to "Yes", they will be added back to queue.
 
-3.  Delete the messages
+3. Delete the messages
 
-    > **Note**
-    >
-    > There is a risk that you might delete the wrong message(s). This
-    > is because the contents of the queue may have changed.
+   > **Note**
+   >
+   > There is a risk that you might delete the wrong message(s). This
+   > is because the contents of the queue may have changed.
 
-    Repeat, but change the "Requeue" option to "No".
+   Repeat, but change the "Requeue" option to "No".
 
 ## Previewing a message for a document_type
 

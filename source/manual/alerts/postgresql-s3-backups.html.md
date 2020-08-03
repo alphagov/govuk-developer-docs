@@ -10,8 +10,8 @@ review_in: 6 months
 
 There are two passive checks related to PostgreSQL S3 backups:
 
--   PostgreSQL WAL-E base backup push
--   PostgreSQL WAL-E archiving to S3
+- PostgreSQL WAL-E base backup push
+- PostgreSQL WAL-E archiving to S3
 
 ### PostgreSQL WAL-E base backup push
 

@@ -108,13 +108,13 @@ $ git push origin update
 
 In order to make our private changes public, we need to incorporate them into the public repo.
 
- 1.  Make sure you have pulled in the latest changes from the public repo into the private repo (detailed in 'Keeping repositories in sync').
- 1.  Merge any pending pull requests into the master branch of the private repo.
- 1.  On the public repo, add the private repo as a new upstream remote: e.g. `git remote add upstream https://github.com/alphagov/frontend-private.git`
- 1.  Create a new branch on the public repo.
- 1.  Rebase the master branch of the private repo onto the new branch:
- 1.  `git fetch upstream`
- 1.  `git rebase upstream/master`
- 1.  `git rebase master`
- 1.  Raise a PR on the public repo for the new branch.
- 1.  Delete the private fork, once the changes have been merged into the public repo.
+ 1. Make sure you have pulled in the latest changes from the public repo into the private repo (detailed in 'Keeping repositories in sync').
+ 1. Merge any pending pull requests into the master branch of the private repo.
+ 1. On the public repo, add the private repo as a new upstream remote: e.g. `git remote add upstream https://github.com/alphagov/frontend-private.git`
+ 1. Create a new branch on the public repo.
+ 1. Rebase the master branch of the private repo onto the new branch:
+ 1. `git fetch upstream`
+ 1. `git rebase upstream/master`
+ 1. `git rebase master`
+ 1. Raise a PR on the public repo for the new branch.
+ 1. Delete the private fork, once the changes have been merged into the public repo.

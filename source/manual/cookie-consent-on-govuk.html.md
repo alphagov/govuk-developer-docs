@@ -24,10 +24,10 @@ Cookie consent is set to last for 1 year, after which the consent cookie will ex
 
 The cookie consent mechanism is made up of 4 main pieces:
 
-*   [Cookie banner component]
-*   [Page template which pulls in the cookie banner]
-*   [cookie settings page]. This is published as a [special route]. See the [Cookie settings page in Frontend GitHub repo].
-*   [Cookie details page]. This is a standard help page, created in Publisher.
+* [Cookie banner component]
+* [Page template which pulls in the cookie banner]
+* [cookie settings page]. This is published as a [special route]. See the [Cookie settings page in Frontend GitHub repo].
+* [Cookie details page]. This is a standard help page, created in Publisher.
 
 When a user first lands on GOV.UK, they are given a default consent cookie that looks like this:
 
@@ -92,26 +92,26 @@ If your cookie is set using Javascript:
 
 Regardless of how your cookie is set, you need to do the following:
 
-*   update the cookie details page to list the cookie under the correct section. A content designer should be able to help with that.
-*   Update the category descriptions on the cookie settings page if they are no longer correct
-*   Reset the banner for all users. Otherwise the consent cookie will stay as the old value reflecting the user’s previous decision, which could change given the new category.
+* update the cookie details page to list the cookie under the correct section. A content designer should be able to help with that.
+* Update the category descriptions on the cookie settings page if they are no longer correct
+* Reset the banner for all users. Otherwise the consent cookie will stay as the old value reflecting the user’s previous decision, which could change given the new category.
 
 ## Adding a cookie category
 
-*   Add the new cookie category to the [Cookie settings page in Frontend GitHub repo]
-* 	Add the new cookie category to the [Cookie details page] using Publisher.
-*   Add to the default consent cookie
-*   Add to ‘approve all’ consent cookie function
-*   Add relevant cookies within the list of known cookies
-*   Reset the banner for all users. Otherwise the consent cookie will stay as the old value (without the new category) for people who already have the consent cookie, so setting cookies of that new type will fail for those users
+* Add the new cookie category to the [Cookie settings page in Frontend GitHub repo]
+* Add the new cookie category to the [Cookie details page] using Publisher.
+* Add to the default consent cookie
+* Add to ‘approve all’ consent cookie function
+* Add relevant cookies within the list of known cookies
+* Reset the banner for all users. Otherwise the consent cookie will stay as the old value (without the new category) for people who already have the consent cookie, so setting cookies of that new type will fail for those users
 
 ## Removing a cookie category
 
-*   Remove the cookie category from [Cookie settings page in Frontend GitHub repo]
-*   Remove the cookie category from [Cookie details page] using Publisher. Delete cookies or move to another relevant category
-*   Remove the cookie category from default consent cookie
-*   Remove the cookie category from 'approve all consent cookie' function
-*   Remove cookies from known list OR move to another relevant category
+* Remove the cookie category from [Cookie settings page in Frontend GitHub repo]
+* Remove the cookie category from [Cookie details page] using Publisher. Delete cookies or move to another relevant category
+* Remove the cookie category from default consent cookie
+* Remove the cookie category from 'approve all consent cookie' function
+* Remove cookies from known list OR move to another relevant category
 
 [cookie settings page]: https://www.gov.uk/help/cookies
 [Cookie settings page in Frontend GitHub repo]: https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb

@@ -15,10 +15,10 @@ We're going to be doing stuff from first-principles, so what follows is a bit co
 
 Before you start, make sure you:
 
-*   [Download Docker](https://www.docker.com/get-started)
-*   [Clone the content-publisher repo][content-publisher]
-*   [Take a quick look at the Docker for Mac intro](https://docs.docker.com/docker-for-mac/)
-*   [Take a look at this video: Docker, FROM scratch](https://www.youtube.com/watch?v=i7yoXqlg48M) - first 30 minutes
+* [Download Docker](https://www.docker.com/get-started)
+* [Clone the content-publisher repo][content-publisher]
+* [Take a quick look at the Docker for Mac intro](https://docs.docker.com/docker-for-mac/)
+* [Take a look at this video: Docker, FROM scratch](https://www.youtube.com/watch?v=i7yoXqlg48M) - first 30 minutes
 
 > Note: in the examples to run shell commands:
 >
@@ -93,13 +93,13 @@ We don't want to be re-installing and doing setup every time we quit and re-ente
 $mac docker volume create content-publisher-bundle
 ```
 
-*   Run docker with that volume by using the `-v` flag and passing it the name of the volume:
+* Run docker with that volume by using the `-v` flag and passing it the name of the volume:
 
 ```shell
 $mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle ruby:2.6.3 bash
 ```
 
-*   Then install the gems again:
+* Then install the gems again:
 
 ```shell
 $dev cd /app
@@ -132,7 +132,7 @@ Create a Dockerfile in the content-publisher project:
 
 > Note: there will likely already be a Dockerfile, so just remove it for the tutorial.
 
-*   Create a `Dockerfile` in the root of the [content-publisher] project:
+* Create a `Dockerfile` in the root of the [content-publisher] project:
 
 ```docker
 FROM ruby:2.6.3
@@ -143,7 +143,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update -qq && apt-get install -y yarn nodejs
 ```
 
-*   Build our new image:
+* Build our new image:
 
 ```shell
 $mac docker build -t content-publisher-demo .
@@ -159,7 +159,7 @@ $mac docker build -t content-publisher-demo .
 
 This creates an image based on the Dockerfile we just added. `-t` tags, or names it, as `content-publisher`.
 
-*   Now we can start a container with our new image:
+* Now we can start a container with our new image:
 
 ```shell
 $mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle content-publisher-demo bash
@@ -199,7 +199,7 @@ If we run the tests again, this time we see another problem about no database. T
 
 Docker containers are quick to start and it's possible for them to talk to each other with internal IPs. This approach also follows the Docker way, which is to have one container per process.
 
-*  In another terminal, run the following to start a new container based on the `postgres` image:
+* In another terminal, run the following to start a new container based on the `postgres` image:
 
 ```shell
 $mac docker run -it postgres
@@ -226,7 +226,7 @@ $mac docker inspect [container ID for postgres]
 ...
 ```
 
-*   Set these environment variables in the content-publisher container:
+* Set these environment variables in the content-publisher container:
 
 ```shell
 $dev export DATABASE_URL=postgres://postgres@172.17.0.3/content-publisher
@@ -235,7 +235,7 @@ $dev export TEST_DATABASE_URL=postgres://postgres@172.17.0.3/content-publisher-t
 
 > The IP address can change randomly so you may need to update the IP address above each time you restart the postgres container. This is pretty fiddly, and we'll look at how to automate it soon!
 
-*   We can now setup the database from the content-publisher container:
+* We can now setup the database from the content-publisher container:
 
 ```shell
 $dev bundle exec rake db:setup
@@ -243,7 +243,7 @@ $dev bundle exec rake db:setup
 
 We now have a database, but it's not permanent! Just like with the gems, we'll have to do `rake db:setup` every time we restart the postgres container. We can use the same technique to fix that.
 
-*   Create a volume to persist to for the data:
+* Create a volume to persist to for the data:
 
 ```shell
 $mac docker volume create content-publisher-postgres
@@ -259,7 +259,7 @@ $mac docker run -it -v content-publisher-postgres:/var/lib/postgresql/data postg
 
 We're nearly there! If we run the tests again, we'll get a somewhat unintuitive error about Chrome. Debugging this error is quite hard - a simple Google search won't turn up much - so let's skip to the solution:
 
-*   Run our tests (and thus Chrome) as a non-root user
+* Run our tests (and thus Chrome) as a non-root user
 
 ```docker
 # In the Dockerfile
@@ -267,19 +267,19 @@ RUN useradd -m build
 USER build
 ```
 
-*   Re-build content-publisher container (Dockerfile changed)
+* Re-build content-publisher container (Dockerfile changed)
 
 ```shell
 $mac docker build -t content-publisher-demo .
 ```
 
-*   Give the content-publisher container [low-level privileges](privileged)
+* Give the content-publisher container [low-level privileges](privileged)
 
 ```shell
 $mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle --privileged content-publisher-demo bash
 ```
 
-*   Run the tests and watch (most of) them pass!
+* Run the tests and watch (most of) them pass!
 
 ```shell
 $dev export DATABASE_URL=postgres://postgres@172.17.0.3/content-publisher

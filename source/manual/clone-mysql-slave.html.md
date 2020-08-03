@@ -27,11 +27,11 @@ In this how-to, we're using...
 
 ## Overview
 
-1.  Lock the original slave, preventing writes to it
-2.  Copy the data from original slave to your folder on the new slave
-3.  Unlock the original slave and tidy up
-4.  Move the data on the new slave
-5.  Start the new slave
+1. Lock the original slave, preventing writes to it
+2. Copy the data from original slave to your folder on the new slave
+3. Unlock the original slave and tidy up
+4. Move the data on the new slave
+5. Start the new slave
 
 ## 1. Lock the original slave to prevent writes
 

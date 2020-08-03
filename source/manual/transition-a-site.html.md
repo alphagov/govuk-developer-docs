@@ -111,20 +111,20 @@ mapped to a different new URL.
 
 There are some transition-config scripts to help analyse query param usage:
 
--   [analyse_query_params.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_params.sh)
--   [analyse_query_usage.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_usage.sh)
+- [analyse_query_params.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_params.sh)
+- [analyse_query_usage.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_usage.sh)
 
 Some common examples of significant parameters:
 
--   article ID
--   attachment ID
--   document ID
+- article ID
+- attachment ID
+- document ID
 
 Some common examples of non-significant parameters:
 
--   pagination
--   analytics
--   search queries
+- pagination
+- analytics
+- search queries
 
 ### 6) Add the old URLs as mappings
 
@@ -179,9 +179,9 @@ If the site is one that was [administered by GDS](https://github.com/alphagov/gd
 
 There are two things that need to be responded to:
 
--   high numbers of 404s - this means a mapping is missing
--   high numbers hitting 410s - this means the old page is popular and
-    should perhaps be redirected instead
+- high numbers of 404s - this means a mapping is missing
+- high numbers hitting 410s - this means the old page is popular and
+  should perhaps be redirected instead
 
 ## Further reading
 

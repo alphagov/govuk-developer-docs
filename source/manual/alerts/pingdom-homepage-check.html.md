@@ -19,11 +19,11 @@ this is cause to first alert other people who may be able to
 help, then start troubleshooting to see if you can narrow down the
 failure.
 
--   [Pingdom Twitter account](https://twitter.com/pingdom) - check if
-    they have announced issues
--   [Fastly Service status](http://status.fastly.com/) - check if the
-    CDN has global issues
--   [AWS status](https://status.aws.amazon.com/) - check if our
-    main provider has issues
+- [Pingdom Twitter account](https://twitter.com/pingdom) - check if
+  they have announced issues
+- [Fastly Service status](http://status.fastly.com/) - check if the
+  CDN has global issues
+- [AWS status](https://status.aws.amazon.com/) - check if our
+  main provider has issues
 
 [Pingdom]: https://www.pingdom.com/

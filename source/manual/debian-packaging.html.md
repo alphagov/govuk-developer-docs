@@ -318,10 +318,10 @@ Publish the new snapshot:
 Finally, since we cache the mirror with Fastly, you'll need to purge the
 content in the UI:
 
-> 1.  Log in at <https://app.fastly.com>
-> 2.  Click the 'Configure' tab along the top
-> 3.  Choose the 'Production Apt' service from the dropdown
-> 4.  Click 'Purge', then 'Purge All'
+> 1. Log in at <https://app.fastly.com>
+> 2. Click the 'Configure' tab along the top
+> 3. Choose the 'Production Apt' service from the dropdown
+> 4. Click 'Purge', then 'Purge All'
 
 Note that whilst - typically - purging all is an expensive operation
 (because requests will then hit origin until Fastly warms back up again,
