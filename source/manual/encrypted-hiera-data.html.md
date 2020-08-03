@@ -293,14 +293,14 @@ To generate a new key:
 
 4. Change the relevant files to remove the fingerprint of the old
    key and add the new fingerprint (as obtained above). If you changed:
-    1. integration:
-         - [carrenza puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
-         - [aws puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
-         - [common puppet ruby recipient file](https://github.com/alphagov/govuk-secrets/blob/master/puppet_common/gpg_recipients.rb)
+     1. integration:
+       - [carrenza puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
+       - [aws puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
+       - [common puppet ruby recipient file](https://github.com/alphagov/govuk-secrets/blob/master/puppet_common/gpg_recipients.rb)
 
-    2. production:
-         - [carrenza puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
-         - [aws puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
+      2. production:
+       - [carrenza puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
+       - [aws puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
 
 5. Add and commit locally your changes to govuk-secrets. You can then use
    the [re-encrypt-all.sh](https://github.com/alphagov/govuk-secrets/blob/master/re-encrypt-all.sh)

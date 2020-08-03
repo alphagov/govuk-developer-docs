@@ -176,9 +176,8 @@ Services team have access.
 To log in to AWS:
 
 1. [Install and set up the gds-cli](/manual/get-started.html#8-use-your-aws-access), then log in to the AWS Console with either:
-
-   - `gds aws govuk-corona-data-staging-poweruser -l` for staging
-   - `gds aws govuk-corona-data-prod-poweruser -l` for production
+  - `gds aws govuk-corona-data-staging-poweruser -l` for staging
+  - `gds aws govuk-corona-data-prod-poweruser -l` for production
 
 ## Deployment
 
