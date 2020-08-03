@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Incidents
-last_reviewed_on: 2019-11-11
-review_in: 3 months
 ---
 
 When something goes wrong on GOV.UK we follow the incident management procedure:
