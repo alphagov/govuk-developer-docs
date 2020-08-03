@@ -346,7 +346,7 @@ Steps you could take:
 - Check the `/metrics` endpoints on the apps, to see if they are
   serving metrics to prometheus correctly
 
-**Deactivate Prometheus alerts for these services**
+#### Deactivate Prometheus alerts for these services
 
 > **Note:** you should only do this if you have confirmed that there is
 a problem with the alert.
