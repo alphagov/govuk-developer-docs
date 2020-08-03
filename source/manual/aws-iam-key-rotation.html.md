@@ -73,10 +73,10 @@ Firstly, search for the key in [govuk-secrets]:
 
 - Enter [govuk-secrets/puppet] in your machine.
 - Run the appropriate [Puppet AWS common actions] considering the following:
-    - The command to run is related to the environment you need to target. For
+  - The command to run is related to the environment you need to target. For
     example, to edit global staging credentials in the `govuk::apps` namespace,
     you need to run `bundle exec rake 'eyaml:edit[staging,apps]'`.
-    - You may need to run more than one command. For example, to edit the global
+  - You may need to run more than one command. For example, to edit the global
     integration credentials both in and out of the `govuk::apps` namespace, you
     need run both `$ bundle exec rake 'eyaml:edit[integration]'` and
     `$ bundle exec rake 'eyaml:edit[integration,apps]'`.

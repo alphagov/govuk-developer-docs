@@ -61,9 +61,9 @@ To configure an SSH action:
 - Select "Command" as the Action type.
 - Put "SSH " as the Name
 - The command depends on what operating system you're using:
-    - For macOS, enter the following command in the "String" field:
-        - `osascript -e 'tell app "Terminal" to do script "gds govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$"'`
+  - For macOS, enter the following command in the "String" field:
+    - `osascript -e 'tell app "Terminal" to do script "gds govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$"'`
     - For GNU/Linux, with the Gnome Terminal installed (which includes
       Ubuntu), use the following command:
-        - `/usr/bin/gnome-terminal -x gds govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$`
+      - `/usr/bin/gnome-terminal -x gds govuk connect ssh --hosting-and-environment-from-alert-url $MONITOR$ $ADDRESS$`
 - Click "OK"
