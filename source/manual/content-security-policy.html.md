@@ -4,8 +4,6 @@ title: 'Content Security Policy on GOV.UK'
 section: Security
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-03
-review_in: 3 months
 ---
 
 Content Security Policy (CSP) is a browser standard to prevent cross-site scripting (XSS), clickjacking and other code
