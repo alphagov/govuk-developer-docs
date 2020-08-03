@@ -4,8 +4,6 @@ title: Change an organisation's slug
 parent: "/manual.html"
 layout: manual_layout
 section: Routing
-last_reviewed_on: 2020-02-18
-review_in: 6 months
 ---
 
 > **Note**
