@@ -47,9 +47,9 @@ Use the VM to [test the recipe](debian-packaging.html#test-the-recipe)
 
 To make sure it has been successful:
 
- - `rbenv versions` to make sure your version is available
- - `rbenv local X.X.X` to use your new version
- - `ruby -v` to make sure your version is in use
+- `rbenv versions` to make sure your version is available
+- `rbenv local X.X.X` to use your new version
+- `ruby -v` to make sure your version is in use
 
 ### Copying to Aptly
 

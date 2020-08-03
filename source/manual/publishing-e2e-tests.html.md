@@ -12,8 +12,8 @@ Most GOV.UK applications are run against a [end-to-end test suite](https://githu
 
 There is specific documentation available on:
 
- - [what belongs in the test suite](https://github.com/alphagov/publishing-e2e-tests/blob/master/docs/what-belongs-in-these-tests.md)
- - [how to debug a failing test in jenkins](https://github.com/alphagov/publishing-e2e-tests/blob/master/docs/debugging-failures.md)
- - [how to resolve breaking changes](https://github.com/alphagov/publishing-e2e-tests/blob/master/docs/breaking-app-change.md)
- - [how to handle intermittently failing (flakey) tests](https://github.com/alphagov/publishing-e2e-tests/blob/master/CONTRIBUTING.md#dealing-with-flaky-tests)
- - [how to add new tests/applications](https://github.com/alphagov/publishing-e2e-tests/blob/master/CONTRIBUTING.md)
+- [what belongs in the test suite](https://github.com/alphagov/publishing-e2e-tests/blob/master/docs/what-belongs-in-these-tests.md)
+- [how to debug a failing test in jenkins](https://github.com/alphagov/publishing-e2e-tests/blob/master/docs/debugging-failures.md)
+- [how to resolve breaking changes](https://github.com/alphagov/publishing-e2e-tests/blob/master/docs/breaking-app-change.md)
+- [how to handle intermittently failing (flakey) tests](https://github.com/alphagov/publishing-e2e-tests/blob/master/CONTRIBUTING.md#dealing-with-flaky-tests)
+- [how to add new tests/applications](https://github.com/alphagov/publishing-e2e-tests/blob/master/CONTRIBUTING.md)

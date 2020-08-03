@@ -21,9 +21,9 @@ The on-site backup machine (`backup-1.management`) pulls the latest backup and s
 
 ### Restoring
 
- - Fetch a backup from either the dedicated mount point, the on-site machine, or the S3 bucket [using Duplicity](restore-from-offsite-backups.html) (you may need a password kept in the encrypted [hieradata](https://github.com/alphagov/govuk-secrets)).
- - Unzip the file. This will produce a directory of data.
- - Run the command: `mongo restore --drop <directory>`
+- Fetch a backup from either the dedicated mount point, the on-site machine, or the S3 bucket [using Duplicity](restore-from-offsite-backups.html) (you may need a password kept in the encrypted [hieradata](https://github.com/alphagov/govuk-secrets)).
+- Unzip the file. This will produce a directory of data.
+- Run the command: `mongo restore --drop <directory>`
 
 ## mongodumps to S3
 
