@@ -24,7 +24,7 @@ In `app/views/notifications/_global_bar.html.erb`,
 
 1. Update the variables `title`, `title_href`, `link_text` and `link_href` with the relevant info where applicable, otherwise set to `false`.
 1. Update the `show_global_bar` variable to `true`
-1. Optional: set the `always_visible` boolean to `true` if banner should not disappear after being seen enough times. 
+1. Optional: set the `always_visible` boolean to `true` if banner should not disappear after being seen enough times.
 1. Deploy static
 
 The usual [Static deployment rules](/manual/deploy-static.html) apply.

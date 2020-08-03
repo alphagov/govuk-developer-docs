@@ -35,7 +35,7 @@ If the Vmware timesync is disabled, we can use [fabric-scripts](https://github.c
 >
 > The fab script will try to slew the time offset, which means continually adding/subtracting little bits of time until
 > the clock is in sync. This is in contrast to a step change, where the clock's time is just changed. Step changes
-> can cause - for example - log timestamp inconsistencies.  
+> can cause - for example - log timestamp inconsistencies.
 >
 > According to the [`ntpdate` man page](https://www.freebsd.org/cgi/man.cgi?query=ntpdate&sektion=8), the slew forced
 > by the `-B` flag can take **hours** to gradually take effect.

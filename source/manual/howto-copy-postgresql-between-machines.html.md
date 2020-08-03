@@ -72,7 +72,7 @@ sudo mv /tmp/name_of_database.bak /var/lib/postgresql/
 Pass ownership over to the PostgreSQL user:
 
 ```sh
-sudo chown postgres:postgres /var/lib/postgresql/name_of_database.bak 
+sudo chown postgres:postgres /var/lib/postgresql/name_of_database.bak
 ```
 
 Stop any services that are relying on the database, e.g.:
@@ -130,5 +130,5 @@ sudo service mapit start
 Tidy up after yourself:
 
 ```sh
-sudo rm /var/lib/postgresql/name_of_database.bak 
+sudo rm /var/lib/postgresql/name_of_database.bak
 ```

@@ -15,7 +15,7 @@ for security vulnerabilities. It is effectively a type of linter, similar to
 part of the CI build process of any Rails application.
 
 [brakeman]: https://github.com/presidentbeef/brakeman
-[rubocop]: https://github.com/rubocop-hq/rubocop 
+[rubocop]: https://github.com/rubocop-hq/rubocop
 [automatic-brakeman]: https://github.com/alphagov/govuk-jenkinslib/pull/19
 
 ## Dealing with false positives

@@ -53,12 +53,12 @@ In order to block `<LEAK_URL>` on `<INSTANCE_CLASS>` in `<GOVUK_ENVIRONMENT>`:
 1. To make the change permanent there are different options, ranging from additional vhost configuration inline in the respective
    Puppet class of the app ([example PR](https://github.com/alphagov/govuk-puppet/pull/9447))
    or introduce a separate NGINX configuration template for the app if more complex
-   changes are required ([example PR](https://github.com/alphagov/govuk-puppet/pull/9485)).  
+   changes are required ([example PR](https://github.com/alphagov/govuk-puppet/pull/9485)).
    Alternatively, changes to the app may remove the offending content.
 1. Finally, re-enable Puppet on the `<INSTANCE_CLASS>`, e.g. via Fabric:
 
         fab <GOVUK_ENVIRONMENT> class:<INSTANCE_CLASS>  do:'govuk_puppet --enable'
-  
+
 Additional documentation of NGINX location block configuration:
 
 - [Digital ocean]: https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms

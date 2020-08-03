@@ -35,4 +35,4 @@ You should then be presented with the form shown below.
 
 ![](images/whitehall-how-to-historical-form.png)
 
-Fill out the form with the biography you have been supplied with and press save.  
+Fill out the form with the biography you have been supplied with and press save.

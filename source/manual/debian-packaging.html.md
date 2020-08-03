@@ -21,7 +21,7 @@ GDS developers may also choose to use the Debian packaging system as a means to
 distribute and maintain their locally developed software.
 
 As always when considering the addition of new software, the first question has to be:
-**"Is this really necessary?"** 
+**"Is this really necessary?"**
 
 Adding a package should be motivated by
 security or architecture requirements and aim to minimise unnecessary
@@ -116,7 +116,7 @@ The new way we prefer to build packages is using
 We are using [Launchpad](https://launchpad.net/~gds/+archive/govuk) as
 the source of all our Debian packages and
 [alphagov/packager](https://github.com/alphagov/packager) which provides
-an easy interface to build packages. 
+an easy interface to build packages.
 
 `alphagov/packager` creates intermediate files
 (.changes/.dsc) which can be uploaded to Launchpad and which uses the files

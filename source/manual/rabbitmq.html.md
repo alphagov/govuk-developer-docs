@@ -20,15 +20,15 @@ messages from the queues.
 While the migration of gov.uk to AWS is in progress we actually run
 two clusters, one in carrenza and one in AWS.
 The published_documents exchange is federated in both directions, which
-means that the cluster in AWS connects as a client to the exchange in 
-Carrenza and forward messages to its own exchange, and the same thing 
+means that the cluster in AWS connects as a client to the exchange in
+Carrenza and forward messages to its own exchange, and the same thing
 happens the other way around, there is no loop because max-hops is set to 1.
 Each cluster has a list of the other's nodes IPs, those are private IP
 and connection goes through the VPN between Carrenza and AWS.
 Since the nodes in AWS use non fixed IPs, they have additional
 network interfaces with a fixed IP associated to it.
 If a consumer is trying to get to a queue that originates on the other
-side of the VPN and the queue is empty, you should check if the 
+side of the VPN and the queue is empty, you should check if the
 federation is ok.
 
 In order to ensure that our consumers remain active, we publish
