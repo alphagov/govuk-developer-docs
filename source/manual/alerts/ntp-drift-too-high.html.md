@@ -19,17 +19,21 @@ disabled. This is enabled by default in the image configuration and could cause 
 
 To check the status, enable or disable Vmware periodic time synchronization, we can use the `vmware-toolbox-cmd` program:
 
-    $ sudo vmware-toolbox-cmd timesync status
-      Enabled
-    $ sudo vmware-toolbox-cmd timesync disable
-      Disabled
-    $ sudo vmware-toolbox-cmd timesync status
-      Disabled
+```
+$ sudo vmware-toolbox-cmd timesync status
+  Enabled
+$ sudo vmware-toolbox-cmd timesync disable
+  Disabled
+$ sudo vmware-toolbox-cmd timesync status
+  Disabled
+```
 
 If the Vmware timesync is disabled, we can use [fabric-scripts](https://github.com/alphagov/fabric-scripts) tasks to help resynchronise the system clock:
 
-    fab $environment -H jumpbox-1.management ntp.status
-    fab $environment -H jumpbox-1.management ntp.resync
+```
+fab $environment -H jumpbox-1.management ntp.status
+fab $environment -H jumpbox-1.management ntp.resync
+```
 
 > **Note**
 >

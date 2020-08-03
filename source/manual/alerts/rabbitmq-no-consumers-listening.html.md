@@ -29,12 +29,16 @@ If the check fails due to no consumers having been active recently, it will
 report a critical failure, giving the most recent idle time, and the idle
 times of each consumer connected to RabbitMQ:
 
-    CRITICAL: No activity for X seconds: idle times are [X, Y, Z]
+```
+CRITICAL: No activity for X seconds: idle times are [X, Y, Z]
+```
 
 If the check fails due to there being no consumers connected to the queue, it
 will report a critical failure:
 
-    CRITICAL: "No consumers listening to queue"
+```
+CRITICAL: "No consumers listening to queue"
+```
 
 ## Consequences of idle consumers
 

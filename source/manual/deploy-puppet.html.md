@@ -50,7 +50,9 @@ diff what classes of machines the change will affect, you can use
 [Fabric](https://github.com/alphagov/fabric-scripts) to force a run of
 Puppet. For example:
 
-    fab $environment class:frontend_lb class:backend_lb puppet
+```
+fab $environment class:frontend_lb class:backend_lb puppet
+```
 
 This will run in serial across the nodes so there is a reduced chance of
 downtime caused by a service restarting on all nodes of a given
@@ -71,7 +73,9 @@ brief outage, e.g. MySQL.
 
 1. Disable normal Puppet runs on the affected nodes:
 
-        fab $environment class:mysql_master puppet.disable:'Preventing service restart'
+   ```
+   fab $environment class:mysql_master puppet.disable:'Preventing service restart'
+   ```
 
 2. Change the file content to match what Puppet wants it to be. If it's
    a plain file you can probably apply the diff from git using
@@ -81,11 +85,15 @@ brief outage, e.g. MySQL.
    running it in `noop` mode. You will need to provide a different lock
    path to bypass the disable:
 
-        govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
+   ```
+   govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
+   ```
 
 4. If you're happy with the results then re-enable Puppet and run it
    again:
 
-        fab $environment class:mysql_master puppet.enable puppet
+   ```
+   fab $environment class:mysql_master puppet.enable puppet
+   ```
 
 5. Schedule a time to actually restart the service if necessary.

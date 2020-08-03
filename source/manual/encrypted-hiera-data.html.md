@@ -443,16 +443,20 @@ This can be done by:
 If the rake task to edit the encrypted credentials fails, with errors
 such as:
 
-    $ bundle exec rake eyaml:edit[integration]
-    [gpg] !!! Warning: General exception decrypting GPG file
-    [hiera-eyaml-core] !!! Bad file descriptor
+```
+$ bundle exec rake eyaml:edit[integration]
+[gpg] !!! Warning: General exception decrypting GPG file
+[hiera-eyaml-core] !!! Bad file descriptor
+```
 
 Check that you're using GPG version 2 or above. Hiera eYAML GPG appears
 to fail when using GPG version 1 with lots of credentials.
 
 If you see this error:
 
-    General error
+```
+General error
+```
 
 Try pulling `master` again - there's a good chance someone has made a
 change since you made your changes. Otherwise, check if any of the GPG
@@ -460,19 +464,25 @@ keys in the recipients list have expired.
 
 If you see this error:
 
-    [hiera-eyaml-core] !!! Bad passphrase
+```
+[hiera-eyaml-core] !!! Bad passphrase
+```
 
 Check that your GPG configuration is sane. Try encrypting and decrypting
 some dummy text using the `gpg` command:
 
-    echo 'foo' | gpg --armor --encrypt --recipient matt.bostock@digital.cabinet-office.gov.uk | gpg --decrypt
+```sh
+echo 'foo' | gpg --armor --encrypt --recipient matt.bostock@digital.cabinet-office.gov.uk | gpg --decrypt
+```
 
 The `gpg` command above might give a more useful error message than the
 gpgme library, which Hiera eYAML GPG uses.
 
 If you see this error:
 
-    [hiera-eyaml-core] !!! Decryption failed
+```
+[hiera-eyaml-core] !!! Decryption failed
+```
 
 Make sure that another PR re-encrypting the credentials was not merged
 before your one. If this is the case, the credentials will need to be
@@ -481,7 +491,9 @@ relevant recipient files.
 
 If you see this error:
 
-    [hiera-eyaml-core] No key found on keyring for <fingerprint>
+```
+[hiera-eyaml-core] No key found on keyring for <fingerprint>
+```
 
 This means that you don't have one of the recipient's key on your keyring.
 You can download one or more keys with the following command:
@@ -498,7 +510,9 @@ will fetch all recipient keys from the keyserver.
 
 When Puppet runs, you may see the following error:
 
-    Hiera eYAML GPG encryption backend is not working; check that Puppet has a valid GPG key
+```
+Hiera eYAML GPG encryption backend is not working; check that Puppet has a valid GPG key
+```
 
 This error can occur for the following reasons:
 
@@ -517,7 +531,9 @@ This error can occur for the following reasons:
   of the GPG keyring in `/etc/puppet/gpg`. You can find the fingerprint
   by executing the following command on the server:
 
-      GNUPGHOME=/etc/puppet/gpg gpg --fingerprint
+  ```
+  GNUPGHOME=/etc/puppet/gpg gpg --fingerprint
+  ```
 
 ### Puppet fails because it can't find gpgme
 
