@@ -34,7 +34,6 @@ to see if any problems occur.
 * [Email Alert API troubleshooting] for more information
 * [Email Alert API Metrics dashboard] to check if emails are going out
 
-
 [Email Alert API sidekiq logs]: https://docs.publishing.service.gov.uk/manual/logging.html#kibana
 [RecoverLostJobsWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/recover_lost_jobs_worker.rb
 [process-content-change-worker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_content_change_worker.rb

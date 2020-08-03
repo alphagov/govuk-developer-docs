@@ -16,7 +16,6 @@ canary should return 200; if it doesn't then errors will be being served
 to users - see the table below for more details of the errors in each
 case.
 
-
 Possible causes of errors on the canary route include:
 
 -   DNS problems for `www.direct.gov.uk` or

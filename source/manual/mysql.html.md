@@ -46,7 +46,6 @@ Under the hood the script completes the following steps:
 - Fetch the latest incremental backups.
 - Copy the consolidated backup (base plus incremental) to the MySQL data directory.
 
-
 ### Why this approach
 
 The streaming method was inspired by this [blog post from MariaDB](https://mariadb.com/blog/streaming-mariadb-backups-cloud). We also drew on the [incremental backups concept provided by the toolset](https://www.percona.com/doc/percona-xtrabackup/2.2/xtrabackup_bin/incremental_backups.html).

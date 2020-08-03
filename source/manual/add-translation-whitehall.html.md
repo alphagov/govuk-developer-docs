@@ -18,7 +18,6 @@ Useful links:
 
 [Example PR](https://github.com/alphagov/govuk-content-schemas/pull/906)
 
-
 In [GOV.UK Content Schemas](https://github.com/alphagov/govuk-content-schemas):
 
 1. Edit `formats/shared/definitions/locale.jsonnet` to include the new locale

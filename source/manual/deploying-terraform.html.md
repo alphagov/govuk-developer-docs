@@ -69,7 +69,6 @@ Where:
 
 After you deploy, you can visit the [`ci-deploy` Jenkins job][ci-deploy-jenkins] to see the job running or queued.
 
-
 ### 2. `deploy.rb` script in govuk-aws
 
 The Ruby script [`tools/deploy.rb`][deploy-rb] in the `govuk-aws` repository takes care of requesting temporary

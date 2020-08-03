@@ -60,7 +60,6 @@ Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.ba
 Edition.where.not(content_store: nil).find_each { |e| puts "https://gov.uk#{e.base_path}" if e.details.to_s =~ /class=\\"button/ }
 ```
 
-
 [Govspeak]: http://govspeak-preview.herokuapp.com/
 [Getting Started]: /manual/get-started.html
 [publishing-api]: https://github.com/alphagov/publishing-api

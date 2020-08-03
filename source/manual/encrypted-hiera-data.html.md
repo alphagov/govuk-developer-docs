@@ -224,7 +224,6 @@ To generate a new key:
 2.  Generate the GPG key pair (this assumes you are using GPG 2.x):
     1.  Git clone the [govuk-secret](https://github.com/alphagov/govuk-secrets)
 
-
     2.  Create a new directory where the GPG key pair will be created:
         e.g. `mkdir ~/new_hiera_gpg && cd ~/new_hiera_gpg`
 

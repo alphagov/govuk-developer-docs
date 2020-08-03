@@ -63,7 +63,6 @@ The structure of the world taxonomy is dense and repetitive. This results in a p
 
 The [/world][] page is unconventional for GOV.UK as it is not represented by a content item and it is instead only represented in router while being [rendered by Whitehall][]. There is a content item at [/world/all][] which redirects to /world, however the data from this content item is not used to render /world.
 
-
 [world-location]: https://github.com/alphagov/govuk-content-schemas/blob/0c6097e6afa6c7679b97aa4331b5d1fdd75fcdc3/formats/world_location.jsonnet
 [atom-feed]: https://www.gov.uk/world/yemen.atom
 [world-page]: https://www.gov.uk/world

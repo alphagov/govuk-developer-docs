@@ -15,7 +15,6 @@ there are 2 methods:
 
 2. use the command pg_resync_slave (older method that may not work)
 
-
 ## Resync methods
 
 ### Restore from WAL-E Backups stored in S3

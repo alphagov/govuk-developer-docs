@@ -11,7 +11,6 @@ review_in: 6 months
 If you need to replace the file of an existing attachment without
 changing the URL, follow these steps:
 
-
 0. Copy the new file from your computer to a `backend` server:
 
     ```

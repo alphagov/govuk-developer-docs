@@ -104,7 +104,6 @@ Determine the number of datasets in CKAN using the API:
 
 [https://data.gov.uk/api/3/search/dataset](https://data.gov.uk/api/3/search/dataset)
 
-
 Determine the number of datasets in the Publish Postgres database using the Rails console.
 
 ```
@@ -136,7 +135,6 @@ A [reindex](/manual/data-gov-uk-operations.html#reindexing-find) must then be do
 Check the Sidekiq queue (see [monitoring section](/manual/data-gov-uk-monitoring.html#sidekiq-publish)) length to ensure the queue length is not too long.  You should not be seeing more jobs than the number of datasets in CKAN.
 
 If the queue is too long, you should [clear the queue](https://github.com/mperham/sidekiq/wiki/API).  The next sync process will repopulate the queue with any relevant datasets that require updating.
-
 
 ### Accessing withdrawn content
 Sometimes we get queries from users asking for data that is no longer publicly available, e.g. a withdrawn dataset.

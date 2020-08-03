@@ -10,8 +10,6 @@ review_in: 6 months
 
 Most frontend and backend apps on GOV.UK share a small number of servers. In some circumstances, apps may use more than their share of resources and may affect other apps on the same server. In these cases, apps can be moved to their own servers using the appropriate steps for either Carrenza or AWS.
 
-
-
 ## AWS
 
 > **Note**
@@ -29,14 +27,12 @@ For each deployment, set the environment to one of `integration`, `staging` or `
 
 👉 [Deploy AWS infrastructure with Terraform][deploy-aws]
 
-
 ## Carrenza
 
 > **WARNING**
 >
 > Any new apps should be added to our AWS environment. The instructions for Carrenza
 > are left for reference purposes only and will be removed in a few months.
-
 
 ### Create the new servers (if required)
 
