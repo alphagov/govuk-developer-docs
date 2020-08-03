@@ -4,8 +4,6 @@ title: Write an incident report
 parent: "/manual.html"
 layout: manual_layout
 section: Incidents
-last_reviewed_on: 2020-07-06
-review_in: 3 months
 ---
 
 This page is for reference only. Use the [incident report template][tpl] on Google Drive when drafting the report.
