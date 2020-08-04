@@ -5,15 +5,15 @@ section: Emails
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-29
+last_reviewed_on: 2020-08-04
 review_in: 6 months
 ---
 
 [GOV.UK Notify][notify] is a Government-as-a-Platform service that allows
 clients of their API to send emails, text messages and letters. We use GOV.UK
 Notify to send emails to users - both members of the public and publishers.
-Historically, we've also used AWS SES to send emails, but that's being phased
-out in favour of GOV.UK Notify.
+Historically, we've also used Amazon SES directly to send emails, but that's
+being phased out in favour of GOV.UK Notify.
 
 [notify]: https://www.notifications.service.gov.uk/
 
@@ -24,16 +24,17 @@ for each environment):
 
   This service is used by Email Alert API only. It's used to send public-facing
   email updates about pieces of content on GOV.UK. It's our biggest sender of
-  emails and averages around 4 million emails per day.
+  emails generating millions of emails per day.
 
   The [Email Alert API Product dashboard] shows usage over time.
 
-  **Note:** currently (as of 30/06/2020) GOV.UK Notify has a maximum rate limit
-  of 350 requests per second meaning we should adhere to this limit when using
-  Notify to deliver emails for our applications. This is set in email-alert-api
-  and can be found in the [DeliveryRequestWorker][DeliveryRequestWorker]. If you
-  wish to double check this figure you could ask in their slack channel
-  #govuk-notify.
+  **Note:** currently (as of 04/08/2020) GOV.UK Notify has a maximum rate limit
+  of 350 requests per second and a daily limit of 30 million emails per day
+  (Notify's daily allowance with Amazon SES) meaning we should adhere to these
+  limits when using Notify to deliver emails for our applications. The rate
+  limit of 350 requests per second is set in email-alert-api and can be found in the
+  [DeliveryRequestWorker][DeliveryRequestWorker]. If you wish to double check
+  these figures you could ask in their slack channel #govuk-notify.
 
 - **GOV.UK Publishing**
 
