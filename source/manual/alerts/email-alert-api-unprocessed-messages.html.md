@@ -39,7 +39,6 @@ to see if any problems occur.
 * [Email Alert API troubleshooting] for more information
 * [Email Alert API Metrics dashboard] to check if emails are going out
 
-
 [content changes]: https://docs.publishing.service.gov.uk/manual/alerts/email-alert-api-unprocessed-content-changes.html
 [Brexit checker]: https://www.gov.uk/get-ready-brexit-check
 [adr-messages]: https://github.com/alphagov/email-alert-api/blob/master/docs/arch/adr-004-message-concept.md

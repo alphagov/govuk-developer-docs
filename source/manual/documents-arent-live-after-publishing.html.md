@@ -29,7 +29,7 @@ correctly to the Publishing API. These fix here varies per publishing app, but
 you can start by trying to republish the document from within the user
 interface. If that doesn't work, there are some other things you can try:
 
-##### Whitehall
+### Whitehall
 
 ```bash
 $ bundle exec rake publishing_api:republish_document[slug]
@@ -37,7 +37,7 @@ $ bundle exec rake publishing_api:republish_document[slug]
 
 [Run this job in production Jenkins ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug])
 
-##### Publisher
+### Publisher
 
 ```bash
 $ bundle exec rake publishing_api:republish_edition[slug]
@@ -45,7 +45,7 @@ $ bundle exec rake publishing_api:republish_edition[slug]
 
 [Run this job in production Jenkins ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[slug])
 
-##### Travel Advice Publisher
+### Travel Advice Publisher
 
 ```bash
 $ bundle exec rake publishing_api:republish_edition[country_slug]
@@ -53,7 +53,7 @@ $ bundle exec rake publishing_api:republish_edition[country_slug]
 
 [Run this job in production Jenkins ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[country_slug])
 
-##### Specialist Publisher
+### Specialist Publisher
 
 The datastore for Specialist Publisher is the Publishing API directly.
 Therefore if the content isn't in the Publishing API, it means the content will

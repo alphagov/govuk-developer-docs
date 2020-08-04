@@ -21,7 +21,7 @@ GDS developers may also choose to use the Debian packaging system as a means to
 distribute and maintain their locally developed software.
 
 As always when considering the addition of new software, the first question has to be:
-**"Is this really necessary?"** 
+**"Is this really necessary?"**
 
 Adding a package should be motivated by
 security or architecture requirements and aim to minimise unnecessary
@@ -116,7 +116,7 @@ The new way we prefer to build packages is using
 We are using [Launchpad](https://launchpad.net/~gds/+archive/govuk) as
 the source of all our Debian packages and
 [alphagov/packager](https://github.com/alphagov/packager) which provides
-an easy interface to build packages. 
+an easy interface to build packages.
 
 `alphagov/packager` creates intermediate files
 (.changes/.dsc) which can be uploaded to Launchpad and which uses the files
@@ -139,12 +139,13 @@ create a Debian package.
 
 - The Jenkins job will produce a `.deb` package in the `Build Artifacts`.
 - With Packager cloned to your local `govuk` folder, download your new package to
-the Packager root folder.
+  the Packager root folder.
 - Start the VM, move to the Packager project and run:
 
-    ```
-      $ sudo dpkg -i ./your_package_name.deb`
-    ```
+  ```
+    $ sudo dpkg -i ./your_package_name.deb`
+  ```
+
 - Ensure your package has been successfully installed.
 
 If successful, you can copy this package to the aptly machine and then add the
@@ -164,6 +165,7 @@ deb file to aptly.
     ```
       $ gds govuk connect scp-push -e <environment> aws/apt ~/Downloads/rbenv-ruby-2.6.1_1_amd64.deb /tmp
     ```
+
 3. In the machine, add the package to the repo:
 
     ```
@@ -171,6 +173,7 @@ deb file to aptly.
         Loading packages...
         [+] rbenv-ruby-2.6.1_1_amd64 added
     ```
+
 4. Create a snapshot:
 
     ```
@@ -184,17 +187,18 @@ deb file to aptly.
         Description: Snapshot from local repo [rbenv-ruby]
         Number of packages: 11
     ```
+
 5. Check the package doesn't remove or replace a version we are currently using
-by checking the diff. You can find the previous snapshot by running `sudo aptly snapshot list`
+   by checking the diff. You can find the previous snapshot by running `sudo aptly snapshot list`
 
     ```
       $ sudo aptly snapshot diff rbenv-ruby-20181023 $snapshot
         Arch   | Package          | Version in A  | Version in B
       + amd64  | rbenv-ruby-2.6.1 | -             | 1
-
     ```
+
 6. Publish the new snapshot, you will be prompted to enter the passphrase for our
-APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `./edit.sh 2ndline apt/passphrase`
+   APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/pass) `./edit.sh 2ndline apt/passphrase`
 
     ```
     $ sudo -i aptly publish switch trusty rbenv-ruby $snapshot
@@ -203,8 +207,9 @@ APT account which is in [govuk-secrets](https://github.com/alphagov/govuk-secret
       Finalizing metadata files...
       Publish for snapshot rbenv-ruby/trusty [amd64] publishes {main: [rbenv-ruby-20190212]: Snapshot from local repo [rbenv-ruby]} has been successfully switched to new snapshot.
     ```
+
 7. You can check it has been published by going to [https://apt.publishing.service.gov.uk](https://apt.publishing.service.gov.uk/).
-For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/](https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
+   For this example navigate to [https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/](https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/). You can also test it works by running `apt-get` in one of the integration boxes:
 
     ```
       $ sudo apt-get install rbenv-ruby-2.6.1
@@ -249,11 +254,15 @@ We only manage *some* parts of aptly using Puppet, because it requires
 GPG keys and passwords, and updating repositories is something that
 should be done ad-hoc rather than on a regular schedule.
 
-    $ PASSWORD_STORE_DIR=~/govuk/deployment/pass/2ndline pass apt/key > apt-1.management.key
+```
+PASSWORD_STORE_DIR=~/govuk/deployment/pass/2ndline pass apt/key > apt-1.management.key
+```
 
 Copy the `apt-1.management.key` file and import it on the aptly machine:
 
-    $ sudo -i gpg --import apt-1.management.key
+```
+sudo -i gpg --import apt-1.management.key
+```
 
 When doing any of the `publish` actions below you will be prompted for
 the password. This can be found in the same place. You will need to use
@@ -286,44 +295,56 @@ After setting up a `aptly::repo` resource in Puppet (do not use
 `aptly repo create`) you configure it, add packages and publish it to a
 prefix with:
 
-    $ sudo -i aptly repo edit -distribution="stable" govuk-jenkins
-    $ sudo -i aptly repo add govuk-jenkins /path/to/jenkins.deb
-    $ sudo aptly snapshot create govuk-jenkins-$(date +%Y%m%d) from repo govuk-jenkins
-    $ sudo -i aptly publish snapshot govuk-jenkins-$(date +%Y%m%d) govuk-jenkins
+```
+$ sudo -i aptly repo edit -distribution="stable" govuk-jenkins
+$ sudo -i aptly repo add govuk-jenkins /path/to/jenkins.deb
+$ sudo aptly snapshot create govuk-jenkins-$(date +%Y%m%d) from repo govuk-jenkins
+$ sudo -i aptly publish snapshot govuk-jenkins-$(date +%Y%m%d) govuk-jenkins
+```
 
 #### Updates
 
 To add new packages download them, then add to the repo:
 
-    $ sudo -i aptly repo add govuk-jenkins /path/to/jenkins_1.554.2_all.deb
+```
+$ sudo -i aptly repo add govuk-jenkins /path/to/jenkins_1.554.2_all.deb
+```
 
 To remove unused packages:
 
-    $ sudo -i aptly repo remove govuk-jenkins 'jenkins (= 1.532.1)'
+```
+$ sudo -i aptly repo remove govuk-jenkins 'jenkins (= 1.532.1)'
+```
 
 Create a new snapshot:
 
-    $ sudo aptly snapshot create govuk-jenkins-$(date +%Y%m%d) from repo govuk-jenkins
+```
+$ sudo aptly snapshot create govuk-jenkins-$(date +%Y%m%d) from repo govuk-jenkins
+```
 
 Confirm that the package changes look as expected and that it doesn't
 remove/replace a version that we are currently using:
 
-    $ sudo aptly snapshot diff govuk-jenkins-20140101 govuk-jenkins-$(date +%Y%m%d)
-      Arch   | Package     | Version in A  | Version in B
-    - amd64  | jenkins     | 1.532.1       | -
-    + amd64  | jenkins     | -             | 1.554.2
+```
+$ sudo aptly snapshot diff govuk-jenkins-20140101 govuk-jenkins-$(date +%Y%m%d)
+  Arch   | Package     | Version in A  | Version in B
+- amd64  | jenkins     | 1.532.1       | -
++ amd64  | jenkins     | -             | 1.554.2
+```
 
 Publish the new snapshot:
 
-    $ sudo -i aptly publish switch stable govuk-jenkins govuk-jenkins-$(date +%Y%m%d)
+```
+$ sudo -i aptly publish switch stable govuk-jenkins govuk-jenkins-$(date +%Y%m%d)
+```
 
 Finally, since we cache the mirror with Fastly, you'll need to purge the
 content in the UI:
 
-> 1.  Log in at <https://app.fastly.com>
-> 2.  Click the 'Configure' tab along the top
-> 3.  Choose the 'Production Apt' service from the dropdown
-> 4.  Click 'Purge', then 'Purge All'
+> 1. Log in at <https://app.fastly.com>
+> 2. Click the 'Configure' tab along the top
+> 3. Choose the 'Production Apt' service from the dropdown
+> 4. Click 'Purge', then 'Purge All'
 
 Note that whilst - typically - purging all is an expensive operation
 (because requests will then hit origin until Fastly warms back up again,
@@ -347,6 +368,7 @@ class govuk_python::repo (
   }
 }
 ```
+
 After this, packages can be included in the form:
 
 ```
@@ -381,34 +403,44 @@ After this, packages can be included in the form:
 After setting up a `aptly::mirror` resource in Puppet (do not use
 `aptly mirror create`) you can sync and publish it to a prefix with:
 
-    $ sudo -i aptly mirror update puppetlabs
-    $ sudo aptly snapshot create puppetlabs-$(date +%Y%m%d) from mirror puppetlabs
-    $ sudo -i aptly publish snapshot puppetlabs-$(date +%Y%m%d) puppetlabs
+```
+$ sudo -i aptly mirror update puppetlabs
+$ sudo aptly snapshot create puppetlabs-$(date +%Y%m%d) from mirror puppetlabs
+$ sudo -i aptly publish snapshot puppetlabs-$(date +%Y%m%d) puppetlabs
+```
 
 #### Updates
 
 To pull new packages from an upstream repo, first sync:
 
-    $ sudo -i aptly mirror update collectd
+```
+$ sudo -i aptly mirror update collectd
+```
 
 Assuming there are new packages then create a snapshot:
 
-    $ sudo aptly snapshot create collectd-$(date +%Y%m%d) from mirror collectd
+```
+$ sudo aptly snapshot create collectd-$(date +%Y%m%d) from mirror collectd
+```
 
 Confirm that the package changes look as expected and that it doesn't
 remove/replace a version that we are currently using:
 
-    $ sudo aptly snapshot diff collectd-20140101 collectd-20140102
-      Arch   | Package                                  | Version in A                             | Version in B
-    ! amd64  | collectd                                 | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
-    ! amd64  | collectd-core                            | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
-    ! amd64  | collectd-utils                           | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
-    ! amd64  | libcollectdclient-dev                    | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
-    ! amd64  | libcollectdclient1                       | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
+```
+$ sudo aptly snapshot diff collectd-20140101 collectd-20140102
+  Arch   | Package                                  | Version in A                             | Version in B
+! amd64  | collectd                                 | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
+! amd64  | collectd-core                            | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
+! amd64  | collectd-utils                           | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
+! amd64  | libcollectdclient-dev                    | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
+! amd64  | libcollectdclient1                       | 5.3.0-ppa8~precise1                      | 5.4.0-ppa1~precise1
+```
 
 Publish the new snapshot:
 
-    $ sudo -i aptly publish switch precise collectd collectd-20140102
+```
+$ sudo -i aptly publish switch precise collectd collectd-20140102
+```
 
 Finally, since we cache the mirror with Fastly, you'll need to purge the
 content in the UI as described above under [Local repos](#local-repos).
@@ -430,41 +462,53 @@ this by using snapshots.
 Sync the repos created by Puppet's `aptly::mirror`. Mirrors are
 distribution specific:
 
-    $ sudo -i aptly mirror update govuk-ppa-precise
-    $ sudo -i aptly mirror update govuk-ppa-trusty
+```
+$ sudo -i aptly mirror update govuk-ppa-precise
+$ sudo -i aptly mirror update govuk-ppa-trusty
+```
 
 Create a snapshot of each distribution (just one currently):
 
-    $ sudo aptly snapshot create govuk-ppa-precise-$(date +%Y%m%d) from mirror govuk-ppa-precise
-    $ sudo aptly snapshot create govuk-ppa-trusty-$(date +%Y%m%d) from mirror govuk-ppa-trusty
+```
+$ sudo aptly snapshot create govuk-ppa-precise-$(date +%Y%m%d) from mirror govuk-ppa-precise
+$ sudo aptly snapshot create govuk-ppa-trusty-$(date +%Y%m%d) from mirror govuk-ppa-trusty
+```
 
 Publish each of them using environment-specific prefixes. Production and
 Staging share the same prefix:
 
-    $ sudo -i aptly publish snapshot govuk-ppa-precise-$(date +%Y%m%d) govuk/ppa/preview
-    $ sudo -i aptly publish snapshot govuk-ppa-trusty-$(date +%Y%m%d) govuk/ppa/preview
-    $ sudo -i aptly publish snapshot govuk-ppa-precise-$(date +%Y%m%d) govuk/ppa/production
-    $ sudo -i aptly publish snapshot govuk-ppa-trusty-$(date +%Y%m%d) govuk/ppa/production
+```
+$ sudo -i aptly publish snapshot govuk-ppa-precise-$(date +%Y%m%d) govuk/ppa/preview
+$ sudo -i aptly publish snapshot govuk-ppa-trusty-$(date +%Y%m%d) govuk/ppa/preview
+$ sudo -i aptly publish snapshot govuk-ppa-precise-$(date +%Y%m%d) govuk/ppa/production
+$ sudo -i aptly publish snapshot govuk-ppa-trusty-$(date +%Y%m%d) govuk/ppa/production
+```
 
 #### Updates
 
 When you have pushed a new package to the PPA and want to try it out on
 Preview, sync and create a new snapshot:
 
-    $ sudo -i aptly mirror update govuk-ppa-precise
-    $ sudo -i aptly mirror update govuk-ppa-trusty
-    $ sudo aptly snapshot create govuk-ppa-precise-$(date +%Y%m%d) from mirror govuk-ppa-precise
-    $ sudo aptly snapshot create govuk-ppa-trusty-$(date +%Y%m%d) from mirror govuk-ppa-trusty
+```
+$ sudo -i aptly mirror update govuk-ppa-precise
+$ sudo -i aptly mirror update govuk-ppa-trusty
+$ sudo aptly snapshot create govuk-ppa-precise-$(date +%Y%m%d) from mirror govuk-ppa-precise
+$ sudo aptly snapshot create govuk-ppa-trusty-$(date +%Y%m%d) from mirror govuk-ppa-trusty
+```
 
 Confirm that the changes look as expected:
 
-    $ sudo aptly snapshot diff govuk-ppa-precise-YYYYMMDD govuk-ppa-precise-$(date +%Y%m%d)
-    $ sudo aptly snapshot diff govuk-ppa-trusty-YYYYMMDD govuk-ppa-trusty-$(date +%Y%m%d)
+```
+$ sudo aptly snapshot diff govuk-ppa-precise-YYYYMMDD govuk-ppa-precise-$(date +%Y%m%d)
+$ sudo aptly snapshot diff govuk-ppa-trusty-YYYYMMDD govuk-ppa-trusty-$(date +%Y%m%d)
+```
 
 Promote the snapshots to the Preview environment only:
 
-    $ sudo -i aptly publish switch precise govuk/ppa/preview govuk-ppa-precise-$(date +%Y%m%d)
-    $ sudo -i aptly publish switch trusty govuk/ppa/preview govuk-ppa-trusty-$(date +%Y%m%d)
+```
+$ sudo -i aptly publish switch precise govuk/ppa/preview govuk-ppa-precise-$(date +%Y%m%d)
+$ sudo -i aptly publish switch trusty govuk/ppa/preview govuk-ppa-trusty-$(date +%Y%m%d)
+```
 
 If you're happy with the results on Preview then you can repeat the
 publish step for Production (Staging uses the production mirror).
@@ -476,14 +520,16 @@ content in the UI as described above under [Local repos](#local-repos).
 
 To remove a mirror that is no longer in use, run the following in order:
 
-    # Remove published repository
-    # Pay attention to the syntax, it's not <repo>/<distribution>
-    # as per the output of `aptly publish list`.
-    sudo aptly publish drop <distribution> <repo>
+```
+# Remove published repository
+# Pay attention to the syntax, it's not <repo>/<distribution>
+# as per the output of `aptly publish list`.
+sudo aptly publish drop <distribution> <repo>
 
-    # Remove snapshots
-    sudo aptly snapshot list
-    sudo aptly snapshot drop <repo>-<date>
+# Remove snapshots
+sudo aptly snapshot list
+sudo aptly snapshot drop <repo>-<date>
 
-    # Remove mirror
-    sudo aptly mirror drop <repo>
+# Remove mirror
+sudo aptly mirror drop <repo>
+```

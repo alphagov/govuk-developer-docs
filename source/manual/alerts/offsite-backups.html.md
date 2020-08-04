@@ -14,7 +14,7 @@ If a backup fails then start by looking at any output captured by cron and sent 
 
 If the backup hasn't failed but is flagged with a freshness warning, it may still be in progress. The asset stores are large and backups can take a long time. Check whether the duplicity process is still running using `htop` or `ps aux | grep duplicity`.
 
-To proceed further you will need to know a few things which you can determine either from the job configuration in Puppet or by listing crontabs for users (`sudo crontab -lu govuk-backup`). 
+To proceed further you will need to know a few things which you can determine either from the job configuration in Puppet or by listing crontabs for users (`sudo crontab -lu govuk-backup`).
 
 You'll need to know:
 
@@ -38,14 +38,14 @@ sudo -iu <user> /var/spool/duplicity/<script>
 ```
 
 You can look for output of the backup jobs in the "machine email carrenza" google group. If the log contains the line
-`Warning, found the following orphaned backup files` then try running the command 
+`Warning, found the following orphaned backup files` then try running the command
 
 ```bash
 sudo -iugovuk-backup duplicity cleanup <destination>  --no-encryption --force
 ```
 
-If a backup fails part way through - for example, this will happen when the disk runs out of space - then subsequent backups will also fail since duplicity will attempt to ask for a GPG passphrase interactively and fail. 
+If a backup fails part way through - for example, this will happen when the disk runs out of space - then subsequent backups will also fail since duplicity will attempt to ask for a GPG passphrase interactively and fail.
 
-The output of jobs that have failed for this reason will end with an `EOFError` message. In these cases, you will need to run the backup again manually, and provide the passphrase when asked. 
+The output of jobs that have failed for this reason will end with an `EOFError` message. In these cases, you will need to run the backup again manually, and provide the passphrase when asked.
 
 The passphrase is contained in the `backup::assets::backup_private_gpg_key_passphrase` key in [govuk-secrets](https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/production_credentials.yaml).

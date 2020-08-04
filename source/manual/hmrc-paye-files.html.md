@@ -25,19 +25,18 @@ This document describes the process by which this is actioned.
 
 The way the updates work:
 
--   Binaries are provided for Windows, OS X and Linux
--   Deltas of the binaries are also provided for partial updates
--   The software hits a manifest file
-    (`realtimepayetools-update-vXX.xml`) to determine which files
-    to download. This manifest contains the version number and partial
-    paths to each of the available binaries. This manifest URL is
-    hard-coded in the desktop software and only changes with each major version.
--   The software downloads the relevant binaries from our asset host and
-    updates itself
--   There is also a [mainstream content
-    item](https://www.gov.uk/basic-paye-tools) and a [Welsh
-    translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
-    which should be updated to link to the full downloads of the new versions
+- Binaries are provided for Windows, OS X and Linux
+- Deltas of the binaries are also provided for partial updates
+- The software hits a manifest file
+  (`realtimepayetools-update-vXX.xml`) to determine which files
+  to download. This manifest contains the version number and partial
+  paths to each of the available binaries. This manifest URL is
+  hard-coded in the desktop software and only changes with each major version.
+- The software downloads the relevant binaries from our asset host and
+  updates itself
+- There is also a [mainstream content item](https://www.gov.uk/basic-paye-tools)
+  and a [Welsh translation](https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem)
+  which should be updated to link to the full downloads of the new versions
 
 ## Where are the files?
 
@@ -76,7 +75,7 @@ the previous version of the software.
    cd /var/apps/asset-manager
    sudo -udeploy govuk_setenv asset-manager bundle exec rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
    ```
- 
+
    The command should take a few seconds to run, and the output will look something like this
    (it can be safely ignored):
     > `/home/yourname` is not writable.

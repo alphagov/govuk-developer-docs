@@ -69,7 +69,6 @@ Where:
 
 After you deploy, you can visit the [`ci-deploy` Jenkins job][ci-deploy-jenkins] to see the job running or queued.
 
-
 ### 2. `deploy.rb` script in govuk-aws
 
 The Ruby script [`tools/deploy.rb`][deploy-rb] in the `govuk-aws` repository takes care of requesting temporary
@@ -86,9 +85,9 @@ GITHUB_USERNAME=<your GitHub username> \
 
 You will need to change the arguments to the `deploy.rb` script. E.g.
 
-* `app-backend` should be the name of the project you want to deploy
-* `blue` is for `app-` projects, `govuk` is for `infra-` projects usually
-* `integration` is the starting point, then `staging`, etc.
+- `app-backend` should be the name of the project you want to deploy
+- `blue` is for `app-` projects, `govuk` is for `infra-` projects usually
+- `integration` is the starting point, then `staging`, etc.
 
 Once the script has run, visit the [`ci-deploy` Jenkins job][ci-deploy-jenkins] to see the job running or queued.
 

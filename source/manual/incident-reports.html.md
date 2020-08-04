@@ -23,13 +23,14 @@ This page is for reference only. Use the [incident report template][tpl] on Goog
 
 ## Incident report
 
+```
 Start Date|YYYY-MM-DD
 ----------|----------
 End Date|YYYY-MM-DD
 Start Time|HH:MM (local time)
 End Time|HH:MM (local time)
 Application / process|
-Priority|Was it a P1, P2, P3, or P4 incident? 
+Priority|Was it a P1, P2, P3, or P4 incident?
 Incident lead| 2nd line primary engineer or a senior developer
 Comms lead|2nd line secondary engineer
 
@@ -49,15 +50,18 @@ Timeline
 All times in 24-hour (e.g. 16:12) local time, unless otherwise stated.
 
 Time|Description
-----|-----------  
+----|-----------
 HH:MM|
 Total duration of incident (time from when problem started to incident marked as resolved)|
 Time to fix (time from when incident declared to marked as resolved)|
+```
 
 ## Incident Review
 
 ### Date:
+
 ### Time:
+
 ### Attendance:
 
 ### Root cause analysis
@@ -65,6 +69,7 @@ Time to fix (time from when incident declared to marked as resolved)|
 A root cause is an underlying factor why an incident occurred, which when fixed would prevent a recurrence. Identify and summarise all of the root causes that led to the incident in a short paragraph, aimed at a non-technical audience.
 
 Reference all root cause categories that apply, for instance;
+
 * Unexpected effect of code change
 * Configuration fault (configuration change, pre-existing fault, etc)
 * Capacity issue (insufficient capacity to meet demand, implementation issue, etc)
@@ -74,6 +79,7 @@ Reference all root cause categories that apply, for instance;
 * Other (please specify)
 
 ...
+
 ### Actions
 
 Use this section to assign actions to individuals (not teams). These are actions to be taken to fix the root cause of the issue, for preventative measures and for any other improvements.

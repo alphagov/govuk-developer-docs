@@ -48,7 +48,7 @@ API.
 
 ### 3. Reindex
 
-**If your new document uses an existing schema this is not necessary**
+If your new document uses an existing schema, **this is not necessary**.
 
 Reindex the `govuk` index following the instructions in
 [Reindex an Elasticsearch index][reindex].
@@ -63,6 +63,7 @@ $ rake represent_downstream:document_type[new_document_type]
 ```
 
 You can test that the documents appear in search through the API using a query such as:
+
 - [https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide][query-1]
 - [https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide][query-2]
 

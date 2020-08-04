@@ -21,11 +21,15 @@ To
 a member of a MongoDB cluster, run our `force_resync`
 [Fabric](https://github.com/alphagov/fabric-scripts) script:
 
-    fab $environment -H $hostname mongo.force_resync
+```
+fab $environment -H $hostname mongo.force_resync
+```
 
 The `mongo.force_resync` command checks that you are not trying to
 perform a resync on the primary member.
 
 You can run `mongo.status` at any time to see the status of the cluster:
 
-    fab $environment -H $hostname mongo.status
+```
+fab $environment -H $hostname mongo.status
+```

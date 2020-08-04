@@ -10,8 +10,8 @@ review_in: 6 months
 
 There are two passive checks related to PostgreSQL S3 backups:
 
--   PostgreSQL WAL-E base backup push
--   PostgreSQL WAL-E archiving to S3
+- PostgreSQL WAL-E base backup push
+- PostgreSQL WAL-E archiving to S3
 
 ### PostgreSQL WAL-E base backup push
 
@@ -27,7 +27,9 @@ longer to restore and replay the WAL logs from an older checkpoint.
 If it fails check Kibana to see if you can see the error using the
 following query:
 
-    syslog_program:wal-e_postgres_base_backup_push
+```
+syslog_program:wal-e_postgres_base_backup_push
+```
 
 There may be a problem with PostgreSQL or it may have trouble connecting
 to the S3 bucket.
@@ -60,4 +62,6 @@ base backup itself**.
 WAL logs will continue to write on the filesystem of the local server.
 Check the status of the archiving with the following Kibana query:
 
-    message:"*wal-e_postgres_archiving_wrapper*"
+```
+message:"*wal-e_postgres_archiving_wrapper*"
+```

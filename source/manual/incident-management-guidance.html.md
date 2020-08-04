@@ -17,9 +17,9 @@ When something goes wrong on GOV.UK we follow the incident management procedure:
   - Incident reviews are a safe space to discuss and agree the root cause, remedial actions and recommendations to ensure that the incident is less likely to occur again in future. These details are recorded on the incident report.
 
   - Who attends and contributes:
-    * Those involved in handling the incident (core participants). 
-    * Those who may have insight into the problem i.e. other GOV.UK developers.
-    * Guests are welcome to observe the incident review if they let the review facilitator know in advance of the session.
+    - Those involved in handling the incident (core participants). 
+    - Those who may have insight into the problem i.e. other GOV.UK developers.
+    - Guests are welcome to observe the incident review if they let the review facilitator know in advance of the session.
 
 - [GOV.UK blogposts on Priority 1 and Priority 2 incidents](https://insidegovuk.blog.gov.uk/category/incident-reports/)
 

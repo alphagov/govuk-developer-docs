@@ -11,7 +11,9 @@ review_in: 6 months
 You can check what the zombie processes are by SSHing onto the machine
 and running the command:
 
-    ps -A -o user,pid,ppid,state,cmd | awk 'NR==1 || $4=="Z" { print }'
+```
+ps -A -o user,pid,ppid,state,cmd | awk 'NR==1 || $4=="Z" { print }'
+```
 
 The `PPID` field gives you the parent process ID, which you may be able
 to use to diagnose what caused the problem, or at least which process to

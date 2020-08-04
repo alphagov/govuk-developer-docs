@@ -36,7 +36,7 @@ If you're having trouble with this guide, you can ask your colleagues or the #go
     ```
 
 1. Add the above line into your `~/.bash_profile` or equivalent so that it is persistent between restarts.
-    
+
 1. Test that it all works by running `ssh -T git@github.com`.
 
 1. While you're here, associate your name and email to your git commits:
@@ -157,6 +157,7 @@ gds govuk connect --environment integration ssh backend
 The commands can be shortened to `gds govuk c -e integration ssh backend` if you wish.
 
 #### Running a console
+
 Once you have SSH'd into a machine, you can also open a console for a particular application so you can execute commands, for example:
 
 ```bash

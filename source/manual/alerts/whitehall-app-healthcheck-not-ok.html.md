@@ -21,6 +21,5 @@ scheduled editions:
 - [Integration][]
 - [Staging][]
 
-
 [Integration]: https://deploy.integration.publishing.service.gov.uk//job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing:scheduled:requeue_all_jobs
 [Staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing:scheduled:requeue_all_jobs

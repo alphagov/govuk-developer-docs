@@ -17,15 +17,17 @@ The check will list the affected machines and key fingerprints. To
 determine which key the fingerprint belongs to (RSA, DSA or ECDSA) you
 can run the following command on the host:
 
-    for file in /etc/ssh/ssh_host_*.pub; do sudo ssh-keygen -lf $file; done
+```
+for file in /etc/ssh/ssh_host_*.pub; do sudo ssh-keygen -lf $file; done
+```
 
 The immediate problem can be resolved by deleting the host keys and
 regenerating them with `dpkg-reconfigure openssh-server`.
 
 However, bear in mind that the:
 
--   root cause in templating/provisioning also needs to be fixed
--   key change should be communicated to all people with login accounts
+- root cause in templating/provisioning also needs to be fixed
+- key change should be communicated to all people with login accounts
 
 It is also important to keep in mind that this check uses Puppetdb to query
 the facts 'sshdsakey', 'sshecdsakey' and 'sshrsakey' and find duplicated values.

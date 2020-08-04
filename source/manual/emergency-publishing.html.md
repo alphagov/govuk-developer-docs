@@ -26,7 +26,6 @@ Contact numbers for those people are in the [legacy Ops manual](https://docs.goo
 
 ## Adding emergency publishing banners
 
-<a name="prerequisites"></a>
 ### 1. Get the content you will need
 
 The GOV.UK on-call escalations contact will supply you with:
@@ -43,7 +42,6 @@ The GOV.UK on-call escalations contact will supply you with:
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
 1. Go to the Jenkins task:
-
   - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
   - [Deploy the emergency banner on Staging](https://deploy.blue.staging.govuk.digital/job/deploy-emergency-banner/)
   - [⚠️ Deploy the emergency banner on Production ⚠️](https://deploy.blue.production.govuk.digital/job/deploy-emergency-banner/)
@@ -58,7 +56,6 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 >
 > The Jenkins job will also clear all caches. The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
 
-<a name="test-with-cache-bust"></a>
 ### 3. Test with cache bust strings
 
 Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
@@ -96,9 +93,9 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 1. Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
 
-  - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
-  - [Remove the emergency banner from Staging](https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/)
-  - [⚠️ Remove the emergency banner from Production ⚠️](https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/)
+- [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
+- [Remove the emergency banner from Staging](https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/)
+- [⚠️ Remove the emergency banner from Production ⚠️](https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/)
 
 2. Click `Build now` in the left hand menu.
 
@@ -164,7 +161,7 @@ irb(main):001:0> Redis.new.hgetall("emergency_banner")
 If you need to manually run the rake tasks to set the Redis keys, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
 
 1. SSH into a `frontend` machine appropriate to the environment you are
-deploying the banner on. For example:
+   deploying the banner on. For example:
 
 ```bash
 $ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
@@ -177,7 +174,7 @@ $ cd /var/apps/static
 ```
 
 3. Run the rake task to create the emergency banner hash in Redis, substituting
-the quoted data for the parameters:
+   the quoted data for the parameters:
 
 ```bash
 $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
@@ -185,18 +182,18 @@ $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[ca
 
 The `campaign_class` is directly injected into the HTML as a `class` and must be one of
 
-* notable-death
-* national-emergency
-* local-emergency
+- notable-death
+- national-emergency
+- local-emergency
 
 For example, if you are deploying an emergency banner for which you have the
 following information:
 
-* Type: Death
-* Heading: Alas poor Yorick
-* Short description: I knew him Horatio
-* URL: https://www.gov.uk
-* Link text: Click for more information
+- Type: Death
+- Heading: Alas poor Yorick
+- Short description: I knew him Horatio
+- URL: <https://www.gov.uk>
+- Link text: Click for more information
 
 You would enter the following command:
 
@@ -251,9 +248,11 @@ deceased and the years of their life, for example 'His Royal Highness Henry VIII
 1491 to 1547'. The text should link to their official biography.
 
 #### GOV.UK Homepage
+
 ![GOV.UK Homepage](images/emergency_publishing/notable-death-homepage.png)
 
 #### Other pages
+
 ![](images/emergency_publishing/notable-death.png)
 
 ### National emergency (level 1 or category 2)
@@ -261,9 +260,11 @@ deceased and the years of their life, for example 'His Royal Highness Henry VIII
 A large **red** banner is displayed on all GOV.UK pages, including the homepage.
 
 #### GOV.UK Homepage
+
 ![GOV.UK Homepage](images/emergency_publishing/national-emergency-homepage.png)
 
 #### Other pages
+
 ![](images/emergency_publishing/national-emergency.png)
 
 ### Localised large-scale emergency (level 2 or category 1)
@@ -273,7 +274,9 @@ A large **green** banner is displayed on all GOV.UK pages, including the homepag
 These incidents will not be processed outside of business hours.
 
 #### GOV.UK Homepage
+
 ![GOV.UK Homepage](images/emergency_publishing/local-emergency_homepage.png)
 
 #### Other pages
+
 ![](images/emergency_publishing/local-emergency.png)

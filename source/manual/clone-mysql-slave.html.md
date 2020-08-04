@@ -8,7 +8,7 @@ last_reviewed_on: 2020-02-11
 review_in: 6 months
 ---
 
-> **Note** 
+> **Note**
 >
 > This process is only applicable to Carrenza environments.
 
@@ -27,11 +27,11 @@ In this how-to, we're using...
 
 ## Overview
 
-1.  Lock the original slave, preventing writes to it
-2.  Copy the data from original slave to your folder on the new slave
-3.  Unlock the original slave and tidy up
-4.  Move the data on the new slave
-5.  Start the new slave
+1. Lock the original slave, preventing writes to it
+2. Copy the data from original slave to your folder on the new slave
+3. Unlock the original slave and tidy up
+4. Move the data on the new slave
+5. Start the new slave
 
 ## 1. Lock the original slave to prevent writes
 
@@ -75,7 +75,7 @@ You should set `<username>` to your short name as set in puppet (e.g. 'bobwalker
 > **WARNING**
 >
 > Forwarding your ssh-agent (`-A`) means that anyone with sufficient access on the remote server can authenticate as you. Do not use it on un-trusted servers.
-
+>
 > **Note**
 >
 > This forwards your ssh-agent to slave (`-A`) then, passing that agent to sudo's environment (`-E`), rsyncs the mysql files to backup.
@@ -98,6 +98,7 @@ slave:mysql> SLAVE START;
 ```
 
 The original slave should then begin to catch up with master. You can monitor this with:
+
 ```mysql
 slave:mysql> SHOW SLAVE STATUS\G
 ```

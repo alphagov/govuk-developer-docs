@@ -48,6 +48,7 @@ not provide any additional external insight you should instead consider adding
 a [test to Smokey][Smokey].
 
 ## Adding a check
+
 These instructions are based on adding a check for HTTP request, if you are
 checking something unusual or with specific needs you may need to tweak this
 for your use case.

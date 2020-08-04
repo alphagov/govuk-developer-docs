@@ -54,9 +54,9 @@ time.
 
 - Check the `Last used` value.
 - If the value is a date,
-[find where the key is used](#3-find-where-the-key-is-used).
+  [find where the key is used](#3-find-where-the-key-is-used).
 - If it's `N/A`, you can safely [remove the key](#6-remove-the-old-key) as it
-isn't used.
+  isn't used.
 
 ### 3. Find where the key is used
 
@@ -73,10 +73,10 @@ Firstly, search for the key in [govuk-secrets]:
 
 - Enter [govuk-secrets/puppet] in your machine.
 - Run the appropriate [Puppet AWS common actions] considering the following:
-    - The command to run is related to the environment you need to target. For
+  - The command to run is related to the environment you need to target. For
     example, to edit global staging credentials in the `govuk::apps` namespace,
     you need to run `bundle exec rake 'eyaml:edit[staging,apps]'`.
-    - You may need to run more than one command. For example, to edit the global
+  - You may need to run more than one command. For example, to edit the global
     integration credentials both in and out of the `govuk::apps` namespace, you
     need run both `$ bundle exec rake 'eyaml:edit[integration]'` and
     `$ bundle exec rake 'eyaml:edit[integration,apps]'`.
@@ -135,7 +135,6 @@ In production systems, this could prevent minor outages scaling into incidents.
 ## Command Line Interface
 
 It's also possible to view and update access keys with the [AWS CLI].
-
 
 [AWS IAM]: https://docs.aws.amazon.com/en_pv/IAM/latest/UserGuide/id_users.html
 [Access Keys]: https://docs.aws.amazon.com/en_pv/IAM/latest/UserGuide/id_credentials_access-keys.html

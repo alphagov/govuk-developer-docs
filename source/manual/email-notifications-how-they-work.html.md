@@ -46,7 +46,7 @@ common issues and troubleshooting, view [Email Alert API docs].
 * Provides a user interface for a user to manage their subscriptions.
 * Communicates with Email Alert API to make changes.
 
-### Email Alert Service
+### Email Alert Service
 
 * Listens to the Publishing API message queue.
 * Communicates with Email Alert API when an appropriate Publishing API
@@ -70,7 +70,7 @@ which is authenticated by an API key. Communication from Notify to Email
 Alert API is done via a verified HTTP callback with a bearer token.
 Email Alert API is an internal application, so to enable callbacks two
 endpoints are exposed publicly through
-https://email-alert-api-public.publishing.service.gov.uk.
+<https://email-alert-api-public.publishing.service.gov.uk>.
 
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
 [Email Alert API docs]: /apis/email-alert-api/troubleshooting.html

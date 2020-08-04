@@ -41,18 +41,20 @@ doesn't conflict with any existing records, then you can use
 
 The following arguments are necessary:
 
--   `-h`: Hostname of the current `PRIMARY` node, from `rs.status()`.
--   `-d`: Name of the database, from the BSON filename.
--   `-c`: Name of the collection, from the BSON filename.
--   `--objcheck`: Validate BSON. Not the default in MongoDB 2.2
+- `-h`: Hostname of the current `PRIMARY` node, from `rs.status()`.
+- `-d`: Name of the database, from the BSON filename.
+- `-c`: Name of the collection, from the BSON filename.
+- `--objcheck`: Validate BSON. Not the default in MongoDB 2.2
 
 For example:
 
-    dcarley@production-licensing-mongo-1:/var/lib/mongodb/rollback$ mongorestore -h licensing-mongo-2 -d licensify-audit -c audit --objcheck licensify-audit.audit.2013-05-30T12-45-42.1.bson
-    connected to: licensing-mongo-2
-    Thu May 30 13:56:52 licensify-audit.audit.2013-05-30T12-45-42.1.bson
-    Thu May 30 13:56:52 going into namespace [licensify-audit.audit]
-    1 objects found
+```
+dcarley@production-licensing-mongo-1:/var/lib/mongodb/rollback$ mongorestore -h licensing-mongo-2 -d licensify-audit -c audit --objcheck licensify-audit.audit.2013-05-30T12-45-42.1.bson
+connected to: licensing-mongo-2
+Thu May 30 13:56:52 licensify-audit.audit.2013-05-30T12-45-42.1.bson
+Thu May 30 13:56:52 going into namespace [licensify-audit.audit]
+1 objects found
+```
 
 Unfortunately `mongorestore` may not give any feedback about whether the
 restore was successful. It is advisable to check the logs on the host

@@ -16,15 +16,15 @@ To do this, you can click on the **Edit a page** link at the top and enter the
 base path of the content item you need to edit. You will then see a section
 titled **Related content items** where you can add, edit or remove related links.
 
-It's important to note that the automatically generated related links are 
-contained in the section titled **Suggested related content items**. Related 
-links in this section can be re-ordered or removed, but no new links can be 
-added here. The links in this section (if any) will only be shown if there are no 
+It's important to note that the automatically generated related links are
+contained in the section titled **Suggested related content items**. Related
+links in this section can be re-ordered or removed, but no new links can be
+added here. The links in this section (if any) will only be shown if there are no
 manually-curated links in the **Related content items** section.
 
 If a request comes in a from a content designer to edit the related links of a
 page, you can send them to Content Tagger so they can edit the links
-themselves. You may also wish to point them to this guidance for managing related 
+themselves. You may also wish to point them to this guidance for managing related
 links using Content Tagger.
 
 [Content Tagger]: https://content-tagger.publishing.service.gov.uk
@@ -43,11 +43,10 @@ The code for the process of generating and ingesting related links can be found 
 
 Machine learning generated related links are created exclusively for Whitehall content, with a number of measures in place to ensure that we always show manually curated links set by publishers.
 
-- Related links are only generated for a number of content types, with exclusions in place for content that should not be linked _from_, linked _to_, or both. These exclusions can be found at https://github.com/alphagov/govuk-related-links-recommender/tree/master/src/config.
+- Related links are only generated for a number of content types, with exclusions in place for content that should not be linked _from_, linked _to_, or both. These exclusions can be found at <https://github.com/alphagov/govuk-related-links-recommender/tree/master/src/config>.
 - Generated related links are stored within the `suggested_ordered_related_items` property of a content item, while all existing and manually curated links continue to be stored within the `ordered_related_items` property.
 - If links exist with `ordered_related_items` for a content item, we do not show generated related links.
 - Requests need to have the header `Govuk-Use-Recommended-Related-Links` header set to `True` in order to show suggested related links - [this is set by the CDN for all requests](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L242).
-
 
 ### Concourse pipeline details
 
@@ -76,9 +75,10 @@ Should we ever need to roll back any suggested related links, there are a number
 #### Links for individual pages
 
 To rollback suggested related links for an individual page (to show the original related links), use the [Run rake task job on Jenkins](https://deploy.publishing.service.gov.uk/job/run-rake-task/) with the following parameters set:
-  - `TARGET_APPLICATION: publishing-api`
-  - `MACHINE_CLASS: publishing_api`
-  - `RAKE_TASK: content:reset_related_links_for_pages['CONTENT_ID’]`, where `CONTENT_ID` is the content id of the page to remove suggested links from
+
+- `TARGET_APPLICATION: publishing-api`
+- `MACHINE_CLASS: publishing_api`
+- `RAKE_TASK: content:reset_related_links_for_pages['CONTENT_ID’]`, where `CONTENT_ID` is the content id of the page to remove suggested links from
 
 #### Links for certain document types
 

@@ -33,7 +33,7 @@ We have restricted public access as the Web UI allows modifying the state of
 run:
 
 ```bash
-$ gds govuk connect sidekiq-monitoring -e production aws/backend 
+$ gds govuk connect sidekiq-monitoring -e production aws/backend
 ```
 
 Go to the `127.0.0.1:port` URL in the command output to see the UI.

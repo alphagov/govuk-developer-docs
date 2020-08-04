@@ -9,7 +9,7 @@ last_reviewed_on: 2020-03-10
 review_in: 6 months
 ---
 
-## RDS or Carrenza/6DG  
+## RDS or Carrenza/6DG
 
 To determine which restore method you should be using, first check where the app you're attempting to restore the database for is located. You can find this information by selecting your application from this [list](https://docs.publishing.service.gov.uk/apps/by-team.html) and looking at the information under the "Hosting" heading. You see something like:
 
@@ -80,8 +80,8 @@ gpg> save
 ```
 
 **NOTE**: if you are reverting the blank passphrase to the original GPG passphrase as part of the postgres resync ["Re-protect the GPG key" instructions](/manual/resync-postgres-standby.html#restore-from-wal-e-backups-stored-in-s3), the "`Enter the new passphrase for this secret key`" step will be different:
- 
- ```
+
+```
 Enter passphrase: <passphrase for postgresql-backups/<environment>/postgresql-primary>
 Repeat passphrase: <passphrase for postgresql-backups/<environment>/postgresql-primary>
 ```

@@ -39,7 +39,7 @@ Please view this [page](connect-to-vcloud-director.html) for details on how to a
 > **Note**
 >
 > In the link above, you will see a link format similar to https://vcloud.carrenza.com/tenant/{environment}, where {environment} is the value of the `Org` key you get from decrypting secrets. It will look something like `Org: XXXX-govuk-staging-london`.
-
+>
 > **Note**
 >
 > Aligning disk partitions on VMware VMs ensures that disk I/O is not
@@ -55,7 +55,7 @@ Please view this [page](connect-to-vcloud-director.html) for details on how to a
 > post](http://blogs.vmware.com/vsphere/2011/08/guest-os-partition-alignment.html).
 > VMware performance recommendations can be [found
 > here](http://www.vmware.com/pdf/Perf_Best_Practices_vSphere5.0.pdf).
-
+>
 > **WARNING**
 >
 > When adding new disks, be careful to select an appropriate disk

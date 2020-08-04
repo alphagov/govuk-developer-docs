@@ -10,6 +10,7 @@ review_in: 6 months
 ---
 
 ## Using startup scripts
+
 If you are making changes to a frontend app and nothing else, you can view these changes by running the application `./startup.sh` script:
 
 ```shell
@@ -64,6 +65,7 @@ If you want to test changes in static against a frontend app, you need to tell D
 cd /govuk/govuk-docker/projects/government-frontend
 vim docker-compose.yml
 ```
+
 Edit the docker-compose.yml live config to depend on static and remove the live static environment:
 
 ```yaml
@@ -90,11 +92,13 @@ govuk-docker up government-frontend-app-live
 ```
 
 ## Components pulled in by Static
+
 Some components, such as the cookie banner, are pulled in by Static. To test changes to this component locally, we need to run a frontend app against both local static and local [govuk_publishing_components]. This can be done by combining the approaches above - just remember to update the Gemfile in Static too!
 
 ## Troubleshooting
 
 ### 504 Timeout Errors
+
 Assets can load slowly, which means we get frequent timeouts when running apps locally. Some developers find that the following workaround can help:
 
 1. Set `config.assets.debug` to `false` in the `development.rb` file in your frontend app
@@ -102,6 +106,7 @@ Assets can load slowly, which means we get frequent timeouts when running apps l
 1. Start your app as normal
 
 ### Port already in use
+
 You might sometimes find that you have something running on a port still, which stops you from starting up an app. To kill a process running on a port:
 
 ```shell

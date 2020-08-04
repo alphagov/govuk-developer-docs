@@ -18,6 +18,7 @@ multiple apps.
 ### 1. Change the organisation's slug in Whitehall
 
 Run the appropriate rake task:
+
 - [Organisation][organisation-rake-task]
 - [Worldwide Organisation][worldwide-organisation-rake-task]
 

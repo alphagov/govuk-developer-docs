@@ -51,12 +51,14 @@ The deployment for both apps can be triggered automatically via GitHub flow, or
 manually via command line tools.
 
 #### Staging
+
 The deployment to staging is triggered when a PR gets merged into master. You
 can check the [Travis logs of the `master` build](https://travis-ci.org/alphagov/datagovuk_find) to see progress.
 
 You can check the deployment on [staging.data.gov.uk](https://staging.data.gov.uk/)
 
 #### Production
+
 The deployment to production is triggered when a [new release] with an appropriate version
 number is created in GitHub.
 

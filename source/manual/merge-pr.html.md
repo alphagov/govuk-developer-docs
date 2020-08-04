@@ -62,7 +62,7 @@ hub pr checkout <PR-NUMBER>
 git push --set-upstream origin <BRANCH-NAME>
 ```
 
-where <BRANCH-NAME> is the name of the branch that's checked out.
+where `<BRANCH-NAME>` is the name of the branch that's checked out.
 
 #### Dependabot
 

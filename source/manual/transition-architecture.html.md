@@ -23,7 +23,7 @@ on GitHub][repos].
 
 ![Overview of the elements involved in transition](images/transition-architecture.png)
 
-<em>Source diagram in the [GOV.UK architecture folder][arch-folder].</em>
+Source diagram in the [GOV.UK architecture folder][arch-folder].
 
 [arch-folder]: https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00
 
@@ -109,8 +109,8 @@ transitioned sites (but see [Special cases](#special-cases) below).
 
 In the case of a data centre failure, within the disaster recovery (DR) vCloud organisation we have:
 
-* Bouncer application servers which read from the DR database slave
-* a second PostgreSQL slave for the Transition database
+- Bouncer application servers which read from the DR database slave
+- a second PostgreSQL slave for the Transition database
 
 #### Application
 
@@ -129,7 +129,7 @@ to allow it isn't present on the master.
 
 #### Special cases
 
-- We serve some assets which were previously on directgov and businesslink
+We serve some assets which were previously on directgov and businesslink
 [via Nginx](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer.pp#L56-L146)
 on the Bouncer machines. The assets live in [two](https://github.com/alphagov/assets-directgov)
 [repos](https://github.com/alphagov/assets-businesslink) which are [fetched and

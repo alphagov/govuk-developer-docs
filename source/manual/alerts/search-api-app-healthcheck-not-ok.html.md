@@ -33,7 +33,7 @@ Moreover, if the Search API doesn't take new jobs off the Sidekiq queue,
 and jobs continue to be added to the queue (by the publishing-api), this
 can cause Redis to run out of memory.
 
-#### How do I investigate this?
+### How do I investigate this?
 
 You'll need to find out why the Search API can't connect to Redis.
 
@@ -50,7 +50,7 @@ in search results after they've been published.
 
 The thresholds are set in the Search API [GitHub repository][search-github-repo].
 
-##### How do I investigate this?
+### How do I investigate this?
 
 The issue could be caused by a temporary spike in publishing activity, or
 something being wrong with the Search API.
@@ -70,14 +70,13 @@ Note: We use a managed elasticsearch, [Amazon Elasticsearch Service][aws-elastic
 To solve this issue, look at the logs of the application to see what
 is wrong.
 
-#### How do I investigate this?
+### How do I investigate this?
 
 Find out why the Search API can't connect to elasticsearch.
 
 - Look at the Search API logs
 - Look at the [elasticsearch cluster health][cluster-health]
 - Check the status of the Elasticsearch cluster in the AWS console
-
 
 ## Reranker is not OK
 
@@ -92,7 +91,7 @@ results.
 
 The machine learning model is hosted in [Amazon SageMaker][aws-sagemaker].
 
-#### How do I investigate this?
+### How do I investigate this?
 
 Find out why the Search API can't connect to elasticsearch.
 

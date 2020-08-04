@@ -8,7 +8,7 @@ last_reviewed_on: 2020-05-04
 review_in: 3 months
 ---
 > Deprecation note:
-> We expect this to be fixed by https://github.com/alphagov/govuk-aws/pull/1097
+> We expect this to be fixed by <https://github.com/alphagov/govuk-aws/pull/1097>
 > If you see a similar issue, please let RE know in Slack #re-govuk.
 
 ## Symptom
@@ -33,9 +33,9 @@ In this example we are looking at the `integration` environment.
 
 1. You will need the following repositories:
 
-   - https://github.com/alphagov/govuk-aws
-   - https://github.com/alphagov/govuk-aws-data
-   - https://github.com/alphagov/govuk-secrets
+   - <https://github.com/alphagov/govuk-aws>
+   - <https://github.com/alphagov/govuk-aws-data>
+   - <https://github.com/alphagov/govuk-secrets>
 
 2. It is very useful to have access to the AWS console, to observe the changes
    as they happen.
