@@ -115,11 +115,11 @@ message:"TimedOutException" AND (application:"specialist-publisher" OR applicati
 
 If you're looking for specific program outputs, use `syslog_program:FOO`:
 
-- `audispd`:	This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.
+- `audispd`: This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.
 - `clamd`
 - `cron`
 - `govuk_sync_mirror`: Records information from govuk_sync_mirror script
-- `puppet-agent`:	Records output for govuk_puppet script on various servers
+- `puppet-agent`: Records output for govuk_puppet script on various servers
 - `puppet-master`
 - `smokey`
 

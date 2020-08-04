@@ -49,7 +49,7 @@ These are the GET request status codes that Varnish caches automatically: 200, 2
 
 We have added to these - see the [GOV.UK CDN Config repo](https://github.com/alphagov/govuk-cdn-config/) VCL for special handling of certain status codes, and for the most up-to-date version of what we're running in Fastly. Refer to the Varnish 2.1 documentation when looking at the VCL code.
 
-**Testing VCL**
+### Testing VCL
 
 VCL can be tricky to get right. When making changes to the VCL, add smoke tests [to smokey](https://github.com/alphagov/smokey/blob/master/features/caching.feature) and check that they don't fail in staging.
 
@@ -173,10 +173,10 @@ If we reach the limit then the [Jenkins job to update Bouncer's CDN config](http
 
 Configuring a new site in Transition generally adds at least 4 domains to the service, including the `aka` domain for each real domain. For example:
 
--   `www.foo.gov.uk`
--   `aka.foo.gov.uk`
--   `foo.gov.uk`
--   `aka-foo.gov.uk`
+- `www.foo.gov.uk`
+- `aka.foo.gov.uk`
+- `foo.gov.uk`
+- `aka-foo.gov.uk`
 
 ### New solution for Bouncer and Fastly
 

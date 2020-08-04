@@ -17,7 +17,7 @@ and we have not received the status updates from Notify within the past hour.
 This could mean there is a problem with our system, or there could be a problem
 with Notify.
 
-### Check which delivery attempts are affected
+### Check which delivery attempts are affected
 
 ```ruby
   DeliveryAttempt.where("created_at > ?", (1.hour + 10.minutes).ago).where(status: 0)

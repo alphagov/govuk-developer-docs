@@ -99,7 +99,7 @@ Steps to investigate postgres db size:
 1. List databases: `\list` or `\l`
 1. Check out which databases can be improved
 1. You can choose one of the dbs by doing: `\c <name-of-db>`
-For example: `\c email-alert-api_production`
+   For example: `\c email-alert-api_production`
 
 If this continues to be a problem see if you need to [resize the disk](/manual/adding-disks-in-vcloud.html).
 

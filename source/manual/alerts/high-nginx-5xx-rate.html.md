@@ -9,6 +9,7 @@ review_in: 6 months
 ---
 
 You can view the 5xx logs across all machines on these two dashboards:
+
 - [Nginx 5xx Requests (Carrenza)][nginx-5xx-grafana-carrenza]
 - [Nginx 5xx Requests (AWS)][nginx-5xx-grafana-aws]
 
@@ -44,7 +45,9 @@ infrequently-used apps which rarely have errors, the `http_5xx` may
 never get created. You can force creation by creating a zero-value
 `http_500` counter:
 
-    fab $environment -H frontend-1.frontend statsd.create_counter:frontend-1_frontend.nginx_logs.static_publishing_service_gov_uk.http_500
+```
+fab $environment -H frontend-1.frontend statsd.create_counter:frontend-1_frontend.nginx_logs.static_publishing_service_gov_uk.http_500
+```
 
 Note that the `http_5xx` counters are created by carbon-aggregator, so
 they will automatically be created when a corresponding `http_500`

@@ -11,7 +11,7 @@ review_in: 6 months
 
 ## Harvesting data for Web Map Service map previews
 
-In order to show map previews a harvest source needs to be created with the correct source type (`WAF`, `CSW`, etc) in the ckan publisher. 
+In order to show map previews a harvest source needs to be created with the correct source type (`WAF`, `CSW`, etc) in the ckan publisher.
 
 Manually uploading datasets will not generate map preview data, please create a harvest source with a `Single Gemini 2 document` source type.
 
@@ -21,16 +21,14 @@ Manually uploading datasets will not generate map preview data, please create a 
 
 The source code for the map rendering can be found in [alphagov/datagovuk_find javascript assets](https://github.com/alphagov/datagovuk_find/tree/master/app/assets/javascripts/map-preview). Maps are comprised of client-side javascript on top of [OpenLayers](https://openlayers.org/) and [Ext](https://www.sencha.com/extjs-for-open-source/) 3rd party javascript libraries.
 
-
 ## Key OpenLayers map preview concepts
 
-OpenLayers is a slip map javascript framework, conceptually similar to Google Maps.  
-Maps are comprised of a central map element which can be layered with additional data features such as bounded boxes, polygons and data points.  
-The underlying map image is a series of tiled images which can be retrieved from an external service.  
+OpenLayers is a slip map javascript framework, conceptually similar to Google Maps.
+Maps are comprised of a central map element which can be layered with additional data features such as bounded boxes, polygons and data points.
+The underlying map image is a series of tiled images which can be retrieved from an external service.
 Similarly the features which are overlayed on the map may come from external sources.
 
 [Data.gov.uk find](https://data.gov.uk/search?q=&filters%5Bpublisher%5D=&filters%5Btopic%5D=&filters%5Bformat%5D=WMS&sort=best) maps typically group data features into sets which appear in a menu on the left hand side of the map. These controls allow the user to toggle visibility of the data features.
-
 
 ## External WMS data
 
@@ -40,7 +38,6 @@ Some of these requests are made via the controller proxy methods in the [datagov
 ## External dependencies
 
 Map previews rely on two Ext.js libraries, proj4j and OpenLayers plus some accompanying CSS assets. These are all currently hosted on the domain osinspiremappingprod.ordnancesurvey.co.uk, there's potential for the service to fail should these assets become unavailable.
-
 
 ## Common problems
 

@@ -10,8 +10,8 @@ review_in: 6 months
 
 We have a few monitoring checks for Redis:
 
--  memory usage
--  number of connected clients
+- memory usage
+- number of connected clients
 
 Redis is configured to use 75% of the system memory. If Redis memory usage
 reaches this limit it will stop accepting data input. Redis is also unable to

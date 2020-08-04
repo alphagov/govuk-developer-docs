@@ -50,7 +50,7 @@ time.
 * Do not reboot more than one machine of the same class at the
   same time.
 * Most machines in Production should be rebooted out of hours, and this
-is handled by those who are on call out of hours.
+  is handled by those who are on call out of hours.
   * In emergencies, machines in Production may need to be rebooted in-hours.
   * Machines in other environments can be rebooted in hours.
 * There is [extra guidance if the machine you are rebooting is in AWS](#rebooting-guidance-for-aws).
@@ -129,20 +129,24 @@ remove them from the AWS load balancer target groups before rebooting:
 
 You can see our MongoDB machines by running:
 
-    $ fab $environment puppet_class:mongodb::server hosts
+```
+$ fab $environment puppet_class:mongodb::server hosts
+```
 
 All secondary Mongo machines will reboot overnight. If you don't need to
 reboot the cluster right now, step the current primary down and allow it
 to reboot overnight:
 
-    $ fab $environment -H $hostname mongo.step_down_primary
+```
+$ fab $environment -H $hostname mongo.step_down_primary
+```
 
 The general approach for rebooting machines in a MongoDB cluster is:
 
--   Check cluster status with `fab $environment -H $hostname mongo.status`
--   Using `fab $environment -H $hostname mongo.safe_reboot`
-    - Reboot the secondaries
-    - Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
+* Check cluster status with `fab $environment -H $hostname mongo.status`
+* Using `fab $environment -H $hostname mongo.safe_reboot`
+  * Reboot the secondaries
+  * Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
 ### Rebooting Redis machines
 
@@ -175,9 +179,11 @@ If there are problems with the cluster (eg, a partition has happened),
 the `safe_reboot` script will not reboot anything, and you'll need to
 take manual action to resolve the problem.
 
--   Reboot the nodes in the cluster:
+* Reboot the nodes in the cluster:
 
-        fab <environment> class:rabbitmq rabbitmq.safe_reboot
+```
+fab <environment> class:rabbitmq rabbitmq.safe_reboot
+```
 
 If any applications start alerting due to `rabbitmq-1` being rebooted
 then either add a note here about how to make that application recover,
@@ -214,27 +220,31 @@ sync to fail.
 
 In order to safely reboot these machines you'll need access to [vCloud Director][vcloud], in order to switch traffic away from backend-lb-1 before rebooting it - all traffic goes through this machine unless it fails.
 
-- Reboot backend-lb-2 and wait for it to recover.
+* Reboot backend-lb-2 and wait for it to recover.
 
-      fab <environment> -H backend-lb-2.backend vm.reboot
+  ```
+  fab <environment> -H backend-lb-2.backend vm.reboot
+  ```
 
   > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
 
-- Find the IP addresses of backend-lb-1 and backend-lb-2 for the
+* Find the IP addresses of backend-lb-1 and backend-lb-2 for the
     environment. They will be listed in [this
     repo](https://github.com/alphagov/govuk-provisioning/).
-- Use vCloud Director to update the NAT rule to point to backend-lb-2.
-    - The Nat rule will be in [this repo](https://github.com/alphagov/govuk-provisioning/).
-    - Go to "Administration".
-    - Find 'GOV.UK Management' in the list of vdcs and click on it
-    - Select the "edge gateway" tab, right click on it and select "edge gateway services".
-    - Click the NAT tab.
-    - Find the rule corresponding to the rule defined in the vcloud-launcher file, and update the DNAT rules to point to the IP address of backend-lb-2 by clicking edit, and updating the "Translated (Internal) IP/range" field and click OK to save these rules.
-- Reboot backend-lb-1 and wait for it to recover
+* Use vCloud Director to update the NAT rule to point to backend-lb-2.
+  * The Nat rule will be in [this repo](https://github.com/alphagov/govuk-provisioning/).
+  * Go to "Administration".
+  * Find 'GOV.UK Management' in the list of vdcs and click on it
+  * Select the "edge gateway" tab, right click on it and select "edge gateway services".
+  * Click the NAT tab.
+  * Find the rule corresponding to the rule defined in the vcloud-launcher file, and update the DNAT rules to point to the IP address of backend-lb-2 by clicking edit, and updating the "Translated (Internal) IP/range" field and click OK to save these rules.
+* Reboot backend-lb-1 and wait for it to recover
 
-      fab <environment> -H backend-lb-1.backend vm.reboot
+  ```
+  fab <environment> -H backend-lb-1.backend vm.reboot
+  ```
 
-- Use [vCloud Director][vcloud] to update the NAT rule to point back to the IP address of backend-lb-1.
+* Use [vCloud Director][vcloud] to update the NAT rule to point back to the IP address of backend-lb-1.
 
 ### Rebooting MySQL backup machines (Carrenza only)
 
@@ -242,14 +252,18 @@ The MySQL backup machines [create a file during the backup
 process](https://github.com/alphagov/govuk-puppet/commit/0e1615bf31f714994b43142ecf915330d4d46af5).
 If that file exists, the machine isn't safe to reboot.
 
--   Check if the file exists:
+* Check if the file exists:
 
-        fab <environment> -H mysql-backup-1.backend sdo:'test -e /var/lock/mysql-backup.lock'
+  ```
+  fab <environment> -H mysql-backup-1.backend sdo:'test -e /var/lock/mysql-backup.lock'
+  ```
 
--   If the file doesn't exist (that command returns non-0), reboot the
-    machine:
+* If the file doesn't exist (that command returns non-0), reboot the
+  machine:
 
-        fab <environment> -H mysql-backup-1.backend vm.reboot
+  ```
+  fab <environment> -H mysql-backup-1.backend vm.reboot
+  ```
 
 ### Rebooting MySQL master and slave machines (Carrenza only)
 

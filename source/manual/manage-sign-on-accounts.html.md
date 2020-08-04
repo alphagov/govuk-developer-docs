@@ -51,7 +51,7 @@ Then create the account:
 - Fill in the name and email address of the team requesting the account
 - An account will be created associated with their email address
 
-### Create application token for the API user
+### Create application token for the API user
 
 - From the API user's account page, click 'Add application token'
 - Select the 'Application' for which you need a token, and click 'Create access token'

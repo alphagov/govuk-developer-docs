@@ -23,7 +23,7 @@ access/unencrypted previous diffs.
 4. Ensure you make a copy of the password you use.
 5. Get the key ID you just generated with `gpg2 --list-keys --fingerprint`, and make a copy of the full fingerprint ID.
 6. Export _secret_ key: Copy the output of `gpg2 --export-secret-key --armor <key id>`
-7. Export _public_ key: Copy the output of `gpg2 --export --armor <key id>` to a public key server, for instance https://pgp.mit.edu/
+7. Export _public_ key: Copy the output of `gpg2 --export --armor <key id>` to a public key server, for instance <https://pgp.mit.edu/>
 
 > **NOTE**
 >
@@ -34,8 +34,7 @@ access/unencrypted previous diffs.
 The following files need to be updated with the new key details:
 
 - Update the [govuk-puppet hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/production.yaml),
-updating the `_: &offsite_gpg_key` key with the new fingerprint value.
-
+  updating the `_: &offsite_gpg_key` key with the new fingerprint value.
 - Update the [encrypted govuk-secrets repo hieradata](https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/production_credentials.yaml),
-updating both `backup::assets::backup_private_gpg_key` and `backup::assets::backup_private_gpg_key_passphrase` with
-the relevant values.
+  updating both `backup::assets::backup_private_gpg_key` and `backup::assets::backup_private_gpg_key_passphrase` with
+  the relevant values.

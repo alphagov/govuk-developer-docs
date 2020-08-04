@@ -15,7 +15,6 @@ there are 2 methods:
 
 2. use the command pg_resync_slave (older method that may not work)
 
-
 ## Resync methods
 
 ### Restore from WAL-E Backups stored in S3
@@ -23,12 +22,14 @@ there are 2 methods:
 Follow the following steps on the Postgresql standby machine:
 
 1. Disable puppet by running:
+
    ```
    govuk_puppet --disable "resyncing postgresql from wal-e S3 backups"
    ```
 
-2. Follow the steps in this [doc](/manual/postgresql-backups.html#wal-e-failing-with-errors-about-gpg) to remove the password from the GPG key so that the WAL-E restoration process
-can automatically decrypt the backups from S3.
+2. Follow the steps in this [doc](/manual/postgresql-backups.html#wal-e-failing-with-errors-about-gpg)
+   to remove the password from the GPG key so that the WAL-E restoration process
+   can automatically decrypt the backups from S3.
 
    The passphrase is in the pass store of the GOV.UK secrets under:
    `postgresql-backups/<environment>/postgresql-primary`
@@ -36,22 +37,26 @@ can automatically decrypt the backups from S3.
 
 3. Edit the file `/var/lib/postgresql/9.3/main/recovery.conf` by appending the
    following line:
+
    ```
    restore_command = 'envdir /etc/wal-e/env.d /usr/local/bin/wal-e wal-fetch %f %p'
    ```
 
 4. Restart Postgresql service by running:
+
    ```
    sudo /etc/init.d/postgresql restart
    ```
 
 5. Tail the log to see if the process of restoration is working and when
    it has finished. Run:
+
    ```
    tail -f /var/log/postgresql/postgresql-9.3-main.log
    ```
 
 6. After the restoration has finished, remove the appended line from `/var/lib/postgresql/9.3/main/recovery.conf` and restart Postgresql:
+
    ```
    sudo /etc/init.d/postgresql restart
    ```
@@ -61,6 +66,7 @@ can automatically decrypt the backups from S3.
 8. You can restart `collectd` by following the steps in the [Restarting collectd section](#restarting-collectd).
 
 9. Re-enable puppet:
+
    ```
    govuk_puppet --enable
    ```

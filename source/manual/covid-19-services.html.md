@@ -176,9 +176,8 @@ Services team have access.
 To log in to AWS:
 
 1. [Install and set up the gds-cli](/manual/get-started.html#8-use-your-aws-access), then log in to the AWS Console with either:
-
-   - `gds aws govuk-corona-data-staging-poweruser -l` for staging
-   - `gds aws govuk-corona-data-prod-poweruser -l` for production
+  - `gds aws govuk-corona-data-staging-poweruser -l` for staging
+  - `gds aws govuk-corona-data-prod-poweruser -l` for production
 
 ## Deployment
 
@@ -308,9 +307,9 @@ document helpful when investigating this issue.
 
 Useful Slack channels:
 
-- #govuk-corona-services-tech (builds the forms)
-- #covid-engineering-team (runs the data pipeline)
-- #re-prometheus-support (runs the Prometheus infra)
+- `#govuk-corona-services-tech` (builds the forms)
+- `#covid-engineering-team` (runs the data pipeline)
+- `#re-prometheus-support` (runs the Prometheus infra)
 
 ### Service downtime**
 
@@ -346,7 +345,7 @@ Steps you could take:
 - Check the `/metrics` endpoints on the apps, to see if they are
   serving metrics to prometheus correctly
 
-**Deactivate Prometheus alerts for these services**
+#### Deactivate Prometheus alerts for these services
 
 > **Note:** you should only do this if you have confirmed that there is
 a problem with the alert.

@@ -31,6 +31,7 @@ Reliability Engineering, who will co-ordinate with Fastly to renew the
 certificate.
 
 ## Production, staging and integration wildcard certificates
+
 The wildcard TLS certificates for production, staging and integration are
 managed by Reliability Engineering. Once the alert appears, they will work to
 renew the relevant certificate and make it live. For staging and integration,

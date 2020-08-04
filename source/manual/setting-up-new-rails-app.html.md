@@ -150,14 +150,14 @@ Then add `task default: %i(spec lint)` in Rakefile and finally run `rake`.
 
 ## Puppet, DNS, Sentry and beyond
 
-  * To prepare the servers for your app, follow the doc in [govuk-puppet]
-  * To configure app deployments, follow the docs in [govuk-app-deployment]
-  * To enable external DNS, follow the article in the [Developer Docs][dns]
-  * Make a PR to add your app to [data/applications.yml][docs-applications] for these docs
-  * Then ask 2nd line to run the task in [govuk-saas-config] to update [Sentry]
-  * Add the application to the [Release] app (the create button is at the bottom)
-  * Add the application to the [Deploy_App job][deploy-jenkins] in Jenkins (click Configure)
-  * Run the [Deploy_App job][deploy-jenkins] using with `with_migrations` option to get started
+* To prepare the servers for your app, follow the doc in [govuk-puppet]
+* To configure app deployments, follow the docs in [govuk-app-deployment]
+* To enable external DNS, follow the article in the [Developer Docs][dns]
+* Make a PR to add your app to [data/applications.yml][docs-applications] for these docs
+* Then ask 2nd line to run the task in [govuk-saas-config] to update [Sentry]
+* Add the application to the [Release] app (the create button is at the bottom)
+* Add the application to the [Deploy_App job][deploy-jenkins] in Jenkins (click Configure)
+* Run the [Deploy_App job][deploy-jenkins] using with `with_migrations` option to get started
 
 ## Configuring the app for Jenkins
 
@@ -175,9 +175,9 @@ node {
 
 You also need to add a Jenkins integration to the repo on GitHub:
 
-1.  In GitHub, go to Settings -&gt; Integrations & Services
-2.  Add Jenkins (GitHub plugin)
-3.  Add the link to the CI GitHub webhook
-4.  Make sure Active is ticked
+1. In GitHub, go to Settings -&gt; Integrations & Services
+2. Add Jenkins (GitHub plugin)
+3. Add the link to the CI GitHub webhook
+4. Make sure Active is ticked
 
 Finally, add your app to the list of deployable applications in [govuk-puppet].

@@ -24,17 +24,17 @@ Useful metrics to look at are:
 
     See the "`<thing>` req count vs latency" graphs:
 
-    - **Reranker:** if this has increased, queries sorted by relevance
-      (keyword searches) will be slower.  This could indicate a
-      performance issue with SageMaker.
+  - **Reranker:** if this has increased, queries sorted by relevance
+    (keyword searches) will be slower.  This could indicate a
+    performance issue with SageMaker.
 
-    - **Search:** if this has increased, all queries will be slower.
-      This could indicate a performance issue with Elasticsearch.
+  - **Search:** if this has increased, all queries will be slower.
+    This could indicate a performance issue with Elasticsearch.
 
-    - **Spelling suggestion:** if this has increased, finder-frontend
-      pages will be slower.  Other search-powered pages, like taxon
-      pages, would not be affected.  This could indicate a performance
-      issue with Elasticsearch.
+  - **Spelling suggestion:** if this has increased, finder-frontend
+    pages will be slower.  Other search-powered pages, like taxon
+    pages, would not be affected.  This could indicate a performance
+    issue with Elasticsearch.
 
 - The [machine dashboard](https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&orgId=1) for search.
 

@@ -10,8 +10,6 @@ review_in: 6 months
 
 Most frontend and backend apps on GOV.UK share a small number of servers. In some circumstances, apps may use more than their share of resources and may affect other apps on the same server. In these cases, apps can be moved to their own servers using the appropriate steps for either Carrenza or AWS.
 
-
-
 ## AWS
 
 > **Note**
@@ -29,14 +27,12 @@ For each deployment, set the environment to one of `integration`, `staging` or `
 
 👉 [Deploy AWS infrastructure with Terraform][deploy-aws]
 
-
 ## Carrenza
 
 > **WARNING**
 >
 > Any new apps should be added to our AWS environment. The instructions for Carrenza
 > are left for reference purposes only and will be removed in a few months.
-
 
 ### Create the new servers (if required)
 
@@ -46,10 +42,12 @@ If you're moving an app to new servers, start by creating those servers.
 1. Add the IP addresses for the new servers and a new Puppet node class in [govuk-puppet][].
 1. Deploy puppet in staging.
 1. SSH to the puppetmaster in staging and run a loop to sign SSL certificates for the new servers as they're created:
+
     ```bash
     $ ssh puppetmaster-1.management.staging
     $ while true; do sudo puppet cert sign --all; sleep 10; done
     ```
+
 1. Run the [Launch VMs][launch-vms-jenkins] Jenkins job, using the [Carrenza staging username and password][carrenza-credentials], to create the new servers.
 1. Once the job has completed, terminate the loop on the puppetmaster.
 1. Re-run everything in production once you've checked everything works.

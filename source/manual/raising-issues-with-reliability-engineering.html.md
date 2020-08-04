@@ -34,7 +34,6 @@ If this is in-hours:
 A Site Reliabilty Engineer from the RE GOV.UK team should take over the incident lead role.
 A 2nd line GOV.UK engineer will continue the comms lead role.
 
-
 If this is out-of-hours:
 The primary GOV.UK engineer should be the incident lead and support the RE GOV.UK out of hours engineer to fix the problem. The secondary GOV.UK engineer should be the comms lead.
 

@@ -27,7 +27,7 @@ investigate.
 > This example uses hostnames for Carrenza, and will not work on AWS.
 > For AWS you'll need to use the hosts from `govuk_node_list`.
 > More information on hostnames in different environments is available here:
-> https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html
+> <https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html>
 
 First verify that NRPE is running on the monitored machine:
 

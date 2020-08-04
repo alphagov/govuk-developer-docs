@@ -61,10 +61,10 @@ You will likely need to use [Grafana](/manual/grafana.html) to investigate servi
 
 Follow these Slack channels while working on 2nd line:
 
-* `#govuk-2ndline` - the main channel for people on 2nd line
-* `#govuk-deploy` - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing
-* `#govuk-developers` - this is a general channel for developers and can be a good place to ask questions if you are struggling
-* `#re-govuk` - to Slack the RE interruptible person about urgent GOV.UK infrastructure issues
+- `#govuk-2ndline` - the main channel for people on 2nd line
+- `#govuk-deploy` - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing
+- `#govuk-developers` - this is a general channel for developers and can be a good place to ask questions if you are struggling
+- `#re-govuk` - to Slack the RE interruptible person about urgent GOV.UK infrastructure issues
 
 [2nd-line-dashboard]: https://alphagov.github.io/frame-splits/index.html?title=&layout=2x1-75-25&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&url%5B%5D=
 [2nd-line-trello-board]: https://trello.com/b/M7UzqXpk/govuk-2nd-line

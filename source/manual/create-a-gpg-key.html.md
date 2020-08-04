@@ -66,6 +66,7 @@ Send your key to a keyserver by running:
 ```
 gpg2 --send-keys $KEYID
 ```
+
 If you are having problems uploading your key, it's worth trying another keyserver. Those trying to receive your key may be connecting to a different keyserver than the one you sent your key to. This is fine, as the keyservers synchronise, but this may take some time to happen.
 
 You now should be able to find your key on <http://keys.gnupg.net:11371/>.

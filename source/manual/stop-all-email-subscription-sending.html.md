@@ -16,7 +16,7 @@ by the GOV.UK email subscription system.
 > This is an emergency stopgap solution that should be reverted as soon as
 > possible. All emails (including urgent ones such as travel alerts) will not be
 > sent while this is active.
-
+>
 > **Note**
 >
 > Emails already sent to GOV.UK Notify for delivery cannot be stopped by this

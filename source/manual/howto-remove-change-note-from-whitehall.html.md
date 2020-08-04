@@ -21,13 +21,13 @@ You need to determine whether the request is referring to an `editorial_remark` 
 #### Editorial Remark
 
 1. Obtain the content ID of the document on which the change note was created.
-This document will contain multiple editions. You need to extract the
-`editorial_remark` from these editions.
+   This document will contain multiple editions. You need to extract the
+   `editorial_remark` from these editions.
 1. Create a data migration in Whitehall [docs here](https://github.com/alphagov/whitehall/blob/19cd7d72de32454d532c195f35b027fa1b3ba6ac/db/data_migration/README.md)
 1. In the data migration, search for the document by the content ID and
-extract the `editorial_remark` that contains the text you are looking to delete.
+   extract the `editorial_remark` that contains the text you are looking to delete.
 1. If such an editorial remark is present, then destroy the `editorial_remark`
-and check that it is no longer displayed.
+   and check that it is no longer displayed.
 
 #### Change Note
 

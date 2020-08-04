@@ -95,8 +95,8 @@ If you enter the wrong credentials too many times, we will be locked out!**
 1. The first password is your machine password (requested by sudo).
 1. The second password (the PEM passphrase) is the certificate passphrase from
    the password store.
-1. The third password is the 2FA code (use `oathtool -b
-   <MFA-key-from-password-store> --totp`).
+1. The third password is the 2FA code (use
+   `oathtool -b <MFA-key-from-password-store> --totp`).
 1. The fourth password is the password from the password store.
 
 ## Accessing vCloud Director
@@ -124,11 +124,13 @@ If you enter the wrong credentials too many times, we will be locked out!**
 There is a backup VPN account to be used primarily by reliability engineers.
 
 The VPN certificate can be obtained from the infra pass, e.g.
+
 ```sh
 PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/infra pass carrenza/vpn-backup-certificate
 ```
 
 The VPN credentials can be obtained from the infra pass, e.g.
+
 ```sh
 PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/infra pass carrenza/vpn-backup-credentials
 ```

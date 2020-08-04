@@ -73,7 +73,7 @@ You can manually test a new version before doing the steps outlined above to get
 it officially into Puppet.
 
 Find the latest version on the Jenkins site and set appropriately below:
-https://jenkins.io/download/
+<https://jenkins.io/download/>
 
 ```
 export VERSION='2.46.2'

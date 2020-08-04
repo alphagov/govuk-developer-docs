@@ -47,22 +47,22 @@ The original for this diagram is available on the [Platform Health Google Drive]
 
 Services owned by data.gov.uk
 
-  * [CKAN] is the publishing app for datasets ('packages').
-  * [Find] is the public frontend for searching datasets using Elasticsearch.
-  * [Publish] is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Elasticsearch for use in Find.
-  * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
+* [CKAN] is the publishing app for datasets ('packages').
+* [Find] is the public frontend for searching datasets using Elasticsearch.
+* [Publish] is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Elasticsearch for use in Find.
+* [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
 
 Services with data.gov.uk sub-domains, but owned by other departments
 
-  * [Statistics] is owned by the Office for National Statistics and was established as part of the [Open Data Policy][open-data-policy].
-  * [Environment][environment] is owned by DEFRA and was created with the [Location] service as part of the [Open Data Policy][open-data-policy].
-  * [Land Registry][land-registry] is owned by the same and [was created][land-registry-birth] to publish linked data as part of the [Open Data Policy][open-data-policy].
-  * [Catalog Service for the Web][csw] is owned by Ordnance Survey and serves [INSPIRE] datasets to the EU Geoportal.
-  * [Location Metadata Editor][location-mde] is owned by DEFRA and publishes [INSPIRE] metadata, which is used to enrich datasets.
-  * [Location] came before [Location Metadata Editor][location-mde] and was established as part of the [UK Location Programme][uk-location-programme].
-  * [Guidance] is a set of manual pages hosted in [GitHub][guidance-github], which ought to be migrated into normal GOV.UK docs.
-  * [Contract Finder][contract-finder] is now provided by [Crown Commercial Service][contract-finder-new], which ought to have pre-2015 stuff merged in.
-  * [Business] is a legacy redirect to Companies House.
+* [Statistics] is owned by the Office for National Statistics and was established as part of the [Open Data Policy][open-data-policy].
+* [Environment][environment] is owned by DEFRA and was created with the [Location] service as part of the [Open Data Policy][open-data-policy].
+* [Land Registry][land-registry] is owned by the same and [was created][land-registry-birth] to publish linked data as part of the [Open Data Policy][open-data-policy].
+* [Catalog Service for the Web][csw] is owned by Ordnance Survey and serves [INSPIRE] datasets to the EU Geoportal.
+* [Location Metadata Editor][location-mde] is owned by DEFRA and publishes [INSPIRE] metadata, which is used to enrich datasets.
+* [Location] came before [Location Metadata Editor][location-mde] and was established as part of the [UK Location Programme][uk-location-programme].
+* [Guidance] is a set of manual pages hosted in [GitHub][guidance-github], which ought to be migrated into normal GOV.UK docs.
+* [Contract Finder][contract-finder] is now provided by [Crown Commercial Service][contract-finder-new], which ought to have pre-2015 stuff merged in.
+* [Business] is a legacy redirect to Companies House.
 
 > Several datasets link to [environment.data.gov.uk][environment] and require user login to access.  Although branded
 > as data.gov.uk, this is a totally separate service.  If a user is having difficulty accessing this system, they

@@ -9,6 +9,11 @@ task :lint, :environment do
   sh "bundle exec rubocop --format clang"
 end
 
+desc "Run Markdownlint"
+task :lint_markdown, :environment do
+  sh "bundle exec mdl --ignore-front-matter --show-aliases source"
+end
+
 namespace :cache do
   desc "Clear the cache of external content"
   task :clear do
@@ -76,4 +81,4 @@ end
 desc "Clear out and rebuild the build/ folder"
 task build: %i[cache:clear assets:precompile]
 
-task default: %i[verify_deployable_apps check_puppet_names lint spec build]
+task default: %i[verify_deployable_apps check_puppet_names lint lint_markdown spec build]

@@ -47,9 +47,9 @@ for router-api).
 
 Content Preview is available in all three environments.
 
--   <https://draft-origin.publishing.service.gov.uk>
--   <https://draft-origin.staging.publishing.service.gov.uk>
--   <https://draft-origin.integration.publishing.service.gov.uk>
+- <https://draft-origin.publishing.service.gov.uk>
+- <https://draft-origin.staging.publishing.service.gov.uk>
+- <https://draft-origin.integration.publishing.service.gov.uk>
 
 ## Authentication
 

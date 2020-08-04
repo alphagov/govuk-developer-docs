@@ -45,7 +45,6 @@ If you do not have access to Splunk, you can request access by raising a
 support ticket with IT and asking them to enable Splunk for your Google account
 and saying you work on GOV.UK.
 
-
 ## Debugging issues with logs delivery
 
 If Splunk is down the logs will be requeued and retried for several

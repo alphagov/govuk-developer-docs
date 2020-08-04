@@ -406,7 +406,7 @@ When a PR is opened against a GOV.UK repository, the corresponding Jenkins job
 on [CI Jenkins] runs the tests (although we're gradually
 [moving to GitHub Actions][github-actions-rfc]). The Jenkins jobs are created
 in the first place by being [added to govuk-puppet][create-jenkins-job], and
-configured to use the [govuk-jenkinslib] library to build and run the tests. 
+configured to use the [govuk-jenkinslib] library to build and run the tests.
 
 The tests report back to the PR as a [GitHub check], though other checks may
 also be required before the PR can be merged ([govuk-saas-config] defines things

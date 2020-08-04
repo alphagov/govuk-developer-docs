@@ -14,17 +14,17 @@ In cases of an ongoing security incident, or when working on politically sensiti
 
 To fork an existing GOV.UK repository and make it private perform the following steps:
 
- 1. Visit https://github.com/alphagov and click the green 'New' button to create a new repository.
- 1. Click on the 'import repository' link to import the existing repository.
- 1. Change the owner to `alphagov`.
- 1. Set the repository name to the new private name.
- 1. Set the 'Privacy' setting to 'Private'.
- 1. Start the import. This may take a while to complete.
- 1. Click on 'Settings' and then 'Collaborators' to set the permissions on the repository.
- 1. Add the 'GOV.UK - CI Bots' team so that Jenkins can access the repository for deployment. Make sure it is set to 'write' access because Jenkins needs to access the repository and set the release tag.
- 1. Add the 'gov-uk' team and set it 'write' access so that developers can create and merge pull requests.
- 1. Consider adding [a GitHub action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to replace Jenkins CI that will not be running on this new repo.
- 1. Add a branch protection rule against the master branch. You can [use the settings in another repo](https://github.com/alphagov/government-frontend/settings/branches) as a template.
+1. Visit <https://github.com/alphagov> and click the green 'New' button to create a new repository.
+1. Click on the 'import repository' link to import the existing repository.
+1. Change the owner to `alphagov`.
+1. Set the repository name to the new private name.
+1. Set the 'Privacy' setting to 'Private'.
+1. Start the import. This may take a while to complete.
+1. Click on 'Settings' and then 'Collaborators' to set the permissions on the repository.
+1. Add the 'GOV.UK - CI Bots' team so that Jenkins can access the repository for deployment. Make sure it is set to 'write' access because Jenkins needs to access the repository and set the release tag.
+1. Add the 'gov-uk' team and set it 'write' access so that developers can create and merge pull requests.
+1. Consider adding [a GitHub action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to replace Jenkins CI that will not be running on this new repo.
+1. Add a branch protection rule against the master branch. You can [use the settings in another repo](https://github.com/alphagov/government-frontend/settings/branches) as a template.
 
 ## Deploying the private repository
 
@@ -108,13 +108,13 @@ $ git push origin update
 
 In order to make our private changes public, we need to incorporate them into the public repo.
 
- 1.  Make sure you have pulled in the latest changes from the public repo into the private repo (detailed in 'Keeping repositories in sync').
- 1.  Merge any pending pull requests into the master branch of the private repo.
- 1.  On the public repo, add the private repo as a new upstream remote: e.g. `git remote add upstream https://github.com/alphagov/frontend-private.git`
- 1.  Create a new branch on the public repo.
- 1.  Rebase the master branch of the private repo onto the new branch:
- 1.  `git fetch upstream`
- 1.  `git rebase upstream/master`
- 1.  `git rebase master`
- 1.  Raise a PR on the public repo for the new branch.
- 1.  Delete the private fork, once the changes have been merged into the public repo.
+1. Make sure you have pulled in the latest changes from the public repo into the private repo (detailed in 'Keeping repositories in sync').
+1. Merge any pending pull requests into the master branch of the private repo.
+1. On the public repo, add the private repo as a new upstream remote: e.g. `git remote add upstream https://github.com/alphagov/frontend-private.git`
+1. Create a new branch on the public repo.
+1. Rebase the master branch of the private repo onto the new branch:
+1. `git fetch upstream`
+1. `git rebase upstream/master`
+1. `git rebase master`
+1. Raise a PR on the public repo for the new branch.
+1. Delete the private fork, once the changes have been merged into the public repo.
