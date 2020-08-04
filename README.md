@@ -72,21 +72,8 @@ This will create a bunch of static files in `/build`.
 This project is hosted on GitHub Pages. It is [redeployed hourly on weekdays][actions]
 (to pick up changes to external docs) and whenever a PR is merged.
 
-## Pre-commit hooks
-
-There are pre-commit hooks available to help when creating or editing markdown.
-
-Install [pre-commit][] and the [vale][] linter:
-
-```sh
-brew install vale pre-commit
-pre-commit install
-```
-
 ## Licence
 
 [MIT License](LICENCE.md)
 
 [actions]: https://github.com/alphagov/govuk-developer-docs/blob/master/.github/workflows/ci.yml
-[pre-commit]: https://github.com/pre-commit/pre-commit
-[vale]: https://errata-ai.github.io/vale/
