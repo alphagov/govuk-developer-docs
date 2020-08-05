@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: AWS
-last_reviewed_on: 2020-07-29
-review_in: 6 months
 ---
 
 ## Overview
