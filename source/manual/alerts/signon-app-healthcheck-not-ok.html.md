@@ -4,13 +4,13 @@ title: Signon app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-06-24
+last_reviewed_on: 2020-08-05
 review_in: 6 months
 ---
 
 [signon]: https://signon.publishing.service.gov.uk/api_users
 [signon-healthcheck]: https://signon.publishing.service.gov.uk/healthcheck
-[deploy-puppet]: https://deploy.publishing.service.gov.uk/job/Deploy_Puppet/
+[deploy-puppet]: https://deploy.production.govuk.digital/job/Deploy_Puppet/
 [restart-app]: /manual/restart-application.html
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [gds-api-adapters]: https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api.rb
