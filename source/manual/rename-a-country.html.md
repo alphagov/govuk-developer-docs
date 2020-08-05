@@ -4,7 +4,7 @@ title: Rename a country
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-last_reviewed_on: 2020-02-10
+last_reviewed_on: 2020-08-05
 review_in: 6 months
 related_applications: [travel-advice-publisher, content-tagger, whitehall]
 ---
@@ -20,24 +20,18 @@ Renaming a country affects these pages:
 * https://www.gov.uk/foreign-travel-advice/`<country_slug>`/email-signup/
 * https://www.gov.uk/email/subscriptions/new?topic_id=`<country_slug>`
 
-### 1. Update Travel Advice publisher
-
-**Example pull request:** [https://github.com/alphagov/travel-advice-publisher/pull/539/files](https://github.com/alphagov/travel-advice-publisher/pull/539/files)
+### 1. Update Travel Advice Publisher
 
 This will update www.gov.uk/foreign-travel-advice/`<country_slug>` to www.gov.uk/foreign-travel-advice/`<new_country_slug>`.
 
-In [Travel Advice Publisher](https://github.com/alphagov/travel-advice-publisher):
+1. Change the relevant name and slug in the `lib/data/countries.yml` file. Keep `content_id` and `email_signup_content_id` the same, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-e7c0733c6cf5a1d6fc1f2589a6d9f0f7)
 
-1. Create a [pull request](https://github.com/alphagov/travel-advice-publisher/pull/539/files) with:
-  * A migration to update the relevant `country_slug` of TravelAdviceEdition. [Example](https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-dafdd21fd31a2f3a5d3eac5e2bdaeb08)
-  * A change of the relevant name and slug in the `lib/data/countries.yml` file. Keep `content_id` and `email_signup_content_id` the same, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-e7c0733c6cf5a1d6fc1f2589a6d9f0f7)
-
-2. Deploy Travel Advice publisher
-  * Once the above pull requests are ready, [deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=deploy) Travel Advice Publisher
-  * Then follow with another [deploy with app:migrate_and_hard_restart](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=app:migrate_and_hard_restart), as a hard restart is required to update the `.yml` file.
+2. Deploy Travel Advice Publisher
+  * Once the above pull request is ready, [deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=deploy:with_hard_restart) Travel Advice Publisher with a hard restart to update the countries YAML file.
   * You will see the country has updated in the list in [Travel Advice Publisher](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin)
 
-3. Run rake tasks
+3. Run Rake tasks
+  * Run [country:rename[<old_country_slug>,<new_country_slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=country:rename[<old_country_slug>,<new_country_slug>]) to update the `TravelAdviceEdition`s.
   * Run [publishing_api:republish_edition[<new_country_slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[<new_country_slug>]) to update the PublishingApi.
   * Run [publishing_api:republish_email_signups:country_edition[<country-slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[<country-slug>]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
 
