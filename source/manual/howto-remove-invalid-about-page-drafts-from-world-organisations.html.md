@@ -4,8 +4,6 @@ title: Remove invalid WorldwideOrganisation draft CorporateInformationPages
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-08-06
-review_in: 6 months
 ---
 
 A CorporateInformationPage is a Whitehall document that is attached to Organisation and WorldwideOrganisation models. For Organisations, it is accessed as the organisations `/about` page.
