@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2020-04-20
+last_reviewed_on: 2020-08-07
 review_in: 6 months
 ---
 
@@ -42,13 +42,13 @@ The GOV.UK on-call escalations contact will supply you with:
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
 1. Go to the Jenkins task:
-  - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
-  - [Deploy the emergency banner on Staging](https://deploy.blue.staging.govuk.digital/job/deploy-emergency-banner/)
-  - [⚠️ Deploy the emergency banner on Production ⚠️](https://deploy.blue.production.govuk.digital/job/deploy-emergency-banner/)
+   - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
+   - [Deploy the emergency banner on Staging](https://deploy.blue.staging.govuk.digital/job/deploy-emergency-banner/)
+   - [⚠️ Deploy the emergency banner on Production ⚠️](https://deploy.blue.production.govuk.digital/job/deploy-emergency-banner/)
 
-2. Fill in the appropriate variables using the form presented by Jenkins
+1. Fill in the appropriate variables using the form presented by Jenkins
 
-3. Click `Build`.
+1. Click `Build`.
 
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
@@ -92,12 +92,11 @@ Once all caches have had time to clear, check that the emergency banner is visib
 ### Remove the banner using Jenkins
 
 1. Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
+  - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
+  - [Remove the emergency banner from Staging](https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/)
+  - [⚠️ Remove the emergency banner from Production ⚠️](https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/)
 
-- [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
-- [Remove the emergency banner from Staging](https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/)
-- [⚠️ Remove the emergency banner from Production ⚠️](https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/)
-
-2. Click `Build now` in the left hand menu.
+1. Click `Build now` in the left hand menu.
 
 ![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
 
@@ -132,22 +131,22 @@ You can manually check whether the data has been stored in Redis by the Jenkins 
 
 1. From your development machine, SSH into a frontend machine appropriate to the environment you want to check.
 
-```bash
-$ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
-```
+   ```bash
+   $ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
+   ```
 
-2. Load a Rails console for static:
+1. Load a Rails console for static:
 
-```bash
-$ govuk_app_console static
-```
+   ```bash
+   $ govuk_app_console static
+   ```
 
-3. Check the Redis key exists:
+1. Check the Redis key exists:
 
-```rb
-irb(main):001:0> Redis.new.hgetall("emergency_banner")
-#> {}
-```
+   ```rb
+   irb(main):001:0> Redis.new.hgetall("emergency_banner")
+   #> {}
+   ```
 
 In the above example, the key has not been set. A successfully set key would return a result similar to the following:
 
@@ -163,22 +162,22 @@ If you need to manually run the rake tasks to set the Redis keys, you can do so 
 1. SSH into a `frontend` machine appropriate to the environment you are
    deploying the banner on. For example:
 
-```bash
-$ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
-```
+   ```bash
+   $ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
+   ```
 
-2. Change into the directory for `static`:
+1. Change into the directory for `static`:
 
-```bash
-$ cd /var/apps/static
-```
+   ```bash
+   $ cd /var/apps/static
+   ```
 
-3. Run the rake task to create the emergency banner hash in Redis, substituting
+1. Run the rake task to create the emergency banner hash in Redis, substituting
    the quoted data for the parameters:
 
-```bash
-$ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
-```
+   ```bash
+   $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
+   ```
 
 The `campaign_class` is directly injected into the HTML as a `class` and must be one of
 
@@ -213,27 +212,27 @@ $ exit
 
 1. SSH into a frontend machine:
 
-```bash
-$ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
-```
+   ```bash
+   $ ssh $(ssh staging-aws "govuk_node_list --single-node -c frontend").staging-aws
+   ```
 
-2. Change into the directory for `static`:
+1. Change into the directory for `static`:
 
-```bash
-$ cd /var/apps/static
-```
+   ```bash
+   $ cd /var/apps/static
+   ```
 
-3. Run the rake task to remove the emergency banner hash from Redis:
+1. Run the rake task to remove the emergency banner hash from Redis:
 
-```bash
-$ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:remove
-```
+   ```bash
+   $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:remove
+   ```
 
-4. Quit your SSH session
+1. Quit your SSH session
 
-```bash
-$ exit
-```
+   ```bash
+   $ exit
+   ```
 
 ---
 

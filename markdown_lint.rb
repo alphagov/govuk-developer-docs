@@ -109,3 +109,9 @@ exclude_rule "no-bare-urls"
 # If that is implemented, we'll be able to override the rule only
 # in the places we want to allow inline HTML.
 exclude_rule "no-inline-html"
+
+# This rule stops us from having correctly rendered nested unordered
+# lists within an ordered list.
+# It is a known issue with this gem:
+# https://github.com/markdownlint/markdownlint/issues/296
+exclude_rule "ul-indent"
