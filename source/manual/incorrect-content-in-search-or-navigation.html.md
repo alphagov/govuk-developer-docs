@@ -4,7 +4,7 @@ title: Content that doesn't show up correctly in search or list pages
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-last_reviewed_on: 2020-02-04
+last_reviewed_on: 2020-08-10
 review_in: 6 months
 related_applications: [search-api]
 ---
@@ -30,10 +30,10 @@ see if it is present and has the expected fields:
 0. SSH to a search box:
 
     ```
-    ssh $(ssh integration "govuk_node_list --single-node -c search").integration
+    gds govuk connect ssh -e integration search
     ```
 
-0. Send a `POST` request to elasticsearch:
+0. Send a request to elasticsearch:
 
     ```
     govuk_setenv search-api \
