@@ -4,7 +4,7 @@ title: Backup and restore Elasticsearch indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2020-02-04
+last_reviewed_on: 2020-08-10
 review_in: 6 months
 ---
 
@@ -18,7 +18,7 @@ To restore a snapshot, follow these steps:
 0. SSH to a `search` box:
 
     ```
-    ssh $(ssh integration "govuk_node_list --single-node -c search").integration
+    gds govuk connect ssh -e integration search
     ```
 
 0. Query the `_snapshot` endpoint of Elasticsearch to get the snapshot
