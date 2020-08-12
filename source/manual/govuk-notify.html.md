@@ -65,10 +65,11 @@ entry).
 
 ## Receiving emails from GOV.UK Notify
 
-GOV.UK Notify services have two modes: live and [trial][trial-mode]. Only our
-production services are in live mode, the others are in trial mode. In this
-mode emails will only be sent to members of the service or email address in the
-allow-list, any request to send an email to another email address will fail.
+GOV.UK Notify services have two modes: live and [trial][trial-mode]. Our
+production services are all in live mode; most other services are in trial
+mode. In this mode emails will only be sent to members of the service or email
+address in the allow-list, any request to send an email to another email
+address will fail.
 
 [trial-mode]: https://www.notifications.service.gov.uk/using-notify/trial-mode
 
@@ -87,3 +88,10 @@ before you can receive emails through Email Alert API.
 
 [email-alert-api-receive-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 [Email Alert API Product dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_product.json?refresh=1m&orgId=1
+
+The GOV.UK Publishing services are a special case: for these services,
+integration and staging also run in production mode. This is because
+[Signon](../apps/signon.html) needs to be able to send emails to all users,
+even in integration and production. However, most of the apps using this
+service use a team-only API key with the same restriction; only Signon has a
+live key.
