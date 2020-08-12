@@ -1,63 +1,84 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-platform-health"
 title: "Publisher: Unprocessed fact-check emails"
 section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-07-02
+last_reviewed_on: 2020-08-12
 review_in: 6 months
 ---
 
-### Unprocessed fact-check emails
+As part of the [Publisher fact checking process], this alert appears if emails
+have arrived in the inbox but weren't able to be processed. This is usually
+because they're missing the identification for the edition they relate to
+(which is currently stored in the subject line).
 
-This means there are unprocessed emails in the [fact-check] inbox (currently
-`factcheck@alphagov.co.uk` but soon to change to
-`govuk-fact-check@digital.cabinet-office.gov.uk`).
-Publisher has a [script (`mail_fetcher`)](script) that checks the inbox
-[every 5 minutes](schedule) and [processes all emails present](process).
+[Publisher fact checking process]: https://github.com/alphagov/publisher/blob/master/doc/fact-checking.md
 
-If emails are not processed or deleted, this alert is triggered. The level of
-the [alert] depends on the number of emails present - which was chosen
-arbitrarily and is currently:
+## Dealing with the alert
 
-- [warning with 1 email](warning)
-- [critical with 2 or more emails](critical)
+### Log in to the inbox
 
-### Log into the fact-check inbox
+To investigate the emails we first need to [log in to the inbox][login].
 
-If this alert is triggered, we want to [log into the fact-check inbox](login)
-and investigate why the emails were not processed and deleted.
+[login]: https://support.google.com/accounts/answer/1721977?co=GENIE.Platform%3DDesktop&hl=en
 
-The password to log into the govuk-fact-check@digital.cabinet-office.gov.uk
-inbox can be found by running:
+The current email addresses used for the fact checking process are:
 
-```bash
+- factcheck@alphagov.co.uk
+- govuk-fact-check-staging@digital.cabinet-office.gov
+- govuk-fact-check-integration@digital.cabinet-office.gov
+
+#### Retrieving credentials
+
+The passwords for the @digital.cabinet-office.gov.uk addresses are found in
+[govuk-secrets]:
+
+[govuk-secrets]: https://github.com/alphagov/govuk-secrets
+
+```sh
 PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass google-accounts/govuk-fact-check@digital.cabinet-office.gov.uk
 ```
 
-The password to log into the factcheck@alphagov.co.uk inbox can be found by
-logging into the Publisher console:
+The password for the factcheck@alphagov.co.uk address can be found by logging
+into the Publisher console:
 
-```bash
-gds govuk connect app-console -e production publisher
+```sh
+$ gds govuk connect app-console -e production publisher
 ```
 
-and then running:
-
-```bash
-Publisher::Application.mail_fetcher_config
+```ruby
+> Publisher::Application.mail_fetcher_config
 ```
 
-The same can be done for
-staging (govuk-fact-check-staging@digital.cabinet-office.gov.uk)
-and integration (govuk-fact-check-integration@digital.cabinet-office.gov.uk).
+### Investigate the unprocessed emails
 
-[fact-check]: https://github.com/alphagov/publisher/blob/d0ab32c10c5d22ffb9b6edccb84f5345bd766cf4/doc/fact-checking.md
-[script]: https://github.com/alphagov/publisher/blob/d0ab32c10c5d22ffb9b6edccb84f5345bd766cf4/script/mail_fetcher
-[schedule]: https://github.com/alphagov/publisher/blob/d0ab32c10c5d22ffb9b6edccb84f5345bd766cf4/config/schedule.rb#L7-L9
-[process]: https://github.com/alphagov/publisher/blob/d0ab32c10c5d22ffb9b6edccb84f5345bd766cf4/lib/fact_check_email_handler.rb#L41-L53
-[warning]: https://github.com/alphagov/govuk-puppet/blob/68507dba280dd6e2fd4e5663f915c0fd7be06bef/modules/govuk/manifests/apps/publisher/unprocessed_emails_count_check.pp#L19
-[critical]: https://github.com/alphagov/govuk-puppet/blob/68507dba280dd6e2fd4e5663f915c0fd7be06bef/modules/govuk/manifests/apps/publisher/unprocessed_emails_count_check.pp#L20
-[login]: https://support.google.com/accounts/answer/1721977?co=GENIE.Platform%3DDesktop&hl=en
-[alert]: https://github.com/alphagov/govuk-puppet/blob/68507dba280dd6e2fd4e5663f915c0fd7be06bef/modules/govuk/manifests/apps/publisher/unprocessed_emails_count_check.pp
+There are a number of different ways of proceeding here based on why the email
+wasn't able to be processed:
+
+#### Spam/out of office
+
+If the email is clearly spam or not relevant for other reasons,
+**it can be deleted**.
+
+#### Missing edition identification
+
+If the subject line is missing the edition identification but is clearly a
+valid fact check response, the first thing to check is if a follow up
+email was sent with the correct subject.
+
+This can be checked by [logging in to Publisher][publisher] and finding the
+relevant edition by using the title. Usually you'll need to filter on editions
+with the state of "Published" or "Out for fact check".
+
+Once you've found the edition, you can check in the "History and notes" tab
+to see if the fact check was eventually re-sent with the correct subject line.
+If this is the case, **the duplicate email can be deleted**.
+
+If the fact check email never made it, you can let the content team know. In
+general this means the contents of the email can be manually copied into the
+edition as an "Edition note". Once this is done, **the original email can then
+be deleted**.
+
+[publisher]: https://publisher.publishing.service.gov.uk/
