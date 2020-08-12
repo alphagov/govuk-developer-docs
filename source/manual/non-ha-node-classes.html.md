@@ -6,8 +6,6 @@ type: learn
 parent: "/manual.html"
 section: Applications
 important: true
-last_reviewed_on: 2020-08-12
-review_in: 6 months
 ---
 
 Below we provide a list of node classes that are not configured to be highly available (HA). This means that short outages of these machines are architecturally considered acceptable.
