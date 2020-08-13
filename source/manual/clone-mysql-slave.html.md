@@ -4,13 +4,14 @@ title: Clone a MySQL instance from one slave to another (Carrenza only)
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-11
+last_reviewed_on: 2020-08-14
 review_in: 6 months
 ---
 
 > **Note**
 >
-> This process is only applicable to Carrenza environments.
+> This process is only applicable to Carrenza environments. As such it should
+> be removed when the migration to AWS is fully completed.
 
 This tutorial documents the process behind adding a new slave to a MySQL environment where an existing slave may or may not already exist. The process involves cloning data from an existing replication slave on to a new slave, thus keeping the replication configuration intact.
 
