@@ -4,7 +4,7 @@ title: Restore an Individual Postgres Production Database in AWS RDS
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-04
+last_reviewed_on: 2020-08-13
 review_in: 3 months
 ---
 
@@ -36,7 +36,7 @@ Now follow the steps below to restore the database using the data sync script.
 gds govuk connect ssh -e <environment> db_admin
 ```
 
-2. To find the command you need to run to restore a specific database, list the the govuk-backup user's cronjobs, then grep for the database name you need:
+2. To find the command you need to run to restore a specific database, list the govuk-backup user's cronjobs, then grep for the database name you need:
 
   ```
   sudo -iu govuk-backup crontab -l | grep <database_name>
