@@ -5,9 +5,13 @@ section: Backups
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-05
+last_reviewed_on: 2020-08-12
 review_in: 6 months
 ---
+
+> Deprecation note:
+> This page should be removed after all machines in Carrenza have been shutdown
+> as we are using a different process for backups in AWS.
 
 ## automysqlbackup
 
@@ -15,7 +19,7 @@ review_in: 6 months
 
 We use a third-party script called [automysqlbackup](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_mysql/templates/automysqlbackup) to take MySQL backups of GOV.UK infrastructure.
 
-This script takes a nightly `mysqldump` and stores it on a dedicated mount point on the MySQL backup machines (`mysql-backup-1.backend` and `whitehall-mysql-backup-1.backend`).
+This script takes a nightly `mysqldump` and stores it on a dedicated mount point on the MySQL backup machines (`mysql-backup-1.backend`).
 
 The on-site backup machine (`backup-1.management`) pulls the latest backup and stores it on disk. [Duplicity](http://duplicity.nongnu.org/) runs nightly to send encrypted backups to an Amazon S3 bucket.
 
