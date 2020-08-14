@@ -16,7 +16,7 @@ email architecture, read [Email notifications: how they work](/manual/email-noti
 
 ### Check the current health of the ecosystem
 
-You can check the [Email Alert API Metrics dashboard][dashboard] to monitor
+You can check the [Email Alert API Technical dashboard][dashboard] to monitor
 if emails are going out.
 
 ### Check that Notify sent the email
@@ -77,6 +77,6 @@ first. The integration and staging environments only allow email to be
 sent to a small number of email addresses so you cannot test using your
 own email address in these environments.
 
-[dashboard]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&orgId=1&from=now-6h&to=now
+[dashboard]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=10s&orgId=1
 [google-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
 [password-store]: https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/govuk-notify
