@@ -36,22 +36,9 @@ is available in the ['govuk-email-courtesy-copies' Google Group][google-group].
 Integration and staging emails have a subject prefixed by the
 environment name.
 
-If you need to test the process of subscribing to an email alert, you
-can subscribe with `govuk-email-courtesy-copies@digital.cabinet-office.gov.uk`.
-You should then see two copies of the email at that address when you
-perform an action that triggers an email alert (the courtesy copy and
-the subscriber one).
-
-The process for triggering an alert varies by publishing application,
-but it usually involves creating a new edition of some content, then
-publishing it with a 'major' update type. The change note you enter
-will appear in the email that gets sent.
-
 > **Note**
 >
-> Due to the way that we send the courtesy copy emails and the
-> anonymisation integration data sync, we can't fully exercise the code
-> that matches content changes with subscriptions. Therefore, it is not
+> Courtesy copies are sent separately to normal emails. Therefore, it is not
 > safe to rely on the courtesy copy Google Group to guarantee that emails
 > are being sent to subscribers, and instead a better test is to
 > subscribe yourself and check that emails arrive.
