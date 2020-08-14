@@ -4,8 +4,8 @@ title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
-last_reviewed_on: 2020-05-05
-review_in: 3 months
+last_reviewed_on: 2020-08-12
+review_in: 4 months
 ---
 
 Reliability Engineering are a programme in GDS, they are responsible for the
