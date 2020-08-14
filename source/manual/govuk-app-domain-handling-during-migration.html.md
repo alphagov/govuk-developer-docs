@@ -5,9 +5,13 @@ section: Infrastructure
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-05-05
-review_in: 3 months
+last_reviewed_on: 2020-08-12
+review_in: 4 months
 ---
+
+> Deprecation note:
+> This page should be removed after all machines in Carrenza have been shutdown
+> and all reference to this has been removed from [govuk-puppet](https://github.com/alphagov/govuk-puppet)
 
 The app-by-app migration plan to move GOV.UK to AWS introduced an `$app_domain_internal` parameter in addition to the previously used `$app_domain`.
 
