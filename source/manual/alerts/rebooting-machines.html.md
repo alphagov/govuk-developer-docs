@@ -47,12 +47,10 @@ time.
 
 ### Rules of manual rebooting
 
-* Do not reboot more than one machine of the same class at the
-  same time.
-* Most machines in Production should be rebooted out of hours, and this
-  is handled by those who are on call out of hours.
-  * In emergencies, machines in Production may need to be rebooted in-hours.
-  * Machines in other environments can be rebooted in hours.
+* Do not reboot more than one machine of the same class at the same time.
+* There are Icinga alerts that warn if machines need rebooting. Those
+  alerts will tell you if it's a manual reboot, and whether it's in-
+  or out-of-hours.
 * There is [extra guidance if the machine you are rebooting is in AWS](#rebooting-guidance-for-aws).
   You may wish to pair with the RE interruptible/on call person.
 * There are also [things to consider when rebooting Carrenza machines](#rebooting-guidance-for-carrenza).
