@@ -4,8 +4,6 @@ title: Get started on GOV.UK
 description: Guide for new developers on GOV.UK
 layout: manual_layout
 section: Learning GOV.UK
-last_reviewed_on: 2020-08-17
-review_in: 3 months
 ---
 
 This is the guide for new technical staff working on GOV.UK in [GDS][]. If you just joined, 👋 welcome!
