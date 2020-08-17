@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: 'RabbitMQ: No consumers listening to queue'
+title: 'RabbitMQ: Consumers idle'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
@@ -8,29 +8,23 @@ last_reviewed_on: 2020-08-20
 review_in: 6 months
 ---
 
-This check reports a critical error when no consumers are listening to the queue:
+This checks whether the RabbitMQ consumers for a queue have been active in the last 5 minutes.
+
+When the check fails due to consumers being idle for over 5 minutes, it reports a critical
+failure indicating the most recent idle time, and the idle times of each consumer connected
+to RabbitMQ:
 
 ```
-CRITICAL: "No consumers listening to queue"
+CRITICAL: No activity for X seconds: idle times are [X, Y, Z]
 ```
 
-Publishing API [sends a heartbeat message][heartbeat_messages] every minute so, in principle,
-there should always be at least one consumer listening.
+Publishing API [sends a heartbeat message][heartbeat_messages] every minute, so in principle
+the system should never be in a state in which all consumers have been idle for over 5 minutes.
 
 ## How this check works
 
-Icinga connects to RabbitMQ's admin API to check that at least one consumer is running
-for a given RabbitMQ message queue. The queue name indicates the application consuming the queue,
-e.g. the [email_alert_service] consumer.
-
-## Consequences
-
-If no consumers are listening, messages sent to the queue are not processed and their associated
-actions are not triggered. e.g. If the `email_alert_service` consumer is not running, content updates
-produced by publishing-api trigger no email notifications from Email Alert API.
-
-Unless there is an issue with RabbitMQ itself, enqueued messages are not lost. They are stored
-and will be processed when at least a consumer is running again.
+Icinga connects to RabbitMQ's admin API to check on the activity of the consumers of
+a given RabbitMQ message queue. The queue name indicates the consumer, e.g. the [email_alert_service] consumer.
 
 ## How to investigate
 
@@ -51,15 +45,9 @@ queue activity.
 2. Under the "Queues" tab, click on the name of the queue that triggered the alert, e.g. `email_alert_service`,
 to see statistics like queued messages count and queued message rates.
 
-If the queue contains unprocessed messages, the consumers are either stuck
-or stopped. After notifying the owners of the application, restart the consumers
-for the failing queue with:
+If no message has been queued over the last few minutes, [Publishing API][publishing_api] is
+likely no longer enqueuing any heartbeat messages.
 
-```sh
-$ fab $environment class:email_alert_api app.restart:email-alert-service
-```
-
-For more in-depth debugging, [inspect messages][rabbit_mq_inspection] present in the queue.
 
 ## Still stuck?
 
@@ -72,6 +60,5 @@ For more in-depth debugging, [inspect messages][rabbit_mq_inspection] present in
 [publishing_api]: https://github.com/alphagov/publishing-api
 [rabbitmq_control_panel]: /manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel
 [heartbeat_messages]: https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake
-[rabbit_mq_inspection]: /manual/rabbitmq.html#inspectingremoving-items-from-a-queue
 [rabbitmq_grafana_dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rabbitmq.json
 [email_alert_service]: https://github.com/alphagov/email-alert-service
