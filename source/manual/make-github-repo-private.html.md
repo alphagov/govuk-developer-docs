@@ -4,7 +4,7 @@ title: Make a GitHub repo private
 parent: /manual.html
 layout: manual_layout
 section: GitHub
-last_reviewed_on: 2020-05-08
+last_reviewed_on: 2020-08-17
 review_in: 3 months
 ---
 
@@ -77,7 +77,7 @@ $ govuk_puppet --enable
 
 We do not have CI builds on our private repos by default. To mitigate the risks of this, you can either:
 
-- Add [a GitHub Action](https://github.com/search?q=org%3Aalphagov+%22Use+GitHub+Actions%22&type=Issues) to do these things for you
+- Add [a GitHub Action](/manual/test-and-build-a-project-with-github-actions.html) to do these things for you
 - Or, run the following manual steps locally before pushing:
 
 ```
