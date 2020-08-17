@@ -5,8 +5,6 @@ section: Infrastructure
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-08-17
-review_in: 3 months
 ---
 
 Concourse is a continuous integration and continuous deployment system similar to Jenkins.
