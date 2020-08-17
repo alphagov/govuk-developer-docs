@@ -4,8 +4,6 @@ title: Remove a site from the Transition tool
 parent: "/manual.html"
 layout: manual_layout
 section: Transition
-last_reviewed_on: 2020-08-17
-review_in: 12 months
 ---
 
 Sometimes we get requests to delete sites from the [Transition tool](https://transition.publishing.service.gov.uk).
