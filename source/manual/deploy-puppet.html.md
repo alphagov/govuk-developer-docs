@@ -4,39 +4,26 @@ title: Deploy Puppet
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-12
+last_reviewed_on: 2020-08-17
 review_in: 6 months
 ---
 
-You can deploy Puppet using the following steps:
+You can deploy Puppet to Staging and Production using the following steps:
 
-> **NOTE**
->
-> Puppet is automatically deployed to integration by a combination of the [integration-puppet-deploy job on Jenkins CI](https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/) and [Deploy Puppet job on Jenkins Deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/).
->
+1. Deploy a newer version of govuk-puppet to staging by using the 'Deploy to Staging (Carrenza)'
+   and 'Deploy to Staging (AWS)' buttons in the Release app after clicking on the release
+   tag and reviewing the changes listed.
+1. You will either need to wait 30 minutes or read about [convergence](#convergence).
+   You should monitor Icinga and Smokey, and test anything you're concerned about.
+1. Repeat the above steps for Production.
+
+Puppet is automatically deployed to integration by a combination of the [integration-puppet-deploy job on Jenkins CI](https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/) and [Deploy Puppet job on Jenkins Deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/) jobs.
+
 > **WARNING**
 >
 > If you're deploying a change to [hiera.yml](https://github.com/alphagov/govuk-puppet/blob/master/hiera.yml) or [hiera_aws.yml](https://github.com/alphagov/govuk-puppet/blob/master/hiera_aws.yml), you will need to restart the Puppet server on the Puppet Master machine, otherwise these changes will not be picked up.
 >
 > To restart the server, run `sudo service puppetserver restart`.
-
-1. Get the [release tag of the build that you wish to deploy][tag] from the Release
-   app (`release_18295` for example). Look at the diff you're going to deploy.
-
-2. Deploy the newer version to staging by using the 'Deploy to Staging (Carrenza)'
-   and 'Deploy to Staging (AWS)' buttons in the Release app after clicking on the release
-   tag.
-
-3. You will either need to wait 30 minutes or read about [convergence](#convergence).
-   You should monitor Icinga and Smokey, and test anything you're concerned about.
-
-4. Deploy the newer version to production by using the 'Deploy to Production' buttons in
-   the Release app after clicking on the release tag.
-
-5. You will either need to wait 30 minutes or read about [convergence](#convergence).
-   You should monitor Icinga and Smokey, and test anything you're concerned about.
-
-[tag]: https://release.publishing.service.gov.uk/applications/puppet
 
 ## Convergence
 
