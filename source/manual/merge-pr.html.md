@@ -4,7 +4,7 @@ title: Merge a Pull Request
 section: GitHub
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-05
+last_reviewed_on: 2020-08-17
 review_in: 6 months
 ---
 
@@ -16,7 +16,7 @@ There are five rules for reviewing and merging PRs, which apply to all applicati
 4. The GitHub review UI should be used to mark a PR as approved or requiring changes.
 5. The GitHub UI should be used to merge the PR. This ensures the PR number is added to the merge commit.
 
-Once a PR is merged, you should deploy your changes at the earliest convenience to ensure unreleased changes do not back up and to keep our applications deployable - regardless of the perceived size of the PR merged (including [Dependabot](#Dependabot) PRs). [Deploying](/manual/development-pipeline.html) should be done in the regular way, taking the merged changes all the way through to production.
+We're doing more and more [continuous deployment](https://docs.google.com/document/d/1YhgjJjDRB57-IlgPNAAZzFTI3jIUucGJKokti_lQiRQ/edit) these days, which means that merging to `master` on some apps is [restricted to those with Production access](https://github.com/alphagov/govuk-saas-config/search?q=need_production_access_to_merge&unscoped_q=need_production_access_to_merge), as doing so auto-deploys to Production. If an app is continuously deployed, the PR template will show a warning triangle emoji. For apps that are not continuously deployed, you should deploy your changes all the way to Production as soon as possible after merging them.
 
 ## Example scenarios
 
