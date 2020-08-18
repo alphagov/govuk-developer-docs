@@ -20,7 +20,7 @@ gem "html-pipeline"
 gem "mdl", "~> 0.9.0"
 gem "redcarpet", "~> 3.5.0"
 
-gem "govuk_schemas", "~> 4.1.0"
+gem "govuk_schemas", "~> 4.1.1"
 
 # GitHub API
 gem "faraday-http-cache", "~> 2.2.0"
