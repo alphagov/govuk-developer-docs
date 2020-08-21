@@ -4,8 +4,6 @@ title: Fix out-of-date search indices
 parent: "/manual.html"
 layout: manual_layout
 section: Backups
-last_reviewed_on: 2020-08-21
-review_in: 3 months
 ---
 
 If the data in the search index is out-of-sync with the Publishing API,
