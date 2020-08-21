@@ -4,19 +4,24 @@ title: Manage RabbitMQ
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-08-17
+last_reviewed_on: 2020-08-24
 review_in: 6 months
 ---
 
-RabbitMQ is a message broker: it accepts and forwards messages. You can think about it
-as a post office: when you put the mail that you want posting in a post box, you can be
-sure that Mr. or Ms. Mailperson will eventually deliver the mail to your recipient. In this
-analogy, RabbitMQ is a post box, a post office and a postman.
+RabbitMQ is a message broker based on the Advanced Message Queuing Protocol (AMQP):
+it accepts and forwards messages. You can think about it as a post office: when you
+put the mail that you want posting in a post box, you can be sure that Mr. or Ms. Mailperson
+will eventually deliver the mail to your recipient. In this analogy, RabbitMQ is a postbox,
+a post office and a postman.
 
 The major difference between RabbitMQ and the post office is that it doesn't deal with paper.
 Instead it accepts, stores and forwards binary blobs of data ("messages").
 
 [Learn more about RabbitMQ](https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html).
+
+## Connecting to the RabbitMQ web control panel
+
+Run `gds govuk connect -e integration rabbitmq` and point your browser at <http://127.0.0.1:15672>.
 
 ## How we run RabbitMQ
 
@@ -24,20 +29,45 @@ Instead it accepts, stores and forwards binary blobs of data ("messages").
 
 ![A graph showing the message flow](images/rabbitmq_graph.png)
 
-When a document is created or updated in a publishing application, it sends a message to
-RabbitMQ exchanges. These exchanges route messages to the relevant queues that are bound
-to them.
+**Exchanges** are AMQP entities where messages are sent. They take a message and route it into
+zero or more queues. The routing algorithm used depends on the exchange type and rules called _bindings_.
+When a content change is made in a publishing application (e.g. Travel Advice Publisher),
+Publishing API [sends a message][publishing_api_send_message] to our main exchange,
+`publishing_documents`.
 
-Applications that subscribe to these content update events, like publishing-api, consume
-and process these messages from the queues they listen to.
+You can see a list of all our exchanges [here](http://127.0.0.1:15672/#/exchanges) in the control panel.
 
-In order to standardise how GOV.UK consumes messages from RabbitMQ, all consumer applications
-use our [govuk_message_queue_consumer](https://github.com/alphagov/govuk_message_queue_consumer) gem.
+**Bindings** are rules that exchanges use (among other things) to route messages to queues. To instruct
+an exchange E to route messages to a queue Q, Q has to be bound to E. Bindings may have an optional routing
+key attribute. The purpose of the routing key is to select certain messages published to an exchange to
+be routed to the bound queue. In other words, the routing key acts like a filter.
+
+You can see the list of all the bindings defined on the `publishing_documents` exchange
+[here](http://127.0.0.1:15672/#/exchanges/%2F/published_documents) in the control panel.
+
+**Queues** in the AMQP model are very similar to queues in other message and task-queueing systems: they
+store messages that are consumed by applications. Our queue names indicate the application responsible for
+consuming the queue, e.g. the `email_alert_service` queue name indicates that the [email-alert-service](https://github.com/alphagov/email-alert-service) application is the consumer. Queues are [created by consumer applications](https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9).
+
+You can see the list of all our queues [here](http://127.0.0.1:15672/#/queues) in the control panel.
+
+**Messages** have attributes (e.g. content type, content encoding, routing key, etc.) and a payload. Some message
+attributes are used by RabbitMQ, but most are open to interpretation by applications that receive them. Optional
+attributes are known as headers, similar to X-Headers in HTTP. Message attributes are set when a message is published.
+In our use case, the message's payload is the content item in JSON format.
+
+You can see message activity and metrics on any given queue's page in the control panel,
+e.g. the [email_alert_service queue](http://127.0.0.1:15672/#/queues/%2F/email_alert_service).
+
+**Consumer applications** - like content-register and email-alert-service - are responsible for [configuring queues](https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/config/rabbitmq.yml),
+and [running the individual message processors](https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L21). For an example of a processor, see the [MajorChangeMessageProcessor][major_change_message_processor].
+All our consumer applications use the [govuk_message_queue_consumer](https://github.com/alphagov/govuk_message_queue_consumer)
+gem to consume messages from RabbitMQ in a standardised way.
+
+### Federation
 
 While the migration of GOV.UK from Carrenza to AWS is ongoing, we run two RabbitMQ clusters,
 one in each environment.
-
-### Federation
 
 The `published_documents` exchange is federated in both directions, i.e. the RabbitMQ cluster
 from each provider connects as a client to the exchange in the other provider and forwards
@@ -54,111 +84,15 @@ with fixed IPs.
 If a consumer tries to reach a queue from the other side of the VPN and the queue is empty,
 check the federation is healthy.
 
-## Checking the health of the federation
-
-1. Via the jumpbox, SSH into one of the cluster's nodes:
-
-```bash
-$ rabbitmqctl eval 'rabbit_federation_status:status().'
-```
-
-On one of the nodes, you should get: `{status,running}`.
-
-If not, something is wrong and the federation is broken.
-
-2. Check the Kibana logs for the `rabbitmq` application.
-
-3. Make sure the credentials and IP addresses for the federation are correct:
-
-```bash
-$ rabbitmqctl list_parameters
-```
-
 ## Heartbeat messages
 
 In order to keep consumers active and connections alive, heartbeat messages are published to
-the exchanges every minute.
-
-We currently publish heartbeat messages only to the `published_documents` exchange, with a
-[rake task][heartbeat_rake_task] in `publishing-api`.
-
+the exchanges every minute. We currently publish heartbeat messages only to the `published_documents`
+exchange, with a [rake task][heartbeat_rake_task].
 
 ## RabbitMQ metrics
 
 A [generic RabbitMQ dashboard][rabbitmq-dashboard] shows metrics for queues and exchanges.
-
-## Connecting to the RabbitMQ web control panel
-
-1. Create an SSH tunnel
-
-Carrenza:
-
- ```bash
- $ ssh rabbitmq-1.backend.staging -L 15672:127.0.0.1:15672
- ```
-
- AWS:
-
- ```bash
- $ ssh $(ssh integration "govuk_node_list --single-node -c rabbitmq").integration -CNL 15672:127.0.0.1:15672
- ```
-
-2. Log in to the web control panel
-
-Point your browser at <http://127.0.0.1:15672>.
-
-The username is `root`.
-
-The password is in [govuk-secrets](https://github.com/alphagov/govuk-secrets).
-
-Look for `govuk_rabbitmq::root_password` in the Puppet hieradata file for the relevant environment:
-
-* [File for Carrenza](https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata)
-* [File for AWS](https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata)
-
-
-## Inspecting/removing items from a queue
-
-Because RabbitMQ processes messages in order of their reception, an unprocessed or unprocessable message
-means no subsequent messages can be processed. The messages back up the queue.
-
-In some cases, deleting the faulty message can be the right course of action.
-
-1. Find the queue
-
-In the "Queues" tab, click on the name of the queue.
-
-2. Find messages
-
-Click "Get messages" to fetch the specified number of messages.
-
-> **Note**
->
-> Fetching messages actually removes them from the queue. By leaving
-> the "Requeue" option set to "Yes", they will be added back to queue.
-
-3. Delete messages
-
-> **Note**
->
-> There is a risk that you might delete the wrong message(s). This
-> is because the contents of the queue may have changed.
-
-Repeat, but change the "Requeue" option to "No".
-
-## Previewing a message for a document_type
-
-For each new content update, Publishing API publishes a message to RabbitMQ. While messages
-generated by different applications share a consistent format, message data varies across
-publishing applications.
-
-To generate an example message for a given document type, run this rake task in Publishing API:
-
-```bash
-$ bundle exec rake queue:preview_recent_message[<document_type>]
-```
-
-The example message is generated from the most recently published message according to `last public_updated_at`.
 
 ## Further reading
 
@@ -170,3 +104,5 @@ The example message is generated from the most recently published message accord
 
 [heartbeat_rake_task]: https://github.com/alphagov/publishing-api/blob/012cb3f1ceb3b18e7059a367cc4030aa0763afb4/lib/tasks/heartbeat_messages.rake
 [rabbitmq-dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rabbitmq.json
+[publishing_api_send_message]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L26
+[major_change_message_processor]: https://github.com/alphagov/email-alert-service/blob/2ba8ecd982c2226158b528e5442b012639797d41/email_alert_service/models/major_change_message_processor.rb#L35

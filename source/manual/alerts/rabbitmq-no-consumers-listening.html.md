@@ -4,7 +4,7 @@ title: 'RabbitMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-08-20
+last_reviewed_on: 2020-08-24
 review_in: 6 months
 ---
 
@@ -14,8 +14,8 @@ This check reports a critical error when no consumers are listening to the queue
 CRITICAL: "No consumers listening to queue"
 ```
 
-Publishing API [sends a heartbeat message][heartbeat_messages] every minute so, in principle,
-there should always be at least one consumer listening.
+Publishing API [sends a heartbeat message][heartbeat_messages] every minute to keep
+consumers active, so in principle, there should always be at least one consumer listening.
 
 ## How this check works
 
@@ -32,7 +32,7 @@ produced by publishing-api trigger no email notifications from Email Alert API.
 Unless there is an issue with RabbitMQ itself, enqueued messages are not lost. They are stored
 and will be processed when at least a consumer is running again.
 
-## How to investigate
+## How to fix this alert
 
 ### Check the RabbitMQ logs
 
@@ -45,11 +45,9 @@ exchange and the queues bound to it.
 
 ### Check the RabbitMQ control panel
 
-1. [Log into the RabbitMQ control panel][rabbitmq_control_panel] to see details of recent
-queue activity.
+1. [Log into the RabbitMQ control panel][rabbitmq_control_panel] to see details of recent queue activity.
 
-2. Under the "Queues" tab, click on the name of the queue that triggered the alert, e.g. `email_alert_service`,
-to see statistics like queued messages count and queued message rates.
+2. Under the "Queues" tab, click on the name of the queue that triggered the alert, e.g. `email_alert_service`, to see statistics like queued messages count and queued message rates.
 
 If the queue contains unprocessed messages, the consumers are either stuck
 or stopped. After notifying the owners of the application, restart the consumers
@@ -61,15 +59,6 @@ $ fab $environment class:email_alert_api app.restart:email-alert-service
 
 For more in-depth debugging, [inspect messages][rabbit_mq_inspection] present in the queue.
 
-## Still stuck?
-
-* [Read more about how we use RabbitMQ](/manual/rabbitmq.html)
-* [RabbitMQ Tutorials](https://www.rabbitmq.com/getstarted.html)
-* [Bunny](https://github.com/ruby-amqp/bunny) is the RabbitMQ client we use.
-* [The Bunny Guides](http://rubybunny.info/articles/guides.html) explain all
-  AMQP concepts really well.
-
-[publishing_api]: https://github.com/alphagov/publishing-api
 [rabbitmq_control_panel]: /manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel
 [heartbeat_messages]: https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake
 [rabbit_mq_inspection]: /manual/rabbitmq.html#inspectingremoving-items-from-a-queue

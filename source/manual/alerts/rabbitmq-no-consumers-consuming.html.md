@@ -4,46 +4,68 @@ title: 'RabbitMQ: Consumers not processing messages in queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-12-05
+last_reviewed_on: 2020-08-21
 review_in: 6 months
 ---
 
-[Read more about how we use RabbitMQ][rabbitmq]
+We check that the messages on the `email_alert_service` and `email_unpublishing`
+message queues are being consumed.
 
-For some named RabbitMQ queues, we run a check that messages are being
-consumed.  This is currently only the case for the
-`email_alert_service` and `email_unpublishing` queues.  The queue name
-should indicate the app responsible for consuming the queue.
+The queue name indicates the application consuming the queue,
+e.g. the [email_alert_service] consumer.
 
-This is different to [the check that there are consumers][nocon].
-This alert catches the case where a consumer is connected to the queue
-but failing to process messages in a timely fashion.
+Unlike the [no consumers listening check][nocon], this one triggers an alert
+when a consumer is listening to the queue but failing to process its messages
+in a timely fashion.
+
+## How this check works
 
 The Icinga check is performed by connecting to RabbitMQ's admin API, so the
-information given is from Rabbit's point of view.  It looks at the
+information given is from Rabbit's point of view. It looks at the
 number of messages still to be delivered.
 
-If the check succeeds, it will return the number of unprocessed
-messages in the queue.
+A successful check returns the number of unprocessed messages in the queue.
 
-If the check fails due to a build up of messages, it will report how
-many messages there are, and what the threshold is.
+A failing check due to a build up of messages reports the message count and
+the threshold that has been crossed to trigger the alert.
 
-## Consequences of message build-up
+## Consequences
 
-If messages are building up, it may indicate that the service which
-consumes them has hit a problem, or there is an unusually high amount
-of activity.  For example, email alerts about updated content will not
-be sent if the `email_alert_sevice` queue isn't being processed.
+A message build up may indicate that there is an issue with the consumer,
+or that there is unusually high activity.
 
-Unless there is a wider RabbitMQ failure, messages will not be lost -
-they will be processed once the problem is resolved.
+For example, if the messages on the `email_alert_service` queue aren't being processed,
+email-alert-api will not send out content change email notifications.
+
+Unless there is an issue with RabbitMQ itself, enqueued messages are not lost. They are stored
+and will be processed when at least a consumer is running again.
 
 ## Investigation
 
-The same approach as [RabbitMQ: No consumers listening to
-queue][nocon].
+### Check the RabbitMQ logs
 
-[rabbitmq]: /manual/rabbitmq.html
+Log into Kibana and check the logs for the `rabbitmq` application.
+
+### Check the RabbitmQ Grafana dashboard
+
+This [Grafana dashboard][rabbitmq_grafana_dashboard] shows activity on the `published_documents`
+exchange and the queues bound to it.
+
+### Check the RabbitMQ control panel
+
+1. [Log into the RabbitMQ control panel][rabbitmq_control_panel] to see details of recent queue activity.
+
+2. Under the "Queues" tab, click on the name of the queue that triggered the alert, e.g. `email_alert_service`, to see statistics like queued messages count and queued message rates.
+
+If the queue contains unprocessed messages, the consumers are either stuck
+or stopped. After notifying the owners of the application, restart the consumers
+for the failing queue with:
+
+```sh
+$ fab $environment class:email_alert_api app.restart:email-alert-service
+```
+
 [rabbitmq_control_panel]: /manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel
 [nocon]: /manual/alerts/rabbitmq-no-consumers-listening.html
+[email_alert_service]: https://github.com/alphagov/email-alert-service
+[rabbitmq_grafana_dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rabbitmq.json
