@@ -4,7 +4,7 @@ title: Make a new document type available to search
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-last_reviewed_on: 2020-05-19
+last_reviewed_on: 2020-08-21
 review_in: 3 months
 related_applications: [search-api]
 ---
