@@ -167,7 +167,7 @@ the day after.
 
 Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a `CNAME`
-record, this is `redirector-cdn.production.govuk.service.gov.uk`.
+record, this is `bouncer-cdn.production.govuk.service.gov.uk`.
 Domains at the root of their zone can't use `CNAME` records, so must use
 an `A` record and point at one of the [Fastly GOV.UK IP
 addresses](https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22).
