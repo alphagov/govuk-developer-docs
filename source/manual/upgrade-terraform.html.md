@@ -13,7 +13,7 @@ Terraform should be regularly upgraded. New releases happen very often, with bug
 Also, being too far behind the latest versions can make future upgrades and support for new provider services much harder to perform.
 
 In our platform we need to update the version of Terraform and AWS provider enforced in the [govuk-aws](https://github.com/alphagov/govuk-aws) code repo,
-and update the Terraform package that runs the [Deploy_Terraform_GOVUK_AWS](https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS)
+and update the Terraform package that runs the [Deploy_Terraform_GOVUK_AWS](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS)
 Jenkins job in the CI machines.
 
 The Terraform version of a client that updated a state file is represented in the state. Once a client with a new
