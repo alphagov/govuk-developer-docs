@@ -5,8 +5,6 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-07-01
-review_in: 6 months
 ---
 
 Terraform should be regularly upgraded. New releases happen very often, with bug fixes and improvements.
