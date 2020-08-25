@@ -67,7 +67,7 @@ Where:
 1. `<action>` is the terraform action you want to perform. E.g. `plan`, `apply`
 1. `<aws_role>` is the govuk aws role you want to use for terraforming. E.g. `govuk-integration-admin`
 
-After you deploy, you can visit the [`ci-deploy` Jenkins job][ci-deploy-jenkins] to see the job running or queued.
+After you deploy, you can visit the [`deploy` Jenkins job][deploy-jenkins] to see the job running or queued.
 
 
 ### 2. `deploy.rb` script in govuk-aws
@@ -90,9 +90,9 @@ You will need to change the arguments to the `deploy.rb` script. E.g.
 * `blue` is for `app-` projects, `govuk` is for `infra-` projects usually
 * `integration` is the starting point, then `staging`, etc.
 
-Once the script has run, visit the [`ci-deploy` Jenkins job][ci-deploy-jenkins] to see the job running or queued.
+Once the script has run, visit the [`deploy` Jenkins job][deploy-jenkins] to see the job running or queued.
 
 [gds-cli]: https://github.com/alphagov/gds-cli
 [deploy-rb]: https://github.com/alphagov/govuk-aws/blob/master/tools/deploy.rb
-[ci-deploy-jenkins]: https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS
+[deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS
 [security-incidents]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents
