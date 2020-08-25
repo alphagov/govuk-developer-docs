@@ -61,7 +61,10 @@ preview according to the following pattern:
 There are lots of examples of these in [hosts currently configured in
 Transition][transition-hosts].
 
-These AKA domains should be CNAMEd to: `redirector-cdn.production.govuk.service.gov.uk`
+These AKA domains should be CNAMEd to: `bouncer-cdn.production.govuk.service.gov.uk`
+
+Previously we used a `redirector-cdn` address which reached its capacity and will now fail if added as the
+CNAME record for any new domains.
 
 [transition-hosts]: https://transition.publishing.service.gov.uk/hosts
 
