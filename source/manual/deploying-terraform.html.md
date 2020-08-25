@@ -4,8 +4,6 @@ title: Deploy Terraform
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-08
-review_in: 6 months
 ---
 
 We use [Terraform](https://terraform.io) for configuring GOV.UK infrastructure in AWS.
