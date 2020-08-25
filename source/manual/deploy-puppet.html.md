@@ -4,9 +4,21 @@ title: Deploy Puppet
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-08-17
+last_reviewed_on: 2020-08-25
 review_in: 6 months
 ---
+
+## Deploying a branch
+
+Before merging your PR, it's recommended that you deploy the change to
+Integration in order to test it works on real infrastructure. Go to [the
+`Deploy_Puppet` job in Jenkins][deploy-puppet] and click ‘Build with
+Parameters’. The `TAG` field should contain the name of the branch you wish to
+deploy.
+
+[deploy-puppet]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/
+
+## Deploying a release
 
 You can deploy Puppet to Staging and Production using the following steps:
 
