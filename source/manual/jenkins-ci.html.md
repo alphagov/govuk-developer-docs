@@ -36,7 +36,7 @@ Components:
 - Supporting services:
   - An [Icinga instance](https://ci-alert.integration.publishing.service.gov.uk) to monitor the
     status of CI and the supporting infrastructure.
-  - A [Deploy Jenkins instance](https://ci-deploy.integration.publishing.service.gov.uk) to deploy Puppet
+  - A [Deploy Jenkins instance](https://deploy.integration.publishing.service.gov.uk) to deploy Puppet
     in to the environment and run any other adhoc tasks.
   - [Graphite](https://ci-graphite.integration.publishing.service.gov.uk) and [Grafana](https://ci-grafana.integration.publishing.service.gov.uk)
     for metrics in the environment.

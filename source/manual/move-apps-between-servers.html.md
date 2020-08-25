@@ -120,5 +120,5 @@ Once everything is done, make some final changes to the [puppet configuration an
 [aws-terraform-config-3]: https://github.com/alphagov/govuk-aws/pull/503/files#diff-c77caf224de69366e98d474cc9a6d473
 [aws-terraform-data-1]: https://github.com/alphagov/govuk-aws-data/pull/103
 [aws-terraform-data-2]: https://github.com/alphagov/govuk-aws-data/pull/104
-[Deploy]: https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS/
+[Deploy]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS/
 [deploy-aws]: /manual/deploying-terraform.html
