@@ -21,26 +21,24 @@ RSpec.describe GitHubRepoFetcher do
 
   describe "#readme" do
     def readme_url(repo_name)
-      "https://api.github.com/repos/alphagov/#{repo_name}/readme"
+      "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/README.md"
     end
 
     it "caches the first response" do
       repo_name = SecureRandom.uuid
       stubbed_request = stub_request(:get, readme_url(repo_name))
-        .to_return(status: 200, body: '{ "content": {} }', headers: { content_type: "application/json" })
+        .to_return(status: 200, body: "Foo")
 
       GitHubRepoFetcher.instance.readme(repo_name)
       GitHubRepoFetcher.instance.readme(repo_name)
       expect(stubbed_request).to have_been_requested.once
     end
 
-    it "retrieves the README content from the GitHub API response" do
+    it "retrieves the README content from the GitHub CDN" do
       repo_name = SecureRandom.uuid
       readme_contents = "# temporary-test"
-      base64_readme_contents = "IyB0ZW1wb3JhcnktdGVzdA=="
-      response = { "content": base64_readme_contents }
       stub_request(:get, readme_url(repo_name))
-        .to_return(status: 200, body: response.to_json, headers: { content_type: "application/json" })
+        .to_return(status: 200, body: readme_contents)
 
       expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(readme_contents)
     end
@@ -48,7 +46,7 @@ RSpec.describe GitHubRepoFetcher do
     it "returns nil if no README exists" do
       repo_name = SecureRandom.uuid
       stub_request(:get, readme_url(repo_name))
-        .to_return(status: 404, body: "{}", headers: { content_type: "application/json" })
+        .to_return(status: 404)
 
       expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(nil)
     end
