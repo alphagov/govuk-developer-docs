@@ -1,18 +1,29 @@
 RSpec.describe GitHubRepoFetcher do
   describe "#repo" do
-    it "returns a repo if the user is specified" do
-      stub_request(:get, "https://api.github.com/repos/some-user/some-repo")
-        .to_return(body: "{}", headers: { content_type: "application/json" })
+    before do
+      stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
+        .to_return(body: '[ { "name": "some-repo" } ]', headers: { content_type: "application/json" })
+    end
 
-      repo = GitHubRepoFetcher.instance.repo("some-user/some-repo")
+    it "fetches a repo from cache if it exists" do
+      allow(CACHE).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
+        [OpenStruct.new({ name: "some-repo" })]
+      end
+
+      repo = GitHubRepoFetcher.instance.repo("some-repo")
 
       expect(repo).not_to be_nil
     end
 
-    it "raises if no alphagov repo is found" do
-      stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
-        .to_return(body: "[]", headers: { content_type: "application/json" })
+    it "fetches a repo from GitHub if it doesn't exist in the cache" do
+      CACHE.clear
 
+      repo = GitHubRepoFetcher.instance.repo("some-repo")
+
+      expect(repo).not_to be_nil
+    end
+
+    it "raises error if no repo is found" do
       expect {
         GitHubRepoFetcher.instance.repo("something-not-here")
       }.to raise_error(StandardError)
