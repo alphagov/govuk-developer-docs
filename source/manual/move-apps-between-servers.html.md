@@ -4,8 +4,6 @@ title: Move apps between servers
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-04
-review_in: 6 months
 ---
 
 Most frontend and backend apps on GOV.UK share a small number of servers. In some circumstances, apps may use more than their share of resources and may affect other apps on the same server. In these cases, apps can be moved to their own servers using the appropriate steps for either Carrenza or AWS.
