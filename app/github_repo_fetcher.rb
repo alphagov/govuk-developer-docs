@@ -12,7 +12,8 @@ class GitHubRepoFetcher
   # Note that it is cached as pure markdown and requires further processing.
   def readme(app_name)
     CACHE.fetch("alphagov/#{app_name} README", expires_in: 1.hour) do
-      HTTP.get("https://raw.githubusercontent.com/alphagov/#{app_name}/master/README.md")
+      default_branch = repo(app_name).default_branch
+      HTTP.get("https://raw.githubusercontent.com/alphagov/#{app_name}/#{default_branch}/README.md")
     rescue Octokit::NotFound
       nil
     end

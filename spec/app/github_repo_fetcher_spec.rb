@@ -1,13 +1,17 @@
 RSpec.describe GitHubRepoFetcher do
-  describe "#repo" do
-    before do
-      stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
-        .to_return(body: '[ { "name": "some-repo" } ]', headers: { content_type: "application/json" })
-    end
+  before :each do
+    CACHE.clear
+    stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
+      .to_return(
+        body: "[ { \"name\": \"some-repo\", \"default_branch\": \"master\" } ]",
+        headers: { content_type: "application/json" },
+      )
+  end
 
+  describe "#repo" do
     it "fetches a repo from cache if it exists" do
       allow(CACHE).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
-        [OpenStruct.new({ name: "some-repo" })]
+        [OpenStruct.new({ name: "some-repo", default_branch: "master" })]
       end
 
       repo = GitHubRepoFetcher.instance.repo("some-repo")
@@ -31,35 +35,49 @@ RSpec.describe GitHubRepoFetcher do
   end
 
   describe "#readme" do
-    def readme_url(repo_name)
+    let(:repo_name) { "some-repo" }
+
+    def readme_url
       "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/README.md"
     end
 
     it "caches the first response" do
-      repo_name = SecureRandom.uuid
-      stubbed_request = stub_request(:get, readme_url(repo_name))
+      stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 200, body: "Foo")
 
       GitHubRepoFetcher.instance.readme(repo_name)
       GitHubRepoFetcher.instance.readme(repo_name)
       expect(stubbed_request).to have_been_requested.once
+      remove_request_stub(stubbed_request)
     end
 
     it "retrieves the README content from the GitHub CDN" do
-      repo_name = SecureRandom.uuid
       readme_contents = "# temporary-test"
-      stub_request(:get, readme_url(repo_name))
+      stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 200, body: readme_contents)
 
       expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(readme_contents)
+      remove_request_stub(stubbed_request)
+    end
+
+    it "retrieves the README content from the repo's default branch" do
+      readme_contents = "# temporary-test from different branch"
+      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name) do
+        OpenStruct.new(default_branch: "latest")
+      end
+      stubbed_request = stub_request(:get, readme_url.sub("master", "latest"))
+        .to_return(status: 200, body: readme_contents)
+
+      expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(readme_contents)
+      remove_request_stub(stubbed_request)
     end
 
     it "returns nil if no README exists" do
-      repo_name = SecureRandom.uuid
-      stub_request(:get, readme_url(repo_name))
+      stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 404)
 
       expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(nil)
+      remove_request_stub(stubbed_request)
     end
   end
 
