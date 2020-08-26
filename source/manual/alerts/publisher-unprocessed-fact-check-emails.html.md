@@ -26,9 +26,9 @@ To investigate the emails we first need to [log in to the inbox][login].
 
 The current email addresses used for the fact checking process are:
 
-- factcheck@alphagov.co.uk
-- govuk-fact-check-staging@digital.cabinet-office.gov
-- govuk-fact-check-integration@digital.cabinet-office.gov
+- govuk-fact-check@digital.cabinet-office.gov.uk
+- govuk-fact-check-staging@digital.cabinet-office.gov.uk
+- govuk-fact-check-integration@digital.cabinet-office.gov.uk
 
 #### Retrieving credentials
 
