@@ -5,8 +5,8 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2020-02-21
-review_in: 6 months
+last_reviewed_on: 2020-09-02
+review_in: 3 months
 ---
 
 2nd line Zendesk tickets are technical errors reported by our users - including government publishers -
@@ -15,9 +15,9 @@ and general queries from users of data.gov.uk ("DGU"), for whom 2nd line provide
 ## Get started
 
 [Create an account][zendesk-create-account], then ask a fellow 2nd liner to assign a new ticket to
-"2nd/3rd Line—Zendesk Administration" asking to give you access to "2nd Line - GOV.UK Alerts and Issues".
+"2nd/3rd Line\--Zendesk Administration" asking to give you access to "2nd Line - GOV.UK Alerts and Issues".
 
-When you're logged in, you should be looking at the ['2nd Line--GOV.UK Alerts and Issues' queue][zendesk-queue].
+When you're logged in, you should be looking at the ['2nd Line\--GOV.UK Alerts and Issues' queue][zendesk-queue].
 
 ## Priorities
 
@@ -74,10 +74,10 @@ Once you've resolved a ticket, click "Submit as Solved".
 
 ## Tickets left pending without a response
 
-Note that if a ticket has been resolved and pending a response for 5 or more days with no response from the
+Note that if a ticket has been resolved and pending a response for 4 or more days with no response from the
 requester, you can submit it as solved with a message telling them why and that if they still need help they
 can get in touch. Do this by clicking the "Apply macro" button at the bottom of the tickert screen, and
-choosing the "GOV.UK 2nd line tech: pending for 5+ days" option.
+choosing the "GOV.UK 2nd line tech: pending for 4+ days" option.
 
 [zendesk-create-account]: https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc
 [zendesk-queue]: https://govuk.zendesk.com/agent/filters/360000051009
