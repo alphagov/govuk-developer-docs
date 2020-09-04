@@ -3,27 +3,17 @@ require "octokit"
 class GitHubRepoFetcher
   include Singleton
 
-  # Fetch a repo from GitHub.
-  #
-  # If the app_name is just a repo name we'll assume that it's in the alphagov
-  # org. Because 99% of the repos will be from that org, we can download and
-  # cache all alphagov-repos and save on API calls.
+  # Fetch a repo from GitHub
   def repo(app_name)
-    if app_name =~ %r{/}
-      # Not on alphagov, make a separate call to the API. Cache it for
-      # development speed.
-      @cache ||= {}
-      @cache[app_name] ||= client.repo(app_name)
-    else
-      all_alphagov_repos.find { |repo| repo.name == app_name } || raise("alphagov/#{app_name} not found")
-    end
+    all_alphagov_repos.find { |repo| repo.name == app_name } || raise("alphagov/#{app_name} not found")
   end
 
   # Fetch a README for an alphagov application and cache it.
   # Note that it is cached as pure markdown and requires further processing.
   def readme(app_name)
     CACHE.fetch("alphagov/#{app_name} README", expires_in: 1.hour) do
-      Base64.decode64(client.readme("alphagov/#{app_name}").content)
+      default_branch = repo(app_name).default_branch
+      HTTP.get("https://raw.githubusercontent.com/alphagov/#{app_name}/#{default_branch}/README.md")
     rescue Octokit::NotFound
       nil
     end
