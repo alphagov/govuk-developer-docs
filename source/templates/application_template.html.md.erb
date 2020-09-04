@@ -156,15 +156,6 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
 
 ## README
 
-<div class="govuk-warning-text">
-  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-  <strong class="govuk-warning-text__text">
-    <span class="govuk-warning-text__assistive">Warning</span>
-    The content below is pulled in directly from the repository.<br />
-    Links might not function properly.
-  </strong>
-</div>
-
 <% if application.private_repo? %>
   <span class="govuk-error-message">
     Cannot fetch README of private repo.
@@ -174,6 +165,15 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
     Cannot fetch README without `GITHUB_TOKEN`.
   </span>
 <% else %>
+  <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-warning-text__assistive">Warning</span>
+      The content below is pulled in directly from the repository.<br />
+      Links might not function properly.
+    </strong>
+  </div>
+
   <div class="embedded-readme">
     <%= ExternalDoc.parse(application.readme) %>
   </div>
