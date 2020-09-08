@@ -24,6 +24,6 @@ follow these steps:
   - Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
   - Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
 
-[whitehall-rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
-[rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[]
+[whitehall-rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[]
+[rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
 [clear-cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets
