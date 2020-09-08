@@ -4,8 +4,6 @@ title: 'RabbitMQ: High number of unprocessed messages'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-07
-review_in: 6 months
 ---
 
 For information about how we use RabbitMQ, see [here][rabbitmq_doc].
