@@ -4,147 +4,145 @@ title: Manage RabbitMQ
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-11
+last_reviewed_on: 2020-09-07
 review_in: 6 months
 ---
 
-## How we run RabbitMQ
+[RabbitMQ][RabbitMQ] is a message broker based on the [Advanced Message Queuing
+Protocol][AMQP] (AMQP).
 
-We run a RabbitMQ cluster, which is used to trigger events when
-documents are published. The general process is that messages are
-published onto "exchanges" in RabbitMQ. Applications create "queues"
-which listen to the exchanges, and gather the messages sent to the
-exchanges together. Applications then run "consumers" which receive
-messages from the queues.
-
-While the migration of gov.uk to AWS is in progress we actually run
-two clusters, one in carrenza and one in AWS.
-The published_documents exchange is federated in both directions, which
-means that the cluster in AWS connects as a client to the exchange in
-Carrenza and forward messages to its own exchange, and the same thing
-happens the other way around, there is no loop because max-hops is set to 1.
-Each cluster has a list of the other's nodes IPs, those are private IP
-and connection goes through the VPN between Carrenza and AWS.
-Since the nodes in AWS use non fixed IPs, they have additional
-network interfaces with a fixed IP associated to it.
-If a consumer is trying to get to a queue that originates on the other
-side of the VPN and the queue is empty, you should check if the
-federation is ok.
-
-In order to ensure that our consumers remain active, we publish
-"heartbeat" messages to the exchanges every minute. This helps to avoid
-problems with consumers dropping their connections due to inactivity,
-but also allows us to monitor activity easily.
-
-### Sending heartbeats
-
-Heartbeat messages are sent every minute by cron. Currently, we only
-send heartbeat messages to one exchange: the `published_documents`
-exchange. These heartbeats are sent via a [rake task][heartbeat_rake_task]
-in the `publishing-api` app.
-
-[heartbeat_rake_task]: https://github.com/alphagov/publishing-api/blob/012cb3f1ceb3b18e7059a367cc4030aa0763afb4/lib/tasks/heartbeat_messages.rake
-
-### Checking if the federation is ok
-
-Connect to one of the cluster's nodes through ssh via the jumpbox.
-As root run:
-
-```bash
-$ rabbitmqctl eval 'rabbit_federation_status:status().'
-```
-
-On one of the nodes, you should get: `{status,running}`
-
-If not something is wrong and the federation is broken.
-Check the logs in /var/log/rabbitmq and verify that the credentials and
-IPs address for the federation are correct by running as root :
-
-```bash
-$ rabbitmqctl list_parameters
-```
-
-## Viewing RabbitMQ metrics
-
-Metrics from RabbitMQ are collected with a CollectD plugin, and are
-available in Graphite/Grafana. There is a [generic RabbitMQ
-dashboard][rabbitmq-dashboard] which shows the main metrics for queues
-and exchanges.
-
-[rabbitmq-dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/rabbitmq.json
+[Learn more about RabbitMQ][rabbitmq_tutorial].
 
 ## Connecting to the RabbitMQ web control panel
 
-1. Create an SSH tunnel to access the web control panel
+Run `gds govuk connect rabbitmq -e integration aws/rabbitmq` and point your
+browser at <http://127.0.0.1:15672>.
 
-   For Carenza environments:
+## RabbitMQ metrics
 
-   ```bash
-   $ ssh rabbitmq-1.backend.staging -L 15672:127.0.0.1:15672
-   ```
+A [generic RabbitMQ dashboard][rabbitmq-dashboard] shows metrics for queues and exchanges.
 
-   For AWS environments:
+## How we run RabbitMQ
 
-   ```bash
-   $ ssh $(ssh integration "govuk_node_list --single-node -c rabbitmq").integration -CNL 15672:127.0.0.1:15672
-   ```
+### Overview
 
-2. Log in to the web control panel
+![A graph showing the message flow](images/rabbitmq_graph.png)
 
-   Point your browser at <http://127.0.0.1:15672>
+**Producer**: an application that publishes messages RabbitMQ. On GOV.UK this could
+be [publishing-api](https://github.com/alphagov/publishing-api).
 
-   The username is root. The password you can obtain from the govuk-secrets
-   repo if you have access. Look for govuk\_rabbitmq::root\_password in the file for the
-   relevant environment in
-   <https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata> or <https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata>
+**Exchanges** are AMQP entities where messages are sent. They take a message
+and route it into zero or more queues. The routing algorithm used depends on
+the exchange type and rules called _bindings_.  When a content change is made
+in a publishing application (e.g. Travel Advice Publisher), Publishing API
+[publishes a message][publishing_api_publishes_message] to our main exchange,
+`publishing_documents`.
 
-3. Do your business
-4. Tidy up
+**Queues** are very similar to queues in other message and task-queueing
+systems: they store messages that are consumed by applications. An example of a
+queue is `email_alert_service` which is used by
+[email-alert-service][email-alert-service] to forward publishing activity to
+email-alert-api. Queues are [created by consumer applications][create_queues].
 
-   Close the SSH connection you set up earlier with CTRL+C or by typing "exit".
+**Bindings** are rules that exchanges use (among other things) to route
+messages to queues. To instruct an exchange E to route messages to a queue Q, Q
+has to be bound to E. Bindings may have an optional routing key attribute. An
+example of a binding is the `cache_clearing_service-high` queue is
+[bound][binding_config] to the `published_documents` exchange with a routing
+key matching of `*.major`. E.g messages sent to the exchange with a routing key
+of `guide.major` will be routed to that queue.
 
-## Inspecting/removing items from a queue
+**Messages** consist of a JSON payload and publish options (we predominantly
+use content type, routing key and persistant).
 
-We had an instance where an application was unable to process a message
-in the queue, but left the message on the queue. This meant it was
-backing up. Removing the message from the queue was the right solution
-in our case.
+Options:
 
-1. Find the queue
+* content_type (string) - tells the consumer the type of message. E.g
+  `"application/json"`
+* routing_key (string) - matches against bindings to filter messages to certain
+  queues. E.g `"guide.major"`
+* persistant (boolean) - tells RabbitMQ whether to save the message to disk.
 
-   Click on the "Queues" tab. Then click on the name of the queue.
+Message options are set when a message is published. In our use case, the
+message's payload is the content item in JSON format. The code in the
+publishing-api to publish a message is [here][publish_message_call].
 
-2. Find the messages
+**Consumer applications** are applications which consume messages from one or
+more queues. For email-alert-service this is done by [running this rake
+task][message_processors] and using the [major change
+processor][major_message_processor] to do the processing of the consumed
+messages. All our consumer applications use the
+[govuk_message_queue_consumer][message_consumer] gem to consume messages from
+RabbitMQ in a standardised way.
 
-   Scroll down and click "Get messages". Clicking the "Get Message(s)"
-   button that appears will fetch however many messages you ask for.
+You can see live examples of things like queues, exchanges, bindings etc by
+connecting to the RabbitMQ control panel.
 
-   > **Note**
-   >
-   > Fetching messages actually removes them from the queue. By leaving
-   > the "Requeue" option set to "Yes", they will be added back to queue.
+## Federated `published_documents` exchange
 
-3. Delete the messages
+A federated exchange is connected to an upstream exchanges by AMQP and the
+messages published to the upstream exchanges are copied over to the federated
+exchange.
 
-   > **Note**
-   >
-   > There is a risk that you might delete the wrong message(s). This
-   > is because the contents of the queue may have changed.
+While the migration of GOV.UK from Carrenza to AWS is ongoing, we run two
+RabbitMQ clusters, one in each environment. Each cluster has a list of private
+IP addresses of the other cluster's nodes ([Carrenza IPs][carrenza_ips] and
+[AWS IPs][aws_ips]). The connection between Carrenza and AWS travels through
+the VPN. Since the nodes in AWS use dynamic IP addresses, they are associated
+to network interfaces with fixed IPs.
 
-   Repeat, but change the "Requeue" option to "No".
+The `published_documents` exchange is [federated][federated] in both
+directions, i.e. the RabbitMQ cluster from each provider connects as a client
+to the exchange in the other provider and forwards messages to its own
+exchange. There is no infinite loop because `max-hops` is set to `1`.
 
-## Previewing a message for a document_type
+### Checking if the federation is ok
 
-The publishing API generates messages when content is updated and posts them
-to the rabbitMQ exchange. Each message has a shared format, however the contents
-of the message is affected by the publishing app and what data it sends to the
-publishing API.
-
-As messages for different formats can vary, we have created a rake task in the
-publishing API app to allow us to easily generate example messages. The example
-message is generated from the most recently published message (based off of
-last public_updated_at) for the entered document type:
+Connect to one of the cluster's nodes via:
 
 ```bash
-$ bundle exec rake queue:preview_recent_message[<document_type>]
+$ gds govuk connect ssh -e production rabbitmq
 ```
+
+and run:
+
+```bash
+$ sudo rabbitmqctl eval 'rabbit_federation_status:status().'
+```
+
+On **one** of the nodes, you should get a load of data including:
+`{status,running}`
+
+If not, something is wrong and the federation is broken. Check the logs in
+`/var/log/rabbitmq` and verify that the credentials and IP address for the
+federation are correct, you can do this by running:
+
+```bash
+$ sudo rabbitmqctl list_parameters
+```
+
+## Further reading
+
+* [RabbitMQ Tutorials](https://www.rabbitmq.com/getstarted.html)
+* [Bunny](https://github.com/ruby-amqp/bunny) is the RabbitMQ client we use.
+* [The Bunny Guides](http://rubybunny.info/articles/guides.html) explain all
+  AMQP concepts really well.
+
+[aws_ips]: https://github.com/alphagov/govuk-puppet/blob/bc95f7041af4212e810c77e8a00c1349de3af0fa/hieradata/class/production/rabbitmq.yaml#L6
+[carrenza_ips]: https://github.com/alphagov/govuk-puppet/blob/bc95f7041af4212e810c77e8a00c1349de3af0fa/hieradata_aws/class/production/rabbitmq.yaml#L6
+[federated]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rabbitmq/manifests/federate.pp
+[rabbitmq_tutorial]: https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html
+[RabbitMQ]: https://www.rabbitmq.com/
+[AMQP]: https://www.rabbitmq.com/tutorials/amqp-concepts.html
+[rabbitmq-dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/rabbitmq.json?refresh=10s&orgId=1
+[rabbitmq_overview]: https://github.com/alphagov/govuk_message_queue_consumer#Nomenclature
+[create_queues]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9
+[publishing_api_publishes_message]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L26
+[publish_message_call]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L73
+[rabbit_config_rake]: https://github.com/alphagov/email-alert-service/blob/master/lib/tasks/message_queues.rake#L17
+[rabbit_config_yml]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/config/rabbitmq.yml
+[message_processors]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L21
+[message_consumer]: https://github.com/alphagov/govuk_message_queue_consumer
+[email-alert-service]: https://github.com/alphagov/email-alert-service
+[major_message_processor]: https://github.com/alphagov/email-alert-service/blob/2ba8ecd982c2226158b528e5442b012639797d41/email_alert_service/models/major_change_message_processor.rb#L35P
+[binding_config]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L42-L48
