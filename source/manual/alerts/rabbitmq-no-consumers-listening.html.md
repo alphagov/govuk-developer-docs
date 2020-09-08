@@ -4,75 +4,92 @@ title: 'RabbitMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-12-05
+last_reviewed_on: 2020-09-07
 review_in: 6 months
 ---
 
-[Read more about how we use RabbitMQ][rabbitmq]
+## Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}
 
-We run a check that there is at least one non-idle consumer for a named
-RabbitMQ queue. (For example, for the `email_alert_service` queue.) The queue
-name should indicate the app responsible for consuming the queue.
+Icinga connects to RabbitMQ's admin API to check on the activity of the
+consumers and that at least one consumer is running for a given RabbitMQ
+message queue. See [here][check_rabbitmq_plugin] for the plugin that implements
+the alert.
 
-The Icinga check is performed by connecting to RabbitMQ's admin API, so the
-information given is from Rabbit's point of view.
+For information about how we use RabbitMQ, see [here][rabbitmq_doc].
 
-Since we send heartbeats every minute (from each instance of the Publishing
-API) at least one of the consumers for each queue should be active every
-minute. To be conservative, the check checks that at least one consumer of the
-queue is running and has been active within the last 5 minutes.
+### `No consumers listening to queue`
 
-If the check succeeds, it will return the most recent time at which activity
-happened on the queue.
+This check reports a critical error when **no** consumers are listening to the
+queue, meaning messages entering the queue will never be processed.
 
-If the check fails due to no consumers having been active recently, it will
-report a critical failure, giving the most recent idle time, and the idle
-times of each consumer connected to RabbitMQ:
+### `No activity for X seconds: idle times are [X, Y, Z]`
 
-```
-CRITICAL: No activity for X seconds: idle times are [X, Y, Z]
-```
+This checks whether the RabbitMQ consumers for a queue have been active in the
+last 5 minutes. Consumers in an `idle` state are listening to the queue but are
+unable to process the messages on it.
 
-If the check fails due to there being no consumers connected to the queue, it
-will report a critical failure:
+Publishing API [sends a heartbeat message][heartbeat_messages] every minute to
+the following queues - `email-alert-service`, `cache_clearing_service-high` and
+`content_data_api`. This is configured via the queues bindings (e.g
+[email-alert-service's binding][email_alert_binding]) matching the routing key
+used in the [heartbeat][heartbeat]. This should ensure that the consumers are
+never idle for these queues.
 
-```
-CRITICAL: "No consumers listening to queue"
-```
+> **Note**
+>
+> You may see the [high unprocessed messages][high_unprocessed_messages] alert too,
+> as issues with consumers processing messages could then lead to a high
+> backlog of messages.
 
-## Consequences of idle consumers
+## Troubleshooting
 
-If consumers are idle, messages sent to the queue will not be being processed.
-This means that the actions which are meant to happen in response to the
-messages will not happen. For example, email alerts about updated content will
-not be sent if the `email_alert_sevice` queue isn't running.
+### Check the RabbitMQ logs
 
-Unless there is a wider RabbitMQ failure, messages will not be lost - they will
-be processed once the problem is resolved.
+Check the logs for the `rabbitmq` application which can be achieved logging
+into Kibana and searching for `application: rabbitmq`. Is there evidence of any
+errors?
 
-## Investigation
+### Check the RabbitmQ Grafana dashboard
 
-RabbitMQ has an admin interface, which allows details of recent activity on the
-queues to be seen. To log in, [follow the instructions in the RabbitMQ
-docs][rabbitmq_control_panel].
+This [Grafana dashboard][rabbitmq_grafana_dashboard] shows activity across
+multiple exchanges and queues. The main exchange we expect to be monitoring is
+`published_documents` which handles broadcasting to services such as search and
+email-alert-service when content changes across GOV.UK.
 
-The admin interface allows you to see details (and graphs!) of the messages
-sent to each queue, and the number of messages held on the queues. Look at the
-queue for which the alert happened. If no messages have been sent to the queue
-over the last several minutes, the most likely failure is that the heartbeat
-messages are no longer being sent correctly. Look for recent changes to the
-[Publishing API][publishing_api].
+Looking at the queue graphs we should look out for the following:
 
-If messages have been received, and the queue has messages held on it and not
-being processed, the consumers have either got stuck or stopped running for
-some reason. Restarting the consumers for the relevant app will probably clear
-this up (but please make sure the team owning the app are also alerted, since
-this shouldn't normally happen). For example:
+* **Check for high 'ready' messages for the queue** - indicates these messages are
+  waiting to be processed in RabbitMQ by the consumer (e.g
+  email-alert-service).
 
-```sh
+* **Check for high 'unacknowledged' messages for the queue** - implies that
+  messages have been read by the consumer but the consumer has never sent back
+  an ACK to the RabbitMQ broker to say that it has finished processing.
+
+* **Check for high 'redeliver' rate for the queue** - in the event of network
+  failure (or a node failure), messages can be redelivered. An example is if
+  the consumer dies (its channel is closed, connection is closed, or TCP
+  connection is lost).
+
+If we're seeing high 'redeliver' rates, high 'ready' or 'unacknowledged'
+messages then this could indicate an issue with the consumer.
+
+### Troubleshooting steps
+
+1. You could try restarting the consumer applications. After restarting, check
+   to see if the problem is solved. E.g for email-alert-service, run:
+
+```bash
 $ fab $environment class:email_alert_api app.restart:email-alert-service
 ```
 
-[publishing_api]: https://github.com/alphagov/publishing-api
-[rabbitmq]: /manual/rabbitmq.html
-[rabbitmq_control_panel]: /manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel
+2. If the issue has not resolved, we should check in the consumers application
+   logs to see if any errors are being thrown.
+
+[high_unprocessed_messages]: https://docs.publishing.service.gov.uk/manual/alerts/rabbitmq-high-number-of-unprocessed-messages.html
+[email_alert_binding]: https://github.com/alphagov/email-alert-service/blob/4412a1b3b0f281733801e1631416ab02fac90e25/lib/tasks/message_queues.rake#L17
+[rabbitmq_doc]: https://docs.publishing.service.gov.uk/manual/rabbitmq.html
+[check_rabbitmq_plugin]: https://github.com/alphagov/govuk-puppet/blob/eb8a04a7883d4772fa7266c909c7f40563f8f7a0/modules/icinga/files/usr/lib/nagios/plugins/check_rabbitmq_consumers
+[heartbeat_messages]: https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake
+[rabbitmq_grafana_dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/rabbitmq.json?refresh=10s&orgId=1
+[heartbeat]: https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/queue_publisher.rb#L43
