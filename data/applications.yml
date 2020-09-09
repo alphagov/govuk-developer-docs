@@ -5,12 +5,6 @@
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    publishing-api:
-    content-store:
-    content-tagger:
-    router:
-    signon:
   actors:
   - Publisher
 - github_repo_name: contacts-admin
@@ -18,91 +12,38 @@
   puppet_name: contacts
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    whitehall:
-    publishing-api:
-    signon:
 - github_repo_name: content-tagger
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    publishing-api:
-    content-store:
-    search-api:
-    email-alert-api:
-    router:
-    search-admin:
-    signon:
   actors:
   - Publisher
 - github_repo_name: content-publisher
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    content-publisher:
-    router:
-    content-data-api:
-    signon:
 - github_repo_name: local-links-manager
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    signon:
-    local-links-manager:
-    link-checker-api:
-    mapit:
-    publishing-api:
 - github_repo_name: manuals-publisher
   type: Publishing apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    router:
-    manuals-publisher:
-    signon:
-    asset-manager:
-    content-store:
-    whitehall:
-    publishing-api:
-    link-checker-api:
 - github_repo_name: maslow
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    publishing-api:
-    support:
-    signon:
 - github_repo_name: publisher
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    publishing-api:
-    frontend:
-    link-checker-api:
-    router:
-    content-tagger:
-    publisher:
-    mapit:
-    signon:
-    asset-manager:
-    router-api:
 - github_repo_name: service-manual-publisher
   type: Publishing apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    service-manual-frontend:
-    service-manual-publisher:
-    signon:
-    asset-manager:
-    publishing-api:
 - github_repo_name: short-url-manager
   type: Publishing apps
   team: "#govuk-platform-health"
@@ -113,25 +54,10 @@
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    support:
-    router:
-    signon:
-    publishing-api:
-    asset-manager:
-    email-alert-api:
 - github_repo_name: travel-advice-publisher
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    router:
-    travel-advice-publisher:
-    email-alert-api:
-    link-checker-api:
-    signon:
-    asset-manager:
-    publishing-api:
 - github_repo_name: whitehall
   type: Publishing apps
   production_url: https://whitehall-admin.publishing.service.gov.uk
@@ -139,20 +65,6 @@
   dependencies_team: "#govuk-platform-health"
   consume_docs_folder: true
   production_hosted_on: aws
-  dependencies:
-    router:
-    whitehall:
-    static:
-    link-checker-api:
-    maslow:
-    search-api:
-    signon:
-    publishing-api:
-    content-store:
-    router-api:
-    asset-manager:
-    support:
-    email-alert-api:
   actors:
     - Publisher
     - Public
@@ -164,87 +76,55 @@
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    router-api:
 - github_repo_name: email-alert-api
   type: APIs
   team: "#govuk-notifications-dev"
   metrics_dashboard_url: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
   production_hosted_on: aws
   consume_docs_folder: true
-  dependencies:
-    signon:
-    content-store:
 - github_repo_name: imminence
   type: APIs
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    mapit:
-    signon:
 - github_repo_name: link-checker-api
   type: APIs
   team: "#govuk-platform-health"
   consume_docs_folder: true
   production_hosted_on: aws
-  dependencies:
-    signon:
 - github_repo_name: publishing-api
   type: APIs
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   consume_docs_folder: true
   production_hosted_on: aws
-  dependencies:
-    signon:
-    content-store:
 - github_repo_name: search-api
   type: APIs
   team: "#govuk-platform-health"
   consume_docs_folder: true
   production_hosted_on: aws
-  dependencies:
-    signon:
-    publishing-api:
 - github_repo_name: asset-manager
   type: APIs
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    signon:
-    asset-manager:
 - github_repo_name: router-api
   type: APIs
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies: {}
 - github_repo_name: support-api
   type: APIs
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    support:
-    support-api:
-    content-store:
-    whitehall:
 - github_repo_name: hmrc-manuals-api
   type: APIs
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    manuals-frontend:
-    signon:
-    publishing-api:
-    search-api:
-    content-store:
 - github_repo_name: mapit
   type: APIs
   team: "#govuk-platform-health"
   api_docs_url: https://mapit.mysociety.org/docs/
   production_hosted_on: aws
-  dependencies: {}
 
 # Services
 
@@ -252,13 +132,10 @@
   type: Services
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies: {}
 - github_repo_name: email-alert-service
   type: Services
   team: "#govuk-notifications-dev"
   production_hosted_on: aws
-  dependencies:
-    email-alert-api:
 - github_repo_name: search-analytics
   type: Services
   team: "#govuk-platform-health"
@@ -274,10 +151,6 @@
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    content-data-api:
-    support:
-    signon:
 - github_repo_name: search-admin
   type: Supporting apps
   team: "#govuk-platform-health"
@@ -286,15 +159,10 @@
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    whitehall:
 - github_repo_name: support
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    support-api:
-    signon:
 - github_repo_name: authenticating-proxy
   type: Supporting apps
   team: "#govuk-platform-health"
@@ -308,7 +176,6 @@
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies: {}
 - github_repo_name: govuk-load-testing
   type: Supporting apps
   production_hosted_on: none
@@ -319,59 +186,30 @@
   type: Frontend apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    static:
-    content-store:
-    publishing-api:
 - github_repo_name: collections
   type: Frontend apps
   team: "#govuk-platform-health"
   component_guide_url: https://govuk-collections.herokuapp.com/component-guide
   production_hosted_on: aws
   private_repo: false
-  dependencies:
-    static:
-    email-alert-api:
-    content-store:
-    search-api:
 - github_repo_name: email-alert-frontend
   type: Frontend apps
   team: "#govuk-notifications-dev"
   production_hosted_on: aws
-  dependencies:
-    static:
-    email-alert-api:
-    content-store:
 - github_repo_name: feedback
   type: Frontend apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    static:
-    support:
-    support-api:
 - github_repo_name: finder-frontend
   type: Frontend apps
   team: "#govuk-platform-health"
   component_guide_url: https://finder-frontend.herokuapp.com/component-guide
   production_hosted_on: aws
-  dependencies:
-    content-store:
-    search-api:
-    email-alert-api:
-    static:
 - github_repo_name: frontend
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    search-api:
-    imminence:
-    mapit:
-    local-links-manager:
-    content-store:
-    licensify:
   actors:
   - Public
 - github_repo_name: government-frontend
@@ -380,60 +218,37 @@
   dependencies_team: "#govuk-platform-health"
   component_guide_url: https://government-frontend.herokuapp.com/component-guide
   production_hosted_on: aws
-  dependencies:
-    content-store:
-    static:
 - github_repo_name: info-frontend
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    static:
 - github_repo_name: licence-finder
   type: Frontend apps
   puppet_name: licencefinder
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    content-store:
-    publishing-api:
-    search-api:
 - github_repo_name: manuals-frontend
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    content-store:
-    publishing-api:
 - github_repo_name: smart-answers
   type: Frontend apps
   team: "#govuk-platform-health"
   puppet_name: smartanswers
   production_hosted_on: aws
-  dependencies:
-    publishing-api:
-    static:
-    imminence:
-    whitehall:
-    content-store:
 - github_repo_name: service-manual-frontend
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   type: Frontend apps
   production_hosted_on: aws
-  dependencies:
-    content-store:
-    static:
 - github_repo_name: static
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
-  dependencies:
-    static:
 
 # Transition
 
@@ -567,7 +382,6 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
-  dependencies: {}
 - github_repo_name: govuk-display-screen
   management_url: https://dashboard.heroku.com/apps/govuk-display-screen
   production_hosted_on: heroku
