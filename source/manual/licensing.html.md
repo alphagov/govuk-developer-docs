@@ -106,7 +106,7 @@ tar xvzf licensifydump.tar.gz
 mongorestore licensifydump/
 ```
 
-Confusingly, some collections exist in both the `licensify` and the `licensify-refdata` database. If `db.collectionName.count() == 0` in one database, and `db.collectionName.count() != 0` in the other, then you should assume that the one with no objects is not the source of truth.
+Confusingly, some collections exist in both the `licensify` and the `licensify-refdata` database. If `db.collectionName.count() == 0` in one database, and `db.collectionName.count() != 0` in the other, then you should assume that the one with objects is the source of truth.
 
 ### Application Files
 
