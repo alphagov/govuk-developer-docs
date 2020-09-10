@@ -4,7 +4,7 @@ title: Remove a user from Puppet
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2020-07-16
+last_reviewed_on: 2020-09-10
 review_in: 12 months
 ---
 
@@ -25,7 +25,6 @@ will remain on our servers forever more.
 1. Create another PR for Puppet that:
   - Removes the user manifest file
   - Removes the user from [Integration users][integration-users]
-  - Removes the user from [AWS training environment users][training-environment]
   - Removes the user from [CI users][ci-users]
 1. Once these have been merged, deploy Puppet again to all environments.
 
@@ -33,7 +32,6 @@ will remain on our servers forever more.
 [manifest-path]: https://github.com/alphagov/govuk-puppet/tree/master/modules/users/manifests
 [absent-example]: https://github.com/alphagov/govuk-puppet/commit/0757bad41ed577f15c7f5d9e508f55e78c612ddb
 [integration-users]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
-[training-environment]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/training.yaml
 [ci-users]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/integration.yaml
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [production-hieradata]: https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata
