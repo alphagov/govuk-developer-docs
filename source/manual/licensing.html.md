@@ -60,7 +60,13 @@ You can give the application reference to Kibana in the relevant environment to 
 The Feeds application has a UI that runs on port `9400`, but that isn't exposed publicly, so you need to tunnel to it. For example, the following will tunnel to the production instance of the Feeds admin and make it available via `localhost:9400`:
 
 ```bash
-ssh licensing-backend-1.licensify.production -L 9400:localhost:9400 -N
+gds govuk connect -e production ssh licensing_backend
+
+# Look at the output and grab the IP address, e.g.
+# Running command: ssh -J username@jumpbox.production.govuk.digital username@ip-10-13-5-62.eu-west-1.compute.internal
+
+# now exit the machine and run this command locally, replacing the IP
+ssh username@ip-10-13-5-62.eu-west-1.compute.internal -J username@jumpbox.production.govuk.digital -L 9400:localhost:9400 -N
 ```
 
 Once the tunnel above has been set up, the following pages are available:
