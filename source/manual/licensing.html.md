@@ -17,11 +17,11 @@ There is a [PDF user manual](https://licensify-admin.publishing.service.gov.uk/a
 
 ### Applications
 
-The Licensing service consists of three separately deployed applications:
+The Licensing service consists of [three separately deployed applications](https://github.com/alphagov/govuk-puppet/blob/f45e303e4e2555ac8cdc003898f17e4dbe86add5/hieradata_aws/common.yaml#L132-L140):
 
-- Frontend: the interface used by citizens and businesses who want to apply for a license. Allows them to download the relevant forms, submit them once completed, and also handles redirection to the relevant payment service if a fee is required.
-- Backend: administrative interface for LAs to allow them to view and download applications from users. Also provides the ability for LA admin users to set up customisations (the specifics of the licence types) for their LA, and for GDS admins to control which licence types are available for each LA, and configuration like which payment provider the LA uses.
-- Feeds: backend (asynchronous) processing of application uploads and processing (via Apto), email notifications (via GOV.UK Notify), and expiry and purging of old applications. Also provides an interface for some debugging-type reporting.
+- `licensify` (on the `licensing_frontend` machine): the interface used by citizens and businesses who want to apply for a license. Allows them to download the relevant forms, submit them once completed, and also handles redirection to the relevant payment service if a fee is required.
+- `licensify-admin` (on the `licensing_backend` machine): administrative interface for LAs to allow them to view and download applications from users. Also provides the ability for LA admin users to set up customisations (the specifics of the licence types) for their LA, and for GDS admins to control which licence types are available for each LA, and configuration like which payment provider the LA uses.
+- `licensify-feed` (on the `licensing_backend` machine): backend (asynchronous) processing of application uploads and processing (via Apto), email notifications (via GOV.UK Notify), and expiry and purging of old applications. Also provides an interface for some debugging-type reporting.
 
 ### Finding a licence
 
