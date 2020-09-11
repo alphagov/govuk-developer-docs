@@ -4,9 +4,11 @@ title: publisher app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-04-21
+last_reviewed_on: 2020-09-11
 review_in: 12 months
 ---
+
+See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
 
 If the message is a warning about `scheduled_queue`, eg '71 scheduled
 edition(s); 3 item(s) queued', this alert means that the number of editions in
@@ -20,4 +22,6 @@ $ cd /var/apps/publisher
 $ sudo -u deploy govuk_setenv publisher bundle exec rake editions:requeue_scheduled_for_publishing
 ```
 
-[Run this job in production Jenkins ⚠️](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=editions:requeue_scheduled_for_publishing)
+- [Run in Integration Jenkins](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=editions:requeue_scheduled_for_publishing)
+
+- [Run in Staging Jenkins](https://deploy.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=editions:requeue_scheduled_for_publishing)
