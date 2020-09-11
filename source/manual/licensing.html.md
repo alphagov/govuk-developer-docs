@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2020-09-10
-review_in: 9 months
 ---
 
 GOV.UK runs a Scala application ([Licensify](/apps/licensify.html)) which allows users to apply and pay for licences from local authorities and other competent authorities.
