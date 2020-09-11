@@ -4,27 +4,22 @@ title: Signon app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-08-05
-review_in: 6 months
+last_reviewed_on: 2020-09-11
+review_in: 12 months
 ---
 
 [signon]: https://signon.publishing.service.gov.uk/api_users
-[signon-healthcheck]: https://signon.publishing.service.gov.uk/healthcheck
 [deploy-puppet]: https://deploy.production.govuk.digital/job/Deploy_Puppet/
 [restart-app]: /manual/restart-application.html
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [gds-api-adapters]: https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api.rb
 
-Signon has a standard [/healthcheck][signon-healthcheck] endpoint, which is
-queried periodically by Icinga and is comprised of several checks. In addition
-to the standard database checks, there are also custom checks for this
-application.
-
-- `api_tokens`: looks at tokens for API Users to see if any are about to
-  expire. You should rotate expiring tokens to ensure the associated
-  application keeps working.
+See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
 
 ## Rotating API Tokens
+
+One or more tokens for API Users are about to expire. You should rotate
+expiring tokens to ensure the associated application keeps working.
 
 As a working example, let's say we have an alert like *Content Publisher token
 for Publishing API expires in X days*. In this example, the API User is
