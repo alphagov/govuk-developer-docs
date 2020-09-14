@@ -32,5 +32,5 @@ When your repo is tagged with `govuk`, it will be auto-configured by [govuk-saas
 If you create a new repo, [kick off a build of the Jenkins job][jenkins-job] and everything will be done for you.
 
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
-[jenkins-job]: https://deploy.integration.publishing.service.gov.uk/job/configure-github-repos
+[jenkins-job]: https://deploy.production.govuk.digital/job/configure-github-repos
 [alphagov]: https://github.com/alphagov
