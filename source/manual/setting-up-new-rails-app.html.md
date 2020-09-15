@@ -4,13 +4,13 @@ title: Set up a new Rails application
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-26
+last_reviewed_on: 2020-09-15
 review_in: 6 months
 ---
 
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines
 [govuk-puppet-jenkins]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
-[dns]: https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
+[dns]: https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishing-service-gov-uk
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 [sentry]: https://sentry.io/settings/govuk/teams/
