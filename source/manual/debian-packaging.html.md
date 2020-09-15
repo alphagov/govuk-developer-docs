@@ -4,7 +4,7 @@ title: Manage Debian packages
 section: Packaging
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-02
+last_reviewed_on: 2020-09-15
 review_in: 6 months
 ---
 
