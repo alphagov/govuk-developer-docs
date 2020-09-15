@@ -4,8 +4,6 @@ title: content-publisher app healthcheck not ok
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-11
-review_in: 12 months
 ---
 
 See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
