@@ -220,6 +220,26 @@ while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authori
 
 After deleting or purging a dataset, it will take up to 10 minutes to update on Find, due to the sync process.
 
+#### Listing datasets
+
+You can get a list all datasets (including those which have been deleted) for a particular organisation by exporting a
+CSV directly from the database.
+
+First, find the id of the organisation you want via the API (here, finding the id of the Environment Agency)"
+
+```
+https://ckan.publishing.service.gov.uk/api/3/action/organization_show?id=environment-agency
+```
+
+Then follow the [instructions to access the database](#accessing-the-database)
+The following query will list all datasets for the Environment Agency, with the number of records for each and export the result to a CSV file.
+
+```
+\copy (SELECT package.name, package.title, package.url, package.state, COUNT(resource.package_id) as num_resources FROM package LEFT JOIN resource ON (resource.package_id = package.id) WHERE package.owner_org='11c51f05-a8bf-4f58-9b95-7ab55f9546d7' GROUP BY package.id) to 'output.csv' csv header;
+```
+
+You can then use scp-pull from the govuk-connect tool to download the file to your machine.
+
 #### Register a brownfield dataset
 
 See the [supporting manual](https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing).
