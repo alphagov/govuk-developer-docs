@@ -4,7 +4,7 @@ title: 'Carrenza/6DG PostgreSQL: S3 Backups'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-12-06
+last_reviewed_on: 2020-09-17
 review_in: 6 months
 ---
 
