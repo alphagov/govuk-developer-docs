@@ -4,8 +4,6 @@ title: Manually resize ASGs (auto scaling groups)
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 In AWS, [we use auto scaling groups][asg] to ensure we have the right number of
