@@ -4,8 +4,6 @@ title: 'MySQL: replication running'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 Checks whether `Slave_IO_Running` and `Slave_SQL_Running` both return
