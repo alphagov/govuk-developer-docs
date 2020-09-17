@@ -4,7 +4,7 @@ title: Check process running
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-07
+last_reviewed_on: 2020-09-17
 review_in: 6 months
 ---
 
@@ -59,3 +59,13 @@ investigating by looking in the log files which could be in one of the following
 - `/var/log/upstart/<process>.log`
 - `/var/log/<process>/`
 - `/var/log/<process>.log`
+
+If you see something in the logs such as
+
+```bash
+---> Spinning up 'govuk_crawler_worker' (type bare) in 'production' environment
+/usr/local/bin/govuk_spinup: 30: cd: can't cd to /var/apps/govuk_crawler_worker
+```
+
+This suggests that the crawler hasn't been deployed to the machine. You can try re-deploying
+via [deploy jenkins](https://deploy.blue.staging.govuk.digital/).
