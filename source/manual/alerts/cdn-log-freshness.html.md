@@ -4,7 +4,7 @@ title: CDN logs from Fastly not appearing in S3
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-27
+last_reviewed_on: 2020-09-17
 review_in: 6 months
 ---
 
