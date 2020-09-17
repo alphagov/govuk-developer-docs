@@ -5,8 +5,6 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2020-09-17
-review_in: 3 months
 ---
 
 Under normal circumstances most machines reboot automatically when an update is required.
