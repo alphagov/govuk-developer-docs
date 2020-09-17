@@ -4,7 +4,7 @@ title: Backup passive checks
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-03-05
+last_reviewed_on: 2020-09-17
 
 review_in: 6 months
 ---

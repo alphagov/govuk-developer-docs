@@ -4,7 +4,7 @@ title: High Nginx 5xx rate
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-02-17
+last_reviewed_on: 2020-09-17
 review_in: 6 months
 ---
 

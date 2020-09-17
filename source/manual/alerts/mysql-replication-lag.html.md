@@ -4,7 +4,7 @@ title: 'MySQL: replication lag'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2019-10-22
+last_reviewed_on: 2019-09-17
 review_in: 6 months
 ---
 
@@ -29,12 +29,8 @@ fab $environment -H <mysql_slave_hostname> mysql.reset_slave
 ```
 
 An alert for 'MySQL replication lag' on mysql-backup-* machines may be
-caused by a database backup or a Jenkins data synchronisation job, such
-as:
-
-<https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging/>
-
-You can verify this by checking for a running mysqldump process on the
+caused by a database backup or a Jenkins data synchronisation job. You can
+verify this by checking for a running mysqldump process on the
 affected host, e.g.:
 
 ```
