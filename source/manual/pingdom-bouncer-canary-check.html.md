@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Monitoring
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 Bouncer has a canary route at <https://www.direct.gov.uk/__canary__>
