@@ -4,8 +4,6 @@ title: Upload a large asset to Whitehall
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 Sometimes publishers ask us to help them upload very large attachments to
