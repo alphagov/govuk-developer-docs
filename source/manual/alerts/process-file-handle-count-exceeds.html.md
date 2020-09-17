@@ -4,7 +4,7 @@ title: Process file handle count exceeds
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-07-17
+last_reviewed_on: 2020-09-17
 review_in: 6 months
 ---
 
@@ -21,3 +21,5 @@ be held.
 
 As a temporary mitigation, restarting the process may reduce the count
 of held file handles.
+
+Also see [check process running](/manual/alerts/check-process-running.html)
