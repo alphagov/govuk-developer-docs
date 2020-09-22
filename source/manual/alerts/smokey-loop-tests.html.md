@@ -24,7 +24,7 @@ failure, so you can diagnose the problem.
 ## Nginx
 
 If many of the tests are failing in an AWS environment, it may be because the Nginx services haven't registered new
-boxes coming online or old ones going offline. You can try to restart the following services:
+boxes coming online or old ones going offline. You can try to restart the following services using the [fabric scripts](https://github.com/alphagov/fabric-scripts):
 
 ```bash
 $ fab $environment class:cache app.reload:nginx
