@@ -14,9 +14,7 @@ review_in: 6 months
 
 The name should begin with `ABTest-`.  Try to keep it short.
 
-You don't need to use the `ABTest-` prefix
-in [your code](https://github.com/alphagov/collections/blob/54dd7d22567ec932a16c262387ae609e9cc47aae/app/controllers/concerns/taxon_pages_testable.rb#L25)
-though as [it's already configured in Fastly](https://github.com/alphagov/govuk-cdn-config/blob/955dd25e6443a8fd7142cebdb60d7bee43a067b7/vcl_templates/www.vcl.erb#L348).
+You don't need to use the `ABTest-` prefix in [your code](https://github.com/alphagov/collections/blob/54dd7d22567ec932a16c262387ae609e9cc47aae/app/controllers/concerns/taxon_pages_testable.rb#L25) though as [it's already configured in Fastly](https://github.com/alphagov/govuk-cdn-config/blob/955dd25e6443a8fd7142cebdb60d7bee43a067b7/vcl_templates/www.vcl.erb#L348).
 
 ### Consider load
 
@@ -94,6 +92,6 @@ Follow these steps:
 
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [configuration-file]: https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml
-[update-cdn-dictionaries]: https://deploy.staging.publishing.service.gov.uk/job/Update_CDN_Dictionaries/
-[deploy-cdn]: https://deploy.staging.publishing.service.gov.uk/job/Deploy_CDN/
+[update-cdn-dictionaries]: https://deploy.blue.staging.govuk.digital/job/Update_CDN_Dictionaries/
+[deploy-cdn]: https://deploy.blue.staging.govuk.digital/job/Deploy_CDN/
 [register]: https://docs.google.com/spreadsheets/d/1voQzdoGAFO9Tnvl7Xq4ahLEAyGtkeAtvTC26SxEP6rE/edit
