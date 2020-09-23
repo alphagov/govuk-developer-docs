@@ -4,8 +4,6 @@ title: Debug published documents with incorrect links
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-23
-review_in: 6 months
 ---
 
 This can happen when the Publishing API is still working through all of the
