@@ -43,6 +43,8 @@ $ ssh monitoring-1.production
 > sudo less /var/log/upstart/smokey-loop.log
 ```
 
+It may be necessary to kill all the smokey processes. There is further guidance on doing this [here](/manual/alerts/smokey-json-older-than-30m.html).
+
 ### `HTTP status code 550 (RestClient::RequestFailed)`
 
 This usually means that the BrowserMob Proxy java process is running as part of a previously aborted
