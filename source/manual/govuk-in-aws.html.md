@@ -5,9 +5,12 @@ section: AWS
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-06-09
-review_in: 3 months
+last_reviewed_on: 2020-23-09
+review_in: 5 months
 ---
+
+> **Deprecation Notice:** We have now completed the AWS migration (with the exception of performance platform). This page has been left up for reference for a short time while we complete migration clean up work. After this, this page should be removed.
+
 
 To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
 it is being migrated to [Amazon Web Services](https://aws.amazon.com/).
