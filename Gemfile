@@ -1,28 +1,26 @@
 source "https://rubygems.org"
 
-ruby File.read(".ruby-version").chomp
-
-gem "activesupport", "~> 5.2"
-gem "capybara", "~> 3.33.0"
-gem "ffi", "1.12"
+gem "activesupport"
+gem "capybara"
+gem "ffi"
 gem "rake"
-gem "rspec", "~> 3.9"
+gem "rspec"
 gem "rubocop-govuk"
 gem "simplecov"
-gem "webmock", "~> 3.8"
+gem "webmock"
 
 gem "govuk_tech_docs"
-gem "middleman", "~> 4.3.11"
-gem "middleman-search_engine_sitemap", "~> 1.4"
+gem "middleman"
+gem "middleman-search_engine_sitemap"
 
 gem "github-markdown"
 gem "html-pipeline"
-gem "kramdown", "~> 2.3.0"
-gem "mdl", "~> 0.9.0"
+gem "kramdown"
+gem "mdl"
 
-gem "govuk_schemas", "~> 4.1.1"
+gem "govuk_schemas"
 
 # GitHub API
-gem "faraday-http-cache", "~> 2.2.0"
-gem "faraday_middleware", "~> 1.0.0"
-gem "octokit", "~> 4.18.0"
+gem "faraday-http-cache"
+gem "faraday_middleware"
+gem "octokit"
