@@ -4,7 +4,7 @@ title: Republish content
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-17
+last_reviewed_on: 2020-09-23
 review_in: 6 months
 ---
 
@@ -15,8 +15,8 @@ website. This process varies per app.
 
 If the document is in Whitehall, there is a Rake task you can run.
 
-[`publishing_api:republish_document[slug]`](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug])
+[`publishing_api:republish_document[slug]`](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug])
 
 For organisations, run:
 
-[`publishing_api:republish_organisation[slug]`](https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_organisation[slug])
+[`publishing_api:republish_organisation[slug]`](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_organisation[slug])

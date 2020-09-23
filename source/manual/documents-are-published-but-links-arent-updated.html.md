@@ -4,7 +4,7 @@ title: Debug published documents with incorrect links
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-01-23
+last_reviewed_on: 2020-09-23
 review_in: 6 months
 ---
 
@@ -18,5 +18,5 @@ Publishing API in Jenkins,
 [`represent_downstream:high_priority:content_id['some-content-id some-other-content-id']`][jenkins-task],
 which will re-represent them downstream via the high priority queue.
 
-[sidekiq-queue]: https://docs.publishing.service.gov.uk/manual/monitor-sidekiq-workers.html#header
-[jenkins-task]: https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[%27some-content-id%20some-other-content-id%27]
+[sidekiq-queue]: https://docs.publishing.service.gov.uk/manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring
+[jenkins-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[%27some-content-id%20some-other-content-id%27]
