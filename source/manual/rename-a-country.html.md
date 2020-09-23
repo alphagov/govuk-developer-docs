@@ -31,9 +31,9 @@ This will update www.gov.uk/foreign-travel-advice/`<country_slug>` to www.gov.uk
   * You will see the country has updated in the list in [Travel Advice Publisher](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin)
 
 3. Run Rake tasks
-  * Run [country:rename[<old_country_slug>,<new_country_slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=country:rename[<old_country_slug>,<new_country_slug>]) to update the `TravelAdviceEdition`s.
-  * Run [publishing_api:republish_edition[<new_country_slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[<new_country_slug>]) to update the PublishingApi.
-  * Run [publishing_api:republish_email_signups:country_edition[<country-slug>]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[<country-slug>]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
+  * Run [country:rename[old_country_slug,new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=country:rename[<old_country_slug>,<new_country_slug>]) to update the `TravelAdviceEdition`s.
+  * Run [publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[<new_country_slug>]) to update the PublishingApi.
+  * Run [publishing_api:republish_email_signups:country_edition[country-slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[<country-slug>]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
 
 4. Update the search metadata
   * In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin), go to the country and create a new edition

@@ -4,7 +4,7 @@ title: Publish special routes
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-28
+last_reviewed_on: 2020-09-23
 review_in: 6 months
 old_paths:
  - /manual/publish_special_routes.html
@@ -14,4 +14,4 @@ The [Special Route Publisher](https://github.com/alphagov/special-route-publishe
 
 All new special routes should be created in this tool, and existing special routes should be moved as necessary.
 
-The [Publish special routes Jenkins job](https://deploy.staging.publishing.service.gov.uk/job/Publish_Special_Routes/) will re-publish all defined special routes to the Publishing API.
+The [Publish special routes Jenkins job](https://deploy.blue.staging.govuk.digital/job/Publish_Special_Routes/) will re-publish all defined special routes to the Publishing API.
