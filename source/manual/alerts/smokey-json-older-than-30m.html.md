@@ -8,41 +8,32 @@ last_reviewed_on: 2020-04-07
 review_in: 6 months
 ---
 
-There can be the rare case wherein Smokey has failed to correctly run. While the
-causes can be various and ultimately unknown, the symptoms include a large number
-of Unknown errors in Icinga on the `monitoring` box.
+## Try removing any stuck processes
 
-The easiest way to clear these issues is ensure all relevant Smokey tasks are
-killed:
+Sometimes the processes can get stuck e.g. waiting on a network connection, but this should be rare.
 
 ```shell
-$ sudo killall chromedriver
-$ sudo killall chrome
-$ sudo killall java
+sudo service smokey-loop stop
+
+sudo pkill -f -9 smoke
+sudo pkill -f -9 chrome
+
+sudo service smokey-loop start
 ```
 
-Alternatively if `killall` doesn't work, attempt to kill the processes directly
-either through use of `htop` or with the `kill` command:
+After running the above commands, you should soon see the `/tmp/smokey.json` file has been modified.
+
+## Try a manual run of the loop
+
+The Smokey Loop is just [a repeat run of Cucumber](https://github.com/alphagov/smokey/blob/master/tests_json_output.sh#L27), which you can do yourself.
 
 ```shell
-# Repeat until all chromedriver processes that do not mention 'grep' are gone
-# Then repeat for chrome and java
+sudo su - smokey
+cd /opt/smokey
 
-$ ps -ef | grep chromedriver # To find the process ID to kill
-$ sudo kill -15 $processID # Use the first number from the top line of grep
+govuk_setenv smokey bundle exec cucumber ENVIRONMENT=integration --profile integration
 ```
 
-With `ps -ef | grep smokey` you should only see a running series of Postgres
-services. These are not actually Smokey tasks, but Docker tasks that are being
-misreported in the process list and it is advised to leave them running.
+You should then see the Cucumber output, with all the tests passing.
 
-After the above, restart the service with `sudo service smokey-loop start` and
-you should see it clear up.
-
-#### If the error is still hanging around
-
-In the very rare occurrence that the smokey.json 30m error returns half an hour
-after the above steps are followed, retry the steps and then run
-`govuk_puppet --test` after starting the service. This is ultimately a
-solution with very little testing, as we only saw this happen once, but it worked
-in that case and may work again.
+> **Beware the proxy.** If you quit the process before it completes, then it won't clean up properly. You'll need to manually find it (`ps -ef | grep browserup`) and kill it.
