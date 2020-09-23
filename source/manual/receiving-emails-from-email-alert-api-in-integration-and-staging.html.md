@@ -56,4 +56,4 @@ WeeklyDigestInitiatorWorker.perform_async
 [Notify]: https://www.notifications.service.gov.uk
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[rake task]: https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/troubleshoot.rake#L19
+[rake task]: https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/support.rake#L142
