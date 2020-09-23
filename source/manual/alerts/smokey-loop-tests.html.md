@@ -24,7 +24,7 @@ failure, so you can diagnose the problem.
 ## Nginx
 
 If many of the tests are failing in an AWS environment, it may be because the Nginx services haven't registered new
-boxes coming online or old ones going offline. You can try to restart the following services:
+boxes coming online or old ones going offline. You can try to restart the following services using the [fabric scripts](https://github.com/alphagov/fabric-scripts):
 
 ```bash
 $ fab $environment class:cache app.reload:nginx
@@ -42,6 +42,8 @@ logs or restarting the process.
 $ ssh monitoring-1.production
 > sudo less /var/log/upstart/smokey-loop.log
 ```
+
+It may be necessary to kill all the smokey processes. There is further guidance on doing this [here](/manual/alerts/smokey-json-older-than-30m.html).
 
 ### `HTTP status code 550 (RestClient::RequestFailed)`
 
