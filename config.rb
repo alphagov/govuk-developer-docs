@@ -14,7 +14,8 @@ set :markdown,
     fenced_code_blocks: true,
     input: "GFM",
     tables: true,
-    no_intra_emphasis: true
+    no_intra_emphasis: true,
+    hard_wrap: false
 
 configure :development do
   # Disable Google Analytics in development
