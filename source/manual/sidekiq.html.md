@@ -74,7 +74,7 @@ on Integration, and check that it works as expected.
 ### Sidekiq Grafana Dashboard
 
 You can also monitor Sidekiq queue lengths using [this Grafana
-dashboard](https://grafana.publishing.service.gov.uk/dashboard/file/sidekiq.json). It
+dashboard](https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json). It
 is available in all environments.
 
 [gov.uk]: https://www.gov.uk
