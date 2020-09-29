@@ -4,8 +4,6 @@ title: Find hardcoded markup in GovSpeak
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-29
-review_in: 6 months
 ---
 
 Usually to find usage of markup we can look in our source code.
