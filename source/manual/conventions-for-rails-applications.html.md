@@ -187,11 +187,12 @@ Common tools used with RSpec are:
 - [`ActiveSupport::Testing::TimeHelpers`][time-helpers] for time manipulation.
 
 The conventional testing framework for JavaScript files in GOV.UK Rails
-applications is [jasmine][]. This is dictated by jasmine integrating
+applications is [Jasmine][]. This is dictated by Jasmine integrating
 with the [asset-pipeline][] which rules out other common JavaScript testing
-frameworks such as Jest or Karma. [Jasmine should be configured to run tests
-with Chrome headless][jasmine-chrome] as opposed to the default PhantomJS
-(which is a project no longer under development).
+frameworks such as Jest or Karma. Jasmine should be [configured][jasmine-chrome]
+to run tests with Chrome headless using [jasmine_selenium_runner][] - this
+replaces the default runtime of PhantomJS (which is a project no longer
+under development).
 
 [rspec-rails]: https://relishapp.com/rspec/rspec-rails/docs
 [rspec-mocks]: https://relishapp.com/rspec/rspec-mocks/docs
@@ -208,8 +209,9 @@ with Chrome headless][jasmine-chrome] as opposed to the default PhantomJS
 [Climate Control]: https://github.com/thoughtbot/climate_control
 [time-helpers]: https://api.rubyonrails.org/v6.0.2/classes/ActiveSupport/Testing/TimeHelpers.html
 [jasmine]: https://github.com/jasmine/jasmine-gem
+[jasmine_selenium_runner]: https://github.com/jasmine/jasmine_selenium_runner
 [asset-pipeline]: #frontend-assets
-[jasmine-chrome]: https://github.com/alphagov/content-publisher/blob/f26d9b551842fdf2084159b5b7f1bb078da56936/spec/javascripts/support/jasmine_helper.rb
+[jasmine-chrome]: https://github.com/alphagov/service-manual-publisher/commit/adcc93f3c4aa92f6fa6ea590bbf9fef852991199
 
 ## Configuration
 
