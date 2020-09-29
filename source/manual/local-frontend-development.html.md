@@ -5,16 +5,16 @@ parent: "/manual.html"
 layout: manual_layout
 section: Frontend
 type: learn
-last_reviewed_on: 2020-01-09
+last_reviewed_on: 2020-09-29
 review_in: 6 months
 ---
 
 ## Using startup scripts
 
-If you are making changes to a frontend app and nothing else, you can view these changes by running the application `./startup.sh` script:
+If you are making changes to a frontend app and nothing else, you can view these changes by running the application's `./startup.sh` script. This example is for [government-frontend], but these instructions apply to any frontend app.
 
 ```shell
-cd /govuk/frontend
+cd /govuk/government-frontend
 ./startup.sh --live
 # Check the output to see what port the app is running on, e.g: localhost:3005
 ```
@@ -42,7 +42,7 @@ cd /govuk/govuk-docker
 make government-frontend
 
 cd /govuk/government-frontend
-govuk-docker up government-frontend-app-live
+govuk-docker up government-frontend-app-live # or govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
@@ -54,7 +54,7 @@ gem 'govuk_publishing_components', path: '../govuk_publishing_components'
 
 ```shell
 cd /govuk/government-frontend
-bundle install
+govuk-docker-run bundle install
 govuk-docker up government-frontend-app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
@@ -63,10 +63,9 @@ If you want to test changes in static against a frontend app, you need to tell D
 
 ```shell
 cd /govuk/govuk-docker/projects/government-frontend
-vim docker-compose.yml
 ```
 
-Edit the docker-compose.yml live config to depend on static and remove the live static environment:
+Open `government-frontend`'s `docker-compose.yml` file, then edit the live config to depend on static and remove the live static environment:
 
 ```yaml
   government-frontend-app-live:
