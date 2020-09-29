@@ -14,6 +14,8 @@ related_applications: [travel-advice-publisher, content-tagger, whitehall]
 
 Renaming a country affects these pages:
 
+* https://www.gov.uk/export-health-certificates (country filter)
+* https://www.gov.uk/international-development-funding (country filter)
 * https://www.gov.uk/foreign-travel-advice/`<country_slug>`
 * https://www.gov.uk/world/`<country_slug>`
 * https://www.gov.uk/world/`<country_slug>`/news
@@ -99,7 +101,7 @@ In [Smart-answers](https://github.com/alphagov/smart-answers):
 
 3. Deploy the pull request
 
-### 5. Update Email-alert-api
+### 5. Update Email Alert API
 
 The country's subscription list(s) `title` and `slug` needs to be updated, such as:
 
@@ -122,3 +124,27 @@ The country's subscription list(s) `title` and `slug` needs to be updated, such 
 In [Whitehall](https://github.com/alphagov/whitehall) run `SearchIndexDeleteWorker.perform_async(instance.search_index['slug'], instance.rummager_index)`
 
 Failing this, there is a [rake task](https://github.com/alphagov/search-api/blob/4f106e40f2c1690d631f699bf8fc63dc39268866/lib/tasks/delete.rake#L9) that takes care of this.
+
+### 7. Update Specialist Publisher
+
+1. Create a content schemas [pull request](https://github.com/alphagov/govuk-content-schemas/pull/1014) to support both countries temporarily (around the data migration).
+
+1. Create a [pull request](https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424) to support both countries temporarily (around the data migration).
+
+1. Deploy govuk-content-schemas and Specialist Publisher to production.
+
+1. Run the rake task [publishing_api:publish_finder[export_health_certificates]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:publish_finder[export_health_certificate]) to update the finder options.
+
+1. Run the rake task [publishing_api:publish_finder[international_development_funds]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:publish_finder[export_health_certificate]) to update the finder options.
+
+1. Run the rake task [rename_country:all[old_slug,new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=rename_country:all[macedonia,north-macedonia])
+
+1. Check [the finder](https://www-origin.integration.publishing.service.gov.uk/export-health-certificates?destination_country%5B%5D=north-macedonia) to see the documents appear with the new country filter
+
+1. Create a final content schemas [pull request](https://github.com/alphagov/govuk-content-schemas/pull/1015) to remove the old country from the schema (after the migration).
+
+1. Create a final [pull request](https://github.com/alphagov/specialist-publisher/pull/1724) to remove the old country from the finders.
+
+1. Deploy govuk-content-schemas and Specialist Publisher to production.
+
+1. Re-publish the finders as above.
