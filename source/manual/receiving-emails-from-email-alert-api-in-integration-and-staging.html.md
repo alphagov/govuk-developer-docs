@@ -19,9 +19,7 @@ make changes to [govuk-puppet].
 
 [add-in-notify]: /manual/govuk-notify.html#receiving-emails-from-govuk-notify
 
-1. Add your email address to the common.yml for [hieradata](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml#L442) and [hieradata_aws](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L488) (these lists need to be kept in sync with the team members list in Notify)
-2. Add your email address to the override whitelist in the YAML file for the environment you're testing on. This is set as an
-   environment variable via hieradata under the key of
+1. Add your email address to the override whitelist in the file [common.yml](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L540-L568) (the list needs to be kept in sync with the team members list in Notify). This is set as an environment variable via hieradata under the key of
    `govuk::apps::email_alert_api::email_address_override_whitelist`. It should look something like this:
 
    ```
@@ -29,11 +27,9 @@ make changes to [govuk-puppet].
       - your.name@digital.cabinet-office.gov.uk
    ```
 
-3. Create a branch with these changes and push them to GitHub. Deploy these changes by running [integration-puppet-deploy](https://ci.integration.publishing.service.gov.uk/job/integration-puppet-deploy/build?delay=0sec), providing your branch name instead of a release tag.
+2. Create a branch with your changes and push them to GitHub. Deploy the changes by running the [deploy-puppet](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet) job for the environment you're testing on, providing your branch name instead of a release tag.
 
-Once these changes have been deployed and the environment variable
-`EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test
-that you can receive emails by running the [support:deliver_to_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=support:deliver_to_test_email[name@example.com]) [rake task].
+3. Once these changes have been deployed and the environment variable `EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test that you can receive emails by running the [support:deliver_to_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=support:deliver_to_test_email[your.name@digital.cabinet-office.gov.uk]) rake task.
 
 ## Testing digest emails
 
