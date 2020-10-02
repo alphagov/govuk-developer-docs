@@ -113,7 +113,7 @@ The country's subscription list(s) `title` and `slug` needs to be updated, such 
 
 1. Run the rake task [data_migration:find_subscriber_list_by_title[title]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:find_subscriber_list_by_title[country_name])
   with the country name to see which subscription lists need to be updated
-2. Run the rake task [data_migration:update_subscriber_list[slug,new_title,new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list[country_slug,new_title,new_country_slug])
+2. Run the rake task [data_migration:update_subscriber_list[slug,"new_title",new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list[country_slug,"new_title",new_country_slug])
   to update the subscription lists
 
   > **Note**
@@ -145,6 +145,6 @@ Failing this, there is a [rake task](https://github.com/alphagov/search-api/blob
 
 6. Re-publish the finders again, as above.
 
-7. Run the rake task [data_migration:update_subscriber_list_tag[field,old_slug,new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list_tag[field,old_slug,new_slug]]) to update the matching criteria for any subscriber lists in Email Alert API with keys of:
+7. Run the rake task [data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]]) to update the matching criteria for any subscriber lists in Email Alert API with keys of:
    * `location`
    * `destination_country`
