@@ -29,18 +29,18 @@ This will update www.gov.uk/foreign-travel-advice/`<country_slug>` to www.gov.uk
 1. Change the relevant name and slug in the `lib/data/countries.yml` file. Keep `content_id` and `email_signup_content_id` the same, and ensure the alphabetical order of the list is respected. [Example](https://github.com/alphagov/travel-advice-publisher/pull/539/files#diff-e7c0733c6cf5a1d6fc1f2589a6d9f0f7)
 
 2. Deploy Travel Advice Publisher
-  * Once the above pull request is ready, [deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=deploy:with_hard_restart) Travel Advice Publisher with a hard restart to update the countries YAML file.
-  * You will see the country has updated in the list in [Travel Advice Publisher](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin)
+   * Once the above pull request is ready, [deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild/?TARGET_APPLICATION=travel-advice-publisher&DEPLOY_TASK=deploy:with_hard_restart) Travel Advice Publisher with a hard restart to update the countries YAML file.
+   * You will see the country has updated in the list in [Travel Advice Publisher](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin)
 
 3. Run Rake tasks
-  * Run [country:rename[old_country_slug,new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=country:rename[<old_country_slug>,<new_country_slug>]) to update the `TravelAdviceEdition`s.
-  * Run [publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[<new_country_slug>]) to update the PublishingApi.
-  * Run [publishing_api:republish_email_signups:country_edition[country-slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[<country-slug>]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
+   * Run [country:rename[old_country_slug,new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=country:rename[<old_country_slug>,<new_country_slug>]) to update the `TravelAdviceEdition`s.
+   * Run [publishing_api:republish_edition[new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[<new_country_slug>]) to update the PublishingApi.
+   * Run [publishing_api:republish_email_signups:country_edition[country-slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_email_signups:country_edition[<country-slug>]) to update email subscriptions at `/foreign-travel-advice/<country_slug>/email-signup`
 
 4. Update the search metadata
-  * In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin), go to the country and create a new edition
-  * Tick the "minor update" checkbox and update the `Search title` and `Search description` fields with the updated country name.
-  * Save and publish.
+   * In the [UI](https://travel-advice-publisher.integration.publishing.service.gov.uk/admin), go to the country and create a new edition
+   * Tick the "minor update" checkbox and update the `Search title` and `Search description` fields with the updated country name.
+   * Save and publish.
 
 ### 2. Update Worldwide Taxons
 
@@ -74,10 +74,12 @@ This will update `www.gov.uk/world/<country_slug>/news`.
 In [Whitehall](https://github.com/alphagov/whitehall):
 
 1. Create a [data migration](https://github.com/alphagov/whitehall/pull/4643/files) to update the `slug` and `name` fields of the `WorldLocation` table.
+
 2. Deploy the pull request
-  * After deploying, run the [Whitehall data migrations](https://deploy.integration.publishing.service.gov.uk/job/Run_Whitehall_Data_Migrations/) job
+   * After deploying, run the [Whitehall data migrations](https://deploy.integration.publishing.service.gov.uk/job/Run_Whitehall_Data_Migrations/) job
+
 3. Update World Location News
-  * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations). In the "Details" tab, edit the `Title`, `Mission statement` and relevant `Featured links`.
+   * Go to the relevant country in [World Location News](https://whitehall-admin.integration.publishing.service.gov.uk/government/admin/world_locations). In the "Details" tab, edit the `Title`, `Mission statement` and relevant `Featured links`.
 
 ### 4. Update Smart-answers
 
@@ -127,24 +129,22 @@ Failing this, there is a [rake task](https://github.com/alphagov/search-api/blob
 
 ### 7. Update Specialist Publisher
 
-1. Create a content schemas [pull request](https://github.com/alphagov/govuk-content-schemas/pull/1014) to support both countries temporarily (around the data migration).
+1. Create and deploy pull requests for GOV.UK Content Schemas ([example](https://github.com/alphagov/govuk-content-schemas/pull/1014)) and Specialist Publisher ([example](https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424)) to support both countries temporarily (during the data migration).
 
-1. Create a [pull request](https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424) to support both countries temporarily (around the data migration).
+2. Run the rake task [publishing_api:publish_finder[finder]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:publish_finder[finder]) to republish the updated finders:
+   * `export_health_certificates`
+   * `international_development_funds`
 
-1. Deploy govuk-content-schemas and Specialist Publisher to production.
+3. Run the rake task [rename_country:all[country_slug,new_country_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=rename_country:all[country_slug,new_country_slug]) to republish all the relevant documents.
 
-1. Run the rake task [publishing_api:publish_finder[export_health_certificates]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:publish_finder[export_health_certificate]) to update the finder options.
+4. Check the country filter options have updated and documents appear with the new country filter set. This could take a few minutes due to the time it takes to republish the finder and all its associated documents.
+   * [Export Health Certificates](https://www-origin.integration.publishing.service.gov.uk/export-health-certificates?cachebust=123).
+   * [International Development Funds](https://www-origin.integration.publishing.service.gov.uk/international-development-funding?cachebust=123).
 
-1. Run the rake task [publishing_api:publish_finder[international_development_funds]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:publish_finder[export_health_certificate]) to update the finder options.
+5. Create and deploy another pull request for GOV.UK Content Schemas ([example](https://github.com/alphagov/govuk-content-schemas/pull/1015)) and Specialist Publisher ([example](https://github.com/alphagov/specialist-publisher/pull/1724)) to remove support for the old country.
 
-1. Run the rake task [rename_country:all[old_slug,new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=rename_country:all[macedonia,north-macedonia])
+6. Re-publish the finders again, as above.
 
-1. Check [the finder](https://www-origin.integration.publishing.service.gov.uk/export-health-certificates?destination_country%5B%5D=north-macedonia) to see the documents appear with the new country filter
-
-1. Create a final content schemas [pull request](https://github.com/alphagov/govuk-content-schemas/pull/1015) to remove the old country from the schema (after the migration).
-
-1. Create a final [pull request](https://github.com/alphagov/specialist-publisher/pull/1724) to remove the old country from the finders.
-
-1. Deploy govuk-content-schemas and Specialist Publisher to production.
-
-1. Re-publish the finders as above.
+7. Run the rake task [data_migration:update_subscriber_list_tag[field,old_slug,new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list_tag[field,old_slug,new_slug]]) to update the matching criteria for any subscriber lists in Email Alert API with keys of:
+   * `location`
+   * `destination_country`
