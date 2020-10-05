@@ -9,7 +9,6 @@ last_reviewed_on: 2020-10-05
 review_in: 6 months
 ---
 
-
 This alert indicates that Email Alert API has work that has not been processed in the generous amount of time we expect it to have been. Which alert you see depends on the type of work.
 
 * **[`unprocessed content changes`](https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_content_change_worker.rb)**.
@@ -19,6 +18,14 @@ This alert indicates that Email Alert API has work that has not been processed i
 * **[`unprocessed messages`](https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb)**.
 
   * This means there is a significant delay in generating emails for subscribers with "immediate" frequency subscriptions in response to [a custom message].
+
+* **`incomplete digest runs`**.
+
+  * This could be due to a failure in any of three workers:
+
+    * [\[Daily/Weekly\]DigestInitiatorWorker](https://github.com/alphagov/email-alert-api/blob/a656389b1abdd46226ca37c1682c318f1c2eafee/app/workers/daily_digest_initiator_worker.rb) generates a DigestRunSubscriber work item for each subscriber.
+    * [DigestEmailGenerationWorker](https://github.com/alphagov/email-alert-api/blob/a656389b1abdd46226ca37c1682c318f1c2eafee/app/workers/digest_email_generation_worker.rb) does the work of generating the digest email for a specific subscriber.
+    * [DigestRunCompletionMarkerWorker](https://github.com/alphagov/email-alert-api/blob/a656389b1abdd46226ca37c1682c318f1c2eafee/app/workers/digest_run_completion_marker_worker.rb) periodically scans all the work items to see if the run is complete.
 
 Each of the alerts is based on custom metrics that we collect using [a periodic job](https://github.com/alphagov/email-alert-api/blob/a656389b1abdd46226ca37c1682c318f1c2eafee/app/workers/metrics_collection_worker.rb). The metric will be something like "amount of unprocessed work older than X amount of time" ([example](https://github.com/alphagov/email-alert-api/blob/a656389b1abdd46226ca37c1682c318f1c2eafee/app/workers/metrics_collection_worker/content_change_exporter.rb#L16)).
 
@@ -38,7 +45,17 @@ Things to check:
 
 * Check the [Email Alert API Technical dashboard] for performance issues.
 
-If all else fails, you can try running the work manually from a console, similarly to [the automatic recovery worker](https://github.com/alphagov/email-alert-api/blob/2f3931ac1ca25fe8c79b2405af98d1de55e1d47b/app/workers/recover_lost_jobs_worker/unprocessed_check.rb#L13), but using `new.perform` instead of `perform_async`.
+If all else fails, you can try running the work manually from a console. [The automatic recovery worker](https://github.com/alphagov/email-alert-api/blob/2f3931ac1ca25fe8c79b2405af98d1de55e1d47b/app/workers/recover_lost_jobs_worker/unprocessed_check.rb#L13) code is a good example of how to do this, but you will need to use `new.perform` instead of `perform_async`.
+
+> A digest run may be "complete" - all work items generated, all work items processed - but not marked as such. In this case, you will need to use slightly different commands to investigate the incomplete run:
+>
+> ```ruby
+> # find which digests are "incomplete"
+> DigestRun.where("created_at < ?", 1.hour.ago).where(completed_at: nil)
+>
+> # try manually marking it as complete
+> DigestRunCompletionMarkerWorker.new.perform
+> ```
 
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=6h
 [a custom message]: https://github.com/alphagov/email-alert-api/blob/master/docs/api.md#post-messages
