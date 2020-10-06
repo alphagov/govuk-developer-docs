@@ -5,12 +5,11 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Cookies
-last_reviewed_on: 2019-12-19
+last_reviewed_on: 2020-10-06
 review_in: 6 months
 ---
 
-This is technical documentation for the [GOV.UK](https://www.gov.uk/) team in the [Government
-Digital Service (GDS)](https://gds.blog.gov.uk/about/).
+This is technical documentation for the [GOV.UK](https://www.gov.uk/) team in the [Government Digital Service (GDS)](https://gds.blog.gov.uk/about/).
 
 ## Overview
 
@@ -26,22 +25,28 @@ The cookie consent mechanism is made up of 4 main pieces:
 
 * [Cookie banner component]
 * [Page template which pulls in the cookie banner]
-* [cookie settings page]. This is published as a [special route]. See the [Cookie settings page in Frontend GitHub repo].
+* [Cookie settings page][cookie settings page]. This is published as a [special route]. See the [Cookie settings page in Frontend GitHub repo].
 * [Cookie details page]. This is a standard help page, created in Publisher.
 
 When a user first lands on GOV.UK, they are given a default consent cookie that looks like this:
 
-`cookies_policy={"essential":true,"settings":false,"usage":false,"campaigns":false}`
+```javascript
+cookies_policy = { "essential": true, "settings": false, "usage": false, "campaigns": false }
+```
 
 This cookies_policy cookie is the key to the GOV.UK cookie consent mechanism. If any of these values read as false, cookies of that type will not be set.
 
 For example, the below cookie will result in Google Analytics tracking being disabled for that user:
 
-`cookies_policy={"essential":true,"settings":true,"usage":false,"campaigns":true}`
+```javascript
+cookies_policy = { "essential": true, "settings": true, "usage": false, "campaigns": true }
+```
 
 If the user clicks “Accept cookies” within the cookie banner or changes their cookie settings on the settings page, they get an additional cookie that ensures they don’t see the cookie banner again:
 
-`cookies_preferences_set`
+```javascript
+cookies_preferences_set
+```
 
 Users can still change their consent via the [cookie settings page].
 
@@ -55,7 +60,9 @@ Unlike other cookies on GOV.UK, Google Analytics (GA) cookies are not set using 
 
 We also set the following property to disable tracking:
 
-`window['ga-disable-UA-26179049-1'] = true;``
+```javascript
+window['ga-disable-UA-26179049-1'] = true
+```
 
 This is the [recommended approach](https://developers.google.com/analytics/devguides/collection/analyticsjs/user-opt-out) by Google for user opt-out of tracking.
 
@@ -77,7 +84,7 @@ If your cookie is set using Javascript:
 2. Add the cookie to the [list of known cookies](https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/lib/cookie-functions.js#L14)
 3. When reading and setting the cookie, make sure you use the cookie helper functions within govuk_publishing_components, e.g:
 
-  ```js
+  ```javascript
   window.GOVUK.cookie(‘please set this cookie’, ‘to this value’)
   window.GOVUK.cookie(‘please fetch this cookie’)
   ```
