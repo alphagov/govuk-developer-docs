@@ -36,7 +36,7 @@ the CDN which are available as tables:
 Athena is available through the AWS control panel and is only useful in
 the `govuk_infrastructure_production` account (as we barely use the ones for
 integration and staging). To access,
-[log into AWS](/manual/seeing-things-in-the-aws-console.html), navigate to
+[log into AWS](/manual/get-started.html#sign-in-to-aws), navigate to
 [Athena](https://eu-west-1.console.aws.amazon.com/athena) and select the
 `fastly_logs` database.
 
