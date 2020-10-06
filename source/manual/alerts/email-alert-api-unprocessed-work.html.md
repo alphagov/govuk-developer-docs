@@ -5,8 +5,6 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-05
-review_in: 6 months
 ---
 
 This alert indicates that Email Alert API has work that has not been processed in the generous amount of time we expect it to have been. Which alert you see depends on the type of work.
