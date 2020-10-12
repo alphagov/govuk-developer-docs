@@ -7,9 +7,14 @@ module CommitHelpers
   end
 
   def last_updated(current_page)
-    return current_page.data.latest_commit[:timestamp] if current_page.data.latest_commit
+    # e.g. "2020-09-03 09:53:56 UTC"
+    timestamp = if current_page.data.latest_commit
+                  current_page.data.latest_commit[:timestamp].to_s
+                else
+                  `TZ=UTC git log -1 --date='format-local:%Y-%m-%d %T UTC' --format="%cd" #{source_file(current_page)}`.strip
+                end
 
-    `TZ=UTC git log -1 --date='format-local:%Y-%m-%d %T UTC' --format="%cd" #{source_file(current_page)}`.strip
+    Time.parse(timestamp).strftime("%e %b %Y").strip # e.g. "3 Sep 2020"
   end
 
 private
