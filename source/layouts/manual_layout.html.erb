@@ -7,9 +7,7 @@
 %>
 
 <% last_updated_banner = capture do %>
-  <div>
-    Last updated: <a href="<%= commit_url(current_page) %>"><%= last_updated(current_page) %></a>
-  </div>
+  <%= partial 'partials/last_updated' %>
 <% end %>
 
 <% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1> #{last_updated_banner} #{yield}" %>
