@@ -10,7 +10,7 @@
   <%= partial 'partials/last_updated' %>
 <% end %>
 
-<% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1> #{last_updated_banner} #{yield}" %>
+<% html = "#{breadcrumb} #{last_updated_banner} <h1 id='header'>#{current_page.data.title}</h1> #{yield}" %>
 
 <% content_for :page_description, Snippet.generate(html) %>
 
