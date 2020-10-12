@@ -15,10 +15,6 @@
 
 <% wrap_layout :core do %>
   <%= partial 'partials/header' %>
-  <% if current_page.data.app_name # This conditional is for "/apis.html" %>
-    <div>
-      Last updated: <a href="https://github.com/alphagov/<%= current_page.data.app_name %>/commit/<%= current_page.data.latest_commit[:sha] %>"><%= current_page.data.latest_commit[:timestamp] %></a>
-    </div>
-  <% end %>
+  <%= partial 'partials/last_updated' %>
   <%= yield %>
 <% end %>
