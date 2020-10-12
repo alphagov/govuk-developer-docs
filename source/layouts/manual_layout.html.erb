@@ -5,7 +5,14 @@
                  "<p><a href='/manual.html##{section_url}'>#{current_page.data.section}</a></p>"
                end
 %>
-<% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1>#{yield}" %>
+
+<% last_updated_banner = capture do %>
+  <div>
+    Last updated: <a href="<%= commit_url(current_page) %>"><%= last_updated(current_page) %></a>
+  </div>
+<% end %>
+
+<% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1> #{last_updated_banner} #{yield}" %>
 
 <% content_for :page_description, Snippet.generate(html) %>
 
