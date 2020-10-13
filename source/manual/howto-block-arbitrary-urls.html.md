@@ -4,8 +4,6 @@ title: Block access to arbitrary URLs in the GOV.UK estate
 section: Security 
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-13
-review_in: 6 months
 ---
 During a recent security incident it became necessary to block a GOV.UK
 section in order to prevent access to sensitive data.
