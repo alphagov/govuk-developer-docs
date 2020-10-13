@@ -5,8 +5,6 @@ section: AWS
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-10-13
-review_in: 3 months
 ---
 
 To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
