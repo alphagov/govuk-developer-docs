@@ -4,8 +4,6 @@ title: Backup and restore databases in AWS RDS
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-13
-review_in: 3 months
 ---
 
 Backups of RDS instances are [taken
