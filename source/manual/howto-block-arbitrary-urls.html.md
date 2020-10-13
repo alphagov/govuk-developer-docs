@@ -4,7 +4,7 @@ title: Block access to arbitrary URLs in the GOV.UK estate
 section: Security 
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-30
+last_reviewed_on: 2020-10-13
 review_in: 6 months
 ---
 During a recent security incident it became necessary to block a GOV.UK
@@ -72,8 +72,6 @@ In order to block `<LEAK_URL>` on `<INSTANCE_CLASS>` in `<GOVUK_ENVIRONMENT>`:
    ```
    fab <GOVUK_ENVIRONMENT> class:<INSTANCE_CLASS>  do:'govuk_puppet --enable'
    ```
-
-Additional documentation of NGINX location block configuration:
 
 - [Digital ocean]: https://www.digitalocean.com/community/tutorials/understanding-nginx-server-and-location-block-selection-algorithms
 - [Linode]: https://www.linode.com/docs/web-servers/nginx/how-to-configure-nginx/#location-blocks
