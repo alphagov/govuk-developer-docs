@@ -4,7 +4,7 @@ title: Fall back to AWS CloudFront
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-07-01
+last_reviewed_on: 2020-10-13
 review_in: 3 months
 ---
 
