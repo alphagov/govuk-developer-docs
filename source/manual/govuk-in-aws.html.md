@@ -5,16 +5,12 @@ section: AWS
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-06-09
+last_reviewed_on: 2020-10-13
 review_in: 3 months
 ---
 
 To bring the GOV.UK platform in line with the [guidance detailed in the Service Manual](https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service),
-it is being migrated to [Amazon Web Services](https://aws.amazon.com/).
-
-At the moment, all GOV.UK applications are running in AWS except for Signon and most of the publisher apps.
-
-Please refer to the [Release app](https://release.publishing.service.gov.uk/applications) to determine where an app is currently located.
+it has been migrated to [Amazon Web Services](https://aws.amazon.com/).
 
 Most services run on [Amazon EC2](https://aws.amazon.com/ec2/), but there are some differences in the infrastructure that you should be aware of.
 
@@ -43,10 +39,6 @@ ip-10-1-4-100.eu-west-1.compute.internal
 Please see [the documentation](howto-ssh-to-machines.html) about accessing the environment.
 
 #### Service resolution
-
-> Please note
-> During the migration to AWS, the presence and value of the app_domain, app_domain_internal and Plek service environment variables are dependent on the migration state of an application as well as its dependencies and can be non-intuitive.
-> If in doubt, please talk to RE:GOV.UK (e.g. in Slack #re-govuk) to make sure your configuration change is consistent with your intention.
 
 Traditionally resolving a service name to an IP would be handled by hardcoding names and IPs in `/etc/hosts`.
 
