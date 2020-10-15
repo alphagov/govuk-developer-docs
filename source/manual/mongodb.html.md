@@ -6,7 +6,7 @@ parent: "/manual.html"
 section: Backups
 type: learn
 last_reviewed_on: 2020-10-15
-review_in: 6 months
+review_in: 3 months
 ---
 
 There are two ways of taking MongoDB backups.
