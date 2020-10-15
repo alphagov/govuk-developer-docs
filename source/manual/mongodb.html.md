@@ -5,7 +5,7 @@ layout: manual_layout
 parent: "/manual.html"
 section: Backups
 type: learn
-last_reviewed_on: 2020-03-02
+last_reviewed_on: 2020-10-15
 review_in: 6 months
 ---
 
