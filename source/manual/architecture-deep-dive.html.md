@@ -5,8 +5,6 @@ section: Applications
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-16
-review_in: 12 months
 ---
 
 We can cover a lot of GOV.UK architecture by asking ourselves three questions:
