@@ -5,7 +5,7 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-05
+last_reviewed_on: 2020-10-16
 review_in: 6 months
 ---
 
@@ -82,7 +82,7 @@ Where:
 1. `<action>` is the terraform action you want to perform. i.e. `plan` or `apply`
 1. `<aws_role>` is the govuk aws role you want to use for terraforming. i.e. `govuk-production-admin` or `govuk-production-poweruser`
 
-After you deploy, you can visit the [Jenkins job](https://deploy.publishing.service.gov.uk/job/Deploy_DNS/) to see the job running or queued.
+After you deploy, you can visit the [Jenkins job](https://deploy.blue.production.govuk.digital/job/Deploy_DNS/) to see the job running or queued.
 
 > **Note**
 >
