@@ -5,7 +5,7 @@ section: Applications
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-08
+last_reviewed_on: 2020-10-16
 review_in: 12 months
 ---
 
@@ -43,7 +43,7 @@ delivery network, which aim to respond with the IP address of the Fastly cache n
 which is "closest" to the user. Read more about Fastly in the next section, or
 [read more about gov.uk DNS][govuk-dns-docs].
 
-[deploy-dns]: https://deploy.publishing.service.gov.uk/job/Deploy_DNS/
+[deploy-dns]: https://deploy.blue.production.govuk.digital/job/Deploy_DNS/
 [govuk-dns repo]: https://github.com/alphagov/govuk-dns
 [govuk-dns-config repo]: https://github.com/alphagov/govuk-dns-config
 [govuk-dns-docs]: /manual/dns.html
