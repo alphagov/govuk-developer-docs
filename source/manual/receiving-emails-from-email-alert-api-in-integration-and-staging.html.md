@@ -29,7 +29,7 @@ make changes to [govuk-puppet].
 
 2. Create a branch with your changes and push them to GitHub. Deploy the changes by running the [deploy-puppet](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet) job for the environment you're testing on, providing your branch name instead of a release tag.
 
-3. Once these changes have been deployed and the environment variable `EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test that you can receive emails by running the [support:deliver_to_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=support:deliver_to_test_email[your.name@digital.cabinet-office.gov.uk]) rake task.
+3. Once these changes have been deployed and the environment variable `EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test that you can receive emails by running the [support:send_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=support:send_test_email[your.name@digital.cabinet-office.gov.uk]) rake task.
 
 ## Testing digest emails
 
