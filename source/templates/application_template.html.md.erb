@@ -164,6 +164,10 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
   <span class="govuk-error-message">
     Cannot fetch README without `GITHUB_TOKEN`.
   </span>
+<% elsif application.readme.nil? %>
+  <span class="govuk-error-message">
+    This repo doesn't have a README.md file.
+  </span>
 <% else %>
   <div class="govuk-warning-text">
     <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
