@@ -4,8 +4,6 @@ title: SSH into machines
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-21
-review_in: 6 months
 ---
 
 This document explains how to SSH into machines, and what commands exist to navigate machines and applications quickly. We use a tool called [GOV.UK Connect] to make this easier.
