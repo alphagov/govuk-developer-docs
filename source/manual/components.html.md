@@ -5,8 +5,6 @@ section: Frontend
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-21
-review_in: 6 months
 ---
 
 Components are packages of template, style, behaviour and documentation. Components live in your application unless needed by multiple applications, then they are shared using the [govuk_publishing_components gem](https://github.com/alphagov/govuk_publishing_components).
