@@ -5,7 +5,7 @@ section: Frontend
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-13
+last_reviewed_on: 2020-10-21
 review_in: 6 months
 ---
 
@@ -17,7 +17,7 @@ Components in applications are documented in component guides using the [govuk_p
 
 Find components in these guides:
 
-* [govuk_publishing_components component guide](https://govuk-publishing-components.herokuapp.com/component-guide)
+* [govuk_publishing_components component guide](https://components.publishing.service.gov.uk/component-guide)
 * [government-frontend component guide](https://government-frontend.herokuapp.com/component-guide/)
 * [collections component guide](https://govuk-collections.herokuapp.com/component-guide/)
 * [finder-frontend component guide](https://finder-frontend.herokuapp.com/component-guide/)
