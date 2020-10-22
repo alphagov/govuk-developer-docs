@@ -246,6 +246,17 @@ production) and need different secrets for them.
 [secrets-example]: https://github.com/alphagov/content-publisher/blob/654d1885dd94e347e236be73d20f2304913bc906/config/secrets.yml
 [rails-credentials]: https://edgeguides.rubyonrails.org/security.html#custom-credentials
 
+### Specify London as the timezone
+
+Configure your Rails application to consider the local timezone to be London
+time, this can be done with `config.time_zone = "London"` in your
+`config/application.rb`. This allows the presentation of dates to users, and
+any time based logic, to automatically be in UK time.
+
+Note, you shouldn't change the default configuration for the ActiveRecord
+timezone (`config.active_record.default_timezone`). This should remain as UTC
+which keeps the database un-opinionated on timezone.
+
 ### Use `api_only` mode for API projects
 
 For applications that do not serve requests to a web browser you should
