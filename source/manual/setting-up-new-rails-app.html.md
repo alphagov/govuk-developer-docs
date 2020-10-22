@@ -33,34 +33,32 @@ rails new myapp --skip-javascript --skip-test --skip-bundle --skip-spring --skip
 Replace the Gemfile with the gems you need. Here is an example.
 
 ```
-ruby File.read(".ruby-version").strip
-
 source "https://rubygems.org"
 
-gem "rails", "~> 5.2"
+gem "rails", "6.0.3.4"
 
-gem "bootsnap", "~> 1"
-gem "gds-api-adapters", "~> 52"
-gem "gds-sso", "~> 13"
-gem "govuk_app_config", "~> 1"
-gem "govuk_publishing_components", "~> 9.5"
-gem "pg", "~> 1"
-gem "plek", "~> 2"
-gem "uglifier", "~> 4"
+gem "bootsnap",
+gem "gds-api-adapters"
+gem "gds-sso"
+gem "govuk_app_config"
+gem "govuk_publishing_components"
+gem "pg"
+gem "plek"
+gem "uglifier"
 
 group :development do
-  gem "listen", "~> 3"
+  gem "listen"
 end
 
 group :test do
-  gem "simplecov", "~> 0.16"
+  gem "simplecov"
 end
 
 group :development, :test do
-  gem "byebug", "~> 10"
-  gem "rspec-rails", "~> 3"
+  gem "byebug"
+  gem "govuk_test"
+  gem "rspec-rails"
   gem "rubocop-govuk"
-  gem "scss-lint-govuk"
 end
 ```
 
