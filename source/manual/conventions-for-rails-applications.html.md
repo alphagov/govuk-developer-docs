@@ -93,6 +93,43 @@ introduced by these gems.
 [slimmer]: https://github.com/alphagov/slimmer
 [issue-example]: https://github.com/alphagov/govuk_app_config/issues/121
 
+### Gemfile organisation
+
+Aim for your Gemfile to feel consistent, logical and concise. It is easy for
+these files to become confusing with arbitrary orderings and a sporadic
+approach to versioning ([example][confusing-gemfile]). However, this can
+be avoided by following simple conventions.
+
+The first gem in your Gemfile should be `"rails"` as the root dependency of
+the application. This should have the version of Rails specified as an absolute
+version number (for example `"6.0.3.4"` rather than relative `"~> 6.0"`) which
+stops any other gems being able to alter the version of Rails used.
+
+You should then declare the other gems your application needs to run in
+all environments, which should be followed by
+[groups](https://bundler.io/v1.5/groups.html) to specify gem dependencies
+for particular environments (typically development and test).
+
+You should avoid specifying the version of a gem (known as pinning) unless
+you have a specific need to do so. Pinning a version is rarely necessary
+as the Gemfile.lock file already stores the particular version used
+and typically we intend to keep applications compatible with a current
+version of a gem. Avoiding this makes future maintainers of your Gemfile not
+need to consider whether a versioning choice was arbitrary or specific - it
+also makes for a file that is easier to read - [example][email-alert-api-gemfile].
+
+Should you have a need to specify a particular version of the gem (for example,
+to indicate lack of compatibility with a newer release) leave a comment to
+explain the particular version. This documents why we need to care
+about the gem version. For example:
+
+```
+gem "elasticsearch", "~> 6" # We need a 6.x release to interface with Elasticsearch 6
+```
+
+[confusing-gemfile]: https://github.com/alphagov/publisher/blob/c8ccf5458c0497ebdf3776085316fc6750172cb8/Gemfile#L3-L23
+[email-alert-api-gemfile]: https://github.com/alphagov/email-alert-api/blob/6409c1d57771c18b7b0a917f4634594ca6e7b52d/Gemfile
+
 ### Data storage
 
 For non-specialist database needs you should use
