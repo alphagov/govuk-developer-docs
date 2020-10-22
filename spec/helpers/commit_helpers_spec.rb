@@ -18,15 +18,14 @@ RSpec.describe CommitHelpers do
     end
 
     it "returns commit URL for the commit associated with the source file of current_page" do
-      source_file = "foo/bar.md"
-      commit_sha = SecureRandom.hex(40)
+      source_file = "index.html.erb"
       current_page = OpenStruct.new(
         data: OpenStruct.new,
         file_descriptor: OpenStruct.new(relative_path: source_file),
       )
-      allow(helper).to receive(:`).and_return(commit_sha)
-      expect(helper.commit_url(current_page))
-        .to eq("https://github.com/alphagov/govuk-developer-docs/commit/#{commit_sha}")
+      expect(helper.commit_url(current_page)).to match(
+        /https:\/\/github.com\/alphagov\/govuk-developer-docs\/commit\/[0-9a-f]{40}$/,
+      )
     end
   end
 
