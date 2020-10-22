@@ -4,7 +4,7 @@ title: SSH into machines
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-15
+last_reviewed_on: 2020-10-21
 review_in: 6 months
 ---
 
@@ -18,10 +18,18 @@ If you know the class of machine you want, you can SSH straight from the command
 $ gds govuk connect -e staging ssh cache
 ```
 
-This will automatically SSH into a random `cache` machine on AWS. To see all classes, run:
+This will automatically SSH into a random `cache` machine on AWS.
+
+To see all classes, run:
 
 ```sh
 $ gds govuk connect -e staging ssh *
+```
+
+You can connect to specific machines if you know their internal IP address:
+
+```sh
+$ gds govuk connect ssh -e integration ip-10-1-6-234.eu-west-1.compute.internal
 ```
 
 You can also start a Rails Console on a remote server, from your local machine:
