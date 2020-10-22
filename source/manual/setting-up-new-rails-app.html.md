@@ -6,6 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+[mit-license]: https://en.wikipedia.org/wiki/MIT_License
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines
 [govuk-puppet-jenkins]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
 [dns]: https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishing-service-gov-uk
@@ -144,6 +145,83 @@ end
 ```
 
 Then add `task default: %i(spec lint)` in Rakefile and finally run `rake`.
+
+## Add a software licence
+
+Add a LICENCE file to the project root to specify the software licence. Unless
+your project has specific needs, you should use the [MIT License][mit-license].
+
+<details markdown="block">
+
+<summary>MIT License for GDS projects</summary>
+
+```
+The MIT License (MIT)
+
+Copyright (c) <year> Crown Copyright (Government Digital Service)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+</details>
+
+## Replace the default README.md
+
+We have a common structure that is used for GOV.UK apps. Fill in some basic
+details to get started with your app and flesh it out further as your project
+develops.
+
+```
+# App Name
+
+One paragraph description and purpose.
+
+## Screenshots (if there's a client-facing aspect of it)
+
+## Live examples (if available)
+
+- [gov.uk/thing](https://www.gov.uk/thing)
+
+## Nomenclature
+
+- **Word**: definition of word, and how it's used in the code
+
+## Technical documentation
+
+Write a single paragraph including a general technical overview of the app.
+
+### Dependencies
+
+- [dependency]() - purpose
+
+### Running the application
+
+How to run the app
+
+### Running the test suite
+
+How to test the app
+
+## Licence
+
+[MIT License](LICENCE)
+```
 
 ## Puppet, DNS, Sentry and beyond
 
