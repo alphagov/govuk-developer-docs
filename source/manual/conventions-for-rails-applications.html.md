@@ -5,7 +5,7 @@ section: Applications
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-26
+last_reviewed_on: 2020-10-22
 review_in: 12 months
 ---
 
@@ -386,7 +386,7 @@ different abstractions (unit, integration and functional)][cp-testing-strategy].
 
 When testing Rails applications from the perspective of an end user it is
 conventional to use RSpec Rails' [feature specs][] (new applications should
-use the more modern equivalent [system specs][]) via [govuk_test][]'s
+use the more modern equivalent: [system specs][]) via [govuk_test][]'s
 [Capybara](https://teamcapybara.github.io/capybara/) configuration.
 
 GOV.UK have adopted the [Future Learn readable feature test][future-learn]
@@ -401,10 +401,9 @@ the code used to perform the test.
 
 ### Testing controllers
 
-For testing controllers in Rails applications it is recommended to use
-[request specs][], which have been the [recommended
-approach][rspec-request-moj] to replace [controller specs][] reflecting the
-[direction of Rails 5][controller-rails-5].
+Use [request specs][] for testing controllers, this is the [recommended
+approach][rspec-request-moj] to replace [controller specs][] reflecting a
+[direction introduced in Rails 5][controller-rails-5].
 
 [request specs]: https://relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec
 [rspec-request-moj]: https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11
