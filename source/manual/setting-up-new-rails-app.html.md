@@ -69,15 +69,16 @@ Run `bundle && rails g rspec:install` and replace `spec/*helper.rb`.
 rm spec/rails_helper.rb
 
 ## spec/spec_helper.rb
-require "byebug"
-require "simplecov"
-
 ENV["RAILS_ENV"] ||= "test"
+
+require "simplecov"
+SimpleCov.start "rails"
+
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-SimpleCov.start
+GovukTest.configure
 
 RSpec.configure do |config|
   config.expose_dsl_globally = false
