@@ -5,7 +5,7 @@ section: Applications
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-26
+last_reviewed_on: 2020-10-22
 review_in: 12 months
 ---
 
@@ -92,6 +92,43 @@ introduced by these gems.
 [scss-lint-govuk]: https://github.com/alphagov/scss-lint-govuk
 [slimmer]: https://github.com/alphagov/slimmer
 [issue-example]: https://github.com/alphagov/govuk_app_config/issues/121
+
+### Gemfile organisation
+
+Aim for your Gemfile to feel consistent, logical and concise. It is easy for
+these files to become confusing with arbitrary orderings and a sporadic
+approach to versioning ([example][confusing-gemfile]). However, this can
+be avoided by following simple conventions.
+
+The first gem in your Gemfile should be `"rails"` as the root dependency of
+the application. This should have the version of Rails specified as an absolute
+version number (for example `"6.0.3.4"` rather than relative `"~> 6.0"`) which
+stops any other gems being able to alter the version of Rails used.
+
+You should then declare the other gems your application needs to run in
+all environments, which should be followed by
+[groups](https://bundler.io/v1.5/groups.html) to specify gem dependencies
+for particular environments (typically development and test).
+
+You should avoid specifying the version of a gem (known as pinning) unless
+you have a specific need to do so. Pinning a version is rarely necessary
+as the Gemfile.lock file already stores the particular version used
+and typically we intend to keep applications compatible with a current
+version of a gem. Avoiding this makes future maintainers of your Gemfile not
+need to consider whether a versioning choice was arbitrary or specific - it
+also makes for a file that is easier to read - [example][email-alert-api-gemfile].
+
+Should you have a need to specify a particular version of the gem (for example,
+to indicate lack of compatibility with a newer release) leave a comment to
+explain the particular version. This documents why we need to care
+about the gem version. For example:
+
+```
+gem "elasticsearch", "~> 6" # We need a 6.x release to interface with Elasticsearch 6
+```
+
+[confusing-gemfile]: https://github.com/alphagov/publisher/blob/c8ccf5458c0497ebdf3776085316fc6750172cb8/Gemfile#L3-L23
+[email-alert-api-gemfile]: https://github.com/alphagov/email-alert-api/blob/6409c1d57771c18b7b0a917f4634594ca6e7b52d/Gemfile
 
 ### Data storage
 
@@ -246,6 +283,17 @@ production) and need different secrets for them.
 [secrets-example]: https://github.com/alphagov/content-publisher/blob/654d1885dd94e347e236be73d20f2304913bc906/config/secrets.yml
 [rails-credentials]: https://edgeguides.rubyonrails.org/security.html#custom-credentials
 
+### Specify London as the timezone
+
+Configure your Rails application to consider the local timezone to be London
+time, this can be done with `config.time_zone = "London"` in your
+`config/application.rb`. This allows the presentation of dates to users, and
+any time based logic, to automatically be in UK time.
+
+Note, you shouldn't change the default configuration for the ActiveRecord
+timezone (`config.active_record.default_timezone`). This should remain as UTC
+which keeps the database un-opinionated on timezone.
+
 ### Use `api_only` mode for API projects
 
 For applications that do not serve requests to a web browser you should
@@ -338,7 +386,7 @@ different abstractions (unit, integration and functional)][cp-testing-strategy].
 
 When testing Rails applications from the perspective of an end user it is
 conventional to use RSpec Rails' [feature specs][] (new applications should
-use the more modern equivalent [system specs][]) via [govuk_test][]'s
+use the more modern equivalent: [system specs][]) via [govuk_test][]'s
 [Capybara](https://teamcapybara.github.io/capybara/) configuration.
 
 GOV.UK have adopted the [Future Learn readable feature test][future-learn]
@@ -353,10 +401,9 @@ the code used to perform the test.
 
 ### Testing controllers
 
-For testing controllers in Rails applications it is recommended to use
-[request specs][], which have been the [recommended
-approach][rspec-request-moj] to replace [controller specs][] reflecting the
-[direction of Rails 5][controller-rails-5].
+Use [request specs][] for testing controllers, this is the [recommended
+approach][rspec-request-moj] to replace [controller specs][] reflecting a
+[direction introduced in Rails 5][controller-rails-5].
 
 [request specs]: https://relishapp.com/rspec/rspec-rails/docs/request-specs/request-spec
 [rspec-request-moj]: https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11
