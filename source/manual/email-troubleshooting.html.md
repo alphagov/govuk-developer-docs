@@ -5,8 +5,6 @@ section: Emails
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-08-14
-review_in: 6 months
 ---
 
 This document has tips for troubleshooting unsent emails. For an overview of our
