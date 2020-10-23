@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-notifications"
 title: Send a bulk email
 section: Emails
 layout: manual_layout
