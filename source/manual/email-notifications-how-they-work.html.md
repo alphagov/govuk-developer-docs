@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-notifications"
 title: "Email notifications: how they work"
 section: Emails
 type: learn
