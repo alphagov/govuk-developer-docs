@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2020-07-24
+last_reviewed_on: 2020-10-26
 review_in: 6 months
 ---
 
@@ -86,7 +86,7 @@ To exclude a document type or page from having links generated _to_ it, _from_ i
 
 #### Suspending all suggested related links
 
-To immediately and temporarily stop showing all suggested related links (for example, if a problem has led to bad links being generated for a large percentage of content / high traffic content), you will need to update the CDN to set the `Govuk-Use-Recommended-Related-Links` header to `False` and then [deploy the CDN](https://deploy.publishing.service.gov.uk/job/Deploy_CDN/) for `vhost: www`.
+To immediately and temporarily stop showing all suggested related links (for example, if a problem has led to bad links being generated for a large percentage of content / high traffic content), you will need to update the CDN to set the `Govuk-Use-Recommended-Related-Links` header to `False` and then [deploy the CDN](https://deploy.blue.production.govuk.digital/job/Deploy_CDN/) for `vhost: www`.
 
 The root cause of the problem should be investigated and a new set of related links generated and ingested through the pipeline, if possible. Should the fix not be immediate, we might consider re-ingesting an older batch of related links from S3.
 
