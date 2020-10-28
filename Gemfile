@@ -13,7 +13,6 @@ gem "govuk_tech_docs"
 gem "middleman"
 gem "middleman-search_engine_sitemap"
 
-gem "git"
 gem "github-markdown"
 gem "html-pipeline"
 gem "kramdown"
