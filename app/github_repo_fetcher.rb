@@ -32,7 +32,6 @@ class GitHubRepoFetcher
           title: title,
           markdown: contents,
           source_url: doc.html_url,
-          latest_commit: latest_commit(app_name, doc.path),
         }
       end
     rescue Octokit::NotFound
@@ -46,14 +45,6 @@ private
     @all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: 1.hour) do
       client.repos("alphagov")
     end
-  end
-
-  def latest_commit(app_name, path)
-    latest_commit = client.commits("alphagov/#{app_name}", repo(app_name).default_branch, path: path).first
-    {
-      sha: latest_commit.sha,
-      timestamp: latest_commit.commit.author.date,
-    }
   end
 
   def client
