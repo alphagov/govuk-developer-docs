@@ -24,9 +24,7 @@ class ProxyPages
               markdown: page[:markdown],
             },
             data: {
-              app_name: app.app_name,
               source_url: page[:source_url],
-              latest_commit: page[:latest_commit],
             },
           },
         }

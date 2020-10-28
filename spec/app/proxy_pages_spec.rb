@@ -9,16 +9,7 @@ RSpec.describe ProxyPages do
     allow(Supertypes).to receive(:all)
       .and_return([double("Supertype", name: "", description: "", id: "")])
     allow(GitHubRepoFetcher.instance).to receive(:docs)
-      .and_return([
-        {
-          title: "A doc page",
-          markdown: "# A doc page\n Foo",
-          latest_commit: {
-            sha: SecureRandom.hex(40),
-            timestamp: Time.now.utc,
-          },
-        },
-      ])
+      .and_return([{ title: "A doc page", filename: "doc", markdown: "# A doc page\n Foo" }])
   end
 
   describe ".api_docs" do
