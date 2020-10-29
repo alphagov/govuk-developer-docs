@@ -13,7 +13,7 @@ module CommitHelpers
     timestamp = if current_page.data.latest_commit
                   current_page.data.latest_commit[:timestamp].to_s
                 else
-                  Git.open(".").log.path(source_file(current_page)).first.date.to_s
+                  Git.open(".").log.path(source_file(current_page)).first.author_date.to_s
                 end
 
     Time.parse(timestamp).strftime("%e %b %Y").strip # e.g. "3 Sep 2020"
