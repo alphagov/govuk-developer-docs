@@ -9,9 +9,10 @@ module CommitHelpers
   end
 
   def last_updated(current_page)
-    # e.g. "2020-09-03 09:53:56 UTC"
     timestamp = if current_page.data.latest_commit
                   current_page.data.latest_commit[:timestamp].to_s
+                elsif current_page.data.last_reviewed_on
+                  current_page.data.last_reviewed_on.strftime("%Y-%m-%d")
                 else
                   Git.open(".").log.path(source_file(current_page)).first.date.to_s
                 end

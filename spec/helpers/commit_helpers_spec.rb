@@ -38,6 +38,15 @@ RSpec.describe CommitHelpers do
       expect(helper.last_updated(current_page)).to eq("3 Sep 2020")
     end
 
+    it "formats the last_reviewed_on date of the local file if that exists" do
+      source_file = "index.html.erb"
+      current_page = OpenStruct.new(
+        data: OpenStruct.new(last_reviewed_on: Date.new(2020, 9, 3)),
+        file_descriptor: OpenStruct.new(relative_path: source_file),
+      )
+      expect(helper.last_updated(current_page)).to eq("3 Sep 2020")
+    end
+
     it "formats the commit date of the local file if no page data exists" do
       source_file = "index.html.erb"
       current_page = OpenStruct.new(
