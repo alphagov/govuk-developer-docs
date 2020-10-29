@@ -5,7 +5,12 @@
                  "<p><a href='/manual.html##{section_url}'>#{current_page.data.section}</a></p>"
                end
 %>
-<% html = "#{breadcrumb} <h1 id='header'>#{current_page.data.title}</h1>#{yield}" %>
+
+<% last_updated_banner = capture do %>
+  <%= partial 'partials/last_updated' %>
+<% end %>
+
+<% html = "#{breadcrumb} #{last_updated_banner} <h1 id='header'>#{current_page.data.title}</h1> #{yield}" %>
 
 <% content_for :page_description, Snippet.generate(html) %>
 
