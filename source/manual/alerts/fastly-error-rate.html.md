@@ -5,7 +5,6 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 We get response code reporting from Fastly (with a 15 minute delay). It

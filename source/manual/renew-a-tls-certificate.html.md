@@ -5,7 +5,6 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-07-24
-review_in: 6 months
 ---
 
 This document covers how to renew wildcard TLS certificates for

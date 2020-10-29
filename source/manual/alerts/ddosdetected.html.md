@@ -5,7 +5,6 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 If there is a Distributed Denial of Service (DDoS) alert in Icinga this means that AWS have detected a probable DDoS attack on one or more of the AWS Shield Advanced

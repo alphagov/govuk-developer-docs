@@ -5,7 +5,6 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-07
-review_in: 6 months
 ---
 
 [RabbitMQ][RabbitMQ] is a message broker based on the [Advanced Message Queuing

@@ -5,7 +5,6 @@ section: Backups
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-04-22
-review_in: 6 months
 ---
 
 To encrypt our offsite backups, we use GPG keys which are valid for a year. For

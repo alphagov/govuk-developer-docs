@@ -6,7 +6,6 @@ layout: manual_layout
 section: A/B testing
 type: learn
 last_reviewed_on: 2020-02-07
-review_in: 6 months
 ---
 
 GOV.UK uses our [Content Delivery Network (Fastly)][cdn] to run A/B and multivariate tests.

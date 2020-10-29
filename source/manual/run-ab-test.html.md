@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: A/B testing
 last_reviewed_on: 2020-02-07
-review_in: 6 months
 ---
 
 ## 1. Preparation

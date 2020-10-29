@@ -6,7 +6,6 @@ type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-08-04
-review_in: 6 months
 ---
 
 [GOV.UK Notify][notify] is a Government-as-a-Platform service that allows

@@ -5,7 +5,6 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-08-10
-review_in: 6 months
 related_applications: [search-api]
 ---
 

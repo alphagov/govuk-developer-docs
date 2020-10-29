@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-02-19
-review_in: 12 months
 ---
 
 The monitoring for `Athena has recent results for fastly_logs {database_name}`

@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Accounts
 last_reviewed_on: 2020-09-10
-review_in: 12 months
 ---
 
 Removing a user from our infrastructure via Puppet is a 2 change process that

@@ -5,7 +5,6 @@ section: Incidents
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-17
-review_in: 3 months
 important: true
 ---
 

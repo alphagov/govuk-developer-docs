@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-07-16
-review_in: 6 months
 ---
 
 This could be because of a number of reasons. Check that the database is up to

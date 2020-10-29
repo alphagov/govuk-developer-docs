@@ -5,7 +5,6 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-02-20
-review_in: 12 months
 ---
 
 The [CDN](/manual/cdn.html) log files are sent to Amazon S3 every 15 minutes

@@ -5,7 +5,6 @@ section: Routing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-05-18
-review_in: 6 months
 ---
 
 The Router API database is populated from the Publishing API, and also

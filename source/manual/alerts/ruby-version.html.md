@@ -5,7 +5,6 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 We have checks to ensure that the version of Ruby the application is using is

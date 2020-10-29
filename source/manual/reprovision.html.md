@@ -5,7 +5,6 @@ section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-10-13
-review_in: 6 months
 ---
 
 Make sure you are aware what the consequences will be of removing a

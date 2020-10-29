@@ -5,7 +5,6 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-01-21
-review_in: 6 months
 ---
 
 [find]: apps/datagovuk_find

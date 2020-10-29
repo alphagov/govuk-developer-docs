@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 We use VPNs to connect between datacentres. Please see [GOV.UK and Virtual Private Networks (VPNs)](/manual/vpn.html) for details of the VPNs we have and a description of the impact of each VPN failing. These should appear as Icinga Alerts on the dashboards.

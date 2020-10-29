@@ -6,7 +6,6 @@ layout: manual_layout
 type: learn
 section: Testing
 last_reviewed_on: 2020-02-26
-review_in: 6 months
 ---
 
 ## Introduction

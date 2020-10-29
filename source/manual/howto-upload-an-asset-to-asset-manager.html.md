@@ -5,7 +5,6 @@ section: Assets
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-07-16
-review_in: 6 months
 ---
 
 Some publishing apps such as [Mainstream Publisher](/apps/publisher.html) do not provide the facility for editors to upload

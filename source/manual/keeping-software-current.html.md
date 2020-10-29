@@ -6,7 +6,6 @@ layout: manual_layout
 section: Dependencies
 type: learn
 last_reviewed_on: 2020-04-06
-review_in: 6 months
 ---
 
 One of our core values is to use secure and up to date software. This document lays out the policy for keeping our Ruby on Rails software current.

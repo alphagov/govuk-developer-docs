@@ -6,7 +6,6 @@ layout: manual_layout
 section: Publishing
 important: true
 last_reviewed_on: 2020-08-07
-review_in: 6 months
 ---
 
 There are three types of events that would lead GOV.UK to add an emergency

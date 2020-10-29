@@ -6,7 +6,6 @@ layout: manual_layout
 section: Icinga alerts
 related_applications: [search-api]
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 This alert indicates that a large number of documents have been added to or

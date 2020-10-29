@@ -6,7 +6,6 @@ type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-10-26
-review_in: 6 months
 ---
 
 GOV.UK uses Fastly as a CDN. Public users aren't accessing GOV.UK servers directly, they connect via the CDN. This is better because:

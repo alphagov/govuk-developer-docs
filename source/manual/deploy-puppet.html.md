@@ -5,7 +5,6 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-08-25
-review_in: 6 months
 ---
 
 ## Deploying a branch

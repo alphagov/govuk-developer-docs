@@ -5,7 +5,6 @@ section: Testing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-05-11
-review_in: 6 months
 ---
 
 [GitHub Actions](https://github.com/features/actions) is an automated workflow

@@ -6,7 +6,6 @@ type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-10-22
-review_in: 12 months
 ---
 
 The majority of GOV.UK applications are built using [Ruby on Rails][] and over

@@ -5,7 +5,6 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-03-05
-review_in: 6 months
 ---
 [ckan]: https://ckan.org
 [dgu-ckan]: https://ckan.publishing.service.gov.uk

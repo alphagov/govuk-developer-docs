@@ -5,7 +5,6 @@ section: Databases
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-04-28
-review_in: 6 months
 ---
 
 This document explains how to back up a PostgreSQL database from one machine

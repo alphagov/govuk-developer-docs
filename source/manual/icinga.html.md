@@ -6,7 +6,6 @@ type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-03-11
-review_in: 12 months
 ---
 
 - Production

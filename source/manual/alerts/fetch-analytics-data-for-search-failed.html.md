@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 This checks the latest build state of [a job in production

@@ -5,7 +5,6 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-06-15
-review_in: 6 months
 ---
 
 [Static](https://github.com/alphagov/static) requires extra care when deploying.

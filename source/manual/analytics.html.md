@@ -6,7 +6,6 @@ layout: manual_layout
 type: learn
 parent: "/manual.html"
 last_reviewed_on: 2020-05-13
-review_in: 6 months
 related_applications: [govuk_frontend_toolkit static frontend government-frontend]
 ---
 

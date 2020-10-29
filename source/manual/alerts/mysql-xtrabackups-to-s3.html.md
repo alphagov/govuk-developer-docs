@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-04-22
-review_in: 6 months
 ---
 
 We send backups to an Amazon S3 bucket every 15 minutes. This is

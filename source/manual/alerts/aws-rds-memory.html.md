@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-05-12
-review_in: 6 months
 ---
 
 This alert relates to memory usage of our database (RDS) instances in AWS.

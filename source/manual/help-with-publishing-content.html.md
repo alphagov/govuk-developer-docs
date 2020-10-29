@@ -5,7 +5,6 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-05-18
-review_in: 6 months
 ---
 
 When a department is publishing content that is high priority, it may be

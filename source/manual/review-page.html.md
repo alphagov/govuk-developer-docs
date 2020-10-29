@@ -5,7 +5,6 @@ section: Documentation
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-01-23
-review_in: 12 months
 ---
 
 We have [a system to make sure we regularly review pages](https://github.com/alphagov/tech-docs-monitor) in the manual.

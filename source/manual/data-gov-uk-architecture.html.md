@@ -6,7 +6,6 @@ layout: manual_layout
 type: learn
 parent: "/manual.html"
 last_reviewed_on: 2020-03-31
-review_in: 6 months
 ---
 [publish]: apps/datagovuk_publish
 [find]: apps/datagovuk_find

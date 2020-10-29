@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Testing
 last_reviewed_on: 2020-04-07
-review_in: 12 months
 ---
 
 There are many reasons Jenkins could perform poorly, this document attempts to

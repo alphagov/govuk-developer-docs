@@ -5,7 +5,6 @@ section: Deployment
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 We maintain a static copy of most of the site, which gets used by the content delivery

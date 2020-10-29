@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 last_reviewed_on: 2020-01-17
-review_in: 6 months
 ---
 
 The [document type] describes what a page on GOV.UK looks like.

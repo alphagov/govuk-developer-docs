@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Infrastructure
 last_reviewed_on: 2020-09-15
-review_in: 6 months
 ---
 
 Jenkins should be regularly patched when possible, including all plugins.

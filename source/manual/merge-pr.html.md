@@ -5,7 +5,6 @@ section: GitHub
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-08-17
-review_in: 6 months
 ---
 
 There are five rules for reviewing and merging PRs, which apply to all applications:

@@ -5,7 +5,6 @@ parent: /manual.html
 layout: manual_layout
 section: GitHub
 last_reviewed_on: 2020-06-05
-review_in: 6 months
 ---
 
 Repositories in GOV.UK must:

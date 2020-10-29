@@ -6,7 +6,6 @@ layout: manual_layout
 section: Monitoring
 type: learn
 last_reviewed_on: 2020-06-04
-review_in: 1 year
 ---
 
 We use [Sentry][] to notify us of exceptions that happen in all environments.

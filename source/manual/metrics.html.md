@@ -6,7 +6,6 @@ type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-08-17
-review_in: 6 months
 ---
 
 Metrics are measurements of something. GOV.UK use metrics to monitor

@@ -5,7 +5,6 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-23
-review_in: 6 months
 ---
 
 If a document isn't live on GOV.UK after a publisher has published the document

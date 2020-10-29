@@ -6,7 +6,6 @@ layout: manual_layout
 section: Frontend
 type: learn
 last_reviewed_on: 2020-09-29
-review_in: 6 months
 ---
 
 ## Using startup scripts

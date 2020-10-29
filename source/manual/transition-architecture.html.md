@@ -6,7 +6,6 @@ type: learn
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-07-14
-review_in: 1 year
 related_applications: [bouncer, transition]
 ---
 

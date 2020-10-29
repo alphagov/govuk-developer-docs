@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 At 2:30am every day, a [Jenkins job][jenkins] runs a rake task on search-api

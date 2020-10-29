@@ -5,7 +5,6 @@ parent: /manual.html
 layout: manual_layout
 section: PaaS
 last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 When deploying applications to the PaaS, it is possible to limit access to the application to GDS office IPs only.
 

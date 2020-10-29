@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 last_reviewed_on: 2020-08-12
-review_in: 4 months
 ---
 
 Reliability Engineering are a programme in GDS, they are responsible for the

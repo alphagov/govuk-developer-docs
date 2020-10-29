@@ -5,7 +5,6 @@ section: Accounts
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-05-18
-review_in: 6 months
 ---
 
 We use Heroku to host some non-critical applications like the [monitoring-screen][] and also for auto-deploying [Heroku Review Apps](review-apps.html).

@@ -6,7 +6,6 @@ layout: manual_layout
 section: Publishing
 important: true
 last_reviewed_on: 2020-06-15
-review_in: 6 months
 ---
 
 A site-wide banner can be activated to convey important information on GOV.UK

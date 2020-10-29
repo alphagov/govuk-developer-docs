@@ -5,7 +5,6 @@ section: Applications
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-15
-review_in: 6 months
 ---
 
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines

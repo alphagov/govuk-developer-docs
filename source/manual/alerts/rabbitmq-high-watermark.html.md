@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-04-01
-review_in: 6 months
 ---
 
 The RabbitMQ server detects the total amount of RAM installed on startup. By

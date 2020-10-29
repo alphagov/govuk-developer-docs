@@ -5,7 +5,6 @@ section: Routing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-09-13
-review_in: 6 months
 ---
 
 When a Whitehall document fails to appear on the frontend, and the user

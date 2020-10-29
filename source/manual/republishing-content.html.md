@@ -5,7 +5,6 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2020-09-23
-review_in: 6 months
 ---
 
 Sometimes it may be necessary to republish content to make it show up on the

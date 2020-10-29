@@ -6,7 +6,6 @@ layout: manual_layout
 parent: "/manual.html"
 important: true
 last_reviewed_on: 2020-09-23
-review_in: 12 months
 ---
 
 There is a Jenkins job that can be used to run any rake task:

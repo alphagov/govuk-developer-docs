@@ -5,7 +5,6 @@ section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 last_reviewed_on: 2019-09-12
-review_in: 6 months
 ---
 
 Change notes are called editorial remarks in Whitehall. An Edition can

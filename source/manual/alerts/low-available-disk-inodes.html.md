@@ -5,7 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 last_reviewed_on: 2020-04-20
-review_in: 6 months
 ---
 
 The inode usage on a machine can be checked using:

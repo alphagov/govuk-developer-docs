@@ -6,7 +6,6 @@ layout: manual_layout
 type: learn
 parent: "/manual.html"
 last_reviewed_on: 2020-08-12
-review_in: 4 months
 ---
 
 > Deprecation note:
