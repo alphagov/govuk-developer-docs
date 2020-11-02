@@ -13,24 +13,26 @@ Subject Access Requests (often referred to as a 'SAR') allow members of the
 public to get information being held about them by an organisation.
 
 2nd line might be needed to answer some of the questions in the request, and
-this will usually come in through the form of a Zendesk ticket. Once 2nd line
-has found the necessary information, the request might need to be passed to
-another team to fully complete the request, for example, Licensing.
+this will usually come in through the form of a Zendesk ticket.
 
-## Known requests
+## Things to check
 
-So far we've received requests that have asked for information on:
-
-### Email subscriptions
-
-We've had requests to get information on what is held about an email address
-in terms of subscriptions. [There is a rake task for that][rake-task].
-We also have [some documented queries that can help get this][email-alert-api-analytics].
-
-[email-alert-api-analytics]: /manual/email-alert-api-analytics.html
-[rake-task]: /apis/email-alert-api/support-tasks.html#view-subscribers-subscriptions
-
-### Others
+Sometimes the request won't be specific about where the data may be stored,
+so we should check at least the following places.
 
 If any other information is requested, we should update this documentation so
 they become easier to deal with in the future.
+
+### Email subscriptions
+
+⚙  [Run rake task on production][email-rake-task]
+
+[email-rake-task]: /apis/email-alert-api/support-tasks.html#view-subscribers-subscriptions
+
+### Signon
+
+Check if the user [has an account](https://signon.publishing.service.gov.uk/users).
+
+### Licensing
+
+Ask in #govuk-licensing.
