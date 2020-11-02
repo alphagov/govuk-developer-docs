@@ -14,22 +14,6 @@ time synchronised with standard time servers on the Internet.
 The `ntpd.drift` file records the latest estimate of clock frequency error. If this value gets too high, this can be
 an indicator of large error between the system clock and the real time.
 
-If the system clock is out of sync on a Vmware host, first make sure the synchronisation between guest and host has been
-disabled. This is enabled by default in the image configuration and could cause issues when ntpd is running on the same box.
-
-To check the status, enable or disable Vmware periodic time synchronization, we can use the `vmware-toolbox-cmd` program:
-
-```
-$ sudo vmware-toolbox-cmd timesync status
-  Enabled
-$ sudo vmware-toolbox-cmd timesync disable
-  Disabled
-$ sudo vmware-toolbox-cmd timesync status
-  Disabled
-```
-
-If the Vmware timesync is disabled, we can use [fabric-scripts](https://github.com/alphagov/fabric-scripts) tasks to help resynchronise the system clock:
-
 ```
 fab $environment -H jumpbox-1.management ntp.status
 fab $environment -H jumpbox-1.management ntp.resync
