@@ -35,4 +35,34 @@ Check if the user [has an account](https://signon.publishing.service.gov.uk/user
 
 ### Licensing
 
-Ask in #govuk-licensing.
+This involves manually querying a couple of databases. Start by logging on to the
+licensing backend machine.
+
+```bash
+gds govuk connect -e production ssh licensing_backend
+```
+
+Connect to MongoDB with the following command. The host may be different, and can be
+found in `/etc/licensing/gds-licensing-config.properties`.
+
+```bash
+mongo licensify-documentdb-0.ca5itorbs5wc.eu-west-1.docdb.amazonaws.com/licensify -u master -p
+```
+
+You'll be prompted for the password, which you can also find in the config file from
+above. Once you're in the DB console, run:
+
+```bash
+db.applications.find({ email: "[email address]" }).count()
+```
+
+Secondly, we need to check for any audit records, which may still exist even if the
+original licence application has been archived:
+
+```bash
+use licensify-audit
+
+db.audit.find({ detail: { emailAddress: "[email address]" } }).count()
+```
+
+If you still need help, try asking in #govuk-licensing.
