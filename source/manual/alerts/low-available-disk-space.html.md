@@ -62,7 +62,8 @@ Nagios to re-check the service on each affected host.
 ## Low available disc space on /mnt/crawler_worker on mirrorer
 
 This can be caused when the AWS autoscaler re-spins a VM and the newly created
-VM does not attach the secondary EBS volume properly.
+VM does not attach the secondary EBS volume properly. In this case, the alert
+will say `DISK CRITICAL: /mnt/crawler_worker not found`.
 
 ### Cause
 
@@ -77,8 +78,7 @@ Manually re-attach the EBS volume tagged with mirrorer to the mirrorer
 instance, then run puppet on the instance. This will cause puppet to correctly
 mount the EBS volume in /mnt/crawler_worker.
 
-1. Login to https://gds-users.signin.aws.amazon.com/console
-1. Switch role to the appropriate environment: Integration, Staging or Production
+1. Login to the AWS Web Console: `gds aws govuk-integration-powerusers -l`
 1. Click Services -> EC2
 1. Change region to "Europe (Ireland) eu-west-1"
 1. Click Instances on the left hand side menu bar and filter by "mirrorer"
@@ -88,7 +88,8 @@ mount the EBS volume in /mnt/crawler_worker.
 1. Right click volume and choose "Attach Volume"
 1. Paste the Instance ID in to the appropriate box, leaving Device as the default
 1. Click Attach
-1. After AWS finishes attaching the volume to the instance the state should change to "in-use", once it has settled on that state SSH in to the mirrorer instance and run `sudo puppet agent --test`
+1. After AWS finishes attaching the volume to the instance the state should change to "in-use"
+1. Once it has settled to the "in-use" state, SSH in to the mirrorer instance and run `govuk_puppet --test`
 
 ## No disk space on the MySQL master
 
