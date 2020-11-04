@@ -96,6 +96,40 @@ flag | argument                  |
 
 Here the timestamp argument is optional and allow to specify which timestamp (iso-datetime string of the form `YYYY-MM-DDTHH:MM`) should be restored during a `pull` operation (default is using the latest available dump).
 
+## Pausing
+
+If you need to temporarily pause one of the data syncs, it can be done manually:
+
+1. On the `db_admin` machine for the environment you want to disable the sync
+   in, Puppet will need to be disabled so the paused jobs aren't
+   automatically restarted:
+
+   ```sh
+   $ govuk_puppet --disable "paused for data sync"
+   ```
+
+1. You can then list the cron jobs to find the right `pull` job for the app(s),
+   then edit the crontab and remove the corresponding line(s):
+
+   ```sh
+   # list
+   $ sudo crontab -lu govuk-backup
+   # edit
+   $ sudo crontab -u govuk-backup -e
+   ```
+
+1. This will need to be done separately in each environment where the jobs need
+   to be paused.
+
+### Resuming
+
+To resume the jobs again you can re-enable Puppet and run it manually:
+
+```sh
+$ govuk_puppet --enable
+$ govuk_puppet --test
+```
+
 ## Resources managed by Puppet
 
 ### Configuration files on machines
