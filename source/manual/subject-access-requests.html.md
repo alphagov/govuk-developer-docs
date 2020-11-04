@@ -12,8 +12,14 @@ related_applications: [email-alert-api]
 Subject Access Requests (often referred to as a 'SAR') allow members of the
 public to get information being held about them by an organisation.
 
-2nd line might be needed to answer some of the questions in the request, and
-this will usually come in through the form of a Zendesk ticket.
+Requests should come through in the form of a Zendesk ticket from our policy
+team, on behalf of the GDS Privacy Team. The process goes like this:
+
+1. User raises a request with the privacy team, who then turn it into a 2ndline ticket.
+
+2. 2ndline add notes after performing relevant checks (see below), and then reassign to the blogs/campaigns team with a "low" priority (since 2ndline are no longer working on it).
+
+3. The blogs/campaigns team will add more notes as necessary, following their own checks, and then mark the ticket as "solved". Our policy team will then use our notes to respond back up the chain.
 
 ## Things to check
 
