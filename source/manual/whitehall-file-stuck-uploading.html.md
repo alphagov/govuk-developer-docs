@@ -4,8 +4,6 @@ title: Whitehall Attachment Stuck in Uploading State
 parent: "/manual.html"
 layout: manual_layout
 section: Assets
-last_reviewed_on: 2020-09-18
-review_in: 6 months
 ---
 
 In rare cases, typically when a user has uploaded a large archive of multiple files, the Whitehall backend can become stuck and not correctly update the uploading status of the file.

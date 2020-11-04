@@ -4,8 +4,6 @@ title: Check process running
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 This alert means that a process which should be running is not. It's highly likely that this process corresponds to a service.

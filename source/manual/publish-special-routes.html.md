@@ -4,8 +4,6 @@ title: Publish special routes
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-23
-review_in: 6 months
 old_paths:
  - /manual/publish_special_routes.html
 ---

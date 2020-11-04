@@ -4,8 +4,6 @@ title: Set up Heroku review apps for pull requests
 section: Deployment
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-28
-review_in: 6 months
 ---
 
 [Review apps](https://devcenter.heroku.com/articles/github-integration-review-apps)

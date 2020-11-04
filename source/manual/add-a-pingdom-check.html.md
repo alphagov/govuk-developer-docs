@@ -4,8 +4,6 @@ title: Add a Pingdom check
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-08
-review_in: 12 months
 ---
 
 GOV.UK uses [Pingdom](https://www.pingdom.com/) to provide an external view of

@@ -1,9 +1,7 @@
 ---
 layout: core
 title: Accessibility statement
-review_in: 6 months
 hide_in_navigation: true
-last_reviewed_on: 2020-09-02
 ---
 
 # Accessibility statement

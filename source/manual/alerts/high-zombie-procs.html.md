@@ -4,8 +4,6 @@ title: High zombie procs
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-03-30
-review_in: 6 months
 ---
 
 You can check what the zombie processes are by SSHing onto the machine

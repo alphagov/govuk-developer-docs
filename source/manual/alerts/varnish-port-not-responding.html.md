@@ -4,8 +4,6 @@ title: Varnish port not responding
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-03-30
-review_in: 6 months
 ---
 
 Under high load, it is possible that the Varnish child process which handles

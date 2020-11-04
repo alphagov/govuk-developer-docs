@@ -4,8 +4,6 @@ title: Established connections exceed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 This alert triggers when the number of established connections to a

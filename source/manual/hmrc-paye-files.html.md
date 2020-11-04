@@ -4,8 +4,6 @@ title: Upload HMRC PAYE files
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-07-17
-review_in: 6 months
 ---
 
 [Basic PAYE Tools](https://www.gov.uk/basic-paye-tools) is a free software package HMRC provide for small employers to run their payroll. This is available on Windows, Linux, and OS X.

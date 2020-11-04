@@ -5,8 +5,6 @@ section: data.gov.uk
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-04-15
-review_in: 6 months
 ---
 
 ## Harvesting data for Web Map Service map previews

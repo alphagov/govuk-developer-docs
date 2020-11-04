@@ -4,8 +4,6 @@ title: Add an organisation's brand colour
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-28
-review_in: 6 months
 related_applications: [whitehall, government-frontend]
 ---
 

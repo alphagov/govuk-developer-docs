@@ -5,8 +5,6 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-15
-review_in: 6 months
 ---
 
 The govuk_env_sync data sync has been created to replace the [env-sync-and-backup] data sync in context of the GOV.UK AWS migration work. It is currently in use for backup and sync tasks in the GOV.UK AWS environments.

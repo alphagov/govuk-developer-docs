@@ -4,8 +4,6 @@ title: Unknown error with postgresql in mapit
 layout: manual_layout
 parent: "/manual.html"
 section: Icinga alerts
-last_reviewed_on: 2020-03-30
-review_in: 6 months
 ---
 
 We have seen an error previously where postgresql services appear to have failed

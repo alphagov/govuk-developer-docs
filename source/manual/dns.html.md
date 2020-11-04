@@ -5,8 +5,6 @@ section: Infrastructure
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-16
-review_in: 6 months
 ---
 
 The Reliability Engineering team is responsible for managing several DNS zones.

@@ -4,8 +4,6 @@ title: datagovuk_publish app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-17
-review_in: 3 months
 ---
 
 [datagovuk_publish](https://github.com/alphagov/datagovuk_publish)

@@ -4,8 +4,6 @@ title: Enhanced Ecommerce ETL from Search API to Google Analytics
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 This process is related to collection of data for analytics and is run daily to

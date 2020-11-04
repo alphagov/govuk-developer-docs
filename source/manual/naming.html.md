@@ -4,8 +4,6 @@ title: Name a new application or gem
 section: Applications
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-06
-review_in: 12 months
 ---
 
 This describes how you should name an application or gem on GOV.UK. It was first proposed in [RFC 63](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-063-naming-new-apps-gems-on-gov-uk.md).

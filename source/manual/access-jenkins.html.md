@@ -4,8 +4,6 @@ title: Get access to Jenkins
 section: Accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2019-10-22
-review_in: 12 months
 ---
 
 Our Jenkins installations ([deploy](https://deploy.integration.publishing.service.gov.uk/) and [CI](https://ci.integration.publishing.service.gov.uk/)) use GitHub for authentication and authorisation.

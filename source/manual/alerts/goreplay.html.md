@@ -4,8 +4,6 @@ title: GoReplay
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 [GoReplay][goreplay-gh] (previously ["gor"][rename]) is an open source tool we use

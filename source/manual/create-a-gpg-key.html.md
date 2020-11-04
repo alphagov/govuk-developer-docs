@@ -4,8 +4,6 @@ title: Create a GPG key
 parent: "/manual.html"
 layout: manual_layout
 section: Accounts
-last_reviewed_on: 2020-07-15
-review_in: 6 months
 ---
 
 We use GPG keys to encrypt our secrets. Documentation for using your GPG key can be found [here](/manual/encrypted-hiera-data.html#common-tasks-for-handling-encrypted-hiera-data).

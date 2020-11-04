@@ -4,8 +4,6 @@ title: Add authentication to an application
 parent: "/manual.html"
 layout: manual_layout
 section: Applications
-last_reviewed_on: 2020-05-18
-review_in: 6 months
 ---
 
 The process outlined here relies on the [data sync][] to synchronise

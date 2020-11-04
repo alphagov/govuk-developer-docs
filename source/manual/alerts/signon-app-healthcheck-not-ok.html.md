@@ -4,8 +4,6 @@ title: Signon app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-11
-review_in: 12 months
 ---
 
 [signon]: https://signon.publishing.service.gov.uk/api_users

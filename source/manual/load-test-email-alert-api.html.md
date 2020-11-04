@@ -4,8 +4,6 @@ title: Load Test Email Alert API
 parent: "/manual.html"
 layout: manual_layout
 section: Emails
-last_reviewed_on: 2020-06-10
-review_in: 12 months
 ---
 
 You may wish to load test email-alert-api to get a realistic idea of how the system performs under high load, or if you're making changes to how emails are processed to ensure your changes have the desired effect.

@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2019-11-11
-review_in: 3 months
 ---
 
 If you’re new to 2nd line or have not worked with us for a while, here’s a brief introduction to what we do and how we work.

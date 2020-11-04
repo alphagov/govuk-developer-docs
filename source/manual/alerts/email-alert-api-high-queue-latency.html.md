@@ -5,8 +5,6 @@ section: Icinga alerts
 subsection: Email alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-08-05
-review_in: 6 months
 ---
 
 ### High queue latency (queue_latency)

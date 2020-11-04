@@ -4,8 +4,6 @@ title: Debug underperforming search
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-08-21
-review_in: 3 months
 ---
 
 Search is one of the more load-sensitive parts of GOV.UK, as it can't

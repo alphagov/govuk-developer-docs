@@ -4,8 +4,6 @@ title: Make a GitHub repo private
 parent: /manual.html
 layout: manual_layout
 section: GitHub
-last_reviewed_on: 2020-08-17
-review_in: 3 months
 ---
 
 In cases of an ongoing security incident, or when working on politically sensitive changes, we may want to work in private rather than public. We do this by creating a private fork of the application.

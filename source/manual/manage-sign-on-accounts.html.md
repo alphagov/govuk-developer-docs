@@ -4,8 +4,6 @@ title: Manage Signon user/API accounts and access tokens
 section: Accounts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-06-16
-review_in: 12 months
 ---
 
 [Signon](https://docs.publishing.service.gov.uk/apps/signon.html) is the

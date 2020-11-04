@@ -4,8 +4,6 @@ title: Replace an asset's file
 section: Assets
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-18
-review_in: 6 months
 ---
 
 *Note: This will not apply to any file that has not already been uploaded. If you're trying to upload a large file for a client, [upload a small one first](upload-asset-to-whitehall.html) then replace with the below steps. If you're trying to fix a file that is stuck uploading in Whitehall, [look here](whitehall-file-stuck-uploading.html).*

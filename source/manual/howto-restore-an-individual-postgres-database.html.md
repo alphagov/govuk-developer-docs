@@ -4,8 +4,6 @@ title: Restore an Individual Postgres Production Database in AWS RDS
 section: Backups
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-08-13
-review_in: 3 months
 ---
 
 > If you need to restore an entire RDS instance please see [this manual page](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html) instead.
