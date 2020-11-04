@@ -5,8 +5,6 @@ layout: manual_layout
 parent: "/manual.html"
 section: Backups
 type: learn
-last_reviewed_on: 2020-10-15
-review_in: 6 months
 ---
 
 There are two ways of taking MongoDB backups.

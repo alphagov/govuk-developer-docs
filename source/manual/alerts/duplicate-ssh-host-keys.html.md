@@ -4,8 +4,6 @@ title: Duplicate SSH host keys
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-05-12
-review_in: 6 months
 ---
 
 This check indicates that more than one machine in an environment is

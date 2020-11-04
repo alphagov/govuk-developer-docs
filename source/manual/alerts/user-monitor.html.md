@@ -4,8 +4,6 @@ title: Check that correct users have access
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-10
-review_in: 6 months
 ---
 
 This alert is triggered by the [User Monitor Jenkins job][user-monitor-job]. This task [runs a script][repo] that verifies only the correct users have access to things like GitHub.

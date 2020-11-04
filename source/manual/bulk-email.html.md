@@ -4,8 +4,6 @@ title: Send a bulk email
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-26
-review_in: 12 months
 related_applications: [email-alert-api]
 ---
 

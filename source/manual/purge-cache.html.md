@@ -5,8 +5,6 @@ section: CDN & Caching
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2020-04-20
-review_in: 6 months
 ---
 
 The `www.gov.uk` domain is served through Fastly, which honours the

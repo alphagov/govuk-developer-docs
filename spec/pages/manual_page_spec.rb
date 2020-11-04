@@ -9,12 +9,6 @@ Dir.glob("source/manual/**/*.md").each do |filename|
       expect(raw).not_to match "Gov.uk"
     end
 
-    it "has a review date in the past" do
-      next unless frontmatter["last_reviewed_on"]
-
-      expect(frontmatter["last_reviewed_on"]).not_to be_in_the_future
-    end
-
     it "has an owner" do
       expect(frontmatter["owner_slack"]).to be_present, "Page doesn't have `owner_slack` set"
       expect(frontmatter["owner_slack"][0]).to be_in(%(# @)), "`owner_slack` should be a @username or #channel"

@@ -5,8 +5,6 @@ description: How we manage our Ruby dependencies using Dependabot, who can merge
 section: Dependencies
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-18
-review_in: 6 months
 ---
 
 We're [obliged to keep our software current][current].

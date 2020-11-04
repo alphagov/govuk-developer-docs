@@ -4,8 +4,6 @@ title: 'RabbitMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-07
-review_in: 6 months
 ---
 
 ## Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}

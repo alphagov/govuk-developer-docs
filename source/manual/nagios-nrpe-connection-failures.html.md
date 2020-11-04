@@ -4,8 +4,6 @@ title: Debug Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 Nagios uses a protocol called NRPE (Nagios Remote Plugin Executor) to perform

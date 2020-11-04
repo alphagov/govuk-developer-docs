@@ -5,8 +5,6 @@ section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
 important: true
-last_reviewed_on: 2020-07-27
-review_in: 6 months
 ---
 
 Machines are configured to [automatically install security updates](https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package) on a daily basis.

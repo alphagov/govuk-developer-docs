@@ -5,8 +5,6 @@ section: Documentation
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-05-18
-review_in: 12 months
 ---
 
 ## What pages should be about

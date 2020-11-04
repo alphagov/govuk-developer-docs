@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
 type: learn
-last_reviewed_on: 2020-04-26
-review_in: 6 months
 ---
 
 Many of our applications use

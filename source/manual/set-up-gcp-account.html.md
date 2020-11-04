@@ -4,8 +4,6 @@ title: Set up your GCP account
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-02-26
-review_in: 6 months
 ---
 
 [Static mirrors of GOV.UK](/manual/fall-back-to-mirror.html) are hosted in storage buckets within AWS and Google Cloud Platform (GCP). You may need login to GCP to [remove an asset](/manual/howto-manually-remove-assets.html) or to [emergency publish content using the static mirrors](/manual/fall-back-to-mirror.html#emergency-publishing-using-the-static-mirror).

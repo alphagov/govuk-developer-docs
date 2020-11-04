@@ -4,8 +4,6 @@ title: COVID-19 Services
 section: Services
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-15
-review_in: 1 month
 ---
 
 Between March and October 2020 the GOV.UK operated three standalone

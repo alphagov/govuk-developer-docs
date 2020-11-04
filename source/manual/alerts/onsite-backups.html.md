@@ -4,8 +4,6 @@ title: Onsite backups failed
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 The backup machine (e.g. `backup-1.management.integration`) collects backups from the various data stores at 9am every morning.

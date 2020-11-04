@@ -4,8 +4,6 @@ title: AWS LB Healthy Hosts
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 This alert relates to the number of healthy hosts behind AWS LoadBalancing services. We use AWS ELB (Classic) and ALB services to route traffic from internet facing or internal clients to the application instances.

@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Deployment
 type: learn
-last_reviewed_on: 2020-06-10
-review_in: 6 months
 ---
 
 > When responding to a security incident, you should make any code changes in private, so that you don't accidentally disclose the vulnerability. To do this, follow the instructions for [making a repo private](make-github-repo-private.html).

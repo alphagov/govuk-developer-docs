@@ -4,8 +4,6 @@ title: Data sync
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-09-17
-review_in: 6 months
 ---
 
 ## govuk_env_sync (the new way)

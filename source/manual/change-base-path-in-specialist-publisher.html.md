@@ -4,8 +4,6 @@ title: Change a specialist document base path
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-last_reviewed_on: 2019-12-05
-review_in: 3 months
 ---
 
 In [Specialist Publisher](https://specialist-publisher.publishing.service.gov.uk/), the base path is automatically generated based on the title when the specialist document is first created. We sometimes receive Zendesk tickets to change a base path when the title has been updated, as the publisher does not have the ability to do this.

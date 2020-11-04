@@ -5,8 +5,6 @@ parent: "/manual.html"
 type: learn
 layout: manual_layout
 section: Monitoring
-last_reviewed_on: 2020-03-02
-review_in: 12 months
 ---
 
 ## Search screen

@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 important: true
-last_reviewed_on: 2020-07-17
-review_in: 6 months
 ---
 
 The three promo boxes on the homepage are used to highlight important information on GOV.UK.

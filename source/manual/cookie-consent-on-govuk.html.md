@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Cookies
-last_reviewed_on: 2020-10-06
-review_in: 6 months
 ---
 
 This is technical documentation for the [GOV.UK](https://www.gov.uk/) team in the [Government Digital Service (GDS)](https://gds.blog.gov.uk/about/).

@@ -4,8 +4,6 @@ title: Rename a country
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-last_reviewed_on: 2020-08-05
-review_in: 6 months
 related_applications: [travel-advice-publisher, content-tagger, whitehall]
 ---
 > **Note**

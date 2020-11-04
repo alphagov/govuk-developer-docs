@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2020-10-26
-review_in: 6 months
 ---
 
 ## Manual

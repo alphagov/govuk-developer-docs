@@ -4,8 +4,6 @@ title: Work with the end to end publishing tests
 section: Testing
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-05-18
-review_in: 6 months
 ---
 
 Most GOV.UK applications are run against a [end-to-end test suite](https://github.com/alphagov/publishing-e2e-tests) as part of their build process. This is done to determine if a change in one application has a negative impact on a dependant application and to test the changed application is functioning correctly in a quasi-production environment.

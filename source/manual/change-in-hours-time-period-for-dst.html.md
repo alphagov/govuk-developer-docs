@@ -4,8 +4,6 @@ title: Change in-hours time period for daylight savings
 section: 2nd line
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-04-07
-review_in: 191 days
 ---
 
 We call people for different things in-hours and out-of-hours.  The

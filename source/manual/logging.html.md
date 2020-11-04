@@ -5,8 +5,6 @@ section: Logging
 layout: manual_layout
 type: learn
 parent: "/manual.html"
-last_reviewed_on: 2020-02-20
-review_in: 12 months
 ---
 
 ![](/manual/images/logging.png)

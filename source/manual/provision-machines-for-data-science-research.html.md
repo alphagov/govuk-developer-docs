@@ -4,8 +4,6 @@ title: Provision machines for data science research
 section: Infrastructure
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-03-09
-review_in: 6 months
 ---
 
 Data science research frequently requires high-powered machines for

@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Publishing
-last_reviewed_on: 2020-04-06
-review_in: 6 months
 ---
 
 The "draft stack" on GOV.UK, is intended to be

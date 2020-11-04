@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: 2nd line
 type: learn
-last_reviewed_on: 2020-09-02
-review_in: 3 months
 ---
 
 2nd line Zendesk tickets are technical errors reported by our users - including government publishers -

@@ -5,8 +5,6 @@ parent: "/manual.html"
 layout: manual_layout
 section: Frontend
 type: learn
-last_reviewed_on: 2020-10-12
-review_in: 12 months
 ---
 
 GOV.UK [shares the same browser support matrix with GOV.UK Frontend](https://github.com/alphagov/govuk-frontend#browser-and-assistive-technology-support) for pages served to the general public.

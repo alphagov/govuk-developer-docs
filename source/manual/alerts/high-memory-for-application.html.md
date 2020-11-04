@@ -4,8 +4,6 @@ title: High memory for application
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-07-31
-review_in: 12 months
 ---
 
 This alert triggers when the application process uses too much memory. If this

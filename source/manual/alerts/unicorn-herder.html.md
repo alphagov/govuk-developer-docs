@@ -4,8 +4,6 @@ title: Unicorn Herder
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-04-20
-review_in: 6 months
 ---
 
 ### 'app unicornherder running'

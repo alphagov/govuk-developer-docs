@@ -4,8 +4,6 @@ title: ntp drift too high
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-last_reviewed_on: 2020-03-30
-review_in: 6 months
 ---
 
 The [Network Time Protocol (NTP) daemon](http://doc.ntp.org/4.1.0/ntpd.htm) (`ntpd`) is responsible for keeping system
