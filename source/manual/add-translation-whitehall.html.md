@@ -36,10 +36,12 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 
 1. Add the new locale to `lib/whitehall.rb` and `config/locales/en.yml`
 2. Run `export LOCALE=<new_locale>; rake "translation:export[tmp/locale_csv,en,${LOCALE}]" && rake "translation:import[${LOCALE},tmp/locale_csv/${LOCALE}.csv]"` to generate the locale files from the English template.
-3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key. For example:
+3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key and the language direction under the `i18n.direction` key. For example:
 
    ```yaml
    it:
+     i18n:
+       direction: ltr
      language_name:
        it: italiano
    ```
