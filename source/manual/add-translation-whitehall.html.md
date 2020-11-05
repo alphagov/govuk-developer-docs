@@ -19,9 +19,8 @@ Useful links:
 In [Government Frontend](https://github.com/alphagov/government-frontend):
 
 1. Add the new locale to `config/application.rb` and `config/locales/en.yml`
-2. Run `rake translation:regenerate` to regenerate all translations from the EN locale
-3. Run `rake translation:import[locale,path]` to import a specific locale CSV to YAML within the app. You can also use `rake translation:import:all[directory]` to import all locales but there's no timeline for how frequently this is done, so you can expect many translation values to be missing in non EN locales.
-4. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key
+2. Run `export LOCALE=<new_locale>; rake "translation:export[tmp/locale_csv,en,${LOCALE}]" && rake "translation:import[${LOCALE},tmp/locale_csv/${LOCALE}.csv]"` to generate the locale files from the English template.
+3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key
 
 ### 2. Update Whitehall
 
@@ -30,9 +29,8 @@ In [Government Frontend](https://github.com/alphagov/government-frontend):
 In [Whitehall](https://github.com/alphagov/whitehall):
 
 1. Add the new locale to `lib/whitehall.rb` and `config/locales/en.yml`
-2. Run `rake translation:regenerate` to regenerate all translations from the EN locale
-3. Run `rake translation:import[locale,path]` to import a specific locale CSV to YAML within the app. You can also use `rake translation:import:all[directory]` to import all locales but there's no timeline for how frequently this is done, so you can expect many translation values to be missing in non EN locales.
-4. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key
+2. Run `export LOCALE=<new_locale>; rake "translation:export[tmp/locale_csv,en,${LOCALE}]" && rake "translation:import[${LOCALE},tmp/locale_csv/${LOCALE}.csv]"` to generate the locale files from the English template.
+3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key
 
 ### 3. Update GOV.UK Content Schemas
 
