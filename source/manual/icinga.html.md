@@ -7,16 +7,10 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-- Production
-  - [AWS](https://alert.blue.production.govuk.digital)
-  - [Carrenza](https://alert.publishing.service.gov.uk)
-- Staging
-  - [AWS](https://alert.blue.staging.govuk.digital)
-  - [Carrenza](https://alert.staging.publishing.service.gov.uk)
-- Integration
-  - [AWS](https://alert.integration.publishing.service.gov.uk)
-- CI
-  - [Carrenza](https://ci-alert.integration.publishing.service.gov.uk)
+- [Production (AWS)](https://alert.blue.production.govuk.digital)
+- [Staging (AWS)](https://alert.blue.staging.govuk.digital)
+- [Integration (AWS)](https://alert.integration.publishing.service.gov.uk)
+- [CI (Carrenza)](https://ci-alert.integration.publishing.service.gov.uk)
 
 Icinga is used to monitor alerts that we have set up. It can be a bit hard to
 navigate but there are only a few views you need to know about (listed in the left-hand

@@ -18,16 +18,10 @@ store, such as PromQL for Prometheus, is used to construct the graphs.
 
 ## Grafana dashboards
 
-- Production
-  - [AWS](https://grafana.blue.production.govuk.digital)
-  - [Carrenza](https://grafana.publishing.service.gov.uk)
-- Staging
-  - [AWS](https://grafana.blue.staging.govuk.digital)
-  - [Carrenza](https://grafana.staging.publishing.service.gov.uk)
-- Integration
-  - [AWS](https://grafana.integration.publishing.service.gov.uk)
-- CI
-  - [Carrenza](https://ci-grafana.integration.publishing.service.gov.uk)
+- [Production (AWS)](https://grafana.blue.production.govuk.digital)
+- [Staging (AWS)](https://grafana.blue.staging.govuk.digital)
+- [Integration (AWS)](https://grafana.integration.publishing.service.gov.uk)
+- [CI (Carrenza)](https://ci-grafana.integration.publishing.service.gov.uk)
 
 Useful Grafana dashboards:
 
