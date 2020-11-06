@@ -33,21 +33,15 @@ Used by GOV.UK product teams while deploying changes to ensure that they behave 
 in a production-like environment. This means that staging must be similar to production
 so that we're able to test things like the performance impact of changes.
 
-Staging is primarily hosted by Carrenza in their London datacentre.
-It is currently being migrated to [AWS][govuk-in-aws]. Check individual application developer
-docs to see if it is hosted with AWS or Carrenza.
+Staging is hosted on [AWS][govuk-in-aws].
 
 Access to Staging is restricted to office IPs, so you'll need to [be
 on the VPN](manual/get-started.html#4-connecting-to-the-gds-vpn).
-Carrenza configuration can be found in
-[govuk-provisioning](https://github.com/alphagov/govuk-provisioning/blob/master/vcloud-edge_gateway/rules/includes/firewall.mustache#L34),
-and AWS configuration in
+AWS configuration can be found in
 [govuk-aws-data](https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-security-groups/cache.tf).
 
 ## Production
 
 The thing that runs the website for real people.
 
-Production is primarily hosted by Carrenza in their Slough datacentre.
-It is currently being migrated to [AWS][govuk-in-aws]. Check individual application developer
-docs to see if it is hosted with AWS or Carrenza.
+Production is hosted on [AWS][govuk-in-aws].
