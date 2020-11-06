@@ -84,7 +84,7 @@ The username and password can be obtained by logging in to Heroku and viewing th
 ### Icinga alert summary per environment
 
 This screen shows a summary of the critical and warning alerts for our environments (production, staging, integration, CI)
-in both Carrenza and AWS environments in colour-coded boxes (red for critical errors, yellow for warnings, purple for
+in colour-coded boxes (red for critical errors, yellow for warnings, purple for
 unknown errors and green for no issues). It automatically refreshes once a minute.
 
 This is powered by [blinkenjs][] which is [deployed to Heroku][govuk-secondline-blinken-heroku]. You must be in the
