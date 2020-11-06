@@ -75,7 +75,7 @@ to see if the fact check was eventually re-sent with the correct subject line.
 If this is the case, **the duplicate email can be deleted**.
 
 If the fact check email never made it, you should forward the email to
-govuk-fact-check@digital.cabinet-office.gov.uk with the edtion ID added to the
+govuk-fact-check@digital.cabinet-office.gov.uk with the edition ID added to the
 subject line in square brackets. Check this appears in publisher (usually within
 10 minutes) then delete the original unprocessed email from the inbox.
 
