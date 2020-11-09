@@ -28,7 +28,7 @@ follow:
    GOV.UK - [example][user-example]
 1. Raise this as a pull request
 1. Once PR is merged email
-   [`govuk-senior-tech-members@digital.cabinet-office.gov.uk`](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk)
+   [`govuk-github-owners@digital.cabinet-office.gov.uk`](mailto:govuk-github-owners@digital.cabinet-office.gov.uk)
    with the GitHub usernames asking for the users to be added to [the `gov-uk-content-designers` team][github-team]
    which is the "GOV.UK Content Designers" GitHub team
 1. Once added to the team the content designers will receive an invite that
