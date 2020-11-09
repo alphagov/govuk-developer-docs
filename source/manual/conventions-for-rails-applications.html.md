@@ -64,8 +64,6 @@ Ruby / Rails applications:
   for the current environment
 - [rubocop-govuk][] - Provides GOV.UK linting rules for Ruby, Rails, RSpec and
   Rake
-- [scss-lint-govuk][] - Provides linting for SCSS files according to GDS
-  conventions
 - [slimmer][] - Provides consistent templating for apps that serve content on
   the www.gov.uk host
 
@@ -87,9 +85,15 @@ introduced by these gems.
 [govuk_test]: https://github.com/alphagov/govuk_test
 [plek]: https://github.com/alphagov/plek
 [rubocop-govuk]: https://github.com/alphagov/rubocop-govuk
-[scss-lint-govuk]: https://github.com/alphagov/scss-lint-govuk
 [slimmer]: https://github.com/alphagov/slimmer
 [issue-example]: https://github.com/alphagov/govuk_app_config/issues/121
+
+### Lint your code
+
+We have documentation on the [tools and conventions][configure-linting] for
+linting GOV.UK Rails applications.
+
+[configure-linting]: /manual/configure-linting.html
 
 ### Gemfile organisation
 
