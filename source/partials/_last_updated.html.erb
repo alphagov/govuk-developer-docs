@@ -1,3 +1,13 @@
 <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-  Last updated: <a href="<%= commit_url(current_page) %>"><%= last_updated(current_page) %></a>
+  <% if last_updated(current_page) < 6.months.ago %>
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+  <% end %>
+
+  Last updated: <a href="<%= commit_url(current_page) %>"><%= format_timestamp(last_updated(current_page)) %></a>
 </div>
