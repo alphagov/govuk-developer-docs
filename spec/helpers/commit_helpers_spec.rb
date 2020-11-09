@@ -30,21 +30,29 @@ RSpec.describe CommitHelpers do
   end
 
   describe "#last_updated" do
-    it "formats the commit timestamp associated with the (remote) page data, if that exists" do
-      last_committed = "2020-09-03 09:53:56 UTC"
+    it "returns the commit timestamp associated with the (remote) page data, if that exists" do
       current_page = OpenStruct.new(data: OpenStruct.new(
-        latest_commit: { timestamp: last_committed },
+        latest_commit: { timestamp: "2019-09-03 09:53:56 UTC" },
       ))
-      expect(helper.last_updated(current_page)).to eq("3 Sep 2020")
+      last_updated = helper.last_updated(current_page)
+      expect(last_updated).to be_a_kind_of(Time)
+      expect(last_updated.year).to eq(2019)
     end
 
-    it "formats the commit date of the local file if no page data exists" do
+    it "returns the commit date of the local file if no page data exists" do
       source_file = "index.html.erb"
       current_page = OpenStruct.new(
         data: OpenStruct.new,
         file_descriptor: OpenStruct.new(relative_path: source_file),
       )
-      expect(helper.last_updated(current_page)).to match(/\d{1,2} \w+ \d{4}/)
+      expect(helper.last_updated(current_page)).to be_a_kind_of(Time)
+    end
+  end
+
+  describe "#format_timestamp" do
+    it "formats a timestamp" do
+      timestamp = Time.new(2020, 9, 3, 9, 53, 56, "UTC")
+      expect(helper.format_timestamp(timestamp)).to eq("3 Sep 2020")
     end
   end
 end
