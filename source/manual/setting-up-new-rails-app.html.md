@@ -6,6 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+[mit-license]: https://en.wikipedia.org/wiki/MIT_License
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines
 [govuk-puppet-jenkins]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
 [dns]: https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishing-service-gov-uk
@@ -26,60 +27,60 @@ applications](/manual/conventions-for-rails-applications.html) and
 
 To create a rails app, run the following (skip uncommon stuff).
 
-```
+```sh
 rails new myapp --skip-javascript --skip-test --skip-bundle --skip-spring --skip-action-cable --skip-action-mailer --skip-active-storage
 ```
 
 Replace the Gemfile with the gems you need. Here is an example.
 
-```
-ruby File.read(".ruby-version").strip
-
+```rb
 source "https://rubygems.org"
 
-gem "rails", "~> 5.2"
+gem "rails", "6.0.3.4"
 
-gem "bootsnap", "~> 1"
-gem "gds-api-adapters", "~> 52"
-gem "gds-sso", "~> 13"
-gem "govuk_app_config", "~> 1"
-gem "govuk_publishing_components", "~> 9.5"
-gem "pg", "~> 1"
-gem "plek", "~> 2"
-gem "uglifier", "~> 4"
+gem "bootsnap",
+gem "gds-api-adapters"
+gem "gds-sso"
+gem "govuk_app_config"
+gem "govuk_publishing_components"
+gem "pg"
+gem "plek"
+gem "uglifier"
 
 group :development do
-  gem "listen", "~> 3"
+  gem "listen"
 end
 
 group :test do
-  gem "simplecov", "~> 0.16"
+  gem "simplecov"
 end
 
 group :development, :test do
-  gem "byebug", "~> 10"
-  gem "rspec-rails", "~> 3"
+  gem "byebug"
+  gem "govuk_test"
+  gem "rspec-rails"
   gem "rubocop-govuk"
-  gem "scss-lint-govuk"
 end
 ```
 
 Run `bundle && rails g rspec:install` and replace `spec/*helper.rb`.
 
-```
-## spec/rails_helper.rb
+```sh
 rm spec/rails_helper.rb
+```
 
+```rb
 ## spec/spec_helper.rb
-require "byebug"
-require "simplecov"
-
 ENV["RAILS_ENV"] ||= "test"
+
+require "simplecov"
+SimpleCov.start "rails"
+
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-SimpleCov.start
+GovukTest.configure
 
 RSpec.configure do |config|
   config.expose_dsl_globally = false
@@ -90,7 +91,7 @@ end
 
 In config, replace the content of `database.yml` with the following.
 
-```
+```yaml
 default: &default
   adapter: postgresql
   encoding: unicode
@@ -115,7 +116,7 @@ production:
 
 In config, replace `credentials.yml.env` and `master.key` with `secrets.yml`.
 
-```
+```yaml
 development:
   secret_key_base: secret
 
@@ -128,23 +129,92 @@ production:
 
 In config, replace the content of `routes.rb` with the following healthcheck.
 
-```
+```rb
 Rails.application.routes.draw do
-  get "/healthcheck", to: proc { [200, {}, ["OK"]] }
+  get "/healthcheck", to: GovukHealthcheck.rack_response
 end
 ```
 
-Now is a good time to run `bin/setup`. Lastly, create `lib/tasks/lint.rake` with this.
+Now is a good time to run `bin/setup`. Lastly, to ensure your application has
+beautiful consistent code, you should finish up by
+[configuring linting](/manual/configure-linting.html) for it.
+
+## Add a software licence
+
+Add a LICENCE file to the project root to specify the software licence. Unless
+your project has specific needs, you should use the [MIT License][mit-license].
+
+<details markdown="block">
+
+<summary>MIT License for GDS projects</summary>
 
 ```
-desc "Lint files"
-task "lint" do
-  sh "rubocop --format clang"
-  sh "scss-lint app/assets/stylesheets"
-end
+The MIT License (MIT)
+
+Copyright (c) <year> Crown Copyright (Government Digital Service)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 ```
 
-Then add `task default: %i(spec lint)` in Rakefile and finally run `rake`.
+</details>
+
+## Replace the default README.md
+
+We have a common structure that is used for GOV.UK apps. Fill in some basic
+details to get started with your app and flesh it out further as your project
+develops.
+
+```markdown
+# App Name
+
+One paragraph description and purpose.
+
+## Screenshots (if there's a client-facing aspect of it)
+
+## Live examples (if available)
+
+- [gov.uk/thing](https://www.gov.uk/thing)
+
+## Nomenclature
+
+- **Word**: definition of word, and how it's used in the code
+
+## Technical documentation
+
+Write a single paragraph including a general technical overview of the app.
+
+### Dependencies
+
+- [dependency]() - purpose
+
+### Running the application
+
+How to run the app
+
+### Running the test suite
+
+How to test the app
+
+## Licence
+
+[MIT License](LICENCE)
+```
 
 ## Puppet, DNS, Sentry and beyond
 
