@@ -5,8 +5,6 @@ section: Applications
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-last_reviewed_on: 2020-10-22
-review_in: 12 months
 ---
 
 This explains how to configure [linting][] for a GOV.UK application. It is
