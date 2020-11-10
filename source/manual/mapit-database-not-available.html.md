@@ -4,8 +4,6 @@ title: Fix Mapit database not available
 layout: manual_layout
 parent: "/manual.html"
 section: Databases
-last_reviewed_on: 2020-11-02
-review_in: 6 months
 ---
 
 Each Mapit machine has its own PostgreSQL database which powers the Mapit
