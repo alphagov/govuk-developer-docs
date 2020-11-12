@@ -503,6 +503,36 @@ Alternatively, you can run the `govuk-secrets/pass/trust_all.sh` script. This
 will fetch all recipient keys from the keyserver.
 [More information can be found in the govuk-secrets README](https://github.com/alphagov/govuk-secrets/tree/master/pass#trust-user-public-keys).
 
+### Encryption fails when running the Rake task because of "Unusable public key"
+
+You may encounter an error with the following output after trying to encrypt secrets using the Rake task:
+
+```
+[hiera-eyaml-core] Unusable public key
+```
+
+This may be due to an expired key or subkey.
+
+Check keys are not expired by running the following:
+
+```
+cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --list-options show-unusable-subkeys --list-keys {}
+```
+
+You can check the output for any keys that may have expired. (Or pipe the output into grep ` | grep expired`)
+
+If a key has expired you need to ask the owner to renew that key and publish to a keyserver. Once the key has been renewed you can get the renewed key by:
+
+```
+gpg --recv-keys --keyserver <keyserver_address> <key_fingerprint>
+```
+
+or the following to update all keys:
+
+```
+cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --recv-keys --keyserver <keyserver_address> {}
+```
+
 ### Puppet fails because it can't find a usable GPG key
 
 When Puppet runs, you may see the following error:
