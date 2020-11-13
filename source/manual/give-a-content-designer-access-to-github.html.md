@@ -44,7 +44,8 @@ if the users are listed as having access. If they are not listed you are done.
 
 If they are listed follow these steps:
 
-1. Email govuk-senior-tech-members@digital.cabinet-office.gov.uk
+1. Email
+   [govuk-github-owners@digital.cabinet-office.gov.uk](mailto:govuk-github-owners@digital.cabinet-office.gov.uk)
    with the GitHub usernames asking for the users to be removed from
    <https://github.com/orgs/alphagov/teams/gov-uk-content-designers>
    which is the "GOV.UK Content Designers" GitHub team
