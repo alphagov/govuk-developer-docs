@@ -38,6 +38,21 @@ If this VPN is down:
 * Only those licencing authorities which use Civica as their payment processor are affected. This is a small but significant minority.
 * Licencing authorities who do not use Civica are not affected.
 
+### Troubleshooting Steps
+
+Troubleshooting steps (aim is to switch off and on the VPN):
+
+1. Go to Production Skyscape portal, the credentials are in GOV.UK 2ndline Pass under: `ukcloud/portal`.
+2. Once you logged in, you have to log into the `Production` organization by selecting: `VMWARE CLOUD` and then `GOV.UK Production`. You will be asked for the password again.
+3. In the `Production` organization, go to the `GOV.UK Management` virtual datacenter.
+4. Click `edges` in the left column to bring the list of edges.
+5. Click on the `GOV.UK Management` edges in the right main frame and `Configure Services` above it.
+6. In the pop-up window, click on `VPN` in the menu bar and then `IPsec VPN Sites`
+7. In the list of VPN sites, select `UKC Licensify to AWS` VPN and click on the edit icon above.
+8. In the new pop-up window, turn the VPN off by toggling the `enable` switch and clicking `KEEP`
+9. The pop-up window will disappear and you need to click `save changes` in put into effect the VPN being now disabled.
+10. Wait a few minutes and repeat step 7-9 to re-enable the VPN again.
+
 ## VPN between live organisation in Carrenza and AWS during AWS migration
 
 During the staged migration of the GOV.UK from Carrenza to AWS, there is a VPN
