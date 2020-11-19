@@ -61,5 +61,5 @@ $ sudo touch /var/run/pagerduty_drill
 3. Delete the file once the test drill is triggered:
 
 ```shell
-sudo rm pagerduty_drill
+sudo rm /var/run/pagerduty_drill
 ```
