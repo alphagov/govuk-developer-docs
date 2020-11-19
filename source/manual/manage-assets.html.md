@@ -1,0 +1,103 @@
+---
+owner_slack: "#govuk-platform-health"
+title: Manage assets
+section: Assets
+layout: manual_layout
+parent: "/manual.html"
+---
+
+## Removing an asset
+
+If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
+follow these steps:
+
+1. Mark the asset as deleted. Sometimes it may be necessary to completely scrub an asset from our systems e.g. if it contains secret information. In this case, add `,true` to the appropriate rake task:
+  - [`rake assets:delete[<asset.id>]`][rake-delete] (non-Whitehall assets)
+  - [`rake assets:whitehall_delete[<legacy URL path>]`][whitehall-rake-delete] (Whitehall assets)
+1. Add a cache bust and check that the asset responds with a 404 not found
+1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache]
+1. Verify that the asset is not there
+1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
+1. Remove the asset from the mirrors
+  - Remove from AWS: `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
+  - Log into the [GCP console](https://console.cloud.google.com/)
+  - Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
+  - Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
+
+[whitehall-rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[]
+[rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
+[clear-cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets
+
+## Uploading an asset
+
+Some publishing apps such as [Mainstream Publisher](/apps/publisher.html) do
+not provide the facility for editors to upload assets such as images and PDFs.
+In these rare cases, we can upload assets to asset-manager manually and give
+the URL to content editors to embed.
+
+Production assets are replicated to staging and integration nightly, so it is
+best to simply perform the upload directly in production. First, upload the
+asset to a backend machine:
+
+```sh
+$ gds govuk connect scp-push -e production aws/backend:1 my_file.jpg /tmp
+```
+
+Then SSH to the same machine and run the upload command:
+
+```sh
+$ gds govuk connect ssh -e production aws/backend:1
+$ cd /var/apps/asset-manager
+$ sudo -u deploy govuk_setenv asset-manager bin/create_asset /tmp/my_file.jpg
+```
+
+Note the `basepath` the script outputs. This should be appended to the asset
+host, for example:
+
+```
+https://assets.publishing.service.gov.uk/media/57358658ed915d58bd000000/my_file.jpg
+```
+
+### Large attachments
+
+Sometimes publishers ask us to help them upload very large attachments to
+documents in Whitehall because they see timeouts when they try to upload the
+document themselves.
+
+The simplest way to do this is to upload a small file and then
+[replace the file in Asset Manager](#replacing-an-asset).
+
+## Replacing an asset
+
+If you need to replace the file of an existing attachment without
+changing the URL, follow these steps:
+
+0. Copy the new file from your computer to a `backend` server:
+
+    ```sh
+    $ gds govuk connect scp-push -e <environment> aws/backend:1 filename.ext /tmp
+    ```
+
+0. Get an app console on that same server:
+
+    ```sh
+    $ gds govuk connect ssh -e <environment> aws/backend:1
+    $ govuk_app_console asset-manager
+    ```
+
+0. Find the asset:
+
+    ```ruby
+    asset = Asset.find("asset-id-from-url") # e.g. `57a9c52b40f0b608a700000a`
+    # or for a Whitehall asset:
+    asset = WhitehallAsset.find_by(legacy_url_path: '/government/uploads/system/uploads/attachment_data/file/id/path.ext')
+    ```
+
+0. Check the asset is what you think it is.
+
+0. Replace the file:
+
+    ```ruby
+    asset.file = Pathname.new("/tmp/filename.ext").open
+    asset.save!
+    ```
