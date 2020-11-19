@@ -48,18 +48,18 @@ To trigger the drill manually, follow these steps:
 
 1. SSH onto the monitoring box:
 
-```shell
-$ gds govuk connect -e production ssh aws/monitoring
-```
+    ```shell
+    $ gds govuk connect -e production ssh aws/monitoring
+    ```
 
-2. Generate the file that the Icinga monitor looks for which triggers the alert:
+1. Generate the file that the Icinga monitor looks for which triggers the alert:
 
-```shell
-$ sudo touch /var/run/pagerduty_drill
-```
+    ```shell
+    $ sudo touch /var/run/pagerduty_drill
+    ```
 
-3. Delete the file once the test drill is triggered:
+1. Delete the file once the test drill is triggered:
 
-```shell
-sudo rm /var/run/pagerduty_drill
-```
+    ```shell
+    sudo rm /var/run/pagerduty_drill
+    ```
