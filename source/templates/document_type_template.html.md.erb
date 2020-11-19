@@ -32,7 +32,7 @@ actually any pages with this document type.
 ## Example pages
 
 <% page.examples.each do |example| %>
-- <%= link_to example['title'], "https://www.gov.uk#{example['link']}" %></li>
+- <%= link_to example['title'], "https://www.gov.uk#{example['link']}" %>
 <% end %>
 
 <%= link_to 'Source query from Search API', page.search_url %>
