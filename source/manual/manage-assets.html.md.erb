@@ -28,6 +28,16 @@ follow these steps:
 [rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
 [clear-cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets
 
+## Redirecting an asset
+
+Sometimes it might be necessary to manually redirect an asset, for example if
+an associated document wasn't unpublished correctly. There are some Rake tasks
+available for this:
+
+<%= RunRakeTask.links("asset-manager", "assets:redirect[<id>,<redirect_url>]") %>
+
+<%= RunRakeTask.links("asset-manager", "assets:whitehall_redirect[<legacy_url_path>,<redirect_url>]") %>
+
 ## Uploading an asset
 
 Some publishing apps such as [Mainstream Publisher](/apps/publisher.html) do
