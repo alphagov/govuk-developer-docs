@@ -5,7 +5,7 @@ require_relative "./string_to_id"
 class ExternalDoc
   def self.fetch(repository:, path:)
     contents = HTTP.get(
-      "https://raw.githubusercontent.com/#{repository}/master/#{path}",
+      "https://raw.githubusercontent.com/alphagov/#{repository}/master/#{path}",
     )
 
     context = {
@@ -13,11 +13,11 @@ class ExternalDoc
       gfm: false,
       base_url: URI.join(
         "https://github.com",
-        "#{repository}/blob/master/",
+        "alphagov/#{repository}/blob/master/",
       ),
       image_base_url: URI.join(
         "https://raw.githubusercontent.com",
-        "#{repository}/master/",
+        "alphagov/#{repository}/master/",
       ),
     }
 
