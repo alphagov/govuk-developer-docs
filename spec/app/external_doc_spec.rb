@@ -6,11 +6,11 @@ RSpec.describe ExternalDoc do
       Capybara.string(described_class.fetch(repository: repository, path: path))
     end
 
-    let(:repository) { "example/lipsum" }
+    let(:repository) { "lipsum" }
     let(:path) { "markdown.md" }
 
     before do
-      stub_request(:get, "https://raw.githubusercontent.com/example/lipsum/master/markdown.md")
+      stub_request(:get, "https://raw.githubusercontent.com/alphagov/lipsum/master/markdown.md")
         .to_return(body: File.read("spec/fixtures/markdown.md"))
     end
 
@@ -28,11 +28,11 @@ RSpec.describe ExternalDoc do
     end
 
     it "rewrites relative images" do
-      expect(html).to have_css('img[src="https://raw.githubusercontent.com/example/lipsum/master/suspendisse_iaculis.png"]')
+      expect(html).to have_css('img[src="https://raw.githubusercontent.com/alphagov/lipsum/master/suspendisse_iaculis.png"]')
     end
 
     it "rewrites relative URLs" do
-      expect(html).to have_link("tincidunt leo", href: "https://github.com/example/lipsum/blob/master/lib/tincidunt_leo.rb")
+      expect(html).to have_link("tincidunt leo", href: "https://github.com/alphagov/lipsum/blob/master/lib/tincidunt_leo.rb")
     end
 
     it "maintains anchor links" do
