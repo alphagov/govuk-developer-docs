@@ -41,16 +41,38 @@ class ExternalDoc
       .to_html(contents.force_encoding("UTF-8"), context)
   end
 
-  def self.parse(markdown)
+  def self.parse(markdown, repository: "", path: "")
+    context = {
+      # Turn off hardbreaks as they behave different to github rendering
+      gfm: false,
+      base_url: URI.join(
+        "https://github.com",
+        "alphagov/#{repository}/blob/master/",
+      ),
+      image_base_url: URI.join(
+        "https://raw.githubusercontent.com",
+        "alphagov/#{repository}/master/",
+      ),
+    }
+
+    context[:subpage_url] =
+      URI.join(context[:base_url], File.join(".", File.dirname(path), "/"))
+
+    context[:image_subpage_url] =
+      URI.join(context[:image_base_url], File.join(".", File.dirname(path), "/"))
+
     filters = [
       HTML::Pipeline::MarkdownFilter,
+      HTML::Pipeline::AbsoluteSourceFilter,
       PrimaryHeadingFilter,
       HeadingFilter,
+      AbsoluteLinkFilter,
+      MarkdownLinkFilter,
     ]
 
     HTML::Pipeline
       .new(filters)
-      .to_html(markdown.to_s.force_encoding("UTF-8"))
+      .to_html(markdown.to_s.force_encoding("UTF-8"), context)
   end
 
   def self.title(markdown)
