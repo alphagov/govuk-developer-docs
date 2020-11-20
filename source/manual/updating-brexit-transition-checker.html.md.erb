@@ -7,4 +7,8 @@ section: Publishing
 important: true
 ---
 
-<%= ExternalDoc.fetch(repository: "finder-frontend", path: "docs/brexit-checker-content-changes.md") %>
+<%= ExternalDoc.parse(
+      HTTP.get("https://raw.githubusercontent.com/alphagov/finder-frontend/master/docs/brexit-checker-content-changes.md"),
+      repository: "finder-frontend",
+      path: "docs/brexit-checker-content-changes.md",
+    ) %>
