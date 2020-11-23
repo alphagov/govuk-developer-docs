@@ -12,13 +12,19 @@ If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
 follow these steps:
 
 1. Mark the asset as deleted. Sometimes it may be necessary to completely scrub an asset from our systems e.g. if it contains secret information. In this case, add `,true` to the appropriate rake task:
-  - [`rake assets:delete[<asset.id>]`][rake-delete] (non-Whitehall assets)
-  - [`rake assets:whitehall_delete[<legacy URL path>]`][whitehall-rake-delete] (Whitehall assets)
+
+  <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
+  <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[LEGACY_URL_PATH]") %>
+
 1. Add a cache bust and check that the asset responds with a 404 not found
+
 1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache]
+
 1. Verify that the asset is not there
+
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
-1. Remove the asset from the mirrors
+
+1. Remove the asset from the mirrors:
   - Remove from AWS: `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
   - Log into the [GCP console](https://console.cloud.google.com/)
   - Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
@@ -35,7 +41,6 @@ an associated document wasn't unpublished correctly. There are some Rake tasks
 available for this:
 
 <%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
-
 <%= RunRakeTask.links("asset-manager", "assets:whitehall_redirect[LEGACY_URL_PATH,REDIRECT_URL]") %>
 
 ## Uploading an asset
