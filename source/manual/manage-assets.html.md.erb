@@ -105,9 +105,21 @@ changing the URL, follow these steps:
 
 0. Check the asset is what you think it is.
 
-0. Replace the file:
+0. Replace the file (change 123 to the new attachment size in bytes):
 
     ```ruby
+    asset.update(size: 123)
     asset.file = Pathname.new("/tmp/filename.ext").open
     asset.save!
     ```
+
+0. For a Whitehall attachment, update the file size in Whitehall, where 123 is the new attachment size in bytes:
+
+   ```sh
+   $ gds govuk connect app-console -e <environment> whitehall_backend/whitehall
+   ```
+
+   ```ruby
+   attachment = Attachment.find(asset-id-from-url) # e.g. 123456
+   attachment.attachment_data.update(file_size: 123)
+   ```
