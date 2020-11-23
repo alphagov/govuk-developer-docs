@@ -116,4 +116,4 @@ sudo fuser -k [port number]/tcp
 [static]: https://github.com/alphagov/static
 [govuk_publishing_components]: https://github.com/alphagov/govuk_publishing_components
 [government-frontend]: https://github.com/alphagov/government-frontend
-[govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/docs/installation.md
+[govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md

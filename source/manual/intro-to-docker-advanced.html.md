@@ -302,7 +302,7 @@ $mac docker-compose run content-publisher-demo-app
 
 The reason `content-publisher-demo.intro-to-docker.gov.uk` works in your browser is because we added a custom entry in `/etc/hosts`. This approach doesn't scale to lots of entries, especially if we need to keep them in-sync across a team. We need something more dynamic, but that's not possible with `/etc/hosts`.
 
-As part of [setting-up govuk-docker](https://github.com/alphagov/govuk-docker/blob/master/docs/installation.md) you will have installed [dnsmasq][]. This gives us a little DNS server running on our Mac, which we can use instead of `/etc/hosts` to resolve `*.intro-to-docker.gov.uk` to the localhost.
+As part of [setting-up govuk-docker](https://github.com/alphagov/govuk-docker/blob/master/README.md) you will have installed [dnsmasq][]. This gives us a little DNS server running on our Mac, which we can use instead of `/etc/hosts` to resolve `*.intro-to-docker.gov.uk` to the localhost.
 
 * Remove the temporary entry in `/etc/hosts`
 
