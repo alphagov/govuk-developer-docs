@@ -34,9 +34,9 @@ Sometimes it might be necessary to manually redirect an asset, for example if
 an associated document wasn't unpublished correctly. There are some Rake tasks
 available for this:
 
-<%= RunRakeTask.links("asset-manager", "assets:redirect[<id>,<redirect_url>]") %>
+<%= RunRakeTask.links("asset-manager", "assets:redirect[ASSET_ID,REDIRECT_URL]") %>
 
-<%= RunRakeTask.links("asset-manager", "assets:whitehall_redirect[<legacy_url_path>,<redirect_url>]") %>
+<%= RunRakeTask.links("asset-manager", "assets:whitehall_redirect[LEGACY_URL_PATH,REDIRECT_URL]") %>
 
 ## Uploading an asset
 
