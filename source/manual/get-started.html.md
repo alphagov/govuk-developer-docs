@@ -99,7 +99,7 @@ We use a Docker environment - [govuk-docker][] - for local development.
 
 👉 [Get setup with govuk-docker][govuk-docker]
 
-[govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/docs/installation.md
+[govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md
 
 ## 6. Get SSH access to integration
 
