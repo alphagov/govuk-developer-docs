@@ -58,6 +58,86 @@ and using non-default values for the `segments_mode`.
 [short-url-manager]: https://short-url-manager.publishing.service.gov.uk
 [short-url-manager-permissions]: https://github.com/alphagov/short-url-manager/#permissions
 
+### Removing a route created in the Short URL Manager
+
+First find the `content_id` of the URL that needs to be removed. This can be found by using the Content Store API: `www.gov.uk/api/content/<path goes here>`.
+
+For example, finding the `content_id` for the page about [keeping a pet pig or micropig](https://www.gov.uk/guidance/keeping-a-pet-pig-or-micropig) is found by going to [`www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig`](https://www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig). The `content_id` should be a UUID; for example: `602144f8-7631-11e4-a3cb-005056011aef`.
+
+The content_id is with a rake task that removes the shortlink. The [Short URL Manager documentation](https://docs.publishing.service.gov.uk/apps/short-url-manager.html#run-a-rake-task) has handy links for running the rake tasks in the different environments.
+
+The rake task for removing a redirect is:
+
+```
+redirect:destroy[<UUID goes here>]
+```
+
+<%= RunRakeTask.links("short-url-manager", "redirect:destroy[UUID goes here]") %>
+
+For example:
+
+```
+redirect:destroy["123e4567-e89b-12d3-a456-426614174000"]
+```
+
+The redirect is now removed and will return a [410 Gone status](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/410).
+
+### Removing a route completely so it can be replaced with another route
+
+Removing a route using the rake task in the previous section returns a 410 Gone status - this means that the URL can not be reused by another publication as the route is still being used.
+
+To completely remove a route requires using the Rails console for several different apps using the [GDS CLI and GOV.UK Connect tools](https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-tooling).
+
+To access an app's Rails console, the following command is used:
+
+```bash
+gds govuk connect app-console --environment <environment> <app name>
+```
+
+Replace `<environment>` with `integration`, `staging`, or `production`; and `<app name>` with the name of the app you want to access.
+
+For example, accessing the console for the `publishing-api` app in `staging` would be:
+
+```bash
+gds govuk connect app-console --environment staging publishing-api
+```
+
+Removing the route, we need to know the slug that should be deleted. These examples use `/example-path`.
+
+Delete the route in `router-api`:
+
+```ruby
+Route.where(incoming_path: "/example-path").delete
+```
+
+In `publishing-api`, delete the reservation that makes sure that the route can't be used by any other app:
+
+```ruby
+PathReservation.find_by(base_path: "/example-path").delete
+```
+
+In content-store _and_ the content-store-draft, remove the content item that used in inhabit the URL:
+
+```ruby
+ContentItem.find_by(base_path: "/example-path").delete
+```
+
+For documents published in Mainstream Publisher, update and republish the content that should now sit at `/example-path`.
+
+(In Mainstream Publisher the edition id can be found at the end of the URL. For example, the edition found at publisher.publishing.service.gov.uk/editions/<mark>5fb53d8fd3bf7f626687198c</mark> has the edition id `5fb53d8fd3bf7f626687198c`.)
+
+```ruby
+edition = Edition.find("<edition id>")
+
+UpdateWorker.perform_async(edition.id.to_s)
+
+RepublishWorker.perform_async(edition.id.to_s)
+```
+
+For documents published in other publishing apps that are not Mainstream Publisher, the instructions will differ.
+
+The final step is to [clear the cache for the routes](https://docs.publishing.service.gov.uk/manual/purge-cache.html).
+
 ## Fixing incorrect Corporate Information page redirects
 
 There have been a few occasions where Corporate Information pages have
