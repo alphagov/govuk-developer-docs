@@ -22,6 +22,8 @@ class ProxyPages
             locals: {
               title: "#{app.app_name}: #{page[:title]}",
               markdown: page[:markdown],
+              repository: app.github_repo_name,
+              relative_path: page[:relative_path],
             },
             data: {
               app_name: app.app_name,
