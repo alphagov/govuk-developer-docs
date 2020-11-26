@@ -111,6 +111,7 @@ RSpec.describe GitHubRepoFetcher do
           title: "Analytics",
           path: "/apis/#{repo_name}/analytics.html",
           markdown: markdown_fixture,
+          relative_path: path,
           source_url: source_url,
           latest_commit: latest_commit,
         },
