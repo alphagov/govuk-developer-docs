@@ -7,17 +7,114 @@ parent: "/manual.html"
 related_applications: [short-url-manager]
 ---
 
-Sometimes, there is a need to manually redirect existing URLs to another
-internal location, usually due to content being archived or because the
-slug has been changed.
+There is a regular requirement for creating short URLs on behalf of
+departments, usually for use with for campaign materials. Content
+designers do this using the [Short URL Manager][short-url-manager] app.
+Read [more about Short URL Manager][short-url-manager-section] below,
+including how to remove routes originating from it.
 
-There is also a regular requirement for creating short URLs on behalf of
-departments, usually for use with for campaign materials.
+There are also processes for [redirecting HRMC manuals][hmrc-manuals-section]
+and [redirecting from campaign sites][campaign-sites-section].
 
-## Getting information on current redirects
+Finally, sometimes there is a need to manually redirect existing URLs to
+another internal location, either due to an incident, content being
+archived or because the slug has been changed.
 
-To find if there is already a redirect for a particular path, open a router-api
-console:
+## Choosing a redirect strategy
+
+Does something exist at the incoming URL already? There's a
+[simple way of checking][check-route-exists-section].
+
+If no route exists, and if you have the time to wait for a content
+designer to review the proposal, you should just use Short URL Manager.
+If the route already exists, or if you're in a hurry, you'll need to take
+a different approach.
+
+The preferred method of creating redirects is to use the publishing app that
+originally published the content to set up the redirect. This usually
+involves unpublishing the content, whereupon the app gives the option to
+redirect the old route to another route. This approach is preferred as it
+keeps the workflow and publishing history within the app, as well as
+correctly propagating the changes through Publishing API, Content Store and
+Router API.
+
+Not all applications support unpublishing / setting redirects. In these
+cases, you should change the content item in Publishing API manually.
+
+### Manually apply a redirect in Publishing API
+
+Note that this won't work if the thing you're redirecting originates from
+the Short URL Manager: there's [a rake task][short-url-manager-section-remove-route]
+for that.
+
+You'll need to get the content ID of the current thing that exists at the
+route you want to redirect from. This is generally just a case of visiting
+the route prefixed with `/api/content` to expose its Content Store
+information.
+
+Now, log into the app console:
+
+`$ gds govuk connect app-console -e production publishing_api/publishing-api`
+
+You may want to log into the Content Store app console in another shell:
+
+`$ gds govuk connect app-console -e production content_store/content-store`
+
+In the Content Store console, run
+`content_item = ContentItem.find_by(content_id: "CONTENT_ID")` to get a
+handle on the current state of the content item.
+
+In the Publishing API console, make a call to `Unpublish`:
+
+```ruby
+Commands::V2::Unpublish.call(
+  content_id: "CONTENT_ID",
+  type: "redirect",
+  explanation: "manually redirected by YOUR_NAME",
+  alternative_path: "/new-path",
+  discard_drafts: true,
+  unpublished_at: Time.now,
+)
+```
+
+You should now see an Unpublishing record in Publishing API:
+
+```ruby
+Unpublishing.last
+=> #<Unpublishing id: 435518, edition_id: 1, type: "redirect", explanation: "manually redirected by Chris", alternative_path: "/new-path", created_at: "2020-11-27 14:03:08", updated_at: "2020-11-27 14:20:47", unpublished_at: nil, redirects: [{"path"=>"/old-path", "type"=>"exact", "destination"=>"/new-path"}]>
+```
+
+And you should see that the content item in the Content Store
+console has been updated, if you run `content_item.reload`.
+
+[Content Store talks directly to Router API](https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33)
+to update the route. Now when you visit the route in your
+browser, you should be redirected.
+
+### Manually apply a redirect in Router API
+
+You might need to urgently apply a redirect, and Publishing API
+might have a large backlog of publishing in its downstream_high
+queue, making the Publishing API approach too slow.
+
+First, connect to the Router API console:
+
+`$ gds govuk connect -e production app-console draft_cache/router-api`
+
+Then update the route directly:
+
+```ruby
+Route.find_by(incoming_path: "...").update!(redirect_to: "...", handler: "redirect", redirect_type: "permanent")
+```
+
+You should always go back and fix things properly in Publishing
+API afterwards, as a republish could easily undo any changes you've
+made.
+
+## Find out if the route exists
+[check-route-exists-section]: #find-out-if-the-route-exists
+
+Open a router-api console:
 
 ```console
 $ gds govuk connect app-console -e production router_backend/router-api
@@ -29,18 +126,11 @@ Then search for the incoming path you are interested in:
 > Route.where(incoming_path: '/path-to-item')
 ```
 
-Redirect routes have the handler `redirect`.
+If a route is found, and it has the handler `redirect`, then there is
+already a redirect in place.
 
-## Redirecting from the original publishing app
-
-The preferred method of creating redirects is to use the publishing app that
-originally published the content to unpublish it and redirect it to another
-page using the Publishing API.
-
-This ensures that the workflow and publishing history stays within the app
-wherever possible.
-
-## Using the Short URL Manager
+## Redirect using the Short URL Manager
+[short-url-manager-section]: #redirect-using-the-short-url-manager
 
 If the redirect is from a URL that is not a currently-published content item,
 you should first look to use the [Short URL Manager][short-url-manager] to
@@ -59,6 +149,7 @@ and using non-default values for the `segments_mode`.
 [short-url-manager-permissions]: https://github.com/alphagov/short-url-manager/#permissions
 
 ### Removing a route created in the Short URL Manager
+[short-url-manager-section-remove-route]: #removing-a-route-created-in-the-short-url-manager
 
 First find the `content_id` of the URL that needs to be removed. This can be found by using the Content Store API: `www.gov.uk/api/content/<path goes here>`.
 
@@ -170,12 +261,14 @@ RouterReloader.reload
 ```
 
 ## Redirects for HMRC manuals
+[hmrc-manuals-section]: #redirects-for-hmrc-manuals
 
 There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be [found in the hmrc-manuals-api repo](https://github.com/alphagov/hmrc-manuals-api/tree/master/lib/tasks). These can be run via the `Run rake task` jenkins job.
 
 [See example of redirecting a HMRC manual section to another section](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=hmrc-manuals-api&MACHINE_CLASS=backend&RAKE_TASK=redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug])
 
 ## Redirects from campaign sites
+[campaign-sites-section]: #redirects-from-campaign-sites
 
 The campaigns platform is a WordPress site managed by dxw. Redirects from a
 `*.campaign.gov.uk` site require a support ticket. Currently, James Whitmarsh or
