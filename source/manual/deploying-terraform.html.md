@@ -61,7 +61,7 @@ Where:
 1. `<github_token>` is the GitHub token that you created as described [above](#3-get-github-credentials)
 1. `<environment>` is the govuk environment you want to deploy to. E.g. `integration`,`staging`
 1. `<project>` is the terraform project that you want to deploy. E.g. `app-gatling`
-1. `<stack>` is the govuk stack you want to deploy to. E.g. `blue`, `govuk`
+1. `<stack>` is the govuk stack you want to deploy to. E.g. `blue` (which is usually for `app-` projects), `govuk` (which is usually for `infra-` projects)
 1. `<action>` is the terraform action you want to perform. E.g. `plan`, `apply`
 1. `<aws_role>` is the govuk aws role you want to use for terraforming. E.g. `govuk-integration-admin`
 
