@@ -42,6 +42,13 @@ to the [acknowledged email list][] and then re-run the Jenkins job.
 If the check is reporting correctly then emails are not being sent. Try the
 [general troubleshooting tips for unsent emails][troubleshooting].
 
+> Previously we had [an incident][checkbox-incident] where new types of medical
+> safety alert were added, but the list `govuk_email_check` was subscribed to was
+> specific to only the older types. This meant `govuk_email_check` never got an
+> email about content for one of the new  types, because no email was generated.
+> It's possible this could happen again, since the underlying functionality means
+> the lists are all specific to the types when they were created.
+
 ## Resending travel advice emails
 
 If you need to force the sending of a travel advice email alert, there
@@ -59,3 +66,4 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 [travel advice check]: https://deploy.blue.production.govuk.digital/job/travel-advice-email-alert-check/
 [travel advice updates]: https://www.gov.uk/foreign-travel-advice
 [troubleshooting]: /manual/email-troubleshooting.html
+[checkbox-incident]: https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#
