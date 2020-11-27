@@ -62,7 +62,10 @@ You may want to log into the Content Store app console in another shell:
 
 In the Content Store console, run
 `content_item = ContentItem.find_by(content_id: "CONTENT_ID")` to get a
-handle on the current state of the content item.
+handle on the current state of the content item. If the content item
+already has a `document_type` of `redirect` and the `redirects` property
+has the `path` and `destination` properties you're aiming for, then you
+may just need to [nudge Content Store into talking to Router API][[register-redirect-from-content-store-section].
 
 In the Publishing API console, make a call to `Unpublish`:
 
@@ -90,6 +93,20 @@ console has been updated, if you run `content_item.reload`.
 [Content Store talks directly to Router API](https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33)
 to update the route. Now when you visit the route in your
 browser, you should be redirected.
+
+### Manually register a route in Content Store
+[register-redirect-from-content-store-section]: #manually-register-a-route-in-content-store
+
+Sometimes Content Store is unsuccessful in updating a route in
+Router API, e.g. if the call from Content Store happens while
+the Router machines are being deployed.
+
+In such cases, you can get Content Store to register the route
+again, by opening the Content Store console and running:
+
+```ruby
+ContentItem.find_by(base_path: "/old-path-to-be-redirected").route_set.register!
+```
 
 ### Manually apply a redirect in Router API
 
