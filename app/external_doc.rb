@@ -66,17 +66,13 @@ class ExternalDoc
         base = if path.start_with? "/"
                  base_url
                else
-                 subpage_url
+                 context[:subpage_url]
                end
 
         element["href"] = URI.join(base, href).to_s
       end
 
       doc
-    end
-
-    def subpage_url
-      context[:subpage_url]
     end
   end
 
