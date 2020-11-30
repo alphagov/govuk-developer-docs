@@ -7,6 +7,8 @@ neque consequat porta, [Suspendisse iaculis](#suspendisse-iaculis). Sed et
 [turpis ultrices](/ultrices.md), imperdiet eros ut, [tincidunt leo].
 [Nam eget dui](https://nam.com/eget/dui/uploading.md)
 
+[localhost](localhost:999)
+
 ## Suspendisse iaculis
 
 ![Suspendisse iaculis](suspendisse_iaculis.png)

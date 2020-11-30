@@ -50,6 +50,10 @@ RSpec.describe ExternalDoc do
         expect(html).to have_link("tincidunt leo", href: "https://github.com/alphagov/lipsum/blob/master/lib/tincidunt_leo.rb")
       end
 
+      it "treats URLs containing non-default ports as absolute URLs" do
+        expect(html).to have_link("localhost", href: "localhost:999")
+      end
+
       it "maintains anchor links" do
         expect(html).to have_link("Suspendisse iaculis", href: "#suspendisse-iaculis")
       end
