@@ -65,5 +65,5 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 [resend travel advice job]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=email_alerts:trigger%5BPUT_EDITION_ID_HERE%5D
 [travel advice check]: https://deploy.blue.production.govuk.digital/job/travel-advice-email-alert-check/
 [travel advice updates]: https://www.gov.uk/foreign-travel-advice
-[troubleshooting]: /manual/email-troubleshooting.html
+[troubleshooting]: /manual/email-alert-api-troubleshooting.html
 [checkbox-incident]: https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#
