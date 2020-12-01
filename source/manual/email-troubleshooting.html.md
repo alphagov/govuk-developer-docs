@@ -31,8 +31,6 @@ will take you to a form where you can search by email address.
 
 A courtesy copy of every email sent from integration, staging and production
 is available in the ['govuk-email-courtesy-copies' Google Group][google-group].
-Integration and staging emails have a subject prefixed by the
-environment name.
 
 > **Note**
 >
