@@ -1,14 +1,15 @@
 ---
 owner_slack: "#govuk-notifications"
-title: "Email troubleshooting"
+title: "Email Alert API troubleshooting"
 section: Emails
 type: learn
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-This document has tips for troubleshooting unsent emails. For an overview of our
-email architecture, read [Email notifications: how they work](/manual/email-notifications-how-they-work.html).
+This document has tips for troubleshooting unsent emails in Email Alert API.
+For an overview of our email architecture, read
+[Email notifications: how they work](/manual/email-notifications-how-they-work.html).
 
 ## General troubleshooting tips
 
@@ -31,8 +32,6 @@ will take you to a form where you can search by email address.
 
 A courtesy copy of every email sent from integration, staging and production
 is available in the ['govuk-email-courtesy-copies' Google Group][google-group].
-Integration and staging emails have a subject prefixed by the
-environment name.
 
 > **Note**
 >
