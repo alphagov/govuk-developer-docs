@@ -152,10 +152,10 @@ the single point of DNS for government.
 
 There are ongoing plans to move this responsibility to a different part of GDS.
 
-## Other weird bits of DNS
+## Requests for domain names and other DNS changes
 
 If you receive a request to change any other DNS that hasn't come from the GOV.UK
-Proposition team, send it to them using the Zendesk group "3rd Line--GOV.UK Proposition".
+Proposition team, send it to them using the Zendesk group "3rd Line--GOV.UK Policy and Engagement".
 
 [security-incidents]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents
 [gds-cli]: https://github.com/alphagov/gds-cli
