@@ -6,32 +6,28 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-In `integration` and `staging` Email Alert API defaults to sending emails
-to a single test address: `success@simulator.amazonses.com`. This is used to
-simulate a successful email sending.
+In `integration` and `staging` Email Alert API defaults to [writing emails to
+a logfile][logging-emails] rather than sending them to Notify. Only [email
+addresses specified in GOV.UK Puppet][puppet-config] will receive actual
+emails.
 
-However, you can override this for specific email addresses for testing
+You can override this for specific email addresses for testing
 purposes. To do this, [you will need to be added as a team member to
 the GOV.UK Email Integration or Staging service in Notify][add-in-notify] and
-make changes to [govuk-puppet].
+make changes to GOV.UK Puppet.
 
-[add-in-notify]: /manual/govuk-notify.html#receiving-emails-from-govuk-notify
-
-1. Add your email address to the override whitelist in the file [common.yml](https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml#L540-L568) (the list needs to be kept in sync with the team members list in Notify). This is set as an environment variable via hieradata under the key of
-   `govuk::apps::email_alert_api::email_address_override_whitelist`. It should look something like this:
-
-   ```
-    govuk::apps::email_alert_api::email_address_override_whitelist:
-      - your.name@digital.cabinet-office.gov.uk
-   ```
-
-2. Create a branch with your changes and push them to GitHub. Deploy the changes by running the [deploy-puppet](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet) job for the environment you're testing on, providing your branch name instead of a release tag.
-
-3. Once these changes have been deployed and the environment variable `EMAIL_ADDRESS_OVERRIDE_WHITELIST` is populated with your address you can test that you can receive emails by running the [support:send_test_email[name@example.com]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=support:send_test_email[your.name@digital.cabinet-office.gov.uk]) rake task.
+1. Add your email address to the `govuk_notify_recipients` list in
+   [hieradata_aws/common.yml][].
+2. Create a branch with your changes and push them to GitHub. Deploy the
+   changes by running the [deploy-puppet][] job for the environment you're
+   testing on, providing your branch name instead of a release tag.
+3. Once these changes have been deployed, and the environment variable
+   `GOVUK_NOTIFY_RECIPIENTS` is populated with your address, you can test that
+   you can receive emails by running the [Send a test email][] support task.
 
 ## Testing digest emails
 
-It is possible to re-send an entire digest run (e.g. to test changes that have been made to the email template) in integration.  You will need to have added yourself to the whitelist and have a digest subscription (daily or weekly) to something that had a significant update during the time period the digest covers (e.g. daily would be 07:00 the previous day to 07:00 today).
+It is possible to re-send an entire digest run (e.g. to test changes that have been made to the email template) in integration.  You will need to have added yourself to the recipients list and have a digest subscription (daily or weekly) to something that had a significant update during the time period the digest covers (e.g. daily would be 07:00 the previous day to 07:00 today).
 
 Using a Rails console for email-alert-api, retrieve the digest run that you wish to resend, then delete it, e.g.
 
@@ -47,7 +43,9 @@ DailyDigestInitiatorWorker.perform_async
 WeeklyDigestInitiatorWorker.perform_async
 ```
 
-[Notify]: https://www.notifications.service.gov.uk
-[govuk-secrets]: https://github.com/alphagov/govuk-secrets
-[govuk-puppet]: https://github.com/alphagov/govuk-puppet
-[rake task]: https://github.com/alphagov/email-alert-api/blob/master/lib/tasks/support.rake#L142
+[logging-emails]: https://github.com/alphagov/email-alert-api/blob/006afa2ee6c35631b83b16519f8af2c6c2ea5c59/app/services/send_email_service/send_pseudo_email.rb#L10-L20
+[puppet-config]: https://github.com/alphagov/govuk-puppet/blob/028381e3022f635e1958a45478b0b274e672b602/hieradata_aws/common.yaml#L546-L549
+[add-in-notify]: /manual/govuk-notify.html#receiving-emails-from-govuk-notify
+[hieradata_aws/common.yml]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml
+[deploy-puppet]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet
+[Send a test email]: https://github.com/alphagov/email-alert-api/blob/master/docs/support-tasks.md#send-a-test-email
