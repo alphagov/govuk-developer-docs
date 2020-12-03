@@ -3,21 +3,18 @@ require "uri"
 require_relative "./string_to_id"
 
 class ExternalDoc
-  def self.fetch(repository:, path:)
-    contents = HTTP.get(
-      "https://raw.githubusercontent.com/#{repository}/master/#{path}",
-    )
-
+  def self.parse(markdown, repository: "", path: "")
     context = {
+      repository: repository,
       # Turn off hardbreaks as they behave different to github rendering
       gfm: false,
       base_url: URI.join(
         "https://github.com",
-        "#{repository}/blob/master/",
+        "alphagov/#{repository}/blob/master/",
       ),
       image_base_url: URI.join(
         "https://raw.githubusercontent.com",
-        "#{repository}/master/",
+        "alphagov/#{repository}/master/",
       ),
     }
 
@@ -38,19 +35,7 @@ class ExternalDoc
 
     HTML::Pipeline
       .new(filters)
-      .to_html(contents.force_encoding("UTF-8"), context)
-  end
-
-  def self.parse(markdown)
-    filters = [
-      HTML::Pipeline::MarkdownFilter,
-      PrimaryHeadingFilter,
-      HeadingFilter,
-    ]
-
-    HTML::Pipeline
-      .new(filters)
-      .to_html(markdown.to_s.force_encoding("UTF-8"))
+      .to_html(markdown.to_s.force_encoding("UTF-8"), context)
   end
 
   def self.title(markdown)
@@ -76,22 +61,18 @@ class ExternalDoc
         uri = URI.parse(href)
         path = uri.path
 
-        next if uri.scheme || href.start_with?("#") || path.end_with?(".md")
+        next if uri.scheme || href.start_with?("#")
 
         base = if path.start_with? "/"
                  base_url
                else
-                 subpage_url
+                 context[:subpage_url]
                end
 
         element["href"] = URI.join(base, href).to_s
       end
 
       doc
-    end
-
-    def subpage_url
-      context[:subpage_url]
     end
   end
 
@@ -110,13 +91,32 @@ class ExternalDoc
 
         href = element["href"].strip
         uri = URI.parse(href)
-        if uri.path.end_with?(".md") && uri.host.nil?
-          uri.path.sub!(/.md$/, ".html")
-          element["href"] = uri.to_s
+        if is_github_link?(uri.host) && opted_into_docs_consumption?(repository)
+          doc_name = internal_doc_name(repository, uri.path)
+          element["href"] = internal_doc_path(repository, doc_name) if doc_name
         end
       end
 
       doc
+    end
+
+  private
+
+    def is_github_link?(host)
+      host == "github.com"
+    end
+
+    def opted_into_docs_consumption?(repository)
+      AppDocs.apps_with_docs.map(&:github_repo_name).include?(repository)
+    end
+
+    def internal_doc_name(repository, uri_path = "")
+      internal_doc = uri_path.match(/^\/alphagov\/#{repository}\/blob\/(?:main|master)\/docs\/([^\/]+)\.md$/)
+      internal_doc.is_a?(MatchData) ? internal_doc[1] : nil
+    end
+
+    def internal_doc_path(repository, doc_name)
+      "/apis/#{repository}/#{doc_name}.html"
     end
   end
 
