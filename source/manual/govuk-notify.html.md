@@ -49,6 +49,7 @@ for each environment):
   Currently it is used by [Feedback](https://github.com/alphagov/feedback) to email a survey link
   to users who click a survey banner or use the `Is this page useful?` feature.
 
+[Email Alert API Product dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_product.json?refresh=1m&orgId=1
 [SendEmailWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/send_email_worker.rb#L4
 
 ## Accessing the dashboard
@@ -85,7 +86,6 @@ of protection and [there is an extra step][email-alert-api-receive-emails]
 before you can receive emails through Email Alert API.
 
 [email-alert-api-receive-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
-[Email Alert API Product dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_product.json?refresh=1m&orgId=1
 
 The GOV.UK Publishing services are a special case: for these services,
 integration and staging also run in production mode. This is because
