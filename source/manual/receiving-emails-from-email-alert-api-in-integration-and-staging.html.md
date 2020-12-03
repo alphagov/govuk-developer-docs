@@ -40,24 +40,6 @@ databases in Integration and Staging are reset due to the [data sync][].
 This will mean that any test subscriptions you've created will be lost and
 you'll need to recreate them.
 
-## Testing digest emails
-
-It is possible to re-send an entire digest run (e.g. to test changes that have been made to the email template) in integration.  You will need to have added yourself to the recipients list and have a digest subscription (daily or weekly) to something that had a significant update during the time period the digest covers (e.g. daily would be 07:00 the previous day to 07:00 today).
-
-Using a Rails console for email-alert-api, retrieve the digest run that you wish to resend, then delete it, e.g.
-
-```
-digest = DigestRun.where(range: 'daily').last
-DigestRun.delete(digest)
-```
-
-Then rerun the relevant digest initiator worker (either daily or weekly):
-
-```
-DailyDigestInitiatorWorker.perform_async
-WeeklyDigestInitiatorWorker.perform_async
-```
-
 [logging-emails]: https://github.com/alphagov/email-alert-api/blob/006afa2ee6c35631b83b16519f8af2c6c2ea5c59/app/services/send_email_service/send_pseudo_email.rb#L10-L20
 [integration-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-integration
 [travel-advice]: https://www.integration.publishing.service.gov.uk/foreign-travel-advice/thailand/email-signup
