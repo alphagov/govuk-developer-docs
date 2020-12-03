@@ -31,6 +31,7 @@ class GitHubRepoFetcher
           path: "/apis/#{app_name}/#{filename}.html",
           title: title,
           markdown: contents,
+          relative_path: doc.path,
           source_url: doc.html_url,
           latest_commit: latest_commit(app_name, doc.path),
         }
