@@ -1,29 +1,44 @@
 ---
 owner_slack: "#govuk-notifications"
-title: Receive emails from Email Alert API in integration and staging
+title: Receive emails from Email Alert API in Integration and Staging
 section: Emails
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-In `integration` and `staging` Email Alert API defaults to [writing emails to
-a logfile][logging-emails] rather than sending them to Notify. Only [email
-addresses specified in GOV.UK Puppet][puppet-config] will receive actual
-emails.
+In order to test receiving real emails from Email Alert API we have configured
+Google groups for the integration and staging environments. Emails
+sent to addresses other than those of these groups will be
+[written to a logfile][logging-emails].
 
-You can override this for specific email addresses for testing
-purposes. To do this, [you will need to be added as a team member to
-the GOV.UK Email Integration or Staging service in Notify][add-in-notify] and
-make changes to GOV.UK Puppet.
+## In Integration
 
-1. Add your email address to the `govuk_notify_recipients` list in
-   [hieradata_aws/common.yml][].
-2. Create a branch with your changes and push them to GitHub. Deploy the
-   changes by running the [deploy-puppet][] job for the environment you're
-   testing on, providing your branch name instead of a release tag.
-3. Once these changes have been deployed, and the environment variable
-   `GOVUK_NOTIFY_RECIPIENTS` is populated with your address, you can test that
-   you can receive emails by running the [Send a test email][] support task.
+For testing in Integration there is the [Email Alert API Integration Google
+group][integration-group]. It has an email address of
+`email-alert-api-integration@digital.cabinet-office.gov.uk` and you can use this
+address to sign up for mailing lists that you wish to test.
+
+## In Staging
+
+In Staging there is the [Email Alert API Staging Google
+group][staging-group] and it has an email address of
+`email-alert-api-staging@digital.cabinet-office.gov.uk`.
+
+## How to use
+
+To use these Google groups you need to interact with the Email Alert system
+using the group email as your email address. For example, if you wanted to test
+receiving the content change alerts for travel advice, you can
+[sign-up to receive travel advice][travel-advice] with the group email address.
+Your next step would be to check the Google group for
+an email to confirm the subscription. Once confirmed, you can then publish
+a change in [Travel Advice Publisher][] to generate the content change
+alert email.
+
+If you are testing over multiple days, bear in mind that each night the
+databases in Integration and Staging are reset due to the [data sync][].
+This will mean that any test subscriptions you've created will be lost and
+you'll need to recreate them.
 
 ## Testing digest emails
 
@@ -44,8 +59,8 @@ WeeklyDigestInitiatorWorker.perform_async
 ```
 
 [logging-emails]: https://github.com/alphagov/email-alert-api/blob/006afa2ee6c35631b83b16519f8af2c6c2ea5c59/app/services/send_email_service/send_pseudo_email.rb#L10-L20
-[puppet-config]: https://github.com/alphagov/govuk-puppet/blob/028381e3022f635e1958a45478b0b274e672b602/hieradata_aws/common.yaml#L546-L549
-[add-in-notify]: /manual/govuk-notify.html#receiving-emails-from-govuk-notify
-[hieradata_aws/common.yml]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/common.yaml
-[deploy-puppet]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet
-[Send a test email]: https://github.com/alphagov/email-alert-api/blob/master/docs/support-tasks.md#send-a-test-email
+[integration-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-integration
+[travel-advice]: https://www.integration.publishing.service.gov.uk/foreign-travel-advice/thailand/email-signup
+[Travel Advice Publisher]: https://travel-advice-publisher.integration.publishing.service.gov.uk/admin/countries/thailand
+[staging-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-staging
+[data sync]: /manual/govuk-env-sync.html
