@@ -24,7 +24,7 @@ The purpose of the email notifications system is to inform users when content th
 - [Finder Frontend][finder-frontend-email]
   - Provides a UI to sign up to filterable search results.
 
-- [Travel Advice Publisher] / Specialist Publisher
+- [Travel Advice Publisher] / [Specialist Publisher]
   - Use Email Alert API directly to send email ([tech debt][travel-specialist-tech-debt]).
 
 - [Email Alert Frontend][email-frontend-readme]
