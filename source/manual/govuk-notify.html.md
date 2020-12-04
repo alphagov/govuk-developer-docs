@@ -64,6 +64,11 @@ entry).
 
 ## Receiving emails from GOV.UK Notify
 
+**Note:** we have [specific documentation][email-alert-api-receive-emails] for
+receiving Email Alert API emails in the integration and staging.
+
+[email-alert-api-receive-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
+
 GOV.UK Notify services have two modes: live and [trial][trial-mode]. Our
 production services are all in live mode; most other services are in trial
 mode. In this mode emails will only be sent to members of the service or email
@@ -80,12 +85,6 @@ add yourself to the service:
 
 2. The members with the permission `Manage settings, team and usage` will be
    able to add you to this team.
-
-**Note:** some of our applications, notably Email Alert API, has an extra level
-of protection and [there is an extra step][email-alert-api-receive-emails]
-before you can receive emails through Email Alert API.
-
-[email-alert-api-receive-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 
 The GOV.UK Publishing services are a special case: for these services,
 integration and staging also run in production mode. This is because
