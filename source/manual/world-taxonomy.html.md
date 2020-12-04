@@ -51,7 +51,7 @@ Any application that either tags content to taxons or pulls taxons out of the Pu
 
 The rules regarding which departments and document types world taxons apply to are only enforced by Whitehall, not by content-tagger, meaning that these rules are not applied uniformly.
 
-There is a [world location][world-location] format that was the predecessor to the world taxon pages. This is still used for a number of things ([atom feed][atom-feed], tagging in Whitehall, rendering the [world page][world-page]) therefore we have two similar coupled concepts that are needed to be kept in sync.
+There is a [world location][world-location] format that was the predecessor to the world taxon pages. When the world taxonomy was introduced, these pages were relegated from e.g. `/world/spain` to `/world/spain/news`. They are still used for a number of things: [atom feed][atom-feed], tagging in Whitehall, rendering the [world page][world-page]. Being also about the world puts them in conflict with world taxons, and has become a source of [technical debt][world-tech-debt]. Any changes to the actual locations in the world need to be applied to both world locations and the world taxonomy.
 
 Content associated with a world location is tagged to the previous concept of a world location rather than a world taxon. For example [Information and events for UK nationals living in Portugal][portugal-info] has [no links][] to [Portugal][] and instead is linked to the now defunct Portugal world location. The consequence of this is that web links need to be [created based on the old world location concepts title][create-link] (which is a fragile process that needs manual overrides when it breaks) and that these content relationships cannot be mapped in data-science tooling without understanding this quirk.
 
@@ -71,6 +71,7 @@ The [/world][] page is unconventional for GOV.UK as it is not represented by a c
 [/world]: https://gov.uk/world
 [rendered by Whitehall]: https://github.com/alphagov/whitehall/blob/79515433a97f799a5f78f3410f5d598004bd91f2/config/routes.rb#L56
 [/world/all]: https://gov.uk/api/content/world/all
+[world-tech-debt]: https://trello.com/c/G5uIcKn3/176-govuk-has-two-conflicting-ways-of-representing-a-location-in-the-world
 
 ## History
 
