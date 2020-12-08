@@ -56,3 +56,13 @@ Then create the account:
 - A token will be generated. Copy it to your clipboard and then manually email it to the team email address
 
 An account can have API tokens for multiple applications.
+
+## Changing parent organisation (APHA not appearing under DEFRA for users)
+
+There is a bug in Signon for orgs that have multiple parent orgs in Whitehall. There is a [Trello card for this problem](https://trello.com/c/7koTf4OD).
+
+To address the problem for APHA, re-run the following [rake task](running-rake-tasks.html):
+
+`db:migrate VERSION=20200805142418`
+
+Otherwise raise a PR similar to [https://github.com/alphagov/signon/pull/1481](https://github.com/alphagov/signon/pull/1481) to add a migration.
