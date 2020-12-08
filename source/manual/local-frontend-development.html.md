@@ -66,7 +66,9 @@ govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
-## Using startup scripts
+## Using startup scripts (DEPRECATED)
+
+**DEPRECATED:** these scripts are superseded by GOV.UK Docker, and may no longer be present in some frontend apps. **Try GOV.UK Docker for local frontend development before using these scripts.**
 
 If you are making changes to a frontend app and nothing else, you can view these changes by running the application's `./startup.sh` script. This example is for [government-frontend], but these instructions apply to any frontend app.
 
