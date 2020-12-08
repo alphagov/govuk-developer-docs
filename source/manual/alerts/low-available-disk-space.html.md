@@ -107,7 +107,10 @@ use ncdu on that directory. Do it with the following command:
 
 If you are able to determine that the machine simply requires more disk space
 to run the applications (such as a growing database) you can increase capacity
-by [adding a new disk in vCloud](../adding-disks-in-vcloud.html).
+by:
+
+1. [Growing a persistent volume](https://docs.publishing.service.gov.uk/manual/manually-resize-ebs.html) in case of a stateful app
+1. If the app is stateless and the volume ephemeral you can resize it in govuk-aws-data at data/\<app\>/\<env\>/common.tfvars and modify root_block_device_volume .You will then have to terminate the instances for them to be respawned by the autoscaling group with the new resized volume.
 
 ## Disk space used by logfiles
 
