@@ -40,7 +40,7 @@ cd /govuk/govuk-docker
 make government-frontend
 
 cd /govuk/government-frontend
-govuk-docker up government-frontend-app-live # or govuk-docker-up app-live
+govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
@@ -53,7 +53,7 @@ gem 'govuk_publishing_components', path: '../govuk_publishing_components'
 ```shell
 cd /govuk/government-frontend
 govuk-docker-run bundle install
-govuk-docker up government-frontend-app-live
+govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
@@ -84,7 +84,7 @@ cd /govuk/govuk-docker
 make government-frontend
 
 cd /govuk/government-frontend
-govuk-docker up government-frontend-app-live
+govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
