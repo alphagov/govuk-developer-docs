@@ -14,7 +14,6 @@ gem "middleman"
 gem "middleman-search_engine_sitemap"
 
 gem "git"
-gem "github-markdown"
 gem "html-pipeline"
 gem "kramdown"
 gem "mdl"
