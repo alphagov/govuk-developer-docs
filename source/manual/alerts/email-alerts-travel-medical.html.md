@@ -88,7 +88,7 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 [tech dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&orgId=1
 [checkbox-incident]: https://docs.google.com/document/d/1AwpXPF1c7fbsOL8KX10ko_wLok4YykabmRfkHJjRqfA/edit#
 [checkbox tech debt]: https://trello.com/c/v2ees2fD/199-all-checkbox-is-misleading-for-finderemailsignups
-[courtesy copy]: /manual/email-notifications-how-they-work.html#courtesy-copies
+[courtesy copy]: /manual/email-notifications-how-they-work.html#useful-resources
 [view_emails task]: https://github.com/alphagov/email-alert-api/blob/master/docs/support-tasks.md#view-subscribers-recent-emails
 [Kibana logs]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/goto/43fc79ee47ac49f248e0f29a174be240
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=12h
