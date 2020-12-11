@@ -28,7 +28,9 @@ The email notification system generates 3 different types of email. These are tr
 - [Technical dashboard][email-alert-api-technical]
 - [Product dashboard][email-alert-api-product]
 - [How content is matched to subscriber lists][email-alert-api-matching]
-- [Courtesy copies Google group][google-group] - provides a way to view replicas of every immediate email notification generated in production
+- [Courtesy copies Google group][google-group]
+  - Provides a way to view replicas of every immediate email notification generated in production.
+  - Works by the group being subscribed to the "all-government-publishing-updates" list ([here][courtesy-subscription-page]).
 - [How to receive emails in Integration and Staging][receiving-integration-staging-email]
 
 ## Email system apps
@@ -65,6 +67,7 @@ Communication from Email Alert API to Notify is done via a HTTP API which is aut
 [email-alert-api-matching]: https://github.com/alphagov/email-alert-api/blob/master/docs/matching-content-to-subscriber-lists.md
 [receiving-integration-staging-email]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 [google-group]: https://groups.google.com/a/digital.cabinet-office.gov.uk/forum/#!forum/govuk-email-courtesy-copies
+[courtesy-subscription-page]: https://www.gov.uk/search/all/email-signup
 [email-spam-report]: https://github.com/alphagov/email-alert-api/blob/master/app/controllers/spam_reports_controller.rb
 [notify-api-key]: https://github.com/alphagov/email-alert-api/blob/05c99c4ed95f71dbca1d423dd3d5d438b93d6437/config/secrets.yml#L40
 [email-spam-auth]: https://signon.publishing.service.gov.uk/api_users/14020/edit
