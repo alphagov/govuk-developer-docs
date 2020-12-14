@@ -68,7 +68,9 @@ govuk-docker-up app-live
 
 ## Using startup scripts
 
-If you are making changes to a frontend app and nothing else, you can view these changes by running the application's `./startup.sh` script. This example is for [government-frontend], but these instructions apply to any frontend app.
+**NOTE:** this approach only works for frontend development and relies on live APIs. You will need to find and install any dependencies yourself. Consider using the general GOV.UK Docker environment in the first instance.
+
+If you are making changes to certain frontend apps you can also view these changes by running the application's `./startup.sh` script - if it has one. This example is for [government-frontend], but these instructions may apply to other frontend apps.
 
 ```shell
 cd /govuk/government-frontend
