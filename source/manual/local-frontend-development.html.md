@@ -85,7 +85,6 @@ gem 'govuk_publishing_components', path: '../govuk_publishing_components'
 ```
 
 ```shell
-bundle install
 ./startup.sh --live
 # Check the output to see what port the app is running on, e.g: localhost:3005
 ```
