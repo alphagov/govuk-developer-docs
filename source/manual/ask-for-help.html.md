@@ -24,7 +24,7 @@ The GOV.UK development community:
 - ensures missions are delivered technically in the best and most appropriate
   way
 
-The Reliability Engineering team:
+The GOV.UK Replatforming team:
 
 - supports the infrastructure used to run and make changes to GOV.UK
 - handles updates to `*.gov.uk` DNS (excluding `*.publishing.service.gov.uk`)
@@ -38,11 +38,11 @@ question, you should escalate it through, in order:
 2. The Lead Developer on the programme
 3. The Lead Architect
 
-If 2nd Line instructs you to escalate something to Reliability Engineering,
+If 2nd Line instructs you to escalate something to GOV.UK Replatforming,
 raise a ticket on Zendesk and assign it to the `3rd Line--GDS Reliability
 Engineering` queue. You should also raise a ticket if the issue is related to
 an ongoing incident for tracking purposes, but you can speak to the team
 directly to get it more immediate attention.
 
-If you speak to Reliability Engineering about a process only they know about,
+If you speak to GOV.UK Replatforming about a process only they know about,
 they will work with you to document the process for all of GOV.UK.

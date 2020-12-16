@@ -79,7 +79,7 @@ Fastly publish their cache node [IP address ranges as JSON from their API][fastl
 - Origin has [firewall rules][] in place so that only our office and Fastly can connect.
 - Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
 
-We have [a Jenkins job "Check CDN IP Ranges"][check-cdn-ip-ranges] which will start to fail if our Fastly IPs don't match the IPs returned from the Fastly API. If you see this alert, you can [let Reliability Engineering know][raise-with-re] and they will update our list of Fastly IPs to match the ones listed by Fastly.
+We have [a Jenkins job "Check CDN IP Ranges"][check-cdn-ip-ranges] which will start to fail if our Fastly IPs don't match the IPs returned from the Fastly API. If you see this alert, you can [let GOV.UK Replatforming know][raise-with-re] and they will update our list of Fastly IPs to match the ones listed by Fastly.
 
 Updating the firewall rules in Carrenza with new Fastly IPs used to be done by committing the change to the [govuk-provisioning][govuk-provisioning] repo and to then deploy the firewall through a Jenkins job. This process is broken at the moment since the code base has diverged from the state of the firewall. While this is remedied we have to add the new rules manually - this is how to do it:
 

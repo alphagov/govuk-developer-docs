@@ -19,19 +19,19 @@ expire.
 
 See [renew a TLS certificate for GOV.UK](/manual/renew-a-tls-certificate.html)
 for details of how to renew the relevant certificate. This is normally done by
-Reliability Engineering.
+GOV.UK Replatforming.
 
 ## Production www.gov.uk certificate
 
 The TLS certificate for www.gov.uk is managed by Fastly. They will open a support
 ticket when the certificate is due for renewal. This ticket will be picked up by
-Reliability Engineering, who will co-ordinate with Fastly to renew the
+GOV.UK Replatforming, who will co-ordinate with Fastly to renew the
 certificate.
 
 ## Production, staging and integration wildcard certificates
 
 The wildcard TLS certificates for production, staging and integration are
-managed by Reliability Engineering. Once the alert appears, they will work to
+managed by GOV.UK Replatforming. Once the alert appears, they will work to
 renew the relevant certificate and make it live. For staging and integration,
 the certificates are also provided to Fastly to enable TLS for our staging and
 integration CDN environments.

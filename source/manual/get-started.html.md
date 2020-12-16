@@ -223,7 +223,7 @@ An account in AWS doesn't give you access to anything, you'll need to be given r
 
 Add yourself to a lists of users found in [the data for the infra-security project][infra-terra]. There are 5 groups:
 
-- `govuk-administrators`: people in Reliability Engineering who are working on GOV.UK infrastructure
+- `govuk-administrators`: people who are working on GOV.UK infrastructure
 - `govuk-internal-administrators`: people in GOV.UK who are working on GOV.UK infrastructure including Architects, Lead Developers and anyone else working on the AWS migration
 - `govuk-powerusers`: anyone else who can have production access on GOV.UK
 - `govuk-platformhealth-powerusers`: as above but for members of the GOV.UK Platform Health team. (Same access rights as above, we just have limits on the number of users per role).
