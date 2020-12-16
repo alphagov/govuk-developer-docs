@@ -18,15 +18,24 @@ Useful links:
 
 In [Government Frontend](https://github.com/alphagov/government-frontend):
 
-1. Add the new locale to `config/application.rb` and `config/locales/en.yml`
-2. Run `export LOCALE=<new_locale>; rake "translation:export[tmp/locale_csv,en,${LOCALE}]" && rake "translation:import[${LOCALE},tmp/locale_csv/${LOCALE}.csv]"` to generate the locale files from the English template.
-3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key. For example:
+1. Add the new locale to `config/application.rb` and `config/locales/en.yml` in alphabetical order
+2. Run the following commands to generate the locale files from the English template:
 
-   ```yaml
-   it:
-     language_name:
-       it: italiano
-   ```
+    ```bash
+    $ export LOCALE=<new_locale>
+    $ rake "translation:export[tmp/locale_csv,en,${LOCALE}]"
+    $ rake "translation:import[${LOCALE},tmp/locale_csv/${LOCALE}.csv]"
+    ```
+
+3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key.
+
+    For example:
+
+     ```yaml
+     it:
+       language_names:
+         it: italiano
+     ```
 
 ### 2. Update Whitehall
 
@@ -34,7 +43,7 @@ In [Government Frontend](https://github.com/alphagov/government-frontend):
 
 In [Whitehall](https://github.com/alphagov/whitehall):
 
-1. Add the new locale to `lib/whitehall.rb` and `config/locales/en.yml`
+1. Add the new locale to `lib/whitehall.rb` and `config/locales/en.yml` in alphabetical order
 2. Run the following commands to generate the locale files from the English template:
 
     ```bash
@@ -48,16 +57,16 @@ In [Whitehall](https://github.com/alphagov/whitehall):
   - the appropriate boolean under the `i18n.latin_script?` key
   - the language translation under the `language_names` key
 
-  For example:
+    For example:
 
-   ```yaml
-   it:
-     i18n:
-       direction: ltr
-       latin_script?: true
-     language_names:
-       it: Italiano
-   ```
+     ```yaml
+     it:
+       i18n:
+         direction: ltr
+         latin_script?: true
+       language_names:
+         it: Italiano
+     ```
 
 ### 3. Update GOV.UK Content Schemas
 
@@ -65,7 +74,7 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 
 In [GOV.UK Content Schemas](https://github.com/alphagov/govuk-content-schemas):
 
-1. Edit `formats/shared/definitions/locale.jsonnet` to include the new locale
+1. Edit `formats/shared/definitions/locale.jsonnet` to include the new locale in alphabetical order
 2. Run `rake` to generate all the schemas
 
 ### 4. Update Content Store
@@ -74,7 +83,7 @@ In [GOV.UK Content Schemas](https://github.com/alphagov/govuk-content-schemas):
 
 In [Content Store](https://github.com/alphagov/content-store):
 
-- Add the locale key to `config/application.rb`
+- Add the locale key to `config/application.rb` in alphabetical order
 
 ### 5. Update Publishing API
 
@@ -82,4 +91,4 @@ In [Content Store](https://github.com/alphagov/content-store):
 
 In [Publishing API](https://github.com/alphagov/publishing-api):
 
-- Add the locale key to `config/application.rb`
+- Add the locale key to `config/application.rb` in alphabetical order
