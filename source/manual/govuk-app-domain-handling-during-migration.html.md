@@ -33,4 +33,4 @@ Note: we use [Plek](https://github.com/alphagov/plek) to generate the correct ba
 
 Since setting the correct service discovery environment for a particular app is complicated due to the migration to AWS, please take extra care to make sure you understand the effects of changes to the app_domain parameter and Plek URI overrides via environment variables.
 
-If in doubt, please [talk to Reliability Engineering](https://docs.publishing.service.gov.uk/manual/raising-issues-with-reliability-engineering.html) to make sure your changes will not have unintended side effects.
+If in doubt, please [talk to GOV.UK Replatforming](https://docs.publishing.service.gov.uk/manual/raising-issues-with-reliability-engineering.html) to make sure your changes will not have unintended side effects.

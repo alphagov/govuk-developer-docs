@@ -7,7 +7,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-The Reliability Engineering team is responsible for managing several DNS zones.
+The GOV.UK Replatforming team is responsible for managing several DNS zones.
 
 By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS)
 
@@ -112,7 +112,7 @@ Currently these zones are only used in environments running on AWS.
 These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
 made in the [govuk-aws](https://github.com/alphagov/govuk-aws/) and
 [govuk-aws-data](https://github.com/alphagov/govuk-aws-data/) repositories.
-While GOV.UK migrates to AWS speak with Reliability Engineering for support
+While GOV.UK migrates to AWS speak with GOV.UK Replatforming for support
 making your changes.
 
 ## DNS for the `gov.uk` top level domain
@@ -120,10 +120,11 @@ making your changes.
 [Jisc](https://www.jisc.ac.uk/) is a non-profit which provides networking to
 UK education and government. They control the `gov.uk.` top-level domain.
 
-Requests to modify the DNS records for `gov.uk.` should be sent by email to
-`naming@ja.net` from someone on Jisc's approved contacts list. Speak to a
-senior technologist member of GOV.UK or Reliability Engineering if you need to
-make a change and don't have access.
+Requests to modify the DNS records for `gov.uk.` should be sent by
+email to `naming@ja.net` from someone on Jisc's approved contacts
+list. Speak to a senior technologist member of GOV.UK or someone in
+GOV.UK Replatforming if you need to make a change and don't have
+access.
 
 2nd line should be notified of any planned changes via email.
 
@@ -136,7 +137,7 @@ make a change and don't have access.
 
 ## Delegating `service.gov.uk` domains
 
-At the moment Reliability Engineering are also responsible for delegating DNS
+At the moment GOV.UK Replatforming are also responsible for delegating DNS
 to other government services.
 
 The request will arrive by email or Zendesk from a member of the GOV.UK Proposition
