@@ -12,7 +12,7 @@ Most frontend and backend apps on GOV.UK share a small number of servers. In som
 
 > **Note**
 >
-> You need to be at least a Power User in AWS to be able to run the following procedure. You can check by looking in the [govuk-aws-data] repository. Some IAM changes may require Administrator access, so you'll need to ask someone in the Reliability Engineering team to run these for you.
+> You need to be at least a Power User in AWS to be able to run the following procedure. You can check by looking in the [govuk-aws-data] repository. Some IAM changes may require Administrator access, so you'll need to ask someone in the GOV.UK Replatforming team to run these for you.
 
 1. Add Terraform configuration ([1][aws-terraform-config-1], [2][aws-terraform-config-2], [3][aws-terraform-config-3]) to create the new servers, load balancers, security groups, DNS entries etc.
 1. Add data to complement the configuration above ([1][aws-terraform-data-1], [2][aws-terraform-data-2]).

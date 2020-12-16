@@ -9,7 +9,7 @@ parent: "/manual.html"
 
 Concourse is a continuous integration and continuous deployment system similar to Jenkins.
 
-The Reliability Engineering team runs a [hosted Concourse](https://cd.gds-reliability.engineering/) service for all GDS teams.
+The RE Autom8 team runs a [hosted Concourse](https://cd.gds-reliability.engineering/) service for all GDS teams.
 
 Concourse is built on the concept of pipelines. Each pipeline can be compared to a collection of related Jenkins jobs. Pipelines consist of multiple jobs and resources. Jobs are collections of commands that are run, and are stateless since they are run inside disposable Docker containers. All state needs to be stored and read from resources, which may be a git repository, an AWS S3 bucket or another storage medium. Triggers allow changes to resources to start a job, and jobs can trigger other jobs.
 
@@ -52,7 +52,7 @@ Some of our Concourse pipelines use the beta Concourse "self-update" feature tha
 1. Double-check the diff to ensure you're happy with what is about to be applied
 1. Enter `y` to make the changes
 
-GDS Reliability Engineering provide [further documentation][big-concourse-docs]. More information on working with Concourse and the Fly CLI can be found in [the official documentation][concourse-docs].
+RE Autom8 provide [further documentation][big-concourse-docs]. More information on working with Concourse and the Fly CLI can be found in [the official documentation][concourse-docs].
 
 [big-concourse]: https://cd.gds-reliability.engineering/
 [big-concourse-docs]: https://reliability-engineering.cloudapps.digital/continuous-deployment.html#getting-started-with-concourse
