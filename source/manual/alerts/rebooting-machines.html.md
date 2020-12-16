@@ -107,18 +107,33 @@ more info.
 
 The `cache` machines run the `router` app which handles live user traffic.
 To safely reboot them without serving too many errors to users, we must
-remove them from the AWS load balancer target groups before rebooting:
+remove them from the AWS load balancer target groups before rebooting.
+
+The tool for rebooting cache machines is in the govuk-puppet repository. This
+is the recommended way to reboot a cache machine:
+
+```
+cd govuk-puppet
+gds govuk-integration-poweruser -- ./tools/reboot-cache-instances.sh -e integration ip-1-2-3-4.eu-west-1.compute.internal
+```
+
+The tool takes an environment and a private DNS name, which are provided by the
+Icinga alert.
+
+You can also follow this process manually:
 
 1. Login to the AWS Console for the relevant environment (`gds aws govuk-<environment>-<your-role> -l`).
-1. Find the [Instance ID](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime) of the critical machine(s) (probably all 8 `blue-cache` machines)
-1. Remove the machine from the following [Target Groups](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#TargetGroups:sort=targetGroupName):
-   1. cache-assets-origin
-   1. cache-www
-   1. cache-www-origin
-1. SSH onto the machine (find this from the reboots required alert listing)
+1. Find the [Instance ID](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime)
+   of the critical machine(s) (probably all 8 `blue-cache` machines)
+1. Navigate to the `blue-cache` Auto Scaling Group (ASG)
+1. Put the instance into a "Standby" state, which will detach the instance
+   from its Target Groups
+1. Once the instance is in a Standby state, SSH onto the machine (find this
+   from the reboots required alert listing)
 1. Check the traffic has reduced to only be the Smokey healthchecks now: `tail -f /var/log/nginx/lb-access.log`.
 1. Run the `vm.reboot` fab script on your local machine like normal.
-1. Re-add the machine to the above target groups.
+1. In the `blue-cache` ASG, move the instance back to the "InService" state,
+   which will re-add the instance to the Target Groups
 1. Check the traffic is flowing from the load balancer with `tail -f /var/log/nginx/lb-access.log` again.
 
 ### Rebooting MongoDB machines
