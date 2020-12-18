@@ -9,7 +9,7 @@ parent: "/manual.html"
 
 GOV.UK uses Fastly as a CDN. Public users aren't accessing GOV.UK servers directly, they connect via the CDN. This is better because:
 
-- The CDN "edge nodes" (webservers) are closer to end users. Fastly has servers all around the world but our "origin" servers are only in the UK.
+- The CDN "edge nodes" (webservers) are closer to end users. Fastly has servers all around the world but our "origin" servers are only in the AWS eu-west-1 region (Ireland).
 - It reduces load on our origin. Fastly uses Varnish to cache responses.
 
 The CDN is responsible for retrying requests against the [static mirror](/manual/fall-back-to-mirror.html).
@@ -54,7 +54,7 @@ VCL can be tricky to get right. When making changes to the VCL, add smoke tests 
 You can also use Fastly's [Fiddle tool](https://fiddle.fastlydemo.net/) to manually test, and you can also test your changes with cURL by including a debug header:
 
 ```sh
-$ curl -svo /dev/null -H "Fastly-Debug:1" https://www.gov.uk
+$ curl -svo /dev/null -H "Fastly-Debug: 1" https://www.gov.uk/
 ```
 
 This will give you various debugging headers that may be useful:
@@ -72,16 +72,20 @@ This will give you various debugging headers that may be useful:
 
 See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging guide](https://docs.fastly.com/guides/debugging/checking-cache#using-curl) for more details on testing.
 
-## Fastly's IP ranges
+## Access controls on cache clearing
 
-Fastly publish their cache node [IP address ranges as JSON from their API][fastly_ips]. We use these IP addresses in 2 places:
+Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
 
-- Origin has [firewall rules][] in place so that only our office and Fastly can connect.
-- Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
+## Fastly's IP ranges and our access controls on origin servers
 
-We have [a Jenkins job "Check CDN IP Ranges"][check-cdn-ip-ranges] which will start to fail if our Fastly IPs don't match the IPs returned from the Fastly API. If you see this alert, you can [let GOV.UK Replatforming know][raise-with-re] and they will update our list of Fastly IPs to match the ones listed by Fastly.
+Fastly publish their cache node [IP address ranges as JSON from their API][fastly_ips]. We use these IP addresses in two places:
 
-Updating the firewall rules in Carrenza with new Fastly IPs used to be done by committing the change to the [govuk-provisioning][govuk-provisioning] repo and to then deploy the firewall through a Jenkins job. This process is broken at the moment since the code base has diverged from the state of the firewall. While this is remedied we have to add the new rules manually - this is how to do it:
+- Origin has [firewall rules][] in place so that only our office and Fastly can connect. This is updated automatically using the [Fastly Terraform provider](https://registry.terraform.io/providers/fastly/fastly/latest/docs) when the [infra-security-groups](https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-security-groups) module is deployed. Triggering the deployment is still a manual step though.
+- Performance Platform, which is still hosted in Carrenza/6degrees, has similar restrictions in place but this list is updated manually - see below.
+
+We have [a Jenkins job "Check CDN IP Ranges"][check-cdn-ip-ranges] which will start to fail if the Fastly IPs in our Carrenza/6degrees firewall rules don't match the ones returned from the Fastly API. This check is only relevant for Carrenza/6degrees, which hosts Performance Platform. It does not apply to the rest of GOV.UK.
+
+Updating the firewall rules in Carrenza with new Fastly IPs is a manual process. The [SREs currently in Replatforming team][raise-with-re] can help with this:
 
 1. You will need to install [vcd-cli][vcd-cli] to use the following scripts.
 2. Connect to the [Carrenza VPN][carrenza-vpn]
@@ -154,12 +158,18 @@ We occasionally decide to ban an IP address at our CDN edge if they exhibit the 
 
 [robots]: https://www.gov.uk/robots.txt
 
-Banning IPs shouldn't be taken lightly as IP address can be shared by multiple user devices and the user behind an IP address can change over time, so there's always a chance that we may block a legitimate user.
+Banning IPs shouldn't be taken lightly because many users can share the same IP address and the user behind an IP address can change over time, so there's always a chance that we may block legitimate users.
 
 You can change the list of banned IP addresses by modifying the [YAML config file][ip_ban_config] and [deploying the configuration][ip_ban_deploy].
 
 [ip_ban_config]: https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_denylist.yaml
 [ip_ban_deploy]: https://deploy.blue.production.govuk.digital/job/Update_CDN_Dictionaries/build
+
+## Blocking problematic traffic at the CDN edge
+
+As well as blocking based on source IP address, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.
+
+We have a mechanism for including VCL code from the private `govuk-cdn-config-secrets` repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this is [alphagov/govuk-cdn-secrets#133](https://github.com/alphagov/govuk-cdn-config-secrets/pull/133/files).
 
 ## Bouncer's Fastly service
 
