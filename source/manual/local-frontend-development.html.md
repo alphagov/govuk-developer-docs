@@ -7,28 +7,6 @@ section: Frontend
 type: learn
 ---
 
-## Using startup scripts
-
-If you are making changes to a frontend app and nothing else, you can view these changes by running the application's `./startup.sh` script. This example is for [government-frontend], but these instructions apply to any frontend app.
-
-```shell
-cd /govuk/government-frontend
-./startup.sh --live
-# Check the output to see what port the app is running on, e.g: localhost:3005
-```
-
-If you want to test changes in [govuk_publishing_components] against a frontend app, you need to edit your frontend app Gemfile and then run the startup script:
-
-```ruby
-gem 'govuk_publishing_components', path: '../govuk_publishing_components'
-```
-
-```shell
-bundle install
-./startup.sh --live
-# Check the output to see what port the app is running on, e.g: localhost:3005
-```
-
 ## Using govuk-docker
 
 This assumes that you have already installed and setup [govuk-docker]. We will use [government-frontend] as an example here, but these instructions apply to any frontend app.
@@ -40,7 +18,7 @@ cd /govuk/govuk-docker
 make government-frontend
 
 cd /govuk/government-frontend
-govuk-docker up government-frontend-app-live # or govuk-docker-up app-live
+govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
@@ -53,7 +31,7 @@ gem 'govuk_publishing_components', path: '../govuk_publishing_components'
 ```shell
 cd /govuk/government-frontend
 govuk-docker-run bundle install
-govuk-docker up government-frontend-app-live
+govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
 ```
 
@@ -84,8 +62,31 @@ cd /govuk/govuk-docker
 make government-frontend
 
 cd /govuk/government-frontend
-govuk-docker up government-frontend-app-live
+govuk-docker-up app-live
 # You can now view the app on government-frontend.dev.gov.uk
+```
+
+## Using startup scripts
+
+**NOTE:** this approach only works for frontend development and relies on live APIs. You will need to find and install any dependencies yourself. Consider using the general GOV.UK Docker environment in the first instance.
+
+If you are making changes to certain frontend apps you can also view these changes by running the application's `./startup.sh` script - if it has one. This example is for [government-frontend], but these instructions may apply to other frontend apps.
+
+```shell
+cd /govuk/government-frontend
+./startup.sh --live
+# Check the output to see what port the app is running on, e.g: localhost:3005
+```
+
+If you want to test changes in [govuk_publishing_components] against a frontend app, you need to edit your frontend app Gemfile and then run the startup script:
+
+```ruby
+gem 'govuk_publishing_components', path: '../govuk_publishing_components'
+```
+
+```shell
+./startup.sh --live
+# Check the output to see what port the app is running on, e.g: localhost:3005
 ```
 
 ## Components pulled in by Static
