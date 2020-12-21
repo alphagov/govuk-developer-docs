@@ -79,7 +79,7 @@ Sometimes publishers ask us to help them upload very large attachments to
 documents in Whitehall because they see timeouts when they try to upload the
 document themselves.
 
-The simplest way to do this is to upload a small file and then
+The simplest way to do this is to upload a small file (in Whitehall) and then
 [replace the file in Asset Manager](#replacing-an-asset).
 
 ## Replacing an asset
@@ -125,6 +125,6 @@ changing the URL, follow these steps:
    ```
 
    ```ruby
-   attachment = Attachment.find(asset-id-from-url) # e.g. 123456
-   attachment.attachment_data.update(file_size: 123)
+   attachment = Attachment.find_by(attachment_data_id: asset-id-from-url) # e.g. 123456
+   attachment.attachment_data.update(file_size: 123, number_of_pages: 28)
    ```
