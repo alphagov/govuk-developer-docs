@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: Clone govuk-content-schemas
         uses: actions/checkout@v2
         with:
@@ -18,12 +16,8 @@ jobs:
           ref: deployed-to-production
           path: tmp/govuk-content-schemas
       - uses: ruby/setup-ruby@v1
-      - uses: actions/cache@v1
         with:
-          path: vendor/bundle
-          key: bundle-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: bundle
-      - run: bundle install --jobs 4 --retry 3 --deployment
+          bundler-cache: true
       - run: bundle exec rake
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -52,12 +46,8 @@ jobs:
           ref: deployed-to-production
           path: tmp/govuk-content-schemas
       - uses: ruby/setup-ruby@v1
-      - uses: actions/cache@v1
         with:
-          path: vendor/bundle
-          key: bundle-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: bundle
-      - run: bundle install --jobs 4 --retry 3 --deployment
+          bundler-cache: true
       - name: Build 'build' folder ready for deployment
         run: bundle exec rake build
         env:
