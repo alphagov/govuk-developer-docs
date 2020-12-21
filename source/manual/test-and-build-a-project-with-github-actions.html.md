@@ -104,12 +104,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
-      - uses: actions/cache@v1
         with:
-          path: vendor/bundle
-          key: bundle-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: bundle
-      - run: bundle install --jobs 4 --retry 3 --deployment
+          bundler-cache: true
       - run: bundle exec rake
 ```
 
@@ -118,11 +114,8 @@ Notes:
 - [ruby/setup-ruby](https://github.com/ruby/setup-ruby) will automatically
   select the Ruby version based on a `.ruby-version` file and will install
   bundler if a necessary.
-- This use [actions/cache](https://github.com/actions/cache) to cache gems
-  between runs.
-- This uses the [deployment][bundler-deployment] flag for bundler to be
-  configured for CI environments, the jobs flag allows parallel installs and
-  retries allows re-attempts on failures.
+  - The [`bundler-cache: true` option](https://github.com/ruby/setup-ruby#caching-bundle-install-automatically)
+    automatically runs `bundle install` and caches the result between builds.
 
 ### A Ruby Gem
 
@@ -145,20 +138,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: ruby/setup-ruby@v1
         with:
+          bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
-      - uses: actions/cache@v1
-        with:
-          path: vendor/bundle
-          key: bundle-${{ matrix.ruby }}-${{ hashFiles('**/*.gemspec') }}
-          restore-keys: bundle-${{ matrix.ruby }}
-      - run: bundle install --jobs 4 --retry 3 --path vendor/bundle
       - run: bundle exec rake
 ```
 
 Notes:
 
-- The [deployment][bundler-deployment] flag for bundler cannot be used for gems
-  as they should not have a Gemfile.lock committed.
 - Our preference is to test the gems we publish against the latest version of
   [all currently supported minor versions of Ruby MRI][ruby-branches].
 
@@ -203,13 +189,8 @@ jobs:
           ref: deployed-to-production
           path: vendor/govuk-content-schemas
       - uses: ruby/setup-ruby@v1
-      - name: Check for cached bundler
-        uses: actions/cache@v1
         with:
-          path: vendor/bundle
-          key: bundle-${{ hashFiles('**/Gemfile.lock') }}
-          restore-keys: bundle
-      - run: bundle install --jobs 4 --retry 3 --deployment
+          bundler-cache: true
       - uses: actions/setup-node@v1
       - name: Check for cached node modules
         uses: actions/cache@v1
@@ -256,7 +237,6 @@ Notes:
 [pull-request-event]: https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
 [actions-name-attribute]: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#name
 [action-templates]: https://github.community/t5/GitHub-Actions/Templates-for-GitHub-Actions/m-p/52811
-[bundler-deployment]: https://bundler.io/man/bundle-install.1.html#DEPLOYMENT-MODE
 [ruby-branches]: https://www.ruby-lang.org/en/downloads/branches/
 [Content Publisher]: https://github.com/alphagov/content-publisher
 [actions-docker-services]: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idservices
