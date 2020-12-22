@@ -10,7 +10,7 @@ Removing a user from our infrastructure via Puppet is a 2 change process that
 requires a deploy in the middle. The first change ensures that when Puppet
 runs the user's home directory is removed; the second change removes the
 user from Puppet itself. If the user is just removed from Puppet their files
-will remain on our servers forever more.
+will remain on our servers forever more, [unless you perform a workaround](#what-to-do-if-you-miss-the-ensure-absent-step).
 
 1. First find the user manifest in: [modules/users/manifests][manifest-path].
 1. Add an entry to the govuk_user class of `ensure => absent`. Here is an
@@ -32,3 +32,19 @@ will remain on our servers forever more.
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [production-hieradata]: https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata
 [aws-production-hieradata]: https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata
+
+## What to do if you miss the 'ensure absent' step
+
+If you forgot to apply the `ensure => absent` step in the instructions above,
+the user's home directory will persist on any machine they have SSH'd into in
+the past. This isn't inherently bad, but has caused issues with disk space in
+the past where user had large files in that directory.
+
+Machines will eventually get recycled as they're scaled up or down, so these
+directories should naturally start to disappear over time. If there is a need
+to remove the directories more quickly, you can consider using a
+[fabric script](https://github.com/alphagov/fabric-scripts#readme).
+
+Unfortunately it's [not possible to retrospectively reintroduce](https://github.com/alphagov/govuk-puppet/pull/10892#issuecomment-749678673)
+the user with a `ensure => absent` argument, as the user will already have
+been deleted. Filesystem permissions are done through user IDs rather than names.
