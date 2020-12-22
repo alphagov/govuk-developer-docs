@@ -12,13 +12,18 @@ Machines are configured to [automatically install security updates](https://help
 - This is triggered by the `/etc/cron.daily/apt` script.
 - Relevant config can be found in `/etc/apt/apt.conf.d`.
 
-This alert indicates automatic updates have stopped working. While this is not normally a critical issue, it becomes so if we start missing out on security patches. Some commands to start debugging with:
+This alert indicates automatic updates have stopped working. While this is not normally a critical issue, it becomes so if we start missing out on security patches.
+
+Check the output of the last automatic upgrade:
 
 ```bash
-# check the output of the last automatic upgrade
 less /var/log/unattended-upgrades/unattended-upgrades.log
+```
 
-# try running the upgrade manually
+If you get `No such file or directory`, it's likely this is a new instance that has not been triggered to update via cron yet.
+You could acknowledge it until it is next scheduled to run, or you could try running the upgrade manually:
+
+```bash
 sudo unattended-upgrade -d --dry-run
 ```
 
