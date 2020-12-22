@@ -72,7 +72,7 @@ Check the `app.py` class for different methods you can use. To run more specific
 
 `fab $environment class:backend sdo:"service content-store reload"`
 
-For more information, check out the [Fabric scripts README](https://github.com/alphagov/fabric-scripts#readme>).
+For more information, check out the [Fabric scripts README](https://github.com/alphagov/fabric-scripts#readme).
 
 ## Prometheus, Grafana and AlertManager for COVID-19 Forms
 
