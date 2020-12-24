@@ -109,7 +109,7 @@ RSpec.describe GitHubRepoFetcher do
       expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq([
         {
           title: "Analytics",
-          path: "/apis/#{repo_name}/analytics.html",
+          path: "/apps/#{repo_name}/analytics.html",
           markdown: markdown_fixture,
           relative_path: path,
           source_url: source_url,
