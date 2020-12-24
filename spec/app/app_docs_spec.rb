@@ -7,15 +7,15 @@ RSpec.describe AppDocs::App do
 
   let(:applications) do
     [
-      { github_repo_name: "whitehall", production_hosted_on: "aws", consume_docs_folder: true },
-      { github_repo_name: "asset-manager", production_hosted_on: "aws" },
-      { github_repo_name: "content-store", production_hosted_on: "aws" },
-      { github_repo_name: "govuk-frontend", production_hosted_on: "aws" },
-      { github_repo_name: "collections-publisher", production_hosted_on: "carrenza" },
-      { github_repo_name: "second-app-on-carrenza", production_hosted_on: "carrenza" },
-      { github_repo_name: "app-on-heroku", production_hosted_on: "heroku" },
-      { github_repo_name: "app-on-paas", production_hosted_on: "paas", consume_docs_folder: true },
-      { github_repo_name: "some-retired-application" },
+      { github_repo_name: "whitehall", production_hosted_on: "aws" },
+      { github_repo_name: "asset-manager", production_hosted_on: "aws", consume_docs_folder: false },
+      { github_repo_name: "content-store", production_hosted_on: "aws", consume_docs_folder: false },
+      { github_repo_name: "govuk-frontend", production_hosted_on: "aws", consume_docs_folder: false },
+      { github_repo_name: "collections-publisher", production_hosted_on: "carrenza", consume_docs_folder: false },
+      { github_repo_name: "second-app-on-carrenza", production_hosted_on: "carrenza", consume_docs_folder: false },
+      { github_repo_name: "app-on-heroku", production_hosted_on: "heroku", consume_docs_folder: false },
+      { github_repo_name: "app-on-paas", production_hosted_on: "paas" },
+      { github_repo_name: "some-retired-application", consume_docs_folder: false },
     ]
   end
 
@@ -104,7 +104,7 @@ RSpec.describe AppDocs::App do
   end
 
   describe "apps_with_docs" do
-    it "should return apps that have specified we can consume their docs folder, alphabetically" do
+    it "should return apps alphabetically, omitting those that have opted out" do
       expect(AppDocs.apps_with_docs.map(&:app_name)).to eq(%w[app-on-paas whitehall])
     end
   end
