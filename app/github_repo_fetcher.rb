@@ -29,8 +29,8 @@ class GitHubRepoFetcher
         title = ExternalDoc.title(contents) || filename
         {
           path: "/apps/#{app_name}/#{filename}.html",
-          title: title,
-          markdown: contents,
+          title: title.to_s.force_encoding("UTF-8"),
+          markdown: contents.to_s.force_encoding("UTF-8"),
           relative_path: doc.path,
           source_url: doc.html_url,
           latest_commit: latest_commit(app_name, doc.path),
