@@ -15,7 +15,16 @@
       <li>
         <ul class='subnav'>
         <% apps.each do |app| %>
-          <li><%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %></li>
+          <li>
+            <%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %>
+            <% if pages = GitHubRepoFetcher.instance.docs(app.app_name) %>
+              <ul>
+                <% pages.each do |page| %>
+                  <li><%= sidebar_link page[:title], page[:path] %></li>
+                <% end %>
+              </ul>
+            <% end %>
+          </li>
         <% end %>
         </ul>
       </li>
@@ -24,6 +33,7 @@
 <% end %>
 
 <% wrap_layout :core do %>
+  <%= partial 'partials/last_updated' if current_page.data[:show_last_updated] %>
   <%= partial 'partials/header' %>
   <%= yield %>
 <% end %>
