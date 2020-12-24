@@ -195,7 +195,7 @@ class AppDocs
     end
 
     def consume_docs_folder
-      app_data["consume_docs_folder"] || false
+      app_data["consume_docs_folder"].nil? ? true : app_data["consume_docs_folder"]
     end
 
     def api_docs_url
