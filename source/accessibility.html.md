@@ -73,7 +73,7 @@ There are also parts of this documentation that are not accessible because of [i
 
 ## What we’re doing to improve accessibility
 
-We plan to fix the issues with the Technical Documentation Template by the end of 2020.
+We plan to fix the issues with the Technical Documentation Template by the end of March 2021.
 
 We plan to fix the accessibility issues in the content by the end of September 2021.
 
