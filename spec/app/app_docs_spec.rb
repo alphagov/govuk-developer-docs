@@ -192,4 +192,21 @@ RSpec.describe AppDocs::App do
       end
     end
   end
+
+  describe "consume_docs_folder" do
+    it "should return true if unspecified" do
+      app = AppDocs::App.new({})
+      expect(app.consume_docs_folder).to eq(true)
+    end
+
+    it "should return the consume_docs_folder property if supplied" do
+      app = AppDocs::App.new({ "consume_docs_folder" => false })
+      expect(app.consume_docs_folder).to eq(false)
+    end
+
+    it "should return false if the repo is private" do
+      app = AppDocs::App.new({ "private_repo" => true, "consume_docs_folder" => true })
+      expect(app.consume_docs_folder).to eq(false)
+    end
+  end
 end
