@@ -21,24 +21,24 @@ RSpec.describe ProxyPages do
       ])
   end
 
-  describe ".api_docs" do
+  describe ".app_docs" do
     it "is indexed in search by its default contents" do
-      expect(described_class.api_docs).to all(
+      expect(described_class.app_docs).to all(
         include(frontmatter: hash_including(:title))
         .and(include(frontmatter: hash_excluding(:content))),
       )
     end
 
     it "sets the correct source_url for the doc" do
-      expect(described_class.api_docs).to all(
+      expect(described_class.app_docs).to all(
         include(frontmatter: hash_including(data: hash_including(:source_url))),
       )
     end
   end
 
-  describe ".app_docs" do
+  describe ".app_overviews" do
     it "is indexed in search by its default contents" do
-      expect(described_class.app_docs).to all(
+      expect(described_class.app_overviews).to all(
         include(frontmatter: hash_including(:title))
         .and(include(frontmatter: hash_excluding(:content))),
       )

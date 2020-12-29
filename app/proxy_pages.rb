@@ -1,14 +1,14 @@
 class ProxyPages
   def self.resources
-    api_docs +
+    app_docs +
       govuk_schema_names +
-      app_docs +
-      app_docs_json +
+      app_overviews +
+      app_overviews_json +
       document_types +
       supertypes
   end
 
-  def self.api_docs
+  def self.app_docs
     docs = AppDocs.apps_with_docs.map do |app|
       docs_for_app = GitHubRepoFetcher.instance.docs(app.app_name) || []
       docs_for_app.map do |page|
@@ -56,7 +56,7 @@ class ProxyPages
     end
   end
 
-  def self.app_docs
+  def self.app_overviews
     AppDocs.pages.map do |application|
       {
         path: "/apps/#{application.app_name}.html",
@@ -73,7 +73,7 @@ class ProxyPages
     end
   end
 
-  def self.app_docs_json
+  def self.app_overviews_json
     AppDocs.pages.map do |application|
       {
         path: "/apps/#{application.app_name}.json",
