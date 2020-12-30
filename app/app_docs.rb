@@ -195,7 +195,13 @@ class AppDocs
     end
 
     def consume_docs_folder
-      app_data["consume_docs_folder"] || false
+      if private_repo?
+        false
+      elsif app_data["consume_docs_folder"].nil?
+        true
+      else
+        app_data["consume_docs_folder"]
+      end
     end
 
     def api_docs_url
