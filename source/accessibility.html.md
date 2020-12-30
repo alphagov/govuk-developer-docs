@@ -79,6 +79,6 @@ We plan to fix the accessibility issues in the content by the end of September 2
 
 ## Preparation of this accessibility statement
 
-This statement was prepared on 2 September 2020. It was last reviewed on 2 September 2020.
+This statement was prepared on 2 September 2020. It was last reviewed on 30 December 2020.
 
 This website was last tested in August 2020. The test was carried out by the technical writing team at GDS. We used the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) and a checklist we created with the help of the GDS accessibility team. We tested a sample of pages from each section of the site.
