@@ -57,7 +57,7 @@ class ProxyPages
   end
 
   def self.app_overviews
-    AppDocs.pages.map do |application|
+    AppDocs.apps.map do |application|
       {
         path: "/apps/#{application.app_name}.html",
         template: "templates/application_template.html",
@@ -74,7 +74,7 @@ class ProxyPages
   end
 
   def self.app_overviews_json
-    AppDocs.pages.map do |application|
+    AppDocs.apps.map do |application|
       {
         path: "/apps/#{application.app_name}.json",
         template: "templates/json_response.json",

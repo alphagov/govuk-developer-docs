@@ -28,7 +28,7 @@ RSpec.describe ExternalDoc do
           github_repo_name: "lipsum",
           consume_docs_folder: consume_docs_folder,
         )
-        allow(AppDocs).to receive(:pages) { [lipsum] }
+        allow(AppDocs).to receive(:apps) { [lipsum] }
       end
 
       let(:consume_docs_folder) { false }
