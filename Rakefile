@@ -24,7 +24,7 @@ end
 namespace :assets do
   desc "Build the static site"
   task :precompile do
-    sh "rm -rf /tmp/govuk-content-schemas; git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build"
+    sh "rm -rf /tmp/govuk-content-schemas; git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas bundle exec middleman build"
   end
 end
 
@@ -84,7 +84,7 @@ end
 desc "Clear out and rebuild the build/ folder"
 task build: %i[cache:clear assets:precompile]
 
-task default: %i[verify_deployable_apps lint lint_markdown spec check_puppet_names build]
+task default: %i[verify_deployable_apps lint lint_markdown spec check_puppet_names assets:precompile]
 
 # https://gist.github.com/moertel/11091573
 def suppress_output
