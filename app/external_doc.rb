@@ -91,7 +91,7 @@ class ExternalDoc
 
         href = element["href"].strip
         uri = URI.parse(href)
-        if is_github_link?(uri.host) && opted_into_docs_consumption?(repository)
+        if is_github_link?(uri.host)
           doc_name = internal_doc_name(repository, uri.path)
           element["href"] = internal_doc_path(repository, doc_name) if doc_name
         end
@@ -104,10 +104,6 @@ class ExternalDoc
 
     def is_github_link?(host)
       host == "github.com"
-    end
-
-    def opted_into_docs_consumption?(repository)
-      AppDocs.apps_with_docs.map(&:github_repo_name).include?(repository)
     end
 
     def internal_doc_name(repository, uri_path = "")
