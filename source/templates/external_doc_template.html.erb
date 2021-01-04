@@ -4,4 +4,4 @@ parent: /apps.html
 hide_from_sitemap: true
 ---
 
-<%= ExternalDoc.parse(markdown, repository: repository, path: relative_path) %>
+<%= ExternalDoc.parse(markdown, repository: application.github_repo_name, path: relative_path) %>

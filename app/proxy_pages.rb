@@ -18,9 +18,9 @@ class ProxyPages
           frontmatter: {
             title: "#{app.app_name}: #{page[:title]}",
             locals: {
+              application: app,
               title: "#{app.app_name}: #{page[:title]}",
               markdown: page[:markdown],
-              repository: app.github_repo_name,
               relative_path: page[:relative_path],
             },
             data: {
