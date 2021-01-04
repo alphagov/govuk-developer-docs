@@ -8,8 +8,8 @@ class AppDocs
     "none" => "None",
   }.freeze
 
-  def self.pages
-    @pages ||= YAML.load_file("data/applications.yml").map do |app_data|
+  def self.apps
+    @apps ||= YAML.load_file("data/applications.yml").map do |app_data|
       App.new(app_data)
     end
   end
@@ -22,13 +22,13 @@ class AppDocs
   end
 
   def self.apps_on_host(host)
-    AppDocs.pages
+    AppDocs.apps
       .select { |app| app.production_hosted_on == host }
       .sort_by(&:app_name)
   end
 
   def self.apps_with_docs
-    AppDocs.pages
+    AppDocs.apps
       .select(&:consume_docs_folder)
       .sort_by(&:app_name)
   end
