@@ -27,12 +27,6 @@ class AppDocs
       .sort_by(&:app_name)
   end
 
-  def self.apps_with_docs
-    AppDocs.apps
-      .select(&:consume_docs_folder)
-      .sort_by(&:app_name)
-  end
-
   def self.app_data
     @app_data ||= AppData.new
   end
@@ -191,16 +185,6 @@ class AppDocs
     def publishing_e2e_tests_url
       if ["Frontend apps", "Publishing apps"].include?(type)
         "https://github.com/alphagov/publishing-e2e-tests/search?q=%22#{app_name.underscore}%3A+true%22+path%3A%2Fspec%2F"
-      end
-    end
-
-    def consume_docs_folder
-      if private_repo?
-        false
-      elsif app_data["consume_docs_folder"].nil?
-        true
-      else
-        app_data["consume_docs_folder"]
       end
     end
 

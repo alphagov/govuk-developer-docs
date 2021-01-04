@@ -8,14 +8,14 @@ RSpec.describe AppDocs::App do
   let(:applications) do
     [
       { github_repo_name: "whitehall", production_hosted_on: "aws" },
-      { github_repo_name: "asset-manager", production_hosted_on: "aws", consume_docs_folder: false },
-      { github_repo_name: "content-store", production_hosted_on: "aws", consume_docs_folder: false },
-      { github_repo_name: "govuk-frontend", production_hosted_on: "aws", consume_docs_folder: false },
-      { github_repo_name: "collections-publisher", production_hosted_on: "carrenza", consume_docs_folder: false },
-      { github_repo_name: "second-app-on-carrenza", production_hosted_on: "carrenza", consume_docs_folder: false },
-      { github_repo_name: "app-on-heroku", production_hosted_on: "heroku", consume_docs_folder: false },
+      { github_repo_name: "asset-manager", production_hosted_on: "aws" },
+      { github_repo_name: "content-store", production_hosted_on: "aws" },
+      { github_repo_name: "govuk-frontend", production_hosted_on: "aws" },
+      { github_repo_name: "collections-publisher", production_hosted_on: "carrenza" },
+      { github_repo_name: "second-app-on-carrenza", production_hosted_on: "carrenza" },
+      { github_repo_name: "app-on-heroku", production_hosted_on: "heroku" },
       { github_repo_name: "app-on-paas", production_hosted_on: "paas" },
-      { github_repo_name: "some-retired-application", consume_docs_folder: false },
+      { github_repo_name: "some-retired-application" },
     ]
   end
 
@@ -103,12 +103,6 @@ RSpec.describe AppDocs::App do
     end
   end
 
-  describe "apps_with_docs" do
-    it "should return apps alphabetically, omitting those that have opted out" do
-      expect(AppDocs.apps_with_docs.map(&:app_name)).to eq(%w[app-on-paas whitehall])
-    end
-  end
-
   describe "dashboard_url" do
     let(:production_hosted_on) { nil }
     let(:app) do
@@ -190,23 +184,6 @@ RSpec.describe AppDocs::App do
         let(:rake_task) { "task" }
         it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=task") }
       end
-    end
-  end
-
-  describe "consume_docs_folder" do
-    it "should return true if unspecified" do
-      app = AppDocs::App.new({})
-      expect(app.consume_docs_folder).to eq(true)
-    end
-
-    it "should return the consume_docs_folder property if supplied" do
-      app = AppDocs::App.new({ "consume_docs_folder" => false })
-      expect(app.consume_docs_folder).to eq(false)
-    end
-
-    it "should return false if the repo is private" do
-      app = AppDocs::App.new({ "private_repo" => true, "consume_docs_folder" => true })
-      expect(app.consume_docs_folder).to eq(false)
     end
   end
 end
