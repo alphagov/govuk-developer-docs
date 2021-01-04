@@ -24,13 +24,15 @@ end
 namespace :assets do
   desc "Build the static site"
   task :precompile do
-    sh "git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build"
+    sh "rm -rf /tmp/govuk-content-schemas; git clone https://github.com/alphagov/govuk-content-schemas.git /tmp/govuk-content-schemas --depth=1 && NO_CONTRACTS=true GOVUK_CONTENT_SCHEMAS_PATH=/tmp/govuk-content-schemas middleman build"
   end
 end
 
 desc "Find deployable applications that are not in this repo"
 task :verify_deployable_apps do
-  common_yaml = HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
+  common_yaml = suppress_output do
+    HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
+  end
   deployable_applications = common_yaml["deployable_applications"].map { |k, v| v["repository"] || k }
   our_applications = AppDocs.apps.map(&:github_repo_name)
 
@@ -64,9 +66,10 @@ end
 
 desc "Check all puppet names are valid, will error when not"
 task :check_puppet_names do
+  puts "Checking Puppet manifests..."
   invalid_puppet_names = []
   AppDocs.apps.reject(&:retired?).each do |app|
-    HTTP.get(app.puppet_url) unless app.puppet_url.nil?
+    suppress_output { HTTP.get(app.puppet_url) unless app.puppet_url.nil? }
   rescue Octokit::NotFound
     invalid_puppet_names << app.puppet_url
   end
@@ -81,4 +84,16 @@ end
 desc "Clear out and rebuild the build/ folder"
 task build: %i[cache:clear assets:precompile]
 
-task default: %i[verify_deployable_apps check_puppet_names lint lint_markdown spec build]
+task default: %i[verify_deployable_apps lint lint_markdown spec check_puppet_names build]
+
+# https://gist.github.com/moertel/11091573
+def suppress_output
+  original_stderr = $stderr.clone
+  original_stdout = $stdout.clone
+  $stderr.reopen(File.new("/dev/null", "w"))
+  $stdout.reopen(File.new("/dev/null", "w"))
+  yield
+ensure
+  $stdout.reopen(original_stdout)
+  $stderr.reopen(original_stderr)
+end
