@@ -84,7 +84,7 @@ end
 desc "Clear out and rebuild the build/ folder"
 task build: %i[cache:clear assets:precompile]
 
-task default: %i[verify_deployable_apps lint lint_markdown spec check_puppet_names build]
+task default: %i[verify_deployable_apps lint lint_markdown spec check_puppet_names assets:precompile]
 
 # https://gist.github.com/moertel/11091573
 def suppress_output

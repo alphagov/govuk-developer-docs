@@ -3,6 +3,10 @@ require "octokit"
 class GitHubRepoFetcher
   include Singleton
 
+  def cache=(cache)
+    @cache_interface = cache
+  end
+
   # Fetch a repo from GitHub
   def repo(app_name)
     all_alphagov_repos.find { |repo| repo.name == app_name } || raise("alphagov/#{app_name} not found")
@@ -13,7 +17,7 @@ class GitHubRepoFetcher
   def readme(app_name)
     return nil if repo(app_name).private_repo?
 
-    CACHE.fetch("alphagov/#{app_name} README", expires_in: 1.hour) do
+    cache.fetch("alphagov/#{app_name} README", expires_in: 1.hour) do
       default_branch = repo(app_name).default_branch
       HTTP.get("https://raw.githubusercontent.com/alphagov/#{app_name}/#{default_branch}/README.md")
     rescue Octokit::NotFound
@@ -25,7 +29,7 @@ class GitHubRepoFetcher
   def docs(app_name)
     return nil if repo(app_name).private_repo?
 
-    CACHE.fetch("alphagov/#{app_name} docs", expires_in: 1.hour) do
+    cache.fetch("alphagov/#{app_name} docs", expires_in: 1.hour) do
       docs = client.contents("alphagov/#{app_name}", path: "docs")
       docs.select { |doc| doc.name.end_with?(".md") }.map do |doc|
         contents = HTTP.get(doc.download_url)
@@ -47,8 +51,12 @@ class GitHubRepoFetcher
 
 private
 
+  def cache
+    @cache_interface || CACHE
+  end
+
   def all_alphagov_repos
-    @all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: 1.hour) do
+    cache.fetch("all-repos", expires_in: 1.hour) do
       client.repos("alphagov")
     end
   end
