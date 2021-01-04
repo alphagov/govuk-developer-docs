@@ -26,12 +26,10 @@ RSpec.describe ExternalDoc do
           "Lipsum",
           app_name: "Lipsum",
           github_repo_name: "lipsum",
-          consume_docs_folder: consume_docs_folder,
         )
         allow(AppDocs).to receive(:apps) { [lipsum] }
       end
 
-      let(:consume_docs_folder) { false }
       let(:path) { "markdown.md" }
 
       subject(:html) do
@@ -58,35 +56,24 @@ RSpec.describe ExternalDoc do
         expect(html).to have_link("aliased link", href: "https://github.com/alphagov/lipsum/blob/master/lib/aliased_link.rb")
       end
 
-      context "the repository's `consume_docs_folder` property evaluates to `false`" do
-        it "converts relative links to absolute GitHub URLs" do
-          expect(html).to have_link("Relative docs link with period", href: "https://github.com/alphagov/lipsum/blob/master/docs/prefixed.md")
-          expect(html).to have_link("Relative docs link without period", href: "https://github.com/alphagov/lipsum/blob/master/docs/no-prefix.md")
-        end
+      it "converts relative GitHub links to Developer Docs HTML links if it is an imported document" do
+        expect(html).to have_link("Relative docs link with period", href: "/apps/lipsum/prefixed.html")
+        expect(html).to have_link("Relative docs link without period", href: "/apps/lipsum/no-prefix.html")
       end
 
-      context "the repository is set to `consume_docs_folder: true`" do
-        let(:consume_docs_folder) { true }
+      it "converts relative links to absolute GitHub URLs if link is outside of the `docs` folder" do
+        expect(html).to have_link("inline link", href: "https://github.com/alphagov/lipsum/blob/master/inline-link.md")
+      end
 
-        it "converts relative GitHub links to Developer Docs HTML links if it is an imported document" do
-          expect(html).to have_link("Relative docs link with period", href: "/apps/lipsum/prefixed.html")
-          expect(html).to have_link("Relative docs link without period", href: "/apps/lipsum/no-prefix.html")
-        end
+      it "converts relative links to absolute GitHub URLs if link is in a subfolder of the `docs` folder" do
+        expect(html).to have_link("Subfolder", href: "https://github.com/alphagov/lipsum/blob/master/docs/some-subfolder/foo.md")
+      end
 
-        it "converts relative links to absolute GitHub URLs if link is outside of the `docs` folder" do
-          expect(html).to have_link("inline link", href: "https://github.com/alphagov/lipsum/blob/master/inline-link.md")
-        end
+      context "the document we are parsing is in the `docs` folder" do
+        let(:path) { "docs/some-document.md" }
 
-        it "converts relative links to absolute GitHub URLs if link is in a subfolder of the `docs` folder" do
-          expect(html).to have_link("Subfolder", href: "https://github.com/alphagov/lipsum/blob/master/docs/some-subfolder/foo.md")
-        end
-
-        context "the document we are parsing is in the `docs` folder" do
-          let(:path) { "docs/some-document.md" }
-
-          it "converts links relative to the `docs` folder and applies the same business logic as before" do
-            expect(html).to have_link("inline link", href: "/apps/lipsum/inline-link.html")
-          end
+        it "converts links relative to the `docs` folder and applies the same business logic as before" do
+          expect(html).to have_link("inline link", href: "/apps/lipsum/inline-link.html")
         end
       end
 
