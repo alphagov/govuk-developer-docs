@@ -40,7 +40,10 @@ To run the app locally:
 
 The app will appear at [http://localhost:4567/](http://localhost:4567/)
 
-You may need a GitHub auth token if you find yourself rate limited. You can create one here:
+### GitHub token
+
+You will need a GitHub auth token to build the project or run the full test suite,
+otherwise you will find yourself rate limited. You can create one here:
 
 https://github.com/settings/tokens/new
 
@@ -51,6 +54,12 @@ Use it like this:
 ```sh
 export GITHUB_TOKEN=somethingsomething
 ./startup.sh
+```
+
+You may find it easier to save the token to a file and then refer to it dynamically:
+
+```sh
+GITHUB_TOKEN=$(cat ~/github_token.txt) ./startup.sh
 ```
 
 ### Building the project
