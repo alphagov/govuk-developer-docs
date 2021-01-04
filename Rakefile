@@ -32,7 +32,7 @@ desc "Find deployable applications that are not in this repo"
 task :verify_deployable_apps do
   common_yaml = HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
   deployable_applications = common_yaml["deployable_applications"].map { |k, v| v["repository"] || k }
-  our_applications = AppDocs.pages.map(&:github_repo_name)
+  our_applications = AppDocs.apps.map(&:github_repo_name)
 
   intentionally_missing =
     %w[
@@ -65,7 +65,7 @@ end
 desc "Check all puppet names are valid, will error when not"
 task :check_puppet_names do
   invalid_puppet_names = []
-  AppDocs.pages.reject(&:retired?).each do |app|
+  AppDocs.apps.reject(&:retired?).each do |app|
     HTTP.get(app.puppet_url) unless app.puppet_url.nil?
   rescue Octokit::NotFound
     invalid_puppet_names << app.puppet_url

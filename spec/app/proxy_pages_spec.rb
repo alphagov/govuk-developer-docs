@@ -2,7 +2,7 @@ RSpec.describe ProxyPages do
   before do
     allow(AppDocs).to receive(:apps_with_docs)
       .and_return([double("App with docs", app_name: "", page_title: "", description: "", github_repo_name: "")])
-    allow(AppDocs).to receive(:pages)
+    allow(AppDocs).to receive(:apps)
       .and_return([double("App", app_name: "", page_title: "", description: "")])
     allow(DocumentTypes).to receive(:pages)
       .and_return([double("Page", name: "")])
