@@ -13,6 +13,7 @@ parent: "/manual.html"
 [security_policy]: https://github.com/ckan/ckan/security/policy
 [issues]: https://github.com/ckan/ckan/issues
 [ckan_repo]: https://github.com/ckan/ckan
+[ckan-api-404]: https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210
 
 [CKAN][dgu-ckan] is the publishing application for data.gov.uk.  [ckanext-datagovuk] is the primary [CKAN] extension for data.gov.uk.
 
@@ -207,13 +208,10 @@ Purging a dataset:
 paster --plugin=ckan dataset purge DATASET_NAME -c /var/ckan/ckan.ini
 ```
 
-There may be times when a large number of datasets must be deleted.  This can be done remotely from your
-machine using the CKAN API.  Your API key is required, which can be obtained from your user profile on
-the web interface.  Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then
-run the following.
+There may be times when a large number of datasets must be deleted. This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile on the web interface. Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.
 
 ```
-while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: <your_api_key>" https://data.gov.uk/api/3/action/package_delete; done < list_of_ids.txt
+while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: <your_api_key>" http://localhost:<ckan_port>/api/3/action/package_delete; done < list_of_ids.txt
 ```
 
 After deleting or purging a dataset, it will take up to 10 minutes to update on Find, due to the sync process.
