@@ -1,9 +1,9 @@
 <% content_for :sidebar do %>
   <ul>
-    <% AppDocs.apps_with_docs.each do |app| %>
+    <% AppDocs.apps.reject(&:private_repo?).each do |app| %>
     <li>
       <%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %>
-      <% if pages = GitHubRepoFetcher.instance.docs(app.app_name) %>
+      <% if pages = GitHubRepoFetcher.instance.docs(app.github_repo_name) %>
         <ul>
           <% pages.each do |page| %>
             <li><%= sidebar_link page[:title], page[:path] %></li>
