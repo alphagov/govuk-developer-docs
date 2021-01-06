@@ -1,6 +1,5 @@
 RSpec.describe GitHubRepoFetcher do
   before :each do
-    CACHE.clear
     stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
       .to_return(
         body: "[ { \"name\": \"some-repo\", \"default_branch\": \"master\" } ]",
@@ -8,6 +7,9 @@ RSpec.describe GitHubRepoFetcher do
       )
   end
 
+  let(:repo) do
+    double("stubbed repo", name: "some-repo", private_repo?: false, default_branch: "master")
+  end
   let(:private_repo) { double("Private repo", private_repo?: true) }
   let(:public_repo) { double("Public repo", private_repo?: false) }
 
@@ -23,7 +25,7 @@ RSpec.describe GitHubRepoFetcher do
     end
 
     it "fetches a repo from GitHub if it doesn't exist in the cache" do
-      CACHE.clear
+      allow(CACHE).to receive(:fetch).and_yield
 
       repo = GitHubRepoFetcher.instance.repo("some-repo")
 
@@ -40,18 +42,27 @@ RSpec.describe GitHubRepoFetcher do
   describe "#readme" do
     let(:repo_name) { "some-repo" }
 
+    before :each do
+      allow(CACHE).to receive(:fetch).and_yield
+    end
+
     def readme_url
       "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/README.md"
     end
 
     it "caches the first response" do
+      allow(GitHubRepoFetcher.instance).to receive(:repo).and_return(repo)
       stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 200, body: "Foo")
 
+      outcome = "pending"
+      allow(CACHE).to receive(:fetch) do |&block|
+        outcome = block.call
+      end
+
       GitHubRepoFetcher.instance.readme(repo_name)
-      GitHubRepoFetcher.instance.readme(repo_name)
+      expect(outcome).to eq("Foo")
       expect(stubbed_request).to have_been_requested.once
-      remove_request_stub(stubbed_request)
     end
 
     it "retrieves the README content from the GitHub CDN" do
