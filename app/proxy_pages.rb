@@ -9,8 +9,8 @@ class ProxyPages
   end
 
   def self.app_docs
-    docs = AppDocs.apps_with_docs.map do |app|
-      docs_for_app = GitHubRepoFetcher.instance.docs(app.app_name) || []
+    docs = AppDocs.apps.reject(&:private_repo?).map do |app|
+      docs_for_app = GitHubRepoFetcher.instance.docs(app.github_repo_name) || []
       docs_for_app.map do |page|
         {
           path: page[:path],

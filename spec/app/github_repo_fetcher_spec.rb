@@ -8,6 +8,9 @@ RSpec.describe GitHubRepoFetcher do
       )
   end
 
+  let(:private_repo) { double("Private repo", private_repo?: true) }
+  let(:public_repo) { double("Public repo", private_repo?: false) }
+
   describe "#repo" do
     it "fetches a repo from cache if it exists" do
       allow(CACHE).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
@@ -79,6 +82,12 @@ RSpec.describe GitHubRepoFetcher do
       expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(nil)
       remove_request_stub(stubbed_request)
     end
+
+    it "returns nil if the repo is private" do
+      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(private_repo)
+
+      expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(nil)
+    end
   end
 
   describe "#docs" do
@@ -127,6 +136,7 @@ RSpec.describe GitHubRepoFetcher do
       ]
       stub_request(:get, docs_url(repo_name))
         .to_return(body: api_response.to_json, headers: { content_type: "application/json" })
+      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(public_repo)
 
       expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq([])
     end
@@ -134,8 +144,15 @@ RSpec.describe GitHubRepoFetcher do
     it "returns nil if no docs folder exists" do
       stub_request(:get, docs_url(repo_name))
         .to_return(status: 404, body: "{}", headers: { content_type: "application/json" })
+      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(public_repo)
 
       expect(GitHubRepoFetcher.instance.docs(repo_name)).to be_nil
+    end
+
+    it "returns nil if the repo is private" do
+      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(private_repo)
+
+      expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq(nil)
     end
   end
 end

@@ -11,6 +11,8 @@ class GitHubRepoFetcher
   # Fetch a README for an alphagov application and cache it.
   # Note that it is cached as pure markdown and requires further processing.
   def readme(app_name)
+    return nil if repo(app_name).private_repo?
+
     CACHE.fetch("alphagov/#{app_name} README", expires_in: 1.hour) do
       default_branch = repo(app_name).default_branch
       HTTP.get("https://raw.githubusercontent.com/alphagov/#{app_name}/#{default_branch}/README.md")
@@ -21,6 +23,8 @@ class GitHubRepoFetcher
 
   # Fetch all markdown files under the repo's 'docs' folder
   def docs(app_name)
+    return nil if repo(app_name).private_repo?
+
     CACHE.fetch("alphagov/#{app_name} docs", expires_in: 1.hour) do
       docs = client.contents("alphagov/#{app_name}", path: "docs")
       docs.select { |doc| doc.name.end_with?(".md") }.map do |doc|
