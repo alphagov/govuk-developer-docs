@@ -15,18 +15,9 @@ it's [available as a job in Jenkins][send-bulk-production].
 
 ## 1. Prepare the content
 
-First you'll need to get access to the subject and the body of the email. The
-format for the subject is plain text and for the body it is
-[a limited subset of markdown][notify-markdown].
+The format for the body text is [a limited subset of markdown][notify-markdown]. A footer will be automatically appended to the specified body text. The footer will have links to unsubscribe and manage subscriptions. We should always provide users with these options, to help avoid our emails being marked as spam.
 
-Note that the final email won't include any subscription information, so that
-should be included in the body of the email itself. An example could be:
-
-```md
-You’re getting this email because you subscribed to updates from Travel Advice on GOV.UK.
-
-[View, unsubscribe or change the frequency of your subscriptions](https://www.gov.uk/email/manage)
-```
+Any occurrence of `%LISTURL%` in the body text will be substituted with the URL of the subscriber list, or an empty string if it has none. This is useful when sending the same email across many lists, where the content of the email needs to link to the specific page on GOV.UK associated with the list. You should check the lists you want to send a bulk email for, to see if they have a URL populated (it's a recent addition).
 
 [notify-markdown]: https://www.notifications.service.gov.uk/using-notify/guidance/edit-and-format-messages
 
@@ -44,32 +35,15 @@ could use the following query:
 
 ## 3. Send a test email
 
-Once you've got the content and the subscriber lists for the email, you can use
-staging to send out a test email. First make sure that you have subscribed to
-one of the subscriber lists and then use [the Send bulk emails job in
-staging][send-bulk-staging] to send the email.
+Use [the Send bulk emails job in Staging][send-bulk-staging] to send the email.
 
-**Make sure you are [able to receive emails in staging][staging-emails].**
+**Make sure you know [how to receive emails in Staging][staging-emails].**
 
 [send-bulk-staging]: https://deploy.blue.staging.govuk.digital/job/send-bulk-email/
 [staging-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 
 ## 4. Send the real email
 
-If the test email works and looks good, it's time to send the real email! You
-can copy the parameters used in staging and [run the same job in
-production][send-bulk-production].
+Use [the Send bulk emails job in Production][send-bulk-production] to send the email.
 
 [send-bulk-production]: https://deploy.blue.production.govuk.digital/job/send-bulk-email/
-
-## 5. Monitor the queues
-
-It may be useful to [monitor the Sidekiq queues of email-alert-api][sidekiq] to
-look at the progress of the email and estimate how long it will take. Note that
-the emails from the bulk task end up on the `default` queue meaning that they
-are the lowest priority of email.
-
-At the time of writing, an email to all travel advice subscribers (~560,000
-subscribers) takes around 4-5 hours to send to everyone.
-
-[sidekiq]: /manual/sidekiq.html
