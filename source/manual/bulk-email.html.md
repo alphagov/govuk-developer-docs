@@ -61,15 +61,3 @@ can copy the parameters used in staging and [run the same job in
 production][send-bulk-production].
 
 [send-bulk-production]: https://deploy.blue.production.govuk.digital/job/send-bulk-email/
-
-## 5. Monitor the queues
-
-It may be useful to [monitor the Sidekiq queues of email-alert-api][sidekiq] to
-look at the progress of the email and estimate how long it will take. Note that
-the emails from the bulk task end up on the `default` queue meaning that they
-are the lowest priority of email.
-
-At the time of writing, an email to all travel advice subscribers (~560,000
-subscribers) takes around 4-5 hours to send to everyone.
-
-[sidekiq]: /manual/sidekiq.html
