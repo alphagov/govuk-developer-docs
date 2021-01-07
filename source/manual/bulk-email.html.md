@@ -35,20 +35,15 @@ could use the following query:
 
 ## 3. Send a test email
 
-Once you've got the content and the subscriber lists for the email, you can use
-staging to send out a test email. First make sure that you have subscribed to
-one of the subscriber lists and then use [the Send bulk emails job in
-staging][send-bulk-staging] to send the email.
+Use [the Send bulk emails job in Staging][send-bulk-staging] to send the email.
 
-**Make sure you are [able to receive emails in staging][staging-emails].**
+**Make sure you know [how to receive emails in Staging][staging-emails].**
 
 [send-bulk-staging]: https://deploy.blue.staging.govuk.digital/job/send-bulk-email/
 [staging-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 
 ## 4. Send the real email
 
-If the test email works and looks good, it's time to send the real email! You
-can copy the parameters used in staging and [run the same job in
-production][send-bulk-production].
+Use [the Send bulk emails job in Production][send-bulk-production] to send the email.
 
 [send-bulk-production]: https://deploy.blue.production.govuk.digital/job/send-bulk-email/
