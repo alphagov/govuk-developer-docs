@@ -15,18 +15,9 @@ it's [available as a job in Jenkins][send-bulk-production].
 
 ## 1. Prepare the content
 
-First you'll need to get access to the subject and the body of the email. The
-format for the subject is plain text and for the body it is
-[a limited subset of markdown][notify-markdown].
+The format for the body text is [a limited subset of markdown][notify-markdown]. A footer will be automatically appended to the specified body text. The footer will have links to unsubscribe and manage subscriptions. We should always provide users with these options, to help avoid our emails being marked as spam.
 
-Note that the final email won't include any subscription information, so that
-should be included in the body of the email itself. An example could be:
-
-```md
-You’re getting this email because you subscribed to updates from Travel Advice on GOV.UK.
-
-[View, unsubscribe or change the frequency of your subscriptions](https://www.gov.uk/email/manage)
-```
+Any occurrence of `%LISTURL%` in the body text will be substituted with the URL of the subscriber list, or an empty string if it has none. This is useful when sending the same email across many lists, where the content of the email needs to link to the specific page on GOV.UK associated with the list. You should check the lists you want to send a bulk email for, to see if they have a URL populated (it's a recent addition).
 
 [notify-markdown]: https://www.notifications.service.gov.uk/using-notify/guidance/edit-and-format-messages
 
