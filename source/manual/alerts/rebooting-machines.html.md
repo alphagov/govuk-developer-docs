@@ -41,7 +41,7 @@ time.
 
 ## Manual rebooting
 
-> Before rebooting anything manually, see if any [special cases][#special-cases] apply to the type of machine you need to reboot.
+> Before rebooting anything manually, see if any [special cases](#special-cases) apply to the type of machine you need to reboot.
 
 ### Rules of manual rebooting
 
