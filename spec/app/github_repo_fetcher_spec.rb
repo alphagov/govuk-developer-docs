@@ -108,34 +108,35 @@ RSpec.describe GitHubRepoFetcher do
       "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs"
     end
 
+    def with_stubbed_client(temporary_client)
+      before_client = GitHubRepoFetcher.instance.instance_variable_get(:@client)
+      GitHubRepoFetcher.instance.instance_variable_set(:@client, temporary_client)
+      yield
+      GitHubRepoFetcher.instance.instance_variable_set(:@client, before_client)
+    end
+
     it "returns an array of hashes including title derived from markdown contents" do
-      markdown_url = "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/docs/analytics.md"
-      source_url = "https://github.com/alphagov/#{repo_name}/blob/master/docs/analytics.md"
-      markdown_fixture = "# Analytics \n Foo"
-      path = "docs/analytics.md"
-      default_branch = "main"
-      latest_commit = { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s }
-      doc_response = [{ name: "analytics.md", path: path, download_url: markdown_url, html_url: source_url }]
-      commit_response = [{ sha: latest_commit[:sha], commit: { author: { date: latest_commit[:timestamp] } } }]
+      commit = { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s }
+      doc_contents = "# title \n Some document"
+      doc = double("doc", name: "foo.md", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
 
-      allow(GitHubRepoFetcher.instance).to receive(:repo)
-        .with(repo_name) { OpenStruct.new(default_branch: default_branch) }
-      stub_request(:get, docs_url(repo_name))
-        .to_return(body: doc_response.to_json, headers: { content_type: "application/json" })
-      stub_request(:get, "https://api.github.com/repos/alphagov/#{repo_name}/commits?path=#{path}&per_page=100&sha=#{default_branch}")
-        .to_return(body: commit_response.to_json, headers: { content_type: "application/json" })
-      stub_request(:get, markdown_url).to_return(body: markdown_fixture)
-
-      expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq([
-        {
-          title: "Analytics",
-          path: "/apps/#{repo_name}/analytics.html",
-          markdown: markdown_fixture,
-          relative_path: path,
-          source_url: source_url,
-          latest_commit: latest_commit,
-        },
-      ])
+      allow(GitHubRepoFetcher.instance).to receive(:latest_commit).and_return(commit)
+      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(
+        double("repo", private_repo?: false, default_branch: "main"),
+      )
+      allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
+      with_stubbed_client(double("Octokit::Client", contents: [doc])) do
+        expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq([
+          {
+            title: "title",
+            path: "/apps/#{repo_name}/foo.html",
+            markdown: doc_contents,
+            relative_path: "docs/foo.md",
+            source_url: "foo_html_url",
+            latest_commit: commit,
+          },
+        ])
+      end
     end
 
     it "skips over any non-markdown files" do
