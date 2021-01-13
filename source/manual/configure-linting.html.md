@@ -100,8 +100,8 @@ To configure this linting in Rails you should create a [rake][] task for this
 in `lib/tasks/lint.rake`:
 
 ```rb
-desc "Lint files"
-task "lint" do
+desc "Run all linters"
+task lint: :environment do
   sh "bundle exec rubocop"
   sh "yarn run lint" # lint JS and SCSS
 end
@@ -112,7 +112,7 @@ linting. For example to run linting and RSpec as the default task add the
 following code to your `Rakefile`:
 
 ```rb
-# undo any existing default tasks added by depenencies so we have control
+# Undo any existing default tasks added by depenencies so we can redefine the task
 Rake::Task[:default].clear if Rake::Task.task_defined?(:default)
 task default: %i[lint spec]
 ````
