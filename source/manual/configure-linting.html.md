@@ -41,13 +41,13 @@ After running `bundle install` you can test the linting by running
 
 ## Linting JavaScript and SCSS
 
-We use [StandardJS](https://standardjs.com/) for JavaScript linting and
-[Stylelint](https://stylelint.io/) for SCSS linting, using the
-[stylelint-config-gds][] configuration.
+We follow the [GDS Way](https://gds-way.cloudapps.digital/) guidance
+on linting [Javascript][gds-way-js] and [CSS][gds-way-css].
 
-To enable these in a Rails application you will first need to
-[install Yarn][yarn-install]. Then you should create a `package.json` file in
-your project root. You can use the following template:
+To configure this for a Rails application you will need to install
+[standardx][] and [stylelint-config-gds][]. To do this you will first need to
+[install Yarn][yarn-install] and then you should create a `package.json` file
+in your project root. You can use the following template:
 
 ```json
 {
@@ -60,6 +60,16 @@ your project root. You can use the following template:
     "lint": "yarn run lint:js && yarn run lint:scss",
     "lint:js": "standard 'app/assets/javascripts/**/*.js' 'spec/javascripts/**/*.js'",
     "lint:scss": "stylelint app/assets/stylesheets/"
+  },
+  "standardx": {
+    "env": {
+      "browser": true
+    }
+  },
+  "eslintConfig": {
+    "rules": {
+      "no-var": 0
+    }
   },
   "stylelint": {
     "extends": "stylelint-config-gds/scss"
@@ -78,6 +88,9 @@ You can now test the linting by running `yarn run lint`.
 To finish up you should add `node_modules` and `yarn-error.log` to
 your `.gitignore` file.
 
+[gds-way-js]: https://gds-way.cloudapps.digital/manuals/programming-languages/js.html#linting
+[gds-way-css]: https://gds-way.cloudapps.digital/manuals/programming-languages/css.html#linting
+[standardx]: https://github.com/standard/standardx
 [stylelint-config-gds]: https://github.com/alphagov/stylelint-config-gds
 [yarn-install]: https://classic.yarnpkg.com/en/docs/install/
 
