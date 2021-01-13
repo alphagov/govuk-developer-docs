@@ -103,6 +103,29 @@ more info.
 
 ## Special cases
 
+### Rebooting Jenkins CI agents
+
+Sometimes a CI agent starts continually erroring on Jenkins jobs, and the
+most straightforward way of fixing the issue is to reboot the machine.
+
+First, visit the [Jenkins nodes list](https://ci.integration.publishing.service.gov.uk/computer/).
+Click on the problematic agent and then "Mark this node temporarily
+offline". You'll need to provide a reason, which could just be "to reboot
+problematic agent". This will stop the agent from being used for new jobs.
+
+SSH into the agent; the machine number to SSH into will match the agent
+number. For example:
+
+```sh
+gds govuk connect ssh -e integration ci_agent:6
+```
+
+Reboot the machine: `sudo reboot`.
+
+Finally, go back into the Jenkins nodes list to take the node online and
+then to "Launch agent". You'll be taken to the live log for the agent,
+where you should see the output `Agent successfully connected and online`.
+
 ### Rebooting Cache machines in AWS
 
 The `cache` machines run the `router` app which handles live user traffic.
