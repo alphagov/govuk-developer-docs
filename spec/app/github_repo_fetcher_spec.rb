@@ -7,16 +7,13 @@ RSpec.describe GitHubRepoFetcher do
       )
   end
 
-  let(:repo) do
-    double("stubbed repo", name: "some-repo", private_repo?: false, default_branch: "master")
-  end
   let(:private_repo) { double("Private repo", private_repo?: true) }
-  let(:public_repo) { double("Public repo", private_repo?: false) }
+  let(:public_repo) { double("Public repo", private_repo?: false, default_branch: "master") }
 
   describe "#repo" do
     it "fetches a repo from cache if it exists" do
       allow(CACHE).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
-        [OpenStruct.new({ name: "some-repo", default_branch: "master" })]
+        [public_repo]
       end
 
       repo = GitHubRepoFetcher.instance.repo("some-repo")
@@ -51,7 +48,7 @@ RSpec.describe GitHubRepoFetcher do
     end
 
     it "caches the first response" do
-      allow(GitHubRepoFetcher.instance).to receive(:repo).and_return(repo)
+      allow(GitHubRepoFetcher.instance).to receive(:repo).and_return(public_repo)
       stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 200, body: "Foo")
 
@@ -121,9 +118,7 @@ RSpec.describe GitHubRepoFetcher do
       doc = double("doc", name: "foo.md", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
 
       allow(GitHubRepoFetcher.instance).to receive(:latest_commit).and_return(commit)
-      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(
-        double("repo", private_repo?: false, default_branch: "main"),
-      )
+      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(public_repo)
       allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
       with_stubbed_client(double("Octokit::Client", contents: [doc])) do
         expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq([
