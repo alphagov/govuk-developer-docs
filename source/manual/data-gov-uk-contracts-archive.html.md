@@ -11,11 +11,17 @@ parent: "/manual.html"
 
 Visit the [contracts archive finder](https://data.gov.uk/data/contracts-finder-archive).
 
+### Finding the IP address of the machine
+
 Credentials for the AWS account are in the `govuk-secrets` repository under
 `2ndline/datagovuk/contracts-finder-archive-aws-console-pass`.
 
 Once logged in to the AWS console, you'll be able to list the EC2 instances and
 find the IP of the contracts archive finder.
+
+### SSH'ing onto the machine
+
+<a name="ssh-instructions"></a>
 
 If you need to `ssh` on to the machine, you can do so by grabbing the private
 key from `govuk-secrets` under
@@ -39,7 +45,9 @@ file:
 $ ssh -i "govuk-contracts-archive.pem" ubuntu@<ip address>
 ```
 
-## Snapshot
+## Historical data
+
+### Snapshot
 
 There is a point in time snapshot of the contracts archive finder, should you
 need to access older log files.
@@ -63,18 +71,53 @@ These have the following descriptions:
 * contract-finder (started June 26 2018)
 * snapshot_contracts_20190319 (started March 19 2019)
 
-## On data.gov.uk
+### On data.gov.uk
 
-A database of the contracts archive is also accessible in a sqlite database on
-[data.gov.uk][dataset]
+A database of the contracts archive is also accessible in a SQLite database on
+this [dataset on data.gov.uk][dataset].
 
 [dataset]: https://data.gov.uk/dataset/97c75a0c-dd9b-42f9-969c-5e667d8c80f1/contracts-finder-archive-2011-to-2015
 
-## Takedown requests
+## Takedown and text change requests
 
-To take down a contract, [`ssh`](#contracts-archive-finder-application) onto
-the contracts archive machine and then move the relevant contract attachments
-to the redacted folder.
+### Authorise the request
+
+Respond to the user's Zendesk ticket, saying that we're processing the request.
+Change priority to Low and leave a message for the product owners that this ticket
+requires authorisation. When they have checked the validity of the request, they'll
+leave a comment in the ticket and move it to the relevant priority queue for the
+2nd line developers to process.
+
+### Process the request
+
+#### Text change
+
+To change the text inside a contract, e.g. to remove company details from the actual
+contract entry, you'd [SSH onto the contracts archive machine](#ssh-instructions),
+then open SQLite:
+
+```sh
+sqlite3 ~/src/contracts-archive/instance/app.db
+```
+
+Find out the `award_id`:
+
+```sql
+select * from award_detail where business_name like "%word%";
+```
+
+Then for each `award_id`:
+
+```
+UPDATE award_detail set business_name = 'Redacted', business_address = 'Redacted' WHERE award_id = xxxxxx;
+```
+
+Note that a reindex is _not_ necessary.
+
+#### Takedown
+
+To take down a contract, [SSH onto the contracts archive machine](#ssh-instructions)
+and then move the relevant contract attachments to the redacted folder.
 
 Contracts are located on the machine at
 `~/src/contracts-archive/instance/documents`. Find the directory for the
@@ -94,7 +137,7 @@ Note that this method will remove the downloadable attachments, but leave the
 contract page available to view on the website. This is fine. You can confirm
 that you've redacted the documents by navigating to the contract in the
 contracts archive finder application and clicking on the download links for
-each attachment. It should return a 404 Not Found.  This may require adding a
+each attachment. It should return a 404 Not Found. This may require adding a
 cachebust string to the download URL.
 
 You should also remove it from Google cache (this will only work once we've
