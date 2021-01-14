@@ -10,7 +10,7 @@ RSpec.describe RunRakeTask do
 
     describe "given an application instance" do
       let(:application) do
-        AppDocs::App.new(
+        App.new(
           "github_repo_name" => "content-publisher",
           "machine_class" => "backend",
           "production_hosted_on" => "aws",
