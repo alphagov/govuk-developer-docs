@@ -1,6 +1,6 @@
 RSpec.describe ProxyPages do
   before do
-    allow(Applications).to receive(:apps)
+    allow(Applications).to receive(:all)
       .and_return([double("App", app_name: "", page_title: "", description: "", github_repo_name: "", private_repo?: false)])
     allow(DocumentTypes).to receive(:pages)
       .and_return([double("Page", name: "")])

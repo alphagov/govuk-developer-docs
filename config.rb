@@ -33,7 +33,7 @@ helpers do
   end
 
   def active_app_pages
-    Applications.apps.reject(&:retired?).sort_by(&:app_name)
+    Applications.all.reject(&:retired?).sort_by(&:app_name)
   end
 
   def manual

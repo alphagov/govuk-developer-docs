@@ -27,7 +27,7 @@ RSpec.describe ExternalDoc do
           app_name: "Lipsum",
           github_repo_name: "lipsum",
         )
-        allow(Applications).to receive(:apps) { [lipsum] }
+        allow(Applications).to receive(:all) { [lipsum] }
       end
 
       let(:path) { "markdown.md" }
