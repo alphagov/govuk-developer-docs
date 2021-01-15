@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Error reporting with Sentry
+title: Sentry
 parent: "/manual.html"
 layout: manual_layout
 section: Monitoring
