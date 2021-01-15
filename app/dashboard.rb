@@ -51,8 +51,8 @@ class Dashboard
     end
 
     def repos
-      data["repos"].to_a.map do |app_name|
-        repo = GitHubRepoFetcher.instance.repo(app_name)
+      data["repos"].to_a.map do |repo_name|
+        repo = GitHubRepoFetcher.instance.repo(repo_name)
         Repo.new(repo)
       end
     end
