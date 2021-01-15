@@ -32,6 +32,19 @@ RSpec.describe Applications do
     end
   end
 
+  describe "active" do
+    let(:applications) do
+      [
+        { github_repo_name: "whitehall", retired: true },
+        { github_repo_name: "asset-manager", retired: false },
+      ]
+    end
+
+    it "should return only apps that are not retired" do
+      expect(Applications.active.map(&:github_repo_name)).to eq(%w[asset-manager])
+    end
+  end
+
   describe "hosters_descending" do
     it "should return hosters in descending order of repo count" do
       expect(Applications.hosters_descending.keys).to eq(%w[

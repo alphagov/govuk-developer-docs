@@ -41,7 +41,7 @@ class Dashboard
 
     # Pull the the applications from applications.yml into the first categories
     def from_application_page
-      applications_in_this_section = Applications.all.reject(&:retired?).select do |app|
+      applications_in_this_section = Applications.active.select do |app|
         app.type == name
       end
 

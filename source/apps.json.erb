@@ -1,1 +1,1 @@
-<%= active_app_pages.map(&:api_payload).to_json %>
+<%= Applications.active.map(&:api_payload).to_json %>

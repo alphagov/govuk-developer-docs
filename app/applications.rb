@@ -18,6 +18,10 @@ class Applications
     Applications.all.reject(&:private_repo?)
   end
 
+  def self.active
+    Applications.all.reject(&:retired?).sort_by(&:app_name)
+  end
+
   def self.hosters_descending
     ordered_keys = HOSTERS.keys.sort do |a, b|
       [on_host(b).count, a] <=> [on_host(a).count, b]
