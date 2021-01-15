@@ -32,21 +32,21 @@ RSpec.describe Applications do
     end
   end
 
-  describe "apps_on_host" do
+  describe "on_host" do
     it "should return apps hosted on the named host" do
-      paas_app = Applications.apps_on_host("paas").first
+      paas_app = Applications.on_host("paas").first
       expect(paas_app).to be_an(App)
       expect(paas_app.app_name).to eq("app-on-paas")
     end
 
     it "should return all apps in production" do
       production_apps_count = applications.count { |app| app[:production_hosted_on].present? }
-      apps_by_host = Applications::HOSTERS.map { |key, _val| Applications.apps_on_host(key) }.flatten
+      apps_by_host = Applications::HOSTERS.map { |key, _val| Applications.on_host(key) }.flatten
       expect(apps_by_host.count).to eq(production_apps_count)
     end
 
     it "should return apps in alphabetical order" do
-      apps_on_aws = Applications.apps_on_host("aws")
+      apps_on_aws = Applications.on_host("aws")
       expect(apps_on_aws.map(&:app_name)).to eq(%w[
         asset-manager
         content-store
