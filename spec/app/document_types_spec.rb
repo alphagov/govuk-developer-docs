@@ -14,7 +14,7 @@ RSpec.describe DocumentTypes do
 
       document_type = DocumentTypes.pages.first
 
-      expect(document_type.examples.first.keys).to eql(%w[title link])
+      expect(document_type.examples.first.keys.sort).to eql(%w[link title])
     end
   end
 end

@@ -6,7 +6,7 @@
       </a>
     </li>
 
-    <% active_app_pages.group_by(&:type).each do |name, apps| %>
+    <% Applications.active.group_by(&:type).each do |name, apps| %>
       <li>
         <a href="/apps.html">
           <span><%= name %></span>

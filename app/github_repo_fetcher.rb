@@ -4,36 +4,40 @@ class GitHubRepoFetcher
   include Singleton
 
   # Fetch a repo from GitHub
-  def repo(app_name)
-    all_alphagov_repos.find { |repo| repo.name == app_name } || raise("alphagov/#{app_name} not found")
+  def repo(repo_name)
+    all_alphagov_repos.find { |repo| repo.name == repo_name } || raise("alphagov/#{repo_name} not found")
   end
 
   # Fetch a README for an alphagov application and cache it.
   # Note that it is cached as pure markdown and requires further processing.
-  def readme(app_name)
-    CACHE.fetch("alphagov/#{app_name} README", expires_in: 1.hour) do
-      default_branch = repo(app_name).default_branch
-      HTTP.get("https://raw.githubusercontent.com/alphagov/#{app_name}/#{default_branch}/README.md")
+  def readme(repo_name)
+    return nil if repo(repo_name).private_repo?
+
+    CACHE.fetch("alphagov/#{repo_name} README", expires_in: 1.hour) do
+      default_branch = repo(repo_name).default_branch
+      HTTP.get("https://raw.githubusercontent.com/alphagov/#{repo_name}/#{default_branch}/README.md")
     rescue Octokit::NotFound
       nil
     end
   end
 
   # Fetch all markdown files under the repo's 'docs' folder
-  def docs(app_name)
-    CACHE.fetch("alphagov/#{app_name} docs", expires_in: 1.hour) do
-      docs = client.contents("alphagov/#{app_name}", path: "docs")
+  def docs(repo_name)
+    return nil if repo(repo_name).private_repo?
+
+    CACHE.fetch("alphagov/#{repo_name} docs", expires_in: 1.hour) do
+      docs = client.contents("alphagov/#{repo_name}", path: "docs")
       docs.select { |doc| doc.name.end_with?(".md") }.map do |doc|
         contents = HTTP.get(doc.download_url)
         filename = doc.name.match(/(.+)\..+$/)[1]
         title = ExternalDoc.title(contents) || filename
         {
-          path: "/apps/#{app_name}/#{filename}.html",
+          path: "/apps/#{repo_name}/#{filename}.html",
           title: title.to_s.force_encoding("UTF-8"),
           markdown: contents.to_s.force_encoding("UTF-8"),
           relative_path: doc.path,
           source_url: doc.html_url,
-          latest_commit: latest_commit(app_name, doc.path),
+          latest_commit: latest_commit(repo_name, doc.path),
         }
       end
     rescue Octokit::NotFound
@@ -49,8 +53,8 @@ private
     end
   end
 
-  def latest_commit(app_name, path)
-    latest_commit = client.commits("alphagov/#{app_name}", repo(app_name).default_branch, path: path).first
+  def latest_commit(repo_name, path)
+    latest_commit = client.commits("alphagov/#{repo_name}", repo(repo_name).default_branch, path: path).first
     {
       sha: latest_commit.sha,
       timestamp: latest_commit.commit.author.date,

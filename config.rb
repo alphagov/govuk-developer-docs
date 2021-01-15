@@ -32,10 +32,6 @@ helpers do
     Dashboard.new
   end
 
-  def active_app_pages
-    AppDocs.pages.reject(&:retired?).sort_by(&:app_name)
-  end
-
   def manual
     Manual.new(sitemap)
   end

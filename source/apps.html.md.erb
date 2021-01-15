@@ -3,15 +3,15 @@ layout: application_layout
 title: Applications on GOV.UK
 ---
 
-The publishing platform of GOV.UK consists of at least <%= active_app_pages.size %>
+The publishing platform of GOV.UK consists of at least <%= Applications.active.size %>
 separate applications. Most of them are built using [Ruby on Rails][rails].
 
 ## Hosting
 
 | Hosting | Count | Applications |
 | --- | --- | --- |
-<% AppDocs::hosters_descending.each do |id, name| %>
-| <%= name %> | <%= AppDocs::apps_on_host(id).count %> | <%= AppDocs::apps_on_host(id).map { |app| "[#{app.app_name}](/apps/#{app.app_name}.html)" }.join(", ") %> |
+<% Applications::hosters_descending.each do |id, name| %>
+| <%= name %> | <%= Applications::on_host(id).count %> | <%= Applications::on_host(id).map { |app| "[#{app.app_name}](/apps/#{app.app_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Reuse this data
