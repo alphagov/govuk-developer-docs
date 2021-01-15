@@ -19,6 +19,19 @@ RSpec.describe Applications do
     ]
   end
 
+  describe "public" do
+    let(:applications) do
+      [
+        { github_repo_name: "whitehall", private_repo: true },
+        { github_repo_name: "asset-manager", private_repo: false },
+      ]
+    end
+
+    it "should return only apps with public repos" do
+      expect(Applications.public.map(&:github_repo_name)).to eq(%w[asset-manager])
+    end
+  end
+
   describe "hosters_descending" do
     it "should return hosters in descending order of repo count" do
       expect(Applications.hosters_descending.keys).to eq(%w[
