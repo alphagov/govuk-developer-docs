@@ -1,4 +1,4 @@
-class AppDocs
+class Applications
   HOSTERS = {
     "aws" => "AWS",
     "paas" => "GOV.UK PaaS",
@@ -22,7 +22,7 @@ class AppDocs
   end
 
   def self.apps_on_host(host)
-    AppDocs.apps
+    Applications.apps
       .select { |app| app.production_hosted_on == host }
       .sort_by(&:app_name)
   end

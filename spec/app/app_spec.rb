@@ -25,7 +25,7 @@ RSpec.describe App do
           ],
         },
       }
-      allow(AppDocs).to receive(:aws_machines).and_return(app_data)
+      allow(Applications).to receive(:aws_machines).and_return(app_data)
     end
 
     it "should find puppet class via github repo name if neither app name nor puppet name provided" do

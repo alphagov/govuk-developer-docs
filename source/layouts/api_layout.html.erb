@@ -1,6 +1,6 @@
 <% content_for :sidebar do %>
   <ul>
-    <% AppDocs.apps.reject(&:private_repo?).each do |app| %>
+    <% Applications.apps.reject(&:private_repo?).each do |app| %>
     <li>
       <%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %>
       <% if pages = GitHubRepoFetcher.instance.docs(app.github_repo_name) %>

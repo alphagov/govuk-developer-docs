@@ -22,7 +22,7 @@ class App
   end
 
   def aws_puppet_class
-    AppDocs.aws_machines.each do |puppet_class, keys|
+    Applications.aws_machines.each do |puppet_class, keys|
       if keys["apps"].include?(app_name) || keys["apps"].include?(puppet_name)
         return puppet_class
       end
@@ -31,7 +31,7 @@ class App
   end
 
   def carrenza_machine
-    AppDocs.carrenza_machines.each do |puppet_class, keys|
+    Applications.carrenza_machines.each do |puppet_class, keys|
       if keys["apps"].include?(app_name) || keys["apps"].include?(puppet_name)
         return puppet_class
       end
@@ -52,7 +52,7 @@ class App
   end
 
   def hosting_name
-    AppDocs::HOSTERS.fetch(production_hosted_on)
+    Applications::HOSTERS.fetch(production_hosted_on)
   end
 
   def html_url
@@ -80,11 +80,11 @@ class App
   end
 
   def example_published_pages
-    AppDocs.app_data.publishing_examples[app_name]
+    Applications.app_data.publishing_examples[app_name]
   end
 
   def example_rendered_pages
-    AppDocs.app_data.rendering_examples[app_name]
+    Applications.app_data.rendering_examples[app_name]
   end
 
   def github_repo_name
