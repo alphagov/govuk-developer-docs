@@ -41,7 +41,7 @@ class Dashboard
 
     # Pull the the applications from applications.yml into the first categories
     def from_application_page
-      applications_in_this_section = AppDocs.pages.reject(&:retired?).select do |app|
+      applications_in_this_section = Applications.active.select do |app|
         app.type == name
       end
 
@@ -51,8 +51,8 @@ class Dashboard
     end
 
     def repos
-      data["repos"].to_a.map do |app_name|
-        repo = GitHubRepoFetcher.instance.repo(app_name)
+      data["repos"].to_a.map do |repo_name|
+        repo = GitHubRepoFetcher.instance.repo(repo_name)
         Repo.new(repo)
       end
     end

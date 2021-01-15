@@ -9,8 +9,8 @@ class ProxyPages
   end
 
   def self.app_docs
-    docs = AppDocs.apps_with_docs.map do |app|
-      docs_for_app = GitHubRepoFetcher.instance.docs(app.app_name) || []
+    docs = Applications.public.map do |app|
+      docs_for_app = GitHubRepoFetcher.instance.docs(app.github_repo_name) || []
       docs_for_app.map do |page|
         {
           path: page[:path],
@@ -57,7 +57,7 @@ class ProxyPages
   end
 
   def self.app_overviews
-    AppDocs.pages.map do |application|
+    Applications.all.map do |application|
       {
         path: "/apps/#{application.app_name}.html",
         template: "templates/application_template.html",
@@ -74,7 +74,7 @@ class ProxyPages
   end
 
   def self.app_overviews_json
-    AppDocs.pages.map do |application|
+    Applications.all.map do |application|
       {
         path: "/apps/#{application.app_name}.json",
         template: "templates/json_response.json",
