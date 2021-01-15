@@ -1,6 +1,6 @@
 RSpec.describe Applications do
   before :each do
-    allow(Applications).to receive(:apps) do
+    allow(Applications).to receive(:all) do
       applications.map(&:stringify_keys).map { |app_data| App.new(app_data) }
     end
   end

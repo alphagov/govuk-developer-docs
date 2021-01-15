@@ -24,6 +24,6 @@ class RunRakeTask
   end
 
   def self.find_application(name)
-    Applications.apps.select { |app| app.app_name == name }.first
+    Applications.all.select { |app| app.app_name == name }.first
   end
 end

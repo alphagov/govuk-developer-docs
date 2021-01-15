@@ -8,8 +8,8 @@ class Applications
     "none" => "None",
   }.freeze
 
-  def self.apps
-    @apps ||= YAML.load_file("data/applications.yml").map do |app_data|
+  def self.all
+    @all ||= YAML.load_file("data/applications.yml").map do |app_data|
       App.new(app_data)
     end
   end
@@ -22,7 +22,7 @@ class Applications
   end
 
   def self.apps_on_host(host)
-    Applications.apps
+    Applications.all
       .select { |app| app.production_hosted_on == host }
       .sort_by(&:app_name)
   end
