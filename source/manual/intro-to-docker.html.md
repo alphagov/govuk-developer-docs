@@ -29,8 +29,10 @@ Before you start, make sure you:
 
 ```shell
 $mac docker --version
-Docker version 18.09.2, build 6247962
+Docker version <version number>, build <build>
 ```
+
+The [Docker Engine release notes](https://docs.docker.com/engine/release-notes/) list the latest version number.
 
 ### Images and containers
 
@@ -43,6 +45,8 @@ $mac docker run -it ruby:2.7.2 bash
 `ruby:2.7.2` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
 
 The `ruby:2.7.2` image we are using is a debian system with Ruby pre-installed. Images are downloaded from the [Docker Registry][docker-registry]. The `bash` argument at the end will execute this inside the container, which means we get a bash shell.
+
+You can leave the shell by typing `exit`.
 
 What are the flags?
 
