@@ -57,12 +57,26 @@ Then create the account:
 
 An account can have API tokens for multiple applications.
 
-## Changing parent organisation (APHA not appearing under DEFRA for users)
+## Organisations with multiple parents
 
-There is a bug in Signon for orgs that have multiple parent orgs in Whitehall. There is a [Trello card for this problem](https://trello.com/c/7koTf4OD).
+This [structure cannot currently be modelled in Signon][signon-multiple-parents-issue]
+which sometimes leads to Zendesk tickets where users cannot access things they should
+be able to.
 
-To address the problem for APHA, re-run the following [rake task](running-rake-tasks.html):
+This can be applied manually for the day (it will reset when the organisations are
+imported from Whitehall):
 
-`db:migrate VERSION=20200805142418`
+```rb
+> parent = Organisation.find_by!(slug: "...")
+> child = Organisation.find_by!(slug: "...")
+> child.update!(parent: parent)
+```
 
-Otherwise raise a PR similar to [https://github.com/alphagov/signon/pull/1481](https://github.com/alphagov/signon/pull/1481) to add a migration.
+Or if you think it makes sense to apply this permanently,
+[it can be added to the `OrganisationFetcher`][organisation-fetcher].
+
+The decision of whether this should be applied for the day or permanently depends on
+which parent organisation is more likely to need access to the child organisation.
+
+[signon-multiple-parents-issue]: https://github.com/alphagov/signon/issues/1572
+[organisation-fetcher]: https://github.com/alphagov/signon/commit/31066d931c073250f0c5d83b0312a489b12c870c
