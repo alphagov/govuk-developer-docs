@@ -37,12 +37,12 @@ Docker version 18.09.2, build 6247962
 * Run from the root of the [content-publisher] project:
 
 ```shell
-$mac docker run -it ruby:2.6.3 bash
+$mac docker run -it ruby:2.7.2 bash
 ```
 
-`ruby:2.6.3` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
+`ruby:2.7.2` is the "image" that we specify. Using object oriented programming as an analogy, an image is like a "class". When we "instantiate" an instance of a class, these are called "containers".
 
-The `ruby:2.6.3` image we are using is a debian system with Ruby pre-installed. Images are downloaded from the [Docker Registry][docker-registry]. The `bash` argument at the end will execute this inside the container, which means we get a bash shell.
+The `ruby:2.7.2` image we are using is a debian system with Ruby pre-installed. Images are downloaded from the [Docker Registry][docker-registry]. The `bash` argument at the end will execute this inside the container, which means we get a bash shell.
 
 What are the flags?
 
@@ -59,7 +59,7 @@ $mac docker run --help
 * Mount your current directory as a volume to the container by running:
 
 ```shell
-$mac docker run -it -v $(pwd):/app ruby:2.6.3 bash
+$mac docker run -it -v $(pwd):/app ruby:2.7.2 bash
 ```
 
 This will map your current directory (the root of the [content-publisher] project) to `/app` inside of the container. So now the files on your `$mac` for [content-publisher] are now also available inside of the container.
@@ -71,7 +71,7 @@ $dev cd /app
 $dev bundle install
 ```
 
-> Note: you may need to use a different image (e.g. `ruby:2.6.5`) depending on the version specified in [`.ruby-version`][content-publisher-ruby] in [content-publisher].
+> Note: you may need to use a different image (e.g. `ruby:2.7.2`) depending on the version specified in [`.ruby-version`][content-publisher-ruby] in [content-publisher].
 >
 > Note: this may take a while, so feel free to stop it by pressing Ctrl+c as the next step will show why it doesn't matter at this point.
 
@@ -94,7 +94,7 @@ $mac docker volume create content-publisher-bundle
 * Run docker with that volume by using the `-v` flag and passing it the name of the volume:
 
 ```shell
-$mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle ruby:2.6.3 bash
+$mac docker run -it -v $(pwd):/app -v content-publisher-bundle:/usr/local/bundle ruby:2.7.2 bash
 ```
 
 * Then install the gems again:
@@ -116,7 +116,7 @@ $dev bundle exec rake
 
 We get an error: “could not find javascript runtime” - we need Node installed on our container. We can try to install Node here, but this won't persist and we'll have the same problem that we had above with installing gems.
 
-Unlike gems, our install of Node won't need to change in the foreseeable future. It would be nice if our `ruby:2.6.3` image had it as well. We can't change the `ruby:2.6.3` image, but we can create our own image based off it.
+Unlike gems, our install of Node won't need to change in the foreseeable future. It would be nice if our `ruby:2.7.2` image had it as well. We can't change the `ruby:2.7.2` image, but we can create our own image based off it.
 
 ### Create ruby + node image
 
@@ -133,7 +133,7 @@ Create a Dockerfile in the content-publisher project:
 * Create a `Dockerfile` in the root of the [content-publisher] project:
 
 ```docker
-FROM ruby:2.6.3
+FROM ruby:2.7.2
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
