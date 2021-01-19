@@ -89,50 +89,6 @@ mount the EBS volume in /mnt/crawler_worker.
 1. After AWS finishes attaching the volume to the instance the state should change to "in-use"
 1. Once it has settled to the "in-use" state, SSH in to the mirrorer instance and run `govuk_puppet --test`
 
-## No disk space on the MySQL master
-
-If the MySQL master runs out of disk space, all of the apps that rely on MySQL
-may crash. You'll probably notice this in Icinga. There's a lot of red.
-
-Binary logs take up space that could be freed. If the slave and the backup are
-at a reasonably up-to-date binlog position (`SHOW SLAVE STATUS \G`), the older
-binlogs can be removed from the master.
-
-To recover:
-
-1. SSH to mysql-master-1.backend
-1. Stop MySQL using `sudo service mysql stop` (this may never return)
-1. At this point `service mysql status` may return `stop/killed`, indicating
-   that Upstart has tried to kill MySQL but it is refusing to die
-1. `cd /var/lib/mysql && ls`
-1. Remove enough (5 to 10?) binlog files so that you can start MySQL
-1. Edit the `mysql-bin.index` file to remove references to the binlog files you
-   removed manually
-7. `sudo service mysql start`
-8. `mysql -u root -p`
-9. `PURGE BINARY LOGS TO 'mysql-bin.########';`
-
-If there's no disk space available, purging binary logs from within MySQL
-doesn't work - this is why we first need to manually delete some logs and
-update the index.
-
-## Low available disk space on /var/lib/postgresql
-
-Check which databases are occupying a lot of space and discuss with the
-relevant owners about reducing size or exanding the size of the postgres drive.
-
-Steps to investigate postgres db size:
-
-1. SSH into `postgresql-primary-1.backend`
-1. See what space is left: `df -h`
-1. Open the psql console: `sudo -u postgres psql postgres`
-1. List databases: `\list` or `\l`
-1. Check out which databases can be improved
-1. You can choose one of the dbs by doing: `\c <name-of-db>`
-   For example: `\c email-alert-api_production`
-
-If this continues to be a problem see if you need to [resize the disk](/manual/adding-disks-in-vcloud.html).
-
 ## No disk space in general
 
 If you cant find any of the above cases causing low disk spaces, it can
@@ -151,7 +107,10 @@ use ncdu on that directory. Do it with the following command:
 
 If you are able to determine that the machine simply requires more disk space
 to run the applications (such as a growing database) you can increase capacity
-by [adding a new disk in vCloud](../adding-disks-in-vcloud.html).
+by:
+
+1. [Growing a persistent volume](https://docs.publishing.service.gov.uk/manual/manually-resize-ebs.html) in case of a stateful app
+1. If the app is stateless and the volume ephemeral you can resize it in govuk-aws-data at data/\<app\>/\<env\>/common.tfvars and modify root_block_device_volume .You will then have to terminate the instances for them to be respawned by the autoscaling group with the new resized volume.
 
 ## Disk space used by logfiles
 
