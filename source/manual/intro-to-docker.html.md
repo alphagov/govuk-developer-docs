@@ -204,7 +204,15 @@ Docker containers are quick to start and it's possible for them to talk to each 
 * In another terminal, run the following to start a new container based on the `postgres` image:
 
 ```shell
-$mac docker run -it postgres
+$mac docker run -e POSTGRES_PASSWORD=password -it postgres
+```
+
+Before it starts Postgres will check if a password is set. If do not supply a password `docker run` will print an error and fail to start the container. Postgres can set this password with an environment variable. We can supply this to docker with the `-e` flag.
+
+```shell
+$mac docker run --help
+...
+-e, --env list                       Set environment variables
 ```
 
 * Now to see what containers you have, in another terminal run:
