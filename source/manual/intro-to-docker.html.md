@@ -222,10 +222,11 @@ $mac docker ps
 
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS               NAMES
 a7b87be3e1bc        postgres            "docker-entrypoint.s…"   21 minutes ago      Up 21 minutes       5432/tcp            jovial_matsumoto
-...
 ```
 
-This shows us that `a7b87be3e1bc` or "jovial_matsumoto" is up and running. We can "inspect" the configuration of the container and get its IP, which we can use in the content-publisher container.
+When containers spin up they are assigned an ID, in this case `a7b87be3e1bc`. Containers also have name. If you do not supply one it will default to a random one, in this case `jovial_matsumoto`.
+
+We can see from running `docker ps` that `a7b87be3e1bc` or "jovial_matsumoto" is up and running. We can "inspect" the configuration of the container and get its IP, which we can use in the content-publisher container.
 
 * Find the ID for the postgres container, and with it run:
 
