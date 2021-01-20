@@ -69,6 +69,10 @@ RSpec.describe ExternalDoc do
         expect(html).to have_link("Subfolder", href: "https://github.com/alphagov/lipsum/blob/master/docs/some-subfolder/foo.md")
       end
 
+      it "converts links relative to the 'root' to absolute GitHub URLs" do
+        expect(html).to have_link("Link relative to root", href: "https://github.com/alphagov/lipsum/blob/master/public/json_examples/requests/foo.json")
+      end
+
       context "the document we are parsing is in the `docs` folder" do
         let(:path) { "docs/some-document.md" }
 

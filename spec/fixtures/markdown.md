@@ -13,6 +13,8 @@ neque consequat porta, [Suspendisse iaculis](#suspendisse-iaculis). Sed et
 
 [Relative docs link without period](docs/no-prefix.md)
 
+[Link relative to root](/public/json_examples/requests/foo.json)
+
 [Subfolder](docs/some-subfolder/foo.md)
 
 ## Suspendisse iaculis
