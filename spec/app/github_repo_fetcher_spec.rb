@@ -12,9 +12,11 @@ RSpec.describe GitHubRepoFetcher do
 
   describe "#repo" do
     it "fetches a repo from cache if it exists" do
-      allow(CACHE).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
+      cache = double("CACHE")
+      allow(cache).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
         [public_repo]
       end
+      stub_const("CACHE", cache)
 
       repo = GitHubRepoFetcher.instance.repo("some-repo")
 
@@ -22,7 +24,9 @@ RSpec.describe GitHubRepoFetcher do
     end
 
     it "fetches a repo from GitHub if it doesn't exist in the cache" do
-      allow(CACHE).to receive(:fetch).and_yield
+      cache = double("CACHE")
+      allow(cache).to receive(:fetch).and_yield
+      stub_const("CACHE", cache)
 
       repo = GitHubRepoFetcher.instance.repo("some-repo")
 
@@ -40,7 +44,9 @@ RSpec.describe GitHubRepoFetcher do
     let(:repo_name) { "some-repo" }
 
     before :each do
-      allow(CACHE).to receive(:fetch).and_yield
+      cache = double("CACHE")
+      allow(cache).to receive(:fetch).and_yield
+      stub_const("CACHE", cache)
     end
 
     def readme_url
@@ -53,9 +59,11 @@ RSpec.describe GitHubRepoFetcher do
         .to_return(status: 200, body: "Foo")
 
       outcome = "pending"
-      allow(CACHE).to receive(:fetch) do |&block|
+      cache = double("CACHE")
+      allow(cache).to receive(:fetch) do |&block|
         outcome = block.call
       end
+      stub_const("CACHE", cache)
 
       GitHubRepoFetcher.instance.readme(repo_name)
       expect(outcome).to eq("Foo")
