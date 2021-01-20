@@ -114,11 +114,6 @@ The country's subscription list(s) `title` and `slug` needs to be updated, such 
 2. Run the rake task [data_migration:update_subscriber_list[slug,"new_title",new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list[country_slug,"new_title",new_country_slug])
   to update the subscription lists
 
-  > **Note**
-  >
-  > You can test the emails are being sent out correctly in `integration` and `staging`
-    by following [Receive emails from Email Alert API in integration and staging](https://docs.publishing.service.gov.uk/manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html)
-
 ### 6. Remove duplicate search results
 
 In [Whitehall](https://github.com/alphagov/whitehall) run `SearchIndexDeleteWorker.perform_async(instance.search_index['slug'], instance.rummager_index)`
