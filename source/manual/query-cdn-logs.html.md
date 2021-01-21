@@ -41,7 +41,9 @@ integration and staging). To access,
 ## Querying
 
 Queries are written using an SQL dialect, [presto](https://prestodb.io/),
-AWS provides [usage documentation][query-language].
+AWS provides [usage documentation][query-language]. GOV.UK indexes use
+[version 1 of the Athena engine][athena-v1], which is based off
+[Presto 0.172][presto-0172].
 
 A basic query could be:
 
@@ -69,6 +71,8 @@ the queries:
 
 [partition]: https://docs.aws.amazon.com/athena/latest/ug/partitions.html
 [query-language]: https://docs.aws.amazon.com/athena/latest/ug/functions-operators-reference-section.html
+[athena-v1]: https://docs.aws.amazon.com/athena/latest/ug/presto-functions.html#presto-functions-env1
+[presto-0172]: https://prestodb.io/docs/0.172/index.html
 
 ## Example Queries
 
