@@ -103,21 +103,22 @@ In [Smart-answers](https://github.com/alphagov/smart-answers):
 
 ### 5. Update Email Alert API
 
-The country's subscription list(s) `title` and `slug` needs to be updated, such as:
+The country may have associated subscriber lists, such as:
 
 * "Publications related to `<country_name>`"
 * "`<country_name>` - travel advice"
 * "`<country_name>`"
 
+The titles of these lists will update automatically the next time a user tries to subscribe. You can force this to happen sooner by pretending to subscribe yourself (just to the point where you select a frequency).
+
+Each subscriber list also has a "slug", which appears in the query params of the last few pages of the signup journey (selecting a frequency and entering an email). You can reset the slug manually as follows:
+
+**WARNING: the slug is used as an ID for the last few pages of the signup journey (e.g. [here](https://github.com/alphagov/email-alert-frontend/blob/784009bfff734003e028e1c0ab36b61d1775a45f/app/controllers/content_item_signups_controller.rb#L33)). When you change the slug, any users currently trying to sign up on the pages will receive a 404.**
+
 1. Run the rake task [data_migration:find_subscriber_list_by_title[title]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:find_subscriber_list_by_title[country_name])
   with the country name to see which subscription lists need to be updated
-2. Run the rake task [data_migration:update_subscriber_list[slug,"new_title",new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list[country_slug,"new_title",new_country_slug])
+2. Run the rake task [data_migration:update_subscriber_list_slug[slug,new_slug]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK=data_migration:update_subscriber_list_slug[country_slug,new_country_slug])
   to update the subscription lists
-
-  > **Note**
-  >
-  > You can test the emails are being sent out correctly in `integration` and `staging`
-    by following [Receive emails from Email Alert API in integration and staging](https://docs.publishing.service.gov.uk/manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html)
 
 ### 6. Remove duplicate search results
 
