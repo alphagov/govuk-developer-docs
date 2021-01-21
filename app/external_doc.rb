@@ -59,17 +59,15 @@ class ExternalDoc
 
         href = element["href"].strip
         uri = URI.parse(href)
-        path = uri.path
 
         next if uri.scheme || href.start_with?("#")
 
-        base = if path.start_with? "/"
-                 base_url
-               else
-                 context[:subpage_url]
-               end
-
-        element["href"] = URI.join(base, href).to_s
+        if href.start_with?("/")
+          # remove preceding "/" to make links relative to the repository
+          # rather than to github.com. This is what GitHub does too.
+          href = href[1..]
+        end
+        element["href"] = URI.join(context[:subpage_url], href).to_s
       end
 
       doc
