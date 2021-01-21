@@ -56,3 +56,35 @@ Annotations on charts show events such as deploys:
 ![screenshot of annotations](/manual/images/grafana-annotations.png)
 
 For more tips, see the [Introduction to Grafana slides](https://docs.google.com/presentation/d/1jza62bRUt8BnyIqKkGP0oaP2X26pI-rooU6ri3YCm5w/edit).
+
+## Fixing N/A in dashboards
+
+When a request for data times out, Grafana will render an "N/A" in the panel.
+Usually refreshing the page or choosing a shorter time range fixes the issue.
+
+If a dashboard consistently returns "N/A", then there may be an underlying issue.
+
+In the failing panel, open Query Inspector, and read the error message for clues:
+
+![screenshot of query inspector](https://trello-attachments.s3.amazonaws.com/5acb8d0387ff12f600df0a13/5fa2aabcd3c6a14f183a4864/67fefdfd06aaaeca84977dcc32abc27f/Screenshot_2020-11-30_at_10.53.20.png)
+
+If you see the following error:
+
+```
+raise CorruptWhisperFile(&quot;Unable to read header&quot;, fh.name) CorruptWhisperFile: Unable to read header (/opt/graphite/storage/whisper/stats/govuk/app/collections-publisher/ip-10-1-5-36/errors_occurred.wsp)
+```
+
+...that suggests the [disk was full at the time of writing to Graphite](https://github.com/graphite-project/carbon/issues/327).
+The solution is to remove the corrupt file, and ensure there is space on the disk.
+
+SSH into the relevant machine and `more errors_occurred.wsp` to see the file contents,
+or `ls -lsa` in the directory to see the file sizes. This should confirm a file size of
+zero.
+
+Delete all empty (corrupt) WSP files with:
+
+```sh
+sudo find /opt/graphite/storage/whisper/ -type f -empty -delete
+```
+
+You should now find the dashboard panels load properly.
