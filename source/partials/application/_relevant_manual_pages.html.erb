@@ -1,0 +1,5 @@
+<ul>
+  <% manual.pages_for_application(application.app_name).each do |page| %>
+    <li><%= link_to page.data.title, page.url %></li>
+  <% end %>
+</ul>
