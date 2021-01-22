@@ -51,6 +51,10 @@ helpers do
   def page_title
     (defined?(locals) && locals[:title]) || [current_page.data.title, current_page.data.section].compact.join(" - ")
   end
+
+  def sanitize(contents)
+    ActionController::Base.helpers.sanitize(contents)
+  end
 end
 
 ignore "templates/*"
