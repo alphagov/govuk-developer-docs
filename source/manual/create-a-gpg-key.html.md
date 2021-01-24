@@ -10,7 +10,7 @@ We use GPG keys to encrypt our secrets. Documentation for using your GPG key can
 
 ## Prerequisites
 
-Install `gpg` if you don't already have it. Use `brew cask install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/).
+Install `gpg` if you don't already have it. Use `brew install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/).
 
 Once installed, you will likely have both `gpg` and `gpg2` on your machine. Always use `gpg2`.
 
