@@ -15,7 +15,7 @@ Our development and deployment pipeline looks like this:
 1. [Wait for Continuous Integration to pass](#wait-for-continuous-integration-to-pass)
 1. [Review your own changes](#review-your-own-changes)
 1. [Get someone to review your Pull Request](#get-someone-to-review-your-pull-request)
-1. [Check if there is a deploy freeze](#check-if-there-is-a-deploy-freeze)
+1. [Check for or implement a deploy freeze](#check-if-there-is-a-deploy-freeze)
 1. [Merge your own Pull Request](#merge-your-own-pull-request)
 1. [Deploy through each of the environments](#deployment)
 
@@ -60,7 +60,7 @@ The GDS Way has guidelines on [how to review code](https://gds-way.cloudapps.dig
 Only when the tests pass and the code has been approved the Pull Request can be merged, since we've
 [configured GitHub to prevent merges](/manual/configure-github-repo.html) otherwise.
 
-## Check if there is a deploy freeze
+## Check for or implement a deploy freeze
 
 In exceptional circumstances, we may wish to block or _freeze_
 deployments for a short period of time. This should be done by
@@ -71,14 +71,19 @@ to the application in the [Release app][release].
 > deployments for the application. You can still deploy urgent
 > changes manually if necessary.
 
+It is important to ensure people are aware of a code freeze.
+
+> Send a message to #govuk-developers on slack with the @channel
+> prefix (to ensure people who are offline are notified) and email
+> <govuk-tech-members@digital.cabinet-office.gov.uk>. Your message
+> should include the repo you are freezing, the reason why, and the
+> expected duration. Follow up to let people know when the freeze
+> is lifted.
+
 When a deploy freeze is in effect, you should avoid merging any PRs.
 This is because your changes may block other, urgent changes related
 to the deploy freeze. Your changes will also remain undeployed for a
 long time.
-
-> People don't always check the Release app before merging their PRs.
-> If you need to freeze deployments for an application, you should
-> also make people aware using other channels.
 
 ## Merge your own Pull Request
 
