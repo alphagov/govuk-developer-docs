@@ -45,7 +45,7 @@ Components:
 
 ## Access
 
-SSH to a random CI machine with `gds govuk connect ssh -e ci ci-agent`.
+SSH to a random CI machine with `gds govuk connect ssh -e integration ci_agent`.
 If you know the agent you want, append `:number` to the end of
 `ci_agent` to go straight to that machine.
 
