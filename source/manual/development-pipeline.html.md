@@ -15,7 +15,7 @@ Our development and deployment pipeline looks like this:
 1. [Wait for Continuous Integration to pass](#wait-for-continuous-integration-to-pass)
 1. [Review your own changes](#review-your-own-changes)
 1. [Get someone to review your Pull Request](#get-someone-to-review-your-pull-request)
-1. [Check for or implement a deploy freeze](#check-if-there-is-a-deploy-freeze)
+1. [Check for or implement a deploy freeze](#check-for-or-implement-a-deploy-freeze)
 1. [Merge your own Pull Request](#merge-your-own-pull-request)
 1. [Deploy through each of the environments](#deployment)
 
