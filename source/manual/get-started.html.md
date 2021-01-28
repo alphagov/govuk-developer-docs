@@ -294,15 +294,24 @@ You're about to use it in the 'Web Console' section below.
 
 #### Web Console
 
-If you're new to GOV.UK and want to look around in integration:
+If you want to look around in integration:
 
 ```bash
 gds aws govuk-integration-readonly -l
 ```
 
-Replace `readonly` with the non-pluralised version of your role name. For example,
-if you want to assume the `govuk-powerusers` role on Staging, you would run
-`gds aws govuk-staging-poweruser -l`.
+If you're new to GOV.UK you'll only be able to use the readonly role.
+
+Users with production access can choose to use more privileged roles:
+
+```bash
+gds aws govuk-integration-readonly -l  # Read only access
+gds aws govuk-integration-poweruser -l # Full access, except for Identity Access Management (IAM)
+gds aws govuk-integration-admin -l     # Full access, including Identity Access Management (IAM)
+```
+
+It is best practice to use the least privileged role you need for your task.
+This reduces the impact if your credentials or session are somehow compromised.
 
 `-l` opens the web browser and logs you in. For a full list of CLI parameters,
 consult the [gds-cli README](https://github.com/alphagov/gds-cli).
