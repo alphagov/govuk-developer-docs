@@ -242,6 +242,19 @@ After your PR has been merged, someone from the `govuk-administrators`
 or `govuk-internal-administrators` group needs to deploy the
 `infra-security` project.
 
+#### Assuming all roles for users with production access
+
+In addition to the previous section's named roles, anyone with production access
+can assume `admin`, `poweruser` and `user` roles. For example, if you want to
+assume a `poweruser` role in `integration`, the role you would specify would be:
+
+- `govuk-integration-poweruser` if using the GDS CLI
+- `your.name-poweruser` if going directly through the AWS Console
+
+More generally, to assume a role directly through the AWS Console, the role you
+specify should be of the form `your.name-<role>`, where role is either `admin`,
+`poweruser` or `user`.
+
 ## 8. Use your AWS access
 
 ### First run
