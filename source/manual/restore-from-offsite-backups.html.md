@@ -23,7 +23,7 @@ On the machine where you want to restore the backup:
 For the backup and restore drill, you will restore and unpack a MySQL database
 on a Vagrant VM.
 
-1. Install Vagrant and VirtualBox with `brew cask install virtualbox vagrant`
+1. Install Vagrant and VirtualBox with `brew install virtualbox vagrant`
 1. In the root of the `govuk-puppet` directory, run `vagrant up mysql-master-1.backend to create a new mySQL VM
 1. Access the new VM with `vagrant ssh mysql-master-1.backend`
 

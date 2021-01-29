@@ -34,7 +34,7 @@ If you get the "this action has been replaced by Puppet Development
 Kit" error, run these commands instead:
 
 ```sh
-$ brew cask install puppetlabs/puppet/pdk
+$ brew install puppetlabs/puppet/pdk
 $ pdk build
 ```
 
