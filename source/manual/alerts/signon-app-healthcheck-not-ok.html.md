@@ -43,16 +43,24 @@ for Publishing API expires in X days*. In this example, the API User is
   Puppet.
 
 > Changes to govuk-secrets do not automatically trigger a Puppet deploy. One
-> way to work around this is to [rebuild the last release][deploy-puppet]. You
-> then need to wait for Puppet to run on each of the affected machines.
+> way to work around this is to [rebuild the last release][deploy-puppet] in the appropriate
+> environment. You then need to wait for Puppet to run on each of the affected machines.
 
-- Check the token is there with `govuk_setenv content-publisher env | grep -i token`
+- Once puppet has been deployed you can check the new token is there by sshing into a machine and running a command such as `govuk_setenv content-publisher env | grep -i TOKEN_YOU_ARE_ROTATING`
 - Check the app can still access the remote application APIs with the new token.
 - Once you're happy the new token works, you can *Revoke* the old one in Signon.
 
 > How to check the new token works depends on the application. One way to check
 > the token works is to manually open a console for the application and call
 > one of the remote APIs using [gds-api-adapters][].
+>
+> For example, to open a console you can run
+>
+> `gds govuk connect -e integration app-console content-data-api`
+>
+> The api call could be something like
+>
+> `GdsApi::SupportApi.new(Plek.new.find("support-api"), bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"])`
 
 Finally, most applications should automatically restart when Puppet updates the
 token on each machine, but you may need to [do this manually][restart-app] so
