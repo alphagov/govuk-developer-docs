@@ -1,7 +1,9 @@
 require "octokit"
 
 class GitHubRepoFetcher
-  include Singleton
+  def self.instance
+    @instance ||= new
+  end
 
   # Fetch a repo from GitHub
   def repo(repo_name)
