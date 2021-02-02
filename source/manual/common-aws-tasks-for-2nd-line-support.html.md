@@ -62,10 +62,11 @@ See these two example PRs:
 * https://github.com/alphagov/govuk-aws-data/pull/819
 
 Once you have put up a PR to change the developer's role, you'll need to assume
-the admin role in order to apply the Terraform change.
+the admin role in order to [apply the Terraform change][].
 
 [assuming all roles for users with production access]: https://docs.publishing.service.gov.uk/manual/get-started.html#assuming-all-roles-for-users-with-production-access
 [govuk-aws-data]: https://github.com/alphagov/govuk-aws-data
+[apply the Terraform change]: https://docs.publishing.service.gov.uk/manual/deploying-terraform.html
 
 ## Troubleshooting
 
@@ -161,11 +162,11 @@ We typically make this change very gradually. The process usually looks like thi
   instance. This will prompt AWS to bring up the new bigger instances
   automatically.
 
-  Be careful here, provisioning a machine is slow, flaky and
-  requires manual intervention (e.g. sometimes we need to manually run puppet
-  on a new instance, must deploy apps to new instances from Jenkins).
-  Check that the new instances are healthy before removing the healthy old
-  instances.
+  Be careful here, [provisioning a machine](#how-are-instances-provisioned) is
+  slow, flaky and requires manual intervention (e.g. sometimes we need to
+  manually run puppet on a new instance, must deploy apps to new instances from
+  Jenkins). Check that the new instances are healthy before removing the
+  healthy old instances.
 
 ## How to scale horizontally
 
@@ -230,6 +231,11 @@ We use [userdata scripts][] to run commands on our instances at launch. These
 scripts install various core bits of software needed by a particular instance
 and then typically use [govuk-puppet][] to provision our instances.
 
+Finally, new instances send Jenkins their Fully Qualified Domain Name (FQDN)
+and puppet class. Jenkins automatically [deploys apps][] to newly provisioned
+instances.
+
 [govuk-aws]: https://github.com/alphagov/govuk-aws
 [userdata scripts]: https://github.com/alphagov/govuk-aws/blob/master/terraform/userdata/20-puppet-client
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
+[deploys apps]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Node_Apps/
