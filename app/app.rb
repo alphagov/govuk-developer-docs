@@ -12,6 +12,7 @@ class App
       dependencies_team: dependencies_team,
       puppet_name: puppet_name,
       production_hosted_on: production_hosted_on,
+      continuously_deployed: continuously_deployed,
       links: {
         self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
         html_url: html_url,
@@ -53,6 +54,10 @@ class App
 
   def hosting_name
     Applications::HOSTERS.fetch(production_hosted_on)
+  end
+
+  def continuously_deployed
+    app_data["continuously_deployed"] || false
   end
 
   def html_url
