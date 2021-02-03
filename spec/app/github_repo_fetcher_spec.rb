@@ -17,27 +17,36 @@ RSpec.describe GitHubRepoFetcher do
     cache
   end
 
+  describe "#instance" do
+    it "acts as a singleton" do
+      expect(GitHubRepoFetcher.instance).to be_a_kind_of(GitHubRepoFetcher)
+      expect(GitHubRepoFetcher.instance).to eq(GitHubRepoFetcher.instance)
+    end
+  end
+
   describe "#repo" do
     it "fetches a repo from cache if it exists" do
       allow(stub_cache).to receive(:fetch).with("all-repos", hash_including(:expires_in)) do
-        [public_repo]
+        some_repo = public_repo
+        allow(some_repo).to receive(:name).and_return("some-repo")
+        [some_repo]
       end
 
-      repo = GitHubRepoFetcher.instance.repo("some-repo")
+      repo = GitHubRepoFetcher.new.repo("some-repo")
 
       expect(repo).not_to be_nil
     end
 
     it "fetches a repo from GitHub if it doesn't exist in the cache" do
       stub_cache
-      repo = GitHubRepoFetcher.instance.repo("some-repo")
+      repo = GitHubRepoFetcher.new.repo("some-repo")
 
       expect(repo).not_to be_nil
     end
 
     it "raises error if no repo is found" do
       expect {
-        GitHubRepoFetcher.instance.repo("something-not-here")
+        GitHubRepoFetcher.new.repo("something-not-here")
       }.to raise_error(StandardError)
     end
   end
@@ -54,7 +63,7 @@ RSpec.describe GitHubRepoFetcher do
     end
 
     it "caches the first response" do
-      allow(GitHubRepoFetcher.instance).to receive(:repo).and_return(public_repo)
+      allow(GitHubRepoFetcher.new).to receive(:repo).and_return(public_repo)
       stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 200, body: "Foo")
 
@@ -63,7 +72,7 @@ RSpec.describe GitHubRepoFetcher do
         outcome = block.call
       end
 
-      GitHubRepoFetcher.instance.readme(repo_name)
+      GitHubRepoFetcher.new.readme(repo_name)
       expect(outcome).to eq("Foo")
       expect(stubbed_request).to have_been_requested.once
     end
@@ -73,19 +82,20 @@ RSpec.describe GitHubRepoFetcher do
       stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 200, body: readme_contents)
 
-      expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(readme_contents)
+      expect(GitHubRepoFetcher.new.readme(repo_name)).to eq(readme_contents)
       remove_request_stub(stubbed_request)
     end
 
     it "retrieves the README content from the repo's default branch" do
       readme_contents = "# temporary-test from different branch"
-      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name) do
+      instance = GitHubRepoFetcher.new
+      allow(instance).to receive(:repo).with(repo_name) do
         OpenStruct.new(default_branch: "latest")
       end
       stubbed_request = stub_request(:get, readme_url.sub("master", "latest"))
         .to_return(status: 200, body: readme_contents)
 
-      expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(readme_contents)
+      expect(instance.readme(repo_name)).to eq(readme_contents)
       remove_request_stub(stubbed_request)
     end
 
@@ -93,14 +103,15 @@ RSpec.describe GitHubRepoFetcher do
       stubbed_request = stub_request(:get, readme_url)
         .to_return(status: 404)
 
-      expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(nil)
+      expect(GitHubRepoFetcher.new.readme(repo_name)).to eq(nil)
       remove_request_stub(stubbed_request)
     end
 
     it "returns nil if the repo is private" do
-      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(private_repo)
+      instance = GitHubRepoFetcher.new
+      allow(instance).to receive(:repo).with(repo_name).and_return(private_repo)
 
-      expect(GitHubRepoFetcher.instance.readme(repo_name)).to eq(nil)
+      expect(instance.readme(repo_name)).to eq(nil)
     end
   end
 
@@ -111,11 +122,11 @@ RSpec.describe GitHubRepoFetcher do
       "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs"
     end
 
-    def with_stubbed_client(temporary_client)
-      before_client = GitHubRepoFetcher.instance.instance_variable_get(:@client)
-      GitHubRepoFetcher.instance.instance_variable_set(:@client, temporary_client)
+    def with_stubbed_client(temporary_client, instance)
+      before_client = instance.instance_variable_get(:@client)
+      instance.instance_variable_set(:@client, temporary_client)
       yield
-      GitHubRepoFetcher.instance.instance_variable_set(:@client, before_client)
+      instance.instance_variable_set(:@client, before_client)
     end
 
     it "returns an array of hashes including title derived from markdown contents" do
@@ -123,11 +134,12 @@ RSpec.describe GitHubRepoFetcher do
       doc_contents = "# title \n Some document"
       doc = double("doc", name: "foo.md", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
 
-      allow(GitHubRepoFetcher.instance).to receive(:latest_commit).and_return(commit)
-      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(public_repo)
+      instance = GitHubRepoFetcher.new
+      allow(instance).to receive(:latest_commit).and_return(commit)
+      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
       allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
-      with_stubbed_client(double("Octokit::Client", contents: [doc])) do
-        expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq([
+      with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
+        expect(instance.docs(repo_name)).to eq([
           {
             title: "title",
             path: "/apps/#{repo_name}/foo.html",
@@ -141,6 +153,7 @@ RSpec.describe GitHubRepoFetcher do
     end
 
     it "skips over any non-markdown files" do
+      instance = GitHubRepoFetcher.new
       api_response = [
         {
           "name": "digests.png",
@@ -149,23 +162,25 @@ RSpec.describe GitHubRepoFetcher do
       ]
       stub_request(:get, docs_url(repo_name))
         .to_return(body: api_response.to_json, headers: { content_type: "application/json" })
-      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(public_repo)
+      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
 
-      expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq([])
+      expect(instance.docs(repo_name)).to eq([])
     end
 
     it "returns nil if no docs folder exists" do
+      instance = GitHubRepoFetcher.new
       stub_request(:get, docs_url(repo_name))
         .to_return(status: 404, body: "{}", headers: { content_type: "application/json" })
-      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(public_repo)
+      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
 
-      expect(GitHubRepoFetcher.instance.docs(repo_name)).to be_nil
+      expect(instance.docs(repo_name)).to be_nil
     end
 
     it "returns nil if the repo is private" do
-      allow(GitHubRepoFetcher.instance).to receive(:repo).with(repo_name).and_return(private_repo)
+      instance = GitHubRepoFetcher.new
+      allow(instance).to receive(:repo).with(repo_name).and_return(private_repo)
 
-      expect(GitHubRepoFetcher.instance.docs(repo_name)).to eq(nil)
+      expect(instance.docs(repo_name)).to eq(nil)
     end
   end
 end
