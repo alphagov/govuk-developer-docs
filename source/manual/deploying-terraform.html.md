@@ -12,14 +12,18 @@ We use [Terraform](https://terraform.io) for configuring GOV.UK infrastructure i
 
 ### 1. Check that you have sufficient access
 
-Which changes you can deploy depends on the level of access you have
-to our AWS environments.
+Which changes you can deploy depends on the role you have assumed
+in our AWS environments.
 
-- `govuk-users` can't deploy anything.
-- `*-powerusers` can deploy anything except IAM.
-- `*-administrators` can deploy anything.
+- `govuk-users` can only assume readonly roles, so cannot apply terraform
+- people with production access can assume `poweruser` roles, which can deploy anything except IAM
+- people with production access can assume `administrator` roles, which can deploy anything
 
-You can find which class of user you are [infra-security project in govuk-aws-data](https://github.com/alphagov/govuk-aws-data/tree/master/data/infra-security).
+You should always use the least privileged role that will let you accomplish
+your task.
+
+Unless your terraform plan needs to make changes to IAM resources, use a
+poweruser role.
 
 ### 2. Install `gds-cli`
 
