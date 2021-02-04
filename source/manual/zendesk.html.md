@@ -66,6 +66,10 @@ can see internal notes, so don’t write anything you wouldn’t say to someone 
 If you need more information from the user, or confirmation that everything is now working as expected, fill
 in the "Public reply" as appropriate and click "Submit as Pending".
 
+## Subject Access Requests
+
+This [Google Doc describes what to do if you receive a Subject Access Request through Zendesk][doc].
+
 ## Closing a ticket
 
 Once you've resolved a ticket, click "Submit as Solved".
@@ -80,3 +84,4 @@ choosing the "GOV.UK 2nd line tech: pending for 5+ days" option.
 [zendesk-create-account]: https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc
 [zendesk-queue]: https://govuk.zendesk.com/agent/filters/360000051009
 [zendesk-triage-diagram]: https://docs.google.com/presentation/d/1EotoM2CVtqlnx54Qz5bP7OyIx5c9ji_GptUuymHkBrc/edit
+[doc]: https://docs.google.com/document/d/1EzlOfMmapcg0IrKZNPqtm-YSmPKrUSNBAk-S2Qk24Uo/edit?usp=sharing
