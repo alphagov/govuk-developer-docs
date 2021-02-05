@@ -29,6 +29,9 @@ The GOV.UK Replatforming team:
 - supports the infrastructure used to run and make changes to GOV.UK
 - handles updates to `*.gov.uk` DNS (excluding `*.publishing.service.gov.uk`)
 - obtains and renews TLS certificates
+
+The GOV.UK RE AUTOM8 team:
+
 - maintains centrally-provided services such as Logit
 
 If you and your colleagues can’t resolve a technical issue, problem or
