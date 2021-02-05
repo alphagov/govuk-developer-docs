@@ -13,13 +13,13 @@ index before the new fields and types can be used.
 
 The reindexing process:
 
-0. Locks the Elasticsearch index to prevent writes to the index while data is
+1. Locks the Elasticsearch index to prevent writes to the index while data is
    being copied
-0. Creates a new index using the schema defined in the deployed version of
+1. Creates a new index using the schema defined in the deployed version of
    search-api
-0. Copies all the data from the old to the new index
-0. Compares the old and new data to check for inconsistencies
-0. If everything looks the same, switches the [alias][index-alias] to the new
+1. Copies all the data from the old to the new index
+1. Compares the old and new data to check for inconsistencies
+1. If everything looks the same, switches the [alias][index-alias] to the new
    index
 
 **You don't need to do this if you have changed the
@@ -36,17 +36,28 @@ indices](#out-of-date-search-indices) section below if you need to run
 a reindexing during working hours. Reindexing takes around 2 hours to
 complete.
 
-To reindex, run the `search:migrate_schema` rake task:
+To reindex, you have two options:
+
+a) If you need to reindex every index you can use the [Search API reindex with new schema] job.
+
+b) If you only need to reindex one specific index you can run a [rake task
+manually], using:
 
 ```
-govuk_setenv search-api bundle exec \
-rake search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate
+search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate
 ```
 
-If you set the last parameter to `SEARCH_INDEX=all`, search-api will reindex all
-the indices sequentially.
+Current index aliases (`alias_of_index_to_migrate`) available to reindex include:
 
-You can also run this task from Jenkins.
+* `govuk`
+* `government`
+* `detailed`
+* `metasearch`
+* `page-traffic`
+* `licence-finder`
+
+[Search API reindex with new schema]: https://deploy.integration.publishing.service.gov.uk/job/search_api_reindex_with_new_schema/
+[rake task manually]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/
 
 To monitor progress, SSH to a search box and check how many documents
 have been copied to the new index:
@@ -104,8 +115,8 @@ This is running in a Jenkins job that clears any index over 7 days old, and will
 
 If you need to cancel the reindexing while it's in progress:
 
-0. Stop the reindexing rake task
-0. Unlock the old index by running the search-api rake task:
+1. Stop the reindexing rake task
+1. Unlock the old index by running the search-api rake task:
 
     ```
     govuk_setenv search-api bundle exec \
@@ -123,14 +134,14 @@ If you need to stop the reindexing process itself, for example because
 Elasticsearch is about to run out of disk space, connect to the
 search box (see above) then:
 
-0. Find the ID of the reindexing task:
+1. Find the ID of the reindexing task:
 
     ```
     govuk_setenv search-api \
     bash -c 'curl "$ELASTICSEARCH_URI/_tasks?actions=%2Areindex&pretty"'
     ```
 
-0. Stop the task:
+1. Stop the task:
 
     ```
     govuk_setenv search-api \
