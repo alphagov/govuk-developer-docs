@@ -18,13 +18,13 @@ RSpec.describe App do
     end
   end
 
-  describe "continuously_deployed" do
+  describe "continuously_deployed?" do
     it "defaults to `false`" do
-      expect(App.new("github_repo_name" => "foo").continuously_deployed).to eq(false)
+      expect(App.new("github_repo_name" => "foo").continuously_deployed?).to eq(false)
     end
 
     it "returns `continuously_deployed` property if specified" do
-      expect(App.new("github_repo_name" => "foo", "continuously_deployed" => true).continuously_deployed).to eq(true)
+      expect(App.new("github_repo_name" => "foo", "continuously_deployed" => true).continuously_deployed?).to eq(true)
     end
   end
 
