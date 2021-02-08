@@ -67,6 +67,23 @@ gds govuk connect ssh -e production aws/<%= application.aws_puppet_class %>
 ```
 <% end %>
 
+## Deployment
+<% if application.continuously_deployed? %>
+
+This app is Continuously Deployed.
+
+However, you should always [check the Release app](https://docs.publishing.service.gov.uk/manual/development-pipeline.html#continuous-deployment) to see whether Continuous Deployment has been temporarily disabled, or whether this app is subject to a code freeze.
+
+<% elsif application.hosting_name != "None" %>
+
+This app is deployed manually.
+
+<% else %>
+
+N/A
+
+<% end %>
+
 <% if application.can_run_rake_tasks_in_jenkins? %>
 ## Run a rake task
 
