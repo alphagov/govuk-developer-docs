@@ -175,6 +175,14 @@ to reboot overnight:
 $ fab $environment -H $hostname mongo.step_down_primary
 ```
 
+Example:
+
+```shell
+$ fab aws_production -H ip-127-0-0-11.eu-west-1.compute.internal mongo.step_down_primary
+```
+
+(note that the example IP is fake)
+
 The general approach for rebooting machines in a MongoDB cluster is:
 
 * Check cluster status with `fab $environment -H $hostname mongo.status`
