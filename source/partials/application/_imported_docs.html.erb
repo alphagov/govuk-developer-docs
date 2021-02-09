@@ -1,5 +1,6 @@
-<ul>
-  <% imported_docs.each do |page| %>
-    <li><%= link_to page[:title], page[:path] %></li>
-  <% end %>
-</ul>
+<%= GovukPublishingComponents.render(
+  "govuk_publishing_components/components/list",
+  items: imported_docs.map do |page|
+    "<a href=\"#{page[:path]}\" class=\"govuk-link\">#{page[:title]}</a>"
+  end
+) %>

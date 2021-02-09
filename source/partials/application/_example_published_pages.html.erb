@@ -1,10 +1,11 @@
-<ul>
-  <% absolute_path = Regexp.new('^([a-z]+://|//)') %>
-  <% application.example_published_pages.each do |example| %>
-    <% if absolute_path.match(example['link']) %>
-      <li><%= link_to example['title'], "#{example['link']}" %></li>
-    <% else %>
-      <li><%= link_to example['title'], "https://www.gov.uk#{example['link']}" %></li>
-    <% end %>
-  <% end %>
-</ul>
+<% absolute_path = Regexp.new('^([a-z]+://|//)') %>
+<%= GovukPublishingComponents.render(
+  "govuk_publishing_components/components/list",
+  items: application.example_published_pages.map do |example|
+    if absolute_path.match(example['link'])
+      "<a href=\"#{example['link']}\" class=\"govuk-link\">#{example['title']}</a>"
+    else
+      "<a href=\"https://www.gov.uk#{example['link']}\" class=\"govuk-link\">#{example['title']}</a>"
+    end
+  end
+) %>
