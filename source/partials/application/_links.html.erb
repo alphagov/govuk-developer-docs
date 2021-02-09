@@ -1,41 +1,41 @@
 <ul>
   <% if application.sentry_url %>
-    <li><%= link_to "Sentry (error tracking)", application.sentry_url %></li>
+    <li><%= link_to "Sentry (error tracking)", application.sentry_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.management_url %>
-    <li><%= link_to "Manage application", application.management_url %></li>
+    <li><%= link_to "Manage application", application.management_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.puppet_url %>
-    <li><%= link_to "Puppet configuration", application.puppet_url %></li>
+    <li><%= link_to "Puppet configuration", application.puppet_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.deploy_url %>
-    <li><%= link_to "Deploy scripts", application.deploy_url %></li>
+    <li><%= link_to "Deploy scripts", application.deploy_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.dashboard_url %>
-    <li><%= link_to "Deployment dashboard", application.dashboard_url %></li>
+    <li><%= link_to "Deployment dashboard", application.dashboard_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.publishing_e2e_tests_url %>
-    <li><%= link_to "Publishing E2E scenarios", application.publishing_e2e_tests_url %> (warning: not all apps have E2E tests)</li>
+    <li><%= link_to "Publishing E2E scenarios", application.publishing_e2e_tests_url, class: "govuk-link" %> (warning: not all apps have E2E tests)</li>
   <% end %>
 
   <% if application.api_docs_url %>
-    <li><%= link_to "API docs", application.api_docs_url %></li>
+    <li><%= link_to "API docs", application.api_docs_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.component_guide_url %>
-    <li><%= link_to "Component guide", application.component_guide_url %></li>
+    <li><%= link_to "Component guide", application.component_guide_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.metrics_dashboard_url %>
-    <li><%= link_to "Metrics dashboard", application.metrics_dashboard_url %></li>
+    <li><%= link_to "Metrics dashboard", application.metrics_dashboard_url, class: "govuk-link" %></li>
   <% end %>
 
   <% if application.production_url %>
-    <li><%= link_to application.production_url.gsub('https://', ''), application.production_url %></li>
+    <li><%= link_to application.production_url.gsub('https://', ''), application.production_url, class: "govuk-link" %></li>
   <% end %>
 </ul>

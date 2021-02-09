@@ -1,5 +1,6 @@
-<ul>
-  <% manual.pages_for_application(application.app_name).each do |page| %>
-    <li><%= link_to page.data.title, page.url %></li>
-  <% end %>
-</ul>
+<%= GovukPublishingComponents.render(
+  "govuk_publishing_components/components/list",
+  items: manual.pages_for_application(application.app_name).map do |page|
+    "<a href=\"#{page.url}\" class=\"govuk-link\">#{page.data.title}</a>"
+  end
+) %>
