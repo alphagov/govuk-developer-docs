@@ -1,0 +1,17 @@
+<% if application.private_repo? %>
+  <span class="govuk-error-message">
+    Cannot fetch README of private repo.
+  </span>
+<% elsif ENV["GITHUB_TOKEN"].nil? %>
+  <span class="govuk-error-message">
+    Cannot fetch README without `GITHUB_TOKEN`.
+  </span>
+<% elsif application.readme.nil? %>
+  <span class="govuk-error-message">
+    This repo doesn't have a README.md file.
+  </span>
+<% else %>
+  <div class="embedded-readme">
+    <%= ExternalDoc.parse(application.readme, repository: application.github_repo_name, path: "./README.md") %>
+  </div>
+<% end %>

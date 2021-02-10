@@ -1,0 +1,6 @@
+<%= GovukPublishingComponents.render(
+  "govuk_publishing_components/components/list",
+  items: imported_docs.map do |page|
+    "<a href=\"#{page[:path]}\" class=\"govuk-link\">#{page[:title]}</a>"
+  end
+) %>

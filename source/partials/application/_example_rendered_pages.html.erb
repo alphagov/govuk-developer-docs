@@ -1,0 +1,6 @@
+<%= GovukPublishingComponents.render(
+  "govuk_publishing_components/components/list",
+  items: application.example_rendered_pages.map do |example|
+    "<a href=\"https://www.gov.uk#{example['link']}\" class=\"govuk-link\">#{example['title']}</a>"
+  end
+) %>

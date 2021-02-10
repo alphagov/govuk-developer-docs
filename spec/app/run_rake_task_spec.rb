@@ -39,4 +39,32 @@ RSpec.describe RunRakeTask do
       end
     end
   end
+
+  describe "#terse_links" do
+    subject(:html) do
+      Capybara.string(described_class.terse_links(application))
+    end
+
+    describe "given an application instance" do
+      let(:application) do
+        App.new(
+          "github_repo_name" => "content-publisher",
+          "machine_class" => "backend",
+          "production_hosted_on" => "aws",
+        )
+      end
+
+      it "has three links" do
+        expect(html).to have_link("Integration", href: "https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=")
+        expect(html).to have_link("Staging", href: "https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=")
+        expect(html).to have_link("Production", href: "https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=")
+      end
+
+      it "has aria labels that describe the links in isolation" do
+        expect(html.find_link("Integration")["aria-label".to_sym]).to eq("Run a Rake task on Integration")
+        expect(html.find_link("Staging")["aria-label".to_sym]).to eq("Run a Rake task on Staging")
+        expect(html.find_link("Production")["aria-label".to_sym]).to eq("Run a Rake task on Production")
+      end
+    end
+  end
 end
