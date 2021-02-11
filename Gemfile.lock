@@ -116,7 +116,7 @@ GEM
       sentry-raven (~> 3.1.1)
       statsd-ruby (~> 1.5.0)
       unicorn (>= 5.4, < 5.9)
-    govuk_publishing_components (23.15.0)
+    govuk_publishing_components (24.1.0)
       govuk_app_config
       kramdown
       plek
@@ -238,6 +238,7 @@ GEM
       rouge (~> 2.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.0)
     minitest (5.14.3)
     mixlib-cli (2.1.8)
     mixlib-config (3.0.9)
@@ -247,6 +248,9 @@ GEM
     multi_json (1.15.0)
     multipart-post (2.1.1)
     nio4r (2.5.5)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     nokogiri (1.11.1-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.11.1-x86_64-linux)
@@ -402,6 +406,7 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  ruby
   x86_64-darwin-18
   x86_64-linux
 
@@ -412,7 +417,7 @@ DEPENDENCIES
   faraday_middleware
   ffi
   git
-  govuk_publishing_components (~> 23.0)
+  govuk_publishing_components (~> 24.1)
   govuk_schemas
   govuk_tech_docs
   html-pipeline
