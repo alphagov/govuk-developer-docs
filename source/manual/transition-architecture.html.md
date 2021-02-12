@@ -136,12 +136,13 @@ to the machines when Bouncer is deployed.
 
 #### HTTPS support for transitioned sites
 
-Bouncer does not support HTTPS for transitioned sites. This functionality is under
-investigation as of December 2018. This limitation should be investigated as part
-of any site transition, especially if the existing site uses HSTS to force secure
-connections.
+Bouncer in late 2020 began supporting HTTPS for transitioned sites, through
+a new feature in Fastly.
+
+Follow the guidance to [request a Fastly TLS certificate][].
 
 [Bouncer]: /apps/bouncer.html
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [Bouncer_CDN job]: https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/
 [hosts from transition]: https://transition.publishing.service.gov.uk/hosts.json
+[request a Fastly TLS certificate]: /request-fastly-tls-certificate.html
