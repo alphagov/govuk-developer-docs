@@ -49,7 +49,7 @@ The [content_data_api job][content_data_api_job] runs at:
 
 * [7am in production][cron_production]
 * [11am in staging][cron_staging]
-* [1pm in integration][cron_integration] 
+* [1pm in integration][cron_integration]
 
 These jobs are spread out for rate limiting reasons, and production is run
 outside of normal hours so as not to impact database performance during the day.
@@ -151,6 +151,33 @@ To fix this problem run the [following rake task][4]:
 For problems in the ETL process, you can check the output in [Jenkins][1].
 
 You can also check for any errors in [Sentry][7] or the [logs in kibana][8]
+
+#### sidekiq_retry_size is above the warning threshold
+
+We have an ongoing issue where occasionally a Whitehall document is not successfully
+updated in the database, returning with a database conflict error.
+In the `content-data-api` you may find the first content item is (incorrectly)
+still considered `live: true`, and that the second content item doesn't exist.
+
+We are [notified of this error through Sentry](https://sentry.io/organizations/govuk/issues/1905340462/events/45b36be8d1054e3fa69e9e88085cb8d5/?project=1461890) as well as a `warning` Icinga
+alert on the `content-data-api` healthcheck, specifically that `sidekiq_retry_size
+- warning - 3 is above the warning threshold (1)` because `content-data-api` is
+unable to pull in data.
+
+To fix this and get the data successfully pulled into `content-data-api` you can
+apply this manual fix:
+
+```
+Dimensions::Edition.where(content_id: "b6a2a286-8669-4cbe-a4ad-7997608598d2")
+  .last
+  .update!(live: false, schema_name: "gone", document_type: "gone")
+```
+You can get the `base url` from the Sentry error and query the database for the
+`content_id`.
+
+Then the next time the Sidekiq worker runs, it should successfully be able to add
+the new content item.
+
 
 [1]: https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/
 [2]: https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32
