@@ -22,7 +22,37 @@ This job has two parts:
    updated.
 
 If the job fails or gets stuck in part 1, you can cancel it and leave
-it to run the next day.
+it to run the next day. If you see in the Jenkins job output:
+
+```sh
+$ jenkins.util.io.CompositeIOException: Unable to delete '/var/lib/jenkins/workspace/search-api-fetch-analytics-data'.
+```
+
+The job runs a Docker container which uses `root`, and if it fails the
+files don't get cleaned up properly. You can check by running the following
+command on the machine:
+
+```sh
+$ sudo su - jenkins
+$ ls -al /var/lib/jenkins/workspace/search-api-fetch-analytics-data
+```
+
+```sh
+total 20
+drwxr-xr-x  5 jenkins jenkins 4096 Dec 31 21:17 .
+drwxr-xr-x 78 jenkins jenkins 4096 Feb 15 14:18 ..
+drwxr-xr-x  4 jenkins jenkins 4096 Dec 31 21:17 analytics_fetcher
+drwxr-xr-x  2 root    root    4096 Dec 23 04:10 cache
+drwxr-xr-x  3 jenkins jenkins 4096 Dec 31 21:17 gapy
+```
+
+They can be removed by running:
+
+```sh
+$ sudo rm -r /var/lib/jenkins/workspace/search-api-fetch-analytics-data
+```
+
+The job should hopefully run successfully overnight.
 
 If the job fails or gets stuck in part 2, the search indices may still
 be locked.  If that's the case, documents will be missing from search.
