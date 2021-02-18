@@ -27,11 +27,6 @@ These rules apply to developers in the GOV.UK programme and SREs in the TechOps 
 - Supervised access after second shadow shift and probation has been passed (probation condition does not apply to SREs in TechOps)
 - Permanent access once a non-shadow 2nd line shift has been completed
 
-The above is caveated by a minimum of SC (yellow building pass) security
-clearance, or an application in-process for a suitable level of clearance. This
-in line with [GDS' general policy that all staff have SC
-clearance](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/recruitment).
-
 "Supervised" means "we trust you, but just be extra careful," and the dev should
 ensure they're getting necessary and appropriate support from their team and
 tech lead during this time. The tech lead of the mission team is responsible for
