@@ -287,7 +287,8 @@ If you forget your `aws-vault` password:
 
 ### Get Your Role
 
-Work out which [list of users you're part of in govuk-aws-data][govuk-aws-data-users-group].
+Work out which [list of users you're part of in govuk-aws-data](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars).
+If you're not part of any lists, add yourself to the appropriate list (or get someone in your team to do it).
 You're about to use it in the 'Web Console' section below.
 
 ### Usage
