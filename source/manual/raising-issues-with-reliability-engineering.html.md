@@ -6,44 +6,28 @@ layout: manual_layout
 section: 2nd line
 ---
 
-Reliability Engineering are a programme in GDS, they are responsible for the
-infrastructure that most GDS software runs on and the underlying network
-configuration. They also provide shared software services used by
-various GDS programmes such as logging and monitoring tools.
-
-When on 2nd line you may experience an issue with GOV.UK that requires asking the RE GOV.UK team in Reliability Engineering for assistance.
+When on 2nd line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they work as part of the Replatforming team. It is best to use RE GOV.UK channels for communication.
 
 There are [Reliability Engineering docs](https://reliability-engineering.cloudapps.digital/) for users of their systems. There are also [other Reliability Engineering docs](https://re-team-manual.cloudapps.digital/) for use by the team, these may contain more technical details.
 
 ## If you require urgent assistance
 
-The RE GOV.UK have a Slack channel - #re-govuk - and they
-have an assigned interruptible person. By posting in that channel you can get
-their attention. This channel can be used for general queries too so do
+Contact GOV.UK SREs have a slack channel - #re-govuk.
+By posting in that channel you can get their attention. This channel can be used for general queries too so do
 indicate in your message that a problem is time critical.
-
-Failing slack communication you can also walk over to the RE GOV.UK team desks and talk to the interruptible person directly - they are currently on the 6th floor near bank 27-28.
 
 It is also possible to "Run a Play" in the context of an ongoing incident page in PagerDuty. This will automatically call the RE engineer on duty both in- and out-of-hours.
 
 ## If you need to handover a long-standing incident
 
-If this is in-hours:
-A Site Reliabilty Engineer from the RE GOV.UK team should take over the incident lead role.
-A 2nd line GOV.UK engineer will continue the comms lead role.
+If this is in-hours: An Site Reliabilty Engineer from the RE GOV.UK team should take over the incident lead role. A 2nd line GOV.UK engineer will continue the comms lead role.
+If this is out-of-hours: The primary GOV.UK engineer should be the incident lead. The secondary GOV.UK engineer should be the comms lead.
 
-If this is out-of-hours:
-The primary GOV.UK engineer should be the incident lead and support the RE GOV.UK out of hours engineer to fix the problem. The secondary GOV.UK engineer should be the comms lead.
-
-To escalate an incident to the RE GOV.UK engineer via PagerDuty:
-
-1. Click on the incident in PagerDuty
-2. Click on ‘Run a play’ to select ‘call the RE GOV.UK on-call person’
+There is no longer an RE GOV.UK out of hours rota. GOV.UK engineers on the in-hours and out of hours rotas should have all access and documentation required to address any issues.
 
 ## If a problem is not urgent
 
-You can use the #reliability-eng slack channel for advice. If the issue you've
-identified seems like a non-urgent story you can add it the
+If the issue you've identified seems like a non-urgent story you can add it the
 [GOV.UK 2nd Line][2nd-line-trello] trello board in the "Proposed stories for
 Platform Health" column. Platform Health will then decide whether to raise this
 with RE, and manage the ticket through its life cycle, or to resolve this
