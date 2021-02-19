@@ -137,7 +137,7 @@ is the recommended way to reboot a cache machine:
 
 ```
 cd govuk-puppet
-gds govuk-integration-poweruser -- ./tools/reboot-cache-instances.sh -e integration ip-1-2-3-4.eu-west-1.compute.internal
+gds aws govuk-integration-poweruser -- ./tools/reboot-cache-instances.sh -e integration ip-1-2-3-4.eu-west-1.compute.internal
 ```
 
 The tool takes an environment and a private DNS name, which are provided by the
