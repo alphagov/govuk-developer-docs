@@ -40,7 +40,7 @@ comments:
 1. Recreate the PostgreSQL cluster
 
    ```sh
-   $ sudo pg_dropcluster --stop 9.3 main; sudo pg_createcluster 9.3 main
+   $ sudo pg_dropcluster --stop 9.6 main; sudo pg_createcluster 9.6 main
    ```
 
 1. Run Puppet
