@@ -189,22 +189,16 @@ LIMIT 50
 SELECT
     DATE(request_received),
     COUNT(*) AS hits,
-
-                             SUM(CASE tls_client_protocol WHEN 'TLSv1'   THEN 1 ELSE 0 END) AS TLSv10,
-    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1'   THEN 1 ELSE 0 END), 4) AS TLSv10_perc,
-
-                             SUM(CASE tls_client_protocol WHEN 'TLSv1.1' THEN 1 ELSE 0 END) AS TLSv11,
-    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1.1' THEN 1 ELSE 0 END), 4) AS TLSv11_perc,
-
-                             SUM(CASE tls_client_protocol WHEN 'TLSv1.2' THEN 1 ELSE 0 END) AS TLSv12,
-    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1.2' THEN 1 ELSE 0 END), 4) AS TLSv12_perc,
-
-                             SUM(CASE tls_client_protocol WHEN 'TLSv1.3' THEN 1 ELSE 0 END) AS TLSv13,
-    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1.3' THEN 1 ELSE 0 END), 4) AS TLSv13_perc,
-
-                             SUM(CASE tls_client_protocol WHEN '' THEN 1 ELSE 0 END) AS unknown,
-    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN '' THEN 1 ELSE 0 END), 4) AS unknown_perc
-
+                             COUNT_IF(tls_client_protocol = 'TLSv1')       AS TLSv10,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(tls_client_protocol = 'TLSv1'), 4)   AS TLSv10_perc,
+                             COUNT_IF(tls_client_protocol = 'TLSv1.1')     AS TLSv11,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(tls_client_protocol = 'TLSv1.1'), 4) AS TLSv11_perc,
+                             COUNT_IF(tls_client_protocol = 'TLSv1.2')     AS TLSv12,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(tls_client_protocol = 'TLSv1.2'), 4) AS TLSv12_perc,
+                             COUNT_IF(tls_client_protocol = 'TLSv1.3')     AS TLSv13,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(tls_client_protocol = 'TLSv1.3'), 4) AS TLSv13_perc,
+                             COUNT_IF(tls_client_protocol = '')            AS unknown,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(tls_client_protocol = ''), 4)        AS unknown_perc
 FROM fastly_logs.govuk_www
 WHERE fastly_backend != 'force_ssl'
 GROUP BY DATE(request_received)
@@ -241,18 +235,16 @@ SELECT hit_date, hits, tor_hits, 100.0/hits*tor_hits AS tor_perc FROM (
 SELECT
     date_trunc('minute', request_received) AS min,
     COUNT(*) AS hits,
-
-                             SUM(CASE cache_response WHEN 'HIT'   THEN 1 ELSE 0 END)     AS hit_cnt,
-    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'HIT'   THEN 1 ELSE 0 END), 4) AS hit_pc,
-                             SUM(CASE cache_response WHEN 'MISS'  THEN 1 ELSE 0 END)     AS miss_cnt,
-    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'MISS'  THEN 1 ELSE 0 END), 4) AS miss_pc,
-                             SUM(CASE cache_response WHEN 'ERROR' THEN 1 ELSE 0 END)     AS error_cnt,
-    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'ERROR' THEN 1 ELSE 0 END), 4) AS error_pc,
-                             SUM(CASE cache_response WHEN 'PASS'  THEN 1 ELSE 0 END)     AS pass_cnt,
-    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'PASS'  THEN 1 ELSE 0 END), 4) AS pass_pc,
-                             SUM(CASE cache_response WHEN 'SYNTH' THEN 1 ELSE 0 END)     AS synth_cnt,
-    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'SYNTH' THEN 1 ELSE 0 END), 4) AS synth_pc
-
+                             COUNT_IF(cache_response = 'HIT')       AS hit_cnt,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response = 'HIT'), 4)   AS hit_pc,
+                             COUNT_IF(cache_response = 'MISS')      AS miss_cnt,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response = 'MISS'), 4)  AS miss_pc,
+                             COUNT_IF(cache_response = 'ERROR')     AS error_cnt,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response = 'ERROR'), 4) AS error_pc,
+                             COUNT_IF(cache_response = 'PASS')      AS pass_cnt,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response = 'PASS'), 4)  AS pass_pc,
+                             COUNT_IF(cache_response = 'SYNTH')     AS synth_cnt,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response = 'SYNTH'), 4) AS synth_pc
 FROM fastly_logs.govuk_www
 WHERE year = 2021 AND month = 1 AND date = X
 GROUP BY 1
@@ -265,10 +257,10 @@ ORDER BY 1 ASC;
 SELECT
     date_trunc('second', request_received) AS period,
     COUNT(*) AS total_requests,
-                             SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END)     AS cache_hits,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3) AS cache_hit_pc,
-                             SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END)         AS cache_misses,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3)     AS cache_miss_pc
+                             COUNT_IF(cache_response NOT IN ('PASS', 'MISS'))     AS cache_hits,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response NOT IN ('PASS', 'MISS')), 3) AS cache_hit_pc,
+                             COUNT_IF(cache_response IN ('PASS', 'MISS'))         AS cache_misses,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response IN ('PASS', 'MISS')), 3)     AS cache_miss_pc
 FROM fastly_logs.govuk_www
 WHERE year = 2021 AND month = 1 AND date = X
 GROUP BY 1
@@ -314,12 +306,12 @@ SELECT
     date_trunc('minute', request_received) AS period,
     COUNT(*) AS total_requests,
     -- unique IP / user agent combinations
-    COUNT(DISTINCT ROW(client_ip, user_agent)) AS total_ip_aus,
+    COUNT(DISTINCT ROW(client_ip, user_agent)) AS total_ip_uas,
     -- cache hit rates
-                             SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END)     AS cache_hits,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3) AS cache_hit_pc,
-                             SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END)         AS cache_misses,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3)     AS cache_miss_pc,
+                             COUNT_IF(cache_response NOT IN ('PASS', 'MISS'))     AS cache_hits,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response NOT IN ('PASS', 'MISS')), 3) AS cache_hit_pc,
+                             COUNT_IF(cache_response IN ('PASS', 'MISS'))         AS cache_misses,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response IN ('PASS', 'MISS')), 3)     AS cache_miss_pc,
     -- mean and summed request time
     ROUND(AVG(request_time), 5) AS average_rq_time,
     CAST(ROUND(SUM(request_time)) AS INTEGER) AS total_rq_time,
@@ -344,18 +336,18 @@ ORDER BY 2 DESC;
 SELECT
     date_trunc('minute', request_received) AS period,
     COUNT(*) AS total_requests,
-                             SUM(CASE WHEN status / 100 = 2 THEN 1 ELSE 0 END)     AS s2xx,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 2 THEN 1 ELSE 0 END), 3) AS s2xx_pc,
-                             SUM(CASE WHEN status / 100 = 3 THEN 1 ELSE 0 END)     AS s3xx,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 3 THEN 1 ELSE 0 END), 3) AS s3xx_pc,
-                             SUM(CASE WHEN status / 100 = 4 THEN 1 ELSE 0 END)     AS s4xx,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 4 THEN 1 ELSE 0 END), 3) AS s4xx_pc,
-                             SUM(CASE WHEN status / 100 = 5 THEN 1 ELSE 0 END)     AS s5xx,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 5 THEN 1 ELSE 0 END), 3) AS s5xx_pc,
-                             SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END)     AS cache_hits,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3) AS cache_hit_pc,
-                             SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END)         AS cache_misses,
-    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3)     AS cache_miss_pc
+                             COUNT_IF(status / 100 = 2)     AS s2xx,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(status / 100 = 2), 3) AS s2xx_pc,
+                             COUNT_IF(status / 100 = 3)     AS s3xx,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(status / 100 = 3), 3) AS s3xx_pc,
+                             COUNT_IF(status / 100 = 4)     AS s4xx,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(status / 100 = 4), 3) AS s4xx_pc,
+                             COUNT_IF(status / 100 = 5)     AS s5xx,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(status / 100 = 5), 3) AS s5xx_pc,
+                             COUNT_IF(cache_response NOT IN ('PASS', 'MISS'))     AS cache_hits,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response NOT IN ('PASS', 'MISS')), 3) AS cache_hit_pc,
+                             COUNT_IF(cache_response IN ('PASS', 'MISS'))         AS cache_misses,
+    ROUND(100.0 / COUNT(*) * COUNT_IF(cache_response IN ('PASS', 'MISS')), 3)     AS cache_miss_pc
 FROM fastly_logs.govuk_www
 WHERE year = 2021 AND month = 1 AND date = X
 GROUP BY 1
@@ -378,10 +370,10 @@ FROM (
   SELECT
     date_trunc('minute', request_received) AS minute,
     COUNT(*) AS total_requests,
-    SUM(CASE WHEN status BETWEEN 200 AND 499 THEN 1 ELSE 0 END) AS successful_requests,
-    100.0 / COUNT(*) * SUM(CASE WHEN status BETWEEN 200 AND 499 THEN 1 ELSE 0 END) AS availability
+    COUNT_IF(status BETWEEN 200 AND 499) AS successful_requests,
+    100.0 / COUNT(*) * COUNT_IF(status BETWEEN 200 AND 499) AS availability
   FROM fastly_logs.govuk_www
-  WHERE year = 2021 AND month = 1 AND date >= X AND date <= Y
+  WHERE year = 2021 AND month = 1 AND date >= 12 AND date <= 12
     AND user_agent NOT LIKE 'GOV.UK Crawler Worker%'
     AND request_received > TIMESTAMP '2021-01-12 15:00:00'
   GROUP BY date_trunc('minute', request_received)
@@ -419,15 +411,24 @@ REPLACE(REPLACE(SPLIT_PART(url, '?', 1), '/www.gov.uk', ''), '.html', '') AS url
 
 ### Count cases of a thing
 
+If you want straight counts, use
+[`COUNT_IF`](https://docs.data.world/documentation/sql/reference/aggregations/count_if.html).
+E.g.:
+
 ```sql
-SUM(CASE WHEN ... THEN 1 ELSE 0 END)
+COUNT_IF(status BETWEEN 200 AND 499)
+```
+
+If you want to sum other values, rather than using a straight count, you can use a `CASE` inside a `SUM`:
+
+```sql
+SUM(CASE WHEN ... THEN true_value ELSE false_value END)
 ```
 
 E.g.
 
 ```sql
-COUNT(*) AS total_requests,
-SUM(CASE WHEN status BETWEEN 200 AND 499 THEN 1 ELSE 0 END) AS successful_requests
+SUM(CASE WHEN status BETWEEN 200 AND 499 THEN request_time ELSE 0 END)
 ```
 
 ## Adding a new field to the CDN logs
