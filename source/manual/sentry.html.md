@@ -224,3 +224,46 @@ are configured in the [Alerts panel][].
 
 [Alerts panel]: https://sentry.io/organizations/govuk/alerts/rules/
 [sentry-configure-rate-limits]: https://sentry.io/settings/govuk/rate-limits/
+
+## Sentry issue actions
+
+In the Sentry UI, you can merge related issues together, resolve issues, or
+ignore issues (permanently or for a set time period).
+
+### Merging Sentry issues
+
+Duplicate issues can be merged by going into the project view, checking the
+boxes associated with each issue, and clicking "Merge". This should be done very
+carefully, as issues cannot be unmerged once they are merged, and the issues are
+often subtly different and warrant being separate issues. For example, they may
+have the same exception type but occur in different transactions, so require two
+separate fixes.
+
+To find out why Sentry has treated two issues as separate, visit each issue and
+scroll to the bottom of the page to see the "Event grouping information".
+
+### Resolving an issue
+
+When you know you've fixed the underlying issue, you should
+[comment on the issue][anchor-comment] explaining what you've done, and then
+click the "Resolve" button. This removes it from the default Sentry UI, making it
+less noisy, but also has the advantage of marking it as a regression and emailing
+you if the issue occurs again.
+
+### Ignoring an issue
+
+When you've identified an issue and written it up as a Trello card, or are
+actively working on fixing it, it can be unhelpful for the issue to keep
+accumulating events (and potentially spamming your Slack channel). In these cases,
+you should [comment on the issue][anchor-comment] with a link to your card or PR,
+then ignore the issue. You should also set the "Assignee" to yourself.
+
+You can either click "Ignore" to ignore it permanently, or click the arrow next to
+it to ignore for a set time, e.g. 1 week. You can also un-ignore an issue later.
+
+### Commenting on an issue
+
+[anchor-comment]: #commenting-on-an-issue
+
+Click on the issue, then on the "Activity" tab, where you can leave a comment.
+Comments support markdown.
