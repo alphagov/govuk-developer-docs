@@ -14,4 +14,12 @@ To scale Mapit, follow these steps:
 
 1. [Deploy the Terraform](/manual/deploying-terraform.html).
 
+1. Install the virtualenv by running the following on each new instance:
+
+   ```
+   sudo pip3.6 install setuptools virtualenv pip gunicorn --upgrade
+   sudo rm -rf /data/apps/mapit/shared/venv3
+   sudo -H -u deploy virtualenv /data/apps/mapit/shared/venv3 -p python3.6
+   ```
+
 1. [Make the Mapit database available to each machine](/manual/mapit-database-not-available.html).
