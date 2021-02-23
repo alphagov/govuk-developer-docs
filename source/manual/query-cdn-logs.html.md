@@ -183,6 +183,253 @@ ORDER BY count DESC
 LIMIT 50
 ```
 
+### TLS versions over time
+
+```sql
+SELECT
+    DATE(request_received),
+    COUNT(*) AS hits,
+
+                             SUM(CASE tls_client_protocol WHEN 'TLSv1'   THEN 1 ELSE 0 END) AS TLSv10,
+    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1'   THEN 1 ELSE 0 END), 4) AS TLSv10_perc,
+
+                             SUM(CASE tls_client_protocol WHEN 'TLSv1.1' THEN 1 ELSE 0 END) AS TLSv11,
+    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1.1' THEN 1 ELSE 0 END), 4) AS TLSv11_perc,
+
+                             SUM(CASE tls_client_protocol WHEN 'TLSv1.2' THEN 1 ELSE 0 END) AS TLSv12,
+    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1.2' THEN 1 ELSE 0 END), 4) AS TLSv12_perc,
+
+                             SUM(CASE tls_client_protocol WHEN 'TLSv1.3' THEN 1 ELSE 0 END) AS TLSv13,
+    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN 'TLSv1.3' THEN 1 ELSE 0 END), 4) AS TLSv13_perc,
+
+                             SUM(CASE tls_client_protocol WHEN '' THEN 1 ELSE 0 END) AS unknown,
+    ROUND(100.0 / COUNT(*) * SUM(CASE tls_client_protocol WHEN '' THEN 1 ELSE 0 END), 4) AS unknown_perc
+
+FROM fastly_logs.govuk_www
+WHERE fastly_backend != 'force_ssl'
+GROUP BY DATE(request_received)
+ORDER BY DATE(request_received) ASC;
+```
+
+### Requests from Tor exit nodes
+
+```sql
+-- Tor exit node list from https://www.dan.me.uk/torlist/?exit
+-- Tor nodes change regularly: the longer back in time you query, the less accurate it will be
+SELECT hit_date, hits, tor_hits, 100.0/hits*tor_hits AS tor_perc FROM (
+    SELECT
+        DATE(request_received) AS hit_date,
+        COUNT(*) AS hits,
+        SUM(
+          CASE WHEN client_ip IN (
+            -- list of all exit nodes goes here
+            '103.15.28.215',
+            ...
+            '98.174.90.43'
+          ) THEN 1 ELSE 0 END) AS tor_hits
+    FROM fastly_logs.govuk_www
+    WHERE year = 2021 AND month = X
+      AND fastly_backend != 'force_ssl'
+    GROUP BY DATE(request_received)
+    ORDER BY DATE(request_received) ASC
+)
+```
+
+### CDN cache response rates
+
+```sql
+SELECT
+    date_trunc('minute', request_received) AS min,
+    COUNT(*) AS hits,
+
+                             SUM(CASE cache_response WHEN 'HIT'   THEN 1 ELSE 0 END)     AS hit_cnt,
+    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'HIT'   THEN 1 ELSE 0 END), 4) AS hit_pc,
+                             SUM(CASE cache_response WHEN 'MISS'  THEN 1 ELSE 0 END)     AS miss_cnt,
+    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'MISS'  THEN 1 ELSE 0 END), 4) AS miss_pc,
+                             SUM(CASE cache_response WHEN 'ERROR' THEN 1 ELSE 0 END)     AS error_cnt,
+    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'ERROR' THEN 1 ELSE 0 END), 4) AS error_pc,
+                             SUM(CASE cache_response WHEN 'PASS'  THEN 1 ELSE 0 END)     AS pass_cnt,
+    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'PASS'  THEN 1 ELSE 0 END), 4) AS pass_pc,
+                             SUM(CASE cache_response WHEN 'SYNTH' THEN 1 ELSE 0 END)     AS synth_cnt,
+    ROUND(100.0 / COUNT(*) * SUM(CASE cache_response WHEN 'SYNTH' THEN 1 ELSE 0 END), 4) AS synth_pc
+
+FROM fastly_logs.govuk_www
+WHERE year = 2021 AND month = 1 AND date = X
+GROUP BY 1
+ORDER BY 1 ASC;
+```
+
+### CDN cache hit/miss rates
+
+```sql
+SELECT
+    date_trunc('second', request_received) AS period,
+    COUNT(*) AS total_requests,
+                             SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END)     AS cache_hits,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3) AS cache_hit_pc,
+                             SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END)         AS cache_misses,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3)     AS cache_miss_pc
+FROM fastly_logs.govuk_www
+WHERE year = 2021 AND month = 1 AND date = X
+GROUP BY 1
+ORDER BY 2 DESC;
+```
+
+### Cache miss request times by paths with greatest summed request time
+
+```sql
+SELECT
+    CONCAT('/', SPLIT_PART(SPLIT_PART(url, '/', 2), '?', 1)) AS url_start,
+    method,
+    COUNT(*) AS total_requests,
+    ROUND(AVG(request_time), 5) AS average_rq_time,
+    CAST(ROUND(SUM(request_time)) AS INTEGER) AS total_rq_time,
+    ROUND(MIN(request_time), 3) AS p0,
+    ROUND(APPROX_PERCENTILE(request_time, 0.5), 3) AS p50,
+    ROUND(APPROX_PERCENTILE(request_time, 0.7), 3) AS p70,
+    ROUND(APPROX_PERCENTILE(request_time, 0.8), 3) AS p80,
+    ROUND(APPROX_PERCENTILE(request_time, 0.9), 3) AS p90,
+    ROUND(APPROX_PERCENTILE(request_time, 0.95), 3) AS p95,
+    ROUND(MAX(request_time), 3) AS p100
+FROM fastly_logs.govuk_www
+WHERE year = 2020 AND month = 11 AND date = 26
+  AND url NOT LIKE '/assets/%'
+  AND cache_response IN ('PASS', 'MISS')
+GROUP BY 1, 2
+ORDER BY 5 DESC
+LIMIT 1000
+```
+
+### CDN hit/miss rates + request times
+
+Includes:
+
+- unique IP / user agent combinations
+- cache hit rates
+- mean and summed request time
+- approximated request time percentiles
+
+```sql
+SELECT
+    date_trunc('minute', request_received) AS period,
+    COUNT(*) AS total_requests,
+    -- unique IP / user agent combinations
+    COUNT(DISTINCT ROW(client_ip, user_agent)) AS total_ip_aus,
+    -- cache hit rates
+                             SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END)     AS cache_hits,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3) AS cache_hit_pc,
+                             SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END)         AS cache_misses,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3)     AS cache_miss_pc,
+    -- mean and summed request time
+    ROUND(AVG(request_time), 5) AS average_rq_time,
+    CAST(ROUND(SUM(request_time)) AS INTEGER) AS total_rq_time,
+    -- approximated request time percentiles
+    ROUND(MIN(request_time), 3) AS p0,
+    ROUND(APPROX_PERCENTILE(request_time, 0.5), 3) AS p50,
+    ROUND(APPROX_PERCENTILE(request_time, 0.7), 3) AS p70,
+    ROUND(APPROX_PERCENTILE(request_time, 0.8), 3) AS p80,
+    ROUND(APPROX_PERCENTILE(request_time, 0.9), 3) AS p90,
+    ROUND(APPROX_PERCENTILE(request_time, 0.95), 3) AS p95,
+    ROUND(MAX(request_time), 3) AS p100
+FROM fastly_logs.govuk_www
+WHERE year = 2021 AND month = 2 AND date = X
+  AND url LIKE '/find-coronavirus-local-restrictions?postcode=%'
+GROUP BY 1
+ORDER BY 2 DESC;
+```
+
+### HTTP response code rates
+
+```sql
+SELECT
+    date_trunc('minute', request_received) AS period,
+    COUNT(*) AS total_requests,
+                             SUM(CASE WHEN status / 100 = 2 THEN 1 ELSE 0 END)     AS s2xx,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 2 THEN 1 ELSE 0 END), 3) AS s2xx_pc,
+                             SUM(CASE WHEN status / 100 = 3 THEN 1 ELSE 0 END)     AS s3xx,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 3 THEN 1 ELSE 0 END), 3) AS s3xx_pc,
+                             SUM(CASE WHEN status / 100 = 4 THEN 1 ELSE 0 END)     AS s4xx,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 4 THEN 1 ELSE 0 END), 3) AS s4xx_pc,
+                             SUM(CASE WHEN status / 100 = 5 THEN 1 ELSE 0 END)     AS s5xx,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN status / 100 = 5 THEN 1 ELSE 0 END), 3) AS s5xx_pc,
+                             SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END)     AS cache_hits,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response NOT IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3) AS cache_hit_pc,
+                             SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END)         AS cache_misses,
+    ROUND(100.0 / COUNT(*) * SUM(CASE WHEN cache_response IN ('PASS', 'MISS') THEN 1 ELSE 0 END), 3)     AS cache_miss_pc
+FROM fastly_logs.govuk_www
+WHERE year = 2021 AND month = 1 AND date = X
+GROUP BY 1
+ORDER BY 1 ASC;
+```
+
+### Minutes during the week where error rate was >0.1%
+
+This is the "availability" metric shown on the SMT dashboard.
+
+```sql
+SELECT
+  date_trunc('week', minute) AS week,
+  COUNT(*) AS mins_with_bad_error_rate,
+  -- Next line assumes we're calculating for a full week (7 days * 24 hours * 60 minutes)
+  -- This will need to be updated if the calculation range is changed.
+  -- It'll also be off during weeks where the clocks go forwards / back.
+  1.0 - (1.0 / (7 * 24 * 60) * COUNT(*)) AS availability
+FROM (
+  SELECT
+    date_trunc('minute', request_received) AS minute,
+    COUNT(*) AS total_requests,
+    SUM(CASE WHEN status BETWEEN 200 AND 499 THEN 1 ELSE 0 END) AS successful_requests,
+    100.0 / COUNT(*) * SUM(CASE WHEN status BETWEEN 200 AND 499 THEN 1 ELSE 0 END) AS availability
+  FROM fastly_logs.govuk_www
+  WHERE year = 2021 AND month = 1 AND date >= X AND date <= Y
+    AND user_agent NOT LIKE 'GOV.UK Crawler Worker%'
+    AND request_received > TIMESTAMP '2021-01-12 15:00:00'
+  GROUP BY date_trunc('minute', request_received)
+)
+WHERE availability < 99.9
+GROUP BY date_trunc('week', minute)
+ORDER BY date_trunc('week', minute) ASC;
+```
+
+## Snippets
+
+Little snippets of bits of SQL.
+
+### Path without query string
+
+```sql
+SPLIT_PART(url, '?', 1) AS url_path
+```
+
+### Exclude the GOV.UK Crawler
+
+```sql
+user_agent NOT LIKE 'GOV.UK Crawler Worker%'
+```
+
+### Remove extra mirror path information
+
+If an origin request fails and the request is failed over to a static mirror,
+the path is changed based on the location of the static file within the S3
+bucket. E.g. `/some/path` --> `/www.gov.uk/some/path.html`
+
+```sql
+REPLACE(REPLACE(SPLIT_PART(url, '?', 1), '/www.gov.uk', ''), '.html', '') AS url_path
+```
+
+### Count cases of a thing
+
+```sql
+SUM(CASE WHEN ... THEN 1 ELSE 0 END)
+```
+
+E.g.
+
+```sql
+COUNT(*) AS total_requests,
+SUM(CASE WHEN status BETWEEN 200 AND 499 THEN 1 ELSE 0 END) AS successful_requests
+```
+
 ## Adding a new field to the CDN logs
 
 Adding a new field to the CDN logs is a half manual, half automated
