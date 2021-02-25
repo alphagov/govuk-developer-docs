@@ -18,8 +18,16 @@ You will have to make 2 DNS changes to GOV.UK:
 
 1. you will have to ask JISC (very few people are authorised to make such changes) to change
    the cname of `www.gov.uk` to the `www` AWS CloudFront distribution domain.
-   You can log into the AWS web console to find the `www` AWS CloudFront distribution domain.
+   You can log into the AWS web console to find the `www` AWS CloudFront distribution domain or get the answer directly from the AWS API:
+
+    ```
+    gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName"
+    ```
 
 2. you will have to change the cname of `assets.publishing.service.gov.uk` to
    the `assets` AWS CloudFront distribution domain using the usual gov.uk processes.
-   You can log into the AWS web console to find the `assets` AWS CloudFront distribution domain.
+   You can log into the AWS web console to find the `assets` AWS CloudFront distribution domain or get the answer directly from the AWS API:
+
+    ```
+    gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName"
+    ```
