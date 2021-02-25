@@ -51,3 +51,21 @@ These documents cannot be published and will cause a
 
 The situation is likely to be re-created the next day by the above process on
 the same documents/editions.
+
+## 'scheduled publications in Whitehall not queued'
+
+This alert means that the number of editions in the database which are
+scheduled to be published in the future is different from the number currently
+in the queue.
+
+Run the `publishing:scheduled:requeue_all_jobs` Rake task to requeue all
+scheduled editions:
+
+<%= RunRakeTask.links("whitehall", "publishing:scheduled:requeue_all_jobs") %>
+
+Historically, this error has happened in the staging and integration
+environments, after the nightly [data sync](/manual/govuk-env-sync.html).
+We [no longer spawn scheduling workers](https://github.com/alphagov/govuk-puppet/pull/10842)
+for Whitehall on Staging and Integration, so this will no longer affect
+those environments. The alert and rake task fix could still prove useful
+on Production.
