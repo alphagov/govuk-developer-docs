@@ -5,10 +5,10 @@ section: Assets
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-related_applications: [asset-manager]
+related_applications: [asset-manager, static]
 ---
 
-There are two types of asset files.
+There are three types of asset files.
 
 **Static assets** are stylesheets (CSS), JavaScript (JS) and image files which
 make GOV.UK look the way it does.
@@ -16,29 +16,26 @@ make GOV.UK look the way it does.
 **Uploaded assets** - also called attachments - are files like PDFs, CSVs and
 images which are uploaded via the publishing apps and attached to documents.
 
+**Static templates** - these are HTML snippets served by the [Static](/apps/static.html)
+application. These are used by applications to share common parts of the GOV.UK
+page layout (such as header and footer).
+
 ## Static assets
 
-### How users access assets
+These assets are served from `https://www.gov.uk/assets` with a path associated
+with the application that is serving them. For example files within
+`https://www.gov.uk/assets/government-frontend` are assets for the
+[Government Frontend](/apps/government-frontend.html) application. These files
+are cached by [the GOV.UK content delivery network](cdn.html).
 
-[The GOV.UK content delivery network](cdn.html) is in front of our assets
-hostname (`assets.publishing.service.gov.uk` and equivalents in other
-environments). The CDN fetches anything not in its cache from `assets-origin`.
-
-### Assets at origin
-
-Assets are served by the cache machines in all environments.
-
-The cache machines proxy requests to the application hostnames based on the
-first segment of the path. For example `/government-frontend/` is proxied to
-the hostname for `government-frontend` in that environment.
-
-All other assets that have a path that don't match fall back to the static
-application.
+These assets are served by the cache machines, these will proxy requests to
+the application based on the path. For example `/assets/government-frontend/`
+will proxy asset requests to Government Frontend
 
 ## Uploaded assets
 
-Asset Manager is an API that is called internally by Publisher, Specialist
-Publisher, Manuals Publisher, Travel Advice Publisher and Whitehall to manage
+[Asset Manager](apps/asset-manager.html) is an API that is called internally
+by [GOV.UK publishing applications](/#publishing-apps) to manage
 their uploads. It serves the uploaded assets on
 `assets.publishing.service.gov.uk`.
 
@@ -46,9 +43,7 @@ their uploads. It serves the uploaded assets on
 
 Asset files are stored in an S3 bucket (e.g. `govuk-assets-production` in
 production) and Asset Manager instructs nginx to proxy requests to them.
-
-It should be noted that Asset Manager does actually serve the asset requests,
-rather than letting nginx serve directly from the share. This is to enable the
+Proxying was chosen, rather than linking directly to S3, to support the
 following features:
 
 - Assets are not served until they have been virus scanned; a placeholder image
@@ -57,3 +52,16 @@ following features:
 - Asset files can be replaced, and a request to the original path redirects to
   the replacement. Currently only Whitehall and Specialist Publisher support
   this.
+
+## Static templates
+
+The templates that Static hosts are used by
+[GOV.UK frontend applications](/#frontend-apps) to render consistent aspects
+of GOV.UK pages. Production instances of GOV.UK applications access these by
+internal communication with Static.
+
+These assets are also available publicly for development and preview versions
+of GOV.UK applications. They allow apps to utilise these production resources
+without needing to run an instance of Static manaul. Public access to Static
+is provided by the `assets.publishing.service.gov.uk` hostname, which will
+proxy any requests not served by Asset Manager to Static.
