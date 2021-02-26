@@ -47,6 +47,14 @@ These are the GET request status codes that Varnish caches automatically: 200, 2
 
 We have added to these - see the [GOV.UK CDN Config repo](https://github.com/alphagov/govuk-cdn-config/) VCL for special handling of certain status codes, and for the most up-to-date version of what we're running in Fastly. Refer to the Varnish 2.1 documentation when looking at the VCL code.
 
+### Conditional request caching
+
+Fastly will cache HTTP responses that include cache validation headers (such as ETag or Last-Modified) indefinitely. GOV.UK typically serves these headers with [assets uploaded to Asset Manager](/manual/assets.html#uploaded-assets).
+
+When Fastly has a conditional response cached it will modify subsequent requests that it passes to origin to include [conditional HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests#conditional_headers). This allows origin applications to return a 304 Not Modified status code to indicate the resource is unchanged and avoid an unnecessary data transfer. As Fastly, not the end user, has the resource cached a 304 response will need to be modified by Fastly into a 200 response with the cached resource attached.
+
+If we mistakenly serve invalid responses with cache validation headers we will need to change the validation headers or manually [purge the resource from the Fastly cache](/manual/purge-cache.html), otherwise the incorrect resource could be served for a long time.
+
 ### Testing VCL
 
 VCL can be tricky to get right. When making changes to the VCL, add smoke tests [to smokey](https://github.com/alphagov/smokey/blob/master/features/caching.feature) and check that they don't fail in staging.
