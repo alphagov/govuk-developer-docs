@@ -27,7 +27,10 @@ If it goes down, these things will happen:
 
 There's a VPN between AWS Production (only) and UKCloud Production which exists
 only as a workaround for routing certain requests from Licensify to Civica, one
-of Licensify's payment gateways.
+of Licensify's payment gateways. This is undesirable and [recorded as
+GOV.UK Tech Debt][tech-debt-card].
+
+[tech-debt-card]: https://trello.com/c/CG5mc7Zi/213-licensify-connection-to-civica-still-goes-via-uk-cloud-and-vpn-from-aws
 
 If this VPN is down:
 
