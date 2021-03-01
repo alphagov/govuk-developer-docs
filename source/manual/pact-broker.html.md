@@ -67,3 +67,17 @@ In addition to numeric versions, our scheme allows for "master", and
 "branch-foo" versions to be uploaded. These will always be ordered after any
 numeric versions, so the 'latest' pactfile from the pact brokers POV will
 always be the highest numeric version.
+
+## Writing Pact tests
+
+This has to be done in several stages:
+
+1. Write the consumer tests ([example](https://github.com/alphagov/gds-api-adapters/pull/1035)).
+1. Write the provider pact ([example](https://github.com/alphagov/frontend/pull/2643)).
+  - You'll need to write these two in conjunction with each other.
+1. Merge both of the above PRs.
+1. Configure the consumer to test against the provider as part of its deployment pipeline ([example](https://github.com/alphagov/frontend/pull/2644)).
+  - You'll need to provide a way of testing against different branches of the provider, so that changes can be made to the API in future. See the example PR above.
+1. Merge.
+1. Configure the provider to test against the consumer as part of its deployment pipeline ([example](https://github.com/alphagov/gds-api-adapters/pull/1036)).
+1. Merge.
