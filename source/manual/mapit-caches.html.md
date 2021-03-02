@@ -4,6 +4,8 @@ title: Mapit Caches
 layout: manual_layout
 parent: "/manual.html"
 section: Infrastructure
+related_applications:
+  - mapit
 ---
 
 Mapit uses Django's [in-built middleware](https://docs.djangoproject.com/en/3.1/topics/cache/#the-per-site-cache) to cache responses to memcached. Mapit instances use a shared memcached instance.
