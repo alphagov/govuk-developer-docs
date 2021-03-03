@@ -18,7 +18,7 @@ gem "html-pipeline"
 gem "kramdown"
 gem "mdl"
 
-gem "govuk_publishing_components", "~> 24.3"
+gem "govuk_publishing_components", "~> 24.4"
 gem "govuk_schemas"
 
 # GitHub API
