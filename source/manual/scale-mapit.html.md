@@ -4,6 +4,8 @@ title: Scale Mapit
 layout: manual_layout
 parent: "/manual.html"
 section: Infrastructure
+related_applications:
+  - mapit
 ---
 
 Mapit has a scaling process that is different to other GOV.UK applications.
