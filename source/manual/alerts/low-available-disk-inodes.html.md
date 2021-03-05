@@ -27,7 +27,7 @@ If Jenkins is running out of inodes (rather than disk space) then it may be
 possible to free some by clearing out old workspaces:
 
 ```sh
-$ find /var/lib/jenkins/workspace/ -maxdepth 1 -type d -mtime +1 -exec rm -rf {} \;
+$ sudo find /var/lib/jenkins/workspace/ -maxdepth 1 -type d -mtime +1 -exec rm -rf {} \;
 ```
 
 This will find any directories that are older than 1 day and delete them.
