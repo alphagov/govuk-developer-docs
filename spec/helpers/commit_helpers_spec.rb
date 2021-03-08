@@ -1,5 +1,5 @@
 require "spec_helper"
-require_relative "../../helpers/commit_helpers.rb"
+require_relative "../../helpers/commit_helpers"
 
 RSpec.describe CommitHelpers do
   let(:helper) { Class.new { extend CommitHelpers } }
