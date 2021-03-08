@@ -24,7 +24,8 @@ private
   def enums(attrs)
     return unless attrs["enum"]
 
-    "Allowed values: " + attrs["enum"].map { |value| "<code>#{value}</code>" }.join(", ")
+    values = attrs["enum"].map { |value| "<code>#{value}</code>" }
+    "Allowed values: #{values.join(', ')}"
   end
 
   def possible_types(attrs)
