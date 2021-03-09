@@ -161,7 +161,7 @@ used.
 
 The preferred approach for background job processing is to use [ActiveJob][]
 with [Sidekiq][] with the [govuk_sidekiq][] gem providing configuration.
-ActiveJob is preferred due to it's closer integration of Rails components
+ActiveJob is preferred due to its closer integration of Rails components
 (such as [ActionMailer][]).
 
 Scheduled background jobs for applications should also make use of Sidekiq,
