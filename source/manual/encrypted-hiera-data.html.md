@@ -466,7 +466,7 @@ If you see this error:
 ```
 
 Check that your GPG configuration is sane. Try encrypting and decrypting
-some dummy text using the `gpg` command:
+some text using the `gpg` command:
 
 ```sh
 echo 'foo' | gpg --armor --encrypt --recipient matt.bostock@digital.cabinet-office.gov.uk | gpg --decrypt
