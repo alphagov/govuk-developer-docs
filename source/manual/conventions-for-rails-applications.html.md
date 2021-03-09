@@ -273,7 +273,7 @@ Rails application with practices such as:
 The conventional place to store secrets for a GOV.UK Rails application is
 `config/secrets.yml`. All production secrets should be populated with an
 environment variable; for dev and test environments it's preferred to leave
-a usable dummy default if an actual secret isn't needed
+a usable placeholder default if an actual secret isn't needed
 ([example][secrets-example]).
 
 We haven't migrated to using the [encrypted `config/credentials.yml.enc`
