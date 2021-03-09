@@ -201,10 +201,6 @@
 
 # frontend
 
-- github_repo_name: calculators
-  type: Frontend apps
-  team: "#govuk-platform-health"
-  production_hosted_on: aws
 - github_repo_name: collections
   continuously_deployed: true
   type: Frontend apps
@@ -553,6 +549,13 @@
     finance support schemes. In March 2017, it was replaced with a new-style finder
     rendered by [finder-frontend](/apps/finder-frontend.html) and published by
     [specialist-publisher](/apps/specialist-publisher.html).
+- github_repo_name: calculators
+  type: Frontend apps
+  retired: true
+  description: |
+    calculators used to report how much child benefit tax you are entitled during a tax year.
+    It was only responsible for rendering https://www.gov.uk/child-benefit-tax-calculator.
+    That page has now been moved into Smart Answers.
 - github_repo_name: calendars
   retired: true
   type: Frontend apps
