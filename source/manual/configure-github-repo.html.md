@@ -11,7 +11,7 @@ Repositories in GOV.UK must:
 - Have the [GOV.UK CI Bots][govuk-ci-bots-team] and [GOV.UK Production][govuk-production-team] teams as `Admin`
 - Have a good description
 - Link to relevant documentation
-- Be tagged with [`govuk`](https://github.com/search?q=topic:govuk)
+- Have the [`govuk`][govuk-topic] topic
 - Have a [good README](/manual/readmes.html)
 
 Almost all repos should:
@@ -22,13 +22,23 @@ Almost all repos should:
 
 [govuk-ci-bots-team]: https://github.com/orgs/alphagov/teams/gov-uk-ci-bots
 [govuk-production-team]: https://github.com/orgs/alphagov/teams/gov-uk-production
+[govuk-topic]: https://github.com/search?q=topic:govuk
 
 ## Auto configuration
 
 When your repo is tagged with `govuk`, it will be auto-configured by [govuk-saas-config][]. This will take care of the settings, branch protection and web hooks.
 
-If you create a new repo, [kick off a build of the Jenkins job][jenkins-job] and everything will be done for you.
+When you create a new repo:
 
+- Give the [GOV.UK CI Bots][govuk-ci-bots-team] and [GOV.UK Production][govuk-production-team] teams `Admin` access
+- Give the [GOV.UK][govuk-team] `Write` access
+- Tag it with the [`govuk`][govuk-topic] topic
+- [Kick off a build of the Jenkins job][jenkins-job] to automate the rest
+
+If your repo will be continuously deployed, restrict merge access to users with production access with [the `repo_overrides.yml` file][repo-overrides].
+
+[govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
 [jenkins-job]: https://deploy.production.govuk.digital/job/configure-github-repos
 [alphagov]: https://github.com/alphagov
+[repo-overrides]: https://github.com/alphagov/govuk-saas-config/blob/master/github/repo_overrides.yml
