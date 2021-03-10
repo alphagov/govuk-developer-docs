@@ -16,18 +16,22 @@ by static mirrors and not the origin of GOV.UK if you fallback to the backup CDN
 
 You will have to make 2 DNS changes to GOV.UK:
 
-1. you will have to ask JISC (very few people are authorised to make such changes) to change
-   the cname of `www.gov.uk` to the `www` AWS CloudFront distribution domain.
-   You can log into the AWS web console to find the `www` AWS CloudFront distribution domain or get the answer directly from the AWS API:
+1. The CNAME at `www-cdn.production.govuk.service.gov.uk` should point to
+   cloudfront's WWW distribution instead of Fastly
+2. The CNAME at `assets.publishing.service.gov.uk` should point to cloudfront's
+   Assets distribution instead of Fastly
 
-    ```
-    gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName"
-    ```
+This [Draft PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-config/pull/673)
+shows the changes you need to make, and how to test the CDN before failing over.
 
-2. you will have to change the cname of `assets.publishing.service.gov.uk` to
-   the `assets` AWS CloudFront distribution domain using the usual gov.uk processes.
-   You can log into the AWS web console to find the `assets` AWS CloudFront distribution domain or get the answer directly from the AWS API:
+You can check the domain names of the cloudfront distributions by looking in
+the AWS web console, or with the CLI:
 
-    ```
-    gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName"
-    ```
+```
+# www.gov.uk
+gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName | [0]"
+
+# assets.publishing.service.gov.uk
+gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName | [0]"
+```
+
