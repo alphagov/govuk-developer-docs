@@ -35,7 +35,15 @@ The GOV.UK on-call escalations contact will supply you with:
 - (Optional) A URL for users to find more information (it might not be provided at first).
 - (Optional) Link text that will be displayed for the more information URL (this will default to "More information" if you do not supply it).
 
-### 2. Deploy the banner using Jenkins
+### 2. Hide the Brexit link from the global bar
+
+Showing the emergency banner _and_ a large global banner dominates too much of the top of our pages. We can hide the Brexit link to reduce the size of the global banner.
+
+1. Open a PR on static to [hide the Brexit link](https://github.com/alphagov/static/blob/1d9f02889665615e62e287d1dc661441d2b668e5/app/views/notifications/_global_bar.html.erb#L14) and get it approved.
+
+1. Deploy the change and [check that the link has disappeared](#some-example-pages-to-check).
+
+### 3. Deploy the banner using Jenkins
 
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
@@ -56,7 +64,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 >
 > The Jenkins job will also clear all caches. The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
 
-### 3. Test with cache bust strings
+### 4. Test with cache bust strings
 
 Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
@@ -67,7 +75,7 @@ For each page:
 - Test the link, if it is present
 - Make sure the banner colour is appropriate - black for a notable death, red for a national emergency, green for a local emergency
 
-Some example pages to check:
+#### Some example pages to check
 
 - [https://www.gov.uk/?ae00e491](https://www.gov.uk/?ae00e491) ([Integration](https://www-origin.integration.publishing.service.gov.uk/?ae00e491), [Staging](https://www-origin.staging.publishing.service.gov.uk/?ae00e491))
 - [https://www.gov.uk/financial-help-disabled?7f7992eb](https://www.gov.uk/financial-help-disabled?7f7992eb) ([Integration](https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled?7f7992eb), [Staging](https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled?7f7992eb))
