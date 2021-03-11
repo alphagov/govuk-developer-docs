@@ -227,6 +227,14 @@ How to test the app
 * Add the application to the [Deploy_App job][deploy-jenkins] in Jenkins (click Configure)
 * Run the [Deploy_App job][deploy-jenkins] using with `with_migrations` option to get started
 
+When adding your application to `data/application.yml` - ensure your new repository has
+a description set in the "About" section on github. This will be used to describe what your app
+is on the [application listings](https://docs.publishing.service.gov.uk/#applications) and is also
+required to render an application page.
+
+If you do not do this, you may see Middleman errors when the docs are building which reference
+attempts to modify a frozen empty string.
+
 ## Configuring the app for Jenkins
 
 Create a `Jenkinsfile` in your repo with the following content.
