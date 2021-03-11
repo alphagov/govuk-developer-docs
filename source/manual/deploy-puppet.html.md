@@ -20,12 +20,18 @@ deploy.
 
 You can deploy Puppet to Staging and Production using the following steps:
 
-1. Deploy a newer version of govuk-puppet to staging by using the 'Deploy to Staging (Carrenza)'
-   and 'Deploy to Staging (AWS)' buttons in the Release app after clicking on the release
-   tag and reviewing the changes listed.
-1. You will either need to wait 30 minutes or read about [convergence](#convergence).
-   You should monitor Icinga and Smokey, and test anything you're concerned about.
+1. In the [Release app][release-app-puppet], select the release tag and review
+   the changes listed.
+1. If your change on integration appears as expected, deploy a newer version of
+   govuk-puppet to staging by using the **Deploy to Staging** button.
+1. Wait 30 minutes or read about [convergence](#convergence).
+   You should monitor [Staging Icinga][icinga-staging] and [Staging Smokey][smokey-staging],
+   and test anything you're concerned about.
 1. Repeat the above steps for Production.
+
+[release-app-puppet]: https://release.publishing.service.gov.uk/applications/puppet
+[icinga-staging]: https://alert.blue.staging.govuk.digital/
+[smokey-staging]: https://deploy.blue.staging.govuk.digital/job/Smokey
 
 Puppet is automatically deployed to integration by a combination of the [integration-puppet-deploy job on Jenkins CI](https://ci-deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/) and [Deploy Puppet job on Jenkins Deploy](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/) jobs.
 
