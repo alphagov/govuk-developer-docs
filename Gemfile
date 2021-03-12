@@ -5,7 +5,7 @@ gem "capybara"
 gem "ffi"
 gem "rake"
 gem "rspec"
-gem "rubocop-govuk"
+gem "rubocop-govuk", "4.0.0.pre.1", require: false # Trialling pre-release
 gem "simplecov"
 gem "webmock"
 
@@ -18,7 +18,7 @@ gem "html-pipeline"
 gem "kramdown"
 gem "mdl"
 
-gem "govuk_publishing_components", "~> 24.5"
+gem "govuk_publishing_components"
 gem "govuk_schemas"
 
 # GitHub API
