@@ -22,7 +22,7 @@ class DocumentTypesCsv
       csv << row
 
       @pages.each do |page|
-        example_url = page.examples.first ? "https://www.gov.uk" + page.examples.first["link"] : nil
+        example_url = page.examples.first ? "https://www.gov.uk#{page.examples.first['link']}" : nil
 
         row = [
           page.name,

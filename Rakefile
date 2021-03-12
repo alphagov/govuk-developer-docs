@@ -6,7 +6,7 @@ RSpec::Core::RakeTask.new(:spec)
 
 desc "Run RuboCop"
 task :lint, :environment do
-  sh "bundle exec rubocop --format clang"
+  sh "bundle exec rubocop"
 end
 
 desc "Run Markdownlint"

@@ -6,7 +6,7 @@ class DocumentTypes
     known_from_search = facet_query.dig("facets", "content_store_document_type", "options").map do |o|
       Page.new(
         name: o.dig("value", "slug"),
-        total_count: o.dig("documents"),
+        total_count: o["documents"],
         examples: o.dig("value", "example_info", "examples"),
       )
     end
