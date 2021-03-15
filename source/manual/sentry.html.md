@@ -267,3 +267,16 @@ it to ignore for a set time, e.g. 1 week. You can also un-ignore an issue later.
 
 Click on the issue, then on the "Activity" tab, where you can leave a comment.
 Comments support markdown.
+
+### Deleting and discarding an issue
+
+If you've identified an issue that is high-volume, but is unlikely to be fixed any
+time soon, you can [Delete and Discard][] the issue by clicking the arrow next to
+the trash can and selecting "Delete and discard future events".
+
+This should only be used when the issue is likely to have a significant impact on
+our [Sentry quota](#rate-limiting). It is possible to "undiscard" the issue later,
+but this will only capture new events. Any events prior to the "undiscard" action
+are lost.
+
+[Delete and Discard]: https://blog.sentry.io/2018/01/03/delete-and-discard
