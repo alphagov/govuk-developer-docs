@@ -3,6 +3,11 @@ require_relative "../../helpers/commit_helpers"
 
 RSpec.describe CommitHelpers do
   let(:helper) { Class.new { extend CommitHelpers } }
+  let(:uncommitted_file) do
+    path_to_file = "tmp/tmp.md"
+    File.write(path_to_file, "new uncommitted file")
+    path_to_file
+  end
 
   describe "#commit_url" do
     it "returns the commit_url associated with the page data, if that exists" do
@@ -27,6 +32,14 @@ RSpec.describe CommitHelpers do
         /https:\/\/github.com\/alphagov\/govuk-developer-docs\/commit\/[0-9a-f]{40}$/,
       )
     end
+
+    it "returns # if the file hasn't been committed yet" do
+      current_page = OpenStruct.new(
+        data: OpenStruct.new,
+        file_descriptor: OpenStruct.new(relative_path: uncommitted_file),
+      )
+      expect(helper.commit_url(current_page)).to eq("#")
+    end
   end
 
   describe "#last_updated" do
@@ -46,6 +59,14 @@ RSpec.describe CommitHelpers do
         file_descriptor: OpenStruct.new(relative_path: source_file),
       )
       expect(helper.last_updated(current_page)).to be_a_kind_of(Time)
+    end
+
+    it "returns the current time if the file hasn't been committed yet" do
+      current_page = OpenStruct.new(
+        data: OpenStruct.new,
+        file_descriptor: OpenStruct.new(relative_path: uncommitted_file),
+      )
+      expect(helper.last_updated(current_page).to_i).to eq(Time.now.to_i)
     end
   end
 
