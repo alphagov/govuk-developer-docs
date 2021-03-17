@@ -76,7 +76,7 @@ Alternatively, there is a Fabric task to schedule a machine for downtime
 in Nagios for 20 minutes and then reboot it:
 
 ```
-fab $environment -H graphite-1.management vm.reboot
+fab <aws_environment> -H <ip_address> vm.reboot
 ```
 
 ### Rebooting guidance for AWS
@@ -231,19 +231,32 @@ If any applications start alerting due to `rabbitmq-1` being rebooted
 then either add a note here about how to make that application recover,
 or get the team responsible to make it point to the cluster.
 
-### Rebooting asset master and slave machines
+Rebooting rabbitmq may cause alerts for other apps which can be restarted,
+for example email-alert-api:
 
-Unless there are urgent updates to apply the master machine should not be
-rebooted in production during working hours - as the master machine is required
+```
+fab aws_staging class:email_alert_api app.restart:email-alert-service
+```
+
+You can also ssh into individual machines to restart the service:
+
+```
+sudo service cache-clearing-service restart
+```
+
+### Rebooting asset primary and secondary machines
+
+Unless there are urgent updates to apply the primary machine should not be
+rebooted in production during working hours - as the primary machine is required
 for attachments to be uploaded.
 
-The slave machines can be rebooted as they hold a copy of data and are resynced
+The secondary machines can be rebooted as they hold a copy of data and are resynced
 regularly.
 
-Reboots of the master machine should be organised by On Call staff,
+Reboots of the step_down_primary machine should be organised by On Call staff,
 for the production environment.
 
-You may reboot the master machine in the staging environment during working
+You may reboot the primary machine in the staging environment during working
 hours however it is prudent to warn colleagues that uploading attachments will
 be unavailable during this period.
 
@@ -257,6 +270,14 @@ as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
 These machines are safe to reboot during the day. During the night they
 are involved in a data sync processes and rebooting could cause the data
 sync to fail.
+
+```
+fab <aws_environment> -H <ip_address> vm.reboot
+```
+
+### Rebooting docker-management
+
+It is safe to reboot while no other unattended reboot is underway - see https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/docker_management.yaml
 
 ### Rebooting backend-lb machines (Carrenza only)
 
