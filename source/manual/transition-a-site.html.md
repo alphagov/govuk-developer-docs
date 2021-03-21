@@ -195,4 +195,4 @@ The transition checklist covers the whole process of transitioning a site from t
 [Transition]: /apps/transition.html
 [Bouncer]: /apps/bouncer.html
 [transition-config]: https://github.com/alphagov/transition-config/blob/master/README.md
-[request a Fastly TLS certificate]: /request-fastly-tls-certificate.html
+[request a Fastly TLS certificate]: /manual/request-fastly-tls-certificate.html
