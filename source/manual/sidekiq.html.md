@@ -44,29 +44,22 @@ There are three approaches for monitoring Sidekiq:
 
 ### Sidekiq Web (aka Sidekiq Monitoring)
 
-Sidekiq comes with a web application,
-[`Sidekiq::Web`](https://github.com/mperham/sidekiq/wiki/Monitoring)
-that can display the current state of a Sidekiq installation. We have
-configured this as the [sidekiq-monitoring web app](https://github.com/alphagov/sidekiq-monitoring)
-to monitor multiple Sidekiq configurations used throughout GOV.UK.
+Sidekiq comes with a web application, [`Sidekiq::Web`][sidekiq web] that can
+display the current state of Sidekiq's queues for an application. We have
+configured this as the [sidekiq-monitoring web app][sidekiq monitoring] which
+can monitor multiple Sidekiq configurations used throughout GOV.UK.
 
-We have restricted public access because the Web UI allows modifying the
-state of Sidekiq queues. To access the Sidekiq monitoring UI for
-Production AWS, run:
+You can access each application's dashboard via a URL for:
 
-```bash
-$ gds govuk connect sidekiq-monitoring -e production aws/backend
-```
+- [Integration]
+- [Staging]
+- [Production]
 
-The output will be something like:
-
-```
-Port forwarding setup, access:
-
-  http://127.0.0.1:xxxxx/
-```
-
-Go to the URL in the command output to see the UI.
+[Integration]: https://sidekiq-monitoring.integration.govuk.digital/
+[Staging]: https://sidekiq-monitoring.staging.govuk.digital/
+[Production]: https://sidekiq-monitoring.production.govuk.digital/
+[sidekiq web]: https://github.com/mperham/sidekiq/wiki/Monitoring
+[sidekiq monitoring]: https://github.com/alphagov/sidekiq-monitoring
 
 #### Set up Sidekiq Monitoring for your application
 
