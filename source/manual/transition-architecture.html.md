@@ -145,4 +145,4 @@ Follow the guidance to [request a Fastly TLS certificate][].
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [Bouncer_CDN job]: https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/
 [hosts from transition]: https://transition.publishing.service.gov.uk/hosts.json
-[request a Fastly TLS certificate]: /request-fastly-tls-certificate.html
+[request a Fastly TLS certificate]: /manual/request-fastly-tls-certificate.html
