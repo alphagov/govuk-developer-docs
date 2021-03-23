@@ -226,6 +226,42 @@ Publishers upload their organograms as a Excel (XLS) file that contains macros. 
 
 It is possible to access analytics for datasets. If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to Martin Lugton or another member of the Platform Health product team.
 
+## Differences in CKAN 2.9 vs 2.7/2.8
+
+If a publisher is attempting to access data directly via the use of the CKAN API endpoints they might encounter problems processing the response:
+
+- V1 of the API endpoint has been dropped - https://github.com/ckan/ckan/blob/ckan-2.9.2/CHANGELOG.rst#v280-2018-05-09
+
+This means that the extras block in some cases has been flattened, this was the previous response:
+
+>     {
+>      "id": "<package id>",
+>      ...
+>      "extras": {
+>         "harvest_object_id": "<harvest object id>",
+>         "contact-name": "Example User",
+>         "harvest_source_title": "example harvest #1",
+>         "harvest_source_id": "<harvest source id>"
+>       }
+>     }
+
+In 2.9 the response looks like this:
+
+>     {
+>      "id": "<package id>",
+>      ...
+>      "harvest_object_id": "<harvest object id>",
+>      "contact-name": "Example User",
+>      "harvest_source_title": "example harvest #1",
+>      "harvest_source_id": "<harvest source id>"
+>     }
+
+- Accepted Solr params for dataset / package searching has changed:
+  - `limit` and `offset` have been replaced by `rows` and `start` respectively.
+  - `all_fields` is no longer supported and will cause an error response.
+
+- The `revision_id` is also no longer available, although this has long been deprecated for a number of reasons by the CKAN team - https://github.com/ckan/ckan/issues/3484.
+
 ## Revision log
 
 There is a [revision log](https://ckan.publishing.service.gov.uk/revision) which shows the most recent edits to CKAN datasets, harvester and users performed by all users.
