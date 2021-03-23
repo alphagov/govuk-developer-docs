@@ -3,8 +3,6 @@ require_relative "./app/requires"
 
 GovukTechDocs.configure(self)
 
-set :markdown_engine, :kramdown
-
 set :markdown,
     renderer: DeveloperDocsRenderer.new(
       with_toc_data: true,
@@ -12,7 +10,6 @@ set :markdown,
       context: self,
     ),
     fenced_code_blocks: true,
-    input: "GFM",
     tables: true,
     no_intra_emphasis: true,
     hard_wrap: false
