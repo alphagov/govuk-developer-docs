@@ -15,7 +15,6 @@ gem "middleman-search_engine_sitemap"
 
 gem "git"
 gem "html-pipeline"
-gem "kramdown"
 gem "mdl"
 
 gem "govuk_publishing_components"
