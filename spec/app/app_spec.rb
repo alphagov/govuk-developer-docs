@@ -47,7 +47,6 @@ RSpec.describe App do
       app_data = {
         "calculators_frontend" => {
           "apps" => %w[
-            calculators
             finder-frontend
             licencefinder
             smartanswers
@@ -58,11 +57,11 @@ RSpec.describe App do
     end
 
     it "should find puppet class via github repo name if neither app name nor puppet name provided" do
-      expect(App.new("github_repo_name" => "calculators").aws_puppet_class).to eq("calculators_frontend")
+      expect(App.new("github_repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should find puppet class via app name" do
-      expect(App.new("app_name" => "calculators").aws_puppet_class).to eq("calculators_frontend")
+      expect(App.new("app_name" => "licencefinder").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should find puppet class via puppet name" do
