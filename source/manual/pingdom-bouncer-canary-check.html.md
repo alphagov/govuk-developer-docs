@@ -34,14 +34,13 @@ Possible causes of errors on the canary route include:
 The database tables checked by the canary route (in order) and the
 effect on requests for transitioned sites of errors when querying them:
 
-  Database table         | HTTP status codes for requests for transitioned sites | |
-  -----------------------| -------------------------------|-----------------------
-  table name             | when table inaccessible | when table missing data
-  `hosts`                | `500` for all requests | `404` for all requests
-  `sites`                | `500` for all requests | `500` for all requests
-  `mappings`             | `500` for most requests | `404` for most requests
-  `whitelisted_hosts`    | `500` for requests which should redirect to non-`*.gov.uk`/`*.mod.uk`/`*.nhs.uk` domains | `501` for those requests
-  `organisations`        | `500` for most requests which should<br>serve a 404 or 410 page | `500` for those requests
+| Database table name   | HTTP response when table inaccessible | HTTP response when table missing data |
+|-----------------------| --------------------------------------|---------------------------------------|
+| # `hosts`             | `500` for all requests  | `404` for all requests |
+| # `sites`             | `500` for all requests  | `500` for all requests |
+| # `mappings`          | `500` for most requests | `404` for most requests |
+| # `whitelisted_hosts` | `500` for requests which should redirect to non-`*.gov.uk`/`*.mod.uk`/`*.nhs.uk` domains | `501` for those requests |
+| # `organisations`     | `500` for most requests which should<br>serve a 404 or 410 page | `500` for those requests |
 
 There are other tables in the `transition_production` database but they
 are only used by Transition and not by Bouncer.
