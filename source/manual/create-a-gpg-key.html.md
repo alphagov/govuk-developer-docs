@@ -18,6 +18,8 @@ Once installed, you will likely have both `gpg` and `gpg2` on your machine. Alwa
 
 [GPGtools](https://gpgtools.org/) comes with a GUI which can perform most of the operations you need.
 
+Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to `http://keyserver.ubuntu.com/`. You can do this by going to preferences and setting your keyserver. The GPG GUI may not like this as it's not the default. Bypass these warnings.
+
 To create a new key, click "New". The `Name` field should be your name. For `Length`, you should have at least 4096.
 
 The creation process will give you the option to upload to a public server. Say yes. You can check your key has been uploaded using the Lookup Key button in the GUI.
@@ -58,6 +60,12 @@ The key ID is `90E65803`, and the fingerprint is `37CC 021A C5C2
 4E27 C4D9 5735 9B0E 9DD1 90E6 5803`
 
 ### Upload your GPG key to a keyserver
+
+Before doing this, make sure that your default keyserver is `http://keyserver.ubuntu.com/`. You can do this by changing the default keyserver in `~/.gnupg/gpg.conf`:
+
+```
+keyserver http://keyserver.ubuntu.com/
+```
 
 Send your key to a keyserver by running:
 
