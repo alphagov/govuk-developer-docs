@@ -48,5 +48,5 @@ Sidekiq worker), restart it to reset the memory usage, and increase free memory
 on the host:
 
 ```sh
-$ fab $environment -H whitehall-backend-1.backend app.restart:whitehall-admin-procfile-worker
+sudo service whitehall-admin-procfile-worker restart
 ```
