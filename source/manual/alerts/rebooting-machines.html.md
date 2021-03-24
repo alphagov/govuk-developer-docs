@@ -66,18 +66,16 @@ is `safe_to_reboot::can_reboot: 'yes'`.
 > otherwise marked as 'no', then it may be done provided any downstream
 > effects of this reboot have been considered.
 
-If you want to reboot the machine immediately, you can SSH into it and run:
+If you want to reboot the machine immediately:
 
-```sh
-sudo reboot
-```
+1. Schedule downtime in Icinga, or let 2ndline know that there will be
+   alerts for a machine being down.
 
-Alternatively, there is a Fabric task to schedule a machine for downtime
-in Nagios for 20 minutes and then reboot it:
+2. SSH into it and run:
 
-```
-fab <aws_environment> -H <ip_address> vm.reboot
-```
+   ```sh
+   sudo reboot
+   ```
 
 ### Rebooting guidance for AWS
 
@@ -91,15 +89,6 @@ any problems so it doesn't happen again and we have confidence in our ability
 to reboot machines in AWS.
 
 There's a [section on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws).
-
-### Rebooting guidance for Carrenza
-
-There is a known issue whereby adding an extra disk using the LSI
-Logic Parallel (SCSI) controller to a VM causes the BIOS boot order to
-change, meaning that the system disk cannot be found and the OS does
-not boot when the affected VM is restarted. See the
-manual entry on [adding disks](/manual/adding-disks-in-vcloud.html) for
-more info.
 
 ## Special cases
 
@@ -154,7 +143,7 @@ You can also follow this process manually:
 1. Once the instance is in a Standby state, SSH onto the machine (find this
    from the reboots required alert listing)
 1. Check the traffic has reduced to only be the Smokey healthchecks now: `tail -f /var/log/nginx/lb-access.log`.
-1. Run the `vm.reboot` fab script on your local machine like normal.
+1. Schedule downtime in icinga and run `sudo reboot` on the remote machine like normal.
 1. In the `blue-cache` ASG, move the instance back to the "InService" state,
    which will re-add the instance to the Target Groups
 1. Check the traffic is flowing from the load balancer with `tail -f /var/log/nginx/lb-access.log` again.
@@ -232,16 +221,12 @@ then either add a note here about how to make that application recover,
 or get the team responsible to make it point to the cluster.
 
 Rebooting rabbitmq may cause alerts for other apps which can be restarted,
-for example email-alert-api:
+for example email-alert-api.
+
+You can ssh into individual machines to restart the service:
 
 ```
-fab aws_staging class:email_alert_api app.restart:email-alert-service
-```
-
-You can also ssh into individual machines to restart the service:
-
-```
-sudo service cache-clearing-service restart
+sudo service email-alert-api restart
 ```
 
 ### Rebooting asset primary and secondary machines
@@ -272,93 +257,9 @@ are involved in a data sync processes and rebooting could cause the data
 sync to fail.
 
 ```
-fab <aws_environment> -H <ip_address> vm.reboot
+sudo reboot
 ```
 
 ### Rebooting docker-management
 
 It is safe to reboot while no other unattended reboot is underway - see https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/docker_management.yaml
-
-### Rebooting backend-lb machines (Carrenza only)
-
-In order to safely reboot these machines you'll need access to [vCloud Director][vcloud], in order to switch traffic away from backend-lb-1 before rebooting it - all traffic goes through this machine unless it fails.
-
-* Reboot backend-lb-2 and wait for it to recover.
-
-  ```
-  fab <environment> -H backend-lb-2.backend vm.reboot
-  ```
-
-  > Doing this may trigger a PagerDuty alert and trigger 5xx errors on Fastly.
-
-* Find the IP addresses of backend-lb-1 and backend-lb-2 for the
-    environment. They will be listed in [this
-    repo](https://github.com/alphagov/govuk-provisioning/).
-* Use vCloud Director to update the NAT rule to point to backend-lb-2.
-  * The Nat rule will be in [this repo](https://github.com/alphagov/govuk-provisioning/).
-  * Go to "Administration".
-  * Find 'GOV.UK Management' in the list of vdcs and click on it
-  * Select the "edge gateway" tab, right click on it and select "edge gateway services".
-  * Click the NAT tab.
-  * Find the rule corresponding to the rule defined in the vcloud-launcher file, and update the DNAT rules to point to the IP address of backend-lb-2 by clicking edit, and updating the "Translated (Internal) IP/range" field and click OK to save these rules.
-* Reboot backend-lb-1 and wait for it to recover
-
-  ```
-  fab <environment> -H backend-lb-1.backend vm.reboot
-  ```
-
-* Use [vCloud Director][vcloud] to update the NAT rule to point back to the IP address of backend-lb-1.
-
-### Rebooting MySQL backup machines (Carrenza only)
-
-The MySQL backup machines [create a file during the backup
-process](https://github.com/alphagov/govuk-puppet/commit/0e1615bf31f714994b43142ecf915330d4d46af5).
-If that file exists, the machine isn't safe to reboot.
-
-* Check if the file exists:
-
-  ```
-  fab <environment> -H mysql-backup-1.backend sdo:'test -e /var/lock/mysql-backup.lock'
-  ```
-
-* If the file doesn't exist (that command returns non-0), reboot the
-  machine:
-
-  ```
-  fab <environment> -H mysql-backup-1.backend vm.reboot
-  ```
-
-### Rebooting MySQL master and slave machines (Carrenza only)
-
-Unless there are urgent updates to apply, these machines should not be
-rebooted during working hours in production. Applications write to the
-masters and read from the slaves (with the exception of the slave within
-the Disaster Recovery environment).
-
-Reboots of these machines, in the production environment, should be organised
-by On Call staff.
-
-They may be rebooted in working hours in the staging environment, however you
-should notify colleagues before doing so.
-
-### Rebooting Whitehall MySQL slave machines
-
-The whitehall-mysql-slave-1 machine is used by the frontend component
-of Whitehall, so this'll be impacted when rebooting. The other
-whitehall-mysql-slave machines are not used by Whitehall frontend.
-
-### Rebooting PostgreSQL primary and standby machines (Carrenza only)
-
-Unless there are urgent updates to apply, these machines should not be
-rebooted in production during working hours. Applications read and write
-to the primary machines, and some applications (e.g. Bouncer) read from the
-standby machines (with the exception of the slave within the Disaster Recovery
-environment).
-
-Reboots of these machines, in the production environment, should be organised
-by On Call staff.
-
-They may be rebooted in working hours in the staging environment, however you
-should notify colleagues before doing so.
-
-[vcloud]: /manual/connect-to-vcloud-director.html
