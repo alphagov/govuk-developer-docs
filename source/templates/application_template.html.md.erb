@@ -42,7 +42,7 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/ap
       value: partial("partials/application/links"),
     },
   ].reject(&:nil?),
-) %>
+).strip %>
 
 <% if manual.pages_for_application(application.app_name).any? %>
 ## Relevant manual pages
