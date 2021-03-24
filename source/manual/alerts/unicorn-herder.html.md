@@ -12,21 +12,27 @@ This alert means the Unicorn Herder process has disappeared for the
 named app, so the app is still running but we don't know about it and
 can't control it.
 
-At the moment, the fix is to run the [Fabric](/manual/tools.html#fabric-scripts)
-task `vm.bodge_unicorn` for that app. (The name of the task should give a clue
-as to why I say "At the moment".)
+To fix this, manually kill off the unicorn workers for the app and
+restart the herder process.
 
-Configure and activate your fabric environment as described in the
-[fabric-scripts README](https://github.com/alphagov/fabric-scripts/blob/master/README.md).
-
-Then run the `vm.bodge_unicorn` task for the affected machine and application:
+SSH into the affected machine and get the process ID of the unicorn
+master:
 
 ```bash
-# Replace the machine_ip with the host IP of the machine that is showing the
-# error in Icinga - e.g. ip-10-1-4-159.eu-west-1.compute.internal
-
-# Replace the app_name with the relevant app  - e.g whitehall
-fab $environment -H $machine_ip vm.bodge_unicorn:$app_name
+ps aux | grep "unicorn master" | grep "<app name>" | awk '{ print $2 }'
 ```
 
-Job done. The Nagios alert should clear within a few minutes.
+If there is no `unicorn master` process for the app, then it has
+crashed.
+
+Kill the process:
+
+```bash
+kill -9 <pid>
+```
+
+Then start the app again:
+
+```bash
+sudo service <app-name> start
+```
