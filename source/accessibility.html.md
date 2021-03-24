@@ -25,7 +25,6 @@ We’ve also made the website text as simple as possible to understand.
 We know some parts of this website are not fully accessible.
 
 - Some links are broken.
-- Some tables are structured in an inaccessible way.
 - Some headings do not fit with the content that follows.
 - Some links do not clearly explain where they lead, or that they lead to external sites.
 - Some pages skip heading levels.
@@ -62,7 +61,6 @@ The content listed below is non-accessible for the following reasons.
 #### Non-compliance with the accessibility regulations
 
 - Some links are broken, which fails WCAG 2.1 success criterion 2.1.1 Keyboard.
-- Some tables are structured in a way that fails WCAG 2.1 success criteria 1.3.1 Info and Relationships and 1.3.2 Meaningful Sequence.
 - Some content uses emojis without alternative text, which fails WCAG 2.1 success criteria 1.1.1 Non-text Content.
 - Some headings do not fit with the content that follows, which fails WCAG 2.1 success criterion 2.4.6 Headings and Labels.
 - Some links do not clearly explain where they lead, or that they lead to external sites. This fails WCAG 2.1 success criteria 2.4.4 Link Purpose (In Context) and 2.4.4 Link Purpose (In Context).
