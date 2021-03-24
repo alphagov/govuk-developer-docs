@@ -246,7 +246,7 @@ of 'router'. You can swap `www` for `draft-origin` to view the draft stack at
 origin. The draft stack is not IP-restricted, as we need to be able to share
 links to be reviewed ("2i'd") or fact-checked by non-Government departments.
 It is, however, only visible to users who have been verified through
-Authenticating Proxy, by signing into [signon] (an authentication and
+Authenticating Proxy, by signing into [signon][] (an authentication and
 authorisation portal) or by providing a valid `auth_bypass_id` (as a URI
 parameter or session cookie). Read more about previews in ["How the draft stack works"].
 
