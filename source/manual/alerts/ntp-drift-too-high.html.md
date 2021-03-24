@@ -12,19 +12,22 @@ time synchronised with standard time servers on the Internet.
 The `ntpd.drift` file records the latest estimate of clock frequency error. If this value gets too high, this can be
 an indicator of large error between the system clock and the real time.
 
-```
-fab $environment -H jumpbox-1.management ntp.status
-fab $environment -H jumpbox-1.management ntp.resync
+SSH to the affected machine, then run:
+
+```bash
+sudo service ntp stop
+sudo ntpdate -B ntp.ubuntu.com
+sudo service ntp start
 ```
 
 > **Note**
 >
-> The fab script will try to slew the time offset, which means continually adding/subtracting little bits of time until
+> `ntpdate -B` will try to slew the time offset, which means continually adding/subtracting little bits of time until
 > the clock is in sync. This is in contrast to a step change, where the clock's time is just changed. Step changes
 > can cause - for example - log timestamp inconsistencies.
 >
-> According to the [`ntpdate` man page](https://www.freebsd.org/cgi/man.cgi?query=ntpdate&sektion=8), the slew forced
-> by the `-B` flag can take **hours** to gradually take effect.
+> According to the [`ntpdate` man page](https://www.freebsd.org/cgi/man.cgi?query=ntpdate&sektion=8), the slew can take
+> **hours** to gradually take effect.
 >
 > Additionally, the `ntpdate` functionality has been made available in the `ntpd` program. To resync an offset bigger than
 > 1000, you can run `sudo service ntp stop; sudo ntpd -gq; sudo service ntp start`.
