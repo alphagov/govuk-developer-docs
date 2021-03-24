@@ -47,10 +47,11 @@ If that's the case, make sure that the following file exists on the host:
 
 and that it is in a proper state (i.e. empty).
 
-If not, restart the GoReplay processes with the following Fabric command:
+If not, restart the GoReplay processes:
 
 ```sh
-fab $environment puppet_class:gor sdo:'rm /etc/govuk/env.d/FACTER_data_sync_in_progress' app.start:goreplay
+sudo rm /etc/govuk/env.d/FACTER_data_sync_in_progress
+sudo service goreplay start
 ```
 
 This will remove the file and restart GoReplay from all hosts running it.
