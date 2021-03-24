@@ -9,10 +9,10 @@ section: Icinga alerts
 
 This can happen if one of the machines in the cluster is killed by AWS and replaced with a new machine. In this scenario, the cluster is still working, but leaving the dead node will cause problems in future e.g. when we try to [reboot the machines to install updates](https://github.com/alphagov/fabric-scripts/blob/a14686667d27790f0978146634b1e4d281552b8c/rabbitmq.py#L57). The check can be found [here][alert_check].
 
-First, you should check which node is dead:
+First, check which node is dead:
 
 ```bash
-fab production_aws class:rabbitmq rabbitmq.status
+gds govuk connect -e production ssh aws/rabbitmq "sudo rabbitmqctl cluster_status"
 ```
 
 If a node is dead, there will be more "nodes" than "running_nodes". Once you know the identity of the dead node, you should verify whether the machine still exists:
@@ -21,10 +21,10 @@ If a node is dead, there will be more "nodes" than "running_nodes". Once you kno
 gds govuk connect -e production ssh aws/jumpbox "govuk_node_list -C rabbitmq"
 ```
 
-If the dead node is not in the list, then it can be safely removed from the cluster. To do this, SSH onto one of the RabbitMQ machines and run the following with the dead node:
+If the dead node is not in the list, then it can be safely removed from the cluster. To do this, run the following with the dead node:
 
 ```bash
-sudo rabbitmqctl forget_cluster_node [dead_node e.g. rabbit@ip-10-13-5-19]
+gds govuk connect -e production ssh aws/rabbitmq "sudo rabbitmqctl forget_cluster_node [dead_node e.g. rabbit@ip-10-13-5-19]"
 ```
 
 For information about how we use RabbitMQ, see [here][rabbitmq_doc].
