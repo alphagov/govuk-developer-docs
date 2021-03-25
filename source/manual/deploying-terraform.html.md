@@ -67,7 +67,9 @@ Where:
 1. `<project>` is the terraform project that you want to deploy. E.g. `app-gatling`
 1. `<stack>` is the govuk stack you want to deploy to. E.g. `blue` (which is usually for `app-` projects), `govuk` (which is usually for `infra-` projects)
 1. `<action>` is the terraform action you want to perform. E.g. `plan`, `apply`
-1. `<aws_role>` is the govuk aws role you want to use for terraforming. E.g. `govuk-integration-admin`
+1. `<aws_role>` is the govuk aws role you want to use for terraforming. E.g. `govuk-integration-admin`. There are a couple of gotchas with the role names:
+    - The [role names in `gds-cli`](https://github.com/alphagov/gds-cli/blob/main/pkg/gds_aws/aws.go#L269) contain dashes not underscores, which is different from some of the Terraform code which actually defines who has which roles ([example: who has which role in Integration](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/integration/common.tfvars#L45)).
+    - Some of the roles have very similar names and provide identical permissions, but you'll see an unhelpful error message if you use the wrong one. For example you might be in `govuk-integration-platformhealth-poweruser` as opposed to `govuk-integration-poweruser`.
 
 After you deploy, you can visit the [`deploy` Jenkins job][deploy-jenkins] to see the job running or queued.
 
