@@ -67,11 +67,7 @@ The content listed below is non-accessible for the following reasons.
 - Some pages skip heading levels, which fails WCAG 2.1 success criteria 1.3.1 Info and Relationships, 2.4.1 Bypass Blocks and 2.4.6 Headings and Labels.
 - Some images do not have good alternative text or are missing alternative text, which fails WCAG 2.1 success criterion 1.1.1 Non-text Content.
 
-There are also parts of this documentation that are not accessible because of [issues caused by our Technical Documentation](https://tdt-documentation.london.cloudapps.digital/accessibility/#using-the-technical-documentation-template-for-your-own-documentation).
-
 ## What we’re doing to improve accessibility
-
-We plan to fix the issues with the Technical Documentation Template by the end of March 2021.
 
 We plan to fix the accessibility issues in the content by the end of September 2021.
 
