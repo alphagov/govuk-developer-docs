@@ -32,6 +32,8 @@ The first time you'll need to bundle:
 bundle install
 ```
 
+If you have issues installing mimemagic, you may need to `brew install shared-mime-info`.
+
 To run the app locally:
 
 ```sh
