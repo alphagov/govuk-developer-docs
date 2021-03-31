@@ -55,7 +55,12 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/ap
     unless imported_docs.nil?
 %>
 ## Imported documents
-<%= partial("partials/application/imported_docs", locals: { imported_docs: imported_docs }) %>
+<%= partial(
+  "partials/application/imported_docs",
+  locals: {
+    nested_docs: GitHubRepoFetcher.instance.nest_docs(imported_docs),
+    uls_on_newlines: true,
+  }).strip %>
 <%
     end
   end

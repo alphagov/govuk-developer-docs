@@ -1,6 +1,24 @@
-<%= GovukPublishingComponents.render(
-  "govuk_publishing_components/components/list",
-  items: imported_docs.map do |page|
-    "<a href=\"#{page[:path]}\" class=\"govuk-link\">#{page[:title]}</a>"
-  end
-) %>
+<% list_items = capture do %>
+  <% nested_docs.each do |page| %>
+    <% if page[:path] %>
+      <%= "<li><a href='#{page[:path]}' class='govuk-link'>#{page[:title]}</a></li>" %>
+    <% else %>
+      <li><strong><%= page[:title] %></strong></li>
+      <%= partial("partials/application/imported_docs", locals: { nested_docs: page[:docs] }).strip %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%#
+  This is a hack to ensure markdown headings below the table continue to render properly.
+  See:
+  https://github.com/alphagov/govuk-developer-docs/pull/2519/commits/81726d015e43f8118d2f80b409d2a83325fbc803
+%>
+<% uls_on_newlines ||= false %>
+<% if uls_on_newlines %>
+<ul>
+<%= list_items.strip %>
+</ul>
+<% else %>
+<ul><%= list_items.strip %></ul>
+<% end %>
