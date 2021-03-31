@@ -52,7 +52,7 @@ private
 
   def recursively_fetch_files(repo_name, path)
     docs = client.contents("alphagov/#{repo_name}", path: path)
-    top_level_files = docs.select { |doc| doc.name.end_with?(".md") }.map do |doc|
+    top_level_files = docs.select { |doc| doc.path.end_with?(".md") }.map do |doc|
       data_for_github_doc(doc, repo_name)
     end
     docs.select { |doc| doc.type == "dir" }.each_with_object(top_level_files) do |dir, files|
