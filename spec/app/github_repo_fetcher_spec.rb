@@ -132,7 +132,7 @@ RSpec.describe GitHubRepoFetcher do
     it "returns an array of hashes including title derived from markdown contents" do
       commit = { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s }
       doc_contents = "# title \n Some document"
-      doc = double("doc", name: "foo.md", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
+      doc = double("doc", type: "file", name: "foo.md", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
 
       instance = GitHubRepoFetcher.new
       allow(instance).to receive(:latest_commit).and_return(commit)
@@ -146,6 +146,37 @@ RSpec.describe GitHubRepoFetcher do
             markdown: doc_contents,
             relative_path: "docs/foo.md",
             source_url: "foo_html_url",
+            latest_commit: commit,
+          },
+        ])
+      end
+    end
+
+    it "retrieves documents recursively" do
+      dir = double("dir", type: "dir", name: "foo", path: "docs/foo")
+      nested_doc = double("nested_doc", type: "file", name: "bar.md", path: "docs/foo/bar.md", download_url: "bar_url", html_url: "bar_html_url")
+
+      doc_contents = "# title \n Some document"
+      commit = { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s }
+      instance = GitHubRepoFetcher.new
+      allow(instance).to receive(:latest_commit).and_return(commit)
+      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
+      allow(HTTP).to receive(:get).with(nested_doc.download_url).and_return(doc_contents)
+
+      stubbed_client = double("Octokit::Client")
+      allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs")
+        .and_return([dir])
+      allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs/foo")
+        .and_return([nested_doc])
+
+      with_stubbed_client(stubbed_client, instance) do
+        expect(instance.docs(repo_name)).to eq([
+          {
+            title: "title",
+            path: "/apps/#{repo_name}/foo/bar.html",
+            markdown: doc_contents,
+            relative_path: "docs/foo/bar.md",
+            source_url: "bar_html_url",
             latest_commit: commit,
           },
         ])
