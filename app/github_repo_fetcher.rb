@@ -28,20 +28,7 @@ class GitHubRepoFetcher
     return nil if repo(repo_name).private_repo?
 
     CACHE.fetch("alphagov/#{repo_name} docs", expires_in: 1.hour) do
-      docs = client.contents("alphagov/#{repo_name}", path: "docs")
-      docs.select { |doc| doc.name.end_with?(".md") }.map do |doc|
-        contents = HTTP.get(doc.download_url)
-        filename = doc.name.match(/(.+)\..+$/)[1]
-        title = ExternalDoc.title(contents) || filename
-        {
-          path: "/apps/#{repo_name}/#{filename}.html",
-          title: title.to_s.force_encoding("UTF-8"),
-          markdown: contents.to_s.force_encoding("UTF-8"),
-          relative_path: doc.path,
-          source_url: doc.html_url,
-          latest_commit: latest_commit(repo_name, doc.path),
-        }
-      end
+      recursively_fetch_files(repo_name, "docs")
     rescue Octokit::NotFound
       nil
     end
@@ -60,6 +47,31 @@ private
     {
       sha: latest_commit.sha,
       timestamp: latest_commit.commit.author.date,
+    }
+  end
+
+  def recursively_fetch_files(repo_name, path)
+    docs = client.contents("alphagov/#{repo_name}", path: path)
+    top_level_files = docs.select { |doc| doc.name.end_with?(".md") }.map do |doc|
+      data_for_github_doc(doc, repo_name)
+    end
+    docs.select { |doc| doc.type == "dir" }.each_with_object(top_level_files) do |dir, files|
+      files.concat(recursively_fetch_files(repo_name, dir.path))
+    end
+  end
+
+
+  def data_for_github_doc(doc, repo_name)
+    contents = HTTP.get(doc.download_url)
+    filename = doc.path.sub("docs/", "").match(/(.+)\..+$/)[1]
+    title = ExternalDoc.title(contents) || filename
+    {
+      path: "/apps/#{repo_name}/#{filename}.html",
+      title: title.to_s.force_encoding("UTF-8"),
+      markdown: contents.to_s.force_encoding("UTF-8"),
+      relative_path: doc.path,
+      source_url: doc.html_url,
+      latest_commit: latest_commit(repo_name, doc.path),
     }
   end
 
