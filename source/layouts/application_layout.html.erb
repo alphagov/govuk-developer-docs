@@ -24,6 +24,7 @@
 <% end %>
 
 <% wrap_layout :core do %>
+  <%= partial 'partials/last_updated' if current_page.data.show_last_updated %>
   <%= partial 'partials/header' %>
   <%= yield %>
 <% end %>
