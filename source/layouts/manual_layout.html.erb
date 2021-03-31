@@ -1,10 +1,17 @@
-<%
-  breadcrumb = if current_page.data.section == "Icinga alerts"
-                 ""
-               else
-                 "<p><a href='/manual.html##{section_url}'>#{current_page.data.section}</a></p>"
-               end
-%>
+<% breadcrumb = capture do %>
+  <%= GovukPublishingComponents.render("govuk_publishing_components/components/breadcrumbs", {
+    breadcrumbs: [
+      {
+        title: "Home",
+        url: "/",
+      },
+      {
+        title: current_page.data.section,
+        url: "/manual.html##{section_url}",
+      },
+    ]
+  }) unless current_page.data.section == "Icinga alerts" %>
+<% end %>
 
 <% last_updated_banner = capture do %>
   <%= partial 'partials/last_updated' %>
