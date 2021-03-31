@@ -24,6 +24,14 @@
 <% end %>
 
 <% wrap_layout :core do %>
+  <% app_slug = current_page.path.match(/apps\/([^\/]+)\/(?:.+)/) %>
+  <%= GovukPublishingComponents.render("govuk_publishing_components/components/breadcrumbs", {
+    breadcrumbs: [
+      { title: "Home", url: "/" },
+      current_page.path != "apps.html" ? { title: "Apps", url: "/apps.html" } : nil,
+      app_slug ? { title: app_slug[1], url: "/apps/#{app_slug[1]}.html" } : nil,
+    ].compact,
+  }) %>
   <%= partial 'partials/last_updated' if current_page.data.show_last_updated %>
   <%= partial 'partials/header' %>
   <%= yield %>
