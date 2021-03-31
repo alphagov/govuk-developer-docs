@@ -122,94 +122,93 @@ RSpec.describe GitHubRepoFetcher do
       "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs"
     end
 
-    def with_stubbed_client(temporary_client, instance)
-      before_client = instance.instance_variable_get(:@client)
-      instance.instance_variable_set(:@client, temporary_client)
-      yield
-      instance.instance_variable_set(:@client, before_client)
+    def github_repo_fetcher_returning(repo)
+      instance = GitHubRepoFetcher.new
+      allow(instance).to receive(:repo).with(repo_name).and_return(repo)
+      instance
     end
 
-    it "returns an array of hashes including title derived from markdown contents" do
-      commit = { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s }
-      doc_contents = "# title \n Some document"
-      doc = double("doc", type: "file", name: "foo.md", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
-
-      instance = GitHubRepoFetcher.new
-      allow(instance).to receive(:latest_commit).and_return(commit)
-      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
-      allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
-      with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
-        expect(instance.docs(repo_name)).to eq([
-          {
-            title: "title",
-            path: "/apps/#{repo_name}/foo.html",
-            markdown: doc_contents,
-            relative_path: "docs/foo.md",
-            source_url: "foo_html_url",
-            latest_commit: commit,
-          },
-        ])
+    context "the repo contains a reachable docs/ folder" do
+      def with_stubbed_client(temporary_client, instance)
+        before_client = instance.instance_variable_get(:@client)
+        instance.instance_variable_set(:@client, temporary_client)
+        yield
+        instance.instance_variable_set(:@client, before_client)
       end
-    end
 
-    it "retrieves documents recursively" do
-      dir = double("dir", type: "dir", name: "foo", path: "docs/foo")
-      nested_doc = double("nested_doc", type: "file", name: "bar.md", path: "docs/foo/bar.md", download_url: "bar_url", html_url: "bar_html_url")
+      let(:commit) { { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s } }
+      let(:doc_contents) { "# title \n Some document" }
+      let(:doc_title_derived_from_contents) { "title" }
 
-      doc_contents = "# title \n Some document"
-      commit = { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s }
-      instance = GitHubRepoFetcher.new
-      allow(instance).to receive(:latest_commit).and_return(commit)
-      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
-      allow(HTTP).to receive(:get).with(nested_doc.download_url).and_return(doc_contents)
+      it "returns an array of hashes including title derived from markdown contents" do
+        doc = double("doc", type: "file", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
 
-      stubbed_client = double("Octokit::Client")
-      allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs")
-        .and_return([dir])
-      allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs/foo")
-        .and_return([nested_doc])
-
-      with_stubbed_client(stubbed_client, instance) do
-        expect(instance.docs(repo_name)).to eq([
-          {
-            title: "title",
-            path: "/apps/#{repo_name}/foo/bar.html",
-            markdown: doc_contents,
-            relative_path: "docs/foo/bar.md",
-            source_url: "bar_html_url",
-            latest_commit: commit,
-          },
-        ])
+        instance = github_repo_fetcher_returning(public_repo)
+        allow(instance).to receive(:latest_commit).and_return(commit)
+        allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
+        with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
+          expect(instance.docs(repo_name)).to eq([
+            {
+              title: doc_title_derived_from_contents,
+              markdown: doc_contents,
+              path: "/apps/#{repo_name}/foo.html",
+              relative_path: "docs/foo.md",
+              source_url: "foo_html_url",
+              latest_commit: commit,
+            },
+          ])
+        end
       end
-    end
 
-    it "skips over any non-markdown files" do
-      instance = GitHubRepoFetcher.new
-      api_response = [
-        {
-          "name": "digests.png",
-          "download_url": "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/docs/digests.png",
-        },
-      ]
-      stub_request(:get, docs_url(repo_name))
-        .to_return(body: api_response.to_json, headers: { content_type: "application/json" })
-      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
+      it "retrieves documents recursively" do
+        dir = double("dir", type: "dir", path: "docs/foo")
+        nested_doc = double("nested_doc", type: "file", path: "docs/foo/bar.md", download_url: "bar_url", html_url: "bar_html_url")
 
-      expect(instance.docs(repo_name)).to eq([])
+        instance = github_repo_fetcher_returning(public_repo)
+        allow(instance).to receive(:latest_commit).and_return(commit)
+        allow(HTTP).to receive(:get).with(nested_doc.download_url).and_return(doc_contents)
+        stubbed_client = double("Octokit::Client")
+        allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs")
+          .and_return([dir])
+        allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs/foo")
+          .and_return([nested_doc])
+
+        with_stubbed_client(stubbed_client, instance) do
+          expect(instance.docs(repo_name)).to eq([
+            {
+              title: doc_title_derived_from_contents,
+              markdown: doc_contents,
+              path: "/apps/#{repo_name}/foo/bar.html",
+              relative_path: "docs/foo/bar.md",
+              source_url: "bar_html_url",
+              latest_commit: commit,
+            },
+          ])
+        end
+      end
+
+      it "skips over any non-markdown files" do
+        instance = github_repo_fetcher_returning(public_repo)
+        stubbed_client = double("Octokit::Client")
+        allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs")
+          .and_return([double("non markdown file", type: "file", path: "docs/digests.png")])
+
+        with_stubbed_client(stubbed_client, instance) do
+          expect(instance.docs(repo_name)).to eq([])
+        end
+      end
     end
 
     it "returns nil if no docs folder exists" do
-      instance = GitHubRepoFetcher.new
+      instance = github_repo_fetcher_returning(public_repo)
       stub_request(:get, docs_url(repo_name))
         .to_return(status: 404, body: "{}", headers: { content_type: "application/json" })
-      allow(instance).to receive(:repo).with(repo_name).and_return(public_repo)
 
       expect(instance.docs(repo_name)).to be_nil
     end
 
     it "returns nil if the repo is private" do
-      instance = GitHubRepoFetcher.new
-      allow(instance).to receive(:repo).with(repo_name).and_return(private_repo)
+      instance = github_repo_fetcher_returning(private_repo)
 
       expect(instance.docs(repo_name)).to eq(nil)
     end
