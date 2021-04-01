@@ -17,6 +17,20 @@ parent: "/manual.html"
 [deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
 [docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/master/data/applications.yml
 
+
+___need to use docker to run these commands?___
+
+___where does unicorn as opposed to puma come in?___
+
+___enable deployments to integration - continuous deployments?___
+
+___Set up a deployment dashboard___
+
+___Switch on the app in staging and production environments___
+
+
+
+
 ## Familiarise yourself with the conventions
 
 We have documented [conventions for Rails
@@ -235,6 +249,13 @@ required to render an application page.
 If you do not do this, you may see Middleman errors when the docs are building which reference
 attempts to modify a frozen empty string.
 
+
+___https://github.com/alphagov/govuk-saas-config is a little broken, it only lets you “update all” instead of targeting to a single repo - so when we went to update our sentry config it started changing other folks projects too! :scream: should be fixed from follow up PR here, but anyone still trying to run the update all like the docs say will encounter everyone else being out of sync!___
+
+
+___Configure the GitHub repo as per https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration page___
+
+
 ## Configuring the app for Jenkins
 
 Create a `Jenkinsfile` in your repo with the following content.
@@ -257,3 +278,5 @@ You also need to add a Jenkins integration to the repo on GitHub:
 4. Make sure Active is ticked
 
 Finally, add your app to the list of deployable applications in [govuk-puppet].
+
+___Run the deploy_app job comes after this___
