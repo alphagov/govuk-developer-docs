@@ -232,13 +232,33 @@ RSpec.describe GitHubRepoFetcher do
 
       expect(GitHubRepoFetcher.new.nest_docs(flat_docs)).to eq([
         top_level_doc,
-        { title: "subdir/", docs: [nested_doc] },
         another_top_level_doc,
+        { title: "subdir/", docs: [nested_doc] },
         {
           title: "another-subdir/",
           docs: [
             another_nested_doc,
             { title: "deep/", docs: [a_deeper_nested_doc] },
+          ],
+        },
+      ])
+    end
+
+    it "sorts nested documents alphabetically" do
+      flat_docs = [
+        { title: "far", path: "/apps/some-app/subdir/far.html" },
+        { title: "bar", path: "/apps/some-app/subdir/bar.html" },
+        { title: "car", path: "/apps/some-app/subdir/car.html" },
+      ]
+
+      expect(GitHubRepoFetcher.new.nest_docs(flat_docs)).to eq([
+        {
+          title: "subdir/",
+          docs:
+          [
+            { title: "bar", path: "/apps/some-app/subdir/bar.html" },
+            { title: "car", path: "/apps/some-app/subdir/car.html" },
+            { title: "far", path: "/apps/some-app/subdir/far.html" },
           ],
         },
       ])

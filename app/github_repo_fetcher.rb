@@ -44,6 +44,7 @@ class GitHubRepoFetcher
         title: doc[:title],
         path: doc[:path],
       }
+      hash_to_inject_into[:docs].sort_by! { |hash| hash[:title] }
     end
     nested_docs[:docs]
   end
