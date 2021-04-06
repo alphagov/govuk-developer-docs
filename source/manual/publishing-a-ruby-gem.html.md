@@ -51,11 +51,11 @@ for an example.
 
 When a new gem version is released, it may not be available immediately on Jenkins.
 This is due to [gemstash][], our gem mirror. It caches versions for up to 30
-minutes. To force it to clear, run this on `apt-1.management` in the relevant
-environment:
+minutes. To force it to clear, restart `gemstash` on the `apt` machine in the
+relevant environment, e.g. for integration:
 
 ```
-$ sudo docker restart gemstash
+gds govuk c ssh -e integration apt 'sudo docker restart gemstash'
 ```
 
 To clear the cache for the CI Jenkins instance, run this in integration.
