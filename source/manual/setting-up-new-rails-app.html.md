@@ -171,7 +171,7 @@ You should:
 - develop your Rails app in line with the [GOV.UK developer documentation on conventions for Rails applications](rails-conv)
 - name your Rails app in line with the [GOV.UK developer documentation on conventions for naming apps](naming)
 
-## Set up GitHub repo
+## Set up GitHub repo for the Rails app
 
 Set up a GitHub repo for your Rails app by following the [GOV.UK developer documentation on automatically configuring a GitHub repo](auto-config).
 
@@ -230,12 +230,12 @@ Information about how to test the app.
 
 Link to the [MIT License](LICENCE).
 ```
+
 See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md) for more information.
 
-## Prepare your app to run in production
+## Prepare the Rails app to run in production
 
-
-### Configuring the app for Jenkins
+### Configure the Rails app for Jenkins
 
 Create a `Jenkinsfile` in your repo with the following content.
 
@@ -249,74 +249,38 @@ node {
 }
 ```
 
-You also need to add a Jenkins integration to the repo on GitHub:
+You also need to add a Jenkins integration to the repo on GitHub. See the [GOV.UK developer documentation on automatically configuring a GitHub repo](auto-config) for more information.
 
-___Follow the link to the github repo config docs___
+### Set up the Rails app in govuk-puppet
 
-___delete following 4 bullet list___
+Add the Rails app to the list of deployable apps in `govuk-puppet`.See the [`govuk-puppet` documentation on adding a new app to GOV.UK](govuk-puppet).
 
-1. In GitHub, go to Settings -&gt; Integrations & Services
-2. Add Jenkins (GitHub plugin)
-3. Add the link to the CI GitHub webhook
-4. Make sure Active is ticked
+### Configure the Rails app's deployment
 
-### Set up your app in govuk-puppet
-
-Add your app to the list of deployable applications in [govuk-puppet].
-
-### Configure your app's deployment
-
-To configure your app's deployments, follow the docs in [govuk-app-deployment]
+To configure your app's deployment, see the [GOV.UK application deployment scripts documentation](govuk-app-deployment).
 
 ### Enable external DNS
 
-If you need to.
-
-To enable external DNS, follow the article in the [Developer Docs][dns]
+If you need to enable external DNS, follow the article in the [GOV.UK developer documentation on making changes to publishing.service.gov.uk](dns).
 
 ### Add your app to the GOV.UK Developer Docs
 
-* Make a PR to add your app to [data/applications.yml][docs-applications] for these docs
+Open a pull request to add the Rails app to the [GOV.UK developer documentation `data/applications.yml` file][docs-applications].
 
 ### Ask GOV.UK 2nd line to update Sentry
 
-After app added to gov.uk developer docs, do this. Pre-req.
+After you have added the Rails app to the GOV.UK developer documentation, ask GOV.UK 2nd line support to run the `update-project` task in `[govuk-saas-config]` to update `[Sentry]`.
 
-Then ask 2nd line to run the update-project task in [govuk-saas-config] to update [Sentry]
+### Add Rails app to Release app
 
-### Add app to Release app
+Add the Rails app to the [Release] app and select __Create__.
 
-Complete the form at that location and then select Create
+### Run the Deploy_App job
 
-Add the application to the [Release] app (the create button is at the bottom)
+Run the [Deploy_App job][deploy-jenkins].
 
-### Run deploy app job
+Use the `with_migrations` option if your Rails app has a database.
 
-Run the [Deploy_App job][deploy-jenkins] using with `with_migrations` option to get started
+### Add Rails app to GOV.UK Docker
 
-include the `with_migrations` option if your app has a DATABASE
-
-### Add application to GOV.UK Docker
-
-Add app to Docker so app can be run locally. Example PR - https://github.com/alphagov/govuk-docker/pull/465
-
-
-
-
-
-
-
-* Add the application to the [Deploy_App job][deploy-jenkins] in Jenkins (click Configure) - to be moved by MSW to puppet docs___
-
-
-*
-
-
-
-.
-
-
-___https://github.com/alphagov/govuk-saas-config is a little broken, it only lets you “update all” instead of targeting to a single repo - so when we went to update our sentry config it started changing other folks projects too! :scream: should be fixed from follow up PR here, but anyone still trying to run the update all like the docs say will encounter everyone else being out of sync!___
-
-
-___Configure the GitHub repo as per https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration page___
+Add the Rails app to GOV.UK Docker so the Rails app can be run locally. See this [example pull request](https://github.com/alphagov/govuk-docker/pull/465) for more information.
