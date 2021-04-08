@@ -29,13 +29,13 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
 
 ## Create a new Rails app
 
-1. To create a Rails app, go to your development space on your local machine and run the following in the command line:
+1. To create a Rails app, go to the development space on your local machine and run the following in the command line:
 
     ```sh
     rails new myapp --skip-javascript --skip-test --skip-bundle --skip-spring --skip-action-cable --skip-action-mailer --skip-active-storage
     ```
 
-    The `--skip` commands excludes unneeded Rails plugins.
+    The `--skip` commands exclude unneeded Rails plugins.
 
 1. Replace the Gemfile with the gems you need. The following code shows an example.
 
@@ -77,7 +77,7 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
     rm spec/rails_helper.rb
     ```
 
-    Open up `spec_helper.rb` and replace its contents with the following:
+    Open `spec_helper.rb` and replace its contents with the following:
 
     ```rb
     ## spec/spec_helper.rb
@@ -99,7 +99,7 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
     end
     ```
 
-1. If your app has a database, replace the content of `config/database.yml` with the following:
+1. If your Rails app has a database, replace the content of `config/database.yml` with the following:
 
     ```yaml
     default: &default
@@ -110,21 +110,23 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
 
     development:
       <<: *default
-      database: <YOUR APP's NAME>_development
+      database: <APP-NAME>_development
       url: <%= ENV["DATABASE_URL"]%>
 
     test:
       <<: *default
-      database: <YOUR APP's NAME>_test
+      database: <APP-NAME>_test
       url: <%= ENV["TEST_DATABASE_URL"] %>
 
     production:
       <<: *default
-      database: <YOUR APP's NAME>_production
+      database: <APP-NAME>_production
       url: <%= ENV["DATABASE_URL"]%>
     ```
 
-1. Delete the `config/credentials.yml.env` and `config/master.key` files, and create `config/secrets.yml` with the following:
+    where `<APP-NAME>` is the name of the Rails app.
+
+1. Delete the `config/credentials.yml.env` and `config/master.key` files, and create a `config/secrets.yml` file that contains the following code:
 
     ```yaml
     development:
@@ -149,15 +151,15 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
 
 ### Set up Unicorn web server
 
-1. Open your Gemfile and delete `gem "puma"` if needed.
+1. If your Rails app's Gemfile includes `gem "puma"`, open the Gemfile and delete `gem "puma"`.
 
-1. Create a `Procfile` in your app's root directory with the following contents:
+1. Create a `Procfile` in your app's root directory that contains the following code:
 
     ```
     web: bundle exec unicorn -c ./config/unicorn.rb -p ${PORT:-3000}
     ```
 
-1. Create `config/unicorn.rb` with the following content:
+1. Create `config/unicorn.rb` that contains the following code:
 
     ```
     require "govuk_app_config/govuk_unicorn"
@@ -171,11 +173,13 @@ You should:
 - develop your Rails app in line with the [GOV.UK developer documentation on conventions for Rails applications](rails-conv)
 - name your Rails app in line with the [GOV.UK developer documentation on conventions for naming apps](naming)
 
-## Set up GitHub repo for the Rails app
+## Set up a GitHub repo for the Rails app
 
 Set up a GitHub repo for your Rails app by following the [GOV.UK developer documentation on automatically configuring a GitHub repo](auto-config).
 
-You must add a description to the __About__ section in the GitHub repo to make sure that you can add your app to the [GOV.UK developer documentation applications page](app-list). If you do not do this, you will see Middleman errors when the GOV.UK developer documentation is building. These errors will refer to attempts to modify a frozen empty string
+You must add a description to the __About__ section in the GitHub repo to make sure that you can add your app to the [GOV.UK developer documentation applications page](app-list).
+
+If you do not do this, you will see Middleman errors when the GOV.UK developer documentation is building. These errors will refer to attempts to modify a frozen empty string
 
 ## Add a software licence
 
@@ -224,7 +228,17 @@ Information about how to test the app.
 
 ## Further documentation
 
+More information on how the app works.
+
 ## API documentation
+
+If applicable, include API reference information including the following sections:
+
+- resources
+- endpoints and methods
+- parameters
+- example requests and responses
+- error codes
 
 ## Licence
 
@@ -233,35 +247,37 @@ Link to the [MIT License](LICENCE).
 
 See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md) for more information.
 
+See the [GOV.UK Writing API reference documentation](https://www.gov.uk/guidance/writing-api-reference-documentation) for more information on API references.
+
 ## Prepare the Rails app to run in production
 
 ### Configure the Rails app for Jenkins
 
-Create a `Jenkinsfile` in your repo with the following content.
+1. Create a `Jenkinsfile` in your repo with the following content.
 
-```
-#!/usr/bin/env groovy
+    ```
+    #!/usr/bin/env groovy
 
-library("govuk")
+    library("govuk")
 
-node {
-  govuk.buildProject()
-}
-```
+    node {
+      govuk.buildProject()
+    }
+    ```
 
-You also need to add a Jenkins integration to the repo on GitHub. See the [GOV.UK developer documentation on automatically configuring a GitHub repo](auto-config) for more information.
+1. Add a Jenkins integration to the repo on GitHub. See the [GOV.UK developer documentation on automatically configuring a GitHub repo](auto-config) for more information.
 
 ### Set up the Rails app in govuk-puppet
 
-Add the Rails app to the list of deployable apps in `govuk-puppet`.See the [`govuk-puppet` documentation on adding a new app to GOV.UK](govuk-puppet).
+Add the Rails app to the list of deployable apps in `govuk-puppet`.See the [`govuk-puppet` documentation on adding a new app to GOV.UK](govuk-puppet) for more information.
 
 ### Configure the Rails app's deployment
 
-To configure your app's deployment, see the [GOV.UK application deployment scripts documentation](govuk-app-deployment).
+To configure your app's deployment, see the [GOV.UK application deployment scripts documentation](govuk-app-deployment) for more information.
 
 ### Enable external DNS
 
-If you need to enable external DNS, follow the article in the [GOV.UK developer documentation on making changes to publishing.service.gov.uk](dns).
+If you need to enable external DNS, see the [GOV.UK developer documentation on making changes to publishing.service.gov.uk](dns) for more information.
 
 ### Add your app to the GOV.UK Developer Docs
 
@@ -269,11 +285,11 @@ Open a pull request to add the Rails app to the [GOV.UK developer documentation 
 
 ### Ask GOV.UK 2nd line to update Sentry
 
-After you have added the Rails app to the GOV.UK developer documentation, ask GOV.UK 2nd line support to run the `update-project` task in `[govuk-saas-config]` to update `[Sentry]`.
+After you have added the Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support](mailto:2nd-line-support@digital.cabinet-office.gov.uk) to run the `update-project` task in `[govuk-saas-config]` to update `[Sentry]`.
 
 ### Add Rails app to Release app
 
-Add the Rails app to the [Release] app and select __Create__.
+Add the Rails app to the [Release] app (requires sign in) and select __Create__.
 
 ### Run the Deploy_App job
 
@@ -283,4 +299,4 @@ Use the `with_migrations` option if your Rails app has a database.
 
 ### Add Rails app to GOV.UK Docker
 
-Add the Rails app to GOV.UK Docker so the Rails app can be run locally. See this [example pull request](https://github.com/alphagov/govuk-docker/pull/465) for more information.
+Add the Rails app to GOV.UK Docker so the Rails app can be run locally. See this [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465) for more information.
