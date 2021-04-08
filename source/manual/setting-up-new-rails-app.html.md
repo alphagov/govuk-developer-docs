@@ -77,7 +77,7 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
     rm spec/rails_helper.rb
     ```
 
-    Open `spec_helper.rb` and replace its contents with the following:
+    Open `spec/spec_helper.rb` and replace its contents with the following:
 
     ```rb
     ENV["RAILS_ENV"] ||= "test"
@@ -244,7 +244,7 @@ If applicable, include API reference information including the following section
 Link to the [MIT License][LICENCE].
 ```
 
-See the example [account-api README.md][https://github.com/alphagov/account-api/blob/main/README.md] for more information.
+See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md) for more information.
 
 See the [GOV.UK Writing API reference documentation][https://www.gov.uk/guidance/writing-api-reference-documentation] for more information on API references.
 
