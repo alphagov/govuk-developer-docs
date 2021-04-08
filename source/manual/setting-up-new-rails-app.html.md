@@ -25,7 +25,7 @@ parent: "/manual.html"
 
 ## Before you start
 
-Before you create a Rails app, you must complete all steps in the [GOV.UK developer get started documentation](get-started).
+Before you create a Rails app, you must complete all steps in the [GOV.UK developer get started documentation][get-started].
 
 ## Create a new Rails app
 
@@ -35,9 +35,9 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
     rails new myapp --skip-javascript --skip-test --skip-bundle --skip-spring --skip-action-cable --skip-action-mailer --skip-active-storage
     ```
 
-    The `--skip` commands exclude unneeded Rails plugins.
+    The `--skip` commands exclude unneeded Rails components.
 
-1. Replace the Gemfile with the gems you need. The following code shows an example.
+1. Replace the Gemfile with the gems you need. The following code shows an example:
 
     ```rb
     source "https://rubygems.org"
@@ -80,7 +80,6 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
     Open `spec_helper.rb` and replace its contents with the following:
 
     ```rb
-    ## spec/spec_helper.rb
     ENV["RAILS_ENV"] ||= "test"
 
     require "simplecov"
@@ -147,7 +146,7 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
     end
     ```
 
-1. Configure linting for your Rails app to make sure the app's code is consistent with other GOV.UK apps. See the [GOV.UK developer documentation on configuring linting](linting) for more information.
+1. Configure linting for your Rails app to make sure the app's code is consistent with other GOV.UK apps. See the [GOV.UK developer documentation on configuring linting][linting] for more information.
 
 ### Set up Unicorn web server
 
@@ -170,14 +169,14 @@ Before you create a Rails app, you must complete all steps in the [GOV.UK develo
 
 You should:
 
-- develop your Rails app in line with the [GOV.UK developer documentation on conventions for Rails applications](rails-conv)
-- name your Rails app in line with the [GOV.UK developer documentation on conventions for naming apps](naming)
+- develop your Rails app in line with the [GOV.UK developer documentation on conventions for Rails applications][rails-conv]
+- name your Rails app in line with the [GOV.UK developer documentation on conventions for naming apps][naming]
 
 ## Set up a GitHub repo for the Rails app
 
-Set up a GitHub repo for your Rails app by following the [GOV.UK developer documentation on automatically configuring a GitHub repo](auto-config).
+Set up a GitHub repo for your Rails app by following the [GOV.UK developer documentation on automatically configuring a GitHub repo][auto-config].
 
-You must add a description to the __About__ section in the GitHub repo to make sure that you can add your app to the [GOV.UK developer documentation applications page](app-list).
+You must add a description to the __About__ section in the GitHub repo to make sure that you can add your app to the [GOV.UK developer documentation applications page][app-list].
 
 If you do not do this, you will see Middleman errors when the GOV.UK developer documentation is building. These errors will refer to attempts to modify a frozen empty string
 
@@ -242,12 +241,12 @@ If applicable, include API reference information including the following section
 
 ## Licence
 
-Link to the [MIT License](LICENCE).
+Link to the [MIT License][LICENCE].
 ```
 
-See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md) for more information.
+See the example [account-api README.md][https://github.com/alphagov/account-api/blob/main/README.md] for more information.
 
-See the [GOV.UK Writing API reference documentation](https://www.gov.uk/guidance/writing-api-reference-documentation) for more information on API references.
+See the [GOV.UK Writing API reference documentation][https://www.gov.uk/guidance/writing-api-reference-documentation] for more information on API references.
 
 ## Prepare the Rails app to run in production
 
@@ -265,19 +264,19 @@ See the [GOV.UK Writing API reference documentation](https://www.gov.uk/guidance
     }
     ```
 
-1. Add a Jenkins integration to the repo on GitHub. See the [GOV.UK developer documentation on automatically configuring a GitHub repo](auto-config) for more information.
+1. Add a Jenkins integration to the repo on GitHub. See the [GOV.UK developer documentation on automatically configuring a GitHub repo][auto-config] for more information.
 
 ### Set up the Rails app in govuk-puppet
 
-Add the Rails app to the list of deployable apps in `govuk-puppet`.See the [`govuk-puppet` documentation on adding a new app to GOV.UK](govuk-puppet) for more information.
+Follow the [`govuk-puppet` documentation on adding a new app to GOV.UK][govuk-puppet].
 
 ### Configure the Rails app's deployment
 
-To configure your app's deployment, see the [GOV.UK application deployment scripts documentation](govuk-app-deployment) for more information.
+To configure your app's deployment, see the [GOV.UK application deployment scripts documentation][govuk-app-deployment] for more information.
 
 ### Enable external DNS
 
-If you need to enable external DNS, see the [GOV.UK developer documentation on making changes to publishing.service.gov.uk](dns) for more information.
+If you need to enable external DNS, see the [GOV.UK developer documentation on making changes to publishing.service.gov.uk][dns] for more information.
 
 ### Add your app to the GOV.UK Developer Docs
 
@@ -285,7 +284,7 @@ Open a pull request to add the Rails app to the [GOV.UK developer documentation 
 
 ### Ask GOV.UK 2nd line to update Sentry
 
-After you have added the Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support](mailto:2nd-line-support@digital.cabinet-office.gov.uk) to run the `update-project` task in `[govuk-saas-config]` to update `[Sentry]`.
+After you have added the Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support][mailto:2nd-line-support@digital.cabinet-office.gov.uk] to run the `update-project` task in [GOV.UK SaaS Config][govuk-saas-config] to update [Sentry][sentry].
 
 ### Add Rails app to Release app
 
@@ -299,4 +298,4 @@ Use the `with_migrations` option if your Rails app has a database.
 
 ### Add Rails app to GOV.UK Docker
 
-Add the Rails app to GOV.UK Docker so the Rails app can be run locally. See this [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465) for more information.
+Add the Rails app to GOV.UK Docker so the Rails app can be run locally. See this [example GOV.UK Docker pull request][https://github.com/alphagov/govuk-docker/pull/465] for more information.
