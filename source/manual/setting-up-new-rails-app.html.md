@@ -246,7 +246,7 @@ Link to the [MIT License][LICENCE].
 
 See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md) for more information.
 
-See the [GOV.UK Writing API reference documentation][https://www.gov.uk/guidance/writing-api-reference-documentation] for more information on API references.
+See the [GOV.UK Writing API reference documentation](https://www.gov.uk/guidance/writing-api-reference-documentation) for more information on API references.
 
 ## Prepare the Rails app to run in production
 
@@ -284,7 +284,7 @@ Open a pull request to add the Rails app to the [GOV.UK developer documentation 
 
 ### Ask GOV.UK 2nd line to update Sentry
 
-After you have added the Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support][mailto:2nd-line-support@digital.cabinet-office.gov.uk] to run the `update-project` task in [GOV.UK SaaS Config][govuk-saas-config] to update [Sentry][sentry].
+After you have added the Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support](mailto:2nd-line-support@digital.cabinet-office.gov.uk) to run the `update-project` task in [GOV.UK SaaS Config][govuk-saas-config] to update [Sentry][sentry].
 
 ### Add Rails app to Release app
 
@@ -298,4 +298,4 @@ Use the `with_migrations` option if your Rails app has a database.
 
 ### Add Rails app to GOV.UK Docker
 
-Add the Rails app to GOV.UK Docker so the Rails app can be run locally. See this [example GOV.UK Docker pull request][https://github.com/alphagov/govuk-docker/pull/465] for more information.
+Add the Rails app to GOV.UK Docker so the Rails app can be run locally. See this [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465) for more information.
