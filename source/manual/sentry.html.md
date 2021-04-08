@@ -280,3 +280,16 @@ but this will only capture new events. Any events prior to the "undiscard" actio
 are lost.
 
 [Delete and Discard]: https://blog.sentry.io/2018/01/03/delete-and-discard
+
+## Special Sentry accounts
+
+There is a `2ndLineBot` member on the [members list](https://sentry.io/settings/govuk/members/)
+which is set up so that a weekly Sentry report is sent to the 2nd line email address.
+This bot account should not be deleted.
+
+## GDS-wide usage of Sentry
+
+Sentry is used by several programmes in GDS, not just GOV.UK. A report,
+[GDS use of Sentry.io](https://docs.google.com/document/d/1yVa9iiu-DayGy-MtlrdXeV0E09CsetUenZJCmusLfLg/edit),
+covers this in more detail, including documenting some of the limitations of the
+setup.
