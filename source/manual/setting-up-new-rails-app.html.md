@@ -178,7 +178,7 @@ Set up a GitHub repo for your Rails app by following the [GOV.UK developer docum
 
 You must add a description to the __About__ section in the GitHub repo to make sure that you can add your app to the [GOV.UK developer documentation applications page][app-list].
 
-If you do not do this, you will see Middleman errors when the GOV.UK developer documentation is building. These errors will refer to attempts to modify a frozen empty string
+If you do not do this, you will see Middleman errors when the GOV.UK developer documentation is building. These errors will refer to attempts to modify a frozen empty string.
 
 ## Add a software licence
 
