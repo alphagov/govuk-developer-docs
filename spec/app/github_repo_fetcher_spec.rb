@@ -136,27 +136,33 @@ RSpec.describe GitHubRepoFetcher do
         instance.instance_variable_set(:@client, before_client)
       end
 
-      let(:commit) { { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s } }
-      let(:doc_contents) { "# title \n Some document" }
-      let(:doc_title_derived_from_contents) { "title" }
-
-      it "returns an array of hashes including title derived from markdown contents" do
+      def stub_doc(doc_contents = "arbitrary contents")
         doc = double("doc", type: "file", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
+        allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
+        doc
+      end
 
+      let(:commit) { { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s } }
+
+      it "returns an array of hashes" do
         instance = github_repo_fetcher_returning(public_repo)
         allow(instance).to receive(:latest_commit).and_return(commit)
-        allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
-        with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
-          expect(instance.docs(repo_name)).to eq([
-            {
-              title: doc_title_derived_from_contents,
-              markdown: doc_contents,
-              path: "/apps/#{repo_name}/foo.html",
-              relative_path: "docs/foo.md",
-              source_url: "foo_html_url",
-              latest_commit: commit,
-            },
+
+        with_stubbed_client(double("Octokit::Client", contents: [stub_doc]), instance) do
+          expect(instance.docs(repo_name)).to match([
+            hash_including(:title, :markdown, :path, :relative_path, :source_url, :latest_commit),
           ])
+        end
+      end
+
+      it "derives each document title from its markdown" do
+        instance = github_repo_fetcher_returning(public_repo)
+        allow(instance).to receive(:latest_commit).and_return(commit)
+        doc = stub_doc("# title \n Some document")
+
+        with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
+          doc = instance.docs(repo_name).first
+          expect(doc[:title]).to eq("title")
         end
       end
 
@@ -166,7 +172,7 @@ RSpec.describe GitHubRepoFetcher do
 
         instance = github_repo_fetcher_returning(public_repo)
         allow(instance).to receive(:latest_commit).and_return(commit)
-        allow(HTTP).to receive(:get).with(nested_doc.download_url).and_return(doc_contents)
+        allow(HTTP).to receive(:get).with(nested_doc.download_url).and_return("some contents")
         stubbed_client = double("Octokit::Client")
         allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs")
           .and_return([dir])
@@ -174,15 +180,15 @@ RSpec.describe GitHubRepoFetcher do
           .and_return([nested_doc])
 
         with_stubbed_client(stubbed_client, instance) do
-          expect(instance.docs(repo_name)).to eq([
-            {
-              title: doc_title_derived_from_contents,
-              markdown: doc_contents,
+          expect(instance.docs(repo_name)).to match([
+            hash_including(
+              :title,
+              :markdown,
               path: "/apps/#{repo_name}/foo/bar.html",
               relative_path: "docs/foo/bar.md",
               source_url: "bar_html_url",
               latest_commit: commit,
-            },
+            ),
           ])
         end
       end
