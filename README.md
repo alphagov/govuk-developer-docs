@@ -9,23 +9,9 @@ Ruby code needs to go into `/app`.
 
 ## Technical documentation
 
-### Running locally
+You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-docker) to run the application and its tests with all the necessary dependencies. Follow [the usage instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
 
-The first time you'll need to bundle:
-
-```sh
-bundle install
-```
-
-If you have issues installing mimemagic, you may need to `brew install shared-mime-info`.
-
-To run the app locally:
-
-```sh
-./startup.sh
-```
-
-The app will appear at [http://localhost:4567/](http://localhost:4567/)
+**Use GOV.UK Docker to run any commands that follow.**
 
 ### GitHub token
 
@@ -61,7 +47,9 @@ This will create a bunch of static files in `/build`.
 
 ### Testing
 
-`bundle exec rake`
+```
+bundle exec rake
+```
 
 ### Updating the template
 
