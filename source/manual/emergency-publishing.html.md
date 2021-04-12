@@ -54,7 +54,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 1. Click `Build with Parameters`.
 
-1. Fill in the appropriate variables using the form presented by Jenkins.
+1. Fill in the appropriate variables using the form presented by Jenkins. Use a relative URL (i.e. without the www.gov.uk prefix) if a link is required.
 
 1. Click `Build`.
 
@@ -62,7 +62,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 > **Note**
 >
-> The Jenkins job will also clear all caches. The main page updates immediately, however whitehall and travel advice can take a couple of minutes before the banner appears.
+> The Jenkins job will also clear the Varnish caches and the CDN cache for [a predefined list of 10 URLs](https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34) (including the website root).
 
 ### 4. Test with cache bust strings
 
