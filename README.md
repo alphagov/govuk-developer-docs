@@ -9,12 +9,6 @@ Ruby code needs to go into `/app`.
 
 ## Technical documentation
 
-You can pull down the latest version of the template by running:
-
-```sh
-bin/update
-```
-
 ### Running locally
 
 The first time you'll need to bundle:
@@ -68,6 +62,14 @@ This will create a bunch of static files in `/build`.
 ### Testing
 
 `bundle exec rake`
+
+### Updating the template
+
+You can pull down the latest version of the Tech Docs template by running:
+
+```sh
+bin/update
+```
 
 ### Deployment
 
