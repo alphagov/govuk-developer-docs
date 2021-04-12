@@ -2,6 +2,7 @@ source "https://rubygems.org"
 
 gem "activesupport"
 gem "capybara"
+gem "dotenv"
 gem "ffi"
 gem "rake"
 gem "rspec"
