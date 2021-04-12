@@ -35,16 +35,6 @@ You may find it easier to save the token to a file and then refer to it dynamica
 GITHUB_TOKEN=$(cat ~/github_token.txt) ./startup.sh
 ```
 
-### Building the project
-
-Build the site with:
-
-```sh
-NO_CONTRACTS=true bundle exec middleman build
-```
-
-This will create a bunch of static files in `/build`.
-
 ### Testing
 
 ```
@@ -63,6 +53,15 @@ bin/update
 
 This project is hosted on GitHub Pages. It is [redeployed hourly on weekdays][actions]
 (to pick up changes to external docs) and whenever a PR is merged.
+
+As part of the deployment, we build a static set of pages to minimise the response time
+and potential issues with remote API calls.
+
+```sh
+NO_CONTRACTS=true bundle exec middleman build
+```
+
+This will create a bunch of static files in `/build`.
 
 ## Licence
 
