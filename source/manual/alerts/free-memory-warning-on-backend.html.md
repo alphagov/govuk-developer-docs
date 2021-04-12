@@ -50,3 +50,10 @@ on the host:
 ```sh
 sudo service whitehall-admin-procfile-worker restart
 ```
+
+## Fix memory leaks
+
+A common cause of the alerts are memory leaks. For Rails applications you
+can try diagnosing the error with [the derailed gem].
+
+[the derailed gem]: https://github.com/schneems/derailed_benchmarks
