@@ -20,10 +20,6 @@ You can pull down the latest version of the template by running:
 bin/update
 ```
 
-### Dependencies
-
-- Ruby
-
 ### Running locally
 
 The first time you'll need to bundle:
