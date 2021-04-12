@@ -2,17 +2,12 @@
 
 👉 https://docs.publishing.service.gov.uk
 
-## Technical documentation
+This is a static site generated with Middleman, using [alphagov/tech-docs-template](https://github.com/alphagov/tech-docs-template).
 
-This is a static site generated with Middleman.
-
-## Tech docs template
-
-This project uses [alphagov/tech-docs-template](https://github.com/alphagov/tech-docs-template).
-
-This means that some of the files (like the CSS, javascripts and layouts) are
-managed in the template and are not supposed to be modified here. Any project-specific
+Some of the files (like the CSS, javascripts and layouts) are managed in the template and are not supposed to be modified here. Any project-specific
 Ruby code needs to go into `/app`.
+
+## Technical documentation
 
 You can pull down the latest version of the template by running:
 
