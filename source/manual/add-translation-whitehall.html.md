@@ -6,11 +6,14 @@ layout: manual_layout
 section: Publishing
 ---
 
-Useful links:
+Before starting, it’s worth checking the language tag that is being added is correct: it should be compatible with the [IETF Language Tag syntax][] and use correct [ISO 639][] codes (with optional [ISO 15924][] or [ISO 3166][] subtags where appropriate). This is important to ensure maximum compatibility with accessibility feature such as screen readers. Some other useful reading includes [Rails Translation Manager][] and [Whitehall Internationalisation guide][].
 
-- [List of ISO 639-1 codes](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-- [Rails Translation Manager](https://github.com/alphagov/rails_translation_manager)
-- [Internationalisation guide](https://github.com/alphagov/whitehall/blob/master/docs/internationalisation_guide.md)
+[IETF Language Tag syntax]: https://en.wikipedia.org/wiki/IETF_language_tag#Syntax_of_language_tags
+[ISO 639]: https://en.wikipedia.org/wiki/ISO_639-1
+[ISO 15924]: https://en.wikipedia.org/wiki/ISO_15924
+[ISO 3166]: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+[Rails Translation Manager]: https://github.com/alphagov/rails_translation_manager
+[Whitehall Internationalisation guide]: https://github.com/alphagov/whitehall/blob/master/docs/internationalisation_guide.md
 
 ### 1. Update Government Frontend
 
