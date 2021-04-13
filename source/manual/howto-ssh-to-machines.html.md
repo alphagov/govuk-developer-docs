@@ -53,35 +53,29 @@ to production, your attempt to SSH into a production node will fail silently.
 [GOV.UK Connect] is a tool we use to make working with our machines quicker and easier. If
 it's not working, you can try manually running the commands it normally runs for you.
 
-- [Find the class of machine you need (and which cloud it lives in)](https://docs.publishing.service.gov.uk/apps.html).
+- [Find the class of machine you need](https://docs.publishing.service.gov.uk/apps.html).
 
-- Find [the jumpbox for the environment you need](https://github.com/alphagov/govuk-connect/blob/fcbe054874c84968b6af97e45005b00bc5aa285a/lib/govuk_connect/cli.rb#L81).
+- Find [the jumpbox for the environment you need](https://github.com/alphagov/govuk-connect/blob/095d49445d25e2afe845c00b32fb35589087f292/lib/govuk_connect/cli.rb#L81).
 
-- SSH to the jumpbox.
-
-  ```sh
-  $ ssh -A jumpbox.staging.govuk.digital
-  ```
-
-- On the jumpbox, run `govuk_node_list` to find the machine you want.
+- Use ssh to run `govuk_node_list` on the jumpbox to find the machine you want.
 
   ```sh
-  $ govuk_node_list -c backend
+  $ ssh jumpbox.staging.govuk.digital govuk_node_list -c backend
   ip-10-12-4-106.eu-west-1.compute.internal
   ip-10-12-5-205.eu-west-1.compute.internal
   ip-10-12-6-44.eu-west-1.compute.internal
   ```
 
-- Still on the jumpbox, SSH to one of the machines in the list.
+- SSH to one of the machines in the list using the jumpbox:
 
   ```sh
-  $ ssh ip-10-12-4-106.eu-west-1.compute.internal
+  $ ssh -J jumpbox.staging.govuk.digital ip-10-12-4-106.eu-west-1.compute.internal
   ```
 
 - Once you're on the machine you need, you can start a Rails console.
 
   ```sh
-  $ govuk_app_console publishing-api
+  $ govuk_app_console publisher
   ```
 
 These common commands, along with `govuk_node_list`, live in
