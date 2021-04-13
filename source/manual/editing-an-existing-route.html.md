@@ -37,8 +37,4 @@ govuk_app_console router-api
 > r.save!
 ```
 
-4. Once you've edited the route appropriately and saved it, reload the router
-
-```console
-> RouterReloader.reload
-```
+4. Once you've edited the route appropriately and saved it, your changes will be applied and visible shortly after.

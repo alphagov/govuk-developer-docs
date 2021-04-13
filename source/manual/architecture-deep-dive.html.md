@@ -145,10 +145,12 @@ from a MongoDB database of all known routes.
 
 The MongoDB database is written to via [router-api] whenever a route is
 added or changed: the Content Store (which we'll cover later) talks to
-Router API [directly][register-route] to do this. Router API then
-[sends POST requests to every instance of Router][router-api-updating-router],
-whereupon each [Router then reloads all routes][router-reloading-routes]
-from MongoDB.
+Router API [directly][register-route] to do this.
+
+Every Router instance [polls periodically][router-polls-periodically]
+for any changes to the MongoDB database; if and when changes are detected
+by a particular instance it reloads all routes held in memory - a process
+which is repeated across all instances.
 
 Routes have different handlers. Routes marked as `gone` return a 410 Gone
 response. Routes marked as `redirect` serve a 301 Moved Permanently
@@ -170,8 +172,7 @@ application.
 [prefix trie]: https://en.wikipedia.org/wiki/Trie
 [register-route]: https://github.com/alphagov/content-store/blob/08f02f990e621c9d2fd473e12a70a6805ddd8dcb/app/models/route_set.rb#L58-L82
 [router-api]: https://github.com/alphagov/router-api
-[router-api-updating-router]: https://github.com/alphagov/router-api/blob/master/lib/router_reloader.rb#L45-L48
-[router-reloading-routes]: https://github.com/alphagov/router/blob/1e1d5c1563136ba340e1fba838d9b52e283ed815/router_api.go#L26-L42
+[router-polls-periodically]: https://github.com/alphagov/router/blob/811ed82d0ecc23b8077ed5dd2c460ccdfe2808ab/router.go#L154-L194
 [short-url-manager]: https://github.com/alphagov/short-url-manager
 
 ### Rendering

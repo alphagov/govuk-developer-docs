@@ -324,11 +324,7 @@ English version to a translation, for example:
 Route.find('579a109cd068b406250014e4').destroy
 ```
 
-For the deleted routes to take effect, you need to reload the router.
-
-```ruby
-RouterReloader.reload
-```
+The deleted routes will take effect after a short delay (for Router instances to poll and apply updates).
 
 ## Redirects for HMRC manuals
 [hmrc-manuals-section]: #redirects-for-hmrc-manuals
