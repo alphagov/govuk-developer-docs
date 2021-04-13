@@ -29,5 +29,4 @@ to Whitehall):
 
 ```ruby
 > r.destroy
-> RouterReloader.reload
 ```
