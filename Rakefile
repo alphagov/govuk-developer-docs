@@ -31,7 +31,7 @@ end
 desc "Find deployable applications that are not in this repo"
 task :verify_deployable_apps do
   common_yaml = suppress_output do
-    HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
+    HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml")
   end
   deployable_applications = common_yaml["deployable_applications"].map { |k, v| v["repository"] || k }
   our_applications = Applications.all.map(&:github_repo_name)
