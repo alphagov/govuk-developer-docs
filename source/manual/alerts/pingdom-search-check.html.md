@@ -9,7 +9,7 @@ section: Icinga alerts
 If Pingdom can't retrieve the search results page, it means that while GOV.UK
 may be available, it is not possible to retrieve dynamic content. Assuming that
 the homepage check has not failed, the CDN is probably OK. It is possible for
-our main provider (Carrenza/AWS) to be down and for us to serve static content
+our main provider (AWS) to be down and for us to serve static content
 from a secondary mirror at a second supplier (AWS/GCP).
 
 This is not as critical a problem as you might assume, because a large amount

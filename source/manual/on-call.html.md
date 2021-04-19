@@ -32,8 +32,7 @@ You should do these things before going on call so you're prepared.
 1. Ensure you can access the `govuk_development` organisation in GOV.UK PaaS
    from the command line ([instructions for setting up the cloud foundry command line](https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line)).
 1. Ensure you know how to escalate an issue to RE, ie infrastructure
-   issues or if you need to [access the Carrenza vCloud
-   Director][vcloud].
+   issues.
 1. Read these documents:
     - [So, you're having an incident](/manual/incident-what-to-do.html)
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)

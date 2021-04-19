@@ -88,73 +88,9 @@ Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP add
 
 Fastly publish their cache node [IP address ranges as JSON from their API][fastly_ips]. We use these IP addresses in two places:
 
-- Origin has [firewall rules][] in place so that only our office and Fastly can connect. This is updated automatically using the [Fastly Terraform provider](https://registry.terraform.io/providers/fastly/fastly/latest/docs) when the [infra-security-groups](https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-security-groups) module is deployed. Triggering the deployment is still a manual step though.
-- Performance Platform, which is still hosted in Carrenza/6degrees, has similar restrictions in place but this list is updated manually - see below.
-
-We have [a Jenkins job "Check CDN IP Ranges"][check-cdn-ip-ranges] which will start to fail if the Fastly IPs in our Carrenza/6degrees firewall rules don't match the ones returned from the Fastly API. This check is only relevant for Carrenza/6degrees, which hosts Performance Platform. It does not apply to the rest of GOV.UK.
-
-Updating the firewall rules in Carrenza with new Fastly IPs is a manual process. The [SREs currently in Replatforming team][raise-with-re] can help with this:
-
-1. You will need to install [vcd-cli][vcd-cli] to use the following scripts.
-2. Connect to the [Carrenza VPN][carrenza-vpn]
-3. Login to Vcloud director, you can find the organisation name and the credentials attached to it in the password store.
-
-```sh
-vcd login vcloud.carrenza.com {organisation} 2nd-line-support@digital.cabinet-office.gov.uk -V 32.0
-```
-
-4. Find the correct values for $stag_prefix and $prod_prefix in Carrenza and run this script, setting env to either staging or production and put the list of new Fastly IP ranges into fastly_ips as an array
-
-```bash
-env=$1
-fastly_ips=()
-
-case $env in
-        "staging")
-                dests=(${stag_prefix}.146 ${stag_prefix}.158 ${stag_prefix}.155 ${stag_prefix}.155 ${stag_prefix}.155 ${stag_prefix}.157 ${stag_prefix}.149)
-                gateway='0e7t-DR-GOVUK-Staging-gateway-LDN'
-                ;;
-        "production")
-                dests=(${prod_prefix}.82 ${prod_prefix}.94 ${prod_prefix}.91 ${prod_prefix}.91 ${prod_prefix}.91 ${prod_prefix}.93 ${prod_prefix}.85)
-                gateway='0e7t-GOV_PRODUCTION-gateway01'
-                ;;
-        *)
-                echo "Environment should either be staging or production"
-                exit 1
-                ;;
-esac
-
-ports=(443 443 6514 6515 6516 80 443)
-names=(origin API monitoring-1_GOV.UK monitoring-1_Assets monitoring-1_Bouncer apt_mirror Backend_AWS)
-
-nb_rules=$(( ${#fastly_ips[@]} * 7 ))
-for i in $(seq $nb_rules $END)
-do
-        vcd gateway services firewall create --disabled --name "NewRule_$i" --action accept --type user $gateway
-done
-
-newrules_ids=(`vcd gateway services firewall list $gateway | grep 'NewRule_' | awk '{print $1'}`)
-
-seq=0
-for ip in ${fastly_ips[@]}
-do
-        for i in `seq 0 6`
-        do
-                name="'Fastly $ip to ${names[$i]}'"
-                vcd gateway services firewall update --enabled --name $name --source $ip:ip --destination ${dests[$i]}:ip --service tcp any ${ports[$i]} $gateway ${newrules_ids[$seq]}
-                seq=$((seq+1))
-        done
-done
-```
+- Origin has firewall rules in place so that only our office and Fastly can connect. This is updated automatically using the [Fastly Terraform provider](https://registry.terraform.io/providers/fastly/fastly/latest/docs) when the [infra-security-groups](https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-security-groups) module is deployed. Triggering the deployment is still a manual step though.
 
 [fastly_ips]: https://api.fastly.com/public-ip-list
-[firewall rules]: https://github.com/alphagov/govuk-provisioning/blob/master/vcloud-edge_gateway/vars/production_carrenza_vars.yaml
-[govuk-provisioning]: https://github.com/alphagov/govuk-provisioning
-[vcl_config]: https://github.com/alphagov/govuk-cdn-config/
-[check-cdn-ip-ranges]: https://deploy.publishing.service.gov.uk/job/Check_CDN_IP_Ranges/
-[raise-with-re]: /manual/raising-issues-with-reliability-engineering.html
-[vcd-cli]: https://github.com/vmware/vcd-cli
-[carrenza-vpn]: /manual/connect-to-vcloud-director.html#connecting-with-cisco-anyconnect
 
 ## Banning IP addresses at the CDN edge
 

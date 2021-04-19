@@ -310,11 +310,10 @@ edition, we often want to trigger some other actions as a result. For example,
 we want to send an email to anyone subscribed to that content.
 
 We use [Sidekiq] to manage the background processing. When each Sidekiq
-process is evaluated, a message is put onto a [RabbitMQ] queue (which runs
-on its own machines in Carrenza and AWS). RabbitMQ is a message broker: when
-a message is broadcast to a RabbitMQ exchange, it forwards the message to its
-consumers. These consumers retrieve the content item and do something in
-response, such as:
+process is evaluated, a message is put onto a [RabbitMQ] queue.
+RabbitMQ is a message broker: when a message is broadcast to a RabbitMQ
+exchange, it forwards the message to its consumers. These consumers
+retrieve the content item and do something in response, such as:
 
 - Clear the page's cache, via the cache-clearing-service
 - [Send emails to users subscribed to that content][message-queues-rake]. (The

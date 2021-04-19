@@ -22,15 +22,14 @@ investigate.
 
 > **Note**
 >
-> This example uses hostnames for Carrenza, and will not work on AWS.
-> For AWS you'll need to use the hosts from `govuk_node_list`.
-> More information on hostnames in different environments is available here:
+> In this example we use the placeholders broken-machine and monitoring.
+> To find the proper hostnames and learn how to ssh there please consult:
 > <https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html>
 
 First verify that NRPE is running on the monitored machine:
 
 ```
-$ ssh broken-machine-1.broken.staging
+$ ssh <broken-machine>
 $ nc -v localhost 5666
 Connection to localhost 5666 port [tcp/nrpe] succeeded!
 ```
@@ -45,8 +44,8 @@ If the agent is running ok, next check that you can connect from the
 monitoring server:
 
 ```
-$ ssh monitoring-1.management.staging
-$ nc -v broken-machine-1.broken 5666
+$ ssh <monitoring>
+$ nc -v <broken-machine> 5666
 Connection to localhost 5666 port [tcp/nrpe] succeeded!
 ```
 

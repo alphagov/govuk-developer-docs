@@ -76,49 +76,6 @@ RabbitMQ in a standardised way.
 You can see live examples of things like queues, exchanges, bindings etc by
 connecting to the RabbitMQ control panel.
 
-## Federated `published_documents` exchange
-
-A federated exchange is connected to an upstream exchanges by AMQP and the
-messages published to the upstream exchanges are copied over to the federated
-exchange.
-
-While the migration of GOV.UK from Carrenza to AWS is ongoing, we run two
-RabbitMQ clusters, one in each environment. Each cluster has a list of private
-IP addresses of the other cluster's nodes ([Carrenza IPs][carrenza_ips] and
-[AWS IPs][aws_ips]). The connection between Carrenza and AWS travels through
-the VPN. Since the nodes in AWS use dynamic IP addresses, they are associated
-to network interfaces with fixed IPs.
-
-The `published_documents` exchange is [federated][federated] in both
-directions, i.e. the RabbitMQ cluster from each provider connects as a client
-to the exchange in the other provider and forwards messages to its own
-exchange. There is no infinite loop because `max-hops` is set to `1`.
-
-### Checking if the federation is ok
-
-Connect to one of the cluster's nodes via:
-
-```bash
-$ gds govuk connect ssh -e production rabbitmq
-```
-
-and run:
-
-```bash
-$ sudo rabbitmqctl eval 'rabbit_federation_status:status().'
-```
-
-On **one** of the nodes, you should get a load of data including:
-`{status,running}`
-
-If not, something is wrong and the federation is broken. Check the logs in
-`/var/log/rabbitmq` and verify that the credentials and IP address for the
-federation are correct, you can do this by running:
-
-```bash
-$ sudo rabbitmqctl list_parameters
-```
-
 ## Further reading
 
 * [RabbitMQ Tutorials](https://www.rabbitmq.com/getstarted.html)
@@ -126,9 +83,6 @@ $ sudo rabbitmqctl list_parameters
 * [The Bunny Guides](http://rubybunny.info/articles/guides.html) explain all
   AMQP concepts really well.
 
-[aws_ips]: https://github.com/alphagov/govuk-puppet/blob/bc95f7041af4212e810c77e8a00c1349de3af0fa/hieradata/class/production/rabbitmq.yaml#L6
-[carrenza_ips]: https://github.com/alphagov/govuk-puppet/blob/bc95f7041af4212e810c77e8a00c1349de3af0fa/hieradata_aws/class/production/rabbitmq.yaml#L6
-[federated]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rabbitmq/manifests/federate.pp
 [rabbitmq_tutorial]: https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html
 [RabbitMQ]: https://www.rabbitmq.com/
 [AMQP]: https://www.rabbitmq.com/tutorials/amqp-concepts.html
