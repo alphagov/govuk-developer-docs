@@ -138,8 +138,7 @@ The list of people that have access to encrypted Hiera data in stored in a
 recipient file specific to each environment (`.rcp` extension).
 
 The production and integration files are stored in the govuk-secrets repo for
-[Carrenza](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_recipients)
-and [AWS](https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/gpg_recipients).
+[AWS](https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/gpg_recipients).
 There is no separate staging file; the production file is used for both
 staging and production.
 
@@ -154,9 +153,7 @@ recipient file pertains to.
 1. Ask the joiner to [create a GPG key](create-a-gpg-key.html) and upload it
    to a public key server (such as <https://pgp.mit.edu/>).
 2. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
-3. Add the joiners's GPG fingerprint to each of the recipient files
-   for Carrenza
-   [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp),
+3. Add the joiners's GPG fingerprint to the recipient files
    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
 4. Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
    is something like "Adding new key for Jane Smith".
@@ -170,7 +167,7 @@ recipient file pertains to.
 
 ### What to do when someone gets production access
 
-Follow the steps above but add their GPG fingerprint to the production recipient files for Carrenza [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp) and AWS [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
+Follow the steps above but add their GPG fingerprint to the production recipient files AWS [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
 
 Note there are no staging recipient files - access to staging secrets is controlled by the production recipient files.
 
@@ -180,9 +177,6 @@ Remove leavers from all recipient files, so that they can no longer change
 credentials.
 
 1. Delete the leaver's GPG fingerprint from each of the recipient files
-   for Carrenza
-   [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
-   and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp),
    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
    and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
    There are no staging recipient files since these are the same as the
@@ -292,13 +286,11 @@ To generate a new key:
 4. Change the relevant files to remove the fingerprint of the old
    key and add the new fingerprint (as obtained above). If you changed:
      1. integration:
-       - [carrenza puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
-       - [aws puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/integration_hiera_gpg.rcp)
+       - [aws puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
        - [common puppet ruby recipient file](https://github.com/alphagov/govuk-secrets/blob/master/puppet_common/gpg_recipients.rb)
 
       2. production:
-       - [carrenza puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
-       - [aws puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_recipients/production_hiera_gpg.rcp)
+       - [aws puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp)
 
 5. Add and commit locally your changes to govuk-secrets. You can then use
    the [re-encrypt-all.sh](https://github.com/alphagov/govuk-secrets/blob/master/re-encrypt-all.sh)

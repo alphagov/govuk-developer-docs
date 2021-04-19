@@ -21,7 +21,6 @@ store, such as PromQL for Prometheus, is used to construct the graphs.
 - [Production (AWS)](https://grafana.blue.production.govuk.digital)
 - [Staging (AWS)](https://grafana.blue.staging.govuk.digital)
 - [Integration (AWS)](https://grafana.integration.publishing.service.gov.uk)
-- [CI (Carrenza)](https://ci-grafana.integration.publishing.service.gov.uk)
 
 Useful Grafana dashboards:
 
