@@ -16,142 +16,170 @@ parent: "/manual.html"
 [release]: https://release.publishing.service.gov.uk/applications
 [deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
 [docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/master/data/applications.yml
+[get-started]: https://docs.publishing.service.gov.uk/manual/get-started.html
+[linting]: https://docs.publishing.service.gov.uk/manual/configure-linting.html
+[rails-conv]: https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html
+[naming]: https://docs.publishing.service.gov.uk/manual/naming.html
+[auto-config]: https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration
+[app-list]: https://docs.publishing.service.gov.uk/#applications
 
-## Familiarise yourself with the conventions
+## Before you start
 
-We have documented [conventions for Rails
-applications](/manual/conventions-for-rails-applications.html) and
-[conventions for naming applications](/manual/naming.html) in GOV.UK.
+Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the [GOV.UK developer get started documentation][get-started].
 
-## Bootstrapping a new application
+You should:
 
-To create a rails app, run the following (skip uncommon stuff).
+- develop your Rails app in line with the [conventions for Rails applications][rails-conv]
+- name your Rails app in line with the [conventions for naming apps][naming]
 
-```sh
-rails new myapp --skip-javascript --skip-test --skip-bundle --skip-spring --skip-action-cable --skip-action-mailer --skip-active-storage
-```
+## Create a new Rails app
 
-Replace the Gemfile with the gems you need. Here is an example.
+1. To create a Rails app on your local machine, run the following in the command line:
 
-```rb
-source "https://rubygems.org"
+    ```sh
+    rails new myapp --skip-javascript --skip-test --skip-bundle --skip-spring --skip-action-cable --skip-action-mailer --skip-active-storage
+    ```
 
-gem "rails", "6.0.3.4"
+    The `--skip` commands exclude unneeded Rails components.
 
-gem "bootsnap",
-gem "gds-api-adapters"
-gem "gds-sso"
-gem "govuk_app_config"
-gem "govuk_publishing_components"
-gem "pg"
-gem "plek"
-gem "uglifier"
+1. Include the gems you need for your app in `Gemfile`. For example:
 
-group :development do
-  gem "listen"
-end
+    ```rb
+    source "https://rubygems.org"
 
-group :test do
-  gem "simplecov"
-end
+    gem "rails", "6.0.3.4"
 
-group :development, :test do
-  gem "byebug"
-  gem "govuk_test"
-  gem "rspec-rails"
-  gem "rubocop-govuk"
-end
-```
+    gem "bootsnap",
+    gem "gds-api-adapters"
+    gem "gds-sso"
+    gem "govuk_app_config"
+    gem "govuk_publishing_components"
+    gem "pg"
+    gem "plek"
+    gem "uglifier"
 
-Run `bundle && rails g rspec:install` and replace `spec/*helper.rb`.
+    group :development do
+      gem "listen"
+    end
 
-```sh
-rm spec/rails_helper.rb
-```
+    group :test do
+      gem "simplecov"
+    end
 
-```rb
-## spec/spec_helper.rb
-ENV["RAILS_ENV"] ||= "test"
+    group :development, :test do
+      gem "byebug"
+      gem "govuk_test"
+      gem "rspec-rails"
+      gem "rubocop-govuk"
+    end
+    ```
 
-require "simplecov"
-SimpleCov.start "rails"
+1. Run `bundle && rails g rspec:install` to install all the gems you included in `Gemfile` and generate files you can use to test your app.
 
-require File.expand_path("../../config/environment", __FILE__)
-require "rspec/rails"
+1. Run `rm spec/rails_helper.rb` to delete `spec/rails_helper.rb`.
 
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-GovukTest.configure
+1. Replace the contents of `spec/spec_helper.rb` with the following:
 
-RSpec.configure do |config|
-  config.expose_dsl_globally = false
-  config.infer_spec_type_from_file_location!
-  config.use_transactional_fixtures = true
-end
-```
+    ```rb
+    ENV["RAILS_ENV"] ||= "test"
 
-In config, replace the content of `database.yml` with the following.
+    require "simplecov"
+    SimpleCov.start "rails"
 
-```yaml
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: 12
-  template: template0
+    require File.expand_path("../../config/environment", __FILE__)
+    require "rspec/rails"
 
-development:
-  <<: *default
-  database: myapp_development
-  url: <%= ENV["DATABASE_URL"]%>
+    Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+    GovukTest.configure
 
-test:
-  <<: *default
-  database: myapp_test
-  url: <%= ENV["TEST_DATABASE_URL"] %>
+    RSpec.configure do |config|
+      config.expose_dsl_globally = false
+      config.infer_spec_type_from_file_location!
+      config.use_transactional_fixtures = true
+    end
+    ```
 
-production:
-  <<: *default
-  database: myapp_production
-  url: <%= ENV["DATABASE_URL"]%>
-```
+1. If your Rails app has a database, replace the content of `config/database.yml` with the following:
 
-In config, replace `credentials.yml.env` and `master.key` with `secrets.yml`.
+    ```yaml
+    default: &default
+      adapter: postgresql
+      encoding: unicode
+      pool: 12
+      template: template0
 
-```yaml
-development:
-  secret_key_base: secret
+    development:
+      <<: *default
+      database: <APP-NAME>_development
+      url: <%= ENV["DATABASE_URL"]%>
 
-test:
-  secret_key_base: secret
+    test:
+      <<: *default
+      database: <APP-NAME>_test
+      url: <%= ENV["TEST_DATABASE_URL"] %>
 
-production:
-  secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
-```
+    production:
+      <<: *default
+      database: <APP-NAME>_production
+      url: <%= ENV["DATABASE_URL"]%>
+    ```
 
-In config, replace the content of `routes.rb` with the following healthcheck.
+    where `<APP-NAME>` is the name of your Rails app.
 
-```rb
-Rails.application.routes.draw do
-  get "/healthcheck", to: GovukHealthcheck.rack_response
-end
-```
+1. Delete the `config/credentials.yml.env` and `config/master.key` files, and create a `config/secrets.yml` file that contains the following:
 
-Now is a good time to run `bin/setup`. Lastly, to ensure your application has
-beautiful consistent code, you should finish up by
-[configuring linting](/manual/configure-linting.html) for it.
+    ```yaml
+    development:
+      secret_key_base: secret
+
+    test:
+      secret_key_base: secret
+
+    production:
+      secret_key_base: <%= ENV['SECRET_KEY_BASE'] %>
+    ```
+
+1. Replace the content of `config/routes.rb` with the following:
+
+    ```rb
+    Rails.application.routes.draw do
+      get "/healthcheck", to: GovukHealthcheck.rack_response
+    end
+    ```
+
+1. Configure linting for your Rails app to make sure the app's code is consistent with other GOV.UK apps. Find out more information about [configuring linting][linting].
+
+### Set up a Unicorn web server
+
+1. If your Rails app's `Gemfile` includes `gem "puma"`, open `Gemfile` and delete `gem "puma"`.
+
+1. Create a `Procfile` in your app's root directory that contains the following:
+
+    ```
+    web: bundle exec unicorn -c ./config/unicorn.rb -p ${PORT:-3000}
+    ```
+
+1. Create a `config/unicorn.rb` file that contains the following code:
+
+    ```
+    require "govuk_app_config/govuk_unicorn"
+    GovukUnicorn.configure(self)
+    ```
+
+## Set up a GitHub repo for your Rails app
+
+When you’ve finished developing your Rails app, you can [set up a GitHub repo for your Rails app][auto-config].
+
+You must add a description to the _About_ section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the [list of apps][app-list].
 
 ## Add a software licence
 
-Add a LICENCE file to the project root to specify the software licence. Unless
-your project has specific needs, you should use the [MIT License][mit-license].
-
-<details markdown="block">
-
-<summary>MIT License for GDS projects</summary>
+You must add a `LICENCE` file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.
 
 ```
 The MIT License (MIT)
 
-Copyright (c) <year> Crown Copyright (Government Digital Service)
+Copyright (c) <YEAR> Crown Copyright (Government Digital Service)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -172,88 +200,94 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-</details>
-
 ## Replace the default README.md
 
-We have a common structure that is used for GOV.UK apps. Fill in some basic
-details to get started with your app and flesh it out further as your project
-develops.
+Change the default `README.md` file to have the following structure:
 
 ```markdown
-# App Name
+# App name
 
-One paragraph description and purpose.
-
-## Screenshots (if there's a client-facing aspect of it)
-
-## Live examples (if available)
-
-- [gov.uk/thing](https://www.gov.uk/thing)
-
-## Nomenclature
-
-- **Word**: definition of word, and how it's used in the code
+Information about the app's description and purpose.
 
 ## Technical documentation
 
 Write a single paragraph including a general technical overview of the app.
 
-### Dependencies
+### Testing
 
-- [dependency]() - purpose
+Information about how to test the app.
 
-### Running the application
+## Further documentation
 
-How to run the app
+More information on how the app works.
 
-### Running the test suite
+## API documentation
 
-How to test the app
+If applicable, include API reference information including the following sections:
+
+- resources
+- endpoints and methods
+- parameters
+- example requests and responses
+- error codes
 
 ## Licence
 
-[MIT License](LICENCE)
+Link to your [MIT License][LICENCE] file.
 ```
 
-## Puppet, DNS, Sentry and beyond
+See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md).
 
-* To prepare the servers for your app, follow the doc in [govuk-puppet]
-* To configure app deployments, follow the docs in [govuk-app-deployment]
-* To enable external DNS, follow the article in the [Developer Docs][dns]
-* Make a PR to add your app to [data/applications.yml][docs-applications] for these docs
-* Then ask 2nd line to run the task in [govuk-saas-config] to update [Sentry]
-* Add the application to the [Release] app (the create button is at the bottom)
-* Add the application to the [Deploy_App job][deploy-jenkins] in Jenkins (click Configure)
-* Run the [Deploy_App job][deploy-jenkins] using with `with_migrations` option to get started
+Find out more about [writing API reference content](https://www.gov.uk/guidance/writing-api-reference-documentation).
 
-When adding your application to `data/application.yml` - ensure your new repository has
-a description set in the "About" section on github. This will be used to describe what your app
-is on the [application listings](https://docs.publishing.service.gov.uk/#applications) and is also
-required to render an application page.
+## Prepare your Rails app to run in production
 
-If you do not do this, you may see Middleman errors when the docs are building which reference
-attempts to modify a frozen empty string.
+### Configure your Rails app for Jenkins
 
-## Configuring the app for Jenkins
+1. Create a `Jenkinsfile` in your repo with the following content.
 
-Create a `Jenkinsfile` in your repo with the following content.
+    ```
+    #!/usr/bin/env groovy
 
-```
-#!/usr/bin/env groovy
+    library("govuk")
 
-library("govuk")
+    node {
+      govuk.buildProject()
+    }
+    ```
 
-node {
-  govuk.buildProject()
-}
-```
+1. Add a Jenkins integration to the repo on GitHub. Find out more about [automatically configuring a GitHub repo][auto-config].
 
-You also need to add a Jenkins integration to the repo on GitHub:
+### Add your Rails app to GOV.UK
 
-1. In GitHub, go to Settings -&gt; Integrations & Services
-2. Add Jenkins (GitHub plugin)
-3. Add the link to the CI GitHub webhook
-4. Make sure Active is ticked
+Find out how to [add your Rails app to GOV.UK using `govuk-puppet`][govuk-puppet].
 
-Finally, add your app to the list of deployable applications in [govuk-puppet].
+### Configure your Rails app's deployment
+
+To configure your app's deployment, see the [GOV.UK application deployment scripts][govuk-app-deployment].
+
+### Enable external DNS
+
+If you need to enable external DNS, find out how to [make changes to publishing.service.gov.uk][dns].
+
+### Add your app to the GOV.UK developer documentation
+
+Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/applications.yml` file][docs-applications].
+
+### Ask GOV.UK 2nd line to update Sentry
+
+After you’ve added your Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support](mailto:2nd-line-support@digital.cabinet-office.gov.uk) to run the `update-project` task in [GOV.UK SaaS Config][govuk-saas-config] to update Sentry.
+
+### Add your Rails app to Release app
+
+Add your Rails app to the [Release][release] app and select __Create__.
+
+### Run the Deploy_App job
+
+Run the [Deploy_App job][deploy-jenkins].
+
+Use the `with_migrations` option if your Rails app has a database.
+
+### Add your Rails app to GOV.UK Docker
+
+Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
