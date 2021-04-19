@@ -110,7 +110,6 @@ In this scenario, Jenkins security should be disabled to enable deployment:
 1. SSH to the Jenkins deploy instance:
 
 ```console
-gds govuk connect -e production ssh carrenza/jenkins
 gds govuk connect -e production ssh aws/jenkins
 ```
 

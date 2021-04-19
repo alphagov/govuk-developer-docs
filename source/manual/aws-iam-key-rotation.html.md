@@ -65,7 +65,7 @@ update the spreadsheet with your findings when you're done).
 
 When searching for keys, keep in consideration that they may be present in
 [govuk-secrets] or in the control panel of 3rd party services, such as Fastly or
-Logit. Keys may also be shared across AWS and Carrenza environments.
+Logit.
 
 Firstly, search for the key in [govuk-secrets]:
 

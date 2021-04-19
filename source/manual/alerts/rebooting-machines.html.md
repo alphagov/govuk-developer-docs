@@ -51,7 +51,6 @@ time.
   or out-of-hours.
 * There is [extra guidance if the machine you are rebooting is in AWS](#rebooting-guidance-for-aws).
   You may wish to pair with the RE interruptible/on call person.
-* There are also [things to consider when rebooting Carrenza machines](#rebooting-guidance-for-carrenza).
 
 ### Rebooting one machine
 

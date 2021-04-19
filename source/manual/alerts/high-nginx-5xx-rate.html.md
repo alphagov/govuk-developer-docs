@@ -6,9 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
-You can view the 5xx logs across all machines on these two dashboards:
+You can view the 5xx logs across all machines on this dashboard:
 
-- [Nginx 5xx Requests (Carrenza)][nginx-5xx-grafana-carrenza]
 - [Nginx 5xx Requests (AWS)][nginx-5xx-grafana-aws]
 
 Change the hostname to view different apps.
@@ -55,7 +54,6 @@ counter gets created. You should *not* create a statsd counter for
 For collectd metrics (those without a leading `stats.` prefix), you
 probably just need to wait for the metric to get created.
 
-[nginx-5xx-grafana-carrenza]: https://grafana.publishing.service.gov.uk/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&var-Machines=All&var-Hostname=All&var-Status=5xx
 [nginx-5xx-grafana-aws]: https://grafana.blue.production.govuk.digital/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&var-Machines=All&var-Hostname=All&var-Status=5xx
 [nginx-requests]: https://grafana.production.govuk.digital/dashboard/file/nginx_requests.json?refresh=1m&orgId=1&from=now-30m&to=now
 [scaling-up]: /manual/auto-scaling-groups.html#manually-scaling
