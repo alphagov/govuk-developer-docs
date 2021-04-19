@@ -13,7 +13,7 @@ For a quick view of what's where, you can use the [release app](https://release.
 
 ## Continuous integration (CI)
 
-Runs tests for applications. Hosted on Carrenza.
+Runs tests for applications.
 
 ## Integration
 
