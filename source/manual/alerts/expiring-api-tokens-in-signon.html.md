@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Signon app healthcheck not ok
+title: Expiring API tokens in Signon
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
@@ -11,10 +11,6 @@ section: Icinga alerts
 [restart-app]: /manual/restart-application.html
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [gds-api-adapters]: https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api.rb
-
-See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
-
-## Rotating API Tokens
 
 One or more tokens for API Users are about to expire. You should rotate
 expiring tokens to ensure the associated application keeps working.
