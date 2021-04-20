@@ -1,19 +1,18 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: publisher app healthcheck not ok
+title: More items scheduled for publication than in queue for publisher
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 ---
 
-See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
+This alert means that the number of editions in the publisher database
+which are scheduled to be published in the future is different from
+the number currently in the Sidekiq queue.
 
-If the message is a warning about `scheduled_queue`, eg '71 scheduled
-edition(s); 3 item(s) queued', this alert means that the number of editions in
-the database which are scheduled to be published in the future is different
-from the number currently in the queue. This can happen in Staging and
-Integration as a result of the data sync from Production. Run this rake task to
-re-queue all scheduled editions:
+This can happen in Staging and Integration as a result of the data
+sync from Production. Run this rake task to re-queue all scheduled
+editions:
 
 ```sh
 $ cd /var/apps/publisher
