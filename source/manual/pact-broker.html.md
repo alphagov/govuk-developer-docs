@@ -92,5 +92,5 @@ Due to the co-dependent nature of Pact providers and consumers, changes need to 
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.
 1. Run a parameterised build of the consumer, specifying the new branch name of the provider to test against.
   - The build should pass.
-  - It should also be possible to [test this locally, if your provider is set up to do so](https://github.com/alphagov/frontend/blob/master/CONTRIBUTING.md#pact-tests).
+  - It should also be possible to test this locally e.g. `bundle exec rake PACT_URI="../gds-api-adapters/spec/pacts/gds_api_adapters-collections_organisation_api.json" pact:verify`.
 1. Merge the consumer PR, followed by the provider PR.
