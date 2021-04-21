@@ -20,6 +20,7 @@ You should do these things before going on call so you're prepared.
 
 1. Have the numbers of other people on your shift saved in your phone. This
    includes whoever is on Escalations. Get these numbers from PagerDuty.
+1. Make sure you know [how to contact the rest of SMT](https://docs.google.com/spreadsheets/d/1a02TOV0Uee6lSCuUIh3G_J1ZPx6bXI2yz56afHOsQZI/edit#gid=823200360), if the on-call SMT is unavailable.
 1. Ensure you have an up to date local copy of the [Developer Docs][docs] repository
    and that you can build it.
 1. Make sure your [`fabric-scripts`][fabric] are up to date.
