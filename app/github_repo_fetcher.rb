@@ -34,21 +34,6 @@ class GitHubRepoFetcher
     end
   end
 
-  def nest_docs(flat_docs)
-    nested_docs = { docs: [] }
-    flat_docs.each do |doc|
-      subdirs = doc[:path].match(/apps\/(?:[^\/])+\/(.+)/)[1].split("/")
-      subdirs.pop # to remove the filename - we only care about directories
-      hash_to_inject_into = find_or_create_nested_hash(nested_docs, subdirs)
-      hash_to_inject_into[:docs] << {
-        title: doc[:title],
-        path: doc[:path],
-      }
-      hash_to_inject_into[:docs].sort_by! { |hash| hash[:title] }
-    end
-    nested_docs[:docs]
-  end
-
 private
 
   def all_alphagov_repos
@@ -87,22 +72,6 @@ private
       source_url: doc.html_url,
       latest_commit: latest_commit(repo_name, doc.path),
     }
-  end
-
-  def find_or_create_nested_hash(nested_docs, subdirs)
-    hash_to_inject_into = nested_docs
-    subdirs.each do |subdir|
-      title = "#{subdir}/"
-      existing_hash = hash_to_inject_into[:docs].find { |elm| elm[:title] == title }
-      hash_to_inject_into = if existing_hash.nil?
-                              new_hash = { title: title, docs: [] }
-                              hash_to_inject_into[:docs] << new_hash
-                              new_hash
-                            else
-                              existing_hash
-                            end
-    end
-    hash_to_inject_into
   end
 
   def client
