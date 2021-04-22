@@ -24,4 +24,4 @@ failure.
 - [AWS status](https://status.aws.amazon.com/) - check if our
   main provider has issues
 
-[Pingdom]: https://www.pingdom.com/
+[Pingdom]: /manual/pingdom.html
