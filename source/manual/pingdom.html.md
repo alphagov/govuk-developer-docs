@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Add a Pingdom check
+title: Pingdom
 section: Monitoring
 layout: manual_layout
 parent: "/manual.html"
