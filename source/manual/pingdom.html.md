@@ -6,50 +6,21 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-GOV.UK uses [Pingdom](https://www.pingdom.com/) to provide an external view of
-the availability of our services, this compares to our internal monitoring
-which is performed from within the same local network. With internal monitoring
-(such as [Smokey][]) we can tell that services are serving requests, but this
-doesn't necessarily tell us that users can reach them (for example, there could
-be problems with DNS or a network misconfiguration). Pingdom, therefore, serves
-this role in providing a different perspective.
+GOV.UK uses [Pingdom](https://www.pingdom.com/) to monitor the external availability of our services, integrating with [PagerDuty](/manual/pagerduty.html) to notify developers if a service becomes unavailable (owing to a DNS issue or network misconfiguration, for example).
 
-Pingdom operates by making pre-defined requests at a regular interval
-(typically 1 minute) and if it returns a non-success response it will deem
-the host as down. After a suitable threshold (typically 5 minutes) of downtime
-it will alert that the host is down.
+Our internal monitoring tool, [Smokey](https://github.com/alphagov/smokey), is not as reliable at detecting problems like these, as it runs on the same local network as our services, and thus can't necessarily guarantee for us that users can reach our services.
 
-[Smokey]: https://github.com/alphagov/smokey
+Pingdom operates by making pre-defined requests at a regular interval (typically 1 minute) and if it returns a non-success response it will deem the host as down. After a suitable threshold (typically 5 minutes) of downtime it will alert that the host is down.
 
-## How to access GOV.UK Pingdom
+## Access Pingdom
 
-Credentials for Pingdom are available in [govuk-secrets][] via the [2nd line
-password store][] under `monitoring/pingdom`.
+GOV.UK account credentials for Pingdom are available in [govuk-secrets](https://github.com/alphagov/govuk-secrets) via the [2nd line password store](https://github.com/alphagov/govuk-secrets/tree/master/pass) under `monitoring/pingdom`.
 
-[govuk-secrets]: https://github.com/alphagov/govuk-secrets
-[2nd line password store]: https://github.com/alphagov/govuk-secrets/tree/master/pass
+## Add a Pingdom check
 
-## When to add a check
+Before you add a new check, see if an existing check covers your use case. For example, it's beneficial to have a single check on the `assets.publishing.service.gov.uk` hostname, as this determines an external user can reach that host. However, there'd be no benefit in checking for _assets_ served on that host, which should already be covered by internal tests in Smokey or Asset Manager, and from which we learn nothing extra if making the requests externally.
 
-You should add a Pingdom check when we gain extra value from the external
-perspective and that it can tell us something more than we can get from our own
-internal monitoring.
-
-For example, we benefit from a single check on
-`assets.publishing.service.gov.uk` hostname, this determines
-an external user can use that hostname. Adding additional checks for assets
-served on this hostname does not provide any additional information from an
-external perspective.
-
-For situations where you are considering adding a Pingdom check but this does
-not provide any additional external insight you should instead consider adding
-a [test to Smokey][Smokey].
-
-## Adding a check
-
-These instructions are based on adding a check for HTTP request, if you are
-checking something unusual or with specific needs you may need to tweak this
-for your use case.
+These instructions are for adding a standard HTTP request check.
 
 1. In Pingdom, visit the [uptime](https://my.pingdom.com/app/newchecks/checks)
    section and click "Add new".
