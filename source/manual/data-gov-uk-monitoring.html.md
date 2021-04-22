@@ -16,6 +16,7 @@ parent: "/manual.html"
 [logit]: https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74
 [google-analytics]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/information-management/use-online-tools-in-gds/use-google-analytics
 [pagerduty]: https://govuk.pagerduty.com/
+[Pingdom]: /manual/pingdom.html
 [ckan]: apps/ckanext-datagovuk
 [dgu-queue-monitor]: https://github.com/alphagov/datagovuk_publish_queue_monitor
 [dgu-elastic-monitor]: https://github.com/alphagov/datagovuk_publish_elasticsearch_monitor
@@ -31,7 +32,7 @@ Two additional apps expose `/metrics` endpoints which summarise the state of var
 
 ## Pingdom
 
-Pingdom monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downtime is detected. Maintenace of this service forms part of `#govuk-2nd-line`.
+[Pingdom] monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downtime is detected. Maintenace of this service forms part of `#govuk-2nd-line`.
 
 ## Sentry
 

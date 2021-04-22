@@ -7,8 +7,9 @@ type: learn
 section: Monitoring
 ---
 
-Bouncer has a canary route at <https://www.direct.gov.uk/__canary__>
-which queries all the database tables which Bouncer uses to serve all
+This alert is raised by [Pingdom](/manual/pingdom.html) when it cannot
+reach Bouncer's canary route at <https://www.direct.gov.uk/__canary__>.
+This route queries all the database tables which Bouncer uses to serve all
 responses to users and checks that those tables are not empty. The
 canary should return 200; if it doesn't then errors will be being served
 to users - see the table below for more details of the errors in each
