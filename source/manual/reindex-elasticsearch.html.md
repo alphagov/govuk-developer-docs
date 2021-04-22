@@ -111,6 +111,12 @@ This is running in a Jenkins job that clears any index over 7 days old, and will
 
 ### Troubleshooting
 
+#### Failed to switch to new index
+
+The final part of the reindex is to switch Elasticsearch over to the newly created indexes. We've noticed recently that this isn't always successful. It appears to be that if content is written to the database while the reindex task is running, the task will fail at the end as it detects a difference in the data.
+
+**Re-running the reindex task usually fixes this.**
+
 #### To stop the reindexing job
 
 If you need to cancel the reindexing while it's in progress:
