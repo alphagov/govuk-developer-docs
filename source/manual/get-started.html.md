@@ -80,14 +80,6 @@ Access to our infrastructure and internal services is controlled by IP safelisti
 
 To do this, read [the GDS Wiki page about the VPN][gds-vpn-wiki] to ensure you have the required pre-requisites, for example the Cisco AnyConnect software installed on your computer, and an MFA token given to you when you arrived by GDS IT. If you don't have these, [contact the IT helpdesk][gds-it-helpdesk].
 
-The `gds-cli` tool that we installed earlier has a `vpn` subcommand.
-
-To connect to the VPN, run `gds vpn connect` and you'll be asked for a password and MFA code. The password is the one you use to login to your GDS-issued laptop, printers, or the Cisco AnyConnect VPN GUI.
-
-To disconnect, run `gds vpn disconnect`.
-
-If you're here, you're probably using a GDS-issued laptop. If for any reason you're on your own device, or a GDS-issued Linux laptop, you'll need to run `gds vpn configure-byod-profiles` first as the non-GDS-assured VPN is a little different.
-
 [gds-it-helpdesk]: https://gdshelpdesk.digital.cabinet-office.gov.uk/helpdesk/WebObjects/Helpdesk.woa
 [gds-vpn-wiki]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/it-the-white-chapel-building/how-to/gds-vpn
 
