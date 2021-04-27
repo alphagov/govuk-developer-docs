@@ -8,14 +8,19 @@ related_applications: [email-alert-api]
 ---
 
 Sometimes it may be necessary to send a bulk email to many subscribers at once.
-There is [a Rake task in email-alert-api][rake-task] to peform this task and
+There is [a Rake task in email-alert-api][rake-task] to perform this task and
 it's [available as a job in Jenkins][send-bulk-production].
 
 [rake-task]: https://github.com/alphagov/email-alert-api/blob/3a3eaaa59e71e03427021ba730c626ecdf107ccd/lib/tasks/bulk.rake#L2-L9
 
 ## 1. Prepare the content
 
-The format for the body text is [a limited subset of markdown][notify-markdown]. A footer will be automatically appended to the specified body text. The footer will have links to unsubscribe and manage subscriptions. We should always provide users with these options, to help avoid our emails being marked as spam.
+You'll need:
+
+- Email subject line
+- Email body text
+
+The body text can contain [a limited subset of markdown][notify-markdown]. A footer will be automatically appended to the body text. The footer will have links to unsubscribe and manage subscriptions. We should always provide users with these options, to help avoid our emails being marked as spam.
 
 Any occurrence of `%LISTURL%` in the body text will be substituted with the URL of the subscriber list, or an empty string if it has none. This is useful when sending the same email across many lists, where the content of the email needs to link to the specific page on GOV.UK associated with the list. You should check the lists you want to send a bulk email for, to see if they have a URL populated (it's a recent addition).
 
