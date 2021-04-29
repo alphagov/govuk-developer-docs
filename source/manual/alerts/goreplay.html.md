@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: GoReplay
+title: GoReplay (Traffic replay)
 section: Icinga alerts
 layout: manual_layout
 parent: "/manual.html"
