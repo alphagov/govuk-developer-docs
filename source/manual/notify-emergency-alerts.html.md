@@ -8,11 +8,7 @@ section: Notify Emergency Alerts
 important: true
 ---
 
-Emergency alerts are a new way for the emergency services to warn people when lives are in danger.
-
-In an emergency, mobile phones and tablets in the affected area will receive an alert. The alert will tell people what they need to do to stay safe.
-
-This service is being developed by the GOV.UK Notify team and mobile phone networks. 
+The Cabinet Office and the Department for Digital, Culture, Media & Sport are developing a ‘cell broadcast’ alert system to enable people whose lives are at risk in an emergency to be rapidly contacted via their mobile phone. They are currently at the testing phase and subject to successful progress, hope to launch the service soon.
 
 As part of this service, GOV.UK delegate serving [www.gov.uk/alerts](https://www.gov.uk/alerts) to the GOV.UK Notify team.
 
