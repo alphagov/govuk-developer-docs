@@ -1,9 +1,10 @@
 <% list_items = capture do %>
   <%
     docs_grouped_by_parent = imported_docs.each_with_object({}) do |page, hash|
-      path_to_dir = page[:path].split("/").take(page[:path].split("/").count - 1).join("/")
-      hash[path_to_dir] = [] unless hash[path_to_dir]
-      hash[path_to_dir] << page
+      path = page[:path].split("/")
+      dir = path.take(path.count - 1).join("/")
+      hash[dir] ||= []
+      hash[dir] << page
     end
   %>
   <% docs_grouped_by_parent.keys.each do |subpath| %>
