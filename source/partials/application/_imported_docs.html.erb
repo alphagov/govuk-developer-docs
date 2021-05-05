@@ -4,12 +4,11 @@
       path_to_dir = page[:path].split("/").take(page[:path].split("/").count - 1).join("/")
       hash[path_to_dir] = [] unless hash[path_to_dir]
       hash[path_to_dir] << page
-      hash[path_to_dir].sort_by! { |hash| hash[:title] }
     end
   %>
   <% docs_grouped_by_parent.keys.each do |subpath| %>
     <% list_of_links = capture do %>
-      <% docs_grouped_by_parent[subpath].each do |page| %>
+      <% docs_grouped_by_parent[subpath].sort_by { |hash| hash[:title] }.each do |page| %>
         <%= "<li><a href='#{page[:path]}' class='govuk-link'>#{page[:title]}</a></li>" %>
       <% end %>
     <% end %>
