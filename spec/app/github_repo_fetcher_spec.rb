@@ -137,7 +137,7 @@ RSpec.describe GitHubRepoFetcher do
       end
 
       def stub_doc(doc_contents = "arbitrary contents")
-        doc = double("doc", type: "file", download_url: "foo_url", path: "docs/foo.md", html_url: "foo_html_url")
+        doc = double("doc", type: "file", download_url: "foo_url", path: "docs/subdir/foo.md", html_url: "foo_html_url")
         allow(HTTP).to receive(:get).with(doc.download_url).and_return(doc_contents)
         doc
       end
@@ -163,6 +163,17 @@ RSpec.describe GitHubRepoFetcher do
         with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
           doc = instance.docs(repo_name).first
           expect(doc[:title]).to eq("title")
+        end
+      end
+
+      it "derives document title from its filename if not present in markdown" do
+        instance = github_repo_fetcher_returning(public_repo)
+        allow(instance).to receive(:latest_commit).and_return(commit)
+        doc = stub_doc("bar \n Some document")
+
+        with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
+          doc = instance.docs(repo_name).first
+          expect(doc[:title]).to eq("foo")
         end
       end
 
