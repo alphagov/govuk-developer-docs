@@ -62,10 +62,11 @@ private
 
   def data_for_github_doc(doc, repo_name)
     contents = HTTP.get(doc.download_url)
-    filename = doc.path.sub("docs/", "").match(/(.+)\..+$/)[1]
+    docs_path = doc.path.sub("docs/", "").match(/(.+)\..+$/)[1]
+    filename = docs_path.split("/")[-1]
     title = ExternalDoc.title(contents) || filename
     {
-      path: "/apps/#{repo_name}/#{filename}.html",
+      path: "/apps/#{repo_name}/#{docs_path}.html",
       title: title.to_s.force_encoding("UTF-8"),
       markdown: contents.to_s.force_encoding("UTF-8"),
       relative_path: doc.path,
