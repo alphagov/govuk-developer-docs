@@ -117,6 +117,7 @@ RSpec.describe GitHubRepoFetcher do
 
   describe "#docs" do
     let(:repo_name) { SecureRandom.uuid }
+    let(:commit) { { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s } }
 
     def docs_url(repo_name)
       "https://api.github.com/repos/alphagov/#{repo_name}/contents/docs"
@@ -125,6 +126,7 @@ RSpec.describe GitHubRepoFetcher do
     def github_repo_fetcher_returning(repo)
       instance = GitHubRepoFetcher.new
       allow(instance).to receive(:repo).with(repo_name).and_return(repo)
+      allow(instance).to receive(:latest_commit).and_return(commit)
       instance
     end
 
@@ -142,11 +144,8 @@ RSpec.describe GitHubRepoFetcher do
         doc
       end
 
-      let(:commit) { { sha: SecureRandom.hex(40), timestamp: Time.now.utc.to_s } }
-
       it "returns an array of hashes" do
         instance = github_repo_fetcher_returning(public_repo)
-        allow(instance).to receive(:latest_commit).and_return(commit)
 
         with_stubbed_client(double("Octokit::Client", contents: [stub_doc]), instance) do
           expect(instance.docs(repo_name)).to match([
@@ -157,7 +156,6 @@ RSpec.describe GitHubRepoFetcher do
 
       it "derives each document title from its markdown" do
         instance = github_repo_fetcher_returning(public_repo)
-        allow(instance).to receive(:latest_commit).and_return(commit)
         doc = stub_doc("# title \n Some document")
 
         with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
@@ -168,7 +166,6 @@ RSpec.describe GitHubRepoFetcher do
 
       it "derives document title from its filename if not present in markdown" do
         instance = github_repo_fetcher_returning(public_repo)
-        allow(instance).to receive(:latest_commit).and_return(commit)
         doc = stub_doc("bar \n Some document")
 
         with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
@@ -182,7 +179,6 @@ RSpec.describe GitHubRepoFetcher do
         nested_doc = double("nested_doc", type: "file", path: "docs/foo/bar.md", download_url: "bar_url", html_url: "bar_html_url")
 
         instance = github_repo_fetcher_returning(public_repo)
-        allow(instance).to receive(:latest_commit).and_return(commit)
         allow(HTTP).to receive(:get).with(nested_doc.download_url).and_return("some contents")
         stubbed_client = double("Octokit::Client")
         allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs")
