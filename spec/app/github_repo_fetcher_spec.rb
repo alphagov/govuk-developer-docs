@@ -202,11 +202,9 @@ RSpec.describe GitHubRepoFetcher do
 
       it "skips over any non-markdown files" do
         instance = github_repo_fetcher_returning(public_repo)
-        stubbed_client = double("Octokit::Client")
-        allow(stubbed_client).to receive(:contents).with("alphagov/#{repo_name}", path: "docs")
-          .and_return([double("non markdown file", type: "file", path: "docs/digests.png")])
+        non_markdown_file = double("non markdown file", type: "file", path: "docs/digests.png")
 
-        with_stubbed_client(stubbed_client, instance) do
+        with_stubbed_client(double("Octokit::Client", contents: [non_markdown_file]), instance) do
           expect(instance.docs(repo_name)).to eq([])
         end
       end
