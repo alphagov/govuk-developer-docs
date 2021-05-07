@@ -13,16 +13,21 @@ sent to addresses other than those of these groups will be
 
 ## In Integration
 
-For testing in Integration there is the [Email Alert API Integration Google
+In Integration there is the [Email Alert API Integration Google
 group][integration-group]. It has an email address of
-`email-alert-api-integration@digital.cabinet-office.gov.uk` and you can use this
-address to sign up for mailing lists that you wish to test.
+`email-alert-api-integration@digital.cabinet-office.gov.uk`.
+
+This account can be used to sign up to subscriptions on
+https://www.integration.publishing.service.gov.uk/.
 
 ## In Staging
 
 In Staging there is the [Email Alert API Staging Google
-group][staging-group] and it has an email address of
+group][staging-group]. It has an email address of
 `email-alert-api-staging@digital.cabinet-office.gov.uk`.
+
+This account can be used to sign up to subscriptions on
+https://www.staging.publishing.service.gov.uk/.
 
 ## How to use
 
