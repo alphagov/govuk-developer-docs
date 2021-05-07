@@ -1,6 +1,30 @@
-<%= GovukPublishingComponents.render(
-  "govuk_publishing_components/components/list",
-  items: imported_docs.map do |page|
-    "<a href=\"#{page[:path]}\" class=\"govuk-link\">#{page[:title]}</a>"
-  end
-) %>
+<% list_items = capture do %>
+  <%
+    docs_grouped_by_parent = imported_docs.each_with_object({}) do |page, hash|
+      path = page[:path].split("/")
+      dir = path.take(path.count - 1).join("/")
+      hash[dir] ||= []
+      hash[dir] << page
+    end
+  %>
+  <% docs_grouped_by_parent.keys.each do |subpath| %>
+    <% list_of_links = capture do %>
+      <% docs_grouped_by_parent[subpath].sort_by { |hash| hash[:title] }.each do |page| %>
+        <%= "<li><a href='#{page[:path]}' class='govuk-link'>#{page[:title]}</a></li>" %>
+      <% end %>
+    <% end %>
+
+    <% if subpath == path_to_app_docs %>
+      <%= list_of_links %>
+    <% else %>
+      <li><strong><%= subpath.sub(path_to_app_docs, "") %></strong></li>
+      <ul>
+        <%= list_of_links %>
+      </ul>
+    <% end %>
+  <% end %>
+<% end %>
+
+<ul>
+<%= list_items.strip %>
+</ul>
