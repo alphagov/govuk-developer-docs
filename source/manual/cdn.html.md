@@ -84,6 +84,8 @@ See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging
 
 Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
 
+[vcl_config]: https://github.com/alphagov/govuk-cdn-config/
+
 ## Fastly's IP ranges and our access controls on origin servers
 
 Fastly publish their cache node [IP address ranges as JSON from their API][fastly_ips]. We use these IP addresses in two places:
