@@ -16,13 +16,17 @@ How does www.gov.uk/alerts work?
 --------------------------------
 
 We have a custom host in Fastly for /alerts which points at an AWS CloudFront CDN which is managed by the GOV.UK Notify team.
+One custom host is used by [Fastly's Integration configuration](https://manage.fastly.com/configure/services/4mENG6RJL8sxnvgPUMRDz2/versions/275/origins) and [Fastly's Staging configuration](https://manage.fastly.com/configure/services/13QQKEZBSrBFyfxYGzjHPZ/versions/854/origins).
+[Fastly's Production configuration](https://manage.fastly.com/configure/services/4b340CyOhAgINR9eKMH83h/versions/549/origins) has a different host.
 
-Requests to /alerts hit GOV.UK's CDN (Fastly), but no other bits of GOV.UK's infrastructure.
+Requests to /alerts (or to anything beginning with `/alerts/`) hit GOV.UK's CDN (Fastly), but no other bits of GOV.UK's infrastructure.
 
 This custom host is set up to use [Fastly Shielding](https://docs.fastly.com/en/guides/shielding), which helps to
 protect the Notify's origin servers from traffic spikes.
 
 The setup of the custom host in Fastly is currently done by hand by the GOV.UK team.
+Whilst VCL is usually overwritten when deploying govuk-cdn-config, these particular changes are
+[automatically merged with the govuk-cdn-config VCL](https://github.com/alphagov/govuk-cdn-config/pull/321) so that they persist.
 
 API Keys
 --------
