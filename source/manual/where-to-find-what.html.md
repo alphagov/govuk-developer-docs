@@ -53,7 +53,7 @@ These presentations are repeated semi-regularly at the GOV.UK Tech Fortnightly m
 - News and Communities
 
 [readme]: https://docs.publishing.service.gov.uk/manual/readmes.html
-[docs-folder]: https://github.com/alphagov/publishing-api/tree/master/doc
+[docs-folder]: https://github.com/alphagov/publishing-api/tree/main/doc
 [plops]: https://gov-uk.atlassian.net/wiki/display/PLOPS/GOV.UK+Platform+Operations+Home
 [prod-docs]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Product+documentation
 [learning-govuk]: https://drive.google.com/drive/u/0/folders/1AVoV4II9e7Wl59rNrkoy17XE4MxZHCyE

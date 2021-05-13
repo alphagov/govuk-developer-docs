@@ -66,13 +66,13 @@ You can test that the documents appear in search through the API using a query s
 - [https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide][query-2]
 
 [search-api]: https://github.com/alphagov/search-api
-[doc-types]: https://github.com/alphagov/search-api/blob/master/docs/schemas.md#elasticsearch-document-types
-[edition]: https://github.com/alphagov/search-api/blob/master/config/schema/elasticsearch_types/edition.json
-[mapped-doc-types]: https://github.com/alphagov/search-api/blob/master/config/govuk_index/mapped_document_types.yaml
-[i-c-presenter]: https://github.com/alphagov/search-api/blob/master/lib/govuk_index/presenters/indexable_content_presenter.rb
-[e-s-presenter]: https://github.com/alphagov/search-api/blob/master/lib/govuk_index/presenters/elasticsearch_presenter.rb
-[migrated-list]: https://github.com/alphagov/search-api/blob/master/config/govuk_index/migrated_formats.yaml
+[doc-types]: https://github.com/alphagov/search-api/blob/main/docs/schemas.md#elasticsearch-document-types
+[edition]: https://github.com/alphagov/search-api/blob/main/config/schema/elasticsearch_types/edition.json
+[mapped-doc-types]: https://github.com/alphagov/search-api/blob/main/config/govuk_index/mapped_document_types.yaml
+[i-c-presenter]: https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/indexable_content_presenter.rb
+[e-s-presenter]: https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb
+[migrated-list]: https://github.com/alphagov/search-api/blob/main/config/govuk_index/migrated_formats.yaml
 [reindex]: reindex-elasticsearch.html
-[task]: https://github.com/alphagov/publishing-api/blob/master/lib/tasks/represent_downstream.rake
+[task]: https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake
 [query-1]: https://www.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide
 [query-2]: https://www-origin.integration.publishing.service.gov.uk/api/search.json?count=0&filter_content_store_document_type=guide

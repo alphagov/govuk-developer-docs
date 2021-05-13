@@ -81,7 +81,7 @@ The file information can be retrieved with the following command...
 gds aws govuk-production-poweruser aws s3api head-object --bucket govuk-production-database-backups --key coronavirus-find-support/production.sql.gzip
 ```
 
-- [Smart Answers GitHub Repository](https://github.com/alphagov/smart-answers/blob/master/lib/smart_answer_flows/find-coronavirus-support.rb)
+- [Smart Answers GitHub Repository](https://github.com/alphagov/smart-answers/blob/main/lib/smart_answer_flows/find-coronavirus-support.rb)
 - [Original GitHub Repository](https://github.com/alphagov/govuk-coronavirus-find-support)
 - [Restoring the AWS infrastructure](https://github.com/alphagov/covid-engineering/pull/890)
 

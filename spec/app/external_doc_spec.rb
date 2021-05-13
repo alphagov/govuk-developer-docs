@@ -49,11 +49,11 @@ RSpec.describe ExternalDoc do
       end
 
       it "converts relative links to absolute GitHub URLs" do
-        expect(html).to have_link("inline link", href: "https://github.com/alphagov/lipsum/blob/master/inline-link.md")
+        expect(html).to have_link("inline link", href: "https://github.com/alphagov/lipsum/blob/main/inline-link.md")
       end
 
       it "converts aliased links to absolute GitHub URLs" do
-        expect(html).to have_link("aliased link", href: "https://github.com/alphagov/lipsum/blob/master/lib/aliased_link.rb")
+        expect(html).to have_link("aliased link", href: "https://github.com/alphagov/lipsum/blob/main/lib/aliased_link.rb")
       end
 
       it "converts relative GitHub links to Developer Docs HTML links if it is an imported document" do
@@ -62,15 +62,15 @@ RSpec.describe ExternalDoc do
       end
 
       it "converts relative links to absolute GitHub URLs if link is outside of the `docs` folder" do
-        expect(html).to have_link("inline link", href: "https://github.com/alphagov/lipsum/blob/master/inline-link.md")
+        expect(html).to have_link("inline link", href: "https://github.com/alphagov/lipsum/blob/main/inline-link.md")
       end
 
       it "converts relative links to absolute GitHub URLs if link is in a subfolder of the `docs` folder" do
-        expect(html).to have_link("Subfolder", href: "https://github.com/alphagov/lipsum/blob/master/docs/some-subfolder/foo.md")
+        expect(html).to have_link("Subfolder", href: "https://github.com/alphagov/lipsum/blob/main/docs/some-subfolder/foo.md")
       end
 
       it "converts links relative to the 'root' to absolute GitHub URLs" do
-        expect(html).to have_link("Link relative to root", href: "https://github.com/alphagov/lipsum/blob/master/public/json_examples/requests/foo.json")
+        expect(html).to have_link("Link relative to root", href: "https://github.com/alphagov/lipsum/blob/main/public/json_examples/requests/foo.json")
       end
 
       context "the document we are parsing is in the `docs` folder" do
@@ -82,7 +82,7 @@ RSpec.describe ExternalDoc do
       end
 
       it "rewrites relative images" do
-        expect(html).to have_css('img[src="https://raw.githubusercontent.com/alphagov/lipsum/master/suspendisse_iaculis.png"]')
+        expect(html).to have_css('img[src="https://raw.githubusercontent.com/alphagov/lipsum/main/suspendisse_iaculis.png"]')
       end
 
       it "treats URLs containing non-default ports as absolute URLs" do

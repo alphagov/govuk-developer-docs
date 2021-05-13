@@ -37,7 +37,7 @@ When a request to GOV.UK fails, we need to handle the error in some way, so that
 
 ## How we handle errors in our apps
 
-This policy describes what we should do for different types of errors. It applies to all apps, irrespective of other error handling by downstream servers. This policy was first proposed in [RFC 87](https://github.com/alphagov/govuk-rfcs/blob/master/rfc-087-dealing-with-errors.md).
+This policy describes what we should do for different types of errors. It applies to all apps, irrespective of other error handling by downstream servers. This policy was first proposed in [RFC 87](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-087-dealing-with-errors.md).
 
 ### High priority errors
 

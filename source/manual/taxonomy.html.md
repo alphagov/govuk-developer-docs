@@ -31,7 +31,7 @@ The link type `parent_taxons` is used to store the relationship
 between taxons. A [reverse link][reverse-link-config] called
 `child_taxons` is setup through the publishing-api.
 
-[reverse-link-config]: https://github.com/alphagov/publishing-api/blob/master/lib/expansion_rules.rb#L29
+[reverse-link-config]: https://github.com/alphagov/publishing-api/blob/main/lib/expansion_rules.rb#L29
 
 ## Tagging
 
@@ -135,4 +135,4 @@ Graphite (via StatsD).
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/topic_taxonomy.json
 [record-taxonomy-metrics]: https://deploy.publishing.service.gov.uk/job/record-taxonomy-metrics/
 [override-fields]: /apis/search/search-api.html#returning-specific-document-fields
-[record-metrics]: https://github.com/alphagov/content-tagger/blob/master/lib/tasks/taxonomy_metrics.rake#L27
+[record-metrics]: https://github.com/alphagov/content-tagger/blob/main/lib/tasks/taxonomy_metrics.rake#L27

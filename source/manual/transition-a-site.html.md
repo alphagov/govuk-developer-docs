@@ -23,7 +23,7 @@ it, or changing the configuration of an existing site in the Transition app.
 The [transition-config README][transition-config] gives more details on how to
 edit the relevant [transition configuration file].
 
-[transition configuration file]: https://github.com/alphagov/transition-config/tree/master/data/transition-sites
+[transition configuration file]: https://github.com/alphagov/transition-config/tree/main/data/transition-sites
 
 ## Checklist for transitioning a new site
 
@@ -100,7 +100,7 @@ There are lots of file formats we don't want to provide mappings for, like
 static assets, images, or common spammy/malicious crawlers. These can be
 stripped using the [strip_mappings.sh][smsh] script.
 
-[smsh]: https://github.com/alphagov/transition-config/blob/master/tools/strip_mappings.sh
+[smsh]: https://github.com/alphagov/transition-config/blob/main/tools/strip_mappings.sh
 
 #### Query parameter analysis
 
@@ -112,8 +112,8 @@ mapped to a different new URL.
 
 There are some transition-config scripts to help analyse query param usage:
 
-- [analyse_query_params.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_params.sh)
-- [analyse_query_usage.sh](https://github.com/alphagov/transition-config/blob/master/tools/analyse_query_usage.sh)
+- [analyse_query_params.sh](https://github.com/alphagov/transition-config/blob/main/tools/analyse_query_params.sh)
+- [analyse_query_usage.sh](https://github.com/alphagov/transition-config/blob/main/tools/analyse_query_usage.sh)
 
 Some common examples of significant parameters:
 
@@ -194,5 +194,5 @@ The transition checklist covers the whole process of transitioning a site from t
 
 [Transition]: /apps/transition.html
 [Bouncer]: /apps/bouncer.html
-[transition-config]: https://github.com/alphagov/transition-config/blob/master/README.md
+[transition-config]: https://github.com/alphagov/transition-config/blob/main/README.md
 [request a Fastly TLS certificate]: /manual/request-fastly-tls-certificate.html

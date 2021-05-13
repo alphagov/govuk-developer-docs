@@ -13,7 +13,7 @@ Before starting, it’s worth checking the language tag that is being added is c
 [ISO 15924]: https://en.wikipedia.org/wiki/ISO_15924
 [ISO 3166]: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
 [Rails Translation Manager]: https://github.com/alphagov/rails_translation_manager
-[Whitehall Internationalisation guide]: https://github.com/alphagov/whitehall/blob/master/docs/internationalisation_guide.md
+[Whitehall Internationalisation guide]: https://github.com/alphagov/whitehall/blob/main/docs/internationalisation_guide.md
 
 ### 1. Update Government Frontend
 
