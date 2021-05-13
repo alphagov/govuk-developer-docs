@@ -1,6 +1,6 @@
 class DocumentTypes
   FACET_QUERY = "https://www.gov.uk/api/search.json?facet_content_store_document_type=500,examples:10,example_scope:global&count=0".freeze
-  DOCUMENT_TYPES_URL = "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/lib/govuk_content_schemas/allowed_document_types.yml".freeze
+  DOCUMENT_TYPES_URL = "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/main/lib/govuk_content_schemas/allowed_document_types.yml".freeze
 
   def self.pages
     known_from_search = facet_query.dig("facets", "content_store_document_type", "options").map do |o|

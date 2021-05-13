@@ -71,7 +71,7 @@ Unhandled exceptions are automatically logged to Sentry, but you can also
 [trello-migrate]: https://trello.com/c/1zVPYfTR/1979-replace-sentry-raven-with-sentry-ruby
 [govuk_app_config]: https://github.com/alphagov/govuk_app_config
 [govukerror]: https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_error.rb
-[email-alert-api-example]: https://github.com/alphagov/email-alert-api/blob/master/config/initializers/govuk_error.rb
+[email-alert-api-example]: https://github.com/alphagov/email-alert-api/blob/main/config/initializers/govuk_error.rb
 [manually-report]: https://github.com/alphagov/govuk_app_config/blob/073c9b2312a4893b040c9225b713ac880c69f5b8/README.md#manual-error-reporting
 
 ## Sentry roles

@@ -2,13 +2,13 @@ RSpec.describe GitHubRepoFetcher do
   before :each do
     stub_request(:get, "https://api.github.com/users/alphagov/repos?per_page=100")
       .to_return(
-        body: "[ { \"name\": \"some-repo\", \"default_branch\": \"master\" } ]",
+        body: "[ { \"name\": \"some-repo\", \"default_branch\": \"main\" } ]",
         headers: { content_type: "application/json" },
       )
   end
 
   let(:private_repo) { double("Private repo", private_repo?: true) }
-  let(:public_repo) { double("Public repo", private_repo?: false, default_branch: "master") }
+  let(:public_repo) { double("Public repo", private_repo?: false, default_branch: "main") }
 
   def stub_cache
     cache = double("CACHE")
@@ -59,7 +59,7 @@ RSpec.describe GitHubRepoFetcher do
     end
 
     def readme_url
-      "https://raw.githubusercontent.com/alphagov/#{repo_name}/master/README.md"
+      "https://raw.githubusercontent.com/alphagov/#{repo_name}/main/README.md"
     end
 
     it "caches the first response" do
@@ -92,7 +92,7 @@ RSpec.describe GitHubRepoFetcher do
       allow(instance).to receive(:repo).with(repo_name) do
         OpenStruct.new(default_branch: "latest")
       end
-      stubbed_request = stub_request(:get, readme_url.sub("master", "latest"))
+      stubbed_request = stub_request(:get, readme_url.sub("main", "latest"))
         .to_return(status: 200, body: readme_contents)
 
       expect(instance.readme(repo_name)).to eq(readme_contents)

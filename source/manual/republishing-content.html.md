@@ -65,7 +65,7 @@ or you can resync all documents:
 [`resync:all`][resync-all-jenkins]
 
 [govspeak-repo]: https://github.com/alphagov/govspeak/
-[resync-rake-task]: https://github.com/alphagov/content-publisher/blob/master/lib/tasks/resync.rake
+[resync-rake-task]: https://github.com/alphagov/content-publisher/blob/main/lib/tasks/resync.rake
 [resync-single-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=resync:document[a-content-id:locale]
 [resync-all-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=resync:all
 [republish-whitehall-doc-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug]

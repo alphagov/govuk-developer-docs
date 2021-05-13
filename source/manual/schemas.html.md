@@ -65,9 +65,9 @@ This is still quite new, and we've only user-tested it once.  We found that peop
 We have a few different implementations of this right now, because it's very new and we wanted to be able to explore its use in different document types.  They are:
 
 - [The schema used on answers in GOV.UK publishing components](https://github.com/alphagov/govuk_publishing_components/blob/master/lib/govuk_publishing_components/presenters/machine_readable/faq_page_schema.rb)
-- [The schema used on most guides in Government Frontend](https://github.com/alphagov/government-frontend/blob/master/app/presenters/machine_readable/guide_faq_page_schema_presenter.rb)
-- [The schema used on "how to vote" also in Government Frontend](https://github.com/alphagov/government-frontend/blob/master/app/presenters/machine_readable/yaml_faq_page_schema_presenter.rb)
-- [The schema used for transactions in Frontend](https://github.com/alphagov/frontend/blob/master/app/presenters/machine_readable/transaction_faq_page_schema.rb)
+- [The schema used on most guides in Government Frontend](https://github.com/alphagov/government-frontend/blob/main/app/presenters/machine_readable/guide_faq_page_schema_presenter.rb)
+- [The schema used on "how to vote" also in Government Frontend](https://github.com/alphagov/government-frontend/blob/main/app/presenters/machine_readable/yaml_faq_page_schema_presenter.rb)
+- [The schema used for transactions in Frontend](https://github.com/alphagov/frontend/blob/7c6e5e342d778f1d9c136bd80e3f34a133532481/app/presenters/machine_readable/transaction_faq_page_schema.rb)
 
 We may consolidate these at some point!
 
