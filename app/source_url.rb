@@ -26,6 +26,6 @@ private
 
   # As the last fallback link to the source file in this repository.
   def source_from_file
-    "https://github.com/alphagov/govuk-developer-docs/blob/master/source/#{current_page.file_descriptor[:relative_path]}"
+    "https://github.com/alphagov/govuk-developer-docs/blob/main/source/#{current_page.file_descriptor[:relative_path]}"
   end
 end

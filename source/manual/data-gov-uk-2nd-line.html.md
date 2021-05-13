@@ -230,5 +230,5 @@ It is possible to access analytics for datasets. If a user requests analytics fo
 
 There is a [revision log](https://ckan.publishing.service.gov.uk/revision) which shows the most recent edits to CKAN datasets, harvester and users performed by all users.
 
-[schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/helpers.py#L119-L213
-[test-schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/tests/test_helpers.py#L63-L157
+[schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/main/ckanext/datagovuk/helpers.py#L119-L213
+[test-schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/main/ckanext/datagovuk/tests/test_helpers.py#L63-L157

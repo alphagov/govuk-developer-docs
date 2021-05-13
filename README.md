@@ -55,4 +55,4 @@ This will create a bunch of static files in `/build`.
 
 [MIT License](LICENCE.md)
 
-[actions]: https://github.com/alphagov/govuk-developer-docs/blob/master/.github/workflows/ci.yml
+[actions]: https://github.com/alphagov/govuk-developer-docs/blob/main/.github/workflows/ci.yml

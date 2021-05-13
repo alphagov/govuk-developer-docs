@@ -18,11 +18,11 @@ parent: "/manual.html"
 [jenkins]: /manual/jenkins-ci.html
 [CKAN]: https://github.com/alphagov/ckanext-datagovuk
 [new release]: https://github.com/alphagov/datagovuk_find/releases
-[Publish's travis.yml]: https://github.com/alphagov/datagovuk_publish/blob/master/.travis.yml#L30-L50
+[Publish's travis.yml]: https://github.com/alphagov/datagovuk_publish/blob/main/.travis.yml#L30-L50
 [Find's travis.yml]: https://github.com/alphagov/datagovuk_find/blob/af8cfa61584b16e4e1ad7bedbd1b7f890cec940d/.travis.yml#L44-L48
 [cf-ssh]: https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html#ssh-env
 [ckanext-datagovuk]: https://github.com/alphagov/ckanext-datagovuk
-[install-dependencies]: https://github.com/alphagov/ckanext-datagovuk/blob/master/bin/install-dependencies.sh
+[install-dependencies]: https://github.com/alphagov/ckanext-datagovuk/blob/main/bin/install-dependencies.sh
 [ckan-publisher]: https://ckan.publishing.service.gov.uk
 
 ## Find and Publish (Rails Apps)
@@ -50,8 +50,8 @@ manually via command line tools.
 
 #### Staging
 
-The deployment to staging is triggered when a PR gets merged into master. You
-can check the [Travis logs of the `master` build](https://travis-ci.org/alphagov/datagovuk_find) to see progress.
+The deployment to staging is triggered when a PR gets merged into main. You
+can check the [Travis logs of the `main` build](https://travis-ci.org/alphagov/datagovuk_find) to see progress.
 
 You can check the deployment on [staging.data.gov.uk](https://staging.data.gov.uk/)
 
@@ -77,7 +77,7 @@ cf zero-downtime-push publish-data-beta-staging -f staging-app-manifest.yml
 cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifest.yml
 ```
 
-There are [some scripts available for datagovuk_publish](https://github.com/alphagov/datagovuk_publish/tree/master/scripts) which can run a deploy for you, for example:
+There are [some scripts available for datagovuk_publish](https://github.com/alphagov/datagovuk_publish/tree/main/scripts) which can run a deploy for you, for example:
 
 ```
 $ cd datagovuk_publish
