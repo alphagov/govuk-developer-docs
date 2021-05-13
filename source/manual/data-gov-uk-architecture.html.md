@@ -13,7 +13,7 @@ parent: "/manual.html"
 [signon]: manual/manage-sign-on-accounts
 [deployment]: manual/data-gov-uk-deployment
 [monitoring]: manual/data-gov-uk-monitoring
-[signon-adr]: https://github.com/alphagov/datagovuk_publish/blob/master/docs/adr/0002-signon.md
+[signon-adr]: https://github.com/alphagov/datagovuk_publish/blob/main/docs/adr/0002-signon.md
 [statistics]: http://statistics.data.gov.uk
 [land-registry]: http://landregistry.data.gov.uk
 [csw]: http://csw.data.gov.uk/geonetwork/srv/en/main.home

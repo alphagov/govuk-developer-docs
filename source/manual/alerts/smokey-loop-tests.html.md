@@ -48,7 +48,7 @@ After running the above commands, you should soon see the `/tmp/smokey.json` fil
 
 ## Try a manual run of the loop
 
-The Smokey Loop is just [a repeat run of Cucumber](https://github.com/alphagov/smokey/blob/master/tests_json_output.sh#L27), which you can do yourself.
+The Smokey Loop is just [a repeat run of Cucumber](https://github.com/alphagov/smokey/blob/main/tests_json_output.sh#L27), which you can do yourself.
 
 ```shell
 sudo su - smokey
@@ -71,6 +71,6 @@ hieradata. Here's an [example PR in govuk-secrets](https://github.com/alphagov/g
 
 [signon]: https://github.com/alphagov/signon
 [smokey]: https://github.com/alphagov/smokey
-[most Smokey features]: https://github.com/alphagov/smokey/blob/master/docs/writing-tests.md#alerting-in-icinga
+[most Smokey features]: https://github.com/alphagov/smokey/blob/main/docs/writing-tests.md#alerting-in-icinga
 [Icinga checks]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp
 [a separate "Smokey" alert]: https://github.com/alphagov/govuk-puppet/blob/master/modules/icinga/manifests/config/smokey.pp

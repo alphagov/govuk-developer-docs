@@ -23,7 +23,7 @@ RSpec.describe SourceUrl do
 
       source_url = SourceUrl.new({}, current_page).source_url
 
-      expect(source_url).to eql("https://github.com/alphagov/govuk-developer-docs/blob/master/source/foo.html.md")
+      expect(source_url).to eql("https://github.com/alphagov/govuk-developer-docs/blob/main/source/foo.html.md")
     end
   end
 end

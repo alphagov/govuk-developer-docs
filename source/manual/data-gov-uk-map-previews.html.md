@@ -17,7 +17,7 @@ Manually uploading datasets will not generate map preview data, please create a 
 
 [Data.gov.uk find](https://data.gov.uk/search?q=&filters%5Bpublisher%5D=&filters%5Btopic%5D=&filters%5Bformat%5D=WMS&sort=best) provides a map preview for Web Map Service (WMS) data. This data is represented as features on a map, eg. historic landfill sites in the UK.
 
-The source code for the map rendering can be found in [alphagov/datagovuk_find javascript assets](https://github.com/alphagov/datagovuk_find/tree/master/app/assets/javascripts/map-preview). Maps are comprised of client-side javascript on top of [OpenLayers](https://openlayers.org/) and [Ext](https://www.sencha.com/extjs-for-open-source/) 3rd party javascript libraries.
+The source code for the map rendering can be found in [alphagov/datagovuk_find javascript assets](https://github.com/alphagov/datagovuk_find/tree/main/app/assets/javascripts/map-preview). Maps are comprised of client-side javascript on top of [OpenLayers](https://openlayers.org/) and [Ext](https://www.sencha.com/extjs-for-open-source/) 3rd party javascript libraries.
 
 ## Key OpenLayers map preview concepts
 

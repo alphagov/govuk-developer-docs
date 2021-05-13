@@ -10,11 +10,11 @@ class ExternalDoc
       gfm: false,
       base_url: URI.join(
         "https://github.com",
-        "alphagov/#{repository}/blob/master/",
+        "alphagov/#{repository}/blob/main/",
       ),
       image_base_url: URI.join(
         "https://raw.githubusercontent.com",
-        "alphagov/#{repository}/master/",
+        "alphagov/#{repository}/main/",
       ),
     }
 
@@ -51,7 +51,7 @@ class ExternalDoc
   # continue to work when rendered as part of GOV.UK Developer Docs.
   #
   # For example a link to `lib/link_expansion.rb` would be rewritten to
-  # https://github.com/alphagov/publishing-api/blob/master/lib/link_expansion.rb
+  # https://github.com/alphagov/publishing-api/blob/main/lib/link_expansion.rb
   class AbsoluteLinkFilter < HTML::Pipeline::Filter
     def call
       doc.search("a").each do |element|

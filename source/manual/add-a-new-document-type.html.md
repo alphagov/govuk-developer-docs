@@ -55,11 +55,11 @@ See "[Adding a new schema][adding-a-new-schema]"
 See "[Make a new document type available to search][new-doc-type-search]"
 
 [document type]: https://docs.publishing.service.gov.uk/document-types.html
-[allowed-document-types]: https://github.com/alphagov/govuk-content-schemas/blob/master/lib/govuk_content_schemas/allowed_document_types.yml
+[allowed-document-types]: https://github.com/alphagov/govuk-content-schemas/blob/main/lib/govuk_content_schemas/allowed_document_types.yml
 [govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
 [pr-652]: https://github.com/alphagov/govuk-content-schemas/pull/652
 [pr-630]: https://github.com/alphagov/govuk-content-schemas/pull/630
 [pr-250]: https://github.com/alphagov/collections-publisher/pull/250
 [placeholder-items]: https://github.com/alphagov/content-store/blob/f5bf2ae1d86b6a38d52d22074c0d13acf2a0413c/doc/route_registration.md#placeholder-items
-[adding-a-new-schema]: https://github.com/alphagov/govuk-content-schemas/blob/master/docs/adding-a-new-schema.md
+[adding-a-new-schema]: https://github.com/alphagov/govuk-content-schemas/blob/main/docs/adding-a-new-schema.md
 [new-doc-type-search]: /manual/make-a-new-document-type-available-to-search.html

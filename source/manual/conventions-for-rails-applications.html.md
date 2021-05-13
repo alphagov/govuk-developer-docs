@@ -149,7 +149,7 @@ where this needs to be associated with a database [ActiveStorage][] should be
 used.
 
 [ActiveRecord]: https://guides.rubyonrails.org/active_record_basics.html
-[db/seeds.rb]: https://github.com/alphagov/content-publisher/blob/master/db/seeds.rb
+[db/seeds.rb]: https://github.com/alphagov/content-publisher/blob/main/db/seeds.rb
 [key-value datastore]: https://en.wikipedia.org/wiki/Key-value_database
 [Redis]: https://redis.io/
 [RabbitMQ]: https://www.rabbitmq.com/
@@ -373,7 +373,7 @@ to use [architectural decision records][adr] in the `/docs/adr` directory
 ([example][adr-example]).
 
 [adr]: http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions
-[adr-example]: https://github.com/alphagov/content-publisher/blob/master/docs/adr/0002-use-local-datastore.md
+[adr-example]: https://github.com/alphagov/content-publisher/blob/main/docs/adr/0002-use-local-datastore.md
 
 ## Testing strategies
 

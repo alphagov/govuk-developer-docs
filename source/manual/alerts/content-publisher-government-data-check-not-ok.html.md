@@ -13,5 +13,5 @@ This means that Content Publisher is having trouble updating the data it holds o
 - Run `PopulateBulkDataJob.perform_now` manually in the [Content Publisher console][console] to see if issues occur. [Link to job][data job]
 
 [Sentry]: [https://sentry.io/organizations/govuk/issues/?project=1242052]
-[data job]: [https://github.com/alphagov/content-publisher/blob/master/app/jobs/populate_bulk_data_job.rb]
+[data job]: [https://github.com/alphagov/content-publisher/blob/main/app/jobs/populate_bulk_data_job.rb]
 [console]: [https://docs.publishing.service.gov.uk/manual/get-ssh-access.html#running-a-console]

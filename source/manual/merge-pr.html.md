@@ -8,19 +8,19 @@ parent: "/manual.html"
 
 There are five rules for reviewing and merging PRs, which apply to all applications:
 
-1. The `master` branch must be able to be released at any time.
+1. The `main` branch must be able to be released at any time.
 2. The change must have two reviews from people from GDS (preferably GOV.UK). This can (and normally will) include the author.
 3. If a branch is force-pushed or rebased after a review on its PR, the author must dismiss the stale review and ask for a new one, unless the change is a rebase on top of a small piece of work and the author is confident there are no side effects.
 4. The GitHub review UI should be used to mark a PR as approved or requiring changes.
 5. The GitHub UI should be used to merge the PR. This ensures the PR number is added to the merge commit.
 
-We're doing more and more [continuous deployment](https://docs.google.com/document/d/1YhgjJjDRB57-IlgPNAAZzFTI3jIUucGJKokti_lQiRQ/edit) these days, which means that merging to `master` on some apps is [restricted to those with Production access](https://github.com/alphagov/govuk-saas-config/search?q=need_production_access_to_merge&unscoped_q=need_production_access_to_merge), as doing so auto-deploys to Production. If an app is continuously deployed, the PR template will show a warning triangle emoji. For apps that are not continuously deployed, you should deploy your changes all the way to Production as soon as possible after merging them.
+We're doing more and more [continuous deployment](https://docs.google.com/document/d/1YhgjJjDRB57-IlgPNAAZzFTI3jIUucGJKokti_lQiRQ/edit) these days, which means that merging to `main` on some apps is [restricted to those with Production access](https://github.com/alphagov/govuk-saas-config/search?q=need_production_access_to_merge&unscoped_q=need_production_access_to_merge), as doing so auto-deploys to Production. If an app is continuously deployed, the PR template will show a warning triangle emoji. For apps that are not continuously deployed, you should deploy your changes all the way to Production as soon as possible after merging them.
 
 ## Example scenarios
 
 ### A simple change
 
-A small PR for a well-understood application, written by someone with good knowledge of the problem domain and with a well-defined scope. When a PR is created, someone with similar understanding of the application and change can approve and merge the PR. Both people are very confident that `master` will be deployable once this PR is merged.
+A small PR for a well-understood application, written by someone with good knowledge of the problem domain and with a well-defined scope. When a PR is created, someone with similar understanding of the application and change can approve and merge the PR. Both people are very confident that `main` will be deployable once this PR is merged.
 
 ### A simple change for a repository that has a long-running test suite
 
@@ -87,6 +87,6 @@ If two developers worked on the same branch and individually contributed commits
 ## Other considerations
 
 1. When opening a PR, if you feel you don't have full confidence in your change and want a particular review from someone, it's OK to ask for that review in the PR description. For example, a puppet change might warrant a particular review from a member of the GOV.UK Replatforming team.
-2. It's OK for someone other than the author to merge a PR, particularly if the author is not available. That person should be confident that the change doesn't have dependencies on other changes, and that it won't break `master`.
+2. It's OK for someone other than the author to merge a PR, particularly if the author is not available. That person should be confident that the change doesn't have dependencies on other changes, and that it won't break `main`.
 3. If a PR is particularly good, remember to praise the author for it. Emoji are a great way of showing appreciation for a PR that fixes a problem you've been having, or implements something you've wanted to do for a while.
 4. It's sometimes OK for merges to happen when test suites are failing. This ability is limited to repository administrators and account owners, so ask them if you need them to force a merge. This is particularly useful in a catch-22 situation of two repositories with failing test suites that depend on each other.

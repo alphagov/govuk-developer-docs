@@ -50,7 +50,7 @@ for each environment):
   to users who click a survey banner or use the `Is this page useful?` feature.
 
 [Email Alert API Product dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api_product.json?refresh=1m&orgId=1
-[SendEmailWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/send_email_worker.rb#L4
+[SendEmailWorker]: https://github.com/alphagov/email-alert-api/blob/main/app/workers/send_email_worker.rb#L4
 
 ## Accessing the dashboard
 

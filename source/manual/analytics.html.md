@@ -16,8 +16,8 @@ request access to this by following the [steps in the GDS wiki](https://sites.go
 
 The GOV.UK analytics codebase is a collection of JavaScript modules spread through a few different projects:
 
-- [static](https://github.com/alphagov/static/tree/master/app/assets/javascripts/analytics) - Core analytics code (originally from [govuk_frontend_toolkit](https://github.com/alphagov/govuk_frontend_toolkit/tree/master/javascripts/govuk/analytics) but migrated and modified) plus additional and legacy modules.
-- Supplementary tracking for application specific cases is included in several applications including [government-frontend](https://github.com/alphagov/government-frontend/blob/master/app/assets/javascripts/modules/track-radio-group.js) and [frontend](https://github.com/alphagov/frontend/tree/master/app/assets/javascripts/modules).
+- [static](https://github.com/alphagov/static/blob/main/app/assets/javascripts/analytics.js.erb) - Core analytics code (originally from [govuk_frontend_toolkit](https://github.com/alphagov/govuk_frontend_toolkit/commit/315e46edab783321196fd4a879a97b1a1ca843b1) but migrated and modified) plus additional and legacy modules.
+- Supplementary tracking for application specific cases is included in several applications including [government-frontend](https://github.com/alphagov/government-frontend/blob/main/app/assets/javascripts/modules/track-radio-group.js) and [frontend](https://github.com/alphagov/frontend/tree/master/app/assets/javascripts/modules).
 
 ## Tracking overview
 
@@ -42,7 +42,7 @@ The javascript function
 GOVUK.analytics.addLinkedTrackerDomain('UA-43888888-1', 'someServiceTracker', ['some.service.gov.uk'])
 ```
 
-registers a _linked_ (cross domain) tracker and sends a pageview to the tracker. The [current cross domain configuration on GOV.UK](https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/init.js.erb#L160) contains only those domains that have turned on cross domain tracking. More information is included in [static's analytics documentation](https://github.com/alphagov/static/blob/master/docs/analytics.md#tracking-across-domains).
+registers a _linked_ (cross domain) tracker and sends a pageview to the tracker. The current cross domain configuration on GOV.UK contains only those domains that have turned on cross domain tracking. More information is included in [static's analytics documentation](https://github.com/alphagov/static/blob/main/docs/analytics.md#tracking-across-domains).
 
 Some cross domain tracking existed prior to this work to link 19 services to GOV.UK. It exists on some transaction start pages such as [Change your driving test appointment](https://www.gov.uk/change-driving-test), where the start button contains data attributes, such as:
 
