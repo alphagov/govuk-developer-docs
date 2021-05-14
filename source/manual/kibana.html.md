@@ -12,11 +12,41 @@ access through [Logit](logit.html).
 Kibana can be [searched using the Lucene search syntax or full JSON-based
 Elasticsearch queries][kibana-search].
 
+## Set up the UI
+
+The default view for Kibana includes a timestamp and a grouped `_source` column of all information per log. Depending on what you're trying to achieve, you may find it beneficial to re-organise your view.
+
+You can specify a field in the logs list by navigating the "Available Fields" list on the left hand side, hovering over a field you want to interrogate and clicking "add". Some useful fields include:
+
+- application
+- controller
+- route
+- path
+- status
+- request
+- tags
+
+You can additionally remove fields by following the same steps above for "Selected Fields" and clicking "remove".
+
+You can also manage the timeline bar chart at the top fo the view by changing the dropdown above the bar chart from "auto" to whichever delimitater suits your needs (hourly, daily, weekly etc) and specify the time frame of the bar chart by clicking the time range in the top right-hand corner.
+
 ## Examples
 
 You can save and load queries using the buttons in the top right. You may want to use one of the existing queries as a starting point instead of writing a query from scratch.
 
 ![Kibana saved searches](images/kibana_saved_searches.png)
+
+### All requests rendered by the content_items controller in government-frontend
+
+```rb
+application: government-frontend AND tags: request AND controller: content_items
+```
+
+### All requests within the /government/groups path
+
+```rb
+tags: request AND path: \/government\/groups\/*
+```
 
 ### 5xx errors returned from cache layer
 
