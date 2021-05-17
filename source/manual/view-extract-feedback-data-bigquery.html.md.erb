@@ -1,0 +1,150 @@
+---
+owner_slack: "#data-science"
+title: View or extract feedback data in BigQuery
+section: Data Community Documentation
+layout: manual_layout
+parent: "/manual.html"
+---
+
+You can do the following with the feedback data in BigQuery:
+
+- use Google Data Studio to present the data
+- extract the data from BigQuery into another file format, for example a CSV or a Google Sheets file
+
+You do not need a specific permission to view or extract feedback data in BigQuery once you have access to the BigQuery data sets.
+
+BigQuery feedback data comes from SmartSurvey and Zendesk.
+
+If you want to view or extract Zendesk feedback data, you should first reformat this data.
+
+You do not need to reformat SmartSurvey data.
+
+## Reformat Zendesk data
+
+Zendesk data in BigQuery is in a different format to the SmartSurvey data, and contains the following:
+
+- feedback data
+- Zendesk tickets raised by other Government departments
+
+You should reformat the Zendesk feedback data and remove Zendesk tickets before you view or analyse that data.
+
+You do this by running a SQL query in BigQuery to:
+
+- change the data format to the same format as SmartSurvey
+- rename some data fields
+- get the URL that the feedback was left on
+- exclude Zendesk tickets raised by other Government departments by excluding unwanted URLs
+
+Once you have run this SQL query, the Zendesk feedback data will be ready to view or extract for analysis.
+
+1. Go to the [GOV.UK BigQuery project](https://console.cloud.google.com/bigquery?project=gov uk-bigquery-analytics).
+1. Select __QUERY TABLE__.
+1. Run the following SQL code in the code window:
+
+    ```sql
+    SELECT
+            cast(created_at AS TIMESTAMP) AS created_at,
+            ‘Ticket’ AS source,
+            REPLACE(concat(‘www.gov.uk’,REPLACE(subject,‘Named contact about ‘,’’)),‘Named contact’,‘’) AS URL,
+            ‘’ AS Q1,
+            ‘’ AS Q2,
+            description AS Q3,
+            ‘’ AS Q4,
+            ‘’ AS Q5,
+            ‘’ AS Q6,
+            ‘’ AS Q7,
+            ‘’ AS Q8
+    FROM `govuk-bigquery-analytics.zendeskdata.zendesk_YYYYMMDD`
+        WHERE LOWER(description) NOT LIKE ‘%govuk.zendesk.com%’
+        AND LOWER(URL) NOT LIKE ‘%verify%’
+        AND LOWER(URL) NOT LIKE ‘%gov.ukneeded%’
+        AND LOWER(URL) NOT LIKE ‘%gov.uknotify%’
+        AND LOWER(URL) NOT LIKE ‘%gov.ukreply%’
+        AND LOWER(URL) NOT LIKE ‘%gov.ukurgent%’
+        AND LOWER(URL) NOT LIKE ‘%gov.ukfeedback%’
+        AND LOWER(URL) NOT LIKE ‘%vulnerable data transfer%’
+        AND LOWER(URL) NOT LIKE ‘www.gov.uk/templates/%’
+        AND LOWER(URL) NOT LIKE ‘%content change request%’
+        AND LOWER(URL) NOT LIKE ‘%gov.ukdaily%’
+        AND LOWER(URL) NOT LIKE ‘%gov.ukgoogle%’
+        AND LOWER(URL) NOT LIKE ‘%enquiries to GDS%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.ukwa%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.uk[%’
+        AND LOWER(URL) NOT LIKE ‘%ukre%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.uk/dvlaforms%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.uk/sign-in-universal-credit%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.ukQuery%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.ukUser%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.ukSupport%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.ukGOV.UK%’
+        AND LOWER(URL) NOT LIKE ‘%www.gov.ukTechnical%’
+        AND LOWER(description) NOT LIKE '%unsubscribe@digital.cabinet-office.gov.uk%'
+        AND LOWER(description) NOT LIKE ‘%mailto%’
+        AND LOWER(description) NOT LIKE ‘%digital.cabinet-office.gov.uk%’
+        AND (CHAR_LENGTH(TRIM(description)) < 50000 OR description IS NULL)
+    ```
+
+    where `YYYYMMDD` is the date you want data for.
+
+    You can use wildcards to specify time periods of more than one day. For example:
+    - `zendesk_202103*` reformats all data from March 2021
+    - `zendesk_2021*` reformats all data from 2021
+
+1. When the query has finished running, save the reformatted data in the appropriate format.
+
+The Zendesk feedback data is ready to view or extract for analysis.
+
+## View or extract feedback data
+
+In Google Data Studio, you use data connectors to connect to your data.
+
+You can either use an existing data connector or create a new connector using the data connector wizard.
+
+The following content tells you how to set up a new connector.
+
+1. Go to [Google Data Studio](https://datastudio.google.com/).
+
+1. Select __Connect to data__ to set up a new connector. If you want to use an existing connector, select __My data sources__.
+
+1. Select the BigQuery connector.
+
+1. In the BigQuery connector page, select either __Recent projects__ or __My projects__, and then select the __GOV-UK BigQuery analytics__ project.
+
+    If you cannot see the GOV-UK BigQuery analytics project, contact the GDS Data Labs team on the [#govuk-data-labs Slack channel](https://app.slack.com/client/T8GT9416G/CHR4UQKU4).
+
+1. Select either the __zendeskdata__ data set or the __UISData__ data set.
+
+1. Select the table that ends in __YYYYMMDD__. This is the overall data set that contains all of the individual daily data sets for either Zendesk or SmartSurvey.
+
+1. Select __Add__ and then __Add to report__ to go to the data dashboard tool.
+
+1. Build your data dashboard using the data dashboard tool. Note that DataStudio automatically converts some string data fields into non-string data fields. This should not cause any errors.
+
+1. Select __View__ to view the data dashboard.
+
+1. Select the data dashboard menu and select the appropriate format to extract the data.
+
+To extract data, select __Save__ and save your data in an appropriate format, for example Google Sheets or a CSV file.
+
+You should always manually check your data for any personally identifiable information (PII) that did not get cleansed automatically.
+
+## Coronavirus and Brexit reporting
+
+There are 2 automated daily reports on Coronavirus and Brexit. Every day at 8:30am, 2 automated SQL queries run on the SmartSurvey and Zendesk data in BigQuery. These queries:
+
+- [reformat the Zendesk data](#reformat-zendesk-data) in the same way as the manual reformatting process
+- combine the SmartSurvey and Zendesk data into a single data set
+- filter the data set based on a list of URLs agreed by the Coronavirus and Brexit teams
+- output the data set into 2 reports in Google Sheets
+
+If there are any issues with one of these reports:
+
+- the product team that uses the report contacts the Insights team
+- the Insights team investigates and contacts the Data Labs team if required
+- a tech lead or data engineer in the Data Labs team investigates and resolves the issue
+
+For more information, see the following locations:
+
+- the [GitHub repo that holds the SQL scripts for coronavirus and Brexit extraction](https://github.com/alphagov/govuk-user-feedback)
+- the [coronavirus data report](https://docs.google.com/spreadsheets/d/1zmaCCX2dh8glnQyyQWy5C_aQr-PT6V5DS4B69EGuENY/edit#gid=236101117)
+- the [Brexit report](https://docs.google.com/spreadsheets/d/1QGbQFVP6HQK9yAWbg9w04WvUUlmq61Pb9Pg94OQk3rw/edit#gid=0)

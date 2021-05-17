@@ -1,0 +1,145 @@
+---
+owner_slack: "#data-science"
+title: Zendesk and SmartSurvey feedback data pipeline
+section: Data Community Documentation
+layout: manual_layout
+parent: "/manual.html"
+---
+
+GOV.UK users can select a feedback question at the bottom of a GOV.UK webpage to provide feedback.
+
+There are 2 feedback questions. If the feedback question is:
+
+- “Is this page useful?”, the feedback data goes to SmartSurvey
+- “Is there something wrong with this page?”, the feedback data goes to Zendesk
+
+The Zendesk and SmartSurvey feedback data is routed to BigQuery so that GDS users can view and analyse that data.
+
+The following content explains how this feedback data pipeline works.
+
+## Copy and cleanse the feedback data
+
+SmartSurvey and Zendesk store their feedback data on their own servers.
+
+As this feedback data is stored in two different servers, accessing and using the data is difficult.
+
+The following process allows GDS users to access this data more easily.
+
+Every day at approximately 8:10am, an AWS Lambda function runs a collection of Python scripts to copy the feedback data from the SmartSurvey and Zendesk servers to BigQuery.
+
+These Python scripts are located in the [govuk-user-journey-models GitHub repo on alphagov](https://github.com/alphagov/govuk-user-journey-models).
+
+To get access to this repo, speak to the GDS Data Labs team on the [#govuk-data-labs Slack channel](https://app.slack.com/client/T8GT9416G/CHR4UQKU4).
+
+Whilst the data is being copied to BigQuery, the Python scripts process and cleanse the data to mask and remove personally identifiable information (PII). This is a 2 step process.
+
+1. The scripts use regex matching to look for National Insurance, NHS and credit card numbers. The scripts then mask this PII. The regex patterns are as follows:
+
+    ```
+    [r'(?i)\b(?:[a-z]\W?){2}(?:\d\W?){6}\W?[a-z]\b', '[NI###]'],
+    [r'(?i)nhs\s?(?:.{0,20})?(?:\d\D?){9}(?:\d)', '[NHS###]'],
+    [r'(?:\d\D?){16}', '[CC###]']
+    ```
+
+1. The scripts send the data to the [Google Cloud Data Loss Prevention service (DLP)](https://cloud.google.com/dlp). Google Cloud DLP looks for the following information types:
+
+    ```
+    PERSON_NAME,
+    EMAIL_ADDRESS",
+    DATE_OF_BIRTH,
+    STREET_ADDRESS
+    ```
+
+Google Cloud DLP then cleanses the data of these information types and returns the cleansed data to BigQuery.
+
+## Save the feedback data in BigQuery
+
+When the data cleansing is complete, the data is saved into the GOV.UK Analytics project in BigQuery, `govuk-bigquery-analytics`.
+
+Within this project:
+
+- the Zendesk data is stored in the `zendeskdata` data set
+- the SmartSurvey data is stored in the `UISData` data set
+
+Within these data sets are the daily data tables. Each day’s data is created as a new data table with a `YYYYMMDD` format. For example, for 9 March 2021:
+
+- the SmartSurvey data table is `UISData_20210309`
+- the Zendesk data table is `zendesk_20210309`
+
+To request permission to view or edit these data tables in BigQuery, speak to the GDS Data Labs team on the [#govuk-data-labs Slack channel](https://app.slack.com/client/T8GT9416G/CHR4UQKU4).
+
+The Zendesk and SmartSurvey feedback data is now in BigQuery, ready for users to view and analyse.
+
+See the [documentation on presenting or extract feedback data from BigQuery](/manual/view-extract-feedback-data-bigquery.html) for more information on the next step of the process.
+
+## Data field definitions
+
+All data fields in BigQuery are text strings.
+
+### SmartSurvey data fields
+
+|Data field|Definition|
+|:---|:---|
+|content|content|
+|content|content|
+|UserID|TBC|
+|Name|TBC|
+|Email|TBC|
+|IPAddress|TBC|
+|UniqueId|TBC|
+|Started|TBC|
+|Ended|TBC|
+|TrackingLink|TBC|
+|ClientId|TBC|
+|PagePath|TBC|
+|Q1|Are you using GOV.UK for professional or personal reasons?|
+|Q2|What kind of work do you do?|
+|Q3|Describe why you came to GOV.UK today. Please do not include personal or financial information, e.g. your National Insurance number or credit card details.|
+|Q4|Have you found what you were looking for?|
+|Q5|Overall, how did you feel about your visit to GOV.UK today?|
+|Q6|Have you been anywhere else for help with this already?|
+|Q7|Where did you go for help?|
+|Q8|If you wish to comment further, please do so here. Please do not include personal or financial information, e.g. your National Insurance number or credit card details.|
+
+### Zendesk data fields
+
+|Data field|Definition|
+|:---|:---|
+|url|TBC|
+|id|TBC|
+|external_id|TBC|
+|via|TBC|
+|created_at|TBC|
+|updated_at|TBC|
+|type|TBC|
+|subject|TBC|
+|raw_subject|TBC|
+|description|TBC|
+|priority|TBC|
+|status|TBC|
+|recipient|TBC|
+|requester_id|TBC|
+|submitter_id|TBC|
+|assignee_id|TBC|
+|organization_id|TBC|
+|group_id|TBC|
+|collaborator_ids|TBC|
+|follower_ids|TBC|
+|email_cc_ids|TBC|
+|forum_topic_id|TBC|
+|problem_id|TBC|
+|has_incidents|TBC|
+|is_public|TBC|
+|due_at|TBC|
+|tags|TBC|
+|custom_fields|TBC|
+|satisfaction_rating|TBC|
+|sharing_agreement_ids|TBC|
+|fields|TBC|
+|followup_ids|TBC|
+|ticket_form_id|TBC|
+|brand_id|TBC|
+|satisfaction_probability|TBC|
+|allow_channelback|TBC|
+|allow_attachments|TBC|
+|result_type|TBC|
