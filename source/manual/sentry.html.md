@@ -141,13 +141,12 @@ For all of the above, you can easily
 [configure any of these properties by appending to them][error-reporting].
 
 You can also run arbitrary code to decide whether or not an error should be
-logged in Sentry, using the `should_capture` lambda. Your custom code will be
-[lazily combined with the default evaluators][combined-code] such that if an
-exception is on any of the 'excluded exceptions' lists, it will be excluded
-(even if your custom `should_capture` callback returns true).
+logged in Sentry, using the `before_send` lambda. Your custom code will be
+[combined with the default evaluators][combined-code] such that if any of the
+callbacks returns nil, the exception will be excluded.
 
 [error-reporting]: https://github.com/alphagov/govuk_app_config/blob/master/README.md#error-reporting
-[combined-code]: https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configuration.rb#L18-L24
+[combined-code]: https://github.com/alphagov/govuk_app_config/blob/589b7aae49c3584ead2f60f915be05a7922c5c3e/lib/govuk_app_config/govuk_error/configuration.rb#L63–L71
 
 ## When errors are received by Sentry
 
