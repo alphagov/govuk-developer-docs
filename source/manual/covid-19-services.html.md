@@ -24,18 +24,9 @@ services such as medical equipment, hotel rooms or childcare.
 **The service has been replaced with a guidance page.**
 
 A backup of the production database was taken prior to the service
-being removed. It is available at:
-
-- AWS S3 bucket: `govuk-production-database-backups`
-- Key: `coronavirus-business-volunteer-form/production.sql.gzip`
-- Retention period: 365 days (as per our privacy policy)
-- Expiry date: Wed, 13 Oct 2021 00:00:00 GMT
-
-The file information can be retrieved with the following command...
-
-```shell
-gds aws govuk-production-poweruser aws s3api head-object --bucket govuk-production-database-backups --key coronavirus-business-volunteer-form/production.sql.gzip
-```
+being removed. GDS has transferred this backup to Government
+Commercial Function within the Cabinet Office and no longer retains
+a copy.
 
 - [Original GitHub Repository](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form)
 - [Information on how to bring this service back to life](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/docs/how-to-bring-back-this-service.md)
