@@ -43,7 +43,7 @@ For these reasons we’re not planning to enable auto-merge for Dependabot PRs.
 
 By default Dependabot will bump dependencies once a day, but you can ask it to bump manually:
 
-Go to [Dependabot admin][admin] and click "Bump now" for your project
+Go to your project in GitHub and click on "Insights", then "Dependency graph", then "Dependabot", then "Last checked X minutes ago" next to the package manager of choice (e.g. Gemfile). Then you can click "Check for updates".
 
 #### Audit Dependabot PRs
 
