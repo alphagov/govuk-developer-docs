@@ -53,7 +53,6 @@ RSpec.describe Applications do
         heroku
         paas
         none
-        ukcloud
       ])
     end
   end
