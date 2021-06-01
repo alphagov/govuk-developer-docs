@@ -7,8 +7,7 @@ section: 2nd line
 type: learn
 ---
 
-2nd line Zendesk tickets are technical errors reported by our users - including government publishers -
-and general queries from users of data.gov.uk ("DGU"), for whom 2nd line provides 1st line support.
+2nd line Zendesk tickets are technical errors reported by our users, including government publishers.
 
 ## Get started
 
