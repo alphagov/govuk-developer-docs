@@ -2,7 +2,6 @@ class Applications
   HOSTERS = {
     "aws" => "AWS",
     "paas" => "GOV.UK PaaS",
-    "carrenza" => "Carrenza",
     "heroku" => "Heroku",
     "none" => "None",
   }.freeze
@@ -41,10 +40,5 @@ class Applications
   def self.aws_machines
     @common_aws ||= HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml")
     @common_aws["node_class"]
-  end
-
-  def self.carrenza_machines
-    @common ||= HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata/common.yaml")
-    @common["node_class"]
   end
 end
