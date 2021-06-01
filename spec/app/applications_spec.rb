@@ -11,8 +11,6 @@ RSpec.describe Applications do
       { github_repo_name: "asset-manager", production_hosted_on: "aws" },
       { github_repo_name: "content-store", production_hosted_on: "aws" },
       { github_repo_name: "govuk-frontend", production_hosted_on: "aws" },
-      { github_repo_name: "collections-publisher", production_hosted_on: "carrenza" },
-      { github_repo_name: "second-app-on-carrenza", production_hosted_on: "carrenza" },
       { github_repo_name: "app-on-heroku", production_hosted_on: "heroku" },
       { github_repo_name: "app-on-paas", production_hosted_on: "paas" },
       { github_repo_name: "some-retired-application" },
@@ -49,7 +47,6 @@ RSpec.describe Applications do
     it "should return hosters in descending order of repo count" do
       expect(Applications.hosters_descending.keys).to eq(%w[
         aws
-        carrenza
         heroku
         paas
         none
