@@ -3,7 +3,6 @@ class Applications
     "aws" => "AWS",
     "paas" => "GOV.UK PaaS",
     "carrenza" => "Carrenza",
-    "ukcloud" => "UK Cloud",
     "heroku" => "Heroku",
     "none" => "None",
   }.freeze
