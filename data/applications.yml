@@ -297,8 +297,11 @@
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: side-by-side-browser
+  management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
+  production_hosted_on: heroku
   type: Transition apps
-  production_hosted_on: none
+  sentry_url: false
+  dashboard_url: false
 
 # data.gov.uk
 
@@ -434,6 +437,7 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+  deploy_url: https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/deploy.sh
 - github_repo_name: govuk-zendesk-display-screen
   management_url: https://dashboard.heroku.com/apps/govuk-zendesk-display-screen
   production_hosted_on: heroku
@@ -443,12 +447,6 @@
 - github_repo_name: blinkenjs
   app_name: govuk-secondline-blinken
   management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
-  production_hosted_on: heroku
-  type: Utilities
-  sentry_url: false
-  dashboard_url: false
-- github_repo_name: side-by-side-browser
-  management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
   production_hosted_on: heroku
   type: Utilities
   sentry_url: false
