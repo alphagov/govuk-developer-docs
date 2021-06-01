@@ -123,7 +123,7 @@ class App
   end
 
   def deploy_url
-    return if app_data["deploy_url"] == false || production_hosted_on == "heroku"
+    return if app_data["deploy_url"] == false || %w[none heroku].include?(production_hosted_on)
 
     if production_hosted_on == "paas"
       app_data["deploy_url"]
