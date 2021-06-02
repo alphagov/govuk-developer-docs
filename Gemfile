@@ -6,7 +6,7 @@ gem "dotenv"
 gem "ffi"
 gem "rake"
 gem "rspec"
-gem "rubocop-govuk", "4.0.0", require: false # Trialling pre-release
+gem "rubocop-govuk", require: false
 gem "simplecov"
 gem "webmock"
 
