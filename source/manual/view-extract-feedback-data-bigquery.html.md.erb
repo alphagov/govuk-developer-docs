@@ -44,43 +44,43 @@ Once you have run this SQL query, the Zendesk feedback data will be ready to vie
     ```sql
     SELECT
             cast(created_at AS TIMESTAMP) AS created_at,
-            ‘Ticket’ AS source,
-            REPLACE(concat(‘www.gov.uk’,REPLACE(subject,‘Named contact about ‘,’’)),‘Named contact’,‘’) AS URL,
-            ‘’ AS Q1,
-            ‘’ AS Q2,
+            'Ticket' AS source,
+            REPLACE(concat('www.gov.uk',REPLACE(subject,'Named contact about ','')),'Named contact','') AS URL,
+            '' AS Q1,
+            '' AS Q2,
             description AS Q3,
-            ‘’ AS Q4,
-            ‘’ AS Q5,
-            ‘’ AS Q6,
-            ‘’ AS Q7,
-            ‘’ AS Q8
+            '' AS Q4,
+            '' AS Q5,
+            '' AS Q6,
+            '' AS Q7,
+            '' AS Q8
     FROM `govuk-bigquery-analytics.zendeskdata.zendesk_YYYYMMDD`
-        WHERE LOWER(description) NOT LIKE ‘%govuk.zendesk.com%’
-        AND LOWER(URL) NOT LIKE ‘%verify%’
-        AND LOWER(URL) NOT LIKE ‘%gov.ukneeded%’
-        AND LOWER(URL) NOT LIKE ‘%gov.uknotify%’
-        AND LOWER(URL) NOT LIKE ‘%gov.ukreply%’
-        AND LOWER(URL) NOT LIKE ‘%gov.ukurgent%’
-        AND LOWER(URL) NOT LIKE ‘%gov.ukfeedback%’
-        AND LOWER(URL) NOT LIKE ‘%vulnerable data transfer%’
-        AND LOWER(URL) NOT LIKE ‘www.gov.uk/templates/%’
-        AND LOWER(URL) NOT LIKE ‘%content change request%’
-        AND LOWER(URL) NOT LIKE ‘%gov.ukdaily%’
-        AND LOWER(URL) NOT LIKE ‘%gov.ukgoogle%’
-        AND LOWER(URL) NOT LIKE ‘%enquiries to GDS%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.ukwa%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.uk[%’
-        AND LOWER(URL) NOT LIKE ‘%ukre%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.uk/dvlaforms%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.uk/sign-in-universal-credit%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.ukQuery%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.ukUser%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.ukSupport%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.ukGOV.UK%’
-        AND LOWER(URL) NOT LIKE ‘%www.gov.ukTechnical%’
+        WHERE LOWER(description) NOT LIKE '%govuk.zendesk.com%'
+        AND LOWER(URL) NOT LIKE '%verify%'
+        AND LOWER(URL) NOT LIKE '%gov.ukneeded%'
+        AND LOWER(URL) NOT LIKE '%gov.uknotify%'
+        AND LOWER(URL) NOT LIKE '%gov.ukreply%'
+        AND LOWER(URL) NOT LIKE '%gov.ukurgent%'
+        AND LOWER(URL) NOT LIKE '%gov.ukfeedback%'
+        AND LOWER(URL) NOT LIKE '%vulnerable data transfer%'
+        AND LOWER(URL) NOT LIKE 'www.gov.uk/templates/%'
+        AND LOWER(URL) NOT LIKE '%content change request%'
+        AND LOWER(URL) NOT LIKE '%gov.ukdaily%'
+        AND LOWER(URL) NOT LIKE '%gov.ukgoogle%'
+        AND LOWER(URL) NOT LIKE '%enquiries to GDS%'
+        AND LOWER(URL) NOT LIKE '%www.gov.ukwa%'
+        AND LOWER(URL) NOT LIKE '%www.gov.uk[%'
+        AND LOWER(URL) NOT LIKE '%ukre%'
+        AND LOWER(URL) NOT LIKE '%www.gov.uk/dvlaforms%'
+        AND LOWER(URL) NOT LIKE '%www.gov.uk/sign-in-universal-credit%'
+        AND LOWER(URL) NOT LIKE '%www.gov.ukQuery%'
+        AND LOWER(URL) NOT LIKE '%www.gov.ukUser%'
+        AND LOWER(URL) NOT LIKE '%www.gov.ukSupport%'
+        AND LOWER(URL) NOT LIKE '%www.gov.ukGOV.UK%'
+        AND LOWER(URL) NOT LIKE '%www.gov.ukTechnical%'
         AND LOWER(description) NOT LIKE '%unsubscribe@digital.cabinet-office.gov.uk%'
-        AND LOWER(description) NOT LIKE ‘%mailto%’
-        AND LOWER(description) NOT LIKE ‘%digital.cabinet-office.gov.uk%’
+        AND LOWER(description) NOT LIKE '%mailto%'
+        AND LOWER(description) NOT LIKE '%digital.cabinet-office.gov.uk%'
         AND (CHAR_LENGTH(TRIM(description)) < 50000 OR description IS NULL)
     ```
 
@@ -120,11 +120,14 @@ The following content tells you how to set up a new connector.
 
 1. Build your data dashboard using the data dashboard tool. Note that DataStudio automatically converts some string data fields into non-string data fields. This should not cause any errors.
 
-1. Select __View__ to view the data dashboard.
+1. Select __View__ to view the data dashboard that you've built.
 
-1. Select the data dashboard menu and select the appropriate format to extract the data.
+1. Hover your cursor over the data dashboard, and then select the dashboard's hamburger menu.
 
-To extract data, select __Save__ and save your data in an appropriate format, for example Google Sheets or a CSV file.
+1. Select one of the following options to extract the data to the appropriate format:
+    - __Download CSV__
+    - __Download CSV (Excel)__
+    - __Export to Sheets__
 
 You should always manually check your data for any personally identifiable information (PII) that did not get cleansed automatically.
 
