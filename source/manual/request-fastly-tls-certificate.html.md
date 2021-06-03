@@ -10,7 +10,7 @@ related_applications: [bouncer, transition]
 When transitioning HTTPS domains, these are the steps to request a TLS
 certificate from Fastly.
 
-1. Login to Fastly.
+1. Login to Fastly. If you need access, speak to a member of the senior tech team.
 
 1. Go to Configure > Switch services
 
