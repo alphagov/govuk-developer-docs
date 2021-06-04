@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-The Programme Performance Dashboard is a snapshot of different key performance indicators for the GOV.UK Senior Management Team (SMT). The SMT looks at the dashboard every week on Wednesday morning.
+The [Programme Performance Dashboard](https://datastudio.google.com/u/0/reporting/b0c83735-3d53-4392-88b0-f86f56afc313/page/qhQYB) is a snapshot of different key performance indicators for the GOV.UK Senior Management Team (SMT). The SMT looks at the dashboard every week on Wednesday morning.
 
 The following content is for a GOV.UK performance or data analyst who needs to make the dashboard ready for the SMT.
 
@@ -21,7 +21,7 @@ The dashboard has the following sections:
 - Glossary of metrics
 - Useful dashboards and reports
 
-Multiple users and data sources feed into each section. The main data source is the OFFICIAL-SENSITIVE Data for GOV.UK SMT programme performance dashboard spreadsheet.
+Multiple users and data sources feed into each section. The main data source is the [OFFICIAL-SENSITIVE Data for GOV.UK SMT programme performance dashboard spreadsheet](https://docs.google.com/spreadsheets/d/1VJG5lF4zXm4Ygbz8roA0QNv6_Awsx_MeVW8psnQzWZE/edit#gid=973550233).
 
 ## Prepare the Site performance and health section
 
@@ -68,7 +68,7 @@ The __Confidence by work stream__ tab in the dashboard spreadsheet is this secti
 
 Every GOV.UK team except the SMT and the Operations team completes the objective red / amber / green (RAG) statuses on Monday or Tuesday of each week.
 
-If data is missing on Tuesday afternoon, the Head of Product, Head of Delivery or Head of Data and User Insights will contact the appropriate team’s product manager or delivery manager. See the GOV.UK people plan spreadsheet for information on the current teams.
+If data is missing on Tuesday afternoon, the Head of Product, Head of Delivery or Head of Data and User Insights will contact the appropriate team’s product manager (PM) or delivery manager (DM). Each team’s PM or DM should have a nominated deputy in case they are not available (for example, because of annual leave). See the [GOV.UK people plan spreadsheet](https://docs.google.com/spreadsheets/d/1OQ53e1BryIZPQSOJPh0_6w_owerd8YjWrRua-F5czcg/edit#gid=463955321) for information on the current teams.
 
 On Thursday or Friday of each week, the Insights team [adds new RAG columns](https://www.google.com/url?q=https://trello.com/c/zPjMJWYC/445-add-weekly-rag-columns-to-spreadsheet-for-programme-performance-dashboard-thu-fri&sa=D&source=editors&ust=1621866923746000&usg=AOvVaw0hK2ugNNWQQbhfBagFZ_yi) dated for the week ending on Sunday, and hides the older columns from the previous week. This means that the latest 2 weeks are visible at any time.
 
