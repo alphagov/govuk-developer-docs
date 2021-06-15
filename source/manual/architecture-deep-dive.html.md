@@ -31,8 +31,8 @@ also a website, and hosts the redirect from `gov.uk` to `www.gov.uk`. The record
 for these two domains are within the `gov.uk` second-level zone hosted by Jisc.
 
 GDS hosts the DNS for third-level domains under `gov.uk` (for example `service.gov.uk`)
-on both [Amazon Route53] and Google Cloud Platform, for redundancy. The configuration
-for these domains is in the [govuk-dns-config repo], which is deployed via the
+on [Amazon Route53]. The configuration for these domains is in the
+[govuk-dns-config repo], which is deployed via the
 [Deploy_DNS Jenkins job][deploy-dns], which in turn references the [govuk-dns repo].
 
 `www.gov.uk` is a CNAME record which ultimately points to `www-gov-uk.map.fastly.net.`

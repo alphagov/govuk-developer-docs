@@ -9,7 +9,7 @@ parent: "/manual.html"
 
 The GOV.UK Replatforming team is responsible for managing several DNS zones.
 
-By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS)
+By default, zones are hosted by AWS (Route 53).
 
 As of Feb 2020, there are 40 hosted zones. A list is retrievable from a terminal using:
 
@@ -19,7 +19,7 @@ As of Feb 2020, there are 40 hosted zones. A list is retrievable from a terminal
 
 Some individual records within these zones are managed by other teams.
 
-## Amazon Route 53 and Google Cloud DNS
+## Amazon Route 53
 
 Use the "production" account. [Speak to Infrastructure if you require access](/manual/raising-issues-with-reliability-engineering.html).
 
@@ -75,7 +75,7 @@ Where:
 
 1. `<github_username>` is the name of your GitHub account
 1. `<github_token>` is the GitHub token that you created as described above
-1. `<dns_provider>` is one of the 2 DNS provider of govuk, i.e. `gcp` or `aws`
+1. `<dns_provider>` is one of the 2 DNS provider of govuk, i.e. `aws`
 1. `<dns_zone>` is the govuk DNS zone to be deployed. E.g. `direct.gov.uk`
 1. `<action>` is the terraform action you want to perform. i.e. `plan` or `apply`
 1. `<aws_role>` is the govuk aws role you want to use for terraforming. i.e. `govuk-production-admin` or `govuk-production-poweruser`
@@ -86,24 +86,7 @@ After you deploy, you can visit the [Jenkins job](https://deploy.blue.production
 >
 > - Due to the Terraform state being held in an S3 bucket, you
 > will require access to the GOV.UK AWS "production" account to roll changes for
-> both Amazon and Google.
-> - The order in which you deploy to providers is not important.
-> - You will not require credentials for Google Cloud. These credentials are stored
-> in Jenkins itself.
-
-#### Google-based caveats
-
-> - When deploying to Google it's normal to see changes in TXT records
-> relating to escaping of quotes. You can safely ignore these if
-> they don't change any of the content of the record. This is a bug
-> in the way we handle splitting long TXT records between AWS and
-> GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
-> - To change a DNS record, the Google provider deletes and
-> re-adds that record. This can sometimes cause a [race
-> condition](https://github.com/alphagov/govuk-dns/issues/67) where
-> Google tries to create the new one before it has sucessfully deleted
-> the old one. In this case, the build will fail, and you need to
-> re-run the GCP `apply` job.
+> Amazon.
 
 ### Making changes to internal DNS (govuk.digital and govuk-internal.digital)
 

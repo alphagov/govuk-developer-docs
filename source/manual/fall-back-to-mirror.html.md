@@ -18,24 +18,13 @@ This is why we refer to switching off Nginx on the origin cache machines as
 
 ## Hosting
 
-GOV.UK is mirrored to two cloud providers:
-
-- Amazon S3: the static mirror is hosted in a bucket `govuk-<environment>-mirror` and the
-  content is retrieved by the CDN using an API.  This bucket is replicated to
-  `govuk-<environment>-mirror-replica` in another AWS region.
-
-- Google GCS: the static mirror is hosted in a bucket `govuk-<environment>-mirror` and the
-  content is retrieved by the CDN using an API.
+GOV.UK is mirrored to Amazon S3. The static mirror is hosted in a bucket
+`govuk-<environment>-mirror` and the content is retrieved by the CDN using an API.
+This bucket is replicated to `govuk-<environment>-mirror-replica` in another AWS region.
 
 ## Access
 
-Access to the:
-
-1. Amazon S3 buckets are restricted to Fastly, Office and Pingdom IP addresses for read-only access
-   and authenticated users in AWS web console.
-
-1. Google GCS buckets are restricted by secret keys in `govuk-secrets` and authenticated users
-   in Google GCP web console.
+Access to the Amazon S3 buckets are restricted to Fastly, Office and Pingdom IP addresses for read-only access and authenticated users in AWS web console.
 
 ## Updates to the mirror
 
@@ -47,9 +36,6 @@ to disk and adds any new URLs found on those pages to the back of the queue.
 Every hour, the static copy of the site is copied from the Mirrorer machine to the primary AWS S3 bucket
 `govuk-<environment>-mirror`. This primary bucket is automatically replicated to another S3 bucket
 (named `govuk-<environment>-mirror-replica`) in another region by AWS.
-
-In addition, the primary AWS S3 bucket `govuk-<environment>-mirror` is synced to the Google GCS bucket
-of the same name daily at 12:00.
 
 The crawler is entirely independent of the mirrors. Stopping the crawler means no new updates are made
 to the mirrors, but it will not stop the mirrors from working.
@@ -109,9 +95,6 @@ You'll be notified by the escalation on-call contact that you need to edit the s
 1. Modify the relevant file in the directory `/mnt/crawler_worker`.
 
 1. Upload the file to the AWS S3 bucket via the AWS console.
-
-1. Upload the file to Google Cloud Storage using the GCP
-   console.  Credentials are located in the govuk-secrets password store, under `google-accounts`.
 
 If you're notified that the edit you've made can be reverted, do that the same way.
 

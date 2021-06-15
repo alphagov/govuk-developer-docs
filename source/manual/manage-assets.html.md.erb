@@ -24,11 +24,8 @@ follow these steps:
 
 1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
 
-1. Remove the asset from the mirrors:
-  - Remove from AWS: `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
-  - Log into the [GCP console](https://console.cloud.google.com/)
-  - Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
-  - Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
+1. Remove the asset from the AWS mirror:
+  - `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
 
 [whitehall-rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[]
 [rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]

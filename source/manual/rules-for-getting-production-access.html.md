@@ -16,7 +16,6 @@ These rules apply to developers in the GOV.UK programme and SREs in the TechOps 
 - Access to Production Deploy Jenkins and Staging Deploy Jenkins to deploy applications via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production)
 - SSH access to production and staging servers via [govuk-puppet](https://github.com/alphagov/govuk-puppet)
 - AWS [PowerUser Access](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars) via the `role_poweruser_user_arns` role
-- [Google Cloud Platform](/manual/set-up-gcp-account.html) (GCP) access with `Storage Admin` role to manage [static mirrors](/manual/fall-back-to-mirror.html)
 - Signon "Super Admin" access in production
 - GOV.UK PaaS [Space developer](https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer)
   access to all spaces in [the govuk_development organisation](https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35)
