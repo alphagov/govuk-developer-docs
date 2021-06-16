@@ -17,6 +17,8 @@ neque consequat porta, [Suspendisse iaculis](#suspendisse-iaculis). Sed et
 
 [Subfolder](docs/some-subfolder/foo.md)
 
+Visit “http://localhost:3108”
+
 ## Suspendisse iaculis
 
 ![Suspendisse iaculis](suspendisse_iaculis.png)
