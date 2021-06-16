@@ -89,6 +89,12 @@ RSpec.describe ExternalDoc do
         expect(html).to have_link("localhost", href: "localhost:999")
       end
 
+      it "skips over URLs with trailing unicode characters" do
+        expect(html).not_to have_link("http://localhost:3108")
+        expect(html).not_to have_link("http://localhost:3108”")
+        expect(html).to have_content("Visit “http://localhost:3108”")
+      end
+
       it "maintains anchor links" do
         expect(html).to have_link("Suspendisse iaculis", href: "#suspendisse-iaculis")
       end

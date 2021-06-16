@@ -58,9 +58,16 @@ class ExternalDoc
         next if element["href"].nil? || element["href"].empty?
 
         href = element["href"].strip
-        uri = URI.parse(href)
 
-        next if uri.scheme || href.start_with?("#")
+        uri =
+          begin
+            URI.parse(href)
+          rescue URI::InvalidURIError
+            element.replace(element.children)
+            nil
+          end
+
+        next if uri.nil? || uri.scheme || href.start_with?("#")
 
         if href.start_with?("/")
           # remove preceding "/" to make links relative to the repository
