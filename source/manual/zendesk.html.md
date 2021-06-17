@@ -67,7 +67,7 @@ in the "Public reply" as appropriate and click "Submit as Pending".
 
 ## Subject Access Requests
 
-This [Google Doc describes what to do if you receive a Subject Access Request through Zendesk][doc].
+This [Google Doc describes what to do if you receive a GDPR Subject Access Request through Zendesk][doc].
 
 ## Closing a ticket
 
