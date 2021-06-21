@@ -44,3 +44,4 @@ init scripts have been run.
 If it is safe to do so, [reprovision the machine](/manual/reprovision.html).
 
 If the issue persists, you could temporarily disable `unattended reboot` by adding `govuk_unattended_reboot::enabled: false` to the relevant hiera. You'll need to deploy the branch of Puppet before creating the new instances again.
+Another way of fixing this is to manually run /usr/local/bin/govuk_sync_apps once puppet has run cleanly on the machine, the script takes some time as there is a sleep 180 in it.
