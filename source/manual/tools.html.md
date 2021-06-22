@@ -17,9 +17,9 @@ parent: "/manual.html"
 
 ## Graphite
 
-<https://graphite.publishing.service.gov.uk/>
+<https://graphite.blue.production.govuk.digital/>
 
-Graphite is a graphing tool that allows us to draw graphs of various metrics that we put into it. Graphite has two main views: a [composer](https://graphite.publishing.service.gov.uk/composer) to build individual graphs and a [dashboard](https://graphite.publishing.service.gov.uk/dashboard) to put multiple graphs together.
+Graphite is a graphing tool that allows us to draw graphs of various metrics that we put into it. Graphite has two main views: a [composer](https://graphite.blue.production.govuk.digital/composer) to build individual graphs and a [dashboard](https://graphite.blue.production.govuk.digital/dashboard) to put multiple graphs together.
 
 We are currently locked at version 0.9.13.
 
