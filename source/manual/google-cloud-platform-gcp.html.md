@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Set up your GCP account
+title: Google Cloud Platform (GCP)
 section: AWS
 layout: manual_layout
 parent: "/manual.html"
