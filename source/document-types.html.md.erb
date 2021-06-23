@@ -5,8 +5,20 @@ title: Document types on GOV.UK
 
 The document type describes a page on GOV.UK.
 
-You can [download this data as CSV too](/document-types.csv). In Google Spreadsheets, use the following formula:
+You can [download this data as CSV too](/document-types.csv) which is generated automatically based on the data in the [govuk_document_types repo][].
+
+To view the current data in Google Spreadsheets, copy the following formula into a new spreadsheet:
 
 ```
 =importData("https://docs.publishing.service.gov.uk/document-types.csv")
 ```
+
+Note that this is only a snapshot of the data and isn't kept up to date from the CSV.
+
+## Using Search to find similar data
+
+Use this [search query for document types][] (it's currently missing bits of Whitehall)
+
+
+[govuk_document_types repo]: https://github.com/alphagov/govuk_document_types
+[search query for document types]: https://www.gov.uk/api/search.json?count=0&facet_content_store_document_type=115,examples:1,example_scope:query,example_fields:rendering_app
