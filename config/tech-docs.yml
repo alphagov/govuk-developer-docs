@@ -26,14 +26,11 @@ github_repo: alphagov/govuk-developer-docs
 redirects:
   /2nd-line/mirror-fallback.html: /manual/fall-back-to-mirror.html
   /apis.html: /apps.html
-  /apis/search-api.html: /apps/search-api.html
-  /apis/search/search-api.html: /apps/search-api.html
   /apis/email-alert-api/analytics.html: /apps/email-alert-api/analytics.html
   /apis/email-alert-api/api.html: /apps/email-alert-api/api.html
   /apis/email-alert-api/data-cleanup-mechanisms.html: /apps/email-alert-api/data-cleanup-mechanisms.html
   /apis/email-alert-api/env-vars.html: /apps/email-alert-api/env-vars.html
   /apis/email-alert-api/matching-content-to-subscriber-lists.html: /apps/email-alert-api/matching-content-to-subscriber-lists.html
-  /apps/content-performance-manager.html: /apps/content-data-api.html
   /apis/email-alert-api/support-tasks.html: /apps/email-alert-api/support-tasks.html
   /apis/link-checker-api/api.html: /apps/link-checker-api/api.html
   /apis/link-checker-api/blitz.html: /apps/link-checker-api/blitz.html
@@ -45,6 +42,7 @@ redirects:
   /apis/publishing-api/pact_testing.html: /apps/publishing-api/pact_testing.html
   /apis/publishing-api/publishing-application-examples.html: /apps/publishing-api/publishing-application-examples.html
   /apis/publishing-api/rabbitmq.html: /apps/publishing-api/rabbitmq.html
+  /apis/search-api.html: /apps/search-api.html
   /apis/search-api/adding-new-fields.html: /apps/search-api/adding-new-fields.html
   /apis/search-api/content-api.html: /apps/search-api/content-api.html
   /apis/search-api/content_overview.html: /apps/search-api/content_overview.html
@@ -59,6 +57,7 @@ redirects:
   /apis/search-api/schemas.html: /apps/search-api/schemas.html
   /apis/search-api/search-api.html: /apps/search-api/search-api.html
   /apis/search-api/search-quality-metrics.html: /apps/search-api/search-quality-metrics.html
+  /apis/search/search-api.html: /apps/search-api.html
   /apis/whitehall/api.html: /apps/whitehall/api.html
   /apis/whitehall/css.html: /apps/whitehall/css.html
   /apis/whitehall/edition_workflow.html: /apps/whitehall/edition_workflow.html
@@ -69,22 +68,23 @@ redirects:
   /apis/whitehall/search_setup_guide.html: /apps/whitehall/search_setup_guide.html
   /apis/whitehall/testing_guide.html: /apps/whitehall/testing_guide.html
   /apis/whitehall/timestamps.html: /apps/whitehall/timestamps.html
+  /apps/content-performance-manager.html: /apps/content-data-api.html
   /dictionary.html: /manual/dictionary.html
   /getting-started.html: /manual/get-started.html
   /guides.html: /manual.html
   /manual/access-aws-console.html: /manual/get-started.html
+  /manual/access-ci.html: /manual/access-jenkins.html
   /manual/add-a-pingdom-check.html: /manual/pingdom.html
   /manual/alerts/applications/sidekiq-monitoring.html: /manual/setting-up-new-sidekiq-monitoring-app.html
+  /manual/alerts/data-sources-for-transition.html: /manual/transition-architecture.html
   /manual/alerts/data-sync.html: /manual/govuk-env-sync.html
   /manual/alerts/email-alerts.html: /manual/alerts/email-alerts-travel-medical.html
   /manual/alerts/gor.html: /manual/alerts/goreplay.html
   /manual/alerts/process-file-handle-count-exceedes.html: /manual/alerts/process-file-handle-count-exceeds.html
   /manual/alerts/publisher-app-health-check-not-ok.html: /manual/alerts/publisher-app-healthcheck-not-ok.html
-  /manual/alerts/data-sources-for-transition.html: /manual/transition-architecture.html
-  /manual/alerts/rummager-queue-latency.html: /manual/alerts/search-api-queue-latency.html
   /manual/alerts/rummager-index-size-change.html: /manual/alerts/search-api-index-size-change.html
+  /manual/alerts/rummager-queue-latency.html: /manual/alerts/search-api-queue-latency.html
   /manual/alerts/whitehall-app-health-check-not-ok.html: /manual/alerts/whitehall-app-healthcheck-not-ok.html
-  /manual/access-ci.html: /manual/access-jenkins.html
   /manual/archiving-and-redirecting-content.html: /manual/redirect-routes.html
   /manual/bouncer.html: /manual/transition-architecture.html
   /manual/bulk-email.html: /apps/email-alert-api/bulk-email.html
@@ -94,16 +94,20 @@ redirects:
   /manual/creating-a-new-environment.html: /manual.html
   /manual/creating-pages.html: /manual/docs-style-guide.html
   /manual/data-gov-uk-backups.html: /manual/postgresql.html
-  /manual/data-sources-for-transition.html: /manual/transition-architecture.html
   /manual/data-gov-uk-hacks.html: /manual/data-gov-uk-2nd-line.html
+  /manual/data-sources-for-transition.html: /manual/transition-architecture.html
+  /manual/deploying.html: /manual/development-pipeline.html
   /manual/elasticsearch.html: /manual/elasticsearch-dumps.html
   /manual/emergency-publishing-redis.html: /manual/emergency-publishing.html
   /manual/error-reporting.html: /manual/sentry.html
   /manual/fastly-error-rate.html: /manual/alerts/fastly-error-rate.html
   /manual/fix-problems-with-vagrant.html: /manual.html
   /manual/gds-cli.html: /manual/access-aws-console.html
+  /manual/howto-manually-remove-assets.html: /manual/manage-assets.html
   /manual/howto-merge-a-pull-request-from-an-external-contributor.html: /manual/merge-pr.html
+  /manual/howto-replace-an-assets-file.html: /manual/manage-assets.html
   /manual/howto-transition-a-site-to-govuk.html: /manual/transition-a-site.html
+  /manual/howto-upload-an-asset-to-asset-manager.html: /manual/manage-assets.html
   /manual/intro-to-docker-even-more.html: /manual/how-govuk-docker-works.html
   /manual/load-test-email-alert-api.html: /apps/email-alert-api/load-test-email-alert-api.html
   /manual/manage-email-subscribers.html: /apps/email-alert-api/tasks.html
@@ -111,27 +115,24 @@ redirects:
   /manual/mirror-fallback.html: /manual/fall-back-to-mirror.html
   /manual/nagios.html: /manual.html
   /manual/offsite-backup-and-restore.html: /manual/restore-from-offsite-backups.html
-  /manual/deploying.html: /manual/development-pipeline.html
   /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html: /apps/email-alert-api/receiving-emails-from-email-alert-api-in-integration-and-staging.html
   /manual/redirecting-content-in-the-router.html: /manual/redirect-routes.html
   /manual/releasing-software.html: /manual/development-pipeline.html
   /manual/remove-redirected-url-from-transition.html: manual/remove-site-from-transition-tool.html
   /manual/renew_ssl_certificates.html: /manual/renew-a-tls-certificate.html
-  /manual/set-up-aws-account.html: /manual/get-started.html
-  /manual/setting-up-new-sidekiq-monitoring-app.html: /manual/sidekiq.html
   /manual/rummager-traffic-replay.html: /manual/search-api-traffic-replay.html
+  /manual/set-up-aws-account.html: /manual/get-started.html
+  /manual/set-up-gcp-account.html: /manual/google-cloud-platform-gcp.html
+  /manual/setting-up-new-sidekiq-monitoring-app.html: /manual/sidekiq.html
   /manual/technical-setup.html: /manual/on-call.html
   /manual/testing.html: https://gds-way.cloudapps.digital/manuals/programming-languages/ruby.html
   /manual/troubleshooting-vagrant.html: /manual/fix-problems-with-vagrant.html
   /manual/upgrade-to-sentry.html: /manual/sentry.html
+  /manual/upload-asset-to-whitehall.html: /manual/manage-assets.html
   /manual/use-terraboard-to-monitor-terraform-state.html: /manual.html
   /manual/user-management-in-aws.html: /manual/get-started.html
   /manual/virus-scanning.html: /manual/alerts/virus-scanning.html
   /manual/whitelist-site-in-transition.html: /manual/allowlist-site-in-transition.html
-  /manual/howto-manually-remove-assets.html: /manual/manage-assets.html
-  /manual/howto-replace-an-assets-file.html: /manual/manage-assets.html
-  /manual/howto-upload-an-asset-to-asset-manager.html: /manual/manage-assets.html
-  /manual/upload-asset-to-whitehall.html: /manual/manage-assets.html
   /opsmanual.html: /manual.html
   /opsmanual/ab_testing.html: /manual/ab-testing.html
   /opsmanual/content-preview.html: /manual/content-preview.html
