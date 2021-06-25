@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Block access to arbitrary URLs in the GOV.UK estate
 section: Security 
 layout: manual_layout

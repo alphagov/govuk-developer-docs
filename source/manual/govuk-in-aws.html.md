@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Migration to AWS
 section: AWS
 layout: manual_layout

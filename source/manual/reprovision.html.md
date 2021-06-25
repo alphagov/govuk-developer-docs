@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Reprovision a machine
 section: Infrastructure
 layout: manual_layout

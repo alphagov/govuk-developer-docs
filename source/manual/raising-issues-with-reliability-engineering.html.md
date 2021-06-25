@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Raise issues with Reliability Engineering
 parent: "/manual.html"
 layout: manual_layout
@@ -12,7 +12,7 @@ There are [Reliability Engineering docs](https://reliability-engineering.cloudap
 
 ## If you require urgent assistance
 
-Contact GOV.UK SREs have a slack channel - #re-govuk.
+Contact GOV.UK SREs have a slack channel - #govuk-2ndline.
 By posting in that channel you can get their attention. This channel can be used for general queries too so do
 indicate in your message that a problem is time critical.
 
