@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Manually resize ASGs (auto scaling groups)
 section: Infrastructure
 layout: manual_layout

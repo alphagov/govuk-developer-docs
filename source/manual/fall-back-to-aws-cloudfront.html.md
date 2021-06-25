@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Fall back to AWS CloudFront
 section: Deployment
 layout: manual_layout
@@ -34,4 +34,3 @@ gds aws govuk-production-readonly aws cloudfront list-distributions --query "Dis
 # assets.publishing.service.gov.uk
 gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName | [0]"
 ```
-

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: GOV.UK and Virtual Private Networks (VPNs)
 section: Infrastructure
 type: learn
@@ -39,4 +39,3 @@ Troubleshooting steps (aim is to switch off and on the VPN):
 8. In the new pop-up window, turn the VPN off by toggling the `enable` switch and clicking `KEEP`
 9. The pop-up window will disappear and you need to click `save changes` in put into effect the VPN being now disabled.
 10. Wait a few minutes and repeat step 7-9 to re-enable the VPN again.
-

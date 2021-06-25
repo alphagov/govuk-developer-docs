@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Restore an Individual Postgres Production Database in AWS RDS
 section: Backups
 layout: manual_layout

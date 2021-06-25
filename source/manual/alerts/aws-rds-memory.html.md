@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: AWS RDS Instance Memory Utilization
 parent: "/manual.html"
 layout: manual_layout
