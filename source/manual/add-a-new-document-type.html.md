@@ -8,7 +8,7 @@ section: Publishing
 
 The [document type][] describes what a page on GOV.UK looks like.
 
-[document type]: https://docs.publishing.service.gov.uk/document-types.html
+[document type]: /document-types.html
 
 ## Add the document type in the govuk-content-schema repo
 
@@ -30,7 +30,7 @@ Examples of implementation:
 
 If your document type needs a new content schema, see "[Adding a new schema][]".
 
-[Adding a new schema]: https://github.com/alphagov/govuk-content-schemas/blob/main/docs/adding-a-new-schema.md
+[Adding a new schema]: /apps/govuk-content-schemas/adding-a-new-schema.html
 
 ## Make the new document type available to search
 
@@ -40,15 +40,13 @@ If your document type should be available in search results, see "[Make a new do
 
 ## Create a new Rake task in the publishing app
 
-If your new document type will be published as a static route (rather than from a publishing app), you'll need a Rake task will publish the route using the new document type.
+If your new document type will be published as a static route (rather than from a publishing app), you'll need to create a Rake task to publish the route using the new document type.
 
 Before you begin, you must identify which publishing and rendering applications will use the document type. You need to include these as parameters (payload) when you generate the route.
 
 See "[Publish special routes]" for more information.
 
-> **Note**
->
-> Having a document type with `placeholder` prefix will not publish routes. More information can be found here under [placeholder items][placeholder-items].
+> Note: having a document type with `placeholder` prefix will not publish routes. Read more about [placeholder items][placeholder-items].
 
 [Publish special routes]: /manual/publish-special-routes.html
 [placeholder-items]: https://docs.publishing.service.gov.uk/apps/content-store/placeholder_item.html

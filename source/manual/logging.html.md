@@ -22,7 +22,7 @@ For information on how to log in and view stacks, please see the [GOV.UK Logit d
 [Logit]: https://logit.io
 [GOV.UK Logit documentation]: /manual/logit.html
 
-> **Note:** Although Logit is where we currently store logs, according to the GDS Way we are migrating towards Splunk and therefore some logs are currently available in Splunk.
+> **Note:** although Logit is where we currently store logs, the GDS Way suggests we are migrating towards Splunk and therefore some logs are currently available in Splunk.
 
 ## Kibana
 

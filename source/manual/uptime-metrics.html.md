@@ -17,7 +17,7 @@ Uptime metrics are collected for `hmrc-manuals-api`, `manuals-publisher`, `speci
 
 They are available broken down into a day by day view, highlighted in different colours representing the level of uptime. Green means 100%, orange means above 99.31% (equivalent to 10 minutes of downtime) and red for everything else.
 
-> **Note:** These metrics aren't a true reflection of availability. Load balancing means that even if a particular health check fails, and the metrics change as a result, publishing is unlikely to be affected.
+> **Note:** these metrics aren't a true reflection of availability. Load balancing means that even if a particular health check fails, and the metrics change as a result, publishing is unlikely to be affected.
 
 These metrics are currently used to report up to the GOV.UK senior management team to get an understanding of the health of the platform.
 
@@ -27,7 +27,7 @@ The service which collects the uptime data runs on the monitoring machines and i
 
 If you would like to add another app to the uptime collector, you should first make sure there is a `/healthcheck` endpoint available and then add your application to [the end of the line in the service file][uptime-service-file].
 
-> **Note:** If there isn't an exposed `/healthcheck` endpoint available, an alternative can be given by using the format `service_name:/alternative/endpoint`.
+> **Note:** if there isn't an exposed `/healthcheck` endpoint available, an alternative can be given by using the format `service_name:/alternative/endpoint`.
 
 [a Grafana dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/application_uptime.json
 [uptime-collector]: https://github.com/alphagov/govuk-puppet/blob/main/modules/monitoring/manifests/uptime_collector.pp
