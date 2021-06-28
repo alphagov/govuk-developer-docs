@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Renew a TLS certificate for GOV.UK
 section: Infrastructure
 layout: manual_layout

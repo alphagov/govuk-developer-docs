@@ -145,6 +145,11 @@ rather than just ones belonging to your organisation. You can then go
 the [transition app](https://transition.publishing.service.gov.uk), find
 the site and click `Add mappings` to add them in bulk.
 
+To allow mappings which redirect away from GOV.UK, you'll need to add the site
+into [the allowlisted hosts in Transition][]. You'll need the `admin` permission in Transition to be able to see this page.
+
+[the allowlisted hosts in Transition]: https://transition.publishing.service.gov.uk/admin/whitelisted_hosts
+
 ### 7) Get the organisation to do the mapping work
 
 By default, the mappings will present an archive page to users visiting
