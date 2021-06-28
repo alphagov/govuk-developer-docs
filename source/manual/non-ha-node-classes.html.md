@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Node classes without redundancy
 layout: manual_layout
 type: learn
@@ -24,4 +24,4 @@ Installation of a critical software component on a non-redundant node class has 
 - mirrorer
 - licensing_backend
 
-If in doubt, please discuss your requirements with RE GOV.UK (#re-govuk on Slack).
+If in doubt, please discuss your requirements with RE GOV.UK (#govuk-2ndline on Slack).
