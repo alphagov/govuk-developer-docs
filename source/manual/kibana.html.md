@@ -10,7 +10,7 @@ All logs for GOV.UK on all environments are collected in Kibana, which you can
 access through [Logit](logit.html).
 
 Kibana can be [searched using the Lucene search syntax or full JSON-based
-Elasticsearch queries][kibana-search].
+Elasticsearch queries][kibana-search]. See an [example Elasticsearch query](#example-elasticsearch-query) below.
 
 ## Set up the UI
 
@@ -138,6 +138,85 @@ syslog_program:"govuk_sync_mirror"
 ```rb
 message:"TimedOutException" AND (application:"specialist-publisher" OR application:"whitehall" OR application:"content-tagger")
 ```
+
+### Example Elasticsearch query
+
+You can use Elasticsearch queries by clicking "Add a filter" and then specifying "Edit Query DSL".
+Here is an example of finding all requests to the Transition Checker login page (ignoring URL query parameters) which resulted in a 410:
+
+```json
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "status": 410
+          }
+        },
+        {
+          "regexp": {
+            "request": {
+              "value": ".+transition-check/login.+"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+This has no advantage over using Lucene query syntax in the search bar, which is much simpler: `request:*transition-check\/login* AND status:410`.
+
+However, if you wanted to count the number of unique IP addresses that were served this response, you need an [aggregation](https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html), which requires the Elasticsearch syntax.
+
+Choose "Dev Tools" in the menu on the left, then fill out your JSON search, ensuring that you retain the `GET _search` on line 1.
+You'll probably want to specify your date range in JSON as there is no way to do this through the UI on this screen.
+
+```json
+GET _search
+{
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "term": {
+            "status": 410
+          }
+        },
+        {
+          "range": {
+            "@timestamp": {
+              "time_zone": "+01:00",
+              "gte": "2021-06-16T12:00:00",
+              "lt": "2021-06-16T17:00:00"
+            }
+          }
+        },
+        {
+          "regexp": {
+            "request": {
+              "value": ".+transition-check/login.+"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "unique-ips": {
+      "terms": {
+        "field": "remote_addr"
+      }
+    }
+  }
+}
+```
+
+Press the "Play" icon to run the query, whose results will appear in the panel on the right.
+You'll see a `hits` array for each matching record, and also an `aggregations` object where your aggregations are grouped into `buckets`.
+From here it should be quite simple to count the number of unique IPs.
 
 ## Syslog program names
 
