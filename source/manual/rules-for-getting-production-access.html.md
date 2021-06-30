@@ -7,7 +7,7 @@ section: 2nd line
 type: learn
 ---
 
-These rules apply to developers in the GOV.UK programme and SREs in the TechOps programme.
+These rules apply to developers, SREs, and technical architects in the GOV.UK programme.
 
 ## What production access means
 
