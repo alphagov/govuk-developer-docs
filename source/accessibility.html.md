@@ -22,15 +22,17 @@ We’ve also made the website text as simple as possible to understand.
 
 ## How accessible this website is
 
-We know some parts of this website are not fully accessible.
+We know some parts of this website are not fully accessible:
 
-- Some links are broken.
-- Some headings do not fit with the content that follows.
-- Some links do not clearly explain where they lead, or that they lead to external sites.
-- Some pages skip heading levels.
-- Some images do not have good alternative text, or have no alternative text.
-- Some content uses emojis without alternative text.
-- There are some links to documents in PDF format that are not accessible.
+- some links are broken.
+- some headings do not fit with the content that follows.
+- some links do not clearly explain where they lead, or that they lead to external sites.
+- some pages skip heading levels.
+- some images do not have good alternative text, or have no alternative text.
+- some content uses emojis without alternative text.
+- there are some links to documents in PDF format that are not accessible.
+
+There are also issues caused by our Technical Documentation Template.
 
 ## Feedback and contact information
 
@@ -60,12 +62,16 @@ The content listed below is non-accessible for the following reasons.
 
 #### Non-compliance with the accessibility regulations
 
-- Some links are broken, which fails WCAG 2.1 success criterion 2.1.1 Keyboard.
-- Some content uses emojis without alternative text, which fails WCAG 2.1 success criteria 1.1.1 Non-text Content.
-- Some headings do not fit with the content that follows, which fails WCAG 2.1 success criterion 2.4.6 Headings and Labels.
-- Some links do not clearly explain where they lead, or that they lead to external sites. This fails WCAG 2.1 success criteria 2.4.4 Link Purpose (In Context) and 2.4.4 Link Purpose (In Context).
-- Some pages skip heading levels, which fails WCAG 2.1 success criteria 1.3.1 Info and Relationships, 2.4.1 Bypass Blocks and 2.4.6 Headings and Labels.
-- Some images do not have good alternative text or are missing alternative text, which fails WCAG 2.1 success criterion 1.1.1 Non-text Content.
+Some parts of this website are not fully accessible because of [issues caused by our Technical Documentation Template](https://tdt-documentation.london.cloudapps.digital/accessibility/#using-the-technical-documentation-template-for-your-own-documentation).
+
+Additionally:
+
+- some links are broken, which fails WCAG 2.1 success criterion 2.1.1 Keyboard.
+- some content uses emojis without alternative text, which fails WCAG 2.1 success criteria 1.1.1 Non-text Content.
+- some headings do not fit with the content that follows, which fails WCAG 2.1 success criterion 2.4.6 Headings and Labels.
+- some links do not clearly explain where they lead, or that they lead to external sites. This fails WCAG 2.1 success criteria 2.4.4 Link Purpose (In Context) and 2.4.4 Link Purpose (In Context).
+- some pages skip heading levels, which fails WCAG 2.1 success criteria 1.3.1 Info and Relationships, 2.4.1 Bypass Blocks and 2.4.6 Headings and Labels.
+- some images do not have good alternative text or are missing alternative text, which fails WCAG 2.1 success criterion 1.1.1 Non-text Content.
 
 ## What we’re doing to improve accessibility
 
@@ -73,6 +79,6 @@ We plan to fix the accessibility issues in the content by the end of September 2
 
 ## Preparation of this accessibility statement
 
-This statement was prepared on 2 September 2020. It was last reviewed on 26 March 2021.
+This statement was prepared on 2 September 2020. It was last reviewed on 30 June 2021.
 
 This website was last tested in August 2020. The test was carried out by the technical writing team at GDS. We used the [WAVE Web Accessibility Evaluation Tool](https://wave.webaim.org/) and a checklist we created with the help of the GDS accessibility team. We tested a sample of pages from each section of the site.
