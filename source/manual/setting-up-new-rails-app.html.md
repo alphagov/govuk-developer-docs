@@ -177,7 +177,7 @@ When you’ve finished developing your Rails app, you can [set up a GitHub repo 
 
 You must add a description to the _About_ section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the [list of apps][app-list].
 
-## Add a software licence
+### Add a software licence
 
 You must add a `LICENCE` file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.
 
@@ -205,7 +205,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Replace the default README.md
+### Replace the default README.md
 
 Change the default `README.md` file to have the following structure:
 
