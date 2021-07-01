@@ -167,6 +167,10 @@ You should:
     GovukUnicorn.configure(self)
     ```
 
+### Add your Rails app to GOV.UK Docker
+
+Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
+
 ## Set up a GitHub repo for your Rails app
 
 When you’ve finished developing your Rails app, you can [set up a GitHub repo for your Rails app][auto-config].
@@ -288,7 +292,3 @@ Add your Rails app to the [Release][release] app and select __Create__.
 Run the [Deploy_App job][deploy-jenkins].
 
 Use the `with_migrations` option if your Rails app has a database.
-
-### Add your Rails app to GOV.UK Docker
-
-Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
