@@ -34,7 +34,7 @@ installed plugins in a hieradata like format:
 sudo jenkins-cli list-plugins |sort| awk '{ if ($NF ~ /\(.*\)/) print $1":\n  version:", "'\''" $(NF-1) "'\''"; else print $1":\n  version:", "'\''" $NF "'\''" }'
 ```
 
-Update the class hieradata with the list of plugins. Check [this example](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/ci_master.yaml).
+Update the class hieradata with the list of plugins. Check [this example](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/integration/ci_master.yaml).
 
 Use `git diff` to ensure version numbers are updated. If new plugins appear to be
 present, double-check with someone else.
