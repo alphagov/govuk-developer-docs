@@ -12,11 +12,11 @@ pages from the Fastly cache.
 The process should be roughly:
 
 * Make sure you can clone [Notify's secrets repository](https://github.com/alphagov/notifications-credentials/) (it's private, so you may need to be added)
-* Sign in to Fastly using [the 2ndline password in govuk-secrets](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/deployment_shared_account.gpg) (private repository)
+* Sign in to Fastly using the Notify Emergency Alerts account [(credentials in govuk-secrets)](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/notify_emergency_alerts_account.gpg) (private repository)
 * Visit [Account / Personal API tokens](https://manage.fastly.com/account/personal/tokens) in Fastly
 * Search for "GOV.UK Notify /alerts" to find the current keys
 * Click Create Token
-* Re-enter the 2ndline password
+* Re-enter the account password
 * Name the token using the pattern `GOV.UK Notify /alerts $ENVIRONMENT $YEAR`
 * Choose the specific service `$ENVIRONMENT GOV.UK`
 * Select only purge select as the Scope
