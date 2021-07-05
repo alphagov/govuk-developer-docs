@@ -167,13 +167,17 @@ You should:
     GovukUnicorn.configure(self)
     ```
 
+### Add your Rails app to GOV.UK Docker
+
+Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
+
 ## Set up a GitHub repo for your Rails app
 
 When you’ve finished developing your Rails app, you can [set up a GitHub repo for your Rails app][auto-config].
 
 You must add a description to the _About_ section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the [list of apps][app-list].
 
-## Add a software licence
+### Add a software licence
 
 You must add a `LICENCE` file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.
 
@@ -201,45 +205,62 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Replace the default README.md
+### Replace the default README.md
 
 Change the default `README.md` file to have the following structure:
 
 ```markdown
 # App name
 
-Information about the app's description and purpose.
+One or more paragraphs describing the app:
+
+- What it's used for.
+- Any unusual dependencies it has.
+
+## Live examples
+
+(Only applies to frontend apps.)
+
+A list of links to example pages rendered by the app.
+
+## Nomeclature
+
+A list of definitions for unusual terms in the code.
 
 ## Technical documentation
 
-Write a single paragraph including a general technical overview of the app.
+What goes here depends on the type of app.
 
-### Testing
+See the links below for example content to put here.
 
-Information about how to test the app.
+### Running the test suite
 
-## Further documentation
+Give one command to run all the tests, linting, etc.
 
-More information on how the app works.
+You can also add other commands e.g. to run JS tests.
 
-## API documentation
+### Further documentation
 
-If applicable, include API reference information including the following sections:
+A list of links to key files in docs/.
 
-- resources
-- endpoints and methods
-- parameters
-- example requests and responses
-- error codes
+You can also just link to the docs/ directory itself.
 
 ## Licence
 
-Link to your [MIT License][LICENCE] file.
+Link to your LICENCE file.
 ```
 
-See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md).
+Examples READMEs that follow the above structure:
 
-Find out more about [writing API reference content](https://www.gov.uk/guidance/writing-api-reference-documentation).
+- [Frontend app: Collections](https://github.com/alphagov/collections/blob/13e53b7b63b2a9c1e618ba309756523341befc5b/README.md#technical-documentation)
+
+- [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/92021c3e26277545f2fb99336695aed56ab781a4/README.md#technical-documentation)
+
+### Write API documentation
+
+If your app is an API, you should create a `docs/api.md` file.
+
+[Guidance on writing API reference documentation on GOV.UK](https://www.gov.uk/guidance/writing-api-reference-documentation).
 
 ## Prepare your Rails app to run in production
 
@@ -288,7 +309,3 @@ Add your Rails app to the [Release][release] app and select __Create__.
 Run the [Deploy_App job][deploy-jenkins].
 
 Use the `with_migrations` option if your Rails app has a database.
-
-### Add your Rails app to GOV.UK Docker
-
-Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
