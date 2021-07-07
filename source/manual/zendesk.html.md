@@ -36,7 +36,15 @@ Once you've established that a ticket is legitimate, you should follow [the proc
 There is a printout on the 2nd line desk.
 
 In all cases, 2nd line will respond to the ticket, even if it is simply a note to the user saying that
-you've passed their request to the relevent team.
+you've passed their request to the relevant team.
+
+## Passing to another government department or service team
+
+Sometimes a ticket relates to a service run by another government department. To transfer the ticket:
+
+* click on Apply macro
+* select Inside government > Pass through
+* select the relevant department or service
 
 ### Service Level Agreements
 
