@@ -223,7 +223,7 @@ One or more paragraphs describing the app:
 
 A list of links to example pages rendered by the app.
 
-## Nomeclature
+## Nomenclature
 
 A list of definitions for unusual terms in the code.
 
