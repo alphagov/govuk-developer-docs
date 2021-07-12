@@ -254,7 +254,7 @@ Examples READMEs that follow the above structure:
 
 - [Frontend app: Collections](https://github.com/alphagov/collections/blob/13e53b7b63b2a9c1e618ba309756523341befc5b/README.md#technical-documentation)
 
-- [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/92021c3e26277545f2fb99336695aed56ab781a4/README.md#technical-documentation)
+- [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/451481ce0b6335bb1f640ef52fa0e8305f38d09c/README.md#technical-documentation)
 
 ### Write API documentation
 
