@@ -9,10 +9,7 @@ parent: "/manual.html"
 
 This is a guide to writing and maintaining README documents for GOV.UK's public repositories.
 
-## Who are READMEs for (aka what's the user need)?
-
-- New starters to GDS
-- Developers on a team
+READMEs are for a technical audience. This could be a new starter or an existing developer. Using the following template will help to ensure each README is consistent, correct, short and actionable.
 
 ## Template for new READMEs
 
@@ -62,13 +59,6 @@ Examples READMEs that follow the above structure:
 - [Frontend app: Collections](https://github.com/alphagov/collections/blob/13e53b7b63b2a9c1e618ba309756523341befc5b/README.md#technical-documentation)
 
 - [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/451481ce0b6335bb1f640ef52fa0e8305f38d09c/README.md#technical-documentation)
-
-## Benefits of using this template
-
-- it is consistent
-- it is scannable
-- functionality is shown in screenshots and links to live services
-- it has quick start information for new developers or interested third parties
 
 ## One-line summaries on GitHub repositories
 
