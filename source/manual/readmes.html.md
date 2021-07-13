@@ -7,7 +7,7 @@ type: learn
 parent: "/manual.html"
 ---
 
-This is a guide to writing and maintaining README documents for GOV.UK's public repositories.
+This is a guide to writing and maintaining README documents for GOV.UK's public repositories. It's based on [guidance we have in the GDS Way for READMEs](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes).
 
 READMEs are for a technical audience. This could be a new starter or an existing developer. Using the following template will help to ensure each README is consistent, correct, short and actionable.
 
