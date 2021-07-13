@@ -194,12 +194,18 @@ gds govuk connect --environment integration ssh backend
 
 #### Running a console
 
-Once you have SSH access into a remote environment or server, you can also open a console for a particular application so you can run commands.
+Once you have SSH access into a remote environment or server, you can also open a Rails app console for a particular application so you can run commands.
 
-For example, to open a console for GOV.UK Publisher, run the following:
+For example, to open a console for GOV.UK Publisher, run the following on a `backend` machine:
 
 ```bash
-govuk_app_console publisher
+$ govuk_app_console publisher
+```
+
+As a shortcut, to remove the need to look up the machine class for an application, you can use the following without SSHing first:
+
+```bash
+gds govuk connect --environment integration app-console publisher
 ```
 
 ## 7. Get AWS access
