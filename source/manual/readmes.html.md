@@ -19,58 +19,49 @@ This is a guide to writing and maintaining README documents for GOV.UK's public 
 ```markdown
 # App name
 
-One paragraph description and purpose.
+One or more paragraphs describing the app:
 
-## Screenshots (if there's a client-facing aspect of it)
+- What it's used for.
+- Any unusual dependencies it has.
 
-## Live examples (if available)
+## Live examples
 
-- [gov.uk/thing](https://www.gov.uk/thing)
+(Only applies to frontend apps.)
+
+A list of links to example pages rendered by the app.
 
 ## Nomenclature
 
-- **Word**: definition of word, and how it's used in the code
+A list of definitions for unusual terms in the code.
 
 ## Technical documentation
 
-Write a single paragraph including a general technical overview of the app.
-Example:
+What goes here depends on the type of app.
 
-This is a Ruby on Rails application that maps RESTful URLs onto a persistence
-layer. It's only presented as an internal API and doesn't face public users.
-
-### Dependencies
-
-- [alphagov/other-repo]() - provides some downstream service
-- [redis]() - provides a backing service for work queues
-
-### Running the application
-
-`./one-line-command.sh`
-
-Documentation for where the app will appear (default port, vhost, URL etc).
+See the links below for example content to put here.
 
 ### Running the test suite
 
-`./one-line-command.sh`
+Give one command to run all the tests, linting, etc.
 
-Include any other edge cases, e.g parallel test runner in Whitehall
+You can also add other commands e.g. to run JS tests.
 
-### Any deviations from idiomatic Rails/Go etc. (optional)
+### Further documentation
 
-### Example API output (optional)
+A list of links to key files in docs/.
 
-`one-line-curl-command with JSON response after`
-
-Keep this section limited to core endpoints - if the app is complex link out to `/docs`.
+You can also just link to the docs/ directory itself.
 
 ## Licence
 
-[MIT License](LICENCE)
-
-## Versioning policy (for Gems only)
-
+Link to your LICENCE file.
 ```
+
+Examples READMEs that follow the above structure:
+
+- [Frontend app: Collections](https://github.com/alphagov/collections/blob/13e53b7b63b2a9c1e618ba309756523341befc5b/README.md#technical-documentation)
+
+- [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/451481ce0b6335bb1f640ef52fa0e8305f38d09c/README.md#technical-documentation)
 
 ## Benefits of using this template
 
