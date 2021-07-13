@@ -11,6 +11,8 @@ This is a guide to writing and maintaining README documents for GOV.UK's public 
 
 READMEs are for a technical audience. This could be a new starter or an existing developer. Using the following template will help to ensure each README is consistent, correct, short and actionable.
 
+Unless it helps someone to get started, any other content should be a separate file in the `docs/` directory for a repository. This also makes the content easier to discover in external search.
+
 ## Template for new READMEs
 
 ```markdown
@@ -74,15 +76,6 @@ A good example:
 
 ## Things we shouldn't put in the README
 
-- Full documentation of the API - if the app is complex or has a complex API, use the `docs` directory liberally, and link out to it from the `README`
-  - If the API is small try to keep it in the main README and don't link to docs
-  - Some bad examples - too much documentation in the README:
-    - [smart-answers (older version)](https://github.com/alphagov/smart-answers/blob/06dfeb854ec9728374186a2e37c1eb62a5aaa49a/README.md)
-    - [govuk_frontend_toolkit](https://github.com/alphagov/govuk_frontend_toolkit/blob/edd834de8d2f4e854475f5d226aa0cd260795cef/README.md)
-  - Good examples:
-    - [content-store](https://github.com/alphagov/content-store/blob/b244620f505f248fc93d8556eedad14b5cba1187/README.md) - links out to more docs as required
-    - [smart-answers (newer version)](https://github.com/alphagov/smart-answers/blob/c0b4580d18ccc5004abfa7015017d26e1a73f2aa/README.md) - links out to more docs as required
-  - For Ruby libraries always use [yardoc](http://yardoc.org/) - then Gems will automatically have docs built
 - Contributors - we can use GitHub's native graphing tools for this
 - Contribution guidelines - use GitHub's [CONTRIBUTING.md](https://help.github.com/articles/setting-guidelines-for-repository-contributors/) guidelines for this
   - When writing this document, always link to the [GOV.UK pull request style guide](https://github.com/alphagov/styleguides/blob/master/pull-requests.md)
