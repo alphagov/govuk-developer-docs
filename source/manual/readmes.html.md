@@ -62,17 +62,11 @@ Examples READMEs that follow the above structure:
 
 - [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/451481ce0b6335bb1f640ef52fa0e8305f38d09c/README.md#technical-documentation)
 
-## One-line summaries on GitHub repositories
+## GitHub repo description
 
-Who are these for? These are for people who scan the list in [alphagov](https://github.com/alphagov/) and need a quick overview.
+These appear in [search results](https://github.com/alphagov/). A good description should use simple language and make it clear the repository is part of GOV.UK. Example: "GOV.UK filtered search of public content".
 
-- Include information about whether it's on GOV.UK
-- Try to tone down technical language - 'Filtered search of content' is better than 'Faceted search interface'
-- Use the GitHub link field to link to the developer docs page for the repository, or otherwise the live service (if public facing)
-
-A good example:
-
-> GOV.UK filtered search of public content
+Use the GitHub link field to link to the developer docs page for the repository, or otherwise the live service (if it's public facing).
 
 ## CONTRIBUTING.md
 
