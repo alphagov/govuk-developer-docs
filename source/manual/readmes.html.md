@@ -74,10 +74,12 @@ A good example:
 
 > GOV.UK filtered search of public content
 
-## Things we shouldn't put in the README
+## CONTRIBUTING.md
 
-- Contributors - we can use GitHub's native graphing tools for this
-- Contribution guidelines - use GitHub's [CONTRIBUTING.md](https://help.github.com/articles/setting-guidelines-for-repository-contributors/) guidelines for this
-  - When writing this document, always link to the [GOV.UK pull request style guide](https://github.com/alphagov/styleguides/blob/master/pull-requests.md)
-  - Document any weirdness here (eg when to use Cucumber over something else)
-- Full licence - again, follow [GitHub convention](https://help.github.com/articles/open-source-licensing/#where-does-the-license-live-on-my-repository)
+**Don't add this unless the repository gets a lot of external contributions.**
+
+Use GitHub's [CONTRIBUTING.md](https://help.github.com/articles/setting-guidelines-for-repository-contributors/) guidelines for this. Always link to the [GOV.UK pull request style guide](https://github.com/alphagov/styleguides/blob/master/pull-requests.md).
+
+## LICENCE
+
+Follow [GitHub convention](https://help.github.com/articles/open-source-licensing/#where-does-the-license-live-on-my-repository).
