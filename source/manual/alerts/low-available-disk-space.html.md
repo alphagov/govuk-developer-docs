@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+See also: [low available disk inodes](low-available-disk-inodes.html)
+
 ## Low available disk space on root
 
 You can try clearing out the APT cache:
@@ -65,9 +67,9 @@ will say `DISK CRITICAL: /mnt/crawler_worker not found`.
 
 ### Cause
 
-An EBS volume can only be attached to one VM at a time.  When the autoscaler
+An EBS volume can only be attached to one VM at a time. When the autoscaler
 terminates a VM, AWS disconnects the EBS volume and releases a lock, whilst at
-the same time also spinning up the replacement VM.  The new VM can spin up and be
+the same time also spinning up the replacement VM. The new VM can spin up and be
 provisioned faster than the lock can be released.
 
 ### Solution
@@ -124,12 +126,10 @@ performing the maintenace tasks described below. Pass to 2ndline to deal
 with during working hours.
 
 Firstly see if you can remove any old logfiles, where dir is the
-directory where the large file lives: `find <dir> -mtime +45 -type f`
+directory where the large file lives: `find <dir> -mtime +45 -type f` (for
+files over 45 days old, for example).
 
 You can remove them by running: `find <dir> -mtime +45 -type f -delete`
-
-45 days is specified as this is how long we're obliged to keep logfiles,
-but that could be smaller if required.
 
 Ideally see if you can copy the large file elsewhere (on a different
 mount point which has free space) and then entirely truncate that log:
@@ -140,5 +140,5 @@ You can force a logrotate run afterwards:
 `sudo logrotate -vf /etc/logrotate.d/<type of logs>`
 
 **If you have nowhere to move the logs and it is causing an incident,
-uptime of the server takes precedent over logfiles, so just truncate the
+uptime of the server takes precedence over logfiles, so just truncate the
 logs to free up space**
