@@ -15,6 +15,10 @@ section: Icinga alerts
 One or more tokens for API Users are about to expire. You should rotate
 expiring tokens to ensure the associated application keeps working.
 
+> If the tokens are
+> `New London: Trade Tariff Admin (PaaS) token for New London: Trade Tariff Backend (PaaS)`
+> see [Trade Tariff Admin on the Wiki](https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155099649/Trade+Tariff+Admin)
+
 As a working example, let's say we have an alert like *Content Publisher token
 for Publishing API expires in X days*. In this example, the API User is
 *Content Publisher* and the application is *Publishing API*.
