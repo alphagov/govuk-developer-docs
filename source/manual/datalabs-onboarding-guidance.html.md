@@ -17,7 +17,7 @@ This onboarding guide contains information and best practice on the following:
 - using the [GOV.UK mirror](/manual/datalabs-govuk-mirror.html)
 - using [GOV.UK Knowledge Graph](/manual/datalabs-govuk-knowledge-graph.html), otherwise known as GovGraph
 - organising your work using [Trello](/manual/datalabs-start-new-project.html#organise-your-workload-using-trello)
-- using [AWS Sagemaker](/manual/datalabs-start-new-project.html#manage-your-machine39s-resources-with-aws-sagemaker) to manage your machine's resources
+- using [AWS Sagemaker](/manual/datalabs-aws-sagemaker.html) to manage your machine's resources
 
 The onboarding guidance also has [reference information](/manual/datalabs-reference-info.html) on the following:
 
