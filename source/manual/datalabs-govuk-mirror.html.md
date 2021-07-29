@@ -43,7 +43,12 @@ To work with the GOV.UK mirror remotely, you should copy the GOV.UK mirror from 
 The following content assumes that you want to copy the GOV.UK mirror to the `govuk-data-infrastructure-integration` S3 bucket.
 
 1. [Sign into AWS](https://s3.console.aws.amazon.com/).
-1. Select the `govuk-datascienceusers` role.
+1. Select your name in the top right of the screen and select __Switch roles__.
+1. Under __Account__, you can select select __govuk-infrastructure-integration__ or __210287912431__.
+1. Under __Role__, select __govuk-datascienceusers__.
+1. You can enter any text into __Display name__ or leave this field empty.
+1. You can select any colour in __Colour__. Best practice is to select green for integration, amber for staging and red for production.
+1. Select __Switch Role__.
 1. Run the following in your command line:
 
     ```

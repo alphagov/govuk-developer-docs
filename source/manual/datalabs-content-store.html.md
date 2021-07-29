@@ -12,23 +12,45 @@ The Content Store does not have all GOV.UK content. The Content Store has the co
 
 Contact a GOV.UK Data Labs software developer through the [GOV.UK Data Labs slack channel](https://gds.slack.com/archives/CHR4UQKU4) for more information.
 
-Consider using the [GOV.UK mirror](link) if you need a more representative data source of what users actually see on the website.
+Consider using the [GOV.UK mirror](/manual/datalabs-govuk-mirror.html) if you need a more representative data source of what users actually see on the website.
 
 ## Get access to the Content Store
 
-To access the Content Store, you download a copy of the production version of the Content Store and query that local version using Docker.
+To access the Content Store, you:
+
+- sign into AWS and assume the correct AWS role
+- download a copy of the production version of the Content Store to your local machine
+- query the local production version of the Content Store using Docker
+
+### Sign into AWS and select the correct AWS role
 
 1. Sign into AWS. See the [GOV.UK Developer Docs on getting AWS access](https://docs.publishing.service.gov.uk/manual/get-started.html#7-get-aws-access) for more information.
 
+1. Select your name in the top right of the screen and select __Switch roles__.
+
+1. Under __Account__, you can select select __govuk-infrastructure-integration__ or __210287912431__.
+
+1. Under __Role__, select __govuk-datascienceusers__.
+
+1. You can enter any text into __Display name__ or leave this field empty.
+
+1. You can select any colour in __Colour__. Best practice is to select green for integration, amber for staging and red for production.
+
+1. Select __Switch Role__.
+
+### Download a copy of the production version of the Content Store
+
 1. Go to the [`govuk-integration-database-backups` AWS S3 bucket](https://s3.console.aws.amazon.com/s3/buckets/govuk-integration-database-backups?prefix=mongo-api%2F&region=eu-west-1) and then go to the `mongo-api` folder.
 
-1. Download a copy of the production version of the Content Store. The production version file is `{DATETIME}-content_store_production.gz`, where `{DATETIME}` is a date and time in `YYYY-MM-DDTHH:MM:SS` format.
+1. Download a copy of the production version of the Content Store. The production version file is `{DATETIME}-content_store_production.gz`, where `{DATETIME}` is a date and time in `YYYY-MM-DDTHH_MM_SS` format.
 
 1. Run the following in the command line to extract the `content_items.bson` file from the `content_store_production` folder of the downloaded production version file:
 
     ```
     tar -xvf PATH/TO/DATETIME-content_store_production.gz content_store_production/content_items.bson
     ```
+
+### Query the local production version of the Content Store using Docker
 
 1.  Set up a local Docker instance by following the instructions in the [govuk-mongodb-content GitHub repo readme file](https://github.com/alphagov/govuk-mongodb-content).
 
