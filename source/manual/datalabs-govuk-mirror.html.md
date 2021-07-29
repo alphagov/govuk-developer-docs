@@ -54,7 +54,6 @@ The following content assumes that you want to copy the GOV.UK mirror to the `go
     ```
     gds aws govuk-integration-datascience --assume-role-ttl 480m aws s3 sync s3://govuk-production-mirror-replica/www.gov.uk s3://govuk-data-infrastructure-integration/{YYYYMMDD}-govuk-production-mirror-replica
     ```
-    
     where `{YYYYMMDD}` is today’s date in year-month-day format.
 
     The `--assume-role-ttl 480m` allows 8 hours (480 minutes) to transfer the data between the two S3 buckets. Using `aws s3 sync` also allows you to restart the transfer from where you left off if there are any errors.
