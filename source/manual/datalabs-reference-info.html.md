@@ -118,6 +118,15 @@ See the [documentation on content schemas](https://docs.publishing.service.gov.u
 
 This page is useful if you are working with the Content Store as it tells you what fields are available for different content document types again. This list may be incomplete.
 
+## View the JSON of a GOV.UK page
+
+You can view the JSON on a GOV.UK page by either:
+
+- using the [GOV.UK Toolkit for Chrome and Firefox Chrome extension](https://github.com/alphagov/govuk-browser-extension)
+- adding `/api/content` into a page URL, for example, you can change `https://www.gov.uk/browse/benefits/disability` to `https://www.gov.uk/api/content/browse/benefits/disability`
+
+Using either of these methods lets you view the A and B versions of a page.
+
 ## Pre-existing code to reuse
 
 GOV.UK Data Labs has worked on many projects, and has developed code and features you can reuse.
