@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-data-labs"
-title: Onboarding for new starters
+title: Onboard new starters
 section: Data Labs Team Manual
 layout: manual_layout
 parent: "/manual.html"
