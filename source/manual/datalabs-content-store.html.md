@@ -52,7 +52,7 @@ To access the Content Store, you:
 
 ### Query the local production version of the Content Store using Docker
 
-1.  Set up a local Docker instance by following the instructions in the [govuk-mongodb-content GitHub repo readme file](https://github.com/alphagov/govuk-mongodb-content).
+1. Set up a local Docker instance by following the instructions in the [govuk-mongodb-content GitHub repo readme file](https://github.com/alphagov/govuk-mongodb-content).
 
 1. Access your local version of the Content Store through your local Docker instance by [using the Mongo Express graphical interface](https://github.com/alphagov/govuk-mongodb-content#interact-with-mongodb-instance).
 

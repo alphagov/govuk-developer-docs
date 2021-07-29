@@ -47,7 +47,6 @@ You are now ready to use your newly created instance.
 
 For more information on creating a new instance, see the [AWS documentation on creating an Amazon SageMaker Notebook Instance](https://docs.aws.amazon.com/sagemaker/latest/dg/gs-setup-working-env.html).
 
-
 ## Open an existing instance
 
 1. Go to the __Notebook instances__ page. You will see a table of existing AWS Sagemaker instances.
