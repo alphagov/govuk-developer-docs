@@ -292,3 +292,7 @@ Sentry is used by several programmes in GDS, not just GOV.UK. A report,
 [GDS use of Sentry.io](https://docs.google.com/document/d/1yVa9iiu-DayGy-MtlrdXeV0E09CsetUenZJCmusLfLg/edit),
 covers this in more detail, including documenting some of the limitations of the
 setup.
+
+## Retention period
+
+[90 days](https://sentry.io/security/#data-retention).
