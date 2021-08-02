@@ -48,6 +48,21 @@ have added the key into the keychain like so: `ssh-add -K ~/.ssh/id_rsa`.
 Make sure you have been granted access. For example, if you have yet to be granted access
 to production, your attempt to SSH into a production node will fail silently.
 
+### SSH known hosts changed
+
+If you see an error message along the lines of:
+
+```
+IT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!
+Someone could be eavesdropping on you right now (man-in-the-middle attack)!
+It is also possible that a host key has just been changed.
+Add correct host key in /Users/username/.ssh/known_hosts to get rid of this message.
+Offending RSA key in /Users/username/.ssh/known_hosts:14
+```
+
+It is likely that the jumpbox machine was recently reprovisioned - ask on `#govuk-2ndline` to make sure.
+If so, simply delete the associated line (line 14 in the example above).
+
 ### CLI Problems
 
 [GOV.UK Connect] is a tool we use to make working with our machines quicker and easier. If
