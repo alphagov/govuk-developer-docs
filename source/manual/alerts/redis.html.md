@@ -56,3 +56,28 @@ In order to access the Redis command line interface in AWS, it is required to lo
 ```bash
 redis-cli -h <primary_endpoint url>
 ```
+
+**Note:** Our Redis cluster contains multiple databases (currently 2, one for
+GOV.UK's publishing platform and another for data.gov.uk). Select the database
+with the `redis-cli` flag `-n <db_number>`. Bear this mind for all commands,
+such as when using `--bigkeys`.
+
+### Debugging tools for high memory usage
+
+General routes you can take when Redis nodes are running out of memory:
+
+1. Look at the CloudWatch metrics for the Redis Cluster
+1. Submit a support ticket to AWS - we pay them for this
+1. Increase the size of the Redis nodes (if appropriate)
+1. Look at dashboards (Sidekiq, DGU) to see whether jobs are being processed
+1. Use `--bigkeys` and other available tools from `redis-cli` (note that in older
+  Redis versions, many useful commands such as `MEMORY` are not available).
+1. Take a snapshot of a replica node, copy the RDB backup file locally and
+  use a tool such as [redis-rdb-tools][] to generate a memory report, which
+  can tell you which keys are using the most memory e.g.
+
+  ```
+  rdb -c memory /snapshot.rdb --largest 20 -f memory.csv
+  ```
+
+[redis-rdb-tools]: https://github.com/sripathikrishnan/redis-rdb-tools
