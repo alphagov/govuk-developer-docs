@@ -6,6 +6,6 @@ layout: manual_layout
 section: 2nd line
 ---
 
-This [Google Doc describes what to do if SmartSurvey has scheduled maintenance][doc].
+This [Wiki page describes what to do if SmartSurvey has scheduled maintenance][doc].
 
-[doc]: https://docs.google.com/document/d/1-voQta82VUA_pleIkvvSsL4DeyCM2FuOQSHvAIh08F8/edit?usp=sharing
+[doc]: https://gov-uk.atlassian.net/wiki/spaces/PLOPS/pages/3155263491/SmartSurvey+has+scheduled+maintenance
