@@ -18,10 +18,7 @@ Unless it helps someone to get started, any other content should be a separate f
 ```markdown
 # App name
 
-One or more paragraphs describing the app:
-
-- What it's used for.
-- Any unusual dependencies it has.
+One or more paragraphs describing the app: what it's used for and how it relates to the rest of GOV.UK. Try to link to existing documentation and other READMEs to help keep the description concise.
 
 ## Live examples
 
@@ -38,6 +35,13 @@ A list of definitions for unusual terms in the code.
 What goes here depends on the type of app.
 
 See the links below for example content to put here.
+
+### Before running the app (if applicable)
+
+Anything that's not done automatically by the development environment:
+
+- Dependencies that need to be installed manually.
+- One-off commands that need to be run manually.
 
 ### Running the test suite
 
