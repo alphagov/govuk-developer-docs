@@ -68,3 +68,7 @@ At present there is no automated way to configure Logstash configuration.
 We store our configuration in the [govuk-saas-config](https://github.com/alphagov/govuk-saas-config)
 repository. Any changes to the configuration should be stored in here, and they
 should be consistent across stacks.
+
+## Retention period
+
+[14 days](https://dashboard.logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74/s/2dd89c13-a0ed-4743-9440-825e2e52329e).
