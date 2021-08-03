@@ -43,7 +43,7 @@ See the links below for example content to put here.
 
 Give one command to run all the tests, linting, etc.
 
-You can also add other commands e.g. to run JS tests.
+You can also suggest other commands e.g. to run JS tests, run ...
 
 ### Further documentation
 
