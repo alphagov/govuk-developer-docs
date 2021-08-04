@@ -7,105 +7,77 @@ type: learn
 parent: "/manual.html"
 ---
 
-This is a guide to writing and maintaining README documents for GOV.UK's public repositories.
+This is a guide to writing and maintaining README documents for GOV.UK's public repositories. It's based on [guidance we have in the GDS Way for READMEs](https://gds-way.cloudapps.digital/manuals/readme-guidance.html#writing-readmes).
 
-## Who are READMEs for (aka what's the user need)?
+READMEs are for a technical audience. This could be a new starter or an existing developer. Using the following template will help to ensure each README is consistent, correct, short and actionable.
 
-- New starters to GDS
-- People joining a new team
-- People interested in our work
-- Developers on other teams
+Unless it helps someone to get started, any other content should be a separate file in the `docs/` directory for a repository. This also makes the content easier to discover in external search.
 
 ## Template for new READMEs
 
 ```markdown
 # App name
 
-One paragraph description and purpose.
+One or more paragraphs describing the app: what it's used for and how it relates to the rest of GOV.UK. Try to link to existing documentation and other READMEs to help keep the description concise.
 
-## Screenshots (if there's a client-facing aspect of it)
+## Live examples
 
-## Live examples (if available)
+(Only applies to frontend apps.)
 
-- [gov.uk/thing](https://www.gov.uk/thing)
+A list of links to example pages rendered by the app.
 
 ## Nomenclature
 
-- **Word**: definition of word, and how it's used in the code
+A list of definitions for unusual terms in the code.
 
 ## Technical documentation
 
-Write a single paragraph including a general technical overview of the app.
-Example:
+What goes here depends on the type of app.
 
-This is a Ruby on Rails application that maps RESTful URLs onto a persistence
-layer. It's only presented as an internal API and doesn't face public users.
+See the links below for example content to put here.
 
-### Dependencies
+### Before running the app (if applicable)
 
-- [alphagov/other-repo]() - provides some downstream service
-- [redis]() - provides a backing service for work queues
+Anything that's not done automatically by the development environment:
 
-### Running the application
-
-`./one-line-command.sh`
-
-Documentation for where the app will appear (default port, vhost, URL etc).
+- Dependencies that need to be installed manually.
+- One-off commands that need to be run manually.
 
 ### Running the test suite
 
-`./one-line-command.sh`
+Give one command to run all the tests, linting, etc.
 
-Include any other edge cases, e.g parallel test runner in Whitehall
+You can also suggest other commands e.g. to run JS tests, run ...
 
-### Any deviations from idiomatic Rails/Go etc. (optional)
+### Further documentation
 
-### Example API output (optional)
+A list of links to key files in docs/.
 
-`one-line-curl-command with JSON response after`
-
-Keep this section limited to core endpoints - if the app is complex link out to `/docs`.
+You can also just link to the docs/ directory itself.
 
 ## Licence
 
-[MIT License](LICENCE)
-
-## Versioning policy (for Gems only)
-
+Link to your LICENCE file.
 ```
 
-## Benefits of using this template
+Examples READMEs that follow the above structure:
 
-- it is consistent
-- it is scannable
-- functionality is shown in screenshots and links to live services
-- it has quick start information for new developers or interested third parties
+- [Frontend app: Collections](https://github.com/alphagov/collections/blob/13e53b7b63b2a9c1e618ba309756523341befc5b/README.md#technical-documentation)
 
-## One-line summaries on GitHub repositories
+- [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/451481ce0b6335bb1f640ef52fa0e8305f38d09c/README.md#technical-documentation)
 
-Who are these for? These are for people who scan the list in [alphagov](https://github.com/alphagov/) and need a quick overview.
+## GitHub repo description
 
-- Include information about whether it's on GOV.UK
-- Try to tone down technical language - 'Filtered search of content' is better than 'Faceted search interface'
-- Use the GitHub link field to link to the developer docs page for the repository, or otherwise the live service (if public facing)
+These appear in [search results](https://github.com/alphagov/). A good description should use simple language and make it clear the repository is part of GOV.UK. Example: "GOV.UK filtered search of public content".
 
-A good example:
+Use the GitHub link field to link to the developer docs page for the repository, or otherwise the live service (if it's public facing).
 
-> GOV.UK filtered search of public content
+## CONTRIBUTING.md
 
-## Things we shouldn't put in the README
+**Don't add this unless the repository gets a lot of external contributions.**
 
-- Full documentation of the API - if the app is complex or has a complex API, use the `docs` directory liberally, and link out to it from the `README`
-  - If the API is small try to keep it in the main README and don't link to docs
-  - Some bad examples - too much documentation in the README:
-    - [smart-answers (older version)](https://github.com/alphagov/smart-answers/blob/06dfeb854ec9728374186a2e37c1eb62a5aaa49a/README.md)
-    - [govuk_frontend_toolkit](https://github.com/alphagov/govuk_frontend_toolkit/blob/edd834de8d2f4e854475f5d226aa0cd260795cef/README.md)
-  - Good examples:
-    - [content-store](https://github.com/alphagov/content-store/blob/b244620f505f248fc93d8556eedad14b5cba1187/README.md) - links out to more docs as required
-    - [smart-answers (newer version)](https://github.com/alphagov/smart-answers/blob/c0b4580d18ccc5004abfa7015017d26e1a73f2aa/README.md) - links out to more docs as required
-  - For Ruby libraries always use [yardoc](http://yardoc.org/) - then Gems will automatically have docs built
-- Contributors - we can use GitHub's native graphing tools for this
-- Contribution guidelines - use GitHub's [CONTRIBUTING.md](https://help.github.com/articles/setting-guidelines-for-repository-contributors/) guidelines for this
-  - When writing this document, always link to the [GOV.UK pull request style guide](https://github.com/alphagov/styleguides/blob/master/pull-requests.md)
-  - Document any weirdness here (eg when to use Cucumber over something else)
-- Full licence - again, follow [GitHub convention](https://help.github.com/articles/open-source-licensing/#where-does-the-license-live-on-my-repository)
+Use GitHub's [CONTRIBUTING.md](https://help.github.com/articles/setting-guidelines-for-repository-contributors/) guidelines for this. Always link to the [GOV.UK pull request style guide](https://github.com/alphagov/styleguides/blob/master/pull-requests.md).
+
+## LICENCE
+
+Follow [GitHub convention](https://help.github.com/articles/open-source-licensing/#where-does-the-license-live-on-my-repository).

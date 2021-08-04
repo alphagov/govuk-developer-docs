@@ -207,54 +207,7 @@ SOFTWARE.
 
 ### Replace the default README.md
 
-Change the default `README.md` file to have the following structure:
-
-```markdown
-# App name
-
-One or more paragraphs describing the app:
-
-- What it's used for.
-- Any unusual dependencies it has.
-
-## Live examples
-
-(Only applies to frontend apps.)
-
-A list of links to example pages rendered by the app.
-
-## Nomenclature
-
-A list of definitions for unusual terms in the code.
-
-## Technical documentation
-
-What goes here depends on the type of app.
-
-See the links below for example content to put here.
-
-### Running the test suite
-
-Give one command to run all the tests, linting, etc.
-
-You can also add other commands e.g. to run JS tests.
-
-### Further documentation
-
-A list of links to key files in docs/.
-
-You can also just link to the docs/ directory itself.
-
-## Licence
-
-Link to your LICENCE file.
-```
-
-Examples READMEs that follow the above structure:
-
-- [Frontend app: Collections](https://github.com/alphagov/collections/blob/13e53b7b63b2a9c1e618ba309756523341befc5b/README.md#technical-documentation)
-
-- [General app: Email Alert API](https://github.com/alphagov/email-alert-api/blob/451481ce0b6335bb1f640ef52fa0e8305f38d09c/README.md#technical-documentation)
+Change the default `README.md` file to match [the standard README template](/manual/readmes.html#template-for-new-readmes).
 
 ### Write API documentation
 
