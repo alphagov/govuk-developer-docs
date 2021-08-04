@@ -513,7 +513,11 @@ cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | c
 
 You can check the output for any keys that may have expired. (Or pipe the output into grep ` | grep expired`)
 
-If a key has expired you need to ask the owner to renew that key and publish to a keyserver. Once the key has been renewed you can get the renewed key by:
+If a key has expired, it's possible that your local copy of the key is out of date. Follow the steps below, and if that doesn't resolve the issue, contact the owner and ask them to extend the expiry date or renew their key, then repeat the steps below.
+
+#### Get someone's latest GPG key
+
+If you're on a Mac, open the "GPG Keychain" app, right click on the name of the person in the list, then choose "Update from key server". Alternatively, on the command line you can run:
 
 ```
 gpg --recv-keys --keyserver <keyserver_address> <key_fingerprint>
