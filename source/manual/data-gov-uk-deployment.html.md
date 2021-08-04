@@ -29,52 +29,78 @@ parent: "/manual.html"
 
 ### Continuous Integration
 
-Travis is configured for both [Publish (CI)][publish-ci] and [Find (CI)][find-ci] according to `.travis.yml` file in each repo. Each PR request should automatically build a [Heroku Review App][heroku], which can be accessed from the PR page on GitHub.
+Github Actions is configured for both [Publish (CI)][publish-ci] and [Find (CI)][find-ci] according to `.github/workflows/ci.yml` file in each repo. Find PRs should automatically build a [Heroku Review App][heroku], which can be accessed from the PR page on GitHub.
 
-### Heroku Integration Environment
-
-Heroku has a pipeline for each of [Publish][publish-heroku] and [Find][find-heroku], with each app set to run in its 'integration' environment. Each pipeline has a permanent instance of the app, providing a common instance of Elasticsearch for us by the [Find] PR apps.
-
-Each repo has a `Procfile` and an `app.json` file, which help to specify how the app is deployed. The environment variables ('Config Vars') are then set via the website, both for the permanent app instance, and the review app template.
-
-Note: At the moment the Heroku deployed apps do not have much data in them as they are not hooked up with the Integration environment so should be purely used to test frontend changes and not as an end to end test of the Integration stack.
-
-### PaaS Staging and Production Environments
+### PaaS Integration, Staging and Production Environments
 
 [Publish] and [Find] are provisioned on [GOV.UK PaaS][paas]. Each app repo
 contains a set of manifests that specify the container settings for when it's
 deployed.
 
-The deployment for both apps can be triggered automatically via GitHub flow, or
-manually via command line tools.
+The deployment for both apps in Staging and Production can be triggered automatically via GitHub flow, or all environments can be manually deployed via command line tools.
+
+You will need to log in to the `gds-data-gov-uk` org to get access to the correct space, if you don't have access contact the #paas team slack channel.
+
+#### Pre-requisite for manual deployment -
+
+```
+## run once to install the plugin
+cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+cf install-plugin autopilot -r CF-Community -f
+```
+
+#### Integration
+
+Log in to `data-gov-uk-staging` space for integration deployments.
+
+Deployment to integration requires manual deployment
+
+```
+## manually deploy the publish app
+cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifest.yml
+
+## manually deploy the find app
+cf zero-downtime-push find-data-beta-integration -f integration-manifest.yml
+```
 
 #### Staging
 
-The deployment to staging is triggered when a PR gets merged into main. You
-can check the [Travis logs of the `main` build](https://travis-ci.org/alphagov/datagovuk_find) to see progress.
+Log in to `data-gov-uk-staging` space for staging deployments.
+
+The deployment to staging is triggered when a PR gets merged into master. You
+can check the [Github actions logs of the `master` build for Find](https://github.com/alphagov/datagovuk_find/actions) and [Github actions logs of the `master` build for Publish](https://github.com/alphagov/datagovuk_publish/actions) to see progress.
 
 You can check the deployment on [staging.data.gov.uk](https://staging.data.gov.uk/)
 
+The process to manually deploy is as follows -
+
+```
+## manually deploy the publish app
+cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifest.yml
+
+## manually deploy the find app
+cf zero-downtime-push find-data-beta-staging -f staging-manifest.yml
+```
+
 #### Production
+
+Log in to `data-gov-uk` space for production deployments.
 
 The deployment to production is triggered when a [new release] with an appropriate version
 number is created in GitHub.
 
 To create a new release, provide a new version number, release title and description. The version number must include the leading 'v' to trigger a deployment, for example: `v1.0.0`
 
-This deployment behaviour is defined in [Publish's travis.yml]
-and in [Find's travis.yml].
+This deployment behaviour is defined in [Publish's ci.yml] and in [Find's ci.yml].
 
-The process to manually deploy is as follows.
+The process to manually deploy is as follows -
 
 ```
-## run once to install the plugin
-cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
-cf install-plugin autopilot -r CF-Community -f
-
 ## manually deploy the publish app
-cf zero-downtime-push publish-data-beta-staging -f staging-app-manifest.yml
-cf zero-downtime-push publish-data-beta-staging-worker -f staging-worker-manifest.yml
+cf zero-downtime-push publish-data-beta-production-worker -f production-worker-manifest.yml
+
+## manually deploy the find app
+cf zero-downtime-push find-data-beta -f production-manifest.yml
 ```
 
 There are [some scripts available for datagovuk_publish](https://github.com/alphagov/datagovuk_publish/tree/main/scripts) which can run a deploy for you, for example:
@@ -115,8 +141,7 @@ When deploying changes that affect the CSW service, (OWSLib or PyCSW updates), p
 The daily sync between pycsw and ckan should also be tested:
 
 ```
-sudo su deploy
-cd /var/apps/ckan && ./venv/bin/paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
 ```
 
 The pycsw web process should be automatically restarted after each ckan deployment.
