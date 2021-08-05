@@ -116,3 +116,9 @@ To zip one file, go to the directory containing the file and then do:
 so to encrypt your GPG key you'll use:
 
 `zip -e "Name (keyID) – Public.asc.zip" "Name (keyID) – Public.asc"`
+
+## Extend an expired GPG key
+
+If your GPG key has expired, the easiest way to update it is to [extend the expiry date](https://superuser.com/questions/813421/can-you-extend-the-expiration-date-of-an-already-expired-gpg-key).
+
+You may also find that you have sub-keys that are due to expire too. If you are using a Mac, the easiest way to check is to use the GPG Keychain application. In GPG Keychain, double-click on your key to see the details and go the the "Subkeys" tab. If you have a sub-key that is due to expire, you'll be asked if you want to update it and push the key to the keyserver.
