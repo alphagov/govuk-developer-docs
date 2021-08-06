@@ -10,6 +10,8 @@ parent: "/manual.html"
 [dgu-docs]: https://guidance.data.gov.uk
 [find]: apps/datagovuk_find
 [publish]: apps/datagovuk_publish
+[v1-endpoint]: https://github.com/ckan/ckan/blob/ckan-2.9.2/CHANGELOG.rst#v280-2018-05-09
+[ckan-issue]: https://github.com/ckan/ckan/issues/3484
 
 This document details some of the requests that GOV.UK 2nd line support may receive regarding data.gov.uk.  [Separate documentation][dgu-docs] exists for publishers.
 
@@ -230,7 +232,7 @@ It is possible to access analytics for datasets. If a user requests analytics fo
 
 If a publisher is attempting to access data directly via the use of the CKAN API endpoints they might encounter problems processing the response:
 
-- V1 of the API endpoint has been dropped - https://github.com/ckan/ckan/blob/ckan-2.9.2/CHANGELOG.rst#v280-2018-05-09
+- V1 of the API endpoint has been [dropped](v1-endpoint)
 
 This means that the extras block in some cases has been flattened, this was the previous response:
 
@@ -260,7 +262,7 @@ In 2.9 the response looks like this:
   - `limit` and `offset` have been replaced by `rows` and `start` respectively.
   - `all_fields` is no longer supported and will cause an error response.
 
-- The `revision_id` is also no longer available, although this has long been deprecated for a number of reasons by the CKAN team - https://github.com/ckan/ckan/issues/3484.
+- The `revision_id` is also no longer available, although this has long been deprecated for a number of [reasons](ckan-issue) by the CKAN team.
 
 ## Revision log
 
