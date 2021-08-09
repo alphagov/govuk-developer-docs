@@ -262,7 +262,7 @@ In 2.9 the response looks like this:
   - `limit` and `offset` have been replaced by `rows` and `start` respectively.
   - `all_fields` is no longer supported and will cause an error response.
 
-- The `revision_id` is also no longer available, although this has long been deprecated for a number of [reasons](ckan-issue) by the CKAN team.
+- The `revision_id` is also no longer available, although this has long been deprecated for a number of [reasons][ckan-issue] by the CKAN team.
 
 ## Revision log
 
