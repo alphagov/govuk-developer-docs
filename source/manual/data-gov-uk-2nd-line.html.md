@@ -258,7 +258,7 @@ In 2.9 the response looks like this:
 >      "harvest_source_id": "<harvest source id>"
 >     }
 
-- Accepted Solr params for dataset / package searching has changed:
+- Accepted Solr params for dataset / package searching have changed:
   - `limit` and `offset` have been replaced by `rows` and `start` respectively.
   - `all_fields` is no longer supported and will cause an error response.
 
