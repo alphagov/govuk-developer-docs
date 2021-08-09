@@ -232,7 +232,7 @@ It is possible to access analytics for datasets. If a user requests analytics fo
 
 If a publisher is attempting to access data directly via the use of the CKAN API endpoints they might encounter problems processing the response:
 
-- V1 of the API endpoint has been [dropped](v1-endpoint)
+- V1 of the API endpoint has been [dropped][v1-endpoint]
 
 This means that the extras block in some cases has been flattened, this was the previous response:
 
