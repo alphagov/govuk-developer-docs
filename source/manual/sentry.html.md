@@ -56,12 +56,13 @@ all configuration is set up correctly.
 Apps are configured to talk to Sentry using the [govuk_app_config][] gem,
 which interfaces with Sentry via its [`GovukError` class][govukerror]. Apps
 call `GovukError.configure` - see [example][email-alert-api-example]. This
-[delegates][delegator-pattern] to the [sentry-raven][] gem under the hood,
-though the gem is now superseded by sentry-ruby, which we have
-[plans to migrate to][trello-migrate] in the future.
+uses the [delegator pattern][delegator-pattern] to proxy requests to the
+underlying Sentry gem, which is [sentry-ruby][] in govuk_app_config v4 and
+above, and [sentry-raven][] in govuk_app_config v3 and below.
 
 Unhandled exceptions are automatically logged to Sentry, but you can also
 [manually report something to Sentry using `GovukError.notify`][manually-report].
+This method takes an exception object, or a string.
 
 [docs-apps]: https://docs.publishing.service.gov.uk/apps.json
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12
