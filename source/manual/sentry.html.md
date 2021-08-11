@@ -218,12 +218,24 @@ mechanism, ensuring that we would need two projects to be recording high-volume
 errors to risk breaching our account limit. These limits are configured on the
 [Rate Limits][sentry-configure-rate-limits] page.
 
-In addition, we've set up alerting so that any issue which records 100 or more
-errors in an hour period gets alerted to `#govuk-platform-health`. These alerts
-are configured in the [Alerts panel][].
+[sentry-configure-rate-limits]: https://sentry.io/settings/govuk/rate-limits/
+
+## Slack alerts
+
+You can configure Sentry to notify a Slack channel when a notable condition is
+satisfied. For example, the `#govuk-platform-health` channel gets notified when
+any issue records 100 or more errors in a 1 hour period.
+
+To set up an alert, visit the [Alerts panel][], select the project the alert
+should apply to (e.g. `app-whitehall`), and then click "Create Alert Rule". It is
+currently not possible to set up a 'global' alert to apply to all projects at
+once.
+
+We encourage teams to set up alerts for any projects they're responsible for, so
+that they can be alerted to new and high-volume issues and prioritise them.
+Multiple teams are allowed to set up alerts for the same projects.
 
 [Alerts panel]: https://sentry.io/organizations/govuk/alerts/rules/
-[sentry-configure-rate-limits]: https://sentry.io/settings/govuk/rate-limits/
 
 ## Sentry issue actions
 
