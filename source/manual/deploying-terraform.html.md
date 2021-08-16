@@ -45,10 +45,13 @@ created with the `read:org` scope only.
 
 **Always `plan` first, check that the output is what you expect, then `apply`.**
 
-There are 2 ways of deploying terraform:
+There are 3 ways of deploying terraform:
 
 1. [`gds-cli`][gds-cli] as of version `v2.15.0`
 2. `deploy.rb` script in [govuk-aws][deploy-rb] repository
+3. via the [dedicated Jenkins job](https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS)
+
+It is recommended that you use the gds-cli option before exploring the other 2.
 
 ### 1. gds-cli
 
@@ -64,7 +67,7 @@ Where:
 1. `<github_username>` is the name of your GitHub account
 1. `<github_token>` is the GitHub token that you created as described [above](#3-get-github-credentials)
 1. `<environment>` is the govuk environment you want to deploy to. E.g. `integration`,`staging`
-1. `<project>` is the terraform project that you want to deploy. E.g. `app-gatling`
+1. `<project>` is the terraform project that you want to deploy. E.g. `app-gatling`, `infra-security`
 1. `<stack>` is the govuk stack you want to deploy to. E.g. `blue` (which is usually for `app-` projects), `govuk` (which is usually for `infra-` projects)
 1. `<action>` is the terraform action you want to perform. E.g. `plan`, `apply`
 1. `<aws_role>` is the govuk aws role you want to use for terraforming. E.g. `govuk-integration-admin`
@@ -97,3 +100,27 @@ Once the script has run, visit the [`deploy` Jenkins job][deploy-jenkins] to see
 [deploy-rb]: https://github.com/alphagov/govuk-aws/blob/master/tools/deploy.rb
 [deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS
 [security-incidents]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents
+
+### 3. Jenkins
+
+Before you begin, run the following command using `gds-cli`:
+
+```sh
+gds aws govuk-integration-admin -e
+```
+
+This will allow you to retrieve several AWS access keys that the Jenkins job requires to run.
+
+In the Jenkins job, click "Build with Parameters" and enter the following for each field:
+
+- AWS_ACCESS_KEY_ID: can be retrieved from the above command
+- AWS_SECRET_ACCESS_KEY: can be retrieved from the above command
+- AWS_SESSION_TOKEN: can be retrieved from the above command
+- COMMAND: see `<action>` in gds-cli method above
+- ENVIRONMENT: see `<environment>` in gds-cli method above
+- STACKNAME: see `<stack>` in gds-cli method above
+- PROJECT: see `<project>` in gds-cli method above
+
+All other fields can be left as they are.
+
+Click "build" and terraform should deploy as expected. Remember to deploy to staging and/or production as required.
