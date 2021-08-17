@@ -45,28 +45,7 @@ environments is as follows:
 
 ## Accessing machines using SSH
 
-To SSH into a Licensify machine you need to:
-
-1. Connect to the GDS VPN
-1. Use the correct [jumpbox for your environment](https://github.com/alphagov/govuk-connect/blob/095d4944/lib/govuk_connect/cli.rb#L84-L92)
-1. Find the correct internal hostname for the server
-1. SSH to the server using the jumpbox
-
-To find the internal hostnames, run:
-
-```
-# For licensify backend
-ssh jumpbox.staging.govuk.digital govuk_node_list -c licensify_backend
-
-# For licensify frontend
-ssh jumpbox.staging.govuk.digital govuk_node_list -c licensify_frontend
-```
-
-You can then SSH using the jumpbox and the hostname of your server with:
-
-```
-ssh -J jumpbox.staging.govuk.digital ip-00-00-00-00.eu-west-1.compute.internal
-```
+Follow the [instructions for connecting to a machine via SSH](/manual/howto-ssh-to-machines.html#connecting-with-plain-ssh). The machine classes you will need are `licensify_frontend` and `licensify_backend`. You will need to be on the VPN.
 
 The files most relevant to the Licensify applications can be found in:
 
