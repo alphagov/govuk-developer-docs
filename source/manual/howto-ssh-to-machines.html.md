@@ -63,10 +63,12 @@ Offending RSA key in /Users/username/.ssh/known_hosts:14
 It is likely that the jumpbox machine was recently reprovisioned - ask on `#govuk-2ndline` to make sure.
 If so, simply delete the associated line (line 14 in the example above).
 
-### CLI Problems
+## Connecting with plain SSH
 
-[GOV.UK Connect] is a tool we use to make working with our machines quicker and easier. If
-it's not working, you can try manually running the commands it normally runs for you.
+[GOV.UK Connect] is a tool we use to make working with our machines quicker and
+easier. If GOV.UK Connect is not working, or you don't have it set up for some
+other reason, you can try manually running the commands it normally runs for
+you.
 
 - [Find the class of machine you need](https://docs.publishing.service.gov.uk/apps.html).
 
