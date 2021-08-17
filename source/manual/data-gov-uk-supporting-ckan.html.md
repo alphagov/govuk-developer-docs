@@ -52,7 +52,7 @@ in our deployments.
 On GOV.UK servers `ckan` should be run with:
 
 ```
-sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan -c /var/ckan/ckan29.ini [COMMAND]
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan [COMMAND]
 ```
 
 ### Initialising the database
@@ -62,8 +62,8 @@ The following commands will create the relevant schema for core CKAN and the har
 extension on integration.
 
 ```
-sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan -c /var/ckan/ckan29.ini db init
-sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan -c /var/ckan/ckan29.ini harvester initdb
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan db init
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester initdb
 ```
 
 ### Accessing the database
@@ -130,7 +130,7 @@ https://data.gov.uk/api/3/action/user_show?id=user_d484581
 ### Creating a system administrator account
 
 ```
-sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan -c /var/ckan/ckan29.ini sysadmin add USERNAME email=EMAIL_ADDRESS
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin add USERNAME email=EMAIL_ADDRESS
 ```
 
 You will be prompted twice for a password.
@@ -138,7 +138,7 @@ You will be prompted twice for a password.
 ### Removing a system administrator account
 
 ```
-sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan -c /var/ckan/ckan29.ini sysadmin remove USERNAME
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin remove USERNAME
 ```
 
 ### Managing users
@@ -362,8 +362,8 @@ If the harvest job is hanging and the 'Stop' button is not responding, you will 
 
 1. SSH into the ckan machine with `gds govuk connect -e production ssh ckan`
 1. Assume the deploy user - `sudo su deploy`
-1. Activate the virtual environment - `. /var/apps/ckan/venv/bin/activate`
-1. Run the harvest job manually - `paster --plugin=ckanext-harvest harvester run_test <harvest source> -c /var/ckan/ckan.ini`
+1. Activate the virtual environment - `. /var/apps/ckan/venv3/bin/activate`
+1. Run the harvest job manually - `ckan -c /var/ckan/ckan.ini harvester run-test <harvest source>`
   - where `harvest source` is from the url when visiting the harvest source page, it will be something like `cabinet-office`
 
 If the job fails to complete the ticket should be updated with comments and prioritised to low for the product owner to review.
