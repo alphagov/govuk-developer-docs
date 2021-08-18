@@ -43,16 +43,11 @@ node {
 
 ### 3. Trigger builds from GitHub
 
-Builds are triggered using a GitHub "service". From a project's GitHub
-settings, add the "Jenkins (GitHub plugin)" service to point to:
+Adding a Jenkins webhook to the repo on GitHub will allow branches to be
+built automatically when commits are pushed.
 
-```
-https://ci.integration.publishing.service.gov.uk/github-webhook/
-```
-
-See [content-store's configuration for an example][example].
-
-[example]: https://github.com/alphagov/content-store/settings/hooks/1995352
+There is a task that can be run to add this webhook to the new repo. Find
+out more about [automatically configuring a GitHub repo][auto-config].
 
 ### 4. Branch indexing
 

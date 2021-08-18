@@ -219,19 +219,7 @@ If your app is an API, you should create a `docs/api.md` file.
 
 ### Configure your Rails app for Jenkins
 
-1. Create a `Jenkinsfile` in your repo with the following content.
-
-    ```
-    #!/usr/bin/env groovy
-
-    library("govuk")
-
-    node {
-      govuk.buildProject()
-    }
-    ```
-
-1. Add a Jenkins integration to the repo on GitHub. Find out more about [automatically configuring a GitHub repo][auto-config].
+Find out how to [set up an app in Jenkins](https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up).
 
 ### Add your Rails app to GOV.UK
 
