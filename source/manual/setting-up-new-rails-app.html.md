@@ -49,7 +49,7 @@ You should:
 
     gem "rails", "6.0.3.4"
 
-    gem "bootsnap",
+    gem "bootsnap"
     gem "gds-api-adapters"
     gem "gds-sso"
     gem "govuk_app_config"
