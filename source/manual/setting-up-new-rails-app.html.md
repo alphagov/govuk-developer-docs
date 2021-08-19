@@ -22,6 +22,7 @@ parent: "/manual.html"
 [naming]: https://docs.publishing.service.gov.uk/manual/naming.html
 [auto-config]: https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration
 [app-list]: https://docs.publishing.service.gov.uk/#applications
+[sentry-update-project-rake-task]: https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83
 
 ## Before you start
 
@@ -219,19 +220,7 @@ If your app is an API, you should create a `docs/api.md` file.
 
 ### Configure your Rails app for Jenkins
 
-1. Create a `Jenkinsfile` in your repo with the following content.
-
-    ```
-    #!/usr/bin/env groovy
-
-    library("govuk")
-
-    node {
-      govuk.buildProject()
-    }
-    ```
-
-1. Add a Jenkins integration to the repo on GitHub. Find out more about [automatically configuring a GitHub repo][auto-config].
+Find out how to [set up an app in Jenkins](https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up).
 
 ### Add your Rails app to GOV.UK
 
@@ -249,9 +238,9 @@ If you need to enable external DNS, find out how to [make changes to publishing.
 
 Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/applications.yml` file][docs-applications].
 
-### Ask GOV.UK 2nd line to update Sentry
+### Create the application in Sentry
 
-After you’ve added your Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support](mailto:2nd-line-support@digital.cabinet-office.gov.uk) to run the `update-project` task in [GOV.UK SaaS Config][govuk-saas-config] to update Sentry.
+After you’ve added your Rails app to the GOV.UK developer documentation, run the [`update_project` rake task][sentry-update-project-rake-task] in [GOV.UK SaaS Config][govuk-saas-config] to update Sentry.
 
 ### Add your Rails app to Release app
 
