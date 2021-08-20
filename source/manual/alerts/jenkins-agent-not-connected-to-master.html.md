@@ -15,6 +15,8 @@ View the log for the relevant agent, for example by clicking on the hostname of 
 
 Logs can also be found on the agent machine under `/var/lib/jenkins/remoting/logs`.
 
+## Agent process failing to start
+
 If the agent process is repeatedly starting up and failing with messages like:
 
 ```
@@ -29,6 +31,21 @@ then try clearing out the workspace directory on the agent:
 $ gds govuk connect ssh -e ci ci_agent:0
 $ sudo rm -r /var/lib/jenkins/workspace/*
 ```
+
+## Agent SSH host key changed
+
+If the master is failing to SSH into the agent with a message like "Host key verification failed", then delete the relevant entry from the known hosts file on the master:
+
+```
+$ gds govuk connect ssh -e ci_master
+$ sudo nano /var/lib/jenkins/.ssh/known_hosts
+```
+
+Then restart the master process.
+
+This problem should only occur if the agent machine gets recreated, which will change its SSH host key.
+
+## Restarting the master process
 
 If there doesn't seem to be way to solve the problem it may be necessary to restart the master process:
 
