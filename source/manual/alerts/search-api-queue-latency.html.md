@@ -9,8 +9,7 @@ section: Icinga alerts
 [Search API](/apps/search-api.html) uses Sidekiq to offload indexing work.
 
 This alert triggers when there are jobs in the Sidekiq queue that are waiting
-too long to be processed. This could mean that documents aren't appearing in
-search after they've been published.
+too long to be processed. This could result in documents being published not appearing in search results.
 
 ## Investigating the issue
 
@@ -24,4 +23,4 @@ that jobs are failing. You can then look at [Sentry][sentry] or
 
 [search-api-grafana]: https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=search-api&var-Queues=All
 [sentry]: /manual/error-reporting.html
-[sidekiq-web]: /manual/sidekiq.html#sidekiq-web
+[sidekiq-web]: /manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring
