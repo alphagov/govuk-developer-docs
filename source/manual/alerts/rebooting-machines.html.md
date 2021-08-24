@@ -223,7 +223,7 @@ There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a 
               {'rabbit@ip-10-12-5-128',[]},
               {'rabbit@ip-10-12-6-130',[]}]}]
     ```
-    
+
 1. Reboot the machine by running `sudo reboot`.
 
 When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts.
