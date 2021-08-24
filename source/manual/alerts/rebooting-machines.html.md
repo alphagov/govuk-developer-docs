@@ -193,40 +193,40 @@ that Sidekiq has added to the Redis queues but not yet processed.
 
 ### Rebooting RabbitMQ machines
 
-There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
-waiting for the cluster to recover before rebooting the next node.
+There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.
 
-> **Note**
->
-> We have had a couple of incidents after running this script, so it should only
-> be done in-hours and requires careful monitoring. See:
->
-> 1) [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#) - This required killing RabbitMQ processes to resolve.
->
-> 2) [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv) - This required restarting Publishing API workers to resolve.
+1. SSH into the machine and environment you want to reboot by running the following command:
 
-If there are problems with the cluster (eg, a partition has happened),
-the `safe_reboot` script will not reboot anything, and you'll need to
-take manual action to resolve the problem.
+    ```
+    gds govuk connect ssh -e <ENVIRONMENT> <MACHINE>
+    ```
+    For example, to SSH into the `integration` environment of the `rabbitmq-1` machine:
 
-* Reboot the nodes in the cluster:
+    ```
+    gds govuk connect ssh -e integration rabbitmq-1
+    ```
 
-```
-fab <environment> class:rabbitmq rabbitmq.safe_reboot
-```
+1. Check that the RabbitMQ cluster is healthy by running `sudo rabbitmqctl cluster_status`.
 
-If any applications start alerting due to `rabbitmq-1` being rebooted
-then either add a note here about how to make that application recover,
-or get the team responsible to make it point to the cluster.
+    This prints a list of expected machines and a list of currently running machines. If the 2 lists are the same then the cluster is healthy. The following output is an example of a healthy cluster:
 
-Rebooting rabbitmq may cause alerts for other apps which can be restarted,
-for example email-alert-api.
+    ```
+    [{nodes,[{disc,['rabbit@rabbitmq-1','rabbit@rabbitmq-2',
+        #                 'rabbit@rabbitmq-3']}]},
+        # {running_nodes,['rabbit@rabbitmq-2','rabbit@rabbitmq-3','rabbit@rabbitmq-1']},
+        # {cluster_name,<<"rabbit@rabbitmq-1.backend.production">>},
+        # {partitions,[]}]
+    ```
+1. Reboot the machine by running `sudo reboot`.
 
-You can ssh into individual machines to restart the service:
+When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts.
 
-```
-sudo service email-alert-api restart
-```
+For more information on RabbitMQ-related alerts, see the [GOV.UK Puppet RabbitMQ `monitoring.pp` file](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/manifests/monitoring.pp).
+
+There have been two incidents after rebooting RabbitMQ machines. For more information, see the incident reports on the following incidents:
+
+- [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#)
+- [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv)
 
 ### Rebooting asset primary and secondary machines
 
