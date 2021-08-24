@@ -23,18 +23,18 @@ Source: [GOV.UK Architecture Google Drive](https://docs.google.com/drawings/d/1r
 
 ### Fastly receives the request
 
-When the user requests a GOV.UK page that has A/B testing enabled, they will reach Fastly first.
+When a user requests a GOV.UK page, the request reaches Fastly's CDN first. If the page has A/B testing enabled, Fastly will add a `GOVUK-ABTest-Example` header to downstream requests. The header's value is set depending on whether a cookie called `ABTest-Example` is present in the original request:
 
-Fastly appends the `GOVUK-ABTest-Example` header to the request for downstream apps:
+- If the original request has the cookie, then the header's value is set to that cookie's value. For instance, the downstream request will have `GOVUK-ABTest-Example: B` if the `ABTest-Example` cookie of the original request has value `B`.
+- If the original request doesn't have the cookie, then Fastly chooses a variant (e.g. `A`) and sets the header's value accordingly: `GOVUK-ABTest-Example: A`
 
-- If the request already has a cookie, use the value of that
-- If not, randomly assign the user to a test variant and set it value based on that
+In order to choose a variant, Fastly looks up the weighting of each variant in a [Fastly dictionary][dicts] configured for all A/B tests.
 
-Fastly looks up the weighting for the random assignment in a [Fastly dictionary][dicts] configured for our A/B tests.
+Fastly will then try to get a response from its cache.
 
-Fastly will then try to get a response from its cache. The `Vary: GOVUK-ABTest-Example` header on previously cached responses will ensure that the right version is returned to the user.
+- if the requested page is cached, the `vary: GOVUK-ABTest-Example` response header on previously cached responses will ensure that the right version is returned to the user.
 
-If there's nothing in Fastly's cache, it'll send the request down the stack to GOV.UK.
+- if not, Fastly will send the request downstream to GOV.UK (including the `ABTest-Example` header)
 
 [dicts]: https://docs.fastly.com/guides/edge-dictionaries/
 
@@ -46,15 +46,15 @@ Varnish tries to get a response from the cache. Because Fastly has sent the `GOV
 
 The application (for example, [government-frontend](/apps/government-frontend.html) or [collections](/apps/collections.html)) inspects the `GOVUK-ABTest-Example` header to determine which version of the content to return.
 
-It also adds an extra response header: `Vary: GOVUK-ABTest-Example`. This instructs Fastly and Varnish to cache both versions of the page separately.
+It also adds an extra response header: `vary: GOVUK-ABTest-Example`. This instructs Fastly and Varnish to cache both versions of the page separately.
 
 ### Varnish (response)
 
-Varnish saves the response in the cache. The `Vary: GOVUK-ABTest-Example` response header will ensure that `A` and `B` are cached separately.
+Varnish saves the response in the cache. The `vary: GOVUK-ABTest-Example` response header will ensure that `A` and `B` are cached separately.
 
 ### Fastly responds
 
-Fastly also saves the response in the cache. The `Vary: GOVUK-ABTest-Example` response header will ensure that `A` and `B` are cached separately.
+Fastly also saves the response in the cache. The `vary: GOVUK-ABTest-Example` response header will ensure that `A` and `B` are cached separately.
 
 If the original request did not have the `ABTest-Example` cookie, Fastly will set a `Set-Cookie` header to the response based on the value of the `GOVUK-ABTest-Example` header.
 
