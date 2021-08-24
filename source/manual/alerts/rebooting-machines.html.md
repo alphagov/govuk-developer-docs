@@ -200,10 +200,11 @@ There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a 
     ```
     gds govuk connect ssh -e <ENVIRONMENT> <MACHINE>
     ```
+
     For example, to SSH into the `integration` environment of the `rabbitmq-1` machine:
 
     ```
-    gds govuk connect ssh -e integration rabbitmq-1
+    gds govuk connect ssh -e integration rabbitmq:1
     ```
 
 1. Check that the RabbitMQ cluster is healthy by running `sudo rabbitmqctl cluster_status`.
@@ -211,22 +212,25 @@ There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a 
     This prints a list of expected machines and a list of currently running machines. If the 2 lists are the same then the cluster is healthy. The following output is an example of a healthy cluster:
 
     ```
-    [{nodes,[{disc,['rabbit@rabbitmq-1','rabbit@rabbitmq-2',
-        #                 'rabbit@rabbitmq-3']}]},
-        # {running_nodes,['rabbit@rabbitmq-2','rabbit@rabbitmq-3','rabbit@rabbitmq-1']},
-        # {cluster_name,<<"rabbit@rabbitmq-1.backend.production">>},
-        # {partitions,[]}]
+    Cluster status of node 'rabbit@ip-10-12-6-130'
+    [{nodes,[{disc,['rabbit@ip-10-12-4-186','rabbit@ip-10-12-5-128',
+                'rabbit@ip-10-12-6-130']}]},
+     {running_nodes,['rabbit@ip-10-12-4-186','rabbit@ip-10-12-5-128',
+                 'rabbit@ip-10-12-6-130']},
+     {cluster_name,<<"rabbit@ip-10-12-6-130.eu-west-1.compute.internal">>},
+     {partitions,[]},
+     {alarms,[{'rabbit@ip-10-12-4-186',[]},
+              {'rabbit@ip-10-12-5-128',[]},
+              {'rabbit@ip-10-12-6-130',[]}]}]
     ```
+    
 1. Reboot the machine by running `sudo reboot`.
 
 When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts.
 
 For more information on RabbitMQ-related alerts, see the [GOV.UK Puppet RabbitMQ `monitoring.pp` file](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/manifests/monitoring.pp).
 
-There have been two incidents after rebooting RabbitMQ machines. For more information, see the incident reports on the following incidents:
-
-- [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#)
-- [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv)
+There have been two incidents after rebooting RabbitMQ machines. For more information, see the [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#) and [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv) incident reports.
 
 ### Rebooting asset primary and secondary machines
 
