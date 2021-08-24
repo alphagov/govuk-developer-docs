@@ -36,12 +36,17 @@ For these reasons we’re not planning to enable auto-merge for Dependabot PRs.
 
 #### Add Dependabot to a repo
 
-1. Give Dependabot [access to the repo][access] (only GitHub org owners can do this)
-1. Go to [Dependabot admin][admin] and click "Add project"
+Any GOV.UK developer with production access can enable GitHub for a repo.
+
+1. Navigate to the repo on GitHub, click "Insights".
+1. Choose the "Dependency graph" menu item.
+1. Select the "Dependabot" tab.
+1. Click "Enable Dependabot".
+1. To configure Dependabot, a PR will need to be created that adds a configuration file. In [RFC #126](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md#custom-configuration) it was decided that a custom configutation would be used for GOV.UK applications. Once you have written a `.github/dependabot.yml` configuration file, create a pull request and merge this into the repo. Dependabot will automatically run following the merge.
 
 #### Ask Dependabot to bump dependencies
 
-By default Dependabot will bump dependencies once a day, but you can ask it to bump manually:
+By default Dependabot will bump dependencies at the frequency specified in the configuration file, but you can ask it to bump manually:
 
 Go to your project in GitHub and click on "Insights", then "Dependency graph", then "Dependabot", then "Last checked X minutes ago" next to the package manager of choice (e.g. Gemfile). Then you can click "Check for updates".
 
