@@ -25,7 +25,7 @@ ensure that systems are available. It is possible that a problem could occur
 where they can't reboot automatically.
 
 ```command-line
-$ fab <environment> all locksmith.status
+$ fab <ENVIRONMENT> all locksmith.status
 ```
 
 If a lock is in place, it will detail which machine holds the lock.
@@ -33,7 +33,7 @@ If a lock is in place, it will detail which machine holds the lock.
 You can remove it with:
 
 ```command-line
-$ fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
+$ fab <ENVIRONMENT> -H <machine-name> locksmith.unlock:"<machine-name>"
 ```
 
 Machines that are safe to reboot should then do so at the scheduled
@@ -111,7 +111,7 @@ Icinga alert.
 
 You can also follow this process manually:
 
-1. Login to the AWS Console for the relevant environment (`gds aws govuk-<environment>-<your-role> -l`).
+1. Login to the AWS Console for the relevant environment (`gds aws govuk-<ENVIRONMENT>-<your-role> -l`).
 1. Find the [Instance ID](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime)
    of the critical machine(s) (probably all 8 `blue-cache` machines)
 1. Navigate to the `blue-cache` Auto Scaling Group (ASG)
@@ -179,7 +179,7 @@ There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a 
     gds govuk connect ssh -e <ENVIRONMENT> <MACHINE>
     ```
 
-    For example, to SSH into the `integration` environment of the `rabbitmq-1` machine:
+    For example, to SSH into the `integration` environment of the `rabbitmq:1` machine:
 
     ```
     gds govuk connect ssh -e integration rabbitmq:1
