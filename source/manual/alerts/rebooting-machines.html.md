@@ -41,55 +41,33 @@ time.
 
 ## Manual rebooting
 
-> Before rebooting anything manually, see if any [special cases](#special-cases) apply to the type of machine you need to reboot.
+You can manually reboot virtual machines.
 
-### Rules of manual rebooting
+Icinga alerts state when machines need rebooting. These alerts tell you if it's a manual reboot, and whether it's in or out-of-hours.
 
-* Do not reboot more than one machine of the same class at the same time.
-* There are Icinga alerts that warn if machines need rebooting. Those
-  alerts will tell you if it's a manual reboot, and whether it's in-
-  or out-of-hours.
-* There is [extra guidance if the machine you are rebooting is in AWS](#rebooting-guidance-for-aws).
-  You may wish to pair with the RE interruptible/on call person.
+Do not reboot more than one machine of the same class at the same time.
 
-### Rebooting one machine
+The way that you reboot machines depends on the type of machine.
 
-First check whether the machine is safe to reboot. This information is
-stored in puppet in hieradata. For example,
-[here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/mysql_master.yaml)
-is an example of a machine that cannot be safely rebooted. The
-[default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
-is `safe_to_reboot::can_reboot: 'yes'`.
+### Before you start
 
-> If there is an incident which requires the rebooting of a machine
-> otherwise marked as 'no', then it may be done provided any downstream
-> effects of this reboot have been considered.
+Before you start manually rebooting, you must check whether the machine is safe to reboot.
 
-If you want to reboot the machine immediately:
+This information is stored in `govuk-puppet` in hieradata. If a machine is safe to reboot, the `govuk_safe_to_reboot` class will show `$can_reboot = 'yes'`.
 
-1. Schedule downtime in Icinga, or let 2ndline know that there will be
-   alerts for a machine being down.
+See the [`govuk_safe_to_reboot/manifests/init.pp` file in the `govuk-puppet` repo](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp) for more information.
 
-2. SSH into it and run:
+Because of an incident, you may need to reboot a machine that is not safe to reboot. You can reboot that machine as long as you have considered the downstream effects of this reboot.
 
-   ```sh
-   sudo reboot
-   ```
+### Rebooting AWS machines
 
-### Rebooting guidance for AWS
+If you need to reboot a machine in AWS, extended reboot times may result in AWS automatically terminating that machine.
 
-If rebooting machines in AWS, extended reboot times may result in the
-relevant machine being terminated automatically. If this happens, a
-new machine will be created automatically.
+If this happens, AWS should then automatically create a new machine to replace the old one.
 
-There have been a few cases when a reboot in AWS has not come back successfully
-and RE will be able to help in these cases. It also means RE can investigate
-any problems so it doesn't happen again and we have confidence in our ability
-to reboot machines in AWS.
+If AWS does not automatically create a new machine, [contact the Reliability Engineering team](mailto:reliability-engineering@digital.cabinet-office.gov.uk) for support.
 
-There's a [section on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws).
-
-## Special cases
+See the [documentation on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws) for more information.
 
 ### Rebooting Jenkins CI agents
 
@@ -266,3 +244,15 @@ sudo reboot
 ### Rebooting docker-management
 
 It is safe to reboot while no other unattended reboot is underway - see https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/docker_management.yaml
+
+### Rebooting other machines
+
+This guidance applies if you want to reboot a machine that is not one of the previous types.
+
+1. Schedule downtime in Icinga, or let GOV.UK 2nd line support know that there will be alerts for a machine being down.
+
+2. SSH into the machine and run:
+
+   ```sh
+   sudo reboot
+   ```
