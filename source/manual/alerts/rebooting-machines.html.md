@@ -130,7 +130,7 @@ You can also follow this process manually:
 You can see our MongoDB machines by running:
 
 ```
-$ fab $environment puppet_class:mongodb::server hosts
+$ fab <ENVIRONMENT> puppet_class:mongodb::server hosts
 ```
 
 All secondary Mongo machines will reboot overnight. If you don't need to
@@ -138,7 +138,7 @@ reboot the cluster right now, step the current primary down and allow it
 to reboot overnight:
 
 ```
-$ fab $environment -H $hostname mongo.step_down_primary
+$ fab <ENVIRONMENT> -H <HOSTNAME> mongo.step_down_primary
 ```
 
 Example:
@@ -151,8 +151,8 @@ $ fab aws_production -H ip-127-0-0-11.eu-west-1.compute.internal mongo.step_down
 
 The general approach for rebooting machines in a MongoDB cluster is:
 
-* Check cluster status with `fab $environment -H $hostname mongo.status`
-* Using `fab $environment -H $hostname mongo.safe_reboot`
+* Check cluster status with `fab <ENVIRONMENT> -H <HOSTNAME> mongo.status`
+* Using `fab <ENVIRONMENT> -H <HOSTNAME> mongo.safe_reboot`
   * Reboot the secondaries
   * Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
