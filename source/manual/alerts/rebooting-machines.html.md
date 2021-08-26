@@ -53,7 +53,7 @@ The way that you reboot machines depends on the type of machine.
 
 Before you start manually rebooting, you must check whether the machine is safe to reboot.
 
-This information is stored in `govuk-puppet` in hieradata. If a machine is safe to reboot, the `govuk_safe_to_reboot` class will show `$can_reboot = 'yes'`.
+This information is stored in the [`hieradata_aws` folder in the `govuk-puppet` repo](https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws). If a machine is safe to reboot, the `govuk_safe_to_reboot` class shows `$can_reboot = 'yes'`.
 
 See the [`govuk_safe_to_reboot/manifests/init.pp` file in the `govuk-puppet` repo](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp) for more information.
 
