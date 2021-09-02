@@ -45,7 +45,7 @@ environments is as follows:
 
 ## Accessing machines using SSH
 
-Follow the [instructions for connecting to a machine via SSH](/manual/howto-ssh-to-machines.html#connecting-with-plain-ssh). The machine classes you will need are `licensify_frontend` and `licensify_backend`. You will need to be on the VPN.
+Follow the [instructions for connecting to a machine via SSH](/manual/howto-ssh-to-machines.html#connecting-with-plain-ssh). The machine classes you will need are `licensing_frontend` and `licensing_backend`. You will need to be on the VPN.
 
 The files most relevant to the Licensify applications can be found in:
 
