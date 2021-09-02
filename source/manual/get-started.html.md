@@ -40,12 +40,13 @@ This command works for macOS or Linux.
 ## 2. Set up your GitHub account
 
 1. Set up a [GitHub] account. You can use your existing personal account.
-1. Ask your tech lead to add you to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos & CI.
-
-    Select __Accept__ in the GitHub email invitation when you receive this email. If your tech lead is not available, ask one of the [GDS GitHub owners](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gds-github-owners/members?pli=1).
 1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer].
 
     If your tech lead is not available, ask in the [2nd line support Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
+1. Ask your tech lead to add you to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos & CI.
+
+    Select __Accept__ in the GitHub email invitation when you receive this email. If your tech lead is not available, ask one of the [GDS GitHub owners](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/gds-github-owners/members?pli=1).
+
 1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key] for your GitHub account.
 1. [Add the SSH key to your GitHub account][add-ssh-key].
 1. Add the following code into your `.zshrc`, `~/.bash_profile`, or equivalent so that it is persistent between restarts:
