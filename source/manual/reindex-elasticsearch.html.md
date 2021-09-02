@@ -70,8 +70,8 @@ bash -c 'curl "$ELASTICSEARCH_URI/_cat/indices?v"'
 
 ### Out-of-date search indices
 
-This step is only necessary if you ran reindexing job during working hours,
-which means that content updated in whitehall will be missing from search.
+If any content has been published, updated or removed during the indexing
+job, then the search index will be out-of-date.
 
 See [Fix out-of-date search indices][fix-out-of-date-search-indices]
 for details.
