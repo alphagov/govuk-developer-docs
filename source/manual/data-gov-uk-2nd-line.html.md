@@ -49,6 +49,16 @@ Since CKAN was upgraded users have needed to login using their email address ins
 11. Click 'Update profile'.
 12. Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.
 
+### Update a user account name
+
+Since CKAN was upgraded some usernames with non alphanumeric or uppercase characters are no longer valid and users cannot log in to change their password. This cannot be done through the interface so you must make your changes in the database. In order to update their username:
+
+1. Follow the [instructions](manual/data-gov-uk-supporting-ckan.html#accessing-the-database) to access the CKAN database.
+2. Enter the following to see your user in the database and check you've got the right one `SELECT * from "user" where name = 'old-username' limit 1;`.
+3. Enter the following to update the username `UPDATE "user" SET name = 'new-username' WHERE name = 'old-username';`
+4. Check they were updated by repeating step 2.
+12. Reply to the user to tell them that their username has been changed and what it's been changed to.
+
 ### Create a publishing organisation
 
 1. Login to [CKAN][ckan] as a sysadmin user (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
