@@ -41,11 +41,9 @@ To reindex, you have two options:
 a) If you need to reindex every index you can use the [Search API reindex with new schema] job.
 
 b) If you only need to reindex one specific index you can run a [rake task
-manually], using:
+manually], using the `search:migrate_schema` rake task:
 
-```
-search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate
-```
+<%= RunRakeTask.links("search-api", "search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate") %>
 
 Current index aliases (`alias_of_index_to_migrate`) available to reindex include:
 
@@ -82,14 +80,9 @@ Reindexing does not delete the old index. This lets us switch back to the old
 index if there is a serious problem with the new one.
 
 Once you're confident that the reindexing was successful, delete the old
-(unaliased) index using the search-api rake task:
+(unaliased) index using the `search:clean` rake task:
 
-```
-govuk_setenv search-api bundle exec \
-rake search:clean SEARCH_INDEX=alias_of_index_to_clean_up
-```
-
-You can also run this task from Jenkins.
+<%= RunRakeTask.links("search-api", "search:clean SEARCH_INDEX=alias_of_index_to_clean_up") %>
 
 Avoid leaving old indices around for more than a few days. If enough
 old indices hang around, we may hit space limitations and be unable to
@@ -122,14 +115,9 @@ The final part of the reindex is to switch Elasticsearch over to the newly creat
 If you need to cancel the reindexing while it's in progress:
 
 1. Stop the reindexing rake task
-1. Unlock the old index by running the search-api rake task:
+1. Unlock the old index by running the `search:unlock` rake task:
 
-    ```
-    govuk_setenv search-api bundle exec \
-    rake search:unlock SEARCH_INDEX=alias_of_index_to_unlock
-    ```
-
-    You can also run this task from Jenkins.
+    <%= RunRakeTask.links("search-api", "search:unlock SEARCH_INDEX=alias_of_index_to_unlock") %>
 
 This doesn't actually stop the reindexing, because reindexing is an internal
 Elasticsearch progress triggered by the rake task. It will stop the rake task
@@ -157,14 +145,9 @@ search box (see above) then:
 #### To switch back to the old index
 
 If you discover a problem after reindexing and need to switch back to the old
-index, run this search-api rake task:
+index, run the `search:switch_to_named_index` rake task:
 
-```
-govuk_setenv search-api bundle exec \
-rake search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias
-```
-
-You can also run this task on Jenkins.
+<%= RunRakeTask.links("search-api", "search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias") %>
 
 where `full_index_name` is the full name of the new index, including the date
 and UUID, e.g. `govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498`.
