@@ -39,12 +39,12 @@ You may wish to test first on Integration:
 [`publishing_api:bulk_republish:document_type[DocumentClass]`][republish-whitehall-document-type-jenkins-integration]
 
 For a short list of Content IDs, run:
-[`publishing_api:bulk_republish:republish_documents_by_content_ids[content_id_1 content_id_2]`][republish-whitehall-content-ids-jenkins]
+[`publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]`][republish-whitehall-content-ids-jenkins]
 
 For a significant number of Content IDs:
 Some preparation is needed for this as a CSV file needs to be in place. The CSV should have a column called content_id that contains all the relevant IDS. This should be added to the whitehall repository at:
 lib/tasks/{FILENAME}.csv
-[`publishing_api:bulk_republish:republish_documents_by_content_ids_from_csv[csv_file_name]`][republish-whitehall-csv-jenkins]
+[`publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]`][republish-whitehall-csv-jenkins]
 Ensure that the CSV is removed again after the job completes.
 
 To republish all documents:
@@ -71,8 +71,8 @@ or you can resync all documents:
 [republish-whitehall-doc-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug]
 [republish-whitehall-org-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_organisation[slug]
 [republish-whitehall-document-type-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:document_type[DocumentClass]
-[republish-whitehall-content-ids-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:republish_documents_by_content_ids[content_id_1%20content_id_2]
-[republish-whitehall-csv-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:publishing_api:bulk_republish:republish_documents_by_content_ids_from_csv[csv_file_name]
+[republish-whitehall-content-ids-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:documents_by_content_ids[content_id_1%20content_id_2]
+[republish-whitehall-csv-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]
 [republish-whitehall-all-jenkins]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:all
 [vpn]:https://docs.publishing.service.gov.uk/manual/vpn.html
 [republish-whitehall-document-type-jenkins-integration]:https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:document_type[DocumentClass]
