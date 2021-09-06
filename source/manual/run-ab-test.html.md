@@ -57,14 +57,19 @@ It's good to have a margin for error, to (for example) correct faulty tracking
 at the start, or perhaps run the test for a few more days at the end if you
 need more data.
 
-## 2. How to set up an A/B test
+## 2. Set up an A/B test
 
+1. Write the A/B test. Use the information in the [govuk_ab_testing gem][govuk_ab_testing] to understand how to serve different versions to your users.
 1. Add your test to the [A/B test register][register].
 1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test.
 1. Create dictionary and A/B test files in [the govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example] and an [example for the A/B configuration][cdn-config-example] (these used to be in a different repo). For more details, see the [dictionaries README][dictionaries-readme].
-1. Deploy the dictionary changes to each environment using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The API key is in the [govuk-secrets repo][govuk-secrets-fastly] and the dictionaries must be deployed to the `www` vhost.
-1. Deploy the Fastly configuration to each environment using the [Deploy_CDN][deploy-cdn] Jenkins job. Use the same parameters as in step 4. You can test it on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately - there is no caching of the CDN config.
-1. Use the [govuk_ab_testing gem][govuk_ab_testing] to serve different versions to your users. It can be configured with the analytics dimension selected in step 2.
+
+## Deploy and activate an A/B test
+
+To deploy and activate an A/B test, you must [set up a personal API token](https://docs.publishing.service.gov.uk/manual/cdn.html#deploying-fastly) in your Fastly account.
+
+1. Deploy the dictionary changes to each environment using the [Update_CDN_Dictionaries][update-cdn-dictionaries] Jenkins job. The API key is in the [govuk-secrets repo][govuk-secrets-fastly]. You must deploy the dictionaries to the `www` vhost.
+1. Deploy the Fastly configuration to each environment using the [Deploy_CDN][deploy-cdn] Jenkins job. Use the same parameters the previous step. You can test the deployment on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately as there is no caching of the CDN config.
 1. To activate or deactivate the test, or to change the B percentage, update your test in [the govuk-cdn-config repo][govuk-cdn-config] and deploy the dictionaries.
 
 If you're making a change to Search API, you may also want to test using
