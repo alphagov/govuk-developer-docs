@@ -54,7 +54,7 @@ To raise a ticket:
 ## Understanding what Reliability Engineering can assist with
 
 There is a broad explanation of the different areas of support in GOV.UK in
-[who do I ask for support?](/manual/who-do-i-ask-for-support.html).
+[ask for help](/manual/ask-for-help.html).
 
 More specificially to GOV.UK these are things that fall under the
 responsibility of Reliability Engineering (RE):
