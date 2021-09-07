@@ -34,14 +34,13 @@ everything is working OK.
 
 ### Decide how the variants should be split
 
-**Bear in mind that users who have not opted in to analytics cookies will not be assigned to a variant by Fastly and will not have a cookie set.**
+**Bear in mind that users who have not opted in to analytics cookies will not be assigned to a variant by Fastly and will not have a cookie set.** Until a user has had a cookie set they will not be part of the test and could be assigned variant `Z`.
 
-A higher percentage on your B variant will reduce the time that you need to run
-the test.  Your performance analyst can help here.
+A higher percentage on your B variant will reduce the time that you need to run the test. Your performance analyst can help here.
 
-You may want to start with a small B percentage and ramp up gradually, either for
-load reasons, or if there's something a bit controversial in your test that may
-perform particularly poorly with users.
+You may want to start with a small B percentage and ramp up gradually, either for load reasons, or if there's something a bit controversial in your test that may perform particularly poorly with users.
+
+It is also worth investigating whether running the variations at 0% for some time is useful - this allows the variation to be manually switched on by users, giving other teams a chance to see what impact the test will have on their work.
 
 ### Choose your cookie expiry
 
