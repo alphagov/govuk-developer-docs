@@ -64,7 +64,7 @@ If you know you cannot solve a ticket immediately, fill in a "Public reply" to t
 know you’re looking into it.
 
 Read [Common 2nd line support tasks for data.gov.uk](/manual/data-gov-uk-2nd-line.html), which outlines
-some of the common DGU tickets that come in and how to fix them.
+some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
 
 You can use Internal Notes to keep a log of actions you've taken so far: this can make it easier for other
 staff to pick up where you left off if you're unable to solve the ticket yourself. Please note that departments
@@ -85,5 +85,5 @@ can get in touch. Do this by clicking the "Apply macro" button at the bottom of 
 choosing the "GOV.UK 2nd line tech: pending for 5+ days" option.
 
 [zendesk-create-account]: https://govuk.zendesk.com/auth/v2/login/registration?auth_origin=3194076%2Cfalse%2Ctrue&amp;brand_id=3194076&amp;return_to=https%3A%2F%2Fgovuk.zendesk.com%2Fhc%2Fen-us&amp;theme=hc
-[zendesk-queue]: https://govuk.zendesk.com/agent/filters/360000051009
+[zendesk-queue]: https://govuk.zendesk.com/agent/filters/30791708
 [zendesk-triage-diagram]: https://docs.google.com/presentation/d/1EotoM2CVtqlnx54Qz5bP7OyIx5c9ji_GptUuymHkBrc/edit
