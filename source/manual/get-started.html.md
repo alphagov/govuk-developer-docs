@@ -148,18 +148,20 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 1. Create a user manifest file at `~/govuk/govuk-puppet/modules/users/manifests/<FIRSTNAMELASTNAME>.pp` with the following code:
 
     ```
-    class users::<GITHUB USERNAME> {
-      govuk_user { '<GITHUB USERNAME>':
+    # Creates the <FIRSTNAMELASTNAME> user
+    class users::<FIRSTNAMELASTNAME> {
+      govuk_user { '<FIRSTNAMELASTNAME>':
         fullname => 'FIRSTNAME LASTNAME',
-        email    => 'GITHUB EMAIL',
+        email    => 'WORK EMAIL',
         ssh_key  => '<SSH-PUBLIC-KEY-VALUE>',
       }
     }
     ```
 
-    Enter your GitHub information and SSH public key value into the file. For example:
+    Enter your information and SSH public key value into the file. For example:
 
     ```
+    # Creates the johnsmith user
     class users::<johnsmith> {
       govuk_user { '<johnsmith>':
         fullname => 'John Smith',
