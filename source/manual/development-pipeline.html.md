@@ -94,9 +94,9 @@ If you are unable to merge your own PR, you should ask
 [someone else](https://github.com/orgs/alphagov/teams/gov-uk-production/members)
 to merge (and deploy) it for you.
 
-Code that is merged to `master` is tested again on CI. This is because
-the `master` branch may have changed since the tests last ran on the PR.
-If the tests on `master` pass, Jenkins pushes a `release_123` git tag to
+Code that is merged to `main` is tested again on CI. This is because
+the `main` branch may have changed since the tests last ran on the PR.
+If the tests on `main` pass, Jenkins pushes a `release_123` git tag to
 GitHub.
 
 > **WARNING**: some applications have Continuous Deployment enabled,
@@ -130,7 +130,7 @@ your changes work in Integration before deploying downstream:
 - Check the results of the [smoke tests][smokey].
 - Look for any Icinga alerts related to your application.
 
-Our apps should always be in a state where `master` is deployable. You
+Our apps should always be in a state where `main` is deployable. You
 should raise a PR to revert your changes if they cause a problem and
 you're unable to resolve that problem straight away.
 
