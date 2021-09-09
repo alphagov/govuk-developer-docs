@@ -6,9 +6,11 @@ layout: manual_layout
 section: A/B testing
 ---
 
+Before you run an A/B or multivariate test, you should read the [guidance on how A/B testing works](/manual/ab-testing.html).
+
 ## 1. Prepare the A/B test
 
-### Choose your test name
+### Choose a test name
 
 Choose a short test name, and prefix that test name with `ABTest-`. For example, `ABTest-dvlacheck`
 
@@ -24,39 +26,18 @@ content will tend to miss the cache more often.  This adds load to origin server
 You can minimise the impact of this by configuring your test to only return A/B
 testing headers on pages that you are measuring. See this [example testing navigation on mainstream guides](https://github.com/alphagov/government-frontend/blob/9ba288dd809a2246ec349c708f693ba306c69e7e/app/controllers/concerns/guide_nav_ab_testable.rb#L36) for more information.
 
-You may want to deploy your test at a quieter time of day (such as 9:30am) rather
-than the middle of the day. Check when a quiet time for your test case is.
+You may want to deploy your test at a quieter time of day (such as 9:30am) rather than the middle of the day. Check when a quiet time for your test case is.
 
-Make sure you monitor your test for some time after deployment.
-
-### Decide how to split the variants
-
-Decide how the variants should be split between A and B. A higher percentage on your B variant will reduce the time that you need to run the test.  Your performance analyst can help here.
-
-Note that users who have not opted in to analytics cookies will not be assigned to a variant by Fastly and will not have a cookie set.
-
-You can start with a small B percentage and ramp up gradually to make sure the load on GOV.UK is not too large. This is also a good method to use if your B variant might perform poorly with users.
-
-### Choose your cookie expiry time
-
-Make your cookie expiry time short until you have established traffic across
-the desired split between your variants.
-
-Once your variants are at the desired proportions, make the cookie expiry time longer than the expected test duration.  This makes sure that users are kept in the same variant for the duration of the test which allows them to get used to whatever changes you have made.
-
-Build in a margin for error so you can, for example:
-
-- correct faulty tracking at the start
-- run the test for a few more days at the end if you need more data
+Make sure you monitor your test after deployment.
 
 ## 2. Set up an A/B test
 
 1. Write the A/B test. Use the information in the [govuk_ab_testing gem][govuk_ab_testing] to understand how to serve different versions to your users.
 1. Add your test to the [A/B test register][register].
 1. If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a [GA dimension][analytics-dimensions] to use for your test.
-1. Create dictionary and A/B test files in [the govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example] and an [example for the A/B configuration][cdn-config-example] (these used to be in a different repo). For more details, see the [dictionaries README][dictionaries-readme].
+1. Create dictionary and A/B test files in the [govuk-cdn-config repo][govuk-cdn-config]. See an [example for the dictionaries][dictionary-config-example] and an [example for the A/B configuration][cdn-config-example]. For more information, see the [dictionaries README][dictionaries-readme].
 
-## Deploy and activate an A/B test
+## 3. Deploy and activate an A/B test
 
 To deploy and activate an A/B test, you must [set up a personal API token](https://docs.publishing.service.gov.uk/manual/cdn.html#deploying-fastly) in your Fastly account.
 
@@ -66,7 +47,7 @@ To deploy and activate an A/B test, you must [set up a personal API token](https
 
 If you're making a change to Search API, you may also want to test using
 the [search performance explorer](https://github.com/alphagov/search-performance-explorer/).
-To do this, [add your A/B test to the application](https://github.com/alphagov/search-performance-explorer/commit/01e3d21ceca96951425b5ddc87116f0756411691), and manually deploy the test to Heroku.
+To do this, [add your A/B test to the application](https://github.com/alphagov/search-performance-explorer/commit/01e3d21ceca96951425b5ddc87116f0756411691) and manually deploy the test to Heroku.
 
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [govuk-secrets-fastly]: https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/2nd_line_api_token.gpg
@@ -75,10 +56,10 @@ To do this, [add your A/B test to the application](https://github.com/alphagov/s
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing
 [cdn-config-example]: https://github.com/alphagov/fastly-configure/pull/29/files
 
-## 3. How to remove your A/B test
+## 4. Remove the A/B test
 
 1. Remove your test from the [ab_tests configuration file][configuration-file] in the [govuk-cdn-config][govuk-cdn-config] repo and remove the dictionary files.
-1. Deploy the Fastly configuration to each environment using the [Deploy_CDN Jenkins job][deploy-cdn]. Set the `vhost` to `www`. The credentials are in the `govuk-secrets` repo.
+1. Deploy the Fastly configuration to each environment using the [Deploy_CDN Jenkins job][deploy-cdn]. Set the `vhost` to `www`. The credentials are in the [`govuk-secrets` repo](https://github.com/alphagov/govuk-secrets).
 1. Deploy the `govuk-cdn-config` changes to each environment using the [Update_CDN_Dictionaries Jenkins job][update-cdn-dictionaries]. Use the same parameters as the previous step.
 1. Mark the end date in the [A/B test register][register].
 
