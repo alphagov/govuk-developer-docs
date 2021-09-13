@@ -30,13 +30,25 @@ it).
 
 ## Triaging a ticket
 
-If you have any doubts as to the legitimacy or urgency of a ticket, it should be deferred to the delivery manager.
+If you have any doubts as to the legitimacy or urgency of a ticket, it should be deferred to the delivery manager or 2nd line tech lead.
 
 Once you've established that a ticket is legitimate, you should follow [the process in this diagram][zendesk-triage-diagram].
 There is a printout on the 2nd line desk.
 
 In all cases, 2nd line will respond to the ticket, even if it is simply a note to the user saying that
 you've passed their request to the relevant team.
+
+> If you are unsure which group to triage a ticket to, you can reassign to
+`2nd/3rd Line--Zendesk Administration`, and they can help route the ticket to the
+appropriate place.
+
+Below are some of the groups we often triage tickets to:
+
+* Content support - `2nd Line--GOV.UK Content Triage, Gov't`
+* GDPR and Privacy enquiries - `3rd Line--GDS Privacy`
+* Licensing - `1st Line--Licensing Support`
+* Security issues - `3rd Line--Cyber Security`
+* Spam - `2nd Line--User Support Escalation`
 
 ## Passing to another government department or service team
 
@@ -54,7 +66,7 @@ GOV.UK have committed to a minimum service level agreement for 2nd line support.
 * 80% of general enquiries (public tickets) resolved within 5 working days
 * 70% of department tickets are closed within 5 working days
 
-If the volume of Zendesk tickets is overwhelming, talk to the delivery manager or a senior tech member
+If the volume of Zendesk tickets is overwhelming, talk to the delivery manager or 2nd line tech lead
 for assistance.
 
 ## Picking up a ticket
