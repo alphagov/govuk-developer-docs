@@ -243,7 +243,13 @@ sudo reboot
 
 ### Rebooting docker-management
 
-It is safe to reboot while no other unattended reboot is underway - see https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/docker_management.yaml
+It is safe to reboot while no other unattended reboot is underway:
+
+1. Set `govuk_unattended_reboot::enabled` to `false` in the [govuk-puppet common configuration](https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166) - you can do this in a branch.
+1. Build the branch of govuk-puppet to Production
+1. Wait half an hour to allow all machines to pull from the puppetmaster
+1. Reboot the docker-management machine (`sudo reboot`)
+1. Deploy the previous release of govuk-puppet to Production
 
 ### Rebooting other machines
 
