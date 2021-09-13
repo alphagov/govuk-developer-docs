@@ -41,8 +41,7 @@ init scripts have been run.
 
 ## Treatment
 
-Replatforming have a [card](https://trello.com/c/uymM8qmy/538-fix-intermittently-broken-provisioning-in-ec2-govuk-because-of-unattended-reboot) to fix this.
+The recommended fix is to run `sudo /usr/local/bin/govuk_sync_apps` once puppet has run cleanly on the machine.
+Note that the script takes some time to complete as there is a `sleep 180` in it.
 
-Until then, the recommended fix is to run `sudo /usr/local/bin/govuk_sync_apps` once puppet has run cleanly on the machine. Note that the script takes some time to complete as there is a `sleep 180` in it.
-
-Failing that, you could try [reprovisioning the machine](/manual/reprovision.html). If the issue persists, you may need to temporarily disable `unattended reboot` by adding `govuk_unattended_reboot::enabled: false` to the relevant hiera. You'll need to deploy the branch of Puppet before creating the new instances again.
+Failing that, you could try [reprovisioning the machine](/manual/reprovision.html). If the issue persists, you may need to temporarily disable `unattended reboot` by setting `govuk_unattended_reboot::enabled` to `false` in [common.yaml](https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166). You'll need to deploy the branch of Puppet before creating the new instances again.
