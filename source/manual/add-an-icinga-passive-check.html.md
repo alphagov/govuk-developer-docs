@@ -49,3 +49,15 @@ by configuring Puppet.
 [parameterized build trigger]: https://github.com/alphagov/govuk-puppet/blob/ddf7d9f0a921638a0fd3e9b69121e766722ddacf/modules/govuk_jenkins/templates/jobs/production/copy_data_to_staging.yaml.erb#L59-L69
 [warning level example]:https://github.com/alphagov/govuk-puppet/pull/6118/commits/f162bbd0e7ff9497b4e0b2963121593cda83f3aa#diff-f1cd3cc148bc84dc0ded35ef53cb0dd9R42
 [exported resource]: https://github.com/alphagov/govuk-puppet/blob/984ddd98fd81a529cb2ed3215be3c7f0a2a08acd/modules/govuk_jenkins/manifests/job/copy_data_to_integration.pp#L29-L35
+
+## Troubleshooting "Freshness threshold exceeded" warnings
+
+You can manually refresh a 'passive' Icinga check by running the
+[Success_Passive_Check job](https://deploy.blue.production.govuk.digital/job/Success_Passive_Check/).
+You'll need to provide values for `NSCA_CHECK_DESCRIPTION` and `NSCA_OUTPUT`,
+which you can derive from the configuration for the alert.
+
+For example, the ["Whitehall run broken link checker" configuration](https://github.com/alphagov/govuk-puppet/blob/b4d86bf2b58464dc5158e26882234848a729feaf/modules/govuk_jenkins/templates/jobs/whitehall_run_broken_link_checker.yaml.erb#L31-L32) refers to a `@service_description` variable that is populated by the [corresponding Puppet code](https://github.com/alphagov/govuk-puppet/blob/171df11da7f7881e3920ec9f5b208f1bfdb3d6db/modules/govuk_jenkins/manifests/jobs/whitehall_run_broken_link_checker.pp#L8). So, in this example:
+
+* `NSCA_CHECK_DESCRIPTION` = "Runs a rake task on Whitehall that generates a broken link report"
+* `NSCA_OUTPUT` = "Runs a rake task on Whitehall that generates a broken link report success"
