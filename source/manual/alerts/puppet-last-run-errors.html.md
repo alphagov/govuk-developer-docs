@@ -8,6 +8,8 @@ section: Icinga alerts
 
 This alert triggers when there's an error while running Puppet on a machine.
 
+### View the logs
+
 To view the errors in Kibana, first login to [Logit](/manual/logit.html), and then
 run the following query (where `$hostname` is the short name of the machine
 linked to the alert, for example `ip-10-1-2-3`):
@@ -20,11 +22,17 @@ You may also SSH into the machine and look at `syslog`:
 tail /var/log/syslog
 ```
 
+### Re-run Puppet
+
 You can also try running Puppet again and check the output:
 
 ```
 govuk_puppet --test
 ```
+
+If you see `Skipping because of failed dependencies` in the output, and the error `dpkg was interrupted`, then it is likely the [new instance failed to provision](/manual/new-instances-fail-to-provision.html).
+
+### Check the puppet lock
 
 Sometimes this alert means that there is a puppet lock on the machine, so puppet won't be run. You can list current locks by running:
 

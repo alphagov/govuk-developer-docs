@@ -10,6 +10,8 @@ parent: "/manual.html"
 [dgu-docs]: https://guidance.data.gov.uk
 [find]: apps/datagovuk_find
 [publish]: apps/datagovuk_publish
+[v1-endpoint]: https://github.com/ckan/ckan/blob/ckan-2.9.2/CHANGELOG.rst#v280-2018-05-09
+[ckan-issue]: https://github.com/ckan/ckan/issues/3484
 
 This document details some of the requests that GOV.UK 2nd line support may receive regarding data.gov.uk.  [Separate documentation][dgu-docs] exists for publishers.
 
@@ -48,6 +50,16 @@ Since CKAN was upgraded users have needed to login using their email address ins
 10. Set a new password for the user.
 11. Click 'Update profile'.
 12. Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.
+
+### Update a user account name
+
+Since CKAN was upgraded some usernames with non alphanumeric or uppercase characters are no longer valid and users cannot log in to change their password. This cannot be done through the interface so you must make your changes in the database. In order to update their username:
+
+1. Follow the [instructions](manual/data-gov-uk-supporting-ckan.html#accessing-the-database) to access the CKAN database.
+2. Enter the following to see your user in the database and check you've got the right one `SELECT * from "user" where name = 'old-username' limit 1;`.
+3. Enter the following to update the username `UPDATE "user" SET name = 'new-username' WHERE name = 'old-username';`
+4. Check they were updated by repeating step 2.
+12. Reply to the user to tell them that their username has been changed and what it's been changed to.
 
 ### Create a publishing organisation
 
@@ -226,9 +238,45 @@ Publishers upload their organograms as a Excel (XLS) file that contains macros. 
 
 It is possible to access analytics for datasets. If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to Martin Lugton or another member of the Platform Health product team.
 
+## Differences in CKAN 2.9 vs 2.7/2.8
+
+If a publisher is attempting to access data directly via the use of the CKAN API endpoints they might encounter problems processing the response:
+
+- V1 of the API endpoint has been [dropped][v1-endpoint]
+
+This means that the extras block in some cases has been flattened, this was the previous response:
+
+>     {
+>      "id": "<package id>",
+>      ...
+>      "extras": {
+>         "harvest_object_id": "<harvest object id>",
+>         "contact-name": "Example User",
+>         "harvest_source_title": "example harvest #1",
+>         "harvest_source_id": "<harvest source id>"
+>       }
+>     }
+
+In 2.9 the response looks like this:
+
+>     {
+>      "id": "<package id>",
+>      ...
+>      "harvest_object_id": "<harvest object id>",
+>      "contact-name": "Example User",
+>      "harvest_source_title": "example harvest #1",
+>      "harvest_source_id": "<harvest source id>"
+>     }
+
+- Accepted Solr params for dataset / package searching have changed:
+  - `limit` and `offset` have been replaced by `rows` and `start` respectively.
+  - `all_fields` is no longer supported and will cause an error response.
+
+- The `revision_id` is also no longer available, although this has long been deprecated for a number of [reasons][ckan-issue] by the CKAN team.
+
 ## Revision log
 
 There is a [revision log](https://ckan.publishing.service.gov.uk/revision) which shows the most recent edits to CKAN datasets, harvester and users performed by all users.
 
-[schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/helpers.py#L119-L213
-[test-schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/master/ckanext/datagovuk/tests/test_helpers.py#L63-L157
+[schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/main/ckanext/datagovuk/helpers.py#L119-L213
+[test-schemas]: https://github.com/alphagov/ckanext-datagovuk/blob/main/ckanext/datagovuk/tests/test_helpers.py#L63-L157

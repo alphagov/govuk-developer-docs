@@ -101,8 +101,8 @@ environment variables configured before you can successfully deploy the app to
 Heroku.
 
 Check out the `app.json` files on both
-[collections](https://github.com/alphagov/collections/blob/master/app.json) and
-[government-frontend](https://github.com/alphagov/government-frontend/blob/master/app.json)
+[collections](https://github.com/alphagov/collections/blob/main/app.json) and
+[government-frontend](https://github.com/alphagov/government-frontend/blob/main/app.json)
 for examples of necessary environment variables.
 
 You can create the application via the `app.json` file.
@@ -124,7 +124,7 @@ If all goes well, you will be able to see your app on:
 ## Create a new pipeline on Heroku
 
 Once you have a successful deployment of your app into Heroku and the `app.json`
-file commited to the repository and in your master branch, you will now be able
+file commited to the repository and in your main branch, you will now be able
 to start using review apps.
 
 On Heroku, create a new pipeline and enable automatic review apps when prompted.

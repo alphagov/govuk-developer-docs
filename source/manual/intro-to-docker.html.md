@@ -369,4 +369,4 @@ But there's more! Check out the [next tutorial in this series](/manual/intro-to-
 [dockerignore]: https://docs.docker.com/engine/reference/builder/#dockerignore-file
 [privileged]: https://github.com/jessfraz/dockerfiles/issues/350#issuecomment-477342782
 [docker-compose]: https://docs.docker.com/compose/
-[content-publisher-ruby]: https://github.com/alphagov/content-publisher/blob/master/.ruby-version
+[content-publisher-ruby]: https://github.com/alphagov/content-publisher/blob/main/.ruby-version

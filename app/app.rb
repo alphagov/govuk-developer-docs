@@ -31,21 +31,12 @@ class App
     "Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml"
   end
 
-  def carrenza_machine
-    Applications.carrenza_machines.each do |puppet_class, keys|
-      if keys["apps"].include?(app_name) || keys["apps"].include?(puppet_name)
-        return puppet_class
-      end
-    end
-    "Unknown - have you configured and merged your app in govuk-puppet/hieradata/common.yaml"
-  end
-
   def production_hosted_on_aws?
     production_hosted_on == "aws"
   end
 
   def machine_class
-    app_data["machine_class"] || (production_hosted_on_aws? ? aws_puppet_class : carrenza_machine)
+    app_data["machine_class"] || aws_puppet_class
   end
 
   def production_hosted_on
@@ -115,7 +106,7 @@ class App
   end
 
   def puppet_url
-    return unless production_hosted_on.in?(%w[aws carrenza])
+    return unless production_hosted_on_aws?
 
     return app_data["puppet_url"] if app_data["puppet_url"]
 
@@ -123,7 +114,7 @@ class App
   end
 
   def deploy_url
-    return if app_data["deploy_url"] == false || production_hosted_on == "heroku"
+    return if app_data["deploy_url"] == false || %w[none heroku].include?(production_hosted_on)
 
     if production_hosted_on == "paas"
       app_data["deploy_url"]
@@ -135,13 +126,7 @@ class App
   def dashboard_url
     return if app_data["dashboard_url"] == false
 
-    app_data["dashboard_url"] || (
-      if production_hosted_on_aws?
-        "https://grafana.production.govuk.digital/dashboard/file/#{app_name}.json"
-      else
-        "https://grafana.publishing.service.gov.uk/dashboard/file/#{app_name}.json"
-      end
-    )
+    app_data["dashboard_url"] || "https://grafana.production.govuk.digital/dashboard/file/#{app_name}.json"
   end
 
   def publishing_e2e_tests_url
@@ -188,22 +173,18 @@ class App
   end
 
   def can_run_rake_tasks_in_jenkins?
-    production_hosted_on.in?(%w[aws carrenza])
+    production_hosted_on_aws?
   end
 
   def rake_task_url(environment, rake_task = "")
+    return unless production_hosted_on_aws?
+
     query_params = "?TARGET_APPLICATION=#{app_name}&MACHINE_CLASS=#{machine_class}&RAKE_TASK=#{rake_task}"
 
-    case production_hosted_on
-    when "aws"
-      if environment == "integration"
-        "https://deploy.#{environment}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
-      else
-        "https://deploy.blue.#{environment}.govuk.digital/job/run-rake-task/parambuild/#{query_params}"
-      end
-    when "carrenza"
-      environment_prefix = environment == "production" ? "" : ".#{environment}"
-      "https://deploy#{environment_prefix}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
+    if environment == "integration"
+      "https://deploy.#{environment}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
+    else
+      "https://deploy.blue.#{environment}.govuk.digital/job/run-rake-task/parambuild/#{query_params}"
     end
   end
 

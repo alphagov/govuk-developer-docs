@@ -74,7 +74,7 @@ task :check_puppet_names do
     invalid_puppet_names << app.puppet_url
   end
   if invalid_puppet_names.count.zero?
-    puts "All AWS/Carrenza apps have a valid puppet manifest ✅"
+    puts "All AWS apps have a valid puppet manifest ✅"
   else
     errors = invalid_puppet_names.map { |url| "\n\t #{url}" }
     abort("Expected the following puppet manifests to exist: #{errors.join('')}")

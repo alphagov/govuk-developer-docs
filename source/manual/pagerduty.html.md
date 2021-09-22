@@ -40,10 +40,6 @@ anyone else being phoned.
 
 ### Triggering the drill manually
 
-> **Note**: The drill runs within the AWS environment while we migrate
-> our apps to AWS. If you need to trigger the drill manually, make sure
-> you're logged in to the AWS monitoring instance.
-
 To trigger the drill manually, follow these steps:
 
 1. SSH onto the monitoring box:

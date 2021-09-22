@@ -9,11 +9,11 @@ parent: "/manual.html"
 
 This alert indicates that Email Alert API has work that has not been processed in the generous amount of time we expect it to have been. Which alert you see depends on the type of work.
 
-* **[`unprocessed content changes`](https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_content_change_worker.rb)**.
+* **[`unprocessed content changes`](https://github.com/alphagov/email-alert-api/blob/main/app/workers/process_content_change_worker.rb)**.
 
   * This means there is a signficiant delay in generating emails for subscribers with "immediate" frequency subscriptions in response to [a change in some content] on GOV.UK.
 
-* **[`unprocessed messages`](https://github.com/alphagov/email-alert-api/blob/master/app/workers/process_message_worker.rb)**.
+* **[`unprocessed messages`](https://github.com/alphagov/email-alert-api/blob/main/app/workers/process_message_worker.rb)**.
 
   * This means there is a significant delay in generating emails for subscribers with "immediate" frequency subscriptions in response to [a custom message].
 
@@ -56,9 +56,9 @@ If all else fails, you can try running the work manually from a console. [The au
 > ```
 
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=6h
-[a custom message]: https://github.com/alphagov/email-alert-api/blob/master/docs/api.md#post-messages
-[a change in some content]: https://github.com/alphagov/email-alert-api/blob/master/docs/api.md#post-content-changes
+[a custom message]: https://github.com/alphagov/email-alert-api/blob/main/docs/api.md#post-messages
+[a change in some content]: https://github.com/alphagov/email-alert-api/blob/main/docs/api.md#post-content-changes
 [Kibana]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api%20AND%20@fields.worker:%20ProcessContentChangeWorker')),sort:!('@timestamp',desc))
-[RecoverLostJobsWorker]: https://github.com/alphagov/email-alert-api/blob/master/app/workers/recover_lost_jobs_worker.rb
+[RecoverLostJobsWorker]: https://github.com/alphagov/email-alert-api/blob/main/app/workers/recover_lost_jobs_worker.rb
 [Sidekiq dashboard]: https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=email-alert-api&var-Queues=All&from=now-3h&to=now
 [Email Alert API Technical dashboard]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_technical.json?refresh=1m&orgId=1

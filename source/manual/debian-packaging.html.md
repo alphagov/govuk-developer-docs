@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Manage Debian packages
 section: Packaging
 layout: manual_layout

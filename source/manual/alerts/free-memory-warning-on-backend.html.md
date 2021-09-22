@@ -28,7 +28,7 @@ Identify if the service is being run under Unicorn or not. Unicorn worker
 processes can be killed and automatically respawned if they consume too much
 memory.
 
-[graphite-memory]: https://graphite.publishing.service.gov.uk/render/?width=1133&height=630&_salt=1413553577.366&from=-24days&hideLegend=false&target=highestAverage%28backend-1_backend.processes-*.ps_rss%2C5%29
+[graphite-memory]: https://graphite.blue.production.govuk.digital/render/?width=1133&height=630&_salt=1413553577.366&from=-24days&hideLegend=false&target=highestAverage%28backend-1_backend.processes-*.ps_rss%2C5%29
 
 ### Kill memory leaking Unicorn workers
 

@@ -17,8 +17,10 @@ multiple apps.
 
 Run the appropriate rake task:
 
-- [Organisation][organisation-rake-task]
-- [Worldwide Organisation][worldwide-organisation-rake-task]
+- [Organisation][organisation-rake-task]: `rake reslug:organisation['old-slug','new-slug']`
+- [Worldwide Organisation][worldwide-organisation-rake-task]: `rake reslug:worldwide_organisation['old-slug','new-slug']`
+
+Note: it's important that single-quotes are used in the tasks otherwise they will fail.
 
 ### 2. Update the organisation in transition/transition-config:
 
@@ -59,6 +61,6 @@ permissions for the renamed organisation.
 Search the best bets in [search-admin][search-admin] for references to the old
 organisation name and update them.
 
-[organisation-rake-task]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/122585/rebuild/parameterized
-[worldwide-organisation-rake-task]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/122581/rebuild/parameterized
+[organisation-rake-task]: https://github.com/alphagov/whitehall/blob/900ab57004bb350eea409d06176e424bc9df0180/lib/tasks/reslugging.rake#L132
+[worldwide-organisation-rake-task]: https://github.com/alphagov/whitehall/blob/900ab57004bb350eea409d06176e424bc9df0180/lib/tasks/reslugging.rake#L146
 [search-admin]: https://search-admin.publishing.service.gov.uk/

@@ -62,6 +62,9 @@ $ curl -i -XPURGE https://www.gov.uk/bank-holidays
 There are two steps involved in flushing *everything*; our origin (the cache
 servers) followed by Fastly.
 
+If possible, speak to a member of the senior tech team before doing this, to
+evaluate the risk.
+
 To flush our origin run the following Fabric command:
 
 ```sh
@@ -69,8 +72,7 @@ $ fab $environment class:cache class:draft_cache cache.ban_all
 ```
 
 Once this is done move on to Fastly. This can only be done through the Fastly
-UI - the credentials are in the 2nd line store. If possible, speak to a member
-of the senior tech team before doing this, to evaluate the risk.
+UI - if you don't have access, speak to a member of the senior tech team.
 
 Within the UI you reach the purge all functionality.
 

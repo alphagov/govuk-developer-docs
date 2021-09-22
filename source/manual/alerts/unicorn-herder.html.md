@@ -28,7 +28,7 @@ crashed.
 Kill the process:
 
 ```bash
-kill -9 <pid>
+sudo kill -9 <pid>
 ```
 
 Then start the app again:

@@ -297,7 +297,7 @@ sending an edition downstream to the Content Store.
 [Content API]: /apps/content-store.html
 [content-store]: https://github.com/alphagov/content-store
 [govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
-[Link expansion]: https://github.com/alphagov/publishing-api/blob/master/docs/link-expansion.md
+[Link expansion]: https://github.com/alphagov/publishing-api/blob/main/docs/link-expansion.md
 [Publishing API]: https://github.com/alphagov/publishing-api
 [rendering]: #rendering
 
@@ -325,7 +325,7 @@ item via Router API. This happens inside the Sidekiq job directly, rather than
 in a downstream process.
 
 [content-store-router-api]: https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33
-[message-queues-rake]: https://github.com/alphagov/email-alert-service/blob/master/lib/tasks/message_queues.rake
+[message-queues-rake]: https://github.com/alphagov/email-alert-service/blob/main/lib/tasks/message_queues.rake
 [RabbitMQ]: https://www.rabbitmq.com/
 [Sidekiq]: /manual/sidekiq.html
 
@@ -362,7 +362,7 @@ as `links.taxons`. Some apps have their own interface for tagging, or you can
 tag content independently using [content-tagger].
 
 [content-tagger]: https://github.com/alphagov/content-tagger
-[dependency resolution]: https://github.com/alphagov/publishing-api/blob/master/docs/dependency-resolution.md
+[dependency resolution]: https://github.com/alphagov/publishing-api/blob/main/docs/dependency-resolution.md
 [schema-organisations-example]: https://github.com/alphagov/govuk-content-schemas/blob/d9684140462e4a138668539c04829cd808636ed5/dist/formats/news_article/publisher_v2/schema.json#L70-L73
 [taxonomies]: /manual/taxonomy.html
 
@@ -408,7 +408,7 @@ configured to use the [govuk-jenkinslib] library to build and run the tests.
 
 The tests report back to the PR as a [GitHub check], though other checks may
 also be required before the PR can be merged ([govuk-saas-config] defines things
-such as whether branches must be up to date with 'master' before merging).
+such as whether branches must be up to date with 'main' before merging).
 
 On merge, the same Jenkins job that ran the tests runs the tests again, then
 [creates and pushes a git tag][push-tag] to GitHub, then
@@ -430,7 +430,7 @@ Some apps require extra care when deploying; see ['Static' deployment rules][sta
 [create-jenkins-job]: https://github.com/alphagov/govuk-puppet/blob/6a0b05aa1f9a90c01cefd5fc5b9c8e5f0aa030f2/hieradata/common.yaml#L422
 [deploy Jenkins]: https://deploy.integration.publishing.service.gov.uk/
 [GitHub check]: https://developer.github.com/v3/checks/
-[github-actions-rfc]: https://github.com/alphagov/govuk-rfcs/blob/master/rfc-123-github-actions-ci.md
+[github-actions-rfc]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 [govuk-jenkinslib]: https://github.com/alphagov/govuk-jenkinslib
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config

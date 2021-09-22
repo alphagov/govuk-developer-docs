@@ -45,15 +45,14 @@ First check to see if it is possible to complete the task through the [web inter
 (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
 
 For commands not available via the user interface you must connect to the server to perform these
-tasks.  Most of the commands to interact with [CKAN] use a tool called `paster`.  Many of these
+tasks.  Most of the commands to interact with [CKAN] use the `ckan` CLI.  Many of these
 commands take a path to the config file with the `-c` option, which is located at `/var/ckan/ckan.ini`
 in our deployments.
 
-On GOV.UK servers `paster` should be run with:
+On GOV.UK servers `ckan` should be run with:
 
 ```
-cd /var/apps/ckan
-sudo -u deploy govuk_setenv ckan venv/bin/paster [COMMAND] -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan [COMMAND]
 ```
 
 ### Initialising the database
@@ -63,9 +62,8 @@ The following commands will create the relevant schema for core CKAN and the har
 extension on integration.
 
 ```
-. /var/apps/ckan/venv/bin/activate
-paster --plugin=ckan db init -c /var/ckan/ckan.ini
-paster --plugin=ckanext-harvest harvester initdb -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan db init
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester initdb
 ```
 
 ### Accessing the database
@@ -132,7 +130,7 @@ https://data.gov.uk/api/3/action/user_show?id=user_d484581
 ### Creating a system administrator account
 
 ```
-paster --plugin=ckan sysadmin add USERNAME email=EMAIL_ADDRESS -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin add USERNAME email=EMAIL_ADDRESS
 ```
 
 You will be prompted twice for a password.
@@ -140,7 +138,7 @@ You will be prompted twice for a password.
 ### Removing a system administrator account
 
 ```
-paster --plugin=ckan sysadmin remove USERNAME -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin remove USERNAME
 ```
 
 ### Managing users
@@ -148,31 +146,31 @@ paster --plugin=ckan sysadmin remove USERNAME -c /var/ckan/ckan.ini
 #### Listing users
 
 ```
-paster --plugin=ckan user list -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user list
 ```
 
 #### Viewing a user
 
 ```
-paster --plugin=ckan user USERNAME -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user show USERNAME
 ```
 
 #### Adding a user
 
 ```
-paster --plugin=ckan user add USERNAME email=EMAIL_ADDRESS -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user add USERNAME email=EMAIL_ADDRESS
 ```
 
 #### Removing a user
 
 ```
-paster --plugin=ckan user remove USERNAME -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user remove USERNAME
 ```
 
 #### Changing a user's password
 
 ```
-paster --plugin=ckan user setpass USERNAME -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user setpass USERNAME
 ```
 
 ### Managing publishers
@@ -182,7 +180,7 @@ paster --plugin=ckan user setpass USERNAME -c /var/ckan/ckan.ini
 Change the name in the publisher page then reindex that publisher:
 
 ```
-paster --plugin=ckan search-index rebuild-publisher [PUBLISHER] -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild [PUBLISHER]
 ```
 
 ### Managing datasets
@@ -205,7 +203,7 @@ Deleting a dataset:
 Purging a dataset:
 
 ```
-paster --plugin=ckan dataset purge DATASET_NAME -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan dataset purge DATASET_NAME
 ```
 
 There may be times when a large number of datasets must be deleted. This needs to be done on the CKAN machine, since [the deletion API is protected from external access][ckan-api-404]. Your API key is required, which can be obtained from your user profile on the web interface. Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.
@@ -248,13 +246,13 @@ to refresh the index, or rebuild it from scratch.
 Refresh the entire search index (this adds/removes datasets, but does not clear the index first):
 
 ```
-paster --plugin=ckan search-index rebuild -r -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild -r
 ```
 
 Rebuild the entire search index (this deletes the index before re-indexing begins):
 
 ```
-paster --plugin=ckan search-index rebuild -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild
 ```
 
 > Rebuilding the entire search index immediately removes all records from the search before re-indexing
@@ -265,7 +263,7 @@ paster --plugin=ckan search-index rebuild -c /var/ckan/ckan.ini
 Only reindex those packages that are not currently indexed:
 
 ```
-paster --plugin=ckan search-index -o rebuild -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index -o rebuild
 ```
 
 ### `csw` endpoint
@@ -308,7 +306,7 @@ case it should fail or if the sync needs to happen sooner you can manually
 trigger the sync after Solr has been reindexed.
 
 ```sh
-$ paster --plugin=ckanext-spatial ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
+$ sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan ckan-pycsw load -p /var/ckan/pycsw.cfg -u http://localhost:3220
 ```
 
 ### Harvesting
@@ -322,7 +320,7 @@ Returns a list of currently running jobs.  This will contain the
 JOB_ID necessary to cancel jobs.
 
 ```
-paster --plugin=ckanext-harvest harvester jobs -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester jobs
 ```
 
 It may be faster to run a SQL query to get the ID of a specific harvest job.
@@ -364,8 +362,8 @@ If the harvest job is hanging and the 'Stop' button is not responding, you will 
 
 1. SSH into the ckan machine with `gds govuk connect -e production ssh ckan`
 1. Assume the deploy user - `sudo su deploy`
-1. Activate the virtual environment - `. /var/apps/ckan/venv/bin/activate`
-1. Run the harvest job manually - `paster --plugin=ckanext-harvest harvester run_test <harvest source> -c /var/ckan/ckan.ini`
+1. Activate the virtual environment - `. /var/apps/ckan/venv3/bin/activate`
+1. Run the harvest job manually - `ckan -c /var/ckan/ckan.ini harvester run-test <harvest source>`
   - where `harvest source` is from the url when visiting the harvest source page, it will be something like `cabinet-office`
 
 If the job fails to complete the ticket should be updated with comments and prioritised to low for the product owner to review.
@@ -381,7 +379,7 @@ You can get the `JOB_ID` from the harvest dashboard under "Last Harvest Job" (or
 Then cancel the job by running:
 
 ```
-paster --plugin=ckanext-harvest harvester job_abort JOB_ID -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester job-abort JOB_ID
 ```
 
 This can also be done by running SQL:
@@ -400,7 +398,7 @@ to purge the queues used in the various stages of harvesting
 > This command will empty the Redis queues
 
 ```
-paster --plugin=ckanext-harvest harvester purge_queues -c /var/ckan/ckan.ini
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester purge-queues
 ```
 
 #### Restarting the harvest service

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Environment data sync
 section: Monitoring
 type: learn
@@ -27,9 +27,9 @@ In practice, some Integration databases pull from Production (with data sanitisa
 
 ### Data sanitisation
 
-Data sanitisation (removal of sensitive data) for the Integration environment is done by SQL scripts which run as part of the restore transaction at the destination. While not ideal, this is the same approach as [env-sync-and-backup] used to use and allows reuse of the same sanitisation scripts.
+Data sanitisation (removal of sensitive data) is done by SQL scripts in the [`files/transformation_sql`][transformation-sql] directory, which are created under `/etc/govuk_env_sync/transformation_sql/` on the target machine.
 
-Data sanitisation scripts are in the [`files/transformation_sql`][transformation-sql] directory. These are created under `/etc/govuk_env_sync/transformation_sql/` on the target machine.
+Data sanitisation is applied to the Integration environment for a number of data sources, including Publishing API and Email Alert API, as good security practice. It is not applied to Staging, which can [only be accessed by those who have Production access](https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html) and therefore have access to the Production equivalents anyway. Recreating the Production data on Staging allows us to test queries on real world data before we apply them in a Production environment.
 
 ## How it works
 

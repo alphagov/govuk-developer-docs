@@ -102,6 +102,22 @@ GROUP BY url
 ORDER BY count DESC
 ```
 
+### Total number of 5xx's responses, total requests and percentage of 5xx's were served to users in a timeframe
+
+```sql
+SELECT SUM(responses) as "Total 5xx Responses", SUM(requests) "Total Requests",
+    SUM(responses) * 100.0 / SUM(SUM(requests)) OVER () AS "5xx % of Total Requests"
+FROM (
+    SELECT
+        COUNT(CASE WHEN status/100=5 THEN 1 ELSE NULL END) as responses,
+        COUNT(*) AS requests
+    FROM fastly_logs.govuk_www
+    WHERE date = 2 AND month = 6 AND year = 2021
+    AND request_received >= TIMESTAMP '2021-06-02 15:00'
+    AND request_received < TIMESTAMP '2021-06-02 17:00'
+)
+```
+
 ### Find out the number of requests per status per hour for a GOV.UK URL
 
 ```sql

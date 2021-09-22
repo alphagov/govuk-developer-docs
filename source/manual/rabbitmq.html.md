@@ -91,7 +91,7 @@ connecting to the RabbitMQ control panel.
 [create_queues]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9
 [publishing_api_publishes_message]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L26
 [publish_message_call]: https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L73
-[rabbit_config_rake]: https://github.com/alphagov/email-alert-service/blob/master/lib/tasks/message_queues.rake#L17
+[rabbit_config_rake]: https://github.com/alphagov/email-alert-service/blob/main/lib/tasks/message_queues.rake#L17
 [rabbit_config_yml]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/config/rabbitmq.yml
 [message_processors]: https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L21
 [message_consumer]: https://github.com/alphagov/govuk_message_queue_consumer

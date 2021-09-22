@@ -24,7 +24,7 @@ rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:
 
 You can also run this task from Jenkins.
 
-[Other replay options are available](https://github.com/alphagov/publishing-api/blob/master/lib/tasks/represent_downstream.rake), for example replaying all traffic for a single publishing app or doctype.
+[Other replay options are available](https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake), for example replaying all traffic for a single publishing app or doctype.
 Be aware that these options will replay the entire Publisher API history for that app or doctype, and may take some time.
 
 ## `government`/`detailed` indexes
@@ -59,4 +59,4 @@ rake reindex_best_bets
 You can also run this task from Jenkins.
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
-[queue]: https://github.com/alphagov/search-api/blob/master/docs/new-indexing-process.md
+[queue]: https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md

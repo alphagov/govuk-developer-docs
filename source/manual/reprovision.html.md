@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Reprovision a machine
 section: Infrastructure
 layout: manual_layout
@@ -17,3 +17,7 @@ machine will result in downtime.
 2. Locate the instance and confirm it's the correct one by either instance ID or private IP address
 3. Select Terminate from the Actions -> Instance State menu
 4. The AWS Auto Scaling Group will reprovision the instance automatically
+
+## Troubleshooting
+
+1. If you  have issues when reprovisioning new instances, see [here](/manual/new-instances-fail-to-provision.html)
