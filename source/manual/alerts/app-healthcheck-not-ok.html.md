@@ -11,7 +11,15 @@ Many apps on GOV.UK have a healthcheck endpoint.
 - This is usually `/healthcheck` [[1](https://github.com/alphagov/govuk-puppet/blob/2693343ebc1aced7a7f94e8aba31fee8b05df8a5/modules/govuk/manifests/apps/email_alert_api.pp#L166)].
 - Some apps just pick a random page [[1](https://github.com/alphagov/govuk-puppet/blob/2693343ebc1aced7a7f94e8aba31fee8b05df8a5/modules/govuk/manifests/apps/collections.pp#L51)].
 
-The alert works by [making a request for the healthcheck endpoint](https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155) on the machine where the app is running. If you need to test the healthcheck endpoint manually, you can SSH on to the machine and `curl` it yourself.
+The alert works by [making a request for the healthcheck endpoint](https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155) on the machine where the app is running.
+
+## Check if the app is running
+
+If the alert is appearing alongside an [`upstart not up` alert](/manual/alerts/check-process-running.html), it's likely that the process isn't even running, therefore any requests to the healthcheck endpoint will also fail.
+
+## Test the healthcheck endpoint manually
+
+You can SSH onto the machine and `curl` it yourself.
 
 ```
 # SSH on to a machine running Content Publisher

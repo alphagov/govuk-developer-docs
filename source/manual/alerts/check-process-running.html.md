@@ -26,6 +26,8 @@ You can also list services with `sudo service --status-all`, though this doesn't
 
 ## Fixing the issue
 
+### Restarting the service
+
 If the service isn't running, it can be enough to just restart the service by using:
 
 ```bash
@@ -37,6 +39,18 @@ If the service is referring to a GOV.UK application, it may be necessary to also
 ```bash
 sudo service <service>-procfile-worker restart
 ```
+
+Check that the service has now started, by running:
+
+```bash
+sudo service <service> status
+```
+
+If the service didn't start, check whether the app was successfully deployed to the machine.
+You should be able to `cd /data/vhost/{SERVICE NAME}/`, run `ls` and see a `releases` folder.
+If not, it is likely the [machine failed to provision](/manual/new-instances-fail-to-provision.html) correctly.
+
+### Fixing a stalled process
 
 Sometimes, a process might appear to be running, but is actually stalled by a child process that has completed but not been garbage collected:
 
@@ -57,13 +71,3 @@ investigating by looking in the log files which could be in one of the following
 - `/var/log/upstart/<process>.log`
 - `/var/log/<process>/`
 - `/var/log/<process>.log`
-
-If you see something in the logs such as
-
-```bash
----> Spinning up 'govuk_crawler_worker' (type bare) in 'production' environment
-/usr/local/bin/govuk_spinup: 30: cd: can't cd to /var/apps/govuk_crawler_worker
-```
-
-This suggests that the crawler hasn't been deployed to the machine. You can try re-deploying
-via [deploy jenkins](https://deploy.blue.staging.govuk.digital/).

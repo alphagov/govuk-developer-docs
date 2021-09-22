@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Re-create an AWS mongo instance
 section: Icinga alerts
 layout: manual_layout

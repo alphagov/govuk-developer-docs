@@ -108,7 +108,7 @@ Sometimes, Publishing API and Content Store can end up out of sync
 with one another, whereby a redirect has been applied to a content
 item in Publishing API but hasn't been successfully processed by
 Content Store. In these cases, there are several
-[rake tasks](https://github.com/alphagov/publishing-api/blob/master/lib/tasks/represent_downstream.rake)
+[rake tasks](https://github.com/alphagov/publishing-api/blob/main/lib/tasks/represent_downstream.rake)
 we can use to re-present the content item from Publishing API to
 Content Store.
 
@@ -329,7 +329,7 @@ The deleted routes will take effect after a short delay (for Router instances to
 ## Redirects for HMRC manuals
 [hmrc-manuals-section]: #redirects-for-hmrc-manuals
 
-There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be [found in the hmrc-manuals-api repo](https://github.com/alphagov/hmrc-manuals-api/tree/master/lib/tasks). These can be run via the `Run rake task` jenkins job.
+There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be [found in the hmrc-manuals-api repo](https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks). These can be run via the `Run rake task` jenkins job.
 
 [See example of redirecting a HMRC manual section to another section](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=hmrc-manuals-api&MACHINE_CLASS=backend&RAKE_TASK=redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug])
 

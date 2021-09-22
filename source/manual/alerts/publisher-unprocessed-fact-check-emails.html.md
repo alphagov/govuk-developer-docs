@@ -12,7 +12,7 @@ have arrived in the inbox but weren't able to be processed. This is usually
 because they're missing the identification for the edition they relate to
 (which is currently stored in the subject line).
 
-[Publisher fact checking process]: https://github.com/alphagov/publisher/blob/master/doc/fact-checking.md
+[Publisher fact checking process]: https://github.com/alphagov/publisher/blob/main/docs/fact-checking.md
 
 ## Dealing with the alert
 

@@ -20,10 +20,13 @@ You should do these things before going on call so you're prepared.
 
 1. Have the numbers of other people on your shift saved in your phone. This
    includes whoever is on Escalations. Get these numbers from PagerDuty.
+1. Set to be notified for every new message in the #govuk-incident Slack channel by clicking "Details", "Change notifications" and selecting "Every new message."
 1. Make sure you know [how to contact the rest of SMT](https://docs.google.com/spreadsheets/d/1a02TOV0Uee6lSCuUIh3G_J1ZPx6bXI2yz56afHOsQZI/edit#gid=823200360), if the on-call SMT is unavailable.
 1. Ensure you have an up to date local copy of the [Developer Docs][docs] repository
    and that you can build it.
-1. Make sure your [`fabric-scripts`][fabric] are up to date.
+1. Make sure you can [use ssh to access machines][]
+1. Make sure you can [access AWS][] (using the web console and the `aws` CLI)
+1. Make sure you can [access GCP][] (using the web console and the `gcloud` CLI)
 1. Make sure you can VPN to the office or disaster recovery location.
 1. Ensure your PagerDuty alert settings will wake you if you're called. You might want
    to install the [PagerDuty App](https://www.pagerduty.com/features/mobile-incident-management/)
@@ -115,3 +118,6 @@ support (assuming everything is working).
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets/
 [vcloud]: connect-to-vcloud-director.html
 [payment claim form]: https://forms.gle/yvPoANwrsHz8SrL4A
+[use ssh to access machines]: /manual/howto-ssh-to-machines.html
+[access AWS]: /manual/get-started.html#sign-in-to-aws
+[access GCP]: /manual/google-cloud-platform-gcp.html

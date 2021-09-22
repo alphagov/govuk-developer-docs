@@ -20,12 +20,36 @@ The CDN is responsible for retrying requests against the [static mirror](/manual
 
 Most of the CDN config is versioned and scripted:
 
-- [CDN configuration](https://github.com/alphagov/govuk-cdn-config/)
-- [CDN config secrets](https://github.com/alphagov/govuk-cdn-config-secrets)
-
-These are deployed to [integration][integration_cdn], [staging][staging_cdn] and [production][production_cdn].
+- [govuk-cdn-config](https://github.com/alphagov/govuk-cdn-config/)
+- [govuk-cdn-config-secrets](https://github.com/alphagov/govuk-cdn-config-secrets)
 
 Some configuration isn't scripted, such as logging. The www, bouncer and assets services send logs to S3 which can be [queried](/manual/query-cdn-logs.html). These logging endpoints are configured directly in the Fastly UI.
+
+### Deploying Fastly
+
+To deploy Fastly, you'll need to run the `Deploy_CDN` job on the relevant Jenkins environment: [integration][integration_cdn], [staging][staging_cdn] or [production][production_cdn]. This job deploys the public and secret CDN configuration referenced above.
+
+Note that there are two configurations: one for `www` and one for `assets`.
+Choose the correct `vhost` for the configuration you'd like to deploy.
+
+You'll need to provide a `FASTLY_API_KEY`. To do this:
+
+1. Log into your Fastly account.
+1. Click on "Account", under your name in the top right corner.
+1. Click "[Personal API tokens](https://manage.fastly.com/account/personal/tokens)"
+1. Click "Create Token"
+
+Then follow the steps to create a token with the minimum privileges required for the task at hand:
+
+1. The token name is unimportant; you'll be deleting it shortly.
+1. For "Service Access", choose the service you'll be deploying,
+   e.g. "Integration GOV.UK" (for `www`) or "Integration Assets" (for `assets`).
+1. For "Scope", you'll need to pick "Global API access" (i.e. the most permissive)
+1. Under "Expiration", choose tomorrow's date
+1. Click "Create Token"
+
+You can now copy and paste the token into the `FASTLY_API_KEY` in the Jenkins job.
+Once you've run the job successfully, you can delete the token.
 
 [integration_cdn]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_CDN/
 [staging_cdn]: https://deploy.blue.staging.govuk.digital/job/Deploy_CDN/
@@ -83,6 +107,8 @@ See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging
 ## Access controls on cache clearing
 
 Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
+
+[vcl_config]: https://github.com/alphagov/govuk-cdn-config/
 
 ## Fastly's IP ranges and our access controls on origin servers
 

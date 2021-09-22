@@ -54,7 +54,7 @@ Users can still change their consent via the [cookie settings page].
 
 GOV.UK uses [Google Analytics](https://docs.publishing.service.gov.uk/manual/analytics.html) to track user journeys.
 
-Unlike other cookies on GOV.UK, Google Analytics (GA) cookies are not set using our cookie helpers. GA cookies are initialised within Static. Therefore, as well as deleting the GA cookies, we also need to [wrap the initialisation of GOVUK.Analytics](https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/static-analytics.js#L21) to ensure the cookies are not recreated.
+Unlike other cookies on GOV.UK, Google Analytics (GA) cookies are not set using our cookie helpers. GA cookies are initialised within Static. Therefore, as well as deleting the GA cookies, we also need to [wrap the initialisation of GOVUK.Analytics](https://github.com/alphagov/static/commit/5407c0d14a4eecf03619c4d7463a1097368fae4d#diff-db159f6ce52141b9dd276c2150489d59a3481f6796cf644e5b3fe95aeb749c01L1) to ensure the cookies are not recreated.
 
 We also set the following property to disable tracking:
 

@@ -7,7 +7,7 @@ section: 2nd line
 type: learn
 ---
 
-These rules apply to developers in the GOV.UK programme and SREs in the TechOps programme.
+These rules apply to developers, SREs, and technical architects in the GOV.UK programme.
 
 ## What production access means
 
@@ -16,7 +16,7 @@ These rules apply to developers in the GOV.UK programme and SREs in the TechOps 
 - Access to Production Deploy Jenkins and Staging Deploy Jenkins to deploy applications via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production)
 - SSH access to production and staging servers via [govuk-puppet](https://github.com/alphagov/govuk-puppet)
 - AWS [PowerUser Access](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars) via the `role_poweruser_user_arns` role
-- [Google Cloud Platform](/manual/set-up-gcp-account.html) (GCP) access with `Storage Admin` role to manage [static mirrors](/manual/fall-back-to-mirror.html)
+- [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
 - GOV.UK PaaS [Space developer](https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer)
   access to all spaces in [the govuk_development organisation](https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35)
@@ -24,7 +24,7 @@ These rules apply to developers in the GOV.UK programme and SREs in the TechOps 
 ## When you get production access
 
 - Temporary supervised access during two 2nd line shadow shifts (GOV.UK developers only)
-- Supervised access after second shadow shift and probation has been passed (probation condition does not apply to SREs in TechOps)
+- Supervised access after second shadow shift and probation has been passed
 - Permanent access once a non-shadow 2nd line shift has been completed
 
 "Supervised" means "we trust you, but just be extra careful," and the dev should

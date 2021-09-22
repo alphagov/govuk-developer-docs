@@ -15,13 +15,14 @@ parent: "/manual.html"
 [sentry]: https://sentry.io/settings/govuk/teams/
 [release]: https://release.publishing.service.gov.uk/applications
 [deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
-[docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/master/data/applications.yml
+[docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/main/data/applications.yml
 [get-started]: https://docs.publishing.service.gov.uk/manual/get-started.html
 [linting]: https://docs.publishing.service.gov.uk/manual/configure-linting.html
 [rails-conv]: https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html
 [naming]: https://docs.publishing.service.gov.uk/manual/naming.html
 [auto-config]: https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration
 [app-list]: https://docs.publishing.service.gov.uk/#applications
+[sentry-update-project-rake-task]: https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83
 
 ## Before you start
 
@@ -49,7 +50,7 @@ You should:
 
     gem "rails", "6.0.3.4"
 
-    gem "bootsnap",
+    gem "bootsnap"
     gem "gds-api-adapters"
     gem "gds-sso"
     gem "govuk_app_config"
@@ -167,13 +168,17 @@ You should:
     GovukUnicorn.configure(self)
     ```
 
+### Add your Rails app to GOV.UK Docker
+
+Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
+
 ## Set up a GitHub repo for your Rails app
 
 When you’ve finished developing your Rails app, you can [set up a GitHub repo for your Rails app][auto-config].
 
 You must add a description to the _About_ section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the [list of apps][app-list].
 
-## Add a software licence
+### Add a software licence
 
 You must add a `LICENCE` file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.
 
@@ -201,63 +206,21 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## Replace the default README.md
+### Replace the default README.md
 
-Change the default `README.md` file to have the following structure:
+Change the default `README.md` file to match [the standard README template](/manual/readmes.html#template-for-new-readmes).
 
-```markdown
-# App name
+### Write API documentation
 
-Information about the app's description and purpose.
+If your app is an API, you should create a `docs/api.md` file.
 
-## Technical documentation
-
-Write a single paragraph including a general technical overview of the app.
-
-### Testing
-
-Information about how to test the app.
-
-## Further documentation
-
-More information on how the app works.
-
-## API documentation
-
-If applicable, include API reference information including the following sections:
-
-- resources
-- endpoints and methods
-- parameters
-- example requests and responses
-- error codes
-
-## Licence
-
-Link to your [MIT License][LICENCE] file.
-```
-
-See the example [account-api README.md](https://github.com/alphagov/account-api/blob/main/README.md).
-
-Find out more about [writing API reference content](https://www.gov.uk/guidance/writing-api-reference-documentation).
+[Guidance on writing API reference documentation on GOV.UK](https://www.gov.uk/guidance/writing-api-reference-documentation).
 
 ## Prepare your Rails app to run in production
 
 ### Configure your Rails app for Jenkins
 
-1. Create a `Jenkinsfile` in your repo with the following content.
-
-    ```
-    #!/usr/bin/env groovy
-
-    library("govuk")
-
-    node {
-      govuk.buildProject()
-    }
-    ```
-
-1. Add a Jenkins integration to the repo on GitHub. Find out more about [automatically configuring a GitHub repo][auto-config].
+Find out how to [set up an app in Jenkins](https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up).
 
 ### Add your Rails app to GOV.UK
 
@@ -275,9 +238,9 @@ If you need to enable external DNS, find out how to [make changes to publishing.
 
 Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/applications.yml` file][docs-applications].
 
-### Ask GOV.UK 2nd line to update Sentry
+### Create the application in Sentry
 
-After you’ve added your Rails app to the GOV.UK developer documentation, [ask GOV.UK 2nd line support](mailto:2nd-line-support@digital.cabinet-office.gov.uk) to run the `update-project` task in [GOV.UK SaaS Config][govuk-saas-config] to update Sentry.
+After you’ve added your Rails app to the GOV.UK developer documentation, run the [`update_project` rake task][sentry-update-project-rake-task] in [GOV.UK SaaS Config][govuk-saas-config] to update Sentry.
 
 ### Add your Rails app to Release app
 
@@ -288,7 +251,3 @@ Add your Rails app to the [Release][release] app and select __Create__.
 Run the [Deploy_App job][deploy-jenkins].
 
 Use the `with_migrations` option if your Rails app has a database.
-
-### Add your Rails app to GOV.UK Docker
-
-Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).

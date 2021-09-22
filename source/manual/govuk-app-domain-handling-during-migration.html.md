@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: app_domain handling in GOV.UK during migration to AWS
 section: Infrastructure
 layout: manual_layout

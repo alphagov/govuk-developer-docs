@@ -9,7 +9,7 @@ RSpec.describe DocumentTypes do
           },
         )
 
-      stub_request(:get, "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/master/lib/govuk_content_schemas/allowed_document_types.yml")
+      stub_request(:get, "https://raw.githubusercontent.com/alphagov/govuk-content-schemas/main/lib/govuk_content_schemas/allowed_document_types.yml")
         .to_return(body: File.read("spec/fixtures/allowed-document-types-fixture.yml"))
 
       document_type = DocumentTypes.pages.first

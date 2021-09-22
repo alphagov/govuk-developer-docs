@@ -20,7 +20,7 @@
   continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
-  dependencies_team: "#govuk-platform-health"
+  dependencies_team: "#govuk-corona-services-tech"
   production_hosted_on: aws
   actors:
   - Publisher
@@ -44,6 +44,7 @@
   continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
+  dependencies_team: "#govuk-corona-services-tech"
   production_hosted_on: aws
 - github_repo_name: manuals-publisher
   continuously_deployed: true
@@ -84,6 +85,7 @@
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: whitehall
+  continuously_deployed: true
   type: Publishing apps
   production_url: https://whitehall-admin.publishing.service.gov.uk
   team: "#govuk-platform-health"
@@ -111,6 +113,7 @@
   metrics_dashboard_url: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
   production_hosted_on: aws
 - github_repo_name: imminence
+  continuously_deployed: true
   type: APIs
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -118,6 +121,14 @@
   type: APIs
   team: "#govuk-platform-health"
   production_hosted_on: aws
+- github_repo_name: locations-api
+  type: APIs
+  team: "#govuk-platform-health"
+  dependencies_team: "#govuk-platform-health"
+  production_hosted_on: none
+  sentry_url: false
+  dashboard_url: false
+  deploy_url: false
 - github_repo_name: publishing-api
   type: APIs
   team: "#govuk-platform-health"
@@ -155,6 +166,7 @@
 # Services
 
 - github_repo_name: cache-clearing-service
+  continuously_deployed: true
   type: Services
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -209,6 +221,7 @@
   production_hosted_on: aws
 - github_repo_name: govuk-load-testing
   type: Supporting apps
+  team: "#govuk-platform-health"
   production_hosted_on: none
 
 # frontend
@@ -217,6 +230,7 @@
   continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
+  dependencies_team: "#govuk-corona-services-tech"
   component_guide_url: https://govuk-collections.herokuapp.com/component-guide
   production_hosted_on: aws
   private_repo: false
@@ -288,6 +302,7 @@
 # Transition
 
 - github_repo_name: bouncer
+  continuously_deployed: true
   type: Transition apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -296,8 +311,11 @@
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: side-by-side-browser
+  management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
+  production_hosted_on: heroku
   type: Transition apps
-  production_hosted_on: none
+  sentry_url: false
+  dashboard_url: false
 
 # data.gov.uk
 
@@ -350,6 +368,36 @@
   dashboard_url: false
   deploy_url: false
   sentry_url: false
+  
+- github_repo_name: govuk-user-journey-models
+  private_repo: true
+  team: "#govuk-data-labs"
+  type: Data science
+  description: "Classifying successful and unsuccessful user journeys on GOV.UK"
+  production_hosted_on: none
+  dashboard_url: false
+  deploy_url: false
+  sentry_url: false
+  
+- github_repo_name: govuk-user-intent-survey-explorer
+  private_repo: true
+  team: "#govuk-data-labs"
+  type: Data science
+  description: "Prototype to help explorer user intent survey data"
+  production_hosted_on: none
+  dashboard_url: false
+  deploy_url: false
+  sentry_url: false
+  
+- github_repo_name: eligibility-viewer
+  private_repo: true
+  team: "#govuk-data-labs"
+  type: Data science
+  description: "Prototype to show content with eligibility based on a user's circumstances"
+  production_hosted_on: none
+  dashboard_url: false
+  deploy_url: false
+  sentry_url: false
 
 # Licensing
 
@@ -387,16 +435,10 @@
   description: 'GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)'
 
 
-# Utility Heroku apps (don't add apps that are only for review here)
+# Utilities - supporting applications/tooling
 
 - github_repo_name: seal
   management_url: https://dashboard.heroku.com/apps/moody-seal
-  production_hosted_on: heroku
-  type: Utilities
-  sentry_url: false
-  dashboard_url: false
-- github_repo_name: govuk-alert-tracker
-  management_url: https://dashboard.heroku.com/apps/govuk-alert-tracker
   production_hosted_on: heroku
   type: Utilities
   sentry_url: false
@@ -439,6 +481,13 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+  deploy_url: https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/deploy.sh
+- github_repo_name: govuk_schemas
+  team: "#govuk-developers"
+  production_hosted_on: none
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
 - github_repo_name: govuk-zendesk-display-screen
   management_url: https://dashboard.heroku.com/apps/govuk-zendesk-display-screen
   production_hosted_on: heroku
@@ -452,12 +501,12 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
-- github_repo_name: side-by-side-browser
-  management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
-  production_hosted_on: heroku
+- github_repo_name: special-route-publisher
+  production_hosted_on: none
   type: Utilities
   sentry_url: false
   dashboard_url: false
+  deploy_url: false
 - github_repo_name: tech-docs-monitor
   management_url: https://dashboard.heroku.com/apps/govuk-tech-docs-monitor
   production_hosted_on: heroku
@@ -465,6 +514,7 @@
   sentry_url: false
   dashboard_url: false
 - github_repo_name: govuk-pact-broker
+  team: "#govuk-platform-health"
   production_hosted_on: paas
   type: Utilities
   sentry_url: false
@@ -472,6 +522,24 @@
 - github_repo_name: search-performance-explorer
   production_hosted_on: heroku
   team: "#govuk-platform-health"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+- github_repo_name: govuk-jenkinslib
+  team: "#govuk-platform-health"
+  production_hosted_on: aws
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+- github_repo_name: slimmer
+  team: "#govuk-developers"
+  production_hosted_on: none
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+- github_repo_name: gds-api-adapters
+  team: "#govuk-developers"
+  production_hosted_on: none
   type: Utilities
   sentry_url: false
   dashboard_url: false

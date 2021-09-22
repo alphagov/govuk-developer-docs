@@ -50,7 +50,6 @@ the [search performance explorer](https://github.com/alphagov/search-performance
 To do this, [add your A/B test to the application](https://github.com/alphagov/search-performance-explorer/commit/01e3d21ceca96951425b5ddc87116f0756411691) and manually deploy the test to Heroku.
 
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
-[govuk-secrets-fastly]: https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly/2nd_line_api_token.gpg
 [dictionaries-readme]: https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries
 [dictionary-config-example]: https://github.com/alphagov/govuk-cdn-config-secrets/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
 [govuk_ab_testing]: https://github.com/alphagov/govuk_ab_testing

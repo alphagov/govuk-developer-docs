@@ -8,8 +8,8 @@ section: Icinga alerts
 
 [datagovuk_publish](https://github.com/alphagov/datagovuk_publish)
 has a healthcheck that monitors two Sidekiq jobs,
-[`ckan_v26_package_sync`](https://github.com/alphagov/datagovuk_publish/blob/master/app/workers/ckan/v26/package_sync_worker.rb)
-and [`ckan_v26_ckan_org_sync`](https://github.com/alphagov/datagovuk_publish/blob/master/app/workers/ckan/v26/ckan_org_sync_worker.rb).
+[`ckan_v26_package_sync`](https://github.com/alphagov/datagovuk_publish/blob/main/app/workers/ckan/v26/package_sync_worker.rb)
+and [`ckan_v26_ckan_org_sync`](https://github.com/alphagov/datagovuk_publish/blob/main/app/workers/ckan/v26/ckan_org_sync_worker.rb).
 
 The healthcheck alert notifies us if one or both of these jobs are not running in
 the expected timeframe set. This means latest [dataset](https://ckan.publishing.service.gov.uk/dataset)

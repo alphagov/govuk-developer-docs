@@ -56,12 +56,13 @@ all configuration is set up correctly.
 Apps are configured to talk to Sentry using the [govuk_app_config][] gem,
 which interfaces with Sentry via its [`GovukError` class][govukerror]. Apps
 call `GovukError.configure` - see [example][email-alert-api-example]. This
-[delegates][delegator-pattern] to the [sentry-raven][] gem under the hood,
-though the gem is now superseded by sentry-ruby, which we have
-[plans to migrate to][trello-migrate] in the future.
+uses the [delegator pattern][delegator-pattern] to proxy requests to the
+underlying Sentry gem, which is [sentry-ruby][] in govuk_app_config v4 and
+above, and [sentry-raven][] in govuk_app_config v3 and below.
 
 Unhandled exceptions are automatically logged to Sentry, but you can also
 [manually report something to Sentry using `GovukError.notify`][manually-report].
+This method takes an exception object, or a string.
 
 [docs-apps]: https://docs.publishing.service.gov.uk/apps.json
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12
@@ -71,7 +72,7 @@ Unhandled exceptions are automatically logged to Sentry, but you can also
 [trello-migrate]: https://trello.com/c/1zVPYfTR/1979-replace-sentry-raven-with-sentry-ruby
 [govuk_app_config]: https://github.com/alphagov/govuk_app_config
 [govukerror]: https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_error.rb
-[email-alert-api-example]: https://github.com/alphagov/email-alert-api/blob/master/config/initializers/govuk_error.rb
+[email-alert-api-example]: https://github.com/alphagov/email-alert-api/blob/main/config/initializers/govuk_error.rb
 [manually-report]: https://github.com/alphagov/govuk_app_config/blob/073c9b2312a4893b040c9225b713ac880c69f5b8/README.md#manual-error-reporting
 
 ## Sentry roles
@@ -141,13 +142,12 @@ For all of the above, you can easily
 [configure any of these properties by appending to them][error-reporting].
 
 You can also run arbitrary code to decide whether or not an error should be
-logged in Sentry, using the `should_capture` lambda. Your custom code will be
-[lazily combined with the default evaluators][combined-code] such that if an
-exception is on any of the 'excluded exceptions' lists, it will be excluded
-(even if your custom `should_capture` callback returns true).
+logged in Sentry, using the `before_send` lambda. Your custom code will be
+[combined with the default evaluators][combined-code] such that if any of the
+callbacks returns nil, the exception will be excluded.
 
 [error-reporting]: https://github.com/alphagov/govuk_app_config/blob/master/README.md#error-reporting
-[combined-code]: https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configuration.rb#L18-L24
+[combined-code]: https://github.com/alphagov/govuk_app_config/blob/589b7aae49c3584ead2f60f915be05a7922c5c3e/lib/govuk_app_config/govuk_error/configuration.rb#L63–L71
 
 ## When errors are received by Sentry
 
@@ -218,12 +218,24 @@ mechanism, ensuring that we would need two projects to be recording high-volume
 errors to risk breaching our account limit. These limits are configured on the
 [Rate Limits][sentry-configure-rate-limits] page.
 
-In addition, we've set up alerting so that any issue which records 100 or more
-errors in an hour period gets alerted to `#govuk-platform-health`. These alerts
-are configured in the [Alerts panel][].
+[sentry-configure-rate-limits]: https://sentry.io/settings/govuk/rate-limits/
+
+## Slack alerts
+
+You can configure Sentry to notify a Slack channel when a notable condition is
+satisfied. For example, the `#govuk-platform-health` channel gets notified when
+any issue records 100 or more errors in a 1 hour period.
+
+To set up an alert, visit the [Alerts panel][], select the project the alert
+should apply to (e.g. `app-whitehall`), and then click "Create Alert Rule". It is
+currently not possible to set up a 'global' alert to apply to all projects at
+once.
+
+We encourage teams to set up alerts for any projects they're responsible for, so
+that they can be alerted to new and high-volume issues and prioritise them.
+Multiple teams are allowed to set up alerts for the same projects.
 
 [Alerts panel]: https://sentry.io/organizations/govuk/alerts/rules/
-[sentry-configure-rate-limits]: https://sentry.io/settings/govuk/rate-limits/
 
 ## Sentry issue actions
 
@@ -293,3 +305,7 @@ Sentry is used by several programmes in GDS, not just GOV.UK. A report,
 [GDS use of Sentry.io](https://docs.google.com/document/d/1yVa9iiu-DayGy-MtlrdXeV0E09CsetUenZJCmusLfLg/edit),
 covers this in more detail, including documenting some of the limitations of the
 setup.
+
+## Retention period
+
+[90 days](https://sentry.io/security/#data-retention).

@@ -16,7 +16,7 @@ Repositories in GOV.UK must:
 
 Almost all repos should:
 
-- Have [branch protection](https://help.github.com/articles/about-protected-branches) on master
+- Have [branch protection](https://help.github.com/articles/about-protected-branches) on `main` (`master` if the repo hasn't been updated yet)
 - Have [Jenkins CI](/manual/test-and-build-a-project-on-jenkins-ci.html) configured, if the repo uses Jenkins
 - Have [GitHub Trello Poster](/manual/github-trello-poster.html) enabled
 
@@ -39,6 +39,6 @@ If your repo will be continuously deployed, restrict merge access to users with 
 
 [govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk
 [govuk-saas-config]: https://github.com/alphagov/govuk-saas-config
-[jenkins-job]: https://deploy.production.govuk.digital/job/configure-github-repos
+[jenkins-job]: https://deploy.blue.production.govuk.digital/job/configure-github-repos
 [alphagov]: https://github.com/alphagov
 [repo-overrides]: https://github.com/alphagov/govuk-saas-config/blob/master/github/repo_overrides.yml

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#re-govuk"
+owner_slack: "#govuk-2ndline"
 title: Domain Name System (DNS) records
 section: Infrastructure
 type: learn

@@ -25,7 +25,7 @@ ensure that systems are available. It is possible that a problem could occur
 where they can't reboot automatically.
 
 ```command-line
-$ fab <environment> all locksmith.status
+$ fab <ENVIRONMENT> all locksmith.status
 ```
 
 If a lock is in place, it will detail which machine holds the lock.
@@ -33,7 +33,7 @@ If a lock is in place, it will detail which machine holds the lock.
 You can remove it with:
 
 ```command-line
-$ fab <environment> -H <machine-name> locksmith.unlock:"<machine-name>"
+$ fab <ENVIRONMENT> -H <machine-name> locksmith.unlock:"<machine-name>"
 ```
 
 Machines that are safe to reboot should then do so at the scheduled
@@ -41,55 +41,33 @@ time.
 
 ## Manual rebooting
 
-> Before rebooting anything manually, see if any [special cases](#special-cases) apply to the type of machine you need to reboot.
+You can manually reboot virtual machines.
 
-### Rules of manual rebooting
+Icinga alerts state when machines need rebooting. These alerts tell you if it's a manual reboot, and whether it's in or out-of-hours.
 
-* Do not reboot more than one machine of the same class at the same time.
-* There are Icinga alerts that warn if machines need rebooting. Those
-  alerts will tell you if it's a manual reboot, and whether it's in-
-  or out-of-hours.
-* There is [extra guidance if the machine you are rebooting is in AWS](#rebooting-guidance-for-aws).
-  You may wish to pair with the RE interruptible/on call person.
+Do not reboot more than one machine of the same class at the same time.
 
-### Rebooting one machine
+The way that you reboot machines depends on the type of machine.
 
-First check whether the machine is safe to reboot. This information is
-stored in puppet in hieradata. For example,
-[here](https://github.com/alphagov/govuk-puppet/blob/master/hieradata/class/mysql_master.yaml)
-is an example of a machine that cannot be safely rebooted. The
-[default](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp)
-is `safe_to_reboot::can_reboot: 'yes'`.
+### Before you start
 
-> If there is an incident which requires the rebooting of a machine
-> otherwise marked as 'no', then it may be done provided any downstream
-> effects of this reboot have been considered.
+Before you start manually rebooting, you must check whether the machine is safe to reboot.
 
-If you want to reboot the machine immediately:
+This information is stored in the [`hieradata_aws` folder in the `govuk-puppet` repo](https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws). If a machine is safe to reboot, the `govuk_safe_to_reboot` class shows `$can_reboot = 'yes'`.
 
-1. Schedule downtime in Icinga, or let 2ndline know that there will be
-   alerts for a machine being down.
+See the [`govuk_safe_to_reboot/manifests/init.pp` file in the `govuk-puppet` repo](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp) for more information.
 
-2. SSH into it and run:
+Because of an incident, you may need to reboot a machine that is not safe to reboot. You can reboot that machine as long as you have considered the downstream effects of this reboot.
 
-   ```sh
-   sudo reboot
-   ```
+### Rebooting AWS machines
 
-### Rebooting guidance for AWS
+If you need to reboot a machine in AWS, extended reboot times may result in AWS automatically terminating that machine.
 
-If rebooting machines in AWS, extended reboot times may result in the
-relevant machine being terminated automatically. If this happens, a
-new machine will be created automatically.
+If this happens, AWS should then automatically create a new machine to replace the old one.
 
-There have been a few cases when a reboot in AWS has not come back successfully
-and RE will be able to help in these cases. It also means RE can investigate
-any problems so it doesn't happen again and we have confidence in our ability
-to reboot machines in AWS.
+If AWS does not automatically create a new machine, [contact the Reliability Engineering team](mailto:reliability-engineering@digital.cabinet-office.gov.uk) for support.
 
-There's a [section on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws).
-
-## Special cases
+See the [documentation on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws) for more information.
 
 ### Rebooting Jenkins CI agents
 
@@ -133,7 +111,7 @@ Icinga alert.
 
 You can also follow this process manually:
 
-1. Login to the AWS Console for the relevant environment (`gds aws govuk-<environment>-<your-role> -l`).
+1. Login to the AWS Console for the relevant environment (`gds aws govuk-<ENVIRONMENT>-<your-role> -l`).
 1. Find the [Instance ID](https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime)
    of the critical machine(s) (probably all 8 `blue-cache` machines)
 1. Navigate to the `blue-cache` Auto Scaling Group (ASG)
@@ -152,7 +130,7 @@ You can also follow this process manually:
 You can see our MongoDB machines by running:
 
 ```
-$ fab $environment puppet_class:mongodb::server hosts
+$ fab <ENVIRONMENT> puppet_class:mongodb::server hosts
 ```
 
 All secondary Mongo machines will reboot overnight. If you don't need to
@@ -160,7 +138,7 @@ reboot the cluster right now, step the current primary down and allow it
 to reboot overnight:
 
 ```
-$ fab $environment -H $hostname mongo.step_down_primary
+$ fab <ENVIRONMENT> -H <HOSTNAME> mongo.step_down_primary
 ```
 
 Example:
@@ -173,8 +151,8 @@ $ fab aws_production -H ip-127-0-0-11.eu-west-1.compute.internal mongo.step_down
 
 The general approach for rebooting machines in a MongoDB cluster is:
 
-* Check cluster status with `fab $environment -H $hostname mongo.status`
-* Using `fab $environment -H $hostname mongo.safe_reboot`
+* Check cluster status with `fab <ENVIRONMENT> -H <HOSTNAME> mongo.status`
+* Using `fab <ENVIRONMENT> -H <HOSTNAME> mongo.safe_reboot`
   * Reboot the secondaries
   * Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
@@ -193,40 +171,44 @@ that Sidekiq has added to the Redis queues but not yet processed.
 
 ### Rebooting RabbitMQ machines
 
-There's a Fabric task to reboot all nodes in the RabbitMQ cluster,
-waiting for the cluster to recover before rebooting the next node.
+There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.
 
-> **Note**
->
-> We have had a couple of incidents after running this script, so it should only
-> be done in-hours and requires careful monitoring. See:
->
-> 1) [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#) - This required killing RabbitMQ processes to resolve.
->
-> 2) [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv) - This required restarting Publishing API workers to resolve.
+1. SSH into the machine and environment you want to reboot by running the following command:
 
-If there are problems with the cluster (eg, a partition has happened),
-the `safe_reboot` script will not reboot anything, and you'll need to
-take manual action to resolve the problem.
+    ```
+    gds govuk connect ssh -e <ENVIRONMENT> <MACHINE>
+    ```
 
-* Reboot the nodes in the cluster:
+    For example, to SSH into the `integration` environment of the `rabbitmq:1` machine:
 
-```
-fab <environment> class:rabbitmq rabbitmq.safe_reboot
-```
+    ```
+    gds govuk connect ssh -e integration rabbitmq:1
+    ```
 
-If any applications start alerting due to `rabbitmq-1` being rebooted
-then either add a note here about how to make that application recover,
-or get the team responsible to make it point to the cluster.
+1. Check that the RabbitMQ cluster is healthy by running `sudo rabbitmqctl cluster_status`.
 
-Rebooting rabbitmq may cause alerts for other apps which can be restarted,
-for example email-alert-api.
+    This prints a list of expected machines and a list of currently running machines. If the 2 lists are the same then the cluster is healthy. The following output is an example of a healthy cluster:
 
-You can ssh into individual machines to restart the service:
+    ```
+    Cluster status of node 'rabbit@ip-10-12-6-130'
+    [{nodes,[{disc,['rabbit@ip-10-12-4-186','rabbit@ip-10-12-5-128',
+                'rabbit@ip-10-12-6-130']}]},
+     {running_nodes,['rabbit@ip-10-12-4-186','rabbit@ip-10-12-5-128',
+                 'rabbit@ip-10-12-6-130']},
+     {cluster_name,<<"rabbit@ip-10-12-6-130.eu-west-1.compute.internal">>},
+     {partitions,[]},
+     {alarms,[{'rabbit@ip-10-12-4-186',[]},
+              {'rabbit@ip-10-12-5-128',[]},
+              {'rabbit@ip-10-12-6-130',[]}]}]
+    ```
 
-```
-sudo service email-alert-api restart
-```
+1. Reboot the machine by running `sudo reboot`.
+
+When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts.
+
+For more information on RabbitMQ-related alerts, see the [GOV.UK Puppet RabbitMQ `monitoring.pp` file](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/manifests/monitoring.pp).
+
+There have been two incidents after rebooting RabbitMQ machines. For more information, see the [No non-idle RabbitMQ consumers](https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#) and [Publishing API jobs became stuck](https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv) incident reports.
 
 ### Rebooting asset primary and secondary machines
 
@@ -261,4 +243,22 @@ sudo reboot
 
 ### Rebooting docker-management
 
-It is safe to reboot while no other unattended reboot is underway - see https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/class/docker_management.yaml
+It is safe to reboot while no other unattended reboot is underway:
+
+1. Set `govuk_unattended_reboot::enabled` to `false` in the [govuk-puppet common configuration](https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166) - you can do this in a branch.
+1. Build the branch of govuk-puppet to Production
+1. Wait half an hour to allow all machines to pull from the puppetmaster
+1. Reboot the docker-management machine (`sudo reboot`)
+1. Deploy the previous release of govuk-puppet to Production
+
+### Rebooting other machines
+
+This guidance applies if you want to reboot a machine that is not one of the previous types.
+
+1. Schedule downtime in Icinga, or let GOV.UK 2nd line support know that there will be alerts for a machine being down.
+
+2. SSH into the machine and run:
+
+   ```sh
+   sudo reboot
+   ```

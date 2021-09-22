@@ -43,7 +43,7 @@ re-deployed. The only way a user will see the banner again is if:
 1. the `global_bar_seen` cookie expires, or
 1. the global banner is versioned
 
-To version the global banner, increase the `BANNER_VERSION` in [`global-bar-init.js`](https://github.com/alphagov/static/blob/master/app/assets/javascripts/global-bar-init.js) by one.
+To version the global banner, increase the `BANNER_VERSION` in [`global-bar-init.js`](https://github.com/alphagov/static/blob/main/app/assets/javascripts/global-bar-init.js) by one.
 
 ## Removing the global banner
 
@@ -52,4 +52,4 @@ In [`app/views/notifications/_global_bar.html.erb`][global-bar-view]:
 1. Update the `show_global_bar` variable to `false`
 1. Deploy static
 
-[global-bar-view]: https://github.com/alphagov/static/blob/master/app/views/notifications/_global_bar.html.erb
+[global-bar-view]: https://github.com/alphagov/static/blob/main/app/views/components/_global_bar.html.erb

@@ -75,24 +75,28 @@ RSpec.describe App do
   end
 
   describe "dashboard_url" do
-    let(:production_hosted_on) { nil }
+    let(:configured_dashboard_url) { nil }
     let(:app) do
       described_class.new(
         "type" => "Publishing app",
         "github_repo_name" => "my-app",
-        "production_hosted_on" => production_hosted_on,
+        "dashboard_url" => configured_dashboard_url,
       )
     end
     subject(:dashboard_url) { app.dashboard_url }
 
-    describe "hosted on AWS" do
-      let(:production_hosted_on) { "aws" }
-      it { is_expected.to eql("https://grafana.production.govuk.digital/dashboard/file/my-app.json") }
+    describe "configured dashboard_url set to false" do
+      let(:configured_dashboard_url) { false }
+      it { is_expected.to be_nil }
     end
 
-    describe "hosted on Carrenza" do
-      let(:production_hosted_on) { "carrenza" }
-      it { is_expected.to eql("https://grafana.publishing.service.gov.uk/dashboard/file/my-app.json") }
+    describe "configured dashboard_url" do
+      let(:configured_dashboard_url) { "https://example.com" }
+      it { is_expected.to eql("https://example.com") }
+    end
+
+    describe "default dashboard_url" do
+      it { is_expected.to eql("https://grafana.production.govuk.digital/dashboard/file/my-app.json") }
     end
   end
 
@@ -109,6 +113,10 @@ RSpec.describe App do
     end
     subject(:dashboard_url) { app.rake_task_url(environment, rake_task) }
 
+    describe "not hosted on AWS" do
+      it { is_expected.to be_nil }
+    end
+
     describe "hosted on AWS and environment is production" do
       let(:production_hosted_on) { "aws" }
       let(:environment) { "production" }
@@ -123,30 +131,6 @@ RSpec.describe App do
 
     describe "hosted on AWS and environment is integration" do
       let(:production_hosted_on) { "aws" }
-      let(:environment) { "integration" }
-
-      it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=") }
-
-      describe "with a Rake task" do
-        let(:rake_task) { "task" }
-        it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=task") }
-      end
-    end
-
-    describe "hosted on Carrenza and environment is production" do
-      let(:production_hosted_on) { "carrenza" }
-      let(:environment) { "production" }
-
-      it { is_expected.to eql("https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=") }
-
-      describe "with a Rake task" do
-        let(:rake_task) { "task" }
-        it { is_expected.to eql("https://deploy.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=task") }
-      end
-    end
-
-    describe "hosted on Carrenza and environment is integration" do
-      let(:production_hosted_on) { "carrenza" }
       let(:environment) { "integration" }
 
       it { is_expected.to eql("https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-publisher&MACHINE_CLASS=backend&RAKE_TASK=") }

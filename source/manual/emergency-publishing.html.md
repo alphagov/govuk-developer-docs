@@ -116,7 +116,7 @@ Caches will clear automatically.
 
 ### Background
 
-The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we use Jenkins to run [rake tasks in static](https://github.com/alphagov/static/blob/master/lib/tasks/emergency_banner.rake) to set or delete the appropriate hash in Redis.
+The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we use Jenkins to run [rake tasks in static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake) to set or delete the appropriate hash in Redis.
 
 ### The banner is not showing / not clearing
 

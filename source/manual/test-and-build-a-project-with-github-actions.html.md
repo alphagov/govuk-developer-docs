@@ -26,7 +26,7 @@ following:
   jobs during or following a build (for example, triggering
   [publishing end-to-end tests][e2e-tests] or triggering a deployment);
 - authentication to external systems (for example, [releasing a gem
-  automatically][gem-release] during a master build).
+  automatically][gem-release] during a main build).
 
 ## GOV.UK Conventions for GitHub Actions
 
@@ -42,7 +42,7 @@ push to the repository and this will generate a build against the branch
 that was pushed. The `pull_request` event occurs whenever a pull request
 is opened and it is triggered again any time the pull request changes (such
 as extra commits or rebasing), these differ to the `push` event by merging in
-the master branch before running operations. Pull requests from forks of a
+the main branch before running operations. Pull requests from forks of a
 repo will only trigger the `pull_request` event.
 
 For example:
@@ -222,12 +222,12 @@ Notes:
 - In the underlying project (Content Publisher) `bundle exec rake` performs:
   Ruby & JS unit testing; Ruby, SCSS, JavaScript and FactoryBot linting; and
   brakeman security audit.
-- This example does not include tagging the [master branch with a particular
-  release tag][release-tag] when there is a successful master build.
+- This example does not include tagging the [main branch with a particular
+  release tag][release-tag] when there is a successful main build.
 
 [ci]: https://en.wikipedia.org/wiki/Continuous_integration
 [Jenkins]: /manual/testing-projects.html
-[GOV.UK RFC 123]: https://github.com/alphagov/govuk-rfcs/blob/master/rfc-123-github-actions-ci.md
+[GOV.UK RFC 123]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md
 [actions-secrets]: https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
 [e2e-tests]: /manual/publishing-e2e-tests.html
 [gem-release]: /manual/publishing-a-ruby-gem.html#releasing-gem-versions

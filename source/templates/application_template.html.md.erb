@@ -1,7 +1,7 @@
 ---
 layout: application_layout
 parent: /apps.html
-source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/applications.yml
+source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/applications.yml
 ---
 
 <% if application.retired? %>
@@ -52,10 +52,15 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/master/data/ap
 <% 
   unless application.private_repo?
     imported_docs = GitHubRepoFetcher.instance.docs(application.github_repo_name)
-    unless imported_docs.nil?
+    unless imported_docs.nil? || imported_docs.empty?
 %>
 ## Imported documents
-<%= partial("partials/application/imported_docs", locals: { imported_docs: imported_docs }) %>
+<%= partial(
+  "partials/application/imported_docs",
+  locals: {
+    path_to_app_docs: "/apps/#{application.github_repo_name}",
+    imported_docs: imported_docs,
+  }).strip %>
 <%
     end
   end

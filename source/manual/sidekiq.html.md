@@ -65,10 +65,10 @@ You can access each application's dashboard via a URL for:
 
 - Choose a port that isn't already taken for the Sidekiq Monitoring
   app to be served from.
-- Add it to the [Procfile in the sidekiq-monitoring repository](https://github.com/alphagov/sidekiq-monitoring/blob/master/Procfile)
+- Add it to the [Procfile in the sidekiq-monitoring repository](https://github.com/alphagov/sidekiq-monitoring/blob/main/Procfile)
   maintaining the alphabetical order of the processes.
 - Update
-  [index.html](https://github.com/alphagov/sidekiq-monitoring/blob/master/public/index.html#L26-L29)
+  [index.html](https://github.com/alphagov/sidekiq-monitoring/blob/main/public/index.html#L26-L29)
   to include a link to your application's sidekiq-monitoring maintaining the
   alphabetical order of the applications. This path is configured as a location
   under the sidekiq-monitoring vhost.
