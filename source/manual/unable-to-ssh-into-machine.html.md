@@ -79,3 +79,22 @@ You'll need to sign into AWS and [reprovision the instance](/manual/reprovision.
 You may want to click the "Report instance status" button while you're there, to inform
 AWS that the instance is unresponsive - this should help AWS to improve their automated
 checks in the future.
+
+## Check the system log on the AWS instance
+
+There may be times when a system error has been logged, for example Puppet not correctly
+running and populating your SSH key onto the machine.
+
+Follow these steps to access the system log without SSHing into the machine:
+
+1. Log into the AWS console for the relevant environment:
+
+  ```
+  gds aws govuk-integration-poweruser -l
+  gds aws govuk-staging-poweruser -l
+  gds aws govuk-production-poweruser -l
+  ```
+
+1. Navigate to the EC2 console and locate the relevant instance
+
+1. From the instance summary, click 'Actions', 'Monitor and troubleshoot', then 'Get system log'
