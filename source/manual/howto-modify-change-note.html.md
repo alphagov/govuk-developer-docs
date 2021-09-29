@@ -43,7 +43,7 @@ govuk-connect app-console -e integration whitehall_backend/whitehall
 Find the document:
 
 ```
-document=Document.find_by_content_id(“YOUR_CONTENT_ID_HERE”)
+document=Document.find_by_content_id("YOUR_CONTENT_ID_HERE")
 ```
 
 Output will be a summary of your document. Next, select the editions:
@@ -61,13 +61,13 @@ fuzzy_match = FuzzyMatch.new(editions, read: :change_note)
 Output should show the change notes. Select the relevant one:
 
 ```
-edition = fuzzy_match.find(“A_STRING_FROM_YOUR_CHANGE_NOTE”, must_match_at_least_one_word: true)
+edition = fuzzy_match.find("A_STRING_FROM_YOUR_CHANGE_NOTE", must_match_at_least_one_word: true)
 ```
 
 Output shows the relevant edition that needs the change note update. Update it:
 
 ```
-edition.update(change_note: “YOUR_DESIRED_CHANGE_NOTE_STRING”)
+edition.update(change_note: "YOUR_DESIRED_CHANGE_NOTE_STRING")
 ```
 
 The response to this is "false" but the update has taken place. You can confirm this if you want to by typing "edition" to review it. Save the changes:
