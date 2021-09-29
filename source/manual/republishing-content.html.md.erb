@@ -23,9 +23,9 @@ If the documents are in Whitehall, there are Rake tasks you can run as outlined 
 
 <%= RunRakeTask.links("whitehall", "publishing_api:republish_document[slug]") %>
 
-For organisations, use the `republish_organisation` rake task:
+For organisations, use the `organisation_by_slug` rake task:
 
-<%= RunRakeTask.links("whitehall", "publishing_api:republish_organisation[slug]") %>
+<%= RunRakeTask.links("whitehall", "publishing_api:republish:organisation_by_slug[slug]") %>
 
 For all of a single document type, use the `bulk_republish` rake task:
 
