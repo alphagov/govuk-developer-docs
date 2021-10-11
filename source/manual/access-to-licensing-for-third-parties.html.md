@@ -15,9 +15,7 @@ This document explains how to access the Licensify infrastructure as a third par
 
 Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.
 
-If you haven't already got access to GDS' Logit account, you'll need to ask a GOV.UK developer to set you up.
-
-Once you have an account, you can [follow the instructions in the Reliability Engineering documentation to sign in to Logit](https://reliability-engineering.cloudapps.digital/logging.html#content).
+If you haven't already got access to GDS' Logit account, you'll need to [follow the instructions in the Reliability Engineering documentation to create an account in Logit](https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit).
 
 ## Accessing the VPN
 
