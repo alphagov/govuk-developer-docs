@@ -146,6 +146,8 @@ order):
 | `New supporting organisations` | The slugs of the new supporting organisations (separated by a comma). These will replace any existing organisations. |
 
 There is a similar [Rake task to change the organisations for Manuals][manuals-bulk-update-organisation].
+A data migration is required to change the organisations for (Mainstream) Publisher documents. This is an example PR: [Migrate Publisher docs][publisher-bulk-update-organisation-example]
 
 [whitehall-bulk-update-organisation]: https://github.com/alphagov/whitehall/blob/917085dca58fb58dbf65c7e226ad445cc1f27bdd/lib/tasks/data_hygiene.rake#L37
 [manuals-bulk-update-organisation]: https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/update_manual_organisation.rake
+[publisher-bulk-update-organisation-example]: https://github.com/alphagov/publishing-api/pull/1981
