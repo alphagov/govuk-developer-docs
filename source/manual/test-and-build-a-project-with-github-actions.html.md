@@ -13,20 +13,11 @@ that provide similar functionality. In [GOV.UK RFC 123][] we decided that
 GitHub Actions is the preferred platform for GOV.UK CI usage where the wider
 platform integration of Jenkins is not required.
 
-Please note that we cannot currently make use of the [Secrets][actions-secrets]
-in GitHub Action workflows, there are on-going discussions to resolve this. In
-the meantime please **do not add any secrets to workflows**. For further
-details of this restriction please contact
-[GOV.UK senior tech](mailto:govuk-senior-tech@digital.cabinet-office.gov.uk).
-
-Thus, you should continue to use Jenkins for any projects that need the
-following:
-
-- access to GDS' internal network to trigger other internal systems to perform
-  jobs during or following a build (for example, triggering
-  [publishing end-to-end tests][e2e-tests] or triggering a deployment);
-- authentication to external systems (for example, [releasing a gem
-  automatically][gem-release] during a main build).
+**If your workflow requires the use of secrets, please talk to
+[GOV.UK senior tech](mailto:govuk-senior-tech@digital.cabinet-office.gov.uk)
+before deploying it.** This is to help GOV.UK establish consistent and
+effective secret management for GitHub Actions across the wider alphagov
+GitHub organisation.
 
 ## GOV.UK Conventions for GitHub Actions
 
