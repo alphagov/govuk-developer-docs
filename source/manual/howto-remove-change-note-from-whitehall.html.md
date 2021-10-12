@@ -6,10 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-Change notes are called editorial remarks in Whitehall. An Edition can
-have multiple editorial remarks and they are visible only in Whitehall
-Admin. However, an Edition in the Publishing API can only have one `change_note`, which is public-facing. The Publishing API creates a list of all the change notes
-from all versions of the edition and presents them to the Content Store.
+An Edition can have multiple editorial remarks (also known as [internal notes](https://www.gov.uk/guidance/how-to-publish-on-gov-uk/creating-and-updating-pages#internal-notes))
+and they are visible only in Whitehall Admin. However, an Edition in the Publishing API can only have one `change_note`, which is public-facing. The Publishing API creates a list of all the [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes) from all versions of the edition and presents them to the Content Store.
 You can read more about this in the Publishing API [docs](https://docs.publishing.service.gov.uk/apis/publishing-api/model.html#changenote).
 
 ### Remove a change note
