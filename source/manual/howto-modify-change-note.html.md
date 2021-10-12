@@ -6,7 +6,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-Spelling mistakes can creep into change notes, and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.
+Spelling mistakes can creep into [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes), and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.
 
 ## Publishing API
 
