@@ -25,7 +25,7 @@ changed in a git commit.
 ## What Hiera data do we encrypt?
 
 Currently, we only encrypt the data in the credentials files found in the
-[hieradata/](https://github.com/alphagov/govuk-puppet/tree/master/hieradata)
+[hieradata/](https://github.com/alphagov/govuk-puppet/tree/main/hieradata)
 directories of the
 [alphagov/govuk-puppet](https://github.com/alphagov/govuk-puppet) and
 [alphagov/govuk-secrets](https://github.com/alphagov/govuk-secrets)
@@ -68,7 +68,7 @@ Hiera eYAML provides a command-line tool for viewing and editing
 encrypted data.
 
 There is a
-[Rakefile](https://github.com/alphagov/govuk-secrets/blob/master/puppet/Rakefile)
+[Rakefile](https://github.com/alphagov/govuk-secrets/blob/main/puppet/Rakefile)
 in the puppet/ directory of the
 [govuk-secrets](https://github.com/alphagov/govuk-secrets) repository
 which wraps the Hiera eYAML tool and helps to ensure that sensitive data is
@@ -138,7 +138,7 @@ The list of people that have access to encrypted Hiera data in stored in a
 recipient file specific to each environment (`.rcp` extension).
 
 The production and integration files are stored in the govuk-secrets repo for
-[AWS](https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/gpg_recipients).
+[AWS](https://github.com/alphagov/govuk-secrets/tree/main/puppet_aws/gpg_recipients).
 There is no separate staging file; the production file is used for both
 staging and production.
 
@@ -154,20 +154,20 @@ recipient file pertains to.
    to a public key server (such as <https://pgp.mit.edu/>).
 2. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
 3. Add the joiners's GPG fingerprint to the recipient files
-   AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
+   AWS [integration](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
 4. Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
    is something like "Adding new key for Jane Smith".
 5. Commit your changes and raise a pull request for review.
 6. Check that the joiner has uploaded their GPG key.
     If their key isn't on a public keyserver it interupts other people's workflow so please make sure it has been uploaded.
-7. Take care when rebasing changes to master that have been merged since you
+7. Take care when rebasing changes to main that have been merged since you
    started your PR. The encrypted hieradata files are effectively binary data
    that git's text diff may not correctly merge. You will likely have to
-   reset your recrypted versions and start again from the versions on master.
+   reset your recrypted versions and start again from the versions on main.
 
 ### What to do when someone gets production access
 
-Follow the steps above but add their GPG fingerprint to the production recipient files AWS [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
+Follow the steps above but add their GPG fingerprint to the production recipient files AWS [production](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
 
 Note there are no staging recipient files - access to staging secrets is controlled by the production recipient files.
 
@@ -177,8 +177,8 @@ Remove leavers from all recipient files, so that they can no longer change
 credentials.
 
 1. Delete the leaver's GPG fingerprint from each of the recipient files
-   AWS [integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-   and [production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
+   AWS [integration](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
+   and [production](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
    There are no staging recipient files since these are the same as the
    production recipient files.
 2. Commit your changes and raise a pull request for review.
@@ -205,7 +205,7 @@ expires or is compromised, a new GPG key must be generated. This key allows
 Puppet to read encrypted Hiera data.
 
 To ensure consistency, new GPG keys are generated using a template
-([example](https://github.com/alphagov/govuk-secrets/blob/master/puppet/gpg_templates/production_hiera_gpg_template.txt)).
+([example](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_templates/production_hiera_gpg_template.txt)).
 
 To generate a new key:
 
@@ -221,7 +221,7 @@ To generate a new key:
 
     3. Create the GPG key ring (`pubring.kbx`) based on the appropriate template
        (this will depend on the environment that you want to create the GPG key
-       for) in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/master/puppet/gpg_templates):
+       for) in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/main/puppet/gpg_templates):
 
        ```shell
        gpg --homedir $PWD --verbose --batch --gen-key <path_to_selected_template>
@@ -237,8 +237,8 @@ To generate a new key:
        ```
 
        You should store this key in the appropriate location in govuk-secrets:
-       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/integration)
-       and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)
+       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/integration)
+       and for production [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/production)
 
     5. Extract the passphrase protected private key (`secring.gpg`) of the GPG
        key pair by running (you will have to supply the passphrase):
@@ -248,8 +248,8 @@ To generate a new key:
        ```
 
        You should store this key in the appropriate location in govuk-secrets:
-       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/integration)
-       and for production [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg/production)
+       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/integration)
+       and for production [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/production)
 
     6. You can obtain the fingerprint of the GPG key pair by running:
 
@@ -268,7 +268,7 @@ To generate a new key:
        where `<fingerprint>` was obtained above.
 
 3. Add the passphrase you used when creating the new GPG key to the 2nd line
-   password store by running inside the [pass](https://github.com/alphagov/govuk-secrets/tree/master/pass) directory of the govuk-secrets:
+   password store by running inside the [pass](https://github.com/alphagov/govuk-secrets/tree/main/pass) directory of the govuk-secrets:
 
    ```shell
    PASSWORD_STORE_GPG_OPTS="--trust-model always" ./edit.sh 2ndline hiera-eyaml-gpg/<environment_passphrase_key>
@@ -286,14 +286,14 @@ To generate a new key:
 4. Change the relevant files to remove the fingerprint of the old
    key and add the new fingerprint (as obtained above). If you changed:
      1. integration:
-       - [aws puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-       - [common puppet ruby recipient file](https://github.com/alphagov/govuk-secrets/blob/master/puppet_common/gpg_recipients.rb)
+       - [aws puppet recipients file for integration](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
+       - [common puppet ruby recipient file](https://github.com/alphagov/govuk-secrets/blob/main/puppet_common/gpg_recipients.rb)
 
       2. production:
-       - [aws puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/master/puppet_aws/gpg_recipients/production_hiera_gpg.rcp)
+       - [aws puppet recipients file for production](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/production_hiera_gpg.rcp)
 
 5. Add and commit locally your changes to govuk-secrets. You can then use
-   the [re-encrypt-all.sh](https://github.com/alphagov/govuk-secrets/blob/master/re-encrypt-all.sh)
+   the [re-encrypt-all.sh](https://github.com/alphagov/govuk-secrets/blob/main/re-encrypt-all.sh)
    to re-encrypt all the relevant parts of govuk-secrets.
 
 6. Open a pull request with all the changes so far and get it approved and
@@ -313,7 +313,7 @@ To generate a new key:
 ### Configuring the Puppet Master
 
 The GPG key `secring.gpg`, stored in the [2ndline password
-store](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg) in the
+store](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg) in the
 [govuk-secrets](https://github.com/alphagov/govuk-secrets) repository,
 must be installed on the Puppet Master so that encrypted Hiera data is available
 to Puppet:
@@ -325,7 +325,7 @@ to Puppet:
    ```
 
 2. Copy in the new directory the private GPG key `secring.gpg` of the relevant
-    environment from the [directory](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)
+    environment from the [directory](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg)
    in govuk-secrets.
 
 3. In the new directory, get the fingerprint of the GPG key by running:
@@ -373,7 +373,7 @@ to Puppet:
 9. Copy the following files to the Puppet Master using from your local machine:
     1. `secring_unprotected.gpg` as `/etc/puppet/gpg/secring.gpg` on puppetmaster
 
-    2. `pubring.gpg` (obtained from the appropriate environment/directory in [here](https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
+    2. `pubring.gpg` (obtained from the appropriate environment/directory in [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
 
 10. Make sure the new files have the correct permissions:
     `sudo chown -R puppet:puppet /etc/puppet/gpg` and
@@ -447,7 +447,7 @@ If you see this error:
 General error
 ```
 
-Try pulling `master` again - there's a good chance someone has made a
+Try pulling `main` again - there's a good chance someone has made a
 change since you made your changes. Otherwise, check if any of the GPG
 keys in the recipients list have expired.
 
@@ -493,7 +493,7 @@ gpg --keyserver keyserver.ubuntu.com --recv-keys <fingerprint>
 
 Alternatively, you can run the `govuk-secrets/pass/trust_all.sh` script. This
 will fetch all recipient keys from the keyserver.
-[More information can be found in the govuk-secrets README](https://github.com/alphagov/govuk-secrets/tree/master/pass#trust-user-public-keys).
+[More information can be found in the govuk-secrets README](https://github.com/alphagov/govuk-secrets/tree/main/pass#trust-user-public-keys).
 
 ### Encryption fails when running the Rake task because of "Unusable public key"
 
