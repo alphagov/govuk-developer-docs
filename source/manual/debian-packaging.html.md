@@ -248,6 +248,17 @@ very good.
 These instructions are only to be used when setting up a new machine to
 serve aptly repos.
 
+> **Warning**
+>
+> Scaling up the existing apt autoscaling groups **will not work**, because the
+> Terraform configuration will only provision storage for the first instance in
+> each group. If it is necessary to set up an additional instance, it must be in
+> an ASG of its own.
+>
+> Scaling up past a single instance will result in errors like `Execution of
+> '/sbin/pvcreate /dev/xvdf' returned 5: Device /dev/xvdf not found (or ignored
+> by filtering).` and `Dependency Physical_volume[/dev/xvdf] has failures: true`
+
 We only manage *some* parts of aptly using Puppet, because it requires
 GPG keys and passwords, and updating repositories is something that
 should be done ad-hoc rather than on a regular schedule.
