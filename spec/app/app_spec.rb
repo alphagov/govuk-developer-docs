@@ -6,25 +6,13 @@ RSpec.describe App do
         "team" => "bar",
         "dependencies_team" => "baz",
         "production_hosted_on" => "aws",
-        "continuously_deployed" => false,
       }
       payload = App.new(app_details).api_payload
       expect(payload[:app_name]).to eq(app_details["github_repo_name"])
       expect(payload[:team]).to eq(app_details["team"])
       expect(payload[:dependencies_team]).to eq(app_details["dependencies_team"])
       expect(payload[:production_hosted_on]).to eq(app_details["production_hosted_on"])
-      expect(payload[:continuously_deployed]).to eq(false)
       expect(payload[:links]).to include(:self, :html_url, :repo_url, :sentry_url)
-    end
-  end
-
-  describe "continuously_deployed?" do
-    it "defaults to `false`" do
-      expect(App.new("github_repo_name" => "foo").continuously_deployed?).to eq(false)
-    end
-
-    it "returns `continuously_deployed` property if specified" do
-      expect(App.new("github_repo_name" => "foo", "continuously_deployed" => true).continuously_deployed?).to eq(true)
     end
   end
 
