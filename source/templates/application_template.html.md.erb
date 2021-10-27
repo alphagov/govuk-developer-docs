@@ -29,10 +29,6 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/appl
       field: "Hosting",
       value: sanitize(partial("partials/application/hosting").strip),
     },
-    (application.hosting_name == "None" ? nil : {
-      field: "Continuously deployed?",
-      value: application.continuously_deployed? ? "Yes" : "No",
-    }),
     (application.can_run_rake_tasks_in_jenkins? ? {
       field: "Rake tasks",
       value: RunRakeTask.terse_links(application).html_safe,
