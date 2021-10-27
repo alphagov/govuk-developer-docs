@@ -1,13 +1,11 @@
 # GOV.UK Account
 - github_repo_name: govuk-account-manager-prototype
-  continuously_deployed: true
   type: GOV.UK Account
   team: "#govuk-accounts-tech"
   production_hosted_on: paas
   sentry_url: https://sentry.io/organizations/govuk/issues/?project=5370953
   dashboard_url: false
 - github_repo_name: govuk-attribute-service-prototype
-  continuously_deployed: true
   type: GOV.UK Account
   team: "#govuk-accounts-tech"
   production_hosted_on: paas
@@ -17,7 +15,6 @@
 # publishing apps
 
 - github_repo_name: collections-publisher
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-corona-services-tech"
@@ -36,40 +33,33 @@
   actors:
   - Publisher
 - github_repo_name: content-publisher
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: local-links-manager
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-corona-services-tech"
   production_hosted_on: aws
 - github_repo_name: manuals-publisher
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: maslow
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: publisher
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: service-manual-publisher
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: short-url-manager
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
@@ -80,12 +70,10 @@
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: travel-advice-publisher
-  continuously_deployed: true
   type: Publishing apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: whitehall
-  continuously_deployed: true
   type: Publishing apps
   production_url: https://whitehall-admin.publishing.service.gov.uk
   team: "#govuk-platform-health"
@@ -98,7 +86,6 @@
 # api
 
 - github_repo_name: account-api
-  continuously_deployed: true
   type: APIs
   team: "#govuk-accounts-tech"
   production_hosted_on: aws
@@ -113,7 +100,6 @@
   metrics_dashboard_url: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
   production_hosted_on: aws
 - github_repo_name: imminence
-  continuously_deployed: true
   type: APIs
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -153,7 +139,6 @@
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: hmrc-manuals-api
-  continuously_deployed: true
   type: APIs
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -166,12 +151,10 @@
 # Services
 
 - github_repo_name: cache-clearing-service
-  continuously_deployed: true
   type: Services
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: email-alert-service
-  continuously_deployed: true
   type: Services
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -183,12 +166,10 @@
 # Support
 
 - github_repo_name: content-data-api
-  continuously_deployed: true
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: content-data-admin
-  continuously_deployed: true
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -201,18 +182,15 @@
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: support
-  continuously_deployed: true
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: authenticating-proxy
-  continuously_deployed: true
   type: Supporting apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: release
-  continuously_deployed: true
   type: Supporting apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
@@ -228,7 +206,6 @@
 # frontend
 
 - github_repo_name: collections
-  continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-corona-services-tech"
@@ -244,13 +221,11 @@
   team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: finder-frontend
-  continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
   component_guide_url: https://finder-frontend.herokuapp.com/component-guide
   production_hosted_on: aws
 - github_repo_name: frontend
-  continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
@@ -258,14 +233,12 @@
   actors:
   - Public
 - github_repo_name: government-frontend
-  continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   component_guide_url: https://government-frontend.herokuapp.com/component-guide
   production_hosted_on: aws
 - github_repo_name: info-frontend
-  continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
@@ -277,19 +250,16 @@
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: manuals-frontend
-  continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   production_hosted_on: aws
 - github_repo_name: smart-answers
-  continuously_deployed: true
   type: Frontend apps
   team: "#govuk-platform-health"
   puppet_name: smartanswers
   production_hosted_on: aws
 - github_repo_name: service-manual-frontend
-  continuously_deployed: true
   team: "#govuk-platform-health"
   dependencies_team: "#govuk-platform-health"
   type: Frontend apps
@@ -303,7 +273,6 @@
 # Transition
 
 - github_repo_name: bouncer
-  continuously_deployed: true
   type: Transition apps
   team: "#govuk-platform-health"
   production_hosted_on: aws
