@@ -126,6 +126,12 @@ list. Speak to a senior technologist member of GOV.UK or someone in
 GOV.UK Replatforming if you need to make a change and don't have
 access.
 
+You should also make sure that the following groups of people are aware before
+requesting any changes:
+- 2nd line (via email)
+- GOV.UK's Head of Tech and the lead technologists
+- The CDDO domains team (the lead technologists can contact them)
+
 2nd line should be notified of any planned changes via email.
 
 - `gov.uk.` is a top-level domain so it cannot contain a CNAME record

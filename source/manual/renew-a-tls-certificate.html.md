@@ -16,6 +16,11 @@ certificate.
 Note that the www.gov.uk certificate is not visible anywhere in the Fastly user
 interface. It is managed entirely through Fastly support.
 
+Renewing the certificate may require a TXT record on the `gov.uk` top level
+domain. This is because the certificate contains a Subject Alternate Name (SAN)
+of `DNS: gov.uk`. This TXT record needs to be requested through JISC following
+the process for [DNS for the gov.uk top level domain](/manual/dns.html#dns-for-the-gov-uk-top-level-domain).
+
 Credentials for the Fastly Zendesk support site are in the [2nd line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly).
 
 ## Renewing wildcard certificates
