@@ -128,6 +128,7 @@ access.
 
 You should also make sure that the following groups of people are aware before
 requesting any changes:
+
 - 2nd line (via email)
 - GOV.UK's Head of Tech and the lead technologists
 - The CDDO domains team (the lead technologists can contact them)
