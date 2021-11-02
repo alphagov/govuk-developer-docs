@@ -21,7 +21,7 @@ You will have to make 2 DNS changes to GOV.UK:
 2. The CNAME at `assets.publishing.service.gov.uk` should point to cloudfront's
    Assets distribution instead of Fastly
 
-This [Draft PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-config/pull/673)
+This [Draft PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-config/pull/714)
 shows the changes you need to make, and how to test the CDN before failing over.
 
 You can check the domain names of the cloudfront distributions by looking in
