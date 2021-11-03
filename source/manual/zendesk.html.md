@@ -23,7 +23,7 @@ relevant and actionable - and start with the oldest by date. If external assista
 line is required, assign them on the ticket and move on to the next ticket (keeping the ticket in the
 2nd line queue).
 
-Ignore 'Low' priority tickets - these have been triaged by 2nd line for GOV.UK product managers to review.
+'Low' priority tickets are for tickets that are `on-hold` and are not being actively worked on.
 
 New tickets are 'Normal' priority by default and require triaging (i.e. a developer reading and categorising
 it).
@@ -44,6 +44,7 @@ appropriate place.
 
 Below are some of the groups we often triage tickets to:
 
+* Product requests - `3rd Line--GOV.UK Product Requests`
 * Content support - `2nd Line--GOV.UK Content Triage, Gov't`
 * GDPR and Privacy enquiries - `3rd Line--GDS Privacy`
 * Licensing - `1st Line--Licensing Support`
@@ -82,16 +83,16 @@ You can use Internal Notes to keep a log of actions you've taken so far: this ca
 staff to pick up where you left off if you're unable to solve the ticket yourself. Please note that departments
 can see internal notes, so don’t write anything you wouldn’t say to someone publicly.
 
-If you need more information from the user, or confirmation that everything is now working as expected, fill
-in the "Public reply" as appropriate and click "Submit as Pending".
+If you need more information from the user, fill in the "Public reply" as appropriate and click "Submit as Pending".
 
 ## Closing a ticket
 
-Once you've resolved a ticket, click "Submit as Solved".
+Once you've resolved a ticket, click "Submit as Solved". You do not need to wait for user confirmation to
+close the ticket.
 
 ## Tickets left pending without a response
 
-Note that if a ticket has been resolved and pending a response for 5 or more days with no response from the
+Note that if a ticket has been pending a response for 5 or more days with no response from the
 requester, you can submit it as solved with a message telling them why and that if they still need help they
 can get in touch. Do this by clicking the "Apply macro" button at the bottom of the ticket screen, and
 choosing the "GOV.UK 2nd line tech: pending for 5+ days" option.
