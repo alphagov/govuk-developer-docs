@@ -27,30 +27,17 @@ Be aware that these options will replay the entire Publisher API history for tha
 `govuk` index.**
 
 These indexes are populated by whitehall calling an HTTP API in Search API.
-Missing documents can be recovered by resending the content to Search API directly. In
-Whitehall, run the following rake task (including the quotes) to replay traffic between
-two datestamps:
+Missing documents can be recovered by resending the content to Search API directly.
 
-```
-govuk_setenv whitehall bundle exec \
-rake 'search:index:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
-```
-
-You can also run this task from Jenkins.
+[Run this task in Jenkins](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=search:index:published_between[2018-12-17T01:02:30,%202018-12-18T10:20:30]), remembering to change the two timestamps.
 
 ## `metasearch` index
 
 This index is used for best bets, which are published by Search Admin
 communicating with Search API directly (like how whitehall updates the
-`government` and `detailed` indices directly).  In Search Admin, run
-the following rake task to resend all bets to Search API:
+`government` and `detailed` indices directly).
 
-```
-govuk_setenv search-admin bundle exec \
-rake reindex_best_bets
-```
-
-You can also run this task from Jenkins.
+[Run this task in Jenkins](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK=reindex_best_bets) to resend all bets to Search API.
 
 [restore-backups]: https://docs.publishing.service.gov.uk/manual/elasticsearch-dumps.html
 [queue]: https://github.com/alphagov/search-api/blob/main/docs/new-indexing-process.md
