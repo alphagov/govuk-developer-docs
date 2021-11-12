@@ -19,3 +19,26 @@ There is a Jenkins job that can be used to run any rake task:
 Jenkins jobs are also linkable. For example:
 
 <https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE_CLASS=backend-1.backend&RAKE_TASK=routes>
+
+## Run rake tasks from the command line
+
+It is possible to bypass Jenkins and run the rake tasks directly on the relevant app machines.
+
+First, SSH into the right machine class (e.g. `publishing_api`):
+
+```
+gds govuk connect ssh -e production publishing_api
+```
+
+Secondly, change directory so that the rake task is available:
+
+```
+cd /var/apps/publishing-api
+```
+
+Finally, run the rake task, e.g.:
+
+```
+govuk_setenv publishing-api bundle exec \
+rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
+```
