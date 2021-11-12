@@ -14,11 +14,9 @@ made and changes to the Elasticsearch schema.
 
 If this process fails then please escalate to Platform Health for further investigation.
 
-This task can be manually run with the following command:
+This task can be run in Jenkins:
 
-```
-bundle exec rake search:migrate_schema SEARCH_INDEX=<index_alias_name>
-```
+<%= RunRakeTask.links("search-api", "search:migrate_schema SEARCH_INDEX=index_alias_name") %>
 
 [reindexing]: /manual/reindex-elasticsearch.html
 [search-api]: /apps/search-api.html
