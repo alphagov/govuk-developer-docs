@@ -71,6 +71,10 @@ Every week there’s a GOV.UK tech lead stand up where each tech lead will talk 
 
 There’s also a weeknote which every team contributes to and is shared around the developer community on GOV.UK.
 
+## Attending relevant Incident Reviews
+
+When incidents happen on applications your team look after, you're expected to attend incident reviews along with the team's Product Manager. This is so you understand the technical work and you have the opportunity to ask questions or challenge the approach. You can give the technical direction for any follow-up actions that come out of the review.
+
 ## Not knowing everything about GOV.UK
 
 It’s important to be aware that you don’t need to know everything about GOV.UK to be a tech lead. The role is just as much about leadership and “soft skills”, than it is about technical ability and knowledge of the platform.
