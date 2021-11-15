@@ -12,8 +12,6 @@ We use GPG keys to encrypt our secrets. Documentation for using your GPG key can
 
 Install `gpg` if you don't already have it. Use `brew install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/).
 
-Once installed, you will likely have both `gpg` and `gpg2` on your machine. Always use `gpg2`.
-
 ## Creating a GPG key (using the GUI)
 
 [GPGtools](https://gpgtools.org/) comes with a GUI which can perform most of the operations you need.
@@ -30,7 +28,7 @@ See below for checking your passphrase.
 
 ## Creating a GPG key (using the command line)
 
-Create a gpg key with `gpg2 --gen-key` using your
+Create a gpg key with `gpg --gen-key` using your
 digital.cabinet-office.gov.uk email address. Defaults for the questions
 should be fine, although you should choose a 4096-bit key.
 
@@ -38,13 +36,13 @@ should be fine, although you should choose a 4096-bit key.
 >
 > You should also generate a [revocation
 > certificate](http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.4)
-> with `gpg2 --gen-revoke` and store it in a safe place (*not* on your
+> with `gpg --gen-revoke` and store it in a safe place (*not* on your
 > laptop, maybe a USB stick in your locker).
 
 ### Working out your key ID and fingerprint
 
 ```
-gpg2 --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
+gpg --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
 ```
 
 Should look something like this.
@@ -70,7 +68,7 @@ keyserver https://keyserver.ubuntu.com/
 Send your key to a keyserver by running:
 
 ```
-gpg2 --send-keys $KEYID
+gpg --send-keys $KEYID
 ```
 
 If you are having problems uploading your key, it's worth trying another keyserver. Those trying to receive your key may be connecting to a different keyserver than the one you sent your key to. This is fine, as the keyservers synchronise, but this may take some time to happen.
@@ -95,7 +93,7 @@ You may need to run `gpgconf --kill all` in order for these changes to take effe
 You can test your passphrase like this:
 
 ```
-echo "1234" | gpg2 -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
+echo "1234" | gpg -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
 ```
 
 You will be prompted to enter your passphrase upon running this command then if you have entered your passphrase correctly you will see "The correct passphrase was entered for this key".
