@@ -50,14 +50,14 @@ gpg2 --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
 Should look something like this.
 
 ```
-pub   2048R/90E65803 2013-02-08
-      Key fingerprint = 37CC 021A C5C2 4E27 C4D9  5735 9B0E 9DD1 90E6 5803
-      uid                  my name <my.name@digital.cabinet-office.gov.uk>
-      sub   2048R/FDD27DBE 2013-02-08
+pub   rsa2048 2013-02-08 [SC]
+      37CC 021A C5C2 4E27 C4D9  5735 9B0E 9DD1 90E6 5803
+      uid                  [ultimate] Firstname Lastname <firstname.lastname@digital.cabinet-office.gov.uk>
+      sub   rsa2048 2013-02-08 [E]
 ```
 
-The key ID is `90E65803`, and the fingerprint is `37CC 021A C5C2
-4E27 C4D9 5735 9B0E 9DD1 90E6 5803`
+The  fingerprint is `37CC 021A C5C2 4E27 C4D9 5735 9B0E 9DD1 90E6 5803`,
+and the key ID is `90E65803` — the last 8 characters of the fingerprint.
 
 ### Upload your GPG key to a keyserver
 
