@@ -81,6 +81,15 @@ It occasionally takes a while for the keyserver to display pushed keys due to ca
 
 You can find an overview of the GPG keyserver pools [here](https://sks-keyservers.net/overview-of-pools.php).
 
+You may find you also need to configure `dirmngr` to successfully connect to a keyserver by adding either or both of the following lines to `~/.gnupg/dirmngr.conf`:
+
+```
+standard-resolver
+disable-ipv6
+```
+
+You may need to run `gpgconf --kill all` in order for these changes to take effect.
+
 ## Make sure your passphrase works
 
 You can test your passphrase like this:
