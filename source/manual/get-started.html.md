@@ -97,7 +97,6 @@ On GOV.UK we use the following command-line tools for AWS and SSH access:
 
     ```bash
     gds config email <FIRSTNAME>.<LASTNAME>@digital.cabinet-office.gov.uk
-    gds config yubikey <true>/<false>
     ```
 
 1. Run `gds config yubikey false` if you use your phone as an Multi-Factor Authentication (MFA) device.
