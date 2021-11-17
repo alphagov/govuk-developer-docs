@@ -19,7 +19,7 @@ Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, 
 
 We have stand-ups at 9.35am and a short retrospective at the weekly handover meeting.
 
-You do not need to be at the 2nd line desks all the time. If you have meetings to attend then attend them. Please let the delivery manager and the team know if you need to work from home and/or when you'll be away for long periods and be respectful of the amount of work your colleagues may have to pick up while you're away. If there are lots of alerts, you'll need to prioritise 2nd line above your meetings.
+If you have meetings to attend then attend them. Please let the delivery manager and the team know when you'll be away for long periods and be respectful of the amount of work your colleagues may have to pick up while you're away. If there are lots of alerts, you'll need to prioritise 2nd line above your meetings.
 
 ## Shift swaps, working patterns and sickness
 
