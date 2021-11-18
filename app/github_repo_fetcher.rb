@@ -1,6 +1,18 @@
 require "octokit"
 
 class GitHubRepoFetcher
+  # The cache is only used locally, as GitHub Pages rebuilds the site
+  # with an empty cache every hour and when new commits are merged.
+  #
+  # Setting a high cache duration below hastens local development, as
+  # you don't have to keep pulling down lots of content from GitHub.
+  # If you want to work with the very latest data, run `rm -r .cache`
+  # before starting the server.
+  #
+  # TODO: we should supply a command line option to automate the
+  # cache clearing step above.
+  LOCAL_CACHE_DURATION = 1.week
+
   def self.instance
     @instance ||= new
   end
@@ -15,7 +27,7 @@ class GitHubRepoFetcher
   def readme(repo_name)
     return nil if repo(repo_name).private_repo?
 
-    CACHE.fetch("alphagov/#{repo_name} README", expires_in: 1.hour) do
+    CACHE.fetch("alphagov/#{repo_name} README", expires_in: LOCAL_CACHE_DURATION) do
       default_branch = repo(repo_name).default_branch
       HTTP.get("https://raw.githubusercontent.com/alphagov/#{repo_name}/#{default_branch}/README.md")
     rescue Octokit::NotFound
@@ -27,7 +39,7 @@ class GitHubRepoFetcher
   def docs(repo_name)
     return nil if repo(repo_name).private_repo?
 
-    CACHE.fetch("alphagov/#{repo_name} docs", expires_in: 1.hour) do
+    CACHE.fetch("alphagov/#{repo_name} docs", expires_in: LOCAL_CACHE_DURATION) do
       recursively_fetch_files(repo_name, "docs")
     rescue Octokit::NotFound
       nil
@@ -37,7 +49,7 @@ class GitHubRepoFetcher
 private
 
   def all_alphagov_repos
-    @all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: 1.hour) do
+    @all_alphagov_repos ||= CACHE.fetch("all-repos", expires_in: LOCAL_CACHE_DURATION) do
       client.repos("alphagov")
     end
   end
