@@ -19,9 +19,7 @@ class ApplicationsByTeam
 
   def self.applications
     @applications ||=
-      YAML.load_file("data/applications.yml")
-        .map { |app_data| App.new(app_data) }
-        .reject(&:retired?)
+      Applications.active
         .sort_by(&:app_name)
         .group_by(&:team)
   end

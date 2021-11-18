@@ -7,8 +7,11 @@ class Applications
   }.freeze
 
   def self.all
-    @all ||= YAML.load_file("data/applications.yml").map do |app_data|
-      App.new(app_data)
+    @all ||= begin
+      apps = Dir["data/repos/*.yml"].map do |filepath|
+        YAML.load_file(filepath)["repos"].map { |app_data| App.new(app_data) }
+      end
+      apps.flatten
     end
   end
 

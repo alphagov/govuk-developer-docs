@@ -57,10 +57,10 @@ task :verify_deployable_apps do
 
   missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq
   if missing_apps.count.zero?
-    puts "No deployable apps missing from applications.yml ✅"
+    puts "No deployable apps missing from data/repos/ ✅"
   else
     errors = missing_apps.map { |missing_app| "\n\t #{missing_app}" }
-    abort("The following deployable apps are missing from applications.yml: #{errors.join('')}")
+    abort("The following deployable apps are missing from data/repos/: #{errors.join('')}")
   end
 end
 
@@ -72,6 +72,8 @@ task :check_puppet_names do
     suppress_output { HTTP.get(app.puppet_url) unless app.puppet_url.nil? }
   rescue Octokit::NotFound
     invalid_puppet_names << app.puppet_url
+  rescue Faraday::ConnectionFailed
+    puts "------------------------------------- failed to establish connection"
   end
   if invalid_puppet_names.count.zero?
     puts "All AWS apps have a valid puppet manifest ✅"
