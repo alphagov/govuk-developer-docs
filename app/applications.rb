@@ -3,7 +3,6 @@ class Applications
     "aws" => "AWS",
     "paas" => "GOV.UK PaaS",
     "heroku" => "Heroku",
-    "none" => "None",
   }.freeze
 
   def self.all

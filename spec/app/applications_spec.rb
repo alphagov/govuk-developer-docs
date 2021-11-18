@@ -49,7 +49,6 @@ RSpec.describe Applications do
         aws
         heroku
         paas
-        none
       ])
     end
   end

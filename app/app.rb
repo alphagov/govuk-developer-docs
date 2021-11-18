@@ -43,7 +43,7 @@ class App
   end
 
   def hosting_name
-    Applications::HOSTERS.fetch(production_hosted_on)
+    Applications::HOSTERS[production_hosted_on] || "None"
   end
 
   def html_url
