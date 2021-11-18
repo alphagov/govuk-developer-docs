@@ -1,0 +1,38 @@
+title: Infrastructure
+description: Infrastructure-related applications and libraries that would cause build issues if they were deleted.
+repos:
+  - github_repo_name: govuk-aws
+    team: "#govuk-developers"
+    type: Infrastructure
+
+  - github_repo_name: govuk-cdn-config
+    team: "#govuk-developers"
+    type: Infrastructure
+
+  - github_repo_name: govuk-dns-config
+    private_repo: true
+    team: "#govuk-developers"
+    type: Infrastructure
+    description: "DNS config for a variety of GDS domains"
+    private_repo: true
+
+  - github_repo_name: govuk-jenkinslib
+    team: "#govuk-platform-reliability-team"
+    production_hosted_on: aws
+    type: Infrastructure
+    sentry_url: false
+    dashboard_url: false
+
+  - github_repo_name: govuk-pact-broker
+    team: "#govuk-platform-reliability-team"
+    production_hosted_on: paas
+    type: Infrastructure
+    sentry_url: false
+    dashboard_url: false
+
+  - github_repo_name: govuk-puppet
+    team: "#govuk-developers"
+    type: Infrastructure
+    sentry_url: false
+    dashboard_url: false
+    deploy_url: https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/deploy.sh

@@ -1,0 +1,71 @@
+title: Hosted tools
+description: Repos for displaying status pages etc.
+repos:
+  # DASHBOARDS
+  - github_repo_name: blinkenjs
+    app_name: govuk-secondline-blinken
+    management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
+    production_hosted_on: heroku
+    type: Utilities
+    sentry_url: false
+    dashboard_url: false
+    # https://govuk-secondline-blinken.herokuapp.com/blinken.html
+    # used on 2nd line dashboard (https://docs.publishing.service.gov.uk/manual/2nd-line.html#monitoring)
+
+  - github_repo_name: govuk-display-screen
+    management_url: https://dashboard.heroku.com/apps/govuk-display-screen
+    production_hosted_on: heroku
+    type: Utilities
+    sentry_url: false
+    dashboard_url: false
+    # http://govuk-display-screen.herokuapp.com/
+
+  - github_repo_name: govuk-zendesk-display-screen
+    management_url: https://dashboard.heroku.com/apps/govuk-zendesk-display-screen
+    production_hosted_on: heroku
+    type: Utilities
+    sentry_url: false
+    dashboard_url: false
+    # http://govuk-zendesk-display-screen.herokuapp.com/
+    # used on 2nd line dashboard (https://docs.publishing.service.gov.uk/manual/2nd-line.html#monitoring)
+
+  - github_repo_name: search-performance-explorer
+    production_hosted_on: heroku
+    team: "#govuk-find-and-view-accessibility-team"
+    type: Utilities
+    sentry_url: false
+    dashboard_url: false
+    # https://search-performance-explorer.herokuapp.com/
+
+  # SLACK HELPERS
+  - github_repo_name: govuk-dependencies
+    team: "#govuk-platform-reliability-team"
+    management_url: https://dashboard.heroku.com/apps/govuk-dependencies
+    production_hosted_on: heroku
+    type: Utilities
+    sentry_url: false
+    dashboard_url: false
+
+  - github_repo_name: govuk-techlead-rota
+    private_repo: true
+    team: "#govuk-developers"
+    management_url: https://dashboard.heroku.com/apps/govuk-techlead-rota
+    production_hosted_on: heroku
+    type: Utilities
+    description: "Takes a list of names. Calculates who's turn it is next. Announces this on a Slack channel."
+    sentry_url: false
+    dashboard_url: false
+
+  - github_repo_name: seal
+    management_url: https://dashboard.heroku.com/apps/moody-seal
+    production_hosted_on: heroku
+    type: Utilities
+    sentry_url: false
+    dashboard_url: false
+
+  - github_repo_name: tech-docs-monitor
+    management_url: https://dashboard.heroku.com/apps/govuk-tech-docs-monitor
+    production_hosted_on: heroku
+    type: Utilities
+    sentry_url: false
+    dashboard_url: false
