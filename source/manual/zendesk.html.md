@@ -33,7 +33,6 @@ it).
 If you have any doubts as to the legitimacy or urgency of a ticket, it should be deferred to the delivery manager or 2nd line tech lead.
 
 Once you've established that a ticket is legitimate, you should follow [the process in this diagram][zendesk-triage-diagram].
-There is a printout on the 2nd line desk.
 
 In all cases, 2nd line will respond to the ticket, even if it is simply a note to the user saying that
 you've passed their request to the relevant team.
