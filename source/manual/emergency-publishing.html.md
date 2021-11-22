@@ -62,7 +62,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 ### 3. Manually clear the shared memcache
 
-Jenkins is capable of clearing [the internal memcache caches](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_jenkins/templates/jobs/clear_frontend_memcache.yaml.erb#L18) which some frontend applications use for their `Rails.cache`. [Some frontend applications use a shared memcached](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/frontend.yaml) and Jenkins can't clear this cache yet.
+Jenkins is capable of clearing [the internal memcache caches](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_jenkins/templates/jobs/clear_frontend_memcache.yaml.erb#L18) which some frontend applications use for their `Rails.cache`. Unfortunately [some frontend applications use a shared memcached](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/frontend.yaml) and Jenkins can't clear this cache yet.
 
 As a workaround, you need to clear the cache by hand (replace `integration` with `staging` or `production` for the other environments):
 
