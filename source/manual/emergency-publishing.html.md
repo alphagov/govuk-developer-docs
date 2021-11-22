@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline"
-title: Deploy emergency publishing banners
+title: Deploy an emergency banner
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
@@ -10,6 +10,10 @@ important: true
 There are three types of events that would lead GOV.UK to add an emergency
 banner to the top of each page on the web site; a notable death, a national
 emergency or a local emergency.
+
+> **Note**
+>
+> There is also [a non-emergency sitewide banner](/manual/global-banner.html), used to convey important information on GOV.UK which is not deemed emergency level information.
 
 The GOV.UK on-call escalations contact will tell you when you need to publish
 an emergency banner. They will ensure that the event is legitimate and provide
@@ -22,7 +26,7 @@ Head of GOV.UK.
 
 Contact numbers for those people are in the [legacy Ops manual](https://docs.google.com/document/d/17XUuPaZ5FufyXH00S9qukl6Kf3JbJtAqwHR3eOBVBpI/edit).
 
-## Adding emergency publishing banners
+## Adding an emergency banner
 
 ### 1. Get the content you will need
 
@@ -87,7 +91,7 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 ---
 
-## Removing emergency publishing banners
+## Removing an emergency banner
 
 ### Remove the banner using Jenkins
 
