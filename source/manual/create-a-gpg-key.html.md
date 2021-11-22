@@ -16,7 +16,7 @@ Install `gpg` if you don't already have it. Use `brew install gpg-suite` to inst
 
 [GPGtools](https://gpgtools.org/) comes with a GUI which can perform most of the operations you need.
 
-Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to `https://keyserver.ubuntu.com/`. You can do this by going to preferences and setting your keyserver. The GPG GUI may not like this as it's not the default. Bypass these warnings.
+Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to `hkps://keys.openpgp.org/` (the default). You can do this by going to preferences and setting your keyserver.
 
 To create a new key, click "New". The `Name` field should be your name. For `Length`, you should have at least 4096.
 
@@ -59,10 +59,10 @@ and the key ID is `90E65803` — the last 8 characters of the fingerprint.
 
 ### Upload your GPG key to a keyserver
 
-Before doing this, make sure that your default keyserver is `https://keyserver.ubuntu.com/`. You can do this by changing the default keyserver in `~/.gnupg/gpg.conf`:
+Before doing this, make sure that your default keyserver is `hkps://keys.openpgp.org/`. You can do this by changing the default keyserver in `~/.gnupg/gpg.conf`:
 
 ```
-keyserver https://keyserver.ubuntu.com/
+keyserver hkps://keys.openpgp.org/
 ```
 
 Send your key to a keyserver by running:
@@ -73,11 +73,7 @@ gpg --send-keys $KEYID
 
 If you are having problems uploading your key, it's worth trying another keyserver. Those trying to receive your key may be connecting to a different keyserver than the one you sent your key to. This is fine, as the keyservers synchronise, but this may take some time to happen.
 
-You now should be able to find your key on <http://keys.gnupg.net:11371/>.
-
-It occasionally takes a while for the keyserver to display pushed keys due to caching.
-
-You can find an overview of the GPG keyserver pools [here](https://sks-keyservers.net/overview-of-pools.php).
+You now should be able to find your key on <https://keys.openpgp.org/>.
 
 You may find you also need to configure `dirmngr` to successfully connect to a keyserver by adding either or both of the following lines to `~/.gnupg/dirmngr.conf`:
 
