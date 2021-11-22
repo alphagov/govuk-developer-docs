@@ -59,11 +59,13 @@ and the key ID is `90E65803` — the last 8 characters of the fingerprint.
 
 ### Upload your GPG key to a keyserver
 
-Before doing this, make sure that your default keyserver is `hkps://keys.openpgp.org/`. You can do this by changing the default keyserver in `~/.gnupg/gpg.conf`:
+Before doing this, make sure that your default keyserver is `hkps://keys.openpgp.org/`. You can do this by changing the default keyserver in `~/.gnupg/dirmngr.conf`:
 
 ```
 keyserver hkps://keys.openpgp.org/
 ```
+
+You should also ensure that there is no `keyserver` directive in `~/.gnupg/gpg.conf`.
 
 Send your key to a keyserver by running:
 
