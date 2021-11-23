@@ -12,13 +12,11 @@ We use GPG keys to encrypt our secrets. Documentation for using your GPG key can
 
 Install `gpg` if you don't already have it. Use `brew install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/).
 
-Once installed, you will likely have both `gpg` and `gpg2` on your machine. Always use `gpg2`.
-
 ## Creating a GPG key (using the GUI)
 
 [GPGtools](https://gpgtools.org/) comes with a GUI which can perform most of the operations you need.
 
-Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to `http://keyserver.ubuntu.com/`. You can do this by going to preferences and setting your keyserver. The GPG GUI may not like this as it's not the default. Bypass these warnings.
+Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to `hkps://keys.openpgp.org/` (the default). You can do this by going to preferences and setting your keyserver.
 
 To create a new key, click "New". The `Name` field should be your name. For `Length`, you should have at least 4096.
 
@@ -30,7 +28,7 @@ See below for checking your passphrase.
 
 ## Creating a GPG key (using the command line)
 
-Create a gpg key with `gpg2 --gen-key` using your
+Create a gpg key with `gpg --gen-key` using your
 digital.cabinet-office.gov.uk email address. Defaults for the questions
 should be fine, although you should choose a 4096-bit key.
 
@@ -38,55 +36,62 @@ should be fine, although you should choose a 4096-bit key.
 >
 > You should also generate a [revocation
 > certificate](http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.4)
-> with `gpg2 --gen-revoke` and store it in a safe place (*not* on your
+> with `gpg --gen-revoke` and store it in a safe place (*not* on your
 > laptop, maybe a USB stick in your locker).
 
 ### Working out your key ID and fingerprint
 
 ```
-gpg2 --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
+gpg --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
 ```
 
 Should look something like this.
 
 ```
-pub   2048R/90E65803 2013-02-08
-      Key fingerprint = 37CC 021A C5C2 4E27 C4D9  5735 9B0E 9DD1 90E6 5803
-      uid                  my name <my.name@digital.cabinet-office.gov.uk>
-      sub   2048R/FDD27DBE 2013-02-08
+pub   rsa2048 2013-02-08 [SC]
+      37CC 021A C5C2 4E27 C4D9  5735 9B0E 9DD1 90E6 5803
+      uid                  [ultimate] Firstname Lastname <firstname.lastname@digital.cabinet-office.gov.uk>
+      sub   rsa2048 2013-02-08 [E]
 ```
 
-The key ID is `90E65803`, and the fingerprint is `37CC 021A C5C2
-4E27 C4D9 5735 9B0E 9DD1 90E6 5803`
+The  fingerprint is `37CC 021A C5C2 4E27 C4D9 5735 9B0E 9DD1 90E6 5803`,
+and the key ID is `90E65803` — the last 8 characters of the fingerprint.
 
 ### Upload your GPG key to a keyserver
 
-Before doing this, make sure that your default keyserver is `http://keyserver.ubuntu.com/`. You can do this by changing the default keyserver in `~/.gnupg/gpg.conf`:
+Before doing this, make sure that your default keyserver is `hkps://keys.openpgp.org/`. You can do this by changing the default keyserver in `~/.gnupg/dirmngr.conf`:
 
 ```
-keyserver http://keyserver.ubuntu.com/
+keyserver hkps://keys.openpgp.org/
 ```
+
+You should also ensure that there is no `keyserver` directive in `~/.gnupg/gpg.conf`.
 
 Send your key to a keyserver by running:
 
 ```
-gpg2 --send-keys $KEYID
+gpg --send-keys $KEYID
 ```
 
 If you are having problems uploading your key, it's worth trying another keyserver. Those trying to receive your key may be connecting to a different keyserver than the one you sent your key to. This is fine, as the keyservers synchronise, but this may take some time to happen.
 
-You now should be able to find your key on <http://keys.gnupg.net:11371/>.
+You now should be able to find your key on <https://keys.openpgp.org/>.
 
-It occasionally takes a while for the keyserver to display pushed keys due to caching.
+You may find you also need to configure `dirmngr` to successfully connect to a keyserver by adding either or both of the following lines to `~/.gnupg/dirmngr.conf`:
 
-You can find an overview of the GPG keyserver pools [here](https://sks-keyservers.net/overview-of-pools.php).
+```
+standard-resolver
+disable-ipv6
+```
+
+You may need to run `gpgconf --kill all` in order for these changes to take effect.
 
 ## Make sure your passphrase works
 
 You can test your passphrase like this:
 
 ```
-echo "1234" | gpg2 -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
+echo "1234" | gpg -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - && echo "The correct passphrase was entered for this key"
 ```
 
 You will be prompted to enter your passphrase upon running this command then if you have entered your passphrase correctly you will see "The correct passphrase was entered for this key".
