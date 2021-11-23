@@ -107,7 +107,13 @@ On GOV.UK we use the following command-line tools for AWS and SSH access:
 
 If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our infrastructure and internal services.
 
-To connect to the GDS VPN, follow the [Cabinet Office guidance on how to sign into the GDS VPN using Google credentials][gds-vpn-wiki].
+###  For GDS issued MacBooks
+
+Follow the [Cabinet Office guidance on how to sign into the GDS VPN using Google credentials][gds-vpn-wiki].
+
+###  For Bring Your Own Devices (BYOD)
+
+Follow the [VPN guide for Bring Your Own Devices (BYOD)](https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit#)
 
 [gds-it-helpdesk]: https://gdshelpdesk.digital.cabinet-office.gov.uk/helpdesk/WebObjects/Helpdesk.woa
 [gds-vpn-wiki]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit
