@@ -60,25 +60,22 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 >
 > The Jenkins job will also clear the Varnish caches and the CDN cache for [a predefined list of 10 URLs](https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34) (including the website root).
 
-### 3. Manually clear the shared memcache
+### 3. Clear the CDN and Varnish caches
 
 Jenkins is capable of clearing [the internal memcache caches](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_jenkins/templates/jobs/clear_frontend_memcache.yaml.erb#L18) which some frontend applications use for their `Rails.cache`. Unfortunately [some frontend applications use a shared memcached](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/frontend.yaml) and Jenkins can't clear this cache yet.
 
-As a workaround, you need to clear the cache by hand (replace `integration` with `staging` or `production` for the other environments):
+As a workaround, you need to re-run the clear CDN and Varnish cache Jenkins jobs.
 
-```bash
-$ gds govuk connect -e integration app-console frontend/collections
-irb(main):001:0> Rails.cache.clear
-```
-
-```bash
-$ gds govuk connect -e integration app-console frontend/frontend
-irb(main):001:0> Rails.cache.clear
-```
+1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
+  This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
+2. Run the "Clear varnish cache" Jenkins job
+3. Run the "Clear CDN cache" Jenkins job
 
 > **Note**
 >
 > This is a temporary step to workaround the fact that Jenkins doesn't clear these caches. It was added on 2021-11-22, and should be removed shortly afterwards once the underlying issue is resolved.
+
+[slimmer-cache]: https://github.com/alphagov/slimmer/blob/5b8428704f143547bdae2c7cb9a585ab77d3181b/lib/slimmer.rb#L10
 
 ### 4. Test with cache bust strings
 
