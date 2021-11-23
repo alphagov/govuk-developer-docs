@@ -60,7 +60,27 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 >
 > The Jenkins job will also clear the Varnish caches and the CDN cache for [a predefined list of 10 URLs](https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34) (including the website root).
 
-### 3. Test with cache bust strings
+### 3. Manually clear the shared memcache
+
+Jenkins is capable of clearing [the internal memcache caches](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_jenkins/templates/jobs/clear_frontend_memcache.yaml.erb#L18) which some frontend applications use for their `Rails.cache`. Unfortunately [some frontend applications use a shared memcached](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/frontend.yaml) and Jenkins can't clear this cache yet.
+
+As a workaround, you need to clear the cache by hand (replace `integration` with `staging` or `production` for the other environments):
+
+```bash
+$ gds govuk connect -e integration app-console frontend/collections
+irb(main):001:0> Rails.cache.clear
+```
+
+```bash
+$ gds govuk connect -e integration app-console frontend/frontend
+irb(main):001:0> Rails.cache.clear
+```
+
+> **Note**
+>
+> This is a temporary step to workaround the fact that Jenkins doesn't clear these caches. It was added on 2021-11-22, and should be removed shortly afterwards once the underlying issue is resolved.
+
+### 4. Test with cache bust strings
 
 Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
