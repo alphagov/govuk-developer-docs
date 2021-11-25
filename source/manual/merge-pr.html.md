@@ -42,6 +42,14 @@ Some changes require different levels of context and knowledge. For example, a P
 
 If a change is ready to be reviewed but must wait to be merged for some other event, the title should be prefixed with `[Do not merge]`. A description of what the PR is waiting for should be included in the main description of the PR. When a change like this is reviewed, you can simply approve the PR. It's then up to the author to merge that PR when the correct conditions are met.
 
+### A change from a non-developer
+
+Some repositories, such as [smart-answers](https://github.com/alphagov/smart-answers), regularly have PRs opened by content designers, which usually only change text content. These changes should be welcomed, as they've saved a developer from having to make them!
+
+When reviewing these PRs, you should not expect them to be at the same commit structure standard as we'd expect of developers. Changes are often made individually through the GitHub UI, which tends to lead to PRs with lots of commits, each changing a single file at a time.
+
+A verbose commit structure isn't itself a problem, and can be merged as-is if you do not think it would be difficult to unpick later on. However, if it makes sense to do so, consider using the "Squash and merge" feature on GitHub (you'll be asked to specify one overall commit message before merging), or rebase the commits yourself for more control.
+
 ### A change from an external contributor
 
 We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Our test suite will not run automatically against these PRs.
