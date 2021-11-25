@@ -25,3 +25,7 @@ gem "govuk_schemas"
 gem "faraday-http-cache"
 gem "faraday_middleware"
 gem "octokit"
+
+group :development do
+  gem "byebug"
+end
