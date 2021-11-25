@@ -44,12 +44,18 @@ You can SSH onto these machines in [same way as all other GOV.UK AWS application
 First check to see if it is possible to complete the task through the [web interface][dgu-ckan]
 (credentials are available in the `govuk-secrets` password store, under `datagovuk/ckan`).
 
-For commands not available via the user interface you must connect to the server to perform these
-tasks.  Most of the commands to interact with [CKAN] use the `ckan` CLI.  Many of these
+For commands not available via the user interface you must ssh onto a ckan machine to perform these
+tasks. You can use the govuk connect cli to do this, eg:
+
+```
+gds govuk connect -e integration ssh ckan
+```
+
+Most of the commands to interact with [CKAN] use the `ckan` CLI.  Some of these
 commands take a path to the config file with the `-c` option, which is located at `/var/ckan/ckan.ini`
 in our deployments.
 
-On GOV.UK servers `ckan` should be run with:
+Once connected to the `ckan` machine, the commands should be run from within the `/var` directory as follows:
 
 ```
 sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan [COMMAND]
