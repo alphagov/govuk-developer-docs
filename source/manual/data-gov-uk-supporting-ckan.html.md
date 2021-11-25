@@ -55,11 +55,10 @@ Most of the commands to interact with [CKAN] use the `ckan` CLI.  Some of these
 commands take a path to the config file with the `-c` option, which is located at `/var/ckan/ckan.ini`
 in our deployments.
 
-Once connected to the `ckan` machine, the commands should be run from within the var directory as follows:
+Once connected to the `ckan` machine, the commands should be run from within the `/var` directory as follows:
 
 ```
-cd ../../var
-sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan [COMMAND]
+user@ec2-integration-blue-ckan-ip-1-2-3:/var$ sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan [COMMAND]
 ```
 
 ### Initialising the database
