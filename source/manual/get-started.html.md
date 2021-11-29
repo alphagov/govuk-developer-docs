@@ -290,14 +290,14 @@ See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/Use
 
 ## 8. Access AWS for the first time
 
-1. Open the [GDS CLI](#3-install-gds-command-line-tools) and run `gds aws govuk-integration-poweruser -l` to open the AWS console in your web browser.
+1. Open the [GDS CLI](#3-install-gds-command-line-tools) and run `gds aws govuk-integration-readonly -l` to open the AWS console in your web browser.
 1. In the GDS CLI, enter your [AWS access key ID and secret access key](#generate-a-pair-of-access-keys).
 1. Enter your [MFA token](#set-up-multi-factor-authentication) in the command line.
 
     Here is an example of the output you'll see:
 
     ```shell
-    $ gds aws govuk-integration-poweruser -l
+    $ gds aws govuk-integration-readonly -l
     Welcome to the GDS CLI! We will now store your AWS credentials in the keychain using aws-vault.
     Enter Access Key ID: <YOUR-ACCESS-KEY-ID>
     Enter Secret Access Key: <YOUR-SECRET-ACCESS-KEY>
