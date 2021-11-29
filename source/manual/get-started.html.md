@@ -40,7 +40,7 @@ This command works for macOS or Linux.
 ## 2. Set up your GitHub account
 
 1. Set up a [GitHub] account. You can use your existing personal account.
-1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer].
+1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer] and [seal].
 
     If your tech lead is not available, ask in the [2nd line support Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
 1. Ask in `#govuk-tech-leads` for someone to add you to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos & CI.
@@ -70,6 +70,7 @@ This command works for macOS or Linux.
 [generate-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
+[seal]: https://github.com/alphagov/seal
 
 ## 3. Install GDS command line tools
 
