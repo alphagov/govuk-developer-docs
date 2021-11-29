@@ -319,6 +319,15 @@ If you forget your `aws-vault` password, you must reset that password.
 1. Delete the `aws-vault` keychain by running `rm ~/Library/Keychains/aws-vault.keychain-db` in the command line.
 1. Re-initialise the `gds-cli` by opening `~/.gds/config.yml` and changing `initialised: true` to `initialised: false`.
 
+## 9. Get a Signon account for integration
+
+[Signon](https://docs.publishing.service.gov.uk/apps/signon.html) is the application used to control access to the
+GOV.UK Publishing applications.
+
+Ask someone with production access (e.g. your tech lead or buddy) to [create an account for the integration
+Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new), with permission to access
+the applications that your team are likely to work on.
+
 ## Supporting information
 
 Now you have completed the get started process, you should look at the following supporting information:
