@@ -284,7 +284,11 @@ Use the same `<account-ID>` as other entries in the `role_user_user_arns` sectio
 
 See this [example pull request](https://github.com/alphagov/govuk-aws-data/pull/758/files) for more information.
 
-After your pull request has been merged, someone from the `govuk-administrators` group or `govuk-internal-administrators` group needs to deploy the `infra-security` project. Check with your tech lead who this is.
+After your pull request has been merged, someone with production access will need to deploy the
+`infra-security` project to integration, by assuming the `govuk-integration-admin` role.
+See [Deploy Terraform](https://docs.publishing.service.gov.uk/manual/deploying-terraform.html)
+to find out how to deploy infrastructure changes. The stackname is `govuk` and the project is
+`infra-security`.
 
 See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) for more information.
 
