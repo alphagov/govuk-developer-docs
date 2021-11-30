@@ -1,0 +1,465 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Query Kibana (includes useful queries) - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/kibana.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Query Kibana (includes useful queries) - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/kibana.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Query Kibana (includes useful queries)" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/kibana.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Query Kibana (includes useful queries)</span></a>
+    <ul>
+      <li>
+        <a href="#set-up-the-ui"><span>Set up the UI</span></a>
+      </li>
+      <li>
+        <a href="#examples"><span>Examples</span></a>
+        <ul>
+          <li>
+            <a href="#all-requests-rendered-by-the-content_items-controller-in-government-frontend"><span>All requests rendered by the content_items controller in government-frontend</span></a>
+          </li>
+          <li>
+            <a href="#all-requests-within-the-governmentgroups-path"><span>All requests within the /government/groups path</span></a>
+          </li>
+          <li>
+            <a href="#5xx-errors-returned-from-cache-layer"><span>5xx errors returned from cache layer</span></a>
+          </li>
+          <li>
+            <a href="#puppet-runs"><span>Puppet runs</span></a>
+          </li>
+          <li>
+            <a href="#syslog-logs"><span>Syslog logs</span></a>
+          </li>
+          <li>
+            <a href="#syslog-logs-filtered-by-program"><span>Syslog logs filtered by program</span></a>
+          </li>
+          <li>
+            <a href="#nginx-logs"><span>Nginx logs</span></a>
+          </li>
+          <li>
+            <a href="#application-upstart-logs"><span>Application upstart logs</span></a>
+          </li>
+          <li>
+            <a href="#application-production-log-files"><span>Application production.log files</span></a>
+          </li>
+          <li>
+            <a href="#mongodb-slow-queries"><span>MongoDB slow queries</span></a>
+          </li>
+          <li>
+            <a href="#auditaccess-logs"><span>Audit/access logs</span></a>
+          </li>
+          <li>
+            <a href="#mirrorer-logs"><span>Mirrorer logs</span></a>
+          </li>
+          <li>
+            <a href="#publishing-api-timeouts"><span>Publishing API timeouts</span></a>
+          </li>
+          <li>
+            <a href="#example-elasticsearch-query"><span>Example Elasticsearch query</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#syslog-program-names"><span>Syslog program names</span></a>
+      </li>
+      <li>
+        <a href="#gotchas"><span>Gotchas</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Logging",
+        "@id": "http://www.dev.gov.uk/manual.html#logging"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#logging" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Logging&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#logging">Logging</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8ae117ce236a3684187c619ec57284955dfdb989">29 Jun 2021</a>
+</div>
+
+ <h1 id='header'>Query Kibana (includes useful queries)</h1> <p>All logs for GOV.UK on all environments are collected in Kibana, which you can
+access through <a href="/manual/logit.html">Logit</a>.</p>
+<p>Kibana can be <a href="https://www.elastic.co/guide/en/kibana/current/search.html">searched using the Lucene search syntax or full JSON-based
+Elasticsearch queries</a>. See an <a href="#example-elasticsearch-query">example Elasticsearch query</a> below.</p>
+<h2 id='set-up-the-ui'>Set up the UI</h2><p>The default view for Kibana includes a timestamp and a grouped <code>_source</code> column of all information per log. Depending on what you&rsquo;re trying to achieve, you may find it beneficial to re-organise your view.</p>
+<p>You can specify a field in the logs list by navigating the &ldquo;Available Fields&rdquo; list on the left hand side, hovering over a field you want to interrogate and clicking &ldquo;add&rdquo;. Some useful fields include:</p>
+
+<ul>
+<li>application</li>
+<li>controller</li>
+<li>route</li>
+<li>path</li>
+<li>status</li>
+<li>request</li>
+<li>tags</li>
+</ul>
+<p>You can additionally remove fields by following the same steps above for &ldquo;Selected Fields&rdquo; and clicking &ldquo;remove&rdquo;.</p>
+<p>You can also manage the timeline bar chart at the top fo the view by changing the dropdown above the bar chart from &ldquo;auto&rdquo; to whichever delimitater suits your needs (hourly, daily, weekly etc) and specify the time frame of the bar chart by clicking the time range in the top right-hand corner.</p>
+<h2 id='examples'>Examples</h2><p>You can save and load queries using the buttons in the top right. You may want to use one of the existing queries as a starting point instead of writing a query from scratch.</p>
+<p><a href="images/kibana_saved_searches.png" rel="noopener noreferrer"><img src="/manual/images/kibana_saved_searches.png" alt="Kibana saved searches" /></a></p>
+<h3 id='all-requests-rendered-by-the-content_items-controller-in-government-frontend'>All requests rendered by the content_items controller in government-frontend</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="ss">application: </span><span class="n">government</span><span class="o">-</span><span class="n">frontend</span> <span class="no">AND</span> <span class="ss">tags: </span><span class="n">request</span> <span class="no">AND</span> <span class="ss">controller: </span><span class="n">content_items</span>
+</code></pre></div><h3 id='all-requests-within-the-governmentgroups-path'>All requests within the /government/groups path</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="ss">tags: </span><span class="n">request</span> <span class="no">AND</span> <span class="ss">path: </span><span class="p">\</span><span class="sr">/government\/groups\/*
+</span></code></pre></div><h3 id='5xx-errors-returned-from-cache-layer'>5xx errors returned from cache layer</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">host</span><span class="ss">:cache</span><span class="o">*</span> <span class="no">AND</span> <span class="p">(</span><span class="vi">@fields</span><span class="p">.</span><span class="nf">status</span><span class="p">:[</span><span class="mi">500</span> <span class="no">TO</span> <span class="mi">504</span><span class="p">]</span> <span class="no">OR</span> <span class="n">status</span><span class="p">:[</span><span class="mi">500</span> <span class="no">TO</span> <span class="mi">504</span><span class="p">])</span>
+</code></pre></div><h3 id='puppet-runs'>Puppet runs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="c1"># both agent and master</span>
+<span class="n">syslog_program</span><span class="ss">:puppet</span><span class="o">*</span>
+
+<span class="c1"># agent only</span>
+<span class="n">syslog_program</span><span class="ss">:"puppet-agent"</span>
+
+<span class="c1"># master only</span>
+<span class="n">syslog_program</span><span class="ss">:"puppet-master"</span>
+</code></pre></div><h3 id='syslog-logs'>Syslog logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span>
+</code></pre></div><h3 id='syslog-logs-filtered-by-program'>Syslog logs filtered by program</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span> <span class="no">AND</span> <span class="n">syslog_program</span><span class="ss">:"rsync"</span>
+</code></pre></div><h3 id='nginx-logs'>Nginx logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"nginx"</span>
+</code></pre></div><p>Nginx logs for frontend:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"nginx"</span> <span class="no">AND</span> <span class="n">application</span><span class="ss">:frontend</span><span class="o">*</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>The <code>@timestamp</code> field records the request END time. To calculate request start time subtract <code>request_time</code>.</p>
+</blockquote>
+<h3 id='application-upstart-logs'>Application upstart logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"upstart"</span>
+
+<span class="n">tags</span><span class="ss">:"upstart"</span> <span class="no">AND</span> <span class="n">tags</span><span class="ss">:"stdout"</span>
+
+<span class="n">tags</span><span class="ss">:"upstart"</span> <span class="no">AND</span> <span class="n">tags</span><span class="ss">:"stderr"</span>
+
+<span class="n">tags</span><span class="ss">:"upstart"</span> <span class="no">AND</span> <span class="n">application</span><span class="ss">:"licensify"</span>
+</code></pre></div><h3 id='application-production-log-files'>Application production.log files</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"application"</span>
+
+<span class="n">tags</span><span class="ss">:"application"</span> <span class="no">AND</span> <span class="n">application</span><span class="ss">:"smartanswers"</span>
+</code></pre></div><h3 id='mongodb-slow-queries'>MongoDB slow queries</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"mongodb"</span> <span class="no">AND</span> <span class="n">message</span><span class="ss">:"command"</span>
+</code></pre></div><h3 id='auditaccess-logs'>Audit/access logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span> <span class="no">AND</span> <span class="n">syslog_program</span><span class="ss">:"audispd"</span>
+</code></pre></div><h3 id='mirrorer-logs'>Mirrorer logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">syslog_program</span><span class="ss">:"govuk_sync_mirror"</span>
+</code></pre></div><h3 id='publishing-api-timeouts'>Publishing API timeouts</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">message</span><span class="ss">:"TimedOutException"</span> <span class="no">AND</span> <span class="p">(</span><span class="n">application</span><span class="ss">:"specialist-publisher"</span> <span class="no">OR</span> <span class="n">application</span><span class="ss">:"whitehall"</span> <span class="no">OR</span> <span class="n">application</span><span class="ss">:"content-tagger"</span><span class="p">)</span>
+</code></pre></div><h3 id='example-elasticsearch-query'>Example Elasticsearch query</h3><p>You can use Elasticsearch queries by clicking &ldquo;Add a filter&rdquo; and then specifying &ldquo;Edit Query DSL&rdquo;.
+Here is an example of finding all requests to the Transition Checker login page (ignoring URL query parameters) which resulted in a 410:</p>
+<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">410</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"regexp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">".+transition-check/login.+"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>This has no advantage over using Lucene query syntax in the search bar, which is much simpler: <code>request:*transition-check\/login* AND status:410</code>.</p>
+<p>However, if you wanted to count the number of unique IP addresses that were served this response, you need an <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html">aggregation</a>, which requires the Elasticsearch syntax.</p>
+<p>Choose &ldquo;Dev Tools&rdquo; in the menu on the left, then fill out your JSON search, ensuring that you retain the <code>GET _search</code> on line 1.
+You&rsquo;ll probably want to specify your date range in JSON as there is no way to do this through the UI on this screen.</p>
+<div class="highlight"><pre class="highlight json" tabindex="0"><code><span class="err">GET</span><span class="w"> </span><span class="err">_search</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"bool"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"filter"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"term"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">410</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"range"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"time_zone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+01:00"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"gte"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-16T12:00:00"</span><span class="p">,</span><span class="w">
+              </span><span class="nl">"lt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-16T17:00:00"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"regexp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">".+transition-check/login.+"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"aggs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"unique-ips"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"terms"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"field"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remote_addr"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Press the &ldquo;Play&rdquo; icon to run the query, whose results will appear in the panel on the right.
+You&rsquo;ll see a <code>hits</code> array for each matching record, and also an <code>aggregations</code> object where your aggregations are grouped into <code>buckets</code>.
+From here it should be quite simple to count the number of unique IPs.</p>
+<h2 id='syslog-program-names'>Syslog program names</h2><p>If you&rsquo;re looking for specific program outputs, use <code>syslog_program:FOO</code>:</p>
+
+<ul>
+<li><code>audispd</code>: This is used to see all audit logs from various servers. You can refer to README for searching particular types of audit logs. The program name with combination of source_host and message can be helped for looking at various specific audit log lines on a server.</li>
+<li><code>clamd</code></li>
+<li><code>cron</code></li>
+<li><code>govuk_sync_mirror</code>: Records information from govuk_sync_mirror script</li>
+<li><code>puppet-agent</code>: Records output for govuk_puppet script on various servers</li>
+<li><code>puppet-master</code></li>
+<li><code>smokey</code></li>
+</ul>
+<h2 id='gotchas'>Gotchas</h2>
+<ul>
+<li>Score: does a aggregation of field on last 2000 results</li>
+<li>Terms is not an aggregation of field, it is an aggregation of terms in the field across 1 recent indices</li>
+<li>For more elaborate searching, <a href="https://www.elastic.co/guide/en/kibana/current/search.html">read about the Lucene and Elasticsearch syntax</a></li>
+<li><code>@timestamp</code> of nginx log entries records <a href="http://serverfault.com/questions/438880/what-does-nginxs-time-local-logging-variable-mean-specifically/438891#438891">request end time is sometimes confusing</a></li>
+</ul>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Logging section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/logging.html">How logging works on GOV.UK</a></li>
+            <li><a href="/manual/request-tracing.html">Request tracing</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/logit.html">Use Logit for GOV.UK</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/kibana.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Query%20Kibana%20(includes%20useful%20queries)'&amp;body=Problem%20with%20'Query%20Kibana%20(includes%20useful%20queries)'%20(https://docs.publishing.service.gov.uk/manual/kibana.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

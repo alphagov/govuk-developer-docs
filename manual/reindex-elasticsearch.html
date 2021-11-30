@@ -1,0 +1,431 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Reindex an Elasticsearch index - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Reindex an Elasticsearch index - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Reindex an Elasticsearch index" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Reindex an Elasticsearch index</span></a>
+    <ul>
+      <li>
+        <a href="#how-to-reindex-an-elasticsearch-index"><span>How to reindex an Elasticsearch index</span></a>
+        <ul>
+          <li>
+            <a href="#out-of-date-search-indices"><span>Out-of-date search indices</span></a>
+          </li>
+          <li>
+            <a href="#cleanup"><span>Cleanup</span></a>
+          </li>
+          <li>
+            <a href="#troubleshooting"><span>Troubleshooting</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Publishing",
+        "@id": "http://www.dev.gov.uk/manual.html#publishing"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#publishing" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Publishing&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#publishing">Publishing</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/04c98dcfd8d4dc0328b03cdff77a0f7df2ecdb1a">3 Sep 2021</a>
+</div>
+
+ <h1 id='header'>Reindex an Elasticsearch index</h1> <p>After updating an Elasticsearch index&rsquo;s schema by <a href="/apis/search/add-new-fields-or-document-types.html">changing the fields or
+document types</a>, you need to reindex the affected
+index before the new fields and types can be used.</p>
+<p>The reindexing process:</p>
+
+<ol>
+<li>Locks the Elasticsearch index to prevent writes to the index while data is
+being copied</li>
+<li>Creates a new index using the schema defined in the deployed version of
+search-api</li>
+<li>Copies all the data from the old to the new index</li>
+<li>Compares the old and new data to check for inconsistencies</li>
+<li>If everything looks the same, switches the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/indices-aliases.html">alias</a> to the new
+index</li>
+</ol>
+<p><strong>You don&rsquo;t need to do this if you have changed the
+govuk_document_types gem,</strong> instead run the rake task
+<code>search:update_supertypes</code> to update documents in-place.  This can be
+done during working hours.</p>
+<h2 id='how-to-reindex-an-elasticsearch-index'>How to reindex an Elasticsearch index</h2><p><strong>Do not reindex on production during working hours except in an
+emergency.</strong> Reindexing locks the index for writes, so content is not
+updated in the search index. See the <a href="#out-of-date-search-indices">out-of-date search
+indices</a> section below if you need to run
+a reindexing during working hours. Reindexing takes around 2 hours to
+complete.</p>
+<p>To reindex, you have two options:</p>
+<p>a) If you need to reindex every index you can use the <a href="https://deploy.integration.publishing.service.gov.uk/job/search_api_reindex_with_new_schema/">Search API reindex with new schema</a> job.</p>
+<p>b) If you only need to reindex one specific index you can run a <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/">rake task
+manually</a>, using the <code>search:migrate_schema</code> rake task:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate" class="govuk-link">Run search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate" class="govuk-link">Run search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate" class="govuk-link">⚠️ Run search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate on Production ⚠️</a></li>
+</ul>
+<p>Current index aliases (<code>alias_of_index_to_migrate</code>) available to reindex include:</p>
+
+<ul>
+<li><code>govuk</code></li>
+<li><code>government</code></li>
+<li><code>detailed</code></li>
+<li><code>metasearch</code></li>
+<li><code>page-traffic</code></li>
+<li><code>licence-finder</code></li>
+</ul>
+<p>To monitor progress, SSH to a search box and check how many documents
+have been copied to the new index:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect ssh <span class="nt">-e</span> integration search
+govuk_setenv search-api <span class="se">\</span>
+bash <span class="nt">-c</span> <span class="s1">'curl "$ELASTICSEARCH_URI/_cat/indices?v"'</span>
+</code></pre></div><h3 id='out-of-date-search-indices'>Out-of-date search indices</h3><p>If any content has been published, updated or removed during the indexing
+job, then the search index will be out-of-date.</p>
+<p>See <a href="/manual/fix-out-of-date-search-indices.html">Fix out-of-date search indices</a>
+for details.</p>
+<h3 id='cleanup'>Cleanup</h3><p>Reindexing does not delete the old index. This lets us switch back to the old
+index if there is a serious problem with the new one.</p>
+<p>Once you&rsquo;re confident that the reindexing was successful, delete the old
+(unaliased) index using the <code>search:clean</code> rake task:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:clean SEARCH_INDEX=alias_of_index_to_clean_up" class="govuk-link">Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:clean SEARCH_INDEX=alias_of_index_to_clean_up" class="govuk-link">Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:clean SEARCH_INDEX=alias_of_index_to_clean_up" class="govuk-link">⚠️ Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Production ⚠️</a></li>
+</ul>
+<p>Avoid leaving old indices around for more than a few days. If enough
+old indices hang around, we may hit space limitations and be unable to
+index new documents.</p>
+<h4 id='automatic-cleanup'>Automatic Cleanup</h4><p>However,
+in the case wherein we end up with multiple copies of the same index left behind,
+we have an automated clean up task that removes any extra indexes over a given
+age:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>rake search:timed_clean MAX_INDEX_AGE=number_of_days SEARCH_INDEX=alias_of_index_to_clean_up
+</code></pre></div><p>This is running in a Jenkins job that clears any index over 7 days old, and will always leave at least one inactive index available (typically the
+  newest one created) alongside the active index for backup purposes.</p>
+<h3 id='troubleshooting'>Troubleshooting</h3><h4 id='failed-to-switch-to-new-index'>Failed to switch to new index</h4><p>The final part of the reindex is to switch Elasticsearch over to the newly created indexes. We&rsquo;ve noticed recently that this isn&rsquo;t always successful. It appears to be that if content is written to the database while the reindex task is running, the task will fail at the end as it detects a difference in the data.</p>
+<p><strong>Re-running the reindex task usually fixes this.</strong></p>
+<h4 id='to-stop-the-reindexing-job'>To stop the reindexing job</h4><p>If you need to cancel the reindexing while it&rsquo;s in progress:</p>
+
+<ol>
+<li>Stop the reindexing rake task</li>
+<li><p>Unlock the old index by running the <code>search:unlock</code> rake task:</p>
+
+<ul>
+<li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:unlock SEARCH_INDEX=alias_of_index_to_unlock" class="govuk-link">Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:unlock SEARCH_INDEX=alias_of_index_to_unlock" class="govuk-link">Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:unlock SEARCH_INDEX=alias_of_index_to_unlock" class="govuk-link">⚠️ Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Production ⚠️</a></li>
+</ul></li>
+</ol>
+<p>This doesn&rsquo;t actually stop the reindexing, because reindexing is an internal
+Elasticsearch progress triggered by the rake task. It will stop the rake task
+from switching the alias over to the new index once it has copied all the data,
+which is normally good enough.</p>
+<p>If you need to stop the reindexing process itself, for example because
+Elasticsearch is about to run out of disk space, connect to the
+search box (see above) then:</p>
+
+<ol>
+<li><p>Find the ID of the reindexing task:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv search-api \
+bash -c 'curl "$ELASTICSEARCH_URI/_tasks?actions=%2Areindex&amp;pretty"'
+</code></pre></div></li>
+<li><p>Stop the task:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv search-api \
+bash -c 'curl -XPOST "$ELASTICSEARCH_URI/_tasks/&lt;task_id&gt;/_cancel"'
+</code></pre></div></li>
+</ol>
+<h4 id='to-switch-back-to-the-old-index'>To switch back to the old index</h4><p>If you discover a problem after reindexing and need to switch back to the old
+index, run the <code>search:switch_to_named_index</code> rake task:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias" class="govuk-link">Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias" class="govuk-link">Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias" class="govuk-link">⚠️ Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Production ⚠️</a></li>
+</ul>
+<p>where <code>full_index_name</code> is the full name of the new index, including the date
+and UUID, e.g. <code>govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498</code>.</p>
+<p>Switching back to an old index means that you&rsquo;ll <strong>lose any content updates</strong>
+that were published while the new index was live. To fix this, <a href="/manual/fix-out-of-date-search-indices.html">replay traffic</a> from both publishing-api and Whitehall.</p>
+
+
+  <div class='related-content'>
+    <h4>Related applications</h4>
+
+    <ul class="govuk-list">
+      <li><a href="/apps/search-api.html">search-api</a></li>
+    </ul>
+
+    <h3>More in the Publishing section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/content-preview.html">How the draft stack works</a></li>
+            <li><a href="/manual/taxonomy.html">How the topic taxonomy works</a></li>
+            <li><a href="/manual/world-taxonomy.html">How the world taxonomy works</a></li>
+            <li><a href="/manual/related-links.html">Related links</a></li>
+            <li><a href="/manual/schemas.html">What data we expose as schema.org structured data</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/add-a-new-document-type.html">Add a new document type</a></li>
+            <li><a href="/manual/howto-add-organisation-brand-colour.html">Add an organisation's brand colour</a></li>
+            <li><a href="/manual/whitehall-historical-accounts.html">Add Historical Accounts</a></li>
+            <li><a href="/manual/add-translation-whitehall.html">Add support for a new translation in Whitehall</a></li>
+            <li><a href="/manual/howto-change-slug-and-create-redirect.html">Change a slug and create redirect in Whitehall</a></li>
+            <li><a href="/manual/change-base-path-in-specialist-publisher.html">Change a specialist document base path</a></li>
+            <li><a href="/manual/incorrect-content-in-search-or-navigation.html">Content that doesn't show up correctly in search or list pages</a></li>
+            <li><a href="/manual/documents-are-published-but-links-arent-updated.html">Debug published documents with incorrect links</a></li>
+            <li><a href="/manual/emergency-publishing.html">Deploy an emergency banner</a></li>
+            <li><a href="/manual/global-banner.html">Deploy non-emergency global banner</a></li>
+            <li><a href="/manual/howto-find-hardcoded-markup-govspeak.html">Find hardcoded markup in GovSpeak</a></li>
+            <li><a href="/manual/help-with-publishing-content.html">Help with publishing content</a></li>
+            <li><a href="/manual/documents-arent-live-after-publishing.html">If documents aren't live after being published</a></li>
+            <li><a href="/manual/make-a-new-document-type-available-to-search.html">Make a new document type available to search</a></li>
+            <li><a href="/manual/howto-modify-change-note.html">Modify a change note in Publishing API or Whitehall</a></li>
+            <li><a href="/manual/howto-redirect-html-attachment-urls-from-whitehall.html">Redirect an HTML attachment's URL in Whitehall</a></li>
+            <li><a href="/manual/howto-remove-change-note-from-whitehall.html">Remove a change note in Whitehall</a></li>
+            <li><a href="/manual/howto-remove-invalid-about-page-drafts-from-world-organisations.html">Remove invalid WorldwideOrganisation draft CorporateInformationPages</a></li>
+            <li><a href="/manual/rename-a-country.html">Rename a country</a></li>
+            <li><a href="/manual/republishing-content.html">Republish content</a></li>
+            <li><a href="/manual/government-changes.html">Support government changes</a></li>
+            <li><a href="/manual/hmrc-paye-files.html">Upload HMRC PAYE files</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/reindex-elasticsearch.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Reindex%20an%20Elasticsearch%20index'&amp;body=Problem%20with%20'Reindex%20an%20Elasticsearch%20index'%20(https://docs.publishing.service.gov.uk/manual/reindex-elasticsearch.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

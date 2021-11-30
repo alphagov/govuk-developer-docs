@@ -1,0 +1,394 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Out of hours support (on-call) - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/on-call.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Out of hours support (on-call) - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/on-call.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Out of hours support (on-call)" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/on-call.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Out of hours support (on-call)</span></a>
+    <ul>
+      <li>
+        <a href="#on-call-checklist"><span>On call checklist</span></a>
+      </li>
+      <li>
+        <a href="#things-that-may-result-in-you-being-contacted"><span>Things that may result in you being contacted</span></a>
+        <ul>
+          <li>
+            <a href="#automated-monitoring"><span>Automated monitoring</span></a>
+          </li>
+          <li>
+            <a href="#phone-calls-from-people"><span>Phone calls from people</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#responding-to-being-contacted"><span>Responding to being contacted</span></a>
+        <ul>
+          <li>
+            <a href="#automated-monitoring"><span>Automated monitoring</span></a>
+          </li>
+          <li>
+            <a href="#phone-calls-from-people"><span>Phone calls from people</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#on-call-charter"><span>On call charter</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "2nd line",
+        "@id": "http://www.dev.gov.uk/manual.html#2nd-line"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#2nd-line" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;2nd line&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#2nd-line">2nd line</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/48308b64e5cd4504811349f15aa87d6a205acdc8">24 Jun 2021</a>
+</div>
+
+ <h1 id='header'>Out of hours support (on-call)</h1> <blockquote>
+<p>See <a href="/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a>!</p>
+<p>This page is for before you go on call to prep for incident handling.</p>
+</blockquote>
+<p>GOV.UK developers and reliability engineers are part of an on-call rota
+to keep GOV.UK running at night, on the weekends and on public holidays.</p>
+<h2 id='on-call-checklist'>On call checklist</h2><p>You should do these things before going on call so you&rsquo;re prepared.</p>
+
+<ol>
+<li>Have the numbers of other people on your shift saved in your phone. This
+includes whoever is on Escalations. Get these numbers from PagerDuty.</li>
+<li>Set to be notified for every new message in the #govuk-incident Slack channel by clicking &ldquo;Details&rdquo;, &ldquo;Change notifications&rdquo; and selecting &ldquo;Every new message.&rdquo;</li>
+<li>Make sure you know <a href="https://docs.google.com/spreadsheets/d/1a02TOV0Uee6lSCuUIh3G_J1ZPx6bXI2yz56afHOsQZI/edit#gid=823200360">how to contact the rest of SMT</a>, if the on-call SMT is unavailable.</li>
+<li>Ensure you have an up to date local copy of the <a href="https://github.com/alphagov/govuk-developer-docs/">Developer Docs</a> repository
+and that you can build it.</li>
+<li>Make sure you can <a href="/manual/howto-ssh-to-machines.html">use ssh to access machines</a></li>
+<li>Make sure you can <a href="/manual/get-started.html#sign-in-to-aws">access AWS</a> (using the web console and the <code>aws</code> CLI)</li>
+<li>Make sure you can <a href="/manual/google-cloud-platform-gcp.html">access GCP</a> (using the web console and the <code>gcloud</code> CLI)</li>
+<li>Make sure you can VPN to the office or disaster recovery location.</li>
+<li>Ensure your PagerDuty alert settings will wake you if you&rsquo;re called. You might want
+to install the <a href="https://www.pagerduty.com/features/mobile-incident-management/">PagerDuty App</a>
+on your phone.</li>
+<li>Ensure you can <a href="https://github.com/alphagov/govuk-secrets/">decrypt secrets</a> with your GPG setup.</li>
+<li>Ensure you have single-sign-on set up for GOV.UK PaaS (<a href="https://docs.cloud.service.gov.uk/get_started.html#use-single-sign-on">instructions on setting up single-sign-on</a>)</li>
+<li>Ensure you can access the <code>govuk_development</code> organisation in GOV.UK PaaS
+from the command line (<a href="https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line">instructions for setting up the cloud foundry command line</a>).</li>
+<li>Ensure you know how to escalate an issue to RE, ie infrastructure
+issues.</li>
+<li>Read these documents:
+
+<ul>
+<li><a href="/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a></li>
+<li><a href="/manual/fall-back-to-mirror.html">Falling back to the static mirror</a></li>
+<li><a href="/manual/emergency-publishing.html">Emergency publishing</a></li>
+<li><a href="/manual/global-banner.html">Non-emergency global banner</a></li>
+</ul></li>
+</ol>
+<h2 id='things-that-may-result-in-you-being-contacted'>Things that may result in you being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>We use PagerDuty for automated monitoring. You can set up your PagerDuty account
+to notify you however you want (phone call, SMS, email, push notification).
+There are 2 ways that this might contact you:</p>
+
+<ul>
+<li>Any Icinga checks that &lsquo;use&rsquo; <code>govuk_urgent_priority</code> will cause
+PagerDuty to be notified. You can get the most up to date list of these
+by searching the Puppet repo for <code>govuk_urgent_priority</code>.</li>
+<li>There are a couple of checks defined in Pingdom which notify PagerDuty directly rather
+than using GOV.UK&rsquo;s internal monitoring. These are normally for key parts of the website
+like the homepage and site search. They are useful when network access to all the
+machines running GOV.UK is down.</li>
+</ul>
+<p>PagerDuty list <a href="https://support.pagerduty.com/hc/en-us/articles/202828870-Phone-numbers-notifications-are-sent-from">the phone numbers that notifications come from</a>.</p>
+<h3 id='phone-calls-from-people'>Phone calls from people</h3><p>Senior members of GOV.UK may phone you if they&rsquo;ve been contacted by other parts of government.
+These phone calls will generally come from the group that is on the rota for the
+&lsquo;Escalations&rsquo; contact number.</p>
+<h2 id='responding-to-being-contacted'>Responding to being contacted</h2><h3 id='automated-monitoring'>Automated monitoring</h3><p>If you&rsquo;re available to investigate the problem, acknowledge the alert in
+PagerDuty to prevent the next person being phoned.</p>
+<p>Try to diagnose what the problem is. If you&rsquo;re comfortable that you understand
+the problem there&rsquo;s no need to escalate to the next person. If you&rsquo;re not sure
+you completely understand what&rsquo;s going on, it&rsquo;s better to escalate the alert
+in PagerDuty.</p>
+<p>If you escalate a problem, stay online to support the other person and to
+increase your understanding of what&rsquo;s going on. If a problem is escalated
+to you, explain what you&rsquo;re doing to the person who escalated to you.</p>
+<p>If the technical people on-call don&rsquo;t understand what&rsquo;s going on, the final
+escalation will be to a senior member of GOV.UK who can make a decision about
+how serious the problem is and contact other people on GOV.UK if required.</p>
+<h3 id='phone-calls-from-people'>Phone calls from people</h3><p>If you&rsquo;re phoned by somebody who works on GOV.UK it&rsquo;s likely that this is because:</p>
+
+<ul>
+<li>There&rsquo;s a serious issue with the site which somebody else in government has noticed</li>
+<li>Government has decided to do <a href="/manual/emergency-publishing.html">emergency publishing</a></li>
+</ul>
+<p>There&rsquo;s a separate process for urgent changes to content which doesn&rsquo;t require technical
+support (assuming everything is working).</p>
+<h2 id='on-call-charter'>On call charter</h2>
+<ul>
+<li>Be available to be phoned in the evenings and at weekends</li>
+<li>Be able to be online to start investigating a problem within half an hour
+of being notified about it</li>
+<li>Don&rsquo;t worry if you&rsquo;re not able to answer the phone immediately - that&rsquo;s
+why we have more than one person on-call</li>
+<li>Nobody is expected to understand every part of GOV.UK - you don&rsquo;t need to
+know how to fix every issue on your own</li>
+<li>Logs are not as important as being available - if you need to lose some logs
+in order to bring the site back up, that&rsquo;s probably a good trade-off to make</li>
+<li>Get paid. Make sure you submit your <a href="https://forms.gle/yvPoANwrsHz8SrL4A">payment claim form</a> after your shift.</li>
+</ul>
+
+
+  <div class='related-content'>
+
+    <h3>More in the 2nd line section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/2nd-line.html">2nd line</a></li>
+            <li><a href="/manual/access-to-licensing-for-third-parties.html">Access to Licensify for Third Parties</a></li>
+            <li><a href="/manual/licensing.html">Licensify - supporting licensing</a></li>
+            <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
+            <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
+            <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
+            <li><a href="/manual/welcome-to-2nd-line.html">Welcome to 2nd line</a></li>
+            <li><a href="/manual/zendesk.html">Zendesk</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/change-in-hours-time-period-for-dst.html">Change in-hours time period for daylight savings</a></li>
+            <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
+            <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
+            <li><a href="/manual/smart-survey-scheduled-maintenance.html">SmartSurvey scheduled maintenance</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/on-call.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Out%20of%20hours%20support%20(on-call)'&amp;body=Problem%20with%20'Out%20of%20hours%20support%20(on-call)'%20(https://docs.publishing.service.gov.uk/manual/on-call.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

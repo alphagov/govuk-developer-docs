@@ -1,0 +1,570 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>collections-publisher: Discarding drafts of previously published step by step pages - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/apps/collections-publisher/arch/adr-002-discarding-drafts.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="collections-publisher: Discarding drafts of previously published step by step pages - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/apps/collections-publisher/arch/adr-002-discarding-drafts.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="collections-publisher: Discarding drafts of previously published step by step pages" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/apps/collections-publisher/arch/adr-002-discarding-drafts.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Application ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/apps/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/apps/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/apps/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/apps/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/apps/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/apps/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/apps/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/apps/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/apps/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/apps/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/apps/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/apps/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/apps/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/apps/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/apps/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/apps/release.html"><span>release</span></a></li>
+          <li><a href="/apps/router.html"><span>router</span></a></li>
+          <li><a href="/apps/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/apps/signon.html"><span>signon</span></a></li>
+          <li><a href="/apps/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/apps/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/apps/transition.html"><span>transition</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/apps/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/apps/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/apps/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/apps/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/apps/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/collections.html"><span>collections</span></a></li>
+          <li><a href="/apps/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/apps/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/apps/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/apps/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/apps/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/apps/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/apps/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/apps/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/apps/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/apps/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/apps/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/apps/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/apps/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/apps/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/apps/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/apps/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/apps/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/apps/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/apps/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/apps/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/apps/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/apps/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/apps/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/eligibility-viewer.html"><span>eligibility-viewer</span></a></li>
+          <li><a href="/apps/govuk-knowledge-graph.html"><span>govuk-knowledge-graph</span></a></li>
+          <li><a href="/apps/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+          <li><a href="/apps/govuk-user-intent-survey-explorer.html"><span>govuk-user-intent-survey-explorer</span></a></li>
+          <li><a href="/apps/govuk-user-journey-models.html"><span>govuk-user-journey-models</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/apps/govuk-content-store-examples.html"><span>govuk-content-store-examples</span></a></li>
+          <li><a href="/apps/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/apps/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/apps/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/apps/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/apps/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/apps/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/apps/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/apps/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/apps/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/apps/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/apps/seal.html"><span>seal</span></a></li>
+          <li><a href="/apps/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/apps/slimmer.html"><span>slimmer</span></a></li>
+          <li><a href="/apps/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/apps/tech-docs-monitor.html"><span>tech-docs-monitor</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Licensing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/apps/licensify.html"><span>licensify</span></a></li>
+          <li><a href="/apps/licensify-admin.html"><span>licensify-admin</span></a></li>
+          <li><a href="/apps/licensify-feed.html"><span>licensify-feed</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "collections-publisher",
+        "@id": "http://www.dev.gov.uk/apps/collections-publisher.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/apps/collections-publisher.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;collections-publisher&quot;}" class="govuk-breadcrumbs__link" href="/apps/collections-publisher.html">collections-publisher</a>
+        </li>
+  </ol>
+</div>
+
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/collections-publisher/commit/e1b79c54b50b0cb2778aeaa105432afb2c0c97a5">24 Sep 2018</a>
+</div>
+
+  <h1 class="page-title">collections-publisher: Discarding drafts of previously published step by step pages</h1>
+
+  
+<p>Date: 2018-09-24</p>
+<h2 id="context">Context</h2>
+<p>The current workflow for a step by step page is:</p>
+<ul>
+<li>
+<p>When a brand new step by step is saved, it is saved in collections publisher
+with a status of draft. It is also sent to Publishing API. Publishing API creates
+a new Document for it, and saves the first Edition.</p>
+<p>Number of versions: Collections Publisher - 1, Publishing API - 1</p>
+</li>
+<li>
+<p>When the step by step is published, the status in collections publisher is set
+to published. When the "publish" action is received by Publishing API, Publishing API
+sets the status of the edition to published.</p>
+<p>Number of versions: Collections Publisher - 1, Publishing API - 1</p>
+</li>
+<li>
+<p>When the published step by step is updated in collections publisher and saved,
+the status in collections publisher is set to draft. When the changes are sent to
+Publishing API, Publishing API creates a new edition for it and sets the status of
+that edition to draft.</p>
+<p>Number of versions: Collections Publisher - 1, Publishing API - 2</p>
+</li>
+<li>
+<p>When the existing draft is updated in collections publisher and saved again, the
+status in collections publisher remains as draft. When the changes are pushed to
+Publishing API, the existing edition is updated, but its status remains as draft.</p>
+<p>Number of versions: Collections Publisher - 1, Publishing API - 2</p>
+</li>
+<li>
+<p>When the new draft is published, the status in collections publisher is set to
+published. When the "publish" action is received by Publishing API, the status of
+the first edition is set to "superseded" and the status of the current (second)
+edition is set to "published".</p>
+<p>Number of versions: Collections Publisher - 1, Publishing API - 2</p>
+</li>
+<li>
+<p>When the step by step is updated again, collections publisher updates its copy
+of the step by step and sets the status to "draft". Publishing Api creates a new
+edition and its status is set to "draft"</p>
+<p>Number of versions: Collections Publisher - 1, Publishing API - 3</p>
+</li>
+<li>
+<p>When the new draft is published, the status in collections publisher is set to
+published. When the "publish" action is received by Publishing API, the status of
+the second edition is set to "superseded" and the status of the current (third)
+edition is set to "published".</p>
+<p>Number of versions: Collections Publisher - 1, Publishing API - 3</p>
+</li>
+</ul>
+<p>And so on and so forth</p>
+<p>At the moment, step by step pages are created and updated by a specialist team of
+content designers, but this is about to change, and step by step is due to be moved
+to a BAU team.</p>
+<p>The main blocker to this is with how draft changes are stored. If a step by step has
+previously been published there is no way to discard those draft changes without
+manually unpicking them.</p>
+<p>However, all of the different editions of a step by step are being stored in Publishing API.</p>
+<h2 id="decision">Decision</h2>
+<p>The approach we decided on was to get latest published version of the step by step
+held in the Publishing API and use that to repopulate the step by step data in
+collections-publisher. This approach keeps the Publishing API as the "record" or
+"source of truth", and uses collections publisher to just update the latest version.</p>
+<h4 id="pros">Pros</h4>
+<ul>
+<li>All editions are already being saved</li>
+<li>No duplicating data</li>
+<li>Don't need to restructure the database to store editions</li>
+<li>Enables version comparison of all versions of the step by step.</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>How do we reverse engineer done pages so that they are not added to the Navigation
+rules.</li>
+<li>We're overwriting local versions of step by steps</li>
+<li>Reliance on Publishing API. There could be a delay in getting the last published
+version if Publishing API times out.</li>
+<li>How do we link to change notes?</li>
+</ul>
+<h5 id="reverse-engineering-done-pages">Reverse engineering done pages</h5>
+<p>This is not a problem. Navigation Rules are generated by scraping the steps
+for internal links. The steps themselves do not link to done pages. All we need
+to do is compare the links in the steps to those in pages_related_to_step_nav to
+determine if we need to hide the step nav on those pages.</p>
+<h5 id="but-what-about-change-notes">But what about change notes?</h5>
+<p>Publishing API only keeps change notes associated with major updates. These change
+notes are eventually stored in content-store and are publicly accessible. Currently
+all step by step pages are published as a minor update. This means that any change
+notes we send to Publishing API would be lost. We also have no way of associating a
+change note with a specific edition in the Publishing API and it puts any future
+work to compare versions at risk.</p>
+<p>How we decided to overcome this problem is:</p>
+<ol>
+<li>add a column to the change notes table to record the version number or edition
+id held by Publishing API.</li>
+<li>When a change note is recorded, leave the edition id blank.</li>
+<li>add a post publish task that gets the id of latest edition from Publishing API
+and uses it to populate every change note for the step by step where the edition
+id is blank.</li>
+</ol>
+<p>This approach to change notes means that if there is a time in the future when we
+want to compare all previous versions of the step by step, we will be able to load
+them from Publishing API, and then match them to their corresponding change note
+using the edition id. No extra work will be need to record and view a change note
+in the UI.</p>
+<h3 id="other-approaches-considered-restructure-the-collections-publisher-database">Other Approaches considered: Restructure the collections-publisher database</h3>
+<p>The other option we considered is restructuring the database by treating the StepByStepPage
+model as an "Edition", and adding a new model called "Document".</p>
+<p>There would only be one Document for each step by step that only contains data that
+doesn't change between versions (e.g, content_id). The StepByStepPage model could be
+modified to add a document_id as a foreign key on Document. So a Document would have
+many StepByStepPages.</p>
+<h4 id="pros">Pros</h4>
+<ul>
+<li>Not overwriting local data</li>
+<li>Not reliant on the Publishing API</li>
+<li>Already links to change notes</li>
+</ul>
+<h4 id="cons">Cons</h4>
+<ul>
+<li>Need to restructure the step by step index page to get the list of step by steps
+from Document and only load the latest edition</li>
+<li>Building more functionality that needs to be maintained</li>
+<li>The database size will grow exponentially</li>
+<li>Storing duplicate data that's already being stored in Publishing API</li>
+</ul>
+<h2 id="consequences">Consequences</h2>
+<p>Publishing API does a reverse look-up for links. What this means for step by step
+pages is that, if we tell Publishing API that a list of content items is part of a
+step by step, Publishing API will find those content items, and do the reverse,
+i.e. tell the content items which step by step they are a part of.</p>
+<p>This relationship is defined in the "links" section of content_items.</p>
+<p>The "links" also stores which content items should not display the step by step in
+the sidebar. These content items are considered "related" to the step by step rather
+than "part of" it.</p>
+<p>Publishing API does not store the changes to "links" that can occur between versions.
+This means that content designers will need to double-check the navigation rules (i.e
+which pages should not show the step by step side bar) before re-publishing the step by
+step.</p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/collections-publisher/blob/main/docs/arch/adr-002-discarding-drafts.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20''&amp;body=Problem%20with%20''%20(https://docs.publishing.service.gov.uk/apps/collections-publisher/arch/adr-002-discarding-drafts.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

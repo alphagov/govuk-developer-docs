@@ -1,0 +1,353 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Create a GPG key - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/create-a-gpg-key.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Create a GPG key - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/create-a-gpg-key.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Create a GPG key" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/create-a-gpg-key.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Create a GPG key</span></a>
+    <ul>
+      <li>
+        <a href="#prerequisites"><span>Prerequisites</span></a>
+      </li>
+      <li>
+        <a href="#creating-a-gpg-key-using-the-gui"><span>Creating a GPG key (using the GUI)</span></a>
+      </li>
+      <li>
+        <a href="#creating-a-gpg-key-using-the-command-line"><span>Creating a GPG key (using the command line)</span></a>
+        <ul>
+          <li>
+            <a href="#working-out-your-key-id-and-fingerprint"><span>Working out your key ID and fingerprint</span></a>
+          </li>
+          <li>
+            <a href="#upload-your-gpg-key-to-a-keyserver"><span>Upload your GPG key to a keyserver</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#make-sure-your-passphrase-works"><span>Make sure your passphrase works</span></a>
+      </li>
+      <li>
+        <a href="#backup-a-gpg-key"><span>Backup a GPG key</span></a>
+        <ul>
+          <li>
+            <a href="#backup-and-transfer-gpg-key-to-another-computer-using-the-gui"><span>Backup and transfer GPG key to another computer (using the GUI)</span></a>
+          </li>
+          <li>
+            <a href="#creating-an-encrypted-zip-file-using-the-terminal"><span>Creating an encrypted zip file using the terminal</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#extend-an-expired-gpg-key"><span>Extend an expired GPG key</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Accounts",
+        "@id": "http://www.dev.gov.uk/manual.html#accounts"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#accounts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Accounts&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#accounts">Accounts</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d8c57d78bb4d82d1973b32c52a392d49c6fda816">22 Nov 2021</a>
+</div>
+
+ <h1 id='header'>Create a GPG key</h1> <p>We use GPG keys to encrypt our secrets. Documentation for using your GPG key can be found <a href="/manual/encrypted-hiera-data.html#common-tasks-for-handling-encrypted-hiera-data">here</a>.</p>
+<h2 id='prerequisites'>Prerequisites</h2><p>Install <code>gpg</code> if you don&rsquo;t already have it. Use <code>brew install gpg-suite</code> to install the graphical <a href="https://gpgtools.org/">GPG Suite</a>.</p>
+<h2 id='creating-a-gpg-key-using-the-gui'>Creating a GPG key (using the GUI)</h2><p><a href="https://gpgtools.org/">GPGtools</a> comes with a GUI which can perform most of the operations you need.</p>
+<p>Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to <code>hkps://keys.openpgp.org/</code> (the default). You can do this by going to preferences and setting your keyserver.</p>
+<p>To create a new key, click &ldquo;New&rdquo;. The <code>Name</code> field should be your name. For <code>Length</code>, you should have at least 4096.</p>
+<p>The creation process will give you the option to upload to a public server. Say yes. You can check your key has been uploaded using the Lookup Key button in the GUI.</p>
+<p>On the main page which lists all of your keys you can double click your key to get the required details (fingerprint and id).</p>
+<p>See below for checking your passphrase.</p>
+<h2 id='creating-a-gpg-key-using-the-command-line'>Creating a GPG key (using the command line)</h2><p>Create a gpg key with <code>gpg --gen-key</code> using your
+digital.cabinet-office.gov.uk email address. Defaults for the questions
+should be fine, although you should choose a 4096-bit key.</p>
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>You should also generate a <a href="http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.4">revocation
+certificate</a>
+with <code>gpg --gen-revoke</code> and store it in a safe place (<em>not</em> on your
+laptop, maybe a USB stick in your locker).</p>
+</blockquote>
+<h3 id='working-out-your-key-id-and-fingerprint'>Working out your key ID and fingerprint</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
+</code></pre></div><p>Should look something like this.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>pub   rsa2048 2013-02-08 [SC]
+      37CC 021A C5C2 4E27 C4D9  5735 9B0E 9DD1 90E6 5803
+      uid                  [ultimate] Firstname Lastname &lt;firstname.lastname@digital.cabinet-office.gov.uk&gt;
+      sub   rsa2048 2013-02-08 [E]
+</code></pre></div><p>The  fingerprint is <code>37CC 021A C5C2 4E27 C4D9 5735 9B0E 9DD1 90E6 5803</code>,
+and the key ID is <code>90E65803</code> — the last 8 characters of the fingerprint.</p>
+<h3 id='upload-your-gpg-key-to-a-keyserver'>Upload your GPG key to a keyserver</h3><p>Before doing this, make sure that your default keyserver is <code>hkps://keys.openpgp.org/</code>. You can do this by changing the default keyserver in <code>~/.gnupg/dirmngr.conf</code>:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>keyserver hkps://keys.openpgp.org/
+</code></pre></div><p>You should also ensure that there is no <code>keyserver</code> directive in <code>~/.gnupg/gpg.conf</code>.</p>
+<p>Send your key to a keyserver by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --send-keys $KEYID
+</code></pre></div><p>If you are having problems uploading your key, it&rsquo;s worth trying another keyserver. Those trying to receive your key may be connecting to a different keyserver than the one you sent your key to. This is fine, as the keyservers synchronise, but this may take some time to happen.</p>
+<p>You now should be able to find your key on <a href="https://keys.openpgp.org/">https://keys.openpgp.org/</a>.</p>
+<p>You may find you also need to configure <code>dirmngr</code> to successfully connect to a keyserver by adding either or both of the following lines to <code>~/.gnupg/dirmngr.conf</code>:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>standard-resolver
+disable-ipv6
+</code></pre></div><p>You may need to run <code>gpgconf --kill all</code> in order for these changes to take effect.</p>
+<h2 id='make-sure-your-passphrase-works'>Make sure your passphrase works</h2><p>You can test your passphrase like this:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo "1234" | gpg -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - &amp;&amp; echo "The correct passphrase was entered for this key"
+</code></pre></div><p>You will be prompted to enter your passphrase upon running this command then if you have entered your passphrase correctly you will see &ldquo;The correct passphrase was entered for this key&rdquo;.</p>
+<h2 id='backup-a-gpg-key'>Backup a GPG key</h2><h3 id='backup-and-transfer-gpg-key-to-another-computer-using-the-gui'>Backup and transfer GPG key to another computer (using the GUI)</h3><p>To backup your key, select the key you want to backup in <a href="https://gpgtools.org/">GPG Keychain</a> and then click on &ldquo;Export&rdquo;. This will download your key in the following format:</p>
+<p><code>Name (keyID) – Public.asc</code> or <code>Name (keyID) – Secret.asc</code></p>
+<p>Then add your key to an encrypted zip file (see below for how to do this) and store it somewhere else, for example your Google Drive.</p>
+<p>On your new machine, click on &ldquo;Import&rdquo; in GPG Keychain and select the <code>.asc</code> file your downloaded earlier.</p>
+<p>When your key has been imported you should see it listed on the main page.</p>
+<p>Instructions taken from <a href="https://gpgtools.tenderapp.com/kb/gpg-keychain-faq/backup-or-transfer-your-keys#transfer-keys-to-another-computer">GPG Tools FAQ</a></p>
+<h3 id='creating-an-encrypted-zip-file-using-the-terminal'>Creating an encrypted zip file using the terminal</h3><p>To zip one file, go to the directory containing the file and then do:</p>
+<p><code>zip -e {zipped filename} {original filename}</code></p>
+<p>so to encrypt your GPG key you&rsquo;ll use:</p>
+<p><code>zip -e &quot;Name (keyID) – Public.asc.zip&quot; &quot;Name (keyID) – Public.asc&quot;</code></p>
+<h2 id='extend-an-expired-gpg-key'>Extend an expired GPG key</h2><p>If your GPG key has expired, the easiest way to update it is to <a href="https://superuser.com/questions/813421/can-you-extend-the-expiration-date-of-an-already-expired-gpg-key">extend the expiry date</a>.</p>
+<p>You may also find that you have sub-keys that are due to expire too. If you are using a Mac, the easiest way to check is to use the GPG Keychain application. In GPG Keychain, double-click on your key to see the details and go the the &ldquo;Subkeys&rdquo; tab. If you have a sub-key that is due to expire, you&rsquo;ll be asked if you want to update it and push the key to the keyserver.</p>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Accounts section</h3>
+
+    <div class='govuk-grid-row'>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/heroku.html">Access apps on the shared Heroku account</a></li>
+            <li><a href="/manual/access-jenkins.html">Get access to Jenkins</a></li>
+            <li><a href="/manual/give-a-content-designer-access-to-github.html">Give a content designer access to GitHub</a></li>
+            <li><a href="/manual/manage-sign-on-accounts.html">Manage Signon user/API accounts and access tokens</a></li>
+            <li><a href="/manual/removing-a-user-from-puppet.html">Remove a user from Puppet</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/create-a-gpg-key.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Create%20a%20GPG%20key'&amp;body=Problem%20with%20'Create%20a%20GPG%20key'%20(https://docs.publishing.service.gov.uk/manual/create-a-gpg-key.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

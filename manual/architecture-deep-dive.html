@@ -1,0 +1,631 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Architectural deep-dive of GOV.UK - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/architecture-deep-dive.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Architectural deep-dive of GOV.UK - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/architecture-deep-dive.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Architectural deep-dive of GOV.UK" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/architecture-deep-dive.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Architectural deep-dive of GOV.UK</span></a>
+    <ul>
+      <li>
+        <a href="#what-happens-when-a-user-visits-a-page-on-gov-uk"><span>What happens when a user visits a page on GOV.UK?</span></a>
+        <ul>
+          <li>
+            <a href="#dns"><span>DNS</span></a>
+          </li>
+          <li>
+            <a href="#cdn-and-caching"><span>CDN and caching</span></a>
+          </li>
+          <li>
+            <a href="#routing-on-gov-uk"><span>Routing on GOV.UK</span></a>
+          </li>
+          <li>
+            <a href="#rendering"><span>Rendering</span></a>
+          </li>
+          <li>
+            <a href="#summary"><span>Summary</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#what-happens-when-someone-hits-39publish39"><span>What happens when someone hits ‘Publish’?</span></a>
+        <ul>
+          <li>
+            <a href="#draft-and-live-stacks"><span>Draft and live stacks</span></a>
+          </li>
+          <li>
+            <a href="#publishing-api-vs-content-store"><span>Publishing API vs Content Store</span></a>
+          </li>
+          <li>
+            <a href="#downstream-sidekiq-background-processing-triggered-by-publishing"><span>Downstream Sidekiq background processing triggered by publishing</span></a>
+          </li>
+          <li>
+            <a href="#summary"><span>Summary</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#what-happens-when-a-developer-deploys-a-change-to-an-application"><span>What happens when a developer deploys a change to an application?</span></a>
+        <ul>
+          <li>
+            <a href="#environments"><span>Environments</span></a>
+          </li>
+          <li>
+            <a href="#deploying"><span>Deploying</span></a>
+          </li>
+          <li>
+            <a href="#puppet-on-gov-uk"><span>Puppet on GOV.UK</span></a>
+          </li>
+          <li>
+            <a href="#summary"><span>Summary</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Applications",
+        "@id": "http://www.dev.gov.uk/manual.html#applications"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#applications" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Applications&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#applications">Applications</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+</div>
+
+ <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
+
+<ol>
+<li>What happens when a user visits a page on GOV.UK?</li>
+<li>What happens when a publisher hits &lsquo;Publish&rsquo;?</li>
+<li>What happens when a developer deploys a change to an application?</li>
+</ol>
+<h2 id='what-happens-when-a-user-visits-a-page-on-gov-uk'>What happens when a user visits a page on GOV.UK?</h2><h3 id='dns'>DNS</h3><p><a href="images/dns.png" rel="noopener noreferrer"><img src="/manual/images/dns.png" alt="" /></a></p>
+<p>The browser queries a local DNS server to turn the domain name into an IP address.
+The local DNS server might be able to answer immediately from its cache. If not,
+it will query the authoritative name servers for the domain.</p>
+<p><code>gov.uk.</code> is a country-code second-level domain or ccSLD (like <code>co.uk.</code>) and its
+authoritative servers are hosted by <a href="https://www.jisc.ac.uk/domain-registry">Jisc</a>. Unusually for a ccSLD, <code>gov.uk</code> is
+also a website, and hosts the redirect from <code>gov.uk</code> to <code>www.gov.uk</code>. The records
+for these two domains are within the <code>gov.uk</code> second-level zone hosted by Jisc.</p>
+<p>GDS hosts the DNS for third-level domains under <code>gov.uk</code> (for example <code>service.gov.uk</code>)
+on both <a href="https://aws.amazon.com/route53/">Amazon Route53</a> and Google Cloud Platform, for redundancy. The configuration
+for these domains is in the <a href="https://github.com/alphagov/govuk-dns-config">govuk-dns-config repo</a>, which is deployed via the
+<a href="https://deploy.blue.production.govuk.digital/job/Deploy_DNS/">Deploy_DNS Jenkins job</a>, which in turn references the <a href="https://github.com/alphagov/govuk-dns">govuk-dns repo</a>.</p>
+<p><code>www.gov.uk</code> is a CNAME record which ultimately points to <code>www-gov-uk.map.fastly.net.</code>
+The <code>fastly.net</code> domain name is hosted by special nameservers at the Fastly content
+delivery network, which aim to respond with the IP address of the Fastly cache node
+which is &ldquo;closest&rdquo; to the user. Read more about Fastly in the next section, or
+<a href="/manual/dns.html">read more about gov.uk DNS</a>.</p>
+<h3 id='cdn-and-caching'>CDN and caching</h3><p>GOV.UK uses the <a href="https://www.fastly.com/">Fastly</a> CDN to handle the majority of requests, which - as
+well as reducing load on GOV.UK (&lsquo;origin&rsquo;) by around 70% - provides &lsquo;edge nodes&rsquo;
+(servers) that are closer to our end users (particularly those outside the UK).</p>
+<p>Fastly uses <a href="https://varnish-cache.org/">Varnish</a> for caching, with a default cache time of 1 hour. (Read
+<a href="/manual/cdn.html">&ldquo;Our content delivery network&rdquo;</a> for more information). If Fastly
+doesn&rsquo;t have a page in its cache, it fetches the page from origin.</p>
+<p><a href="/manual/purge-cache.html">Caches can be purged</a> using the <a href="https://github.com/alphagov/cache-clearing-service">cache-clearing-service</a>, which
+tells Fastly to soft-purge (i.e. only remove the cached version once it has
+received the new version from origin). This cache clearing service is
+triggered automatically when pages are updated - more on that later.</p>
+<h4 id='failover'>Failover</h4><p>If a Fastly request to origin returns a 5xx response, Fastly will request
+content from the mirror, which is static HTML hosted in an S3 bucket on AWS.
+The contents of the mirror are updated daily via a <a href="https://github.com/alphagov/govuk_crawler_worker">govuk-crawler-worker</a>,
+which recursively crawls GOV.UK URLs from a message queue, visiting the pages
+and saving the output to disk.</p>
+
+<ul>
+<li>Read more about <a href="/manual/fall-back-to-mirror.html">fallback to the static mirrors</a>.</li>
+<li>Read more about <a href="/manual/errors.html">how errors are handled on GOV.UK</a>.</li>
+</ul>
+<h4 id='routing-on-the-cdn'>Routing on the CDN</h4><p>As well as for caching, Varnish is used for the redirection from <code>gov.uk</code> to
+<code>www.gov.uk</code>, which is configured in Varnish Configuration Language (VCL) and
+uploaded directly to Fastly via <a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config</a>.</p>
+<p>Other redirects that happen at the Fastly level include <a href="https://github.com/alphagov/bouncer">bouncer</a>: a GOV.UK
+application responsible for redirecting traffic from old pre-GOV.UK websites.
+This is configured via <a href="https://github.com/alphagov/transition">transition</a> and <a href="https://github.com/alphagov/transition-config">transition-config</a>. Read
+<a href="/manual/transition-architecture.html">Transition architecture</a> for more detail.</p>
+<h3 id='routing-on-gov-uk'>Routing on GOV.UK</h3><h4 id='getting-to-the-39router39-application'>Getting to the &lsquo;router&rsquo; application</h4><p><a href="images/load-balancer.png" rel="noopener noreferrer"><img src="/manual/images/load-balancer.png" alt="" /></a></p>
+<p>Some requests make it through the CDN and cache layers to &lsquo;origin&rsquo;. Origin is
+a stack of computers in the cloud - in this case, AWS - and its entry point is
+a load balancer.</p>
+<p>The load balancer knows based on the hostname which machine &lsquo;class&rsquo; to route
+to. Different classes of machine run different sets of GOV.UK applications.
+How many machines are allocated to a class - and how big those machines are -
+is configured using <a href="https://www.terraform.io/">Terraform</a>, in <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a>. What runs on each machine
+class is configured in govuk-puppet, a file and process management system we&rsquo;ll
+cover in more detail later.</p>
+<p><a href="images/nginx-routing.png" rel="noopener noreferrer"><img src="/manual/images/nginx-routing.png" alt="" /></a></p>
+<p>External requests are routed to a &lsquo;cache&rsquo; machine, where the request is
+received by an <a href="https://www.nginx.com/">Nginx</a> web server running on the machine. Nginx proxies some
+routes directly to other apps, such as <a href="https://github.com/alphagov/govuk-puppet/blob/881cbcdef477332948e92b88ecd04a830fd02337/hieradata/common.yaml#L1176-L1178">asset URLs</a> being
+<a href="https://github.com/alphagov/govuk-puppet/blob/a114dd5f80d789be368573545dc56fe388c0ac58/modules/router/templates/assets_origin.conf.erb#L53-L67">routed to asset-manager</a> - this is configured with govuk-puppet.
+However, <a href="https://github.com/alphagov/govuk-puppet/blob/66b2f6c6d8e572d0b4cc8d6d47338c050a1c46a2/modules/router/templates/router_include.conf.erb#L78">Nginx proxies most requests to Varnish</a>.
+If Varnish has the route response in its cache, that is returned, otherwise it
+proxies the request to <a href="https://github.com/alphagov/router">router</a>, which is a GOV.UK maintained application
+running on the cache machines.</p>
+<h4 id='routing-via-39router39'>Routing via &lsquo;router&rsquo;</h4><p>&lsquo;Router&rsquo; is a reverse proxy app written in Go. It is designed to be fast,
+storing all known routes in memory using a <a href="https://en.wikipedia.org/wiki/Trie">prefix trie</a>, which it loads
+from a MongoDB database of all known routes.</p>
+<p>The MongoDB database is written to via <a href="https://github.com/alphagov/router-api">router-api</a> whenever a route is
+added or changed: the Content Store (which we&rsquo;ll cover later) talks to
+Router API <a href="https://github.com/alphagov/content-store/blob/08f02f990e621c9d2fd473e12a70a6805ddd8dcb/app/models/route_set.rb#L58-L82">directly</a> to do this.</p>
+<p>Every Router instance <a href="https://github.com/alphagov/router/blob/811ed82d0ecc23b8077ed5dd2c460ccdfe2808ab/router.go#L154-L194">polls periodically</a>
+for any changes to the MongoDB database; if and when changes are detected
+by a particular instance it reloads all routes held in memory - a process
+which is repeated across all instances.</p>
+<p>Routes have different handlers. Routes marked as <code>gone</code> return a 410 Gone
+response. Routes marked as <code>redirect</code> serve a 301 Moved Permanently
+response. These handlers are useful for when content is deleted or
+superseded. Most publishing apps provide a way of deleting or redirecting
+their content, but it&rsquo;s worth noting the <a href="https://github.com/alphagov/short-url-manager">short-url-manager</a> app, whose
+sole purpose is to create special redirect routes to allow the creation
+of short, memorable URLs that redirect to longer URLs, often as part of a
+media campaign.</p>
+<p>Routes with a <code>backend</code> handler are routed to the relevant rendering app,
+based on the <code>backend_id</code> of the route, which is derived from the
+<code>rendering_app</code> field in the corresponding content item in the Content
+Store - we&rsquo;ll cover this later. For example, if the route has a
+<code>backend_id</code> of <code>frontend</code>, it will forward the request to the <a href="https://github.com/alphagov/frontend">frontend</a>
+application.</p>
+<h3 id='rendering'>Rendering</h3><p>Once Router has forwarded the request to the right rendering app, the
+rendering app itself has to do some routing. Most GOV.UK front-end apps are
+built in <a href="https://rubyonrails.org/">Rails</a>, which means typically there is a <code>routes.rb</code> file that
+maps the route to a controller. The controller takes the URL path and any
+parameters and decides how to render the page.</p>
+<p>Many pages require the application to make a request to the Content Store
+to retrieve the corresponding content. Some pages are associated with
+collections of content, rather than simply one content item. If it is a
+static collection, such as a homepage which references several news stories,
+then this remains just one content item that has been expanded via &ldquo;link
+expansion&rdquo; (which we&rsquo;ll cover later) to &lsquo;include&rsquo; the other content items
+within it. If it is a dynamic collection, such as a search results page,
+then content items are retrieved via the <a href="https://github.com/alphagov/search-api">search-api</a>.</p>
+<h4 id='static-assets'>Static assets</h4><p>Whilst views can be any arbitrary HTML, GOV.UK pages are typically constructed
+from components defined in <a href="https://components.publishing.service.gov.uk/component-guide">govuk_publishing_components</a>, set in a standard
+page template (header, footer, JavaScript and CSS) defined in <a href="https://github.com/alphagov/static">static</a>.
+For more details, read about the GOV.UK <a href="/manual/frontend-architecture.html">Frontend architecture</a>.</p>
+<p>Static JS/CSS is delivered over <a href="https://assets.publishing.service.gov.uk">https://assets.publishing.service.gov.uk</a>.
+Custom assets, such as images, are delivered over the same domain and uploaded
+by content designers via <a href="https://github.com/alphagov/asset-manager">asset-manager</a>. Under the hood, all of these assets
+live in an <a href="https://aws.amazon.com/free/storage/">AWS S3 bucket</a>; read <a href="/manual/assets.html">&ldquo;Assets: how they work&rdquo;</a>.</p>
+<h3 id='summary'>Summary</h3><p>The request is resolved through DNS, more often than not hitting the CDN/cache
+layers. Some requests make it through to origin, where they&rsquo;re routed to the
+machine running the (usually Rails-based) rendering application that knows how
+to handle the request.</p>
+<h2 id='what-happens-when-someone-hits-39publish39'>What happens when someone hits &lsquo;Publish&rsquo;?</h2><h3 id='draft-and-live-stacks'>Draft and live stacks</h3><p><a href="images/draft-live-stacks.png" rel="noopener noreferrer"><img src="/manual/images/draft-live-stacks.png" alt="" /></a></p>
+<p>Everything you&rsquo;ve just read about in the first section exists in two stacks:
+draft and live. These are very similar to each other: each is a collection
+of machines in the cloud, running GOV.UK applications. Everything that runs in
+the live stack also runs in the draft stack, in order to have a way of
+previewing content in a non-public-facing way. However, the draft stack also
+has additional machines that run the <a href="/#publishing-apps">publishing apps</a>.</p>
+<p>Applications shouldn&rsquo;t know what stack they&rsquo;re in - they&rsquo;re simply configured
+to talk to other applications in their stack.</p>
+<p>The live stack entry point is the &lsquo;router&rsquo; app. You can swap <code>www</code> for
+<code>www-origin</code> to bypass Fastly and view the live stack at origin. This is
+only available to office IPs / VPN, and to Fastly IP addresses (configured in
+<a href="https://github.com/alphagov/govuk-provisioning">govuk-provisioning</a>).</p>
+<p>The draft stack entry point is <a href="https://github.com/alphagov/authenticating-proxy">authenticating-proxy</a>, which sits in front
+of &lsquo;router&rsquo;. You can swap <code>www</code> for <code>draft-origin</code> to view the draft stack at
+origin. The draft stack is not IP-restricted, as we need to be able to share
+links to be reviewed (&ldquo;2i&rsquo;d&rdquo;) or fact-checked by non-Government departments.
+It is, however, only visible to users who have been verified through
+Authenticating Proxy, by signing into <a href="/apps/signon.html">signon</a> (an authentication and
+authorisation portal) or by providing a valid <code>auth_bypass_id</code> (as a URI
+parameter or session cookie). Read more about previews in <a href="/manual/content-preview.html">&ldquo;How the draft stack works&rdquo;</a>.</p>
+<p>Signon doubles up as an authorisation platform, as it associates users with
+arbitrary permissions, so a publishing app can query if the current user has
+the necessary permissions to perform a given action, such as publishing
+content.</p>
+<h3 id='publishing-api-vs-content-store'>Publishing API vs Content Store</h3><p><a href="images/publishing-api-content-store.png" rel="noopener noreferrer"><img src="/manual/images/publishing-api-content-store.png" alt="" /></a></p>
+<p>At this point it&rsquo;s probably worth summarising what &ldquo;content&rdquo; is. Almost every
+piece of content on GOV.UK lives in a database called &ldquo;<a href="https://github.com/alphagov/content-store">content-store</a>&rdquo;, which
+stores only the latest &ldquo;edition&rdquo; of that content. Internally the content is
+referred to as a &ldquo;document&rdquo;, even if it is not itself a document. Content is
+retrieved via the &ldquo;<a href="/apps/content-store.html">Content API</a>&rdquo;, which lives in the content-store repo.</p>
+<p>Content is published to the Content Store via the <a href="https://github.com/alphagov/publishing-api">Publishing API</a>, which
+stores all of the editions of the document, and performs validation checks
+whenever it receives a new edition. Every piece of content has a <code>schema_name</code>
+corresponding to a particular JSON schema defined in <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a>.
+Most backend apps have their own databases modelling documents in their own
+way; at the point of sending the document to Publishing API, they transform the
+document to a JSON payload conforming to the appropriate schema.</p>
+<p><a href="images/content-store-draft-live.png" rel="noopener noreferrer"><img src="/manual/images/content-store-draft-live.png" alt="" /></a></p>
+<p>When a new edition is sent to Publishing API, it is automatically published to
+the draft Content Store, replacing whatever contents existed for that document
+beforehand. An edition must be explicitly published for it to go to the live
+Content Store, where it becomes visible to the outside world.</p>
+<p><a href="https://github.com/alphagov/publishing-api/blob/main/docs/link-expansion.md">Link expansion</a>, mentioned in <a href="#rendering">Rendering</a> is the process of
+joining related content items (such as the title and details of a document&rsquo;s
+parent, used for navigational breadcrumbs) into a single JSON payload, so that
+rendering apps don&rsquo;t need to handle the complexity of pulling all of that data
+together manually. Link expansion happens in Publishing API at the point of
+sending an edition downstream to the Content Store.</p>
+<h3 id='downstream-sidekiq-background-processing-triggered-by-publishing'>Downstream Sidekiq background processing triggered by publishing</h3><p>The Publishing API could update the Content Store directly, but the scale of
+GOV.UK means we&rsquo;re safer offloading that call to a background process to be
+processed when resources become available. In addition, when we publish a new
+edition, we often want to trigger some other actions as a result. For example,
+we want to send an email to anyone subscribed to that content.</p>
+<p>We use <a href="/manual/sidekiq.html">Sidekiq</a> to manage the background processing. When each Sidekiq
+process is evaluated, a message is put onto a <a href="https://www.rabbitmq.com/">RabbitMQ</a> queue.
+RabbitMQ is a message broker: when a message is broadcast to a RabbitMQ
+exchange, it forwards the message to its consumers. These consumers
+retrieve the content item and do something in response, such as:</p>
+
+<ul>
+<li>Clear the page&rsquo;s cache, via the cache-clearing-service</li>
+<li><a href="https://github.com/alphagov/email-alert-service/blob/main/lib/tasks/message_queues.rake">Send emails to users subscribed to that content</a>. (The
+exceptions to this are <code>travel-advice</code> &amp; <code>specialist-publisher</code>, which
+communicate directly with email-alert-api to ensure emails go out immediately)</li>
+</ul>
+<p><a href="https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33">Content Store registers the route</a> for the content
+item via Router API. This happens inside the Sidekiq job directly, rather than
+in a downstream process.</p>
+<h4 id='sidekiq-queues-high-and-low-priority'>Sidekiq queues: high and low priority</h4><p>Updating one content item often requires updating other pieces of content.
+For example, if a content item&rsquo;s title has been changed, then content items
+which refer to that content item will need to be updated to use the new
+title. Sometimes a single change can trigger changes in thousands of items.</p>
+<p>Putting both the directly changed and indirectly changed content items
+on the same queue would mean it would take a long time to see the changes
+in a document you&rsquo;ve edited. Generally, it is less important to see a quick
+change to the indirectly changed content than it is to see a change in the
+directly changed content items. Therefore we have a concept of &lsquo;high&rsquo; and
+&lsquo;low&rsquo; priority queues.</p>
+<p>The main content item is processed in the high priority queue. Exactly the
+same things happen to the low priority content items as the high priority
+content items; it just tends to take longer as there are more items to
+process.</p>
+<p>The process for finding the content items affected by a content change is
+known as <a href="https://github.com/alphagov/publishing-api/blob/main/docs/dependency-resolution.md">dependency resolution</a>. Content items can be associated with
+other content items in a number of ways. For example, you may provide an
+<a href="https://github.com/alphagov/govuk-content-schemas/blob/d9684140462e4a138668539c04829cd808636ed5/dist/formats/news_article/publisher_v2/schema.json#L70-L73">array of organisation IDs</a> in your payload
+when sending to Publishing API, to indicate that those organisations are
+responsible for the content (this is stored on the content item in content
+store as <code>links.organisations</code>).</p>
+<p>Content can also be tagged to <a href="/manual/taxonomy.html">taxonomies</a>, which are used to describe where
+in the site hierarchy the content sits. These are stored on the content item
+as <code>links.taxons</code>. Some apps have their own interface for tagging, or you can
+tag content independently using <a href="https://github.com/alphagov/content-tagger">content-tagger</a>.</p>
+<h3 id='summary'>Summary</h3><p>The publishing app uses the Publishing API to create and synchronise a new
+edition of a document, which consolidates related content items into it prior to
+sending to Content Store. All affected content items are added to a publishing
+queue, which triggers downstream actions such as cache clearing and email alerts.</p>
+<h2 id='what-happens-when-a-developer-deploys-a-change-to-an-application'>What happens when a developer deploys a change to an application?</h2><h3 id='environments'>Environments</h3><p>Everything you&rsquo;ve read about the live and draft stacks, you can now multiply
+threefold, as they each exist in the following environments:</p>
+
+<ul>
+<li>Production</li>
+<li>Staging</li>
+<li>Integration</li>
+</ul>
+<p>Data is copied from Production to Staging - and from Staging to Integration - every
+24 hours via <a href="https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging/">automated Jenkins jobs</a>. This way our
+environments are always roughly in sync, although it&rsquo;s worth noting that email
+addresses are anonymised and access-limited documents are obfuscated before data is
+copied. The data copying is mostly <a href="/manual/govuk-env-sync.html">configured in govuk-puppet</a>,
+although apps not hosted on AWS are configured in <a href="https://github.com/alphagov/env-sync-and-backup/">env-sync-and-backup</a>.</p>
+<h3 id='deploying'>Deploying</h3><p>We have detailed docs on <a href="/manual/development-pipeline.html">how to deploy an application</a>. But
+what happens under the hood?</p>
+<p>When a PR is opened against a GOV.UK repository, the corresponding Jenkins job
+on <a href="https://ci.integration.publishing.service.gov.uk/">CI Jenkins</a> runs the tests (although we&rsquo;re gradually
+<a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md">moving to GitHub Actions</a>). The Jenkins jobs are created
+in the first place by being <a href="https://github.com/alphagov/govuk-puppet/blob/6a0b05aa1f9a90c01cefd5fc5b9c8e5f0aa030f2/hieradata/common.yaml#L422">added to govuk-puppet</a>, and
+configured to use the <a href="https://github.com/alphagov/govuk-jenkinslib">govuk-jenkinslib</a> library to build and run the tests.</p>
+<p>The tests report back to the PR as a <a href="https://developer.github.com/v3/checks/">GitHub check</a>, though other checks may
+also be required before the PR can be merged (<a href="https://github.com/alphagov/govuk-saas-config">govuk-saas-config</a> defines things
+such as whether branches must be up to date with &lsquo;main&rsquo; before merging).</p>
+<p>On merge, the same Jenkins job that ran the tests runs the tests again, then
+<a href="https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L122-L124">creates and pushes a git tag</a> to GitHub, then
+<a href="https://github.com/alphagov/govuk-jenkinslib/blob/dab23c591306d9f497f1c89651f7b7c0c6cc6967/vars/govuk.groovy#L132-L135">sends a message</a> to the <a href="https://deploy.integration.publishing.service.gov.uk/">deploy Jenkins</a> environment
+to build the <a href="https://github.com/alphagov/govuk-app-deployment">govuk-app-deployment</a> job. This clones the repository, checks out
+the tag and deploys the code to the corresponding nodes on Integration using
+<a href="https://capistranorb.com/">Capistrano</a> (a Ruby-based server automation and deployment tool).
+Capistrano does deployments only by default, but can also do deployments &lsquo;with
+migration&rsquo; or &lsquo;with hard restart&rsquo;, etc, depending on the nature of the change.</p>
+<p>A developer must manually trigger a deployment to Staging and Production through
+the <a href="https://github.com/alphagov/release">release</a> app. This uses the same Jenkins/Capistrano pipeline as for
+Integration, but on the Staging and Production Jenkins environments respectively.</p>
+<p>Some apps require extra care when deploying; see <a href="/manual/deploy-static.html">&lsquo;Static&rsquo; deployment rules</a>.</p>
+<h3 id='puppet-on-gov-uk'>Puppet on GOV.UK</h3><p><a href="images/puppet.png" rel="noopener noreferrer"><img src="/manual/images/puppet.png" alt="" /></a></p>
+<p>As discussed in the routing section, we have different &lsquo;classes&rsquo; of machines
+running in the cloud; to recap, the &ldquo;cache&rdquo; machines run the Router
+application. These classes are configured in <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a>, which uses
+<a href="https://puppet.com/open-source/#osp">Puppet</a> under the hood: tooling which configures resources such as files
+and processes.</p>
+<p>Puppet runs in a master/agent setup. There is a single &ldquo;puppetmaster&rdquo; running
+on its own class of machine, whereas the agents run on all the other machines
+(irrespective of class). The Puppet master is in charge of keeping all of the
+Puppet agents in sync with itself.</p>
+<p><a href="/manual/icinga.html">Icinga</a> alerts us to problems with our machines and apps. There is a wide
+variety of different alerts, all of which are configured in Puppet. Each
+puppet agent is responsible for <a href="https://github.com/alphagov/govuk-puppet/blob/0b20c7efe7e0c3855d4821e55a914ab577d3b84e/modules/govuk_containers/manifests/app.pp">configuring Icinga alerts</a> using the
+<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/icinga/manifests/check.pp">Icinga Puppet module</a>. Alerts might be triggered by an application&rsquo;s
+<a href="https://github.com/alphagov/content-publisher/blob/5b968f1bbfd4fa7e577ea535bb2dc23fcf0c99b8/spec/requests/healthcheck_spec.rb">health check endpoint</a> being unavailable, or by a machine having
+<a href="https://github.com/alphagov/govuk-puppet/blob/f12b696a24a7bd7ab0bfbdd0a35a1acc921ff168/modules/icinga/manifests/client/checks.pp#L37-L43">low available disk space</a>, or a number of other reasons.</p>
+<p>For monitoring, &lsquo;filebeat&rsquo; is used to send logs to <a href="/manual/logit.html">Logit</a>, and &lsquo;statsd&rsquo;
+exports most monitoring metrics, which can be viewed in <a href="/manual/grafana.html">Grafana</a>. This is
+configured in <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a>, which is included in most GOV.UK apps.
+Read more about <a href="/manual/tools.html">tooling for monitoring</a>.</p>
+<p>If an app release contains a major change such as a renamed environment
+variable, then it will require an application restart, which would bring the
+application offline on that machine. The load balancer would begin serving
+traffic from different nodes of the same class: for this reason it is
+important that all machines are updated at different times. Therefore, each
+instance <a href="https://github.com/alphagov/govuk-puppet/blob/9dda11ec245e882ed879cdb7abb7ffe70df015ce/modules/puppet/manifests/cronjob.pp">runs puppet every half hour</a>, with the Puppet
+agents configured to run after the puppetmaster at randomised times.</p>
+<p>When <a href="/manual/deploy-puppet.html">deploying Puppet</a>, the latest versions of govuk-puppet and
+govuk-secrets are copied to the puppetmaster. On each Puppet run, the Puppet
+agent checks for differences between what is sees and what the puppetmaster
+says should be there to see if they have diverged (&ldquo;configuration drift&rdquo;)
+and whether they should reset themselves against the master. Only after all
+the Puppet agents have updated can you be confident that your Puppet change
+hasn&rsquo;t broken anything, which is why you must wait 30 minutes between Puppet
+deploys.</p>
+<h3 id='summary'>Summary</h3><p>When code gets merged into the <code>master</code> branch, it is automatically deployed
+to Integration and a release tag is created in GitHub. Another Jenkins job uses
+Capistrano to deploy the release to the relevant machines in the cloud. The
+same process for Staging and Production is manually triggered by a developer.
+Puppet is used to keep each node&rsquo;s environment consistent, and to monitor the
+health of each application.</p>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Applications section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/architecture.html">Architecture overview of GOV.UK applications</a></li>
+            <li><a href="/manual/configure-linting.html">Configure linting</a></li>
+            <li><a href="/manual/conventions-for-rails-applications.html">Conventions for Rails applications</a></li>
+            <li><a href="/manual/non-ha-node-classes.html">Node classes without redundancy</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/add-authentication-to-an-application.html">Add authentication to an application</a></li>
+            <li><a href="/manual/create-a-local-transaction.html">Create a Local Transaction</a></li>
+            <li><a href="/manual/naming.html">Name a new application or gem</a></li>
+            <li><a href="/manual/retiring-an-application.html">Retire an application</a></li>
+            <li><a href="/manual/setting-up-new-rails-app.html">Set up a new Rails application</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/architecture-deep-dive.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Architectural%20deep-dive%20of%20GOV.UK'&amp;body=Problem%20with%20'Architectural%20deep-dive%20of%20GOV.UK'%20(https://docs.publishing.service.gov.uk/manual/architecture-deep-dive.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

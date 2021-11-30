@@ -1,0 +1,531 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Sentry - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/sentry.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Sentry - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/sentry.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Sentry" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/sentry.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Sentry</span></a>
+    <ul>
+      <li>
+        <a href="#nomenclature"><span>Nomenclature</span></a>
+      </li>
+      <li>
+        <a href="#how-sentry-is-integrated-on-gov-uk"><span>How Sentry is integrated on GOV.UK</span></a>
+      </li>
+      <li>
+        <a href="#sentry-roles"><span>Sentry roles</span></a>
+      </li>
+      <li>
+        <a href="#deciding-whether-to-log-errors-in-sentry"><span>Deciding whether to log errors in Sentry</span></a>
+        <ul>
+          <li>
+            <a href="#ignoring-exception-types"><span>Ignoring exception types</span></a>
+          </li>
+          <li>
+            <a href="#ignoring-environments"><span>Ignoring environments</span></a>
+          </li>
+          <li>
+            <a href="#advanced-sentry-customisation"><span>Advanced Sentry customisation</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#when-errors-are-received-by-sentry"><span>When errors are received by Sentry</span></a>
+        <ul>
+          <li>
+            <a href="#fingerprinting"><span>Fingerprinting</span></a>
+          </li>
+          <li>
+            <a href="#rate-limiting"><span>Rate limiting</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#slack-alerts"><span>Slack alerts</span></a>
+      </li>
+      <li>
+        <a href="#sentry-issue-actions"><span>Sentry issue actions</span></a>
+        <ul>
+          <li>
+            <a href="#merging-sentry-issues"><span>Merging Sentry issues</span></a>
+          </li>
+          <li>
+            <a href="#resolving-an-issue"><span>Resolving an issue</span></a>
+          </li>
+          <li>
+            <a href="#ignoring-an-issue"><span>Ignoring an issue</span></a>
+          </li>
+          <li>
+            <a href="#commenting-on-an-issue"><span>Commenting on an issue</span></a>
+          </li>
+          <li>
+            <a href="#deleting-and-discarding-an-issue"><span>Deleting and discarding an issue</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#special-sentry-accounts"><span>Special Sentry accounts</span></a>
+      </li>
+      <li>
+        <a href="#gds-wide-usage-of-sentry"><span>GDS-wide usage of Sentry</span></a>
+      </li>
+      <li>
+        <a href="#retention-period"><span>Retention period</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Monitoring",
+        "@id": "http://www.dev.gov.uk/manual.html#monitoring"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#monitoring" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Monitoring&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#monitoring">Monitoring</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/985165ff49df2f11e592c3b510b17f4669b4765c">11 Aug 2021</a>
+</div>
+
+ <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
+place, regardless of which application, what environment or what machine
+the error occurred on. It is far more convenient than logging on to
+individual machines and querying their logs.</p>
+<p>Useful links:</p>
+
+<ul>
+<li><a href="https://sentry.io/organizations/govuk/stats/">Sentry Organization Stats</a>
+for an overview of how many errors are being sent/rate-limited site-wide.</li>
+<li><a href="https://sentry.io/organizations/govuk/projects/">Sentry Projects</a>
+for a per-project view, enabling you to see which ones are causing the
+most errors right now.</li>
+<li>Sentry Grafana dashboards:
+<a href="https://grafana.production.govuk.digital/dashboard/file/sentry_errors_across_all_environments.json">Production</a>,
+<a href="https://grafana.staging.govuk.digital/dashboard/file/sentry_errors_across_all_environments.json">Staging</a>
+and <a href="https://grafana.integration.publishing.service.gov.uk/dashboard/file/sentry_errors_across_all_environments.json">Integration</a>
+(all require VPN), for a per-environment breakdown of Sentry errors.</li>
+</ul>
+<h2 id='nomenclature'>Nomenclature</h2>
+<ul>
+<li><strong>Project</strong>: each GOV.UK application has its own project on Sentry, where
+errors originating from that application are consolidated. Example:
+<a href="https://sentry.io/organizations/govuk/issues/?project=202242">publishing-api</a></li>
+<li><strong>Issue</strong>: a group of similar errors. For example, multiple instances of
+<code>NoMethodError</code> from the same app are likely to be logged under the same
+issue (see <a href="https://sentry.io/organizations/govuk/issues/2150349125/?project=202259&amp;query=is%3Aunresolved">example</a>) in the project in Sentry. In practice,
+there are a <a href="#fingerprinting">variety of factors</a> that determine
+whether errors are grouped under the same issue.</li>
+<li><strong>Error/Exception</strong>: a single occurrence of an Issue, containing details
+such as stack trace, arguments, server IP and error message.
+See <a href="https://sentry.io/organizations/govuk/issues/2155210524/events/aa4edd05a94c4d14b07d4c754a13c788/">example</a>.</li>
+</ul>
+<h2 id='how-sentry-is-integrated-on-gov-uk'>How Sentry is integrated on GOV.UK</h2><p>Projects can be created and edited in the Sentry UI, but this risks creating
+inconsistencies or missing apps. We therefore configure projects using
+<a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12">govuk-saas-config</a> (and its <a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L26-L87">associated rake tasks</a>), which
+read a <a href="https://docs.publishing.service.gov.uk/apps.json">list of apps</a> from govuk-developer-docs and make sure that
+all configuration is set up correctly.</p>
+<p>Apps are configured to talk to Sentry using the <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a> gem,
+which interfaces with Sentry via its <a href="https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_error.rb"><code>GovukError</code> class</a>. Apps
+call <code>GovukError.configure</code> - see <a href="https://github.com/alphagov/email-alert-api/blob/main/config/initializers/govuk_error.rb">example</a>. This
+uses the <a href="https://github.com/alphagov/govuk_app_config/pull/160">delegator pattern</a> to proxy requests to the
+underlying Sentry gem, which is [sentry-ruby][] in govuk_app_config v4 and
+above, and <a href="https://github.com/getsentry/sentry-ruby/tree/master/sentry-raven">sentry-raven</a> in govuk_app_config v3 and below.</p>
+<p>Unhandled exceptions are automatically logged to Sentry, but you can also
+<a href="https://github.com/alphagov/govuk_app_config/blob/073c9b2312a4893b040c9225b713ac880c69f5b8/README.md#manual-error-reporting">manually report something to Sentry using <code>GovukError.notify</code></a>.
+This method takes an exception object, or a string.</p>
+<h2 id='sentry-roles'>Sentry roles</h2><p>There are different &lsquo;roles&rsquo; in Sentry, with different permissions:</p>
+
+<ul>
+<li>Most people with access to Sentry have the &ldquo;Member&rdquo; role, which lets them
+view errors, issues and projects.</li>
+<li>Those with the &ldquo;Admin&rdquo; role can configure teams and projects.</li>
+<li>Those with the &ldquo;Manager&rdquo; role can edit organisation settings and set things
+like global rate limits.</li>
+<li>Those with the &ldquo;Owner&rdquo; role have unrestricted access to the system and can
+make billing and plan changes.</li>
+</ul>
+<p>Some links in this documentation will only be visible to those with the
+right permissions. If you need a higher permission than you already have, the
+senior tech team can apply this for you.</p>
+<h2 id='deciding-whether-to-log-errors-in-sentry'>Deciding whether to log errors in Sentry</h2><p>We should only capture actionable errors in Sentry, i.e. errors representing
+an underlying issue that developers can fix. We should not capture 4XX
+responses, for example, as these indicate a client issue. In fact, sentry-raven
+ignores several exception types by default - see below.</p>
+<h3 id='ignoring-exception-types'>Ignoring exception types</h3><p>govuk_app_config has a list of ignorable exceptions (
+<a href="https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configure.rb#L20-L50"><code>excluded_exceptions</code></a>). If your
+application raises an exception on this list, it will not be logged in Sentry.
+Note that sentry-raven also has a
+<a href="https://github.com/getsentry/sentry-ruby/blob/fec3fe012adfe80af63d54df1dfa8a0bdc0415b2/sentry-raven/lib/raven/configuration.rb#L199-L221">default list of exceptions to ignore</a>, but
+these are <a href="https://github.com/getsentry/sentry-ruby/blob/fec3fe012adfe80af63d54df1dfa8a0bdc0415b2/sentry-raven/lib/raven/configuration.rb#L35-L37">overwritten, rather than appended</a> by
+govuk_app_config, so have no meaning on GOV.UK.</p>
+<p>Then there is a list of exceptions to ignore if they occur during the nightly
+data sync: <a href="https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configure.rb#L57-L65"><code>data_sync_excluded_exceptions</code></a>.
+These are exceptions that are commonly raised while the databases and content
+store are periodically unavailable.</p>
+<p>When determining whether or not to ignore an exception, the exception chain is
+inspected. This means if an exception isn&rsquo;t on the ignore list, but its
+underlying cause is an exception on the ignore list, then it will be ignored.
+This <a href="https://github.com/getsentry/sentry-ruby/blob/82e1ffe711af287ddc23e8517bdb8275beff94d5/sentry-raven/lib/raven/configuration.rb#L449-L455">applies to <code>excluded_exceptions</code></a> and
+<a href="https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configuration.rb#L43">to <code>data_sync_excluded_exceptions</code></a>.</p>
+<h3 id='ignoring-environments'>Ignoring environments</h3><p>There is a hardcoded list of environments in which Sentry is
+considered to be active. If the <code>SENTRY_CURRENT_ENV</code> environment variable
+available to your app is not on the
+<a href="https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configure.rb#L14-L18"><code>active_sentry_environments</code></a> list, then none of
+its errors will be logged to Sentry.</p>
+<h3 id='advanced-sentry-customisation'>Advanced Sentry customisation</h3><p>For all of the above, you can easily
+<a href="https://github.com/alphagov/govuk_app_config/blob/master/README.md#error-reporting">configure any of these properties by appending to them</a>.</p>
+<p>You can also run arbitrary code to decide whether or not an error should be
+logged in Sentry, using the <code>before_send</code> lambda. Your custom code will be
+<a href="https://github.com/alphagov/govuk_app_config/blob/589b7aae49c3584ead2f60f915be05a7922c5c3e/lib/govuk_app_config/govuk_error/configuration.rb#L63–L71">combined with the default evaluators</a> such that if any of the
+callbacks returns nil, the exception will be excluded.</p>
+<h2 id='when-errors-are-received-by-sentry'>When errors are received by Sentry</h2><p>Sentry first fingerprints the error to decide what Issue to group it under.
+It then checks how many occurrences of that Issue have happened recently,
+and rate-limits (i.e. ignores) this occurrence if it is happening too
+frequently. More details below.</p>
+<h3 id='fingerprinting'>Fingerprinting</h3><p>Errors are grouped into Issues automatically by Sentry. By default, Sentry
+<a href="https://docs.sentry.io/platforms/ruby/data-management/event-grouping/#grouping-by-stack-trace">groups based on stack trace</a>. If no stack trace is
+available, it will <a href="https://docs.sentry.io/platforms/ruby/data-management/event-grouping/#grouping-by-exception">group by exception type</a> instead.
+Failing that, it will group by error message.</p>
+<p>Fingerprint rules can be applied at the project level by editing the
+&ldquo;Issue Grouping&rdquo; page under a project (see <a href="https://sentry.io/settings/govuk/projects/app-asset-manager/issue-grouping/">example</a>).
+For example, you can force all errors of the same exception type to have the
+same fingerprint. On the same screen, you can set stack trace rules, to
+remove or rename certain &lsquo;frames&rsquo; in the trace. In practice, we don&rsquo;t
+currently apply any custom rules, after an in-depth <a href="https://trello.com/c/NZNjFHWO/284-5-improve-sentrys-grouping-of-exceptions-8">investigation</a>
+found that Sentry&rsquo;s default grouping was already very accurate (despite it
+often looking like the same exception is spread across multiple issues).</p>
+<h4 id='stack-trace-cleaning'>Stack trace cleaning</h4><p>Note that sentry-raven automatically cleans up stack traces for the purposes
+of fingerprinting, so that stack trace frames like:</p>
+<p><code>app/views/welcome/view_error.html.erb in _app_views_welcome_view_error_html_erb__2807287320172182514_65600 at line 1</code></p>
+<p>&hellip;get normalised to:</p>
+<p><code>app/views/welcome/view_error.html.erb at line 1</code></p>
+<p>This means if the same <code>ActionView::Template::Error</code> error happens twice, it
+is grouped into the same issue instead of erroneously treated as separate issues.</p>
+<p>sentry-raven uses a <a href="https://github.com/getsentry/sentry-ruby/pull/1011/files#diff-c01d5cbc846720e47a4185cb501a55225247ec698aa169b0a2773ca9b65ae35dR1-R29">customised version</a> of
+<code>Rails::BacktraceCleaner</code> to do this. The
+<a href="https://github.com/rails/rails/blob/b66235d432d0505857ff667e0a1ddecfb5640a56/railties/lib/rails/backtrace_cleaner.rb">original <code>BacktraceCleaner</code></a> would do this, but also
+remove any &ldquo;framework trace&rdquo; from the stacktrace, leaving only the &ldquo;application
+trace&rdquo; behind. The original <code>BacktraceCleaner</code> would actually be beneficial for
+grouping, as Sentry is very sensitive to stack traces that differ only slightly
+(which can happen when a dependency is updated or a Ruby version is upgraded).
+However, removing the framework traces entirely means losing key diagnostic
+information, so the customised, less aggressive <code>BacktraceCleaner</code> is a better
+choice.</p>
+<h3 id='rate-limiting'>Rate limiting</h3><p>GOV.UK is on a legacy billing plan with an account limit of 1000 events per hour.
+When this limit is reached, subsequent events get discarded, meaning that noisy
+issues can prevent other, more important issues from being logged.</p>
+<p>In practice, it&rsquo;s more complicated than that. We have a per-project limit of 50%,
+the lowest that Sentry allows. This means that any one project on Sentry cannot
+log more than 500 events before it is rate limited. This is a protection
+mechanism, ensuring that we would need two projects to be recording high-volume
+errors to risk breaching our account limit. These limits are configured on the
+<a href="https://sentry.io/settings/govuk/rate-limits/">Rate Limits</a> page.</p>
+<h2 id='slack-alerts'>Slack alerts</h2><p>You can configure Sentry to notify a Slack channel when a notable condition is
+satisfied. For example, the <code>#govuk-platform-health</code> channel gets notified when
+any issue records 100 or more errors in a 1 hour period.</p>
+<p>To set up an alert, visit the <a href="https://sentry.io/organizations/govuk/alerts/rules/">Alerts panel</a>, select the project the alert
+should apply to (e.g. <code>app-whitehall</code>), and then click &ldquo;Create Alert Rule&rdquo;. It is
+currently not possible to set up a &lsquo;global&rsquo; alert to apply to all projects at
+once.</p>
+<p>We encourage teams to set up alerts for any projects they&rsquo;re responsible for, so
+that they can be alerted to new and high-volume issues and prioritise them.
+Multiple teams are allowed to set up alerts for the same projects.</p>
+<h2 id='sentry-issue-actions'>Sentry issue actions</h2><p>In the Sentry UI, you can merge related issues together, resolve issues, or
+ignore issues (permanently or for a set time period).</p>
+<h3 id='merging-sentry-issues'>Merging Sentry issues</h3><p>Duplicate issues can be merged by going into the project view, checking the
+boxes associated with each issue, and clicking &ldquo;Merge&rdquo;. This should be done very
+carefully, as issues cannot be unmerged once they are merged, and the issues are
+often subtly different and warrant being separate issues. For example, they may
+have the same exception type but occur in different transactions, so require two
+separate fixes.</p>
+<p>To find out why Sentry has treated two issues as separate, visit each issue and
+scroll to the bottom of the page to see the &ldquo;Event grouping information&rdquo;.</p>
+<h3 id='resolving-an-issue'>Resolving an issue</h3><p>When you know you&rsquo;ve fixed the underlying issue, you should
+<a href="#commenting-on-an-issue">comment on the issue</a> explaining what you&rsquo;ve done, and then
+click the &ldquo;Resolve&rdquo; button. This removes it from the default Sentry UI, making it
+less noisy, but also has the advantage of marking it as a regression and emailing
+you if the issue occurs again.</p>
+<h3 id='ignoring-an-issue'>Ignoring an issue</h3><p>When you&rsquo;ve identified an issue and written it up as a Trello card, or are
+actively working on fixing it, it can be unhelpful for the issue to keep
+accumulating events (and potentially spamming your Slack channel). In these cases,
+you should <a href="#commenting-on-an-issue">comment on the issue</a> with a link to your card or PR,
+then ignore the issue. You should also set the &ldquo;Assignee&rdquo; to yourself.</p>
+<p>You can either click &ldquo;Ignore&rdquo; to ignore it permanently, or click the arrow next to
+it to ignore for a set time, e.g. 1 week. You can also un-ignore an issue later.</p>
+<h3 id='commenting-on-an-issue'>Commenting on an issue</h3><p>Click on the issue, then on the &ldquo;Activity&rdquo; tab, where you can leave a comment.
+Comments support markdown.</p>
+<h3 id='deleting-and-discarding-an-issue'>Deleting and discarding an issue</h3><p>If you&rsquo;ve identified an issue that is high-volume, but is unlikely to be fixed any
+time soon, you can <a href="https://blog.sentry.io/2018/01/03/delete-and-discard">Delete and Discard</a> the issue by clicking the arrow next to
+the trash can and selecting &ldquo;Delete and discard future events&rdquo;.</p>
+<p>This should only be used when the issue is likely to have a significant impact on
+our <a href="#rate-limiting">Sentry quota</a>. It is possible to &ldquo;undiscard&rdquo; the issue later,
+but this will only capture new events. Any events prior to the &ldquo;undiscard&rdquo; action
+are lost.</p>
+<h2 id='special-sentry-accounts'>Special Sentry accounts</h2><p>There is a <code>2ndLineBot</code> member on the <a href="https://sentry.io/settings/govuk/members/">members list</a>
+which is set up so that a weekly Sentry report is sent to the 2nd line email address.
+This bot account should not be deleted.</p>
+<h2 id='gds-wide-usage-of-sentry'>GDS-wide usage of Sentry</h2><p>Sentry is used by several programmes in GDS, not just GOV.UK. A report,
+<a href="https://docs.google.com/document/d/1yVa9iiu-DayGy-MtlrdXeV0E09CsetUenZJCmusLfLg/edit">GDS use of Sentry.io</a>,
+covers this in more detail, including documenting some of the limitations of the
+setup.</p>
+<h2 id='retention-period'>Retention period</h2><p><a href="https://sentry.io/security/#data-retention">90 days</a>.</p>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Monitoring section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/govuk-env-sync.html">Environment data sync</a></li>
+            <li><a href="/manual/grafana.html">Grafana</a></li>
+            <li><a href="/manual/graphite-and-deployment-dashboards.html">Graphite and deployment dashboards</a></li>
+            <li><a href="/manual/icinga.html">Icinga</a></li>
+            <li><a href="/manual/metrics.html">Metrics</a></li>
+            <li><a href="/manual/pingdom-bouncer-canary-check.html">Pingdom Bouncer canary check</a></li>
+            <li><a href="/manual/screens.html">Screens that we have in the office</a></li>
+            <li><a href="/manual/sidekiq.html">Sidekiq</a></li>
+            <li><a href="/manual/tools.html">Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends</a></li>
+            <li><a href="/manual/uptime-metrics.html">Uptime Metrics</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/add-an-icinga-passive-check.html">Add an Icinga passive check to a Jenkins job</a></li>
+            <li><a href="/manual/nagios-nrpe-connection-failures.html">Debug Nagios NRPE connection failures</a></li>
+            <li><a href="/manual/debug-underperforming-search.html">Debug underperforming search</a></li>
+            <li><a href="/manual/errors.html">How we handle errors</a></li>
+            <li><a href="/manual/pingdom.html">Pingdom</a></li>
+            <li><a href="/manual/nagstamon.html">Use Nagstamon for monitoring Icinga</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/sentry.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Sentry'&amp;body=Problem%20with%20'Sentry'%20(https://docs.publishing.service.gov.uk/manual/sentry.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

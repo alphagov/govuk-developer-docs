@@ -1,0 +1,482 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Set up a new Rails application - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/setting-up-new-rails-app.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Set up a new Rails application - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/setting-up-new-rails-app.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Set up a new Rails application" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/setting-up-new-rails-app.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Set up a new Rails application</span></a>
+    <ul>
+      <li>
+        <a href="#before-you-start"><span>Before you start</span></a>
+      </li>
+      <li>
+        <a href="#create-a-new-rails-app"><span>Create a new Rails app</span></a>
+        <ul>
+          <li>
+            <a href="#set-up-a-unicorn-web-server"><span>Set up a Unicorn web server</span></a>
+          </li>
+          <li>
+            <a href="#add-your-rails-app-to-gov-uk-docker"><span>Add your Rails app to GOV.UK Docker</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#set-up-a-github-repo-for-your-rails-app"><span>Set up a GitHub repo for your Rails app</span></a>
+        <ul>
+          <li>
+            <a href="#add-a-software-licence"><span>Add a software licence</span></a>
+          </li>
+          <li>
+            <a href="#replace-the-default-readme-md"><span>Replace the default README.md</span></a>
+          </li>
+          <li>
+            <a href="#write-api-documentation"><span>Write API documentation</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#prepare-your-rails-app-to-run-in-production"><span>Prepare your Rails app to run in production</span></a>
+        <ul>
+          <li>
+            <a href="#configure-your-rails-app-for-jenkins"><span>Configure your Rails app for Jenkins</span></a>
+          </li>
+          <li>
+            <a href="#add-your-rails-app-to-gov-uk"><span>Add your Rails app to GOV.UK</span></a>
+          </li>
+          <li>
+            <a href="#configure-your-rails-app39s-deployment"><span>Configure your Rails app’s deployment</span></a>
+          </li>
+          <li>
+            <a href="#enable-external-dns"><span>Enable external DNS</span></a>
+          </li>
+          <li>
+            <a href="#add-your-app-to-the-gov-uk-developer-documentation"><span>Add your app to the GOV.UK developer documentation</span></a>
+          </li>
+          <li>
+            <a href="#create-the-application-in-sentry"><span>Create the application in Sentry</span></a>
+          </li>
+          <li>
+            <a href="#add-your-rails-app-to-release-app"><span>Add your Rails app to Release app</span></a>
+          </li>
+          <li>
+            <a href="#run-the-deploy_app-job"><span>Run the Deploy_App job</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Applications",
+        "@id": "http://www.dev.gov.uk/manual.html#applications"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#applications" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Applications&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#applications">Applications</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/90724c66a4739f8c58a031ef3f3c93634cd91d69">18 Aug 2021</a>
+</div>
+
+ <h1 id='header'>Set up a new Rails application</h1> <h2 id='before-you-start'>Before you start</h2><p>Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the <a href="https://docs.publishing.service.gov.uk/manual/get-started.html">GOV.UK developer get started documentation</a>.</p>
+<p>You should:</p>
+
+<ul>
+<li>develop your Rails app in line with the <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">conventions for Rails applications</a></li>
+<li>name your Rails app in line with the <a href="https://docs.publishing.service.gov.uk/manual/naming.html">conventions for naming apps</a></li>
+</ul>
+<h2 id='create-a-new-rails-app'>Create a new Rails app</h2>
+<ol>
+<li><p>To create a Rails app on your local machine, run the following in the command line:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>rails new myapp <span class="nt">--skip-javascript</span> <span class="nt">--skip-test</span> <span class="nt">--skip-bundle</span> <span class="nt">--skip-spring</span> <span class="nt">--skip-action-cable</span> <span class="nt">--skip-action-mailer</span> <span class="nt">--skip-active-storage</span>
+</code></pre></div><p>The <code>--skip</code> commands exclude unneeded Rails components.</p></li>
+<li><p>Include the gems you need for your app in <code>Gemfile</code>. For example:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="n">gem</span> <span class="s2">"rails"</span><span class="p">,</span> <span class="s2">"6.0.3.4"</span>
+
+<span class="n">gem</span> <span class="s2">"bootsnap"</span>
+<span class="n">gem</span> <span class="s2">"gds-api-adapters"</span>
+<span class="n">gem</span> <span class="s2">"gds-sso"</span>
+<span class="n">gem</span> <span class="s2">"govuk_app_config"</span>
+<span class="n">gem</span> <span class="s2">"govuk_publishing_components"</span>
+<span class="n">gem</span> <span class="s2">"pg"</span>
+<span class="n">gem</span> <span class="s2">"plek"</span>
+<span class="n">gem</span> <span class="s2">"uglifier"</span>
+
+<span class="n">group</span> <span class="ss">:development</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s2">"listen"</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s2">"simplecov"</span>
+<span class="k">end</span>
+
+<span class="n">group</span> <span class="ss">:development</span><span class="p">,</span> <span class="ss">:test</span> <span class="k">do</span>
+  <span class="n">gem</span> <span class="s2">"byebug"</span>
+  <span class="n">gem</span> <span class="s2">"govuk_test"</span>
+  <span class="n">gem</span> <span class="s2">"rspec-rails"</span>
+  <span class="n">gem</span> <span class="s2">"rubocop-govuk"</span>
+<span class="k">end</span>
+</code></pre></div></li>
+<li><p>Run <code>bundle &amp;&amp; rails g rspec:install</code> to install all the gems you included in <code>Gemfile</code> and generate files you can use to test your app.</p></li>
+<li><p>Run <code>rm spec/rails_helper.rb</code> to delete <code>spec/rails_helper.rb</code>.</p></li>
+<li><p>Replace the contents of <code>spec/spec_helper.rb</code> with the following:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">ENV</span><span class="p">[</span><span class="s2">"RAILS_ENV"</span><span class="p">]</span> <span class="o">||=</span> <span class="s2">"test"</span>
+
+<span class="nb">require</span> <span class="s2">"simplecov"</span>
+<span class="no">SimpleCov</span><span class="p">.</span><span class="nf">start</span> <span class="s2">"rails"</span>
+
+<span class="nb">require</span> <span class="no">File</span><span class="p">.</span><span class="nf">expand_path</span><span class="p">(</span><span class="s2">"../../config/environment"</span><span class="p">,</span> <span class="kp">__FILE__</span><span class="p">)</span>
+<span class="nb">require</span> <span class="s2">"rspec/rails"</span>
+
+<span class="no">Dir</span><span class="p">[</span><span class="no">Rails</span><span class="p">.</span><span class="nf">root</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s2">"spec/support/**/*.rb"</span><span class="p">)].</span><span class="nf">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">f</span><span class="o">|</span> <span class="nb">require</span> <span class="n">f</span> <span class="p">}</span>
+<span class="no">GovukTest</span><span class="p">.</span><span class="nf">configure</span>
+
+<span class="no">RSpec</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">expose_dsl_globally</span> <span class="o">=</span> <span class="kp">false</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">infer_spec_type_from_file_location!</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">use_transactional_fixtures</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="k">end</span>
+</code></pre></div></li>
+<li><p>If your Rails app has a database, replace the content of <code>config/database.yml</code> with the following:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">default</span><span class="pi">:</span> <span class="nl">&amp;default</span>
+  <span class="na">adapter</span><span class="pi">:</span> <span class="s">postgresql</span>
+  <span class="na">encoding</span><span class="pi">:</span> <span class="s">unicode</span>
+  <span class="na">pool</span><span class="pi">:</span> <span class="m">12</span>
+  <span class="na">template</span><span class="pi">:</span> <span class="s">template0</span>
+
+<span class="na">development</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">&lt;APP-NAME&gt;_development</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">&lt;%= ENV["DATABASE_URL"]%&gt;</span>
+
+<span class="na">test</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">&lt;APP-NAME&gt;_test</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">&lt;%= ENV["TEST_DATABASE_URL"] %&gt;</span>
+
+<span class="na">production</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">&lt;APP-NAME&gt;_production</span>
+  <span class="na">url</span><span class="pi">:</span> <span class="s">&lt;%= ENV["DATABASE_URL"]%&gt;</span>
+</code></pre></div><p>where <code>&lt;APP-NAME&gt;</code> is the name of your Rails app.</p></li>
+<li><p>Delete the <code>config/credentials.yml.env</code> and <code>config/master.key</code> files, and create a <code>config/secrets.yml</code> file that contains the following:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">development</span><span class="pi">:</span>
+  <span class="na">secret_key_base</span><span class="pi">:</span> <span class="s">secret</span>
+
+<span class="na">test</span><span class="pi">:</span>
+  <span class="na">secret_key_base</span><span class="pi">:</span> <span class="s">secret</span>
+
+<span class="na">production</span><span class="pi">:</span>
+  <span class="na">secret_key_base</span><span class="pi">:</span> <span class="s">&lt;%= ENV['SECRET_KEY_BASE'] %&gt;</span>
+</code></pre></div></li>
+<li><p>Replace the content of <code>config/routes.rb</code> with the following:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">get</span> <span class="s2">"/healthcheck/live"</span><span class="p">,</span> <span class="ss">to: </span><span class="nb">proc</span> <span class="p">{</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="p">{},</span> <span class="sx">%w[OK]</span><span class="p">]</span> <span class="p">}</span>
+  <span class="n">get</span> <span class="s2">"/healthcheck/ready"</span><span class="p">,</span> <span class="ss">to: </span><span class="no">GovukHealthcheck</span><span class="p">.</span><span class="nf">rack_response</span>
+<span class="k">end</span>
+</code></pre></div></li>
+<li><p>Configure linting for your Rails app to make sure the app&rsquo;s code is consistent with other GOV.UK apps. Find out more information about <a href="https://docs.publishing.service.gov.uk/manual/configure-linting.html">configuring linting</a>.</p></li>
+</ol>
+<h3 id='set-up-a-unicorn-web-server'>Set up a Unicorn web server</h3>
+<ol>
+<li><p>If your Rails app&rsquo;s <code>Gemfile</code> includes <code>gem &quot;puma&quot;</code>, open <code>Gemfile</code> and delete <code>gem &quot;puma&quot;</code>.</p></li>
+<li><p>Create a <code>Procfile</code> in your app&rsquo;s root directory that contains the following:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>web: bundle exec unicorn -c ./config/unicorn.rb -p ${PORT:-3000}
+</code></pre></div></li>
+<li><p>Create a <code>config/unicorn.rb</code> file that contains the following code:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>require "govuk_app_config/govuk_unicorn"
+GovukUnicorn.configure(self)
+</code></pre></div></li>
+</ol>
+<h3 id='add-your-rails-app-to-gov-uk-docker'>Add your Rails app to GOV.UK Docker</h3><p>Add your Rails app to GOV.UK Docker so you can run the app locally. See an <a href="https://github.com/alphagov/govuk-docker/pull/465">example GOV.UK Docker pull request</a>.</p>
+<h2 id='set-up-a-github-repo-for-your-rails-app'>Set up a GitHub repo for your Rails app</h2><p>When you’ve finished developing your Rails app, you can <a href="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration">set up a GitHub repo for your Rails app</a>.</p>
+<p>You must add a description to the <em>About</em> section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the <a href="https://docs.publishing.service.gov.uk/#applications">list of apps</a>.</p>
+<h3 id='add-a-software-licence'>Add a software licence</h3><p>You must add a <code>LICENCE</code> file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>The MIT License (MIT)
+
+Copyright (c) &lt;YEAR&gt; Crown Copyright (Government Digital Service)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+</code></pre></div><h3 id='replace-the-default-readme-md'>Replace the default README.md</h3><p>Change the default <code>README.md</code> file to match <a href="/manual/readmes.html#template-for-new-readmes">the standard README template</a>.</p>
+<h3 id='write-api-documentation'>Write API documentation</h3><p>If your app is an API, you should create a <code>docs/api.md</code> file.</p>
+<p><a href="https://www.gov.uk/guidance/writing-api-reference-documentation">Guidance on writing API reference documentation on GOV.UK</a>.</p>
+<h2 id='prepare-your-rails-app-to-run-in-production'>Prepare your Rails app to run in production</h2><h3 id='configure-your-rails-app-for-jenkins'>Configure your Rails app for Jenkins</h3><p>Find out how to <a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up">set up an app in Jenkins</a>.</p>
+<h3 id='add-your-rails-app-to-gov-uk'>Add your Rails app to GOV.UK</h3><p>Find out how to <a href="https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines">add your Rails app to GOV.UK using <code>govuk-puppet</code></a>.</p>
+<h3 id='configure-your-rails-app39s-deployment'>Configure your Rails app&rsquo;s deployment</h3><p>To configure your app&rsquo;s deployment, see the <a href="https://github.com/alphagov/govuk-app-deployment">GOV.UK application deployment scripts</a>.</p>
+<h3 id='enable-external-dns'>Enable external DNS</h3><p>If you need to enable external DNS, find out how to <a href="https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishing-service-gov-uk">make changes to publishing.service.gov.uk</a>.</p>
+<h3 id='add-your-app-to-the-gov-uk-developer-documentation'>Add your app to the GOV.UK developer documentation</h3><p>Open a pull request to add your Rails app to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/applications.yml">GOV.UK developer documentation <code>data/applications.yml</code> file</a>.</p>
+<h3 id='create-the-application-in-sentry'>Create the application in Sentry</h3><p>After you’ve added your Rails app to the GOV.UK developer documentation, run the <a href="https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83"><code>update_project</code> rake task</a> in <a href="https://github.com/alphagov/govuk-saas-config">GOV.UK SaaS Config</a> to update Sentry.</p>
+<h3 id='add-your-rails-app-to-release-app'>Add your Rails app to Release app</h3><p>Add your Rails app to the <a href="https://release.publishing.service.gov.uk/applications">Release</a> app and select <strong>Create</strong>.</p>
+<h3 id='run-the-deploy_app-job'>Run the Deploy_App job</h3><p>Run the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">Deploy_App job</a>.</p>
+<p>Use the <code>with_migrations</code> option if your Rails app has a database.</p>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Applications section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/architecture-deep-dive.html">Architectural deep-dive of GOV.UK</a></li>
+            <li><a href="/manual/architecture.html">Architecture overview of GOV.UK applications</a></li>
+            <li><a href="/manual/configure-linting.html">Configure linting</a></li>
+            <li><a href="/manual/conventions-for-rails-applications.html">Conventions for Rails applications</a></li>
+            <li><a href="/manual/non-ha-node-classes.html">Node classes without redundancy</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/add-authentication-to-an-application.html">Add authentication to an application</a></li>
+            <li><a href="/manual/create-a-local-transaction.html">Create a Local Transaction</a></li>
+            <li><a href="/manual/naming.html">Name a new application or gem</a></li>
+            <li><a href="/manual/retiring-an-application.html">Retire an application</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/setting-up-new-rails-app.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Set%20up%20a%20new%20Rails%20application'&amp;body=Problem%20with%20'Set%20up%20a%20new%20Rails%20application'%20(https://docs.publishing.service.gov.uk/manual/setting-up-new-rails-app.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

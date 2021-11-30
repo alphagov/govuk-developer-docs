@@ -1,0 +1,377 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Transition architecture - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/transition-architecture.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Transition architecture - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/transition-architecture.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Transition architecture" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/transition-architecture.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Transition architecture</span></a>
+    <ul>
+      <li>
+        <a href="#high-level-overview"><span>High level overview</span></a>
+        <ul>
+          <li>
+            <a href="#components"><span>Components</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#transition-data-sources"><span>Transition data sources</span></a>
+      </li>
+      <li>
+        <a href="#bouncer"><span>Bouncer</span></a>
+        <ul>
+          <li>
+            <a href="#bouncer39s-stack"><span>Bouncer’s stack</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Transition",
+        "@id": "http://www.dev.gov.uk/manual.html#transition"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#transition" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Transition&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#transition">Transition</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3b05b02b9e53aee940a442015f9a02ff4be46cba">21 Mar 2021</a>
+</div>
+
+ <h1 id='header'>Transition architecture</h1> <p>The Transition system is built to transition government websites to GOV.UK. The
+main work around this <a href="https://insidegovuk.blog.gov.uk/2014/12/19/300-websites-to-just-1-in-15-months">happened in 2014</a>, but we still take on websites.</p>
+<p>All the repositories involved in transition have been <a href="https://github.com/search?q=topic%3Agovuk-transition+org%3Aalphagov">tagged with govuk-transition
+on GitHub</a>.</p>
+<h2 id='high-level-overview'>High level overview</h2><p><a href="images/transition-architecture.png" rel="noopener noreferrer"><img src="/manual/images/transition-architecture.png" alt="Overview of the elements involved in transition" /></a></p>
+<p>Source diagram in the <a href="https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00">GOV.UK architecture folder</a>.</p>
+<h3 id='components'>Components</h3>
+<ul>
+<li><a href="/apps/transition.html">transition</a> is the admin app that departments use to transition.</li>
+<li><a href="https://github.com/alphagov/transition-config">transition-config</a> contains YAML files to configure transitioning
+websites. It&rsquo;s imported into the Transition database by the
+<a href="https://deploy.blue.production.govuk.digital/job/Transition_load_site_config">Transition_load_site_config job</a>.</li>
+<li>The <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs">cloudwatch / athena / lambda</a> trio process the logs
+from Fastly to produce the statistics. Those are then loaded into Transition
+by the <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/">Transition_load_all_data job</a>.</li>
+<li><a href="/apps/bouncer.html">bouncer</a> is the application that does the actual redirecting.</li>
+<li><a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config</a> contains the script that the <a href="https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/">Bouncer_CDN job</a> uses
+to send the <a href="https://transition.publishing.service.gov.uk/hosts.json">hosts from transition</a> to Fastly.</li>
+</ul>
+<h2 id='transition-data-sources'>Transition data sources</h2><p>Site configuration is automatically imported every hour via
+<a href="https://deploy.blue.production.govuk.digital/job/Transition_load_site_config">a Jenkins job</a> from <a href="https://github.com/alphagov/transition-config">transition-config</a>.</p>
+<p>Traffic data is automatically imported every day via <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/">a Jenkins
+job</a>.  This import puts a high load on the database. CDN logs
+for the &ldquo;Production Bouncer&rdquo; Fastly service are sent (by Fastly) to the
+<code>govuk-production-fastly-logs</code> S3 bucket and processed by a lambda function
+defined in the <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs">infra-fastly-logs</a> Terraform project.</p>
+<h2 id='bouncer'>Bouncer</h2><p><a href="/apps/bouncer.html">Bouncer</a> is a Ruby/Rack web app that receives requests for the URLs of government
+sites that have either been transitioned to GOV.UK, archived or removed. It queries
+the database it shares with Transition and replies with a redirect, an archive page
+or a 404 page. It also handles <code>/robots.txt</code> and <code>/sitemap.xml</code> requests.</p>
+<p>Transition is a Rails app that allows users in transitioning organisations and
+at GDS to view, add and edit the mappings used by Bouncer. It also presents
+traffic data sourced from CDN logs and logs provided by transitioning organisations
+(though this latter activity has now ended).</p>
+<h3 id='bouncer39s-stack'>Bouncer&rsquo;s stack</h3><h4 id='dns'>DNS</h4><p>When sites transition they are generally CNAMEd to a domain we control that
+points to our CDN (an A record is used for root domains which can&rsquo;t be CNAMEd).</p>
+<p>Some sites partially transition, which means that they redirect some paths to
+their AKA domain, which is CNAMEd to us.</p>
+<p>GDS doesn&rsquo;t control the DNS for most transitioned domains, except for some domains such as
+<code>*.direct.gov.uk</code>, <code>*.businesslink.co.uk</code>, <code>*.alphagov.co.uk</code>. If the DNS
+for a particular transitioned site isn&rsquo;t configured correctly we need to inform
+the responsible department so they can fix it themselves.</p>
+<h4 id='cdn'>CDN</h4><p>Bouncer has a separate CDN service at Fastly (&ldquo;Production Bouncer&rdquo;) from the
+main GOV.UK one, and it&rsquo;s configured by a
+<a href="/manual/cdn.html#bouncer39s-fastly-service">separate Jenkins job</a>
+which adds and removes domains to and from the service.
+That job fetches the list of domains which should be configured at the CDN from
+Transition&rsquo;s <a href="https://transition.publishing.service.gov.uk/hosts">hosts API</a>, so
+will fail if that is unavailable.</p>
+<p><a href="/manual/cdn.html#bouncer39s-fastly-service">More information about Bouncer&rsquo;s Fastly service</a></p>
+<h4 id='machines'>Machines</h4><p>Bouncer runs on 3 machines in the <code>redirector</code> vDC (<code>bouncer-[1-3].redirector</code>),
+and they are load-balanced at the vShield Edge rather than by a separate machine.
+Bouncer&rsquo;s traffic does not go through the <code>cache-*</code> nodes - the CDN proxies all
+requests to <code>bouncer.publishing.service.gov.uk</code> which points to its vShield Edge.</p>
+<p>It uses an Nginx default vhost so that requests for all domains are passed on to
+the application; there&rsquo;s generally no Nginx configuration for individual
+transitioned sites (but see <a href="#special-cases">Special cases</a> below).</p>
+<p>In the case of a data centre failure, within the disaster recovery (DR) vCloud organisation we have:</p>
+
+<ul>
+<li>Bouncer application servers which read from the DR database slave</li>
+<li>a second PostgreSQL slave for the Transition database</li>
+</ul>
+<h4 id='application'>Application</h4><p>Bouncer is a small application, and so long as its dependencies are present the
+only thing to do if it&rsquo;s erroring is to restart it.</p>
+<h4 id='database'>Database</h4><p>Bouncer reads from the <code>transition_production</code> database by connecting to
+<code>transition-postgresql-slave-1.backend</code>. It authenticates using its own
+postgresql role which is granted <code>SELECT</code> permissions on all tables
+<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer/postgresql_role.pp#L21-L33">by Puppet</a>,
+and that role is further restricted to connecting only to the slave because the
+<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_transition_postgresql_slave.pp#L24-L30">pg_hba.conf rule</a>
+to allow it isn&rsquo;t present on the master.</p>
+<h4 id='special-cases'>Special cases</h4><p>We serve some assets which were previously on directgov and businesslink
+<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/bouncer.pp#L56-L146">via Nginx</a>
+on the Bouncer machines. The assets live in <a href="https://github.com/alphagov/assets-directgov">two</a>
+<a href="https://github.com/alphagov/assets-businesslink">repos</a> which are <a href="https://github.com/alphagov/govuk-app-deployment/blob/master/bouncer/config/deploy.rb#L16-L41">fetched and
+rsynced</a>
+to the machines when Bouncer is deployed.</p>
+<h4 id='https-support-for-transitioned-sites'>HTTPS support for transitioned sites</h4><p>Bouncer in late 2020 began supporting HTTPS for transitioned sites, through
+a new feature in Fastly.</p>
+<p>Follow the guidance to <a href="/manual/request-fastly-tls-certificate.html">request a Fastly TLS certificate</a>.</p>
+
+
+  <div class='related-content'>
+    <h4>Related applications</h4>
+
+    <ul class="govuk-list">
+      <li><a href="/apps/bouncer.html">bouncer</a></li>
+      <li><a href="/apps/transition.html">transition</a></li>
+    </ul>
+
+    <h3>More in the Transition section</h3>
+
+    <div class='govuk-grid-row'>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/remove-site-from-transition-tool.html">Remove a site from the Transition tool</a></li>
+            <li><a href="/manual/request-fastly-tls-certificate.html">Request Fastly TLS certificate</a></li>
+            <li><a href="/manual/transition-a-site.html">Transition a site to GOV.UK</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/transition-architecture.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Transition%20architecture'&amp;body=Problem%20with%20'Transition%20architecture'%20(https://docs.publishing.service.gov.uk/manual/transition-architecture.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

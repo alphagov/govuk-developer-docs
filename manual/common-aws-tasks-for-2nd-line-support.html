@@ -1,0 +1,477 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Common AWS tasks for 2nd line support - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/common-aws-tasks-for-2nd-line-support.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Common AWS tasks for 2nd line support - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/common-aws-tasks-for-2nd-line-support.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Common AWS tasks for 2nd line support" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/common-aws-tasks-for-2nd-line-support.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Common AWS tasks for 2nd line support</span></a>
+    <ul>
+      <li>
+        <a href="#getting-help-with-aws"><span>Getting help with AWS</span></a>
+        <ul>
+          <li>
+            <a href="#read-the-docs"><span>Read the docs</span></a>
+          </li>
+          <li>
+            <a href="#raise-an-aws-support-request"><span>Raise an AWS support request</span></a>
+          </li>
+          <li>
+            <a href="#internal-support"><span>Internal support</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#users"><span>Users</span></a>
+        <ul>
+          <li>
+            <a href="#add-a-developer-as-an-aws-admin"><span>Add a developer as an AWS admin</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#how-to-view-alb-metrics"><span>How to view ALB metrics</span></a>
+          </li>
+          <li>
+            <a href="#how-to-query-athena-logs"><span>How to query Athena logs</span></a>
+          </li>
+          <li>
+            <a href="#how-to-identify-aws-managed-db-performance-issues"><span>How to identify AWS managed DB performance issues</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#how-to-analyse-and-find-out-the-performance-limiting-factor-of-an-ec2-instance"><span>How to analyse and find out the performance limiting factor of an EC2 instance</span></a>
+      </li>
+      <li>
+        <a href="#maintenance-tasks"><span>Maintenance tasks</span></a>
+        <ul>
+          <li>
+            <a href="#remove-an-instance-from-an-auto-scaling-group"><span>Remove an instance from an Auto Scaling Group</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#how-to-restore-an-aws-managed-db-from-a-backup"><span>How to restore an AWS managed DB from a backup</span></a>
+      </li>
+      <li>
+        <a href="#how-to-scale-up-vertically"><span>How to scale up vertically</span></a>
+      </li>
+      <li>
+        <a href="#how-to-scale-horizontally"><span>How to scale horizontally</span></a>
+      </li>
+      <li>
+        <a href="#how-to-resize-a-persistent-disk"><span>How to resize a persistent disk</span></a>
+      </li>
+      <li>
+        <a href="#how-to-replace-an-instance-with-a-persistent-disk"><span>How to replace an instance with a persistent disk</span></a>
+      </li>
+      <li>
+        <a href="#learn"><span>Learn</span></a>
+        <ul>
+          <li>
+            <a href="#how-do-we-do-dns"><span>How do we do DNS?</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#how-are-instances-provisioned"><span>How are instances provisioned?</span></a>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "AWS",
+        "@id": "http://www.dev.gov.uk/manual.html#aws"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#aws" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;AWS&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#aws">AWS</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dac2467a1c0ca0e5b8d7e58aedddd430d5f61115">2 Feb 2021</a>
+</div>
+
+ <h1 id='header'>Common AWS tasks for 2nd line support</h1> <p>This document details some of the tasks that GOV.UK 2nd line support may
+carry out regarding AWS.</p>
+<h2 id='getting-help-with-aws'>Getting help with AWS</h2><h3 id='read-the-docs'>Read the docs</h3><p>The <a href="https://docs.aws.amazon.com/">AWS docs</a> are comprehensive, and the
+GOV.UK developer docs explain how to do common tasks.</p>
+<h3 id='raise-an-aws-support-request'>Raise an AWS support request</h3><p>We pay AWS for Premium Support. You are strongly encouraged to contact AWS to
+help you solve problems when using AWS products. Contacting AWS Support is a
+very common procedure.</p>
+<p>See our documentation on <a href="https://docs.publishing.service.gov.uk/manual/how-to-escalate-to-AWS-support.html">how to escalate to AWS support</a>.</p>
+<h3 id='internal-support'>Internal support</h3><p>Usually, 2nd line support should be able to investigate issues related to AWS.</p>
+<p>During working hours, one of the Site Reliability Engineers on the replatforming
+team may be able to provide advice or expert knowledge. Outside of working hours,
+you should escalate to AWS support if the engineers on call can&rsquo;t resolve an
+issue themselves.</p>
+<p>If you are experiencing an incident, refer to the
+<a href="https://docs.publishing.service.gov.uk/manual/incident-what-to-do.html">So, you&rsquo;re having an incident</a> documentation.</p>
+<h2 id='users'>Users</h2><h3 id='add-a-developer-as-an-aws-admin'>Add a developer as an AWS admin</h3><p><em><strong>Note</strong>: This task doesn&rsquo;t need to be done by 2nd line.</em></p>
+<p><em><strong>Note</strong>: Users with production access can already assume an admin role
+in every environment. Read <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#assuming-all-roles-for-users-with-production-access">assuming all roles for users with production access</a>.</em></p>
+<p>You can modify the AWS roles that a developer can assume in the
+<a href="https://github.com/alphagov/govuk-aws-data">govuk-aws-data</a> repository.</p>
+<p>Typically this involves adding a user ARN (a line containing the person&rsquo;s email
+address) to a list named <code>role_internal_admin_user_arns</code>.</p>
+<p>See these two example PRs:</p>
+
+<ul>
+<li>https://github.com/alphagov/govuk-aws-data/pull/837</li>
+<li>https://github.com/alphagov/govuk-aws-data/pull/819</li>
+</ul>
+<p>Once you have put up a PR to change the developer&rsquo;s role, you&rsquo;ll need to assume
+the admin role in order to <a href="https://docs.publishing.service.gov.uk/manual/deploying-terraform.html">apply the Terraform change</a>.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='how-to-view-alb-metrics'>How to view ALB metrics</h3><p>You can see metrics for load balancers in CloudWatch. See the AWS documentation
+on <a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-cloudwatch-metrics.html">load balancer CloudWatch metrics</a> for more detail.</p>
+<h3 id='how-to-query-athena-logs'>How to query Athena logs</h3><p>See the documentation on <a href="https://docs.publishing.service.gov.uk/manual/query-cdn-logs.html">how to query CDN logs</a>.</p>
+<h3 id='how-to-identify-aws-managed-db-performance-issues'>How to identify AWS managed DB performance issues</h3><p>If you find an AWS managed DB is experiencing performance issues, it&rsquo;s often
+worth having a look at the CloudWatch metrics for the service. This might tell
+you which resource is the limiting factor impacting performance.</p>
+<p>It is also worth looking at AWS&rsquo;s troubleshooting documentation, such as
+the <a href="https://docs.aws.amazon.com/documentdb/latest/developerguide/user_diagnostics.html">DocumentDB documentation</a>.</p>
+<h2 id='how-to-analyse-and-find-out-the-performance-limiting-factor-of-an-ec2-instance'>How to analyse and find out the performance limiting factor of an EC2 instance</h2><p>EC2 instances have limits on CPU, memory, network, and storage, which can
+impact application performance. To identify the machine resource that is the
+performance limiting factor, visit the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&amp;orgId=1">machine metrics dashboard</a> (in the
+relevant environment!), which shows CPU, memory, disk, and TCP stats.
+This should help you find bottlenecks.</p>
+<p>You can also see the <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-troubleshoot.html">EC2 troubleshooting documentation</a> and contact AWS Support.</p>
+<h2 id='maintenance-tasks'>Maintenance tasks</h2><h3 id='remove-an-instance-from-an-auto-scaling-group'>Remove an instance from an Auto Scaling Group</h3><p>Remove an instance from an Auto Scaling Group (ASG) when you want that instance
+to stop receiving requests. For example, if you would like to reboot a machine
+or if a machine is unhealthy, you would first remove that machine from the ASG.</p>
+<p><em><strong>Note</strong>: There is guidance for <a href="https://docs.publishing.service.gov.uk/manual/alerts/rebooting-machines.html">rebooting a machine</a>.</em></p>
+<p>Read <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html">how to detach an instance from an ASG</a> in the AWS documentation.</p>
+<p>Avoid removing an instance from an ALB Target Group if the target group&rsquo;s
+instances are managed by an ASG. Instead, simply remove the instance from the
+ASG. Removing an instance from an associated ASG will remove the instance
+from all target groups automatically (conversely, adding an instance to an
+ASG will add the instance to associated target groups).</p>
+<p><em><strong>Note</strong>: check if the ASG has just a single instance. If so, removing the
+instance from the ASG may cause downtime for a service.</em></p>
+<p>When removing an instance from an ASG, you can choose whether to replace that
+instance in the ASG. Unless you plan on putting the instance back into the ASG
+(for example, when rebooting), you&rsquo;ll want AWS to bring up a new instance for
+you automatically, and to subsequently terminate the detached instance.</p>
+<p>If you do not want a detached instance to serve traffic again in future, you
+should terminate it. Detaching an instance from an ASG does not terminate the
+instance automatically. Once connections have drained from a detached instance,
+you can terminate the instance via the AWS EC2 user interface.</p>
+<h2 id='how-to-restore-an-aws-managed-db-from-a-backup'>How to restore an AWS managed DB from a backup</h2><p>View the documentation on <a href="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html">how to backup and restore in AWS RDS</a>.</p>
+<h2 id='how-to-scale-up-vertically'>How to scale up vertically</h2><p>You can increase the resources for EC2 instances by modifying the instance type in govuk-aws-data.</p>
+<p>We typically make this change very gradually. The process usually looks like this:</p>
+
+<ol>
+<li>Merge a PR changing the instance type (example: https://github.com/alphagov/govuk-aws-data/pull/827)</li>
+<li>Apply the Terraform change to all environments</li>
+<li>In the AWS UI, cycle the running instances gradually, to avoid downtime.</li>
+</ol>
+<p>Cycling an instance might involve removing the smaller instances one by one,
+  waiting for connections to the instance to drain, and then killing the
+  instance. This will prompt AWS to bring up the new bigger instances
+  automatically.</p>
+<p>Be careful here, <a href="#how-are-instances-provisioned">provisioning a machine</a> is
+  slow, flaky and requires manual intervention (e.g. sometimes we need to
+  manually run puppet on a new instance, must deploy apps to new instances from
+  Jenkins). Check that the new instances are healthy before removing the
+  healthy old instances.</p>
+<h2 id='how-to-scale-horizontally'>How to scale horizontally</h2><p>You can increase the number of EC2 instances running in an ASG via a config
+change in govuk-aws and govuk-aws-data.</p>
+<p>In an emergency, you can also manually bump up the number of instances in
+the ASG via the AWS console, but you&rsquo;re encouraged to use Terraform to do this,
+since you&rsquo;ll need to make the change in Terraform anyway.</p>
+<p>Here&rsquo;s an example set of PRs:</p>
+
+<ul>
+<li>https://github.com/alphagov/govuk-aws-data/pull/805</li>
+<li>https://github.com/alphagov/govuk-aws/pull/1385</li>
+</ul>
+<p>You will need to apply Terraform for this to have an effect.</p>
+<h2 id='how-to-resize-a-persistent-disk'>How to resize a persistent disk</h2><p>If you&rsquo;re not sure how to do this, ask an Site Reliability Engineer to give you a walk through.</p>
+<p>See the docs: https://docs.publishing.service.gov.uk/manual/manually-resize-ebs.html.</p>
+<h2 id='how-to-replace-an-instance-with-a-persistent-disk'>How to replace an instance with a persistent disk</h2><p><em>If you&rsquo;re not sure how to do this, ask an Site Reliability Engineer to give
+you a walk through.</em></p>
+<p>Assuming we want to destroy and recreate a VM, but have the new VM attach to the
+old persistent disk</p>
+
+<ol>
+<li>Find the VM and note down the details of the persistent volume you want to keep</li>
+<li>Shutdown the VM</li>
+<li>Detach the EBS volume from the VM.</li>
+<li>Delete the VM</li>
+<li>Run terraform apply which will now recreate the VM</li>
+<li>Manually re-attach the EBS volume to the new VM</li>
+<li>Reboot the machine to make sure the persistent disk reattaches between reboots</li>
+<li>Initiate a puppet run to make sure that everything works</li>
+</ol>
+<h2 id='learn'>Learn</h2><h3 id='how-do-we-do-dns'>How do we do DNS?</h3><p>See the documentation on <a href="https://docs.publishing.service.gov.uk/manual/dns.html">how GOV.UK does DNS</a>.</p>
+<p>GOV.UK manages the DNS for other domain names used by third parties, for example
+service.gov.uk. At the moment this will remain with the SREs until further
+decisions have been made.</p>
+<h2 id='how-are-instances-provisioned'>How are instances provisioned?</h2><p>We typically use Terraform config in <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a> to provision infrastructure,
+such as EC2 instances.</p>
+<p>There are a few exceptions to this, such as ad-hoc instances started from
+Concourse via the AWS CLI - these are mainly for data science projects.</p>
+<p>We use <a href="https://github.com/alphagov/govuk-aws/blob/master/terraform/userdata/20-puppet-client">userdata scripts</a> to run commands on our instances at launch. These
+scripts install various core bits of software needed by a particular instance
+and then typically use <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> to provision our instances.</p>
+<p>Finally, new instances send Jenkins their Fully Qualified Domain Name (FQDN)
+and puppet class. Jenkins automatically <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Node_Apps/">deploys apps</a> to newly provisioned
+instances.</p>
+
+
+  <div class='related-content'>
+
+    <h3>More in the AWS section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/aws-iam-key-rotation.html">AWS IAM Key Rotation</a></li>
+            <li><a href="/manual/how-to-escalate-to-AWS-support.html">How to raise a support ticket with AWS</a></li>
+            <li><a href="/manual/govuk-in-aws.html">Migration to AWS</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a></li>
+            <li><a href="/manual/howto-ssh-to-machines.html">SSH into machines</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/common-aws-tasks-for-2nd-line-support.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Common%20AWS%20tasks%20for%202nd%20line%20support'&amp;body=Problem%20with%20'Common%20AWS%20tasks%20for%202nd%20line%20support'%20(https://docs.publishing.service.gov.uk/manual/common-aws-tasks-for-2nd-line-support.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

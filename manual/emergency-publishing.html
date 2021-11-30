@@ -1,0 +1,561 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Deploy an emergency banner - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/emergency-publishing.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Deploy an emergency banner - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/emergency-publishing.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Deploy an emergency banner" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/emergency-publishing.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Deploy an emergency banner</span></a>
+    <ul>
+      <li>
+        <a href="#adding-an-emergency-banner"><span>Adding an emergency banner</span></a>
+        <ul>
+          <li>
+            <a href="#1-get-the-content-you-will-need"><span>1. Get the content you will need</span></a>
+          </li>
+          <li>
+            <a href="#2-deploy-the-banner-using-jenkins"><span>2. Deploy the banner using Jenkins</span></a>
+          </li>
+          <li>
+            <a href="#3-clear-the-cdn-and-varnish-caches"><span>3. Clear the CDN and Varnish caches</span></a>
+          </li>
+          <li>
+            <a href="#4-test-with-cache-bust-strings"><span>4. Test with cache bust strings</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#removing-an-emergency-banner"><span>Removing an emergency banner</span></a>
+        <ul>
+          <li>
+            <a href="#remove-the-banner-using-jenkins"><span>Remove the banner using Jenkins</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#background"><span>Background</span></a>
+          </li>
+          <li>
+            <a href="#the-banner-is-not-showing-not-clearing"><span>The banner is not showing / not clearing</span></a>
+          </li>
+          <li>
+            <a href="#manually-testing-the-redis-key"><span>Manually testing the Redis key</span></a>
+          </li>
+          <li>
+            <a href="#manually-running-the-rake-task-to-deploy-the-emergency-banner"><span>Manually running the rake task to deploy the emergency banner</span></a>
+          </li>
+          <li>
+            <a href="#manually-running-the-rake-task-to-remove-an-emergency-banner"><span>Manually running the rake task to remove an emergency banner</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#types-of-emergency-banners"><span>Types of emergency banners</span></a>
+        <ul>
+          <li>
+            <a href="#death-of-a-notable-person"><span>Death of a notable person</span></a>
+          </li>
+          <li>
+            <a href="#national-emergency-level-1-or-category-2"><span>National emergency (level 1 or category 2)</span></a>
+          </li>
+          <li>
+            <a href="#localised-large-scale-emergency-level-2-or-category-1"><span>Localised large-scale emergency (level 2 or category 1)</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Publishing",
+        "@id": "http://www.dev.gov.uk/manual.html#publishing"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#publishing" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Publishing&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#publishing">Publishing</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/95cc826e0143dfd97a40ca838dd438dd13f49c76">23 Nov 2021</a>
+</div>
+
+ <h1 id='header'>Deploy an emergency banner</h1> <p>There are three types of events that would lead GOV.UK to add an emergency
+banner to the top of each page on the web site; a notable death, a national
+emergency or a local emergency.</p>
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>There is also <a href="/manual/global-banner.html">a non-emergency sitewide banner</a>, used to convey important information on GOV.UK which is not deemed emergency level information.</p>
+</blockquote>
+<p>The GOV.UK on-call escalations contact will tell you when you need to publish
+an emergency banner. They will ensure that the event is legitimate and provide
+you with the text for the emergency banner. They will also tell you what type
+of event it is; you do not need to determine the type of event yourself.</p>
+<p>If you need to publish the emergency banner out of hours, you will be
+instructed to do so either by the GOV.UK on-call escalations contact or the
+Head of GOV.UK.</p>
+<p>Contact numbers for those people are in the <a href="https://docs.google.com/document/d/17XUuPaZ5FufyXH00S9qukl6Kf3JbJtAqwHR3eOBVBpI/edit">legacy Ops manual</a>.</p>
+<h2 id='adding-an-emergency-banner'>Adding an emergency banner</h2><h3 id='1-get-the-content-you-will-need'>1. Get the content you will need</h3><p>The GOV.UK on-call escalations contact will supply you with:</p>
+
+<ul>
+<li>The emergency banner type or campaign class (one of <code>notable-death</code>,
+<code>national-emergency</code> or <code>local-emergency</code>)</li>
+<li>Text for the heading.</li>
+<li>(Optional) Text for the &lsquo;short description&rsquo;, which is a sentence displayed under the heading. This is optional.</li>
+<li>(Optional) A URL for users to find more information (it might not be provided at first).</li>
+<li>(Optional) Link text that will be displayed for the more information URL (this will default to &ldquo;More information&rdquo; if you do not supply it).</li>
+</ul>
+<h3 id='2-deploy-the-banner-using-jenkins'>2. Deploy the banner using Jenkins</h3><p>The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.</p>
+
+<ol>
+<li><p>Go to the Jenkins task:</p>
+
+<ul>
+<li><a href="https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/">Deploy the emergency banner on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/deploy-emergency-banner/">Deploy the emergency banner on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/deploy-emergency-banner/">⚠️ Deploy the emergency banner on Production ⚠️</a></li>
+</ul></li>
+<li><p>Click <code>Build with Parameters</code>.</p></li>
+<li><p>Fill in the appropriate variables using the form presented by Jenkins. Use a relative URL (i.e. without the www.gov.uk prefix) if a link is required.</p></li>
+<li><p>Click <code>Build</code>.</p></li>
+</ol>
+<p><a href="images/emergency_publishing/deploy_emergency_banner_job.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/deploy_emergency_banner_job.png" alt="Jenkins Deploy Emergency Banner" /></a></p>
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>The Jenkins job will also clear the Varnish caches and the CDN cache for <a href="https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34">a predefined list of 10 URLs</a> (including the website root).</p>
+</blockquote>
+<h3 id='3-clear-the-cdn-and-varnish-caches'>3. Clear the CDN and Varnish caches</h3><p>Jenkins is capable of clearing <a href="https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_jenkins/templates/jobs/clear_frontend_memcache.yaml.erb#L18">the internal memcache caches</a> which some frontend applications use for their <code>Rails.cache</code>. Unfortunately <a href="https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/frontend.yaml">some frontend applications use a shared memcached</a> and Jenkins can&rsquo;t clear this cache yet.</p>
+<p>As a workaround, you need to re-run the clear CDN and Varnish cache Jenkins jobs.</p>
+
+<ol>
+<li>Wait for 2 minutes after the Deploy Emergency Banner job has completed.
+This will allow the frontend application caches to <a href="https://github.com/alphagov/slimmer/blob/5b8428704f143547bdae2c7cb9a585ab77d3181b/lib/slimmer.rb#L10">clear automatically after 60s</a>.</li>
+<li>Run the &ldquo;Clear varnish cache&rdquo; Jenkins job</li>
+<li>Run the &ldquo;Clear CDN cache&rdquo; Jenkins job</li>
+</ol>
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>This is a temporary step to workaround the fact that Jenkins doesn&rsquo;t clear these caches. It was added on 2021-11-22, and should be removed shortly afterwards once the underlying issue is resolved.</p>
+</blockquote>
+<h3 id='4-test-with-cache-bust-strings'>4. Test with cache bust strings</h3><p>Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).</p>
+<p>For each page:</p>
+
+<ul>
+<li>Check the banner displays as expected</li>
+<li>Double-check the information for the header, short description and link are as they should be</li>
+<li>Test the link, if it is present</li>
+<li>Make sure the banner colour is appropriate - black for a notable death, red for a national emergency, green for a local emergency</li>
+</ul>
+<h4 id='some-example-pages-to-check'>Some example pages to check</h4>
+<ul>
+<li><a href="https://www.gov.uk/?ae00e491">https://www.gov.uk/?ae00e491</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/?ae00e491">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/?ae00e491">Staging</a>)</li>
+<li><a href="https://www.gov.uk/financial-help-disabled?7f7992eb">https://www.gov.uk/financial-help-disabled?7f7992eb</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled?7f7992eb">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled?7f7992eb">Staging</a>)</li>
+<li><a href="https://www.gov.uk/government/organisations/hm-revenue-customs?49854527">https://www.gov.uk/government/organisations/hm-revenue-customs?49854527</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs?49854527">Staging</a>)</li>
+<li><a href="https://www.gov.uk/search?q=69b197b8">https://www.gov.uk/search?q=69b197b8</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/search?q=69b197b8">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8">Staging</a>)</li>
+</ul>
+<p>If the banner doesn&rsquo;t show, <a href="#the-banner-is-not-showing--not-clearing">look at the troubleshooting section</a>.</p>
+<p>If you are in production environment, once the origin cache is purged the CDN cache will be purged automatically. This will clear cache for the top 10 most visited pages.</p>
+<p>Once all caches have had time to clear, check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.</p>
+
+<ul>
+<li><a href="https://www.gov.uk/">https://www.gov.uk/</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/">Staging</a>)</li>
+<li><a href="https://www.gov.uk/financial-help-disabled">https://www.gov.uk/financial-help-disabled</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/financial-help-disabled">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/financial-help-disabled">Staging</a>)</li>
+<li><a href="https://www.gov.uk/government/organisations/hm-revenue-customs">https://www.gov.uk/government/organisations/hm-revenue-customs</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/government/organisations/hm-revenue-customs">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/government/organisations/hm-revenue-customs">Staging</a>)</li>
+<li><a href="https://www.gov.uk/search">https://www.gov.uk/search</a> (<a href="https://www-origin.integration.publishing.service.gov.uk/search">Integration</a>, <a href="https://www-origin.staging.publishing.service.gov.uk/search">Staging</a>)</li>
+</ul>
+
+<hr>
+<h2 id='removing-an-emergency-banner'>Removing an emergency banner</h2><h3 id='remove-the-banner-using-jenkins'>Remove the banner using Jenkins</h3>
+<ol>
+<li><p>Navigate to the appropriate deploy Jenkins environment (integration, staging or production):</p>
+
+<ul>
+<li><a href="https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/">Remove the emergency banner from Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/">Remove the emergency banner from Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/">⚠️ Remove the emergency banner from Production ⚠️</a></li>
+</ul></li>
+<li><p>Click <code>Build now</code> in the left hand menu.</p></li>
+</ol>
+<p><a href="images/emergency_publishing/remove_emergency_banner_job.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/remove_emergency_banner_job.png" alt="Jenkins Remove Emergency Banner" /></a></p>
+<p>Caches will clear automatically.</p>
+
+<hr>
+<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='background'>Background</h3><p>The information for the emergency banner is stored in Redis. <a href="https://github.com/alphagov/static">Static</a> is responsible for displaying the data and we use Jenkins to run <a href="https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake">rake tasks in static</a> to set or delete the appropriate hash in Redis.</p>
+<h3 id='the-banner-is-not-showing-not-clearing'>The banner is not showing / not clearing</h3><p>Usually this is because the caching has not cleared properly. This can be at
+various points in our stack as well as locally in your browser. Things to try:</p>
+
+<ul>
+<li>Make sure you are actually looking at a page on the environment you released
+the banner. All the links in this document go to the production version of
+GOV.UK. Remember to use the equivalent page for the environment (often staging)
+on which you are testing/releasing the banner.</li>
+<li>Test the page with <code>curl</code> to circumvent any browser-based caching.
+Chrome seems to aggressively cache on occasion. You can also test in an
+private browser instance.</li>
+<li>It is possible that the caching layers for the GOV.UK stack have evolved and
+we need to tweak the scripts to clear new caches that have been set up.</li>
+</ul>
+<h3 id='manually-testing-the-redis-key'>Manually testing the Redis key</h3><p>You can manually check whether the data has been stored in Redis by the Jenkins job on one of the frontend machines.</p>
+
+<ol>
+<li>Load a Rails console for the static application on the frontend machine in the relevant environment.</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> staging app-console frontend/static
+</code></pre></div>
+<ol>
+<li>Check the Redis key exists:</li>
+</ol>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code>   <span class="n">irb</span><span class="p">(</span><span class="n">main</span><span class="p">):</span><span class="mo">001</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span> <span class="no">Redis</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">hgetall</span><span class="p">(</span><span class="s2">"emergency_banner"</span><span class="p">)</span>
+   <span class="c1">#&gt; {}</span>
+</code></pre></div><p>In the above example, the key has not been set. A successfully set key would return a result similar to the following:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">irb</span><span class="p">(</span><span class="n">main</span><span class="p">):</span><span class="mo">001</span><span class="p">:</span><span class="mi">0</span><span class="o">&gt;</span> <span class="no">Redis</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">hgetall</span><span class="p">(</span><span class="s2">"emergency_banner"</span><span class="p">)</span>
+<span class="o">=&gt;</span> <span class="p">{</span><span class="s2">"campaign_class"</span><span class="o">=&gt;</span><span class="s2">"notable-death"</span><span class="p">,</span> <span class="s2">"heading"</span><span class="o">=&gt;</span><span class="s2">"The heading"</span><span class="p">,</span> <span class="s2">"short_description"</span><span class="o">=&gt;</span><span class="s2">"The short description"</span><span class="p">,</span> <span class="s2">"link"</span><span class="o">=&gt;</span><span class="s2">"https://www.gov.uk"</span><span class="p">,</span> <span class="s2">"link_text"</span><span class="o">=&gt;</span><span class="s2">"More information about the emergency"</span><span class="p">}</span>
+</code></pre></div><h3 id='manually-running-the-rake-task-to-deploy-the-emergency-banner'>Manually running the rake task to deploy the emergency banner</h3><p>If you need to manually run the rake tasks to set the Redis keys, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):</p>
+
+<ol>
+<li>SSH into a <code>frontend</code> machine appropriate to the environment you are
+deploying the banner on. For example:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> staging ssh frontend
+</code></pre></div>
+<ol>
+<li>Change into the directory for <code>static</code>:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span><span class="nb">cd</span> /var/apps/static
+</code></pre></div>
+<ol>
+<li>Run the rake task to create the emergency banner hash in Redis, substituting
+the quoted data for the parameters:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv static bundle <span class="nb">exec </span>rake emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
+</code></pre></div><p>The <code>campaign_class</code> is directly injected into the HTML as a <code>class</code> and must be one of</p>
+
+<ul>
+<li>notable-death</li>
+<li>national-emergency</li>
+<li>local-emergency</li>
+</ul>
+<p>For example, if you are deploying an emergency banner for which you have the
+following information:</p>
+
+<ul>
+<li>Type: Death</li>
+<li>Heading: Alas poor Yorick</li>
+<li>Short description: I knew him Horatio</li>
+<li>URL: <a href="https://www.gov.uk">https://www.gov.uk</a></li>
+<li>Link text: Click for more information</li>
+</ul>
+<p>You would enter the following command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv static bundle <span class="nb">exec </span>rake emergency_banner:deploy[<span class="s2">"notable-death"</span>,<span class="s2">"Alas poor Yorick"</span>,<span class="s2">"I knew him Horatio"</span>,<span class="s2">"https://www.gov.uk"</span>,<span class="s2">"Click for more information"</span><span class="o">]</span>
+</code></pre></div><p>Note there are no spaces after the commas between parameters to the rake task.</p>
+<p>Quit your SSH session:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">exit</span>
+</code></pre></div><h3 id='manually-running-the-rake-task-to-remove-an-emergency-banner'>Manually running the rake task to remove an emergency banner</h3>
+<ol>
+<li>SSH into a frontend machine:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> staging ssh frontend
+</code></pre></div>
+<ol>
+<li>Change into the directory for <code>static</code>:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span><span class="nb">cd</span> /var/apps/static
+</code></pre></div>
+<ol>
+<li>Run the rake task to remove the emergency banner hash from Redis:</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv static bundle <span class="nb">exec </span>rake emergency_banner:remove
+</code></pre></div>
+<ol>
+<li>Quit your SSH session</li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span><span class="nb">exit</span>
+</code></pre></div>
+<hr>
+<h2 id='types-of-emergency-banners'>Types of emergency banners</h2><h3 id='death-of-a-notable-person'>Death of a notable person</h3><p>A large <strong>black</strong> banner is displayed on all GOV.UK pages, including the homepage.</p>
+<p>The wording to use in the template will be the official title of the
+deceased and the years of their life, for example &lsquo;His Royal Highness Henry VIII
+1491 to 1547&rsquo;. The text should link to their official biography.</p>
+<h4 id='gov-uk-homepage'>GOV.UK Homepage</h4><p><a href="images/emergency_publishing/notable-death-homepage.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/notable-death-homepage.png" alt="GOV.UK Homepage" /></a></p>
+<h4 id='other-pages'>Other pages</h4><p><a href="images/emergency_publishing/notable-death.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/notable-death.png" alt="" /></a></p>
+<h3 id='national-emergency-level-1-or-category-2'>National emergency (level 1 or category 2)</h3><p>A large <strong>red</strong> banner is displayed on all GOV.UK pages, including the homepage.</p>
+<h4 id='gov-uk-homepage'>GOV.UK Homepage</h4><p><a href="images/emergency_publishing/national-emergency-homepage.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/national-emergency-homepage.png" alt="GOV.UK Homepage" /></a></p>
+<h4 id='other-pages'>Other pages</h4><p><a href="images/emergency_publishing/national-emergency.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/national-emergency.png" alt="" /></a></p>
+<h3 id='localised-large-scale-emergency-level-2-or-category-1'>Localised large-scale emergency (level 2 or category 1)</h3><p>A large <strong>green</strong> banner is displayed on all GOV.UK pages, including the homepage.</p>
+<p>These incidents will not be processed outside of business hours.</p>
+<h4 id='gov-uk-homepage'>GOV.UK Homepage</h4><p><a href="images/emergency_publishing/local-emergency_homepage.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/local-emergency_homepage.png" alt="GOV.UK Homepage" /></a></p>
+<h4 id='other-pages'>Other pages</h4><p><a href="images/emergency_publishing/local-emergency.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/local-emergency.png" alt="" /></a></p>
+
+
+  <div class='related-content'>
+
+    <h3>More in the Publishing section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/content-preview.html">How the draft stack works</a></li>
+            <li><a href="/manual/taxonomy.html">How the topic taxonomy works</a></li>
+            <li><a href="/manual/world-taxonomy.html">How the world taxonomy works</a></li>
+            <li><a href="/manual/related-links.html">Related links</a></li>
+            <li><a href="/manual/schemas.html">What data we expose as schema.org structured data</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/add-a-new-document-type.html">Add a new document type</a></li>
+            <li><a href="/manual/howto-add-organisation-brand-colour.html">Add an organisation's brand colour</a></li>
+            <li><a href="/manual/whitehall-historical-accounts.html">Add Historical Accounts</a></li>
+            <li><a href="/manual/add-translation-whitehall.html">Add support for a new translation in Whitehall</a></li>
+            <li><a href="/manual/howto-change-slug-and-create-redirect.html">Change a slug and create redirect in Whitehall</a></li>
+            <li><a href="/manual/change-base-path-in-specialist-publisher.html">Change a specialist document base path</a></li>
+            <li><a href="/manual/incorrect-content-in-search-or-navigation.html">Content that doesn't show up correctly in search or list pages</a></li>
+            <li><a href="/manual/documents-are-published-but-links-arent-updated.html">Debug published documents with incorrect links</a></li>
+            <li><a href="/manual/global-banner.html">Deploy non-emergency global banner</a></li>
+            <li><a href="/manual/howto-find-hardcoded-markup-govspeak.html">Find hardcoded markup in GovSpeak</a></li>
+            <li><a href="/manual/help-with-publishing-content.html">Help with publishing content</a></li>
+            <li><a href="/manual/documents-arent-live-after-publishing.html">If documents aren't live after being published</a></li>
+            <li><a href="/manual/make-a-new-document-type-available-to-search.html">Make a new document type available to search</a></li>
+            <li><a href="/manual/howto-modify-change-note.html">Modify a change note in Publishing API or Whitehall</a></li>
+            <li><a href="/manual/howto-redirect-html-attachment-urls-from-whitehall.html">Redirect an HTML attachment's URL in Whitehall</a></li>
+            <li><a href="/manual/reindex-elasticsearch.html">Reindex an Elasticsearch index</a></li>
+            <li><a href="/manual/howto-remove-change-note-from-whitehall.html">Remove a change note in Whitehall</a></li>
+            <li><a href="/manual/howto-remove-invalid-about-page-drafts-from-world-organisations.html">Remove invalid WorldwideOrganisation draft CorporateInformationPages</a></li>
+            <li><a href="/manual/rename-a-country.html">Rename a country</a></li>
+            <li><a href="/manual/republishing-content.html">Republish content</a></li>
+            <li><a href="/manual/government-changes.html">Support government changes</a></li>
+            <li><a href="/manual/hmrc-paye-files.html">Upload HMRC PAYE files</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/emergency-publishing.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Deploy%20an%20emergency%20banner'&amp;body=Problem%20with%20'Deploy%20an%20emergency%20banner'%20(https://docs.publishing.service.gov.uk/manual/emergency-publishing.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

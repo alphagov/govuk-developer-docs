@@ -1,0 +1,389 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>content-data-api app healthcheck not ok - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/alerts/content-data-api-app-healthcheck-not-ok.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="content-data-api app healthcheck not ok - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/content-data-api-app-healthcheck-not-ok.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="content-data-api app healthcheck not ok" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/content-data-api-app-healthcheck-not-ok.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>content-data-api app healthcheck not ok</span></a>
+    <ul>
+      <li>
+        <a href="#what-is-the-etl-process"><span>What is the ETL process</span></a>
+      </li>
+      <li>
+        <a href="#when-does-etl-run"><span>When does ETL run</span></a>
+      </li>
+      <li>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#etl-no-monthly-aggregations-of-metrics-for-yesterday"><span>ETL :: no monthly aggregations of metrics for yesterday</span></a>
+          </li>
+          <li>
+            <a href="#etl-no-searches-updated-from-yesterday"><span>ETL :: no  searches updated from yesterday</span></a>
+          </li>
+          <li>
+            <a href="#etl-no-daily-metrics-for-yesterday"><span>ETL :: no daily metrics for yesterday</span></a>
+          </li>
+          <li>
+            <a href="#etl-no-pviews-for-yesterday"><span>ETL :: no pviews for yesterday</span></a>
+          </li>
+          <li>
+            <a href="#etl-no-upviews-for-yesterday"><span>ETL :: no upviews for yesterday</span></a>
+          </li>
+          <li>
+            <a href="#etl-no-searches-for-yesterday"><span>ETL :: no searches for yesterday</span></a>
+          </li>
+          <li>
+            <a href="#etl-no-feedex-for-yesterday"><span>ETL :: no feedex for yesterday</span></a>
+          </li>
+          <li>
+            <a href="#other-troubleshooting-tips"><span>Other troubleshooting tips</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+                <div class="information-callout">
+      This page describes what to do in case of an
+      <a href='https://docs.publishing.service.gov.uk/manual/tools.html#icinga'>Icinga alert</a>.
+      For more information you could
+      <a href='https://github.com/alphagov/govuk-puppet/search?utf8=%E2%9C%93&q=content-data-api-app-healthcheck-not-ok'>
+        search the govuk-puppet repo for the source of the alert
+      </a>
+    </div>
+
+    
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/de7ac35f32dfde0257819a7bcca065bbc6c8236d">9 Sep 2021</a>
+</div>
+
+ <h1 id='header'>content-data-api app healthcheck not ok</h1> <p>If there is a health check error showing for Content Data API, click
+on the alert to find out more details about what’s wrong.</p>
+<p>You can visit the <a href="https://github.com/alphagov/content-data-api/blob/main/config/routes.rb">healthcheck endpoints</a>
+here:</p>
+
+<ul>
+<li>https://content-data-api.publishing.service.gov.uk/healthcheck/metrics</li>
+<li>https://content-data-api.publishing.service.gov.uk/healthcheck/search</li>
+<li>https://content-data-api.publishing.service.gov.uk/healthcheck/live</li>
+<li>https://content-data-api.publishing.service.gov.uk/healthcheck/ready</li>
+</ul>
+<h2 id='what-is-the-etl-process'>What is the ETL process</h2><p>ETL stands for <a href="https://en.wikipedia.org/wiki/Extract,_transform,_load">Extract, Transform, Load</a>.
+Every day, data is copied from multiple sources (the <a href="https://github.com/alphagov/publishing-api">publishing platform</a>,
+[user feedback], and Google Analytics) into the Content Data API warehouse.</p>
+<p>A rake task called <a href="https://github.com/alphagov/content-data-api/commit/bcfeed7b207770498c88d955d02227f444666853"><code>etl:master</code></a> calls the <code>Etl::Master::MasterProcessor</code>
+which <a href="https://github.com/alphagov/content-data-api/blob/26e316cab5c4b5e5663c50dbf120e291405f6177/app/domain/etl/master/master_processor.rb#L16-L43">processes all the data</a>. This rake task is run daily
+(see <a href="#when-does-etl-run">&ldquo;When does ETL run&rdquo;</a> section below) so that the
+<a href="/apps/content-data-admin.html">Content Data</a> app has up to date figures.</p>
+<p>The Jenkins job that calls this rake task is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api.pp">content_data_api</a>
+(<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/content_data_api.yaml.erb">configured here</a>).</p>
+<p>There is also a special &lsquo;re-run&rsquo; task called <a href="https://github.com/alphagov/content-data-api/commit/f80f3f3b669f441651dbaa52665771dae9cd0c3e"><code>etl:rerun_master</code></a>,
+which takes an inclusive range of dates as arguments, and runs the same task
+as above but overriding the previously held data. We can run this if we have
+reason to believe the historical data is no longer accurate.</p>
+<p>The Jenkins job for this rake task is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api_re_run.pp">content_data_api_re_run</a>
+(<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/content_data_api_re_run.yaml.erb">configured here</a>).</p>
+<h2 id='when-does-etl-run'>When does ETL run</h2><p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api.pp">content_data_api job</a> runs at:</p>
+
+<ul>
+<li><a href="https://github.com/alphagov/govuk-puppet/blob/18ec81c917c16bb10e759039bda9c3afdd5f0815/hieradata_aws/production.yaml#L237">7am in production</a></li>
+<li><a href="https://github.com/alphagov/govuk-puppet/blob/888ecfb2e5ab846461219377309d17b9a31eb50c/hieradata_aws/staging.yaml#L199">11am in staging</a></li>
+<li><a href="https://github.com/alphagov/govuk-puppet/blob/f421952cbc95cff6a79776a3a3beaec8befcca81/hieradata_aws/integration.yaml#L82">1pm in integration</a></li>
+</ul>
+<p>These jobs are spread out for rate limiting reasons, and production is run
+outside of normal hours so as not to impact database performance during the day.</p>
+<p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api_re_run.pp">content_data_api_re_run job</a>
+<a href="https://github.com/alphagov/govuk-puppet/commit/f0539d9c113c4a530c9a33494f2e1d683f1032e6">runs at 3AM</a> in every environment. This job was added
+because of a <a href="https://support.google.com/analytics/answer/1070983?hl=en#:~:text=Data%20processing%20latency,for%20up%20to%20two%20days">delay in results showing up in Google Analytics</a>,
+meaning results can take between 24-48 hours to appear in GA. The production
+ETL running at 7am allowed only 7 hours for the data to appear in GA. The
+re-run job collects the data after 2 days, leaving time for the data to appear
+correctly in GA.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>Below are the possible problems you may see. Note that the rake tasks should
+be run on the <code>content-data-api</code> TARGET_APPLICATION and the <code>backend</code> MACHINE_CLASS.</p>
+
+<blockquote>
+<p><strong>All dates for the rake tasks below are inclusive.</strong>
+In other words, if you only need to reprocess data for a specific day, you’ll need
+to use the same the date for both the &lsquo;from&rsquo; and &lsquo;to&rsquo; parameters
+(for example: <code>etl:repopulate_aggregations_month[&quot;2019-12-15&quot;,&quot;2019-12-15&quot;]</code>).</p>
+</blockquote>
+<h3 id='etl-no-monthly-aggregations-of-metrics-for-yesterday'>ETL :: no monthly aggregations of metrics for yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily that creates
+aggregations of the metrics failed.</p>
+<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L10">following rake task</a>:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+</ul>
+<h3 id='etl-no-searches-updated-from-yesterday'>ETL :: no <range> searches updated from yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the Etl process</a> that runs daily and refreshes the
+Materialized Views failed to update those views.</p>
+<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L25">following rake task</a>:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_search" class="govuk-link">Run etl:repopulate_aggregations_search on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_search" class="govuk-link">Run etl:repopulate_aggregations_search on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_search" class="govuk-link">⚠️ Run etl:repopulate_aggregations_search on Production ⚠️</a></li>
+</ul>
+<h3 id='etl-no-daily-metrics-for-yesterday'>ETL :: no daily metrics for yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily to retrieve
+metrics for content items has failed.</p>
+<p>To fix this problem <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">re-run the master process again</a></p>
+<p><strong>Note</strong> This will first delete any metrics that had been successfully
+retrieved before re-running the task to regather all metrics.</p>
+<h3 id='etl-no-pviews-for-yesterday'>ETL :: no pviews for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
+collect <code>pageview</code> metrics from Google Analytics. The issue may originate
+from the <a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/views_and_navigation_processor.rb">ETL processor responsible for collecting core metrics</a>.</p>
+<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32">following rake task</a>:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+</ul>
+<h3 id='etl-no-upviews-for-yesterday'>ETL :: no upviews for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
+collect <code>unique pageview</code> metrics from Google Analytics. The issue may
+originate from the <a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/views_and_navigation_processor.rb">ETL processor responsible for collecting core metrics</a>.</p>
+<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32">following rake task</a>:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+</ul>
+<h3 id='etl-no-searches-for-yesterday'>ETL :: no searches for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
+collect <code>number of searches</code> metrics from Google Analytics. The issue may
+originate from the <a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/internal_search_processor.rb">ETL processor responsible for collecting Internal Searches</a>.</p>
+<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L45">following rake task</a>:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+</ul>
+<h3 id='etl-no-feedex-for-yesterday'>ETL :: no feedex for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
+collect <code>feedex</code> metrics from <code>support-api</code>. The issue may originate from the
+<a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/feedex/processor.rb">ETL processor responsible for collecting Feedex comments</a>.</p>
+<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L71">following rake task</a>:</p>
+
+<ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+</ul>
+<h3 id='other-troubleshooting-tips'>Other troubleshooting tips</h3><p>For problems in the ETL process, you can check the output in <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">Jenkins</a>.</p>
+<p>You can also check for any errors in <a href="https://sentry.io/organizations/govuk/issues/?environment=production&amp;project=1461890">Sentry</a> or the <a href="https://kibana.logit.io/s/283f08f6-d117-48df-9667-c4aa492b81f9/app/kibana#/discover?_g=()&amp;_a=(columns:!(_source),index:'*-*',interval:auto,query:(query_string:(query:'application:%20content-data-api')),sort:!('@timestamp',desc))">logs in kibana</a></p>
+<h4 id='sidekiq_retry_size-is-above-the-warning-threshold'>sidekiq_retry_size is above the warning threshold</h4><p>We have an ongoing issue where occasionally a Whitehall document is not successfully
+updated in the database, returning with a database conflict error.
+In the <code>content-data-api</code> you may find the first content item is (incorrectly)
+still considered <code>live: true</code>, and that the second content item doesn&rsquo;t exist.</p>
+<p>We are <a href="https://sentry.io/organizations/govuk/issues/1905340462/events/45b36be8d1054e3fa69e9e88085cb8d5/?project=1461890">notified of this error through Sentry</a> as well as a <code>warning</code> Icinga
+alert on the <code>content-data-api</code> healthcheck, specifically that <code>sidekiq_retry_size
+- warning - 3 is above the warning threshold (1)</code> because <code>content-data-api</code> is
+unable to pull in data.</p>
+<p>To fix this and get the data successfully pulled into <code>content-data-api</code> you can
+apply this manual fix:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Dimensions::Edition.where(content_id: "b6a2a286-8669-4cbe-a4ad-7997608598d2")
+  .last
+  .update!(live: false, schema_name: "gone", document_type: "gone")
+</code></pre></div><p>You can get the <code>base url</code> from the Sentry error and query the database for the
+<code>content_id</code>.</p>
+<p>Then the next time the Sidekiq worker runs, it should successfully be able to add
+the new content item.</p>
+
+
+  <div class='related-content'>
+
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/content-data-api-app-healthcheck-not-ok.html.md.erb">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'content-data-api%20app%20healthcheck%20not%20ok'&amp;body=Problem%20with%20'content-data-api%20app%20healthcheck%20not%20ok'%20(https://docs.publishing.service.gov.uk/manual/alerts/content-data-api-app-healthcheck-not-ok.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

@@ -1,0 +1,491 @@
+
+
+
+
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Reboot a machine - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/alerts/rebooting-machines.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Reboot a machine - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/rebooting-machines.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Reboot a machine" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/rebooting-machines.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Reboot a machine</span></a>
+    <ul>
+      <li>
+        <a href="#automatic-rebooting"><span>Automatic rebooting</span></a>
+        <ul>
+          <li>
+            <a href="#checking-locking-status"><span>Checking locking status</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#manual-rebooting"><span>Manual rebooting</span></a>
+        <ul>
+          <li>
+            <a href="#before-you-start"><span>Before you start</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-aws-machines"><span>Rebooting AWS machines</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-jenkins-ci-agents"><span>Rebooting Jenkins CI agents</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-cache-machines-in-aws"><span>Rebooting Cache machines in AWS</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-mongodb-machines"><span>Rebooting MongoDB machines</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-redis-machines"><span>Rebooting Redis machines</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-rabbitmq-machines"><span>Rebooting RabbitMQ machines</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-asset-primary-and-secondary-machines"><span>Rebooting asset primary and secondary machines</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-router-backend-machines"><span>Rebooting router-backend machines</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-jumpbox-machines"><span>Rebooting jumpbox machines</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-docker-management"><span>Rebooting docker-management</span></a>
+          </li>
+          <li>
+            <a href="#rebooting-other-machines"><span>Rebooting other machines</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+            
+    
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Infrastructure",
+        "@id": "http://www.dev.gov.uk/manual.html#infrastructure"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#infrastructure" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Infrastructure&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#infrastructure">Infrastructure</a>
+        </li>
+  </ol>
+</div>
+
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/37e09a669a0dff952a8948bbeba1f43e8131e77f">13 Sep 2021</a>
+</div>
+
+ <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances most machines reboot automatically when an update is required.
+Some machines need to be rebooted manually.</p>
+<p>Note that much of the following documentation assumes you have correctly
+<a href="https://github.com/alphagov/fabric-scripts#setup">set up your fabric scripts</a>.</p>
+<h2 id='automatic-rebooting'>Automatic rebooting</h2><p>If machines are not rebooting automatically, there may be a problem with the locking mechanism.
+See next section.</p>
+<h3 id='checking-locking-status'>Checking locking status</h3><p><a href="https://github.com/coreos/locksmith">locksmith</a> manages unattended reboots to
+ensure that systems are available. It is possible that a problem could occur
+where they can&rsquo;t reboot automatically.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; all locksmith.status
+</code></pre></div><p>If a lock is in place, it will detail which machine holds the lock.</p>
+<p>You can remove it with:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; -H &lt;machine-name&gt; locksmith.unlock:"&lt;machine-name&gt;"
+</code></pre></div><p>Machines that are safe to reboot should then do so at the scheduled
+time.</p>
+<h2 id='manual-rebooting'>Manual rebooting</h2><p>You can manually reboot virtual machines.</p>
+<p>Icinga alerts state when machines need rebooting. These alerts tell you if it&rsquo;s a manual reboot, and whether it&rsquo;s in or out-of-hours.</p>
+<p>Do not reboot more than one machine of the same class at the same time.</p>
+<p>The way that you reboot machines depends on the type of machine.</p>
+<h3 id='before-you-start'>Before you start</h3><p>Before you start manually rebooting, you must check whether the machine is safe to reboot.</p>
+<p>This information is stored in the <a href="https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws"><code>hieradata_aws</code> folder in the <code>govuk-puppet</code> repo</a>. If a machine is safe to reboot, the <code>govuk_safe_to_reboot</code> class shows <code>$can_reboot = &#39;yes&#39;</code>.</p>
+<p>See the <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp"><code>govuk_safe_to_reboot/manifests/init.pp</code> file in the <code>govuk-puppet</code> repo</a> for more information.</p>
+<p>Because of an incident, you may need to reboot a machine that is not safe to reboot. You can reboot that machine as long as you have considered the downstream effects of this reboot.</p>
+<h3 id='rebooting-aws-machines'>Rebooting AWS machines</h3><p>If you need to reboot a machine in AWS, extended reboot times may result in AWS automatically terminating that machine.</p>
+<p>If this happens, AWS should then automatically create a new machine to replace the old one.</p>
+<p>If AWS does not automatically create a new machine, <a href="mailto:reliability-engineering@digital.cabinet-office.gov.uk">contact the Reliability Engineering team</a> for support.</p>
+<p>See the <a href="#rebooting-cache-machines-in-aws">documentation on rebooting <code>cache</code> machines in AWS</a> for more information.</p>
+<h3 id='rebooting-jenkins-ci-agents'>Rebooting Jenkins CI agents</h3><p>Sometimes a CI agent starts continually erroring on Jenkins jobs, and the
+most straightforward way of fixing the issue is to reboot the machine.</p>
+<p>First, visit the <a href="https://ci.integration.publishing.service.gov.uk/computer/">Jenkins nodes list</a>.
+Click on the problematic agent and then &ldquo;Mark this node temporarily
+offline&rdquo;. You&rsquo;ll need to provide a reason, which could just be &ldquo;to reboot
+problematic agent&rdquo;. This will stop the agent from being used for new jobs.</p>
+<p>SSH into the agent; the machine number to SSH into will match the agent
+number. For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect ssh <span class="nt">-e</span> integration ci_agent:6
+</code></pre></div><p>Reboot the machine: <code>sudo reboot</code>.</p>
+<p>Finally, go back into the Jenkins nodes list to take the node online and
+then to &ldquo;Launch agent&rdquo;. You&rsquo;ll be taken to the live log for the agent,
+where you should see the output <code>Agent successfully connected and online</code>.</p>
+<h3 id='rebooting-cache-machines-in-aws'>Rebooting Cache machines in AWS</h3><p>The <code>cache</code> machines run the <code>router</code> app which handles live user traffic.
+To safely reboot them without serving too many errors to users, we must
+remove them from the AWS load balancer target groups before rebooting.</p>
+<p>The tool for rebooting cache machines is in the govuk-puppet repository. This
+is the recommended way to reboot a cache machine:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cd govuk-puppet
+gds aws govuk-integration-poweruser -- ./tools/reboot-cache-instances.sh -e integration ip-1-2-3-4.eu-west-1.compute.internal
+</code></pre></div><p>The tool takes an environment and a private DNS name, which are provided by the
+Icinga alert.</p>
+<p>You can also follow this process manually:</p>
+
+<ol>
+<li>Login to the AWS Console for the relevant environment (<code>gds aws govuk-&lt;ENVIRONMENT&gt;-&lt;your-role&gt; -l</code>).</li>
+<li>Find the <a href="https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1#Instances:sort=desc:launchTime">Instance ID</a>
+of the critical machine(s) (probably all 8 <code>blue-cache</code> machines)</li>
+<li>Navigate to the <code>blue-cache</code> Auto Scaling Group (ASG)</li>
+<li>Put the instance into a &ldquo;Standby&rdquo; state, which will detach the instance
+from its Target Groups</li>
+<li>Once the instance is in a Standby state, SSH onto the machine (find this
+from the reboots required alert listing)</li>
+<li>Check the traffic has reduced to only be the Smokey healthchecks now: <code>tail -f /var/log/nginx/lb-access.log</code>.</li>
+<li>Schedule downtime in icinga and run <code>sudo reboot</code> on the remote machine like normal.</li>
+<li>In the <code>blue-cache</code> ASG, move the instance back to the &ldquo;InService&rdquo; state,
+which will re-add the instance to the Target Groups</li>
+<li>Check the traffic is flowing from the load balancer with <code>tail -f /var/log/nginx/lb-access.log</code> again.</li>
+</ol>
+<h3 id='rebooting-mongodb-machines'>Rebooting MongoDB machines</h3><p>You can see our MongoDB machines by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; puppet_class:mongodb::server hosts
+</code></pre></div><p>All secondary Mongo machines will reboot overnight. If you don&rsquo;t need to
+reboot the cluster right now, step the current primary down and allow it
+to reboot overnight:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; -H &lt;HOSTNAME&gt; mongo.step_down_primary
+</code></pre></div><p>Example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab aws_production <span class="nt">-H</span> ip-127-0-0-11.eu-west-1.compute.internal mongo.step_down_primary
+</code></pre></div><p>(note that the example IP is fake)</p>
+<p>The general approach for rebooting machines in a MongoDB cluster is:</p>
+
+<ul>
+<li>Check cluster status with <code>fab &lt;ENVIRONMENT&gt; -H &lt;HOSTNAME&gt; mongo.status</code></li>
+<li>Using <code>fab &lt;ENVIRONMENT&gt; -H &lt;HOSTNAME&gt; mongo.safe_reboot</code>
+
+<ul>
+<li>Reboot the secondaries</li>
+<li>Reboot the primary. The <code>mongo.safe_reboot</code> Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.</li>
+</ul></li>
+</ul>
+<h3 id='rebooting-redis-machines'>Rebooting Redis machines</h3><p>Unless there are urgent updates to apply, these machines should not be
+rebooted during working hours in production. Other services rely directly on
+particular Redis hosts and may error if they are unvailable.</p>
+<p>Reboots of these machines, in the production environment, should be organised
+by On Call staff and search-api workers must be restarted (by re-deploying the latest release) after the reboot.</p>
+<p>They may be rebooted in working hours in other environments, however you
+should notify colleagues before doing so as this may remove in-flight jobs
+that Sidekiq has added to the Redis queues but not yet processed.</p>
+<h3 id='rebooting-rabbitmq-machines'>Rebooting RabbitMQ machines</h3><p>There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.</p>
+
+<ol>
+<li><p>SSH into the machine and environment you want to reboot by running the following command:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e &lt;ENVIRONMENT&gt; &lt;MACHINE&gt;
+</code></pre></div><p>For example, to SSH into the <code>integration</code> environment of the <code>rabbitmq:1</code> machine:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e integration rabbitmq:1
+</code></pre></div></li>
+<li><p>Check that the RabbitMQ cluster is healthy by running <code>sudo rabbitmqctl cluster_status</code>.</p>
+<p>This prints a list of expected machines and a list of currently running machines. If the 2 lists are the same then the cluster is healthy. The following output is an example of a healthy cluster:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Cluster status of node 'rabbit@ip-10-12-6-130'
+[{nodes,[{disc,['rabbit@ip-10-12-4-186','rabbit@ip-10-12-5-128',
+            'rabbit@ip-10-12-6-130']}]},
+ {running_nodes,['rabbit@ip-10-12-4-186','rabbit@ip-10-12-5-128',
+             'rabbit@ip-10-12-6-130']},
+ {cluster_name,&lt;&lt;"rabbit@ip-10-12-6-130.eu-west-1.compute.internal"&gt;&gt;},
+ {partitions,[]},
+ {alarms,[{'rabbit@ip-10-12-4-186',[]},
+          {'rabbit@ip-10-12-5-128',[]},
+          {'rabbit@ip-10-12-6-130',[]}]}]
+</code></pre></div></li>
+<li><p>Reboot the machine by running <code>sudo reboot</code>.</p></li>
+</ol>
+<p>When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts.</p>
+<p>For more information on RabbitMQ-related alerts, see the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/manifests/monitoring.pp">GOV.UK Puppet RabbitMQ <code>monitoring.pp</code> file</a>.</p>
+<p>There have been two incidents after rebooting RabbitMQ machines. For more information, see the <a href="https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#">No non-idle RabbitMQ consumers</a> and <a href="https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv">Publishing API jobs became stuck</a> incident reports.</p>
+<h3 id='rebooting-asset-primary-and-secondary-machines'>Rebooting asset primary and secondary machines</h3><p>Unless there are urgent updates to apply the primary machine should not be
+rebooted in production during working hours - as the primary machine is required
+for attachments to be uploaded.</p>
+<p>The secondary machines can be rebooted as they hold a copy of data and are resynced
+regularly.</p>
+<p>Reboots of the step_down_primary machine should be organised by On Call staff,
+for the production environment.</p>
+<p>You may reboot the primary machine in the staging environment during working
+hours however it is prudent to warn colleagues that uploading attachments will
+be unavailable during this period.</p>
+<h3 id='rebooting-router-backend-machines'>Rebooting router-backend machines</h3><p>Router backend machines are instances of MongoDB machines and can be rebooted
+as per the <a href="#rebooting-mongodb-machines">MongoDB rebooting guidance</a>.</p>
+<h3 id='rebooting-jumpbox-machines'>Rebooting jumpbox machines</h3><p>These machines are safe to reboot during the day. During the night they
+are involved in a data sync processes and rebooting could cause the data
+sync to fail.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo reboot
+</code></pre></div><h3 id='rebooting-docker-management'>Rebooting docker-management</h3><p>It is safe to reboot while no other unattended reboot is underway:</p>
+
+<ol>
+<li>Set <code>govuk_unattended_reboot::enabled</code> to <code>false</code> in the <a href="https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166">govuk-puppet common configuration</a> - you can do this in a branch.</li>
+<li>Build the branch of govuk-puppet to Production</li>
+<li>Wait half an hour to allow all machines to pull from the puppetmaster</li>
+<li>Reboot the docker-management machine (<code>sudo reboot</code>)</li>
+<li>Deploy the previous release of govuk-puppet to Production</li>
+</ol>
+<h3 id='rebooting-other-machines'>Rebooting other machines</h3><p>This guidance applies if you want to reboot a machine that is not one of the previous types.</p>
+
+<ol>
+<li><p>Schedule downtime in Icinga, or let GOV.UK 2nd line support know that there will be alerts for a machine being down.</p></li>
+<li><p>SSH into the machine and run:</p></li>
+</ol>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nb">sudo </span>reboot
+</code></pre></div>
+
+  <div class='related-content'>
+
+    <h3>More in the Infrastructure section</h3>
+
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/govuk-app-domain-handling-during-migration.html">app_domain handling in GOV.UK during migration to AWS</a></li>
+            <li><a href="/manual/concourse.html">Concourse</a></li>
+            <li><a href="/manual/dns.html">Domain Name System (DNS) records</a></li>
+            <li><a href="/manual/vpn.html">GOV.UK and Virtual Private Networks (VPNs)</a></li>
+            <li><a href="/manual/environments.html">GOV.UK's environments (integration, staging, production)</a></li>
+            <li><a href="/manual/load-testing.html">Load Testing</a></li>
+            <li><a href="/manual/new-instances-fail-to-provision.html">New instances fail to provision</a></li>
+            <li><a href="/manual/rollback-puppet-if-jenkins-is-broken.html">Rollback Puppet if Jenkins is broken</a></li>
+            <li><a href="/manual/upgrade-terraform.html">Upgrade Terraform</a></li>
+          </ul>
+        </div>
+
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
+
+          <ul class="govuk-list">
+            <li><a href="/manual/ruby.html">Add a new Ruby version</a></li>
+            <li><a href="/manual/generate-csr.html">Generate a Certificate Signing Request (CSR) for GOV.UK</a></li>
+            <li><a href="/manual/rabbitmq.html">Manage RabbitMQ</a></li>
+            <li><a href="/manual/auto-scaling-groups.html">Manually resize ASGs (auto scaling groups)</a></li>
+            <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
+            <li><a href="/manual/mapit-caches.html">Mapit Caches</a></li>
+            <li><a href="/manual/move-apps-between-servers.html">Move apps between servers</a></li>
+            <li><a href="/manual/patching-jenkins.html">Patch Jenkins</a></li>
+            <li><a href="/manual/provision-machines-for-data-science-research.html">Provision machines for data science research</a></li>
+            <li><a href="/manual/remove-machines.html">Remove a machine</a></li>
+            <li><a href="/manual/renew-a-tls-certificate.html">Renew a TLS certificate for GOV.UK</a></li>
+            <li><a href="/manual/reprovision.html">Reprovision a machine</a></li>
+            <li><a href="/manual/scale-mapit.html">Scale Mapit</a></li>
+            <li><a href="/manual/unable-to-ssh-into-machine.html">Unable to SSH into a machine</a></li>
+          </ul>
+        </div>
+
+    </div>
+</div>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/rebooting-machines.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Reboot%20a%20machine'&amp;body=Problem%20with%20'Reboot%20a%20machine'%20(https://docs.publishing.service.gov.uk/manual/alerts/rebooting-machines.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
