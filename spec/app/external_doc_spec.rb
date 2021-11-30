@@ -79,6 +79,10 @@ RSpec.describe ExternalDoc do
         it "converts links relative to the `docs` folder and applies the same business logic as before" do
           expect(html).to have_link("inline link", href: "/apps/lipsum/inline-link.html")
         end
+
+        it "converts links relative to the 'root' to absolute GitHub URLs" do
+          expect(html).to have_link("Link relative to root", href: "https://github.com/alphagov/lipsum/blob/main/public/json_examples/requests/foo.json")
+        end
       end
 
       it "rewrites relative images" do
