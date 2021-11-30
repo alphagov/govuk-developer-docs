@@ -69,12 +69,23 @@ class ExternalDoc
 
         next if uri.nil? || uri.scheme || href.start_with?("#")
 
-        if href.start_with?("/")
-          # remove preceding "/" to make links relative to the repository
-          # rather than to github.com. This is what GitHub does too.
-          href = href[1..]
-        end
-        element["href"] = URI.join(context[:subpage_url], href).to_s
+        element["href"] = if href.start_with?("/")
+                            # This is an absolute path.
+                            # By default, this would make the link relative to github.com,
+                            # e.g. github.com/foo.txt, when really we need it to be
+                            # github.com/alphagov/REPO_NAME/foo.txt.
+                            # So remove the preceding "/" to turn into a relative link,
+                            # then combine with the base repository URL.
+                            href = href[1..]
+                            URI.join(context[:base_url], href).to_s
+                          else
+                            # This is a relative path.
+                            # Rather than join to the base repository URL, we want to be
+                            # context-aware, so that if we're parsing a `./bar.txt` URL
+                            # from within the `docs/` folder, we get a `docs/bar.txt` result,
+                            # not a `alphagov/REPO_NAME/bar.txt` result.
+                            URI.join(context[:subpage_url], href).to_s
+                          end
       end
 
       doc
