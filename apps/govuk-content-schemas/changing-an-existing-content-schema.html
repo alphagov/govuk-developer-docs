@@ -381,15 +381,15 @@
 </ul>
 <p>For example, imagine that you need to add a new optional field to the details hash of the <code>case_study</code> schema. The steps would be:</p>
 <ol>
-<li>edit <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/docs/formats/case_study.jsonnet"><code>formats/case_study.jsonnet</code></a> to
+<li>edit <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/case_study.jsonnet"><code>formats/case_study.jsonnet</code></a> to
 add the new optional field</li>
 <li>run <code>rake</code>. This will:</li>
-<li>regenerate the publisher <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/docs/dist/formats/case_study/publisher/schema.json"><code>schema.json</code></a> to incorporate the changes you made to the <code>details</code>
+<li>regenerate the publisher <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/case_study/publisher/schema.json"><code>schema.json</code></a> to incorporate the changes you made to the <code>details</code>
 </li>
-<li>regenerate the notification <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/docs/dist/formats/case_study/notification/schema.json"><code>schema.json</code></a> to incorporate the changes</li>
-<li>regenerate the frontend <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/docs/dist/formats/case_study/frontend/schema.json"><code>schema.json</code></a> to incorporate the same changes</li>
+<li>regenerate the notification <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/case_study/notification/schema.json"><code>schema.json</code></a> to incorporate the changes</li>
+<li>regenerate the frontend <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/case_study/frontend/schema.json"><code>schema.json</code></a> to incorporate the same changes</li>
 <li>revalidate all example files to check if they are still valid after this change. This will pass, because the new field is optional</li>
-<li>[Optional step] you could add an additional example to illustrate how your new field should be used. You can add a new file in <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/docs/examples/case_study/frontend">examples/case_study/frontend</a>
+<li>[Optional step] you could add an additional example to illustrate how your new field should be used. You can add a new file in <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/examples/case_study/frontend">examples/case_study/frontend</a>
 </li>
 <li>create a new branch and commit and push your changes.
 This will run a branch build of govuk-content-schemas.

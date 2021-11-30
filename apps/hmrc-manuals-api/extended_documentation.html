@@ -390,9 +390,9 @@ Content-Type: application/json
 </code></pre>
 <p>The <code>&lt;slug&gt;</code> is used as part of the GOV.UK URL for the document.</p>
 <h3 id="example-json">Example JSON</h3>
-<p><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/docs/public/json_examples/requests/employment-income-manual.json">See an example manual</a></p>
+<p><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/public/json_examples/requests/employment-income-manual.json">See an example manual</a></p>
 <h3 id="json-schema">JSON Schema</h3>
-<p><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/docs/public/manual-schema.json">JSON Schema for manuals</a></p>
+<p><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/public/manual-schema.json">JSON Schema for manuals</a></p>
 <h2 id="adding-or-updating-a-manual-section">Adding or updating a manual section</h2>
 <h3 id="request">Request</h3>
 <pre><code>PUT /hmrc-manuals/&lt;manual-slug&gt;/sections/&lt;section_slug&gt;
@@ -400,13 +400,13 @@ Content-Type: application/json
 <p>The <code>&lt;manual-slug&gt;</code> and <code>&lt;section_slug&gt;</code> will be used as part of the GOV.UK URL for the document. The <code>&lt;section_slug&gt;</code> will be the section ID converted to lowercase.</p>
 <h3 id="example-json">Example JSON</h3>
 <ol>
-<li><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/docs/public/json_examples/requests/employment-income-manual/eim11800.json">An example first-level section, with children</a></li>
-<li><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/docs/public/json_examples/requests/employment-income-manual/eim25525.json">An example third-level section</a></li>
+<li><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/public/json_examples/requests/employment-income-manual/eim11800.json">An example first-level section, with children</a></li>
+<li><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/public/json_examples/requests/employment-income-manual/eim25525.json">An example third-level section</a></li>
 <li>
-<a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/docs/public/json_examples/requests/employment-income-manual/eim11200.json">An example section with ungrouped children</a> (the group title is omitted and only one group included)</li>
+<a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/public/json_examples/requests/employment-income-manual/eim11200.json">An example section with ungrouped children</a> (the group title is omitted and only one group included)</li>
 </ol>
 <h3 id="json-schema">JSON Schema</h3>
-<p><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/docs/public/section-schema.json">JSON Schema for sections</a></p>
+<p><a href="https://github.com/alphagov/hmrc-manuals-api/blob/main/public/section-schema.json">JSON Schema for sections</a></p>
 <h2 id="possible-responses-to-put-requests">Possible responses to PUT requests</h2>
 <ul>
 <li>

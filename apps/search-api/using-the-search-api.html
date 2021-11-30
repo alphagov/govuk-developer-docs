@@ -423,7 +423,7 @@ options, will cause an HTTP 422 error.  This means that typos do not make the
 API silently return the wrong results, and new features can be added to the API
 without changing what existing clients see.</p>
 <h2 id="returning-specific-document-fields">Returning specific document fields</h2>
-<p>See the <a href="https://github.com/alphagov/search-api/blob/main/docs/config/schema/field_definitions.json">field reference</a> for a list of all fields returned by the search API.</p>
+<p>See the <a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field reference</a> for a list of all fields returned by the search API.</p>
 <p>Only a few fields are returned by default. You can override the fields returned using the <code>fields</code> parameter. For example:</p>
 <pre><code>https://www.gov.uk/api/search.json?q=passport&amp;fields=mainstream_browse_pages&amp;fields=title
 </code></pre>
