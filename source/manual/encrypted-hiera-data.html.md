@@ -151,7 +151,9 @@ recipient file pertains to.
 ### What to do when someone joins
 
 1. Ask the joiner to [create a GPG key](create-a-gpg-key.html) and upload it
-   to a public key server (such as <https://pgp.mit.edu/>).
+   to a public key server (such as <https://pgp.mit.edu/>). If you struggle to find the GPG key (either via the `gpg` CLI or via GPG Keychain, try going to the keyserver in your browser to find the key there (you may need to prefix the key id with `0x`).
+   i.e. https://keyserver.ubuntu.com/pks/lookup?search=0x0263E23315AE661ECAC4947C50476CD528C86C4C&fingerprint=on&op=index.
+   Click on the public key in the result, copy this into your clipboard, switch back to GPG Keychain and it should detect the key and prompt you to add it.
 2. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
 3. Add the joiners's GPG fingerprint to the recipient files
    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
