@@ -18,7 +18,7 @@ Application tests run in a continuous integration (CI) environment.
 
 You need to add your repo to the `govuk_ci::master::pipeline_jobs` in [govuk-puppet][pipeline_jobs]. This will create the job in Jenkins.
 
-[pipeline_jobs]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml
+[pipeline_jobs]: https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/common.yaml
 
 ### 2. Add a Jenkinsfile
 
@@ -63,11 +63,38 @@ Many GOV.UK applications test against the
 [content schemas](https://github.com/alphagov/govuk-content-schemas/).
 
 To test your application for each PR on govuk-content-schemas, add it to the [govuk-content-schemas
-Jenkinsfile](https://github.com/alphagov/govuk-content-schemas/blob/master/Jenkinsfile).
+Jenkinsfile](https://github.com/alphagov/govuk-content-schemas/blob/main/Jenkinsfile).
+
+## Specifying which database to use
+
+The CI machines have installations of a number of database technologies, such
+as PostgreSQL, MySQL and MongoDB, these tend to be quite old versions (at the
+time of writing PostgreSQL 9.6 and MySQL 5.5). We have utilised Docker as a
+way to provide access to newer versions of databases which can be used as
+part of your build. These can be accessed with the following connection strings:
+
+- MySQL 8: `mysql2://root:root@127.0.0.1:33068/<your-database-name>`
+- PostgreSQL 13: `postgresql://postgres@127.0.0.1:54313/<your-database-name>`
+
+Typically for these to work with a Rails application you'll need to set an
+environment variable. For example, in your Jenkinsfile, for an application
+that uses `TEST_DATABASE_URL`, you can set:
+
+```
+#!/usr/bin/env groovy
+
+library("govuk")
+
+node {
+  govuk.setEnvar("TEST_DATABASE_URL", "postgresql://postgres@127.0.0.1:54313/content-publisher-test")
+
+  govuk.buildProject()
+}
+```
 
 ## Fixing the build number
 
-Master branch builds are often tagged with the Jenkins build number so that a
+Main branch builds are often tagged with the Jenkins build number so that a
 specific version can be deployed to each environment.
 
 This can fail if the build number is reset, for example if all the old builds
@@ -82,7 +109,7 @@ To fix this, set the build number to the next release number using the [Jenkins
 script console](https://ci.integration.publishing.service.gov.uk/script):
 
 ```
-def job = Jenkins.instance.getItemByFullName("your-project-name/master")
+def job = Jenkins.instance.getItemByFullName("your-project-name/main")
 job.nextBuildNumber = 1234
 job.save()
 ```
