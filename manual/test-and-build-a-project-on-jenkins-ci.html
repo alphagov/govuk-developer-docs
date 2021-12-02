@@ -146,9 +146,6 @@
         </ul>
       </li>
       <li>
-        <a href="#specifying-which-database-to-use"><span>Specifying which database to use</span></a>
-      </li>
-      <li>
         <a href="#fixing-the-build-number"><span>Fixing the build number</span></a>
       </li>
     </ul>
@@ -202,13 +199,13 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e07a0f89207c725a4a845ab31e7e643cc5b6cd59">2 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d41ba0642f2286a4a00fea6a04b19fa532bb0b1e">2 Dec 2021</a>
 </div>
 
  <h1 id='header'>Test & build a project on Jenkins CI</h1> <p>Application tests run in a continuous integration (CI) environment.</p>
 <p><a href="https://ci.integration.publishing.service.gov.uk/">https://ci.integration.publishing.service.gov.uk/</a></p>
 <p><a href="/manual/jenkins-ci.html">Read here about the CI infrastructure</a>.</p>
-<h2 id='setting-up'>Setting up</h2><h3 id='1-create-the-job-in-jenkins'>1. Create the job in Jenkins</h3><p>You need to add your repo to the <code>govuk_ci::master::pipeline_jobs</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/common.yaml">govuk-puppet</a>. This will create the job in Jenkins.</p>
+<h2 id='setting-up'>Setting up</h2><h3 id='1-create-the-job-in-jenkins'>1. Create the job in Jenkins</h3><p>You need to add your repo to the <code>govuk_ci::master::pipeline_jobs</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata/common.yaml">govuk-puppet</a>. This will create the job in Jenkins.</p>
 <h3 id='2-add-a-jenkinsfile'>2. Add a Jenkinsfile</h3><p>Your repo needs to contain a <code>Jenkinsfile</code> in the root which has
 details of how the application is built. In most cases the <code>Jenkinsfile</code> will need to run the tests for your project. For applications the build process includes <a href="/manual/development-pipeline.html">creating a release tag</a>. For gems the build process includes releasing the packaged gem to <a href="https://rubygems.org">rubygems.org</a>.</p>
 <p>The following <code>Jenkinsfile</code> should be sufficient for most projects:</p>
@@ -229,31 +226,9 @@ run &ldquo;Branch Indexing&rdquo; from the menu. This should trigger a build of 
 with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you&rsquo;ve merged your <code>Jenkinsfile</code> into <code>main</code>.</p>
 <h3 id='5-set-up-schema-testing'>5. Set up schema testing</h3><p>Many GOV.UK applications test against the
 <a href="https://github.com/alphagov/govuk-content-schemas/">content schemas</a>.</p>
-<p>To test your application for each PR on govuk-content-schemas, add it to the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/Jenkinsfile">govuk-content-schemas
+<p>To test your application for each PR on govuk-content-schemas, add it to the <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/Jenkinsfile">govuk-content-schemas
 Jenkinsfile</a>.</p>
-<h2 id='specifying-which-database-to-use'>Specifying which database to use</h2><p>The CI machines have installations of a number of database technologies, such
-as PostgreSQL, MySQL and MongoDB, these tend to be quite old versions (at the
-time of writing PostgreSQL 9.6 and MySQL 5.5). We have utilised Docker as a
-way to provide access to newer versions of databases which can be used as
-part of your build. These can be accessed with the following connection strings:</p>
-
-<ul>
-<li>MySQL 8: <code>mysql2://root:root@127.0.0.1:33068/&lt;your-database-name&gt;</code></li>
-<li>PostgreSQL 13: <code>postgresql://postgres@127.0.0.1:54313/&lt;your-database-name&gt;</code></li>
-</ul>
-<p>Typically for these to work with a Rails application you&rsquo;ll need to set an
-environment variable. For example, in your Jenkinsfile, for an application
-that uses <code>TEST_DATABASE_URL</code>, you can set:</p>
-<div class="highlight"><pre class="highlight groovy" tabindex="0"><code><span class="err">#</span><span class="o">!</span><span class="s">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">groovy</span>
-
-<span class="n">library</span><span class="o">(</span><span class="s2">"govuk"</span><span class="o">)</span>
-
-<span class="n">node</span> <span class="o">{</span>
-  <span class="n">govuk</span><span class="o">.</span><span class="na">setEnvar</span><span class="o">(</span><span class="s2">"TEST_DATABASE_URL"</span><span class="o">,</span> <span class="s2">"postgresql://postgres@127.0.0.1:54313/content-publisher-test"</span><span class="o">)</span>
-
-  <span class="n">govuk</span><span class="o">.</span><span class="na">buildProject</span><span class="o">()</span>
-<span class="o">}</span>
-</code></pre></div><h2 id='fixing-the-build-number'>Fixing the build number</h2><p>Main branch builds are often tagged with the Jenkins build number so that a
+<h2 id='fixing-the-build-number'>Fixing the build number</h2><p>Master branch builds are often tagged with the Jenkins build number so that a
 specific version can be deployed to each environment.</p>
 <p>This can fail if the build number is reset, for example if all the old builds
 are deleted or if a job is migrated from a different CI server. The error will
@@ -261,7 +236,7 @@ be something like this:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fatal: tag 'release_1' already exists
 </code></pre></div><p>To fix this, set the build number to the next release number using the <a href="https://ci.integration.publishing.service.gov.uk/script">Jenkins
 script console</a>:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>def job = Jenkins.instance.getItemByFullName("your-project-name/main")
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>def job = Jenkins.instance.getItemByFullName("your-project-name/master")
 job.nextBuildNumber = 1234
 job.save()
 </code></pre></div>
