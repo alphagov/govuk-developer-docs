@@ -49,6 +49,8 @@ built automatically when commits are pushed.
 There is a task that can be run to add this webhook to the new repo. Find
 out more about [automatically configuring a GitHub repo][auto-config].
 
+[auto-config]: https://docs.publishing.service.gov.uk/manual/configure-github-repo.html
+
 ### 4. Branch indexing
 
 Once your Jenkinsfile is on a branch, you can go to your job in new Jenkins and
