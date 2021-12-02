@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Name a new application or gem - GOV.UK Developer Documentation</title>
+    <title>Architectural summary of GOV.UK - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/naming.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/architecture-shallow-dive.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Name a new application or gem - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/naming.html" />
+      <meta name="twitter:title" content="Architectural summary of GOV.UK - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/architecture-shallow-dive.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Name a new application or gem" />
+      <meta property="og:title" content="Architectural summary of GOV.UK" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/naming.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/architecture-shallow-dive.html" />
 
     
   </head>
@@ -123,30 +123,32 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Name a new application or gem</span></a>
+    <a href="#header"><span>Architectural summary of GOV.UK</span></a>
     <ul>
       <li>
-        <a href="#naming-applications"><span>Naming applications</span></a>
+        <a href="#a-user-visits-a-page-on-gov-uk"><span>A user visits a page on GOV.UK</span></a>
         <ul>
           <li>
-            <a href="#publishing-applications"><span>Publishing applications</span></a>
+            <a href="#a-user-visits-the-gov-uk-homepage"><span>A user visits the GOV.UK homepage</span></a>
           </li>
           <li>
-            <a href="#frontend-applications"><span>Frontend applications</span></a>
+            <a href="#a-user-visits-a-gov-uk-webpage"><span>A user visits a GOV.UK webpage</span></a>
           </li>
           <li>
-            <a href="#apis"><span>APIs</span></a>
-          </li>
-          <li>
-            <a href="#admin-applications"><span>Admin applications</span></a>
-          </li>
-          <li>
-            <a href="#service-applications"><span>Service applications</span></a>
+            <a href="#a-user-searches-gov-uk-using-the-search-page"><span>A user searches GOV.UK using the search page</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#naming-gems"><span>Naming gems</span></a>
+        <a href="#a-publisher-publishes-content-on-gov-uk"><span>A publisher publishes content on GOV.UK</span></a>
+        <ul>
+          <li>
+            <a href="#a-publisher-publishes-content-to-live"><span>A publisher publishes content to live</span></a>
+          </li>
+          <li>
+            <a href="#a-publisher-publishes-content-to-draft"><span>A publisher publishes content to draft</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -198,116 +200,84 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/694b4e4be50692e63bbbc496d8636809957be132">16 Nov 2021</a>
 </div>
 
- <h1 id='header'>Name a new application or gem</h1> <p>This describes how you should name an application or gem on GOV.UK. It was first proposed in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-063-naming-new-apps-gems-on-gov-uk.md">RFC 63</a>.</p>
-<p>Of course, break any of these rules sooner than <a href="https://en.wikipedia.org/wiki/Politics_and_the_English_Language#Remedy_of_Six_Rules">say anything outright barbarous</a>.</p>
-<h2 id='naming-applications'>Naming applications</h2><p>Firstly, the <a href="https://www.gov.uk/service-manual/design/naming-your-service">service manual has good guidance on naming things</a>.</p>
-<p>The most important rules:</p>
+ <h1 id='header'>Architectural summary of GOV.UK</h1> <p>The following content is a high-level summary of GOV.UK architecture, intended for both developers and non-developers to refer to.</p>
+<p>It&rsquo;s based on the <a href="/manual/architecture-deep-dive.html">architectural deep-dive of GOV.UK</a> and describes what happens when a:</p>
 
 <ul>
-<li>The name should be self-descriptive. No branding or puns.</li>
-<li>Use dashes for the URL and GitHub repo</li>
-<li>The name of the app should be the same on GitHub, Puppet and hostname</li>
+<li>user visits a page on GOV.UK</li>
+<li>publisher publishes content to GOV.UK</li>
 </ul>
-<h3 id='publishing-applications'>Publishing applications</h3><p>Applications that publish things are named <strong>x-publisher</strong>.</p>
-<p>Good:</p>
+<h2 id='a-user-visits-a-page-on-gov-uk'>A user visits a page on GOV.UK</h2><p>This content goes through 3 scenarios where a user:</p>
 
 <ul>
-<li>specialist-publisher</li>
-<li>manuals-publisher</li>
+<li>visits the GOV.UK homepage</li>
+<li>visits a GOV.UK webpage</li>
+<li>searches GOV.UK using the search page</li>
 </ul>
-<p>Not so good:</p>
+<h3 id='a-user-visits-the-gov-uk-homepage'>A user visits the GOV.UK homepage</h3><p>The user visits <code>https://www.gov.uk</code> or <code>https://gov.uk</code> to get to the GOV.UK homepage.</p>
+<p>The user&rsquo;s browser uses <a href="/manual/dns.html">Domain Name System (DNS)</a> to look up which IP address is associated with the GOV.UK domain. For the GOV.UK domain, the IP address is for <a href="https://www.fastly.com/">Fastly</a>.</p>
+<p>GOV.UK uses the Fastly content delivery network (CDN) to handle most requests to GOV.UK. Fastly has servers all over the world, meaning that it is physically closer to our users, who then have a faster GOV.UK experience as a result.</p>
+<p>Using Fastly reduces the load on the base GOV.UK infrastructure, otherwise known as Origin, by around 70%. Origin is a stack of computers in the AWS cloud with a load balancer entry point. Origin hosts all GOV.UK applications, and knows which applications respond to which requests. Origin sends requests to the machine running the application so that the application can respond to those requests.</p>
+<p>If Fastly has the homepage cached, Fastly returns the homepage to the user.</p>
+<p>If Fastly does not have the homepage cached, Fastly sends the request on to Origin.</p>
+<p>Within Origin, the request goes to an application called <a href="https://github.com/alphagov/router">Router</a> to determine which GOV.UK application will produce the page.</p>
+<p>Router sends the request to <a href="https://github.com/alphagov/frontend">Frontend</a>. Frontend is one of several public-facing apps that render pages on GOV.UK. The GOV.UK homepage is one of the pages that Frontend is responsible for. The homepage&rsquo;s content is hard-coded in the Frontend application.</p>
+<p>Frontend produces the homepage as an HTML response and sends that response back to Router.</p>
+<p>Router sends the response to Fastly, which caches the response for 30 minutes. This means that Fastly can handle any subsequent requests for the homepage during this time, without needing to query Origin at all.</p>
+<p>Finally, Fastly sends the response back to the user.</p>
+<h3 id='a-user-visits-a-gov-uk-webpage'>A user visits a GOV.UK webpage</h3><p>The user searches for a GOV.UK webpage, and selects the webpage link in the search results. For example, this <a href="https://www.gov.uk/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england">news page about changes to travel between Nigeria and England</a>.</p>
+<p>The user&rsquo;s browser sends the request to the <a href="https://www.fastly.com/">Fastly</a> content delivery network (CDN).</p>
+<p>If Fastly has the homepage cached, Fastly returns the homepage to the user.</p>
+<p>If Fastly does not have the homepage cached, Fastly sends the request on to GOV.UK Origin.</p>
+<p>Within Origin, the request goes to an application called <a href="https://github.com/alphagov/router">Router</a> to determine which GOV.UK application will produce the page.</p>
+<p>Router chooses Frontend to produce the page, and forwards the request to Frontend.</p>
+<p><a href="https://github.com/alphagov/frontend">Frontend</a> looks at the request and decides which content to get from the Content Store. The <a href="https://github.com/alphagov/content-store">Content Store</a> is:</p>
 
 <ul>
-<li>publisher (too generic)</li>
-<li>contacts-admin (could be contacts-publisher)</li>
+<li>a MongoDB database of almost all the content published on GOV.UK, excluding dynamic elements such as top links on taxon pages, navigation elements, or search result pages</li>
+<li>an application that exposes the <a href="https://github.com/alphagov/content-store/blob/main/docs/content-store-api.md">Content Store API</a></li>
 </ul>
-<h3 id='frontend-applications'>Frontend applications</h3><p>Applications that render content to end users on GOV.UK are named
-<strong>x-frontend</strong></p>
-<p>Good:</p>
+<p>Frontend then queries the Content Store API to get the content in an <a href="https://www.gov.uk/api/content/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england">API response from the Content Store</a>.</p>
+<p>Frontend then builds the page using the content in the API response, and sends that response back to Router.</p>
+<p>Router sends the response to Fastly. Fastly sends the response back to the user.</p>
+<h3 id='a-user-searches-gov-uk-using-the-search-page'>A user searches GOV.UK using the search page</h3><p>The user goes to the <a href="https://www.gov.uk/search">GOV.UK search page</a>, and <a href="https://www.gov.uk/search/all?keywords=tax&amp;order=relevance">searches for something, for example, &ldquo;tax&rdquo;</a>.</p>
+<p>The user&rsquo;s browser uses DNS to figure out where to send the request, and sends that request to Fastly.</p>
+<p>If Fastly has the search results page cached, Fastly returns that page to the user.</p>
+<p>If Fastly does not have the search results page cached, Fastly sends the request on to Origin.</p>
+<p>Within Origin, the request goes to an application called <a href="https://github.com/alphagov/router">Router</a> to determine which GOV.UK application will produce the page.</p>
+<p><a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> renders finder, search and search result pages for GOV.UK. Router sends the request to Finder Frontend.</p>
+<p>Finder Frontend <a href="https://www.gov.uk/api/content/search/all">queries the content store</a> for parts of the page content, such as the page title. Finder Frontend queries the Search API for the search results themselves. Search API provides a <a href="https://www.gov.uk/api/search.json?q=tax&amp;count=2">JSON response with the search results</a>.</p>
+<p>Finder Frontend then renders the response in a search results page, and sends that response to Router. Router sends the response to Fastly, which then sends the response to the user.</p>
+<h2 id='a-publisher-publishes-content-on-gov-uk'>A publisher publishes content on GOV.UK</h2><p>GOV.UK has the following applications to publish content:</p>
 
 <ul>
-<li>government-frontend</li>
-<li>email-alert-frontend</li>
+<li>Mainstream Publisher</li>
+<li>Whitehall</li>
+<li>Content Publisher</li>
+<li>Specialist Publisher</li>
+<li>Travel Advice Publisher</li>
+<li>Collections Publisher</li>
 </ul>
-<p>Not so good:</p>
+<p>The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher (referred to as &ldquo;Publisher&rdquo;).</p>
+<h3 id='a-publisher-publishes-content-to-live'>A publisher publishes content to live</h3><p>A publisher signs into their <a href="/apps/signon.html">Signon</a> account. Signon is a centralised single sign-on provider for GDS services that provides username/password and two-factor authentication.</p>
+<p>The publisher creates or changes content in Publisher and <a href="#a-publisher-publishes-content-to-draft">saves that content in draft</a>.</p>
+<p>When the publisher is ready to publish the content, they select <strong>Publish</strong> in Publisher, which sends a request to the Publishing API.</p>
+<p>The <a href="https://github.com/alphagov/publishing-api">Publishing API</a> publishes content to the Content Store. This API stores all versions of content, and performs validation checks whenever the API receives a new version.</p>
+<p>Publishing API updates the Content Store directly, which in turn updates <a href="https://github.com/alphagov/router">Router</a> to say there is now content at a particular URL, and which frontend application will render that content.</p>
+<p>Publishing API also puts the publishing event on a &lsquo;message queue&rsquo;, which multiple other applications listen to and use. For example:</p>
 
 <ul>
-<li>collections (could be collections-frontend)</li>
-<li>frontend (too generic)</li>
+<li>the Search API listens to this queue and updates its indexes when new content is published so that this content can be searched for by users</li>
+<li>the Email Alert Service listens to this queue so that it can send emails to users who have subscribed to that topic</li>
 </ul>
-<h3 id='apis'>APIs</h3><p>Applications that just expose an API are named <strong>x-api</strong>.</p>
-<p>Good:</p>
-
-<ul>
-<li>publishing-api</li>
-<li>email-alert-api</li>
-<li>router-api</li>
-</ul>
-<p>Not so good:</p>
-
-<ul>
-<li>rummager (renamed to search-api)</li>
-</ul>
-<h3 id='admin-applications'>Admin applications</h3><p>Applications that &ldquo;manage&rdquo; things can be called <strong>x-manager</strong> or <strong>x-admin</strong> or
-<strong>thing-doer</strong>.</p>
-<p>Good:</p>
-
-<ul>
-<li>search-admin</li>
-<li>local-links-manager</li>
-<li>content-tagger</li>
-</ul>
-<p>Not so good:</p>
-
-<ul>
-<li>signonotron2000</li>
-<li>maslow (needs-manager)</li>
-</ul>
-<h3 id='service-applications'>Service applications</h3><p>Applications which (probably) listen to the publishing queue and do a thing,
-with no API or web interface.</p>
-<p>Good:</p>
-
-<ul>
-<li>email-alert-service</li>
-<li>cache-clearing-service</li>
-</ul>
-<p>Not so good:</p>
-
-<ul>
-<li>cache-clearer</li>
-</ul>
-<h2 id='naming-gems'>Naming gems</h2>
-<ul>
-<li>Use the official <a href="http://guides.rubygems.org/name-your-gem/">Rubygems naming convention</a></li>
-<li>Use underscores for multiple words</li>
-<li>Use <code>govuk_</code> prefix if the gem is only interesting to projects within GOV.UK</li>
-</ul>
-<p>Good:</p>
-
-<ul>
-<li><code>govuk_sidekiq</code></li>
-<li><code>govuk_content_models</code></li>
-<li><code>govuk_admin_template</code></li>
-<li><code>vcloud-edge_gateway</code></li>
-</ul>
-<p>Not so good:</p>
-
-<ul>
-<li><code>slimmer</code></li>
-<li><code>plek</code></li>
-<li><code>gds-sso</code> (should be <code>gds_sso</code>, or <code>govuk_sso</code>)</li>
-</ul>
+<h3 id='a-publisher-publishes-content-to-draft'>A publisher publishes content to draft</h3><p>The previous content referred to the user-facing live stack, also known as Origin. Before publishing content to live, a publisher can preview their content in the draft stack, also known as Draft Origin.</p>
+<p>The <a href="https://github.com/alphagov/authenticating-proxy">Authenticating Proxy</a> adds authentication to the draft stack. This means that only publishers with a <a href="/apps/signon.html">Signon</a> account, or a valid secret JSON web token (JWT) if the publisher is a fact checker, can access the draft stack.</p>
+<p>The publishing apps, Publishing API and message queue only run in this draft stack. The draft stack also has its own copy of <a href="https://github.com/alphagov/router">Router</a>, <a href="https://github.com/alphagov/content-store">Content Store</a>, and all of the frontend apps. This enables publishers to see what their draft content will look like when rendered by the appropriate frontend application.</p>
+<p>The only application that communicates with both the draft and live stacks is the Publishing API. When a publisher saves a draft in Publisher, Publishing API saves the content to the draft content store. When a publisher publishes a draft in Publisher, Publishing API saves the content to the live content store, which makes the content visible to users.</p>
 
 
   <div class='related-content'>
@@ -320,7 +290,6 @@ with no API or web interface.</p>
 
           <ul class="govuk-list">
             <li><a href="/manual/architecture-deep-dive.html">Architectural deep-dive of GOV.UK</a></li>
-            <li><a href="/manual/architecture-shallow-dive.html">Architectural summary of GOV.UK</a></li>
             <li><a href="/manual/architecture.html">Architecture overview of GOV.UK applications</a></li>
             <li><a href="/manual/configure-linting.html">Configure linting</a></li>
             <li><a href="/manual/conventions-for-rails-applications.html">Conventions for Rails applications</a></li>
@@ -334,6 +303,7 @@ with no API or web interface.</p>
           <ul class="govuk-list">
             <li><a href="/manual/add-authentication-to-an-application.html">Add authentication to an application</a></li>
             <li><a href="/manual/create-a-local-transaction.html">Create a Local Transaction</a></li>
+            <li><a href="/manual/naming.html">Name a new application or gem</a></li>
             <li><a href="/manual/retiring-an-application.html">Retire an application</a></li>
             <li><a href="/manual/setting-up-new-rails-app.html">Set up a new Rails application</a></li>
           </ul>
@@ -348,8 +318,8 @@ with no API or web interface.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/naming.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Name%20a%20new%20application%20or%20gem'&amp;body=Problem%20with%20'Name%20a%20new%20application%20or%20gem'%20(https://docs.publishing.service.gov.uk/manual/naming.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/architecture-shallow-dive.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Architectural%20summary%20of%20GOV.UK'&amp;body=Problem%20with%20'Architectural%20summary%20of%20GOV.UK'%20(https://docs.publishing.service.gov.uk/manual/architecture-shallow-dive.html)">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
