@@ -199,7 +199,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/04ed0de63c908a816e83bd58fafebb835bbdc4da">18 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d41ba0642f2286a4a00fea6a04b19fa532bb0b1e">2 Dec 2021</a>
 </div>
 
  <h1 id='header'>Test & build a project on Jenkins CI</h1> <p>Application tests run in a continuous integration (CI) environment.</p>
@@ -220,10 +220,10 @@ details of how the application is built. In most cases the <code>Jenkinsfile</co
 <h3 id='3-trigger-builds-from-github'>3. Trigger builds from GitHub</h3><p>Adding a Jenkins webhook to the repo on GitHub will allow branches to be
 built automatically when commits are pushed.</p>
 <p>There is a task that can be run to add this webhook to the new repo. Find
-out more about [automatically configuring a GitHub repo][auto-config].</p>
+out more about <a href="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html">automatically configuring a GitHub repo</a>.</p>
 <h3 id='4-branch-indexing'>4. Branch indexing</h3><p>Once your Jenkinsfile is on a branch, you can go to your job in new Jenkins and
 run &ldquo;Branch Indexing&rdquo; from the menu. This should trigger a build of all branches
-with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you&rsquo;ve merged your <code>Jenkinsfile</code> into <code>master</code>.</p>
+with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you&rsquo;ve merged your <code>Jenkinsfile</code> into <code>main</code>.</p>
 <h3 id='5-set-up-schema-testing'>5. Set up schema testing</h3><p>Many GOV.UK applications test against the
 <a href="https://github.com/alphagov/govuk-content-schemas/">content schemas</a>.</p>
 <p>To test your application for each PR on govuk-content-schemas, add it to the <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/Jenkinsfile">govuk-content-schemas
