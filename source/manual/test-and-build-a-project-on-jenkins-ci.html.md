@@ -65,6 +65,33 @@ Many GOV.UK applications test against the
 To test your application for each PR on govuk-content-schemas, add it to the [govuk-content-schemas
 Jenkinsfile](https://github.com/alphagov/govuk-content-schemas/blob/master/Jenkinsfile).
 
+## Specifying which database to use
+
+The CI machines have installations of a number of database technologies, such
+as PostgreSQL, MySQL and MongoDB, these tend to be quite old versions (at the
+time of writing PostgreSQL 9.6 and MySQL 5.5). We have utilised Docker as a
+way to provide access to newer versions of databases which can be used as
+part of your build. These can be accessed with the following connection strings:
+
+- MySQL 8: `mysql2://root:root@127.0.0.1:33068/<your-database-name>`
+- PostgreSQL 13: `postgresql://postgres@127.0.0.1:54313/<your-database-name>`
+
+Typically for these to work with a Rails application you'll need to set an
+environment variable. For example, in your Jenkinsfile, for an application
+that uses `TEST_DATABASE_URL`, you can set:
+
+```
+#!/usr/bin/env groovy
+
+library("govuk")
+
+node {
+  govuk.setEnvar("TEST_DATABASE_URL", "postgresql://postgres@127.0.0.1:54313/content-publisher-test")
+
+  govuk.buildProject()
+}
+```
+
 ## Fixing the build number
 
 Master branch builds are often tagged with the Jenkins build number so that a
