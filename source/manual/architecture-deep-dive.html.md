@@ -13,6 +13,8 @@ We can cover a lot of GOV.UK architecture by asking ourselves three questions:
 2. What happens when a publisher hits 'Publish'?
 3. What happens when a developer deploys a change to an application?
 
+Refer to the [architectural summary of GOV.UK](/manual/architecture-shallow-dive.html) for a shorter summary of GOV.UK architecture.
+
 [GOV.UK]: https://www.gov.uk
 
 ## What happens when a user visits a page on GOV.UK?
