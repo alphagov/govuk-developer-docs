@@ -55,7 +55,7 @@ out more about [automatically configuring a GitHub repo][auto-config].
 
 Once your Jenkinsfile is on a branch, you can go to your job in new Jenkins and
 run "Branch Indexing" from the menu. This should trigger a build of all branches
-with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you've merged your `Jenkinsfile` into `master`.
+with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you've merged your `Jenkinsfile` into `main`.
 
 ### 5. Set up schema testing
 
