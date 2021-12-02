@@ -49,11 +49,13 @@ built automatically when commits are pushed.
 There is a task that can be run to add this webhook to the new repo. Find
 out more about [automatically configuring a GitHub repo][auto-config].
 
+[auto-config]: https://docs.publishing.service.gov.uk/manual/configure-github-repo.html
+
 ### 4. Branch indexing
 
 Once your Jenkinsfile is on a branch, you can go to your job in new Jenkins and
 run "Branch Indexing" from the menu. This should trigger a build of all branches
-with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you've merged your `Jenkinsfile` into `master`.
+with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you've merged your `Jenkinsfile` into `main`.
 
 ### 5. Set up schema testing
 
