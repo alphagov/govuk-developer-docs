@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Use GOV.UK Account - GOV.UK Developer Documentation</title>
+    <title>How does the GOV.UK Account work? - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Use GOV.UK Account - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="How does the GOV.UK Account work? - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/govuk-account.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Use GOV.UK Account" />
+      <meta property="og:title" content="How does the GOV.UK Account work?" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/govuk-account.html" />
 
@@ -123,7 +123,18 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Use GOV.UK Account</span></a>
+    <a href="#header"><span>How does the GOV.UK Account work?</span></a>
+    <ul>
+      <li>
+        <a href="#how-does-quotsigning-inquot-to-gov-uk-work"><span>How does “signing in” to GOV.UK work?</span></a>
+      </li>
+      <li>
+        <a href="#how-can-applications-use-the-account"><span>How can applications use the account?</span></a>
+      </li>
+      <li>
+        <a href="#notifications-and-the-account"><span>Notifications and the account</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -173,31 +184,71 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/693a12eec3d890083be85c737fe335268edd39b3">29 Jan 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/44a5f3289b52f441fded48d7e782d944dc01c7ef">26 Nov 2021</a>
 </div>
 
- <h1 id='header'>Use GOV.UK Account</h1> <p>GOV.UK Account is a centralised account infrastructure for GOV.UK. It gives GOV.UK users continuity across their different interactions with the government.</p>
-<p>For information on how to use GOV.UK Account, see the following:</p>
+ <h1 id='header'>How does the GOV.UK Account work?</h1> <p>GOV.UK uses the account service built and supported by the Digital Identity programme to give users a personalised experience.</p>
+<p>You can sign into a GOV.UK account by visiting <a href="https://www.gov.uk/account">www.gov.uk/account</a>.</p>
+<h2 id='how-does-quotsigning-inquot-to-gov-uk-work'>How does &ldquo;signing in&rdquo; to GOV.UK work?</h2><p><a href="images/govuk-account-sign-in.png" rel="noopener noreferrer"><img src="/manual/images/govuk-account-sign-in.png" alt="A successful sign in journey starting from /account" /></a></p>
+<p>Signing in to GOV.UK is done over the OpenID Connect protocol, with an Identity Provider built by the Digital Identity programme.</p>
+
+<ol>
+<li>The user visits a page which requires authentication, and they are <em>not</em> signed in (if they are, we just serve the page and are done)</li>
+<li>The relevant frontend app fetches a sign in URL from <a href="https://github.com/alphagov/account-api">account-api</a>, and tells account-api:
 
 <ul>
-<li>the <a href="https://team-manual.account.publishing.service.gov.uk/#gov-uk-account-team-manual">GOV.UK Account team manual</a></li>
-<li>the <a href="https://docs.account.publishing.service.gov.uk/#gov-uk-accounts-technical-documentation">GOV.UK Account technical documentation</a></li>
-</ul>
-<p>Use the team manual if you are a member of the GOV.UK Account team and need to find out information on internal GOV.UK Account team processes such as handling Zendesk tickets or deploying a branch to the staging environment.</p>
-<p>Use the technical documentation if you are not a member of the GOV.UK Account team and need to find out how to:</p>
+<li>Which URL we should send the user to after they successfully sign in</li>
+<li>Whether we need to authenticate them with MFA</li>
+</ul></li>
+<li>The user then signs in by interacting with the Identity Provider built by the Digital Identity Sign In team:
 
 <ul>
-<li>use GOV.UK Account</li>
-<li>integrate your service with GOV.UK Account</li>
+<li>They may create a new account, reset their password, or do something else at this point &mdash; it&rsquo;s a black box to us</li>
+<li>After signing in, Digital Identity redirect the user back to www.gov.uk/sign-in/callback with some query parameters</li>
+</ul></li>
+<li>The <a href="https://github.com/alphagov/frontend/blob/main/app/controllers/sessions_controller.rb">frontend SessionsController</a> validates the parameters, sets the user&rsquo;s cookie, and redirects them to the URL the relevant frontend app requested when fetching the sign in URL:
+
+<ul>
+<li><a href="https://github.com/alphagov/account-api">account-api</a> makes a request to the Identity Provider to validate the parameters: they&rsquo;re only valid for a few minutes, and only valid once, to prevent record &amp; replay attacks</li>
+<li>The Identity Provider will return basic information about the account, and a unique &ldquo;subject identifier&rdquo;, which we use to identify users on our side</li>
+<li>The cookie the <a href="https://github.com/alphagov/frontend/blob/main/app/controllers/sessions_controller.rb">frontend SessionsController</a> sets stores this subject identifier (and a few other things)</li>
+</ul></li>
+</ol>
+<p>If the user is already signed in on the Identity Provider domain (which may happen because our and their cookies are independent), they won&rsquo;t have to sign in, they&rsquo;ll be redirected straight to the after sign-in URL.</p>
+<p>The session cookie we set is managed in the <a href="https://github.com/alphagov/govuk-cdn-config/">govuk-cdn-config</a>:</p>
+
+<ul>
+<li>The <code>GOVUK-Account-Session</code> response header makes Fastly set the cookie value</li>
+<li>The <code>GOVUK-Account-End-Session</code> response header makes Fastly delete the cookie</li>
 </ul>
+<p>When running in development mode, we set a cookie on <code>.dev.gov.uk</code></p>
+<h2 id='how-can-applications-use-the-account'>How can applications use the account?</h2><p><a href="https://github.com/alphagov/govuk-cdn-config/">govuk-cdn-config</a> sets three custom request headers which apps can make use of (or in development mode they can use the cookie we set on <code>.dev.gov.uk</code>):</p>
+
+<ul>
+<li>The <code>GOVUK-Account-Session</code> request header holds the full cookie value</li>
+<li>The <code>GOVUK-Account-Session-Flash</code> request header holds any flash message portion</li>
+<li>The <code>GOVUK-Account-Session-Exists</code> request header is set to a constant value</li>
+</ul>
+<p>These headers are not set if there is no session cookie.  We have three different headers so that apps can fine-tune their caching behaviour.</p>
+<p>For example, an app which wants to show one thing if a user is logged in and another thing if a user is logged out, where the logged-in thing does not depend on who the user is, may just be able to use the <code>GOVUK-Account-Session-Exists</code> request header, and set a <code>Vary: GOVUK-Account-Session-Exists</code> response header, so that only two copies of the page are cached.</p>
+<p>Usually, frontend apps should interact with the account through the <a href="https://github.com/alphagov/govuk_personalisation">govuk_personalisation</a> gem.  It manages the request and response headers properly, and helps avoid the risk of caching a personalised response.</p>
+<h2 id='notifications-and-the-account'>Notifications and the account</h2><p>Email notifications are being migrated into the account.</p>
+<p>This involves changes to <a href="https://github.com/alphagov/email-alert-api">email-alert-api</a>:</p>
+
+<ul>
+<li>To record which GOV.UK account a Subscriber belongs to</li>
+<li>To change the email address of a Subscriber automatically when the email address of the corresponding GOV.UK account is changed</li>
+<li>To end a Subscriber&rsquo;s subscriptions automatically when the corresponding GOV.UK account is deleted</li>
+</ul>
+<p>And to <a href="https://github.com/alphagov/email-alert-frontend/">email-alert-frontend</a>:</p>
+
+<ul>
+<li>To allow signing in to manage subscriptions where a Subscriber belongs to a GOV.UK account</li>
+<li>To allow creating subscriptions without sending an email with a confirmation link, where the user is logged into a GOV.UK account which has a corresponding Subscriber</li>
+</ul>
+<p>We often use the terminology of &ldquo;linking&rdquo; a Subscriber to a GOV.UK account to refer to making an existing Subscriber belong to an account.</p>
+<p>Only notifications users who set up an account and then interact with their notifications through it will be &ldquo;linked&rdquo;.  At some point we are likely to force remaining users to set up an account but, for now at least, we have two separate ways of authenticating notifications users: magic links and the account.</p>
 
 
   <div class='related-content'>
@@ -210,8 +261,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/govuk-account.html.md.erb">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'Use%20GOV.UK%20Account'&amp;body=Problem%20with%20'Use%20GOV.UK%20Account'%20(https://docs.publishing.service.gov.uk/manual/govuk-account.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/govuk-account.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20'How%20does%20the%20GOV.UK%20Account%20work?'&amp;body=Problem%20with%20'How%20does%20the%20GOV.UK%20Account%20work?'%20(https://docs.publishing.service.gov.uk/manual/govuk-account.html)">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
