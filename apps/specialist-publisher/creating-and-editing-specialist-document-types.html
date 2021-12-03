@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>specialist-publisher: Create a new specialist document format - GOV.UK Developer Documentation</title>
+    <title>specialist-publisher: Creating or editing specialist document types - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/apps/specialist-publisher/create-a-new-specialist-document-type.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/apps/specialist-publisher/creating-and-editing-specialist-document-types.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="specialist-publisher: Create a new specialist document format - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/apps/specialist-publisher/create-a-new-specialist-document-type.html" />
+      <meta name="twitter:title" content="specialist-publisher: Creating or editing specialist document types - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/apps/specialist-publisher/creating-and-editing-specialist-document-types.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="specialist-publisher: Create a new specialist document format" />
+      <meta property="og:title" content="specialist-publisher: Creating or editing specialist document types" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/apps/specialist-publisher/create-a-new-specialist-document-type.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/apps/specialist-publisher/creating-and-editing-specialist-document-types.html" />
 
     
   </head>
@@ -353,17 +353,19 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/014b80ca3c75c4a602938406365a5729a3b1fb9a">11 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/5c60094908186d39476ec84ae743aa60b621d2b9">23 Nov 2021</a>
 </div>
 
-  <h1 class="page-title">specialist-publisher: Create a new specialist document format</h1>
+  <h1 class="page-title">specialist-publisher: Creating or editing specialist document types</h1>
 
   
-<p>To create a new specialist document you will have to make changes to this
+<p>To create or edit a new specialist document you will have to make changes to this
 application, <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a> and
 <a href="https://github.com/alphagov/search-api">search-api</a>. You will not have to make any changes to frontend
 applications.</p>
-<h2 id="add-a-schema-to-govuk-content-schemas">Add a schema to govuk-content-schemas</h2>
+<h1 id="creating-a-specialist-document-type">
+<strong>Creating</strong> a specialist document type</h1>
+<h2 id="1-add-a-schema-to-govuk-content-schemas">1. Add a schema to govuk-content-schemas</h2>
 <p>See example <a href="https://github.com/alphagov/govuk-content-schemas/pull/1077">PR for adding <code>product_safety_alert</code></a>.</p>
 <ol>
 <li>Add the format to <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/formats/specialist_document.jsonnet#L2-L22">this list</a> and to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/lib/govuk_content_schemas/allowed_document_types.yml">this list</a>
@@ -381,7 +383,7 @@ irb(main):002:0&gt; SecureRandom.uuid
 =&gt; "5087e8b6-ee54-40f9-b592-8c2813c7037d"
 </code></pre>
 <p>When the PR is reviewed and its tests passing, it can be merged and deployed at this point.</p>
-<h2 id="create-a-new-specialist-document-format-in-specialist-publisher">Create a new specialist document format in Specialist Publisher</h2>
+<h2 id="2-create-a-new-specialist-document-format-in-specialist-publisher">2. Create a new specialist document format in Specialist Publisher</h2>
 <h3 id="create-the-schema">Create the schema</h3>
 <p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/lib/documents/schemas/cma_cases.json">CMA cases</a>.</p>
 <p>New formats are often requested to be deployed in "pre-production mode", which is configured in this step (<a href="https://github.com/alphagov/specialist-publisher/blob/f8e93142dfad6f3971a73c923b01f2e7352bdb54/lib/documents/schemas/tax_tribunal_decisions.json#L64">example</a>). <code>pre-production</code> documents are only publishable on development and integration.</p>
@@ -389,7 +391,7 @@ irb(main):002:0&gt; SecureRandom.uuid
 <p>See <a href="https://github.com/alphagov/specialist-publisher/blob/main/app/models/cma_case.rb">CMA cases</a></p>
 <h3 id="create-the-view-template">Create the view template</h3>
 <p><a href="https://github.com/alphagov/specialist-publisher/blob/main/app/views/metadata_fields/_cma_cases.html.erb">CMA cases</a></p>
-<h2 id="configure-search-api">Configure Search API</h2>
+<h2 id="3-configure-search-api">3. Configure Search API</h2>
 <p>Search API needs copies of the schema very similar to the one in Specialist Publisher. See:</p>
 <ul>
 <li>
@@ -408,10 +410,10 @@ irb(main):002:0&gt; SecureRandom.uuid
 <li><a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb">elasticsearch_presenter.rb</a></li>
 <li><a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/specialist_presenter.rb">specialist_presenter.rb</a></li>
 </ul>
-<h2 id="configure-the-email-sign-up-page">Configure the email sign up page</h2>
+<h2 id="4-configure-the-email-sign-up-page">4. Configure the email sign up page</h2>
 <p>The email sign up page is rendered by <a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a> using the configuration in the new schema added to specialist publisher.</p>
 <p>If your email sign up page should have checkboxes (e.g. <a href="https://www.gov.uk/cma-cases/email-signup">cma-cases</a>), you will need to edit email-alert-api by adding the new tags to <a href="https://github.com/alphagov/email-alert-api/blob/3e0018510ea85f5d561e2865ad149832b94688a1/lib/valid_tags.rb#L2">valid_tags.rb</a>.</p>
-<h2 id="deploy-and-publish">Deploy and publish</h2>
+<h2 id="5-deploy-and-publish">5. Deploy and publish</h2>
 <p>To deploy:</p>
 <ol>
 <li>Deploy Specialist Publisher and Search API (and govuk-content-schemas if you haven't already).</li>
@@ -425,7 +427,7 @@ irb(main):002:0&gt; SecureRandom.uuid
 <ol start="3">
 <li>Use the "Run rake task" Jenkins job to run <code>publishing_api:publish_finders</code> or <code>publishing_api:publish_finder[your_format_name_based_on_the_schema_file]</code> against the specialist publisher app on a backend machine.</li>
 </ol>
-<h2 id="permissions">Permissions</h2>
+<h2 id="6-permissions">6. Permissions</h2>
 <p>Specialist Publisher grants access to the publishing interface for your new document type to the following Signon users:</p>
 <ul>
 <li>Users that belong to the owner organisation AND have <code>Editor</code> permissions</li>
@@ -433,6 +435,48 @@ irb(main):002:0&gt; SecureRandom.uuid
 </li>
 </ul>
 <p>You'll need to <a href="https://docs.publishing.service.gov.uk/apps/signon/usage.html#creating-new-permissions">create the new permission manually</a>.</p>
+<h1 id="editing-a-specialist-document-type">
+<strong>Editing</strong> a specialist document type</h1>
+<p>We often receive requests to add new fields to a specialist document. Or to add new values to existing fields.</p>
+<h2 id="adding-a-new-field-to-an-existing-specialist-document">Adding a new field to an existing specialist document</h2>
+<ol>
+<li>
+<p>In govuk-content-schemas, add the new field to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/shared/definitions/_specialist_document.jsonnet">the specialist document schema</a>. See <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/c2b33fbdbdc3ce7363b87e964b8ff75dc3300573#diff-3c69cee80f0f1b0cb114f9f9f102122b33e2208ecf3a77829506390b9938eb61">this</a> commit for an example. Once approved, this change can be merged and deployed.</p>
+</li>
+<li>
+<p>In specialist-publisher, add the new field to the relevant <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/models">model</a>, <a href="https://github.com/alphagov/specialist-publisher/tree/main/app/views/metadata_fields">form</a>, and <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> files. See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/cc9e8fe482dbca2ef678bb8219252e7bd4f4d154">this</a> commit for an example.</p>
+</li>
+<li>
+<p>In search-api, add the new field in the following places (see <a href="https://github.com/alphagov/search-api/pull/2320/commits/ca6d0142e29b9755aad2e6bd59a3f576b727bd24">this</a> commit for an example):</p>
+</li>
+</ol>
+<ul>
+<li>the relevant schema in the <a href="https://github.com/alphagov/search-api/tree/main/config/schema/elasticsearch_types">elasticsearch_types </a>directory.</li>
+<li>the <a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/elasticsearch_presenter.rb">elasticsearch_presenter</a>.</li>
+<li>the <a href="https://github.com/alphagov/search-api/blob/main/lib/govuk_index/presenters/specialist_presenter.rb">specialist_presenter</a>.</li>
+<li>the <a href="https://github.com/alphagov/search-api/blob/main/config/schema/field_definitions.json">field_definitions</a> file.</li>
+</ul>
+<ol start="4">
+<li>Follow steps in the <a href="#Deploy-and-publish">Deploy and publish</a> section above, to re-publish the finder and reindex the GOVUK search index.</li>
+</ol>
+<h2 id="adding-or-amending-values-for-existing-fields-on-a-specialist-document">Adding or amending values for existing fields on a specialist document</h2>
+<ol>
+<li>
+<p>In govuk-content-schemas, find the field you are amending in the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>, and add the new values. See <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/b81ec718f52b1e6603c201c44db07f0357158723">this</a> commit for an example. Once approved, this change can be merged and deployed.</p>
+</li>
+<li>
+<p>In specialist-publisher, add the new values to the relevant file in the <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> directory. See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/97c8d713f8e62b0cb8763fe26e1dcf5a0435c12d">this</a> commit for an example.</p>
+</li>
+<li>
+<p>In search-api, amend the value in the relevant schema in the <a href="https://github.com/alphagov/search-api/tree/main/config/schema/elasticsearch_types">elasticsearch_types</a> directory. See <a href="https://github.com/alphagov/search-api/pull/2320/commits/0f29e310581e30707eea7fe8c91063974636dbe2">this</a> commit for an example.</p>
+</li>
+<li>
+<p>Republish the finder, see step 3 in the <a href="#Deploy-and-publish">Deploy and publish</a> section above. You do not need to reindex search :sweat_smile:</p>
+</li>
+</ol>
+<h1 id="editing-a-specialist-finder">
+<strong>Editing</strong> a specialist finder</h1>
+<p>The <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> files that define a specialist document, are also used to configure that document's specialist finder. See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/925abc689119138a0e04e17d3610f8ae276773dd">this</a> commit for an example.</p>
 
 
             
@@ -440,8 +484,8 @@ irb(main):002:0&gt; SecureRandom.uuid
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/specialist-publisher/blob/main/docs/create-a-new-specialist-document-type.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20''&amp;body=Problem%20with%20''%20(https://docs.publishing.service.gov.uk/apps/specialist-publisher/create-a-new-specialist-document-type.html)">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/specialist-publisher/blob/main/docs/creating-and-editing-specialist-document-types.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?labels=bug&amp;title=Re:%20''&amp;body=Problem%20with%20''%20(https://docs.publishing.service.gov.uk/apps/specialist-publisher/creating-and-editing-specialist-document-types.html)">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
