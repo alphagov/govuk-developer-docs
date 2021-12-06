@@ -135,7 +135,7 @@
             <a href="#a-user-visits-a-gov-uk-webpage"><span>A user visits a GOV.UK webpage</span></a>
           </li>
           <li>
-            <a href="#a-user-searches-gov-uk-using-the-search-page"><span>A user searches GOV.UK using the search page</span></a>
+            <a href="#a-user-searches-gov-uk"><span>A user searches GOV.UK</span></a>
           </li>
         </ul>
       </li>
@@ -201,7 +201,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/694b4e4be50692e63bbbc496d8636809957be132">16 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c4dc3b669aada6b670d15efab7a79e0caf24e532">6 Dec 2021</a>
 </div>
 
  <h1 id='header'>Architectural summary of GOV.UK</h1> <p>The following content is a high-level summary of GOV.UK architecture, intended for both developers and non-developers to refer to.</p>
@@ -216,7 +216,7 @@
 <ul>
 <li>visits the GOV.UK homepage</li>
 <li>visits a GOV.UK webpage</li>
-<li>searches GOV.UK using the search page</li>
+<li>searches GOV.UK</li>
 </ul>
 <h3 id='a-user-visits-the-gov-uk-homepage'>A user visits the GOV.UK homepage</h3><p>The user visits <code>https://www.gov.uk</code> or <code>https://gov.uk</code> to get to the GOV.UK homepage.</p>
 <p>The user&rsquo;s browser uses <a href="/manual/dns.html">Domain Name System (DNS)</a> to look up which IP address is associated with the GOV.UK domain. For the GOV.UK domain, the IP address is for <a href="https://www.fastly.com/">Fastly</a>.</p>
@@ -231,8 +231,8 @@
 <p>Finally, Fastly sends the response back to the user.</p>
 <h3 id='a-user-visits-a-gov-uk-webpage'>A user visits a GOV.UK webpage</h3><p>The user searches for a GOV.UK webpage, and selects the webpage link in the search results. For example, this <a href="https://www.gov.uk/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england">news page about changes to travel between Nigeria and England</a>.</p>
 <p>The user&rsquo;s browser sends the request to the <a href="https://www.fastly.com/">Fastly</a> content delivery network (CDN).</p>
-<p>If Fastly has the homepage cached, Fastly returns the homepage to the user.</p>
-<p>If Fastly does not have the homepage cached, Fastly sends the request on to GOV.UK Origin.</p>
+<p>If Fastly has the page cached, Fastly returns the page to the user.</p>
+<p>If Fastly does not have the page cached, Fastly sends the request on to GOV.UK Origin.</p>
 <p>Within Origin, the request goes to an application called <a href="https://github.com/alphagov/router">Router</a> to determine which GOV.UK application will produce the page.</p>
 <p>Router chooses Frontend to produce the page, and forwards the request to Frontend.</p>
 <p><a href="https://github.com/alphagov/frontend">Frontend</a> looks at the request and decides which content to get from the Content Store. The <a href="https://github.com/alphagov/content-store">Content Store</a> is:</p>
@@ -244,7 +244,7 @@
 <p>Frontend then queries the Content Store API to get the content in an <a href="https://www.gov.uk/api/content/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england">API response from the Content Store</a>.</p>
 <p>Frontend then builds the page using the content in the API response, and sends that response back to Router.</p>
 <p>Router sends the response to Fastly. Fastly sends the response back to the user.</p>
-<h3 id='a-user-searches-gov-uk-using-the-search-page'>A user searches GOV.UK using the search page</h3><p>The user goes to the <a href="https://www.gov.uk/search">GOV.UK search page</a>, and <a href="https://www.gov.uk/search/all?keywords=tax&amp;order=relevance">searches for something, for example, &ldquo;tax&rdquo;</a>.</p>
+<h3 id='a-user-searches-gov-uk'>A user searches GOV.UK</h3><p>The user goes to the <a href="https://www.gov.uk/search">GOV.UK search page</a>, and <a href="https://www.gov.uk/search/all?keywords=tax&amp;order=relevance">searches for something, for example, &ldquo;tax&rdquo;</a>.</p>
 <p>The user&rsquo;s browser uses DNS to figure out where to send the request, and sends that request to Fastly.</p>
 <p>If Fastly has the search results page cached, Fastly returns that page to the user.</p>
 <p>If Fastly does not have the search results page cached, Fastly sends the request on to Origin.</p>
@@ -261,6 +261,7 @@
 <li>Specialist Publisher</li>
 <li>Travel Advice Publisher</li>
 <li>Collections Publisher</li>
+<li>Manuals Publisher</li>
 </ul>
 <p>The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher (referred to as &ldquo;Publisher&rdquo;).</p>
 <h3 id='a-publisher-publishes-content-to-live'>A publisher publishes content to live</h3><p>A publisher signs into their <a href="/apps/signon.html">Signon</a> account. Signon is a centralised single sign-on provider for GDS services that provides username/password and two-factor authentication.</p>
