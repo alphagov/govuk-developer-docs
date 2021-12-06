@@ -20,7 +20,7 @@ This content goes through 3 scenarios where a user:
 
 - visits the GOV.UK homepage
 - visits a GOV.UK webpage
-- searches GOV.UK using the search page
+- searches GOV.UK
 
 ### A user visits the GOV.UK homepage
 
@@ -52,9 +52,9 @@ The user searches for a GOV.UK webpage, and selects the webpage link in the sear
 
 The user's browser sends the request to the [Fastly](https://www.fastly.com/) content delivery network (CDN).
 
-If Fastly has the homepage cached, Fastly returns the homepage to the user.
+If Fastly has the page cached, Fastly returns the page to the user.
 
-If Fastly does not have the homepage cached, Fastly sends the request on to GOV.UK Origin.
+If Fastly does not have the page cached, Fastly sends the request on to GOV.UK Origin.
 
 Within Origin, the request goes to an application called [Router](https://github.com/alphagov/router) to determine which GOV.UK application will produce the page.
 
@@ -71,7 +71,7 @@ Frontend then builds the page using the content in the API response, and sends t
 
 Router sends the response to Fastly. Fastly sends the response back to the user.
 
-### A user searches GOV.UK using the search page
+### A user searches GOV.UK
 
 The user goes to the [GOV.UK search page](https://www.gov.uk/search), and [searches for something, for example, "tax"](https://www.gov.uk/search/all?keywords=tax&order=relevance).
 
@@ -99,6 +99,7 @@ GOV.UK has the following applications to publish content:
 - Specialist Publisher
 - Travel Advice Publisher
 - Collections Publisher
+- Manuals Publisher
 
 The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher (referred to as "Publisher").
 
