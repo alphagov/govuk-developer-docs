@@ -223,15 +223,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a4099a49f5658f63b63ba82705605fd6e8360c57">25 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5d051ffb40ebbc9e736ef3d3e7a58e951f5e2b5">6 Dec 2021</a>
 </div>
 
  <h1 id='header'>Retire an application</h1> <h2 id='1-remove-app-from-puppet'>1. Remove app from puppet</h2><p>Configure Puppet to remove the app from all servers. Change the app resource,
@@ -248,8 +241,7 @@ load-balancer entries, but leave the hieradata entries.</p>
 <li><a href="https://github.com/alphagov/govuk-puppet/pull/5507">https://github.com/alphagov/govuk-puppet/pull/5507</a></li>
 </ul>
 <h2 id='2-remove-smoke-tests'>2. Remove smoke tests</h2><p>Remove any <a href="https://github.com/alphagov/smokey">smokey tests</a> specific to the application.</p>
-<h2 id='3-remove-deploy-scripts'>3. Remove deploy scripts</h2><p>Remove necessary scripts from the <a href="https://github.com/alphagov/alphagov-deployment">alphagov-deployment</a>
-(private repo) and <a href="https://github.com/alphagov/govuk-app-deployment">govuk-app-deployment</a> repos.</p>
+<h2 id='3-remove-deploy-scripts'>3. Remove deploy scripts</h2><p>Remove necessary scripts from <a href="https://github.com/alphagov/govuk-app-deployment">govuk-app-deployment</a>.</p>
 <h2 id='4-update-release-app'>4. Update Release app</h2><p>Mark the application as archived in the Release app.</p>
 <p>Edit the application in the release app (you&rsquo;ll need the <code>deploy</code> permission to
 do this), and check the <code>archived</code> checkbox. This will hide it from the UI.</p>

@@ -353,7 +353,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/fd85712ed553e934f4ffe3fded45a318eb17aa26">14 Jul 2021</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/e6e5d7b881f3cc230d910e9a442add46927d8152">6 Dec 2021</a>
 </div>
 
   <h1 class="page-title">frontend: Calendars</h1>
@@ -378,11 +378,9 @@
 </code></pre>
 <p>The division <code>title</code> attribute is optional.  If this is not present the slug will be humanized and used instead.</p>
 <h2 id="publishing-calendars">Publishing Calendars</h2>
-<p>Send the calendars to the publishing-api:</p>
-<pre><code>`bundle exec rake publishing_api:publish_calendars`
-</code></pre>
-<p>If you're using govuk-docker, you may need to <code>govuk-docker-up</code> on <code>publishing-api</code> in a separate shell. You may also need to run the rake task a couple of times if you encounter timeouts.</p>
-<p>Search indexing is performed automatically on data sent to publishing api.</p>
+<p>You'll need to run the <code>publishing_api:publish_calendars</code> rake task against the <code>frontend</code> app on the <code>frontend</code> machine.</p>
+<p>This will update <a href="https://www.gov.uk/when-do-the-clocks-change">https://www.gov.uk/when-do-the-clocks-change</a> and <a href="https://www.gov.uk/bank-holidays">https://www.gov.uk/bank-holidays</a>.</p>
+<p>To test locally, you may need to <code>govuk-docker-up</code> on <code>publishing-api</code> in a separate shell, before you run the rake task. You may also need to run the rake task a couple of times if you encounter timeouts.</p>
 <h2 id="bank-holidays">Bank Holidays</h2>
 <p>A rake task has been created to generate the bank holidays JSON for a given year. They need to be then inserted, and modified to take into account any additions/modifications made by proclamation.</p>
 <p>Run the rake task like this:</p>
