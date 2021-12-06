@@ -28,10 +28,8 @@ Remove any [smokey tests][smokey] specific to the application.
 
 ## 3. Remove deploy scripts
 
-Remove necessary scripts from the [alphagov-deployment][alphagov-deployment]
-(private repo) and [govuk-app-deployment][govuk-app-deployment] repos.
+Remove necessary scripts from [govuk-app-deployment][govuk-app-deployment].
 
-[alphagov-deployment]: https://github.com/alphagov/alphagov-deployment
 [govuk-app-deployment]: https://github.com/alphagov/govuk-app-deployment
 
 ## 4. Update Release app
