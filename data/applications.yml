@@ -455,12 +455,6 @@
   sentry_url: false
   dashboard_url: false
   deploy_url: false
-- github_repo_name: tech-docs-monitor
-  management_url: https://dashboard.heroku.com/apps/govuk-tech-docs-monitor
-  production_hosted_on: heroku
-  type: Utilities
-  sentry_url: false
-  dashboard_url: false
 - github_repo_name: govuk-pact-broker
   team: "#govuk-platform-health"
   production_hosted_on: paas
@@ -614,3 +608,10 @@
     calendars used to render the bank-holidays and
     when-do-the-clocks-change pages. Since May 2020 those pages are
     rendered by frontend.
+- github_repo_name: tech-docs-monitor
+  retired: true
+  type: Utilities
+  description: |
+    Was used to alert the page owner when a page needed reviewing, according to
+    its expiry date. It was seen as unhelpful noise - instead we started showing
+    the last commit date and a warning to the reader. 
