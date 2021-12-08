@@ -352,7 +352,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/e67e0f5b6b3c761d9bd7d2f64ce2e34451e07f02">23 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/48a846908d452edba62b0a933aacb28e599c6655">7 Dec 2021</a>
 </div>
 
   <h1 class="page-title">account-api: API documentation</h1>
@@ -1016,12 +1016,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 </ul>
 </li>
 <li>
-<code>has_unconfirmed_email</code> <em>(optional)</em>
-<ul>
-<li>whether the user has a pending email change to confirm (a boolean)</li>
-</ul>
-</li>
-<li>
 <code>cookie_consent</code> <em>(optional)</em>
 <ul>
 <li>whether the user has consented to analytics cookies, this is temporary while we import data from the account-manager (a boolean)</li>
@@ -1044,7 +1038,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 </li>
 <li><code>email</code></li>
 <li><code>email_verified</code></li>
-<li><code>has_unconfirmed_email</code></li>
 <li><code>cookie_consent</code></li>
 <li><code>feedback_consent</code></li>
 </ul>
@@ -1058,7 +1051,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
     subject_identifier: "subject-identifier",
     email: "user@example.com",
     email_verified: true,
-    has_unconfirmed_email: false,
     cookie_consent: true,
     feedback_consent: false,
 )
@@ -1068,7 +1060,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
     "sub": "subject-identifier",
     "email": "user@example.com",
     "email_verified": true,
-    "has_unconfirmed_email": false
 }
 </code></pre>
 <h3 id="delete-apioidc-userssubject_identifier"><code>DELETE /api/oidc-users/:subject_identifier</code></h3>
