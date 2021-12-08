@@ -468,22 +468,21 @@
 
 <p>This application does not store documents in a database of its own. Instead it uses Publishing API to store and retrieve documents. MongoDB is used for storing local user records.</p>
 
-<p>Formats can be flagged as <code>pre-production</code> (only publishable on development and integration). Read <a href="/apps/specialist-publisher/create-a-new-specialist-document-type.html">Create a new specialist document format</a> for details.</p>
+<p>Formats can be flagged as <code>pre-production</code> (only publishable on development and integration). Read <a href="/apps/specialist-publisher/creating-and-editing-specialist-document-types.html">Creating and editing specialist document types</a>for details.</p>
 
-<h2 id="live-examples">Live examples</h2>
+<h2 id="some-live-examples">Some live examples</h2>
 
 <ul>
 <li><a href="https://www.gov.uk/aaib-reports">AAIB Reports</a></li>
-<li><a href="https://www.gov.uk/business-finance-support">Business Finance Support Schemes</a></li>
 <li><a href="https://www.gov.uk/cma-cases">CMA Cases</a></li>
 <li><a href="https://www.gov.uk/countryside-stewardship-grants">Countryside Stewardship Grants</a></li>
 <li><a href="https://www.gov.uk/drug-safety-update">Drug Safety Update</a></li>
-<li><a href="https://www.gov.uk/european-structural-investment-funds">ESI Funds</a></li>
 <li><a href="https://www.gov.uk/international-development-funding">International Development Funds</a></li>
 <li><a href="https://www.gov.uk/drug-device-alerts">Medical Safety Alerts</a></li>
 <li><a href="https://www.gov.uk/maib-reports">MAIB Reports</a></li>
 <li><a href="https://www.gov.uk/raib-reports">RAIB Reports</a></li>
 <li><a href="https://www.gov.uk/research-for-development-outputs">Research For Development Outputs</a></li>
+<li><a href="https://www.gov.uk/uk-market-conformity-assessment-bodies">UK Market Conformity Assessment Bodies</a></li>
 </ul>
 
 <h2 id="nomenclature">Nomenclature</h2>
@@ -494,7 +493,7 @@
 <li>
 <strong>Finder</strong>:  Sometimes Formats are referred to as Finders. They are called &lsquo;Finders&rsquo; because each one of them creates a finder on GOV.UK, e.g. <a href="https://www.gov.uk/raib-reports">https://www.gov.uk/raib-reports</a>. The formats are served by <a href="https://github.com/alphagov/finder-frontend">Finder Frontend</a>.</li>
 <li>
-<strong>Document</strong>: Specialist Documents are created by Government editors and can be published to gov.uk. Documents differ from each other depending on their format. These differences are largely determined by what is contained in the <a href="https://github.com/alphagov/specialist-publisher/blob/6f8eee9ef0bd3a4a72638f5e8301225e692145a3/lib/documents/schemas/aaib_reports.json">schema</a> of a format.</li>
+<strong>Document</strong>: Specialist Documents are created by Government editors and can be published to GOV.UK. Documents differ depending on their format, largely determined by the format&rsquo;s <a href="https://github.com/alphagov/specialist-publisher/blob/6f8eee9ef0bd3a4a72638f5e8301225e692145a3/lib/documents/schemas/aaib_reports.json">schema</a>.</li>
 <li>
 <strong>Schema</strong>: JSON files defining attributes for each format, including <code>base_path</code>, <code>document_noun</code> and <code>document_type</code>. It also contains the facets and their possible values for each <code>document_type</code> which are displayed by <code>_form.html.erb</code>.</li>
 </ul>
@@ -512,7 +511,7 @@
 <p>You may find that you can&rsquo;t see any documents after replicating data. To fix
 this, you need to grant user permissions in this application:</p>
 
-<pre lang="bash"><code>bundle exec rake permissions:grant['Chris Patuzzo'] # Or whichever user you're logged in as.
+<pre lang="bash"><code>bundle exec rake permissions:grant['Joanne Bloggs'] # Or whichever user you're logged in as.
 </code></pre>
 
 <h3 id="running-the-test-suite">Running the test suite</h3>
@@ -525,7 +524,7 @@ this, you need to grant user permissions in this application:</p>
 <ul>
 <li><a href="/apps/specialist-publisher/email-alerts.html">Email alerts</a></li>
 <li><a href="/apps/specialist-publisher/tasks.html">Rake tasks</a></li>
-<li><a href="/apps/specialist-publisher/creating-a-new-specialist-document-type.html">Creating a new specialist document type</a></li>
+<li><a href="/apps/specialist-publisher/creating-and-editing-specialist-document-types.html">Creating and editing specialist document types</a></li>
 <li><a href="/apps/specialist-publisher/updating-existing-organisation-data.html">Updating existing organisation data</a></li>
 <li><a href="https://github.com/alphagov/specialist-publisher/blob/main/docs/phase-2-migration/README.md">Historical info about migrating to use the Publishing API</a></li>
 </ul>
