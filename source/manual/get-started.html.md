@@ -315,7 +315,11 @@ See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/Use
 
 If you have a GDS-issued Yubikey, you can run `gds config yubikey true` in the GDS CLI to set GDS CLI to automatically pull the MFA code from your Yubikey.
 
-You have completed the get started process.
+You have completed the get started process. You can now use `gds aws` to run generic [aws CLI](https://aws.amazon.com/cli/) commands by prefixing them with `gds aws <role>`. For example:
+
+```shell
+$ gds aws govuk-integration-readonly aws s3 ls
+```
 
 ### Reset your AWS vault password
 
