@@ -6,29 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: tech-docs-monitor (retired) - GOV.UK Developer Documentation</title>
+    <title>Application: tech-docs-monitor - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/apps/tech-docs-monitor.html">
 
-      <meta name="description" content="Everything about the tech-docs-monitor application (Was used to alert the page owner when a page needed reviewing, according to
-its expiry date. It was seen as unhelpful noise - instead we started showing
-the last commit date and a warning to the reader. 
-)" />
+      <meta name="description" content="Everything about the tech-docs-monitor application (Part of alphagov/tech-docs-template (issues 👉https://github.com/alphagov/tech-docs-template/issues))" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: tech-docs-monitor (retired) - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Application: tech-docs-monitor - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/apps/tech-docs-monitor.html" />
 
-      <meta property="og:description" content="Everything about the tech-docs-monitor application (Was used to alert the page owner when a page needed reviewing, according to
-its expiry date. It was seen as unhelpful noise - instead we started showing
-the last commit date and a warning to the reader. 
-)" />
+      <meta property="og:description" content="Everything about the tech-docs-monitor application (Part of alphagov/tech-docs-template (issues 👉https://github.com/alphagov/tech-docs-template/issues))" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: tech-docs-monitor (retired)" />
+      <meta property="og:title" content="Application: tech-docs-monitor" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/apps/tech-docs-monitor.html" />
 
@@ -288,6 +282,7 @@ the last commit date and a warning to the reader.
           <li><a href="/apps/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
           <li><a href="/apps/slimmer.html"><span>slimmer</span></a></li>
           <li><a href="/apps/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/apps/tech-docs-monitor.html" class="toc-link--in-view"><span>tech-docs-monitor</span></a></li>
         </ul>
       </li>
       <li>
@@ -348,13 +343,112 @@ the last commit date and a warning to the reader.
 </div>
 
   
-  <h1 class="page-title">Application: tech-docs-monitor (retired)</h1>
+  <h1 class="page-title">Application: tech-docs-monitor</h1>
 
-  <p>This application is retired.</p>
-<p><p>Was used to alert the page owner when a page needed reviewing, according to
-its expiry date. It was seen as unhelpful noise - instead we started showing
-the last commit date and a warning to the reader.</p></p>
-<p><a href="https://github.com/alphagov/tech-docs-monitor">GitHub repository</a></p>
+  <p>Part of alphagov/tech-docs-template (issues 👉<a href="https://github.com/alphagov/tech-docs-template/issues">https://github.com/alphagov/tech-docs-template/issues</a>)</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/tech-docs-monitor">tech-docs-monitor</a></dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">N/A</dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value"><strong>Heroku</strong></dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul>
+
+    <li><a href="https://dashboard.heroku.com/apps/govuk-tech-docs-monitor" class="govuk-link">Manage application</a></li>
+
+
+
+
+
+
+
+
+</ul>
+</dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div></dl>
+    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p>This repo is part of the <a href="https://github.com/alphagov/tech-docs-template">tech-docs-template</a>, and is used in
+conjunction with the <a href="https://alphagov.github.io/tech-docs-manual/#last-reviewed-on-and-review-in">page expiry feature</a> that is part of the
+<a href="https://github.com/alphagov/tech-docs-gem">tech-docs-gem</a></p>
+
+<p>Concourse CI will run the script once a day during weekdays.
+It will look at the pages API for your site, find all pages that have expired, and post a Slack message to the owner of each page to let them know that it needs reviewing.</p>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="alphagov-users">
+<code>alphagov</code> users</h3>
+
+<p>If you are part of the <code>alphagov</code> GitHub organisation you can enable the notifier by raising a PR to add your published documentation to the <a href="https://github.com/alphagov/tech-docs-monitor/blob/master/Rakefile"><code>Rakefile</code></a>:</p>
+
+<pre><code>pages_urls = [
+  "https://gds-way.cloudapps.digital/api/pages.json",
+  "https://docs.publishing.service.gov.uk/api/pages.json",
+  "your-docs-site.cloudapps.digital"
+]
+</code></pre>
+
+<p>If you want to limit the number of links that are posted to Slack after a single run, add this to  <code>limits</code> in the <a href="https://github.com/alphagov/tech-docs-monitor/blob/master/Rakefile"><code>Rakefile</code></a></p>
+
+<pre><code>limits = {
+  "your-docs-site.cloudapps.digital" =&gt; 3
+}
+</code></pre>
+
+<p>The default behaviour is no limit, and the Slack message will contain all pages discovered.</p>
+
+<h3 id="general-configuration">General configuration</h3>
+
+<p>The following environment variables are necessary:</p>
+
+<ul>
+<li>
+<code>SLACK_WEBHOOK_URL</code>: The Slack webhook URL to allow messages to be posted.</li>
+<li>
+<code>REALLY_POST_TO_SLACK</code>: Messages will only be posted to Slack if the value of
+this var is <code>1</code>.</li>
+</ul>
+
+<h2 id="licence">Licence</h2>
+
+<p>The gem is available as open source under the terms of the <a href="https://github.com/alphagov/tech-docs-monitor/blob/main/LICENCE">MIT License</a>.</p>
+<p></div></p>
 
 
             
