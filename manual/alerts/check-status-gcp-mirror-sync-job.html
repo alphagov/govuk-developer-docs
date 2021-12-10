@@ -165,10 +165,10 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2de9a3c13f63acb3de1c0208c25850b6a92fc691">13 Jul 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b8fac960ace856877a8fdc51ef06b301134638b6">10 Dec 2021</a>
 </div>
 
- <h1 id='header'>Check status of latest GCP mirror sync job</h1> <p>This alert means that the latest mirror sync job from AWS S3 to GCP GCS Google Cloud Storage (GCS) failed. The mirror sync job exists to ensure that we have an up-to-date copy of the mirrored contents of GOV.UK from the AWS S3 bucket <code>govuk-production-mirror</code> within the same-named bucket in GCS, should we ever need to <a href="[https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html]">fall back to the static mirror</a> hosted on GCP. The job lives within GCP Data Transfer and runs everyday at 18:00 UTC.</p>
+ <h1 id='header'>Check status of latest GCP mirror sync job</h1> <p>This alert means that the latest mirror sync job from AWS S3 to GCP GCS Google Cloud Storage (GCS) failed. The mirror sync job exists to ensure that we have an up-to-date copy of the mirrored contents of GOV.UK from the AWS S3 bucket <code>govuk-production-mirror</code> within the same-named bucket in GCS, should we ever need to <a href="https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html">fall back to the static mirror</a> hosted on GCP. The job lives within GCP Data Transfer and runs everyday at 18:00 UTC.</p>
 <p>Occasionally we see errors during the mirror sync process, such as files not being found. Previously there was no remedial action we could take on these errors as the Data Transfer API was broken, however now that it has been fixed it is straightforward to retry the failed job.</p>
 <h2 id='manually-retrying-the-mirror-sync-job'>Manually retrying the mirror sync job</h2><h3 id='prerequisites'>Prerequisites:</h3>
 <ul>
@@ -177,7 +177,7 @@
 </ul>
 <h3 id='via-the-gcp-console'>Via the GCP Console:</h3>
 <ol>
-<li>Go to the <a href="[https://console.cloud.google.com/transfer/cloud/jobs]">Data Transfer</a> section in the GCP Console, ensuring you&rsquo;re viewing the GOV.UK Production project.</li>
+<li>Go to the <a href="https://console.cloud.google.com/transfer/cloud/jobs">Data Transfer</a> section in the GCP Console, ensuring you&rsquo;re viewing the GOV.UK Production project.</li>
 <li>Click on the transfer job named <em>daily sync of the primary govuk-production-mirror S3 bucket</em>.</li>
 <li>Click on the <em>Start a run</em> button at the top of the page to queue a new transfer operation.</li>
 <li>A new transfer operation will appear below in the <em>Run history</em> table, which you can tail by clicking its start time.</li>
