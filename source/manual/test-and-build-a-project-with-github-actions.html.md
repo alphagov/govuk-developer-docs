@@ -112,9 +112,7 @@ Notes:
 
 This differs to a simple Ruby application as Ruby gems are not tied to a
 particular Ruby version, therefore for those we should test a variety of
-Ruby versions. Do bear in mind that due to the restriction on secrets
-usage we cannot currently publish gems through GitHub Actions, this can
-still be achieved through Jenkins.
+Ruby versions.
 
 ```yml
 # .github/workflows/ci.yml
