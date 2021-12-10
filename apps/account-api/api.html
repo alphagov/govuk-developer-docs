@@ -353,7 +353,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/48a846908d452edba62b0a933aacb28e599c6655">7 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/9a9f700a780019ffd9acf79e44d6df8412fdb70b">10 Dec 2021</a>
 </div>
 
   <h1 class="page-title">account-api: API documentation</h1>
@@ -1016,18 +1016,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 <li>whether the new email address is verified (a boolean)</li>
 </ul>
 </li>
-<li>
-<code>cookie_consent</code> <em>(optional)</em>
-<ul>
-<li>whether the user has consented to analytics cookies, this is temporary while we import data from the account-manager (a boolean)</li>
-</ul>
-</li>
-<li>
-<code>feedback_consent</code> <em>(optional)</em>
-<ul>
-<li>whether the user has consented to being contacted for feedback, this is temporary while we import data from the account-manager (a boolean)</li>
-</ul>
-</li>
 </ul>
 <h4 id="json-response-fields">JSON response fields</h4>
 <ul>
@@ -1039,8 +1027,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 </li>
 <li><code>email</code></li>
 <li><code>email_verified</code></li>
-<li><code>cookie_consent</code></li>
-<li><code>feedback_consent</code></li>
 </ul>
 <h4 id="response-codes">Response codes</h4>
 <ul>
@@ -1052,8 +1038,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
     subject_identifier: "subject-identifier",
     email: "user@example.com",
     email_verified: true,
-    cookie_consent: true,
-    feedback_consent: false,
 )
 </code></pre>
 <p>Response:</p>
