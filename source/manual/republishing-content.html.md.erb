@@ -21,7 +21,7 @@ If the documents are in Whitehall, there are Rake tasks you can run as outlined 
 - [staging](https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
 - [production](https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=whitehall&var-Interval=$__auto_interval)
 
-<%= RunRakeTask.links("whitehall", "publishing_api:republish_document[slug]") %>
+<%= RunRakeTask.links("whitehall", "publishing_api:republish:document_by_slug[slug]") %>
 
 For organisations, use the `organisation_by_slug` rake task:
 
