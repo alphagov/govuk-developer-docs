@@ -182,7 +182,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/388b72e6cddb65c24938c7f8cd3ad10716799d30">29 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5c81126f55c4418af91484861ddbfa17ba72719f">10 Dec 2021</a>
 </div>
 
  <h1 id='header'>Republish content</h1> <p>Sometimes it may be necessary to republish content to make it show up on the website. For example if we make an update to <a href="https://github.com/alphagov/govspeak/">govspeak</a> that would require us to re-render and save new HTML for content.</p>
@@ -201,9 +201,9 @@
 </ul>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug]" class="govuk-link">Run publishing_api:republish_document[slug] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug]" class="govuk-link">Run publishing_api:republish_document[slug] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug]" class="govuk-link">⚠️ Run publishing_api:republish_document[slug] on Production ⚠️</a></li>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:document_by_slug[slug]" class="govuk-link">Run publishing_api:republish:document_by_slug[slug] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:document_by_slug[slug]" class="govuk-link">Run publishing_api:republish:document_by_slug[slug] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:document_by_slug[slug]" class="govuk-link">⚠️ Run publishing_api:republish:document_by_slug[slug] on Production ⚠️</a></li>
 </ul>
 <p>For organisations, use the <code>organisation_by_slug</code> rake task:</p>
 
