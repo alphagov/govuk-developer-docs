@@ -225,7 +225,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/37e09a669a0dff952a8948bbeba1f43e8131e77f">13 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a9c5af37a4a4539ef422fa6b6cde695d2e5402e1">13 Dec 2021</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances most machines reboot automatically when an update is required.
@@ -345,7 +345,7 @@ that Sidekiq has added to the Redis queues but not yet processed.</p>
 </code></pre></div></li>
 <li><p>Reboot the machine by running <code>sudo reboot</code>.</p></li>
 </ol>
-<p>When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts.</p>
+<p>When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts. You might also wish to monitor the cluster via the <a href="/manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel">RabbitMQ web control panel</a> dashboard. This dashboard shows the current members of the cluster and means that you can avoid polling <code>sudo rabbitmqctl cluster_status</code> to determine when your restarted machine has rejoined the cluster.</p>
 <p>For more information on RabbitMQ-related alerts, see the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/manifests/monitoring.pp">GOV.UK Puppet RabbitMQ <code>monitoring.pp</code> file</a>.</p>
 <p>There have been two incidents after rebooting RabbitMQ machines. For more information, see the <a href="https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#">No non-idle RabbitMQ consumers</a> and <a href="https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv">Publishing API jobs became stuck</a> incident reports.</p>
 <h3 id='rebooting-asset-primary-and-secondary-machines'>Rebooting asset primary and secondary machines</h3><p>Unless there are urgent updates to apply the primary machine should not be
