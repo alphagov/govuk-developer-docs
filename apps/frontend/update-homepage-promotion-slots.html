@@ -353,7 +353,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/frontend/commit/0277d1e61555fdb9c0bc00de88a2919cfbb4c926">12 Oct 2021</a>
+  Last updated: <a href="https://github.com/alphagov/frontend/commit/9bae90f74ed501d27711f33786e1f5da97c3fa59">13 Dec 2021</a>
 </div>
 
   <h1 class="page-title">frontend: Update homepage promotion slots</h1>
@@ -383,39 +383,28 @@
 <li>170 by 113 pixels</li>
 </ul>
 <p>If the image is a simple graphic, and thus already a small file size, resize it to 610 x 407 pixels.</p>
-<h2 id="3-update-the-markup-and-phrases">3. Update the markup and phrases</h2>
-<p>To apply the change you need to update the <a href="https://github.com/alphagov/frontend/blob/main/app/views/homepage/_promotion-slots.html.erb">app/views/homepage/_promotion-slots.html.erb</a> view by:</p>
+<h2 id="3-update-the-content">3. Update the content</h2>
+<p>The content for the promo slots can be found in the <a href="https://github.com/alphagov/frontend/blob/main/config/locales/en.yml"><code>yml</code> translation file</a>. The specific key to look for is <code>promotion_slots</code>. Promo items are stored as a yml list in the order they appear on the homepage. The keys in each list item to update accordingly are:</p>
 <ul>
-<li>changing the URL and the image paths - make sure you update any corresponding <code>data-</code> attributes</li>
-<li>replacing the existing phrases in the <a href="https://github.com/alphagov/frontend/blob/main/config/locales/en.yml">locale file</a>
+<li>
+<code>text</code>: the promo description</li>
+<li>
+<code>title</code>: the promo title</li>
+<li>
+<code>href</code>: the link the promo goes to. This can either be internal (<code>/my-path</code>) or external (<code>https://www.mywebsite.com/my-path</code>)</li>
+<li>
+<code>src</code>: the promo image location. Image should be in the <a href="https://github.com/alphagov/frontend/blob/main/assets/images/homepage"><code>homepage</code> asset directory</a> and can be pulled via <code>homepage/[my-image].png</code>
 </li>
+<li>
+<code>srcset</code>: this is an optional attribute to define promo image <code>srcset</code> values.</li>
 </ul>
-<p>When updating the image you may need to either add or remove <code>srcset</code> attributes for the various image sizes.</p>
-<p>The markup for an image that has multiple sizes (such as a photograph) is:</p>
-<pre lang="erb"><code>&lt;%= image_tag "homepage/path-to-610w.jpg", {
-  alt: "",
-  class: "home-promo__image",
-  height: 407,
-  loading: "lazy",
-  width: 610,
-  sizes: "(max-width: 640px) 100vw, (max-width: 1020px) 33vw, 300px",
-  srcset: {
-    "homepage/path-to-610w.jpg": "610w",
-    "homepage/path-to-480w.jpg": "480w",
-    "homepage/path-to-320w.jpg": "320w",
-    "homepage/path-to-240w.jpg": "240w",
-    "homepage/path-to-170w.jpg": "170w",
-  },
-} %&gt;
-</code></pre>
-<p>The markup for an image that has a single size (such as a simple graphic) is:</p>
-<pre lang="erb"><code>&lt;%= image_tag "homepage/path-to-610w.png", {
-  alt: "",
-  class: "home-promo__image",
-  height: 407,
-  loading: "lazy",
-  width: 610,
-} %&gt;
+<p>You can define <code>srcset</code> values in the yml like so:</p>
+<pre lang="yml"><code>srcset:
+  homepage/my-promo.jpg: 610w
+  homepage/my-promo-480.jpg: 480w
+  homepage/my-promo-320.jpg: 320w
+  homepage/my-promo-240.jpg: 240w
+  homepage/my-promo-170.jpg: 170w
 </code></pre>
 <h2 id="4-delete-the-previous-images">4. Delete the previous images</h2>
 <p>You should delete the images that you are replacing from the repository. If we need to use those images again, to perhaps reinstate the promotion later, we can retrieve the images from the Git history.</p>
