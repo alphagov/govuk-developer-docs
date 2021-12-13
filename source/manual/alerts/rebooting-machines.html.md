@@ -204,7 +204,7 @@ There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a 
 
 1. Reboot the machine by running `sudo reboot`.
 
-When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts.
+When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts. You might also wish to monitor the cluster via the [RabbitMQ web control panel](/manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel) dashboard. This dashboard shows the current members of the cluster and means that you can avoid polling `sudo rabbitmqctl cluster_status` to determine when your restarted machine has rejoined the cluster.
 
 For more information on RabbitMQ-related alerts, see the [GOV.UK Puppet RabbitMQ `monitoring.pp` file](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/manifests/monitoring.pp).
 
