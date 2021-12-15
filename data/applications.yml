@@ -267,14 +267,14 @@
 
 - github_repo_name: datagovuk_find
   type: data.gov.uk apps
-  team: "#govuk-platform-health"
+  team: "#govuk-datagovuk"
   dependencies_team: "#govuk-datagovuk"
   production_hosted_on: paas
   sentry_url: https://sentry.io/govuk/find-data
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 - github_repo_name: datagovuk_publish
   type: data.gov.uk apps
-  team: "#govuk-platform-health"
+  team: "#govuk-datagovuk"
   dependencies_team: "#govuk-datagovuk"
   production_hosted_on: paas
   sentry_url: https://sentry.io/govuk/publish-data
@@ -282,15 +282,37 @@
 - github_repo_name: ckanext-datagovuk
   puppet_name: ckan
   type: data.gov.uk apps
-  team: "#govuk-platform-health"
+  team: "#govuk-datagovuk"
   dependencies_team: "#govuk-datagovuk"
   production_hosted_on: aws
   sentry_url: false
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
+- github_repo_name: ckan-functional-tests
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  dependencies_team: "#govuk-datagovuk"
+  production_hosted_on: none
+  sentry_url: false
+  dashboard_url: false
 - github_repo_name: datagovuk_reference
   management_url: https://dashboard.heroku.com/apps/interval-server
   production_hosted_on: heroku
   type: data.gov.uk apps
+  sentry_url: false
+  dashboard_url: false
+- github_repo_name: datagovuk_publish_queue_monitor
+  production_hosted_on: paas
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  dependencies_team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+- github_repo_name: datagovuk-tech-docs
+  management_url: https://guidance.data.gov.uk/
+  production_hosted_on: paas
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  dependencies_team: "#govuk-datagovuk"
   sentry_url: false
   dashboard_url: false
 
