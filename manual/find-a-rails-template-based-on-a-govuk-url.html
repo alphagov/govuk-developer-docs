@@ -184,19 +184,12 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f57cdef343201691c2baca15c7ccb024ec1320aa">12 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7434b1774dc9cc7509b3b49d88539210e80a15c4">16 Dec 2021</a>
 </div>
 
  <h1 id='header'>Find a rails template based on a GOV.UK URL or vice verca</h1> <p>When making changes to a template in one of our frontend apps it&rsquo;s often beneficial to see a rendered page with your change so that you can effectively test it. This can be difficult when developing within gov.uk as we have several frontend apps which control different parts of the site, sometimes overlapping in sections that they take responsibility for. This document details ways in which you can bypass this issue.</p>
-<h2 id='option-1-use-the-gov-uk-browser-extension'>Option 1: Use the GOV.UK browser extension</h2><p><a href="https://github.com/alphagov/govuk-browser-extension">The GOV.UK browser extension</a> provides a number of details on a given page on GOV.UK, including the app which renders that page. This can be a good start in working out which template renders a particular page, however doesn&rsquo;t help when ou are trying to find a URL based on static analysis of our frontend apps.</p>
+<h2 id='option-1-use-the-gov-uk-browser-extension'>Option 1: Use the GOV.UK browser extension</h2><p><a href="https://github.com/alphagov/govuk-browser-extension">The GOV.UK browser extension</a> provides a number of details on a given page on GOV.UK, including the app which renders that page. This can be a good start in working out which template renders a particular page, however doesn&rsquo;t help when you are trying to find a URL based on static analysis of our frontend apps.</p>
 <h2 id='option-2-check-the-routes-file-in-a-given-app'>Option 2: Check the routes file in a given app</h2><p>As our frontend apps are all ruby on rails apps, it can be assumed that most views follow <a href="https://www.sitepoint.com/model-view-controller-mvc-architecture-rails/">the typical MVC flow</a> of a route being specified in <code>routes.rb</code>, this route calling a controller, that controller rendering a view and that view being located in <code>app/views</code> of a given application, identified in line with the name of the controller and the action within that controller. For example: a route could be specified that whenever the path <code>/government/organisations</code> is hit, it calls the <code>index</code> action of the <code>organisations</code> controller (shorthanded to <code>organisations#index</code>), this controller would then render at <code>app/views/organisations/index.html.erb</code>. You can follow this both path to template and template to path.</p>
 <p>A downside of this technique is that we allow publishers to set unique slugs for their content, which can&rsquo;t be easily interpreted via static analysis.</p>
 <h2 id='option-3-use-kibana-to-find-a-controller-or-path'>Option 3: Use Kibana to find a controller or path</h2><p>Kibana is an interface for traversing logs on GOV.UK and includes a lot of useful information, such which controller and which route a given path is rendered by. In order to access it you&rsquo;ll first need access to <a href="/manual/logit.html">logit</a> (specific instructions on how to successfully sign into logit can be found <a href="https://reliability-engineering.cloudapps.digital/logging.html#content">here</a>, ensure that you&rsquo;re part of the govuk gmail group before following these steps).</p>
