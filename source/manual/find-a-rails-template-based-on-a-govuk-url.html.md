@@ -10,7 +10,7 @@ When making changes to a template in one of our frontend apps it's often benefic
 
 ## Option 1: Use the GOV.UK browser extension
 
-[The GOV.UK browser extension](https://github.com/alphagov/govuk-browser-extension) provides a number of details on a given page on GOV.UK, including the app which renders that page. This can be a good start in working out which template renders a particular page, however doesn't help when ou are trying to find a URL based on static analysis of our frontend apps.
+[The GOV.UK browser extension](https://github.com/alphagov/govuk-browser-extension) provides a number of details on a given page on GOV.UK, including the app which renders that page. This can be a good start in working out which template renders a particular page, however doesn't help when you are trying to find a URL based on static analysis of our frontend apps.
 
 ## Option 2: Check the routes file in a given app
 
