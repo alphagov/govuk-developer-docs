@@ -250,7 +250,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f72959bc1086cc935464753c95d6aec268acb754">6 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b666f8e39fff25a2a79f85b196b1fa313e2139ea">17 Dec 2021</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk</h1> <p>This document details some of the requests that GOV.UK 2nd line support may receive regarding data.gov.uk.  <a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
@@ -290,7 +290,7 @@
 <h3 id='update-a-user-account-name'>Update a user account name</h3><p>Since CKAN was upgraded some usernames with non alphanumeric or uppercase characters are no longer valid and users cannot log in to change their password. This cannot be done through the interface so you must make your changes in the database. In order to update their username:</p>
 
 <ol>
-<li>Follow the <a href="manual/data-gov-uk-supporting-ckan.html#accessing-the-database">instructions</a> to access the CKAN database.</li>
+<li>Follow the <a href="/manual/data-gov-uk-supporting-ckan.html#accessing-the-database">instructions</a> to access the CKAN database.</li>
 <li>Enter the following to see your user in the database and check you&rsquo;ve got the right one <code>SELECT * from &quot;user&quot; where name = &#39;old-username&#39; limit 1;</code>.</li>
 <li>Enter the following to update the username <code>UPDATE &quot;user&quot; SET name = &#39;new-username&#39; WHERE name = &#39;old-username&#39;;</code></li>
 <li>Check they were updated by repeating step 2.</li>
