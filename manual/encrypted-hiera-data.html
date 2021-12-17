@@ -177,6 +177,9 @@
             <a href="#encryption-fails-when-running-the-rake-task-because-of-quotunusable-public-keyquot"><span>Encryption fails when running the Rake task because of “Unusable public key”</span></a>
           </li>
           <li>
+            <a href="#manually-import-the-key"><span>Manually import the key</span></a>
+          </li>
+          <li>
             <a href="#puppet-fails-because-it-can39t-find-a-usable-gpg-key"><span>Puppet fails because it can’t find a usable GPG key</span></a>
           </li>
           <li>
@@ -238,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/556bef4332d5fae78dbeb476dfac1cb9bf6f49bf">1 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d16ffbf5adc7ed23435b400d45fda41f31021f41">16 Dec 2021</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -357,9 +360,7 @@ recipient file pertains to.</p>
 <h3 id='what-to-do-when-someone-joins'>What to do when someone joins</h3>
 <ol>
 <li>Ask the joiner to <a href="/manual/create-a-gpg-key.html">create a GPG key</a> and upload it
-to a public key server (such as <a href="https://pgp.mit.edu/">https://pgp.mit.edu/</a>). If you struggle to find the GPG key (either via the <code>gpg</code> CLI or via GPG Keychain, try going to the keyserver in your browser to find the key there (you may need to prefix the key id with <code>0x</code>).
-i.e. https://keyserver.ubuntu.com/pks/lookup?search=0x0263E23315AE661ECAC4947C50476CD528C86C4C&amp;fingerprint=on&amp;op=index.
-Click on the public key in the result, copy this into your clipboard, switch back to GPG Keychain and it should detect the key and prompt you to add it.</li>
+to a public key server (such as <a href="https://pgp.mit.edu/">https://pgp.mit.edu/</a>). You may need to <a href="#manually-import-the-key">manually import the key</a> to your GPG Keychain.</li>
 <li>Get the fingerprint of the new GPG key by running <code>gpg --fingerprint</code>.</li>
 <li>Add the joiners&rsquo;s GPG fingerprint to the recipient files
 AWS <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp">integration</a></li>
@@ -627,7 +628,18 @@ will fetch all recipient keys from the keyserver.
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --recv-keys --keyserver &lt;keyserver_address&gt; &lt;key_fingerprint&gt;
 </code></pre></div><p>or the following to update all keys:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --recv-keys --keyserver &lt;keyserver_address&gt; {}
-</code></pre></div><h3 id='puppet-fails-because-it-can39t-find-a-usable-gpg-key'>Puppet fails because it can&rsquo;t find a usable GPG key</h3><p>When Puppet runs, you may see the following error:</p>
+</code></pre></div><p>If you see this error:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg: keyserver receive failed: Network is unreachable
+</code></pre></div><p>&hellip;try specifying the port number, e.g. <code>gpg --keyserver keyserver.ubuntu.com:80 --recv-keys &lt;key_fingerprint&gt;</code>.</p>
+<p>If you see this error:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg: keyserver receive failed: No keyserver available
+</code></pre></div><p>&hellip;try a different key server (e.g. <keys.openpgp.org>, <hkps.pool.sks-keyservers.net>, or <keys.gnupg.net>).
+You can run <code>gpg-connect-agent --dirmngr &#39;keyserver --hosttable&#39;</code> to see a list of available servers.</p>
+<p>If you continue to see these errors, you&rsquo;ll have to try <a href="#manually-import-the-key">manually importing the key</a>.</p>
+<h3 id='manually-import-the-key'>Manually import the key</h3><p>If you struggle to find the GPG key (either via the <code>gpg</code> CLI or via GPG Keychain), try going to the keyserver in your browser to find the key there (you may need to prefix the key id with <code>0x</code>).</p>
+<p>For example, visit https://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0x0263e23315ae661ecac4947c50476cd528c86c4c.</p>
+<p>Copy the public key to your clipboard. If you have GPG Keychain open, it should automatically detect the key and prompt you to import it.</p>
+<h3 id='puppet-fails-because-it-can39t-find-a-usable-gpg-key'>Puppet fails because it can&rsquo;t find a usable GPG key</h3><p>When Puppet runs, you may see the following error:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Hiera eYAML GPG encryption backend is not working; check that Puppet has a valid GPG key
 </code></pre></div><p>This error can occur for the following reasons:</p>
 
