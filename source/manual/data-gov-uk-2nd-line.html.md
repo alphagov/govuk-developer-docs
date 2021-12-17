@@ -55,7 +55,7 @@ Since CKAN was upgraded users have needed to login using their email address ins
 
 Since CKAN was upgraded some usernames with non alphanumeric or uppercase characters are no longer valid and users cannot log in to change their password. This cannot be done through the interface so you must make your changes in the database. In order to update their username:
 
-1. Follow the [instructions](manual/data-gov-uk-supporting-ckan.html#accessing-the-database) to access the CKAN database.
+1. Follow the [instructions](data-gov-uk-supporting-ckan.html#accessing-the-database) to access the CKAN database.
 2. Enter the following to see your user in the database and check you've got the right one `SELECT * from "user" where name = 'old-username' limit 1;`.
 3. Enter the following to update the username `UPDATE "user" SET name = 'new-username' WHERE name = 'old-username';`
 4. Check they were updated by repeating step 2.
