@@ -151,9 +151,7 @@ recipient file pertains to.
 ### What to do when someone joins
 
 1. Ask the joiner to [create a GPG key](create-a-gpg-key.html) and upload it
-   to a public key server (such as <https://pgp.mit.edu/>). If you struggle to find the GPG key (either via the `gpg` CLI or via GPG Keychain, try going to the keyserver in your browser to find the key there (you may need to prefix the key id with `0x`).
-   i.e. https://keyserver.ubuntu.com/pks/lookup?search=0x0263E23315AE661ECAC4947C50476CD528C86C4C&fingerprint=on&op=index.
-   Click on the public key in the result, copy this into your clipboard, switch back to GPG Keychain and it should detect the key and prompt you to add it.
+   to a public key server (such as <https://pgp.mit.edu/>). You may need to [manually import the key](#manually-import-the-key) to your GPG Keychain.
 2. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
 3. Add the joiners's GPG fingerprint to the recipient files
    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
@@ -530,6 +528,33 @@ or the following to update all keys:
 ```
 cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --recv-keys --keyserver <keyserver_address> {}
 ```
+
+If you see this error:
+
+```
+gpg: keyserver receive failed: Network is unreachable
+```
+
+...try specifying the port number, e.g. `gpg --keyserver keyserver.ubuntu.com:80 --recv-keys <key_fingerprint>`.
+
+If you see this error:
+
+```
+gpg: keyserver receive failed: No keyserver available
+```
+
+...try a different key server (e.g. <keys.openpgp.org>, <hkps.pool.sks-keyservers.net>, or <keys.gnupg.net>).
+You can run `gpg-connect-agent --dirmngr 'keyserver --hosttable'` to see a list of available servers.
+
+If you continue to see these errors, you'll have to try [manually importing the key](#manually-import-the-key).
+
+### Manually import the key
+
+If you struggle to find the GPG key (either via the `gpg` CLI or via GPG Keychain), try going to the keyserver in your browser to find the key there (you may need to prefix the key id with `0x`).
+
+For example, visit https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0263e23315ae661ecac4947c50476cd528c86c4c.
+
+Copy the public key to your clipboard. If you have GPG Keychain open, it should automatically detect the key and prompt you to import it.
 
 ### Puppet fails because it can't find a usable GPG key
 
