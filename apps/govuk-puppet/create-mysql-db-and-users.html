@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>govuk-puppet: Create MySQL database and user - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/apps/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/apps/govuk-puppet/create-mysql-db-and-users.html">
 
-      <meta name="description" content="Everything about the search-admin application (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/apps/search-admin.html" />
+      <meta name="twitter:title" content="govuk-puppet: Create MySQL database and user - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/apps/govuk-puppet/create-mysql-db-and-users.html" />
 
-      <meta property="og:description" content="Everything about the search-admin application (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="govuk-puppet: Create MySQL database and user" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/apps/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/apps/govuk-puppet/create-mysql-db-and-users.html" />
 
     
   </head>
@@ -160,7 +158,7 @@
           <li><a href="/apps/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
           <li><a href="/apps/release.html"><span>release</span></a></li>
           <li><a href="/apps/router.html"><span>router</span></a></li>
-          <li><a href="/apps/search-admin.html" class="toc-link--in-view"><span>search-admin</span></a></li>
+          <li><a href="/apps/search-admin.html"><span>search-admin</span></a></li>
           <li><a href="/apps/signon.html"><span>signon</span></a></li>
           <li><a href="/apps/support.html"><span>support</span></a></li>
         </ul>
@@ -330,6 +328,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-puppet",
+        "@id": "http://www.dev.gov.uk/apps/govuk-puppet.html"
+      }
     }
   ]
 }
@@ -341,137 +347,65 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/apps/govuk-puppet.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-puppet&quot;}" class="govuk-breadcrumbs__link" href="/apps/govuk-puppet.html">govuk-puppet</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: search-admin</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-find-and-view-accessibility-team</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-
-
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/search_admin.pp" class="govuk-link">Puppet configuration</a></li>
-
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/search-admin/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/search-admin.json" class="govuk-link">Deployment dashboard</a></li>
-
-
-
-
-
-</ul>
-</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/a55a8566ee5fe8726c0b4f150e968637c7c4f79e">17 Dec 2021</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.northumberland.gov.uk" class="govuk-link">Northumberland County Council</a></li>
-      <li><a href="http://www.boston.gov.uk" class="govuk-link">Boston Borough Council</a></li>
-      <li><a href="http://www.hyndburnbc.gov.uk" class="govuk-link">Hyndburn Borough Council</a></li>
-      <li><a href="http://www.preston.gov.uk" class="govuk-link">Preston City Council</a></li>
-      <li><a href="http://www.haringey.gov.uk/" class="govuk-link">London Borough of Haringey Council</a></li>
-      <li><a href="http://www.justice.gov.uk/courts/procedure-rules/family" class="govuk-link">Family Procedure Rules</a></li>
-      <li><a href="http://www.chichester.gov.uk" class="govuk-link">Chichester District Council</a></li>
-      <li><a href="http://www.wyrebc.gov.uk/" class="govuk-link">Wyre Borough Council</a></li>
-      <li><a href="https://nationalcareersservice.direct.gov.uk/advice/getajob/cvs/" class="govuk-link">Write your CV - National Careers Service</a></li>
-      <li><a href="http://www.west-norfolk.gov.uk" class="govuk-link">King&rsquo;s Lynn and West Norfolk Borough Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+  <h1 class="page-title">govuk-puppet: Create MySQL database and user</h1>
 
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
-
+  
+<h2 id="how-to-create-a-mysql-databaseuser-on-rds-instance">How to create a MySQL database/user on RDS instance</h2>
+<p>You'll need to know three things:</p>
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li>Database name (<code>{Snake-cased app name}_production</code>, e.g. <code>collections_publisher_production</code>)</li>
+<li>Database user (find this in the <a href="https://github.com/alphagov/collections-publisher/blob/e77c397cef35865aa5198f41e463f2bb7f8e688c/config/database.yml#L4">config/database.yml</a> of your app. Beware that some apps - Whitehall - have multiple users to create)</li>
+<li>Database user's password (you'll need to extract the value from govuk-secrets, e.g. <a href="https://github.com/alphagov/govuk-secrets/blob/5981ef269e3e9be50a03c56e81ac530c8973d7b7/puppet_aws/hieradata/integration_credentials.yaml#L89">govuk::node::s_collections_publisher_db_admin::mysql_db_password</a>. Make sure you look at the same environment, i.e. look in integration_credentials.yaml when making the database/user on Integration)</li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
+<p>Connect to the DB admin machine, e.g.</p>
+<pre><code>gds govuk connect ssh -e integration collections_publisher_db_admin
+</code></pre>
+<p>Export the three bits of data:</p>
+<pre><code>export TMP_MYSQL_DB_NAME='collections_publisher_production' ;
+export TMP_MYSQL_DB_USER='collections_pub' ;
+export TMP_MYSQL_DB_PASSWORD='THE_PASSWORD' ;
+</code></pre>
+<p>Create the user:</p>
+<pre><code>sudo mysql --defaults-extra-file=/root/.my.cnf -e \
+"CREATE USER IF NOT EXISTS '$TMP_MYSQL_DB_USER'@'%' IDENTIFIED WITH 'mysql_native_password' BY '${TMP_MYSQL_DB_PASSWORD}';"
+</code></pre>
+<p>Create the database:</p>
+<pre><code>sudo mysql --defaults-extra-file=/root/.my.cnf -e \
+"CREATE DATABASE IF NOT EXISTS ${TMP_MYSQL_DB_NAME};"
+</code></pre>
+<p>Grant the user access to the database:</p>
+<pre><code>sudo mysql --defaults-extra-file=/root/.my.cnf -e \
+"GRANT ALL ON ${TMP_MYSQL_DB_NAME}.* TO '${TMP_MYSQL_DB_USER}'@'%'"
+</code></pre>
+<p>Finally, clean up after yourself:</p>
+<pre><code>unset TMP_MYSQL_DB_NAME ;
+unset TMP_MYSQL_DB_USER ;
+unset TMP_MYSQL_DB_PASSWORD ;
+</code></pre>
+<h2 id="how-often-does-this-need-to-be-done">How often does this need to be done?</h2>
+<p>Whenever we spin up a new RDS instance (i.e. rarely).</p>
+<h2 id="why-must-this-be-done-manually">Why must this be done manually?</h2>
+<p>In <a href="https://github.com/alphagov/govuk-puppet/pull/11353">#11353</a> and <a href="https://github.com/alphagov/govuk-puppet/pull/11359">#11359</a>, new DB admin machines were created for apps that use MySQL. This was done as part of <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-143-split-database-instances.md">RFC-143</a>, which agrees that every app should have its own RDS instance.</p>
+<p>The <a href="https://github.com/alphagov/govuk-aws-data/blob/3445857dc7afd6644f4e5ccae5c5c6168e9b7281/data/app-govuk-rds/integration/common.tfvars#L47">new RDS instances run MySQL version 8</a>, where the previous shared RDS instance (<code>blue-mysql-primary</code>) is on version 5.6.</p>
+<p>Traditionally, <a href="https://github.com/alphagov/govuk-puppet/blob/33dd118f4a37340b402839d790686098f1aac23a/modules/govuk/manifests/node/s_db_admin.pp">we've used Puppet to create the MySQL databases and users</a> via the DB admin machine. However, this approach throws a SQL syntax error when applied to MySQL 8 environments:</p>
+<pre><code>Error: /Stage[main]/Govuk::Apps::Collections_publisher::Db/Mysql::Db[collections_publisher_production]/Mysql_user[collections_pub@%]/ensure: change from absent to present failed: Execution of '/usr/bin/mysql --defaults-extra-file=/root/.my.cnf --database=mysql -e CREATE USER 'collections_pub'@'%' IDENTIFIED BY PASSWORD '(omitted)'' returned 1: ERROR 1064 (42000) at line 1: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'PASSWORD '(omitted)'' at line 1
+</code></pre>
+<p>This is because <a href="https://dev.mysql.com/doc/refman/5.6/en/create-user.html">version 5.6 allowed the IDENTIFIED BY PASSWORD syntax</a>, whereas <a href="https://dev.mysql.com/doc/refman/8.0/en/create-user.html">8.0 is just IDENTIFIED BY</a>.</p>
+<p>This <a href="https://github.com/puppetlabs/puppetlabs-mysql/blob/a48069e89a4c06abccbb3595d2c782c7cd6e3254/lib/puppet/provider/mysql_user/mysql.rb#L66-L78">isn't overridable in the puppetlabs-mysql module</a>, and whilst the issue has been <a href="https://github.com/puppetlabs/puppetlabs-mysql/pull/1092">fixed</a> in later versions of the module, we use an old version of Puppet which does not allow us to upgrade the module.</p>
+<p>A <a href="https://github.com/alphagov/govuk-puppet/pull/11373">spike</a> investigated how we could use Puppet to create the database and user(s) in a MySQL 8 environment, but it had a number of unresolved complexities, so it was decided we would manually create the databases instead, given how infrequently we spin up new RDS instances.</p>
 
 
             
@@ -479,8 +413,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/applications.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fapps%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-puppet/blob/main/docs/create-mysql-db-and-users.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fapps%2Fgovuk-puppet%2Fcreate-mysql-db-and-users.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
