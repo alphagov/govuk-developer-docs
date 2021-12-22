@@ -69,7 +69,13 @@ As a workaround, you need to re-run the clear CDN and Varnish cache Jenkins jobs
 1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
   This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
 2. Run the "Clear varnish cache" Jenkins job
+   - [Clear varnish on Integration](https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/)
+   - [Clear varnish on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/)
+   - [⚠️ Clear varnish on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/)
 3. Run the "Clear CDN cache" Jenkins job
+   - [Clear CDN on Integration](https://deploy.blue.integration.govuk.digital/job/clear-cdn-cache/)
+   - [Clear CDN on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/)
+   - [⚠️ Clear CDN on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/)
 
 > **Note**
 >
