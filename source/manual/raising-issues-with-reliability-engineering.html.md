@@ -12,15 +12,13 @@ There are [Reliability Engineering docs](https://reliability-engineering.cloudap
 
 ## If you require urgent assistance
 
-Contact GOV.UK SREs have a slack channel - #govuk-2ndline.
-By posting in that channel you can get their attention. This channel can be used for general queries too so do
-indicate in your message that a problem is time critical.
+Check the [On call schedule for GOV.UK SRE in-hours](https://bit.ly/2YLhQis) to find out who is on the rota.
 
 It is also possible to "Run a Play" in the context of an ongoing incident page in PagerDuty. This will automatically call the RE engineer on duty both in- and out-of-hours.
 
 ## If you need to handover a long-standing incident
 
-If this is in-hours: An Site Reliabilty Engineer from the RE GOV.UK team should take over the incident lead role. A 2nd line GOV.UK engineer will continue the comms lead role.
+If this is in-hours: A Site Reliabilty Engineer should take over the incident lead role. A 2nd line GOV.UK engineer will continue the comms lead role.
 If this is out-of-hours: The primary GOV.UK engineer should be the incident lead. The secondary GOV.UK engineer should be the comms lead.
 
 There is no longer an RE GOV.UK out of hours rota. GOV.UK engineers on the in-hours and out of hours rotas should have all access and documentation required to address any issues.
@@ -28,10 +26,10 @@ There is no longer an RE GOV.UK out of hours rota. GOV.UK engineers on the in-ho
 ## If a problem is not urgent
 
 If the issue you've identified seems like a non-urgent story you can add it the
-[GOV.UK 2nd Line][2nd-line-trello] trello board in the "Proposed stories for
-Platform Health" column. Platform Health will then decide whether to raise this
-with RE, and manage the ticket through its life cycle, or to resolve this
-problem themselves.
+[GOV.UK 2nd Line trello board][2nd-line-trello] in the "Ongoing issues to be aware
+of & unexplained events" column. The 2nd line tech lead(s) will then decide whether
+to pass this on to another team, manage the ticket through its life cycle, or to
+resolve this problem themselves.
 
 [2nd-line-trello]: https://trello.com/b/M7UzqXpk/govuk-2nd-line
 
@@ -66,8 +64,6 @@ responsibility of Reliability Engineering (RE):
   longer fit for purpose
 - Running and maintaining the
   [Terraform configurations](https://github.com/alphagov/govuk-aws/) for AWS;
-- Backup software such as Duplicity
 - Maintaining the mirror configuration
 - Keeping the CI environment running - GOV.UK are responsible for job
   configuration
-- [Fabric scripts](https://github.com/alphagov/fabric-scripts)
