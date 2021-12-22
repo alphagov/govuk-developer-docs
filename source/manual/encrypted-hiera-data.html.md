@@ -124,7 +124,7 @@ You must use the rake tasks to change encrypted Hiera data.
    >
    > When editing a Hiera key that has been encrypted before, you will
    > notice a number in parentheses after the word GPG; for
-   > example: DEC::GPG(1). You should not make any changes to the number, as
+   > example: DEC(1)::GPG. You should not make any changes to the number, as
    > Hiera eYAML GPG uses this to identify existing encrypted data.
 
 3. Check that the value is really encrypted! If you make a typo in your markup,
