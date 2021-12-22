@@ -11,24 +11,47 @@ parent: "/manual.html"
 If you need to remove an asset manually from `assets.publishing.service.gov.uk`,
 follow these steps:
 
-1. Mark the asset as deleted. Sometimes it may be necessary to completely scrub an asset from our systems e.g. if it contains secret information. In this case, add `,true` to the appropriate rake task:
+1. Identify whether the asset was published using Whitehall or another application.
 
-  <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
-  <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[LEGACY_URL_PATH]") %>
+   > An example Whitehall asset URL is `https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf`.
+   >
+   > An example non-Whitehall asset URL is `https://assets.publishing.service.gov.uk/media/abcd1234efgh/filename.pdf`.
 
-1. Add a cache bust and check that the asset responds with a 404 not found
+   Decide if the asset can be marked as deleted or whether all traces need to be
+   removed (e.g. if it contains secret information). If all traces need to be
+   removed, append `, true` in the square brackets when running the rake tasks
+   below.
 
-1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache]
+   To mark the file as deleted, run one of the following Rake tasks:
 
-1. Verify that the asset is not there
+   Whitehall Assets, where `LEGACY_URL_PATH` is the document slug (i.e. `/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf`
+   for the example above):
+   <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[LEGACY_URL_PATH]") %>
 
-1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals)
+   Other Assets, where `ASSET_ID` is the asset ID (i.e. `abcd1234efgh` from the
+   example above):
+   <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
 
-1. Remove the asset from the mirrors:
-  - Remove from AWS: `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
-  - Log into the [GCP console](https://console.cloud.google.com/)
-  - Go to the GOVUK Production project under the DIGITAL.CABINET-OFFICE.GOV.UK organisation
-  - Select Storage -> Browser, manually delete the asset in the govuk-production-mirror bucket
+1. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
+   and check that the asset responds with a 404 not found.
+
+1. Wait 20 minutes for the cache to clear, or [purge it yourself][clear-cache].
+
+1. Verify that the asset is not there without using query string.
+
+1. Request removal of the asset using the [Google Search Console](https://www.google.com/webmasters/tools/removals).
+
+1. Remove the asset from the Amazon Web Services (AWS) mirror:
+
+   `gds aws govuk-production-poweruser aws s3 rm s3://govuk-production-mirror/assets.publishing.service.gov.uk/<slug>`
+
+1. Remove the asset from the Google Cloud Platform (GCP) mirror:
+   - Log into the [GCP console](https://console.cloud.google.com/).
+   - Go to the `GOVUK Production` project under the `DIGITAL.CABINET-OFFICE.GOV.UK`
+     organisation.
+   - Select `Cloud Storage -> Browser`, go to the `govuk-production-mirror`
+     bucket.
+   - Navigate to the file, then delete it.
 
 [whitehall-rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[]
 [rake-delete]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[]
