@@ -357,7 +357,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/a7186889217bdbe76d58fc4b54d491f68d32b298">7 Oct 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/2ebace2c19de94f1536fcd3eee39a718ea3aeb50">17 Dec 2021</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -456,6 +456,19 @@ Target /usr/local/bin/docker-compose
 <li>go to "Experimental Features"</li>
 <li>check if the "Use Docker Compose V2 release candidate" checkbox is checked</li>
 <li>uncheck it if it is checked and save</li>
+</ul>
+<h2 id="cannot-rails-dbprepare-or-start-console-due-to-plugin-caching_sha2_password-could-not-be-loaded">Cannot <code>rails db:prepare</code> or start console due to "Plugin caching_sha2_password could not be loaded"</h2>
+<p>In MySQL 8.0 <code>caching_sha2_password</code> was made the default over the previous <code>mysql_native_password</code>.</p>
+<p>This can lead to the following error when ActiveRecord is attempting to connect to the database, for example when running <code>rails db:prepare</code> or trying to bring up a rails console.</p>
+<pre><code>ActiveRecord::ConnectionNotEstablished: Plugin caching_sha2_password could not be loaded: /usr/lib/x86_64-linux-gnu/mariadb19/plugin/caching_sha2_password.so: cannot open shared object file: No such file or directory
+</code></pre>
+<p>A workaround is to get MySQL to fall back to using <code>mysql_native_password</code> as follows:</p>
+<ul>
+<li>Check that you can see <code>govuk-docker_mysql-8_1</code> when running <code>govuk-docker ps</code>, if not you will need to start a service that uses mysql (for example Whitehall).</li>
+<li>Bring up a mysql console inside the container: <code>docker exec -it govuk-docker_mysql-8_1 mysql --user=root --password=root</code>
+</li>
+<li>Alter the way the root user identifies itself. <code>ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'root';</code>
+</li>
 </ul>
 
 
