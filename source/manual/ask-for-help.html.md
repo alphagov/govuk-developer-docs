@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-platform-reliability-team"
 title: Ask for help
 parent: "/manual.html"
 layout: manual_layout
@@ -20,10 +20,9 @@ The GOV.UK developer community (#govuk-developers):
 - supports each other with issues deploying changes to GOV.UK
 - ensures missions are delivered technically in the best and most appropriate way
 
-The GOV.UK Platform Health team (#govuk-platform-health):
+The GOV.UK Platform Reliability team (#govuk-platform-reliability-team):
 
 - works on long term fixes to the platform
-- supports 2nd line by taking on bigger pieces of work that doesn't fit the weekly schedule
 - owns the infrastructure, although doesn't necessarily have the expertise to fix issues
 
 The GOV.UK Replatforming team (#govuk-replatforming):

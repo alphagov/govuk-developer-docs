@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-publishing-tech"
 title: 'Assets: how they work'
 section: Assets
 type: learn

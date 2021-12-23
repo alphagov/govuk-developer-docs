@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-datagovuk"
 title: Common 2nd line support tasks for CKAN
 section: data.gov.uk
 layout: manual_layout

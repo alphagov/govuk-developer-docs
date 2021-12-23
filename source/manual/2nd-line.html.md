@@ -24,7 +24,7 @@ We have a [2nd line dashboard][] showing a high level overview of the state of t
 
 We use Icinga to monitor our platform and alert us when things go wrong. Many alerts have corresponding  documentation in these developer docs, detailing how to respond.
 
-You should record critical alerts that aren't easily solved to the [GOV.UK 2nd line Trello board][] to help inform Platform Health and the GOV.UK SREs. 2nd line should investigate these alerts when there is downtime; you do not necessarily have to fix them.
+You should record critical alerts that aren't easily solved to the [GOV.UK 2nd line Trello board][] to help inform the 2nd line tech lead(s) and the GOV.UK SREs. 2nd line should investigate these alerts when there is downtime; you do not necessarily have to fix them.
 
 [Read more about Icinga](/manual/icinga.html).
 

@@ -65,5 +65,5 @@ bundle exec rake search:unlock SEARCH_INDEX=all
 Then see the ["fix out-of-date search indices"](/manual/fix-out-of-date-search-indices.html)
 docs.
 
-If the job is failing often, make sure the team currently responsible for search
-are aware of the problem (or Platform Health).
+If the job is failing often, make sure the [team currently responsible for search](/apps/search-analytics.html)
+are aware of the problem.
