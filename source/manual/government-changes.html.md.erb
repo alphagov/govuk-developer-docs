@@ -151,3 +151,102 @@ A data migration is required to change the organisations for (Mainstream) Publis
 [whitehall-bulk-update-organisation]: https://github.com/alphagov/whitehall/blob/917085dca58fb58dbf65c7e226ad445cc1f27bdd/lib/tasks/data_hygiene.rake#L37
 [manuals-bulk-update-organisation]: https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/update_manual_organisation.rake
 [publisher-bulk-update-organisation-example]: https://github.com/alphagov/publishing-api/pull/1981
+
+### Reorder ministers/peoples role titles
+
+During a reshuffle, a minister can gain two positions of state, known as `RoleAppointments`
+in Whitehall. One of these is perceived to be a more senior role than the other.
+However, [Collections](https://github.com/alphagov/collections) will just render
+these by ascending order of ActiveRecord IDs as default.
+
+1. [SSH onto a whitehall machine](https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html#usage)
+in the environment you wish to apply the changes to and [bring up a rails console](https://docs.publishing.service.gov.uk/manual/get-started.html#running-a-console).
+1. Query the `Person` you wish to find by `slug`, or `surname` and `forename`
+
+    ```
+    $ person = Person.find_by(slug: 'harry-potter')
+    ```
+
+1. `current_role_appointments` are used to construct the `current_roles_title`
+which is used in collections by the [header partial](https://github.com/alphagov/collections/blob/main/app/views/people/_header.html.erb#L4)
+to render the titles. The IDs of each RoleAppointment will be assigned as the
+`person_appointment_order` which is then used to sort which comes first. So start
+by assigning each role to a variable.
+
+    ```
+    > first_role = person.current_role_appointments.first
+    => #<RoleAppointment id: 5768, role_id: 3645, person_id: 351, created_at: "2021-09-15 16:02:32.000000000 +0100", updated_at: "2021-09-21 15:37:32.000000000 +0100", started_at: "2021-09-15 00:00:00.000000000 +0100", ended_at: nil, content_id: "82c03a1b-4252-44a0-a6b3-9438d589d081">
+
+    > second_role = person.current_role_appointments.second
+    => #<RoleAppointment id: 7114, role_id: 1536, person_id: 351, created_at: "2019-09-10 23:03:53.000000000 +0100", updated_at: "2021-09-21 15:34:30.000000000 +0100", started_at: "2019-09-10 00:00:00.000000000 +0100", ended_at: nil, content_id: "2b671e4e-fca9-4b0e-99f7-eed8706c5f0d">
+    ```
+
+1. So it is clear which roles you are working with, you can use the `RoleAppointmentPresenter`
+ to see how the final content item will appear for this role:
+
+
+    ```
+    > PublishingApi::RoleAppointmentPresenter.new(first_role).content
+    => {:title=>"The Rt Hon Harry Potter MP - Secretary of State for Hogwarts", :locale=>"en", :details=>{:current=>true, :person_appointment_order=>5768, :started_on=>"2021-09-15T00:00:00+01:00"}, :publishing_app=>"whitehall", :update_type=>"major", :document_type=>"role_appointment", :public_updated_at=>Tue, 21 Sep 2021 15:37:32.000000000 BST +01:00, :schema_name=>"role_appointment"}
+
+    > PublishingApi::RoleAppointmentPresenter.new(second_role).content
+    => {:title=>"The Rt Hon Harry Potter MP - Minister for Witchcraft and Wizardry ", :locale=>"en", :details=>{:current=>true, :person_appointment_order=>7114, :started_on=>"2019-09-10T00:00:00+01:00"}, :publishing_app=>"whitehall", :update_type=>"major", :document_type=>"role_appointment", :public_updated_at=>Tue, 21 Sep 2021 15:34:30.000000000 BST +01:00, :schema_name=>"role_appointment"}
+    ```
+
+1. You now need to swap the IDs. Start by identifying a safe `RoleAppointment` ID
+that is not used by any existing role appointment:
+
+    ```
+    RoleAppointment.maximum(:id).next
+    > 7196
+    ```
+
+1. Assign the current `first_role` to the safe `RoleAppointment` ID, you can use
+`update_column` to skip validation and other checks.
+
+    ```
+    first_role.update_column(:id, 7196)
+    ```
+
+1. Now assign the second role to the first role's initial iD
+
+    ```
+    second_role.update_column(:id, 5768)
+    ```
+
+1. Now assign the `first_role` to the ID that the` `second_role `previously had
+
+    ```
+    first_role.update_column(:id, 7114)
+    ```
+
+1. Finally publish the change:
+
+    ```
+    > first_role.publish_to_publishing_api
+    => [:en]
+    > second_role.publish_to_publishing_api
+    => [:en]
+    ```
+
+1. Reload the page in collections (cachebust where required) and you should see
+your change reflected.
+
+#### Codeblock summary
+
+    ```
+    person = Person.find_by(slug: 'harry-potter')
+    first_role = person.current_role_appointments.first
+    second_role = person.current_role_appointments.second
+    safe_id = RoleAppointment.maximum(:id).next
+
+    first_role.id # 1234
+    second_role.id # 5678
+
+    first_role.update_column(:id, safe_id)
+    second_role.update_column(:id, 1234)
+    first_role.update_column(:id, 5678)
+
+    first_role.publish_to_publishing_api
+    second_role.publish_to_publishing_api
+    ```
