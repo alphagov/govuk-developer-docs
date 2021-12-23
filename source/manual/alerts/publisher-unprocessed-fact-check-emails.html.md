@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-publishing-tech"
 title: "Publisher: Unprocessed fact-check emails"
 section: Icinga alerts
 subsection: Email alerts

@@ -236,7 +236,7 @@ Publishers upload their organograms as a Excel (XLS) file that contains macros. 
 
 ### Dataset Analytics requests
 
-It is possible to access analytics for datasets. If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to Martin Lugton or another member of the Platform Health product team.
+It is possible to access analytics for datasets. If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to Martin Lugton or to the `3rd Line--GOV.UK Product Requests` Zendesk queue.
 
 ## Differences in CKAN 2.9 vs 2.7/2.8
 

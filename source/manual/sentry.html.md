@@ -223,7 +223,7 @@ errors to risk breaching our account limit. These limits are configured on the
 ## Slack alerts
 
 You can configure Sentry to notify a Slack channel when a notable condition is
-satisfied. For example, the `#govuk-platform-health` channel gets notified when
+satisfied. For example, the `#govuk-platform-reliability-team` channel gets notified when
 any issue records 100 or more errors in a 1 hour period.
 
 To set up an alert, visit the [Alerts panel][], select the project the alert
