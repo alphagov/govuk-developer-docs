@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-platform-reliability-team"
 title: Scale Mapit
 layout: manual_layout
 parent: "/manual.html"
