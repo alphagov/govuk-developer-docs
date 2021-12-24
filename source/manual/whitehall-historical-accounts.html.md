@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-publishing-tech"
 title: Add Historical Accounts
 section: Publishing
 layout: manual_layout

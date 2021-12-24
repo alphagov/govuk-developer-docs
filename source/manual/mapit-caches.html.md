@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-health"
+owner_slack: "#govuk-platform-reliability-tech"
 title: Mapit Caches
 layout: manual_layout
 parent: "/manual.html"
@@ -35,4 +35,3 @@ Currently Django will only caches responses from the `/postcode` endpoints and n
 ## Bypassing the cache
 
 Cache keys are based on the URI of the request, therefore you can avoid the cache by adding a unique query string. For example `/postcode/sw71ne?nocache=<random>`.
-
