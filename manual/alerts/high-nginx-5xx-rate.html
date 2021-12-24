@@ -156,15 +156,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9ba52660950982bbc0e38ae16ee524710e942a47">19 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
 </div>
 
  <h1 id='header'>High Nginx 5xx rate</h1> <p>You can view the 5xx logs across all machines on this dashboard:</p>
@@ -176,7 +169,7 @@
 <h2 id='spikes'>Spikes</h2><p>The alert should link to a graphite graph - often certain applications
 such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let a team that is working on the app
-know (or alert Platform Health).</p>
+know (or alert Platform Reliability).</p>
 <h2 id='scaling-up'>Scaling up</h2><p>Sometimes a high 5xx rate can be because of a sudden increase in traffic to the
 site. You can use the <a href="https://grafana.production.govuk.digital/dashboard/file/nginx_requests.json?refresh=1m&amp;orgId=1&amp;from=now-30m&amp;to=now">Nginx Requests (AWS)</a> dashboard to see
 if there are an unusually high number of requests to a particular machine
