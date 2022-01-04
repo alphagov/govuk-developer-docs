@@ -357,7 +357,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/71f493b3033df377131d559857f0a31e0f16e697">20 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/6f47a11fce33f66d1f48c472387456e8dfa16f61">4 Jan 2022</a>
 </div>
 
   <h1 class="page-title">govuk-puppet: Create MySQL database and user</h1>
@@ -403,7 +403,7 @@ sudo mysql --defaults-extra-file=/root/.my.cnf -e "SHOW DATABASES;"
 sudo mysql --defaults-extra-file=/root/.my.cnf -e "SELECT host, user FROM mysql.user;"
 
 # See which tables are in the database, e.g.
-sudo mysql --defaults-extra-file=/root/.my.cnf -e "USE collections_publisher_sproduction; SHOW TABLES;"
+sudo mysql --defaults-extra-file=/root/.my.cnf -e "USE collections_publisher_production; SHOW TABLES;"
 # Note that this will only be populated after the first data sync has run.
 </code></pre>
 <h2 id="how-often-does-this-need-to-be-done">How often does this need to be done?</h2>
