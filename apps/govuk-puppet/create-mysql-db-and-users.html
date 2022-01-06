@@ -357,7 +357,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/6f47a11fce33f66d1f48c472387456e8dfa16f61">4 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/dfac35342dc105b855d73623ceceb5ab7fcd3667">6 Jan 2022</a>
 </div>
 
   <h1 class="page-title">govuk-puppet: Create MySQL database and user</h1>
@@ -368,7 +368,7 @@
 <ul>
 <li>Database name (find this in the <a href="https://github.com/alphagov/govuk-puppet/blob/31239642dfa7f8ba3984597f8242b9259a0e64f3/modules/govuk/manifests/apps/collections_publisher/db.pp#L5">db.pp</a> of your app, e.g. <code>collections_publisher_production</code>)</li>
 <li>Database user (find this in <a href="https://github.com/alphagov/govuk-puppet/blob/31239642dfa7f8ba3984597f8242b9259a0e64f3/modules/govuk/manifests/apps/collections_publisher/db.pp#L6">db.pp</a>, or the <a href="https://github.com/alphagov/collections-publisher/blob/e77c397cef35865aa5198f41e463f2bb7f8e688c/config/database.yml#L4">config/database.yml</a> of your app. Beware that some apps - Whitehall - have multiple users to create)</li>
-<li>Database user's password (you'll need to extract the value from govuk-secrets, e.g. <a href="https://github.com/alphagov/govuk-secrets/blob/5981ef269e3e9be50a03c56e81ac530c8973d7b7/puppet_aws/hieradata/integration_credentials.yaml#L89">govuk::node::s_collections_publisher_db_admin::mysql_db_password</a>. Make sure you look at the same environment, i.e. look in integration_credentials.yaml when making the database/user on Integration)</li>
+<li>Database user's password (you'll need to extract the value from govuk-secrets, e.g. <a href="https://github.com/alphagov/govuk-secrets/blob/f4903188020c9cad4d55958ecf73fbb72c2bc0b2/puppet_aws/hieradata/apps/integration_credentials.yaml#L59">govuk::apps::collections_publisher::db::mysql_password</a>. Make sure you look at the same environment, i.e. look in integration_credentials.yaml when making the database/user on Integration)</li>
 </ul>
 <p>Connect to the DB admin machine, e.g.</p>
 <pre><code>gds govuk connect ssh -e integration collections_publisher_db_admin
