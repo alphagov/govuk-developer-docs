@@ -5,16 +5,16 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 ---
-[publish]: apps/datagovuk_publish
+[publish]: repos/datagovuk_publish
 [operating-dgu]: /manual/data-gov-uk-operations.html
-[find]: apps/datagovuk_find
+[find]: repos/datagovuk_find
 [sentry]: https://sentry.io/govuk/
 [logit-paas]: https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service
 [logit]: https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74
 [google-analytics]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/information-management/use-online-tools-in-gds/use-google-analytics
 [pagerduty]: https://govuk.pagerduty.com/
 [Pingdom]: /manual/pingdom.html
-[ckan]: apps/ckanext-datagovuk
+[ckan]: repos/ckanext-datagovuk
 
 ## Pingdom
 

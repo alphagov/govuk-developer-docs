@@ -5,8 +5,8 @@ section: data.gov.uk
 layout: manual_layout
 parent: "/manual.html"
 ---
-[publish]: apps/datagovuk_publish
-[find]: apps/datagovuk_find
+[publish]: repos/datagovuk_publish
+[find]: repos/datagovuk_find
 [publish-ci]: https://travis-ci.org/alphagov/datagovuk_publish/
 [find-ci]: https://travis-ci.org/alphagov/datagovuk_find
 [heroku]: https://docs.publishing.service.gov.uk/manual/review-apps.html#header

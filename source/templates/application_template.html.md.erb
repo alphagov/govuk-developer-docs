@@ -54,7 +54,7 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
 <%= partial(
   "partials/application/imported_docs",
   locals: {
-    path_to_app_docs: "/apps/#{application.github_repo_name}",
+    path_to_app_docs: "/repos/#{application.github_repo_name}",
     imported_docs: imported_docs,
   }).strip %>
 <%

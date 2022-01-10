@@ -16,7 +16,7 @@ make GOV.UK look the way it does.
 **Uploaded assets** - also called attachments - are files like PDFs, CSVs and
 images which are uploaded via the publishing apps and attached to documents.
 
-**Static templates** - these are HTML snippets served by the [Static](/apps/static.html)
+**Static templates** - these are HTML snippets served by the [Static](/repos/static.html)
 application. These are used by applications to share common parts of the GOV.UK
 page layout (such as header and footer).
 
@@ -25,7 +25,7 @@ page layout (such as header and footer).
 These assets are served from `https://www.gov.uk/assets` with a path associated
 with the application that is serving them. For example files within
 `https://www.gov.uk/assets/government-frontend` are assets for the
-[Government Frontend](/apps/government-frontend.html) application. These files
+[Government Frontend](/repos/government-frontend.html) application. These files
 are cached by [the GOV.UK content delivery network](cdn.html).
 
 These assets are served by the cache machines, these will proxy requests to
@@ -34,7 +34,7 @@ will proxy asset requests to Government Frontend
 
 ## Uploaded assets
 
-[Asset Manager](apps/asset-manager.html) is an API that is called internally
+[Asset Manager](repos/asset-manager.html) is an API that is called internally
 by [GOV.UK publishing applications](/#publishing-apps) to manage
 their uploads. It serves the uploaded assets on
 `assets.publishing.service.gov.uk`.

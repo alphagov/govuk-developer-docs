@@ -105,7 +105,7 @@ The following sections describe what happens when a publisher publishes content 
 
 ### A publisher publishes content to live
 
-A publisher signs into their [Signon](/apps/signon.html) account. Signon is a centralised single sign-on provider for GDS services that provides username/password and two-factor authentication.
+A publisher signs into their [Signon](/repos/signon.html) account. Signon is a centralised single sign-on provider for GDS services that provides username/password and two-factor authentication.
 
 The publisher creates or changes content in Publisher and [saves that content in draft](#a-publisher-publishes-content-to-draft).
 
@@ -124,7 +124,7 @@ Publishing API also puts the publishing event on a 'message queue', which multip
 
 The previous content referred to the user-facing live stack, also known as Origin. Before publishing content to live, a publisher can preview their content in the draft stack, also known as Draft Origin.
 
-The [Authenticating Proxy](https://github.com/alphagov/authenticating-proxy) adds authentication to the draft stack. This means that only publishers with a [Signon](/apps/signon.html) account, or a valid secret JSON web token (JWT) if the publisher is a fact checker, can access the draft stack.
+The [Authenticating Proxy](https://github.com/alphagov/authenticating-proxy) adds authentication to the draft stack. This means that only publishers with a [Signon](/repos/signon.html) account, or a valid secret JSON web token (JWT) if the publisher is a fact checker, can access the draft stack.
 
 The publishing apps, Publishing API and message queue only run in this draft stack. The draft stack also has its own copy of [Router](https://github.com/alphagov/router), [Content Store](https://github.com/alphagov/content-store), and all of the frontend apps. This enables publishers to see what their draft content will look like when rendered by the appropriate frontend application.
 

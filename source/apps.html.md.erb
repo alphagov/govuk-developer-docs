@@ -11,7 +11,7 @@ separate applications. Most of them are built using [Ruby on Rails][rails].
 | Hosting | Count | Applications |
 | --- | --- | --- |
 <% Hosts::hosters_descending(Repos.active_apps).each do |id, label:, apps:| %>
-| # <%= label %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/apps/#{app.app_name}.html)" }.join(", ") %> |
+| # <%= label %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/repos/#{app.app_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Reuse this data
@@ -56,7 +56,7 @@ The apps are secured by behind a [single signon system][signon]. They use an
 [gds-sso]: https://github.com/alphagov/gds-sso
 [hmrc-manual]: https://www.gov.uk/hmrc-internal-manuals/vat-clothing/vclothing1100
 [specialist documents]: https://www.gov.uk/cma-cases/legal-services-market-study
-[manuals-frontend]: /apps/manuals-frontend.html
-[static]: /apps/static.html
-[signon]: /apps/signon.html
-[specialist-publisher]: /apps/specialist-publisher.html
+[manuals-frontend]: /repos/manuals-frontend.html
+[static]: /repos/static.html
+[signon]: /repos/signon.html
+[specialist-publisher]: /repos/specialist-publisher.html
