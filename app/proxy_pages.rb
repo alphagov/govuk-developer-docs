@@ -59,7 +59,7 @@ class ProxyPages
   def self.app_overviews
     Repos.all.map do |application|
       {
-        path: "/apps/#{application.app_name}.html",
+        path: "/repos/#{application.app_name}.html",
         template: "templates/application_template.html",
         frontmatter: {
           title: application.page_title,
@@ -76,7 +76,7 @@ class ProxyPages
   def self.app_overviews_json
     Repos.all.map do |application|
       {
-        path: "/apps/#{application.app_name}.json",
+        path: "/repos/#{application.app_name}.json",
         template: "templates/json_response.json",
         frontmatter: {
           locals: {
