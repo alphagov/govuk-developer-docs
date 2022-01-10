@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Frontend architecture - GOV.UK Developer Documentation</title>
+    <title>Guidance and tools for digital accessibility - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/frontend-architecture.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/guidance-and-tools-for-digital-accessibility.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Frontend architecture - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/frontend-architecture.html" />
+      <meta name="twitter:title" content="Guidance and tools for digital accessibility - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/guidance-and-tools-for-digital-accessibility.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Frontend architecture" />
+      <meta property="og:title" content="Guidance and tools for digital accessibility" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/frontend-architecture.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/guidance-and-tools-for-digital-accessibility.html" />
 
     
   </head>
@@ -123,15 +123,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Frontend architecture</span></a>
-    <ul>
-      <li>
-        <a href="#current-state"><span>Current state</span></a>
-      </li>
-      <li>
-        <a href="#long-term-vision"><span>Long term vision</span></a>
-      </li>
-    </ul>
+    <a href="#header"><span>Guidance and tools for digital accessibility</span></a>
   </li>
 </ul>
 
@@ -181,61 +173,14 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f333a8600b2dc1d65320468aee2cd9327a5f1b7e">21 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a199b73cc750df77047015f585568921992797b6">20 Dec 2021</a>
 </div>
 
- <h1 id='header'>Frontend architecture</h1> <p>GOV.UK currently uses multiple systems to build frontends (HTML/CSS/JS).</p>
-<h2 id='current-state'>Current state</h2><p><a href="https://docs.google.com/drawings/d/e/2PACX-1vQX7w1JT5zboAhKv2jssLPrO39KiWj4SL3T7MfSdigGlS1bjGR6UT_AqKHBKbif0VuRivIPD70WfpCQ/pub?w=1208&amp;h=470" rel="noopener noreferrer"><img src="https://docs.google.com/drawings/d/e/2PACX-1vQX7w1JT5zboAhKv2jssLPrO39KiWj4SL3T7MfSdigGlS1bjGR6UT_AqKHBKbif0VuRivIPD70WfpCQ/pub?w=1208&amp;amp;h=470" alt="Current state of libraries" /></a></p>
-<p><em><a href="https://docs.google.com/drawings/d/1L7pqFrHB2IQCnr0w3ticqBuR4U12b8psZQanZTvF098/edit">Source</a></em></p>
-<p>Applications that serve pages for the public (everything on www.gov.uk) use:</p>
-
-<ul>
-<li><a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a>, the preferred way to share HTML, CSS and JS</li>
-<li><a href="https://github.com/alphagov/static">Static</a> and <a href="https://github.com/alphagov/slimmer">Slimmer</a> for layouts</li>
-<li>Static uses <a href="https://github.com/alphagov/govuk_frontend_toolkit">govuk_frontend_toolkit</a> and <a href="https://github.com/alphagov/govuk_template">govuk_template</a>, two deprecated projects built by GDS (not GOV.UK)</li>
-<li><a href="https://github.com/alphagov/licence-finder">licence-finder</a> is the only frontend application that still relies on <a href="https://github.com/alphagov/govuk_frontend_toolkit">govuk_frontend_toolkit</a></li>
-</ul>
-<p>Most admin applications use:</p>
-
-<ul>
-<li><a href="https://github.com/alphagov/govuk_admin_template">govuk_admin_template</a>, built by GOV.UK, which uses <a href="https://getbootstrap.com/">Bootstrap</a></li>
-</ul>
-<p>New admin applications and some legacy admin applications that have been updated use:</p>
-
-<ul>
-<li><a href="https://govuk-publishing-components.herokuapp.com/component-guide/layout_for_admin">layout_for_admin</a> which is available as a component in <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a></li>
-</ul>
-<h2 id='long-term-vision'>Long term vision</h2><p>We have 2 <a href="https://docs.google.com/presentation/d/1q51pPWl4uaVM2PxFRmPUNu0wJvYfC-lO7GPLsRvyxtQ/edit">long term goals</a> for the frontend:</p>
-
-<ul>
-<li>Use the same tech for the public and admin apps</li>
-<li>Use as much of the <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a> as possible</li>
-</ul>
-<p><a href="https://docs.google.com/drawings/d/e/2PACX-1vS5rtPYUJBvl2Th3JaT7WQQHu4KTDuYMdOiHCzUgyifG9ewuEyim_fC5VjmH8gjZg33o8E7TOcWn0sN/pub?w=873&amp;h=475" rel="noopener noreferrer"><img src="https://docs.google.com/drawings/d/e/2PACX-1vS5rtPYUJBvl2Th3JaT7WQQHu4KTDuYMdOiHCzUgyifG9ewuEyim_fC5VjmH8gjZg33o8E7TOcWn0sN/pub?w=873&amp;amp;h=475" alt="" /></a>
-<em><a href="https://docs.google.com/drawings/d/1R5s5lHyeDmPFfqXn17Lz3Z2MXoxhJcuSnnmdN327z9g/edit">Source</a></em></p>
-
-<ul>
-<li>Public and admin apps use <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a></li>
-<li><a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a> consumes the <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a></li>
-</ul>
+ <h1 id='header'>Guidance and tools for digital accessibility</h1> <p><a href="https://www.gov.uk/guidance/guidance-and-tools-for-digital-accessibility">Guidance and tools for digital accessibility</a></p>
 
 
   <div class='related-content'>
-    <h4>Related applications</h4>
-
-    <ul class="govuk-list">
-      <li><a href="/apps/static.html">static</a></li>
-      <li><a href="/apps/slimmer.html">slimmer</a></li>
-      <li><a href="/apps/govuk_publishing_components.html">govuk_publishing_components</a></li>
-    </ul>
 
     <h3>More in the Frontend section</h3>
 
@@ -246,7 +191,7 @@
           <ul class="govuk-list">
             <li><a href="/manual/analytics.html">Analytics on GOV.UK</a></li>
             <li><a href="/manual/find-a-rails-template-based-on-a-govuk-url.html">Find a rails template based on a GOV.UK URL or vice verca</a></li>
-            <li><a href="/manual/guidance-and-tools-for-digital-accessibility.html">Guidance and tools for digital accessibility</a></li>
+            <li><a href="/manual/frontend-architecture.html">Frontend architecture</a></li>
             <li><a href="/manual/local-frontend-development.html">Local frontend development</a></li>
             <li><a href="/manual/components.html">The component system</a></li>
             <li><a href="/manual/browser-support.html">Which browsers we support</a></li>
@@ -272,8 +217,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/frontend-architecture.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Frontend+architecture%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ffrontend-architecture.html%29&amp;labels=bug&amp;title=Re%3A+%27Frontend+architecture%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/guidance-and-tools-for-digital-accessibility.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Guidance+and+tools+for+digital+accessibility%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fguidance-and-tools-for-digital-accessibility.html%29&amp;labels=bug&amp;title=Re%3A+%27Guidance+and+tools+for+digital+accessibility%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
