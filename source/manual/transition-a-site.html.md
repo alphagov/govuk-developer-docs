@@ -197,7 +197,7 @@ There are two things that need to be responded to:
 
 The transition checklist covers the whole process of transitioning a site from the technical side. There’s a [full version for complex sites](https://docs.google.com/document/d/1SiBwYtV_d_D9pPcqzpqvRWs0kscUtB7yqxN8Ub_uRSA/edit) and a [slightly simplified one](https://docs.google.com/document/d/1gIJBUuPaZqtYsrgwqMBSrU4lpr2e93tuhQcgylnSHb4/edit) - we probably only need the simpler one for upcoming transitions.
 
-[Transition]: /apps/transition.html
-[Bouncer]: /apps/bouncer.html
+[Transition]: /repos/transition.html
+[Bouncer]: /repos/bouncer.html
 [transition-config]: https://github.com/alphagov/transition-config/blob/main/README.md
 [request a Fastly TLS certificate]: /manual/request-fastly-tls-certificate.html

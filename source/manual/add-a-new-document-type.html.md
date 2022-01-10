@@ -30,7 +30,7 @@ Examples of implementation:
 
 If your document type needs a new content schema, see "[Adding a new schema][]".
 
-[Adding a new schema]: /apps/govuk-content-schemas/adding-a-new-schema.html
+[Adding a new schema]: /repos/govuk-content-schemas/adding-a-new-schema.html
 
 ## Make the new document type available to search
 
@@ -49,4 +49,4 @@ See "[Publish special routes]" for more information.
 > Note: having a document type with `placeholder` prefix will not publish routes. Read more about [placeholder items][placeholder-items].
 
 [Publish special routes]: /manual/publish-special-routes.html
-[placeholder-items]: https://docs.publishing.service.gov.uk/apps/content-store/placeholder_item.html
+[placeholder-items]: https://docs.publishing.service.gov.uk/repos/content-store/placeholder_item.html

@@ -34,6 +34,6 @@ Currently, the rake task will generate the file and upload it in one step.
 If the check fails:
 
 - Inspect the [console logs for the rake task](https://deploy.blue.production.govuk.digital/job/enhanced_ecommerce_search_api/).
-- Escalate to the team responsible for [search-api](/apps/search-api.html).
+- Escalate to the team responsible for [search-api](/repos/search-api.html).
 - It is safe to re-run the rake task to make the alert go away.
   You may see some 'high load' alerts while the task is running.

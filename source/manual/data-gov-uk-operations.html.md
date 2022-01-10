@@ -6,9 +6,9 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-[find]: apps/datagovuk_find
-[publish]: apps/datagovuk_publish
-[ckan]: apps/ckanext-datagovuk
+[find]: repos/datagovuk_find
+[publish]: repos/datagovuk_publish
+[ckan]: repos/ckanext-datagovuk
 
 ## Accessing data.gov.uk
 

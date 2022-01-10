@@ -45,6 +45,6 @@ investigation guide][debug_elasticsearch] for help.
 [duplicate_documents]: /manual/incorrect-content-in-search-or-navigation.html#content-is-duplicated-in-search-results
 [debug_elasticsearch]: /manual/alerts/elasticsearch-cluster-health.html#investigating-problems
 [index_size_dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/search_api_index_size.json
-[search-api]: /apps/search-api.html
+[search-api]: /repos/search-api.html
 [search_index_checks]: https://deploy.blue.production.govuk.digital/job/search_api_index_checks/
 [thresholds]: https://github.com/alphagov/govuk-puppet/blob/1f482d137f27afbbe4509c19791667f8d74eea11/modules/monitoring/manifests/checks.pp#L120

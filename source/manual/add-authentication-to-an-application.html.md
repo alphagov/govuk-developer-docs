@@ -33,7 +33,7 @@ To set up an application:
 ## Before an application can be deployed with authentication
 
 1. Your application will need to be registered as an application in
-   [signon](../apps/signon.html) in [production][signon-production] and
+   [signon](../repos/signon.html) in [production][signon-production] and
    [integration][signon-integration]. Staging is not required as it will be
    synced with production as part of the [data sync][].
    - Create the application in signon with a [rake task][app-create-rake]

@@ -12,7 +12,7 @@ There are <strong><%= page.total_count %></strong> pages with document type
 This document type is rendered by:
 
 <% page.rendering_apps.each do |rendering_app| %>
-- <%= link_to rendering_app, "/apps/#{rendering_app}.html" %>
+- <%= link_to rendering_app, "/repos/#{rendering_app}.html" %>
 <% end %>
 <% else %>
 This document type is not rendered by any apps. This could mean that the document

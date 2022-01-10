@@ -10,7 +10,7 @@ parent: "/apps.html"
 ## Repos without a team
 
 <% Repos.no_known_owner.each do |app_name| %>
-- [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
+- [<%= app_name %>](<%= "/repos/#{app_name}.html" %>)
 <% end %>
 
 <% end %>
@@ -19,7 +19,7 @@ parent: "/apps.html"
 ## <%= team %>
 
 <% Repos.for_team(team).each do |app_name| %>
-- [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
+- [<%= app_name %>](<%= "/repos/#{app_name}.html" %>)
 <% end %>
 
 <% end %>
