@@ -39,7 +39,7 @@ class Dashboard
 
   private
 
-    # Pull the the applications from applications.yml into the first categories
+    # Pull the applications from repos.yml into the first categories
     def from_application_page
       applications_in_this_section = Applications.active.select do |app|
         app.type == name

@@ -15,7 +15,7 @@ parent: "/manual.html"
 [sentry]: https://sentry.io/settings/govuk/teams/
 [release]: https://release.publishing.service.gov.uk/applications
 [deploy-jenkins]: https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
-[docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/main/data/applications.yml
+[docs-applications]: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml
 [get-started]: https://docs.publishing.service.gov.uk/manual/get-started.html
 [linting]: https://docs.publishing.service.gov.uk/manual/configure-linting.html
 [rails-conv]: https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html
@@ -236,7 +236,7 @@ If you need to enable external DNS, find out how to [make changes to publishing.
 
 ### Add your app to the GOV.UK developer documentation
 
-Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/applications.yml` file][docs-applications].
+Open a pull request to add your Rails app to the [GOV.UK developer documentation `data/repos.yml` file][docs-applications].
 
 ### Create the application in Sentry
 
