@@ -82,7 +82,7 @@ class Dashboard
 
   class App < Thing
     def url
-      "/apps/#{id}.html"
+      "/repos/#{id}.html"
     end
   end
 end

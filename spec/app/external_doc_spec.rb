@@ -57,8 +57,8 @@ RSpec.describe ExternalDoc do
       end
 
       it "converts relative GitHub links to Developer Docs HTML links if it is an imported document" do
-        expect(html).to have_link("Relative docs link with period", href: "/apps/lipsum/prefixed.html")
-        expect(html).to have_link("Relative docs link without period", href: "/apps/lipsum/no-prefix.html")
+        expect(html).to have_link("Relative docs link with period", href: "/repos/lipsum/prefixed.html")
+        expect(html).to have_link("Relative docs link without period", href: "/repos/lipsum/no-prefix.html")
       end
 
       it "converts relative links to absolute GitHub URLs if link is outside of the `docs` folder" do
@@ -77,7 +77,7 @@ RSpec.describe ExternalDoc do
         let(:path) { "docs/some-document.md" }
 
         it "converts links relative to the `docs` folder and applies the same business logic as before" do
-          expect(html).to have_link("inline link", href: "/apps/lipsum/inline-link.html")
+          expect(html).to have_link("inline link", href: "/repos/lipsum/inline-link.html")
         end
 
         it "converts links relative to the 'root' to absolute GitHub URLs" do

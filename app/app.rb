@@ -13,7 +13,7 @@ class App
       puppet_name: puppet_name,
       production_hosted_on: production_hosted_on,
       links: {
-        self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
+        self: "https://docs.publishing.service.gov.uk/repos/#{app_name}.json",
         html_url: html_url,
         repo_url: repo_url,
         sentry_url: sentry_url,
@@ -47,7 +47,7 @@ class App
   end
 
   def html_url
-    "https://docs.publishing.service.gov.uk/apps/#{app_name}.html"
+    "https://docs.publishing.service.gov.uk/repos/#{app_name}.html"
   end
 
   def retired?

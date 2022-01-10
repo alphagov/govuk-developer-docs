@@ -180,7 +180,7 @@ RSpec.describe GitHubRepoFetcher do
 
         with_stubbed_client(double("Octokit::Client", contents: [doc]), instance) do
           doc = instance.docs(repo_name).first
-          expect(doc[:path]).to eq("/apps/#{repo_name}/subdir/foo.html")
+          expect(doc[:path]).to eq("/repos/#{repo_name}/subdir/foo.html")
           expect(doc[:relative_path]).to eq("docs/subdir/foo.md")
         end
       end
