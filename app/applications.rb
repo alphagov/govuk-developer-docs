@@ -3,7 +3,7 @@ class Applications
 
   def self.all
     @all ||=
-      YAML.load_file("data/applications.yml")
+      YAML.load_file("data/repos.yml")
         .map { |app_data| App.new(app_data) }
         .sort_by(&:app_name)
   end

@@ -57,10 +57,10 @@ task :verify_deployable_apps do
 
   missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq
   if missing_apps.count.zero?
-    puts "No deployable apps missing from applications.yml ✅"
+    puts "No deployable apps missing from repos.yml ✅"
   else
     errors = missing_apps.map { |missing_app| "\n\t #{missing_app}" }
-    abort("The following deployable apps are missing from applications.yml: #{errors.join('')}")
+    abort("The following deployable apps are missing from repos.yml: #{errors.join('')}")
   end
 end
 
