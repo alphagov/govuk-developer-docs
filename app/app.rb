@@ -42,6 +42,10 @@ class App
     app_data["production_hosted_on"]
   end
 
+  def is_app?
+    !production_hosted_on.nil?
+  end
+
   def hosting_name
     Hosts::HOSTERS.fetch(production_hosted_on)
   end
@@ -61,8 +65,10 @@ class App
   def page_title
     if retired?
       "Application: #{app_name} (retired)"
-    else
+    elsif is_app?
       "Application: #{app_name}"
+    else
+      "Repository: #{app_name}"
     end
   end
 

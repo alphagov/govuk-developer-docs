@@ -13,7 +13,7 @@ class Repos
   end
 
   def self.active_apps
-    Repos.all.reject(&:retired?).reject { |app| app.production_hosted_on.nil? }
+    Repos.all.reject(&:retired?).select(&:is_app?)
   end
 
   def self.grouped_by_team
