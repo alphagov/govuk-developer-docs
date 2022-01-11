@@ -1,6 +1,6 @@
 <% if application.production_hosted_on == "aws" %>
   <strong><%= application.hosting_name %></strong>, on the <strong><%= application.aws_puppet_class %></strong> machine class
-<% elsif application.hosting_name != "None"  %>
+<% elsif !application.production_hosted_on.nil? %>
   <strong><%= application.hosting_name %></strong>
 <% else %>
   N/A
