@@ -12,8 +12,4 @@ class Applications
   def self.active
     Applications.all.reject(&:retired?).sort_by(&:app_name)
   end
-
-  def self.app_data
-    @app_data ||= AppData.new
-  end
 end
