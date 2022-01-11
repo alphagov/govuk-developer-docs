@@ -3,7 +3,6 @@ class Hosts
     "aws" => "AWS",
     "paas" => "GOV.UK PaaS",
     "heroku" => "Heroku",
-    "none" => "None",
   }.freeze
 
   def self.hosters_descending(applications)

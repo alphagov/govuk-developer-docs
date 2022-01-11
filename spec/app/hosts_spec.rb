@@ -23,7 +23,6 @@ RSpec.describe Hosts do
         aws
         heroku
         paas
-        none
       ])
     end
   end
