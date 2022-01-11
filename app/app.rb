@@ -22,7 +22,7 @@ class App
   end
 
   def aws_puppet_class
-    Applications.aws_machines.each do |puppet_class, keys|
+    Hosts.aws_machines.each do |puppet_class, keys|
       if keys["apps"].include?(app_name) || keys["apps"].include?(puppet_name)
         return puppet_class
       end
@@ -43,7 +43,7 @@ class App
   end
 
   def hosting_name
-    Applications::HOSTERS.fetch(production_hosted_on)
+    Hosts::HOSTERS.fetch(production_hosted_on)
   end
 
   def html_url
@@ -71,11 +71,11 @@ class App
   end
 
   def example_published_pages
-    Applications.app_data.publishing_examples[app_name]
+    AppData.publishing_examples[app_name]
   end
 
   def example_rendered_pages
-    Applications.app_data.rendering_examples[app_name]
+    AppData.rendering_examples[app_name]
   end
 
   def github_repo_name
