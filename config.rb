@@ -34,7 +34,7 @@ helpers do
   end
 
   def teams
-    Applications.teams
+    Repos.teams
   end
 
   def related_things

@@ -5,11 +5,11 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
 parent: "/apps.html"
 ---
 
-<% unless Applications.no_known_owner.empty? %>
+<% unless Repos.no_known_owner.empty? %>
 
 ## Repos without a team
 
-<% Applications.no_known_owner.each do |app_name| %>
+<% Repos.no_known_owner.each do |app_name| %>
 - [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
 <% end %>
 
@@ -18,7 +18,7 @@ parent: "/apps.html"
 <% teams.each do |team| %>
 ## <%= team %>
 
-<% Applications.for_team(team).each do |app_name| %>
+<% Repos.for_team(team).each do |app_name| %>
 - [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
 <% end %>
 
