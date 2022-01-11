@@ -68,7 +68,7 @@ desc "Check all puppet names are valid, will error when not"
 task :check_puppet_names do
   puts "Checking Puppet manifests..."
   invalid_puppet_names = []
-  Repos.active.each do |app|
+  Repos.active_apps.each do |app|
     suppress_output { HTTP.get(app.puppet_url) unless app.puppet_url.nil? }
   rescue Octokit::NotFound
     invalid_puppet_names << app.puppet_url

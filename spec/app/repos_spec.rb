@@ -18,7 +18,7 @@ RSpec.describe Repos do
     end
   end
 
-  describe "active" do
+  describe "active_apps" do
     let(:applications) do
       [
         { github_repo_name: "whitehall", retired: true },
@@ -27,7 +27,7 @@ RSpec.describe Repos do
     end
 
     it "should return only apps that are not retired" do
-      expect(Repos.active.map(&:github_repo_name)).to eq(%w[asset-manager])
+      expect(Repos.active_apps.map(&:github_repo_name)).to eq(%w[asset-manager])
     end
   end
 end
