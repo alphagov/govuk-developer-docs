@@ -71,11 +71,11 @@ class App
   end
 
   def example_published_pages
-    Applications.app_data.publishing_examples[app_name]
+    AppData.publishing_examples[app_name]
   end
 
   def example_rendered_pages
-    Applications.app_data.rendering_examples[app_name]
+    AppData.rendering_examples[app_name]
   end
 
   def github_repo_name
