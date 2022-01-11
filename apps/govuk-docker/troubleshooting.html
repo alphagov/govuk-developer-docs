@@ -357,7 +357,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/2ebace2c19de94f1536fcd3eee39a718ea3aeb50">17 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/1185b7423f602842d19f1a00c61ddd1efc8b0be5">13 Dec 2021</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -447,16 +447,6 @@ Target /usr/local/bin/docker-compose
 <pre><code>Error: It seems there is already an App at '/Applications/Docker.app'.
 </code></pre>
 <p>This isn't a problem if you already have Docker/Compose installed, and the setup script will continue to run. If you like, you can remove your existing Docker/Compose and run <code>bin/setup</code> again.</p>
-<h2 id="check-if-you-are-using-docker-compose-v2">Check if you are using Docker Compose V2</h2>
-<p>At time of writing, <a href="https://docs.docker.com/compose/cli-command/">docker are trialing a version 2 of the compose command</a>. It's been observed that after updating Docker, some developers are opted into using this experimental feature. Also at time of writing, using compose V2 has been observed to cause problems when using govuk-docker. Specifically it seems to not work against the nginx image we use.</p>
-<p>To check if you're using compose V2 and turn it off:</p>
-<ul>
-<li>open the docker dashboard UI</li>
-<li>click the settings gear icon</li>
-<li>go to "Experimental Features"</li>
-<li>check if the "Use Docker Compose V2 release candidate" checkbox is checked</li>
-<li>uncheck it if it is checked and save</li>
-</ul>
 <h2 id="cannot-rails-dbprepare-or-start-console-due-to-plugin-caching_sha2_password-could-not-be-loaded">Cannot <code>rails db:prepare</code> or start console due to "Plugin caching_sha2_password could not be loaded"</h2>
 <p>In MySQL 8.0 <code>caching_sha2_password</code> was made the default over the previous <code>mysql_native_password</code>.</p>
 <p>This can lead to the following error when ActiveRecord is attempting to connect to the database, for example when running <code>rails db:prepare</code> or trying to bring up a rails console.</p>
