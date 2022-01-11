@@ -31,4 +31,19 @@ RSpec.describe Repos do
       expect(Repos.active_apps.map(&:github_repo_name)).to eq(%w[asset-manager])
     end
   end
+
+  describe "for_team" do
+    let(:applications) do
+      [
+        { github_repo_name: "retired", team: "#foo", retired: true },
+        { github_repo_name: "private", team: "#foo", private_repo: true },
+        { github_repo_name: "hosted-app", team: "#foo", retired: false, production_hosted_on: "aws" },
+        { github_repo_name: "unhosted-tool", team: "#foo", retired: false },
+      ]
+    end
+
+    it "should return all public, non-retired repos owned by a particular team" do
+      expect(Repos.for_team("#foo")).to eq(%w[hosted-app unhosted-tool])
+    end
+  end
 end

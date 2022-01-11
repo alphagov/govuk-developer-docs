@@ -17,7 +17,7 @@ class Repos
   end
 
   def self.grouped_by_team
-    Repos.active_apps.reject(&:private_repo?).group_by(&:team)
+    Repos.all.reject(&:retired?).reject(&:private_repo?).group_by(&:team)
   end
 
   def self.teams
