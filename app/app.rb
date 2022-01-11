@@ -147,7 +147,7 @@ class App
   end
 
   def team
-    app_data["team"]
+    app_data["team"] || Repos::UNKNOWN
   end
 
   def dependencies_team

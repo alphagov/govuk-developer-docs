@@ -1,6 +1,6 @@
 RSpec.describe Hosts do
   before :each do
-    allow(Applications).to receive(:all) do
+    allow(Repos).to receive(:all) do
       applications.map(&:stringify_keys).map { |app_data| App.new(app_data) }
     end
   end
@@ -19,7 +19,7 @@ RSpec.describe Hosts do
 
   describe "hosters_descending" do
     it "should return hosters in descending order of repo count" do
-      expect(Hosts.hosters_descending(Applications.all).keys).to eq(%w[
+      expect(Hosts.hosters_descending(Repos.all).keys).to eq(%w[
         aws
         heroku
         paas
@@ -30,7 +30,7 @@ RSpec.describe Hosts do
 
   describe "on_host" do
     it "should return apps hosted on the named host" do
-      paas_app = Hosts.on_host(Applications.all, "paas").first
+      paas_app = Hosts.on_host(Repos.all, "paas").first
       expect(paas_app).to be_an(App)
       expect(paas_app.app_name).to eq("app-on-paas")
     end

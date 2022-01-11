@@ -1,6 +1,6 @@
-RSpec.describe Applications do
+RSpec.describe Repos do
   before :each do
-    allow(Applications).to receive(:all) do
+    allow(Repos).to receive(:all) do
       applications.map(&:stringify_keys).map { |app_data| App.new(app_data) }
     end
   end
@@ -14,7 +14,7 @@ RSpec.describe Applications do
     end
 
     it "should return only apps with public repos" do
-      expect(Applications.public.map(&:github_repo_name)).to eq(%w[asset-manager])
+      expect(Repos.public.map(&:github_repo_name)).to eq(%w[asset-manager])
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe Applications do
     end
 
     it "should return only apps that are not retired" do
-      expect(Applications.active.map(&:github_repo_name)).to eq(%w[asset-manager])
+      expect(Repos.active.map(&:github_repo_name)).to eq(%w[asset-manager])
     end
   end
 end
