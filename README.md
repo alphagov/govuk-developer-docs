@@ -22,6 +22,11 @@ Store the token in a `.env` file like this:
 ```
 GITHUB_TOKEN=somethingsomething
 ```
+Example start up commands:
+```
+govuk-docker-up env GITHUB_TOKEN=$(cat ~/github_token.txt)
+GITHUB_TOKEN=$(cat ~/github_token.txt) ./startup.sh
+```
 
 ### Testing the app
 
