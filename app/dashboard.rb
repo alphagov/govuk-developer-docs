@@ -41,7 +41,7 @@ class Dashboard
 
     # Pull the applications from repos.yml into the first categories
     def from_application_page
-      applications_in_this_section = Repos.active.select do |app|
+      applications_in_this_section = Repos.active_apps.select do |app|
         app.type == name
       end
 

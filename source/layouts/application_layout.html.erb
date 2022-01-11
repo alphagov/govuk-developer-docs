@@ -6,7 +6,7 @@
       </a>
     </li>
 
-    <% Repos.active.group_by(&:type).each do |name, apps| %>
+    <% Repos.active_apps.group_by(&:type).each do |name, apps| %>
       <li>
         <a href="/apps.html">
           <span><%= name %></span>
