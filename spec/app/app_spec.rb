@@ -1,11 +1,11 @@
-RSpec.describe Repo do
+RSpec.describe App do
   describe "is_app?" do
     it "returns false if 'production_hosted_on' is omitted" do
-      expect(Repo.new({}).is_app?).to be(false)
+      expect(App.new({}).is_app?).to be(false)
     end
 
     it "returns true if 'production_hosted_on' is supplied" do
-      expect(Repo.new({ "production_hosted_on" => "aws" }).is_app?).to be(true)
+      expect(App.new({ "production_hosted_on" => "aws" }).is_app?).to be(true)
     end
   end
 
@@ -17,7 +17,7 @@ RSpec.describe Repo do
         "dependencies_team" => "baz",
         "production_hosted_on" => "aws",
       }
-      payload = Repo.new(app_details).api_payload
+      payload = App.new(app_details).api_payload
       expect(payload[:app_name]).to eq(app_details["github_repo_name"])
       expect(payload[:team]).to eq(app_details["team"])
       expect(payload[:dependencies_team]).to eq(app_details["dependencies_team"])
@@ -28,13 +28,13 @@ RSpec.describe Repo do
 
   describe "production_url" do
     it "has a good default" do
-      app = Repo.new("type" => "Publishing app", "github_repo_name" => "my-app")
+      app = App.new("type" => "Publishing app", "github_repo_name" => "my-app")
 
       expect(app.production_url).to eql("https://my-app.publishing.service.gov.uk")
     end
 
     it "allows override" do
-      app = Repo.new("type" => "Publishing app", "production_url" => "something else")
+      app = App.new("type" => "Publishing app", "production_url" => "something else")
 
       expect(app.production_url).to eql("something else")
     end
@@ -55,19 +55,19 @@ RSpec.describe Repo do
     end
 
     it "should find puppet class via github repo name if neither app name nor puppet name provided" do
-      expect(Repo.new("github_repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
+      expect(App.new("github_repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should find puppet class via app name" do
-      expect(Repo.new("app_name" => "licencefinder").aws_puppet_class).to eq("calculators_frontend")
+      expect(App.new("app_name" => "licencefinder").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should find puppet class via puppet name" do
-      expect(Repo.new("puppet_name" => "smartanswers", "github_repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
+      expect(App.new("puppet_name" => "smartanswers", "github_repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should return error message if no puppet class found" do
-      expect(Repo.new("github_repo_name" => "foo").aws_puppet_class)
+      expect(App.new("github_repo_name" => "foo").aws_puppet_class)
         .to eq("Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml")
     end
   end
