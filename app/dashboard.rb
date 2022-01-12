@@ -76,6 +76,9 @@ class Dashboard
     end
 
     def url
+      puts "CHRIS ASHTON DATA"
+      puts data
+      puts data.html_url
       data.html_url
     end
   end
