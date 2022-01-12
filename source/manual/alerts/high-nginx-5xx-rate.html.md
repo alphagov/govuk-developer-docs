@@ -27,10 +27,6 @@ if there are an unusually high number of requests to a particular machine
 class. If there are, you may want to consider
 [scaling up the number of machines available][scaling-up] to handle the requests.
 
-> **Note**
->
->  This is only possible in AWS.
-
 ## `UNKNOWN: INTERNAL ERROR`
 
 If the message is "UNKNOWN: INTERNAL ERROR: RuntimeError: no valid
