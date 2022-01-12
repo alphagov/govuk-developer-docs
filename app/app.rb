@@ -63,12 +63,11 @@ class App
   end
 
   def page_title
+    type = is_app? ? "Application" : "Repository"
     if retired?
-      "Application: #{app_name} (retired)"
-    elsif is_app?
-      "Application: #{app_name}"
+      "#{type}: #{app_name} (retired)"
     else
-      "Repository: #{app_name}"
+      "#{type}: #{app_name}"
     end
   end
 
