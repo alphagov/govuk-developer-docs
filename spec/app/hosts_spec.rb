@@ -1,7 +1,7 @@
 RSpec.describe Hosts do
   before :each do
     allow(Repos).to receive(:all) do
-      applications.map(&:stringify_keys).map { |app_data| App.new(app_data) }
+      applications.map(&:stringify_keys).map { |repo_data| Repo.new(repo_data) }
     end
   end
 
@@ -30,7 +30,7 @@ RSpec.describe Hosts do
   describe "on_host" do
     it "should return apps hosted on the named host" do
       paas_app = Hosts.on_host(Repos.all, "paas").first
-      expect(paas_app).to be_an(App)
+      expect(paas_app).to be_a(Repo)
       expect(paas_app.app_name).to eq("app-on-paas")
     end
   end

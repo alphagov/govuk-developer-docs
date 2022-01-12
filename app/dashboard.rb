@@ -46,7 +46,7 @@ class Dashboard
       end
 
       applications_in_this_section.map do |app|
-        App.new("name" => app.app_name, "description" => app.description)
+        Repo.new("name" => app.app_name, "description" => app.description)
       end
     end
 

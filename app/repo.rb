@@ -1,8 +1,8 @@
-class App
-  attr_reader :app_data
+class Repo
+  attr_reader :repo_data
 
-  def initialize(app_data)
-    @app_data = app_data
+  def initialize(repo_data)
+    @repo_data = repo_data
   end
 
   def api_payload
@@ -35,11 +35,11 @@ class App
   end
 
   def machine_class
-    app_data["machine_class"] || aws_puppet_class
+    repo_data["machine_class"] || aws_puppet_class
   end
 
   def production_hosted_on
-    app_data["production_hosted_on"]
+    repo_data["production_hosted_on"]
   end
 
   def is_app?
@@ -55,11 +55,11 @@ class App
   end
 
   def retired?
-    app_data["retired"]
+    repo_data["retired"]
   end
 
   def private_repo?
-    app_data["private_repo"]
+    repo_data["private_repo"]
   end
 
   def page_title
@@ -73,7 +73,7 @@ class App
   end
 
   def app_name
-    app_data["app_name"] || github_repo_name
+    repo_data["app_name"] || github_repo_name
   end
 
   def example_published_pages
@@ -85,22 +85,22 @@ class App
   end
 
   def github_repo_name
-    app_data.fetch("github_repo_name")
+    repo_data.fetch("github_repo_name")
   end
 
   def management_url
-    app_data["management_url"]
+    repo_data["management_url"]
   end
 
   def repo_url
-    app_data["repo_url"] || "https://github.com/alphagov/#{github_repo_name}"
+    repo_data["repo_url"] || "https://github.com/alphagov/#{github_repo_name}"
   end
 
   def sentry_url
-    if app_data["sentry_url"] == false
+    if repo_data["sentry_url"] == false
       nil
-    elsif app_data["sentry_url"]
-      app_data["sentry_url"]
+    elsif repo_data["sentry_url"]
+      repo_data["sentry_url"]
     else
       "https://sentry.io/govuk/app-#{app_name}"
     end
@@ -109,25 +109,25 @@ class App
   def puppet_url
     return unless production_hosted_on_aws?
 
-    return app_data["puppet_url"] if app_data["puppet_url"]
+    return repo_data["puppet_url"] if repo_data["puppet_url"]
 
     "https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/#{puppet_name}.pp"
   end
 
   def deploy_url
-    return if app_data["deploy_url"] == false || %w[none heroku].include?(production_hosted_on)
+    return if repo_data["deploy_url"] == false || %w[none heroku].include?(production_hosted_on)
 
     if production_hosted_on == "paas"
-      app_data["deploy_url"]
+      repo_data["deploy_url"]
     else
       "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
     end
   end
 
   def dashboard_url
-    return if app_data["dashboard_url"] == false
+    return if repo_data["dashboard_url"] == false
 
-    app_data["dashboard_url"] || "https://grafana.production.govuk.digital/dashboard/file/#{app_name}.json"
+    repo_data["dashboard_url"] || "https://grafana.production.govuk.digital/dashboard/file/#{app_name}.json"
   end
 
   def publishing_e2e_tests_url
@@ -137,36 +137,36 @@ class App
   end
 
   def api_docs_url
-    app_data["api_docs_url"]
+    repo_data["api_docs_url"]
   end
 
   def component_guide_url
-    app_data["component_guide_url"]
+    repo_data["component_guide_url"]
   end
 
   def metrics_dashboard_url
-    app_data["metrics_dashboard_url"]
+    repo_data["metrics_dashboard_url"]
   end
 
   def type
-    app_data.fetch("type")
+    repo_data.fetch("type")
   end
 
   def team
-    app_data["team"] || Repos::UNKNOWN
+    repo_data["team"] || Repos::UNKNOWN
   end
 
   def dependencies_team
-    app_data
+    repo_data
       .fetch("dependencies_team", team)
   end
 
   def description
-    app_data["description"] || description_from_github
+    repo_data["description"] || description_from_github
   end
 
   def production_url
-    app_data["production_url"] || (type.in?(["Publishing app", "Admin app"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
+    repo_data["production_url"] || (type.in?(["Publishing app", "Admin app"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
   end
 
   def readme
@@ -192,7 +192,7 @@ class App
 private
 
   def puppet_name
-    app_data["puppet_name"] || app_name.underscore
+    repo_data["puppet_name"] || app_name.underscore
   end
 
   def description_from_github
