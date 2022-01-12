@@ -53,7 +53,7 @@ class Dashboard
     def repos
       data["repos"].to_a.map do |repo_name|
         repo = GitHubRepoFetcher.instance.repo(repo_name)
-        Repo.new(repo)
+        Repository.new(repo)
       end
     end
 
@@ -70,15 +70,12 @@ class Dashboard
     end
   end
 
-  class Repo < Thing
+  class Repository < Thing
     def name
       data.owner.login == "alphagov" ? data.name : data.full_name
     end
 
     def url
-      puts "CHRIS ASHTON DATA"
-      puts data
-      puts data.html_url
       data.html_url
     end
   end
