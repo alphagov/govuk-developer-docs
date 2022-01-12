@@ -18,6 +18,12 @@ $ gds govuk connect -e staging ssh cache
 
 This will automatically SSH into a random `cache` machine on AWS.
 
+You can connect to a consistent machine by its index:
+
+```sh
+$ gds govuk connect -e staging ssh cache:1
+```
+
 To see all classes, run:
 
 ```sh
