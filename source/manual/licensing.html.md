@@ -7,7 +7,7 @@ section: 2nd line
 type: learn
 ---
 
-GOV.UK runs a Scala application ([Licensify](/apps/licensify.html)) which allows users to apply and pay for licences from local authorities and other competent authorities.
+GOV.UK runs a Scala application ([Licensify](/repos/licensify.html)) which allows users to apply and pay for licences from local authorities and other competent authorities.
 
 ## Overview
 
@@ -25,7 +25,7 @@ The Licensing service consists of [three separately deployed applications](https
 
 Users use [Licence Finder](https://www.gov.uk/licence-finder) to locate licences on the GOV.UK frontend, but from a technical perspective this is separate from Licensify.
 
-Licence Finder sends users to a "Licence" page served by [Frontend](/apps/frontend.html). Users enter their postcode and Frontend uses [Mapit](/apps/mapit.html) to [find their local authority](https://github.com/alphagov/frontend/blob/8dbe0f0f6ca0f5a777a0d6ca77b858fe5adc2494/app/controllers/licence_controller.rb#L83). Frontend makes a request to a Licensify API to find out whether the licence is available on GOV.UK.
+Licence Finder sends users to a "Licence" page served by [Frontend](/repos/frontend.html). Users enter their postcode and Frontend uses [Mapit](/repos/mapit.html) to [find their local authority](https://github.com/alphagov/frontend/blob/8dbe0f0f6ca0f5a777a0d6ca77b858fe5adc2494/app/controllers/licence_controller.rb#L83). Frontend makes a request to a Licensify API to find out whether the licence is available on GOV.UK.
 
 ### Applying for a licence
 

@@ -64,4 +64,4 @@ There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot
 [current]: /manual/keeping-software-current.html
 [Dependabot]: https://dependabot.com
 [admin]: https://app.dependabot.com/accounts/alphagov/repos
-[app]: /apps/govuk-dependencies.html
+[app]: /repos/govuk-dependencies.html

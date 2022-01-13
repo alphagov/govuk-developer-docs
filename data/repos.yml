@@ -1,0 +1,596 @@
+- github_repo_name: account-api
+  type: APIs
+  team: "#govuk-accounts-tech"
+  production_hosted_on: aws
+
+- github_repo_name: asset-manager
+  type: APIs
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: authenticating-proxy
+  type: Supporting apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: blinkenjs
+  app_name: govuk-secondline-blinken
+  management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
+  production_hosted_on: heroku
+  type: Utilities
+
+- github_repo_name: bouncer
+  type: Transition apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: business-support-api
+  retired: true
+  type: APIs
+  description: |
+    API that was used to populate the "business support finder". In May 2017,
+    it was replaced with the publishing-api and content-store.
+
+- github_repo_name: business-support-finder
+  retired: true
+  type: Frontend apps
+  repo_url: https://github.com/alphagov/business-support-finder
+  description: |
+    Application that was used to display the "business support finder", an early
+    finder-style page with search functionality for finding details of business
+    finance support schemes. In March 2017, it was replaced with a new-style finder
+    rendered by [finder-frontend](/repos/finder-frontend.html) and published by
+    [specialist-publisher](/repos/specialist-publisher.html).
+
+- github_repo_name: cache-clearing-service
+  type: Services
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: calculators
+  type: Frontend apps
+  retired: true
+  description: |
+    calculators used to report how much child benefit tax you are entitled during a tax year.
+    It was only responsible for rendering https://www.gov.uk/child-benefit-tax-calculator.
+    That page has now been moved into Smart Answers.
+
+- github_repo_name: calendars
+  retired: true
+  type: Frontend apps
+  description: |
+    calendars used to render the bank-holidays and
+    when-do-the-clocks-change pages. Since May 2020 those pages are
+    rendered by frontend.
+
+- github_repo_name: ckan-functional-tests
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+
+- github_repo_name: ckanext-datagovuk
+  puppet_name: ckan
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  production_hosted_on: aws
+  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
+
+- github_repo_name: collections
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  dependencies_team: "#govuk-corona-services-tech"
+  component_guide_url: https://govuk-collections.herokuapp.com/component-guide
+  production_hosted_on: aws
+
+- github_repo_name: collections-publisher
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: contacts-admin
+  type: Publishing apps
+  puppet_name: contacts
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: contacts-frontend
+  type: Frontend apps
+  retired: true
+  description: |
+    contacts-frontend used to render the HMRC contacts pages. Since April 2017
+    these are rendered by government-frontend.
+
+- github_repo_name: content-data-admin
+  type: Supporting apps
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: aws
+
+- github_repo_name: content-data-api
+  type: Supporting apps
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: aws
+
+- github_repo_name: content-publisher
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: content-store
+  type: APIs
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: content-tagger
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: datagovuk-tech-docs
+  management_url: https://guidance.data.gov.uk/
+  production_hosted_on: paas
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+
+- github_repo_name: datagovuk_find
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  production_hosted_on: paas
+  sentry_url: https://sentry.io/govuk/find-data
+  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
+
+- github_repo_name: datagovuk_publish
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  production_hosted_on: paas
+  sentry_url: https://sentry.io/govuk/publish-data
+  dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
+
+- github_repo_name: datagovuk_publish_queue_monitor
+  production_hosted_on: paas
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+
+- github_repo_name: datagovuk_reference
+  team: "#govuk-datagovuk"
+  management_url: https://dashboard.heroku.com/apps/interval-server
+  production_hosted_on: heroku
+  type: data.gov.uk apps
+
+- github_repo_name: design-principles
+  type: Frontend apps
+  retired: true
+  puppet_name: designprinciples
+  description: |
+    A frontend app that used to render the GDS design principles as static
+    pages.  This required developer effort to update the content so in
+    November 2017 we retired the app after all the content had been replaced
+    by a version managed by our publishing apps.
+
+- github_repo_name: eligibility-viewer
+  private_repo: true
+  team: "#govuk-data-labs"
+  type: Data science
+  description: Prototype to show content with eligibility based on a user's circumstances
+
+- github_repo_name: email-alert-api
+  type: APIs
+  team: "#govuk-accounts-tech"
+  metrics_dashboard_url: https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&orgId=1
+  production_hosted_on: aws
+
+- github_repo_name: email-alert-frontend
+  type: Frontend apps
+  team: "#govuk-accounts-tech"
+  production_hosted_on: aws
+
+- github_repo_name: email-alert-service
+  type: Services
+  team: "#govuk-accounts-tech"
+  production_hosted_on: aws
+
+- github_repo_name: feedback
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: finder-frontend
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  component_guide_url: https://finder-frontend.herokuapp.com/component-guide
+  production_hosted_on: aws
+
+- github_repo_name: frontend
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: gds-api-adapters
+  team: "#govuk-developers"
+  type: Utilities
+
+- github_repo_name: government-frontend
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  component_guide_url: https://government-frontend.herokuapp.com/component-guide
+  production_hosted_on: aws
+
+- github_repo_name: govuk-accessibility-reports
+  team: "#govuk-data-labs"
+  type: Data science
+  description: Project containing numerous report generators to monitor accessibility
+    on GOV.UK.
+
+- github_repo_name: govuk-content-schemas
+  app_name: govuk-content-store-examples
+  management_url: https://dashboard.heroku.com/apps/govuk-content-store-examples
+  team: "#govuk-publishing-tech"
+  production_hosted_on: heroku
+  type: Utilities
+
+- github_repo_name: govuk-delivery
+  retired: true
+  type: APIs
+  description: |
+    API that was once used to handle Whitehall email notifications and the
+    translation of Whitehall feed URLs into Govdelivery topics. Retired in favour
+    of email-alert-api in September 2017.
+
+- github_repo_name: govuk-dependencies
+  team: "#govuk-platform-reliability-team"
+  management_url: https://dashboard.heroku.com/apps/govuk-dependencies
+  production_hosted_on: heroku
+  type: Utilities
+
+- github_repo_name: govuk-display-screen
+  management_url: https://dashboard.heroku.com/apps/govuk-display-screen
+  production_hosted_on: heroku
+  type: Utilities
+
+- github_repo_name: govuk-docker
+  team: "#govuk-developers"
+  type: Utilities
+
+- github_repo_name: govuk-jenkinslib
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: aws
+  type: Utilities
+
+- github_repo_name: govuk-knowledge-graph
+  private_repo: true
+  team: "#govuk-data-labs"
+  type: Data science
+  description: Experiment with setting up an extended property graph of GOV.UK organisations
+    and associated content.
+
+- github_repo_name: govuk-load-testing
+  type: Supporting apps
+  team: "#govuk-platform-reliability-team"
+
+- github_repo_name: govuk-pact-broker
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: paas
+  type: Utilities
+
+- github_repo_name: govuk-puppet
+  team: "#govuk-developers"
+  type: Utilities
+  deploy_url: https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/deploy.sh
+
+- github_repo_name: govuk-related-links-recommender
+  team: "#govuk-data-labs"
+  type: Data science
+  description: Machine learning model to recommend related content
+
+- github_repo_name: govuk-user-intent-survey-explorer
+  private_repo: true
+  team: "#govuk-data-labs"
+  type: Data science
+  description: Prototype to help explorer user intent survey data
+
+- github_repo_name: govuk-user-journey-models
+  private_repo: true
+  team: "#govuk-data-labs"
+  type: Data science
+  description: Classifying successful and unsuccessful user journeys on GOV.UK
+
+- github_repo_name: govuk-zendesk-display-screen
+  management_url: https://dashboard.heroku.com/apps/govuk-zendesk-display-screen
+  production_hosted_on: heroku
+  type: Utilities
+
+- github_repo_name: govuk_app_config
+  team: "#govuk-developers"
+  type: Utilities
+
+- github_repo_name: govuk_content_api
+  retired: true
+  type: APIs
+  puppet_name: contentapi
+  description: |
+    API that used to store and serve published content to the rendering applications
+    for display from public-facing URLs. This has now been superceded by the
+    [content-store](/repos/content-store.html).
+
+- github_repo_name: govuk_need_api
+  retired: true
+  type: APIs
+  puppet_name: need_api
+  description: |
+    A JSON read and write API for information about user needs on GOV.UK. It was a Rails
+    app which was part of the GOV.UK Publishing Platform. The need information is now
+    stored in the Publishing API, and available in the Content Store.
+
+- github_repo_name: govuk_schemas
+  team: "#govuk-developers"
+  type: Utilities
+
+- github_repo_name: hmrc-manuals-api
+  type: APIs
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: imminence
+  type: APIs
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: info-frontend
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: licence-finder
+  type: Frontend apps
+  puppet_name: licencefinder
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: licensify
+  private_repo: true
+  type: Licensing apps
+  production_hosted_on: aws
+  team: "#govuk-licensing"
+  puppet_url: https://github.com/alphagov/govuk-puppet/blob/master/modules/licensify/manifests/apps/licensify.pp
+  description: GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)
+
+- github_repo_name: licensify-admin
+  private_repo: true
+  type: Licensing apps
+  production_hosted_on: aws
+  team: "#govuk-licensing"
+  puppet_url: https://github.com/alphagov/govuk-puppet/blob/master/modules/licensify/manifests/apps/licensify_admin.pp
+  description: GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)
+
+- github_repo_name: licensify-feed
+  private_repo: true
+  type: Licensing apps
+  production_hosted_on: aws
+  team: "#govuk-licensing"
+  puppet_url: https://github.com/alphagov/govuk-puppet/blob/master/modules/licensify/manifests/apps/licensify_feed.pp
+  description: GOV.UK Licensing (formerly ELMS, Licence Application Tool, & Licensify)
+
+- github_repo_name: link-checker-api
+  type: APIs
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: local-links-manager
+  type: Publishing apps
+  team: "#govuk-find-and-view-accessibility-team"
+  dependencies_team: "#govuk-corona-services-tech"
+  production_hosted_on: aws
+
+- github_repo_name: locations-api
+  type: APIs
+  team: "#govuk-platform-reliability-team"
+  sentry_url: false
+  dashboard_url: false
+  deploy_url: false
+
+- github_repo_name: manuals-frontend
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: manuals-publisher
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: mapit
+  type: APIs
+  team: "#govuk-platform-reliability-team"
+  api_docs_url: https://mapit.mysociety.org/docs/
+  production_hosted_on: aws
+
+- github_repo_name: maslow
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: metadata-api
+  retired: true
+  type: APIs
+  description: |
+    API written in Go that was used to get user need information about given URLs
+    on GOV.UK. The api would communicate with the `needs API` on behalf of
+    `info-frontend` and retrieve information about user needs. The responses would
+    then be parsed by `metadata-api` and handed over to `info-frontend`. `info-frontend` is
+    now getting need information via the `backdrop read API` which it talks to using
+    `gds-api-adapters`.
+
+- github_repo_name: multipage-frontend
+  type: Frontend apps
+  retired: true
+  description: |
+    multipage-frontend was used to render travel advice pages. Those were moved
+    to government-frontend in March 2017.
+
+- github_repo_name: organisations-publisher
+  type: Publishing apps
+  retired: true
+  repo_url: https://github.com/alphagov/organisations-publisher
+  description: |
+    organisations-publisher was a proposed app to create and edit organisations,
+    people and roles, taking over from whitehall. It was never released.
+
+- github_repo_name: panopticon
+  retired: true
+  type: Publishing apps
+  repo_url: https://github.com/alphagov/panopticon
+  description: |
+    Application that was at one time used for management of "artefacts", route
+    registration, tagging and search indexing. The functionality was slowly moved
+    to the new publishing platform during migration (2016/2017). In February 2017
+    the last functionality was removed. Most features moved to
+    [publishing-api](/repos/publishing-api.html) (like route registration), managing
+    of artefacts was moved to [publisher](/repos/publisher.html), and tagging moved
+    to [content-tagger](/repos/content-tagger.html). Publishing apps became
+    responsible for sending their pages to search.
+
+- github_repo_name: policy-publisher
+  retired: true
+  type: Publishing apps
+  repo_url: https://github.com/alphagov/policy-publisher
+  description: |
+    Used to create and edit policies, which were shown at
+    https://www.gov.uk/government/policies. This functionality was
+    originally extracted from Whitehall in to this app. Then later,
+    policy pages were replaced by Topic pages through the work on the
+    GOV.UK Topic Taxonomy, removing the need for Policy Publisher.
+
+- github_repo_name: publisher
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: publishing-api
+  type: APIs
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: release
+  type: Supporting apps
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: aws
+
+- github_repo_name: router
+  type: Supporting apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: router-api
+  type: APIs
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: seal
+  team: "#govuk-platform-reliability-team"
+  management_url: https://dashboard.heroku.com/apps/moody-seal
+  production_hosted_on: heroku
+  type: Utilities
+
+- github_repo_name: search-admin
+  type: Supporting apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: search-analytics
+  type: Services
+  team: "#govuk-find-and-view-accessibility-team"
+
+- github_repo_name: search-api
+  type: APIs
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: search-performance-explorer
+  production_hosted_on: heroku
+  team: "#govuk-find-and-view-accessibility-team"
+  type: Utilities
+
+- github_repo_name: service-manual-frontend
+  team: "#govuk-find-and-view-accessibility-team"
+  type: Frontend apps
+  production_hosted_on: aws
+
+- github_repo_name: service-manual-publisher
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: short-url-manager
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: side-by-side-browser
+  management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
+  production_hosted_on: heroku
+  type: Transition apps
+
+- github_repo_name: signon
+  type: Supporting apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: slimmer
+  team: "#govuk-developers"
+  type: Utilities
+
+- github_repo_name: smart-answers
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  puppet_name: smartanswers
+  production_hosted_on: aws
+
+- github_repo_name: special-route-publisher
+  team: "#govuk-publishing-tech"
+  type: Utilities
+
+- github_repo_name: specialist-frontend
+  type: Frontend apps
+  retired: true
+  description: |
+    specialist-frontend was used to render specialist documents. Those were moved
+    to government-frontend in April 2017.
+
+- github_repo_name: specialist-publisher
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: static
+  type: Frontend apps
+  team: "#govuk-find-and-view-accessibility-team"
+  production_hosted_on: aws
+
+- github_repo_name: support
+  type: Supporting apps
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: aws
+
+- github_repo_name: support-api
+  type: APIs
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: aws
+
+- github_repo_name: tech-docs-monitor
+  management_url: https://dashboard.heroku.com/apps/govuk-tech-docs-monitor
+  production_hosted_on: heroku
+  type: Utilities
+
+- github_repo_name: transition
+  type: Transition apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: travel-advice-publisher
+  type: Publishing apps
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws
+
+- github_repo_name: whitehall
+  type: Publishing apps
+  production_url: https://whitehall-admin.publishing.service.gov.uk
+  team: "#govuk-publishing-tech"
+  production_hosted_on: aws

@@ -1,4 +1,14 @@
 RSpec.describe App do
+  describe "is_app?" do
+    it "returns false if 'production_hosted_on' is omitted" do
+      expect(App.new({}).is_app?).to be(false)
+    end
+
+    it "returns true if 'production_hosted_on' is supplied" do
+      expect(App.new({ "production_hosted_on" => "aws" }).is_app?).to be(true)
+    end
+  end
+
   describe "api_payload" do
     it "returns a hash of keys describing the app" do
       app_details = {

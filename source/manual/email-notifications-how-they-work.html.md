@@ -59,8 +59,8 @@ Communication from Email Alert API to Notify is done via a HTTP API which is aut
 
 [finder-frontend-email]: https://github.com/alphagov/finder-frontend/blob/main/app/controllers/email_alert_subscriptions_controller.rb
 [email-frontend-readme]: https://github.com/alphagov/email-alert-frontend
-[Specialist Publisher]: /apps/specialist-publisher.html
-[Travel Advice Publisher]: /apps/travel-advice-publisher.html
+[Specialist Publisher]: /repos/specialist-publisher.html
+[Travel Advice Publisher]: /repos/travel-advice-publisher.html
 [travel-specialist-tech-debt]: https://trello.com/c/tWIZfxfc/94-travel-advice-publisher-and-specialist-publisher-talk-directly-to-email-alert-api
 [email-alert-api-technical]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_technical.json
 [email-alert-api-product]: https://grafana.production.govuk.digital/dashboard/file/email_alert_api_product.json

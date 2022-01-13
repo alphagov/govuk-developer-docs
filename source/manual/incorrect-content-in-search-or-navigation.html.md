@@ -7,7 +7,7 @@ section: Publishing
 related_applications: [search-api]
 ---
 
-The Elasticsearch cluster utilised by [Search API](/apps/search-api.html) can
+The Elasticsearch cluster utilised by [Search API](/repos/search-api.html) can
 get out of sync with publishing applications. This affects any part of the site
 using it, including navigation pages and related links.
 

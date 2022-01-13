@@ -6,7 +6,7 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
-[Search API](/apps/search-api.html) uses Sidekiq to offload indexing work.
+[Search API](/repos/search-api.html) uses Sidekiq to offload indexing work.
 
 This alert triggers when there are jobs in the Sidekiq queue that are waiting
 too long to be processed. This could result in documents being published not appearing in search results.

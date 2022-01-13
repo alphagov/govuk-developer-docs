@@ -130,8 +130,8 @@ Graphite (via StatsD).
 [example-guidance]: https://www.gov.uk/api/content/government/publications/staffing-and-employment-advice-for-schools
 [edit-taxonomy]: https://content-tagger.publishing.service.gov.uk/taxons
 [content-tagger]: https://content-tagger.publishing.service.gov.uk/
-[whitehall]: /apps/whitehall.html
-[search-api]: /apps/search-api.html
+[whitehall]: /repos/whitehall.html
+[search-api]: /repos/search-api.html
 [dashboard]: https://grafana.publishing.service.gov.uk/dashboard/file/topic_taxonomy.json
 [record-taxonomy-metrics]: https://deploy.publishing.service.gov.uk/job/record-taxonomy-metrics/
 [override-fields]: /apis/search/search-api.html#returning-specific-document-fields

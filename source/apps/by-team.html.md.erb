@@ -1,16 +1,16 @@
 ---
 layout: application_layout
-title: Application ownership by team
-source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/applications.yml
+title: Repository ownership by team
+source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml
 parent: "/apps.html"
 ---
 
-<% unless Applications.no_known_owner.empty? %>
+<% unless Repos.no_known_owner.empty? %>
 
 ## Repos without a team
 
-<% Applications.no_known_owner.each do |app_name| %>
-- [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
+<% Repos.no_known_owner.each do |app_name| %>
+- [<%= app_name %>](<%= "/repos/#{app_name}.html" %>)
 <% end %>
 
 <% end %>
@@ -18,8 +18,8 @@ parent: "/apps.html"
 <% teams.each do |team| %>
 ## <%= team %>
 
-<% Applications.for_team(team).each do |app_name| %>
-- [<%= app_name %>](<%= "/apps/#{app_name}.html" %>)
+<% Repos.for_team(team).each do |app_name| %>
+- [<%= app_name %>](<%= "/repos/#{app_name}.html" %>)
 <% end %>
 
 <% end %>

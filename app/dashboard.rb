@@ -39,9 +39,9 @@ class Dashboard
 
   private
 
-    # Pull the the applications from applications.yml into the first categories
+    # Pull the applications from repos.yml into the first categories
     def from_application_page
-      applications_in_this_section = Applications.active.select do |app|
+      applications_in_this_section = Repos.active_apps.select do |app|
         app.type == name
       end
 
@@ -82,7 +82,7 @@ class Dashboard
 
   class App < Thing
     def url
-      "/apps/#{id}.html"
+      "/repos/#{id}.html"
     end
   end
 end

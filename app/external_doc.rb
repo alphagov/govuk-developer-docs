@@ -128,7 +128,7 @@ class ExternalDoc
     end
 
     def internal_doc_path(repository, doc_name)
-      "/apps/#{repository}/#{doc_name}.html"
+      "/repos/#{repository}/#{doc_name}.html"
     end
   end
 

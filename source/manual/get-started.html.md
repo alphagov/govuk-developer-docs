@@ -330,7 +330,7 @@ If you forget your `aws-vault` password, you must reset that password.
 
 ## 9. Get a Signon account for integration
 
-[Signon](https://docs.publishing.service.gov.uk/apps/signon.html) is the application used to control access to the
+[Signon](https://docs.publishing.service.gov.uk/repos/signon.html) is the application used to control access to the
 GOV.UK Publishing applications.
 
 Ask another developer to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new),
@@ -338,7 +338,7 @@ at 'Superadmin' level with permission to access the applications that your team 
 
 ## 10. Get access to the Release app
 
-[Release](https://docs.publishing.service.gov.uk/apps/release.html) is the application we use to track deployments,
+[Release](https://docs.publishing.service.gov.uk/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
 
 Ask someone with production access (e.g. your tech lead or buddy) to [create an account for the production
