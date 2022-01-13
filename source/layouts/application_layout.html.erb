@@ -2,11 +2,11 @@
   <ul>
     <li>
       <a href="/apps/by-team.html">
-        <span>Application ownership by team</span>
+        <span>Repository ownership by team</span>
       </a>
     </li>
 
-    <% Applications.active.group_by(&:type).each do |name, apps| %>
+    <% Repos.public.group_by(&:type).each do |name, apps| %>
       <li>
         <a href="/apps.html">
           <span><%= name %></span>
@@ -15,7 +15,7 @@
       <li>
         <ul class='subnav'>
         <% apps.each do |app| %>
-          <li><%= sidebar_link app.app_name, "/apps/#{app.app_name}.html" %></li>
+          <li><%= sidebar_link app.app_name, "/repos/#{app.app_name}.html" %></li>
         <% end %>
         </ul>
       </li>
@@ -29,7 +29,7 @@
     breadcrumbs: [
       { title: "Home", url: "/" },
       current_page.path != "apps.html" ? { title: "Apps", url: "/apps.html" } : nil,
-      app_slug ? { title: app_slug[1], url: "/apps/#{app_slug[1]}.html" } : nil,
+      app_slug ? { title: app_slug[1], url: "/repos/#{app_slug[1]}.html" } : nil,
     ].compact,
   }) %>
   <%= partial 'partials/last_updated' if current_page.data.show_last_updated %>

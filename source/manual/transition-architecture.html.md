@@ -49,7 +49,7 @@ for the "Production Bouncer" Fastly service are sent (by Fastly) to the
 `govuk-production-fastly-logs` S3 bucket and processed by a lambda function
 defined in the [infra-fastly-logs][] Terraform project.
 
-[transition]: /apps/transition.html
+[transition]: /repos/transition.html
 [config-import]: https://deploy.blue.production.govuk.digital/job/Transition_load_site_config
 [transition-config]: https://github.com/alphagov/transition-config
 [stats-import]: https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/
@@ -141,7 +141,7 @@ a new feature in Fastly.
 
 Follow the guidance to [request a Fastly TLS certificate][].
 
-[Bouncer]: /apps/bouncer.html
+[Bouncer]: /repos/bouncer.html
 [govuk-cdn-config]: https://github.com/alphagov/govuk-cdn-config
 [Bouncer_CDN job]: https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/
 [hosts from transition]: https://transition.publishing.service.gov.uk/hosts.json

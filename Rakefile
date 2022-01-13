@@ -34,7 +34,7 @@ task :verify_deployable_apps do
     HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml")
   end
   deployable_applications = common_yaml["deployable_applications"].map { |k, v| v["repository"] || k }
-  our_applications = Applications.all.map(&:github_repo_name)
+  our_applications = Repos.all.map(&:github_repo_name)
 
   intentionally_missing =
     %w[
@@ -57,10 +57,10 @@ task :verify_deployable_apps do
 
   missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq
   if missing_apps.count.zero?
-    puts "No deployable apps missing from applications.yml ✅"
+    puts "No deployable apps missing from repos.yml ✅"
   else
     errors = missing_apps.map { |missing_app| "\n\t #{missing_app}" }
-    abort("The following deployable apps are missing from applications.yml: #{errors.join('')}")
+    abort("The following deployable apps are missing from repos.yml: #{errors.join('')}")
   end
 end
 
@@ -68,7 +68,7 @@ desc "Check all puppet names are valid, will error when not"
 task :check_puppet_names do
   puts "Checking Puppet manifests..."
   invalid_puppet_names = []
-  Applications.active.each do |app|
+  Repos.active_apps.each do |app|
     suppress_output { HTTP.get(app.puppet_url) unless app.puppet_url.nil? }
   rescue Octokit::NotFound
     invalid_puppet_names << app.puppet_url

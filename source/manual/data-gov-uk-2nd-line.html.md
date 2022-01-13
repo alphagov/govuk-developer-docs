@@ -6,10 +6,10 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 [ckan]: https://ckan.publishing.service.gov.uk
-[ckan-app]: apps/ckanext-datagovuk
+[ckan-app]: repos/ckanext-datagovuk
 [dgu-docs]: https://guidance.data.gov.uk
-[find]: apps/datagovuk_find
-[publish]: apps/datagovuk_publish
+[find]: repos/datagovuk_find
+[publish]: repos/datagovuk_publish
 [v1-endpoint]: https://github.com/ckan/ckan/blob/ckan-2.9.2/CHANGELOG.rst#v280-2018-05-09
 [ckan-issue]: https://github.com/ckan/ckan/issues/3484
 

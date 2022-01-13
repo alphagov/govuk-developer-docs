@@ -13,7 +13,7 @@ class App
       puppet_name: puppet_name,
       production_hosted_on: production_hosted_on,
       links: {
-        self: "https://docs.publishing.service.gov.uk/apps/#{app_name}.json",
+        self: "https://docs.publishing.service.gov.uk/repos/#{app_name}.json",
         html_url: html_url,
         repo_url: repo_url,
         sentry_url: sentry_url,
@@ -42,12 +42,16 @@ class App
     app_data["production_hosted_on"]
   end
 
+  def is_app?
+    !production_hosted_on.nil?
+  end
+
   def hosting_name
     Hosts::HOSTERS.fetch(production_hosted_on)
   end
 
   def html_url
-    "https://docs.publishing.service.gov.uk/apps/#{app_name}.html"
+    "https://docs.publishing.service.gov.uk/repos/#{app_name}.html"
   end
 
   def retired?
@@ -59,10 +63,11 @@ class App
   end
 
   def page_title
+    type = is_app? ? "Application" : "Repository"
     if retired?
-      "Application: #{app_name} (retired)"
+      "#{type}: #{app_name} (retired)"
     else
-      "Application: #{app_name}"
+      "#{type}: #{app_name}"
     end
   end
 
@@ -147,7 +152,7 @@ class App
   end
 
   def team
-    app_data["team"]
+    app_data["team"] || Repos::UNKNOWN
   end
 
   def dependencies_team

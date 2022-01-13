@@ -6,9 +6,9 @@ layout: manual_layout
 type: learn
 parent: "/manual.html"
 ---
-[publish]: apps/datagovuk_publish
-[find]: apps/datagovuk_find
-[ckan]: apps/ckanext-datagovuk
+[publish]: repos/datagovuk_publish
+[find]: repos/datagovuk_find
+[ckan]: repos/ckanext-datagovuk
 [paas]: https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas
 [signon]: manual/manage-sign-on-accounts
 [deployment]: manual/data-gov-uk-deployment
