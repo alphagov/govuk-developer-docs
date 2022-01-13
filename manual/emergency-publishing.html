@@ -235,7 +235,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/872af9199ba14ad53670dd44fce5a5fd44879d30">22 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/95cc826e0143dfd97a40ca838dd438dd13f49c76">23 Nov 2021</a>
 </div>
 
  <h1 id='header'>Deploy an emergency banner</h1> <p>There are three types of events that would lead GOV.UK to add an emergency
@@ -290,20 +290,8 @@ Head of GOV.UK.</p>
 <ol>
 <li>Wait for 2 minutes after the Deploy Emergency Banner job has completed.
 This will allow the frontend application caches to <a href="https://github.com/alphagov/slimmer/blob/5b8428704f143547bdae2c7cb9a585ab77d3181b/lib/slimmer.rb#L10">clear automatically after 60s</a>.</li>
-<li>Run the &ldquo;Clear varnish cache&rdquo; Jenkins job
-
-<ul>
-<li><a href="https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/">Clear varnish on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/">Clear varnish on  Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/">⚠️ Clear varnish on Production ⚠️</a></li>
-</ul></li>
-<li>Run the &ldquo;Clear CDN cache&rdquo; Jenkins job
-
-<ul>
-<li><a href="https://deploy.blue.integration.govuk.digital/job/clear-cdn-cache/">Clear CDN on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/">Clear CDN on  Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/">⚠️ Clear CDN on Production ⚠️</a></li>
-</ul></li>
+<li>Run the &ldquo;Clear varnish cache&rdquo; Jenkins job</li>
+<li>Run the &ldquo;Clear CDN cache&rdquo; Jenkins job</li>
 </ol>
 
 <blockquote>
