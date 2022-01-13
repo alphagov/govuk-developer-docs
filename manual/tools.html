@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends - GOV.UK Developer Documentation</title>
+    <title>Tools: Icinga, Grafana and Graphite, Kibana and friends - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Tools: Icinga, Grafana and Graphite, Kibana and friends - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/tools.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends" />
+      <meta property="og:title" content="Tools: Icinga, Grafana and Graphite, Kibana and friends" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/tools.html" />
 
@@ -123,7 +123,7 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends</span></a>
+    <a href="#header"><span>Tools: Icinga, Grafana and Graphite, Kibana and friends</span></a>
     <ul>
       <li>
         <a href="#icinga"><span>Icinga</span></a>
@@ -141,9 +141,6 @@
       </li>
       <li>
         <a href="#kibana"><span>Kibana</span></a>
-      </li>
-      <li>
-        <a href="#fabric-scripts"><span>Fabric Scripts</span></a>
       </li>
       <li>
         <a href="#prometheus-grafana-and-alertmanager-for-covid-19-forms"><span>Prometheus, Grafana and AlertManager for COVID-19 Forms</span></a>
@@ -201,18 +198,11 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4038d090d9d2766ed9d8827492f5c1e017016fab">22 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fd61ed35efd72a4a854f61b066a6dd979b04547f">12 Jan 2022</a>
 </div>
 
- <h1 id='header'>Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends</h1> <h2 id='icinga'>Icinga</h2><p><a href="/manual/icinga.html">Icinga</a> is used to monitor alerts that we have set up.</p>
+ <h1 id='header'>Tools: Icinga, Grafana and Graphite, Kibana and friends</h1> <h2 id='icinga'>Icinga</h2><p><a href="/manual/icinga.html">Icinga</a> is used to monitor alerts that we have set up.</p>
 <h2 id='grafana'>Grafana</h2><p><a href="/manual/grafana.html">Grafana</a> lets us create nice dashboards using data from Graphite, Elasticsearch (Logit) and Cloudwatch.</p>
 <h2 id='graphite'>Graphite</h2><p><a href="https://graphite.blue.production.govuk.digital/">https://graphite.blue.production.govuk.digital/</a></p>
 <p>Graphite is a graphing tool that allows us to draw graphs of various metrics that we put into it. Graphite has two main views: a <a href="https://graphite.blue.production.govuk.digital/composer">composer</a> to build individual graphs and a <a href="https://graphite.blue.production.govuk.digital/dashboard">dashboard</a> to put multiple graphs together.</p>
@@ -236,12 +226,6 @@ Some useful targets are:</p>
 <p>You can tweak the time range manually with the drop down at the top or by dragging on the timeline.</p>
 <p>Check out some of the <a href="/manual/kibana.html">useful Kibana queries</a> to get an idea of what&rsquo;s possible.</p>
 <p>Logs are sent to Kibana using <a href="/manual/logging.html#filebeat">Filebeat</a>.</p>
-<h2 id='fabric-scripts'>Fabric Scripts</h2><p><a href="https://github.com/alphagov/fabric-scripts/">https://github.com/alphagov/fabric-scripts/</a></p>
-<p>The Fabric scripts are useful for running something on a set of machines. For instance, to restart all instances of the content store on backend boxes:</p>
-<p><code>fab $environment class:backend app.reload:content-store</code></p>
-<p>Check the <code>app.py</code> class for different methods you can use. To run more specific commands you can run the following (<code>sdo</code> for sudo):</p>
-<p><code>fab $environment class:backend sdo:&quot;service content-store reload&quot;</code></p>
-<p>For more information, check out the <a href="https://github.com/alphagov/fabric-scripts#readme">Fabric scripts README</a>.</p>
 <h2 id='prometheus-grafana-and-alertmanager-for-covid-19-forms'>Prometheus, Grafana and AlertManager for COVID-19 Forms</h2><p>The three coronavirus forms are hosted on the GOV.UK PaaS, so have had to diverge from the usual built-in GOV.UK infrastructure monitoring stack. Instead, these make use of the <a href="https://reliability-engineering.cloudapps.digital/monitoring-alerts.html#metrics-and-alerting">GDS Prometheus for PaaS</a> service, with alerts routed through AlertManager and graphs displayed using Grafana.</p>
 <p>For more detailed information, read the <a href="https://docs.publishing.service.gov.uk/manual/covid-19-services.html#alerting">COVID-19 Services &ldquo;alerting&rdquo; page section</a>.</p>
 <h2 id='on-the-blog'>On the blog</h2>
@@ -295,7 +279,7 @@ Some useful targets are:</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/tools.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Tools%3A+Icinga%2C+Grafana+and+Graphite%2C+Kibana%2C+Fabric+and+friends%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ftools.html%29&amp;labels=bug&amp;title=Re%3A+%27Tools%3A+Icinga%2C+Grafana+and+Graphite%2C+Kibana%2C+Fabric+and+friends%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Tools%3A+Icinga%2C+Grafana+and+Graphite%2C+Kibana+and+friends%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ftools.html%29&amp;labels=bug&amp;title=Re%3A+%27Tools%3A+Icinga%2C+Grafana+and+Graphite%2C+Kibana+and+friends%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
