@@ -151,10 +151,10 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3d4d09fe7d52223d0533de24918c2c111d0dfd23">24 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
- <h1 id='header'>High Search API Sidekiq queue latency</h1> <p><a href="/apps/search-api.html">Search API</a> uses Sidekiq to offload indexing work.</p>
+ <h1 id='header'>High Search API Sidekiq queue latency</h1> <p><a href="/repos/search-api.html">Search API</a> uses Sidekiq to offload indexing work.</p>
 <p>This alert triggers when there are jobs in the Sidekiq queue that are waiting
 too long to be processed. This could result in documents being published not appearing in search results.</p>
 <h2 id='investigating-the-issue'>Investigating the issue</h2><p>The issue could be caused by a temporary spike in publishing activity, or

@@ -230,7 +230,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/694b4e4be50692e63bbbc496d8636809957be132">16 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
@@ -371,7 +371,7 @@ of &lsquo;router&rsquo;. You can swap <code>www</code> for <code>draft-origin</c
 origin. The draft stack is not IP-restricted, as we need to be able to share
 links to be reviewed (&ldquo;2i&rsquo;d&rdquo;) or fact-checked by non-Government departments.
 It is, however, only visible to users who have been verified through
-Authenticating Proxy, by signing into <a href="/apps/signon.html">signon</a> (an authentication and
+Authenticating Proxy, by signing into <a href="/repos/signon.html">signon</a> (an authentication and
 authorisation portal) or by providing a valid <code>auth_bypass_id</code> (as a URI
 parameter or session cookie). Read more about previews in <a href="/manual/content-preview.html">&ldquo;How the draft stack works&rdquo;</a>.</p>
 <p>Signon doubles up as an authorisation platform, as it associates users with
@@ -383,7 +383,7 @@ content.</p>
 piece of content on GOV.UK lives in a database called &ldquo;<a href="https://github.com/alphagov/content-store">content-store</a>&rdquo;, which
 stores only the latest &ldquo;edition&rdquo; of that content. Internally the content is
 referred to as a &ldquo;document&rdquo;, even if it is not itself a document. Content is
-retrieved via the &ldquo;<a href="/apps/content-store.html">Content API</a>&rdquo;, which lives in the content-store repo.</p>
+retrieved via the &ldquo;<a href="/repos/content-store.html">Content API</a>&rdquo;, which lives in the content-store repo.</p>
 <p>Content is published to the Content Store via the <a href="https://github.com/alphagov/publishing-api">Publishing API</a>, which
 stores all of the editions of the document, and performs validation checks
 whenever it receives a new edition. Every piece of content has a <code>schema_name</code>

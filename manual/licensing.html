@@ -212,18 +212,11 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/01a7b95f8441ead06a6ca0107b083c09f9892d30">11 Sep 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
- <h1 id='header'>Licensify - supporting licensing</h1> <p>GOV.UK runs a Scala application (<a href="/apps/licensify.html">Licensify</a>) which allows users to apply and pay for licences from local authorities and other competent authorities.</p>
+ <h1 id='header'>Licensify - supporting licensing</h1> <p>GOV.UK runs a Scala application (<a href="/repos/licensify.html">Licensify</a>) which allows users to apply and pay for licences from local authorities and other competent authorities.</p>
 <h2 id='overview'>Overview</h2><p>There is a <a href="https://licensify-admin.publishing.service.gov.uk/assets/manual.pdf">PDF user manual</a> available which includes a lot of detail about the backend (administration) facilities available through the GOV.UK Licensing service.</p>
 <h3 id='applications'>Applications</h3><p>The Licensing service consists of <a href="https://github.com/alphagov/govuk-puppet/blob/f45e303e4e2555ac8cdc003898f17e4dbe86add5/hieradata_aws/common.yaml#L132-L140">three separately deployed applications</a>:</p>
 
@@ -233,7 +226,7 @@
 <li><code>licensify-feed</code> (on the <code>licensing_backend</code> machine): backend (asynchronous) processing of application uploads and processing (via Apto), email notifications (via GOV.UK Notify), and expiry and purging of old applications. Also provides an interface for some debugging-type reporting.</li>
 </ul>
 <h3 id='finding-a-licence'>Finding a licence</h3><p>Users use <a href="https://www.gov.uk/licence-finder">Licence Finder</a> to locate licences on the GOV.UK frontend, but from a technical perspective this is separate from Licensify.</p>
-<p>Licence Finder sends users to a &ldquo;Licence&rdquo; page served by <a href="/apps/frontend.html">Frontend</a>. Users enter their postcode and Frontend uses <a href="/apps/mapit.html">Mapit</a> to <a href="https://github.com/alphagov/frontend/blob/8dbe0f0f6ca0f5a777a0d6ca77b858fe5adc2494/app/controllers/licence_controller.rb#L83">find their local authority</a>. Frontend makes a request to a Licensify API to find out whether the licence is available on GOV.UK.</p>
+<p>Licence Finder sends users to a &ldquo;Licence&rdquo; page served by <a href="/repos/frontend.html">Frontend</a>. Users enter their postcode and Frontend uses <a href="/repos/mapit.html">Mapit</a> to <a href="https://github.com/alphagov/frontend/blob/8dbe0f0f6ca0f5a777a0d6ca77b858fe5adc2494/app/controllers/licence_controller.rb#L83">find their local authority</a>. Frontend makes a request to a Licensify API to find out whether the licence is available on GOV.UK.</p>
 <h3 id='applying-for-a-licence'>Applying for a licence</h3><p>Licence applications handled by Licensify are processed as follows:</p>
 
 <ol>

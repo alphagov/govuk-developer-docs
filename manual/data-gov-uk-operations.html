@@ -183,15 +183,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c4001db534dceebb9b663c8d5a6772e55d4c2bf6">10 Nov 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Operation of data.gov.uk</h1> <h2 id='accessing-data-gov-uk'>Accessing data.gov.uk</h2><h3 id='paas'>PaaS</h3>
@@ -221,11 +214,11 @@ If you forgot your password, read the <a href="https://docs.cloud.service.gov.uk
 <h4 id='accessing-a-rails-console'>Accessing a Rails Console</h4><p>The following can be used on any PaaS machine to access a Rails console.  The example is for the Find production instance.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh find-data-beta
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
-</code></pre></div><h4 id='reindexing-find'>Reindexing <a href="/apps/datagovuk_find.html">Find</a></h4><p>This is done using the <code>search:reindex</code> rake task in <a href="/apps/datagovuk_publish.html">Publish</a> and will not cause any app downtime.</p>
+</code></pre></div><h4 id='reindexing-find'>Reindexing <a href="/repos/datagovuk_find.html">Find</a></h4><p>This is done using the <code>search:reindex</code> rake task in <a href="/repos/datagovuk_publish.html">Publish</a> and will not cause any app downtime.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-staging
 /tmp/lifecycle/launcher /home/vcap/app 'rails search:reindex[500]' ''
 </code></pre></div><p>This will populate a new index and rotate the <code>dataset-staging</code> alias to point to it when it&rsquo;s ready.</p>
-<h4 id='perform-a-full-re-sync-from-ckan'>Perform a full re-sync from <a href="/apps/ckanext-datagovuk.html">CKAN</a></h4><p>The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.</p>
+<h4 id='perform-a-full-re-sync-from-ckan'>Perform a full re-sync from <a href="/repos/ckanext-datagovuk.html">CKAN</a></h4><p>The sync is normally done automatically using Sidekiq Scheduler. There may be times when you need to throw away the existing Postgres database, sync all datasets from CKAN and reindex.</p>
 <p>This will not make any changes to the content on Find until the reindex has completed and the Elastic index is updated.  This will affect data served on Publish, however this service is not currently used for publishing or editing datasets.  In most cases, you should never need to do this as the sync performs incremental updates.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>### connect to staging
 cf ssh publish-data-beta-staging

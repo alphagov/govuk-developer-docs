@@ -199,7 +199,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/67c8eaf0cb3bd7123c0fece460ffc6e7391fb520">24 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>How A/B testing works</h1> <p>GOV.UK uses our <a href="https://docs.publishing.service.gov.uk/manual/cdn.html">Content Delivery Network (Fastly)</a> to run A/B and multivariate tests.</p>
@@ -221,7 +221,7 @@
 <li><p>if not, Fastly will send the request downstream to GOV.UK (including the <code>ABTest-Example</code> header)</p></li>
 </ul>
 <h3 id='gov-uk-varnish-caching-layer'>GOV.UK (Varnish caching layer)</h3><p>Varnish tries to get a response from the cache. Because Fastly has sent the <code>GOVUK-ABTest-Example</code> header, it knows whether to return the <code>A</code> or <code>B</code> version from the cache. If there&rsquo;s nothing in the cache, Varnish forwards the request to the application server.</p>
-<h3 id='application-layer'>Application layer</h3><p>The application (for example, <a href="/apps/government-frontend.html">government-frontend</a> or <a href="/apps/collections.html">collections</a>) inspects the <code>GOVUK-ABTest-Example</code> header to determine which version of the content to return.</p>
+<h3 id='application-layer'>Application layer</h3><p>The application (for example, <a href="/repos/government-frontend.html">government-frontend</a> or <a href="/repos/collections.html">collections</a>) inspects the <code>GOVUK-ABTest-Example</code> header to determine which version of the content to return.</p>
 <p>It also adds an extra response header: <code>vary: GOVUK-ABTest-Example</code>. This instructs Fastly and Varnish to cache both versions of the page separately.</p>
 <h3 id='varnish-response'>Varnish (response)</h3><p>Varnish saves the response in the cache. The <code>vary: GOVUK-ABTest-Example</code> response header will ensure that <code>A</code> and <code>B</code> are cached separately.</p>
 <h3 id='fastly-responds'>Fastly responds</h3><p>Fastly also saves the response in the cache. The <code>vary: GOVUK-ABTest-Example</code> response header will ensure that <code>A</code> and <code>B</code> are cached separately.</p>

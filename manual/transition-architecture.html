@@ -195,7 +195,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Transition architecture</h1> <p>The Transition system is built to transition government websites to GOV.UK. The
@@ -206,14 +206,14 @@ on GitHub</a>.</p>
 <p>Source diagram in the <a href="https://drive.google.com/drive/folders/0B7zRJZy-BNyUS2lMMzJHLUpYM00">GOV.UK architecture folder</a>.</p>
 <h3 id='components'>Components</h3>
 <ul>
-<li><a href="/apps/transition.html">transition</a> is the admin app that departments use to transition.</li>
+<li><a href="/repos/transition.html">transition</a> is the admin app that departments use to transition.</li>
 <li><a href="https://github.com/alphagov/transition-config">transition-config</a> contains YAML files to configure transitioning
 websites. It&rsquo;s imported into the Transition database by the
 <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_site_config">Transition_load_site_config job</a>.</li>
 <li>The <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs">cloudwatch / athena / lambda</a> trio process the logs
 from Fastly to produce the statistics. Those are then loaded into Transition
 by the <a href="https://deploy.blue.production.govuk.digital/job/Transition_load_all_data/">Transition_load_all_data job</a>.</li>
-<li><a href="/apps/bouncer.html">bouncer</a> is the application that does the actual redirecting.</li>
+<li><a href="/repos/bouncer.html">bouncer</a> is the application that does the actual redirecting.</li>
 <li><a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config</a> contains the script that the <a href="https://deploy.blue.production.govuk.digital/job/Bouncer_CDN/">Bouncer_CDN job</a> uses
 to send the <a href="https://transition.publishing.service.gov.uk/hosts.json">hosts from transition</a> to Fastly.</li>
 </ul>
@@ -224,7 +224,7 @@ job</a>.  This import puts a high load on the database. CDN logs
 for the &ldquo;Production Bouncer&rdquo; Fastly service are sent (by Fastly) to the
 <code>govuk-production-fastly-logs</code> S3 bucket and processed by a lambda function
 defined in the <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects/infra-fastly-logs">infra-fastly-logs</a> Terraform project.</p>
-<h2 id='bouncer'>Bouncer</h2><p><a href="/apps/bouncer.html">Bouncer</a> is a Ruby/Rack web app that receives requests for the URLs of government
+<h2 id='bouncer'>Bouncer</h2><p><a href="/repos/bouncer.html">Bouncer</a> is a Ruby/Rack web app that receives requests for the URLs of government
 sites that have either been transitioned to GOV.UK, archived or removed. It queries
 the database it shares with Transition and replies with a redirect, an archive page
 or a 404 page. It also handles <code>/robots.txt</code> and <code>/sitemap.xml</code> requests.</p>
@@ -285,8 +285,8 @@ a new feature in Fastly.</p>
     <h4>Related applications</h4>
 
     <ul class="govuk-list">
-      <li><a href="/apps/bouncer.html">bouncer</a></li>
-      <li><a href="/apps/transition.html">transition</a></li>
+      <li><a href="/repos/bouncer.html">bouncer</a></li>
+      <li><a href="/repos/transition.html">transition</a></li>
     </ul>
 
     <h3>More in the Transition section</h3>

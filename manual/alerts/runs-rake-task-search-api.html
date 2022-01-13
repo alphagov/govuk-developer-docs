@@ -145,15 +145,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fec4905868a7549a5e2dba65debcc25ba08bd607">17 Sep 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Runs a rake task on Search API that generates the sitemap files</h1> <p>At 2:30am every day, a <a href="https://deploy.blue.production.govuk.digital/job/search_generate_sitemaps/">Jenkins job</a> runs a rake task on search-api
@@ -165,7 +158,7 @@ processes are happening at the same time (machine learning, for example).</p>
 
 <ul>
 <li>Inspect the <a href="https://deploy.blue.production.govuk.digital/job/search_generate_sitemaps/">console logs for the rake task</a>.</li>
-<li>Escalate to the team responsible for <a href="/apps/search-api.html">search-api</a>.</li>
+<li>Escalate to the team responsible for <a href="/repos/search-api.html">search-api</a>.</li>
 <li>It is safe to re-run the rake task to make the alert go away.
 You may see some &lsquo;high load&rsquo; alerts while the task is running.</li>
 </ul>

@@ -188,7 +188,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Architecture of data.gov.uk</h1> <p>The <code>data.gov.uk</code> (DGU) platform is used to publish and view datasets. A dataset contains the metadata for a collection of links to data hosted somewhere on the internet.</p>
@@ -197,9 +197,9 @@
 <h2 id='data-gov-uk-services'>data.gov.uk Services</h2><p>Services owned by data.gov.uk</p>
 
 <ul>
-<li><a href="/apps/ckanext-datagovuk.html">CKAN</a> is the publishing app for datasets (&lsquo;packages&rsquo;).</li>
-<li><a href="/apps/datagovuk_find.html">Find</a> is the public frontend for searching datasets using Elasticsearch.</li>
-<li><a href="/apps/datagovuk_publish.html">Publish</a> is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Elasticsearch for use in Find.</li>
+<li><a href="/repos/ckanext-datagovuk.html">CKAN</a> is the publishing app for datasets (&lsquo;packages&rsquo;).</li>
+<li><a href="/repos/datagovuk_find.html">Find</a> is the public frontend for searching datasets using Elasticsearch.</li>
+<li><a href="/repos/datagovuk_publish.html">Publish</a> is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Elasticsearch for use in Find.</li>
 <li><a href="http://reference.data.gov.uk">Reference</a> is a legacy service that attempts to provide a <a href="https://github.com/epimorphics/IntervalServer">nomenclature of time intervals</a>, hosted on <a href="https://docs.publishing.service.gov.uk/manual/review-apps.html#use-the-shared-heroku-account">Heroku</a>.</li>
 </ul>
 <p>Services with data.gov.uk sub-domains, but owned by other departments</p>
@@ -222,13 +222,13 @@ as data.gov.uk, this is a totally separate service.  If a user is having difficu
 should contact the <a href="http://environment.data.gov.uk/ds/partners/index.jsp#/contactus">maintainers of this resource</a>,
 who are currently Airbus Defence &amp; Space.</p>
 </blockquote>
-<h2 id='publish-and-find'><a href="/apps/datagovuk_publish.html">Publish</a> and <a href="/apps/datagovuk_find.html">Find</a></h2><p><a href="/apps/datagovuk_publish.html">Publish</a> and <a href="/apps/datagovuk_find.html">Find</a> are provisioned on <a href="https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas">GOV.UK Paas</a>. The <a href="/manual/data-gov-uk-deployment.html">deployment</a> and <a href="/manual/data-gov-uk-monitoring.html">monitoring</a> pages explain this in more detail, but you can use the following commands to get an overview.</p>
+<h2 id='publish-and-find'><a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a></h2><p><a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> are provisioned on <a href="https://docs.cloud.service.gov.uk/#technical-documentation-for-gov-uk-paas">GOV.UK Paas</a>. The <a href="/manual/data-gov-uk-deployment.html">deployment</a> and <a href="/manual/data-gov-uk-monitoring.html">monitoring</a> pages explain this in more detail, but you can use the following commands to get an overview.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf apps
 cf services
 cf routes
 cf env publish-data-beta-production
-</code></pre></div><p>We use <a href="/manual/manage-sign-on-accounts.html">GOV.UK Signon</a> for user authentication in <a href="/apps/datagovuk_publish.html">Publish Data</a>, with the app in each environment linked to the corresponding instance of <a href="/manual/manage-sign-on-accounts.html">GOV.UK Signon</a>. See the Publish ADR for more info.</p>
-<h2 id='ckan'><a href="/apps/ckanext-datagovuk.html">CKAN</a></h2><p><a href="/apps/ckanext-datagovuk.html">CKAN</a> is hosted on AWS and is maintained/deployed in the same way as most other GOV.UK applications.</p>
+</code></pre></div><p>We use <a href="/manual/manage-sign-on-accounts.html">GOV.UK Signon</a> for user authentication in <a href="/repos/datagovuk_publish.html">Publish Data</a>, with the app in each environment linked to the corresponding instance of <a href="/manual/manage-sign-on-accounts.html">GOV.UK Signon</a>. See the Publish ADR for more info.</p>
+<h2 id='ckan'><a href="/repos/ckanext-datagovuk.html">CKAN</a></h2><p><a href="/repos/ckanext-datagovuk.html">CKAN</a> is hosted on AWS and is maintained/deployed in the same way as most other GOV.UK applications.</p>
 
 
   <div class='related-content'>

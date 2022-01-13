@@ -1,0 +1,705 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>search-api: learning-to-rank - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-api/learning-to-rank.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="search-api: learning-to-rank - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-api/learning-to-rank.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="search-api: learning-to-rank" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-api/learning-to-rank.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/govuk-content-store-examples.html"><span>govuk-content-store-examples</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/seal.html"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/repos/tech-docs-monitor.html"><span>tech-docs-monitor</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/search-api/commit/67b7c9cb2fa6034392751d7cfc218a8b4775d7fd">19 Apr 2021</a>
+</div>
+
+  <h1 class="page-title">search-api: learning-to-rank</h1>
+
+  
+<p>We use a machine learning approach to improve search result relevance,
+using the <a href="https://github.com/tensorflow/ranking">TensorFlow Ranking</a> module.  This doc covers how to use it,
+and what additional work is required.</p>
+<p>ADR-010 and ADR-011 cover the architectural decisions.</p>
+<h2 id="running-it-locally">Running it locally</h2>
+<h3 id="set-up">Set up</h3>
+<p>TensorFlow is written in Python 3, so you will need some libraries
+installed.  The simplest way to do this is using <code>virtualenv</code>:</p>
+<pre lang="sh"><code>pip3 install virtualenv
+virtualenv venv -p python3
+source venv/bin/activate
+pip install -r ltr/scripts/requirements-freeze.txt
+</code></pre>
+<p>This adjusts your shell's environment to use a local Python package
+database in the <code>venv</code> directory.  If you close the shell, you can run
+<code>source venv/bin/activate</code> again to bring everything back.</p>
+<h3 id="using-ltr">Using LTR</h3>
+<p><strong>Set the <code>ENABLE_LTR</code> environment variable to "true", or all of this is disabled.</strong></p>
+<p>There are several rake tasks for training and serving a TensorFlow
+model in the <code>learn_to_rank</code> namespace.</p>
+<p>The <code>learn_to_rank:generate_relevancy_judgements</code> task needs the
+<code>GOOGLE_PRIVATE_KEY</code> and <code>GOOGLE_CLIENT_EMAIL</code> environment variables
+set.  Values for these can be found in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>.  The task is
+run regularly and the generated <code>judgements.csv</code> file available in:</p>
+<ul>
+<li><code>govuk-integration-search-relevancy</code></li>
+<li><code>govuk-staging-search-relevancy</code></li>
+<li><code>govuk-production-search-relevancy</code></li>
+</ul>
+<p>In the future we will store more things in these buckets, like the
+trained models.</p>
+<p>Assuming you have a <code>judgements.csv</code> file, you can generate a dataset
+for training the model:</p>
+<pre lang="sh"><code>bundle exec rake learn_to_rank:generate_training_dataset[judgements.csv]
+</code></pre>
+<p>This task needs to be run with access to Elasticsearch.  If you're
+using govuk-docker the full command will be:</p>
+<pre lang="sh"><code>govuk-docker run -e ENABLE_LTR=true search-api-lite bundle exec rake 'learn_to_rank:generate_training_dataset[judgements.csv]'
+</code></pre>
+<p>Once you have the training dataset you can train and serve a model:</p>
+<pre lang="sh"><code>bundle exec rake learn_to_rank:reranker:train
+bundle exec rake learn_to_rank:reranker:serve
+</code></pre>
+<p>These tasks do not need access to Elasticsearch.</p>
+<p>You now have a docker container running and responding to requests
+inside the govuk-docker network at <code>reranker:8501</code>.  You can start
+search-api with the <code>ENABLE_LTR</code> environment variable with:</p>
+<pre lang="sh"><code>govuk-docker run -e ENABLE_LTR=true search-api-app
+</code></pre>
+<p>If you query search-api then results will be re-ranked when you order by
+relevance.  If this doesn't happen, check you're running search-api with
+<code>ENABLE_LTR</code> set.</p>
+<p>You can disable re-ranking with the parameter <code>ab_tests=relevance:disable</code>.</p>
+<p>The <code>learn_to_rank:reranker:evaluate</code> task can be used to compare
+queries without needing to manually search for things.  It uses the
+same <code>judgements.csv</code> file.</p>
+<h2 id="running-it-in-production">Running it in production</h2>
+<p>In production the model training and deployment are automated through
+<a href="https://concourse-ci.org/">Concourse</a>, with the deployed model hosted in <a href="https://aws.amazon.com/sagemaker/">Amazon SageMaker</a>.
+The Concourse pipeline is defined in <code>ltr/concourse/pipeline.yaml</code> and
+hosted in <a href="https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/search-learn-to-rank">the RE-managed shared Concourse</a>.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/search-api/main/docs/images/concourse-pipeline.png" alt="The search-learn-to-rank pipeline in shared Concourse"></p>
+<p>The pipeline has three sets of jobs, one for each environment, which:</p>
+<ol>
+<li>
+<p>Call the <code>/ltr/train</code> endpoint in search-api to generate training
+data and upload it to S3.</p>
+</li>
+<li>
+<p>Call Amazon SageMaker's training API to create a new model from
+that training data, and store the model artefact in S3.</p>
+</li>
+<li>
+<p>Call Amazon SageMaker's deployment API to deploy the new model,
+removing the old model configuration (but leaving the artefact in
+S3).</p>
+</li>
+</ol>
+<p>Each "fetch" task is triggered automatically at 10pm.  If it
+successfully completes, the "train" task is triggered.  If it
+successfully completes, the "deploy" task is triggered.</p>
+<p>All artefacts are stored in the relevancy S3 bucket: training data is
+under <code>data/&lt;timestamp&gt;/</code> and model data under <code>model/&lt;training timestamp&gt;-&lt;timestamp&gt;</code>.  Files are removed by a lifecycle policy
+after 7 days.</p>
+<h3 id="new-environment-set-up">New environment set up</h3>
+<p>There are some set-up tasks to be done before a new environment will
+work with this Concourse and SageMaker configuration.</p>
+<ol>
+<li>
+<p>Deploy terraform, that's out-of-scope of this document, but the
+three essential bits are:</p>
+<ul>
+<li>The <code>app-search</code> project</li>
+<li>A domain name <code>search-api.&lt;environment&gt;.govuk.digital</code> (see
+<code>infra-public-services</code>)</li>
+<li>A security rule allowing access from the Concourse IP addresses
+(see <code>infra-security-groups</code>)</li>
+</ul>
+</li>
+<li>
+<p>Define jobs for the new environment in the <code>pipeline.yaml</code> file
+(copy one of the current environments and just change the name).</p>
+</li>
+<li>
+<p>Deploy the Concourse configuration (with <code>fly set-pipeline</code>).</p>
+</li>
+<li>
+<p>Set the Concourse secrets (the <code>((...))</code> bits of the pipeline) for
+the environment with <code>gds-cli</code>.</p>
+</li>
+<li>
+<p>Run the <code>ltr/scripts/build-ecr.sh &lt;ecr repo&gt;</code> script.  The ECR
+repository is given in the output of deploying the <code>app-search</code>
+terraform.</p>
+</li>
+</ol>
+<h3 id="training-and-deploying-a-second-model-for-ab-testing">Training and deploying a second model for A/B testing</h3>
+<p><strong>You will need to be an AWS Power User and also have access to
+Concourse to follow these steps.</strong></p>
+<p>You can add new train and deploy jobs to the pipeline to facilitate
+A/B testing.  This is useful if you want to try out new features or
+configurations without switching over 100%.</p>
+<p>At the end of this process you will have a second SageMaker endpoint
+running serving your new model, and a Concourse job you can trigger to
+train and deploy a new model.  You will be able to supply training
+data to SageMaker by putting the SVM files in a designated S3
+location.</p>
+<p><strong>If you need a custom training image,</strong> which will be the case if
+you've edited any of the files in <code>ltr/scripts</code>, then you can build it
+with the <code>ltr/scripts/build-ecr.sh</code> script.</p>
+<p>Run these commands locally:</p>
+<pre><code># first assume-role into AWS (using gds-cli or however you do it)
+cd ltr/scripts
+./build-ecr.sh &lt;ecr repo&gt; &lt;tag name&gt;
+</code></pre>
+<p>You can get the <code>&lt;ecr repo&gt;</code> from the AWS console.</p>
+<p>The <code>&lt;tag name&gt;</code> is how you will identify the image in SageMaker.
+The daily model is trained using the <code>latest</code> tag, so don't use that.</p>
+<p><strong>If you need custom training data,</strong> for example you've added or
+removed a feature, generate the data and put it in S3 at
+<code>s3://govuk-&lt;environment&gt;-search-relevancy/data/&lt;key name&gt;/{train,test,validate}.txt</code>.
+The <code>&lt;key name&gt;</code> can be anything, and will be incorporated into the model
+name.</p>
+<p>How you generate the data will depend on what changes you have made.</p>
+<p><strong>Add a training and deployment step for your model to the pipeline,</strong>
+your user role does not have the necessary permissions to invoke
+SageMaker directly, so you have to use Concourse to do that.
+Additionally, this lets you train and deploy new versions of the model
+at the click of a button.</p>
+<p>The below YAML snippets are examples of what you would add to
+<code>ltr/concourse/pipeline.yaml</code>.</p>
+<ol>
+<li>
+<p>Decide on a name.</p>
+<p><em>In the YAML snippets below I've gone for <code>AB-SOMETHING</code>.</em></p>
+</li>
+<li>
+<p>Add a new entry to the <code>resources:</code> list:</p>
+<p><em>In this and the YAML snippets below I'm only doing integration.</em></p>
+<pre lang="yaml"><code>- name: integration-AB-SOMETHING-model
+  type: s3-iam
+  source:
+    bucket: ((readonly_private_bucket_name))
+    region_name: eu-west-2
+    regexp: search-learn-to-rank/integration-AB-SOMETHING-model-(.*).txt
+</code></pre>
+</li>
+<li>
+<p>Add a new training job to the <code>jobs:</code> list:</p>
+<p><em>If you're not using custom training data, instead use the output
+of the normal fetch job here.</em></p>
+<pre lang="yaml"><code>- name: integration-AB-SOMETHINGtrain
+  plan:
+    # delete "get: integration-training-data" step
+    - get: search-api-git
+    - task: Train
+      config:
+        &lt;&lt;: *task-config
+        inputs:
+          # delete "name: integration-training-data" input
+          - name: search-api-git
+        outputs:
+          - name: out
+        params:
+          # delete "INPUT_FILE_NAME: training-data" param
+          GOVUK_ENVIRONMENT: integration
+          IMAGE: ((integration-ecr-repository))
+          ROLE_ARN: ((integration-role-arn))
+          OUTPUT_FILE_NAME: AB-SOMETHING-model
+          # add "IMAGE_TAG: &lt;tag name&gt;" param, with the appropriate &lt;tag name&gt;
+          IMAGE_TAG: "&lt;tag name&gt;"
+          # add "SCRIPT_INPUT_DATA: &lt;key name&gt;" param, with the appropriate &lt;key name&gt;
+          SCRIPT_INPUT_DATA: "&lt;key name&gt;"
+        run:
+          path: bash
+          args: ["search-api-git/ltr/concourse/task.sh", "train"]
+      on_failure:
+        &lt;&lt;: *notify-failure
+    - put: integration-AB-SOMETHING-model
+      params:
+        file: out/integration-AB-SOMETHING-model-*.txt
+</code></pre>
+</li>
+<li>
+<p>Add a new deployment job to the <code>jobs:</code> list:</p>
+<pre lang="yaml"><code>- name: integration-AB-SOMETHING-deploy
+  plan:
+    - get: integration-AB-SOMETHING-model
+      passed: [integration-train]
+      trigger: true
+    - get: search-api-git
+    - task: Deploy
+      config:
+        &lt;&lt;: *task-config
+        inputs:
+          - name: search-api-git
+          - name: integration-AB-SOMETHING-model
+        params:
+          GOVUK_ENVIRONMENT: integration
+          ROLE_ARN: ((integration-role-arn))
+          INPUT_FILE_NAME: AB-SOMETHING-model
+          # add "ENDPOINT_NAME: govuk-integration-AB-SOMETHING-search-ltr-endpoint"
+          ENDPOINT_NAME: govuk-integration-AB-SOMETHING-search-ltr-endpoint
+        run:
+          path: bash
+          args: ["search-api-git/ltr/concourse/task.sh", "deploy"]
+      on_failure:
+        &lt;&lt;: *notify-failure
+</code></pre>
+</li>
+</ol>
+<p><strong>Deploy your pipeline with <code>fly</code>,</strong> if you've not logged into
+Concourse before, download <code>fly</code> from
+<a href="https://cd.gds-reliability.engineering/">https://cd.gds-reliability.engineering/</a> (see the list of operating
+systems in the bottom right) and log in:</p>
+<pre lang="bash"><code>fly login -t cd-govuk-tools -n govuk-tools -c https://cd.gds-reliability.engineering
+</code></pre>
+<p>Then deploy the pipeline:</p>
+<pre lang="bash"><code>fly set-pipeline -t cd-govuk-tools -p search-learn-to-rank -c ltr/concourse/pipeline.yaml
+</code></pre>
+<p><strong>Trigger a build of the "train" job,</strong> which will train a new model
+and upload it to S3.  When the train job completes it will trigger the
+deploy job, which will create your new SageMaker endpoint and start
+serving the model.</p>
+<h2 id="reranking">Reranking</h2>
+<p>Reranking happens when <code>ENABLE_LTR=true</code> is set.  The model is found
+by trying these options in order, going for the first one which
+succeeds:</p>
+<ol>
+<li>
+<p>If <code>TENSORFLOW_SAGEMAKER_ENDPOINT</code> is set, <a href="https://aws.amazon.com/sagemaker/">Amazon SageMaker</a> is
+used.  It's assumed that search-api is running under a role which
+has permissions to invoke the endpoint.</p>
+</li>
+<li>
+<p>If <code>TENSORFLOW_SERVING_IP</code> is set, <code>http:://&lt;ip&gt;::8501</code> is used.</p>
+</li>
+<li>
+<p>If <code>RANK_ENV</code> is <code>development</code>, <code>http://reranker:8501</code> is used.</p>
+</li>
+<li>
+<p><code>http://0.0.0.0:8501</code> is used.</p>
+</li>
+</ol>
+<p>When reranking is working, search-api results get three additional
+fields:</p>
+<ul>
+<li>
+<code>model_score</code>: the score assigned by TensorFlow</li>
+<li>
+<code>combined_score</code>: the score used for the final ranking</li>
+<li>
+<code>original_rank</code>: how Elasticsearch ranked the result</li>
+</ul>
+<p>We may remove <code>combined_score</code> in the future, as it's just the same as
+<code>model_score</code>.</p>
+<h2 id="further-work">Further work</h2>
+<ul>
+<li>Investigate window sizes for reranking (top-k)</li>
+<li>Reduce the performance impact of reranking</li>
+<li>Update the process for improving search relevance</li>
+</ul>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/search-api/blob/main/docs/learning-to-rank.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-api%2Flearning-to-rank.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

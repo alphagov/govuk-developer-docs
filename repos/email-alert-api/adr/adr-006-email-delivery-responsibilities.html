@@ -1,0 +1,493 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>email-alert-api: 6. Email Delivery Responsibilities - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-006-email-delivery-responsibilities.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="email-alert-api: 6. Email Delivery Responsibilities - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-006-email-delivery-responsibilities.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="email-alert-api: 6. Email Delivery Responsibilities" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-006-email-delivery-responsibilities.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/govuk-content-store-examples.html"><span>govuk-content-store-examples</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/seal.html"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/repos/tech-docs-monitor.html"><span>tech-docs-monitor</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/7381dbe0fb2fe3674c31126867bbb502c67fa5c5">19 Oct 2020</a>
+</div>
+
+  <h1 class="page-title">email-alert-api: 6. Email Delivery Responsibilities</h1>
+
+  
+<p>Date: 2020-10-23</p>
+<h2 id="context">Context</h2>
+<p>Email, as an asynchronous communication medium, inherently has two boolean
+scenarios that need to be true for an email to be received. An email has to be
+<em>sent</em> to a mail server and the mail server then needs to <em>deliver</em> the email to the
+recipient's mail server. Resolving whether an email is sent is a rather simple
+question that can be resolved synchronously - "did the mail server accept the
+email?" - however, determining whether an email is received is more complex
+as delivery is not synchronous and may be subject to automated retrying should
+any problems occur. Typically, in the medium of email, clients only consider
+the first scenario in reporting an email's status, this is the point an email
+becomes sent. The latter scenario, delivery, isn't typically reflected in
+email clients, it is normal to assume the email was received
+successfully unless later you receive an email indicating a bounce has
+occurred.</p>
+<p>The <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-001-notify-integration.md">initial Email Alert API Notify integration</a> was designed to
+consider both the sending and delivery of email. It had systems to monitor
+whether Notify had managed to deliver an email to a recipient and an automatic
+retry mechanism for when Notify had problems delivering an email.</p>
+<p>In September 2020 we decided to re-evaluate this concept conflation as we were
+concerned that Notify functionality was duplicated in Email Alert API and
+that this had an adverse effect on the complexity of the system.</p>
+<h2 id="decision">Decision</h2>
+<p>We decided that Email Alert API has a responsibility to send email, but does
+not have a responsibility to deliver it. That is the responsibility of Notify.</p>
+<p>We defined that, in the context of Email Alert API, the process of sending
+email was the ability to successfully send a request to Notify to perform
+this action - we consider this the equivalent of a mail client successfully
+sending an email to an <a href="https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP</a> server. We then consider the
+<a href="https://docs.notifications.service.gov.uk/ruby.html#delivery-receipts">Notify callback</a> as the mechanism to learn if an email was
+delivered or not.</p>
+<p>To reflect this we have <a href="https://github.com/alphagov/email-alert-api/commit/c457f62c3b6f1eaadf47e6596223cc0fdcffa853">switched</a> the
+meaning of an <a href="https://github.com/alphagov/email-alert-api/blob/0b87e62288ddb1653451f84e1f36e17ce4e8e9dc/app/models/email.rb#L7">email's status</a>. A status of "sent" now means that
+the email was accepted by Notify and not that the email was delivered. A
+status of "failed" now means we weren't able to send the email to Notify,
+instead of the previous meaning where it meant that it may not have been sent
+to Notify or Notify failed to deliver the email.</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="consequences">Consequences</h2>
+<h3 id="we-no-longer-retry-delivering-emails-ourselves">We no longer retry delivering emails ourselves</h3>
+<p>Notify, via Amazon SES, will automatically <a href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-concepts-deliverability.html#send-email-concepts-deliverability-bounce">retry</a> the delivery of
+emails that fail for transitory reasons (such as the recipient's mail server
+being full or offline). If it doesn't succeed in a reasonable period
+of time Notify will inform us by telling us an email has experienced a
+<a href="https://docs.notifications.service.gov.uk/ruby.html#status-email">"temporary-failure"</a>.</p>
+<p>Email Alert API <a href="https://github.com/alphagov/email-alert-api/commit/df9ad09fab5dabde5fac92ae76d155d00eea192b">no longer</a> has its own retry
+mechanism to re-attempt emails that have failed to be delivered. This
+resolves an aspect of duplicated functionality between the two systems and
+an area of ambiguity as to how long Email Alert API should retry for. With
+this removed there are no longer attempts to resend an email should the
+first delivery fail, this allowed us to <a href="https://github.com/alphagov/email-alert-api/pull/1438">delete the
+<code>DeliveryAttempt</code> model</a> as the purpose of this was
+to disambiguate between different Notify requests.</p>
+<h3 id="we-no-longer-record-delivery-data-with-an-email">We no longer record delivery data with an email</h3>
+<p>A question we pondered with these changes was "what should do with the data
+we receive from Notify about the delivery of emails?". This data no longer plays
+a role in the state modelling of email sending, so we decided it should not
+be represented in an email's status. (it conflated what a failure to send
+an email meant - was this failure to <em>send</em> or failure to <em>deliver</em>?).</p>
+<p>We decided that we did not need to store delivery success or failure in the
+database with the email. This is because there is not currently
+a known use of this data and, since the email table only has a 7-day retention
+period, it can be added later to meet any later needs that are identified. The
+data remains available via the Notify UI for debugging whether emails
+were delivered.</p>
+<p>We <a href="https://github.com/alphagov/email-alert-api/blob/59fc71a58317ef2998f2c0ef102020da3ca9df96/app/services/status_update_service.rb#L17-L19">continue to act on "permanent-failure"</a>
+notifications and remove subscriptions for non-operational email addresses -
+this can be done without storing additional data with the email. We also
+continue to store aggregate metrics about email sending which power dashboards.</p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-006-email-delivery-responsibilities.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Femail-alert-api%2Fadr%2Fadr-006-email-delivery-responsibilities.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

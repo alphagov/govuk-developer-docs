@@ -183,7 +183,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>content-data-api app healthcheck not ok</h1> <p>If there is a health check error showing for Content Data API, click
@@ -203,7 +203,7 @@ Every day, data is copied from multiple sources (the <a href="https://github.com
 <p>A rake task called <a href="https://github.com/alphagov/content-data-api/commit/bcfeed7b207770498c88d955d02227f444666853"><code>etl:master</code></a> calls the <code>Etl::Master::MasterProcessor</code>
 which <a href="https://github.com/alphagov/content-data-api/blob/26e316cab5c4b5e5663c50dbf120e291405f6177/app/domain/etl/master/master_processor.rb#L16-L43">processes all the data</a>. This rake task is run daily
 (see <a href="#when-does-etl-run">&ldquo;When does ETL run&rdquo;</a> section below) so that the
-<a href="/apps/content-data-admin.html">Content Data</a> app has up to date figures.</p>
+<a href="/repos/content-data-admin.html">Content Data</a> app has up to date figures.</p>
 <p>The Jenkins job that calls this rake task is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api.pp">content_data_api</a>
 (<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/content_data_api.yaml.erb">configured here</a>).</p>
 <p>There is also a special &lsquo;re-run&rsquo; task called <a href="https://github.com/alphagov/content-data-api/commit/f80f3f3b669f441651dbaa52665771dae9cd0c3e"><code>etl:rerun_master</code></a>,

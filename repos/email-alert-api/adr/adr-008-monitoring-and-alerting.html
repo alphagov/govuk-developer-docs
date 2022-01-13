@@ -1,0 +1,632 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>email-alert-api: 8. Monitoring and alerting - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-008-monitoring-and-alerting.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="email-alert-api: 8. Monitoring and alerting - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-008-monitoring-and-alerting.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="email-alert-api: 8. Monitoring and alerting" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-008-monitoring-and-alerting.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/govuk-content-store-examples.html"><span>govuk-content-store-examples</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/seal.html"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/repos/tech-docs-monitor.html"><span>tech-docs-monitor</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/f8ba4d5eda1a48428283e0e1b4a613311c6cca73">1 Dec 2020</a>
+</div>
+
+  <h1 class="page-title">email-alert-api: 8. Monitoring and alerting</h1>
+
+  
+<p>Date: 2020-11-13
+Amended: 2020-12-01 - Status updated to reflect team being paused</p>
+<h2 id="context">Context</h2>
+<p>Email Alert API has acquired the undesirable reputation of an application that
+produces a high volume of unactionable alerts and is a frequent source of
+GOV.UK incidents. The monitoring and alerting approach no longer appears to
+be sufficient for the application behaviour as the application's volume of
+work has changed in the past 2 years. In previous years, the application
+would reach a peak of sending 1 million emails a day whereas now it can be
+sending over 10 million emails a day. This elevated volume of work has
+increased system latency which has impacted alerts and contributed to
+incidents.</p>
+<p>The approach used to monitoring the application and the wider email alert
+system is two fold. One approach is to monitor Email Alert API's internal
+state to see if it is <a href="https://github.com/alphagov/email-alert-api/blob/c70fcd7e5d64393074a3eebd83b3467fd8cc03b3/app/workers/digest_run_worker.rb#L6-L9">completing tasks within a particular
+time frame</a> or <a href="https://github.com/alphagov/govuk-puppet/blob/fac4b5163f10736bb19aa51a8eb7bc276dd2cb40/modules/govuk/manifests/apps/email_alert_api/sidekiq_queue_check.pp#L33-L44">whether there is a high quantity of work to
+do</a>. The other approach is to use an <a href="https://github.com/alphagov/email-alert-monitoring">end-to-end
+check</a> which verifies that a Gmail account
+has received an email within a time frame. Both of these approaches are flawed.</p>
+<p>Monitoring for high quantities of work, and whether work was completed in a
+time frame, has left Email Alert API vulnerable to producing alerts when the
+application is busy, yet fully operational. These alerts are unactionable for
+support engineers as the alerts resolve themselves once the work is completed
+and there is little an engineer can do to speed this process up. For example,
+if the application has accumulated 1,000,000 emails to send it raises a
+critical alert even if it is sending these at the <a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/send_email_worker.rb#L4">fastest rate Notify
+would allow</a>. These alerts, therefore, waste the time of support
+engineers as most instances of them occurring represent a problem that
+doesn't require intervention - this then increases a risk that an engineer
+wouldn't act if an alert did actually represent the application being broken.</p>
+<p>Since these alerts can't be relied upon to reliably suggest the
+application is broken, they aren't used for any out-of-hours alerts. Therefore,
+even if they did reflect a genuine problem no engineers would be contacted.
+An engineer instead learns of a problem out-of-hours due to the other type
+of monitoring approach: the end-to-end checks. These alert when content
+published through <a href="https://github.com/alphagov/travel-advice-publisher">Travel Advice Publisher</a> does not arrive in
+a particular Gmail inbox within a specified time period.</p>
+<p>Monitoring an inbox for a limited set of emails has its own flaws.
+If Email Alert API breaks outside of office hours then engineers would not be
+notified unless travel advice content was published. This alert also monitors
+beyond the boundaries of the email alert system - considering whether
+GOV.UK publishing, Notify and Gmail are all working - leading to alerts
+representing problems that are irrelevant to the system, or outside the
+control of GOV.UK engineers (such as Gmail identifying an email as spam).
+Finally, by nature of being time based, these alerts are also vulnerable to
+the system being busy - where a sufficiently high volume of travel advice
+publishings guarantees that an alert will trigger.</p>
+<p>Reviewing this monitoring approach helped us understand the reputation for
+unactionable alerts and reviewing the GOV.UK incidents for Email Alert API
+helped us to identify patterns where incidents reflected ambiguity over whether
+the system was broken or not. We felt there was room for improvement.</p>
+<h2 id="decision">Decision</h2>
+<p>We decided that the system should raise a critical alert
+<a href="https://en.wikipedia.org/wiki/If_and_only_if">if and only if</a> the email alert
+system is broken. The majority of these alerts should contact engineers
+out-of-hours.</p>
+<p>Unpacking this, we consider the email alert system to be comprised of 3
+applications: Email Alert API,
+<a href="https://github.com/alphagov/email-alert-frontend">Email Alert Frontend</a> and
+<a href="https://github.com/alphagov/email-alert-service">Email Alert Service</a>; this
+excludes the monitoring of whether GOV.UK publishing and Notify are working
+as they are independently monitored. The use of "if and only if"
+reflects a condition we've formed that the system will not raise critical
+alerts unless we're highly confident it is broken, whereas warnings are
+appropriate for other situations. We decided that for the email alert system
+to be "broken" it represents a failing that will lead to a user noticeable
+issue unless an engineer intervenes. Since these alerts should represent
+a broken system requiring intervention, it should be suitable to contact
+engineers out-of-hours for them as otherwise users will be experiencing issues.</p>
+<p>We decided that we will re-approach our alerting with this mindset and look to
+replace alerts that are vulnerable to reflecting a busy status, or which
+extend beyond the boundaries of the system.</p>
+<h2 id="status">Status</h2>
+<p>Proposed - the team working on this piece of work was paused in December 2020,
+it is unclear whether a future team will be formed to complete this work.</p>
+<h2 id="consequences">Consequences</h2>
+<p>We will be changing the approaching to monitoring and alerting across the email
+alert system of applications in order to meet this new alerting criteria.</p>
+<h3 id="monitoring-email-alert-api">Monitoring Email Alert API</h3>
+<h4 id="sidekiq-workers">Sidekiq workers</h4>
+<p>We will configure critical alerts, that contact engineers out-of-hours, if
+individual Sidekiq jobs fail multiple times for the following workers:</p>
+<ul>
+<li><a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/daily_digest_initiator_worker.rb">DailyDigestInitiatorWorker</a></li>
+<li><a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/digest_email_generation_worker.rb">DigestEmailGenerationWorker</a></li>
+<li><a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/process_content_change_worker.rb">ProcessContentChangeWorker</a></li>
+<li><a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/process_message_worker.rb">ProcessMessageWorker</a></li>
+<li><a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/send_email_worker.rb">SendEmailWorker</a></li>
+<li><a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/weekly_digest_initiator_worker.rb">WeeklyDigestInitiatorWorker</a></li>
+</ul>
+<p>These workers will use the database to store the number of times we have
+attempted to perform an action. An alert will be raised if the quantity of
+failed attempts reaches a threshold (the suggestion is 5 - based on this being
+evidence of consistent failure). We expect that we can use the same threshold
+for all of these workers even though <code>SendEmailWorker</code> speaks to an external
+service (Notify) that may be more likely to fail, this is because the
+failure rate is low (&lt; 0.1%), which makes consecutive failures unlikely. To
+ensure that the jobs of all the mentioned workers actually run we will
+configure the <a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/recover_lost_jobs_worker.rb">RecoverLostJobsWorker</a> to identify any of these that need to
+run and attempt them, this protects from lost work problems such as
+<a href="https://github.com/mperham/sidekiq/wiki/Reliability#using-super_fetch">Sidekiq crashing</a>.</p>
+<p>We expect <a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/send_email_worker.rb">SendEmailWorker</a> and <a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/digest_email_generation_worker.rb">DigestEmailGenerationWorker</a> jobs to run
+quickly (durations of up to a few seconds) and we know that there can be high
+volumes of them to run (both can regularly reach volumes of &gt; 100,000).
+We are concerned about a scenario where these consistently fail
+and it takes a long time for an engineer to be informed, this could occur
+because it could take a long time for sufficient retries to occur
+before an alert is raised (as each retry is placed at the back of the queue).
+To reflect this concern we will contact engineers if either of these workers
+has not completed one successful run within a time period despite work
+existing (suggested time period is 30 minutes). The <a href="https://github.com/mperham/sidekiq/wiki/Error-Handling#automatic-job-retry">Sidekiq retry
+cadence</a> and <a href="https://github.com/alphagov/email-alert-api/blob/1711885b4df9c80aed5d8d2333e4e007c778badd/app/workers/recover_lost_jobs_worker/unprocessed_check.rb#L13">recovery window</a> for these jobs will need to be
+updated to ensure the jobs are always attempted within the time period, this
+is to ensure we don't alert while work isn't being attempted.</p>
+<p>We will contact engineers out-of-hours if we determine that a
+<a href="https://github.com/alphagov/email-alert-api/blame/b92f9136230f9217e7877c6dbd6a049473ce7b35/README.md#L28-L29">DigestRun</a> record is not created within a reasonable time frame
+(suggestion is 2 hours). Creating these is a <a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/services/digest_initiator_service.rb#L8">trivial</a>,
+but essential, operation that relies on a schedule. The lack of this record
+suggests that either the schedule is broken or that the code running at the
+scheduled time failed.</p>
+<p>We will also monitor that runs of <a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/recover_lost_jobs_worker.rb">RecoverLostJobsWorker</a> and
+<a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/metrics_collection_worker.rb">MetricsCollectionWorker</a> are succeeding at least once within a time frame
+(suggestion is 1 hour). These jobs should continue running even when the
+system is busy and the lack of them running indicates that we no longer have
+confidence the system is monitored or able to recover. Thus, an alert will be
+created that contacts engineers out-of-hours should these not succeed in a
+time frame.</p>
+<p>For Sidekiq workers that don't affect the user noticeable aspects of Email
+Alert API, such as <a href="https://github.com/alphagov/email-alert-api/blob/b92f9136230f9217e7877c6dbd6a049473ce7b35/app/workers/email_deletion_worker.rb">EmailDeletionWorker</a>, we won't raise critical alerts if
+these are failing. Instead we will raise a warning if any Sidekiq workers
+exhaust all their retries and are placed in the <a href="https://github.com/mperham/sidekiq/wiki/API#dead">dead set</a>. This
+approach was chosen as it was a pragmatic technique to monitor multiple workers
+without adding alerts for individual workers. Workers will have their
+<a href="https://github.com/mperham/sidekiq/wiki/Error-Handling#automatic-job-retry">retry cadence</a> considered so that this will alert in a
+reasonable time frame of the retries being exhausted (the Sidekiq default of 21
+days is very long).</p>
+<p>We will modify the <a href="https://github.com/alphagov/govuk-puppet/blob/3922b4104e61e16e115e609a1f96fa19bffcfb0c/modules/govuk/manifests/apps/email_alert_api/checks.pp#L9-L25">latency checks for email queues</a>. We
+will be treating <a href="https://github.com/alphagov/email-alert-api/blob/fe28935ae77137182ec713059b029d514a93bc2d/config/sidekiq.yml#L9">transactional emails</a> different to other latency checks
+as these emails have have an <a href="https://github.com/alphagov/email-alert-frontend/blob/de1caeea8098eccbb34d8768d7f2c95e455d901c/config/locales/subscriber_authentication.yml#L21">expectation of a prompt
+delivery</a> and the lack of them blocks a
+user from progressing with their task. These will raise a warning after 5 mins
+and go critical (with engineers contacted out-of-hours) should the latency
+reach 15 mins.</p>
+<p>The other latency checks will be made significantly less sensitive to latency
+and we will change the time before a warning occurs to be in the measure of
+multiple hours compared to minutes, with the intention that they serve to
+alert a support engineer only when the system is exceptionally busy and may be
+unhealthy. These alerts will only reach a critical status if they hit a 24 hour
+point as this would indicate that we are consistently creating email faster
+than the application can send it, which may mean the system is perpetually
+backlogged.</p>
+<h4 id="web-application">Web application</h4>
+<p>We decided that there should be a mechanism that alerts people out-of-hours if
+the Email Alert API web application appears broken, noting that currently an
+engineer is unlikely to be contacted in the event of the whole Email Alert API
+application becoming unavailable - unless travel advice were published. We
+noted there wasn't a particularly consistent approach to this across GOV.UK
+(<a href="https://github.com/alphagov/govuk-puppet/blob/3922b4104e61e16e115e609a1f96fa19bffcfb0c/modules/govuk/manifests/apps/publishing_api.pp#L168-L170">with some apps raising an out-of-hours alert when a single instance fails
+healthchecks</a>) and felt it would be good to take a simple
+approach to avoid surprising engineers.</p>
+<p>We decided the most appropriate place to alert would be when <a href="https://github.com/alphagov/govuk-puppet/blob/3922b4104e61e16e115e609a1f96fa19bffcfb0c/modules/monitoring/manifests/checks/lb.pp">the application
+load balancer has no healthy instances of the application</a>. This
+represents that no instances of the web application are healthy and
+<a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-healthchecks.html">no requests will succeed</a>.</p>
+<h4 id="alerts-to-be-removed">Alerts to be removed</h4>
+<p>We will remove the following alerts that will become superseded:</p>
+<ul>
+<li><a href="https://github.com/alphagov/govuk-puppet/blob/3922b4104e61e16e115e609a1f96fa19bffcfb0c/modules/govuk/manifests/apps/email_alert_api/checks.pp#L27-L36">Content Changes unprocessed after 2 hours</a></li>
+<li><a href="https://github.com/alphagov/govuk-puppet/blob/3922b4104e61e16e115e609a1f96fa19bffcfb0c/modules/govuk/manifests/apps/email_alert_api/checks.pp#L49-L59">Messages unprocessed after 2 hours</a></li>
+<li><a href="https://github.com/alphagov/govuk-puppet/blob/3922b4104e61e16e115e609a1f96fa19bffcfb0c/modules/govuk/manifests/apps/email_alert_api/checks.pp#L38-L47">Incomplete DigestRuns after 2 hours</a></li>
+</ul>
+<h3 id="monitoring-email-alert-service">Monitoring Email Alert Service</h3>
+<p>Email Alert Service listens for <a href="https://github.com/alphagov/publishing-api">Publishing API</a> events and communicates
+these to Email Alert API. We currently <a href="https://github.com/alphagov/govuk-puppet/blob/3922b4104e61e16e115e609a1f96fa19bffcfb0c/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L54-L60">only have alerts</a> that
+are monitored in-hours if this system fails, so there is no visibility for any
+out-of-hours problems.</p>
+<p>We intend to improve and consolidate the existing alerts, and contact an
+engineer out-of-hours if there is a pattern of failure in processing these
+events.</p>
+<h3 id="monitoring-email-alert-frontend">Monitoring Email Alert Frontend</h3>
+<p>Email Alert Frontend acts as the public interface for subscriber interaction
+with the email alert system. This web application will be monitored in a
+<a href="#web-application">similar way to the Email Alert API web application</a> by
+considering whether the load balancer has any healthy instances.</p>
+<h3 id="removal-of-email-alert-monitoring">Removal of Email Alert Monitoring</h3>
+<p><a href="https://github.com/alphagov/email-alert-monitoring">Email Alert Monitoring</a> is the aforementioned
+end-to-end check that monitors whether travel advice and medical safety content
+changes result in an email received by a Gmail inbox. We intend to retire this
+check as we believe the new approach to monitoring the email alert system will
+cover the aspects of this check that are within scope of the email alert system.
+Broadly Email Alert Monitoring verifies that:</p>
+<ul>
+<li>content was published (out-of-scope for email alert system, this is a
+Publishing API concern);</li>
+<li>whether the publishing application successfully communicated with Email Alert
+API (out-of-scope for email alert system, this is a publishing application
+concern);</li>
+<li>whether the content change is converted into emails (in-scope for email alert
+system; monitored by identifying ProcessContentChangeWorker failures);</li>
+<li>whether an email is sent to <a href="mailto:govuk_email_check@digital.cabinet-office.gov.uk">govuk_email_check@digital.cabinet-office.gov.uk</a>
+(in-scope for email alert system, monitored by identifying SendEmailWorker
+failures);</li>
+<li>whether Notify actually sends the email (out-of-scope for email alert system,
+this is a Notify concern);</li>
+<li>whether Gmail successfully receives the email (out-of-scope for email alert
+system, this is Google's concern).</li>
+</ul>
+<p>Once we have completed configuring the alerts that cover the in-scope scenarios
+we will remove Email Alert Monitoring from the GOV.UK stack.</p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-008-monitoring-and-alerting.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Femail-alert-api%2Fadr%2Fadr-008-monitoring-and-alerting.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

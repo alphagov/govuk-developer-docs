@@ -215,15 +215,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
@@ -363,7 +356,7 @@ pages that are already owned by other apps, creating <code>prefix</code> type re
 and using non-default values for the <code>segments_mode</code>.</p>
 <h3 id='removing-a-route-created-in-the-short-url-manager'>Removing a route created in the Short URL Manager</h3><p>First find the <code>content_id</code> of the URL that needs to be removed. This can be found by using the Content Store API: <code>www.gov.uk/api/content/&lt;path goes here&gt;</code>.</p>
 <p>For example, finding the <code>content_id</code> for the page about <a href="https://www.gov.uk/guidance/keeping-a-pet-pig-or-micropig">keeping a pet pig or micropig</a> is found by going to <a href="https://www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig"><code>www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig</code></a>. The <code>content_id</code> should be a UUID; for example: <code>602144f8-7631-11e4-a3cb-005056011aef</code>.</p>
-<p>The content_id is with a rake task that removes the shortlink. The <a href="https://docs.publishing.service.gov.uk/apps/short-url-manager.html#run-a-rake-task">Short URL Manager documentation</a> has handy links for running the rake tasks in the different environments.</p>
+<p>The content_id is with a rake task that removes the shortlink. The <a href="https://docs.publishing.service.gov.uk/repos/short-url-manager.html#run-a-rake-task">Short URL Manager documentation</a> has handy links for running the rake tasks in the different environments.</p>
 <p>The rake task for removing a redirect is:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>redirect:destroy[&lt;UUID goes here&gt;]
 </code></pre></div>
@@ -421,7 +414,7 @@ Kelvin Gan can raise a ticket.</p>
     <h4>Related applications</h4>
 
     <ul class="govuk-list">
-      <li><a href="/apps/short-url-manager.html">short-url-manager</a></li>
+      <li><a href="/repos/short-url-manager.html">short-url-manager</a></li>
     </ul>
 
     <h3>More in the Routing section</h3>

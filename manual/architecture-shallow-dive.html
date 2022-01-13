@@ -201,7 +201,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c4dc3b669aada6b670d15efab7a79e0caf24e532">6 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Architectural summary of GOV.UK</h1> <p>The following content is a high-level summary of GOV.UK architecture, intended for both developers and non-developers to refer to.</p>
@@ -264,7 +264,7 @@
 <li>Manuals Publisher</li>
 </ul>
 <p>The following sections describe what happens when a publisher publishes content to live and to draft using Mainstream Publisher (referred to as &ldquo;Publisher&rdquo;).</p>
-<h3 id='a-publisher-publishes-content-to-live'>A publisher publishes content to live</h3><p>A publisher signs into their <a href="/apps/signon.html">Signon</a> account. Signon is a centralised single sign-on provider for GDS services that provides username/password and two-factor authentication.</p>
+<h3 id='a-publisher-publishes-content-to-live'>A publisher publishes content to live</h3><p>A publisher signs into their <a href="/repos/signon.html">Signon</a> account. Signon is a centralised single sign-on provider for GDS services that provides username/password and two-factor authentication.</p>
 <p>The publisher creates or changes content in Publisher and <a href="#a-publisher-publishes-content-to-draft">saves that content in draft</a>.</p>
 <p>When the publisher is ready to publish the content, they select <strong>Publish</strong> in Publisher, which sends a request to the Publishing API.</p>
 <p>The <a href="https://github.com/alphagov/publishing-api">Publishing API</a> publishes content to the Content Store. This API stores all versions of content, and performs validation checks whenever the API receives a new version.</p>
@@ -276,7 +276,7 @@
 <li>the Email Alert Service listens to this queue so that it can send emails to users who have subscribed to that topic</li>
 </ul>
 <h3 id='a-publisher-publishes-content-to-draft'>A publisher publishes content to draft</h3><p>The previous content referred to the user-facing live stack, also known as Origin. Before publishing content to live, a publisher can preview their content in the draft stack, also known as Draft Origin.</p>
-<p>The <a href="https://github.com/alphagov/authenticating-proxy">Authenticating Proxy</a> adds authentication to the draft stack. This means that only publishers with a <a href="/apps/signon.html">Signon</a> account, or a valid secret JSON web token (JWT) if the publisher is a fact checker, can access the draft stack.</p>
+<p>The <a href="https://github.com/alphagov/authenticating-proxy">Authenticating Proxy</a> adds authentication to the draft stack. This means that only publishers with a <a href="/repos/signon.html">Signon</a> account, or a valid secret JSON web token (JWT) if the publisher is a fact checker, can access the draft stack.</p>
 <p>The publishing apps, Publishing API and message queue only run in this draft stack. The draft stack also has its own copy of <a href="https://github.com/alphagov/router">Router</a>, <a href="https://github.com/alphagov/content-store">Content Store</a>, and all of the frontend apps. This enables publishers to see what their draft content will look like when rendered by the appropriate frontend application.</p>
 <p>The only application that communicates with both the draft and live stacks is the Publishing API. When a publisher saves a draft in Publisher, Publishing API saves the content to the draft content store. When a publisher publishes a draft in Publisher, Publishing API saves the content to the live content store, which makes the content visible to users.</p>
 

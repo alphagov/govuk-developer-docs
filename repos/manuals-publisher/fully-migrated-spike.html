@@ -1,0 +1,650 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>manuals-publisher: Fully-migrated spike - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/manuals-publisher/fully-migrated-spike.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="manuals-publisher: Fully-migrated spike - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/fully-migrated-spike.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="manuals-publisher: Fully-migrated spike" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/manuals-publisher/fully-migrated-spike.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/govuk-content-store-examples.html"><span>govuk-content-store-examples</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/seal.html"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/repos/tech-docs-monitor.html"><span>tech-docs-monitor</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
+
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/77598a75d2be39d65e267aba3c9f9c82d8cf0dd8">22 Jun 2017</a>
+</div>
+
+  <h1 class="page-title">manuals-publisher: Fully-migrated spike</h1>
+
+  
+<p>In June 2017, we (<a href="http://gofreerange.com">Go Free Range</a>) spiked on the idea of converting the app to use the Publishing API as its canonical/only persistence mechanism. This work was captured in the <a href="https://github.com/alphagov/manuals-publisher/compare/spike-fully-migrated-wrt-publishing-api"><code>spike-fully-migrated-wrt-publishing-api</code> branch</a>. The following notes record our discoveries and highlight potential problems.</p>
+<h2 id="reading-list-of-manuals">Reading list of manuals</h2>
+<ul>
+<li>Working OK</li>
+</ul>
+<h2 id="reading-single-manual-and-its-sections">Reading single manual and its sections</h2>
+<ul>
+<li>Working OK</li>
+</ul>
+<h2 id="reading-single-section-and-its-attachments">Reading single section and its attachments</h2>
+<ul>
+<li>Working OK</li>
+</ul>
+<h2 id="saving-of-attachments">Saving of attachments</h2>
+<ul>
+<li>This had to change a bit, because the attachments are embedded in sections in the local database. When we switch to using the Publishing API for persistence, we can no longer rely on the local database, and so we have to save the attachment's section to the Publishing API.</li>
+</ul>
+<h2 id="change-notes">Change notes</h2>
+<ul>
+<li>
+<p>Currently never <strong>read</strong> from the Publishing API so no changes needed.</p>
+</li>
+<li>
+<p>Currently uses custom attribute in details hash passing through Publishing API - does not use either of the official Publishing API mechanisms.</p>
+</li>
+</ul>
+<h2 id="scoping-based-on-users-roleorganisation">Scoping based on user's role/organisation</h2>
+<ul>
+<li>
+<p>We've solved this in the spike when loading all manuals by using <code>get_content_items</code> in conjunction with the <code>link_organisations</code> option and when loading a single manual by using <code>get_content</code> and checking the manual's organisation matches that of the user.</p>
+</li>
+<li>
+<p>It's not completely obvious where this logic should live, but we're confident we can make it work.</p>
+</li>
+</ul>
+<h2 id="publishing-asynchronous">Publishing (asynchronous)</h2>
+<ul>
+<li>
+<p>It looks as if we can keep this as it is for now, although that will mean keeping the local database in order to persist the instances of <code>ManualPublishTask</code> which represent the publish jobs queued by <code>Manual::QueuePublishService</code> and processed by <code>PublishManualWorker</code>.</p>
+</li>
+<li>
+<p>We think this is currently done asynchronously because we need to call <code>patch_links</code>, <code>put_content</code> &amp; <code>publish</code> for the manual <em>and each of its sections</em> which could easily be a lot of calls to the Publishing API.</p>
+</li>
+<li>
+<p>Once we're using the Publishing API for persistence, we suspect we may not need to call <code>patch_links</code> or <code>put_content</code>, only <code>publish</code>, and this may mean it's no longer so important to do this asynchronously. But it's probably simplest to keep it as it is, although see the issue about <code>VersionMismatchError</code> below.</p>
+</li>
+</ul>
+<h2 id="version-number-versionmismatcherror">Version number / <code>VersionMismatchError</code>
+</h2>
+<ul>
+<li>
+<p>We think <code>Manual#version_number</code> is always set to 0 at the moment in the spike, i.e. we don't think it's being set from the Publishing API. This is incorrect and the only reason we don't see a <code>VersionMismatchError</code> is because <code>0 == 0!</code></p>
+</li>
+<li>
+<p>It looks as if there is <a href="https://github.com/alphagov/manuals-publisher/issues/1177">a bug in <code>master</code></a> which means that this exception is never raised, so in a way we don't need to do anything in the spike to replicate this behaviour!</p>
+</li>
+<li>
+<p>If we need to, we can obtain the version number from the Publishing API via the <code>state_history</code> by finding the highest version number key in the Hash. However, it's worth noting that it looks as if the version number is not incremented if you keep saving a draft. We don't know whether it's a coincidence, but this behaviour actually matches what's happening in <code>master</code> with the version number stored in the local database.</p>
+</li>
+<li>
+<p>As we mentioned in the GitHub issue (see above), we think the best way to fix this is to prevent edits to a draft which is queued for publication.</p>
+</li>
+</ul>
+<h2 id="edit-first-publication-date-for-manual">Edit first publication date for manual</h2>
+<ul>
+<li>
+<p>Are we loading these timestamps correctly and/or do we need to load them correctly?</p>
+</li>
+<li>
+<p>Publishing API: <code>first_published_at</code>, <code>public_updated_at</code></p>
+</li>
+<li>
+<p>Manual: <code>originally_published_at</code>,
+<code>use_originally_published_at_for_public_timestamp?</code></p>
+</li>
+</ul>
+<h2 id="pagination-of-manuals-and-sections">Pagination of manuals and sections</h2>
+<ul>
+<li>
+<p>As far as we can see, although at one point the app used Kaminari to do pagination, it doesn't currently.</p>
+</li>
+<li>
+<p>The <code>get_content_items</code> method we plan to use for the manuals index page paginates results by default (50 per page).</p>
+</li>
+<li>
+<p>At a minimum, we will need to ensure that all manuals are listed, even if it is more than 50, because that is the current behaviour.</p>
+</li>
+<li>
+<p>The simplest way to do this may be to set the <code>per_page</code> option <code>get_content_items</code> on to a very large number; much bigger than the number of manuals in production. we have verified that this works and there doesn't appear to be any maximum value as far as the Publishing API is concerned.</p>
+</li>
+<li>
+<p>We've tried to load the manuals index page with recent production data and it times out because the SQL query in Publishing API takes ~9 seconds. So we think we're going to need to re-think this and probably introduce pagination of some sort.</p>
+</li>
+<li>
+<p>It looks as if Specialist Publisher does pagination using Kaminari and passes the various pagination options on to the Publishing API</p>
+<ul>
+<li><a href="https://github.com/alphagov/specialist-publisher/blob/6182aa430313c72683c033047081e1d7daef030f/app/views/documents/index.html.erb#L22">Kaminari paginate helper method</a></li>
+<li><a href="https://github.com/alphagov/specialist-publisher/blob/6182aa430313c72683c033047081e1d7daef030f/app/presenters/pagination_presenter.rb">PaginationPresenter</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="performance">Performance</h2>
+<ul>
+<li>
+<p>As mentioned above, when we run the whole system with production-like data, we start running into timeouts with calls to the Publishing API. We've seen this when trying to load a lot of manuals on the index page (see above), but also when trying to create a new section on a draft manual. In this case, at first glance, the slowest queries we could see were ones to do with loading or updating links.</p>
+</li>
+<li>
+<p>One optimisation we can imagine is if we stop putting the association between manuals &amp; sections and vice versa in the details hash, and instead rely entirely on the links in the Publishing API, we could avoid some operations, e.g. no need to save manual content when adding or removing a section; we could just update the links.</p>
+</li>
+<li>
+<p>However, this could all be a bit of a blocker. We can imagine we might need to tune the queries in the Publishing API which we can imagine taking a lot of time.</p>
+<ul>
+<li>An alternative solution might be to add more attributes to the details hash so we can avoid/reduce calls to get links.</li>
+<li>Also we might be able to avoid reloading a bunch of data when processing a form submission if we store extra data as hidden fields in the form.</li>
+</ul>
+</li>
+</ul>
+<h2 id="validation-errors">Validation errors</h2>
+<ul>
+<li>
+<p>Given that we'll be building the same domain model objects in memory even though we'll have read the data from the Publishing API, we think the existing validation will continue to work.</p>
+</li>
+<li>
+<p>However, we suspect it could probably be improved in order to ensure we avoid as many Publisher API exceptions as possible.</p>
+</li>
+<li>
+<p>Alternatively we might want to remove all validation from Manuals Publisher and instead rely on exceptions from the Publishing API.</p>
+</li>
+<li>
+<p>We'd prefer keeping the duplication of having the validation in the Manuals Publisher app because we think it will give a better user experience.</p>
+</li>
+</ul>
+<h2 id="other-api-errors">Other API errors</h2>
+<ul>
+<li>
+<p>Since we should only be adding methods which <strong>read</strong> the Publishing API, we think it's safe to assume that we won't encounter any API errors unless something very out of the ordinary has occurred, in which case an un-handled exception is probably OK and will be seen in Errbit.</p>
+</li>
+<li>
+<p>The only possible exception to this is when content items are not found.</p>
+</li>
+</ul>
+<h2 id="display-full-state-information-in-manuals-index-page">Display full state information in manuals index page</h2>
+<ul>
+<li>
+<p>Including "published with new draft" &amp; "withdrawn with new draft".</p>
+</li>
+<li>
+<p>We've implemented this in the spike based on <a href="https://github.com/alphagov/specialist-publisher/blob/master/docs/phase-2-migration/composed-states.md">this document in the Specialist Publisher repo</a>. In particular we've copied the <a href="https://github.com/alphagov/specialist-publisher/blob/ac002d8ffd7bb900142220012a2f700c6d2cc2f2/app/helpers/state_helper.rb"><code>StateHelper</code></a> class over in its entirety, because we're using almost all of its methods. The <code>StateHelper#state_for_frontend</code> method does what we need as long as we supply it with a document with a <code>state_history</code> which is available from calls to <code>get_content_items</code> and <code>get_content</code>.</p>
+</li>
+</ul>
+<h2 id="slug-uniqueness-check">Slug uniqueness check</h2>
+<ul>
+<li>
+<p>For now we've implemented this using the existing <code>PublishingAdapter#all</code> method and then checking all the slugs in memory.</p>
+</li>
+<li>
+<p>It would probably be more efficient to do the query as part of a custom call to <code>get_content_items</code>, i.e. using the <code>search_in</code> and <code>q</code> options for the <code>base_path</code> attribute.</p>
+</li>
+</ul>
+<h2 id="avoid-n1-calls-to-publishing-api-in-publishingadapterfind">Avoid N+1 calls to Publishing API in <code>PublishingAdapter#find</code>
+</h2>
+<ul>
+<li>We've successfully updated the implementation of <code>PublishingAdapter#find</code> to load data for all the sections in a single call to <code>get_content_items</code> and then use the <code>section_uuids</code> obtained from <code>get_links</code> to order them appropriately</li>
+</ul>
+<h2 id="withdrawing">Withdrawing</h2>
+<ul>
+<li>
+<p>Via the current user interface, this is only allowed for a section, not a manual. The way it currently seems to work is that <code>discard_draft</code> is called for the section on the Publishing API. Our understanding is that this will only have an effect if there a draft of the section exists and it will replace the draft section with the latest published section in the Draft Content Store. When the manual is next published, the <code>unpublish</code> method is called on the Publishing API for sections which have been withdrawn (<code>Manual#removed_sections</code>).</p>
+</li>
+<li>
+<p>It's not going to be straightforward to replicate this behaviour when using the Publishing API for persistence. In order to do so, we think we'd need to somehow mark the sections as "removed" in the Publishing API, perhaps using the details hash and then only actually unpublish them when publishing their manual. It might make sense for this behaviour to live within the Publishing API but then that's going to be even more work.</p>
+</li>
+<li>
+<p>An alternative is to un-publish sections immediately on withdrawal, i.e. don't wait until we next publish the manual.  However, we suspect this might not be acceptable to users, because a manual might be in an inconsistent state over an extended period.</p>
+</li>
+</ul>
+<h2 id="consistency">Consistency</h2>
+<ul>
+<li>
+<p>Before switching over to using the Publishing API as the canonical persistence mechanism it would be advisable to check that all the data in the local database for existing content is already in the Publishing API.</p>
+</li>
+<li>
+<p>We don't think it's safe to assume that older content has been saved to the Publishing API using the same attribute hash and it's possible some content items pre-date the Publishing API and were never added. Thus it would probably be sensible to re-publish all documents before switching over.</p>
+</li>
+</ul>
+<h2 id="re-publishing">Re-publishing</h2>
+<ul>
+<li>
+<p>This is not currently possible via the user interface, although it is probably one of the Rake tasks which we will need to keep in case e.g. the content schema changes.</p>
+</li>
+<li>
+<p>At first glance, the only complication we can see is how to implement <code>Manual#current_versions</code> which finds the latest published and latest draft versions if either exists, but we're fairly confident that should be possible.</p>
+</li>
+<li>
+<p>We can't find any documentation for the <code>update_type</code> supplied to <code>put_content</code> or <code>publish</code>, especially what it means to set it to "republish". Our best guess is that it just means used the timestamps from the previous edition so that it looks as if it was saved/published at the time it was originally saved/published, but we're not sure about that.</p>
+</li>
+</ul>
+<h2 id="rake-tasks-scripts">Rake tasks / scripts</h2>
+<ul>
+<li>
+<p>We would suggest removing the code from these and simply displaying a message suggesting the user contact whoever is switching the app over to use the Publishing API as the canonical/only persistence mechanism.</p>
+</li>
+<li>
+<p>As mentioned above, we probably need to retain some kind of republishing capability. We believe Specialist Publisher has a Rake task for republishing everything.</p>
+</li>
+</ul>
+<h2 id="fixing-re-writing-specs-features">Fixing / re-writing specs &amp; features</h2>
+<ul>
+<li>
+<p>This could involve quite a bit of work, although it should mostly be a matter of removing database setup and replacing it with stubs on the <code>PublishingAdapter</code>.</p>
+</li>
+<li>
+<p>No attempt was made to do this in the spike branch.</p>
+</li>
+<li>
+<p>In parallel with the spike we made a start on actually implementing the switchover for attachments. We tried to do this in incrementally by firstly changing the app to read from the Publishing API instead of the database, but still saving the attachments to the database; and secondly removing the code which saves the attachments to the database. The idea was that this would reduce the size of the commits, particularly the changes needed in the specs/features. However, it turned out that this introduced complications and we came to the conclusion it would probably be better to make the change in a single step.</p>
+</li>
+</ul>
+<h2 id="removing-persistence-related-code-database">Removing persistence-related code &amp; database</h2>
+<ul>
+<li>
+<p>Although it should be relatively straightforward, there would be quite a bit of persistence-related code to remove. Essentially the domain models should end up as <code>ActiveModel</code> classes with little, if any, behaviour i.e. mainly just attributes &amp; validation. Also there will probably be no need to model manual/section editions separately.</p>
+</li>
+<li>
+<p>Once the switchover has happened, it would be good to remove the relevant tables from the database.</p>
+</li>
+</ul>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/manuals-publisher/blob/main/docs/fully-migrated-spike.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fmanuals-publisher%2Ffully-migrated-spike.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

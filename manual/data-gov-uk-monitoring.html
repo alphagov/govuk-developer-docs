@@ -191,18 +191,18 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5180b250af547c05da9bbaf5aa2afe842418af50">4 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Monitor data.gov.uk</h1> <h2 id='pingdom'>Pingdom</h2><p><a href="/manual/pingdom.html">Pingdom</a> monitors <code>https://data.gov.uk</code> uptime and alerts <a href="https://govuk.pagerduty.com/">PagerDuty</a> when downtime is detected. Maintenace of this service forms part of <code>#govuk-2nd-line</code>.</p>
-<h2 id='sentry'>Sentry</h2><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/apps/datagovuk_find.html">Find</a> and <a href="/apps/datagovuk_publish.html">Publish</a> app pages.</p>
-<h2 id='log-it'>Log.it</h2><p>Each application sends logs to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">Logit</a>. <a href="/apps/datagovuk_publish.html">Publish</a> and <a href="/apps/datagovuk_find.html">Find</a> use the corresponding <a href="https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service">PaaS Service</a>. Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-beta&quot; &amp;&amp; access.response_code: 500</code>.</p>
-<h2 id='sidekiq-publish'>Sidekiq (<a href="/apps/datagovuk_publish.html">Publish</a>)</h2><p>You can monitor the number of jobs in each queue using the following.</p>
+<h2 id='sentry'>Sentry</h2><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
+<h2 id='log-it'>Log.it</h2><p>Each application sends logs to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">Logit</a>. <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> use the corresponding <a href="https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service">PaaS Service</a>. Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-beta&quot; &amp;&amp; access.response_code: 500</code>.</p>
+<h2 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h2><p>You can monitor the number of jobs in each queue using the following.</p>
 <p>First, follow the instructions on <a href="/manual/data-gov-uk-operations.html">logging into the paas</a></p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production-worker
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 &gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
-</code></pre></div><h2 id='analytics'>Analytics</h2><p><a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/information-management/use-online-tools-in-gds/use-google-analytics">Google Analytics</a> records traffic for <a href="/apps/datagovuk_find.html">Find</a>. Ask for &lsquo;read&rsquo; access to all &lsquo;properties&rsquo; in your request.</p>
+</code></pre></div><h2 id='analytics'>Analytics</h2><p><a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/information-management/use-online-tools-in-gds/use-google-analytics">Google Analytics</a> records traffic for <a href="/repos/datagovuk_find.html">Find</a>. Ask for &lsquo;read&rsquo; access to all &lsquo;properties&rsquo; in your request.</p>
 
 
   <div class='related-content'>

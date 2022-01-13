@@ -198,11 +198,11 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/721da42ddb84360b3eec6d5c6e31abbad1bbd61f">4 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
 </div>
 
  <h1 id='header'>Deployments for data.gov.uk</h1> <h2 id='find-and-publish-rails-apps'>Find and Publish (Rails Apps)</h2><h3 id='continuous-integration'>Continuous Integration</h3><p>Github Actions is configured for both <a href="https://travis-ci.org/alphagov/datagovuk_publish/">Publish (CI)</a> and <a href="https://travis-ci.org/alphagov/datagovuk_find">Find (CI)</a> according to <code>.github/workflows/ci.yml</code> file in each repo. Find PRs should automatically build a <a href="https://docs.publishing.service.gov.uk/manual/review-apps.html#header">Heroku Review App</a>, which can be accessed from the PR page on GitHub.</p>
-<h3 id='paas-integration-staging-and-production-environments'>PaaS Integration, Staging and Production Environments</h3><p><a href="/apps/datagovuk_publish.html">Publish</a> and <a href="/apps/datagovuk_find.html">Find</a> are provisioned on <a href="https://docs.cloud.service.gov.uk/#set-up-command-line">GOV.UK PaaS</a>. Each app repo
+<h3 id='paas-integration-staging-and-production-environments'>PaaS Integration, Staging and Production Environments</h3><p><a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> are provisioned on <a href="https://docs.cloud.service.gov.uk/#set-up-command-line">GOV.UK PaaS</a>. Each app repo
 contains a set of manifests that specify the container settings for when it&rsquo;s
 deployed.</p>
 <p>The deployment for both apps in Staging and Production can be triggered automatically via GitHub flow, or all environments can be manually deployed via command line tools.</p>

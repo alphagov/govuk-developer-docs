@@ -1,0 +1,772 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Application: seal - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/seal.html">
+
+      <meta name="description" content="Everything about the seal application (Slack bot that publishes a team's pull requests to their Slack channel)" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Application: seal - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/seal.html" />
+
+      <meta property="og:description" content="Everything about the seal application (Slack bot that publishes a team's pull requests to their Slack channel)" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Application: seal" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/seal.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
+      <nav>
+        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/govuk-content-store-examples.html"><span>govuk-content-store-examples</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/seal.html" class="toc-link--in-view"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/repos/tech-docs-monitor.html"><span>tech-docs-monitor</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  
+  <h1 class="page-title">Application: seal</h1>
+
+  <p>Slack bot that publishes a team&rsquo;s pull requests to their Slack channel</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/seal">seal</a></dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">#govuk-platform-reliability-team</dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value"><strong>Heroku</strong></dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">Utilities</dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul>
+    <li><a href="https://sentry.io/govuk/app-seal" class="govuk-link">Sentry (error tracking)</a></li>
+
+    <li><a href="https://dashboard.heroku.com/apps/moody-seal" class="govuk-link">Manage application</a></li>
+
+
+
+    <li><a href="https://grafana.production.govuk.digital/dashboard/file/seal.json" class="govuk-link">Deployment dashboard</a></li>
+
+
+
+
+
+</ul>
+</dd>
+
+
+
+              <dd class="govuk-summary-list__actions">
+</dd>
+</div></dl>
+    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p><a href="https://travis-ci.org/binaryberry/seal"><img src="https://travis-ci.org/binaryberry/seal.svg" alt="Build Status"></a></p>
+
+<h2 id="what-is-it">What is it?</h2>
+
+<p>This is a Slack bot that publishes a team&rsquo;s pull requests to their Slack Channel, once provided the organisation name and the team members&rsquo; github names. It is my first 20% project at GDS.</p>
+
+<p><img src="https://github.com/binaryberry/seal/blob/master/images/readme/informative.png" alt="image">
+<img src="https://github.com/binaryberry/seal/blob/master/images/readme/angry.png" alt="image"></p>
+
+<h2 id="how-to-use-it">How to use it?</h2>
+
+<h3 id="config">Config</h3>
+
+<p>Fork the repo and add/change the config files that relate to your github organisation. For example, the alphagov config file is located at <a href="https://github.com/alphagov/seal/blob/main/config/alphagov.yml">config/alphagov.yml</a> and the config for scheduled daily visits can be found in <a href="https://github.com/alphagov/seal/blob/main/bin">bin</a></p>
+
+<p>Include your team&rsquo;s name, the Github names of your team members, and the Slack channel you want to post to.</p>
+
+<p>In your shell profile, put in:</p>
+
+<pre lang="sh"><code>export SEAL_ORGANISATION="your_github_organisation"
+export GITHUB_TOKEN="get_your_github_token_from_yourgithub_settings"
+export SLACK_WEBHOOK="get_your_incoming_webhook_link_for_your_slack_group_channel"
+export GITHUB_API_ENDPOINT="your_github_api_endpoint" # OPTIONAL If you are using a Github Enterprise instance
+</code></pre>
+
+<h3 id="env-variables">Env variables</h3>
+
+<p>Another option, which is 12-factor-app ready is to use ENV variables for basically everything.
+In that case you don&rsquo;t need a config file at all.</p>
+
+<p>Divider is &lsquo;,&rsquo; (comma) symbol.</p>
+
+<p>In your shell profile, put in:</p>
+
+<pre lang="sh"><code>export SEAL_ORGANISATION="your_github_organisation"
+export GITHUB_TOKEN="get_your_github_token_from_yourgithub_settings"
+export GITHUB_API_ENDPOINT="your_github_api_endpoint" # OPTIONAL If you are using a Github Enterprise instance
+export SLACK_WEBHOOK="get_your_incoming_webhook_link_for_your_slack_group_channel"
+export SLACK_CHANNEL="#whatever-channel-you-prefer"
+export GITHUB_MEMBERS="netflash,binaryberry,otheruser"
+export GITHUB_USE_LABELS=true
+export GITHUB_EXCLUDE_LABELS="[DO NOT MERGE],Don't merge,DO NOT MERGE,Waiting on factcheck,wip"
+export GITHUB_EXCLUDE_REPOS="notmyproject,someotherproject" # Ensure these projects are *NOT* included
+export GITHUB_INCLUDE_REPOS="definitelymyproject,forsuremyproject" # Ensure *only* these projects will be included
+export COMPACT=true # Use a more compact version of the seal output
+export SEAL_QUOTES="Everyone should have the opportunity to learn. Don’t be afraid to pick up stories on things you don’t understand and ask for help with them.,Try to pair when possible."
+</code></pre>
+
+<ul>
+<li>To get a new <code>GITHUB_TOKEN</code>, head to: <a href="https://github.com/settings/tokens">https://github.com/settings/tokens</a>
+</li>
+<li>To get a new <code>SLACK_WEBHOOK</code>, head to: <a href="https://slack.com/services/new/incoming-webhook">https://slack.com/services/new/incoming-webhook</a>
+</li>
+</ul>
+
+<h3 id="bash-scripts">Bash scripts</h3>
+
+<p>In your forked repo, include your team names in the appropriate bash script. Ex. <code>bin/morning_seal.sh</code></p>
+
+<h3 id="local-testing">Local testing</h3>
+
+<p>To test the script locally, go to Slack and create a channel or private group called &ldquo;#angry-seal-bot-test&rdquo; (the Slack webhook you set up should have its channel set to &ldquo;#angry-seal-bot-test&rdquo; in the Integration Settings). Then run <code>./bin/seal.rb your_team_name</code> in your command line, and you should see the post in the #angry-seal-bot-test channel.</p>
+
+<p>If you don&rsquo;t want to post github pull requests but a random quote from your team&rsquo;s quotes config, run <code>./bin/seal.rb your_team_name quotes</code></p>
+
+<h3 id="slack-configuration">Slack configuration</h3>
+
+<p>You should also set up the following custom emojis in Slack:</p>
+
+<ul>
+<li>:informative_seal:</li>
+<li>:angrier_seal:</li>
+<li>:seal_of_approval:</li>
+<li>:happyseal:</li>
+<li>:halloween_informative_seal:</li>
+<li>:halloween_angrier_seal:</li>
+<li>:halloween_seal_of_approval:</li>
+<li>:festive_season_informative_seal:</li>
+<li>:festive_season_angrier_seal:</li>
+<li>:festive_season_seal_of_approval:</li>
+<li>:manatea:</li>
+</ul>
+
+<p>You can use the images in images/emojis that have the corresponding names.</p>
+
+<p>When that works, you can push the app to Heroku and add the GITHUB_TOKEN and SLACK_WEBHOOK environment variables to heroku.</p>
+
+<p>Use the Heroku scheduler add-on to create repeated tasks - I set the seal to run at 9.30am every morning (the seal won&rsquo;t post on weekends). The scheduler is at <a href="https://scheduler.heroku.com/dashboard">https://scheduler.heroku.com/dashboard</a> and the command to run is <code>bin/seal.rb your_team_name</code></p>
+
+<p>Any questions feel free to contact me on Twitter -  my handle is binaryberry</p>
+
+<h2 id="deploy-to-heroku">Deploy to Heroku</h2>
+
+<p><a href="https://heroku.com/deploy"><img src="https://www.herokucdn.com/deploy/button.png" alt="Deploy"></a></p>
+
+<h2 id="how-to-run-the-tests">How to run the tests?</h2>
+
+<p>Just run <code>rspec</code> in the command line</p>
+
+<h2 id="docker-container">Docker container</h2>
+
+<p>You can build your own docker container, Dockerfile is provided.</p>
+
+<pre lang="sh"><code>docker build -t seal .
+</code></pre>
+
+<p>And then run it (assuming you already set all the env variables)</p>
+
+<pre lang="sh"><code>#!/bin/bash
+docker run -it --rm --name seal \
+  -e "SEAL_ORGANISATION=${SEAL_ORGANISATION}" \
+  -e GITHUB_TOKEN=${GITHUB_TOKEN} \
+  -e GITHUB_API_ENDPOINT=${GITHUB_API_ENDPOINT} \
+  -e SLACK_WEBHOOK=${SLACK_WEBHOOK} \
+  -e DYNO=${DYNO} \
+  -e SLACK_CHANNEL=${SLACK_CHANNEL} \
+  -e GITHUB_MEMBERS=${GITHUB_MEMBERS} \
+  -e GITHUB_USE_LABELS=${GITHUB_USE_LABELS} \
+  -e "GITHUB_EXCLUDE_LABELS=${GITHUB_EXCLUDE_LABELS}" \
+  -e "SEAL_QUOTES=${SEAL_QUOTES}" \
+  seal
+</code></pre>
+
+<h2 id="diary-of-how-this-app-was-built">Diary of how this app was built</h2>
+
+<p>10th April:</p>
+
+<ul>
+<li>
+<p>Finalised what the app does:</p>
+<ul>
+<li>Checks if any pull requests are over 2 days old (angry seal)</li>
+<li>at 9.45am prepares an overview of all pull requests that need reviewing (informative seal)</li>
+<li>when a team member posts a new pull request, publishes it on slack (notification seal) (this feature was then abandoned, as I thought it&rsquo;s best for this not to be automated, it&rsquo;s more motivating when real people ask for a review, not a bot)</li>
+</ul>
+<p></li>
+<li>
+<p>Researched what technologies and gems I could use and what the app structure would be like</p>
+</li>
+<li>
+<p>Started the Rails app</p>
+</li>
+</ul>
+<p>17th April:</p>
+<ul>
+<li>researched github_api</li>
+</ul>
+<p>24th April:</p>
+<ul>
+<li>got github_api working, first test with dummy data passing</li>
+</ul>
+<p>1st of May</p>
+<ul>
+<li>got github_listener to take into account organisations</li>
+</ul>
+<p>8th of May:</p>
+<ul>
+<li>tried stubbing Github API</li>
+</ul>
+<p>15th of May:</p>
+<ul>
+<li>Github listener can now return the list of repos of an organisation</li>
+<li>further attempts to stub GithubAPI using these methods: <a href="https://robots.thoughtbot.com/how-to-stub-external-services-in-tests">https://robots.thoughtbot.com/how-to-stub-external-services-in-tests</a>.</li>
+</ul>
+<p>21st of May:</p>
+<ul>
+<li>Building Sinatra app for stubbing</li>
+<li>Attempts to filter the 3,400 repo list by date the repo was modified - tests (and app) are still very slow</li>
+</ul>
+<p>28th of May:</p>
+<ul>
+<li>Due to new team structure that assigns a list of repos to each team, decided the manually enter the list of repos that belong to a team instead of scanning through all of them. That should sort the speed problem, the stubbing problem, a lot of things.</li>
+<li>moved to a non-Rails app to make it lighter</li>
+<li>got Github to list repos; works for my personal pull requests, but doesn&rsquo;t work with the GOV.UK stuff yet, need to figure out why</li>
+</ul>
+<p>5th of June:</p>
+<ul>
+<li>Github fetcher class now works with organisations, hence GOV.UK stuff</li>
+</ul>
+<p>11th of June:</p>
+<ul>
+<li>Stubbed Github API</li>
+</ul>
+<p>12th of June:</p>
+<ul>
+<li>Github Fetcher now also returns the link to the pull request</li>
+<li>Started Slackbot poster class, it can post to Slack</li>
+<li>Started Message builder class, not finished</li>
+</ul>
+<p>13th of June:</p>
+<ul>
+<li>finished Slackbot poster class</li>
+<li>finished Message builder class</li>
+<li>added name of repo to info sent by GithubFetcher</li>
+<li>added options to the Slackbot poster class so each post comes from informative seal</li>
+<li>Works locally in test room. YEAY!</li>
+</ul>
+<p>17th of June:</p>
+<ul>
+<li>refactoring of Github fetcher</li>
+<li>pushed to Heroku</li>
+</ul>
+<p>18th of June:</p>
+<ul>
+<li>started Heroku scheduler and launched on core-formats team room!</li>
+</ul>
+<p>22nd of June</p>
+<ul>
+<li>Ensure Angry seal doesn&rsquo;t get triggered at the weekend</li>
+</ul>
+<p>26th of June:</p>
+<ul>
+<li>launched on finding-stuff team</li>
+<li>investigated adding comments</li>
+</ul>
+<p>3rd of July:</p>
+<ul>
+<li>launched on custom team</li>
+<li>added comments</li>
+<li>investigating angry seal - stuck by a strange syntax error line 34 when trying to run the script</li>
+</ul>
+<p>10th of July</p>
+<ul>
+<li>Extracted config information to yaml files</li>
+<li>fixed informative seal - mood_hash was causing issues</li>
+</ul>
+<p>17th of July</p>
+<ul>
+<li>Angry Seal!</li>
+</ul>
+<p>21st of July</p>
+<ul>
+<li>fix API stubbing</li>
+</ul>
+<p>22nd of July</p>
+<ul>
+<li>Add age of pull requests</li>
+</ul>
+<p>24th of July</p>
+<ul>
+<li>Optionally display labels for a pull request, if they exist (<code>use_labels</code> config option)</li>
+<li>Optionally hide pull requests with certain labels (<code>exclude_labels</code> config
+list)</li>
+<li>Optionally hide pull requests with certain phrases in the title
+(<code>exclude_titles</code> config list)</li>
+</ul>
+<p>19th of August</p>
+<ul>
+<li>Seal will bark at all teams in the config if no team is specified as an
+argument to <code>./bin/{angry,informative}_seal.rb</code>, making Heroku scheduling
+easier.</li>
+</ul>
+<p>4th of September</p>
+<ul>
+<li>Seal now displays thumbs up when present in comments</li>
+<li>Angry seal now looks angrier</li>
+</ul>
+<p>13th of September</p>
+<ul>
+<li>Seal now has only one script to be triggered - will start either the angry seal, the informative seal or the seal of approval each day.</li>
+</ul>
+<p>6th of January</p>
+<ul>
+<li>Seal can now post random quotes from the team&rsquo;s list of quotes in the config. Can be used as a reminder or for inspirational quotes!</li>
+</ul>
+<h2 id="tips">Tips</h2>
+<p>How to list your organisation&rsquo;s repositories modified within the last year:</p>
+<p>In <code>irb</code>, from the folder of the project, run:</p>
+<pre lang="ruby"><code>require &#39;octokit&#39;
+github = Octokit::Client.new(:access_token =&gt; ENV[&#39;GITHUB_TOKEN&#39;], auto_pagination: true)
+response = github.repos(org: ENV[&#39;SEAL_ORGANISATION&#39;])
+repo_names = response.select { |repo| Date.parse(repo.updated_at.to_s) &gt; (Date.today - 365) }.map(&amp;:name)
+</code></pre>
+<h2 id="crc">CRC</h2>
+<p>Github fetcher:</p>
+<ul>
+<li>queries Github&rsquo;s API</li>
+</ul>
+<p>Message Builder:</p>
+<ul>
+<li>produces message from Github API&rsquo;s content</li>
+</ul>
+<p>Slack Poster:</p>
+<ul>
+<li>posts message to Slack</li>
+</ul>
+<p>Trello board: <a href="https://trello.com/b/sgakJmlY/moody-seal">https://trello.com/b/sgakJmlY/moody-seal</a></p>
+<h2 id="license">License</h2>
+<p>See the <a href="https://github.com/alphagov/seal/blob/main/LICENSE">LICENSE</a> file for license rights and limitations (MIT).</p>
+  </div></p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fseal.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
