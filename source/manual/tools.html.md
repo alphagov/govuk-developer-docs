@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: 'Tools: Icinga, Grafana and Graphite, Kibana, Fabric and friends'
+title: 'Tools: Icinga, Grafana and Graphite, Kibana and friends'
 section: Monitoring
 type: learn
 layout: manual_layout
@@ -59,20 +59,6 @@ You can tweak the time range manually with the drop down at the top or by draggi
 Check out some of the [useful Kibana queries](kibana.html) to get an idea of what's possible.
 
 Logs are sent to Kibana using [Filebeat](logging.html#filebeat).
-
-## Fabric Scripts
-
-<https://github.com/alphagov/fabric-scripts/>
-
-The Fabric scripts are useful for running something on a set of machines. For instance, to restart all instances of the content store on backend boxes:
-
-`fab $environment class:backend app.reload:content-store`
-
-Check the `app.py` class for different methods you can use. To run more specific commands you can run the following (`sdo` for sudo):
-
-`fab $environment class:backend sdo:"service content-store reload"`
-
-For more information, check out the [Fabric scripts README](https://github.com/alphagov/fabric-scripts#readme).
 
 ## Prometheus, Grafana and AlertManager for COVID-19 Forms
 
