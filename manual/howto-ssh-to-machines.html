@@ -182,14 +182,16 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f770cb6dfdc1d025aba044cc4bb88493b3d58008">23 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d138f41550f2be443f90e902010ec302faf86745">12 Jan 2022</a>
 </div>
 
  <h1 id='header'>SSH into machines</h1> <p>This document explains how to SSH into machines, and what commands exist to navigate machines and applications quickly. We use a tool called [GOV.UK Connect] to make this easier.</p>
 <h2 id='usage'>Usage</h2><p>If you know the class of machine you want, you can SSH straight from the command line:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> staging ssh cache
 </code></pre></div><p>This will automatically SSH into a random <code>cache</code> machine on AWS.</p>
-<p>To see all classes, run:</p>
+<p>You can connect to a consistent machine by its index:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> staging ssh cache:1
+</code></pre></div><p>To see all classes, run:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> staging ssh <span class="k">*</span>
 </code></pre></div><p>You can connect to specific machines if you know their internal IP address:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect ssh <span class="nt">-e</span> integration ip-10-1-6-234.eu-west-1.compute.internal
