@@ -65,12 +65,3 @@ to become available.
 [ruby_cache]: https://cache.ruby-lang.org/pub/ruby/
 [jenkins]: https://ci.integration.publishing.service.gov.uk/job/build_fpm_package
 [puppet_rbenv_all]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rbenv/manifests/all.pp
-
-## Testing whether a version of Ruby is in use
-
-You can use the Fabric task `rbenv.version_in_use` to find out which
-applications are using a specific version of Ruby on GOV.UK. For example:
-
-```
-fab production puppet_class:govuk_rbenv::all rbenv.version_in_use:2.3.1
-```
