@@ -145,9 +145,6 @@
           </li>
         </ul>
       </li>
-      <li>
-        <a href="#testing-whether-a-version-of-ruby-is-in-use"><span>Testing whether a version of Ruby is in use</span></a>
-      </li>
     </ul>
   </li>
 </ul>
@@ -198,15 +195,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7f94a9ca553cf07821ad195562cf13046192f0f7">3 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/92cc619d10804e35498a0cf2aa38eff9ea75f4aa">12 Jan 2022</a>
 </div>
 
  <h1 id='header'>Add a new Ruby version</h1> <p>The <a href="https://www.ruby-lang.org/en/">Ruby language</a> is a core part of GOV.UK - most of our applications are written in it.</p>
@@ -244,10 +234,7 @@ The recipe will require the <a href="https://emn178.github.io/online-tools/sha25
 <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rbenv/manifests/all.pp">install it everywhere using Puppet</a>. Machines only run
 <code>apt-get update</code> periodically so it might take a little time for the package
 to become available.</p>
-<h2 id='testing-whether-a-version-of-ruby-is-in-use'>Testing whether a version of Ruby is in use</h2><p>You can use the Fabric task <code>rbenv.version_in_use</code> to find out which
-applications are using a specific version of Ruby on GOV.UK. For example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fab production puppet_class:govuk_rbenv::all rbenv.version_in_use:2.3.1
-</code></pre></div>
+
 
   <div class='related-content'>
 
