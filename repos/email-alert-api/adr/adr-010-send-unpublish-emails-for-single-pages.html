@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>email-alert-api: Decision record: reinstate unpublish emails for single page subscriptions - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-010-send-unpublish-emails-for-single-pages.html">
 
-      <meta name="description" content="Everything about the search-admin application (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="email-alert-api: Decision record: reinstate unpublish emails for single page subscriptions - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-010-send-unpublish-emails-for-single-pages.html" />
 
-      <meta property="og:description" content="Everything about the search-admin application (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="email-alert-api: Decision record: reinstate unpublish emails for single page subscriptions" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/email-alert-api/adr/adr-010-send-unpublish-emails-for-single-pages.html" />
 
     
   </head>
@@ -165,7 +163,7 @@
           <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
           <li><a href="/repos/release.html"><span>release</span></a></li>
           <li><a href="/repos/router.html"><span>router</span></a></li>
-          <li><a href="/repos/search-admin.html" class="toc-link--in-view"><span>search-admin</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
           <li><a href="/repos/signon.html"><span>signon</span></a></li>
           <li><a href="/repos/support.html"><span>support</span></a></li>
         </ul>
@@ -345,141 +343,55 @@
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: search-admin</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-find-and-view-accessibility-team</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-
-
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/search_admin.pp" class="govuk-link">Puppet configuration</a></li>
-
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/search-admin/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/search-admin.json" class="govuk-link">Deployment dashboard</a></li>
-
-
-
-
-
-</ul>
-</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/2f8f73ea8955959c131a2262eb0130fb455ac4d0">13 Jan 2022</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.centralbedfordshire.gov.uk/" class="govuk-link">Central Bedfordshire Council</a></li>
-      <li><a href="http://www.watford.gov.uk/" class="govuk-link">Watford Borough Council</a></li>
-      <li><a href="http://www.north-ayrshire.gov.uk" class="govuk-link">North Ayrshire Council</a></li>
-      <li><a href="http://www.staffsmoorlands.gov.uk" class="govuk-link">Staffordshire Moorlands District Council</a></li>
-      <li><a href="http://www.dorsetforyou.com/east" class="govuk-link">East Dorset District Council</a></li>
-      <li><a href="http://www.coventry.gov.uk" class="govuk-link">Coventry City Council</a></li>
-      <li><a href="http://www.bracknell-forest.gov.uk" class="govuk-link">Bracknell Forest Borough Council</a></li>
-      <li><a href="http://www.lambeth.gov.uk" class="govuk-link">London Borough of Lambeth Council</a></li>
-      <li><a href="http://www.inverclyde.gov.uk" class="govuk-link">Inverclyde Council</a></li>
-      <li><a href="https://www.nhs.uk/conditions/coronavirus-covid-19/testing/register-a-test-kit/" class="govuk-link">Register a test kit for coronavirus (COVID-19)</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+  <h1 class="page-title">email-alert-api: Decision record: reinstate unpublish emails for single page subscriptions</h1>
 
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
-
+  
+<p>Date: 2021-12-03</p>
+<h2 id="context">Context</h2>
+<p>We have just launched a new email notifications feature that allows users to subscribe to updates on a single page.
+Currently this feature is only enabled on a few selected pages (eg. <a href="https://www.gov.uk/government/publications/open-standards-for-government">Open standards for government</a>),
+but it is expected to roll out to the majority of pages and content types by early 2022.</p>
+<p>Unpublished content will become unavailable and receive no further updates. Users who have demonstrated a desire to stay up to date
+with an item of content may find it unexpected if content they were subscribed to disappears without notification, or becomes unavailable through their account. This change is part of meeting a user need to stay up to date with changing content, including when that content is changed through unpublication.</p>
+<p>The email alert API used to send emails when a page in a taxon subscription was unpublished.
+This feature was <a href="https://github.com/alphagov/email-alert-api/issues/1572">removed in Jan 2021</a> for good reasons.</p>
+<h2 id="decision">Decision</h2>
+<p>We will add an endpoint to email-alert-api to unsubscribe everyone from a given subscriber list, and optionally send them an email with a reason why (using the existing <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-004-message-concept.md">message</a> machinery).  We will change email-alert-service to call this new endpoint when a page gets unpublished, to notify any users subscribed to that specific page.</p>
+<p>We will not delete the now-empty list, as it will be cleaned up by the <a href="https://github.com/alphagov/email-alert-api/blob/main/app/workers/historical_data_deletion_worker.rb">HistoricalDataDeletionWorker</a>, and introducing another mechanism that destroys lists could be a point of confusion.</p>
+<h3 id="addressing-the-concerns-from-the-previous-version">Addressing the concerns from the previous version</h3>
+<p>The previous version of this feature was removed for several good reasons. We believe readding the unpublish emails only for single page subscriptions addresses these concerns:</p>
+<h4 id="it-only-worked-for-topic-taxons">It only worked for topic taxons</h4>
+<p>Single page notification work generates a clearer user need to inform about subscriptions in the more frequent scenario that individual pages are unpublished.</p>
+<p>Given the specificity of the need that drives this, we don't think limiting it to just those subscriptions is a problem.</p>
+<h4 id="it-only-worked-if-the-unpublished-page-was-redirected">It only worked if the unpublished page was redirected</h4>
+<p>The new unpublished emails will handle pages that are redirected or published in error with or without an alternative URL. This covers the publisher-facing <a href="https://github.com/alphagov/publishing-api/blob/a33292a3002d722a5b5840aaea751ebe10304c28/app/commands/v2/unpublish.rb#L37">unpublishing types</a>.</p>
+<h4 id="it-wasnt-monitored-so-we-didnt-know-if-it-was-working">It wasn't monitored so we didn't know if it was working</h4>
+<p>We don't have a specific plan for monitoring this. Ideally monitoring for this would be taken on by a team that owns this portion of the system in the log run, and incorporated into their usual service monitoring.</p>
+<h4 id="it-rendered-email-using-erb-unlike-the-rest-of-the-system">It rendered email using ERB, unlike the rest of the system</h4>
+<p>The new unpublished emails will use the same method to render emails as the messages endpoint.</p>
+<h4 id="it-removed-any-subscriber-lists-that-included-the-page-even-those-for-a-different-taxon">It removed any subscriber lists that included the page, even those for a different taxon</h4>
+<p>We are taking a very different approach from the previous unpubication of taxons. The previous route had to infer which lists should be removed as they represented a collection of materials.</p>
+<p>Here we are unpublishing a single page, and matching it to a subscription list by the same content ID. The email alert api doesn't need to do anything clever to match the two, we just tell it which subscription list should be cleared, and it does so.</p>
+<h4 id="there-was-no-evidence-it-met-user-needs">There was no evidence it met user needs</h4>
+<p>We have user research demonstrating a need for users to stay up to date with specific items of government guidance. Examples might be recent coronavirus guidance that changes over time and can have a large impact on lives and what is possible to do.</p>
+<p>Unpublication is a form of change to that content that is currently unmonitored. This could have an impact in scenarios such as when a specific item of guidance is consolodated into a more general page when rules are made the same. A user may also be confused if an item they have subscribed to disappears from their account without notification, and may also wish to know if an item they subscribed to was removed as published in error.</p>
+<p>We have focused in on these as derived needs that emerge from the general user need to be kept up to date with individual pages.</p>
+<h3 id="other-related-issues">Other related issues</h3>
+<p>The email alert API has subscriber lists that will never send an email. This is documented as <a href="https://trello.com/c/PjRE1A0G/200-email-alert-api-has-dead-lists-that-will-never-send-any-email">GOV.UK Tech Debt</a>.
+This proposal does not directly address this Tech Debt, but by removing subscriptions from the subscriber list once the emails have been sent the <a href="https://github.com/alphagov/email-alert-api/blob/main/app/workers/historical_data_deletion_worker.rb">HistoricalDataDeletionWorker</a> can periodically remove the empty lists.</p>
+<h2 id="status">Status</h2>
+<p>Proposed</p>
+<h2 id="consequences">Consequences</h2>
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li>Increased complexity in email-alert-service with new MessageProcessors monitoring for unpublication events</li>
+<li>A new email-api endpoint to mass unsubscribe users from a subscription list.</li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
+<p>Subscription lists may end up unpopulated and empty as a result of this, the proposed endpoint does not clear them up themselves (so is not a strict destroy endpoint), instead it relies on other existing workers which periodically clear up empty subscription lists.</p>
 
 
             
@@ -487,8 +399,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/email-alert-api/blob/main/docs/adr/adr-010-send-unpublish-emails-for-single-pages.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Femail-alert-api%2Fadr%2Fadr-010-send-unpublish-emails-for-single-pages.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

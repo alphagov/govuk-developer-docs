@@ -345,7 +345,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/fb36915863dd5eeb8240f5e610a2a2eac62d5c64">18 Oct 2021</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/0863a0bb10847390ed27ef468e48880849086927">6 Jan 2022</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Available endpoints</h1>
@@ -371,6 +371,7 @@
   }
 }
 </code></pre>
+<p>Returns a <code>404 Not Found</code> if there is no such list.</p>
 <h3 id="post-subscriber-lists"><code>POST /subscriber-lists</code></h3>
 <pre lang="json"><code>{
   "title": "My title",
@@ -403,6 +404,26 @@ content changes that share the corresponding field.</li>
 <li>content_id: A field that can be used to match with a single content item
 for subscriptions to individual pages or pieces of guidance.</li>
 </ul>
+<h3 id="get-subscriber-listsxxx"><code>GET /subscriber-lists/xxx</code></h3>
+<p>Gets the stored subscriber list with the given ID.</p>
+<p>It will respond with the JSON response for the <code>GET</code> call above.</p>
+<p>Returns a <code>404 Not Found</code> if there is no such list.</p>
+<h3 id="post-subscriber-listsxxxbulk-unsubscribe"><code>POST /subscriber-lists/xxx/bulk-unsubscribe</code></h3>
+<p>Unsubscribes all subscribers from that list, and optionally sends an email to them.</p>
+<pre lang="json"><code>{
+  "sender_message_id": "bfeee5a9-20c2-44ec-8162-f14dde721c21",
+  "body": "Message body here"
+}
+</code></pre>
+<p>The following fields are accepted on this endpoint:
+<code>sender_message_id</code>, <code>body</code>.</p>
+<p>It will respond with <code>202 Accepted</code> (the call is queued).  When it is
+processed, all users then-subscribed to the list will be sent an
+immediate email (if the <code>body</code> is given) and be unsubscribed.</p>
+<p>Returns a <code>422 Unprocessable Entity</code> if <code>body</code> is given but
+<code>sender_message_id</code> is not.</p>
+<p>Returns a <code>409 Conflict</code> if <code>sender_message_id</code> has already been used.</p>
+<p>Returns a <code>404 Not Found</code> if there is no such list.</p>
 <h3 id="post-content-changes"><code>POST /content-changes</code></h3>
 <pre lang="json"><code>{
   "subject": "This is the subject/title of my bulletin",
