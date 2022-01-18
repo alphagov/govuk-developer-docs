@@ -131,9 +131,6 @@
           <li>
             <a href="#changing-the-size-of-the-asg"><span>Changing the size of the ASG</span></a>
           </li>
-          <li>
-            <a href="#removing-a-specific-instance"><span>Removing a specific instance</span></a>
-          </li>
         </ul>
       </li>
     </ul>
@@ -186,15 +183,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9aba23bf183c87c399e0dc6ce727cb0cf7825177">25 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8242525b972fe4edfb17814508532b000aaa6358">14 Jan 2022</a>
 </div>
 
  <h1 id='header'>Manually resize ASGs (auto scaling groups)</h1> <p>In AWS, <a href="https://docs.aws.amazon.com/autoscaling/ec2/userguide/AutoScalingGroup.html">we use auto scaling groups</a> to ensure we have the right number of
@@ -261,22 +251,6 @@ by following the documentation
 <a href="https://docs.publishing.service.gov.uk/manual/remove-machines.html">here</a></p></li>
 </ol></li>
 </ol>
-<h3 id='removing-a-specific-instance'>Removing a specific instance</h3><p>You may want to remove a specific instance from the ASG if it is
-having problems.</p>
-
-<ol>
-<li><p>In the &ldquo;Instances&rdquo; tab at the bottom, you will see a list of
-instances.  Select the instance you want to remove, and click
-&ldquo;Detach&rdquo; in the &ldquo;Actions&rdquo; drop-down.</p></li>
-<li><p>In the box that appears, check &ldquo;Add a new instance to the Auto
-Scaling group to balance the load&rdquo; and confirm that you want to
-detach the instance.</p></li>
-</ol>
-
-<blockquote>
-<p><strong>Note:</strong> The removed instance will stick around, so make sure to
-terminate it when you no longer need it.</p>
-</blockquote>
 
 
   <div class='related-content'>
