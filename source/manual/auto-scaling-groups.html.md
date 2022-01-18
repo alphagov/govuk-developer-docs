@@ -82,22 +82,6 @@ the load.
         by following the documentation
         [here](https://docs.publishing.service.gov.uk/manual/remove-machines.html)
 
-### Removing a specific instance
-
-You may want to remove a specific instance from the ASG if it is
-having problems.
-
-1. In the "Instances" tab at the bottom, you will see a list of
-   instances.  Select the instance you want to remove, and click
-   "Detach" in the "Actions" drop-down.
-
-2. In the box that appears, check "Add a new instance to the Auto
-   Scaling group to balance the load" and confirm that you want to
-   detach the instance.
-
-> **Note:** The removed instance will stick around, so make sure to
-> terminate it when you no longer need it.
-
 [icinga]: /manual/icinga.html
 [ec2-home]: https://eu-west-1.console.aws.amazon.com/ec2/home?region=eu-west-1
 [ec2-machines]: https://eu-west-1.console.aws.amazon.com/ec2/v2/home?region=eu-west-1#Instances:sort=tag:Name

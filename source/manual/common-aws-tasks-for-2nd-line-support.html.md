@@ -41,33 +41,6 @@ If you are experiencing an incident, refer to the
 
 [So, you're having an incident]: https://docs.publishing.service.gov.uk/manual/incident-what-to-do.html
 
-## Users
-
-### Add a developer as an AWS admin
-
-_**Note**: This task doesn't need to be done by 2nd line._
-
-_**Note**: Users with production access can already assume an admin role
-in every environment. Read [assuming all roles for users with production access][]._
-
-You can modify the AWS roles that a developer can assume in the
-[govuk-aws-data][] repository.
-
-Typically this involves adding a user ARN (a line containing the person's email
-address) to a list named `role_internal_admin_user_arns`.
-
-See these two example PRs:
-
-* https://github.com/alphagov/govuk-aws-data/pull/837
-* https://github.com/alphagov/govuk-aws-data/pull/819
-
-Once you have put up a PR to change the developer's role, you'll need to assume
-the admin role in order to [apply the Terraform change][].
-
-[assuming all roles for users with production access]: https://docs.publishing.service.gov.uk/manual/get-started.html#assuming-all-roles-for-users-with-production-access
-[govuk-aws-data]: https://github.com/alphagov/govuk-aws-data
-[apply the Terraform change]: https://docs.publishing.service.gov.uk/manual/deploying-terraform.html
-
 ## Troubleshooting
 
 ### How to view ALB metrics
@@ -107,17 +80,10 @@ You can also see the [EC2 troubleshooting documentation][] and contact AWS Suppo
 [machine metrics dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&orgId=1
 [EC2 troubleshooting documentation]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-troubleshoot.html
 
-## Maintenance tasks
+## Detaching an instance from an Auto Scaling Group
 
-### Remove an instance from an Auto Scaling Group
-
-Remove an instance from an Auto Scaling Group (ASG) when you want that instance
-to stop receiving requests. For example, if you would like to reboot a machine
-or if a machine is unhealthy, you would first remove that machine from the ASG.
-
-_**Note**: There is guidance for [rebooting a machine][]._
-
-Read [how to detach an instance from an ASG][] in the AWS documentation.
+If a machine is unhealthy, you may want to detach an instance from its Auto
+Scaling Group (ASG). Detaching the instance stops it receiving requests.
 
 Avoid removing an instance from an ALB Target Group if the target group's
 instances are managed by an ASG. Instead, simply remove the instance from the
@@ -125,27 +91,33 @@ ASG. Removing an instance from an associated ASG will remove the instance
 from all target groups automatically (conversely, adding an instance to an
 ASG will add the instance to associated target groups).
 
+When detaching an instance from an ASG, you can choose whether to replace that
+instance in the ASG via a checkbox in the detach confirmation window: 'Add a
+new instance to the Auto Scaling group to balance the load'. This option will
+need to be selected, otherwise an error will likely be thrown, as by default,
+the ASG's minimum capacity of instances will be equal to the amount instances
+running (desired capacity).
+
+Read [how to detach an instance from an ASG][] in the AWS documentation.
+
 _**Note**: check if the ASG has just a single instance. If so, removing the
 instance from the ASG may cause downtime for a service._
 
-When removing an instance from an ASG, you can choose whether to replace that
-instance in the ASG. Unless you plan on putting the instance back into the ASG
-(for example, when rebooting), you'll want AWS to bring up a new instance for
-you automatically, and to subsequently terminate the detached instance.
+The detached instance will stick around, so make sure to terminate it when you
+no longer need it. See the section below for further details.
+
+[how to detach an instance from an ASG]: https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html
+
+## Terminating an instance
 
 If you do not want a detached instance to serve traffic again in future, you
 should terminate it. Detaching an instance from an ASG does not terminate the
 instance automatically. Once connections have drained from a detached instance,
 you can terminate the instance via the AWS EC2 user interface.
 
-[rebooting a machine]: https://docs.publishing.service.gov.uk/manual/alerts/rebooting-machines.html
-[how to detach an instance from an ASG]: https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html
+Read [how to terminate an instance][] in the AWS documentation.
 
-## How to restore an AWS managed DB from a backup
-
-View the documentation on [how to backup and restore in AWS RDS][].
-
-[how to backup and restore in AWS RDS]: https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html
+[how to terminate an instance]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console
 
 ## How to scale up vertically
 
@@ -173,8 +145,8 @@ We typically make this change very gradually. The process usually looks like thi
 You can increase the number of EC2 instances running in an ASG via a config
 change in govuk-aws and govuk-aws-data.
 
-In an emergency, you can also manually bump up the number of instances in
-the ASG via the AWS console, but you're encouraged to use Terraform to do this,
+In an emergency, you can also [manually bump up the number of instances in the
+ASG via the AWS console][], but you're encouraged to use Terraform to do this,
 since you'll need to make the change in Terraform anyway.
 
 Here's an example set of PRs:
@@ -183,6 +155,14 @@ Here's an example set of PRs:
 * https://github.com/alphagov/govuk-aws/pull/1385
 
 You will need to apply Terraform for this to have an effect.
+
+[manually bump up the number of instances in the ASG via the AWS console]: https://docs.publishing.service.gov.uk/manual/auto-scaling-groups.html#removing-a-specific-instance
+
+## How to restore an AWS managed DB from a backup
+
+View the documentation on [how to backup and restore in AWS RDS][].
+
+[how to backup and restore in AWS RDS]: https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html
 
 ## How to resize a persistent disk
 
