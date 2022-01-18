@@ -447,17 +447,17 @@
 <h3 id="before-running-the-app">Before running the app</h3>
 
 <p>The email-alert-service uses the <a href="https://github.com/alphagov/govuk_message_queue_consumer">govuk_message_queue_consumer</a>
-to connect to a message queue on the <code>published_documents</code> exchange.</p>
+to connect to message queues on the <code>published_documents</code> exchange.</p>
 
-<p>There is a rake task to create the queue for this exchange:</p>
+<p>There is a rake task to create the queues for this exchange:</p>
 
 <pre><code>bundle exec rake message_queues:create_queues
 </code></pre>
 
-<p>There is a rake task to start a processor to consume from the queue:</p>
+<p>There are two rake tasks to start processors to consume from the queues:</p>
 
-<pre><code>bundle exec rake message_queues:major_change_consumer
-</code></pre>
+<p><code>bundle exec rake message_queues:major_change_consumer</code>
+<code>bundle exec rake message_queues:unpublishing_consumer</code></p>
 
 <h3 id="running-the-test-suite">Running the test suite</h3>
 
