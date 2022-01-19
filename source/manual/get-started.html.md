@@ -153,7 +153,7 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 
     The key should begin with `ssh-ed25519 AAA` and end with `== <WORK EMAIL>`.
 
-    (If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.)
+    If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
 
 1. Create a user manifest file at `~/govuk/govuk-puppet/modules/users/manifests/<FIRSTNAMELASTNAME>.pp` with the following code:
 
