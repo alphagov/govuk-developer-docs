@@ -345,7 +345,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/dfac35342dc105b855d73623ceceb5ab7fcd3667">6 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/9914697893bc51476875e3b1d9b11601723bb6b3">19 Jan 2022</a>
 </div>
 
   <h1 class="page-title">govuk-puppet: Create MySQL database and user</h1>
@@ -367,16 +367,13 @@ export TMP_MYSQL_DB_USER='collections_pub' ;
 export TMP_MYSQL_DB_PASSWORD='THE_PASSWORD' ;
 </code></pre>
 <p>Create the user:</p>
-<pre><code>sudo mysql --defaults-extra-file=/root/.my.cnf -e \
-"CREATE USER IF NOT EXISTS '$TMP_MYSQL_DB_USER'@'%' IDENTIFIED WITH 'mysql_native_password' BY '${TMP_MYSQL_DB_PASSWORD}';"
+<pre><code>sudo -H mysql -e "CREATE USER IF NOT EXISTS '$TMP_MYSQL_DB_USER'@'%' IDENTIFIED WITH 'mysql_native_password' BY '${TMP_MYSQL_DB_PASSWORD}';"
 </code></pre>
 <p>Create the database:</p>
-<pre><code>sudo mysql --defaults-extra-file=/root/.my.cnf -e \
-"CREATE DATABASE IF NOT EXISTS ${TMP_MYSQL_DB_NAME};"
+<pre><code>sudo -H mysql -e "CREATE DATABASE IF NOT EXISTS ${TMP_MYSQL_DB_NAME};"
 </code></pre>
 <p>Grant the user access to the database:</p>
-<pre><code>sudo mysql --defaults-extra-file=/root/.my.cnf -e \
-"GRANT ALL ON ${TMP_MYSQL_DB_NAME}.* TO '${TMP_MYSQL_DB_USER}'@'%'"
+<pre><code>sudo -H mysql -e "GRANT ALL ON ${TMP_MYSQL_DB_NAME}.* TO '${TMP_MYSQL_DB_USER}'@'%'"
 </code></pre>
 <p>Finally, clean up after yourself:</p>
 <pre><code>unset TMP_MYSQL_DB_NAME ;
@@ -385,13 +382,13 @@ unset TMP_MYSQL_DB_PASSWORD ;
 </code></pre>
 <p>You can sense-check what you've done by:</p>
 <pre lang="sh"><code># See which databases there are
-sudo mysql --defaults-extra-file=/root/.my.cnf -e "SHOW DATABASES;"
+sudo -H mysql -e "SHOW DATABASES;"
 
 # See which users there are
-sudo mysql --defaults-extra-file=/root/.my.cnf -e "SELECT host, user FROM mysql.user;"
+sudo -H mysql -e "SELECT host, user FROM mysql.user;"
 
 # See which tables are in the database, e.g.
-sudo mysql --defaults-extra-file=/root/.my.cnf -e "USE collections_publisher_production; SHOW TABLES;"
+sudo -H mysql -e "USE collections_publisher_production; SHOW TABLES;"
 # Note that this will only be populated after the first data sync has run.
 </code></pre>
 <h2 id="how-often-does-this-need-to-be-done">How often does this need to be done?</h2>
