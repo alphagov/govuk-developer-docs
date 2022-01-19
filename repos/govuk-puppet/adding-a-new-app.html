@@ -344,15 +344,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/a2eb9726da1d1d49b59e4c6862129c6174f66db9">26 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/b6643aa5167b9b7b14cb57605f8a65137354d560">14 Jan 2022</a>
 </div>
 
   <h1 class="page-title">govuk-puppet: adding-a-new-app</h1>
@@ -554,7 +547,7 @@ number:</p>
 <h3 id="configure-database-access">Configure database access</h3>
 <p>If your app does not use a database, skip this subsection.</p>
 <p>Add the following configuration to <code>hieradata_aws/common.yaml</code>:</p>
-<pre lang="yaml"><code>govuk::apps::my_app::db_hostname: "postgresql-primary"
+<pre lang="yaml"><code>govuk::apps::my_app::db_hostname: "#{your-app-name}-postgres"
 govuk::apps::my_app::db::backend_ip_range: "%{hiera('environment_ip_prefix')}.3.0/24"
 govuk::apps::my_app::db::allow_auth_from_lb: true
 govuk::apps::my_app::db::lb_ip_range: "%{hiera('environment_ip_prefix')}.0.0/16"
