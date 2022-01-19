@@ -147,9 +147,13 @@ User accounts in our integration environments are managed in the [govuk-puppet][
     git clone git@github.com:alphagov/govuk-puppet.git
     ```
 
-1. Run `more ~/.ssh/alphagov.pub` and copy your outputted SSH public key value.
+1. Add your SSH key. If you created a new SSH key for Github in step 2, you can use that.
 
-    The key should begin with `ssh-rsa AAA` and end with `== <GITHUB EMAIL>`. You may need to manually add the email address to the end of your key.
+    Run `more ~/.ssh/id_ed25519.pub` and copy your outputted SSH public key value.
+
+    The key should begin with `ssh-ed25519 AAA` and end with `== <WORK EMAIL>`.
+
+    If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
 
 1. Create a user manifest file at `~/govuk/govuk-puppet/modules/users/manifests/<FIRSTNAMELASTNAME>.pp` with the following code:
 
