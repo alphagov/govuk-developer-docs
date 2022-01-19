@@ -255,7 +255,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9c0589ace2bc13605d2d02d22d32df25c56d8efa">19 Jan 2022</a>
 </div>
 
  <h1 id='header'>Get started on GOV.UK</h1> <p>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a> or CDDO.</p>
@@ -325,8 +325,10 @@ brew <span class="nb">install </span>gds-cli govuk-connect
 <span class="nb">cd</span> ~/govuk
 git clone git@github.com:alphagov/govuk-puppet.git
 </code></pre></div></li>
-<li><p>Run <code>more ~/.ssh/alphagov.pub</code> and copy your outputted SSH public key value.</p>
-<p>The key should begin with <code>ssh-rsa AAA</code> and end with <code>== &lt;GITHUB EMAIL&gt;</code>. You may need to manually add the email address to the end of your key.</p></li>
+<li><p>Add your SSH key. If you created a new SSH key for Github in step 2, you can use that.</p>
+<p>Run <code>more ~/.ssh/id_ed25519.pub</code> and copy your outputted SSH public key value.</p>
+<p>The key should begin with <code>ssh-ed25519 AAA</code> and end with <code>== &lt;WORK EMAIL&gt;</code>.</p>
+<p>If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with <code>ssh-rsa AAA</code>. You may need to manually add the email address to the end of your key.</p></li>
 <li><p>Create a user manifest file at <code>~/govuk/govuk-puppet/modules/users/manifests/&lt;FIRSTNAMELASTNAME&gt;.pp</code> with the following code:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Creates the &lt;FIRSTNAMELASTNAME&gt; user
 class users::&lt;FIRSTNAMELASTNAME&gt; {
