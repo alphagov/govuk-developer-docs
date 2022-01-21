@@ -74,9 +74,9 @@ sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester initdb
 
 ### Accessing the database
 
-In order to access the CKAN database to run queries on the `db_admin` machine:
+In order to access the CKAN database to run queries on the `ckan_db_admin` machine:
 
-`psql -U ckan -h postgresql-primary -p 5432 ckan_production`
+`psql -U ckan -h ckan-postgres -p 5432 ckan_production`
 
 The password can be extracted from the configuration file on the `ckan` machine for the environment you are targeting:
 
