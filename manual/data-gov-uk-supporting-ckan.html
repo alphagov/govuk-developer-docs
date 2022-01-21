@@ -223,7 +223,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/934d96f86f512a98a85f8483f041eaece5b1c5ed">21 Jan 2022</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for CKAN</h1> <p><a href="https://ckan.publishing.service.gov.uk">CKAN</a> is the publishing application for data.gov.uk.  <a href="/apps/ckanext-datagovuk.html">ckanext-datagovuk</a> is the primary <a href="https://ckan.org">CKAN</a> extension for data.gov.uk.</p>
@@ -258,10 +258,9 @@ The following commands will create the relevant schema for core CKAN and the har
 extension on integration.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan db init
 sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester initdb
-</code></pre></div><h3 id='accessing-the-database'>Accessing the database</h3><p>In order to access the CKAN database to run queries on the <code>db_admin</code> machine:</p>
-<p><code>psql -U ckan -h postgresql-primary -p 5432 ckan_production</code></p>
-<p>The password can be extracted from the configuration file on the <code>ckan</code> machine for the environment you are targeting:</p>
-<p><code>more /var/ckan/ckan.ini | grep sqlalchemy</code></p>
+</code></pre></div><h3 id='accessing-the-database'>Accessing the database</h3><p>In order to access the CKAN database to run queries on the <code>ckan_db_admin</code> machine:</p>
+<p>Get the password for <code>aws_db_admin</code>: <code>sudo cat /root/.pgpass</code></p>
+<p>Supply the password when prompted: <code>psql -U aws_db_admin -h ckan-postgres -p 5432 ckan_production</code></p>
 <h3 id='accessing-the-ckan-api'>Accessing the CKAN API</h3><p>There are times when it can be useful to access the <a href="https://docs.ckan.org/en/2.8/api/">CKAN API</a> when debugging or resolving issues. Note that the responses will be different depending on your access permissions.</p>
 <p>Queries can use the package ID or name (the slug) e.g.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://data.gov.uk/api/3/action/package_search?q=id:93a39f01-7bba-430f-aa35-c30bf2d88b2f
@@ -464,7 +463,6 @@ running, so is safe to run immediately if you suspect the process has crashed:</
 </span></code></pre></div><h4 id='changing-the-connection-limit'>Changing the connection limit</h4><p>The connection limit can be updated, but should not exceed the hard limit which is around 3000.</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">ALTER</span> <span class="k">USER</span> <span class="n">ckan</span> <span class="k">WITH</span> <span class="k">CONNECTION</span> <span class="k">LIMIT</span> <span class="mi">1001</span><span class="p">;</span>
 </code></pre></div><h4 id='trying-to-log-on-to-the-database-will-result-in-this-error'>Trying to log on to the database will result in this error:</h4><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>FATAL:  too many connections for role "ckan"
-</code></pre></div><h4 id='log-in-as-another-user'>Log in as another user:</h4><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo psql -U aws_db_admin -h postgresql-primary --no-password -d ckan_production
 </code></pre></div><h4 id='view-the-number-of-connections-and-types-of-queries'>View the number of connections and types of queries:</h4><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pg_stat_activity</span> <span class="k">WHERE</span> <span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span><span class="p">;</span>
 </code></pre></div><h4 id='it-has-been-observed-that-during-an-overnight-sync-one-of-the-queries-caused-a-large-number-of-db-connections'>It has been observed that during an overnight sync one of the queries caused a large number of db connections:</h4><p>The following query captures part of that query and uses it to target the pid:</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">pid</span> <span class="k">FROM</span> <span class="n">pg_stat_activity</span> <span class="k">WHERE</span> <span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span> <span class="k">and</span> <span class="n">query</span> <span class="k">LIKE</span> <span class="s1">'SELECT "user".password AS user_password%'</span><span class="p">;</span>
