@@ -74,13 +74,11 @@ sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester initdb
 
 ### Accessing the database
 
-In order to access the CKAN database to run queries on the `db_admin` machine:
+In order to access the CKAN database to run queries on the `ckan_db_admin` machine:
 
-`psql -U ckan -h postgresql-primary -p 5432 ckan_production`
+Get the password for `aws_db_admin`: `sudo cat /root/.pgpass`
 
-The password can be extracted from the configuration file on the `ckan` machine for the environment you are targeting:
-
-`more /var/ckan/ckan.ini | grep sqlalchemy`
+Supply the password when prompted: `psql -U aws_db_admin -h ckan-postgres -p 5432 ckan_production`
 
 ### Accessing the CKAN API
 
@@ -475,12 +473,6 @@ ALTER USER ckan WITH CONNECTION LIMIT 1001;
 
 ```
 FATAL:  too many connections for role "ckan"
-```
-
-#### Log in as another user:
-
-```
-sudo psql -U aws_db_admin -h postgresql-primary --no-password -d ckan_production
 ```
 
 #### View the number of connections and types of queries:
