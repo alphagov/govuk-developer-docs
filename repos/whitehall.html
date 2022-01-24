@@ -34,7 +34,7 @@
 
     <div class="app-pane">
       <div class="app-pane__header toc-open-disabled">
-        <a href="#content" class="govuk-skip-link">Skip to main content</a>
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
 
         <header class="govuk-header app-header" role="banner" data-module="govuk-header">
   <div class="govuk-header__container govuk-header__container--full-width">
@@ -65,9 +65,9 @@
       </a>
     </div>
     <div class="govuk-header__content">
-      <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide Top Level Navigation">Menu</button>
-      <nav>
-        <ul id="navigation" class="govuk-header__navigation govuk-header__navigation--end" aria-label="Top Level Navigation">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
@@ -474,7 +474,6 @@
       </ul>
 </ul>
 <h2 id='example-pages-published-by-whitehall'>Example pages published by whitehall</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="https://www.gov.uk/government/organisations" class="govuk-link">Departments, agencies and public bodies</a></li>
       <li><a href="https://www.gov.uk/government/ministers" class="govuk-link">Ministers</a></li>
       <li><a href="https://www.gov.uk/government/people/sue-gray" class="govuk-link">Sue Gray</a></li>
       <li><a href="https://www.gov.uk/government/people/kate-josephs" class="govuk-link">Kate Josephs</a></li>
@@ -484,6 +483,7 @@
       <li><a href="https://www.gov.uk/government/people/boris-johnson" class="govuk-link">The Rt Hon Boris Johnson MP</a></li>
       <li><a href="https://www.gov.uk/government/people/rishi-sunak" class="govuk-link">The Rt Hon Rishi Sunak MP</a></li>
       <li><a href="https://www.gov.uk/government/people/sajid-javid" class="govuk-link">The Rt Hon Sajid Javid MP</a></li>
+      <li><a href="https://www.gov.uk/government/people/dominic-raab" class="govuk-link">The Rt Hon Dominic Raab MP</a></li>
 </ul></p>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
