@@ -345,7 +345,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/0863a0bb10847390ed27ef468e48880849086927">6 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/c32435314c3b03e0390e76cce24fef83d585bd0e">21 Jan 2022</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Available endpoints</h1>
@@ -408,6 +408,23 @@ for subscriptions to individual pages or pieces of guidance.</li>
 <p>Gets the stored subscriber list with the given ID.</p>
 <p>It will respond with the JSON response for the <code>GET</code> call above.</p>
 <p>Returns a <code>404 Not Found</code> if there is no such list.</p>
+<h3 id="patch-subscriber-listsxxx"><code>PATCH /subscriber-lists/xxx</code></h3>
+<p>Update data that helps describe the subscriber list, such as the title.
+It requires at least one parameter to update.</p>
+<pre lang="json"><code>{
+  "title": "A new Subscriber list title",
+}
+</code></pre>
+<p>The following fields are accepted:</p>
+<ul>
+<li>title: The title of this particular list, which will be shown to the user;
+email sent to a user;</li>
+</ul>
+<p>Any additional parameters will be ignored.</p>
+<p>Returns a <code>200 OK</code> with the details of the subscriber list including the
+new parameters, for an acceptable request.</p>
+<p>Returns a <code>404 Not Found</code> if there is no such list.</p>
+<p>Returns a <code>422 Bad Request</code> if no allowed parameters are provided to update.</p>
 <h3 id="post-subscriber-listsxxxbulk-unsubscribe"><code>POST /subscriber-lists/xxx/bulk-unsubscribe</code></h3>
 <p>Unsubscribes all subscribers from that list, and optionally sends an email to them.</p>
 <pre lang="json"><code>{
