@@ -345,7 +345,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/9a9f700a780019ffd9acf79e44d6df8412fdb70b">10 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/e584e39a5f60c3e29db716a2e0a2694d495cfdaf">25 Jan 2022</a>
 </div>
 
   <h1 class="page-title">account-api: API documentation</h1>
@@ -645,9 +645,7 @@ end
     "mfa": false,
     "email": "email@example.com",
     "email_verified": false,
-    "services": {
-        "transition_checker": "yes_but_must_reauthenticate",
-    }
+    "services": {}
 }
 </code></pre>
 <h3 id="get-usermatch-by-email"><code>GET /user/match-by-email</code></h3>
@@ -862,15 +860,15 @@ an appropriate message with a single API call.</p>
 <h4 id="example-request-response">Example request / response</h4>
 <p>Request (with gds-api-adapters):</p>
 <pre lang="ruby"><code>GdsApi.account_api.get_email_subscription(
-    name: "transition-checker",
+    name: "some-subscription",
     govuk_account_session: "session-identifier",
 )
 </code></pre>
 <pre lang="json"><code>{
     "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg==",
     "email_subscription": {
-      "name": "transition-checker",
-      "topic_slug": "brexit-results-12345",
+      "name": "some-subscription",
+      "topic_slug": "subscriber-list-slug",
       "email_alert_api_subscription_id": "cd5f6972-faf3-4f1c-bb76-3774b0a389f0"
     },
 }
@@ -928,16 +926,16 @@ an appropriate message with a single API call.</p>
 <h4 id="example-request-response">Example request / response</h4>
 <p>Request (with gds-api-adapters):</p>
 <pre lang="ruby"><code>GdsApi.account_api.put_email_subscription(
-    name: "transition-checker",
-    topic_slug: "brexit-results-12345",
+    name: "some-subscription",
+    topic_slug: "subscriber-list-slug",
     govuk_account_session: "session-identifier",
 )
 </code></pre>
 <pre lang="json"><code>{
     "govuk_account_session": "YWNjZXNzLXRva2Vu.cmVmcmVzaC10b2tlbg==",
     "email_subscription": {
-      "name": "transition-checker",
-      "topic_slug": "brexit-results-12345",
+      "name": "some-subscription",
+      "topic_slug": "subscriber-list-slug",
       "email_alert_api_subscription_id": "96ae61d6-c2a1-48cb-8e67-da9d105ae381"
     },
 }
@@ -971,7 +969,7 @@ an appropriate message with a single API call.</p>
 <h4 id="example-request-response">Example request / response</h4>
 <p>Request (with gds-api-adapters):</p>
 <pre lang="ruby"><code>GdsApi.account_api.delete_email_subscription(
-    name: "transition-checker",
+    name: "some-subscription",
     govuk_account_session: "session-identifier",
 )
 </code></pre>
