@@ -27,6 +27,13 @@ Useful links:
 
 [Sentry]: https://sentry.io/govuk/
 
+## Getting access to Sentry
+
+Your tech lead should have at least Sentry Admin access (see [Sentry roles](#sentry-roles)).
+They'll either be able to invite you to the [govuk organisation](https://sentry.io/settings/govuk/members/), or they'll be able to trigger a request to a Sentry Owner or Manager on your behalf.
+
+Once the request is approved, you'll be able to [sign in](https://sentry.io/auth/login/) using your GDS Google account.
+
 ## Nomenclature
 
 - **Project**: each GOV.UK application has its own project on Sentry, where
