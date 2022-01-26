@@ -126,6 +126,9 @@
     <a href="#header"><span>Sentry</span></a>
     <ul>
       <li>
+        <a href="#getting-access-to-sentry"><span>Getting access to Sentry</span></a>
+      </li>
+      <li>
         <a href="#nomenclature"><span>Nomenclature</span></a>
       </li>
       <li>
@@ -242,7 +245,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8f087049bf505ad6bf8d62700f0807a03e4b97d8">25 Jan 2022</a>
 </div>
 
  <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
@@ -263,6 +266,9 @@ most errors right now.</li>
 and <a href="https://grafana.integration.publishing.service.gov.uk/dashboard/file/sentry_errors_across_all_environments.json">Integration</a>
 (all require VPN), for a per-environment breakdown of Sentry errors.</li>
 </ul>
+<h2 id='getting-access-to-sentry'>Getting access to Sentry</h2><p>Your tech lead should have at least Sentry Admin access (see <a href="#sentry-roles">Sentry roles</a>).
+They&rsquo;ll either be able to invite you to the <a href="https://sentry.io/settings/govuk/members/">govuk organisation</a>, or they&rsquo;ll be able to trigger a request to a Sentry Owner or Manager on your behalf.</p>
+<p>Once the request is approved, you&rsquo;ll be able to <a href="https://sentry.io/auth/login/">sign in</a> using your GDS Google account.</p>
 <h2 id='nomenclature'>Nomenclature</h2>
 <ul>
 <li><strong>Project</strong>: each GOV.UK application has its own project on Sentry, where
