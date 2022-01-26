@@ -14,14 +14,12 @@ Installation of a critical software component on a non-redundant node class has 
 
 **Please do not install new services or applications on any of the following machines unless it's OK for your service to be down 5% of the time:**
 
-- db-admin
-- transition-db-admin
-- content-data-api-db-admin
 - asset-master
 - jumpbox
 - ckan
 - apt
 - mirrorer
 - licensing_backend
+- db-admin or any of the \*-db-admin machines
 
-If in doubt, please discuss your requirements with RE GOV.UK (#govuk-2ndline on Slack).
+If in doubt, please discuss your requirements with GOV.UK Platform Reliability (#govuk-platform-reliability-team on Slack).
