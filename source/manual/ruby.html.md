@@ -45,10 +45,15 @@ This package can then be copied to Aptly machine, and the new version added to p
 
 ### Add to Puppet
 
-Once it's available as a package in Aptly you can
-[install it everywhere using Puppet][puppet_rbenv_all]. Machines only run
-`apt-get update` periodically so it might take a little time for the package
-to become available.
+Once it's available as a package in Aptly you can [install it everywhere using Puppet][puppet_rbenv_all].
+However, machines only run `apt-get update` periodically ([nightly](https://docs.publishing.service.gov.uk/manual/alerts/security-updates.html))
+so it might take time for the package to become available.
+
+You can speed things along by SSH'ing into the relevant machine and running `sudo apt-get update`,
+then `govuk_puppet --test`. You should see a successful Ruby install as part of the Puppet run.
+
+You'll need to do that on `jenkins` (and, if impatient, each of the `ci_agent` machines) first to get the PR's tests passing,
+and then on the respective machine that your app will run on (e.g. `backend`).
 
 ### Update Ruby version in the relevant repos
 
