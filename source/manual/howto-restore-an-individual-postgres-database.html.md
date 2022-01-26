@@ -10,23 +10,11 @@ parent: "/manual.html"
 
 ### Restoring From S3 Backups
 
-We take nightly database backups and save them to the `govuk-production-database-backups` S3 bucket inside the `postgresql-backend` folder.
+We take nightly database backups and save them to the `govuk-<environment>-database-backups` S3 bucket inside a folder named after the RDS instance (for example `publishing-api-postgres`).
 
 To restore a backup from the most recent copy follow the steps below:
 
-#### Restoring to Production
-
-If you are restoring a database in the production environment, you will need to perform some additional steps first. You will need to ensure the Production db_admin machine has permission to read the Production PostgreSQL backups from S3 before you run the commands on db_admin (this is disabled by default as a safe guard). To do so, attach the govuk-production-s3-sync and blue-db-admin users to the  govuk-production-dbadmin_database_backups-reader-policy. You can do this by following the steps below:
-
-1. Login to AWS Console and select the Production environment
-1. Go [here](https://console.aws.amazon.com/iam/home?region=eu-west-1#/policies/arn:aws:iam::172025368201:policy/govuk-production-dbadmin_database_backups-reader-policy$serviceLevelSummary?section=permissions)
-1. Select the tab "Policy Usage"
-1. Click "Attach" then filter for and select the `govuk-production-s3-sync` and `blue-db-admin users`.
-1. Click "Attach Policy"
-
-Now follow the steps below to restore the database using the data sync script.
-
-#### How To Run the DSync Script
+#### How To Run the Sync Script
 
 1. SSH into the db_admin machine. If you are using GDS CLI you can run the following command to ssh into the correct machine:
 
