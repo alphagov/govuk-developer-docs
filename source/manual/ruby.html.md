@@ -41,27 +41,30 @@ This package can then be copied to Aptly machine, and the new version added to p
 
 - Once the Packager change is merged, [build the package][jenkins].
 
-Use the VM to [test the recipe](debian-packaging.html#test-the-recipe)
-
-To make sure it has been successful:
-
-- `rbenv versions` to make sure your version is available
-- `rbenv local X.X.X` to use your new version
-- `ruby -v` to make sure your version is in use
-
-### Copying to Aptly
-
-See [Uploading a new package](debian-packaging.html#uploading-a-new-package)
+- Then test and upload the package to Aptly. See <https://docs.publishing.service.gov.uk/manual/debian-packaging.html#fpm>.
 
 ### Add to Puppet
 
-Once it's available as a package in Aptly you can
-[install it everywhere using Puppet][puppet_rbenv_all]. Machines only run
-`apt-get update` periodically so it might take a little time for the package
-to become available.
+Once it's available as a package in Aptly you can [install it everywhere using Puppet][puppet_rbenv_all].
+However, machines only run `apt-get update` periodically ([nightly](https://docs.publishing.service.gov.uk/manual/alerts/security-updates.html))
+so it might take time for the package to become available.
+
+You can speed things along by SSH'ing into the relevant machine and running `sudo apt-get update`,
+then `govuk_puppet --test`. You should see a successful Ruby install as part of the Puppet run.
+
+You'll need to do that on `jenkins` (and, if impatient, each of the `ci_agent` machines) first to get the PR's tests passing,
+and then on the respective machine that your app will run on (e.g. `backend`).
+
+### Update Ruby version in the relevant repos
+
+We use [upgrade-ruby-version][] to automatically raise pull requests in GOV.UK repositories which use Ruby.
+See an [example PR](https://github.com/alphagov/upgrade-ruby-version/pull/1) for how to specify the repos and versions.
+
+Once the PRs are raised, each app should have that branch built to Integration, where it should be tested to ensure that the new Ruby version hasn't caused any problems. Our monitoring tools, such as Grafana and Sentry, should be checked too. Once fully tested, the PR should be safe to merge.
 
 [packager]: https://github.com/alphagov/packager/tree/master/fpm/recipes
 [sha256_checksum]: https://emn178.github.io/online-tools/sha256_checksum.html
 [ruby_cache]: https://cache.ruby-lang.org/pub/ruby/
 [jenkins]: https://ci.integration.publishing.service.gov.uk/job/build_fpm_package
 [puppet_rbenv_all]: https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rbenv/manifests/all.pp
+[upgrade-ruby-version]: https://github.com/alphagov/upgrade-ruby-version
