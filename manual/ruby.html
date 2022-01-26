@@ -138,10 +138,10 @@
             <a href="#building-the-fpm-package-"><span>Building the fpm package.</span></a>
           </li>
           <li>
-            <a href="#copying-to-aptly"><span>Copying to Aptly</span></a>
+            <a href="#add-to-puppet"><span>Add to Puppet</span></a>
           </li>
           <li>
-            <a href="#add-to-puppet"><span>Add to Puppet</span></a>
+            <a href="#update-ruby-version-in-the-relevant-repos"><span>Update Ruby version in the relevant repos</span></a>
           </li>
         </ul>
       </li>
@@ -196,7 +196,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/92cc619d10804e35498a0cf2aa38eff9ea75f4aa">12 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dbbbed452fcc2f69e5d763c84e195e47ce7c295f">26 Jan 2022</a>
 </div>
 
  <h1 id='header'>Add a new Ruby version</h1> <p>The <a href="https://www.ruby-lang.org/en/">Ruby language</a> is a core part of GOV.UK - most of our applications are written in it.</p>
@@ -220,20 +220,18 @@ This package can then be copied to Aptly machine, and the new version added to p
 The folder name will be the Ruby version, and contain a <code>recipe.rb</code> file. See previous entries for examples.
 The recipe will require the <a href="https://emn178.github.io/online-tools/sha256_checksum.html">SHA256</a> of the version&rsquo;s <code>tar.gz</code>, available at <a href="https://cache.ruby-lang.org/pub/ruby/">Ruby cache</a>.</p></li>
 <li><p>Once the Packager change is merged, <a href="https://ci.integration.publishing.service.gov.uk/job/build_fpm_package">build the package</a>.</p></li>
+<li><p>Then test and upload the package to Aptly. See <a href="https://docs.publishing.service.gov.uk/manual/debian-packaging.html#fpm">https://docs.publishing.service.gov.uk/manual/debian-packaging.html#fpm</a>.</p></li>
 </ul>
-<p>Use the VM to <a href="/manual/debian-packaging.html#test-the-recipe">test the recipe</a></p>
-<p>To make sure it has been successful:</p>
-
-<ul>
-<li><code>rbenv versions</code> to make sure your version is available</li>
-<li><code>rbenv local X.X.X</code> to use your new version</li>
-<li><code>ruby -v</code> to make sure your version is in use</li>
-</ul>
-<h3 id='copying-to-aptly'>Copying to Aptly</h3><p>See <a href="/manual/debian-packaging.html#uploading-a-new-package">Uploading a new package</a></p>
-<h3 id='add-to-puppet'>Add to Puppet</h3><p>Once it&rsquo;s available as a package in Aptly you can
-<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rbenv/manifests/all.pp">install it everywhere using Puppet</a>. Machines only run
-<code>apt-get update</code> periodically so it might take a little time for the package
-to become available.</p>
+<h3 id='add-to-puppet'>Add to Puppet</h3><p>Once it&rsquo;s available as a package in Aptly you can <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rbenv/manifests/all.pp">install it everywhere using Puppet</a>.
+However, machines only run <code>apt-get update</code> periodically (<a href="https://docs.publishing.service.gov.uk/manual/alerts/security-updates.html">nightly</a>)
+so it might take time for the package to become available.</p>
+<p>You can speed things along by SSH&#39;ing into the relevant machine and running <code>sudo apt-get update</code>,
+then <code>govuk_puppet --test</code>. You should see a successful Ruby install as part of the Puppet run.</p>
+<p>You&rsquo;ll need to do that on <code>jenkins</code> (and, if impatient, each of the <code>ci_agent</code> machines) first to get the PR&rsquo;s tests passing,
+and then on the respective machine that your app will run on (e.g. <code>backend</code>).</p>
+<h3 id='update-ruby-version-in-the-relevant-repos'>Update Ruby version in the relevant repos</h3><p>We use <a href="https://github.com/alphagov/upgrade-ruby-version">upgrade-ruby-version</a> to automatically raise pull requests in GOV.UK repositories which use Ruby.
+See an <a href="https://github.com/alphagov/upgrade-ruby-version/pull/1">example PR</a> for how to specify the repos and versions.</p>
+<p>Once the PRs are raised, each app should have that branch built to Integration, where it should be tested to ensure that the new Ruby version hasn&rsquo;t caused any problems. Our monitoring tools, such as Grafana and Sentry, should be checked too. Once fully tested, the PR should be safe to merge.</p>
 
 
   <div class='related-content'>
