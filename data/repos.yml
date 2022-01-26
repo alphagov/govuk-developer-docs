@@ -3,6 +3,10 @@
   team: "#govuk-accounts-tech"
   production_hosted_on: aws
 
+- github_repo_name: asset_bom_removal-rails
+  type: Utilities
+  team:
+
 - github_repo_name: asset-manager
   type: APIs
   team: "#govuk-publishing-tech"
@@ -23,6 +27,11 @@
   type: Transition apps
   team: "#find-and-view-tech"
   production_hosted_on: aws
+
+- github_repo_name: bulk-merger
+  type: Utilities
+  team:
+  description: For bulk merging Pull Requests for GOV.UK repos.
 
 - github_repo_name: business-support-api
   retired: true
@@ -182,6 +191,10 @@
   team: "#govuk-accounts-tech"
   production_hosted_on: aws
 
+- github_repo_name: email-alert-monitoring
+  type: Utlities
+  team: "#govuk-accounts-tech"
+
 - github_repo_name: email-alert-service
   type: Services
   team: "#govuk-accounts-tech"
@@ -207,17 +220,52 @@
   team: "#govuk-developers"
   type: Utilities
 
+- github_repo_name: gds-sso
+  team:
+  type: Services
+  description: OmniAuth adapter to allow apps to sign in via GOV.UK Signon.
+
 - github_repo_name: government-frontend
   type: Frontend apps
   team: "#find-and-view-tech"
   component_guide_url: https://government-frontend.herokuapp.com/component-guide
   production_hosted_on: aws
 
+- github_repo_name: govspeak
+  team:
+  type: Utilities
+
+- github_repo_name: govspeak-preview
+  team:
+  type: Utilities
+
 - github_repo_name: govuk-accessibility-reports
   team: "#govuk-data-labs"
   type: Data science
   description: Project containing numerous report generators to monitor accessibility
     on GOV.UK.
+
+- github_repo_name: govuk-app-deployment
+  team:
+  type: Utilities
+  description: Capistrano deployment scripts for applications running on GOV.UK.
+
+- github_repo_name: govuk-aws
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
+- github_repo_name: govuk-aws-data
+  private_repo: true
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
+- github_repo_name: govuk-browser-extension
+  team: "#govuk-developers"
+  type: Utilities
+
+- github_repo_name: govuk-cdn-config
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
 
 - github_repo_name: govuk-content-schemas
   app_name: govuk-content-store-examples
@@ -240,10 +288,19 @@
   production_hosted_on: heroku
   type: Utilities
 
+- github_repo_name: govuk-deploy-lag-badger
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
 - github_repo_name: govuk-display-screen
   management_url: https://dashboard.heroku.com/apps/govuk-display-screen
   production_hosted_on: heroku
   type: Utilities
+
+- github_repo_name: govuk-dns
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+  description: Tasks for managing DNS records
 
 - github_repo_name: govuk-docker
   team: "#govuk-developers"
@@ -280,6 +337,15 @@
   type: Data science
   description: Machine learning model to recommend related content
 
+- github_repo_name: govuk-saas-config
+  team:
+  type: Utilities
+
+- github_repo_name: govuk-secrets
+  private_repo: true
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
 - github_repo_name: govuk-user-intent-survey-explorer
   private_repo: true
   team: "#govuk-data-labs"
@@ -291,6 +357,11 @@
   team: "#govuk-data-labs"
   type: Data science
   description: Classifying successful and unsuccessful user journeys on GOV.UK
+
+- github_repo_name: govuk-user-reviewer
+  private_repo: true
+  team:
+  type: Utilities
 
 - github_repo_name: govuk-zendesk-display-screen
   management_url: https://dashboard.heroku.com/apps/govuk-zendesk-display-screen
@@ -310,6 +381,14 @@
     for display from public-facing URLs. This has now been superceded by the
     [content-store](/repos/content-store.html).
 
+- github_repo_name: govuk_document_types
+  team:
+  type: Utilities
+
+- github_repo_name: govuk_message_queue_consumer
+  team:
+  type: Utilities
+
 - github_repo_name: govuk_need_api
   retired: true
   type: APIs
@@ -319,8 +398,20 @@
     app which was part of the GOV.UK Publishing Platform. The need information is now
     stored in the Publishing API, and available in the Content Store.
 
+- github_repo_name: govuk_publishing_components
+  team:
+  type: Utilities
+
 - github_repo_name: govuk_schemas
   team: "#govuk-developers"
+  type: Utilities
+
+- github_repo_name: govuk_sidekiq
+  team:
+  type: Utilities
+
+- github_repo_name: govuk_taxonomy_helpers
+  team:
   type: Utilities
 
 - github_repo_name: hmrc-manuals-api
@@ -425,6 +516,10 @@
     multipage-frontend was used to render travel advice pages. Those were moved
     to government-frontend in March 2017.
 
+- github_repo_name: optic14n
+  team:
+  type: Utilities
+
 - github_repo_name: organisations-publisher
   type: Publishing apps
   retired: true
@@ -447,6 +542,10 @@
     to [content-tagger](/repos/content-tagger.html). Publishing apps became
     responsible for sending their pages to search.
 
+- github_repo_name: plek
+  team:
+  type: Utilities
+
 - github_repo_name: policy-publisher
   retired: true
   type: Publishing apps
@@ -468,6 +567,10 @@
   team: "#govuk-publishing-tech"
   production_hosted_on: aws
 
+- github_repo_name: publishing-e2e-tests
+  team: "#govuk-publishing-tech"
+  type: Utilities
+
 - github_repo_name: release
   type: Supporting apps
   team: "#govuk-platform-reliability-team"
@@ -482,6 +585,10 @@
   type: APIs
   team: "#find-and-view-tech"
   production_hosted_on: aws
+
+- github_repo_name: rubocop-govuk
+  team:
+  type: Utilities
 
 - github_repo_name: seal
   team: "#govuk-platform-reliability-team"
@@ -528,6 +635,10 @@
   production_hosted_on: heroku
   type: Transition apps
 
+- github_repo_name: sidekiq-monitoring
+  team:
+  type: Utilities
+
 - github_repo_name: signon
   type: Supporting apps
   team: "#govuk-publishing-tech"
@@ -542,6 +653,10 @@
   team: "#find-and-view-tech"
   puppet_name: smartanswers
   production_hosted_on: aws
+
+- github_repo_name: smokey
+  team: "#govuk-developers"
+  type: Utilities
 
 - github_repo_name: special-route-publisher
   team: "#govuk-publishing-tech"
@@ -578,6 +693,10 @@
   type: Transition apps
   team: "#govuk-publishing-tech"
   production_hosted_on: aws
+
+- github_repo_name: transition-config
+  type: Transition apps
+  team: "#govuk-publishing-tech"
 
 - github_repo_name: travel-advice-publisher
   type: Publishing apps
