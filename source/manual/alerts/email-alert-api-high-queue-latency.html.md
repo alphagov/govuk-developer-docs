@@ -56,4 +56,4 @@ diagnostic steps you could take are:
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=12h
 [Kibana]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))
 [machine metrics]: https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&orgId=1&var-hostname=email_alert_api*&var-cpmetrics=cpu-system&var-cpmetrics=cpu-user&var-filesystem=All&var-disk=All&var-tcpconnslocal=All&var-tcpconnsremote=All
-[postgres dash]: https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&var-region=eu-west-1&var-dbinstanceidentifier=blue-postgresql-primary&from=now-3h&to=now
+[postgres dash]: https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&var-region=eu-west-1&var-dbinstanceidentifier=email-alert-api-postgres&from=now-3h&to=now
