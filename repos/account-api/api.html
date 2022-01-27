@@ -345,7 +345,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/e584e39a5f60c3e29db716a2e0a2694d495cfdaf">25 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/8530bbebf0dddbed94ec405c6fb41c374f789385">27 Jan 2022</a>
 </div>
 
   <h1 class="page-title">account-api: API documentation</h1>
@@ -474,7 +474,9 @@ end
 </code></pre>
 <h3 id="post-apioauth2callback"><code>POST /api/oauth2/callback</code></h3>
 <p>Validates an OAuth response from the identity provider.</p>
-<p>On a <code>401: Unauthorized</code> response, the identity provider has rejected the authentication parameters.</p>
+<p>This is only used by the <a href="https://github.com/alphagov/frontend/blob/main/app/controllers/sessions_controller.rb"><code>SessionsController</code> in frontend</a>, as the
+identity provider redirects the user after signing in to
+<code>https://www.gov.uk/sign-in/callback</code>.</p>
 <h4 id="request-parameters">Request parameters</h4>
 <ul>
 <li>
@@ -538,7 +540,12 @@ end
 </code></pre>
 <h3 id="get-apioauth2end-session"><code>GET /api/oauth2/end-session</code></h3>
 <p>Generates a sign out URL.</p>
-<p>This URL should be served to the user with a 302 response to terminate their session with the identity provider and connected services.  If the session identifier is given, it may be passed to the identity provider to validate the user's session.</p>
+<p>This URL should be served to the user with a 302 response to terminate
+their session with the identity provider and connected services.  If
+the session identifier is given, it may be passed to the identity
+provider to validate the user's session.</p>
+<p>This does not invalidate the user's session on <a href="http://www.gov.uk">www.gov.uk</a>.  You must
+also use the <code>logout!</code> method in <a href="https://github.com/alphagov/govuk_personalisation">govuk_personalisation</a> to do that.</p>
 <h4 id="request-headers">Request headers</h4>
 <ul>
 <li>
@@ -1072,8 +1079,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 <p>Response is status code only.</p>
 <h3 id="get-apipersonalisationcheck-email-subscription"><code>GET /api/personalisation/check-email-subscription</code></h3>
 <p>Personalisation endpoint for checking if an email subscription is active.</p>
-<p>Currently this returns a simple JSON response.</p>
-<p>Future iterations may see this endpoint return rendered HTML to progressively enhance our frontend applications.</p>
 <p>See <a href="https://github.com/alphagov/account-api/blob/main/docs/adr/002-progressive-enhancement.md">Progressive enhancement ADR for more details</a></p>
 <h4 id="request-parameters">Request parameters</h4>
 <ul>
