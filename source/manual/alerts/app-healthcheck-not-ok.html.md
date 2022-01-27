@@ -54,7 +54,7 @@ This means the app is accepting requests, but taking too long to respond (over [
 This means the app is unable to connect to its database.
 
 - Check for [any RDS alerts](/manual/govuk-in-aws.html#postgresql-and-mysql).
-- Check the [AWS RDS dashboard][postgres dash] to see if we're experiencing resourcing issues.
+- Check the corresponding [AWS RDS dashboard][rds dash] to see if we're experiencing resourcing issues.
 - Check for network connectivity to the DB.
 
 ```
@@ -107,7 +107,7 @@ This means the time it takes for a [Sidekiq][] job to be processed is unusually 
 
 - Check the Sidekiq ['Queue Length'][Sidekiq dash] graph to see if we have a
   high number of jobs queued up.
-- Check the [Machine dashboard][machine metrics] or the [AWS RDS postgres dashboard][postgres dash] to see if we're experiencing resourcing issues.
+- Check the [Machine dashboard][machine metrics] or the [AWS RDS postgres dashboard][rds dash] to see if we're experiencing resourcing issues.
 - Are the workers reporting any problems or any issues being raised in [Sentry]?
 - Check [Kibana] for Sidekiq error logs (`application: <app> AND @type: sidekiq`).
 
@@ -116,4 +116,4 @@ This means the time it takes for a [Sidekiq][] job to be processed is unusually 
 [Sidekiq dash]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json
 [Kibana]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))
 [machine metrics]: https://grafana.blue.production.govuk.digital/dashboard/file/machine.json
-[postgres dash]: https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&var-region=eu-west-1&var-dbinstanceidentifier=blue-postgresql-primary&from=now-3h&to=now
+[rds dash]: https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&var-region=eu-west-1&from=now-3h&to=now
