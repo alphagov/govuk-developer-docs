@@ -171,15 +171,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/974a484bd72c87c036e76f90d1c7313ec13bf48d">22 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e12283ec41dc1f9081f74e1d0d4fdd917a364b54">26 Jan 2022</a>
 </div>
 
  <h1 id='header'>App healthcheck not ok</h1> <p>Many apps on GOV.UK have a healthcheck endpoint.</p>
@@ -217,7 +210,7 @@ curl localhost:3221/healthcheck
 
 <ul>
 <li>Check for <a href="/manual/govuk-in-aws.html#postgresql-and-mysql">any RDS alerts</a>.</li>
-<li>Check the <a href="https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&amp;var-region=eu-west-1&amp;var-dbinstanceidentifier=blue-postgresql-primary&amp;from=now-3h&amp;to=now">AWS RDS dashboard</a> to see if we&rsquo;re experiencing resourcing issues.</li>
+<li>Check the corresponding <a href="https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&amp;var-region=eu-west-1&amp;from=now-3h&amp;to=now">AWS RDS dashboard</a> to see if we&rsquo;re experiencing resourcing issues.</li>
 <li>Check for network connectivity to the DB.</li>
 </ul>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># SSH on to a machine with the problem
@@ -261,7 +254,7 @@ high number of failed jobs.</li>
 <ul>
 <li>Check the Sidekiq <a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json">&lsquo;Queue Length&rsquo;</a> graph to see if we have a
 high number of jobs queued up.</li>
-<li>Check the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/machine.json">Machine dashboard</a> or the <a href="https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&amp;var-region=eu-west-1&amp;var-dbinstanceidentifier=blue-postgresql-primary&amp;from=now-3h&amp;to=now">AWS RDS postgres dashboard</a> to see if we&rsquo;re experiencing resourcing issues.</li>
+<li>Check the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/machine.json">Machine dashboard</a> or the <a href="https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&amp;var-region=eu-west-1&amp;from=now-3h&amp;to=now">AWS RDS postgres dashboard</a> to see if we&rsquo;re experiencing resourcing issues.</li>
 <li>Are the workers reporting any problems or any issues being raised in <a href="https://sentry.io/organizations/govuk">Sentry</a>?</li>
 <li>Check <a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&amp;_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))">Kibana</a> for Sidekiq error logs (<code>application: &lt;app&gt; AND @type: sidekiq</code>).</li>
 </ul>

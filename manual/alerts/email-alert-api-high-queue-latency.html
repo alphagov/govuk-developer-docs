@@ -156,15 +156,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e12283ec41dc1f9081f74e1d0d4fdd917a364b54">26 Jan 2022</a>
 </div>
 
  <h1 id='header'>Email Alert API: high latency for sidekiq queue</h1> <p>This alert triggers when there is a significant delay in the time from the
@@ -197,7 +190,7 @@ status;</li>
 <li>check whether workers are raising errors to <a href="https://sentry.io/organizations/govuk/issues/?project=202220&amp;statsPeriod=12h">Sentry</a>;</li>
 <li>check <a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&amp;_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))">Kibana</a> to see the Sidekiq logs for Email Alert API;</li>
 <li>you can investigate the health of the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/machine.json?refresh=1m&amp;orgId=1&amp;var-hostname=email_alert_api*&amp;var-cpmetrics=cpu-system&amp;var-cpmetrics=cpu-user&amp;var-filesystem=All&amp;var-disk=All&amp;var-tcpconnslocal=All&amp;var-tcpconnsremote=All">underlying application
-machines</a> and the <a href="https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&amp;var-region=eu-west-1&amp;var-dbinstanceidentifier=blue-postgresql-primary&amp;from=now-3h&amp;to=now">RDS PostgeSQL database
+machines</a> and the <a href="https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&amp;var-region=eu-west-1&amp;var-dbinstanceidentifier=email-alert-api-postgres&amp;from=now-3h&amp;to=now">RDS PostgeSQL database
 instance</a>.</li>
 </ul>
 
