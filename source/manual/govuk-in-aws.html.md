@@ -89,13 +89,7 @@ Please see the related [ADR for DNS Infrastructure](https://github.com/alphagov/
 
 We are using [Amazon Relational Database Service (RDS)](https://aws.amazon.com/rds/) to host PostgreSQL and MySQL databases.
 
-To run Puppet against these databases, we have a new instance class: [db_admin](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_db_admin.pp)
-
-`db_admin` manages MySQL and PostgreSQL RDS instances. It runs nightly backups of all of these to S3 using [govuk_env_sync](govuk-env-sync.html).
-
-Transition has its own class for management: [transition_db_admin](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_transition_db_admin.pp)
-
-Please see [the documentation](https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html) about administering RDS databases.
+We use a number of application specific `db_admin` nodes (for example: `whitehall_db_admin`) as a way for Puppet to manage MySQL and PostgreSQL RDS instances. They also run nightly backups to S3 using [govuk_env_sync](govuk-env-sync.html).
 
 #### DocumentDB
 
