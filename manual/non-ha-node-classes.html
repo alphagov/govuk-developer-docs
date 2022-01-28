@@ -173,15 +173,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9aba23bf183c87c399e0dc6ce727cb0cf7825177">25 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b8bea2ef80bb203b2c3aba1fd6f9c8fb8b95af7b">26 Jan 2022</a>
 </div>
 
  <h1 id='header'>Node classes without redundancy</h1> <p>Below we provide a list of node classes that are not configured to be highly available (HA). This means that short outages of these machines are architecturally considered acceptable.</p>
@@ -189,17 +182,15 @@
 <p><strong>Please do not install new services or applications on any of the following machines unless it&rsquo;s OK for your service to be down 5% of the time:</strong></p>
 
 <ul>
-<li>db-admin</li>
-<li>transition-db-admin</li>
-<li>content-data-api-db-admin</li>
 <li>asset-master</li>
 <li>jumpbox</li>
 <li>ckan</li>
 <li>apt</li>
 <li>mirrorer</li>
 <li>licensing_backend</li>
+<li>db-admin or any of the *-db-admin machines</li>
 </ul>
-<p>If in doubt, please discuss your requirements with RE GOV.UK (#govuk-2ndline on Slack).</p>
+<p>If in doubt, please discuss your requirements with GOV.UK Platform Reliability (#govuk-platform-reliability-team on Slack).</p>
 
 
   <div class='related-content'>

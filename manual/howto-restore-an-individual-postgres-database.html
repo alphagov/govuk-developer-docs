@@ -182,33 +182,16 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9aba23bf183c87c399e0dc6ce727cb0cf7825177">25 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/96b578484fc26efe416bae72e3356e98d129059d">26 Jan 2022</a>
 </div>
 
  <h1 id='header'>Restore an Individual Postgres Production Database in AWS RDS</h1> <blockquote>
 <p>If you need to restore an entire RDS instance please see <a href="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html">this manual page</a> instead.</p>
 </blockquote>
-<h3 id='restoring-from-s3-backups'>Restoring From S3 Backups</h3><p>We take nightly database backups and save them to the <code>govuk-production-database-backups</code> S3 bucket inside the <code>postgresql-backend</code> folder.</p>
+<h3 id='restoring-from-s3-backups'>Restoring From S3 Backups</h3><p>We take nightly database backups and save them to the <code>govuk-&lt;environment&gt;-database-backups</code> S3 bucket inside a folder named after the RDS instance (for example <code>publishing-api-postgres</code>).</p>
 <p>To restore a backup from the most recent copy follow the steps below:</p>
-<h4 id='restoring-to-production'>Restoring to Production</h4><p>If you are restoring a database in the production environment, you will need to perform some additional steps first. You will need to ensure the Production db_admin machine has permission to read the Production PostgreSQL backups from S3 before you run the commands on db_admin (this is disabled by default as a safe guard). To do so, attach the govuk-production-s3-sync and blue-db-admin users to the  govuk-production-dbadmin_database_backups-reader-policy. You can do this by following the steps below:</p>
-
-<ol>
-<li>Login to AWS Console and select the Production environment</li>
-<li>Go <a href="https://console.aws.amazon.com/iam/home?region=eu-west-1#/policies/arn:aws:iam::172025368201:policy/govuk-production-dbadmin_database_backups-reader-policy$serviceLevelSummary?section=permissions">here</a></li>
-<li>Select the tab &ldquo;Policy Usage&rdquo;</li>
-<li>Click &ldquo;Attach&rdquo; then filter for and select the <code>govuk-production-s3-sync</code> and <code>blue-db-admin users</code>.</li>
-<li>Click &ldquo;Attach Policy&rdquo;</li>
-</ol>
-<p>Now follow the steps below to restore the database using the data sync script.</p>
-<h4 id='how-to-run-the-dsync-script'>How To Run the DSync Script</h4>
+<h4 id='how-to-run-the-sync-script'>How To Run the Sync Script</h4>
 <ol>
 <li>SSH into the db_admin machine. If you are using GDS CLI you can run the following command to ssh into the correct machine:</li>
 </ol>

@@ -195,15 +195,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9aba23bf183c87c399e0dc6ce727cb0cf7825177">25 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da2afde55ea0506d818bd3f82961ceee011afd30">26 Jan 2022</a>
 </div>
 
  <h1 id='header'>Migration to AWS</h1> <p>To bring the GOV.UK platform in line with the <a href="https://www.gov.uk/service-manual/technology/deciding-how-to-host-your-service">guidance detailed in the Service Manual</a>,
@@ -242,10 +235,7 @@ publishing-api.blue.integration.govuk-internal.digital has address 10.1.5.50
 <p>We are unable to set the internal domain as the default because some applications do self-referred Plek lookups that affect how applications are presented to the user. We have determined it is safer to set specific overrides for services until this behaviour is changed within the applications.</p>
 <p>Please see the related <a href="https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0015-dns-infrastructure.md">ADR for DNS Infrastructure</a> for further detail.</p>
 <h3 id='databases'>Databases</h3><h4 id='postgresql-and-mysql'>PostgreSQL and MySQL</h4><p>We are using <a href="https://aws.amazon.com/rds/">Amazon Relational Database Service (RDS)</a> to host PostgreSQL and MySQL databases.</p>
-<p>To run Puppet against these databases, we have a new instance class: <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_db_admin.pp">db_admin</a></p>
-<p><code>db_admin</code> manages MySQL and PostgreSQL RDS instances. It runs nightly backups of all of these to S3 using <a href="/manual/govuk-env-sync.html">govuk_env_sync</a>.</p>
-<p>Transition has its own class for management: <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/node/s_transition_db_admin.pp">transition_db_admin</a></p>
-<p>Please see <a href="https://docs.publishing.service.gov.uk/manual/howto-backup-and-restore-in-aws-rds.html">the documentation</a> about administering RDS databases.</p>
+<p>We use a number of application specific <code>db_admin</code> nodes (for example: <code>whitehall_db_admin</code>) as a way for Puppet to manage MySQL and PostgreSQL RDS instances. They also run nightly backups to S3 using <a href="/manual/govuk-env-sync.html">govuk_env_sync</a>.</p>
 <h4 id='documentdb'>DocumentDB</h4><p>Applications in AWS are gradually being migrated from self-hosted MongoDB to Amazon DocumentDB. Notable differences include:</p>
 
 <ul>
