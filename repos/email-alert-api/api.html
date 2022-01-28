@@ -345,7 +345,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/c32435314c3b03e0390e76cce24fef83d585bd0e">21 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/3ed51279ba5bf2f324e8677b1df9fd8c33f56811">27 Jan 2022</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Available endpoints</h1>
@@ -413,12 +413,14 @@ for subscriptions to individual pages or pieces of guidance.</li>
 It requires at least one parameter to update.</p>
 <pre lang="json"><code>{
   "title": "A new Subscriber list title",
+  "description": "A new subscriber list description",
 }
 </code></pre>
 <p>The following fields are accepted:</p>
 <ul>
 <li>title: The title of this particular list, which will be shown to the user;
 email sent to a user;</li>
+<li>description: A description of the content this list represents, used by <a href="https://github.com/alphagov/email-alert-service">email-alert-service</a> to construct emails when a page is unpublished.</li>
 </ul>
 <p>Any additional parameters will be ignored.</p>
 <p>Returns a <code>200 OK</code> with the details of the subscriber list including the
