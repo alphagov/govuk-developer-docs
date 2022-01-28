@@ -8,8 +8,9 @@ parent: "/manual.html"
 
 Backups of RDS instances are [taken
 nightly](https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance).
-They are stored in Amazon S3. SQL dumps are also taken nightly from `db_admin`
-and `transition_db_admin`, encompassing all the databases on those instances.
+They are stored in Amazon S3. SQL dumps are also taken nightly from the various
+`db_admin` machines via the [`govuk_env_sync`](/manual/govuk-env-sync.html)
+process.
 
 ### Restore an RDS instance via the AWS Console
 
@@ -25,8 +26,8 @@ SNAPSHOTS=$(aws rds describe-db-snapshots --query 'DBSnapshots[].DBSnapshotArn' 
 
 Loop through the snapshot ARN list and use the `list-tags-for-resource`
 parameter to get the tags for the snapshot. The tags have
-human-readable "Name" parameters (like blue-mysql-primary). These tell you which
-stack and RDS instance the snapshot is from.
+human-readable "Name" parameters (like whitehall-mysql). These tell you which
+RDS instance the snapshot is from.
 
 ```
 for SNAPSHOT in $SNAPSHOTS ; do
