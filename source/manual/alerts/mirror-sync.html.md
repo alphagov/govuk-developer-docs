@@ -67,3 +67,7 @@ COMMAND  PID          USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 bash    5221 govuk-crawler    3wW  REG   0,19        0  348 /run/govuk_sync_mirror.lock
 s3cmd   5233 govuk-crawler    3w   REG   0,19        0  348 /run/govuk_sync_mirror.lock
 ```
+
+## The static mirror has not been updated in n seconds
+
+This alert means that the S3 static mirror has not been updated for over 24h. The govuk_sync_mirror script [writes a file](https://github.com/alphagov/govuk-puppet/blob/fffb8bbde66a0af7f18a75b837ae3090f95488e0/modules/govuk_crawler/templates/govuk_sync_mirror.erb#L44) to the S3 mirror bucket every time it runs, this alert checks when that file was last modified.
