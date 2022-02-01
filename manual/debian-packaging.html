@@ -224,7 +224,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cc19e59cbac016e0ba50aa342e153f9bc3aaf813">20 Oct 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f79e332a33855714372ca6b9d1530575b7dc7e3d">26 Jan 2022</a>
 </div>
 
  <h1 id='header'>Manage Debian packages</h1> <p>This page explains how we manage our Debian packaging.</p>
@@ -318,25 +318,15 @@ be bumped up.</p>
 <h3 id='fpm'>fpm</h3><p>Add an fpm recipe to packager and then use <a href="https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/">the Jenkins
 job</a> to
 create a Debian package.</p>
-<h4 id='test-the-recipe'>Test the recipe</h4>
-<ul>
-<li>The Jenkins job will produce a <code>.deb</code> package in the <code>Build Artifacts</code>.</li>
-<li>With Packager cloned to your local <code>govuk</code> folder, download your new package to
-the Packager root folder.</li>
-<li>Start the VM, move to the Packager project and run:</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>    $ sudo dpkg -i ./your_package_name.deb`
-</code></pre></div>
-<ul>
-<li>Ensure your package has been successfully installed.</li>
-</ul>
-<p>If successful, you can copy this package to the aptly machine and then add the
-deb file to aptly.</p>
+<p>You can leave <code>DISTRO</code> as &ldquo;trusty&rdquo; - this will create a <code>.deb</code> Debian package.</p>
+<p>You can view the created package in the <code>Build Artifacts</code> section on the summary screen of your successful build (see <a href="https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/87/">example</a>).</p>
+<p>Download the package, then <a href="https://github.com/alphagov/packager#test-your-package">test it locally</a>.</p>
+<p>Once successfully tested, you can add the <code>.deb</code> file to aptly - see next section.</p>
 <h2 id='uploading-a-new-package'>Uploading a new package</h2>
 <blockquote>
 <p><strong>Note</strong></p>
-<p>The commands below should be run on the machine where aptly is
-running.
+<p>The commands below should be run on Production <code>apt</code> machine, where aptly is running.
+You are not able to publish on other environments, as there is only one mirror for all packages, not one per environment.
 The example used is for upgrading Ruby by adding a new package to the <code>rbenv-ruby</code> repository</p>
 </blockquote>
 
@@ -351,7 +341,7 @@ The example used is for upgrading Ruby by adding a new package to the <code>rben
     [+] rbenv-ruby-2.6.1_1_amd64 added
 </code></pre></div></li>
 <li><p>Create a snapshot:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  $ snapshot="rbenv-ruby-$(date +%Y%m%d)"
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  $ snapshot="rbenv-ruby-$(date +%Y%m%d%H%M)"
   $ sudo aptly snapshot create $snapshot from repo rbenv-ruby
     Snapshot rbenv-ruby-20190212 successfully created.
 
