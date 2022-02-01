@@ -27,6 +27,8 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      contents: write 
     steps:
       - name: Set commit message up front
         id: commit_message_writer
