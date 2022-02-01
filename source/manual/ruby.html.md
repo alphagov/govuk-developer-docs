@@ -60,7 +60,13 @@ and then on the respective machine that your app will run on (e.g. `backend`).
 We use [upgrade-ruby-version][] to automatically raise pull requests in GOV.UK repositories which use Ruby.
 See an [example PR](https://github.com/alphagov/upgrade-ruby-version/pull/1) for how to specify the repos and versions.
 
-Once the PRs are raised, each app should have that branch built to Integration, where it should be tested to ensure that the new Ruby version hasn't caused any problems. Our monitoring tools, such as Grafana and Sentry, should be checked too. Once fully tested, the PR should be safe to merge.
+Once the PRs are raised, you should test the changes before merge, as follows:
+
+1. Most apps will run a test suite through CI. You should check the output of this for any Ruby deprecation warnings. If there are any warnings, they should be fixed.
+1. Next, you should build the ruby upgrade branch of the app to Integration, and manually test its features to ensure that the new Ruby version hasn't broken the app.
+1. It's worth checking the logs for deprecation warnings at this point (and fixing them), in case there are warnings that weren't flagged by the test suite run.
+1. Next, check our monitoring tools, such as Grafana and Sentry.
+1. Finally, the PR should be safe to merge.
 
 [packager]: https://github.com/alphagov/packager/tree/master/fpm/recipes
 [sha256_checksum]: https://emn178.github.io/online-tools/sha256_checksum.html
