@@ -133,28 +133,20 @@ Add an fpm recipe to packager and then use [the Jenkins
 job](https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/) to
 create a Debian package.
 
-#### Test the recipe
+You can leave `DISTRO` as "trusty" - this will create a `.deb` Debian package.
 
-- The Jenkins job will produce a `.deb` package in the `Build Artifacts`.
-- With Packager cloned to your local `govuk` folder, download your new package to
-  the Packager root folder.
-- Start the VM, move to the Packager project and run:
+You can view the created package in the `Build Artifacts` section on the summary screen of your successful build (see [example](https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/87/)).
 
-  ```
-    $ sudo dpkg -i ./your_package_name.deb`
-  ```
+Download the package, then [test it locally](https://github.com/alphagov/packager#test-your-package).
 
-- Ensure your package has been successfully installed.
-
-If successful, you can copy this package to the aptly machine and then add the
-deb file to aptly.
+Once successfully tested, you can add the `.deb` file to aptly - see next section.
 
 ## Uploading a new package
 
 > **Note**
 >
-> The commands below should be run on the machine where aptly is
-> running.
+> The commands below should be run on Production `apt` machine, where aptly is running.
+> You are not able to publish on other environments, as there is only one mirror for all packages, not one per environment.
 > The example used is for upgrading Ruby by adding a new package to the `rbenv-ruby` repository
 
 1. Download the package to your local machine
@@ -175,7 +167,7 @@ deb file to aptly.
 4. Create a snapshot:
 
     ```
-      $ snapshot="rbenv-ruby-$(date +%Y%m%d)"
+      $ snapshot="rbenv-ruby-$(date +%Y%m%d%H%M)"
       $ sudo aptly snapshot create $snapshot from repo rbenv-ruby
         Snapshot rbenv-ruby-20190212 successfully created.
 
