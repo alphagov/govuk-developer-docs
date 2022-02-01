@@ -134,6 +134,9 @@
       <li>
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
       </li>
+      <li>
+        <a href="#the-static-mirror-has-not-been-updated-in-n-seconds"><span>The static mirror has not been updated in n seconds</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -156,15 +159,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/10e16d90d848f21e84af4978fcd03aafcabcc0c1">4 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d408e93b5b760059cb9888255a46aab343aae2c9">31 Jan 2022</a>
 </div>
 
  <h1 id='header'>Mirror GOV.UK content to S3</h1> <h2 id='what-this-alert-means'>What this alert means</h2><p>The govuk_sync_mirror cronjob has not succeeded for 24h. govuk_sync_mirror is <a href="https://github.com/alphagov/govuk-puppet/blob/1364bfbb023cd475fac37b99ca812a2ff985ce77/modules/govuk_crawler/manifests/init.pp#L223-L230">a script that runs hourly</a> to upload new or changed GOV.UK content to the static mirror in S3. Fastly automatically serves content from the S3 mirror when a request to the origin fails.</p>
@@ -196,7 +192,8 @@ crontab -l
 COMMAND  PID          USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 bash    5221 govuk-crawler    3wW  REG   0,19        0  348 /run/govuk_sync_mirror.lock
 s3cmd   5233 govuk-crawler    3w   REG   0,19        0  348 /run/govuk_sync_mirror.lock
-</code></pre></div>
+</code></pre></div><h2 id='the-static-mirror-has-not-been-updated-in-n-seconds'>The static mirror has not been updated in n seconds</h2><p>This alert means that the S3 static mirror has not been updated for over 24h. The govuk_sync_mirror script <a href="https://github.com/alphagov/govuk-puppet/blob/fffb8bbde66a0af7f18a75b837ae3090f95488e0/modules/govuk_crawler/templates/govuk_sync_mirror.erb#L44">writes a file</a> to the S3 mirror bucket every time it runs, this alert checks when that file was last modified.</p>
+
 
   <div class='related-content'>
 
