@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Fall back to the static mirrors - GOV.UK Developer Documentation</title>
+    <title>GOV.UK CDN static mirrors - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Fall back to the static mirrors - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="GOV.UK CDN static mirrors - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Fall back to the static mirrors" />
+      <meta property="og:title" content="GOV.UK CDN static mirrors" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/fall-back-to-mirror.html" />
 
@@ -123,22 +123,25 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Fall back to the static mirrors</span></a>
+    <a href="#header"><span>GOV.UK CDN static mirrors</span></a>
     <ul>
       <li>
-        <a href="#hosting"><span>Hosting</span></a>
+        <a href="#when-is-the-gov-uk-mirror-used"><span>When is the GOV.UK mirror used?</span></a>
       </li>
       <li>
-        <a href="#access"><span>Access</span></a>
+        <a href="#gov-uk-mirror-locations-and-access"><span>GOV.UK mirror locations and access</span></a>
       </li>
       <li>
-        <a href="#updates-to-the-mirror"><span>Updates to the mirror</span></a>
+        <a href="#updates-to-the-gov-uk-mirror"><span>Updates to the GOV.UK mirror</span></a>
       </li>
       <li>
-        <a href="#forcing-failover-to-the-static-mirrors"><span>Forcing failover to the static mirrors</span></a>
+        <a href="#mirror-gov-uk-content-to-s3-alert"><span>Mirror GOV.UK content to S3 alert</span></a>
       </li>
       <li>
-        <a href="#emergency-publishing-using-the-static-mirror"><span>Emergency publishing using the static mirror</span></a>
+        <a href="#forcing-failover-to-the-gov-uk-mirrors"><span>Forcing failover to the GOV.UK mirrors</span></a>
+      </li>
+      <li>
+        <a href="#emergency-publishing-content-using-the-gov-uk-mirror"><span>Emergency publishing content using the GOV.UK mirror</span></a>
       </li>
     </ul>
   </li>
@@ -190,84 +193,68 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/10bc24da09dbc0c116971eb5fd6d56b7414253e7">17 Sep 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2e8d5c3e949d3489d719278f51902ead286bb4af">27 Jan 2022</a>
 </div>
 
- <h1 id='header'>Fall back to the static mirrors</h1> <p>We maintain a static copy of most of the site, which gets used by the content delivery
-network (CDN) whenever origin (the application server) times out or serves an error
-response.</p>
-<p>This process is handled by our CDN config and is entirely transparent to us and
-our users. It happens multiple times a day, for lots of different reasons.</p>
-<p>This is why we refer to switching off Nginx on the origin cache machines as
-&ldquo;falling back to the mirrors&rdquo;.</p>
-<h2 id='hosting'>Hosting</h2><p>GOV.UK is mirrored to two cloud providers:</p>
+ <h1 id='header'>GOV.UK CDN static mirrors</h1> <p>The GOV.UK mirror is a static copy of GOV.UK.</p>
+<h2 id='when-is-the-gov-uk-mirror-used'>When is the GOV.UK mirror used?</h2><p>Most requests to GOV.UK are handled by the <a href="/manual/cdn.html">Fastly content delivery network (CDN)</a>, which sits between the user and <a href="/manual/architecture-shallow-dive.html#a-user-visits-the-gov-uk-homepage">GOV.UK Origin</a>.</p>
+<p>When a user requests a GOV.UK page, Fastly retrieves that page from its cache, or fetches the page from GOV.UK Origin if Fastly does not have the page in its cache.</p>
+<p>Sometimes, GOV.UK Origin may time out or return a 5xx error response. When that happens, Fastly automatically fetches the page from the GOV.UK mirror instead.</p>
+<p>If Fastly goes down, we would manually <a href="https://docs.publishing.service.gov.uk/manual/fall-back-to-aws-cloudfront.html">switch to AWS CloudFront</a> instead of Fastly. Where Fastly makes requests to GOV.UK Origin, AWS CloudFront instead makes all its requests to the GOV.UK mirror.</p>
+<h2 id='gov-uk-mirror-locations-and-access'>GOV.UK mirror locations and access</h2><p>The GOV.UK mirror is hosted in an <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html">Amazon Web Services (AWS) S3 bucket</a>. The bucket contains copies of GOV.UK HTML files. The mirror is static, meaning dynamic pages such as search pages will not work.</p>
+<p>The term &ldquo;GOV.UK mirror&rdquo; actually refers to 3 separate mirrors:</p>
 
 <ul>
-<li><p>Amazon S3: the static mirror is hosted in a bucket <code>govuk-&lt;environment&gt;-mirror</code> and the
-content is retrieved by the CDN using an API.  This bucket is replicated to
-<code>govuk-&lt;environment&gt;-mirror-replica</code> in another AWS region.</p></li>
-<li><p>Google GCS: the static mirror is hosted in a bucket <code>govuk-&lt;environment&gt;-mirror</code> and the
-content is retrieved by the CDN using an API.</p></li>
+<li>the main <code>govuk-&lt;environment&gt;-mirror</code> S3 bucket in one AWS region</li>
+<li>the <code>govuk-&lt;environment&gt;-mirror-replica</code> S3 bucket in another region, so if the first AWS region is down, we can fall back to this other region</li>
+<li>the <code>govuk-&lt;environment&gt;-mirror</code> bucket in Google Cloud Storage (GCS), so if AWS overall is down, we can fall back to this mirror</li>
 </ul>
-<h2 id='access'>Access</h2><p>Access to the:</p>
+<p>Access to the Amazon S3 buckets is restricted. If you have a Fastly, Office or Pingdom IP address, you have read-only access. If you’re an authenticated AWS web console user, you have read-write access.</p>
+<p>Access to the GCS bucket is also restricted. You can access the GCS bucket if you can access the secret keys in <code>govuk-secrets</code>, or if you’re an authenticated Google Cloud Platform (GCP) web console user.</p>
+<h2 id='updates-to-the-gov-uk-mirror'>Updates to the GOV.UK mirror</h2><p>Automatic scripts update the GOV.UK mirror every day.</p>
+<p>The <a href="https://github.com/alphagov/govuk_seed_crawler"><code>govuk_seed_crawler</code></a> is a script on the GOV.UK “mirrorer” machine. Every day at 8:00pm, this script fetches all of the URLs in the <a href="https://www.gov.uk/sitemap.xml">GOV.UK sitemap</a> and adds them to a <a href="/manual/rabbitmq.html">RabbitMQ message queue</a>.</p>
+<p>Then the <a href="https://github.com/alphagov/govuk_crawler_worker"><code>govuk_crawler_worker</code></a> on the mirrorer machine:</p>
 
-<ol>
-<li><p>Amazon S3 buckets are restricted to Fastly, Office and Pingdom IP addresses for read-only access
-and authenticated users in AWS web console.</p></li>
-<li><p>Google GCS buckets are restricted by secret keys in <code>govuk-secrets</code> and authenticated users
-in Google GCP web console.</p></li>
-</ol>
-<h2 id='updates-to-the-mirror'>Updates to the mirror</h2><p>Every day at 20:00, the <a href="https://github.com/alphagov/govuk_seed_crawler">govuk_seed_crawler</a> on the Mirrorer machine adds all GOV.UK URLs listed
-within the sitemaps (in the magnitude of hundreds of thousands) to a message queue. The <a href="https://github.com/alphagov/govuk_crawler_worker">govuk_crawler_worker</a>
-on the Mirrorer machine consumes these URLs, retrieves the HTML returned by these URLs, saves the content
-to disk and adds any new URLs found on those pages to the back of the queue.</p>
-<p>Every hour, the static copy of the site is copied from the Mirrorer machine to the primary AWS S3 bucket
-<code>govuk-&lt;environment&gt;-mirror</code>. This primary bucket is automatically replicated to another S3 bucket
-(named <code>govuk-&lt;environment&gt;-mirror-replica</code>) in another region by AWS.</p>
-<p>In addition, the primary AWS S3 bucket <code>govuk-&lt;environment&gt;-mirror</code> is synced to the Google GCS bucket
-of the same name daily at 12:00.</p>
-<p>The crawler is entirely independent of the mirrors. Stopping the crawler means no new updates are made
-to the mirrors, but it will not stop the mirrors from working.</p>
-<p>To inspect the contents of the mirror:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">-e</span> production ssh mirrorer
-<span class="nb">cd</span> /mnt/crawler_worker/www.gov.uk
-</code></pre></div><h2 id='forcing-failover-to-the-static-mirrors'>Forcing failover to the static mirrors</h2><p>Because the CDN will retry every request against the mirrors automatically if origin is unavailable,
-<a href="https://github.com/alphagov/fabric-scripts/blob/master/incident.py">stopping Nginx on the cache machines with Fabric</a> will result in falling back to mirrors:</p>
+<ul>
+<li>consumes the fetched GOV.UK URLs from the RabbitMQ message queue</li>
+<li>retrieves the GOV.UK HTML files returned by these URLs</li>
+<li>saves these HTML files to a <code>/tmp</code> folder on the mirrorer machine</li>
+<li>adds any new URLs found on those pages to the back of the RabbitMQ message queue</li>
+</ul>
+<p>Every hour, the <a href="https://github.com/alphagov/govuk-puppet/blob/86d1480c6e081313c415246063d5931af24473da/modules/govuk_crawler/manifests/init.pp#L109"><code>govuk_sync_mirror</code></a> script runs on the mirrorer machine. This script copies the GOV.UK HTML files from the mirrorer machine to the main <code>govuk-&lt;environment&gt;-mirror</code> AWS S3 bucket. AWS then copies this main bucket to the replica <code>govuk-&lt;environment&gt;-mirror-replica</code> S3 bucket in another region.</p>
+<p>Finally, a job is run in Google Cloud Storage (GCS) at 6:00pm the day after the original <code>govuk_seed_crawler</code>script is run. This job syncs the primary AWS S3 bucket <code>govuk-&lt;environment&gt;-mirror</code> to the GCS <code>govuk-&lt;environment&gt;-mirror</code> bucket. For more information on GCS, see the <a href="https://docs.publishing.service.gov.uk/manual/google-cloud-platform-gcp.html">Google Cloud Platform documentation</a>.</p>
+<p>The <code>govuk_seed_crawler</code> and <code>govuk_crawler_worker</code> scripts are independent of the mirrors. Stopping these scripts stops the mirror updates, but does not stop the mirrors from working.</p>
+<p>Run the following to inspect the contents of the GOV.UK mirrorer machine:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect -e production ssh mirrorer
+cd /mnt/crawler_worker/www.gov.uk
+</code></pre></div><h2 id='mirror-gov-uk-content-to-s3-alert'><code>Mirror GOV.UK content to S3</code> alert</h2><p>If the <code>govuk_sync_mirror</code> cronjob has not succeeded for 24 hours, it triggers the ‘Mirror GOV.UK content to S3’ alert. See the <a href="/manual/alerts/mirror-sync.html">Mirror GOV.UK content to S3 alert documentation</a> for more information.</p>
+<h2 id='forcing-failover-to-the-gov-uk-mirrors'>Forcing failover to the GOV.UK mirrors</h2><p>If Origin is unavailable, Fastly will automatically retry every request against the mirrors.</p>
+<p>To avoid Fastly traffic hitting Origin when Origin is down (potentially making the problem worse), we can <a href="/manual/fall-back-to-aws-cloudfront.html">fall back to AWS CloudFront</a>, which serves all content using the GOV.UK mirrors.</p>
+<p>Alternatively, we can stop <a href="https://www.nginx.com/">Nginx</a> on the cache machines, which will prevent requests hitting GOV.UK applications. Fastly will automatically retry these failed requests against the mirror.</p>
+<p>To stop Nginx on the cache machines, run the following command:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab <span class="nv">$environment</span> class:cache incident.fail_to_mirror
-</code></pre></div><p>To disable the fallback:</p>
+</code></pre></div><p>To disable this fallback:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab <span class="nv">$environment</span> class:cache incident.recover_origin
-</code></pre></div><h2 id='emergency-publishing-using-the-static-mirror'>Emergency publishing using the static mirror</h2><p>If you need to make changes to the site while origin is unavailable, you&rsquo;ll have to
-modify content on the static mirrors. Bear in mind that because the mirror is static
-HTML, it&rsquo;s hard to make broad changes to the site (like putting a banner on every page).</p>
-<p>You&rsquo;ll be notified by the escalation on-call contact that you need to edit the site.</p>
+</code></pre></div><h2 id='emergency-publishing-content-using-the-gov-uk-mirror'>Emergency publishing content using the GOV.UK mirror</h2><p>The escalation on-call contact will tell you if you need to make changes to GOV.UK while Origin is unavailable. To do this, you must change content on the GOV.UK mirrors. Because the mirror is static HTML, it&rsquo;s hard to make broad changes to the site, like putting a banner on every page.</p>
 
 <ol>
-<li><p>If you&rsquo;re at home, connect to the <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/it-the-white-chapel-building/how-to/gds-vpn">VPN</a>.</p></li>
+<li><p>If you&rsquo;re outside of GDS premises, connect to the <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/gds-internal-it/how-to/gds-virtual-private-network-vpn">VPN</a>.</p></li>
 <li><p>SSH to the mirrorer machine:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">-e</span> production ssh mirrorer
 </code></pre></div></li>
-<li><p>Disable puppet on the machine by running:</p>
+<li><p>Disable puppet on the machine:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>govuk_puppet <span class="nt">--disable</span> <span class="s2">"stopping crawling to avoid mirror changes"</span>
 </code></pre></div></li>
-<li><p>Stop the govuk_crawler_worker by running:</p>
+<li><p>Stop the <code>govuk_crawler_worker</code> script:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>initctl stop govuk_crawler_worker
 </code></pre></div></li>
-<li><p>Modify the relevant file in the directory <code>/mnt/crawler_worker</code>.</p></li>
-<li><p>Upload the file to the AWS S3 bucket via the AWS console.</p></li>
-<li><p>Upload the file to Google Cloud Storage using the GCP
-console.  Credentials are located in the govuk-secrets password store, under <code>google-accounts</code>.</p></li>
+<li><p>Modify the relevant file in the <code>/mnt/crawler_worker</code> directory.</p></li>
+<li><p>Upload the file to the AWS S3 bucket using the AWS console.</p></li>
+<li><p>Upload the file to Google Cloud Storage using the GCP console. Credentials are in the <code>govuk-secrets</code> password store, under <code>google-accounts</code>.</p></li>
 </ol>
-<p>If you&rsquo;re notified that the edit you&rsquo;ve made can be reverted, do that the same way.</p>
-<p>Once origin becomes available again, somebody (maybe you) will have to ensure that
-origin has been updated to serve the change that you made.</p>
+<p>If you&rsquo;re notified that you can revert the change you&rsquo;ve made, you can do this by following the same emergency publishing process.</p>
+<p>Once Origin becomes available again, update Origin to reflect the change you made on the mirror.</p>
 
 
   <div class='related-content'>
@@ -312,7 +299,7 @@ origin has been updated to serve the change that you made.</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/fall-back-to-mirror.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Fall+back+to+the+static+mirrors%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ffall-back-to-mirror.html%29&amp;labels=bug&amp;title=Re%3A+%27Fall+back+to+the+static+mirrors%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27GOV.UK+CDN+static+mirrors%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ffall-back-to-mirror.html%29&amp;labels=bug&amp;title=Re%3A+%27GOV.UK+CDN+static+mirrors%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
