@@ -15,9 +15,23 @@ You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-do
 
 ### Running the app
 
-You will need to [create a GitHub auth token](https://github.com/settings/tokens/new) to build the project or run the full test suite, otherwise you will find yourself rate limited. It doesn't need any permissions.
+The docs include pages pulled from other GitHub repositories. By default, these are loaded eagerly by Middleman.
 
-Store the token in a `.env` file like this:
+You can skip eager loading of resources by setting a `SKIP_PROXY_PAGES` variable.
+
+If you do not do this, you will need to create a GitHub auth token to avoid getting rate limited.
+
+#### Skipping proxied pages from other repositories
+
+```
+SKIP_PROXY_PAGES=true ./startup
+```
+
+Note that `middleman server` will still try to load these pages lazily on some pages (e.g. the docs homepage, or the applications list), so you'll either need to avoid these pages or use a GitHub auth token.
+
+#### Using a GitHub auth token
+
+[Create a GitHub auth token](https://github.com/settings/tokens/new) (the token doesn't need any permissions). Store the token in a `.env` file like this:
 
 ```
 GITHUB_TOKEN=somethingsomething
