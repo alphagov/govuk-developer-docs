@@ -42,7 +42,7 @@ Router sends the request to [Frontend](https://github.com/alphagov/frontend). Fr
 
 Frontend produces the homepage as an HTML response and sends that response back to Router.
 
-Router sends the response to Fastly, which caches the response for 30 minutes. This means that Fastly can handle any subsequent requests for the homepage during this time, without needing to query Origin at all.
+Router sends the response to Fastly, which caches the response for 5 minutes. This means that Fastly can handle any subsequent requests for the homepage during this time, without needing to query Origin at all.
 
 Finally, Fastly sends the response back to the user.
 
