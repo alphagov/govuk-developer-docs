@@ -1,0 +1,835 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk_publishing_components: Analytics - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/analytics.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="govuk_publishing_components: Analytics - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/analytics.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk_publishing_components: Analytics" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/analytics.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Gems</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/asset_bom_removal-rails.html"><span>asset_bom_removal-rails</span></a></li>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/gds-sso.html"><span>gds-sso</span></a></li>
+          <li><a href="/repos/govspeak.html"><span>govspeak</span></a></li>
+          <li><a href="/repos/govuk_ab_testing.html"><span>govuk_ab_testing</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_document_types.html"><span>govuk_document_types</span></a></li>
+          <li><a href="/repos/govuk_message_queue_consumer.html"><span>govuk_message_queue_consumer</span></a></li>
+          <li><a href="/repos/govuk_publishing_components.html"><span>govuk_publishing_components</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/govuk_sidekiq.html"><span>govuk_sidekiq</span></a></li>
+          <li><a href="/repos/optic14n.html"><span>optic14n</span></a></li>
+          <li><a href="/repos/plek.html"><span>plek</span></a></li>
+          <li><a href="/repos/rails_translation_manager.html"><span>rails_translation_manager</span></a></li>
+          <li><a href="/repos/rubocop-govuk.html"><span>rubocop-govuk</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+          <li><a href="/repos/transition-config.html"><span>transition-config</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bulk-merger.html"><span>bulk-merger</span></a></li>
+          <li><a href="/repos/govspeak-preview.html"><span>govspeak-preview</span></a></li>
+          <li><a href="/repos/govuk-app-deployment.html"><span>govuk-app-deployment</span></a></li>
+          <li><a href="/repos/govuk-aws.html"><span>govuk-aws</span></a></li>
+          <li><a href="/repos/govuk-browser-extension.html"><span>govuk-browser-extension</span></a></li>
+          <li><a href="/repos/govuk-cdn-config.html"><span>govuk-cdn-config</span></a></li>
+          <li><a href="/repos/govuk-content-store-examples.html"><span>govuk-content-store-examples</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-deploy-lag-badger.html"><span>govuk-deploy-lag-badger</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-dns.html"><span>govuk-dns</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-saas-config.html"><span>govuk-saas-config</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_taxonomy_helpers.html"><span>govuk_taxonomy_helpers</span></a></li>
+          <li><a href="/repos/publishing-e2e-tests.html"><span>publishing-e2e-tests</span></a></li>
+          <li><a href="/repos/seal.html"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/sidekiq-monitoring.html"><span>sidekiq-monitoring</span></a></li>
+          <li><a href="/repos/smokey.html"><span>smokey</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utlities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/email-alert-monitoring.html"><span>email-alert-monitoring</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/aa11fdf065ae99bedd0d855c180d69bd6851b208">16 Sep 2021</a>
+</div>
+
+  <h1 class="page-title">govuk_publishing_components: Analytics</h1>
+
+  
+<p>The gem now contains the GOV.UK analytics code from <code>static</code>, originally from <code>govuk_frontend_toolkit</code>.</p>
+<p>The following documentation is included from the original for reference only.</p>
+<h2 id="toolkit-analytics">Toolkit analytics</h2>
+<p>The analytics code provides an abstraction around analytics to make tracking pageviews, events and dimensions across multiple analytics providers easier. Specifically it was created to ease the migration from Google’s Classic Analytics to Universal Analytics. It includes:</p>
+<ul>
+<li>a Google Analytics universal tracker wrapper</li>
+<li>code to asynchronously load universal analytics</li>
+<li>a generic Analytics wrapper that allows multiple trackers to be configured</li>
+<li>sensible defaults such as anonymising IPs</li>
+<li>data coercion into the format required by Google Analytics (eg a custom dimension’s value must be a string)</li>
+<li>stripping of PII from data sent to the tracker (strips email by default, can be configured to also strip dates and UK postcodes)</li>
+</ul>
+<h2 id="create-an-analytics-tracker">Create an analytics tracker</h2>
+<p>The minimum you need to use the analytics function is:</p>
+<ol>
+<li>Include the following files from /javascripts/analytics_toolkit in your project:</li>
+</ol>
+<ul>
+<li>google-analytics-universal-tracker.js</li>
+<li>analytics.js</li>
+</ul>
+<ol start="2">
+<li>Copy the following <code>init</code> script into your own project and replace the dummy IDs with your own (they begin with <code>UA-</code>).</li>
+</ol>
+<ul>
+<li>This initialisation can occur immediately as this API has no dependencies.</li>
+<li>Load and create the analytics tracker at the earliest opportunity so that:
+<ul>
+<li>the time until the first pageview is tracked is kept small and pageviews aren’t missed</li>
+<li>javascript that depends on <code>GOVUK.analytics</code> runs after the tracker has been created</li>
+</ul>
+</li>
+</ul>
+<pre lang="js"><code>(function() {
+  "use strict";
+
+  // Load Google Analytics libraries
+  GOVUK.Analytics.load();
+
+  // Use document.domain in dev, preview and staging so that tracking works
+  // Otherwise explicitly set the domain as www.gov.uk (and not gov.uk).
+  var cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
+
+  // Configure profiles and make interface public
+  // for custom dimensions, virtual pageviews and events
+  GOVUK.analytics = new GOVUK.Analytics({
+    universalId: 'UA-XXXXXXXX-X',
+    cookieDomain: cookieDomain
+  });
+
+  // Set custom dimensions before tracking pageviews
+  // GOVUK.analytics.setDimension(…)
+
+  // Activate any event plugins eg. print intent, error tracking
+  // GOVUK.analyticsPlugins.error();
+  // GOVUK.analyticsPlugins.printIntent();
+
+  // Track initial pageview
+  GOVUK.analytics.trackPageview();
+})();
+</code></pre>
+<p>Once instantiated, the <code>GOVUK.analytics</code> object can be used to track virtual pageviews, custom events and custom dimensions.</p>
+<h2 id="virtual-pageviews">Virtual pageviews</h2>
+<blockquote>
+<p>Page tracking allows you to measure the number of views you had of a particular page on your web site.</p>
+</blockquote>
+<ul>
+<li><a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/pages">Universal Analytics</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>path</code> (optional)</td>
+<td>Custom path, eg <code>/path</code>
+</td>
+</tr>
+<tr>
+<td>
+<code>title</code> (optional)</td>
+<td>Custom page title, Universal only</td>
+</tr>
+</tbody>
+</table>
+<pre lang="js"><code>// Track current page
+GOVUK.analytics.trackPageview();
+
+// Track a custom path
+GOVUK.analytics.trackPageview('/path');
+
+// Track a custom path and custom page title
+GOVUK.analytics.trackPageview('/path', 'Title');
+
+// As above, plus additional options passed into the `pageview` call
+GOVUK.analytics.trackPageview('/path', 'Title', {
+  sessionControl: 'start'
+});
+</code></pre>
+<h2 id="custom-events">Custom events</h2>
+<blockquote>
+<p>Event tracking allows you to measure how users interact with the content of your website. For example, you might want to measure how many times a button was pressed, or how many times a particular item was used.</p>
+</blockquote>
+<ul>
+<li><a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/events">Universal Analytics</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>category</code> (required)</td>
+<td>Typically the object that was interacted with, eg "JavaScript error"</td>
+</tr>
+<tr>
+<td>
+<code>action</code> (required)</td>
+<td>The type of interaction, eg a Javascript error message</td>
+</tr>
+<tr>
+<td>
+<code>options</code> (optional)</td>
+<td>Optional parameters to further describe event</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>page</code></td>
+<td>Useful for sending the URL when <code>window.location</code> has been updated using JavaScript since the Analytics tracking object was created</td>
+</tr>
+<tr>
+<td><code>label</code></td>
+<td>Useful for categorising events, eg Javascript error source</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>Values must be non-negative. Useful to pass counts, eg error happened 5 times</td>
+</tr>
+<tr>
+<td><code>nonInteraction</code></td>
+<td>Defaults to false. When set the event will not affect bounce rate</td>
+</tr>
+</tbody>
+</table>
+<pre lang="js"><code>// Track a custom event with required category and action fields
+GOVUK.analytics.trackEvent('category', 'action');
+
+// Track a custom event with optional page, label, value and nonInteraction options
+GOVUK.analytics.trackEvent('category', 'action', {
+  page: '/path/to/page',
+  label: 'label',
+  value: 1,
+  nonInteraction: true // event will not affect bounce rate
+});
+</code></pre>
+<h2 id="custom-dimensions">Custom dimensions</h2>
+<blockquote>
+<p>Custom dimensions and metrics are a powerful way to send custom data to Google Analytics. Use custom dimensions and metrics to segment and measure differences between: logged in and logged out users, authors of pages, or any other business data you have on a page.</p>
+</blockquote>
+<ul>
+<li><a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets">Universal Analytics</a></li>
+</ul>
+<p>Universal custom dimensions are configured within analytics.</p>
+<h3 id="set-custom-dimensions-before-tracking-pageviews">Set custom dimensions before tracking pageviews</h3>
+<p>Many page level custom dimensions must be set before the initial pageview is tracked. Calls to <code>setDimension</code> should typically be made before the initial <code>trackPageview</code> is sent to analytics.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>index</code> (required)</td>
+<td>The Universal dimension’s index as configured in the profile.</td>
+</tr>
+<tr>
+<td>
+<code>value</code> (required)</td>
+<td>Value of the custom dimension</td>
+</tr>
+</tbody>
+</table>
+<pre lang="js"><code>// Set a custom dimension at index 1 with value and name
+GOVUK.analytics.setDimension(1, 'value');
+</code></pre>
+<h3 id="create-custom-dimension-helpers">Create custom dimension helpers</h3>
+<p>Because dimensions rely on the correct index and that index doesn’t indicate its purpose, it’s helpful to create methods that abstract away the details. For example:</p>
+<pre lang="js"><code>function setPixelDensityDimension(pixelDensity) {
+  GOVUK.analytics.setDimension(1, pixelDensity);
+}
+</code></pre>
+<h2 id="tracking-across-domains">Tracking across domains</h2>
+<p>Once an Analytics instance has been created, tracking across domains can be set up
+for pages like:</p>
+<pre lang="js"><code>GOVUK.analytics.addLinkedTrackerDomain(trackerIdHere, nameForTracker, domainToLinkTo);
+</code></pre>
+<p>Note that <code>domainToLinkTo</code> must be an array of strings.</p>
+<p>Once this is done hits to that page will be tracked in both your local and the
+named tracker, and sessions will persist to the other domain.</p>
+<h3 id="adding-more-domains-to-gov-uks-cross-domain-linker">Adding more domains to GOV.UK's cross domain linker</h3>
+<p>Once a service starts sending analytics data to the shared GA property and has configured their system to include <code>www.gov.uk</code> in their cross domain linking, we must also configure <code>www.gov.uk</code> to include their domain in our cross linker configuration.</p>
+<p>Add the domain of the service to <a href="https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/init.js.erb#L44"><code>init.js.erb</code></a>.</p>
+<p>Here's an <a href="https://github.com/alphagov/static/pull/1845">example of an earlier PR</a> to do this.</p>
+<p>Only the domain should be added, GA will ignore any path details e.g. <code>/government/service/</code></p>
+<p>Note that GA matches subdomains of any domains added this way. So <code>passport.service.gov.uk</code> also includes <code>www.passport.service.gov.uk</code>.</p>
+<p>On that basis the simplest course of action would appear to be to simply add <code>gov.uk</code> or even <code>service.gov.uk</code> and then it'll just match everything we want it to. <strong>We must not do this</strong> for very good reasons:</p>
+<ul>
+<li>any link from <code>www.gov.uk</code> to a matching domain would have a URL parameter automatically added to it e.g. <code>https://something.service.gov.uk/?_ga=23.32423234.213.1.2213</code>. This could interfere with that site's own analytics.</li>
+<li>the client ID might be reset.</li>
+</ul>
+<p>Once the changes to the linker configuration have been deployed a performance analyst will need to check that everything is working correctly. Since static PRs can take upwards of half an hour to pass CI tests, it's worth having a revert PR ready early on just in case.</p>
+<h2 id="plugins">Plugins</h2>
+<p>Plugins are namespaced to <code>GOVUK.analyticsPlugins</code>. They should be pulled in by your project and initialised after <code>GOVUK.analytics</code> (see <a href="#create-an-analytics-tracker">Create an analytics tracker, above</a>).</p>
+<h3 id="print-tracking-print-intent-js">Print tracking (<code>print-intent.js</code>)</h3>
+<p>Track when users are attempting to print content. The plugin sends a <code>Print intent</code> event and a <code>/print</code> prefixed pageview:</p>
+<p>Example event:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Print Intent</td>
+<td><code>/current/page</code></td>
+</tr>
+</tbody>
+</table>
+<p>Example pageview:</p>
+<p><code>/print/current/page</code></p>
+<h3 id="error-tracking-error-tracking-js">Error tracking (<code>error-tracking.js</code>)</h3>
+<p>Track JavaScript errors, capturing the error message, file and line number. These events don’t affect bounce rate. Errors can be filtered to include only files of interest by passing in an options argument with a regexp matcher (to avoid tracking errors generated by browser plugins):</p>
+<pre lang="js"><code>GOVUK.analyticsPlugins.error({filenameMustMatch: /gov\.uk/});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Action</th>
+<th>Label</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JavaScript Error</td>
+<td>The error message</td>
+<td>file.js: line number</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="external-link-tracking-external-link-tracker-js">External link tracking (<code>external-link-tracker.js</code>)</h3>
+<p>The tracker will send an event for clicks on links beginning, <code>http</code> and linking outside of the current host. By default the plugin uses Google Analytics’ <code>transport: beacon</code> method so that events are tracked even if the page unloads.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Action</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External Link Clicked</td>
+<td><a href="http://www.some-external-website.com">http://www.some-external-website.com</a></td>
+<td>Link text</td>
+</tr>
+</tbody>
+</table>
+<h3 id="download-link-tracking-download-link-tracker-js">Download link tracking (<code>download-link-tracker.js</code>)</h3>
+<p>The tracker will send an event for clicks on any link that matches the selector passed in. A selector must be provided. By default the plugin uses Google Analytics’ <code>transport: beacon</code> method so that events are tracked even if the page unloads.</p>
+<pre lang="js"><code>GOVUK.analyticsPlugins.downloadTracker({selector: 'a[rel="download"]'});
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Action</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Download Link Clicked</td>
+<td><code>/some/upload/attachment/file.pdf</code></td>
+<td>Link text</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mailto-link-tracking-mailto-link-tracker-js">Mailto link tracking (<code>mailto-link-tracker.js</code>)</h3>
+<p>The tracker will send events for clicks on links beginning with <code>mailto</code>. By default the
+plugin uses Google Analytics’ <code>transport: beacon</code> method so that events are tracked even if the page unloads.</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Action</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mailto Link Clicked</td>
+<td>mailto:<a href="mailto:name@email.com">name@email.com</a>
+</td>
+<td>Link text</td>
+</tr>
+</tbody>
+</table>
+<h3 id="stripping-personally-identifiable-information-pii">Stripping Personally Identifiable Information (PII)</h3>
+<p>The tracker will strip any PII it detects from all arguments sent to the
+tracker.  If a PII is detected in the arguments it is replaced with a
+placeholder value of <code>[&lt;type of PII removed&gt;]</code>; for example: <code>[email]</code> if an
+email address was removed, <code>[date]</code> if a date was removed, or <code>[postcode]</code>
+if a postcode was removed.</p>
+<p>We have to parse all arguments which means that if you don't pass a path to
+<code>trackPageview</code> to track the current page we have to extract the current page
+and parse it, turning all <code>trackPageview</code> calls into ones with a path argument.
+We use <code>window.location.href.split('#')[0]</code> as the default path when one is
+not provided.  The original behaviour would have been to ignore the anchor
+part of the URL anyway so this doesn't change the behaviour other than to make
+the path explicit.</p>
+<p>By default we strip email addresses, but it can also be configured to strip
+dates and postcodes too.  Dates and postcodes are off by default because
+they're more likely to cause false positives.  If you know you are likely to
+include dates or postcodes in the data you send to the tracker you can configure
+to strip postcodes at initialize time as follows:</p>
+<pre lang="js"><code>  GOVUK.analytics = new GOVUK.Analytics({
+    universalId: 'UA-XXXXXXXX-X',
+    cookieDomain: cookieDomain,
+    stripDatePII: true,
+    stripPostcodePII: true
+  });
+</code></pre>
+<p>Any value other than the JS literal <code>true</code> will leave the analytics module
+configured not to strip.</p>
+<h4 id="avoding-false-positives">Avoding false positives</h4>
+<p>Sometimes you will have data you want to send to analytics that looks like PII
+and would be stripped out.  For example on GOV.UK the content_ids that belong
+to every document can sometimes contain a string of characters that look like a
+UK postcode: in <code>eed5b92e-8279-4ca9-a141-5c35ed22fcf1</code> the substring <code>c35ed</code> in
+the final portion looks like a postcode, <code>C3 5ED</code>, and will be transformed into
+<code>eed5b92e-8279-4ca9-a141-5[postcode]22fcf1</code> which breaks the <code>content_id</code>.  To
+send data that you know is not PII, but it looks like an email address, a date,
+or a UK postcode you can provide your arguments wrapped in a <code>GOVUK.Analytics.PIISafe</code>
+object.  If any argument to an analytics function is an instance of one of these
+objects the value contained within will be extracted and sent directly to the
+analytics tracker without attempting to strip PII from it.  For example:</p>
+<pre lang="js"><code>  GOVUK.analytics.setDimension(1, new GOVUK.Analytics.PIISafe('this-is-not-an@email-address-but-it-looks-like-one'));
+  GOVUK.analytics.trackEvent('report title clicked', new GOVUK.Analytics.PIISafe('this report title looks like it contains a P0 5TC ode but it does not really'));
+</code></pre>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/master/docs/analytics/analytics.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics%2Fanalytics.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
