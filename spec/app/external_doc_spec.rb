@@ -111,6 +111,10 @@ RSpec.describe ExternalDoc do
         expect(html).to have_selector("h3#data-gov-uk")
         expect(html).to have_selector("h3#patterns-style-guides")
       end
+
+      it "returns empty string if passed nil" do
+        expect(described_class.parse(nil)).to eq("")
+      end
     end
   end
 
