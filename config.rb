@@ -56,6 +56,8 @@ end
 
 ignore "templates/*"
 
-ProxyPages.resources.each do |resource|
-  proxy resource[:path], resource[:template], resource[:frontmatter]
+unless ENV["SKIP_PROXY_PAGES"] == "true"
+  ProxyPages.resources.each do |resource|
+    proxy resource[:path], resource[:template], resource[:frontmatter]
+  end
 end
