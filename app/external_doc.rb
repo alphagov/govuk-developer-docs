@@ -33,6 +33,8 @@ class ExternalDoc
       MarkdownLinkFilter,
     ]
 
+    markdown = "" if markdown.nil?
+
     HTML::Pipeline
       .new(filters)
       .to_html(markdown.to_s.force_encoding("UTF-8"), context)
