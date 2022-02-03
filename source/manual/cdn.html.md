@@ -63,7 +63,7 @@ Varnish lets us configure our caching logic with VCL (Varnish config language).
 
 It also lets us do fancy things, like [only allowing connections to staging from permitted IPs](https://github.com/alphagov/govuk-cdn-config/blob/f6cf15e9155f7c2ea89970741d3e03851a00013d/vcl_templates/www.vcl.erb#L202), [forcing SSL](https://github.com/alphagov/govuk-cdn-config/blob/f6cf15e9155f7c2ea89970741d3e03851a00013d/vcl_templates/www.vcl.erb#L222) and [blocking IP addresses](https://github.com/alphagov/govuk-cdn-config/blob/f6cf15e9155f7c2ea89970741d3e03851a00013d/vcl_templates/www.vcl.erb#L208), among other things.
 
-We set a default TTL of 3600s on cached objects. This means that pages such as the GOV.UK homepage will be cached for 1 hour. 5XX responses get cached for 1s; mirror responses get cached for 15 minutes.
+We set a default TTL of 300s (5 mins) on cached objects. This means that pages such as the GOV.UK homepage will be cached for 5 minutes. 5XX responses get cached for 1s; mirror responses get cached for 15 minutes.
 
 We also set a grace period of 24 hours. So if the homepage server is down, we'll continue to serve a stale homepage for 24 hours.
 
