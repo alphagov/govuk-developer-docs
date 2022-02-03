@@ -214,15 +214,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c00595470be6f34bebf40f311ce74cf1538cf87">25 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/65476fa849c3b08d7e7c53acc809f7eb472389ae">3 Feb 2022</a>
 </div>
 
  <h1 id='header'>Our content delivery network (CDN)</h1> <p>GOV.UK uses Fastly as a CDN. Public users aren&rsquo;t accessing GOV.UK servers directly, they connect via the CDN. This is better because:</p>
@@ -266,7 +259,7 @@ Once you&rsquo;ve run the job successfully, you can delete the token.</p>
 <h2 id='fastly-caching'>Fastly Caching</h2><p>The main www.gov.uk cache is <a href="https://varnish-cache.org/docs/2.1/index.html">Varnish</a>, which Fastly runs for us.</p>
 <p>Varnish lets us configure our caching logic with VCL (Varnish config language).</p>
 <p>It also lets us do fancy things, like <a href="https://github.com/alphagov/govuk-cdn-config/blob/f6cf15e9155f7c2ea89970741d3e03851a00013d/vcl_templates/www.vcl.erb#L202">only allowing connections to staging from permitted IPs</a>, <a href="https://github.com/alphagov/govuk-cdn-config/blob/f6cf15e9155f7c2ea89970741d3e03851a00013d/vcl_templates/www.vcl.erb#L222">forcing SSL</a> and <a href="https://github.com/alphagov/govuk-cdn-config/blob/f6cf15e9155f7c2ea89970741d3e03851a00013d/vcl_templates/www.vcl.erb#L208">blocking IP addresses</a>, among other things.</p>
-<p>We set a default TTL of 3600s on cached objects. This means that pages such as the GOV.UK homepage will be cached for 1 hour. 5XX responses get cached for 1s; mirror responses get cached for 15 minutes.</p>
+<p>We set a default TTL of 300s (5 mins) on cached objects. This means that pages such as the GOV.UK homepage will be cached for 5 minutes. 5XX responses get cached for 1s; mirror responses get cached for 15 minutes.</p>
 <p>We also set a grace period of 24 hours. So if the homepage server is down, we&rsquo;ll continue to serve a stale homepage for 24 hours.</p>
 <p>These are the GET request status codes that Varnish caches automatically: 200, 203, 300, 301, 302, 404 or 410. (See the <a href="https://varnish-cache.org/docs/2.1/reference/vcl.html#variables">Varnish docs</a> for more detail.)</p>
 <p>We have added to these - see the <a href="https://github.com/alphagov/govuk-cdn-config/">GOV.UK CDN Config repo</a> VCL for <a href="https://github.com/alphagov/govuk-cdn-config/blob/c37856f5cb463d204ef3926828f35204721eb7e9/vcl_templates/www.vcl.erb#L408-L416">special handling of certain status codes</a>, and for the most up-to-date version of what we&rsquo;re running in Fastly. Refer to the Varnish 2.1 documentation when looking at the VCL code.</p>
