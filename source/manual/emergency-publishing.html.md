@@ -60,30 +60,15 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 >
 > The Jenkins job will also clear the Varnish caches and the CDN cache for [a predefined list of 10 URLs](https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34) (including the website root).
 
-### 3. Clear the CDN and Varnish caches
+### 3. Test with cache bust strings
 
-Jenkins is capable of clearing [the internal memcache caches](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_jenkins/templates/jobs/clear_frontend_memcache.yaml.erb#L18) which some frontend applications use for their `Rails.cache`. Unfortunately [some frontend applications use a shared memcached](https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/class/frontend.yaml) and Jenkins can't clear this cache yet.
+Most GOV.UK pages have a cache TTL of 5 minutes. After deploying the emergency
+banner you should expect to see the banner appear on all GOV.UK pages within
+10 minutes.
 
-As a workaround, you need to re-run the clear CDN and Varnish cache Jenkins jobs.
-
-1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
-  This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
-2. Run the "Clear varnish cache" Jenkins job
-   - [Clear varnish on Integration](https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/)
-   - [Clear varnish on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/)
-   - [⚠️ Clear varnish on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/)
-3. Run the "Clear CDN cache" Jenkins job
-   - [Clear CDN on Integration](https://deploy.blue.integration.govuk.digital/job/clear-cdn-cache/)
-   - [Clear CDN on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/)
-   - [⚠️ Clear CDN on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/)
-
-> **Note**
->
-> This is a temporary step to workaround the fact that Jenkins doesn't clear these caches. It was added on 2021-11-22, and should be removed shortly afterwards once the underlying issue is resolved.
-
-[slimmer-cache]: https://github.com/alphagov/slimmer/blob/5b8428704f143547bdae2c7cb9a585ab77d3181b/lib/slimmer.rb#L10
-
-### 4. Test with cache bust strings
+Once the banner deployment completes, wait a minute to allow frontend
+application caches to clear, and then do a test to see if the deployment has
+succeeded.
 
 Test the changes by visiting pages and adding a cache-bust string. Remember to change the URL based on the environment you are testing in (integration, staging, production).
 
@@ -102,8 +87,6 @@ For each page:
 - [https://www.gov.uk/search?q=69b197b8](https://www.gov.uk/search?q=69b197b8) ([Integration](https://www-origin.integration.publishing.service.gov.uk/search?q=69b197b8), [Staging](https://www-origin.staging.publishing.service.gov.uk/search?q=69b197b8))
 
 If the banner doesn't show, [look at the troubleshooting section](#the-banner-is-not-showing--not-clearing).
-
-If you are in production environment, once the origin cache is purged the CDN cache will be purged automatically. This will clear cache for the top 10 most visited pages.
 
 Once all caches have had time to clear, check that the emergency banner is visible when accessing the same pages as before but without a cache-bust string.
 
@@ -139,8 +122,8 @@ The information for the emergency banner is stored in Redis. [Static](https://gi
 
 ### The banner is not showing / not clearing
 
-Usually this is because the caching has not cleared properly. This can be at
-various points in our stack as well as locally in your browser. Things to try:
+Usually this is because a cache has not expired or cleared properly. This can be
+at various points in our stack as well as locally in your browser. Things to try:
 
 - Make sure you are actually looking at a page on the environment you released
   the banner. All the links in this document go to the production version of
@@ -151,6 +134,19 @@ various points in our stack as well as locally in your browser. Things to try:
   private browser instance.
 - It is possible that the caching layers for the GOV.UK stack have evolved and
   we need to tweak the scripts to clear new caches that have been set up.
+- You can also try manually purging the Varnish and CDN caches:
+  1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
+    This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
+  2. Run the "Clear varnish cache" Jenkins job
+     - [Clear varnish on Integration](https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/)
+     - [Clear varnish on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/)
+     - [⚠️ Clear varnish on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/)
+  3. Run the "Clear CDN cache" Jenkins job
+     - [Clear CDN on Integration](https://deploy.blue.integration.govuk.digital/job/clear-cdn-cache/)
+     - [Clear CDN on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/)
+     - [⚠️ Clear CDN on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/)
+
+[slimmer-cache]: https://github.com/alphagov/slimmer/blob/5b8428704f143547bdae2c7cb9a585ab77d3181b/lib/slimmer.rb#L10
 
 ### Manually testing the Redis key
 
