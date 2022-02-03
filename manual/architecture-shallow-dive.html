@@ -201,7 +201,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7130481824ede6c64e6a2b7b5c7924336d0dcbd3">3 Feb 2022</a>
 </div>
 
  <h1 id='header'>Architectural summary of GOV.UK</h1> <p>The following content is a high-level summary of GOV.UK architecture, intended for both developers and non-developers to refer to.</p>
@@ -227,7 +227,7 @@
 <p>Within Origin, the request goes to an application called <a href="https://github.com/alphagov/router">Router</a> to determine which GOV.UK application will produce the page.</p>
 <p>Router sends the request to <a href="https://github.com/alphagov/frontend">Frontend</a>. Frontend is one of several public-facing apps that render pages on GOV.UK. The GOV.UK homepage is one of the pages that Frontend is responsible for. The homepage&rsquo;s content is hard-coded in the Frontend application.</p>
 <p>Frontend produces the homepage as an HTML response and sends that response back to Router.</p>
-<p>Router sends the response to Fastly, which caches the response for 30 minutes. This means that Fastly can handle any subsequent requests for the homepage during this time, without needing to query Origin at all.</p>
+<p>Router sends the response to Fastly, which caches the response for 5 minutes. This means that Fastly can handle any subsequent requests for the homepage during this time, without needing to query Origin at all.</p>
 <p>Finally, Fastly sends the response back to the user.</p>
 <h3 id='a-user-visits-a-gov-uk-webpage'>A user visits a GOV.UK webpage</h3><p>The user searches for a GOV.UK webpage, and selects the webpage link in the search results. For example, this <a href="https://www.gov.uk/government/news/uk-changes-travel-rules-for-travellers-from-nigeria-to-england">news page about changes to travel between Nigeria and England</a>.</p>
 <p>The user&rsquo;s browser sends the request to the <a href="https://www.fastly.com/">Fastly</a> content delivery network (CDN).</p>
