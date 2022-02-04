@@ -46,20 +46,48 @@ Enter password: REDACTED
 
 ## Deploying code with Jenkins
 
-Licensify is built and deployed using Jenkins.
+Licensify is built and deployed using Jenkins. There are four relevant Jenkins instances:
+
+1. [CI Jenkins](https://ci.integration.publishing.service.gov.uk/job/licensify/) automatically builds releases from the master branch
+2. [Integration Deploy Jenkins](https://deploy.integration.publishing.service.gov.uk/) deploys releases to integration
+3. [Staging Deploy Jenkins](https://deploy.blue.staging.govuk.digital/) deploys releases to staging
+4. [Production Deploy Jenkins](https://deploy.blue.production.govuk.digital/) deploys releases to production
+
+Access to Jenkins is controlled through GitHub teams. Users in the "GOV.UK" team have full access to the CI and
+Integration Jenkins instances, and read only access to the Staging and Production Jenkins instances. Users in the "
+GOV.UK Production" team have full access in all environments.
+
+Usually, GOV.UK developers coordinate deployments through these Jenkins instances using
+[the Release app](https://release.publishing.service.gov.uk/applications). This shows which releases are deployed to
+which environments, and has useful buttons to take you to the correct Jenkins instance.
+
+Access to the Release app is controlled through [GOV.UK Signon](https://github.com/alphagov/signon). If you don't have access, you can request it from the
+GOV.UK developers.
 
 The process for building a new release and promoting it through the three
 environments is as follows:
 
-1. When a PR/branch is merged into master, this starts a new build of master on
-   [the CI Jenkins](https://ci.integration.publishing.service.gov.uk/job/licensify/). This
-   produces the necessary artefacts to deploy Licensify. Each build is given a build number.
-1. The new master build will be automatically be deployed to integration using
-   the [integration Jenkins job](https://ci.integration.publishing.service.gov.uk/job/Deploy_App_Downstream/)
-1. To deploy to staging, you must manually trigger the `deploy_app` Jenkins job
-   3 times, once for each of the Licensify components. These can be found through the [Release](https://release.publishing.service.gov.uk/applications) app ([licensify](https://release.publishing.service.gov.uk/applications/licensify),
-   [licensify-admin](https://release.publishing.service.gov.uk/applications/licensify-admin), [licensify-feed](https://release.publishing.service.gov.uk/applications/licensify-feed))
-1. Follow the same procedure as for staging to deploy to production using the production links in the Release app
+1. When a PR/branch is merged into master, this starts a new build of master on the CI Jenkins. This produces the
+   necessary artefacts to deploy Licensify. Each build is given a build number.
+1. Jenkins will attempt to deploy the new build automatically to integration using
+   the [integration Jenkins job](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/)
+1. Jenkins only expects to deploy one application per repository, but Licensing is deployed three times (`licensify`,
+   `licensify-admin`, and `licensify-feed`). The automated deployment currently only works for `licensify`.
+1. To complete the deployment to integration, you need to ensure that the Deploy App job runs for each of the apps:
+   1. [licensify (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify)
+   1. [licensify-admin (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin)
+   1. [licensify-feed (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed)
+1. Manually confirm that the frontend and backend of Licensing are working on Integration before deploying to Staging
+1. To deploy to staging, you must manually trigger the Deploy App Jenkins job 3 times, once for each of the Licensify
+   components.
+   1. [licensify (Staging)](https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify)
+   1. [licensify-admin (Staging)](https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin)
+   1. [licensify-feed (Staging)](https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed)
+1. Manually confirm that the frontend and backend of Licensing are working on Staging before deploying to Production
+1. Follow the same procedure as for staging to deploy to production using the production Jenkins:
+   1. [licensify (Production)](https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify)
+   1. [licensify-admin (Production)](https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin)
+   1. [licensify-feed (Production)](https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed)
 
 ## Accessing machines using SSH
 
