@@ -61,7 +61,7 @@ Usually, GOV.UK developers coordinate deployments through these Jenkins instance
 [the Release app](https://release.publishing.service.gov.uk/applications). This shows which releases are deployed to
 which environments, and has useful buttons to take you to the correct Jenkins instance.
 
-Access to the release app is controlled through GOV.UK Signon. If you don't have access, you can request it from the
+Access to the Release app is controlled through [GOV.UK Signon](https://github.com/alphagov/signon). If you don't have access, you can request it from the
 GOV.UK developers.
 
 The process for building a new release and promoting it through the three
