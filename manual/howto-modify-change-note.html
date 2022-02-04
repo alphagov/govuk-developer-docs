@@ -126,10 +126,18 @@
     <a href="#header"><span>Modify a change note in Publishing API or Whitehall</span></a>
     <ul>
       <li>
-        <a href="#publishing-api"><span>Publishing API</span></a>
+        <a href="#whitehall"><span>Whitehall</span></a>
       </li>
       <li>
-        <a href="#whitehall"><span>Whitehall</span></a>
+        <a href="#publishing-api"><span>Publishing API</span></a>
+        <ul>
+          <li>
+            <a href="#method-1-empty-change_history"><span>Method 1 (empty change_history)</span></a>
+          </li>
+          <li>
+            <a href="#method-2-present-change_history"><span>Method 2 (present change_history)</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -182,23 +190,11 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/611d45fd60db3c61d211f6bec17347383d0e6bd5">11 Oct 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0b3d8310b4a9b292cfc45f2f3a435e73322635f9">4 Feb 2022</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.</p>
-<h2 id='publishing-api'>Publishing API</h2><p>Connect to the Publishing API console:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk-connect app-console -e production publishing_api/publishing-api
-</code></pre></div><p>Then find your document and update its content. You should see the
-<code>note</code> and <code>updated_at</code> values change.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ d = Document.find_by_content_id("4dc38774-e687-4bff-aa68-6e08c66e98f9")
-=&gt; #&lt;ChangeNote id: 397621, note: "Bar", public_timestamp: "2020-06-16 11:02:22", edition_id: 5146461, created_at: "2020-06-16 10:22:34", updated_at: "2020-06-16 11:02:22"&gt;
-
-$ d.live.change_note.update(note: "Foo")
-=&gt; true
-
-$ d
-=&gt; #&lt;ChangeNote id: 397621, note: "Foo", public_timestamp: "2020-06-16 11:02:22", edition_id: 5146461, created_at: "2020-06-16 10:22:34", updated_at: "2020-06-16 15:24:53"&gt;
-</code></pre></div><h2 id='whitehall'>Whitehall</h2><p>The following commands show you how to find the document, get the correct edition within it, and update it. To complete this you will need the document ID, a string to search for to identify the right change log entry (search is fuzzy, be precise to get the right one), and the string you want to replace the current change log.</p>
+<h2 id='whitehall'>Whitehall</h2><p>The following commands show you how to find the document, get the correct edition within it, and update it. To complete this you will need the document ID, a string to search for to identify the right change log entry (search is fuzzy, be precise to get the right one), and the string you want to replace the current change note text.</p>
 <p>Connect to the Whitehall console (test your change on Integration first):</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk-connect app-console -e integration whitehall_backend/whitehall
 </code></pre></div><p>Find the document:</p>
@@ -209,11 +205,46 @@ $ d
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fuzzy_match = FuzzyMatch.new(editions, read: :change_note)
 </code></pre></div><p>Output should show the change notes. Select the relevant one:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition = fuzzy_match.find("A_STRING_FROM_YOUR_CHANGE_NOTE", must_match_at_least_one_word: true)
-</code></pre></div><p>Output shows the relevant edition that needs the change note update. Update it:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.update(change_note: "YOUR_DESIRED_CHANGE_NOTE_STRING")
-</code></pre></div><p>The response to this is &ldquo;false&rdquo; but the update has taken place. You can confirm this if you want to by typing &ldquo;edition&rdquo; to review it. Save the changes:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.save!(validate: false)
+</code></pre></div><p>Check the returned edition and change note to ensure it&rsquo;s the correct one:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.change_note
+edition.major_change_published_at
+</code></pre></div><p>Update it (without validation checks):</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.update_attribute(:change_note, "YOUR_DESIRED_CHANGE_NOTE_STRING")
 </code></pre></div><p>Republish the document using a <a href="https://docs.publishing.service.gov.uk/manual/republishing-content.html">Whitehall Rake task</a></p>
+<h2 id='publishing-api'>Publishing API</h2><p>Publishing API handles change notes in two different ways. To update the change history of a document, you&rsquo;ll either need to update an individual <a href="https://github.com/alphagov/publishing-api/blob/main/app/models/change_note.rb">ChangeNote</a> or update the <code>change_history</code> in the <a href="https://github.com/alphagov/publishing-api/blob/d6707237ee31090b2bb04015ba71d476f462448a/db/schema.rb#L85">details JSON</a> of the published edition.</p>
+<p><strong>Note</strong></p>
+
+<blockquote>
+<p>Updating change notes in Publishing API should only be done when unable to from the publishing app (to avoid Publishing API being overwritten).</p>
+</blockquote>
+<p>First step is to connect to the Publishing API console:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk-connect app-console -e production publishing_api/publishing-api
+</code></pre></div><p>Find the document:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>document = Document.find_by_content_id("YOUR_CONTENT_ID_HERE")
+</code></pre></div><p>Find the documents live edition:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>live_edition = document.editions.live.last
+</code></pre></div><p>Check edition&rsquo;s details hash for <code>change_history</code>. If this is empty then follow method 1, if not, follow method 2:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>live_edition.details[:change_history]
+</code></pre></div><h3 id='method-1-empty-change_history'>Method 1 (empty change_history)</h3><p>Fetch the change notes for the document:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_notes = ChangeNote.joins(:edition).where(editions: { document: document }).order(:public_timestamp)
+</code></pre></div><p>Select the relevant change note manually, or by searching for the note text:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note = change_notes.find_by("note LIKE ?", "%SUBSTRING OR FULL CHANGE NOTE TEXT%")
+</code></pre></div><p>Update change note:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note.update(note, "NEW NOTE")
+</code></pre></div><p>Finally, <a href="https://docs.publishing.service.gov.uk/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
+<h3 id='method-2-present-change_history'>Method 2 (present change_history)</h3><p>Fetch details for edition:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details = live_edition.details
+</code></pre></div><p>Ouput change history:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history]
+</code></pre></div><p>Select relevant change note manually, or by seaching for the node text:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note_index = details[:change_history].find_index { |change_note| change_note[:note] =~ /SUBSTRING OR FULL CHANGE NOTE TEXT/ }
+</code></pre></div><p>Check the returned change not is correct:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history][change_note_index]
+</code></pre></div><p>Update change note:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history][change_note_index][:note] = "New note"
+</code></pre></div><p>Update edition:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.update(details: details)
+</code></pre></div><p>Finally, <a href="https://docs.publishing.service.gov.uk/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
 
 
   <div class='related-content'>
