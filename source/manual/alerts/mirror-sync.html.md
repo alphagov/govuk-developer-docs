@@ -10,15 +10,13 @@ section: Icinga alerts
 
 The govuk_sync_mirror cronjob has not succeeded for 24h. govuk_sync_mirror is [a script that runs hourly](https://github.com/alphagov/govuk-puppet/blob/1364bfbb023cd475fac37b99ca812a2ff985ce77/modules/govuk_crawler/manifests/init.pp#L223-L230) to upload new or changed GOV.UK content to the static mirror in S3. Fastly automatically serves content from the S3 mirror when a request to the origin fails.
 
-The S3 mirror is an important resilience feature of GOV.UK so failures deserve timely investigation.
-
 ## Impact
 
 Provided www-origin and assets-origin are working perfectly, there should be no user-visible impact. If the origin has a problem however, we will fail to serve content which was published after the govuk_sync_mirror job stopped working.
 
 Fastly falls back to the S3 mirror on a per-request basis, so even intermittent unavailability or partial outages limited to specific GOV.UK features can result in user traffic being served from mirrors. In practice, even on a good day there is still a tiny proportion of user traffic which is served from the mirrors.
 
-The static mirrors are a key part of GOV.UK's business continuity plan so it's very important that they are up-to-date so that they're ready in case of a badly-timed outage.
+The static mirrors are a key part of GOV.UK's business continuity plan. It's very important that they are up-to-date in case of an outage. This [overview of how the mirrors are created and used](/manual/fall-back-to-mirror.html) gives more context.
 
 ## Troubleshooting
 
