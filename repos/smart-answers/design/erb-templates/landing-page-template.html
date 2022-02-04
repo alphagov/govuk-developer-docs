@@ -388,15 +388,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/3fac3ac09e02be0e17c561c6b83b871a23651bfc">20 Jul 2021</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/5070fa3de67303abd88b308c18194b9eb21376df">4 Feb 2022</a>
 </div>
 
   <h1 class="page-title">smart-answers: Landing page template</h1>
@@ -431,6 +424,11 @@
 <p>Used to generate supplementary content (appearing below the start button). Expected to be govspeak or HTML. Example:</p>
 <pre lang="erb"><code>&lt;% govspeak_for :post_body do %&gt;
   Code of measuring practice became globally effective in May 2015.
+&lt;% end %&gt;
+</code></pre>
+<p>Optionally, it is possible to supply a custom header for this section. If supplied, this will override the default "Before you start" heading and can only be text. Example:</p>
+<pre lang="erb"><code>&lt;% text_for :post_body_header do %&gt;
+  Travelling to England from within the UK, Channel Islands and the Isle of Man
 &lt;% end %&gt;
 </code></pre>
 
