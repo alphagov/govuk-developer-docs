@@ -16,7 +16,7 @@ Provided www-origin and assets-origin are working perfectly, there should be no 
 
 Fastly falls back to the S3 mirror on a per-request basis, so even intermittent unavailability or partial outages limited to specific GOV.UK features can result in user traffic being served from mirrors. In practice, even on a good day there is still a tiny proportion of user traffic which is served from the mirrors.
 
-The static mirrors are a key part of GOV.UK's business continuity plan. It's very important that they are up-to-date in case of an outage. This [overview of how the mirrors are created and used](/manual/fall-back-to-mirror.html) gives more context. 
+The static mirrors are a key part of GOV.UK's business continuity plan. It's very important that they are up-to-date in case of an outage. This [overview of how the mirrors are created and used](/manual/fall-back-to-mirror.html) gives more context.
 
 ## Troubleshooting
 
