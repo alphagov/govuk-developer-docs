@@ -389,7 +389,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/5c60094908186d39476ec84ae743aa60b621d2b9">23 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/1f01caa94a91ae6aa3b90672701cf7e3d66dd55d">4 Feb 2022</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating or editing specialist document types</h1>
@@ -404,11 +404,11 @@ applications.</p>
 <h2 id="1-add-a-schema-to-govuk-content-schemas">1. Add a schema to govuk-content-schemas</h2>
 <p>See example <a href="https://github.com/alphagov/govuk-content-schemas/pull/1077">PR for adding <code>product_safety_alert</code></a>.</p>
 <ol>
-<li>Add the format to <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/formats/specialist_document.jsonnet#L2-L22">this list</a> and to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/lib/govuk_content_schemas/allowed_document_types.yml">this list</a>
+<li>Add the format to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/specialist_document.jsonnet#L2-L31">this list</a> and to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/lib/govuk_content_schemas/allowed_document_types.yml">this list</a>
 </li>
-<li>Add any new field definitions to <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/formats/shared/definitions/_specialist_document.jsonnet">this file</a>
+<li>Add any new field definitions to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/shared/definitions/_specialist_document.jsonnet">this file</a>
 </li>
-<li>Add examples <a href="https://github.com/alphagov/govuk-content-schemas/blob/master/docs/adding-a-new-schema.md#examples">as instructed</a>.
+<li>Add examples <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/docs/adding-a-new-schema.md#examples">as instructed</a>.
 You can copy and paste from another specialist document format, only changing what is necessary (you can leave the body and headers unchanged).</li>
 </ol>
 <p>You'll need to generate your own UUIDs for the <code>content_id</code> and <code>signup_content_id</code> fields:</p>
