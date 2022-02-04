@@ -173,30 +173,38 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/141cefa26844425f4c35c897b920b345fa8af584">24 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2b44055bf9156623567081133e167a2fe3b8a6bb">12 Jan 2022</a>
 </div>
 
  <h1 id='header'>Switch an app off temporarily</h1> <p>In the event of a security incident an app may need to be switched off until it can be patched.</p>
+<p>Before you begin you will need to identify:</p>
+
+<ul>
+<li>which machine class the application runs on</li>
+<li>how many machines of that class there are</li>
+</ul>
+<p>See the <a href="/manual/howto-ssh-to-machines.html#usage">SSH into machines docs for more information</a></p>
 
 <ol>
-<li><p>You&rsquo;ll need to identify on which machine class the application runs on.</p></li>
-<li><p>Puppet must be disabled on the machines to prevent it automatically restarting the app:</p></li>
+<li>SSH into the first machine:</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>fab <span class="nv">$environment</span> node_type:frontend puppet.disable:<span class="s2">"Reason for disabling Puppet"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   gds govuk connect <span class="nt">-e</span> production ssh &lt;machine_class&gt;:&lt;box_number&gt;
 </code></pre></div>
 <ol>
-<li>Stop the application service on the relevant machines:</li>
+<li>Disable puppet on the machine to prevent it automatically restarting the app (provide a better reason if you can):</li>
 </ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$ </span>fab <span class="nv">$environment</span> node_type:frontend app.stop:frontend
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>      sudo govuk_puppet --test --disable "Disabling puppet to prevent app restarting (by $USER)"
 </code></pre></div>
+<ol>
+<li>Stop the application service on the relevant machine</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>      sudo &lt;app_name&gt; stop
+</code></pre></div>
+<ol>
+<li>Repeat for other machines in the class until all have been disabled.</li>
+</ol>
+
 
   <div class='related-content'>
 
