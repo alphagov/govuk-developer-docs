@@ -194,27 +194,20 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ac83ee396dc6d1c57703a22fe211be202332e32c">8 Feb 2022</a>
 </div>
 
- <h1 id='header'>Add support for a new translation in Whitehall</h1> <p>Before starting, it’s worth checking the language tag that is being added is correct: it should be compatible with the <a href="https://en.wikipedia.org/wiki/IETF_language_tag#Syntax_of_language_tags">IETF Language Tag syntax</a> and use correct <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO 639</a> codes (with optional <a href="https://en.wikipedia.org/wiki/ISO_15924">ISO 15924</a> or <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166</a> subtags where appropriate). This is important to ensure maximum compatibility with accessibility feature such as screen readers. Some other useful reading includes <a href="https://github.com/alphagov/rails_translation_manager">Rails Translation Manager</a> and <a href="https://github.com/alphagov/whitehall/blob/main/docs/internationalisation_guide.md">Whitehall Internationalisation guide</a>.</p>
+ <h1 id='header'>Add support for a new translation in Whitehall</h1> <p>Before starting, it’s worth checking the language tag that is being added is correct: it should be compatible with the <a href="https://en.wikipedia.org/wiki/IETF_language_tag#Syntax_of_language_tags">IETF Language Tag syntax</a> and use correct <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO 639</a> codes (with optional <a href="https://en.wikipedia.org/wiki/ISO_15924">ISO 15924</a> or <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166</a> subtags where appropriate). This is important to ensure maximum compatibility with accessibility features such as screen readers. Some other useful reading includes <a href="https://github.com/alphagov/rails_translation_manager">Rails Translation Manager</a> and <a href="https://github.com/alphagov/whitehall/blob/main/docs/internationalisation_guide.md">Whitehall Internationalisation guide</a>.</p>
 <h3 id='1-update-government-frontend'>1. Update Government Frontend</h3><p><a href="https://github.com/alphagov/government-frontend/pull/1382">Example PR</a></p>
 <p>In <a href="https://github.com/alphagov/government-frontend">Government Frontend</a>:</p>
 
 <ol>
 <li>Add the new locale to <code>config/application.rb</code> and <code>config/locales/en.yml</code> in alphabetical order</li>
 <li><p>Run the following commands to generate the locale files from the English template:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">LOCALE</span><span class="o">=</span>&lt;new_locale&gt;
-<span class="nv">$ </span>rake <span class="s2">"translation:export[tmp/locale_csv,en,</span><span class="k">${</span><span class="nv">LOCALE</span><span class="k">}</span><span class="s2">]"</span>
-<span class="nv">$ </span>rake <span class="s2">"translation:import[</span><span class="k">${</span><span class="nv">LOCALE</span><span class="k">}</span><span class="s2">,tmp/locale_csv/</span><span class="k">${</span><span class="nv">LOCALE</span><span class="k">}</span><span class="s2">.csv]"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"foo: bar"</span> <span class="o">&gt;&gt;</span> config/locales/&lt;new_locale&gt;.yml
+<span class="nv">$ </span><span class="c"># the contents will get overwritten below</span>
+<span class="nv">$ </span>rake translation:add_missing
 </code></pre></div></li>
 <li><p>In <code>config/locales/&lt;new_locale&gt;.yml</code> add the language translation under the <code>language_names</code> key.</p>
 <p>For example:</p>
@@ -229,9 +222,9 @@
 <ol>
 <li>Add the new locale to <code>lib/whitehall.rb</code> and <code>config/locales/en.yml</code> in alphabetical order</li>
 <li><p>Run the following commands to generate the locale files from the English template:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">export </span><span class="nv">LOCALE</span><span class="o">=</span>&lt;new_locale&gt;
-<span class="nv">$ </span>rake <span class="s2">"translation:export[tmp/locale_csv,en,</span><span class="k">${</span><span class="nv">LOCALE</span><span class="k">}</span><span class="s2">]"</span>
-<span class="nv">$ </span>rake <span class="s2">"translation:import[</span><span class="k">${</span><span class="nv">LOCALE</span><span class="k">}</span><span class="s2">,tmp/locale_csv/</span><span class="k">${</span><span class="nv">LOCALE</span><span class="k">}</span><span class="s2">.csv]"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">echo</span> <span class="s2">"foo: bar"</span> <span class="o">&gt;&gt;</span> config/locales/&lt;new_locale&gt;.yml
+<span class="nv">$ </span><span class="c"># the contents will get overwritten below</span>
+<span class="nv">$ </span>rake translation:add_missing
 </code></pre></div></li>
 <li><p>In <code>config/locales/&lt;new_locale&gt;.yml</code> add:</p>
 
