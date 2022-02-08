@@ -6,7 +6,7 @@ layout: manual_layout
 section: Publishing
 ---
 
-Before starting, it’s worth checking the language tag that is being added is correct: it should be compatible with the [IETF Language Tag syntax][] and use correct [ISO 639][] codes (with optional [ISO 15924][] or [ISO 3166][] subtags where appropriate). This is important to ensure maximum compatibility with accessibility feature such as screen readers. Some other useful reading includes [Rails Translation Manager][] and [Whitehall Internationalisation guide][].
+Before starting, it’s worth checking the language tag that is being added is correct: it should be compatible with the [IETF Language Tag syntax][] and use correct [ISO 639][] codes (with optional [ISO 15924][] or [ISO 3166][] subtags where appropriate). This is important to ensure maximum compatibility with accessibility features such as screen readers. Some other useful reading includes [Rails Translation Manager][] and [Whitehall Internationalisation guide][].
 
 [IETF Language Tag syntax]: https://en.wikipedia.org/wiki/IETF_language_tag#Syntax_of_language_tags
 [ISO 639]: https://en.wikipedia.org/wiki/ISO_639-1
@@ -25,9 +25,9 @@ In [Government Frontend](https://github.com/alphagov/government-frontend):
 2. Run the following commands to generate the locale files from the English template:
 
     ```bash
-    $ export LOCALE=<new_locale>
-    $ rake "translation:export[tmp/locale_csv,en,${LOCALE}]"
-    $ rake "translation:import[${LOCALE},tmp/locale_csv/${LOCALE}.csv]"
+    $ echo "foo: bar" >> config/locales/<new_locale>.yml
+    $ # the contents will get overwritten below
+    $ rake translation:add_missing
     ```
 
 3. In `config/locales/<new_locale>.yml` add the language translation under the `language_names` key.
@@ -50,9 +50,9 @@ In [Whitehall](https://github.com/alphagov/whitehall):
 2. Run the following commands to generate the locale files from the English template:
 
     ```bash
-    $ export LOCALE=<new_locale>
-    $ rake "translation:export[tmp/locale_csv,en,${LOCALE}]"
-    $ rake "translation:import[${LOCALE},tmp/locale_csv/${LOCALE}.csv]"
+    $ echo "foo: bar" >> config/locales/<new_locale>.yml
+    $ # the contents will get overwritten below
+    $ rake translation:add_missing
     ```
 
 3. In `config/locales/<new_locale>.yml` add:
