@@ -121,7 +121,7 @@ Regardless of how your cookie is set, you need to do the following:
 
 [cookie settings page]: https://www.gov.uk/help/cookies
 [Cookie settings page in Frontend GitHub repo]: https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb
-[Page template which pulls in the cookie banner]: https://github.com/alphagov/static/blob/54706a6eddcf71e2d6cd36b3239798293530d4e6/app/views/layouts/govuk_template.html.erb#L50
-[Cookie banner component]: https://govuk-publishing-components.herokuapp.com/component-guide/cookie_banner
+[Page template which pulls in the cookie banner]: https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_layout_for_public.html.erb#L86
+[Cookie banner component]: https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_cookie_banner.html.erb
 [special route]: publish_special_routes.html
 [Cookie details page]: https://www.gov.uk/help/cookie-details
