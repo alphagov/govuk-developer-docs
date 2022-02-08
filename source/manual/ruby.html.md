@@ -66,7 +66,10 @@ Once the PRs are raised, you should test the changes before merge, as follows:
 1. Next, you should build the ruby upgrade branch of the app to Integration, and manually test its features to ensure that the new Ruby version hasn't broken the app.
 1. It's worth checking the logs for deprecation warnings at this point (and fixing them), in case there are warnings that weren't flagged by the test suite run.
 1. Next, check our monitoring tools, such as Grafana and Sentry.
-1. Finally, the PR should be safe to merge.
+1. The PR should be safe to merge.
+1. Before the application will run with the new version, it will need to be restarted as well as deployed as normal. You can do this by running the `deploy:with_hard_restart` deploy task within the 'Deploy App' job in Jenkins.
+
+> **NOTE** If the application is deployed without being restarted (e.g via continuous deployment) you will need to manually restart. You can do this by running the `app:hard_restart` deploy task within the 'Deploy App' job in Jenkins.
 
 [packager]: https://github.com/alphagov/packager/tree/master/fpm/recipes
 [sha256_checksum]: https://emn178.github.io/online-tools/sha256_checksum.html
