@@ -21,6 +21,11 @@ and that they're correctly scheduled in.
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
 them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty.
 
+## Creating a schedule override
+
+There are times where developers need to make rota swaps or cover 2nd line last minute.
+See the [Pagerduty documentation on how to schedule an override](https://support.pagerduty.com/docs/edit-schedules#create-overrides).
+
 ## PagerDuty drill
 
 Every week we test PagerDuty to make sure it can phone to alert us to
