@@ -126,6 +126,9 @@
     <a href="#header"><span>PagerDuty</span></a>
     <ul>
       <li>
+        <a href="#creating-a-schedule-override"><span>Creating a schedule override</span></a>
+      </li>
+      <li>
         <a href="#pagerduty-drill"><span>PagerDuty drill</span></a>
         <ul>
           <li>
@@ -184,7 +187,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f079a7f2af301e161293d90379c073f7166fa607">6 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dd6f63464feec7934ee08a286ecdb4f49cfb3555">9 Feb 2022</a>
 </div>
 
  <h1 id='header'>PagerDuty</h1> <p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
@@ -200,6 +203,8 @@ to escalate to these people (in order):</p>
 and that they&rsquo;re correctly scheduled in.</p>
 <p>When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
 them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty.</p>
+<h2 id='creating-a-schedule-override'>Creating a schedule override</h2><p>There are times where developers need to make rota swaps or cover 2nd line last minute.
+See the <a href="https://support.pagerduty.com/docs/edit-schedules#create-overrides">Pagerduty documentation on how to schedule an override</a>.</p>
 <h2 id='pagerduty-drill'>PagerDuty drill</h2><p>Every week we test PagerDuty to make sure it can phone to alert us to
 any issues. This happens every Wednesday morning at 10am UTC.</p>
 <p>Cron creates a file on disk. Icinga raises a critical alert when that
