@@ -83,8 +83,8 @@ If your cookie is set using Javascript:
 3. When reading and setting the cookie, make sure you use the cookie helper functions within govuk_publishing_components, e.g:
 
   ```javascript
-  window.GOVUK.cookie(‘please set this cookie’, ‘to this value’)
-  window.GOVUK.cookie(‘please fetch this cookie’)
+  window.GOVUK.cookie('please set this cookie', 'to this value')
+  window.GOVUK.cookie('please fetch this cookie')
   ```
 
 Regardless of how your cookie is set, you need to update the cookie details page to list the new cookie. A content designer should be able to help with that.
