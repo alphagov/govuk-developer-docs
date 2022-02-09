@@ -11,7 +11,7 @@ This is technical documentation for the [GOV.UK](https://www.gov.uk/) team in th
 
 ## Overview
 
-GOV.UK sets 4 types of cookies: essential (also called "strictly necessary"); website usage; communications and marketing; settings. These are detailed on the [cookie settings page on GOV.UK][cookie settings page].
+GOV.UK sets 4 types of cookies: essential (also called "strictly necessary"); website usage; communications and marketing; settings. These are detailed on the [cookie settings page] on GOV.UK.
 
 Users can manage their consent via the banner or [cookie settings page]. "Strictly necessary" cookies cannot be switched off by users as they're essential to site functionality.
 
@@ -21,10 +21,10 @@ Cookie consent is set to last for 1 year, after which the consent cookie will ex
 
 The cookie consent mechanism is made up of 4 main pieces:
 
-* [Cookie banner component]
-* [Page template which pulls in the cookie banner]
-* [Cookie settings page][cookie settings page]. This is published as a [special route]. See the [Cookie settings page in Frontend GitHub repo].
-* [Cookie details page]. This is a standard help page, created in Publisher.
+* [Cookie banner component][] (see the [cookie banner code] in `govuk_publishing_components`)
+* [Public layout component][] which pulls in the cookie banner (see the [public layout code] in `govuk_publishing_components`)
+* [Cookie settings page][] (published as a [special route]; see the [cookie settings page code] in `frontend`)
+* [Cookie details page][] (a standard help page, created in Publisher)
 
 When a user first lands on GOV.UK, they are given a default consent cookie that looks like this:
 
@@ -83,8 +83,8 @@ If your cookie is set using Javascript:
 3. When reading and setting the cookie, make sure you use the cookie helper functions within govuk_publishing_components, e.g:
 
   ```javascript
-  window.GOVUK.cookie(‘please set this cookie’, ‘to this value’)
-  window.GOVUK.cookie(‘please fetch this cookie’)
+  window.GOVUK.cookie('please set this cookie', 'to this value')
+  window.GOVUK.cookie('please fetch this cookie')
   ```
 
 Regardless of how your cookie is set, you need to update the cookie details page to list the new cookie. A content designer should be able to help with that.
@@ -104,8 +104,8 @@ Regardless of how your cookie is set, you need to do the following:
 
 ## Adding a cookie category
 
-* Add the new cookie category to the [Cookie settings page in Frontend GitHub repo]
-* Add the new cookie category to the [Cookie details page] using Publisher.
+* Add the new cookie category by changing the [cookie settings page code]
+* Add the new cookie category to the [cookie details page] using Publisher.
 * Add to the default consent cookie
 * Add to ‘approve all’ consent cookie function
 * Add relevant cookies within the list of known cookies
@@ -113,15 +113,17 @@ Regardless of how your cookie is set, you need to do the following:
 
 ## Removing a cookie category
 
-* Remove the cookie category from [Cookie settings page in Frontend GitHub repo]
-* Remove the cookie category from [Cookie details page] using Publisher. Delete cookies or move to another relevant category
+* Remove the cookie category by changing the [cookie settings page code]
+* Remove the cookie category from [cookie details page] using Publisher. Delete cookies or move to another relevant category
 * Remove the cookie category from default consent cookie
 * Remove the cookie category from 'approve all consent cookie' function
 * Remove cookies from known list OR move to another relevant category
 
 [cookie settings page]: https://www.gov.uk/help/cookies
-[Cookie settings page in Frontend GitHub repo]: https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb
-[Page template which pulls in the cookie banner]: https://github.com/alphagov/static/blob/54706a6eddcf71e2d6cd36b3239798293530d4e6/app/views/layouts/govuk_template.html.erb#L50
-[Cookie banner component]: https://govuk-publishing-components.herokuapp.com/component-guide/cookie_banner
+[cookie settings page code]: https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb
+[cookie banner component]: https://components.publishing.service.gov.uk/component-guide/cookie_banner
+[cookie banner code]: https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_cookie_banner.html.erb
+[public layout component]: https://components.publishing.service.gov.uk/component-guide/layout_for_public
+[public layout code]: https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_layout_for_public.html.erb#L86
 [special route]: publish_special_routes.html
-[Cookie details page]: https://www.gov.uk/help/cookie-details
+[cookie details page]: https://www.gov.uk/help/cookie-details
