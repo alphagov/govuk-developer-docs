@@ -207,28 +207,21 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6631409a7116e2e522ecb54fe0a3687adfc9728d">13 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0828b95687f1a25191f3453452f7687727497f60">9 Feb 2022</a>
 </div>
 
  <h1 id='header'>Cookie consent on GOV.UK</h1> <p>This is technical documentation for the <a href="https://www.gov.uk/">GOV.UK</a> team in the <a href="https://gds.blog.gov.uk/about/">Government Digital Service (GDS)</a>.</p>
-<h2 id='overview'>Overview</h2><p>GOV.UK sets 4 types of cookies: essential (also called &ldquo;strictly necessary&rdquo;); website usage; communications and marketing; settings. These are detailed on the <a href="https://www.gov.uk/help/cookies">cookie settings page on GOV.UK</a>.</p>
+<h2 id='overview'>Overview</h2><p>GOV.UK sets 4 types of cookies: essential (also called &ldquo;strictly necessary&rdquo;); website usage; communications and marketing; settings. These are detailed on the <a href="https://www.gov.uk/help/cookies">cookie settings page</a> on GOV.UK.</p>
 <p>Users can manage their consent via the banner or <a href="https://www.gov.uk/help/cookies">cookie settings page</a>. &ldquo;Strictly necessary&rdquo; cookies cannot be switched off by users as they&rsquo;re essential to site functionality.</p>
 <p>Cookie consent is set to last for 1 year, after which the consent cookie will expire and users will be shown the cookie banner and prompted for consent again.</p>
 <h2 id='cookie-consent-mechanism'>Cookie consent mechanism</h2><p>The cookie consent mechanism is made up of 4 main pieces:</p>
 
 <ul>
-<li><a href="https://govuk-publishing-components.herokuapp.com/component-guide/cookie_banner">Cookie banner component</a></li>
-<li><a href="https://github.com/alphagov/static/blob/54706a6eddcf71e2d6cd36b3239798293530d4e6/app/views/layouts/govuk_template.html.erb#L50">Page template which pulls in the cookie banner</a></li>
-<li><a href="https://www.gov.uk/help/cookies">Cookie settings page</a>. This is published as a <a href="/manual/publish_special_routes.html">special route</a>. See the <a href="https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb">Cookie settings page in Frontend GitHub repo</a>.</li>
-<li><a href="https://www.gov.uk/help/cookie-details">Cookie details page</a>. This is a standard help page, created in Publisher.</li>
+<li><a href="https://components.publishing.service.gov.uk/component-guide/cookie_banner">Cookie banner component</a> (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_cookie_banner.html.erb">cookie banner code</a> in <code>govuk_publishing_components</code>)</li>
+<li><a href="https://components.publishing.service.gov.uk/component-guide/layout_for_public">Public layout component</a> which pulls in the cookie banner (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_layout_for_public.html.erb#L86">public layout code</a> in <code>govuk_publishing_components</code>)</li>
+<li><a href="https://www.gov.uk/help/cookies">Cookie settings page</a> (published as a <a href="/manual/publish_special_routes.html">special route</a>; see the <a href="https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb">cookie settings page code</a> in <code>frontend</code>)</li>
+<li><a href="https://www.gov.uk/help/cookie-details">Cookie details page</a> (a standard help page, created in Publisher)</li>
 </ul>
 <p>When a user first lands on GOV.UK, they are given a default consent cookie that looks like this:</p>
 <div class="highlight"><pre class="highlight javascript" tabindex="0"><code><span class="nx">cookies_policy</span> <span class="o">=</span> <span class="p">{</span> <span class="dl">"</span><span class="s2">essential</span><span class="dl">"</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="dl">"</span><span class="s2">settings</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="dl">"</span><span class="s2">usage</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span> <span class="dl">"</span><span class="s2">campaigns</span><span class="dl">"</span><span class="p">:</span> <span class="kc">false</span> <span class="p">}</span>
@@ -253,8 +246,8 @@
 <li>Add the cookie to the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/lib/cookie-functions.js#L14">list of known cookies</a></li>
 <li>When reading and setting the cookie, make sure you use the cookie helper functions within govuk_publishing_components, e.g:</li>
 </ol>
-<div class="highlight"><pre class="highlight javascript" tabindex="0"><code>  <span class="nb">window</span><span class="p">.</span><span class="nx">GOVUK</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="err">‘</span><span class="nx">please</span> <span class="kd">set</span> <span class="k">this</span> <span class="nx">cookie</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="nx">to</span> <span class="k">this</span> <span class="nx">value</span><span class="err">’</span><span class="p">)</span>
-  <span class="nb">window</span><span class="p">.</span><span class="nx">GOVUK</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="err">‘</span><span class="nx">please</span> <span class="nx">fetch</span> <span class="k">this</span> <span class="nx">cookie</span><span class="err">’</span><span class="p">)</span>
+<div class="highlight"><pre class="highlight javascript" tabindex="0"><code>  <span class="nb">window</span><span class="p">.</span><span class="nx">GOVUK</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="dl">'</span><span class="s1">please set this cookie</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">to this value</span><span class="dl">'</span><span class="p">)</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">GOVUK</span><span class="p">.</span><span class="nx">cookie</span><span class="p">(</span><span class="dl">'</span><span class="s1">please fetch this cookie</span><span class="dl">'</span><span class="p">)</span>
 </code></pre></div><p>Regardless of how your cookie is set, you need to update the cookie details page to list the new cookie. A content designer should be able to help with that.</p>
 <h2 id='changing-a-cookies-category'>Changing a cookie’s category</h2><p>If your cookie is set using Javascript:</p>
 
@@ -271,8 +264,8 @@
 </ul>
 <h2 id='adding-a-cookie-category'>Adding a cookie category</h2>
 <ul>
-<li>Add the new cookie category to the <a href="https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb">Cookie settings page in Frontend GitHub repo</a></li>
-<li>Add the new cookie category to the <a href="https://www.gov.uk/help/cookie-details">Cookie details page</a> using Publisher.</li>
+<li>Add the new cookie category by changing the <a href="https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb">cookie settings page code</a></li>
+<li>Add the new cookie category to the <a href="https://www.gov.uk/help/cookie-details">cookie details page</a> using Publisher.</li>
 <li>Add to the default consent cookie</li>
 <li>Add to ‘approve all’ consent cookie function</li>
 <li>Add relevant cookies within the list of known cookies</li>
@@ -280,8 +273,8 @@
 </ul>
 <h2 id='removing-a-cookie-category'>Removing a cookie category</h2>
 <ul>
-<li>Remove the cookie category from <a href="https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb">Cookie settings page in Frontend GitHub repo</a></li>
-<li>Remove the cookie category from <a href="https://www.gov.uk/help/cookie-details">Cookie details page</a> using Publisher. Delete cookies or move to another relevant category</li>
+<li>Remove the cookie category by changing the <a href="https://github.com/alphagov/frontend/blob/master/app/views/help/cookie_settings.html.erb">cookie settings page code</a></li>
+<li>Remove the cookie category from <a href="https://www.gov.uk/help/cookie-details">cookie details page</a> using Publisher. Delete cookies or move to another relevant category</li>
 <li>Remove the cookie category from default consent cookie</li>
 <li>Remove the cookie category from &lsquo;approve all consent cookie&rsquo; function</li>
 <li>Remove cookies from known list OR move to another relevant category</li>
