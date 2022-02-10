@@ -388,15 +388,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/slimmer/commit/3618dc1cbf773e01d2a3dee798e39023ed3fd3b8">24 Nov 2020</a>
+  Last updated: <a href="https://github.com/alphagov/slimmer/commit/7b9e862d155e52ba13dd05ca01345de7315ef2f6">8 Feb 2022</a>
 </div>
 
   <h1 class="page-title">slimmer: what-slimmer-does</h1>
@@ -414,9 +407,9 @@
 <li>
 <code>Slimmer::Skin</code> lists <a href="https://github.com/alphagov/slimmer/blob/862dcd5bdd4b87f3db7196f1d491be76398dbe6d/lib%2Fslimmer%2Fskin.rb#L105-L119">all of the processors</a> to be applied to the response. Each processor has its own class (e.g. <a href="https://github.com/alphagov/slimmer/blob/53017b64aede73de04bda2d301adea282fbaa832/lib%2Fslimmer%2Fprocessors%2Faccounts_shower.rb#L2"><code>Slimmer::Processors::AccountsShower</code></a>) responsible for defining the HTML to be removed, replaced or added.</li>
 <li>
-<code>Slimmer::Skin</code> also determines which <a href="https://github.com/alphagov/slimmer/blob/862dcd5bdd4b87f3db7196f1d491be76398dbe6d/lib%2Fslimmer%2Fskin.rb#L121">template</a> to mix the response with. The template name is determined via <a href="https://github.com/alphagov/slimmer/blob/53017b64aede73de04bda2d301adea282fbaa832/lib%2Fslimmer%2Fheaders.rb#L21">mappings in <code>Slimmer::Headers</code></a>, which is ultimately set in the Rails app via its <code>slimmer_template</code> call earlier, defaulting to "core_layout".</li>
+<code>Slimmer::Skin</code> also determines which <a href="https://github.com/alphagov/slimmer/blob/862dcd5bdd4b87f3db7196f1d491be76398dbe6d/lib%2Fslimmer%2Fskin.rb#L121">template</a> to mix the response with. The template name is determined via <a href="https://github.com/alphagov/slimmer/blob/53017b64aede73de04bda2d301adea282fbaa832/lib%2Fslimmer%2Fheaders.rb#L21">mappings in <code>Slimmer::Headers</code></a>, which is ultimately set in the Rails app via its <code>slimmer_template</code> call earlier, defaulting to "gem_layout".</li>
 <li>The template name is <a href="https://github.com/alphagov/slimmer/blob/862dcd5bdd4b87f3db7196f1d491be76398dbe6d/lib/slimmer/skin.rb#L39-L43">converted to a URL</a> that points to Static.</li>
-<li>Requests to Static get <a href="https://github.com/alphagov/static/blob/33be5158c3922516cadba9473609cccd5d85fdae/config%2Froutes.rb#L12">routed to the RootController</a>, which route to the chosen template (e.g. <a href="https://github.com/alphagov/static/blob/875b5a5c74bf85d324d9650bed0c4b173da26902/app%2Fviews%2Froot%2Fcore_layout.html.erb"><code>views/root/core_layout.html.erb</code></a>).</li>
+<li>Requests to Static get <a href="https://github.com/alphagov/static/blob/33be5158c3922516cadba9473609cccd5d85fdae/config%2Froutes.rb#L12">routed to the RootController</a>, which route to the chosen template (e.g. <a href="https://github.com/alphagov/static/blob/481578df3e472c4381ca258fb9c730cbd5cb8962/app/views/root/gem_layout.html.erb"><code>views/root/gem_layout.html.erb</code></a>).</li>
 <li>The template is fetched and then <a href="https://github.com/alphagov/slimmer/blob/1d270026389f1d893c506c082c124501560ef03d/lib/slimmer.rb#L13">cached using the Rails cache</a>.</li>
 <li>The <a href="https://github.com/alphagov/slimmer/blob/862dcd5bdd4b87f3db7196f1d491be76398dbe6d/lib/slimmer/skin.rb#L81-L100">processors are mixed with the template</a>, the <a href="https://github.com/alphagov/slimmer/blob/3cdf3bfb6db35c03992ecd9c1210e866f99464f3/lib%2Fslimmer%2Fapp.rb#L92">headers recalculated</a> and the <a href="https://github.com/alphagov/slimmer/blob/3cdf3bfb6db35c03992ecd9c1210e866f99464f3/lib%2Fslimmer%2Fapp.rb#L94">response returned</a>.</li>
 </ul>
