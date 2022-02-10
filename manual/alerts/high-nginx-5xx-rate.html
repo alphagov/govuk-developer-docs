@@ -131,9 +131,6 @@
       <li>
         <a href="#scaling-up"><span>Scaling up</span></a>
       </li>
-      <li>
-        <a href="#unknown-internal-error"><span>UNKNOWN: INTERNAL ERROR</span></a>
-      </li>
     </ul>
   </li>
 </ul>
@@ -157,7 +154,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/df610d29c4c76e894e6b0b15aefcb54bf01ccc1b">12 Jan 2022</a>
 </div>
 
  <h1 id='header'>High Nginx 5xx rate</h1> <p>You can view the 5xx logs across all machines on this dashboard:</p>
@@ -175,26 +172,6 @@ site. You can use the <a href="https://grafana.production.govuk.digital/dashboar
 if there are an unusually high number of requests to a particular machine
 class. If there are, you may want to consider
 <a href="/manual/auto-scaling-groups.html#manually-scaling">scaling up the number of machines available</a> to handle the requests.</p>
-
-<blockquote>
-<p><strong>Note</strong></p>
-<p>This is only possible in AWS.</p>
-</blockquote>
-<h2 id='unknown-internal-error'><code>UNKNOWN: INTERNAL ERROR</code></h2><p>If the message is &ldquo;UNKNOWN: INTERNAL ERROR: RuntimeError: no valid
-datapoints&rdquo; or &ldquo;UNKNOWN: INTERNAL ERROR: RuntimeError: no data returned
-for target&rdquo;, it probably means that statsd or collectd stopped
-submitting data for a period. Statsd metrics (those that begin with
-<code>stats.</code>) don&rsquo;t get created until the first event of a given type. For
-infrequently-used apps which rarely have errors, the <code>http_5xx</code> may
-never get created. You can force creation by creating a zero-value
-<code>http_500</code> counter:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fab $environment -H frontend-1.frontend statsd.create_counter:frontend-1_frontend.nginx_logs.static_publishing_service_gov_uk.http_500
-</code></pre></div><p>Note that the <code>http_5xx</code> counters are created by carbon-aggregator, so
-they will automatically be created when a corresponding <code>http_500</code>
-counter gets created. You should <em>not</em> create a statsd counter for
-<code>http_5xx</code> as this will confuse carbon-aggregator.</p>
-<p>For collectd metrics (those without a leading <code>stats.</code> prefix), you
-probably just need to wait for the metric to get created.</p>
 
 
   <div class='related-content'>
