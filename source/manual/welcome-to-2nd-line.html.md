@@ -13,6 +13,8 @@ Every Wednesday 3 people from GOV.UK - 2 developers and a shadow developer - joi
 
 Your main responsibility is to respond to alerts. You’ll be set up in [PagerDuty](https://governmentdigitalservice.pagerduty.com/schedules#?offset=5) so that you can be called if there are any urgent alerts during working hours.
 
+[More about the responsibilities and tasks for 2nd Line](/manual/2nd-line.html).
+
 It's also an important opportunity to learn about the GOV.UK stack.
 
 Your shift starts at 9:30 and ends at 17:30. If you need to leave before 17:30, talk to your fellow 2nd liner and the delivery manager to make sure you’re covered.
