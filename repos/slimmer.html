@@ -521,6 +521,10 @@ end
 end
 </code></pre>
 
+<h2 id="use-in-before_action-renders">Use in before_action renders</h2>
+
+<p>If you have a non-default layout and want to render in a before_action method, note that you may have to explicitly call <code>slimmer_template(:your_template_name)</code> in the action before rendering. Rendering in a before_action immediately stops the action chain, and since slimmer usually calls slimmer_template as an after_action, it would be skipped over (and you&rsquo;d get the default layout).</p>
+
 <h2 id="logging">Logging</h2>
 
 <p>Slimmer can be configured with a logger by passing in a logger instance

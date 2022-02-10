@@ -210,7 +210,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/752c9edc5e9155116440cfa317bfb219f58e4285">22 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2853d87f07e672693ec80c474f5eeaa4073fa920">10 Feb 2022</a>
 </div>
 
  <h1 id='header'>Support government changes</h1> <h2 id='change-a-government-in-whitehall'>Change a government in Whitehall</h2><p>Following a General Election or other reason for governmental change the
@@ -312,7 +312,7 @@ edit content for the old organisation. In that case you can bulk invite new
 users <a href="https://signon.publishing.service.gov.uk/batch_invitations/new">using the interface in Signon</a>.</p>
 <h3 id='bulk-retagging-documents'>Bulk retagging documents</h3><p>There is a Rake task in Whitehall to change the lead and supporting
 organisations that a document is tagged to in bulk:
-<a href="https://github.com/alphagov/whitehall/blob/917085dca58fb58dbf65c7e226ad445cc1f27bdd/lib/tasks/data_hygiene.rake#L37"><code>data_hygiene:bulk_update_organisation[csv_file]</code></a>.</p>
+<a href="https://github.com/alphagov/whitehall/blob/main/lib/tasks/data_hygiene.rake"><code>data_hygiene:bulk_update_organisation[csv_file]</code></a>.</p>
 <p>It accepts a CSV file which should have at least the following columns (in any
 order):</p>
 <div class="table-container">
@@ -325,7 +325,7 @@ order):</p>
 <td>The slug of the document.</td>
 </tr><tr>
 <td><code>Document type</code></td>
-<td>The type of the document, for example <code>Publication</code>. This is used when more than one document is matched by the <code>Slug</code>.</td>
+<td>The type of the document, for example <code>DetailedGuide</code>. This is used when more than one document is matched by the <code>Slug</code>.</td>
 </tr><tr>
 <td><code>New lead organisations</code></td>
 <td>The slugs of the new leading organisations (separated by a comma). These will replace any existing organisations.</td>
@@ -334,7 +334,12 @@ order):</p>
 <td>The slugs of the new supporting organisations (separated by a comma). These will replace any existing organisations.</td>
 </tr>
         </table>
-      </div><p>There is a similar <a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/update_manual_organisation.rake">Rake task to change the organisations for Manuals</a>.
+      </div><p>To run on anything other than a local environment, the CSV needs to be added manually to the /tmp directory using scp-push.
+<code>
+$ gds govuk connect scp-push --environment [integration|staging|integration] name-of-machine[:1|:2|:3] path/to/file.csv /tmp/
+</code>
+The rake task can then be run from the command line following <a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html#run-rake-tasks-from-the-command-line">these instructions</a>.</p>
+<p>There is a similar <a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/update_manual_organisation.rake">Rake task to change the organisations for Manuals</a>.
 A data migration is required to change the organisations for (Mainstream) Publisher documents. This is an example PR: <a href="https://github.com/alphagov/publishing-api/pull/1981">Migrate Publisher docs</a></p>
 <h3 id='reorder-ministerspeoples-role-titles'>Reorder ministers/peoples role titles</h3><p>During a reshuffle, a minister can gain two positions of state, known as <code>RoleAppointments</code>
 in Whitehall. One of these is perceived to be a more senior role than the other.
