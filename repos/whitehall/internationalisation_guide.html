@@ -388,40 +388,37 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/4d649bf9e876129623851204295e16930ebcc476">12 Apr 2016</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/787ecbf9d793b49ff99535dac15121b836bc60a9">8 Feb 2022</a>
 </div>
 
   <h1 class="page-title">whitehall: Internationalisation guide</h1>
 
   
-<p>This is mostly standard <a href="http://guides.rubyonrails.org/i18n.html">Rails i18n</a> - Translations are stored in <code>config/locales/</code>, with a <code>.yml</code> file per locale.</p>
-<p>If translation value is missing from a locale file then the EN value will be used instead.</p>
+<p>This is mostly standard <a href="http://guides.rubyonrails.org/i18n.html">Rails i18n</a>:</p>
+<ul>
+<li>Translations are stored in <code>config/locales/</code>, with a <code>.yml</code> file per locale.</li>
+<li>If translation value is missing from a locale file then the EN value will be used instead.</li>
+</ul>
 <h2 id="changing-an-existing-translation-key">Changing an existing translation key</h2>
-<p>Edit the value of EN locale, you should then <em>manually</em> edit all other locales to set the altered translated value to be blank.</p>
+<ol>
+<li>Edit the value of the EN locale</li>
+<li>You then need to set the non-EN locale values to be blank. You can do this manually or follow the <a href="https://github.com/alphagov/rails_translation_manager#i18n-tasks">rails_translation_manager documentation</a>
+</li>
+</ol>
 <h2 id="adding-a-new-translation-key">Adding a new translation key</h2>
-<p><em>Manually</em> create the key in <code>en.yml</code>, with the english text.</p>
-<p>Run a task to add that key to all other language files:</p>
-<pre><code>bundle exec rake translation:regenerate
-</code></pre>
+<ol>
+<li>Manually create the key in <code>en.yml</code>, with the english text.</li>
+<li>Then run <code>rake translation:add_missing</code> (see <a href="https://github.com/alphagov/rails_translation_manager#rake-command-reference">rails_translation_manager documentation</a>)</li>
+</ol>
 <h3 id="pluralised-translations">Pluralised translations</h3>
-<p>For terms that are translatable in both singular and plural forms (e.g. document.type.publication), include "one" and "other"
-keys for the singular and plural translation of the term.</p>
-<p>Note: pluralised translation terms should only ever contain these two plural form keys in en.yml, otherwise the code that
-regenerates the other translation locale files will not recognise them as being plural translations and will not generate
-the correct pluralisation keys for the different locales.</p>
+<p>For terms that are translatable in both singular and plural forms (e.g. <a href="https://github.com/alphagov/whitehall/blob/bd1dcd37fbf2c91a10c7927d1d46b3df75cdca2d/config/locales/en.yml#L294-L296"><code>document.type.publication</code></a>), include "one" and "other" keys for the singular and plural translation of the term.</p>
+<p>Note that other languages have different pluralisation rules (such as "few" and "many") but these other plural forms should be <a href="https://github.com/alphagov/whitehall/blob/02666684c7869cc8b633f6382be0ebe6ee22e3b0/config/locales/pl.yml#L401-L405">left blank</a>).</p>
+<p>Note: pluralised translation terms should only ever contain these two plural form keys in <code>en.yml</code>, otherwise the code that regenerates the other translation locale files will not recognise them as being plural translations and will not generate the correct pluralisation keys for the different locales.</p>
 <h2 id="updating-the-locales-files">Updating the locales files</h2>
-<p>There are rake tasks to export and import a CSV file of translations and keys
-(provided by the <a href="https://github.com/alphagov/rails_translation_manager"><code>rails_translation_manager</code></a>
+<p>There are rake tasks to export and import a CSV file of translations and keys (provided by the <a href="https://github.com/alphagov/rails_translation_manager"><code>rails_translation_manager</code></a>
 gem. These CSV files are exported, edited and then imported back as <code>.yml</code> files.</p>
-<p>There's no timeline for how frequently this is done, so you can expect many translation values to be missing in non EN locales.</p>
+<p>Translations were last <a href="https://github.com/alphagov/whitehall/pull/6369">updated in bulk in November 2021</a>. Over time, you can expect more and more translation values to be missing from non-EN locales when performing this update.</p>
 
 
             
