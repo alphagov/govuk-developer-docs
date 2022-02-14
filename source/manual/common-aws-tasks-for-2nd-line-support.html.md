@@ -82,6 +82,16 @@ You can also see the [EC2 troubleshooting documentation][] and contact AWS Suppo
 
 ## Detaching an instance from an Auto Scaling Group
 
+Log into the AWS console for the relevant environment:
+
+  ```
+  gds aws govuk-integration-poweruser -l
+  gds aws govuk-staging-poweruser -l
+  gds aws govuk-production-poweruser -l
+  ```
+
+Refer to the AWS documentation on steps for on [how to detatch an instance from an ASG][]
+
 If a machine is unhealthy, you may want to detach an instance from its Auto
 Scaling Group (ASG). Detaching the instance stops it receiving requests.
 
@@ -98,24 +108,23 @@ need to be selected, otherwise an error will likely be thrown, as by default,
 the ASG's minimum capacity of instances will be equal to the amount instances
 running (desired capacity).
 
-Read [how to detach an instance from an ASG][] in the AWS documentation.
-
 _**Note**: check if the ASG has just a single instance. If so, removing the
 instance from the ASG may cause downtime for a service._
 
-The detached instance will stick around, so make sure to terminate it when you
-no longer need it. See the section below for further details.
+Make a note of the instance ID in case you need to investigate the logs later
+following an incident. The detached instance will stick around, so make sure to
+terminate it when you no longer need it. See the section below for further details.
 
-[how to detach an instance from an ASG]: https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html
+[how to detach an instance from an ASG]: https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html#detach-instance-console
 
 ## Terminating an instance
+
+Refer to the AWS documentation for steps on [how to terminate an instance][].
 
 If you do not want a detached instance to serve traffic again in future, you
 should terminate it. Detaching an instance from an ASG does not terminate the
 instance automatically. Once connections have drained from a detached instance,
 you can terminate the instance via the AWS EC2 user interface.
-
-Read [how to terminate an instance][] in the AWS documentation.
 
 [how to terminate an instance]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console
 
