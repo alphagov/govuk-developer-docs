@@ -36,26 +36,11 @@ indices](#out-of-date-search-indices) section below if you need to run
 a reindexing during working hours. Reindexing takes around 2 hours to
 complete.
 
-To reindex, you have two options:
+To reindex, you can use the following job:
 
-a) If you need to reindex every index you can use the [Search API reindex with new schema] job.
+<%= RunJenkinsJob.links("search_api_reindex_with_new_schema") %>
 
-b) If you only need to reindex one specific index you can run a [rake task
-manually], using the `search:migrate_schema` rake task:
-
-<%= RunRakeTask.links("search-api", "search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate") %>
-
-Current index aliases (`alias_of_index_to_migrate`) available to reindex include:
-
-* `govuk`
-* `government`
-* `detailed`
-* `metasearch`
-* `page-traffic`
-* `licence-finder`
-
-[Search API reindex with new schema]: https://deploy.integration.publishing.service.gov.uk/job/search_api_reindex_with_new_schema/
-[rake task manually]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/
+This task allows either all indices or a single index to be reindexed.
 
 To monitor progress, SSH to a search box and check how many documents
 have been copied to the new index:
