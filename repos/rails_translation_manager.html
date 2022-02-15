@@ -459,43 +459,17 @@
 </div></dl>
     <div class="gem-c-summary__block"></div>
 </div>
+<h2 id='imported-documents'>Imported documents</h2>
+<ul>
+<li><a href='/repos/rails_translation_manager/adding-editing-plural-forms.html' class='govuk-link'>Adding a language&rsquo;s plural form</a></li>
+        <li><a href='/repos/rails_translation_manager/rake-command-reference.html' class='govuk-link'>Rake command reference</a></li>
+        <li><a href='/repos/rails_translation_manager/translating-locale-files.html' class='govuk-link'>Translating locale files</a></li>
+</ul>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Support for translation workflow in rails applications.</p>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
-<ul>
-<li>
-<strong>CSV</strong>: comma separated values, a tabular data format which can be loaded into a
-spreadsheet package</li>
-<li>
-<strong>I18n</strong>: an abbreviation of &lsquo;internationalisation&rsquo;, which is the process of adding
-support for multiple locales and languages to an application.
-<code>I18n</code> is also the name of a ruby gem which supports
-internationalisation in ruby applications.</li>
-<li>
-<strong>interpolation</strong>: a technique used in I18n whereby data is inserted (&ldquo;interpolated&rdquo;)
-into a translated string of text, for example <code>Hello %{name}</code>
-would become <code>Hello Sarah</code> if the variable <code>name</code> had the
-value <code>Sarah</code>.</li>
-<li>
-<strong>YAML</strong>: YAML Ain&rsquo;t Markup Language, a textual data format used (in this case) for storing
-translation strings in rails applications</li>
-</ul>
+<p>Rails Translation Manager (RTM) provides validation for locale files, and exposes several rake tasks which can be used to manage your translations. It can only be used on Rails apps.</p>
 
 <h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This gem provides a rails engine which adds rake tasks to manage translation
-files.</p>
-
-<p>It is intended to be included within your rails application by referencing it
-as a dependency in your <code>Gemfile</code>. You will then be able to use the rake tasks
-to manage your translation files and import/export translation strings.</p>
-
-<h3 id="dependencies">Dependencies</h3>
-
-<p>To date it has only been tested with a rails 3.2.18 app, but it should work with later (and older) rails apps as well.</p>
 
 <h3 id="installation">Installation</h3>
 
@@ -504,167 +478,30 @@ to manage your translation files and import/export translation strings.</p>
 <pre lang="ruby"><code>gem 'rails_translation_manager'
 </code></pre>
 
-<p>And then execute:</p>
+<p>After a <code>bundle install</code>, this will make a number of rake tasks available to your application.
+See the <a href="#rake-command-reference">Rake command reference</a> below.</p>
 
-<pre><code>$ bundle
+<p>You will now also be able to run tests against your locale files to ensure that they are valid.
+Create a test file as follows.</p>
+
+<h4 id="minitest">Minitest</h4>
+
+<pre lang="ruby"><code>class LocalesValidationTest &lt; ActiveSupport::TestCase
+  test "should validate all locale files" do
+    checker = RailsTranslationManager::LocaleChecker.new("config/locales/*.yml")
+    assert checker.validate_locales
+  end
+end
 </code></pre>
 
-<p>The gem depends on your rails application environment so it would not make
-sense to install this gem stand-alone.</p>
+<h4 id="rspec">RSpec</h4>
 
-<h3 id="running-the-application">Running the application</h3>
-
-<p>The primary usage of this gem is to support translation workflow.</p>
-
-<p>Once you have installed the gem into your application as described above, the
-expected usage is:</p>
-
-<ol>
-<li>
-<p>export translations to a CSV file using:</p>
-<pre><code>rake translation:export:all[target_directory]
-</code></pre>
-<p>or</p>
-<pre><code>rake translation:export[target_directory,base_locale,target_locale]
-</code></pre>
-</li>
-<li>
-<p>send the appropriate CSV file to a translator</p>
-</li>
-<li>
-<p>wait for translation to happen</p>
-</li>
-<li>
-<p>receive translation file back, check it for <a href="https://github.com/alphagov/character_encoding_cleaner">character encoding issues</a></p>
-</li>
-<li>
-<p>import the translation file using either:</p>
-<pre><code>rake translation:import:all[source_directory]
-</code></pre>
-<p>or</p>
-<pre><code>rake translation:import[locale,path]
-</code></pre>
-<p>this will generate <code>.yml</code> files for each translation</p>
-</li>
-<li>
-<p>commit any changed <code>.yml</code> files</p>
-<pre><code>git add config/locale
-git commit -m 'added new translations'
-</code></pre>
-</li>
-</ol>
-
-<h3 id="validation-of-interpolation-keys">Validation of interpolation keys</h3>
-
-<p>A second feature supported by this library is the validation of interpolation
-keys.</p>
-
-<p>The I18n library supports &lsquo;interpolation&rsquo; using the following syntax:</p>
-
-<pre lang="yaml"><code>en:
-  some_view:
-    greeting: Hello, %{name}
-</code></pre>
-
-<p>in this case the application can pass in the value of the <code>name</code> variable.</p>
-
-<p>If a translation includes an interpolation placeholder which has not been
-given a value by the application backend, then a runtime error will be raised.</p>
-
-<p>Unfortunately the placeholder variables sometimes get changed by mistake, or
-by translators who are not aware that they should not modify text within the
-special curly braces of the interpolation placeholder.</p>
-
-<p>This is obviously not great, and the validation task is intended to guard
-against it.</p>
-
-<p>It will check all translation files and report any which contain placeholders
-which do not exist in the english file.</p>
-
-<pre><code>$ rake translation:validate
-Success! No unexpected interpolation keys found.
-</code></pre>
-
-<h3 id="stealing-translations-from-another-app">Stealing translations from another app</h3>
-
-<p>A third feature is the ability to &ldquo;steal&rdquo; one or more locales from an existing
-application. This functionality works by providing a mapping file, which defines
-how the translation keys in the the source app&rsquo;s files map to those in the app
-the gem is installed in.</p>
-
-<p>For example, given a locale file like this in the app to &ldquo;steal&rdquo; from:</p>
-
-<pre lang="yaml"><code>es:
-  document:
-    type:
-      case_study: Caso de estudio
-      consultation: Consulta
-</code></pre>
-
-<p>and a mapping file like this:</p>
-
-<pre lang="yaml"><code>document.type: content_item.format
-</code></pre>
-
-<p>running <code>rake translation:steal[es,../other_app,mapping_file_path.yml]</code> will
-result in the following locale file being created:</p>
-
-<pre lang="yaml"><code>es:
-  content_item:
-    format:
-      case_study: Caso de estudio
-      consultation: Consulta
-</code></pre>
-
-<p>The mapping file can live anywhere, as long as the full path (including filename)
-is given in the rake task invocation.</p>
-
-<p>The process will preserve data already in the output file if it is not
-referenced in the mapping, but will always override data belonging to keys
-that are in the mapping.</p>
-
-<h3 id="rake-command-reference">Rake command reference</h3>
-
-<h4 id="export-a-specific-locale-to-csv">Export a specific locale to CSV</h4>
-
-<pre><code>rake translation:export[directory,base_locale,target_locale]
-</code></pre>
-
-<h4 id="export-all-locales-to-csv-files">Export all locales to CSV files</h4>
-
-<pre><code>rake translation:export:all[directory]
-</code></pre>
-
-<h4 id="import-a-specific-locale-csv-to-yaml-within-the-app">Import a specific locale CSV to YAML within the app</h4>
-
-<pre><code>rake translation:import[locale,path]
-</code></pre>
-
-<h4 id="import-all-locale-csv-files-to-yaml-within-the-app">Import all locale CSV files to YAML within the app</h4>
-
-<pre><code>rake translation:import:all[directory]
-</code></pre>
-
-<h4></h4>
-
-<h4 id="regenerate-all-locales-from-the-en-locale-run-this-after-adding-keys">Regenerate all locales from the EN locale - run this after adding keys</h4>
-
-<pre><code>rake translation:regenerate[directory]
-</code></pre>
-
-<h4 id="check-translation-files-for-errors">Check translation files for errors</h4>
-
-<pre><code>rake translation:validate
-</code></pre>
-
-<h4 id="steal-a-specific-locale-file-from-another-app">Steal a specific locale file from another app</h4>
-
-<pre><code>rake translation:steal[locale,source_app_path,mapping_file_path]
-</code></pre>
-
-<h4 id="steal-all-locale-files-from-another-app">Steal all locale files from another app</h4>
-
-<pre><code>rake translation:steal:all[source_app_path,mapping_file_path]
+<pre lang="ruby"><code>RSpec.describe "locales files" do
+  it "should meet all locale validation requirements" do
+    checker = RailsTranslationManager::LocaleChecker.new("config/locales/*/*.yml")
+    expect(checker.validate_locales).to be_truthy
+  end
+end
 </code></pre>
 
 <h3 id="running-the-test-suite">Running the test suite</h3>
@@ -672,24 +509,28 @@ that are in the mapping.</p>
 <p>To run the test suite just run <code>bundle exec rake</code> from within the
 <code>rails_translation_manager</code> directory.</p>
 
-<p>You will need to clone the repository locally and run <code>bundle install</code> the
-first time you do this, eg.:</p>
+<h3 id="further-documentation">Further documentation</h3>
 
-<pre lang="sh"><code>$ git clone git@github.com:alphagov/rails_translation_manager.git
-$ cd rails_translation_manager
-$ bundle install
-$ bundle exec rake
-...
-</code></pre>
+<ul>
+<li><a href="/repos/rails_translation_manager/adding-editing-plural-forms.html">Adding and editing plural forms</a></li>
+<li><a href="/repos/rails_translation_manager/rake-command-reference.html">Rake command reference</a></li>
+<li>
+<a href="/repos/rails_translation_manager/translating-locale-files.html">Translating locale files</a> using RTM</li>
+</ul>
+
+<h4 id="i18n-tasks">i18n-tasks</h4>
+
+<p>RTM uses <a href="https://github.com/glebm/i18n-tasks">i18n-tasks</a> under the hood.
+For advanced tasks, refer to the i18n-tasks documentation:</p>
+
+<ul>
+<li><a href="https://github.com/glebm/i18n-tasks#move--rename--merge-keys">Move / rename / merge keys</a></li>
+<li><a href="https://github.com/glebm/i18n-tasks#delete-keys">Delete keys</a></li>
+</ul>
 
 <h2 id="licence">Licence</h2>
 
 <p><a href="https://github.com/alphagov/rails_translation_manager/blob/main/LICENSE.txt">MIT License</a></p>
-
-<h2 id="versioning-policy">Versioning policy</h2>
-
-<p>We use <a href="http://semver.org/">semantic versioning</a>, and bump the version
-on master only. Please don&rsquo;t submit your own proposed version numbers.</p>
 <p></div></p>
 
 
