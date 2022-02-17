@@ -216,7 +216,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2c59aacc4eb12b4729eed4cc09db3851d3b9b504">17 Feb 2022</a>
 </div>
 
  <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
@@ -354,7 +354,8 @@ make and approve redirect requests through the Short URL Manager. Additionally,
 there is a <code>advanced_options</code> permission which enables creating redirects for
 pages that are already owned by other apps, creating <code>prefix</code> type redirects,
 and using non-default values for the <code>segments_mode</code>.</p>
-<h3 id='removing-a-route-created-in-the-short-url-manager'>Removing a route created in the Short URL Manager</h3><p>First find the <code>content_id</code> of the URL that needs to be removed. This can be found by using the Content Store API: <code>www.gov.uk/api/content/&lt;path goes here&gt;</code>.</p>
+<h3 id='removing-a-route-created-in-the-short-url-manager'>Removing a route created in the Short URL Manager</h3><p>A Short URL route can be deleted from the <code>View short URL request</code> view in the UI of Short URL Manager.</p>
+<p>If the method above does not work, first find the <code>content_id</code> of the URL that needs to be removed. This can be found by using the Content Store API: <code>www.gov.uk/api/content/&lt;path goes here&gt;</code>.</p>
 <p>For example, finding the <code>content_id</code> for the page about <a href="https://www.gov.uk/guidance/keeping-a-pet-pig-or-micropig">keeping a pet pig or micropig</a> is found by going to <a href="https://www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig"><code>www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig</code></a>. The <code>content_id</code> should be a UUID; for example: <code>602144f8-7631-11e4-a3cb-005056011aef</code>.</p>
 <p>The content_id is with a rake task that removes the shortlink. The <a href="https://docs.publishing.service.gov.uk/repos/short-url-manager.html#run-a-rake-task">Short URL Manager documentation</a> has handy links for running the rake tasks in the different environments.</p>
 <p>The rake task for removing a redirect is:</p>
