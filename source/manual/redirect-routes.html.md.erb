@@ -221,7 +221,9 @@ and using non-default values for the `segments_mode`.
 ### Removing a route created in the Short URL Manager
 [short-url-manager-section-remove-route]: #removing-a-route-created-in-the-short-url-manager
 
-First find the `content_id` of the URL that needs to be removed. This can be found by using the Content Store API: `www.gov.uk/api/content/<path goes here>`.
+A Short URL route can be deleted from the `View short URL request` view in the UI of Short URL Manager.
+
+If the method above does not work, first find the `content_id` of the URL that needs to be removed. This can be found by using the Content Store API: `www.gov.uk/api/content/<path goes here>`.
 
 For example, finding the `content_id` for the page about [keeping a pet pig or micropig](https://www.gov.uk/guidance/keeping-a-pet-pig-or-micropig) is found by going to [`www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig`](https://www.gov.uk/api/content/guidance/keeping-a-pet-pig-or-micropig). The `content_id` should be a UUID; for example: `602144f8-7631-11e4-a3cb-005056011aef`.
 
