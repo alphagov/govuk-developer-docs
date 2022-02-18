@@ -388,15 +388,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/24d1ea513e58ee938043d71d09815a51229067bf">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/464e55bb3732c77e5d955615b5ceda207f830ec7">18 Feb 2022</a>
 </div>
 
   <h1 class="page-title">govuk-aws: # Deploying Google Terraform</h1>
@@ -461,7 +454,7 @@ gsutil mb -p ${PROJECT_ID} -l eu gs://${BUCKET_NAME}
 <p>including in the main terraform file of the project, the code snippet:</p>
 <pre><code>terraform {
   backend          "gcs"            {}
-  required_version = "= 0.11.14"
+  required_version = "= 0.11.15"
 }
 </code></pre>
 </li>
