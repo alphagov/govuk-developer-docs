@@ -503,7 +503,13 @@ You may encounter an error with the following output after trying to encrypt sec
 [hiera-eyaml-core] Unusable public key
 ```
 
-This may be due to an expired key or subkey.
+If prefixed with "There is no assurance this key belongs to the named user", then you likely just need to run the trust script:
+
+```
+./pass/trust_all.sh 2ndline
+```
+
+Otherwise, this error may be due to an expired key or subkey.
 
 Check keys are not expired by running the following:
 
