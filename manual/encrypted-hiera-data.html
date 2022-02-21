@@ -241,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6450104897d37005904db84497df6ff684314853">21 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c7dec8dfdaccf9d92b3da308ec23c0853ecd8ad1">22 Dec 2021</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -619,9 +619,7 @@ will fetch all recipient keys from the keyserver.
 <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#trust-user-public-keys">More information can be found in the govuk-secrets README</a>.</p>
 <h3 id='encryption-fails-when-running-the-rake-task-because-of-quotunusable-public-keyquot'>Encryption fails when running the Rake task because of &ldquo;Unusable public key&rdquo;</h3><p>You may encounter an error with the following output after trying to encrypt secrets using the Rake task:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[hiera-eyaml-core] Unusable public key
-</code></pre></div><p>If prefixed with &ldquo;There is no assurance this key belongs to the named user&rdquo;, then you likely just need to run the trust script:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>./pass/trust_all.sh 2ndline
-</code></pre></div><p>Otherwise, this error may be due to an expired key or subkey.</p>
+</code></pre></div><p>This may be due to an expired key or subkey.</p>
 <p>Check keys are not expired by running the following:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --list-options show-unusable-subkeys --list-keys {}
 </code></pre></div><p>You can check the output for any keys that may have expired. (Or pipe the output into grep <code>| grep expired</code>)</p>
