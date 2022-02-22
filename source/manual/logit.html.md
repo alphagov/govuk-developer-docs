@@ -51,9 +51,12 @@ This will normally be your Tech Lead.
 
 ### Adding users to GOV.UK Stacks
 
-1. Go to "People", and click "Manage".
-2. Click "Teams", then "Assign members" on the "GOV.UK" team.
-3. Add the new members of the team, and click "Update team members".
+If you cannot see the user in the user list, they need to first attempt to login via SSO to Logit.  Only once they have attempted to login to Logit will their account be visible for you to then assign them to a team.
+
+1. Go to the main "Dashboard"
+2. Click "Manage Teams", then "Team Settings" and then click the appropriate team.
+3. Scroll down until you see a list of users and for the particular user give them "Member" access
+4. Click "Apply Changes"
 
 ### Updating Logstash configuration
 
