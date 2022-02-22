@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Access to Licensify for Third Parties - GOV.UK Developer Documentation</title>
+    <title>How to flush the ARP cache - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/access-to-licensing-for-third-parties.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/flush-the-arp-cache.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Access to Licensify for Third Parties - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/access-to-licensing-for-third-parties.html" />
+      <meta name="twitter:title" content="How to flush the ARP cache - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/flush-the-arp-cache.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Access to Licensify for Third Parties" />
+      <meta property="og:title" content="How to flush the ARP cache" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/access-to-licensing-for-third-parties.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/flush-the-arp-cache.html" />
 
     
   </head>
@@ -123,25 +123,16 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Access to Licensify for Third Parties</span></a>
+    <a href="#header"><span>How to flush the ARP cache</span></a>
     <ul>
       <li>
-        <a href="#accessing-the-logs"><span>Accessing the logs</span></a>
+        <a href="#flushing-the-arp-cache"><span>Flushing the ARP cache</span></a>
       </li>
       <li>
-        <a href="#accessing-the-vpn"><span>Accessing the VPN</span></a>
+        <a href="#what-is-the-arp-cache"><span>What is the ARP cache?</span></a>
       </li>
       <li>
-        <a href="#accessing-mongodb"><span>Accessing MongoDB</span></a>
-      </li>
-      <li>
-        <a href="#deploying-code-with-jenkins"><span>Deploying code with Jenkins</span></a>
-      </li>
-      <li>
-        <a href="#accessing-machines-using-ssh"><span>Accessing machines using SSH</span></a>
-      </li>
-      <li>
-        <a href="#accessing-the-source-code"><span>Accessing the source code</span></a>
+        <a href="#what-is-wrong-with-our-arp-cache"><span>What is wrong with our ARP cache?</span></a>
       </li>
     </ul>
   </li>
@@ -194,90 +185,50 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/858841c91cb3231b0227065de8e68eacfeba1993">4 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cbc7ed831b89e8dd60afa4647d780ab72c84380a">22 Feb 2022</a>
 </div>
 
- <h1 id='header'>Access to Licensify for Third Parties</h1> <p><a href="/manual/licensing.html">Licensify</a> is a GOV.UK application which is usually supported by third parties.</p>
-<p>This document explains how to access the Licensify infrastructure as a third party, to perform various maintenance tasks.</p>
-<h2 id='accessing-the-logs'>Accessing the logs</h2><p>Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.</p>
-<p>If you haven&rsquo;t already got access to GDS&rsquo; Logit account, you&rsquo;ll need to <a href="https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit">follow the instructions in the Reliability Engineering documentation to create an account in Logit</a>.</p>
-<h2 id='accessing-the-vpn'>Accessing the VPN</h2><p>This is a prerequisite for accessing Jenkins (which is used for deployments), and for SSH-ing onto instances.</p>
-<p>Follow <a href="https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit">the VPN guidance for non-GDS devices (&ldquo;BYOD&rdquo;)</a>
-to set up the VPN. You will need to sign into your <code>@digital.cabinet-office.gov.uk</code> Google account to access this document.</p>
-<h2 id='accessing-mongodb'>Accessing MongoDB</h2><p>Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in <code>/etc/licensing/gds-licensing-config.properties</code> on the <code>licensing_backend</code> machines, in the <code>mongo.database.*</code> keys.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">grep </span>mongo.database /etc/licensing/gds-licensing-config.properties
-<span class="c"># …</span>
-mongo.database.hosts<span class="o">=</span>licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-1.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-2.abcd1234wxyz.eu-west-1.docdb.amazonaws.com
-mongo.database.reference.name<span class="o">=</span>licensify-refdata
-<span class="c"># …</span>
-mongo.database.auth.username<span class="o">=</span>master
-mongo.database.auth.password<span class="o">=</span>REDACTED
-<span class="c"># …</span>
-<span class="nv">$ </span>mongo licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com/licensify-refdata <span class="nt">-u</span> master
-MongoDB shell version v3.6.14
-Enter password: REDACTED
-
-…
-</code></pre></div><h2 id='deploying-code-with-jenkins'>Deploying code with Jenkins</h2><p>Licensify is built and deployed using Jenkins. There are four relevant Jenkins instances:</p>
-
-<ol>
-<li><a href="https://ci.integration.publishing.service.gov.uk/job/licensify/">CI Jenkins</a> automatically builds releases from the master branch</li>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/">Integration Deploy Jenkins</a> deploys releases to integration</li>
-<li><a href="https://deploy.blue.staging.govuk.digital/">Staging Deploy Jenkins</a> deploys releases to staging</li>
-<li><a href="https://deploy.blue.production.govuk.digital/">Production Deploy Jenkins</a> deploys releases to production</li>
-</ol>
-<p>Access to Jenkins is controlled through GitHub teams. Users in the &ldquo;GOV.UK&rdquo; team have full access to the CI and
-Integration Jenkins instances, and read only access to the Staging and Production Jenkins instances. Users in the &ldquo;
-GOV.UK Production&rdquo; team have full access in all environments.</p>
-<p>Usually, GOV.UK developers coordinate deployments through these Jenkins instances using
-<a href="https://release.publishing.service.gov.uk/applications">the Release app</a>. This shows which releases are deployed to
-which environments, and has useful buttons to take you to the correct Jenkins instance.</p>
-<p>Access to the Release app is controlled through <a href="https://github.com/alphagov/signon">GOV.UK Signon</a>. If you don&rsquo;t have access, you can request it from the
-GOV.UK developers.</p>
-<p>The process for building a new release and promoting it through the three
-environments is as follows:</p>
-
-<ol>
-<li>When a PR/branch is merged into master, this starts a new build of master on the CI Jenkins. This produces the
-necessary artefacts to deploy Licensify. Each build is given a build number.</li>
-<li>Jenkins will attempt to deploy the new build automatically to integration using
-the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">integration Jenkins job</a></li>
-<li>Jenkins only expects to deploy one application per repository, but Licensing is deployed three times (<code>licensify</code>,
-<code>licensify-admin</code>, and <code>licensify-feed</code>). The automated deployment currently only works for <code>licensify</code>.</li>
-<li>To complete the deployment to integration, you need to ensure that the Deploy App job runs for each of the apps:
-
-<ol>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify">licensify (Integration)</a></li>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin">licensify-admin (Integration)</a></li>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed">licensify-feed (Integration)</a></li>
-</ol></li>
-<li>Manually confirm that the frontend and backend of Licensing are working on Integration before deploying to Staging</li>
-<li>To deploy to staging, you must manually trigger the Deploy App Jenkins job 3 times, once for each of the Licensify
-components.
-
-<ol>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify">licensify (Staging)</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin">licensify-admin (Staging)</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed">licensify-feed (Staging)</a></li>
-</ol></li>
-<li>Manually confirm that the frontend and backend of Licensing are working on Staging before deploying to Production</li>
-<li>Follow the same procedure as for staging to deploy to production using the production Jenkins:
-
-<ol>
-<li><a href="https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify">licensify (Production)</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin">licensify-admin (Production)</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed">licensify-feed (Production)</a></li>
-</ol></li>
-</ol>
-<h2 id='accessing-machines-using-ssh'>Accessing machines using SSH</h2><p>Follow the <a href="/manual/howto-ssh-to-machines.html#connecting-with-plain-ssh">instructions for connecting to a machine via SSH</a>. The machine classes you will need are <code>licensing_frontend</code> and <code>licensing_backend</code>. You will need to be on the VPN.</p>
-<p>The files most relevant to the Licensify applications can be found in:</p>
-
-<ul>
-<li>Application: <code>/data/vhost/licensify</code></li>
-<li>Logs: <code>/var/log/licensify</code></li>
-<li>Config: <code>/etc/licensify</code></li>
-</ul>
-<h2 id='accessing-the-source-code'>Accessing the source code</h2><p>The source code is hosted on GitHub at <a href="https://github.com/alphagov/licensify">alphagov/licensify</a>.</p>
+ <h1 id='header'>How to flush the ARP cache</h1> <p>We&rsquo;re aware of a rare situation where our servers can find themselves with
+incorrect entries in their ARP cache (more detail below in <a href="#what-is-the-arp-cache">What is the ARP
+cache?</a> and <a href="#what-is-wrong-with-our-arp-cache">What is wrong with our ARP cache?</a>)</p>
+<p>This causes the connection issues between the affected servers and some of the
+internal APIs they call. The issues usually happen shortly after a spike in
+traffic.</p>
+<p>For example, in a recent incident our frontend servers couldn&rsquo;t connect to
+content-store. We could reproduce this in an ssh session with:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ curl --verbose https://content-store.production.govuk-internal.digital/content/vat-rates
+* Hostname was NOT found in DNS cache
+*   Trying 10.13.4.67...
+* connect to 10.13.4.67 port 443 failed: Connection timed out
+*   Trying 10.13.5.93...
+* Connected to content-store.production.govuk-internal.digital (10.13.5.93) port 443 (#0)
+</code></pre></div><p>The key line here is <code>connect to 10.13.4.67 port 443 failed: Connection timed
+out</code> - if you see connection failures like this to a particular IP address it&rsquo;s
+possible that there&rsquo;s an issue with the ARP cache.</p>
+<p>If you suspect an issue with the ARP cache, flushing it is easy to do and
+doesn&rsquo;t carry much risk.</p>
+<h2 id='flushing-the-arp-cache'>Flushing the ARP cache</h2><p>Before you decide to flush the ARP cache, try to reproduce the connection issue
+with curl. For example, on a frontend machine that&rsquo;s having connection issues
+with content-store:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ curl --verbose https://content-store.production.govuk-internal.digital/
+</code></pre></div><p>Once you&rsquo;ve reproduced the connection issue, flush the ARP cache with:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ sudo ip neigh flush all
+</code></pre></div><p>Then try to connect to the service you were having connection issues with again:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ curl --verbose https://content-store.production.govuk-internal.digital/
+</code></pre></div><p>If this succeeds, then it&rsquo;s extremely likely the instance was having issues
+with its ARP cache.</p>
+<p>If there are other machines with similar issues, you should flush the cache on
+those too.</p>
+<h2 id='what-is-the-arp-cache'>What is the ARP cache?</h2><p>Address Resolution Protocol (ARP) resolves IP addresses into MAC addresses. The
+ARP cache keeps track of the mapping between IP addresses and MAC addresses.</p>
+<p>If none of that makes any sense to you, there is a good explanation of the
+underlying networking concepts in <a href="https://jvns.ca/networking-zine.pdf">Julia Evans&rsquo; Networking! Ack! Zine</a>.</p>
+<h2 id='what-is-wrong-with-our-arp-cache'>What is wrong with our ARP cache?</h2><p>Linux is supposed to manage the ARP cache invisibly, so developers should never
+have to think about it. Unfortunately it seems that some versions of the Linux
+kernel <a href="https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1715812">have bugs which can occasionally mean things go wrong with the ARP
+cache</a>.</p>
+<p>As of February 2022 we&rsquo;re discussing how to work around these issues, but in the
+meantime this document covers how to manually fix the issues.</p>
 
 
   <div class='related-content'>
@@ -290,6 +241,7 @@ components.
 
           <ul class="govuk-list">
             <li><a href="/manual/2nd-line.html">2nd line</a></li>
+            <li><a href="/manual/access-to-licensing-for-third-parties.html">Access to Licensify for Third Parties</a></li>
             <li><a href="/manual/licensing.html">Licensify - supporting licensing</a></li>
             <li><a href="/manual/on-call.html">Out of hours support (on-call)</a></li>
             <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
@@ -305,7 +257,6 @@ components.
 
           <ul class="govuk-list">
             <li><a href="/manual/change-in-hours-time-period-for-dst.html">Change in-hours time period for daylight savings</a></li>
-            <li><a href="/manual/flush-the-arp-cache.html">How to flush the ARP cache</a></li>
             <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
             <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
             <li><a href="/manual/smart-survey-scheduled-maintenance.html">SmartSurvey scheduled maintenance</a></li>
@@ -321,8 +272,8 @@ components.
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/access-to-licensing-for-third-parties.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Access+to+Licensify+for+Third+Parties%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Faccess-to-licensing-for-third-parties.html%29&amp;labels=bug&amp;title=Re%3A+%27Access+to+Licensify+for+Third+Parties%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/flush-the-arp-cache.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27How+to+flush+the+ARP+cache%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fflush-the-arp-cache.html%29&amp;labels=bug&amp;title=Re%3A+%27How+to+flush+the+ARP+cache%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
