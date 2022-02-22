@@ -190,7 +190,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/04c98dcfd8d4dc0328b03cdff77a0f7df2ecdb1a">3 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4a46528dc74c78b994176c8a447a61d7a4a55217">14 Feb 2022</a>
 </div>
 
  <h1 id='header'>Reindex an Elasticsearch index</h1> <p>After updating an Elasticsearch index&rsquo;s schema by <a href="/apis/search/add-new-fields-or-document-types.html">changing the fields or
@@ -218,26 +218,14 @@ updated in the search index. See the <a href="#out-of-date-search-indices">out-o
 indices</a> section below if you need to run
 a reindexing during working hours. Reindexing takes around 2 hours to
 complete.</p>
-<p>To reindex, you have two options:</p>
-<p>a) If you need to reindex every index you can use the <a href="https://deploy.integration.publishing.service.gov.uk/job/search_api_reindex_with_new_schema/">Search API reindex with new schema</a> job.</p>
-<p>b) If you only need to reindex one specific index you can run a <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/">rake task
-manually</a>, using the <code>search:migrate_schema</code> rake task:</p>
+<p>To reindex, you can use the following job:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate" class="govuk-link">Run search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate" class="govuk-link">Run search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate" class="govuk-link">⚠️ Run search:migrate_schema SEARCH_INDEX=alias_of_index_to_migrate on Production ⚠️</a></li>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/search_api_reindex_with_new_schema" class="govuk-link">Run search_api_reindex_with_new_schema on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/search_api_reindex_with_new_schema" class="govuk-link">Run search_api_reindex_with_new_schema on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/search_api_reindex_with_new_schema" class="govuk-link">⚠️ Run search_api_reindex_with_new_schema on Production ⚠️</a></li>
 </ul>
-<p>Current index aliases (<code>alias_of_index_to_migrate</code>) available to reindex include:</p>
-
-<ul>
-<li><code>govuk</code></li>
-<li><code>government</code></li>
-<li><code>detailed</code></li>
-<li><code>metasearch</code></li>
-<li><code>page-traffic</code></li>
-<li><code>licence-finder</code></li>
-</ul>
+<p>This task allows either all indices or a single index to be reindexed.</p>
 <p>To monitor progress, SSH to a search box and check how many documents
 have been copied to the new index:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect ssh <span class="nt">-e</span> integration search
