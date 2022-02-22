@@ -206,15 +206,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b222624852518571fd15b9f8eba6c40b23d46e39">2 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/25634d56859b9d7ac4ab409785c4c337c9dbf693">22 Feb 2022</a>
 </div>
 
  <h1 id='header'>Use Logit for GOV.UK</h1> <h2 id='how-gov-uk-use-logit'>How GOV.UK use Logit</h2><p>GOV.UK use <a href="https://logit.io">Logit</a> to provide our
@@ -237,11 +230,13 @@ instructions in the Reliability Engineering manual for <a href="https://reliabil
 direct links externally they will take you to this stack.</p>
 <h3 id='adding-your-user-to-the-right-team'>Adding your user to the right team</h3><p>If you are unable to see any logs, please speak to a GOV.UK Logit administrator.
 This will normally be your Tech Lead.</p>
-<h2 id='administration-guide'>Administration guide</h2><h3 id='adding-users-to-gov-uk-stacks'>Adding users to GOV.UK Stacks</h3>
+<h2 id='administration-guide'>Administration guide</h2><h3 id='adding-users-to-gov-uk-stacks'>Adding users to GOV.UK Stacks</h3><p>If you cannot see the user in the user list, they need to first attempt to login via SSO to Logit.  Only once they have attempted to login to Logit will their account be visible for you to then assign them to a team.</p>
+
 <ol>
-<li>Go to &ldquo;People&rdquo;, and click &ldquo;Manage&rdquo;.</li>
-<li>Click &ldquo;Teams&rdquo;, then &ldquo;Assign members&rdquo; on the &ldquo;GOV.UK&rdquo; team.</li>
-<li>Add the new members of the team, and click &ldquo;Update team members&rdquo;.</li>
+<li>Go to the main &ldquo;Dashboard&rdquo;</li>
+<li>Click &ldquo;Manage Teams&rdquo;, then &ldquo;Team Settings&rdquo; and then click the appropriate team.</li>
+<li>Scroll down until you see a list of users and for the particular user give them &ldquo;Member&rdquo; access</li>
+<li>Click &ldquo;Apply Changes&rdquo;</li>
 </ol>
 <h3 id='updating-logstash-configuration'>Updating Logstash configuration</h3><p>At present there is no automated way to configure Logstash configuration.</p>
 
