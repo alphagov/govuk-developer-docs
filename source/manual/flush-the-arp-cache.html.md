@@ -67,7 +67,7 @@ Address Resolution Protocol (ARP) resolves IP addresses into MAC addresses. The
 ARP cache keeps track of the mapping between IP addresses and MAC addresses.
 
 If none of that makes any sense to you, there is a good explanation of the
-underlying networking concepts in [Julia Evans' Netwokring! Ack! Zine](https://jvns.ca/networking-zine.pdf).
+underlying networking concepts in [Julia Evans' Networking! Ack! Zine](https://jvns.ca/networking-zine.pdf).
 
 ## What is wrong with our ARP cache?
 
