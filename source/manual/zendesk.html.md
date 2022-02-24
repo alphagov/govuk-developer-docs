@@ -50,6 +50,9 @@ Below are some of the groups we often triage tickets to:
 * Security issues - `3rd Line--Cyber Security`
 * Spam - `2nd Line--User Support Escalation`
 
+If the ticket's subject is not descriptive of the problem (e.g. `Named contact`) then update this prior
+to triaging or working on the ticket.
+
 ## Passing to another government department or service team
 
 Sometimes a ticket relates to a service run by another government department. To transfer the ticket:
