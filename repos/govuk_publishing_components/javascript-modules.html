@@ -389,7 +389,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/59a8fd6bde918f00928fae00163cba1d15b8a465">31 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/59a0341efd54e7915dd5b01114f96c8fb0486fa0">24 Feb 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # JavaScript Modules</h1>
@@ -494,7 +494,7 @@ AnExampleModule.prototype.startModule = function () {
 <h4 id="include-jasmine-specs">Include Jasmine specs</h4>
 <p>Modules should have their own tests, whether they’re being included with the GOV.UK Publishing Components or are app specific. These tests run as part of our build process using a headless version of Chrome, which means it runs the browser without initialising the GUI.</p>
 <p>You can run the Jasmine tests in the components gem using this command:</p>
-<pre lang="sh"><code>bundle exec rake app:jasmine:ci
+<pre lang="sh"><code>yarn run jasmine:ci
 </code></pre>
 <p>You can run the Jasmine tests in an application using this command:</p>
 <pre lang="sh"><code>bundle exec rake jasmine:ci
