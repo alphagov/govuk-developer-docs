@@ -34,15 +34,10 @@ This backup CDN is currently provided by AWS CloudFront.
     the decision with the GOV.UK SMT Escalations person
 - While you wait, confirm the new CNAMES for www-cdn.production.govuk.service.gov.uk and assets.publishing.service.gov.uk
   - This [Draft PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-config/pull/714) shows the CNAMES you need to change, and how to test that they are correct
-  - You can also get the CNAMEs to use for the secondary CDN from the AWS CLI:
-
-  ```
-  # www.gov.uk
+  - You can also get the CNAMEs to use for the secondary CDN from the AWS CLI: <div class="highlight"><pre class="highlight plaintext"><code># www.gov.uk
   gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName | [0]"
   # assets.publishing.service.gov.uk
-  gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName | [0]"
-  ```
-
+  gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName | [0]"</code></pre></div>
   - The records should look like `d0000000000000.cloudfront.net.` (with 0s replaced with letters and numbers)
 - When you are ready to fail over:
   - Manually update the CNAME record for www-cdn.production.govuk.service.gov.uk in GCP and AWS
