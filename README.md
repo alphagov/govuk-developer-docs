@@ -24,7 +24,7 @@ If you do not do this, you will need to create a GitHub auth token to avoid gett
 #### Skipping proxied pages from other repositories
 
 ```
-SKIP_PROXY_PAGES=true ./startup
+SKIP_PROXY_PAGES=true ./startup.sh
 ```
 
 Note that `middleman server` will still try to load these pages lazily on some pages (e.g. the docs homepage, or the applications list), so you'll either need to avoid these pages or use a GitHub auth token.
