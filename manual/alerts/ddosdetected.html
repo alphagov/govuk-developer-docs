@@ -124,6 +124,11 @@
   <ul>
   <li>
     <a href="#header"><span>DDOS Detected</span></a>
+    <ul>
+      <li>
+        <a href="#aws-shield-response-team-srt"><span>AWS Shield Response Team (SRT)</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -145,18 +150,12 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/433342eeb1643e669c489c33469ea3fdec6571ac">17 Sep 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f811326d2a57bfb61333d70aee97f16688799fa5">25 Feb 2022</a>
 </div>
 
- <h1 id='header'>DDOS Detected</h1> <p>If there is a Distributed Denial of Service (DDoS) alert in Icinga this means that AWS have detected a probable DDoS attack on one or more of the AWS Shield Advanced
+ <h1 id='header'>DDOS Detected</h1> <p>If there is a Distributed Denial of Service (DDoS) alert in Icinga this means that
+AWS have detected a probable DDoS attack on one or more of the AWS Shield Advanced
 protected resources.</p>
 <p>If the alert is <code>UNKNOWN</code>, this means that the alert is not working properly.</p>
 <p>If the alert is <code>CRITICAL</code>, you should take the following actions to investigate the issue:</p>
@@ -174,6 +173,22 @@ protected resources.</p>
 </ol>
 <p>The alert will appear on the Icinga dashboard for 24 hours after it was first triggered
 due to the sparse metrics.</p>
+<h2 id='aws-shield-response-team-srt'>AWS Shield Response Team (SRT)</h2><p>We have pre-configured an <a href="https://github.com/alphagov/govuk-aws/pull/1550/files">IAM role for the SRT team to use</a>.</p>
+<p>It is currently not assigned to any resources, but when activated will allow
+the SRT to view our shielded resources and edit things such as Web Application
+Firewall (WAF) rules, Access Control Lists (webacls), Shield and CloudFront
+configurations.</p>
+<p>We should not enable the role unless we are <a href="https://docs.aws.amazon.com/waf/latest/developerguide/ddos-edit-drt.html">engaged with the team</a>
+as a result of an incident.</p>
+<p>To enable the role:</p>
+
+<ol>
+<li>Open the AWS console for the affected environment, eg <code>gds aws govuk-integration-poweruser -l</code></li>
+<li>Navigate to the <a href="https://console.aws.amazon.com/wafv2/shieldv2#/drt_settings/edit">Edit AWS Shield Response Team (SRT) access page</a></li>
+<li>In the AWS Shield Response Team (SRT) access section, select the &ldquo;Choose an existing role for the SRT to access my accounts.&rdquo; radio button.</li>
+<li>From the role name drop down, select &ldquo;shield-response-team-access&rdquo;.</li>
+<li>Click Save to apply the changes.</li>
+</ol>
 
 
   <div class='related-content'>
