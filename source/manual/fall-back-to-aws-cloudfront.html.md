@@ -38,7 +38,7 @@ This backup CDN is currently provided by AWS CloudFront.
 
   ```
   # www.gov.uk
-  gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName | [0]
+  gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName | [0]"
   # assets.publishing.service.gov.uk
   gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName | [0]"
   ```
