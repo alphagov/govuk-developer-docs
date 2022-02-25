@@ -126,7 +126,7 @@
     <a href="#header"><span>Fall back to AWS CloudFront</span></a>
     <ul>
       <li>
-        <a href="#procedure"><span>Procedure</span></a>
+        <a href="#fail-over-checklist"><span>Fail over checklist</span></a>
       </li>
     </ul>
   </li>
@@ -179,31 +179,77 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/984319947dfee135f87e150ab5b81ec9a9018714">2 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b955bc834cb9adeb3c8442e0ea0df6599a386dd7">25 Feb 2022</a>
 </div>
 
  <h1 id='header'>Fall back to AWS CloudFront</h1> <p>There is a backup Content Delivery Network (CDN) that can be used if Fastly is down.
 This backup CDN is currently provided by AWS CloudFront.</p>
-<p><strong>Important</strong> At the time of writing, GOV.UK will be served
-by static mirrors and not the origin of GOV.UK if you fallback to the backup CDN.</p>
-<h2 id='procedure'>Procedure</h2><p>You will have to make 2 DNS changes to GOV.UK:</p>
 
-<ol>
-<li>The CNAME at <code>www-cdn.production.govuk.service.gov.uk</code> should point to
-cloudfront&rsquo;s WWW distribution instead of Fastly</li>
-<li>The CNAME at <code>assets.publishing.service.gov.uk</code> should point to cloudfront&rsquo;s
-Assets distribution instead of Fastly</li>
-</ol>
-<p>This <a href="https://github.com/alphagov/govuk-dns-config/pull/714">Draft PR to Failover to AWS CloudFront</a>
-shows the changes you need to make, and how to test the CDN before failing over.</p>
-<p>You can check the domain names of the cloudfront distributions by looking in
-the AWS web console, or with the CLI:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># www.gov.uk
-gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName | [0]"
+<blockquote>
+<p><strong>Important</strong> GOV.UK will be served by static mirrors and not the origin of GOV.UK if you fallback to the backup CDN.
+This is significantly degraded service compared to the primary CDN. Major features such as search, smart answers, and
+postcode lookups will not work when using the secondary CDN.</p>
+</blockquote>
+<h2 id='fail-over-checklist'>Fail over checklist</h2>
+<ul>
+<li>Confirm that Fastly is the cause of the incident (check <a href="https://status.fastly.com/">https://status.fastly.com/</a>
+and keep an eye on twitter - if there&rsquo;s a major Fastly outage there will be a lot of noise)</li>
+<li>Sign in to the AWS console as an admin (<code>gds aws govuk-production-admin -l</code>, or however you prefer to sign in to AWS)</li>
+<li>Sign in to <a href="https://console.cloud.google.com/home/dashboard?project=govuk-production">the GCP console</a></li>
+<li>Open the following four pages as separate tabs:
 
-# assets.publishing.service.gov.uk
-gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName | [0]"
+<ul>
+<li><a href="https://console.cloud.google.com/net-services/dns/zones/govuk-service-gov-uk/rrsets/www-cdn.production.govuk.service.gov.uk./CNAME/edit?project=govuk-production">GCP Cloud DNS www-cdn.production.govuk.service.gov.uk</a></li>
+<li><a href="https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z22RPYZA77J620">AWS Route 53 govuk.service.gov.uk</a></li>
+<li><a href="https://console.cloud.google.com/net-services/dns/zones/publishing-service-gov-uk/rrsets/assets.publishing.service.gov.uk./CNAME/edit?project=govuk-production">GCP Cloud DNS assets.publishing.service.gov.uk</a></li>
+<li><a href="https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z3SBFBO09PD5HF">AWS Route 53 publishing.service.gov.uk</a></li>
+</ul></li>
+<li>Because the secondary CDN provides degraded service we have a grace period
+before failing over
+
+<ul>
+<li>Escalate to GOV.UK SMT as soon as you begin to consider failing over</li>
+<li>For a major Fastly outage (more than 30% of requests failing) wait 15
+minutes (from the start of the incident) and then start the fail over</li>
+<li>For a minor Fastly outage (less than 30% of requests failing) wait at least
+15 minutes (from the start of the incident) before failing over - discuss
+the decision with the GOV.UK SMT Escalations person</li>
+</ul></li>
+<li>While you wait, confirm the new CNAMES for www-cdn.production.govuk.service.gov.uk and assets.publishing.service.gov.uk
+
+<ul>
+<li>This <a href="https://github.com/alphagov/govuk-dns-config/pull/714">Draft PR to Failover to AWS CloudFront</a> shows the CNAMES you need to change, and how to test that they are correct</li>
+<li>You can also get the CNAMEs to use for the secondary CDN from the AWS CLI:</li>
+</ul></li>
+</ul>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  # www.gov.uk
+  gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='WWW'].DomainName | [0]
+  # assets.publishing.service.gov.uk
+  gds aws govuk-production-readonly aws cloudfront list-distributions --query "DistributionList.Items[?Comment=='Assets'].DomainName | [0]"
 </code></pre></div>
+<ul>
+<li>The records should look like <code>d0000000000000.cloudfront.net.</code> (with 0s replaced with letters and numbers)
+
+<ul>
+<li>When you are ready to fail over:</li>
+</ul></li>
+<li>Manually update the CNAME record for www-cdn.production.govuk.service.gov.uk in GCP and AWS</li>
+<li>Manually update the CNAME record for assets.publishing.service.gov.uk in GCP and AWS
+
+<ul>
+<li>After failing over manually:</li>
+</ul></li>
+<li>Merge <a href="https://github.com/alphagov/govuk-dns-config/pull/714">the PR to Failover to AWS CloudFront</a></li>
+<li><a href="/manual/dns.html#making-changes-to-publishing-service-gov-uk">Deploy DNS using Jenkins and Terraform</a>
+
+<ul>
+<li>Once you&rsquo;ve failed over, keep a close eye on Fastly&rsquo;s status</li>
+<li>As soon as you are confident that Fastly has recovered</li>
+</ul></li>
+<li>Manually set the CNAME records you changed above back to www-gov-uk.map.fastly.net.</li>
+<li>Raise a PR in <a href="https://github.com/alphagov/govuk-dns-config">govuk-dns-config</a> to set the records back formally. Get it approved, merged and <a href="/manual/dns.html#making-changes-to-publishing-service-gov-uk">Deploy DNS using Jenkins and Terraform</a></li>
+</ul>
+
 
   <div class='related-content'>
 
