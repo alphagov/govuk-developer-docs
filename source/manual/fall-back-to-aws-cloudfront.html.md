@@ -26,11 +26,12 @@ This backup CDN is currently provided by AWS CloudFront.
   - [AWS Route 53 publishing.service.gov.uk](https://console.aws.amazon.com/route53/v2/hostedzones#ListRecordSets/Z3SBFBO09PD5HF)
 - Because the secondary CDN provides degraded service we have a grace period
   before failing over
+  - Escalate to GOV.UK SMT as soon as you begin to consider failing over
   - For a major Fastly outage (more than 30% of requests failing) wait 15
-    minutes (from the start of the incident) before failing over
+    minutes (from the start of the incident) and then start the fail over
   - For a minor Fastly outage (less than 30% of requests failing) wait at least
-    15 minutes (from the start of the incident) before failing over and escalate
-    to GOV.UK SMT to help with a decision
+    15 minutes (from the start of the incident) before failing over - discuss
+    the decision with the GOV.UK SMT Escalations person
 - While you wait, confirm the new CNAMES for www-cdn.production.govuk.service.gov.uk and assets.publishing.service.gov.uk
   - This [Draft PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-config/pull/714) shows the CNAMES you need to change, and how to test that they are correct
   - You can also get the CNAMEs to use for the secondary CDN from the AWS CLI:
