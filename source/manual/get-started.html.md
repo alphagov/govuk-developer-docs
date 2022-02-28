@@ -84,6 +84,7 @@ On GOV.UK we use the following command-line tools for AWS and SSH access:
     ```bash
     brew tap alphagov/gds
     brew install gds-cli govuk-connect
+    brew install --cask aws-vault
     ```
 
     The GDS CLI repository is private, so you must first [set up your GitHub account](#2-set-up-your-github-account).
