@@ -411,3 +411,7 @@ approach][rspec-request-moj] to replace [controller specs][] reflecting a
 [rspec-request-moj]: https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11
 [controller specs]: https://relishapp.com/rspec/rspec-rails/docs/controller-specs
 [controller-rails-5]: https://github.com/rails/rails/issues/18950
+
+### Useful reading
+
+[The RSpec Styleguide](https://rspec.rubystyle.guide/)
