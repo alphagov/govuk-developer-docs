@@ -389,7 +389,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/dabc1093127f2f9d201fcbb25c27c549b4fd021e">25 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/6f0bdaed55cf437f947298b420812b9ce16d5d01">1 Mar 2022</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating or editing specialist document types</h1>
@@ -418,6 +418,9 @@ irb(main):001:0&gt; require "securerandom"
 irb(main):002:0&gt; SecureRandom.uuid
 =&gt; "5087e8b6-ee54-40f9-b592-8c2813c7037d"
 </code></pre>
+<ol start="4">
+<li>Run <code>bundle exec rake build</code> to regenerate schemas.</li>
+</ol>
 <p>When the PR is reviewed and its tests passing, it can be merged and deployed at this point.</p>
 <h2 id="2-create-a-new-specialist-document-format-in-specialist-publisher">2. Create a new specialist document format in Specialist Publisher</h2>
 <h3 id="create-the-schema">Create the schema</h3>
