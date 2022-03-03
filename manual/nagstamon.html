@@ -191,23 +191,16 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a02c8174fd9eff3d0fd0ed7cdfbdd3448f878489">3 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0528d239dc95613c4bbf64c5109ef76e2c237b78">3 Mar 2022</a>
 </div>
 
  <h1 id='header'>Use Nagstamon for monitoring Icinga</h1> <p><a href="images/nagstamon.png" rel="noopener noreferrer"><img src="/images/nagstamon.png" alt="nagstamon" /></a></p>
 <p><a href="https://nagstamon.ifw-dresden.de/">Nagstamon</a> can access multiple Icinga instances, display the
 alerts, and allow you to easily act on them.</p>
 <h2 id='installation'>Installation</h2><p>Download the relevant release from the Nagstamon website.</p>
-<h3 id='mac-users'>Mac users</h3><p>Double-click the downloaded <code>.dmg</code>. Drag the app into your
-Apps folder, then double-click the app.</p>
+<h3 id='mac-users'>Mac users</h3><p>You can <a href="https://nagstamon.de/download#homebrew">install using Homebrew</a>.
+After install, open <code>Nagstamon.app</code> in your <code>Applications</code> folder.</p>
 <p>On first run, it may be blocked as an unverified app.
 Go to &ldquo;Security &amp; Privacy&rdquo;, and under the &ldquo;General&rdquo; tab there
 should be a message relating to your attempt to open Nagstamon.
@@ -222,9 +215,10 @@ Click &ldquo;Open anyway&rdquo;.</p>
 <li>Enter the URL for the Icinga instance to the Monitor URL and Monitor
 CGI URL fields (i.e. <code>https://alert.integration.publishing.service.gov.uk/</code>
 should be entered in both fields for integration).</li>
-<li>Leave the Username and Password blank, and tick &ldquo;Save password&rdquo;.</li>
+<li>Set the Username and Password to blank, and tick &ldquo;Save password&rdquo;.</li>
 <li>Click &ldquo;OK&rdquo;.</li>
 </ul>
+<p>Repeat for each environment. Note that each Icinga instance is displayed in alphabetical order according to its &lsquo;Monitor name&rsquo; value, so if you want Production to come before Integration, you&rsquo;ll have to get creative by prefixing the monitor name with a number.</p>
 <h3 id='actions'>Actions</h3><p>Nagstamon supports performing actions, you can configure it to connect
 to the relevant host via SSH, which can make it easier to investigate
 and resolve issues.</p>
