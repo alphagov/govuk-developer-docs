@@ -388,15 +388,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/e679f5bb58e163637b2fa3e86f98ec70dfba980b">15 Jul 2021</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/f3f20eb476edeb8fcb8ec2ced0fc80685514b6c4">3 Mar 2022</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Support tasks</h1>
@@ -459,11 +452,22 @@ Depending on the number of emails to send, the Rake task can take a few minutes 
 <h3 id="using-email-ids">Using email IDs</h3>
 <pre lang="bash"><code>bundle exec rake 'support:resend_failed_emails:by_id[&lt;email_one_id&gt;,&lt;email_two_id&gt;]'
 </code></pre>
-<h2 id="get-subscriber-numbers-for-a-list">Get subscriber numbers for a list</h2>
-<p>To see the number of subscribers for a given list:</p>
+<h2 id="get-subscriber-list-csv-report">Get subscriber list csv report</h2>
+<p>To see a csv report for the number of subscribers for a given list:</p>
 <pre lang="bash"><code>bundle exec rake 'report:csv_subscriber_lists[&lt;on_date&gt;] SLUGS=&lt;list_slug&gt;'
 </code></pre>
 <p>The date should be in ISO8601 format, for example 2020-01-01.</p>
+<h2 id="get-a-simple-count-of-subscribers-to-a-list-by-its-url">Get a simple count of subscribers to a list by its URL</h2>
+<p>To see a simple count of the number of subscribers for a given list:</p>
+<pre lang="bash"><code>bundle exec rake 'report:csv_subscriber_lists[&lt;url&gt;]'
+</code></pre>
+<p>This will always report on the number of active subscriptions for a given url, as of the end of today.</p>
+<p>You can also pass it a :active_on_datetime which will count how many active subscriptions there were at the end of the day on a particular date.
+(active is defined as created before that datetime and not with an "ended_on" datetime by the given date)</p>
+<pre lang="bash"><code>bundle exec rake 'report:csv_subscriber_lists[&lt;url&gt;, &lt;active_on_date&gt;]'
+</code></pre>
+<p>The active_on_date should be in ISO8601 format, for example 2022-03-03T12:12:16+00:00.
+The time will always be rounded to the end of the day, even if that is in the future.</p>
 
 
             
