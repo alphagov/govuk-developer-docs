@@ -19,8 +19,8 @@ Download the relevant release from the Nagstamon website.
 
 ### Mac users
 
-Double-click the downloaded `.dmg`. Drag the app into your
-Apps folder, then double-click the app.
+You can [install using Homebrew](https://nagstamon.de/download#homebrew).
+After install, open `Nagstamon.app` in your `Applications` folder.
 
 On first run, it may be blocked as an unverified app.
 Go to "Security & Privacy", and under the "General" tab there
@@ -38,8 +38,10 @@ To connect Nagstamon to an Icinga instance:
 - Enter the URL for the Icinga instance to the Monitor URL and Monitor
   CGI URL fields (i.e. `https://alert.integration.publishing.service.gov.uk/`
   should be entered in both fields for integration).
-- Leave the Username and Password blank, and tick "Save password".
+- Set the Username and Password to blank, and tick "Save password".
 - Click "OK".
+
+Repeat for each environment. Note that each Icinga instance is displayed in alphabetical order according to its 'Monitor name' value, so if you want Production to come before Integration, you'll have to get creative by prefixing the monitor name with a number.
 
 ### Actions
 
