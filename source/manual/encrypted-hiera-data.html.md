@@ -237,8 +237,8 @@ To generate a new key:
        ```
 
        You should store this key in the appropriate location in govuk-secrets:
-       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/integration)
-       and for production [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/production)
+       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/main/puppet_servers_gpg/integration)
+       and for production [here](https://github.com/alphagov/govuk-secrets/tree/main/puppet_servers_gpg/production)
 
     5. Extract the passphrase protected private key (`secring.gpg`) of the GPG
        key pair by running (you will have to supply the passphrase):
@@ -247,9 +247,9 @@ To generate a new key:
        gpg --homedir $PWD --keyring ./pubring.kbx --export-secret-key > ./secring.gpg
        ```
 
-       You should store this key in the appropriate location in govuk-secrets:
-       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/integration)
-       and for production [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg/production)
+       You should store this key and other relevant GPG artefacts in the appropriate location in `govuk-secrets`:
+       e.g. for integration [here](https://github.com/alphagov/govuk-secrets/tree/main/puppet_servers_gpg/integration)
+       and for production [here](https://github.com/alphagov/govuk-secrets/tree/main/puppet_servers_gpg/production)
 
     6. You can obtain the fingerprint of the GPG key pair by running:
 
@@ -312,9 +312,7 @@ To generate a new key:
 
 ### Configuring the Puppet Master
 
-The GPG key `secring.gpg`, stored in the [2ndline password
-store](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg) in the
-[govuk-secrets](https://github.com/alphagov/govuk-secrets) repository,
+The GPG key `secring.gpg`, stored in the [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/main/puppet_servers_gpg) repository,
 must be installed on the Puppet Master so that encrypted Hiera data is available
 to Puppet:
 
@@ -325,8 +323,7 @@ to Puppet:
    ```
 
 2. Copy in the new directory the private GPG key `secring.gpg` of the relevant
-    environment from the [directory](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg)
-   in govuk-secrets.
+   environment from the [directory](https://github.com/alphagov/govuk-secrets/tree/main/puppet_servers_gpg/) in govuk-secrets.
 
 3. In the new directory, get the fingerprint of the GPG key by running:
 
@@ -373,7 +370,7 @@ to Puppet:
 9. Copy the following files to the Puppet Master using from your local machine:
     1. `secring_unprotected.gpg` as `/etc/puppet/gpg/secring.gpg` on puppetmaster
 
-    2. `pubring.gpg` (obtained from the appropriate environment/directory in [here](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/hiera-eyaml-gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
+    2. `pubring.gpg` (obtained from the appropriate environment/directory in [here](https://github.com/alphagov/govuk-secrets/tree/main/puppet_servers_gpg)) as `/etc/puppet/gpg/pubring.gpg` on puppetmaster.
 
 10. Make sure the new files have the correct permissions:
     `sudo chown -R puppet:puppet /etc/puppet/gpg` and
