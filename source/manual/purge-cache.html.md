@@ -65,11 +65,19 @@ servers) followed by Fastly.
 If possible, speak to a member of the senior tech team before doing this, to
 evaluate the risk.
 
-To flush our origin run the following Fabric command:
+To flush our origin, ssh onto each cache and draft_cache box in turn and run
+the following command:
 
 ```sh
-$ fab $environment class:cache class:draft_cache cache.ban_all
+$ sudo varnishadm 'ban req.url ~ .'
 ```
+
+This invalidates all current cached objects in varnish.
+Note that this will not delete existing objects but does present them from being served.
+We use it instead of purging because it's more efficient when invalidating a large
+number of objects, i.e. all objects.
+
+See: https://www.varnish-cache.org/docs/3.0/tutorial/purging.html
 
 Once this is done move on to Fastly. This can only be done through the Fastly
 UI - if you don't have access, speak to a member of the senior tech team.
