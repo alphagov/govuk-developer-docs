@@ -22,13 +22,18 @@ failure, so you can diagnose the problem.
 ## Try kicking the Nginx machines
 
 If many of the tests are failing in an AWS environment, it may be because the Nginx services haven't registered new
-boxes coming online or old ones going offline. You can try to restart the following services using the [fabric scripts](https://github.com/alphagov/fabric-scripts):
+boxes coming online or old ones going offline. You can try to fix this by:
+
+SSHing into each `cache`, `draft_cache` and `monitoring` box and restarting nginx:
 
 ```bash
-$ fab $environment class:cache app.reload:nginx
-$ fab $environment class:draft_cache app.reload:nginx
-$ fab $environment class:monitoring app.reload:nginx
-$ fab $environment class:monitoring app.restart:smokey-loop
+$ sudo service nginx reload
+```
+
+Once that is complete you can restart the smokey loop on the monitoring box:
+
+```bash
+$ sudo service smokey-loop restart
 ```
 
 ## Try removing stuck processes
