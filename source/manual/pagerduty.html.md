@@ -16,7 +16,7 @@ to escalate to these people (in order):
 3. Programme Team member (might not be technical)
 
 It is the responsibility of the people above to make sure their details are up to date in PagerDuty
-and that they're correctly scheduled in.
+and that they're correctly scheduled in. You can [add your rota to Google calendar](#add-your-pagerduty-rota-to-google-calendar).
 
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
 them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty.
@@ -64,3 +64,15 @@ To trigger the drill manually, follow these steps:
     ```shell
     sudo rm /var/run/pagerduty_drill
     ```
+
+### Add your Pagerduty rota to Google calendar
+
+You can sync your Pagerduty with Google Calendar so you can see your 2nd line and
+on-call shifts in one place.
+
+1. Go to https://governmentdigitalservice.pagerduty.com/my-on-call/month
+
+1. On the left side, click "Export Calendar", right click on "WebCal Feed" and copy
+   the link
+
+1. In Google Calendar, under "other calendars" click the plus symbol and add "From URL"
