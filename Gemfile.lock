@@ -145,8 +145,9 @@ GEM
       rchardet (~> 1.8)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    govuk_app_config (4.3.0)
+    govuk_app_config (4.4.1)
       logstasher (>= 1.2.2, < 2.2.0)
+      prometheus_exporter (~> 2.0.2)
       puma (~> 5.0)
       sentry-rails (~> 4.5.0)
       sentry-ruby (~> 4.5.0)
@@ -155,7 +156,7 @@ GEM
     govuk_personalisation (0.11.2)
       plek (>= 1.9.0)
       rails (>= 6, < 8)
-    govuk_publishing_components (28.8.1)
+    govuk_publishing_components (28.9.0)
       govuk_app_config
       govuk_personalisation (>= 0.7.0)
       kramdown
@@ -308,6 +309,8 @@ GEM
       ast (~> 2.4.1)
     parslet (2.0.0)
     plek (4.0.0)
+    prometheus_exporter (2.0.2)
+      webrick
     psych (3.3.2)
     public_suffix (4.0.6)
     puma (5.6.2)
