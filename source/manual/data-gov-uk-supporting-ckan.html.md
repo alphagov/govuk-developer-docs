@@ -434,23 +434,39 @@ them. There are both 'gather' and 'fetch' jobs that may need restarting:
 'Gather' jobs retrieve the identifiers of the updated datasets and create jobs
 in the fetch queue. To restart, run:
 
-```
+```bash
 $ sudo initctl restart harvester_gather_consumer-procfile-worker
 ```
 
 'Fetch' jobs retrieve the datasets from the remote source and perform the relevant
 updates in CKAN. To restart, run:
 
-```
+```bash
 $ sudo initctl restart harvester_fetch_consumer-procfile-worker
 ```
 
-Alternatively, if the server has stopped, there is a Fabric script that will restart
-it for you. It will only restart if it detects the harvesting process is no longer
-running, so is safe to run immediately if you suspect the process has crashed:
+Alternatively, if the server has stopped, you can restart it with `initctl`.
+You must ensure it is safe to restart the process first, by checking if the harvest is still running.
+
+To check the status of both harvesters:
 
 ```bash
-$ fab aws_production class:ckan ckan.restart_harvester
+$ sudo initctl list | grep harvester_gather_consumer-procfile-worker_child | grep start
+$ sudo initctl list | grep harvester_fetch_consumer-procfile-worker_child | grep start
+```
+
+If either are not running you can restart the gather harvester using the following commands:
+
+```bash
+$ sudo initctl stop harvester_gather_consumer-procfile
+$ sudo initctl start harvester_gather_consumer-procfile
+```
+
+and fetch harvesters using the following commands:
+
+```bash
+$ sudo initctl stop harvester_fetch_consumer-procfile
+$ sudo initctl start harvester_fetch_consumer-procfile
 ```
 
 ### CKAN publisher on Staging environment responds with Nginx 504 timeout:
