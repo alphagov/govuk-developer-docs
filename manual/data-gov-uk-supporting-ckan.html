@@ -223,7 +223,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/934d96f86f512a98a85f8483f041eaece5b1c5ed">21 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4aa7b61cdf23a24af488241abf66c515e0e72379">4 Mar 2022</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for CKAN</h1> <p><a href="https://ckan.publishing.service.gov.uk">CKAN</a> is the publishing application for data.gov.uk.  <a href="/apps/ckanext-datagovuk.html">ckanext-datagovuk</a> is the primary <a href="https://ckan.org">CKAN</a> extension for data.gov.uk.</p>
@@ -450,14 +450,21 @@ machine:</p>
 them. There are both &lsquo;gather&rsquo; and &lsquo;fetch&rsquo; jobs that may need restarting:</p>
 <p>&lsquo;Gather&rsquo; jobs retrieve the identifiers of the updated datasets and create jobs
 in the fetch queue. To restart, run:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ sudo initctl restart harvester_gather_consumer-procfile-worker
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl restart harvester_gather_consumer-procfile-worker
 </code></pre></div><p>&lsquo;Fetch&rsquo; jobs retrieve the datasets from the remote source and perform the relevant
 updates in CKAN. To restart, run:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ sudo initctl restart harvester_fetch_consumer-procfile-worker
-</code></pre></div><p>Alternatively, if the server has stopped, there is a Fabric script that will restart
-it for you. It will only restart if it detects the harvesting process is no longer
-running, so is safe to run immediately if you suspect the process has crashed:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab aws_production class:ckan ckan.restart_harvester
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl restart harvester_fetch_consumer-procfile-worker
+</code></pre></div><p>Alternatively, if the server has stopped, you can restart it with <code>initctl</code>.
+You must ensure it is safe to restart the process first, by checking if the harvest is still running.</p>
+<p>To check the status of both harvesters:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester_gather_consumer-procfile-worker_child | <span class="nb">grep </span>start
+<span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester_fetch_consumer-procfile-worker_child | <span class="nb">grep </span>start
+</code></pre></div><p>If either are not running you can restart the gather harvester using the following commands:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl stop harvester_gather_consumer-procfile
+<span class="nv">$ </span><span class="nb">sudo </span>initctl start harvester_gather_consumer-procfile
+</code></pre></div><p>and fetch harvesters using the following commands:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl stop harvester_fetch_consumer-procfile
+<span class="nv">$ </span><span class="nb">sudo </span>initctl start harvester_fetch_consumer-procfile
 </code></pre></div><h3 id='ckan-publisher-on-staging-environment-responds-with-nginx-504-timeout'>CKAN publisher on Staging environment responds with Nginx 504 timeout:</h3><p>Sometimes CKAN publisher on Staging environment responds with a 504 from Nginx, this is due to it timing out when connecting to the database as there are too many connections, current limit is 1000, though under normal working the number of connections should be under 100 if the system is not under load testing.</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">rolname</span><span class="p">,</span> <span class="n">rolconnlimit</span> <span class="k">FROM</span> <span class="n">pg_roles</span> <span class="k">WHERE</span> <span class="n">rolname</span><span class="o">=</span><span class="s1">'ckan'</span><span class="p">;</span><span class="nv">`
 </span></code></pre></div><h4 id='changing-the-connection-limit'>Changing the connection limit</h4><p>The connection limit can be updated, but should not exceed the hard limit which is around 3000.</p>
