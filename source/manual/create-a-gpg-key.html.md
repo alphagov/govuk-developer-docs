@@ -10,7 +10,9 @@ We use GPG keys to encrypt our secrets. Documentation for using your GPG key can
 
 ## Prerequisites
 
-Install `gpg` if you don't already have it. Use `brew install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/).
+Install `gpg` if you don't already have it.
+
+You can use `brew install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/). This comes with GPG Mail, which you may not want - you can install a [mailless version](https://formulae.brew.sh/cask/gpg-suite-no-mail) by running `brew install --cask gpg-suite-no-mail` instead.
 
 ## Creating a GPG key (using the GUI)
 
