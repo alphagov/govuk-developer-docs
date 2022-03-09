@@ -67,6 +67,18 @@ The `GOVUK.Modules` library will attempt to initialise and start a module for ev
 In the case of cross domain tracking this can be undesirable if more than one element contains the `cross-domain-tracking` data-module because the underlying `ga.js` library from Google will not accept multiple calls to register a linked tracker and will throw javascript errors.
 See [this static commit](https://github.com/alphagov/static/commit/c03c11a84f86deb83ed3b7a4d16ad2e6de3f1d95) for how we mitigate against this for multiple govspeak buttons with cross domain tracking enabled.
 
+### Cross domain tracking for the GOV.UK Account
+
+The GOV.UK Account shares the account home and management pages between `www.gov.uk` and `account.gov.uk`. We send tracking data to the main GOV.UK GA property from both domains and use cross domain tracking to see the whole user journey.
+
+User journeys between these domains involve both users clicking links or buttons and server side redirects, so the standard cross domain tracking won't suffice on its own. To handle these journeys we append a (`cookie_consent`) parameter recording if they have engaged with the cookie banner ([see ADR](https://github.com/alphagov/account-api/blob/77b36bf9959813ab3a15a85e7939fcf034adac5c/docs/adr/003-cookie-consent.md#cookie-consent)). If the user has consented to tracking, we also send the user's Google Analytics client ID (`_ga`). We listen for these when a user lands on a page. To achieve this, we have:
+
+1. [A JavaScript module in `govuk_publishing_components`](https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/analytics/explicit-cross-domain-links.js) that adds the tracking parameters to a link or form action. Any links or forms that may result in a user being redirected to sign in must have the `data-module="explicit-cross-domain-links"` attribute so this module can add the event listener.
+
+2. [A check in the the GA setup JavaScript](https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/analytics/init.js#L14-L31) that looks for the params in the URL when the page loads and updates the cookie consent status if needed. This prevents the user accepting cookies on one domain and then being asked to accept again when they're sent to sign in.
+
+3. [A `redirect_with_analytics` method](https://github.com/alphagov/govuk_personalisation/blob/main/lib/govuk_personalisation/controller_concern.rb#L134-L140) to use on the server side that redirects the user and passes on the tracking parameters. This must be used when redirecting the user to or from the `account.gov.uk` domain.
+
 ## Developing and debugging Google Analytics tracking
 
 Google provide an extension [Google Analytics Debugger](https://chrome.google.com/webstore/detail/google-analytics-debugger/jnkmfdileelhofjcijamephohjechhna?hl=en) which logs all GA suite interactions to the console.
