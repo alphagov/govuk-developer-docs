@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk_publishing_components - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Component Conventions - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/component_conventions.html">
 
-      <meta name="description" content="Everything about the govuk_publishing_components application (A gem to document and distribute frontend components for GOV.UK applications)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk_publishing_components - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Component Conventions - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/component_conventions.html" />
 
-      <meta property="og:description" content="Everything about the govuk_publishing_components application (A gem to document and distribute frontend components for GOV.UK applications)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk_publishing_components" />
+      <meta property="og:title" content="govuk_publishing_components: Component Conventions" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/component_conventions.html" />
 
     
   </head>
@@ -167,7 +165,7 @@
           <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
           <li><a href="/repos/govuk_document_types.html"><span>govuk_document_types</span></a></li>
           <li><a href="/repos/govuk_message_queue_consumer.html"><span>govuk_message_queue_consumer</span></a></li>
-          <li><a href="/repos/govuk_publishing_components.html" class="toc-link--in-view"><span>govuk_publishing_components</span></a></li>
+          <li><a href="/repos/govuk_publishing_components.html"><span>govuk_publishing_components</span></a></li>
           <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
           <li><a href="/repos/govuk_sidekiq.html"><span>govuk_sidekiq</span></a></li>
           <li><a href="/repos/omniauth-gds.html"><span>omniauth-gds</span></a></li>
@@ -391,165 +389,390 @@
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Repository: govuk_publishing_components</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>A gem to document and distribute frontend components for GOV.UK applications</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a></dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">unknown</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Gems</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul>
-    <li><a href="https://sentry.io/govuk/app-govuk_publishing_components" class="govuk-link">Sentry (error tracking)</a></li>
-
-
-
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/govuk_publishing_components/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk_publishing_components.json" class="govuk-link">Deployment dashboard</a></li>
-
-
-
-
-
-</ul>
-</dd>
-
-
-
-              <dd class="govuk-summary-list__actions">
-</dd>
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/09eb88e770a511e7d6427a8987e9e11e8d6605b1">31 Jan 2022</a>
 </div>
-<h2 id='relevant-manual-pages'>Relevant manual pages</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="/manual/how-to-remove-jquery-from-javascript.html" class="govuk-link">How to remove jQuery from JavaScript</a></li>
-      <li><a href="/manual/frontend-architecture.html" class="govuk-link">Frontend architecture</a></li>
-</ul></p>
-<h2 id='imported-documents'>Imported documents</h2>
+
+  <h1 class="page-title">govuk_publishing_components: Component Conventions</h1>
+
+  
+<h2 id="namespacing">Namespacing</h2>
+<p>All components must use a namespace with a <code>c</code> as part of the namespace -- the <code>c</code> is for component. For example <code>.app-c-banner</code>.</p>
+<p>Do not use the <code>.govuk-</code> namespace.</p>
+<p>The namespace indicates where a component lives. A single page on GOV.UK could render components from multiple places.</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Place</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.app-c-</code></td>
+<td>Component lives within the frontend application</td>
+</tr>
+<tr>
+<td><code>.gem-c-</code></td>
+<td>Component originates from the govuk_publishing_components gem</td>
+</tr>
+<tr>
+<td><code>.govuk-</code></td>
+<td>Component originates from <a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="structure">Structure</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Location</th>
+<th>Example</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Template</td>
+<td><code>app/views/components</code></td>
+<td><code>_my_comp.html.erb</code></td>
+<td><a href="#template">Template logic and markup</a></td>
+</tr>
+<tr>
+<td>Documentation</td>
+<td><code>app/views/components/docs</code></td>
+<td><code>my_comp.yml</code></td>
+<td><a href="#write-documentation">Describes the component</a></td>
+</tr>
+<tr>
+<td>Styles</td>
+<td><code>app/assets/stylesheets/components</code></td>
+<td><code>_my-comp.scss</code></td>
+<td><a href="#styles">Component styles</a></td>
+</tr>
+<tr>
+<td>Print styles</td>
+<td><code>app/assets/stylesheets/components/print</code></td>
+<td><code>_my-comp.scss</code></td>
+<td><a href="#styles">Component styles</a></td>
+</tr>
+<tr>
+<td>Images</td>
+<td><code>app/assets/images/govuk_publishing_components</code></td>
+<td><code>my-comp.png</code></td>
+<td><a href="#images">Images</a></td>
+</tr>
+<tr>
+<td>Scripts</td>
+<td><code>app/assets/javascripts/components</code></td>
+<td><code>my-comp.js</code></td>
+<td><a href="#javascript">Javascript enhancements</a></td>
+</tr>
+<tr>
+<td>Tests</td>
+<td><code>test/components</code></td>
+<td><code>my_comp_test.rb</code></td>
+<td><a href="#tests">Unit tests</a></td>
+</tr>
+<tr>
+<td>Javascript tests</td>
+<td><code>spec/components</code></td>
+<td><code>my_comp_spec.rb</code></td>
+<td><a href="#tests">Unit tests</a></td>
+</tr>
+<tr>
+<td>Helpers</td>
+<td><code>lib/govuk_publishing_components/presenters</code></td>
+<td><code>my_comp_helper.rb</code></td>
+<td><a href="#helpers">Helpers</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="template">Template</h2>
+<p>The template logic and markup. The template defines the component’s API. Filename must begin with an underscore.</p>
+<p>If complex logic is required this should be handled using a <a href="#helpers">helper</a>.</p>
+<p>Example:</p>
+<pre lang="erb"><code>&lt;%
+  options ||= []
+  id ||= false
+  helper = GovukPublishingComponents::Presenters::MyComponentHelper.new(options)
+%&gt;
+
+&lt;% if options.any? %&gt;
+  &lt;div class="govuk-something" id="&lt;%= id %&gt;"&gt;
+    &lt;h2&gt;An example component&lt;/h2&gt;
+    &lt;%= helper.someContent %&gt;
+  &lt;/div&gt;
+&lt;% endif %&gt;
+</code></pre>
+<p>If a component includes a heading, consider including an option to control the heading level (see the <a href="https://components.publishing.service.gov.uk/component-guide/heading/specific_heading_level">heading component</a> for example).</p>
+<p>Components can use other components within their template, if required (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_input.html.erb#L37">input component</a> for example).</p>
+<p>Complex components can be split into smaller partials to make them easier to understand and maintain (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_feedback.html.erb">feedback component</a> for example).</p>
+<p>Components should not have an option to include arbitrary classes as this could violate the principle of isolation. If there is a requirement for a styling variation on a component this should be included as an option e.g. <code>small: true</code>.</p>
+<h2 id="write-documentation">Write documentation</h2>
+<p>Each component is represented with a single <code>.yml</code> file. eg <code>lead_paragraph.yml</code></p>
+<p>The <code>.yml</code> file must have:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>filename</td>
+<td>Required</td>
+<td>Filename of <code>.yml</code> file must match component partial name</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Required</td>
+<td>Friendly name for component</td>
+</tr>
+<tr>
+<td>description</td>
+<td>Required</td>
+<td>One or two sentences summarising the component</td>
+</tr>
+<tr>
+<td>body</td>
+<td>Optional</td>
+<td>A govspeak markdown block giving guidance for the component</td>
+</tr>
+<tr>
+<td>accessibility_criteria</td>
+<td>Required</td>
+<td>A govspeak markdown block listing the <a href="/repos/govuk_publishing_components/accessibility_acceptance_criteria.html">accessibility acceptance criteria</a> this component must meet to be accessible</td>
+</tr>
+<tr>
+<td>examples</td>
+<td>Required</td>
+<td>Each block represents an example and each example is listed in the component guide. Examples must cover all expected use cases.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-yaml-file">Example YAML file</h3>
+<pre lang="yaml"><code>name: Name of component
+description: Short description of component
+body: |
+  Optional markdown providing further detail about the component
+accessibility_criteria: |
+  Markdown listing what this component must do to be accessible. For example:
+
+  The banner must:
+
+  - be visually distinct from other content on the page
+  - have an accessible name that describes the banner as a notice
+shared_accessibility_criteria:
+  - link
+examples:
+  default:
+    data:
+      some_parameter: 'The parameter value'
+    description: |
+      This component is used in the following contexts:
+
+      - [the GOV.UK homepage](https://www.gov.uk)
+  another_example:
+    data:
+      some_parameter: 'A different parameter value'
+</code></pre>
+<h4 id="yaml-configuration-for-a-component-which-accepts-a-block">YAML configuration for a component which accepts a block</h4>
+<p>Some components can accept a block as an argument:</p>
+<pre lang="erb"><code>&lt;%= render "my-accepts-block-component", { param: value }, do %&gt;
+  &lt;span&gt;Some text&lt;/span&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>To configure the block in the component YAML file you should specify
+a <code>block</code> key in the example data:</p>
+<pre lang="yaml"><code>examples:
+  default:
+    data:
+      some_parameter: 'The parameter value'
+      block: |
+        &lt;span&gt;Some text&lt;/span&gt;
+</code></pre>
+<h4 id="yaml-configuration-for-components-that-need-contextual-html">YAML configuration for components that need contextual HTML</h4>
+<p>If a component is only visible, or behaves differently, in a certain context the examples for it can be embedded within HTML using the embed option:</p>
+<pre lang="erb"><code>&lt;button class="trigger-for-component"&gt;Click me&lt;/button&gt;
+&lt;%= render "my-hidden-by-default-component", { param: value } %&gt;
+</code></pre>
+<p>To configure a HTML embed in the component YAML file you can specify <code>embed</code> at the root or individual examples:</p>
+<pre lang="yaml"><code>embed: |
+  &lt;button class="trigger-for-component"&gt;Click me&lt;button&gt;
+  &lt;%= component %&gt;
+examples:
+  default:
+  different_embed_example:
+    embed: |
+      &lt;button class="different-trigger-for-component"&gt;Click me&lt;button&gt;
+      &lt;%= component %&gt;
+</code></pre>
+<h4 id="accessibility-acceptance-criteria"><a href="/repos/govuk_publishing_components/accessibility_acceptance_criteria.html">Accessibility Acceptance Criteria</a></h4>
+<p>Markdown listing what this component must do to be accessible.</p>
+<p><a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/models/govuk_publishing_components/shared_accessibility_criteria.rb">Shared accessibility criteria</a> can be included in a list as shown. They are pre-written accessibility criteria that can apply to more than one component, created to avoid duplication. For example, links within components should all accept focus, be focusable with a keyboard, etc.</p>
+<p>A component can have accessibility criteria, shared accessibility criteria, or both.</p>
+<h4 id="description">Description</h4>
+<p>An example can have an optional description. This is a govspeak markdown block.</p>
+<h4 id="providing-context-to-examples">Providing context to examples</h4>
+<p>A context block can be passed to examples. The guide currently supports <code>right_to_left</code> and <code>dark_background</code> contexts. For example:</p>
+<pre lang="yaml"><code>examples:
+  right_to_left_example:
+    data:
+      some_parameter: 'عربى'
+    context:
+      right_to_left: true
+</code></pre>
+<p>The component guide will wrap the example with a <code>direction-rtl</code> class. It is expected that the host application will set the text direction using the class in a parent element using the following CSS:</p>
+<pre lang="css"><code>.direction-rtl {
+  direction: rtl;
+  text-align: start;
+}
+</code></pre>
+<p>The component guide will wrap a <code>dark_background</code> context example with a <code>dark-background</code> class that sets the parent element background color to govuk-blue. The component should either already work on a dark background or contain a param that, when set to <code>true</code>, allows it to work against darker colours.</p>
+<h2 id="styles">Styles</h2>
+<p>With the exception of namespaces, follow the <a href="https://github.com/alphagov/govuk-frontend/blob/master/docs/contributing/coding-standards/css.md">GOV.UK Frontend CSS conventions</a>, which describes in more detail our approach to namespaces, linting and BEM (block, element, modifier) CSS naming methodology.</p>
+<p>Components can rely on classes from GOV.UK Frontend to allow for modification that build on top of the styles from the Design System. This follows the <a href="https://design-system.service.gov.uk/get-started/extending-and-modifying-components/#small-modifications-to-components">recommendations for extending</a> from the Design System guide.</p>
+<p>For example, extending the button from GOV.UK Frontend could be done like so:</p>
+<pre lang="html"><code>&lt;button class="govuk-button gem-c-button--inverse"&gt;
+  Inverse button
+&lt;/button&gt;
+</code></pre>
+<p>This makes it clear what the base component is, what the modifier is, and where the modifications are coming from.</p>
+<h3 id="bem">BEM</h3>
+<p><code>.block {}</code></p>
+<p><code>.block__element {}</code></p>
+<p><code>.block--modifier {}</code></p>
+<p><code>.block__element--modifier {}</code></p>
+<p>All CSS selectors should follow the BEM naming convention shown above, explained in <a href="https://github.com/alphagov/govuk-frontend/blob/master/docs/contributing/coding-standards/css.md#block-element-modifier-bem">more detail here</a>.</p>
+<p>Note: to avoid long and complicated class names, we follow the <a href="http://getbem.com/faq/#css-nested-elements">BEM guidance</a> that classes do not have to reflect the nested nature of the DOM. We also try to avoid nesting classes too deeply so that styles can be overridden if needed.</p>
+<pre lang="scss"><code>  // Avoid this:
+  .block__elem1__elem2__elem3
+
+  // Instead use:
+  .block__elem1
+  .block__elem2
+  .block__elem3
+</code></pre>
+<p>Using BEM means we have confidence in our styles only being applied within the component context, and never interfering with other global styles. It also makes it clearer how HTML elements relate to each other.</p>
+<p>Visit the links below for more information:</p>
 <ul>
-<li><a href='/repos/govuk_publishing_components/auditing.html' class='govuk-link'># Auditing</a></li>
-        <li><a href='/repos/govuk_publishing_components/javascript-modules.html' class='govuk-link'># JavaScript Modules</a></li>
-        <li><a href='/repos/govuk_publishing_components/pull_request_template.html' class='govuk-link'># What</a></li>
-        <li><a href='/repos/govuk_publishing_components/accessibility_acceptance_criteria.html' class='govuk-link'>Accessibility acceptance criteria</a></li>
-        <li><a href='/repos/govuk_publishing_components/component_conventions.html' class='govuk-link'>Component Conventions</a></li>
-        <li><a href='/repos/govuk_publishing_components/component_principles.html' class='govuk-link'>Component Principles</a></li>
-        <li><a href='/repos/govuk_publishing_components/component_branding.html' class='govuk-link'>Component branding</a></li>
-        <li><a href='/repos/govuk_publishing_components/generate-a-new-component.html' class='govuk-link'>Generate a new component</a></li>
-        <li><a href='/repos/govuk_publishing_components/install-and-use.html' class='govuk-link'>Install and use this gem</a></li>
-        <li><a href='/repos/govuk_publishing_components/upgrade-govuk-frontend.html' class='govuk-link'>Keep this gem in sync with the Design System</a></li>
-        <li><a href='/repos/govuk_publishing_components/moving-components-upstream-into-this-gem.html' class='govuk-link'>Moving components from an application into this gem</a></li>
-        <li><a href='/repos/govuk_publishing_components/publishing-to-rubygems.html' class='govuk-link'>Publishing to RubyGems</a></li>
-        <li><a href='/repos/govuk_publishing_components/real-user-metrics.html' class='govuk-link'>Real User Metrics</a></li>
-        <li><a href='/repos/govuk_publishing_components/testing-components.html' class='govuk-link'>Testing components</a></li>
-        <li><a href='/repos/govuk_publishing_components/use-components.html' class='govuk-link'>Use a component</a></li>
-
-
-      <li><strong>/analytics</strong></li>
-      <ul>
-                <li><a href='/repos/govuk_publishing_components/analytics/analytics.html' class='govuk-link'>Analytics</a></li>
-        <li><a href='/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html' class='govuk-link'>Scroll tracking</a></li>
-        <li><a href='/repos/govuk_publishing_components/analytics/track-click.html' class='govuk-link'>Track click script</a></li>
-
-      </ul>
+<li><a href="https://en.bem.info/methodology/naming-convention/#css-selector-naming-convention">Official BEM Documentation</a></li>
+<li><a href="https://webdesign.tutsplus.com/articles/an-introduction-to-the-bem-methodology--cms-19403">Guide on BEM naming conventions</a></li>
 </ul>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><a href="https://ci.integration.publishing.service.gov.uk/job/govuk_publishing_components/job/master/"><img src="https://badgen.net/github/status/alphagov/govuk_publishing_components/master" alt="status"></a>
-<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a>
-<a href="https://github.com/alphagov/stylelint-config-gds/"><img src="https://img.shields.io/badge/code_style-stylelint-brightgreen.svg" alt="Stylelint Style Guide"></a></p>
-
-<p>A Ruby gem to document and distribute components for GOV.UK applications. It provides:</p>
-
+<h3 id="layout">Layout</h3>
+<p>New components should be built with a bottom margin and no top margin.</p>
+<p>A standard for options to control this spacing has <a href="https://github.com/alphagov/govuk_publishing_components/pull/292">not been decided upon yet</a>, although it is likely we will adopt something using the <a href="https://design-system.service.gov.uk/styles/spacing/">Design System spacing</a>.</p>
+<h3 id="linting">Linting</h3>
+<p>All stylesheets must be linted according to <a href="https://github.com/alphagov/govuk-lint/blob/master/configs/scss_lint/gds-sass-styleguide.yml">the style rules</a> in <a href="https://github.com/alphagov/govuk-lint">govuk-lint</a>.</p>
+<pre lang="sh"><code># Lint Sass in your application components using govuk-lint
+bundle exec govuk-lint-sass app/assets/stylesheets/components
+</code></pre>
+<h2 id="images">Images</h2>
+<p>Images must be listed in <code>config/initializers/assets.rb</code> and can be referred to in Sass as follows.</p>
+<pre lang="scss"><code>background-image: image-url("govuk_publishing_components/search-button.png");
+</code></pre>
+<p>SVGs can also be used for images, ideally inline in templates and compressed.</p>
+<h2 id="javascript">Javascript</h2>
+<p>Follow the <a href="https://github.com/alphagov/govuk-frontend/blob/master/docs/contributing/coding-standards/js.md">GOV.UK Frontend JS conventions</a>.</p>
+<p>Scripts should use the <a href="/repos/govuk_publishing_components/javascript-modules.html">module pattern</a> and be linted using <a href="https://standardjs.com/">StandardJS</a>.</p>
+<p>Most components should have an option to include arbitrary data attributes (see the <a href="https://components.publishing.service.gov.uk/component-guide/checkboxes/checkboxes_with_data_attributes">checkboxes component</a> for example). These can be used for many purposes including tracking (see the <a href="https://components.publishing.service.gov.uk/component-guide/select/with_tracking">select component</a> for <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/components/select.js">example code</a>) but specific tracking should only be added to a component where there is a real need for it.</p>
+<p>Some <a href="https://github.com/alphagov/govuk_publishing_components/tree/master/app/assets/javascripts/govuk_publishing_components/lib">common Javascript modules</a> are available. If new functionality is required, consider adding it as a common module.</p>
+<h2 id="tests">Tests</h2>
+<p>Component tests should include a check that the component doesn't fail if no data is passed.</p>
+<p>Javascript tests should be included if the component has any Javascript that is unique to it. Use of existing Javascript modules should be covered by existing tests.</p>
+<p><a href="/repos/govuk_publishing_components/testing-components.html">Read further guidance on testing components</a>.</p>
+<h2 id="helpers">Helpers</h2>
+<p><img src="https://docs.google.com/drawings/d/e/2PACX-1vRj6JM7cQvngDl3Gr_U9G4xga2gsU7Z-d2qHHQcsBdjsW4WaC9_eQdryBJIS69cLkrY7S0fK9BcrPSF/pub?w=960&amp;h=720" alt=""></p>
+<p><a href="https://docs.google.com/drawings/d/1N8-kbyCN_xOvvshN6d2HnQz5i5Bqed2WIatI3Nj9gNQ/edit">Source</a></p>
+<p>Any code needed by a component that is more complex than basic parameter initialisation should be included in a separate file rather than in the template. There are 2 types of helper classes in this app:</p>
 <ul>
-<li>a shared library of components</li>
-<li>helpers to generate component payloads</li>
-<li>an application to preview components and provide guidance</li>
 <li>
-<a href="https://design-system.service.gov.uk/">GOV.UK Design System</a> styles and components (via <a href="https://github.com/alphagov/govuk-frontend">GOV.UK Frontend</a>)</li>
+<p><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/lib/govuk_publishing_components/app_helpers">AppHelpers</a>. Are exposed to the applications using this gem. They should be documented using RDoc.</p>
+</li>
+<li>
+<p><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/lib/govuk_publishing_components/presenters">Component Presenters</a>. Anything in these classes is only for use within the components. New presenter files must be included in <code>lib/govuk_publishing_components.rb</code> to work. They should be marked <code>@private</code>.</p>
+</li>
 </ul>
+<p>Code can be called and referred to in the template as follows:</p>
+<pre lang="erb"><code>&lt;%
+  card_helper = GovukPublishingComponents::Presenters::ImageCardHelper.new(local_assigns)
+%&gt;
 
-<p>Components should be added to this gem if they are required in more than one application, otherwise they should be added to that application. All components should meet the same standards of browser and assistive technology support described in <a href="https://github.com/alphagov/govuk-frontend#browser-and-assistive-technology-support">GOV.UK Frontend</a>.</p>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
-
-<p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre lang="sh"><code>bundle exec rake
+&lt;%= card_helper.heading_tag %&gt;
 </code></pre>
-
-<p>To run JavaScript tests (only):</p>
-
-<pre lang="sh"><code># run JS tests in browser
-yarn run jasmine:browser
-
-# run JS tests on command line
-yarn run jasmine:ci
-</code></pre>
-
-<h3 id="further-documentation">Further documentation</h3>
-
+<h3 id="shared-helper">Shared helper</h3>
+<p>There is a <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/lib/govuk_publishing_components/presenters/shared_helper.rb">shared helper</a> that can provide common functionality to all components. This includes:</p>
 <ul>
-<li><a href="/repos/govuk_publishing_components/install-and-use.html">Install and use this gem</a></li>
-<li><a href="/repos/govuk_publishing_components/use-components.html">Use a component in your application</a></li>
-<li><a href="/repos/govuk_publishing_components/generate-a-new-component.html">Generate a new component</a></li>
-<li><a href="/repos/govuk_publishing_components/testing-components.html">Testing a component</a></li>
-<li><a href="/repos/govuk_publishing_components/moving-components-upstream-into-this-gem.html">Move a component from an application to the gem</a></li>
-<li><a href="/repos/govuk_publishing_components/publishing-to-rubygems.html">Publish/release a new version of the gem</a></li>
-<li><a href="/repos/govuk_publishing_components/upgrade-govuk-frontend.html">Keep this gem in sync with the Design System</a></li>
-<li><a href="http://www.rubydoc.info/gems/govuk_publishing_components">Code documentation on rubydoc.info</a></li>
-<li><a href="/repos/govuk_publishing_components/component_conventions.html">Component conventions</a></li>
-<li><a href="/repos/govuk_publishing_components/component_principles.html">Component principles</a></li>
-<li><a href="/repos/govuk_publishing_components/auditing.html">Component auditing</a></li>
+<li>set margin bottom and top</li>
+<li>set heading level and heading font size</li>
+<li>allow JavaScript classes to be added that begin with <code>js-</code> but reject any others</li>
+<li>translation helpers</li>
 </ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/LICENCE.md">MIT Licence</a></p>
-<p></div></p>
+<p>The following is an example of how to use the shared helper to set margin bottom on a component.</p>
+<p>Add the shared helper to the component template:</p>
+<pre lang="erb"><code>shared_helper = GovukPublishingComponents::Presenters::SharedHelper.new(local_assigns)
+</code></pre>
+<p>Call the shared helper to provide a margin bottom class:</p>
+<pre lang="erb"><code>classes &lt;&lt; shared_helper.get_margin_bottom
+</code></pre>
+<p>The component will accept a number for <code>margin_bottom</code> from 0 to 9 (0px to 60px) using the <a href="https://design-system.service.gov.uk/styles/spacing/#the-responsive-spacing-scale">GOV.UK Frontend spacing scale</a>. It defaults to a margin bottom of 15px (3). If you require a different default value, change the code as shown.</p>
+<pre lang="erb"><code>local_assigns[:margin_bottom] ||= 0 # this will be the default
+shared_helper = GovukPublishingComponents::Presenters::SharedHelper.new(local_assigns)
+</code></pre>
+<p>Tests should be added to the component to check that the default margin bottom is correct and that the expected given margin bottom is set. The shared helper has its own tests to check that it returns the correct values.</p>
+<p>See components that use the shared helper for further examples of usage, including the accordion, attachment, button, heading, radio, and others.</p>
+<h2 id="passing-html-to-a-component">Passing HTML to a component</h2>
+<p>Avoid marking HTML as safe within components, this means avoiding use of <code>raw</code> or <code>html_safe</code> within a component's view.</p>
+<p>By doing this we can avoid the risk of a Cross Site Scripting (XSS) attack.</p>
+<p>Only sanitise HTML when the component is used in the application.</p>
+<p>There are a few methods to achieve this:</p>
+<h3 id="yielding-blocks-with-single-slots-for-nested-children">Yielding blocks with single slots for nested children</h3>
+<p>Similar to HTML, there may be a clear slot where nested children should appear in a component.</p>
+<p>For a panel component, you may expect anything nested within it to appear
+at the bottom of the component.</p>
+<p>Do not:</p>
+<pre lang="erb"><code>&lt;%= render 'panel', content: "Your reference number&lt;br&gt;&lt;strong&gt;HDJ2123F&lt;/strong&gt;" %&gt;
+</code></pre>
+<p>Do:</p>
+<pre lang="erb"><code>&lt;%= render 'panel' do %&gt;
+  Your reference number
+  &lt;br&gt;
+  &lt;strong&gt;HDJ2123F&lt;/strong&gt;
+&lt;% end %&gt;
+</code></pre>
+<h3 id="parameters-with-html-for-multiple-slots">Parameters with HTML for multiple slots</h3>
+<p>If you have multiple slots where HTML may go, you could consider passing them as parameters.</p>
+<p>Note: If you can avoid a requirement for HTML this may be better. In the following example you may consider <code>title: { level: 1, text: 'Application complete' }</code>.</p>
+<p>Do not:</p>
+<pre lang="erb"><code>&lt;%= render 'panel', { title: '&lt;h1&gt;Application complete&lt;/h1&gt;' } do %&gt;
+  Your reference number
+  &lt;br&gt;
+  &lt;strong&gt;HDJ2123F&lt;/strong&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>Do:</p>
+<pre lang="erb"><code>&lt;% panel_title = capture do %&gt;
+  &lt;h1&gt;Application complete&lt;/h1&gt;
+&lt;% end %&gt;
+&lt;%= render 'panel', { title: panel_title } do %&gt;
+  Your reference number
+  &lt;br&gt;
+  &lt;strong&gt;HDJ2123F&lt;/strong&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>or (if the data is passed from a presenter / controller)</p>
+<pre lang="erb"><code>&lt;%= render 'panel', { title: presented_panel_title.html_safe } do %&gt;
+  Your reference number
+  &lt;br&gt;
+  &lt;strong&gt;HDJ2123F&lt;/strong&gt;
+&lt;% end %&gt;
+</code></pre>
 
 
             
@@ -557,8 +780,8 @@ yarn run jasmine:ci
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/component_conventions.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fcomponent_conventions.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
