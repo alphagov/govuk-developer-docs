@@ -441,6 +441,19 @@ to fail when using GPG version 1 with lots of credentials.
 If you see this error:
 
 ```
+keyserver receive failed: Network is unreachable
+```
+
+Run this command to add `standard-resolver` to `dirmngr.conf`
+
+```sh
+echo "standard-resolver" >> ~/.gnupg/dirmngr.conf
+gpgconf --kill all
+```
+
+If you see this error:
+
+```
 General error
 ```
 
