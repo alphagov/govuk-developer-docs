@@ -140,6 +140,9 @@
       <li>
         <a href="#fastly"><span>Fastly</span></a>
       </li>
+      <li>
+        <a href="#ssh-logs"><span>SSH logs</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -190,15 +193,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0be4f2150d8a4c91130d23f4d6ab606dd7feea13">28 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/563de9fc71f40748ab9744dc09cb590c583a59db">8 Mar 2022</a>
 </div>
 
  <h1 id='header'>How logging works on GOV.UK</h1> <p><a href="/manual/images/logging.png" rel="noopener noreferrer"><img src="/manual/images/logging.png" alt="" /></a>
@@ -217,6 +213,16 @@
 <h2 id='logstream-and-logship'>Logstream and Logship</h2><p>We have a defined type in our Puppet code which uses <a href="https://github.com/alphagov/tagalog/blob/master/tagalog/command/logship.py">logship</a> to tail logfiles. We only use Logstream to send nginx metrics, via statsd, to Graphite.</p>
 <p>In the future this will be replaced.</p>
 <h2 id='fastly'>Fastly</h2><p>Fastly sends logs to S3 for the www, assets and bouncer services. These can be <a href="/manual/query-cdn-logs.html">queried through Athena</a>.</p>
+<p>Logs are also available in Splunk in the <code>govuk_cdn</code> index. Here&rsquo;s an <a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3Dgovuk_cdn%20http_method%3Dpost">example query for POST requests</a></p>
+<h2 id='ssh-logs'>SSH logs</h2><p>We ship <code>/var/log/auth.log</code> to Splunk <a href="https://github.com/alphagov/govuk-puppet/pull/11559">via CloudWatch</a> and CDIO Cyber&rsquo;s <a href="https://github.com/alphagov/centralised-security-logging-service/blob/master/kinesis_processor%2Faccounts_loggroup_index.toml#L1430-L1440">centralised security logging service</a>.</p>
+<p>There are different indices for each environment:</p>
+
+<ul>
+<li><a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D%22govuk_production%22">govuk_production</a></li>
+<li><a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D%22govuk_staging%22">govuk_staging</a></li>
+<li><a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3D%22govuk_integration%22">govuk_integration</a></li>
+</ul>
+<p>You can see the logs if your account has access to GOV.UK&rsquo;s Splunk. If you do not have access to Splunk, you can request access by raising a support ticket with IT and asking them to enable Splunk for your Google account with a note that you work on GOV.UK.</p>
 
 
   <div class='related-content'>
