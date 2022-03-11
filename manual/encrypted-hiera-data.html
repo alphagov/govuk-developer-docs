@@ -241,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a275b5e786776222f03f1838e84a59b0541ae07b">4 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cc3d3f7509605a82c5ebcaf326bebff5fd9f5fe9">10 Mar 2022</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -589,6 +589,11 @@ such as:</p>
 </code></pre></div><p>Check that you&rsquo;re using GPG version 2 or above. Hiera eYAML GPG appears
 to fail when using GPG version 1 with lots of credentials.</p>
 <p>If you see this error:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>keyserver receive failed: Network is unreachable
+</code></pre></div><p>Run this command to add <code>standard-resolver</code> to <code>dirmngr.conf</code></p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">echo</span> <span class="s2">"standard-resolver"</span> <span class="o">&gt;&gt;</span> ~/.gnupg/dirmngr.conf
+gpgconf <span class="nt">--kill</span> all
+</code></pre></div><p>If you see this error:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>General error
 </code></pre></div><p>Try pulling <code>main</code> again - there&rsquo;s a good chance someone has made a
 change since you made your changes. Otherwise, check if any of the GPG
