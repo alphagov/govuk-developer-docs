@@ -391,7 +391,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/aa3c3e7efb6b20fd33269fe36bb793bb5f519553">3 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/122dca0c2e9b8f59903295ddcde0283a2d055ee7">14 Mar 2022</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Support tasks</h1>
@@ -479,6 +479,23 @@ Depending on the number of emails to send, the Rake task can take a few minutes 
 </code></pre>
 <p>The active_on_date should be in ISO8601 format, for example 2022-03-03T12:12:16+00:00.
 The time will always be rounded to the end of the day, even if that is in the future.</p>
+<h2 id="get-a-report-of-single-page-notification-subscriber-lists-by-active-subscriber-count">Get a report of single page notification subscriber lists by active subscriber count</h2>
+<p>This report provides a count of all subscriber lists with a content ID, followed by individual subscriber lists ordered by active subscriber count.</p>
+<pre lang="bash"><code>bundle exec rake 'report:single_page_notifications_top_subscriber_lists'
+</code></pre>
+<p>By default output is limited to only show the top 25 lists by active subscriber count. However
+that can be overridden to increase or decrease the output number.</p>
+<pre lang="bash"><code>bundle exec rake 'report:single_page_notifications_top_subscriber_lists[5]'
+</code></pre>
+<p>You can run the task on Jenkins with the following links:</p>
+<ul>
+<li>
+<a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&amp;MACHINE_CLASS=email_alert_api&amp;RAKE_TASK=report:single_page_notifications_top_subscriber_lists">Integration</a> - Only really useful for testing</li>
+<li>
+<a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&amp;MACHINE_CLASS=email_alert_api&amp;RAKE_TASK=report:single_page_notifications_top_subscriber_lists">Staging</a> - Data will be a snapshot from last replication</li>
+<li>
+<a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&amp;MACHINE_CLASS=email_alert_api&amp;RAKE_TASK=report:single_page_notifications_top_subscriber_lists">Production</a> - Live data</li>
+</ul>
 
 
             
