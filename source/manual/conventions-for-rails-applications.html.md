@@ -225,13 +225,20 @@ Common tools used with RSpec are:
 - [Climate Control][] gem for modifying environment variables within tests;
 - [`ActiveSupport::Testing::TimeHelpers`][time-helpers] for time manipulation.
 
+#### Testing JavaScript code
+
 The conventional testing framework for JavaScript files in GOV.UK Rails
-applications is [Jasmine][]. This is dictated by Jasmine integrating
-with the [asset-pipeline][] which rules out other common JavaScript testing
-frameworks such as Jest or Karma. Jasmine should be [configured][jasmine-chrome]
-to run tests with Chrome headless using [jasmine_selenium_runner][] - this
-replaces the default runtime of PhantomJS (which is a project no longer
-under development).
+applications is [Jasmine][].
+
+This was originally chosen due to the `jasmine` gem's tight integration with the
+Rails [Asset Pipeline][]. However that gem has since been deprecated and should
+[no longer be used][jasmine-gem-deprecated].
+
+Instead, we use the NPM package `jasmine-browser-runner` to run Jasmine
+tests in a headless Chrome browser. This is now the recommended approach.
+
+For an example of how to configure Jasmine in a GOV.UK Rails application,
+see [alphagov/signon#1810][].
 
 [rspec-rails]: https://relishapp.com/rspec/rspec-rails/docs
 [rspec-mocks]: https://relishapp.com/rspec/rspec-mocks/docs
@@ -247,10 +254,10 @@ under development).
 [factory-bot-lint]: https://github.com/thoughtbot/factory_bot/blob/master/GETTING_STARTED.md#linting-factories
 [Climate Control]: https://github.com/thoughtbot/climate_control
 [time-helpers]: https://api.rubyonrails.org/v6.0.2/classes/ActiveSupport/Testing/TimeHelpers.html
-[jasmine]: https://github.com/jasmine/jasmine-gem
-[jasmine_selenium_runner]: https://github.com/jasmine/jasmine_selenium_runner
-[asset-pipeline]: #frontend-assets
-[jasmine-chrome]: https://github.com/alphagov/service-manual-publisher/commit/adcc93f3c4aa92f6fa6ea590bbf9fef852991199
+[Jasmine]: https://jasmine.github.io/
+[Asset Pipeline]: #frontend-assets
+[jasmine-gem-deprecated]: https://github.com/jasmine/jasmine-gem#discontinued
+[alphagov/signon#1810]: https://github.com/alphagov/signon/pull/1810
 
 ## Configuration
 
