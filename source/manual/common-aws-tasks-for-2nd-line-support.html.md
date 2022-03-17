@@ -90,7 +90,7 @@ Log into the AWS console for the relevant environment:
   gds aws govuk-production-poweruser -l
   ```
 
-Refer to the AWS documentation on steps for on [how to detatch an instance from an ASG][]
+Refer to the AWS documentation on steps for on [how to detach an instance from an ASG][]
 
 If a machine is unhealthy, you may want to detach an instance from its Auto
 Scaling Group (ASG). Detaching the instance stops it receiving requests.
