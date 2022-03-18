@@ -88,8 +88,7 @@ After you deploy, you can visit the [Jenkins job](https://deploy.blue.production
 > will require access to the GOV.UK AWS "production" account to roll changes for
 > both Amazon and Google.
 > - The order in which you deploy to providers is not important.
-> - You will not require credentials for Google Cloud. These credentials are stored
-> in Jenkins itself.
+> - You will need to be able to [use the Google Cloud (gcloud) CLI](/manual/google-cloud-platform-gcp.html#using-the-cli) to authenticate to Google Cloud. Everyone with permanent production access should have [access to GCP](/manual/google-cloud-platform-gcp.html#gcp-access).
 
 #### Google-based caveats
 
