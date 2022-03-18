@@ -202,7 +202,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e71d80ff38c70f37d24037dd7d00b9db82b0cc0f">2 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d91f881620ca69c5123d418f5630728a9123ab8e">18 Mar 2022</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>The GOV.UK Replatforming team is responsible for managing several DNS zones.</p>
@@ -267,8 +267,7 @@ gds govuk dns <span class="nt">-p</span> &lt;dns_provider&gt; <span class="nt">-
 will require access to the GOV.UK AWS &ldquo;production&rdquo; account to roll changes for
 both Amazon and Google.</li>
 <li>The order in which you deploy to providers is not important.</li>
-<li>You will not require credentials for Google Cloud. These credentials are stored
-in Jenkins itself.</li>
+<li>You will need to be able to <a href="/manual/google-cloud-platform-gcp.html#using-the-cli">use the Google Cloud (gcloud) CLI</a> to authenticate to Google Cloud. Everyone with permanent production access should have <a href="/manual/google-cloud-platform-gcp.html#gcp-access">access to GCP</a>.</li>
 </ul>
 </blockquote>
 <h4 id='google-based-caveats'>Google-based caveats</h4>
