@@ -465,9 +465,7 @@
 
 <p>Gem to help with A/B testing on the GOV.UK platform.</p>
 
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<h3 id="installation">Installation</h3>
+<h2 id="installation">Installation</h2>
 
 <p>Add this line to your application&rsquo;s Gemfile:</p>
 
@@ -479,39 +477,32 @@
 <pre><code>$ bundle
 </code></pre>
 
-<h3 id="usage">Usage</h3>
+<h2 id="pre-requisites">Pre-requisites</h2>
 
 <p>Before starting this, you&rsquo;ll need to:</p>
 
 <ul>
 <li>
-<a href="https://docs.publishing.service.gov.uk/manual/ab-testing.html">read the documentation</a> on how to set up an a/b test. The cookie and header name in <a href="https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml">govuk-cdn-config</a> must match the test name parameter that you pass to the Gem. The cookie name is case-sensitive.</li>
-<li>configure Google Analytics (guidelines to follow)</li>
+<a href="https://docs.publishing.service.gov.uk/manual/ab-testing.html">Read the documentation</a> for an overview on how a/b testing works on GOV.UK.</li>
+<li>The cookie and header name in <a href="https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml">govuk-cdn-config</a> must match the test name parameter that you pass to the Gem. The cookie name is case-sensitive.</li>
 </ul>
+
+<h2 id="usage">Usage</h2>
+
+<h3 id="outline">Outline</h3>
 
 <p>To enable testing in the app, your Rails app needs:</p>
 
 <ol>
-<li>Some piece of logic to be A/B tested</li>
-<li>A HTML meta tag that will be used to measure the results, and which specifies
-the dimension to use in Google Analytics</li>
-<li>A response HTTP header that tells Fastly you&rsquo;re doing an A/B test</li>
+<li><a href="#1-example-ab-test-logic">Some piece of logic to be A/B tested</a></li>
+<li><a href="#2-http-response-header-to-fastly">A response HTTP header that tells Fastly you&rsquo;re doing an A/B test</a></li>
+<li><a href="#3-add-html-metatag-tags-to-your-layouts">A HTML meta tag that will be used to measure the results, and which specifies
+the dimension to use in Google Analytics</a></li>
 </ol>
 
-<p>Start by defining which acceptance testing framework you will use. This gem
-supports both Capybara and ActiveSupport. In order to configure it, add this to
-your test helper file:</p>
+<h3 id="1-example-ab-test-logic">1. Example A/B test logic</h3>
 
-<pre><code>GovukAbTesting.configure do |config|
-  config.acceptance_test_framework = :capybara # or :active_support
-end
-</code></pre>
-
-<p>If we use capybara, the gem expects <code>page</code> to be defined in the scope of the
-test cases. If we use ActiveSupport, the gem expects <code>@request</code> to be defined in
-the scope of the test cases.</p>
-
-<p>Now, let&rsquo;s say you have this controller:</p>
+<p>Let&rsquo;s say you have this controller:</p>
 
 <pre lang="ruby"><code># app/controllers/party_controller.rb
 class PartyController &lt; ApplicationController
@@ -541,8 +532,13 @@ end
 tested: the existing version (control), and two title changes. The minimum
 number of variants in any test should be two.</p>
 
-<p>Then, add this to your layouts, so that we have a meta tag that can be picked up
-by the extension and analytics.</p>
+<h3 id="2-http-response-header-to-fastly">2. HTTP response header to Fastly</h3>
+
+<p>The <code>configure_response</code> method used in the example in <code>step 1</code> sends the response header. The header helps Fastly to understand which variant was returned to the user and cache appropriately.</p>
+
+<h3 id="3-add-html-metatag-tags-to-your-layouts">3. Add HTML metatag tags to your layouts</h3>
+
+<p>This is for the extension and analytics.</p>
 
 <pre lang="html"><code>&lt;!-- application.html.erb --&gt;
 &lt;head&gt;
@@ -551,11 +547,75 @@ by the extension and analytics.</p>
 </code></pre>
 
 <p>The analytics meta tag will include the allowed variants so the extension knows
-which variants to suggest the user.</p>
+which variants to suggest to the user.</p>
 
-<h4 id="test-helpers">Test helpers</h4>
+<h2 id="running-the-test-suite-for-the-gem">Running the test suite for the gem</h2>
 
-<h5 id="minitest">Minitest</h5>
+<p><code>bundle exec rake</code></p>
+
+<h2 id="acceptance-testing">Acceptance testing</h2>
+
+<p>Start by defining which acceptance testing framework you will use. This gem
+supports both Capybara and ActiveSupport. In order to configure it, add this to
+your test helper file:</p>
+
+<pre><code>GovukAbTesting.configure do |config|
+  config.acceptance_test_framework = :capybara # or :active_support
+end
+</code></pre>
+
+<p>If we use capybara, the gem expects <code>page</code> to be defined in the scope of the
+test cases. If we use ActiveSupport, the gem expects <code>@request</code> to be defined in
+the scope of the test cases.</p>
+
+<h3 id="test-helpers">Test helpers</h3>
+
+<h4 id="rspec">RSpec</h4>
+
+<p>It is also possible to use <code>with_variant</code> and all the individual setup and
+assertions steps in RSpec tests. Here is an example of a Capybara feature file:</p>
+
+<pre lang="ruby"><code># spec/features/ab_testing_spec.rb
+feature "Viewing a page with an A/B test" do
+  include GovukAbTesting::RspecHelpers
+
+  scenario "viewing the B version of the page" do
+    with_variant your_ab_test_name: 'B' do
+      visit root_path
+
+      expect(page).to have_breadcrumbs
+      expect(page).to have_beta_label
+    end
+  end
+end
+</code></pre>
+
+<p>And here is an RSpec controller test:</p>
+
+<pre lang="ruby"><code># spec/controllers/some_controller_spec.rb
+describe SomeController, type :controller do
+  include GovukAbTesting::RspecHelpers
+
+  # RSpec doesn't render views for controller specs by default
+  render_views
+
+  it "should render the B version of the page" do
+    with_variant your_ab_test_name: 'B' do
+      get :index
+    end
+  end
+end
+</code></pre>
+
+<p>As with the <code>minitest</code> version, you can also pass in the following options to
+<code>with_variant</code>:</p>
+
+<ul>
+<li><code>assert_meta_tag: false</code></li>
+<li><code>dimension: &lt;number&gt;</code></li>
+</ul>
+
+<h4 id="minitest">Minitest</h4>
 
 <p>The most common usage of an A/B test is to serve two different variants of the
 same page. In this situation, you can test the controller using <code>with_variant</code>.
@@ -630,71 +690,22 @@ class PartyControllerTest &lt; ActionController::TestCase
 end
 </code></pre>
 
-<h5 id="rspec">RSpec</h5>
+<h2 id="api-documentation">API documentation</h2>
 
-<p>It is also possible to use <code>with_variant</code> and all the individual setup and
-assertions steps in RSpec tests. Here is an example of a Capybara feature file:</p>
-
-<pre lang="ruby"><code># spec/features/ab_testing_spec.rb
-feature "Viewing a page with an A/B test" do
-  include GovukAbTesting::RspecHelpers
-
-  scenario "viewing the B version of the page" do
-    with_variant your_ab_test_name: 'B' do
-      visit root_path
-
-      expect(page).to have_breadcrumbs
-      expect(page).to have_beta_label
-    end
-  end
-end
-</code></pre>
-
-<p>And here is an RSpec controller test:</p>
-
-<pre lang="ruby"><code># spec/controllers/some_controller_spec.rb
-describe SomeController, type :controller do
-  include GovukAbTesting::RspecHelpers
-
-  # RSpec doesn't render views for controller specs by default
-  render_views
-
-  it "should render the B version of the page" do
-    with_variant your_ab_test_name: 'B' do
-      get :index
-    end
-  end
-end
-</code></pre>
-
-<p>As with the <code>minitest</code> version, you can also pass in the following options to
-<code>with_variant</code>:</p>
-
-<ul>
-<li><code>assert_meta_tag: false</code></li>
-<li><code>dimension: &lt;number&gt;</code></li>
-</ul>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="testing-in-a-browser">Testing in a browser</h3>
-
-<p>If you want to test this behaviour in a browser then you should use the
-<a href="https://github.com/alphagov/govuk-toolkit-chrome">GOV.UK Toolkit for Chrome</a>.</p>
-
-<p>This detects when you have a test running on a page and enables you to choose
-between variants.</p>
-
-<h3 id="documentation">Documentation</h3>
-
-<p>See <a href="http://www.rubydoc.info/gems/govuk_ab_testing">RubyDoc</a> for some limited documentation.</p>
+<p>See <a href="http://www.rubydoc.info/gems/govuk_ab_testing">RubyDoc</a> for documentation including all of the assertions for tests.</p>
 
 <p>To run a Yard server locally to preview documentation, run:</p>
 
 <pre><code>$ bundle exec yard server --reload
 </code></pre>
+
+<h2 id="checking-your-ab-test-in-a-browser">Checking your A/B test in a browser</h2>
+
+<p>If you want to test this behaviour in a browser then you should use the
+<a href="https://github.com/alphagov/govuk-browser-extension">GOV.UK Toolkit browser extension</a>.</p>
+
+<p>This detects when you have a test running on a page and enables you to choose
+between variants.</p>
 
 <h2 id="licence">Licence</h2>
 
