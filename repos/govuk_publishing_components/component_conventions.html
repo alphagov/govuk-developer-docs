@@ -391,7 +391,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/09eb88e770a511e7d6427a8987e9e11e8d6605b1">31 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b248ebf79fd917b4c4ff78e691f72fedbd104567">16 Mar 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component Conventions</h1>
@@ -469,7 +469,7 @@
 <td>Scripts</td>
 <td><code>app/assets/javascripts/components</code></td>
 <td><code>my-comp.js</code></td>
-<td><a href="#javascript">Javascript enhancements</a></td>
+<td><a href="#javascript">JavaScript enhancements</a></td>
 </tr>
 <tr>
 <td>Tests</td>
@@ -478,7 +478,7 @@
 <td><a href="#tests">Unit tests</a></td>
 </tr>
 <tr>
-<td>Javascript tests</td>
+<td>JavaScript tests</td>
 <td><code>spec/components</code></td>
 <td><code>my_comp_spec.rb</code></td>
 <td><a href="#tests">Unit tests</a></td>
@@ -678,14 +678,14 @@ bundle exec govuk-lint-sass app/assets/stylesheets/components
 <pre lang="scss"><code>background-image: image-url("govuk_publishing_components/search-button.png");
 </code></pre>
 <p>SVGs can also be used for images, ideally inline in templates and compressed.</p>
-<h2 id="javascript">Javascript</h2>
+<h2 id="javascript">JavaScript</h2>
 <p>Follow the <a href="https://github.com/alphagov/govuk-frontend/blob/master/docs/contributing/coding-standards/js.md">GOV.UK Frontend JS conventions</a>.</p>
 <p>Scripts should use the <a href="/repos/govuk_publishing_components/javascript-modules.html">module pattern</a> and be linted using <a href="https://standardjs.com/">StandardJS</a>.</p>
 <p>Most components should have an option to include arbitrary data attributes (see the <a href="https://components.publishing.service.gov.uk/component-guide/checkboxes/checkboxes_with_data_attributes">checkboxes component</a> for example). These can be used for many purposes including tracking (see the <a href="https://components.publishing.service.gov.uk/component-guide/select/with_tracking">select component</a> for <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/components/select.js">example code</a>) but specific tracking should only be added to a component where there is a real need for it.</p>
-<p>Some <a href="https://github.com/alphagov/govuk_publishing_components/tree/master/app/assets/javascripts/govuk_publishing_components/lib">common Javascript modules</a> are available. If new functionality is required, consider adding it as a common module.</p>
+<p>Some <a href="https://github.com/alphagov/govuk_publishing_components/tree/master/app/assets/javascripts/govuk_publishing_components/lib">common JavaScript modules</a> are available. If new functionality is required, consider adding it as a common module.</p>
 <h2 id="tests">Tests</h2>
 <p>Component tests should include a check that the component doesn't fail if no data is passed.</p>
-<p>Javascript tests should be included if the component has any Javascript that is unique to it. Use of existing Javascript modules should be covered by existing tests.</p>
+<p>JavaScript tests should be included if the component has any JavaScript that is unique to it. Use of existing JavaScript modules should be covered by existing tests.</p>
 <p><a href="/repos/govuk_publishing_components/testing-components.html">Read further guidance on testing components</a>.</p>
 <h2 id="helpers">Helpers</h2>
 <p><img src="https://docs.google.com/drawings/d/e/2PACX-1vRj6JM7cQvngDl3Gr_U9G4xga2gsU7Z-d2qHHQcsBdjsW4WaC9_eQdryBJIS69cLkrY7S0fK9BcrPSF/pub?w=960&amp;h=720" alt=""></p>
@@ -721,7 +721,7 @@ bundle exec govuk-lint-sass app/assets/stylesheets/components
 <p>Call the shared helper to provide a margin bottom class:</p>
 <pre lang="erb"><code>classes &lt;&lt; shared_helper.get_margin_bottom
 </code></pre>
-<p>The component will accept a number for <code>margin_bottom</code> from 0 to 9 (0px to 60px) using the <a href="https://design-system.service.gov.uk/styles/spacing/#the-responsive-spacing-scale">GOV.UK Frontend spacing scale</a>. It defaults to a margin bottom of 15px (3). If you require a different default value, change the code as shown.</p>
+<p>The component will accept a number for <code>margin_bottom</code> from <code>0</code> to <code>9</code> (<code>0px</code> to <code>60px</code>) using the <a href="https://design-system.service.gov.uk/styles/spacing/#the-responsive-spacing-scale">GOV.UK Frontend spacing scale</a>. It defaults to a margin bottom of 15px (3). If you require a different default value, change the code as shown.</p>
 <pre lang="erb"><code>local_assigns[:margin_bottom] ||= 0 # this will be the default
 shared_helper = GovukPublishingComponents::Presenters::SharedHelper.new(local_assigns)
 </code></pre>
