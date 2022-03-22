@@ -121,7 +121,7 @@ UK education and government. They control the `gov.uk.` top-level domain.
 
 Requests to modify the DNS records for `gov.uk.` should be sent by
 email to `naming@ja.net` from someone on Jisc's approved contacts
-list. Speak to a senior technologist member of GOV.UK or someone in
+list. Speak to a member of the senior tech team or someone in
 GOV.UK Replatforming if you need to make a change and don't have
 access.
 
@@ -129,8 +129,8 @@ You should also make sure that the following groups of people are aware before
 requesting any changes:
 
 - 2nd line (via email)
-- GOV.UK's Head of Tech and the lead technologists
-- The CDDO domains team (the lead technologists can contact them)
+- GOV.UK's Head of Tech and the senior tech team
+- The CDDO domains team (the senior tech team can contact them)
 
 2nd line should be notified of any planned changes via email.
 
