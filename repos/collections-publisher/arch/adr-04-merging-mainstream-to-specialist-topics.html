@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: collections-publisher - GOV.UK Developer Documentation</title>
+    <title>collections-publisher: Merging of Mainstream Topics into Specialist Topics - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/collections-publisher.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html">
 
-      <meta name="description" content="Everything about the collections-publisher application (Publishes step by steps, /browse pages, and legacy /topic pages on GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: collections-publisher - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/collections-publisher.html" />
+      <meta name="twitter:title" content="collections-publisher: Merging of Mainstream Topics into Specialist Topics - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html" />
 
-      <meta property="og:description" content="Everything about the collections-publisher application (Publishes step by steps, /browse pages, and legacy /topic pages on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: collections-publisher" />
+      <meta property="og:title" content="collections-publisher: Merging of Mainstream Topics into Specialist Topics" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/collections-publisher.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html" />
 
     
   </head>
@@ -307,7 +305,7 @@
       </li>
       <li>
         <ul class='subnav'>
-          <li><a href="/repos/collections-publisher.html" class="toc-link--in-view"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
           <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
           <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
           <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
@@ -391,151 +389,36 @@
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: collections-publisher</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Publishes step by steps, /browse pages, and legacy /topic pages on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/collections-publisher">collections-publisher</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-publishing-tech</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Publishing apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=collections-publisher&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=collections-publisher&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=collections-publisher&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul>
-    <li><a href="https://sentry.io/govuk/app-collections-publisher" class="govuk-link">Sentry (error tracking)</a></li>
-
-
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/collections_publisher.pp" class="govuk-link">Puppet configuration</a></li>
-
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/collections-publisher/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/collections-publisher.json" class="govuk-link">Deployment dashboard</a></li>
-
-    <li><a href="https://github.com/alphagov/publishing-e2e-tests/search?q=%22collections_publisher%3A+true%22+path%3A%2Fspec%2F" class="govuk-link">Publishing E2E scenarios</a> (warning: not all apps have E2E tests)</li>
-
-
-
-
-</ul>
-</dd>
-
-
-
-</div></dl>    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/collections-publisher/commit/16abc5f3b808c65decea7416c184ab38a15e2a24">22 Mar 2022</a>
 </div>
-<h2 id='imported-documents'>Imported documents</h2>
+
+  <h1 class="page-title">collections-publisher: Merging of Mainstream Topics into Specialist Topics</h1>
+
+  
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>GOV.UK currently maintains 2 separate topic trees that represent a navigational structure for users. Mainstream Browse is the oldest and considered legacy. Specialist Topics are newer but need tidying up and do not power breadcrumbs.</p>
+<p>Previous attempts to merge the two stalled (since 2015).</p>
+<p>The newest tree, Taxonomy, does not affect navigation and is treated as a purely metadata type categorisation tree and is ignored by this work.</p>
+<p>There is no connection between Mainstream Browse and the Specialist Topics. Users who navigate Mainstream Browse are siloed away from Specialist Topics content. It also causes a confusing and inconsistent way for tagging and curating content.</p>
+<h2 id="decision">Decision</h2>
+<p>We initially planned to map each Mainstream Browse Topic to an equivalent within the Specialist Topics tree. This would have been complex and difficult to even begin the merging of the two trees.</p>
+<p>For example Benefits (mainstream) and Benefits and Credits (specialist) may seem equivalent, but there is no parity in the content linked. There's also no strict mapping between levels, as in Level 1 in mainstream may be Level 2 in specialist for one topic area, but there may be a L2 to L2 mapping in another.</p>
+<p>If we were to tidy up as we merged, this would be a very slow and difficult process to manage.</p>
+<p>But deeper discussion brought us to realise that we may not need to concern ourselves now about there being overlaps, allowing us to naively merge the trees and tidy up the data in one place instead.</p>
+<h2 id="consequences">Consequences</h2>
+<p>Once we've ported the topics across, we would have to periodically (interval TBD) sync data across from Mainstream Browse to Specialist Topics:</p>
 <ul>
-<li><a href='/repos/collections-publisher/reslugging-a-tag.html' class='govuk-link'>Changing the slug of a Tag or Topic</a></li>
-
-
-      <li><strong>/arch</strong></li>
-      <ul>
-                <li><a href='/repos/collections-publisher/arch/adr-001-defer-merging-of-taxonomy-apps.html' class='govuk-link'>Decision record: Defer Merging of Taxonomy Apps</a></li>
-        <li><a href='/repos/collections-publisher/arch/adr-002-discarding-drafts.html' class='govuk-link'>Discarding drafts of previously published step by step pages</a></li>
-        <li><a href='/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html' class='govuk-link'>Merging of Mainstream Topics into Specialist Topics</a></li>
-        <li><a href='/repos/collections-publisher/arch/adr-3-store-status.html' class='govuk-link'>Storing the status of step-by-steps</a></li>
-
-      </ul>
+<li>keep all creation logic in Collections Publisher</li>
+<li>Create and run rake task to create new topics based on existing browse pages, any new pages created from this are hidden (schema change).</li>
+<li>Have logic to do this whenever a new Browse page is added in collections publisher</li>
+<li>Modify patch links (tagging) behaviour to patch a relevant Topic whenever a Browse page is tagged in the two apps that allow it (Tagger and Publisher)</li>
 </ul>
-<h2 id='example-pages-published-by-collections-publisher'>Example pages published by collections-publisher</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="https://www.gov.uk/coronavirus" class="govuk-link">Coronavirus (COVID-19): guidance and support</a></li>
-      <li><a href="https://www.gov.uk/browse/visas-immigration" class="govuk-link">Visas and immigration</a></li>
-      <li><a href="https://www.gov.uk/browse/driving" class="govuk-link">Driving and transport</a></li>
-      <li><a href="https://www.gov.uk/browse/driving/driving-licences" class="govuk-link">Driving licences</a></li>
-      <li><a href="https://www.gov.uk/browse/abroad/passports" class="govuk-link">Passports</a></li>
-      <li><a href="https://www.gov.uk/get-tax-free-childcare" class="govuk-link">Get Tax-Free Childcare: step by step</a></li>
-      <li><a href="https://www.gov.uk/browse/driving/vehicle-tax-mot-insurance" class="govuk-link">Vehicle tax, MOT and insurance</a></li>
-      <li><a href="https://www.gov.uk/browse/benefits" class="govuk-link">Benefits</a></li>
-      <li><a href="https://www.gov.uk/travel-abroad" class="govuk-link">Travel abroad: step by step</a></li>
-      <li><a href="https://www.gov.uk/browse/visas-immigration/tourist-short-stay-visas" class="govuk-link">Visit the UK</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>This app is used by GDS and some departmental editors. It can publish:</p>
-
-<ul>
-<li><a href="https://www.gov.uk/browse/births-deaths-marriages/register-offices">/browse pages</a></li>
-<li><a href="https://www.gov.uk/topic/business-enterprise/export-finance">/topic pages</a></li>
-<li>
-<a href="https://www.gov.uk/learn-to-drive-a-car">step by step pages</a> and <a href="https://www.gov.uk/driving-eyesight-rules">step by step sidebar navigation</a>
-</li>
-<li><a href="https://www.gov.uk/coronavirus">coronavirus pages</a></li>
-</ul>
-
-<p>These pages are then served by the <a href="https://github.com/alphagov/collections">collections app</a>. It is also used to curate pages tagged to a topic or browse page into &ldquo;curated lists&rdquo;, instead of a single &lsquo;A-Z&rsquo; list, as the following screenshots illustrate.</p>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/collections-publisher/main/docs/screenshot-curated-topics.png" alt="Screenshot of curated and non-curated pages"></p>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
-<p>See the <a href="https://github.com/alphagov/collections">README of collections frontend</a>.</p>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre><code>bundle exec rake
-</code></pre>
-
-<h3 id="further-documentation">Further documentation</h3>
-
-<p>See the <a href="https://github.com/alphagov/collections-publisher/blob/main/docs/">docs/</a> directory for guidance and architectural decisions.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/collections-publisher/blob/main/LICENSE.txt">MIT License</a></p>
-<p></div></p>
+<p>We would have to set our apps to ignore the newly ported topics for a time, while we check that the data is workable and that we can affect changes to apps to switch over, and update our tagging tools and publishing apps.</p>
+<p>Ultimately we want to be able to allow content specialists to curate one structure within one place (or just fewer than we currently have).</p>
 
 
             
@@ -543,8 +426,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fcollections-publisher.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/collections-publisher/blob/main/docs/arch/adr-04-merging-mainstream-to-specialist-topics.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fcollections-publisher%2Farch%2Fadr-04-merging-mainstream-to-specialist-topics.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
