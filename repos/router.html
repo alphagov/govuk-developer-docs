@@ -527,11 +527,17 @@ tests to exercise it&rsquo;s HTTP handling, error reporting, and performance.</p
 <p>Dependabot raises PR&rsquo;s to update the dependencies for Router. This includes raising a PR when a new version of Go is available. However to update the version of Go, it&rsquo;s necessary to do more than just merge this dependabot PR. Here are the steps:</p>
 
 <ol>
-<li>Install the new version of Go on the CI machines. You do this via puppet. See <a href="https://github.com/alphagov/govuk-puppet/pull/11457/files">here</a> for an example PR. Once this PR has been approved and merged wait for puppet to run, or trigger a puppet run yourself as per <a href="https://docs.publishing.service.gov.uk/manual/deploy-puppet.html#convergence">the developer docs</a>.</li>
+<li>Install the new version of Go on the CI machines (See <a href="#why-do-we-install-go-on-ci-machines-rather-than-cache-machines">Why do we install Go on CI machines rather than Cache machines?</a>). You do this via puppet. See <a href="https://github.com/alphagov/govuk-puppet/pull/11457/files">here</a> for an example PR. Once this PR has been approved and merged wait for puppet to run, or trigger a puppet run yourself as per <a href="https://docs.publishing.service.gov.uk/manual/deploy-puppet.html#convergence">the developer docs</a>.</li>
 <li>Dependabot&rsquo;s PR will modify the Go version in the Dockerfile, but you also need to update the version number in the file <code>.go-version</code> See <a href="https://github.com/alphagov/router/pull/241/files">here</a> for an example PR.</li>
 <li>Before you merge this PR, put the branch onto staging and leave it there for a couple of weekdays. Check for anything unexpected in icinga and sentry.</li>
 <li>If you are confident that the version bump is safe for production, you can merge your PR and deploy it to production. It is best to do this at a quiet time of the day (such as 7am) to minimise any potential disruption.</li>
 </ol>
+
+<h4 id="why-do-we-install-go-on-ci-machines-rather-than-cache-machines">Why do we install Go on CI machines rather than Cache machines?</h4>
+
+<p>Router is built on CI machines; the artefact is then <a href="https://github.com/alphagov/router/blob/main/Jenkinsfile#L68">uploaded to S3</a> for use in deployment. In  deployment, the artefact is <a href="https://github.com/alphagov/govuk-app-deployment/blob/master/router%2Fconfig%2Fdeploy.rb#L30">retrieved from S3</a> and uploaded to the cache machines prior to a restart.</p>
+
+<p>The updated version of golang is <a href="https://github.com/alphagov/govuk-puppet/search?q=golang">only uploaded to Jenkins and CI agents</a>.</p>
 
 <h3 id="further-documentation">Further documentation</h3>
 
