@@ -460,7 +460,7 @@
 <p>There are currently 2 ways to run this repo locally:</p>
 
 <ol>
-<li>Via  <a href="https://github.com/alphagov/docker-ckan">docker-ckan</a> - An end to end setup from ckan to elasticsearch to Find. This is the presently most supported means for running Find and is recommended for local development. Instructions for how to setup and run Find this way available on the linked repo.</li>
+<li>Via  <a href="https://github.com/alphagov/docker-ckan">docker-ckan</a> - An end to end setup from ckan to opensearch to Find. This is the presently most supported means for running Find and is recommended for local development. Instructions for how to setup and run Find this way available on the linked repo.</li>
 <li>Manual installation. Instructions for this below.</li>
 <li>Via <a href="https://github.com/alphagov/govuk-docker">govuk-docker</a> - You can <code>make</code> Find as you would any other repo supported by govuk-docker using this method. This is the quickest means to setup Find however this will not give you a complete visual setup and is primarily for running tests.</li>
 </ol>
@@ -477,13 +477,13 @@
 <li>
 <a href="https://rubygems.org/gems/bundler">bundler</a> to manage gems</li>
 <li>
-<a href="https://www.elastic.co/">elasticsearch</a> search engine</li>
+<a href="https://opensearch.org/">opensearch</a> search engine</li>
 <li>
 <a href="https://www.postgresql.org/">postgresql</a> database</li>
 <li>
 <a href="https://yarnpkg.com/en/">yarn</a> to manage node packages</li>
 <li>
-<a href="https://github.com/alphagov/datagovuk_publish/">data.gov.uk Publish</a> to populate elasticsearch</li>
+<a href="https://github.com/alphagov/datagovuk_publish/">data.gov.uk Publish</a> to populate opensearch</li>
 </ul>
 
 <p>Most of these can be installed with Homebrew on a Mac.</p>
@@ -520,12 +520,12 @@
 
 <p>Then the deployment needs to be <a href="https://docs.github.com/en/actions/managing-workflow-runs/reviewing-deployments">approved</a>.</p>
 
-<h2 id="developing-against-production-elasticsearch">Developing against production elasticsearch</h2>
+<h2 id="developing-against-production-opensearch">Developing against production opensearch</h2>
 
 <p>Grab the full URL (including HTTP Basic username and password) from the paas.
 You can do this with <code>cf env find-data-beta</code>.</p>
 
-<p>Open up an SSH tunnel to allow access to the elasticsearch instance:</p>
+<p>Open up an SSH tunnel to allow access to the opensearch instance:</p>
 
 <pre><code>cf ssh -N -L &lt;es-port&gt;:&lt;es-host&gt;:&lt;es-port&gt; find-data-beta
 </code></pre>

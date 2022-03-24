@@ -489,7 +489,7 @@
 <li>
 <a href="https://rubygems.org/gems/bundler">bundler</a> to manage gems</li>
 <li>
-<a href="https://www.elastic.co/">elasticsearch</a> search engine</li>
+<a href="https://opensearch.org/">opensearch</a> search engine</li>
 <li>
 <a href="https://www.postgresql.org/">postgresql</a> database</li>
 </ul>
@@ -506,16 +506,16 @@ brew install postgresql
 ## Redis
 brew install redis
 
-## Elasticsearch
+## Opensearch
 brew tap caskroom/versions
 brew cask install java8
-brew install elasticsearch
+brew install opensearch
 </code></pre>
 
 <h3 id="start-the-services-on-your-machine">Start the services on your machine</h3>
 
 <pre><code>brew services start postgresql
-brew services start elasticsearch
+brew services start opensearch
 brew services start redis
 </code></pre>
 
@@ -562,9 +562,9 @@ bin/rails runner CKAN::V26::PackageSyncWorker.new.perform
 <pre><code>bin/rails db:drop db:setup
 </code></pre>
 
-<h3 id="re-index-elasticsearch">Re-index Elasticsearch</h3>
+<h3 id="re-index-opensearch">Re-index Opensearch</h3>
 
-<p>To re-index Elasticsearch based on the current database contents, run:</p>
+<p>To re-index Opensearch based on the current database contents, run:</p>
 
 <pre><code>bin/rails search:reindex
 </code></pre>
