@@ -46,8 +46,8 @@ The original for this diagram is available on the [Platform Health Google Drive]
 Services owned by data.gov.uk
 
 * [CKAN] is the publishing app for datasets ('packages').
-* [Find] is the public frontend for searching datasets using Elasticsearch.
-* [Publish] is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Elasticsearch for use in Find.
+* [Find] is the public frontend for searching datasets using Opencsearch.
+* [Publish] is a prototype publishing app for datasets. Whilst not public facing, it currently syncs data from CKAN into Opensearch for use in Find.
 * [Reference][reference] is a legacy service that attempts to provide a [nomenclature of time intervals][time-interval-service], hosted on [Heroku][heroku].
 
 Services with data.gov.uk sub-domains, but owned by other departments
