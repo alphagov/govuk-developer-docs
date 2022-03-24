@@ -210,11 +210,12 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d8c57d78bb4d82d1973b32c52a392d49c6fda816">22 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f40dae1de0fa88de47fecb2d5f7d6588ffdf92ba">8 Mar 2022</a>
 </div>
 
  <h1 id='header'>Create a GPG key</h1> <p>We use GPG keys to encrypt our secrets. Documentation for using your GPG key can be found <a href="/manual/encrypted-hiera-data.html#common-tasks-for-handling-encrypted-hiera-data">here</a>.</p>
-<h2 id='prerequisites'>Prerequisites</h2><p>Install <code>gpg</code> if you don&rsquo;t already have it. Use <code>brew install gpg-suite</code> to install the graphical <a href="https://gpgtools.org/">GPG Suite</a>.</p>
+<h2 id='prerequisites'>Prerequisites</h2><p>Install <code>gpg</code> if you don&rsquo;t already have it.</p>
+<p>You can use <code>brew install gpg-suite</code> to install the graphical <a href="https://gpgtools.org/">GPG Suite</a>. This comes with GPG Mail, which you may not want - you can install a <a href="https://formulae.brew.sh/cask/gpg-suite-no-mail">mailless version</a> by running <code>brew install --cask gpg-suite-no-mail</code> instead.</p>
 <h2 id='creating-a-gpg-key-using-the-gui'>Creating a GPG key (using the GUI)</h2><p><a href="https://gpgtools.org/">GPGtools</a> comes with a GUI which can perform most of the operations you need.</p>
 <p>Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to <code>hkps://keys.openpgp.org/</code> (the default). You can do this by going to preferences and setting your keyserver.</p>
 <p>To create a new key, click &ldquo;New&rdquo;. The <code>Name</code> field should be your name. For <code>Length</code>, you should have at least 4096.</p>
