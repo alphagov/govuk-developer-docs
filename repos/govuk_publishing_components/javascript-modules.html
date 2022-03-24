@@ -391,7 +391,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/39f83ae561b152bf17baf35d1ddab63f9dcf61c1">14 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/319a4cbcaed32f51c98de82236c78d3193874ba4">21 Mar 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # JavaScript Modules</h1>
@@ -410,8 +410,8 @@
 });
 </code></pre>
 <p>This will attempt to find and start all modules in the page. For the example above it will look for a module at <code>GOVUK.Modules.SomeModule</code>. Note the value of the data attribute has been converted to <em>PascalCase</em>.</p>
-<p>The module will be instantiated and then its <code>init</code> or <code>start</code> method called. The HTML element with the <code>data-module</code> attribute is passed as the first argument to the module. This limits modules to acting only within their containing elements.</p>
-<p>These function names are not reserved words, but a way of differentiating between modules that accept a jQuery object (<code>start</code>) and modules that accept a JS HTML node (<code>init</code>). We are removing jQuery from GOV.UK and eventually all modules will use an <code>init</code> method.</p>
+<p>The module will be instantiated and then its <code>init</code> method called. The HTML element with the <code>data-module</code> attribute is passed as the first argument to the module. This limits modules to acting only within their containing elements.</p>
+<p>This function name is not a reserved word, but was used to differentiate between modules that accept a jQuery object (<code>start</code>) and modules that accept a JS HTML node (<code>init</code>). We are removing jQuery from GOV.UK and eventually all modules will use an <code>init</code> method.</p>
 <pre lang="javascript"><code>module = new GOVUK.Modules.SomeModule(element)
 module.init()
 </code></pre>
