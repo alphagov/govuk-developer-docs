@@ -194,7 +194,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2e8d5c3e949d3489d719278f51902ead286bb4af">27 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0f1fea5f653799dccb948fa6ece9e283c164a89e">12 Jan 2022</a>
 </div>
 
  <h1 id='header'>GOV.UK CDN static mirrors</h1> <p>The GOV.UK mirror is a static copy of GOV.UK.</p>
@@ -232,10 +232,13 @@ cd /mnt/crawler_worker/www.gov.uk
 <h2 id='forcing-failover-to-the-gov-uk-mirrors'>Forcing failover to the GOV.UK mirrors</h2><p>If Origin is unavailable, Fastly will automatically retry every request against the mirrors.</p>
 <p>To avoid Fastly traffic hitting Origin when Origin is down (potentially making the problem worse), we can <a href="/manual/fall-back-to-aws-cloudfront.html">fall back to AWS CloudFront</a>, which serves all content using the GOV.UK mirrors.</p>
 <p>Alternatively, we can stop <a href="https://www.nginx.com/">Nginx</a> on the cache machines, which will prevent requests hitting GOV.UK applications. Fastly will automatically retry these failed requests against the mirror.</p>
-<p>To stop Nginx on the cache machines, run the following command:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab <span class="nv">$environment</span> class:cache incident.fail_to_mirror
-</code></pre></div><p>To disable this fallback:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab <span class="nv">$environment</span> class:cache incident.recover_origin
+<p>SSH into each cache machine (you can increment box number after the colon to hit each one in turn):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> production ssh cache:1
+</code></pre></div><p>Stop Nginx to force use of mirrors:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>govuk_puppet <span class="nt">--test</span> <span class="nt">--disable</span> <span class="s2">"fail_to_mirror task (by </span><span class="nv">$USER</span><span class="s2">)"</span>
+<span class="nv">$ </span><span class="nb">sudo </span>service nginx stop
+</code></pre></div><p>When required you can re-enable puppet, which will restart Nginx:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>govuk_puppet <span class="nt">--test</span> <span class="nt">--enable</span>
 </code></pre></div><h2 id='emergency-publishing-content-using-the-gov-uk-mirror'>Emergency publishing content using the GOV.UK mirror</h2><p>The escalation on-call contact will tell you if you need to make changes to GOV.UK while Origin is unavailable. To do this, you must change content on the GOV.UK mirrors. Because the mirror is static HTML, it&rsquo;s hard to make broad changes to the site, like putting a banner on every page.</p>
 
 <ol>
