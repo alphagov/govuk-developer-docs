@@ -40,6 +40,7 @@ This command works for macOS or Linux.
 ## 2. Set up your GitHub account
 
 1. Set up a [GitHub] account. You can use your existing personal account.
+1. [Associate your GitHub account with your GDS email address][associate-email-github], this can be in addition to your personal email address.
 1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer] and [seal].
 
     If your tech lead is not available, ask in the [2nd line support Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
@@ -65,6 +66,7 @@ This command works for macOS or Linux.
 
 [alphagov]: https://github.com/alphagov
 [GitHub]: https://www.github.com/
+[associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 [govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk/members
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 [generate-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
