@@ -68,6 +68,11 @@ This is so we can:
 - keep CI configurations simple and consistent;
 - make it easier to replicate CI checks in a development environment.
 
+### Branch protection rules
+
+Pull Requests [cannot be merged][branch-rule] until the `test` job has passed.
+Your workflow should always define a job called `test`.
+
 ### Base your workflow on one of our documented examples
 
 GitHub Actions currently [lack templating functionality][action-templates]
@@ -110,32 +115,94 @@ Notes:
 
 ### A Ruby Gem
 
-This differs to a simple Ruby application as Ruby gems are not tied to a
-particular Ruby version, therefore for those we should test a variety of
-Ruby versions.
+This differs to a simple Ruby application because Ruby gems are not tied to
+particular Ruby or Rails versions. Therefore we should test against various
+combinations of supported versions.
+
+To do this, we use a [build matrix][]. In this example, we test against three
+Ruby versions (`2.7`, `3.0`, `3.1`) and two Rails versions (`6`, `7`). Combined,
+this results in 6 variations for the workflow to test against.
 
 ```yml
 # .github/workflows/ci.yml
 on: [push, pull_request]
 jobs:
-  test:
+  # Run the test suite against multiple Ruby and Rails versions
+  test_matrix:
     strategy:
+      fail-fast: false
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
+        ruby: [2.7, '3.0', 3.1]
+        # Test against multiple Rails versions
+        gemfile: [rails_6, rails_7]
+    runs-on: ubuntu-latest
+    env:
+      BUNDLE_GEMFILE: gemfiles/${{ matrix.gemfile }}.gemfile
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+        bundler-cache: true
+    - run: bundle exec rake
+
+  # Branch protection rules cannot directly depend on status checks from matrix jobs.
+  # So instead we define `test` as a dummy job which only runs after the preceding `test_matrix` checks have passed.
+  # Solution inspired by: https://github.community/t/status-check-for-a-matrix-jobs/127354/3
+  test:
+    needs: test_matrix
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          ruby-version: ${{ matrix.ruby }}
-      - run: bundle exec rake
+      - run: echo "All matrix tests have passed 🚀"
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      contents: write
+    steps:
+    - uses: actions/checkout@v3
+    - uses: ruby/setup-ruby@v1
+      with:
+        rubygems: latest
+    - env:
+        GEM_HOST_API_KEY: ${{ secrets.ALPHAGOV_RUBYGEMS_API_KEY }}
+        GEM_NAME: govuk_example_gem
+      run: |
+        VERSION=$(ruby -e "puts eval(File.read('$GEM_NAME.gemspec')).version")
+        GEM_VERSION=$(gem list --exact --remote $GEM_NAME)
+
+        # Publish to RubyGems.org
+        if [ "${GEM_VERSION}" != "$GEM_NAME (${VERSION})" ]; then
+          gem build $GEM_NAME.gemspec
+          gem push "$GEM_NAME-${VERSION}.gem"
+        fi
+
+        # Create a release tag
+        if ! git ls-remote --tags --exit-code origin v${VERSION}; then
+          git tag v${VERSION}
+          git push --tags
+        fi
+```
+
+For each Rails version, a `*.gemfile` should exist in a top-level directory called `gemfiles`.
+
+```ruby
+# gemfiles/rails_7.gemfile
+source "https://rubygems.org"
+
+gem "rails", "~> 7"
+
+gemspec path: "../"
 ```
 
 Notes:
 
 - Our preference is to test the gems we publish against the latest version of
   [all currently supported minor versions of Ruby MRI][ruby-branches].
+- For a real world example of this workflow, see [govuk_admin_template][].
 
 ## GOV.UK Rails application with Postgres, Redis, Yarn and GOV.UK Content Schemas dependencies
 
@@ -225,8 +292,11 @@ Notes:
 [push-event]: https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push
 [pull-request-event]: https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request
 [actions-name-attribute]: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#name
+[branch-rule]: https://github.com/alphagov/govuk-saas-config/blob/4d68f59f9af61e0f62bb074abc740aa53db300c1/github/lib/configure_repo.rb#L107
 [action-templates]: https://github.community/t5/GitHub-Actions/Templates-for-GitHub-Actions/m-p/52811
+[build matrix]: https://docs.github.com/en/actions/using-workflows/advanced-workflow-features#using-a-build-matrix
 [ruby-branches]: https://www.ruby-lang.org/en/downloads/branches/
+[govuk_admin_template]: https://github.com/alphagov/govuk_admin_template
 [Content Publisher]: https://github.com/alphagov/content-publisher
 [actions-docker-services]: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idservices
 [service-configuration]: https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idservices
