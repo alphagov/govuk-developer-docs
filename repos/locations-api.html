@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: locations-api - GOV.UK Developer Documentation</title>
+    <title>Application: locations-api - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: locations-api - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Application: locations-api - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/locations-api.html" />
 
       <meta property="og:description" content="Everything about the locations-api application (An interface between GOV.UK's frontend applications and external APIs involved in location based services.)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: locations-api" />
+      <meta property="og:title" content="Application: locations-api" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/locations-api.html" />
 
@@ -392,7 +392,7 @@
 </div>
 
   
-  <h1 class="page-title">Repository: locations-api</h1>
+  <h1 class="page-title">Application: locations-api</h1>
 
   <p>An interface between GOV.UK&rsquo;s frontend applications and external APIs involved in location based services.</p>
 
@@ -416,7 +416,7 @@
 </div>          <div class="govuk-summary-list__row">
 
             <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
+            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>locations_api</strong> machine class</dd>
 
 
 
@@ -429,12 +429,32 @@
 
 </div>          <div class="govuk-summary-list__row">
 
+            <dt class="govuk-summary-list__key">Rake tasks</dt>
+            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
+      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=locations-api&MACHINE_CLASS=locations_api&RAKE_TASK="
+      class="govuk-link"
+      aria-label="Run a Rake task on Integration">Integration</a>, <a
+      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=locations-api&MACHINE_CLASS=locations_api&RAKE_TASK="
+      class="govuk-link"
+      aria-label="Run a Rake task on Staging">Staging</a> or <a
+      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=locations-api&MACHINE_CLASS=locations_api&RAKE_TASK="
+      class="govuk-link"
+      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
             <dt class="govuk-summary-list__key">Links</dt>
             <dd class="govuk-summary-list__value"><ul>
+    <li><a href="https://sentry.io/govuk/app-locations-api" class="govuk-link">Sentry (error tracking)</a></li>
 
 
+    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/locations_api.pp" class="govuk-link">Puppet configuration</a></li>
 
+    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/locations-api/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
 
+    <li><a href="https://grafana.production.govuk.digital/dashboard/file/locations-api.json" class="govuk-link">Deployment dashboard</a></li>
 
 
 
