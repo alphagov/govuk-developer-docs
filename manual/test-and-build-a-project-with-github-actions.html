@@ -141,6 +141,9 @@
             <a href="#prefer-a-single-or-small-number-of-steps-within-a-ci-workflow"><span>Prefer a single or small number of steps within a CI workflow</span></a>
           </li>
           <li>
+            <a href="#branch-protection-rules"><span>Branch protection rules</span></a>
+          </li>
+          <li>
             <a href="#base-your-workflow-on-one-of-our-documented-examples"><span>Base your workflow on one of our documented examples</span></a>
           </li>
         </ul>
@@ -210,7 +213,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d6ca9d7d594f25bedb855f3d5a6ae761e2cb279a">9 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0d0306553c1b450ba43fcbc1b6f7ed317f55b3b3">23 Mar 2022</a>
 </div>
 
  <h1 id='header'>Test & build a project with GitHub Actions</h1> <p><a href="https://github.com/features/actions">GitHub Actions</a> is an automated workflow
@@ -254,6 +257,8 @@ rake</code>) where more of the CI task configuration is handled in application c
 <li>keep CI configurations simple and consistent;</li>
 <li>make it easier to replicate CI checks in a development environment.</li>
 </ul>
+<h3 id='branch-protection-rules'>Branch protection rules</h3><p>Pull Requests <a href="https://github.com/alphagov/govuk-saas-config/blob/4d68f59f9af61e0f62bb074abc740aa53db300c1/github/lib/configure_repo.rb#L107">cannot be merged</a> until the <code>test</code> job has passed.
+Your workflow should always define a job called <code>test</code>.</p>
 <h3 id='base-your-workflow-on-one-of-our-documented-examples'>Base your workflow on one of our documented examples</h3><p>GitHub Actions currently <a href="https://github.community/t5/GitHub-Actions/Templates-for-GitHub-Actions/m-p/52811">lack templating functionality</a>
 to enable re-use of workflow configuration across projects. Therefore, in order
 to maintain consistency across GOV.UK projects, it is beneficial that we
@@ -287,29 +292,86 @@ bundler if a necessary.
 automatically runs <code>bundle install</code> and caches the result between builds.</li>
 </ul></li>
 </ul>
-<h3 id='a-ruby-gem'>A Ruby Gem</h3><p>This differs to a simple Ruby application as Ruby gems are not tied to a
-particular Ruby version, therefore for those we should test a variety of
-Ruby versions.</p>
+<h3 id='a-ruby-gem'>A Ruby Gem</h3><p>This differs to a simple Ruby application because Ruby gems are not tied to
+particular Ruby or Rails versions. Therefore we should test against various
+combinations of supported versions.</p>
+<p>To do this, we use a <a href="https://docs.github.com/en/actions/using-workflows/advanced-workflow-features#using-a-build-matrix">build matrix</a>. In this example, we test against three
+Ruby versions (<code>2.7</code>, <code>3.0</code>, <code>3.1</code>) and two Rails versions (<code>6</code>, <code>7</code>). Combined,
+this results in 6 variations for the workflow to test against.</p>
 <div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="c1"># .github/workflows/ci.yml</span>
 <span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">,</span> <span class="nv">pull_request</span><span class="pi">]</span>
 <span class="na">jobs</span><span class="pi">:</span>
-  <span class="na">test</span><span class="pi">:</span>
+  <span class="c1"># Run the test suite against multiple Ruby and Rails versions</span>
+  <span class="na">test_matrix</span><span class="pi">:</span>
     <span class="na">strategy</span><span class="pi">:</span>
+      <span class="na">fail-fast</span><span class="pi">:</span> <span class="no">false</span>
       <span class="na">matrix</span><span class="pi">:</span>
-        <span class="na">ruby</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">2.5</span><span class="pi">,</span> <span class="nv">2.6</span><span class="pi">,</span> <span class="nv">2.7</span><span class="pi">]</span>
+        <span class="c1"># Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'</span>
+        <span class="na">ruby</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">2.7</span><span class="pi">,</span> <span class="s1">'</span><span class="s">3.0'</span><span class="pi">,</span> <span class="nv">3.1</span><span class="pi">]</span>
+        <span class="c1"># Test against multiple Rails versions</span>
+        <span class="na">gemfile</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">rails_6</span><span class="pi">,</span> <span class="nv">rails_7</span><span class="pi">]</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">BUNDLE_GEMFILE</span><span class="pi">:</span> <span class="s">gemfiles/${{ matrix.gemfile }}.gemfile</span>
+    <span class="na">steps</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
+      <span class="na">with</span><span class="pi">:</span>
+        <span class="na">ruby-version</span><span class="pi">:</span> <span class="s">${{ matrix.ruby }}</span>
+        <span class="na">bundler-cache</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bundle exec rake</span>
+
+  <span class="c1"># Branch protection rules cannot directly depend on status checks from matrix jobs.</span>
+  <span class="c1"># So instead we define `test` as a dummy job which only runs after the preceding `test_matrix` checks have passed.</span>
+  <span class="c1"># Solution inspired by: https://github.community/t/status-check-for-a-matrix-jobs/127354/3</span>
+  <span class="na">test</span><span class="pi">:</span>
+    <span class="na">needs</span><span class="pi">:</span> <span class="s">test_matrix</span>
     <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
     <span class="na">steps</span><span class="pi">:</span>
-      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
-      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
-        <span class="na">with</span><span class="pi">:</span>
-          <span class="na">bundler-cache</span><span class="pi">:</span> <span class="no">true</span>
-          <span class="na">ruby-version</span><span class="pi">:</span> <span class="s">${{ matrix.ruby }}</span>
-      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">bundle exec rake</span>
+      <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">echo "All matrix tests have passed 🚀"</span>
+
+  <span class="na">release</span><span class="pi">:</span>
+    <span class="na">needs</span><span class="pi">:</span> <span class="s">test</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">if</span><span class="pi">:</span> <span class="s">${{ github.ref == 'refs/heads/main' }}</span>
+    <span class="na">permissions</span><span class="pi">:</span>
+      <span class="na">contents</span><span class="pi">:</span> <span class="s">write</span>
+    <span class="na">steps</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
+      <span class="na">with</span><span class="pi">:</span>
+        <span class="na">rubygems</span><span class="pi">:</span> <span class="s">latest</span>
+    <span class="pi">-</span> <span class="na">env</span><span class="pi">:</span>
+        <span class="na">GEM_HOST_API_KEY</span><span class="pi">:</span> <span class="s">${{ secrets.ALPHAGOV_RUBYGEMS_API_KEY }}</span>
+        <span class="na">GEM_NAME</span><span class="pi">:</span> <span class="s">govuk_example_gem</span>
+      <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="s">VERSION=$(ruby -e "puts eval(File.read('$GEM_NAME.gemspec')).version")</span>
+        <span class="s">GEM_VERSION=$(gem list --exact --remote $GEM_NAME)</span>
+
+        <span class="s"># Publish to RubyGems.org</span>
+        <span class="s">if [ "${GEM_VERSION}" != "$GEM_NAME (${VERSION})" ]; then</span>
+          <span class="s">gem build $GEM_NAME.gemspec</span>
+          <span class="s">gem push "$GEM_NAME-${VERSION}.gem"</span>
+        <span class="s">fi</span>
+
+        <span class="s"># Create a release tag</span>
+        <span class="s">if ! git ls-remote --tags --exit-code origin v${VERSION}; then</span>
+          <span class="s">git tag v${VERSION}</span>
+          <span class="s">git push --tags</span>
+        <span class="s">fi</span>
+</code></pre></div><p>For each Rails version, a <code>*.gemfile</code> should exist in a top-level directory called <code>gemfiles</code>.</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="c1"># gemfiles/rails_7.gemfile</span>
+<span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
+
+<span class="n">gem</span> <span class="s2">"rails"</span><span class="p">,</span> <span class="s2">"~&gt; 7"</span>
+
+<span class="n">gemspec</span> <span class="ss">path: </span><span class="s2">"../"</span>
 </code></pre></div><p>Notes:</p>
 
 <ul>
 <li>Our preference is to test the gems we publish against the latest version of
 <a href="https://www.ruby-lang.org/en/downloads/branches/">all currently supported minor versions of Ruby MRI</a>.</li>
+<li>For a real world example of this workflow, see <a href="https://github.com/alphagov/govuk_admin_template">govuk_admin_template</a>.</li>
 </ul>
 <h2 id='gov-uk-rails-application-with-postgres-redis-yarn-and-gov-uk-content-schemas-dependencies'>GOV.UK Rails application with Postgres, Redis, Yarn and GOV.UK Content Schemas dependencies</h2><p>This is an example that suits a relatively complex GOV.UK Rails application
 (this was written for <a href="https://github.com/alphagov/content-publisher">Content Publisher</a>) that has software dependencies
