@@ -245,7 +245,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8f087049bf505ad6bf8d62700f0807a03e4b97d8">25 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e8479414bf53d55a29bcf70d2935300366cb7d8d">25 Mar 2022</a>
 </div>
 
  <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
@@ -285,15 +285,15 @@ See <a href="https://sentry.io/organizations/govuk/issues/2155210524/events/aa4e
 </ul>
 <h2 id='how-sentry-is-integrated-on-gov-uk'>How Sentry is integrated on GOV.UK</h2><p>Projects can be created and edited in the Sentry UI, but this risks creating
 inconsistencies or missing apps. We therefore configure projects using
-<a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12">govuk-saas-config</a> (and its <a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L26-L87">associated rake tasks</a>), which
-read a <a href="https://docs.publishing.service.gov.uk/apps.json">list of apps</a> from govuk-developer-docs and make sure that
-all configuration is set up correctly.</p>
+<a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L1-L12">govuk-saas-config</a> (and its <a href="https://github.com/alphagov/govuk-saas-config/blob/5171b2803a7e211fff9536909b7d27c7fa5a4840/sentry/Rakefile#L26-L87">associated rake tasks</a>, used for
+<a href="https://docs.publishing.service.gov.uk/manual/setting-up-new-rails-app.html#create-the-application-in-sentry">creating apps in Sentry</a>), which read a <a href="https://docs.publishing.service.gov.uk/apps.json">list of apps</a>
+from govuk-developer-docs and make sure that all configuration is set up correctly.</p>
 <p>Apps are configured to talk to Sentry using the <a href="https://github.com/alphagov/govuk_app_config">govuk_app_config</a> gem,
 which interfaces with Sentry via its <a href="https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_error.rb"><code>GovukError</code> class</a>. Apps
 call <code>GovukError.configure</code> - see <a href="https://github.com/alphagov/email-alert-api/blob/main/config/initializers/govuk_error.rb">example</a>. This
 uses the <a href="https://github.com/alphagov/govuk_app_config/pull/160">delegator pattern</a> to proxy requests to the
-underlying Sentry gem, which is [sentry-ruby][] in govuk_app_config v4 and
-above, and <a href="https://github.com/getsentry/sentry-ruby/tree/master/sentry-raven">sentry-raven</a> in govuk_app_config v3 and below.</p>
+underlying Sentry gem, which is <a href="https://github.com/getsentry/sentry-ruby/tree/master/sentry-raven">sentry-ruby</a> in govuk_app_config v4 and
+above.</p>
 <p>Unhandled exceptions are automatically logged to Sentry, but you can also
 <a href="https://github.com/alphagov/govuk_app_config/blob/073c9b2312a4893b040c9225b713ac880c69f5b8/README.md#manual-error-reporting">manually report something to Sentry using <code>GovukError.notify</code></a>.
 This method takes an exception object, or a string.</p>
