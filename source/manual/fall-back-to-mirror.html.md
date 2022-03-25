@@ -70,16 +70,23 @@ To avoid Fastly traffic hitting Origin when Origin is down (potentially making t
 
 Alternatively, we can stop [Nginx](https://www.nginx.com/) on the cache machines, which will prevent requests hitting GOV.UK applications. Fastly will automatically retry these failed requests against the mirror.
 
-To stop Nginx on the cache machines, run the following command:
+SSH into each cache machine (you can increment box number after the colon to hit each one in turn):
 
 ```bash
-$ fab $environment class:cache incident.fail_to_mirror
+$ gds govuk connect -e production ssh cache:1
 ```
 
-To disable this fallback:
+Stop Nginx to force use of mirrors:
 
 ```bash
-$ fab $environment class:cache incident.recover_origin
+$ govuk_puppet --test --disable "fail_to_mirror task (by $USER)"
+$ sudo service nginx stop
+```
+
+When required you can re-enable puppet, which will restart Nginx:
+
+```bash
+$ govuk_puppet --test --enable
 ```
 
 ## Emergency publishing content using the GOV.UK mirror
