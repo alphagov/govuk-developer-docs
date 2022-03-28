@@ -19,10 +19,6 @@
     <li><%= link_to "Deployment dashboard", application.dashboard_url, class: "govuk-link" %></li>
   <% end %>
 
-  <% if application.publishing_e2e_tests_url %>
-    <li><%= link_to "Publishing E2E scenarios", application.publishing_e2e_tests_url, class: "govuk-link" %> (warning: not all apps have E2E tests)</li>
-  <% end %>
-
   <% if application.api_docs_url %>
     <li><%= link_to "API docs", application.api_docs_url, class: "govuk-link" %></li>
   <% end %>
