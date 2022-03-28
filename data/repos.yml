@@ -11,6 +11,8 @@
 - github_repo_name: asset_bom_removal-rails
   type: Gems
   team:
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: authenticating-proxy
   type: Supporting apps
@@ -22,6 +24,8 @@
   management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
   production_hosted_on: heroku
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: bouncer
   type: Transition apps
@@ -32,6 +36,8 @@
   type: Utilities
   team:
   description: For bulk merging Pull Requests for GOV.UK repos.
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: business-support-api
   retired: true
@@ -75,6 +81,8 @@
 - github_repo_name: ckan-functional-tests
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: ckanext-datagovuk
   puppet_name: ckan
@@ -138,6 +146,8 @@
   production_hosted_on: paas
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: datagovuk_find
   type: data.gov.uk apps
@@ -157,12 +167,16 @@
   production_hosted_on: paas
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: datagovuk_reference
   team: "#govuk-datagovuk"
   management_url: https://dashboard.heroku.com/apps/interval-server
   production_hosted_on: heroku
   type: data.gov.uk apps
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: design-principles
   type: Frontend apps
@@ -179,6 +193,8 @@
   team: "#govuk-data-labs"
   type: Data science
   description: Prototype to show content with eligibility based on a user's circumstances
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: email-alert-api
   type: APIs
@@ -194,6 +210,8 @@
 - github_repo_name: email-alert-monitoring
   type: Utlities
   team: "#govuk-accounts-tech"
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: email-alert-service
   type: Services
@@ -219,11 +237,15 @@
 - github_repo_name: gds-api-adapters
   team: "#govuk-developers"
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: gds-sso
   team:
   type: Gems
   description: OmniAuth adapter to allow apps to sign in via GOV.UK Signon.
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: government-frontend
   type: Frontend apps
@@ -234,6 +256,8 @@
 - github_repo_name: govspeak
   team: "#govuk-publishing-tech"
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govspeak-preview
   management_url: https://govspeak-preview.publishing.service.gov.uk
@@ -248,28 +272,40 @@
   type: Data science
   description: Project containing numerous report generators to monitor accessibility
     on GOV.UK.
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-app-deployment
   team:
   type: Utilities
   description: Capistrano deployment scripts for applications running on GOV.UK.
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-aws
   team: "#govuk-platform-reliability-team"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-aws-data
   private_repo: true
   team: "#govuk-platform-reliability-team"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-browser-extension
   team: "#govuk-developers"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-cdn-config
   team: "#govuk-platform-reliability-team"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-content-schemas
   app_name: govuk-content-store-examples
@@ -277,6 +313,8 @@
   team: "#govuk-publishing-tech"
   production_hosted_on: heroku
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-delivery
   retired: true
@@ -291,29 +329,41 @@
   management_url: https://dashboard.heroku.com/apps/govuk-dependencies
   production_hosted_on: heroku
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-deploy-lag-badger
   team: "#govuk-platform-reliability-team"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-display-screen
   management_url: https://dashboard.heroku.com/apps/govuk-display-screen
   production_hosted_on: heroku
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-dns
   team: "#govuk-platform-reliability-team"
   type: Utilities
   description: Tasks for managing DNS records
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-docker
   team: "#govuk-developers"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-jenkinslib
   team: "#govuk-platform-reliability-team"
   production_hosted_on: aws
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-knowledge-graph
   private_repo: true
@@ -321,64 +371,90 @@
   type: Data science
   description: Experiment with setting up an extended property graph of GOV.UK organisations
     and associated content.
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-load-testing
   type: Supporting apps
   team: "#govuk-platform-reliability-team"
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-pact-broker
   team: "#govuk-platform-reliability-team"
   production_hosted_on: paas
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-puppet
   team: "#govuk-developers"
   type: Utilities
   deploy_url: https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/deploy.sh
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-related-links-recommender
   team: "#govuk-data-labs"
   type: Data science
   description: Machine learning model to recommend related content
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-saas-config
   team:
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-secrets
   private_repo: true
   team: "#govuk-platform-reliability-team"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-user-intent-survey-explorer
   private_repo: true
   team: "#govuk-data-labs"
   type: Data science
   description: Prototype to help explorer user intent survey data
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-user-journey-models
   private_repo: true
   team: "#govuk-data-labs"
   type: Data science
   description: Classifying successful and unsuccessful user journeys on GOV.UK
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-user-reviewer
   private_repo: true
   team:
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk-zendesk-display-screen
   management_url: https://dashboard.heroku.com/apps/govuk-zendesk-display-screen
   production_hosted_on: heroku
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_ab_testing
   team: "#govuk-developers"
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_app_config
   team: "#govuk-developers"
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_content_api
   retired: true
@@ -392,10 +468,14 @@
 - github_repo_name: govuk_document_types
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_message_queue_consumer
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_need_api
   retired: true
@@ -409,18 +489,26 @@
 - github_repo_name: govuk_publishing_components
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_schemas
   team: "#govuk-developers"
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_sidekiq
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: govuk_taxonomy_helpers
   team:
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: hmrc-manuals-api
   type: APIs
@@ -525,10 +613,14 @@
 - github_repo_name: omniauth-gds
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: optic14n
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: organisations-publisher
   type: Publishing apps
@@ -555,6 +647,8 @@
 - github_repo_name: plek
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: policy-publisher
   retired: true
@@ -580,14 +674,20 @@
 - github_repo_name: publishing-e2e-tests
   team: "#govuk-publishing-tech"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: rack-logstasher
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: rails_translation_manager
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: release
   type: Supporting apps
@@ -607,12 +707,16 @@
 - github_repo_name: rubocop-govuk
   team:
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: seal
   team: "#govuk-platform-reliability-team"
   management_url: https://dashboard.heroku.com/apps/moody-seal
   production_hosted_on: heroku
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: search-admin
   type: Supporting apps
@@ -632,6 +736,8 @@
   production_hosted_on: heroku
   team: "#find-and-view-tech"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: service-manual-frontend
   team: "#find-and-view-tech"
@@ -652,10 +758,14 @@
   management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
   production_hosted_on: heroku
   type: Transition apps
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: sidekiq-monitoring
   team:
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: signon
   type: Supporting apps
@@ -665,6 +775,8 @@
 - github_repo_name: slimmer
   team: "#govuk-developers"
   type: Gems
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: smart-answers
   type: Frontend apps
@@ -675,10 +787,14 @@
 - github_repo_name: smokey
   team: "#govuk-developers"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: special-route-publisher
   team: "#govuk-publishing-tech"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: specialist-frontend
   type: Frontend apps
@@ -711,10 +827,13 @@
   type: Transition apps
   team: "#govuk-publishing-tech"
   production_hosted_on: aws
+  production_url: https://transition.publishing.service.gov.uk
 
 - github_repo_name: transition-config
   type: Transition apps
   team: "#govuk-publishing-tech"
+  sentry_url: false
+  dashboard_url: false
 
 - github_repo_name: travel-advice-publisher
   type: Publishing apps
