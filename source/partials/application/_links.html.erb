@@ -1,37 +1,21 @@
+<%
+
+links = [
+  (link_to("Sentry (error tracking)", application.sentry_url, class: "govuk-link") if application.sentry_url),
+  (link_to("Manage application", application.management_url, class: "govuk-link") if application.management_url),
+  (link_to("Puppet configuration", application.puppet_url, class: "govuk-link") if application.puppet_url),
+  (link_to("Deploy scripts", application.deploy_url, class: "govuk-link") if application.deploy_url),
+  (link_to("Deployment dashboard", application.dashboard_url, class: "govuk-link") if application.dashboard_url),
+  (link_to("API docs", application.api_docs_url, class: "govuk-link") if application.api_docs_url),
+  (link_to("Component guide", application.component_guide_url, class: "govuk-link") if application.component_guide_url),
+  (link_to("Metrics dashboard", application.metrics_dashboard_url, class: "govuk-link") if application.metrics_dashboard_url),
+  (link_to(application.production_url.gsub("https://", ""), application.production_url, class: "govuk-link") if application.production_url),
+]
+
+if links.any?
+%>
 <ul class="govuk-list">
-  <% if application.sentry_url %>
-    <li><%= link_to "Sentry (error tracking)", application.sentry_url, class: "govuk-link" %></li>
+  <% links.each do |link| %>
+    <li><%= link %></li>
   <% end %>
-
-  <% if application.management_url %>
-    <li><%= link_to "Manage application", application.management_url, class: "govuk-link" %></li>
-  <% end %>
-
-  <% if application.puppet_url %>
-    <li><%= link_to "Puppet configuration", application.puppet_url, class: "govuk-link" %></li>
-  <% end %>
-
-  <% if application.deploy_url %>
-    <li><%= link_to "Deploy scripts", application.deploy_url, class: "govuk-link" %></li>
-  <% end %>
-
-  <% if application.dashboard_url %>
-    <li><%= link_to "Deployment dashboard", application.dashboard_url, class: "govuk-link" %></li>
-  <% end %>
-
-  <% if application.api_docs_url %>
-    <li><%= link_to "API docs", application.api_docs_url, class: "govuk-link" %></li>
-  <% end %>
-
-  <% if application.component_guide_url %>
-    <li><%= link_to "Component guide", application.component_guide_url, class: "govuk-link" %></li>
-  <% end %>
-
-  <% if application.metrics_dashboard_url %>
-    <li><%= link_to "Metrics dashboard", application.metrics_dashboard_url, class: "govuk-link" %></li>
-  <% end %>
-
-  <% if application.production_url %>
-    <li><%= link_to application.production_url.gsub('https://', ''), application.production_url, class: "govuk-link" %></li>
-  <% end %>
-</ul>
+<% end %>
