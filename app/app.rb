@@ -159,7 +159,9 @@ class App
   end
 
   def production_url
-    app_data["production_url"] || (type.in?(["Publishing app", "Admin app"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
+    return if app_data["production_url"] == false
+
+    app_data["production_url"] || (type.in?(["Publishing apps", "Supporting apps"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
   end
 
   def readme

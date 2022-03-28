@@ -28,13 +28,13 @@ RSpec.describe App do
 
   describe "production_url" do
     it "has a good default" do
-      app = App.new("type" => "Publishing app", "github_repo_name" => "my-app")
+      app = App.new("type" => "Publishing apps", "github_repo_name" => "my-app")
 
       expect(app.production_url).to eql("https://my-app.publishing.service.gov.uk")
     end
 
     it "allows override" do
-      app = App.new("type" => "Publishing app", "production_url" => "something else")
+      app = App.new("type" => "Publishing apps", "production_url" => "something else")
 
       expect(app.production_url).to eql("something else")
     end
