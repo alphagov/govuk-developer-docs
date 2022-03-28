@@ -12,12 +12,16 @@ class Repos
     Repos.all.reject(&:private_repo?)
   end
 
+  def self.active
+    Repos.all.reject(&:retired?)
+  end
+
   def self.active_apps
-    Repos.all.reject(&:retired?).select(&:is_app?)
+    Repos.active.select(&:is_app?)
   end
 
   def self.grouped_by_team
-    Repos.all.reject(&:retired?).reject(&:private_repo?).group_by(&:team)
+    Repos.active.reject(&:private_repo?).group_by(&:team)
   end
 
   def self.teams
