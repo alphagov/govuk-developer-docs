@@ -18,6 +18,7 @@
   type: Supporting apps
   team: "#find-and-view-tech"
   production_hosted_on: aws
+  production_url: false
 
 - github_repo_name: blinkenjs
   app_name: govuk-secondline-blinken
@@ -31,6 +32,7 @@
   type: Transition apps
   team: "#find-and-view-tech"
   production_hosted_on: aws
+  production_url: false
 
 - github_repo_name: bulk-merger
   type: Utilities
@@ -90,6 +92,7 @@
   team: "#govuk-datagovuk"
   production_hosted_on: aws
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
+  production_url: https://ckan.publishing.service.gov.uk/
 
 - github_repo_name: collections
   type: Frontend apps
@@ -135,6 +138,7 @@
   type: APIs
   team: "#govuk-publishing-tech"
   production_hosted_on: aws
+  production_url: https://www.gov.uk/api/content
 
 - github_repo_name: content-tagger
   type: Publishing apps
@@ -142,7 +146,7 @@
   production_hosted_on: aws
 
 - github_repo_name: datagovuk-tech-docs
-  management_url: https://guidance.data.gov.uk/
+  production_url: https://guidance.data.gov.uk/
   production_hosted_on: paas
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
@@ -172,6 +176,7 @@
 
 - github_repo_name: datagovuk_reference
   team: "#govuk-datagovuk"
+  production_url: https://interval-server.herokuapp.com/
   management_url: https://dashboard.heroku.com/apps/interval-server
   production_hosted_on: heroku
   type: data.gov.uk apps
@@ -260,7 +265,8 @@
   dashboard_url: false
 
 - github_repo_name: govspeak-preview
-  management_url: https://govspeak-preview.publishing.service.gov.uk
+  production_url: https://govspeak-preview.publishing.service.gov.uk
+  management_url: https://dashboard.heroku.com/apps/govspeak-preview
   team: "#govuk-publishing-tech"
   production_hosted_on: heroku
   type: Utilities
@@ -309,6 +315,7 @@
 
 - github_repo_name: govuk-content-schemas
   app_name: govuk-content-store-examples
+  production_url: https://govuk-content-store-examples.herokuapp.com/
   management_url: https://dashboard.heroku.com/apps/govuk-content-store-examples
   team: "#govuk-publishing-tech"
   production_hosted_on: heroku
@@ -326,6 +333,7 @@
 
 - github_repo_name: govuk-dependencies
   team: "#govuk-platform-reliability-team"
+  production_url: https://govuk-dependencies.herokuapp.com/
   management_url: https://dashboard.heroku.com/apps/govuk-dependencies
   production_hosted_on: heroku
   type: Utilities
@@ -382,6 +390,7 @@
 
 - github_repo_name: govuk-pact-broker
   team: "#govuk-platform-reliability-team"
+  production_url: https://pact-broker.cloudapps.digital/
   production_hosted_on: paas
   type: Utilities
   sentry_url: false
@@ -489,6 +498,7 @@
 - github_repo_name: govuk_publishing_components
   team:
   type: Gems
+  production_url: https://components.publishing.service.gov.uk
   sentry_url: false
   dashboard_url: false
 
@@ -698,6 +708,7 @@
   type: Supporting apps
   team: "#find-and-view-tech"
   production_hosted_on: aws
+  production_url: false
 
 - github_repo_name: router-api
   type: APIs
@@ -731,9 +742,12 @@
   type: APIs
   team: "#find-and-view-tech"
   production_hosted_on: aws
+  production_url: https://www.gov.uk/api/search.json
 
 - github_repo_name: search-performance-explorer
   production_hosted_on: heroku
+  production_url: https://search-performance-explorer.herokuapp.com/
+  management_url: https://dashboard.heroku.com/apps/search-performance-explorer
   team: "#find-and-view-tech"
   type: Utilities
   sentry_url: false
@@ -755,6 +769,7 @@
   production_hosted_on: aws
 
 - github_repo_name: side-by-side-browser
+  production_url: https://govuk-side-by-side-browser.herokuapp.com/
   management_url: https://dashboard.heroku.com/apps/govuk-side-by-side-browser
   production_hosted_on: heroku
   type: Transition apps
