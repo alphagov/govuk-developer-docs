@@ -409,8 +409,10 @@ separate applications. Most of them are built using <a href="http://rubyonrails.
 </td>
 </tr>
         </table>
-      </div><h2 id='reuse-this-data'>Reuse this data</h2><p>You can <a href="/apps.json">download this data as JSON</a>, or <a href="/apps.csv">download this data as CSV</a>.
-In Google Spreadsheets, use the following formula to import all of the data:</p>
+      </div><h2 id='reuse-this-data'>Reuse this data</h2><p>You can download this data as JSON or as CSV. It&rsquo;s available for the hosted
+applications (<a href="/apps.json">apps.json</a> and <a href="/apps.csv">apps.csv</a>) or
+all the repositories (<a href="/repos.json">repos.json</a> and <a href="/repos.csv">repos.csv</a>).</p>
+<p>In Google Spreadsheets, use the following formula to import all of the data:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>=importData("https://docs.publishing.service.gov.uk/apps.csv")
 </code></pre></div><h2 id='infrastructure'>Infrastructure</h2><p>Applications are hosted on an infrastructure <a href="https://github.com/alphagov/govuk-puppet">configured using puppet</a>.
 They are deployed using <a href="https://github.com/alphagov/govuk-app-deployment">capistrano scripts</a>.</p>
