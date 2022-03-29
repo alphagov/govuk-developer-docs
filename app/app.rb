@@ -114,7 +114,7 @@ class App
   end
 
   def deploy_url
-    return if app_data["deploy_url"] == false || %w[none heroku].include?(production_hosted_on)
+    return if app_data["deploy_url"] == false || [nil, "none", "heroku"].include?(production_hosted_on)
 
     if production_hosted_on == "paas"
       app_data["deploy_url"]
@@ -127,12 +127,6 @@ class App
     return if app_data["dashboard_url"] == false
 
     app_data["dashboard_url"] || "https://grafana.production.govuk.digital/dashboard/file/#{app_name}.json"
-  end
-
-  def publishing_e2e_tests_url
-    if ["Frontend apps", "Publishing apps"].include?(type)
-      "https://github.com/alphagov/publishing-e2e-tests/search?q=%22#{app_name.underscore}%3A+true%22+path%3A%2Fspec%2F"
-    end
   end
 
   def api_docs_url
@@ -165,7 +159,9 @@ class App
   end
 
   def production_url
-    app_data["production_url"] || (type.in?(["Publishing app", "Admin app"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
+    return if app_data["production_url"] == false
+
+    app_data["production_url"] || (type.in?(["Publishing apps", "Supporting apps"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
   end
 
   def readme
