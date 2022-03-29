@@ -382,7 +382,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/319a4cbcaed32f51c98de82236c78d3193874ba4">21 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/e292f20f97bb93acf3be2760f8543199925f187c">29 Mar 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # JavaScript Modules</h1>
@@ -396,9 +396,9 @@
 &lt;/div&gt;
 </code></pre>
 <p>Modules are found and started in <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/dependencies.js">dependencies.js</a> by including <code>./modules.js</code> and running the following. This is called by <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/application.js#L1">static</a> once for all applications on GOV.UK.</p>
-<pre lang="javascript"><code>$(document).ready(function(){
+<pre lang="javascript"><code>document.addEventListener('DOMContentLoaded', function () {
   GOVUK.modules.start()
-});
+})
 </code></pre>
 <p>This will attempt to find and start all modules in the page. For the example above it will look for a module at <code>GOVUK.Modules.SomeModule</code>. Note the value of the data attribute has been converted to <em>PascalCase</em>.</p>
 <p>The module will be instantiated and then its <code>init</code> method called. The HTML element with the <code>data-module</code> attribute is passed as the first argument to the module. This limits modules to acting only within their containing elements.</p>
@@ -407,7 +407,7 @@
 module.init()
 </code></pre>
 <p>Running <code>GOVUK.modules.start()</code> multiple times will have no additional affect. When a module is started a flag is set on the element using the data attribute <code>module-started</code>. <code>data-module-started</code> is a reserved attribute. It can however be called with an element as the first argument, to allow modules to be started in dynamically loaded content:</p>
-<pre lang="javascript"><code>var $container = $('.dynamic-content')
+<pre lang="javascript"><code>var $container = document.querySelector('.dynamic-content')
 GOVUK.modules.start($container)
 </code></pre>
 <h3 id="modules-and-cookie-consent">Modules and cookie consent</h3>
