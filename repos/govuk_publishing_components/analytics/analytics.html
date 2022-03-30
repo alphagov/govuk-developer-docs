@@ -382,7 +382,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/39f83ae561b152bf17baf35d1ddab63f9dcf61c1">14 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/696779fa49de5daf31a13783791b056e39bb3807">23 Mar 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Analytics</h1>
@@ -748,7 +748,7 @@ to strip postcodes at initialize time as follows:</p>
 </code></pre>
 <p>Any value other than the JS literal <code>true</code> will leave the analytics module
 configured not to strip.</p>
-<h4 id="avoding-false-positives">Avoding false positives</h4>
+<h4 id="avoiding-false-positives">Avoiding false positives</h4>
 <p>Sometimes you will have data you want to send to analytics that looks like PII
 and would be stripped out.  For example on GOV.UK the content_ids that belong
 to every document can sometimes contain a string of characters that look like a
@@ -763,6 +763,8 @@ analytics tracker without attempting to strip PII from it.  For example:</p>
 <pre lang="js"><code>  GOVUK.analytics.setDimension(1, new GOVUK.Analytics.PIISafe('this-is-not-an@email-address-but-it-looks-like-one'));
   GOVUK.analytics.trackEvent('report title clicked', new GOVUK.Analytics.PIISafe('this report title looks like it contains a P0 5TC ode but it does not really'));
 </code></pre>
+<h4 id="tooling">Tooling</h4>
+<p><a href="https://chrome.google.com/webstore/detail/omnibug/bknpehncffejahipecakbfkomebjmokl?hl=en">Omnibug</a> is a useful extension to easily capture and review the events being sent to Google Analytics.</p>
 
 
             
