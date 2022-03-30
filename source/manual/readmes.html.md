@@ -55,9 +55,9 @@ A list of links to key files in docs/.
 
 You can also just link to the docs/ directory itself.
 
-## Licence
+## License
 
-Link to your LICENCE file.
+Link to your LICENSE file.
 ```
 
 Examples READMEs that follow the above structure:
@@ -78,6 +78,6 @@ Use the GitHub link field to link to the developer docs page for the repository,
 
 Use GitHub's [CONTRIBUTING.md](https://help.github.com/articles/setting-guidelines-for-repository-contributors/) guidelines for this. Always link to the [GOV.UK pull request style guide](https://github.com/alphagov/styleguides/blob/master/pull-requests.md).
 
-## LICENCE
+## LICENSE
 
 Follow [GitHub convention](https://help.github.com/articles/open-source-licensing/#where-does-the-license-live-on-my-repository).
