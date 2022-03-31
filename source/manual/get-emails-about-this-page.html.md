@@ -2,7 +2,7 @@
 title: "Handle exemptions to the ‘Get emails about this page’ feature"
 section: Emails
 layout: manual_layout
-owner_slack: "#govuk-accounts"
+owner_slack: "#find-and-view-govuk"
 parent: "/manual.html"
 ---
 
