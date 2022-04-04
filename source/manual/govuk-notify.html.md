@@ -67,7 +67,7 @@ entry).
 **Note:** we have [specific documentation][email-alert-api-receive-emails] for
 receiving Email Alert API emails in the integration and staging.
 
-[email-alert-api-receive-emails]: /manual/receiving-emails-from-email-alert-api-in-integration-and-staging.html
+[email-alert-api-receive-emails]: /repos/email-alert-api/receiving-emails-from-email-alert-api-in-integration-and-staging.html
 
 GOV.UK Notify services have two modes: live and [trial][trial-mode]. Our
 production services are all in live mode; most other services are in trial
