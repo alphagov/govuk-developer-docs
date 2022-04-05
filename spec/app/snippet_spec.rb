@@ -21,7 +21,7 @@ RSpec.describe Snippet do
       html = <<~HTML
         <h1 id='deploy-an-application-to-govuk'>Deploy an application to GOV.UK</h1>
         <h2 id='introduction'>Introduction</h2>
-        <p>2nd line is responsible for:</p>
+        <p>Technical 2nd Line is responsible for:</p>
 
         <ul>
         <li>ensuring that software is released to GOV.UK responsibly</li>
@@ -35,7 +35,7 @@ RSpec.describe Snippet do
 
       snippet = Snippet.generate(html)
 
-      expect(snippet).to eql("2nd line is responsible for: ensuring that software is released to GOV.UK responsibly providing access to deploy software for teams who can’t deploy it themselves As far as possible, teams are responsible for deploying their own work. We believe that regular releases minimise the risk of major pr...")
+      expect(snippet).to eql("Technical 2nd Line is responsible for: ensuring that software is released to GOV.UK responsibly providing access to deploy software for teams who can’t deploy it themselves As far as possible, teams are responsible for deploying their own work. We believe that regular releases minimise the risk o...")
     end
   end
 end

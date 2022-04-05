@@ -86,7 +86,7 @@ Respond to the user's Zendesk ticket, saying that we're processing the request.
 Change priority to Low and leave a message for the product owners that this ticket
 requires authorisation. When they have checked the validity of the request, they'll
 leave a comment in the ticket and move it to the relevant priority queue for the
-2nd line developers to process.
+Technical 2nd Line developers to process.
 
 ### Process the request
 

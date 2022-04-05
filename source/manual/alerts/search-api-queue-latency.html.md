@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: High Search API Sidekiq queue latency
 parent: "/manual.html"
 layout: manual_layout

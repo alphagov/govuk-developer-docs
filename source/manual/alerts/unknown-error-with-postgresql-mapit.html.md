@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Unknown error with postgresql in mapit
 layout: manual_layout
 parent: "/manual.html"

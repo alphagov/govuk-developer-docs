@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Rules for getting production access
 parent: "/manual.html"
 layout: manual_layout
@@ -23,9 +23,9 @@ These rules apply to developers, SREs, and technical architects in the GOV.UK pr
 
 ## When you get production access
 
-- Temporary supervised access during two 2nd line shadow shifts (GOV.UK developers only)
+- Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only)
 - Supervised access after second shadow shift and probation has been passed
-- Permanent access once a non-shadow 2nd line shift has been completed
+- Permanent access once a non-shadow Technical 2nd Line shift has been completed
 
 "Supervised" means "we trust you, but just be extra careful," and the dev should
 ensure they're getting necessary and appropriate support from their team and

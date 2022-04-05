@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Remove invalid WorldwideOrganisation draft CorporateInformationPages
 section: Publishing
 layout: manual_layout

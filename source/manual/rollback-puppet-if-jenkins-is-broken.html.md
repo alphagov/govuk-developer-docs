@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Rollback Puppet if Jenkins is broken
 section: Infrastructure
 type: learn

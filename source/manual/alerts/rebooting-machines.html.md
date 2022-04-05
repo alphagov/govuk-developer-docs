@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Reboot a machine
 section: Infrastructure
 layout: manual_layout
@@ -255,7 +255,7 @@ It is safe to reboot while no other unattended reboot is underway:
 
 This guidance applies if you want to reboot a machine that is not one of the previous types.
 
-1. Schedule downtime in Icinga, or let GOV.UK 2nd line support know that there will be alerts for a machine being down.
+1. Schedule downtime in Icinga, or let GOV.UK Technical 2nd Line know that there will be alerts for a machine being down.
 
 2. SSH into the machine and run:
 

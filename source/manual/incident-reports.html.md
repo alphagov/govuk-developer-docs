@@ -29,8 +29,8 @@ Start Time|HH:MM (local time)
 End Time|HH:MM (local time)
 Application / process|
 Priority|Was it a P1, P2, P3, or P4 incident?
-Incident lead| 2nd line primary engineer or a senior developer
-Comms lead|2nd line secondary engineer
+Incident lead| Technical 2nd Line primary engineer or a senior developer
+Comms lead|Technical 2nd Line secondary engineer
 
 Overview
 

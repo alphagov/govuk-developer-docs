@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Manually resize EBSs (elastic block store)
 section: Infrastructure
 layout: manual_layout

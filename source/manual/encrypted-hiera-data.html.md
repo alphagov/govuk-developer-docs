@@ -267,7 +267,7 @@ To generate a new key:
 
        where `<fingerprint>` was obtained above.
 
-3. Add the passphrase you used when creating the new GPG key to the 2nd line
+3. Add the passphrase you used when creating the new GPG key to the Technical 2nd Line
    password store by running inside the [pass](https://github.com/alphagov/govuk-secrets/tree/main/pass) directory of the govuk-secrets:
 
    ```shell
