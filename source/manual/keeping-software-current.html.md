@@ -23,11 +23,13 @@ Where an exploitable security vulnerability has been identified and patched, we 
 
 If a vulnerability is only theoretical - for example, an issue in a library that is only used in your test suite and not user facing, then our normal dependency upgrade procedure applies. See next sections.
 
-### Stay within two major releases
+### Stay within two significant releases
 
 We should always stay within two major releases from the current major release of any given software. There is some industry precedent for this: providers such as Terraform [expect customers to stay within two major releases](https://support.hashicorp.com/hc/en-us/articles/360021185113-Support-Period-and-End-of-Life-EOL-Policy) in order to receive optimal support.
 
-This is a rough guide. For example, if the latest version of something is version 9, and we're on version 6, we should update to at least version 7, even if version 6 hasn't reached EOL yet. The opposite is true too: if version 7 is EOL, we should update straight to version 8, even though version 7 is within two major versions of the latest.
+This is a rough guide.  Some projects, such as Ruby, don't necessarily follow [semver](https://semver.org/), and consider their minor versions to be significant upgrades. In these cases, you should stay within two minor releases of the latest.
+
+Another consideration is EOL. For example, if the latest version of something is version 9, and we're on version 7, but version 7 is EOL, we should update to version 8, despite version 7 being within two major versions of the latest.
 
 The two-major-releases rule allows some wiggle-room for keeping upgrade cadences manageable. Teams don't have to worry about upgrading to a new major version the moment it becomes available, but shouldn't allow themselves to fall too far behind. Teams can leverage tools such as [Dependabot](https://docs.publishing.service.gov.uk/manual/manage-ruby-dependencies.html) to automate much of the chore work.
 
