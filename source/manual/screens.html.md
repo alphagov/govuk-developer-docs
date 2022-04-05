@@ -19,11 +19,11 @@ The username and password can be obtained by logging in to Heroku and viewing th
 
 [search-screen]: https://github.com/alphagov/govuk-display-screen
 
-## 2nd line screens
+## Technical 2nd Line screens
 
-![Photo of the 2nd line monitoring screens](images/monitoring.jpg)
+![Photo of the Technical 2nd Line monitoring screens](images/monitoring.jpg)
 
-There are two screens by the 2nd line desks.
+There are two screens by the Technical 2nd Line desks.
 
 The top screen is a webpage running [frame splits][frame-splits] with three splits: [production health, open Zendesk
 tickets and Icinga alert summary per environment][2ndline-dash].

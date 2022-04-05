@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Outstanding security updates
 section: Icinga alerts
 layout: manual_layout

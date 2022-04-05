@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: PagerDuty
 section: 2nd line
 type: learn
@@ -19,11 +19,11 @@ It is the responsibility of the people above to make sure their details are up t
 and that they're correctly scheduled in. You can [add your rota to Google calendar](#add-your-pagerduty-rota-to-google-calendar).
 
 When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
-them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty.
+them, otherwise they will be escalated further. NB, Technical 2nd Line shadowers are not required to be on PagerDuty.
 
 ## Creating a schedule override
 
-There are times where developers need to make rota swaps or cover 2nd line last minute.
+There are times where developers need to make rota swaps or cover Technical 2nd Line last minute.
 See the [Pagerduty documentation on how to schedule an override](https://support.pagerduty.com/docs/edit-schedules#create-overrides).
 
 ## PagerDuty drill
@@ -38,7 +38,7 @@ resolve the alert. The [code that does this is in
 Puppet](https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/pagerduty_drill.pp).
 
 You don't need to take any action for this alert. The primary in-office
-2nd line should escalate the call to the secondary who should escalate
+Technical 2nd Line developer should escalate the call to the secondary who should escalate
 it to "escalations" to ensure that phone redirection is working. The
 person on "escalations" will resolve the PagerDuty alert to prevent
 anyone else being phoned.
@@ -67,7 +67,7 @@ To trigger the drill manually, follow these steps:
 
 ### Add your Pagerduty rota to Google calendar
 
-You can sync your Pagerduty with Google Calendar so you can see your 2nd line and
+You can sync your Pagerduty with Google Calendar so you can see your Technical 2nd Line and
 on-call shifts in one place.
 
 1. Go to https://governmentdigitalservice.pagerduty.com/my-on-call/month

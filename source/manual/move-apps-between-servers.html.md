@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Move apps between servers
 section: Infrastructure
 layout: manual_layout

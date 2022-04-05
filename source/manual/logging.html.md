@@ -28,9 +28,9 @@ For information on how to log in and view stacks, please see the [GOV.UK Logit d
 
 Kibana is the interface for viewing logs in Elasticsearch. Use the Logit interface to log into Kibana.
 
-There's some documentation on [useful Kibana queries for 2nd line][].
+There's some documentation on [useful Kibana queries for Technical 2nd Line][].
 
-[useful Kibana queries for 2nd line]: /manual/kibana.html
+[useful Kibana queries for Technical 2nd Line]: /manual/kibana.html
 
 ## Filebeat
 

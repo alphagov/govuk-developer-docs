@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Running out of space for automongodbbackup
 section: Icinga alerts
 layout: manual_layout

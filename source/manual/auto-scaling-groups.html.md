@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Manually resize ASGs (auto scaling groups)
 section: Infrastructure
 layout: manual_layout
@@ -22,7 +22,7 @@ the load.
 ## Manually scaling up/down
 
 1. Scaling up/down machines in AWS will trigger [Icinga alerts](icinga) so let
-   developers in `#govuk-2ndline` know you are about to do this.
+   developers in `#govuk-2ndline-tech` know you are about to do this.
 
 1. [Access the AWS Console](/manual/access-aws-console.html) and [go to the EC2 service][ec2-home].
 

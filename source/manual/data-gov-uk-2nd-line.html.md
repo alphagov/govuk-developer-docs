@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Common 2nd line support tasks for data.gov.uk
 section: data.gov.uk
 layout: manual_layout
@@ -13,7 +13,7 @@ parent: "/manual.html"
 [v1-endpoint]: https://github.com/ckan/ckan/blob/ckan-2.9.2/CHANGELOG.rst#v280-2018-05-09
 [ckan-issue]: https://github.com/ckan/ckan/issues/3484
 
-This document details some of the requests that GOV.UK 2nd line support may receive regarding data.gov.uk.  [Separate documentation][dgu-docs] exists for publishers.
+This document details some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk.  [Separate documentation][dgu-docs] exists for publishers.
 
 ## Users and Publishers
 
@@ -27,8 +27,8 @@ There is a [user list](https://ckan.publishing.service.gov.uk/user) which can be
 
 There are two routes for creating an new account for a new user:
 
-1. A publishing organisation's 'admin' user(s) can invite new users to create an account.  The admin user should [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite the new user to join. We should encourage this approach as the organisation admin is best placed to know whether or not the new user should have access, as well as reducing the number of requests to 2nd line support.
-2. A sysadmin user (e.g. 2nd line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+1. A publishing organisation's 'admin' user(s) can invite new users to create an account.  The admin user should [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite the new user to join. We should encourage this approach as the organisation admin is best placed to know whether or not the new user should have access, as well as reducing the number of requests to Technical 2nd Line.
+2. A sysadmin user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
  - Follow the instructions in [Assign users to publishers](#assign-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
  - An invite email is generated and sent to the publisher.
 
@@ -86,7 +86,7 @@ Since CKAN was upgraded some usernames with non alphanumeric or uppercase charac
 
 ### Delete or withdraw a dataset
 
-Users are not permitted to remove their own datasets.  There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn.  This is to be done by 2nd line, following a request from the publisher.  Datasets are never hard-deleted (known as "purged" in CKAN), instead they are marked as "withdrawn" (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).
+Users are not permitted to remove their own datasets.  There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.  Datasets are never hard-deleted (known as "purged" in CKAN), instead they are marked as "withdrawn" (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).
 
 > Before making any deletions, you should check that the person making the request actually belongs to the organisation who own the document (or are from a superseding department, e.g. someone from BEIS could request a withdrawal for a dataset published by BIS).
 
@@ -173,7 +173,7 @@ Whilst we do have a backup of the old bytemark server and can access the publica
 ### Add a schema vocabulary definition
 
 Users are not permitted to add their own schema vocabulary definitions.
-This is to be done by 2nd line, following a request from the publisher.
+This is to be done by Technical 2nd Line, following a request from the publisher.
 
 1. Add the new schema vocabulary definition to the [schemas](schemas)
 2. Add the new schema vocabulary definition to the [corresponding test](test-schemas)
