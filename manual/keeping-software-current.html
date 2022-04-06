@@ -126,13 +126,30 @@
     <a href="#header"><span>Policy on keeping software current</span></a>
     <ul>
       <li>
-        <a href="#introduction"><span>Introduction</span></a>
+        <a href="#guiding-principles"><span>Guiding principles</span></a>
         <ul>
           <li>
-            <a href="#upgrading-rails"><span>Upgrading Rails</span></a>
+            <a href="#don39t-run-eol-software"><span>Don’t run EOL software</span></a>
           </li>
           <li>
-            <a href="#upgrading-ruby"><span>Upgrading Ruby</span></a>
+            <a href="#apply-security-patches-quickly"><span>Apply security patches quickly</span></a>
+          </li>
+          <li>
+            <a href="#stay-within-two-significant-releases"><span>Stay within two significant releases</span></a>
+          </li>
+          <li>
+            <a href="#prioritise-dependencies-over-subdependencies"><span>Prioritise dependencies over subdependencies</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#exceptions"><span>Exceptions</span></a>
+        <ul>
+          <li>
+            <a href="#rails"><span>Rails</span></a>
+          </li>
+          <li>
+            <a href="#ruby"><span>Ruby</span></a>
           </li>
         </ul>
       </li>
@@ -186,20 +203,23 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e90939ec8e3a7f9070b653cc56ef73794cdc835e">25 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f569462d8b0ebc67dec846eed4bc4ee38910371a">5 Apr 2022</a>
 </div>
 
- <h1 id='header'>Policy on keeping software current</h1> <p>One of our core values is to use secure and up to date software. This document lays out the policy for keeping our Ruby on Rails software current.</p>
-<h2 id='introduction'>Introduction</h2><p>We run a lot of Rails applications. This means that we have dependencies on both Rails and Ruby versions.</p>
-<h3 id='upgrading-rails'>Upgrading Rails</h3><p>It&rsquo;s very important that we&rsquo;re running a currently supported version of Rails for all applications, otherwise we aren&rsquo;t covered by security fixes. We should:</p>
+ <h1 id='header'>Policy on keeping software current</h1> <p>One of our core values is to use secure and up-to-date software. This document lays out the policy for keeping our software current.</p>
+<h2 id='guiding-principles'>Guiding principles</h2><h3 id='don39t-run-eol-software'>Don&rsquo;t run EOL software</h3><p>We should never be running <a href="https://en.wikipedia.org/wiki/End-of-life_product">EOL (End-of-life) software</a>.</p>
+<p>We should also ensure that we upgrade software in plenty of time before its EOL deadline. This is something we&rsquo;re hoping to keep track of by reviewing the <a href="https://docs.google.com/spreadsheets/d/137KZhjctJ8qTKYPnq2QNVkyoIC6ok7KA2G1vErNC6Oo/edit">dependency management spreadsheet</a> on a regular basis.</p>
+<h3 id='apply-security-patches-quickly'>Apply security patches quickly</h3><p>Where an exploitable security vulnerability has been identified and patched, we must work quickly in applying the security patches, dropping other priorities if necessary.</p>
+<p>If a vulnerability is only theoretical - for example, an issue in a library that is only used in your test suite and not user facing, then our normal dependency upgrade procedure applies. See next sections.</p>
+<h3 id='stay-within-two-significant-releases'>Stay within two significant releases</h3><p>We should always stay within two major releases from the current major release of any given software. There is some industry precedent for this: providers such as Terraform <a href="https://support.hashicorp.com/hc/en-us/articles/360021185113-Support-Period-and-End-of-Life-EOL-Policy">expect customers to stay within two major releases</a> in order to receive optimal support.</p>
+<p>This is a rough guide.  Some projects, such as Ruby, don&rsquo;t necessarily follow <a href="https://semver.org/">semver</a>, and consider their minor versions to be significant upgrades. In these cases, you should stay within two minor releases of the latest.</p>
+<p>Another consideration is EOL. For example, if the latest version of something is version 9, and we&rsquo;re on version 7, but version 7 is EOL, we should update to version 8, despite version 7 being within two major versions of the latest.</p>
+<p>The two-major-releases rule allows some wiggle-room for keeping upgrade cadences manageable. Teams don&rsquo;t have to worry about upgrading to a new major version the moment it becomes available, but shouldn&rsquo;t allow themselves to fall too far behind. Teams can leverage tools such as <a href="https://docs.publishing.service.gov.uk/manual/manage-ruby-dependencies.html">Dependabot</a> to automate much of the chore work.</p>
+<h3 id='prioritise-dependencies-over-subdependencies'>Prioritise dependencies over subdependencies</h3><p>In a perfect world, all software would always be fully up to date. However, this comes with a big developer overhead.</p>
+<p>In <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-126-custom-configuration-for-dependabot.md">RFC-126</a>, we agreed to configure Dependabot to only raise pull requests for important dependencies, so that we had a realistic chance of keeping on top of them all. We&rsquo;ve prioritised security updates, internal dependencies and framework dependencies, and have configured Dependabot to only update top-level dependencies. We are less focussed on ensuring that dependencies of dependencies are kept up to date.</p>
+<h2 id='exceptions'>Exceptions</h2><p>Some dependencies have a stricter updates policy.</p>
+<h3 id='rails'>Rails</h3><p>It&rsquo;s very important that we&rsquo;re running a currently supported version of Rails for all applications, otherwise we aren&rsquo;t covered by security fixes. We should:</p>
 
 <ul>
 <li>Be running on the current major version</li>
@@ -207,7 +227,7 @@
 <li>Keep abreast of breaking changes for the next major version (eg 5.y.z), and have a plan to migrate our apps before the current version is deprecated</li>
 </ul>
 <p>See <a href="https://guides.rubyonrails.org/upgrading_ruby_on_rails.html">Upgrading Ruby on Rails</a> for a guide on how to upgrade Rails.</p>
-<h3 id='upgrading-ruby'>Upgrading Ruby</h3><p>New versions of Ruby bring us improved performance and nicer syntax for certain things, but also can cause issues with the libraries etc. we use. We should:</p>
+<h3 id='ruby'>Ruby</h3><p>New versions of Ruby bring us improved performance and nicer syntax for certain things, but also can cause issues with the libraries etc. we use. We should:</p>
 
 <ul>
 <li>Be running on the current major version</li>

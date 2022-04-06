@@ -381,27 +381,36 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/5dc36fc78c12838ec1c8070d6fbc535ae5433b89">30 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/9bd922f284a903d3b3240df1cea031c0a798329d">29 Mar 2022</a>
 </div>
 
   <h1 class="page-title">smokey: Writing tests</h1>
 
   
 <h2 id="alerting-in-icinga">Alerting in Icinga</h2>
-<p>In order to alert on a failing scenario in Icinga, you need to ensure the feature is <a href="https://github.com/alphagov/govuk-puppet/blob/d7af16e96aed682facb5cf5bc3e3972510c64ca2/hieradata_aws/integration.yaml#L378">listed in the Puppet config</a>.</p>
-<h2 id="filtering-by-app">Filtering by app</h2>
-<p>The manual Smokey job also <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/modules/govuk_jenkins/templates/jobs/smokey.yaml.erb#L34">has an option to filter by application</a>, so that we can avoid running the entire tests suite. To make use of this filtering, you need to tag the relevant scenarios (or entire feature) with <code>@app-&lt;app_name&gt;</code>.</p>
-<blockquote>
-<p><code>&lt;app_name&gt;</code> should match the list for the Deploy_App job (see <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/hieradata_aws/common.yaml#L145">here</a>), <a href="https://github.com/alphagov/smokey/pull/675">to support Continuous Deployment</a>.</p>
-</blockquote>
+<p>All of the Cucumber features in this repo are run in <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf">a continuous Smokey loop</a>. In order to alert on a failing scenario in Icinga, you need to ensure the feature is <a href="https://github.com/alphagov/govuk-puppet/blob/d7af16e96aed682facb5cf5bc3e3972510c64ca2/hieradata_aws/integration.yaml#L378">listed in the Puppet config</a>.</p>
+<h2 id="filtering-with-tags">Filtering with tags</h2>
+<p><code>@...</code> tags should <em>only</em> be used for filtering (<a href="https://github.com/alphagov/smokey/pull/903">not functionality hooks</a>).</p>
+<h2 id="app-"><code>@app-&lt;app_name&gt;</code></h2>
+<p>The Smokey job in Jenkins <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/modules/govuk_jenkins/templates/jobs/smokey.yaml.erb#L34">has an option to filter scenarios by application</a>, so that we can avoid running the entire test suite when only some scenarios are relevant to a change. To associate tests with an app, you need to tag the relevant scenarios (or entire feature) with <code>@app-&lt;app_name&gt;</code>.</p>
+<p><strong>Important: make sure <code>&lt;app_name&gt;</code> matches against <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/hieradata_aws/common.yaml#L145">the list of apps for the Deploy_App job</a></strong>. This is so the filtering will work with <a href="https://github.com/alphagov/smokey/pull/675">the Continuous Deployment pipeline</a>.</p>
+<h2 id="not"><code>@not&lt;environment&gt;</code></h2>
+<p>All features should run in <strong>all</strong> environments. Sometimes this isn't possible e.g.</p>
+<ul>
+<li>
+<p><a href="https://github.com/alphagov/smokey/blob/83fa09aa2aacec3053d58c52a2cb3af1ca27ba2b/features/mirror.feature">The actual functionality only exists in Production</a>. Tag the feature or scenario with <code>@notintegration</code> and <code>@notstaging</code> so it doesn't run in these environments i.e. its only runs in Production.</p>
+</li>
+<li>
+<p><a href="https://github.com/alphagov/smokey/blob/5caf9635f4c4601df69c39075f5438fc3d3f3df0/features/info_frontend.feature#L1">The functionality is being replatformed</a>. Tag the feature or scenario with <code>@replatforming</code> or <code>@notreplatforming</code> depending on whether you expect it to work in the new platform.</p>
+</li>
+</ul>
+<h2 id="pending"><code>@pending</code></h2>
+<p>This will stop a feature or scenario from running in all environments.</p>
+<p><strong>Only use this tag if you know you will re-enable it soon</strong>. Otherwise, it's clearer to just remove it - either way you will need to make a PR to restore it, so the amount of work is similar.</p>
+<h2 id="local-network"><code>@local-network</code></h2>
+<p>This will stop a feature or scenario running on a local machine. Use this tag if there's a network policy in place that prevents your local machine from accessing protected functionality.</p>
+<p><strong>Before adding this tag, check if you could write a better test.</strong> It's hard to maintain tests that can't be run locally, so only use this tag if there's no practical way to fix the access issue.</p>
 
 
             
