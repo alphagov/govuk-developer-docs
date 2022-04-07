@@ -382,14 +382,14 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/b49930637cf6b70ed414ad67e566328f6143945a">18 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/f4ecedb637b92614088189332b9b7d594b3e29bc">5 Apr 2022</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Send a bulk email</h1>
 
   
 <p>Sometimes it may be necessary to send a bulk email to many subscribers at once.
-There is <a href="https://github.com/alphagov/email-alert-api/blob/3a3eaaa59e71e03427021ba730c626ecdf107ccd/lib/tasks/bulk.rake#L2-L9">a Rake task in email-alert-api</a> to perform this task and
+There is <a href="https://github.com/alphagov/email-alert-api/blob/main/lib/tasks/bulk_email.rake">a Rake task in email-alert-api</a> to perform this task and
 it's <a href="https://deploy.blue.production.govuk.digital/job/send-bulk-email/">available as a job in Jenkins</a>.</p>
 <h2 id="1-prepare-the-content">1. Prepare the content</h2>
 <p>You'll need:</p>
@@ -412,7 +412,7 @@ lists for travel advice, you could use the following query:</p>
 </code></pre>
 <h2 id="3-send-a-test-email">3. Send a test email</h2>
 <p>Use <a href="https://deploy.blue.staging.govuk.digital/job/send-bulk-email/">the Send bulk emails job in Staging</a> to send the email.</p>
-<p><strong>Make sure you know <a href="https://github.com/alphagov/email-alert-api/blob/main/docs/receiving-emails-from-email-alert-api-in-integration-and-staging.html">how to receive emails in Staging</a>.</strong></p>
+<p><strong>Make sure you know <a href="https://docs.publishing.service.gov.uk/repos/email-alert-api/receiving-emails-from-email-alert-api-in-integration-and-staging.html">how to receive emails in Staging</a>.</strong></p>
 <h2 id="4-send-the-real-email">4. Send the real email</h2>
 <p>Use <a href="https://deploy.blue.production.govuk.digital/job/send-bulk-email/">the Send bulk emails job in Production</a> to send the email.</p>
 
