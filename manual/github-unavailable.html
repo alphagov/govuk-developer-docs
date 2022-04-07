@@ -135,7 +135,7 @@
             <a href="#authenticating-with-jenkins"><span>Authenticating with Jenkins</span></a>
           </li>
           <li>
-            <a href="#simulating-a-github-outage-on-2nd-line"><span>Simulating a GitHub outage on 2nd line</span></a>
+            <a href="#simulating-a-github-outage-on-technical-2nd-line"><span>Simulating a GitHub outage on Technical 2nd Line</span></a>
           </li>
         </ul>
       </li>
@@ -189,15 +189,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9ba52660950982bbc0e38ae16ee524710e942a47">19 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='public-github-application-code'>Public GitHub (application code)</h2><p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. We may need to deploy changes at any time, and GitHub is a Software as a Service (SaaS) product which is not guaranteed to be available.</p>
@@ -284,7 +277,7 @@ to use them again despite you setting new AWS credentials.</p>
 </ol>
 <p>Note that once security is disabled, anyone on GDS trusted IPs will be able to deploy to that environment. This will bypass protection for Production - do not leave Production without security for any longer than necessary.</p>
 <p>See the <a href="https://jenkins.io/doc/book/system-administration/security/#disabling-security">Jenkins documentation</a> for further details.</p>
-<h3 id='simulating-a-github-outage-on-2nd-line'>Simulating a GitHub outage on 2nd line</h3><p>You can simulate an outage of GitHub.com by modifying your local hosts file.</p>
+<h3 id='simulating-a-github-outage-on-technical-2nd-line'>Simulating a GitHub outage on Technical 2nd Line</h3><p>You can simulate an outage of GitHub.com by modifying your local hosts file.</p>
 
 <ol>
 <li><code>sudo vi /etc/hosts</code></li>

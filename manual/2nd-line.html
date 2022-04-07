@@ -196,7 +196,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/74bbbe683925cc8dcb80eb392750708843182e4f">23 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
  <h1 id='header'>2nd line</h1> <p>2nd line has three main responsibilities:</p>
@@ -207,24 +207,24 @@
 <li>Providing first line support to queries from data.gov.uk users</li>
 <li>Taking on urgent work or work that doesn&rsquo;t necessarily belong in any team</li>
 </ul>
-<p>If you&rsquo;re new to 2nd line, read about our <a href="/manual/welcome-to-2nd-line.html">working patterns, ceremonies and policies</a>.</p>
-<h2 id='monitoring'>Monitoring</h2><p>We have a <a href="https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&amp;layout=2x1-responsive&amp;url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&amp;url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&amp;url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&amp;url%5B%5D=">2nd line dashboard</a> showing a high level overview of the state of the GOV.UK environments. You can also <a href="https://github.com/alphagov/blinkenjs#chrome-extension">install our Chrome extension</a> if you want a permanently visible overview. You will need to be on the <a href="/manual/vpn.html">VPN</a> if accessing from home.</p>
+<p>If you&rsquo;re new to Technical 2nd Line, read about our <a href="/manual/welcome-to-2nd-line.html">working patterns, ceremonies and policies</a>.</p>
+<h2 id='monitoring'>Monitoring</h2><p>We have a <a href="https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&amp;layout=2x1-responsive&amp;url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&amp;url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&amp;url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&amp;url%5B%5D=">Technical 2nd Line dashboard</a> showing a high level overview of the state of the GOV.UK environments. You can also <a href="https://github.com/alphagov/blinkenjs#chrome-extension">install our Chrome extension</a> if you want a permanently visible overview. You will need to be on the <a href="/manual/vpn.html">VPN</a> if accessing from home.</p>
 <h3 id='icinga'>Icinga</h3><p>We use Icinga to monitor our platform and alert us when things go wrong. Many alerts have corresponding  documentation in these developer docs, detailing how to respond.</p>
-<p>You should record critical alerts that aren&rsquo;t easily solved to the <a href="https://trello.com/b/M7UzqXpk/govuk-2nd-line">GOV.UK 2nd line Trello board</a> to help inform the 2nd line tech lead(s) and the GOV.UK SREs. 2nd line should investigate these alerts when there is downtime; you do not necessarily have to fix them.</p>
+<p>You should record critical alerts that aren&rsquo;t easily solved to the <a href="https://trello.com/b/M7UzqXpk/govuk-2nd-line">GOV.UK Technical 2nd Line Trello board</a> to help inform the Technical 2nd Line tech lead(s) and the GOV.UK SREs. Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.</p>
 <p><a href="/manual/icinga.html">Read more about Icinga</a>.</p>
-<h3 id='pagerduty'>PagerDuty</h3><p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a> to notify the primary and secondary engineers on 2nd line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours.</p>
+<h3 id='pagerduty'>PagerDuty</h3><p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a> to notify the primary and secondary engineers on Technical 2nd Line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours.</p>
 <p><a href="/manual/pagerduty.html">Read more about PagerDuty</a>.</p>
-<h3 id='incidents'>Incidents</h3><p>If there is a service outage or loss of functionality to a service (whether external or internal), or a security vulnerability is discovered, 2nd line will <a href="/manual/incident-management-guidance.html">declare an incident</a>.</p>
+<h3 id='incidents'>Incidents</h3><p>If there is a service outage or loss of functionality to a service (whether external or internal), or a security vulnerability is discovered, Technical 2nd Line will <a href="/manual/incident-management-guidance.html">declare an incident</a>.</p>
 <h2 id='zendesk'>Zendesk</h2><p><a href="https://govuk.zendesk.com">Zendesk</a> is our support ticketing system. When not dealing with incidents and alerts, we should be working through Zendesk tickets.</p>
-<p>Read more about <a href="/manual/zendesk.html">processing Zendesk tickets on 2nd line</a>.</p>
+<p>Read more about <a href="/manual/zendesk.html">processing Zendesk tickets on Technical 2nd Line</a>.</p>
 <p>You will likely need to use <a href="/manual/grafana.html">Grafana</a> to investigate service issues.</p>
-<h2 id='slack-channels'>Slack channels</h2><p>Follow these Slack channels while working on 2nd line:</p>
+<h2 id='slack-channels'>Slack channels</h2><p>Follow these Slack channels while working on Technical 2nd Line:</p>
 
 <ul>
-<li><code>#govuk-2ndline</code> - the main channel for people on technical 2nd line</li>
+<li><code>#govuk-2ndline-tech</code> - the main channel for people on technical 2nd line</li>
 <li><code>#govuk-deploy</code> - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing</li>
 <li><code>#govuk-developers</code> - this is a general channel for developers and can be a good place to ask questions if you are struggling</li>
-<li><code>#govuk-replatforming</code> - this is the channel for the Replatforming team, where the SREs are currently working. However, you should use #govuk-2ndline to contact the RE interruptible person about urgent GOV.UK infrastructure issues.</li>
+<li><code>#govuk-replatforming</code> - this is the channel for the Replatforming team, where the SREs are currently working. However, you should use #govuk-2ndline-tech to contact the RE interruptible person about urgent GOV.UK infrastructure issues.</li>
 </ul>
 
 

@@ -190,7 +190,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f18303a370a013be9617fe1d8ad0f8327f6907e3">7 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
  <h1 id='header'>PagerDuty</h1> <p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming
@@ -205,8 +205,8 @@ to escalate to these people (in order):</p>
 <p>It is the responsibility of the people above to make sure their details are up to date in PagerDuty
 and that they&rsquo;re correctly scheduled in. You can <a href="#add-your-pagerduty-rota-to-google-calendar">add your rota to Google calendar</a>.</p>
 <p>When an alert that triggers PagerDuty goes off, someone on the escalation schedule must acknowledge
-them, otherwise they will be escalated further. NB, 2nd line shadowers are not required to be on PagerDuty.</p>
-<h2 id='creating-a-schedule-override'>Creating a schedule override</h2><p>There are times where developers need to make rota swaps or cover 2nd line last minute.
+them, otherwise they will be escalated further. NB, Technical 2nd Line shadowers are not required to be on PagerDuty.</p>
+<h2 id='creating-a-schedule-override'>Creating a schedule override</h2><p>There are times where developers need to make rota swaps or cover Technical 2nd Line last minute.
 See the <a href="https://support.pagerduty.com/docs/edit-schedules#create-overrides">Pagerduty documentation on how to schedule an override</a>.</p>
 <h2 id='pagerduty-drill'>PagerDuty drill</h2><p>Every week we test PagerDuty to make sure it can phone to alert us to
 any issues. This happens every Wednesday morning at 10am UTC.</p>
@@ -216,7 +216,7 @@ notified. After a short amount of time, cron will remove the file to
 resolve the alert. The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/pagerduty_drill.pp">code that does this is in
 Puppet</a>.</p>
 <p>You don&rsquo;t need to take any action for this alert. The primary in-office
-2nd line should escalate the call to the secondary who should escalate
+Technical 2nd Line developer should escalate the call to the secondary who should escalate
 it to &ldquo;escalations&rdquo; to ensure that phone redirection is working. The
 person on &ldquo;escalations&rdquo; will resolve the PagerDuty alert to prevent
 anyone else being phoned.</p>
@@ -233,7 +233,7 @@ anyone else being phoned.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">sudo rm</span> /var/run/pagerduty_drill
 </code></pre></div></li>
 </ol>
-<h3 id='add-your-pagerduty-rota-to-google-calendar'>Add your Pagerduty rota to Google calendar</h3><p>You can sync your Pagerduty with Google Calendar so you can see your 2nd line and
+<h3 id='add-your-pagerduty-rota-to-google-calendar'>Add your Pagerduty rota to Google calendar</h3><p>You can sync your Pagerduty with Google Calendar so you can see your Technical 2nd Line and
 on-call shifts in one place.</p>
 
 <ol>

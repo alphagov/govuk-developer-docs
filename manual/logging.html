@@ -194,7 +194,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/563de9fc71f40748ab9744dc09cb590c583a59db">8 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
  <h1 id='header'>How logging works on GOV.UK</h1> <p><a href="/manual/images/logging.png" rel="noopener noreferrer"><img src="/manual/images/logging.png" alt="" /></a>
@@ -206,7 +206,7 @@
 <p><strong>Note:</strong> although Logit is where we currently store logs, the GDS Way suggests we are migrating towards Splunk and therefore some logs are currently available in Splunk.</p>
 </blockquote>
 <h2 id='kibana'>Kibana</h2><p>Kibana is the interface for viewing logs in Elasticsearch. Use the Logit interface to log into Kibana.</p>
-<p>There&rsquo;s some documentation on <a href="/manual/kibana.html">useful Kibana queries for 2nd line</a>.</p>
+<p>There&rsquo;s some documentation on <a href="/manual/kibana.html">useful Kibana queries for Technical 2nd Line</a>.</p>
 <h2 id='filebeat'>Filebeat</h2><p>Each machine runs <a href="https://www.elastic.co/products/beats/filebeat">Elastic Filebeat</a>, and independently ships logs to the Logit-provided logstash endpoint.</p>
 <p>Filebeat tails logs every 10 seconds and can output to a variety of sources. It is fully incorporated into the Elastic ecosystem.</p>
 <p>We use <a href="https://github.com/alphagov/govuk-puppet/blob/4cca939ec49a9b4c106b14b7cf896db31a003636/modules/filebeat/manifests/prospector.pp">the <code>filebeat::prospector</code> defined type</a> to create the filebeat configuration on each instance.</p>

@@ -250,17 +250,17 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
- <h1 id='header'>Common 2nd line support tasks for data.gov.uk</h1> <p>This document details some of the requests that GOV.UK 2nd line support may receive regarding data.gov.uk.  <a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
+ <h1 id='header'>Common 2nd line support tasks for data.gov.uk</h1> <p>This document details some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk.  <a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
 <h2 id='users-and-publishers'>Users and Publishers</h2><p>Users have their own accounts and can login using either their username or email address.   A user can be a member of one or more publishing organisations, and can have either the role &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; for each organisation.  Users with &lsquo;Admin&rsquo; status can add/remove users from the organisation for which they are an admin.  They only have &lsquo;admin&rsquo; rights on their own organisation, contrasted to a &lsquo;sysadmin&rsquo; who has admin rights across all organisations.</p>
 <h3 id='find-a-user'>Find a user</h3><p>There is a <a href="https://ckan.publishing.service.gov.uk/user">user list</a> which can be used to locate a user account.  This is useful in cases where a publisher does not know their username or no longer has access to their registered email account.  This list is only accessible when logged in as a sysadmin.</p>
 <h3 id='create-a-user-account'>Create a user account</h3><p>There are two routes for creating an new account for a new user:</p>
 
 <ol>
-<li>A publishing organisation&rsquo;s &lsquo;admin&rsquo; user(s) can invite new users to create an account.  The admin user should <a href="https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins">follow these instructions</a> to invite the new user to join. We should encourage this approach as the organisation admin is best placed to know whether or not the new user should have access, as well as reducing the number of requests to 2nd line support.</li>
-<li>A sysadmin user (e.g. 2nd line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+<li>A publishing organisation&rsquo;s &lsquo;admin&rsquo; user(s) can invite new users to create an account.  The admin user should <a href="https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins">follow these instructions</a> to invite the new user to join. We should encourage this approach as the organisation admin is best placed to know whether or not the new user should have access, as well as reducing the number of requests to Technical 2nd Line.</li>
+<li>A sysadmin user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
 
 <ul>
 <li>Follow the instructions in <a href="#assign-users-to-publishers-setting-user-permissions">Assign users to publishers</a> inputting the user&rsquo;s email address instead of their username.</li>
@@ -320,7 +320,7 @@
 <p>Users should first be guided to request addition by an admin of their organisation, if possible.  This is to reduce the burden of these requests on the 2nd line team and to ensure only those with the correct authority are actually added as publishers.</p>
 <p>Check the authenticity of a request before adding a user as a publisher (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).</p>
 </blockquote>
-<h2 id='datasets'>Datasets</h2><h3 id='delete-or-withdraw-a-dataset'>Delete or withdraw a dataset</h3><p>Users are not permitted to remove their own datasets.  There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by 2nd line, following a request from the publisher.  Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are marked as &ldquo;withdrawn&rdquo; (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).</p>
+<h2 id='datasets'>Datasets</h2><h3 id='delete-or-withdraw-a-dataset'>Delete or withdraw a dataset</h3><p>Users are not permitted to remove their own datasets.  There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.  Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are marked as &ldquo;withdrawn&rdquo; (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).</p>
 
 <blockquote>
 <p>Before making any deletions, you should check that the person making the request actually belongs to the organisation who own the document (or are from a superseding department, e.g. someone from BEIS could request a withdrawal for a dataset published by BIS).</p>
@@ -365,7 +365,7 @@
 <h4 id='if-the-withdrawn-content-was-a-publication'>If the withdrawn content was a publication</h4><p>If the content was published under <a href="http://data.gov.uk/library">http://data.gov.uk/library</a>, this was part of the former Drupal-based data.gov.uk publishing application, which is no longer being hosted on DGU.</p>
 <p>Whilst we do have a backup of the old bytemark server and can access the publications in an emergency, we recommend directing users to the relevant team in government, as the original documents were often incomplete and/or outdated.</p>
 <h2 id='schema-vocabulary-definitions'>Schema vocabulary definitions</h2><h3 id='add-a-schema-vocabulary-definition'>Add a schema vocabulary definition</h3><p>Users are not permitted to add their own schema vocabulary definitions.
-This is to be done by 2nd line, following a request from the publisher.</p>
+This is to be done by Technical 2nd Line, following a request from the publisher.</p>
 
 <ol>
 <li>Add the new schema vocabulary definition to the <a href="schemas">schemas</a></li>

@@ -241,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cc3d3f7509605a82c5ebcaf326bebff5fd9f5fe9">10 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -442,7 +442,7 @@ for) in <a href="https://github.com/alphagov/govuk-secrets/tree/main/puppet/gpg_
 7. Send the key to the ubuntu key server by running:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>   gpg <span class="nt">--homedir</span> <span class="nv">$PWD</span> <span class="nt">--keyserver</span> keyserver.ubuntu.com <span class="nt">--send-key</span> &lt;fingerprint&gt;
 </code></pre></div><p>where <code>&lt;fingerprint&gt;</code> was obtained above.</p></li>
-<li><p>Add the passphrase you used when creating the new GPG key to the 2nd line
+<li><p>Add the passphrase you used when creating the new GPG key to the Technical 2nd Line
 password store by running inside the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">pass</a> directory of the govuk-secrets:</p></li>
 </ol>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">PASSWORD_STORE_GPG_OPTS</span><span class="o">=</span><span class="s2">"--trust-model always"</span> ./edit.sh 2ndline hiera-eyaml-gpg/&lt;environment_passphrase_key&gt;

@@ -185,7 +185,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ae7f3733405a4ac7fc90e3eef85ce36d8acd89e8">2 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
  <h1 id='header'>Renew a TLS certificate for GOV.UK</h1> <h2 id='renewing-the-certificate-for-www-gov-uk'>Renewing the certificate for www.gov.uk</h2><p>The TLS certificate for www.gov.uk is managed by Fastly. Fastly will open a support
@@ -198,7 +198,7 @@ interface. It is managed entirely through Fastly support.</p>
 domain. This is because the certificate contains a Subject Alternate Name (SAN)
 of <code>DNS: gov.uk</code>. This TXT record needs to be requested through JISC following
 the process for <a href="/manual/dns.html#dns-for-the-gov-uk-top-level-domain">DNS for the gov.uk top level domain</a>.</p>
-<p>Credentials for the Fastly Zendesk support site are in the <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly">2nd line password store</a>.</p>
+<p>Credentials for the Fastly Zendesk support site are in the <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly">Technical 2nd Line password store</a>.</p>
 <h2 id='renewing-wildcard-certificates'>Renewing wildcard certificates</h2><p>Wilcard certificates for <code>*.publishing.service.gov.uk</code>, <code>*.staging.publishing.service.gov.uk</code>
 and <code>*.integration.publishing.service.gov.uk</code> are managed by AWS ACM.</p>
 <p>For AWS ACM to issue a certificate, you must prove ownership of the domain using DNS.
