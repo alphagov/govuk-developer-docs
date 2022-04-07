@@ -434,6 +434,7 @@
 <li>Statsd client for reporting stats</li>
 <li>Rails logging</li>
 <li>Content Security Policy generation for frontend apps</li>
+<li>Prometheus monitoring for EKS</li>
 </ul>
 
 <h2 id="installation">Installation</h2>
@@ -585,6 +586,14 @@ app with the following content:</p>
 <h2 id="i18n-rules">i18n rules</h2>
 
 <p>Some frontend apps support languages that are not defined in the i18n gem. This provides them with our own custom rules for these languages.</p>
+
+<h2 id="prometheus-monitoring-for-eks">Prometheus monitoring for EKS</h2>
+
+<p>Create a <code>/config/initializers/prometheus.rb</code> file in the app and add the following</p>
+
+<pre lang="ruby"><code>require "govuk_app_config/govuk_prometheus_exporter" 
+GovukPrometheusExporter.configure   
+</code></pre>
 
 <h2 id="license">License</h2>
 
