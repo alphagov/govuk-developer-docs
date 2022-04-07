@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Put a PaaS application behind Cloudfront CDN
 parent: /manual.html
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Republish content
 section: Publishing
 layout: manual_layout
@@ -49,7 +49,7 @@ For a significant number of Content IDs, some preparation is needed for this as 
 1. After the job has completed, remove the CSV from the repository.
 
 To republish all documents:
-Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with 2nd line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.
+Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with Technical 2nd Line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.
 
 <%= RunRakeTask.links("whitehall", "publishing_api:bulk_republish:all") %>
 

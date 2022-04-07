@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Unable to SSH into a machine
 section: Infrastructure
 layout: manual_layout
@@ -28,7 +28,7 @@ Add correct host key in /Users/username/.ssh/known_hosts to get rid of this mess
 Offending RSA key in /Users/username/.ssh/known_hosts:14
 ```
 
-It is likely that the jumpbox machine was recently reprovisioned - ask on `#govuk-2ndline` to make sure.
+It is likely that the jumpbox machine was recently reprovisioned - ask on `#govuk-2ndline-tech` to make sure.
 If so, simply delete the associated line (line 14 in the example above).
 
 ## Connecting with plain SSH

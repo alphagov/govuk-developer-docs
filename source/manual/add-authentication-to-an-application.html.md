@@ -83,7 +83,7 @@ branch of your application to integration and check that:
 
 Once this is verified the branch can be merged.
 
-Prior to deploying to staging and production, you should inform 2nd line so they
+Prior to deploying to staging and production, you should inform Technical 2nd Line so they
 are prepared for any problems. For each environment you deploy to you should
 repeat the same checks that authentication is enabled and that the application
 is still successfully processing requests.

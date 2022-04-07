@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Rotate Fastly API Keys for Notify Emergency Alerts
 section: Notify Emergency Alerts
 layout: manual_layout

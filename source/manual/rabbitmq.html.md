@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Manage RabbitMQ
 section: Infrastructure
 layout: manual_layout

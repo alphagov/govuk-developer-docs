@@ -27,7 +27,7 @@ cf login -a api.cloud.service.gov.uk --sso
 ```
 
 > **Don't have an account?**
-> If you don't have an account or if your account isn't recognised ask on #govuk-2ndline for an account.
+> If you don't have an account or if your account isn't recognised ask on #govuk-2ndline-tech for an account.
 >
 > **Forgot your password?**
 > If you forgot your password, read the [PaaS documentation on forgotten passwords](https://docs.cloud.service.gov.uk/troubleshooting.html#forgotten-passwords)

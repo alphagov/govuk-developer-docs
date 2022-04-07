@@ -124,7 +124,7 @@ Note that once security is disabled, anyone on GDS trusted IPs will be able to d
 
 See the [Jenkins documentation](https://jenkins.io/doc/book/system-administration/security/#disabling-security) for further details.
 
-### Simulating a GitHub outage on 2nd line
+### Simulating a GitHub outage on Technical 2nd Line
 
 You can simulate an outage of GitHub.com by modifying your local hosts file.
 

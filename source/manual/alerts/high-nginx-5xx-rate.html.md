@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: High Nginx 5xx rate
 parent: "/manual.html"
 layout: manual_layout

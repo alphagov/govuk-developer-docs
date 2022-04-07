@@ -303,7 +303,7 @@ are lost.
 ## Special Sentry accounts
 
 There is a `2ndLineBot` member on the [members list](https://sentry.io/settings/govuk/members/)
-which is set up so that a weekly Sentry report is sent to the 2nd line email address.
+which is set up so that a weekly Sentry report is sent to the Technical 2nd Line email address.
 This bot account should not be deleted.
 
 ## GDS-wide usage of Sentry

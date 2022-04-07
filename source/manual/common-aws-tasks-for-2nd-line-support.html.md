@@ -1,13 +1,13 @@
 ---
-owner_slack: "#govuk-2ndline"
-title: Common AWS tasks for 2nd line support
+owner_slack: "#govuk-2ndline-tech"
+title: Common AWS tasks for Technical 2nd Line
 section: AWS
 layout: manual_layout
 type: learn
 parent: "/manual.html"
 ---
 
-This document details some of the tasks that GOV.UK 2nd line support may
+This document details some of the tasks that GOV.UK Technical 2nd Line may
 carry out regarding AWS.
 
 ## Getting help with AWS
@@ -29,7 +29,7 @@ See our documentation on [how to escalate to AWS support][].
 
 ### Internal support
 
-Usually, 2nd line support should be able to investigate issues related to AWS.
+Usually, Technical 2nd Line should be able to investigate issues related to AWS.
 
 During working hours, one of the Site Reliability Engineers on the replatforming
 team may be able to provide advice or expert knowledge. Outside of working hours,

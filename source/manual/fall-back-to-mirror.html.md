@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: GOV.UK CDN static mirrors
 section: Deployment
 layout: manual_layout

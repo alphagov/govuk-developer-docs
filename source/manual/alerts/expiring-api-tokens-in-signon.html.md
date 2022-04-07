@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Expiring API tokens in Signon
 parent: "/manual.html"
 layout: manual_layout
