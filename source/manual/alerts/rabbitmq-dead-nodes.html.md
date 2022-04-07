@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: 'RabbitMQ: Dead nodes in cluster'
 parent: "/manual.html"
 layout: manual_layout

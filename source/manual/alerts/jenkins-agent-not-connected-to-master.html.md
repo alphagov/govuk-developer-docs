@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Jenkins agent not connected to master
 parent: "/manual.html"
 layout: manual_layout

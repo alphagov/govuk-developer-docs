@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Change in-hours time period for daylight savings
 section: 2nd line
 layout: manual_layout

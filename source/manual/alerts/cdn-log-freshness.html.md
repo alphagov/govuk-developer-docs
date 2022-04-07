@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: CDN logs from Fastly not appearing in S3
 section: Icinga alerts
 layout: manual_layout

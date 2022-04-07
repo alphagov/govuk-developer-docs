@@ -14,7 +14,7 @@ Pingdom operates by making pre-defined requests at a regular interval (typically
 
 ## Access Pingdom
 
-GOV.UK account credentials for Pingdom are available in [govuk-secrets](https://github.com/alphagov/govuk-secrets) via the [2nd line password store](https://github.com/alphagov/govuk-secrets/tree/master/pass) under `monitoring/pingdom`.
+GOV.UK account credentials for Pingdom are available in [govuk-secrets](https://github.com/alphagov/govuk-secrets) via the [Technical 2nd Line password store](https://github.com/alphagov/govuk-secrets/tree/master/pass) under `monitoring/pingdom`.
 
 ## Add a Pingdom check
 
@@ -31,8 +31,8 @@ These instructions are for adding a standard HTTP request check.
 1. Leave the location as the default (North America/Europe).
 1. Leave "Check importance" at the default of "High importance", we don't have
    different configurations for High or Low importance
-1. Select "GOV.UK 2nd line support" in the "Who to alert?" section and
-   uncheck "Platform Team". This will mean the 2nd line support email is
+1. Select "GOV.UK Technical 2nd Line" in the "Who to alert?" section and
+   uncheck "Platform Team". This will mean the Technical 2nd Line email is
    notified when services are down for long enough to alert.
 1. Leave "When down, alert after" at the default value of 5 minutes, this
    offers a buffer against alerting for a short lived spike.

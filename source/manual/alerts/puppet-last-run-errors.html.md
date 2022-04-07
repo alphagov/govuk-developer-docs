@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Puppet last run errors
 parent: "/manual.html"
 layout: manual_layout

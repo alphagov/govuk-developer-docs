@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Domain Name System (DNS) records
 section: Infrastructure
 type: learn
@@ -128,11 +128,11 @@ access.
 You should also make sure that the following groups of people are aware before
 requesting any changes:
 
-- 2nd line (via email)
+- Technical 2nd Line (via email)
 - GOV.UK's Head of Tech and the senior tech team
 - The CDDO domains team (the senior tech team can contact them)
 
-2nd line should be notified of any planned changes via email.
+Technical 2nd Line should be notified of any planned changes via email.
 
 - `gov.uk.` is a top-level domain so it cannot contain a CNAME record
   (see [RFC 1912 section 2.4](https://tools.ietf.org/html/rfc1912#section-2.4)).

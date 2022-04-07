@@ -43,7 +43,7 @@ This command works for macOS or Linux.
 1. [Associate your GitHub account with your GDS email address][associate-email-github], this can be in addition to your personal email address.
 1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer] and [seal].
 
-    If your tech lead is not available, ask in the [2nd line support Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
+    If your tech lead is not available, ask in the [Technical 2nd Line Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
 1. Ask in `#govuk-tech-leads` for someone to add you to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos & CI.
 
     Select __Accept__ in the GitHub email invitation when you receive this email. If your tech lead is not available, ask one of the [GOV.UK GitHub owners](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-github-owners/members?pli=1).
@@ -134,7 +134,7 @@ To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker
 
 ### Get access
 
-Ask your tech lead or [GOV.UK 2nd line Support on Slack](https://gds.slack.com/archives/CADKZN519) to add your SSH username (`firstnamelastname`) to the [list of GOV.UK tech users](https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml) in the [user monitoring system][user-reviewer].
+Ask your tech lead or [GOV.UK Technical 2nd Line on Slack](https://gds.slack.com/archives/CADKZN519) to add your SSH username (`firstnamelastname`) to the [list of GOV.UK tech users](https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml) in the [user monitoring system][user-reviewer].
 
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 

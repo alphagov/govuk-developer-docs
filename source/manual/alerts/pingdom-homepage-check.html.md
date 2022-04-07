@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Pingdom check for homepage failing
 parent: "/manual.html"
 layout: manual_layout

@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Check the TLS certificate is valid and not due to expire
 parent: "/manual.html"
 layout: manual_layout

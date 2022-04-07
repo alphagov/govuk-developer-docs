@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Debug Nagios NRPE connection failures
 section: Monitoring
 layout: manual_layout

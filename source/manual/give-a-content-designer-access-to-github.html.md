@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Give a content designer access to GitHub
 parent: "/manual.html"
 layout: manual_layout
@@ -14,7 +14,7 @@ When added to this team a content designer can create a branch within a GOV.UK
 repository and open a pull request, however a developer will be required to
 merge the request into the master branch.
 
-Developers on 2nd Line may receive a ticket to add/remove content designers
+Developers on Technical 2nd Line may receive a ticket to add/remove content designers
 from this access.
 
 ## Adding someone to the GitHub team
@@ -52,7 +52,7 @@ If they are listed follow these steps:
 1. Edit the [govuk_non_tech.yml][] file in [govuk-user-reviewer][] to remove
    the users
 1. Raise this as a pull request
-1. Once merged 2nd Line will be alerted if the users continues to have
+1. Once merged Technical 2nd Line will be alerted if the users continues to have
    access despite having left
 
 [smart-answers-github]: https://github.com/alphagov/smart-answers

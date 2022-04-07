@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Whitehall app healthcheck not ok
 parent: "/manual.html"
 layout: manual_layout

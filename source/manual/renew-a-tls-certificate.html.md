@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline"
+owner_slack: "#govuk-2ndline-tech"
 title: Renew a TLS certificate for GOV.UK
 section: Infrastructure
 layout: manual_layout
@@ -21,7 +21,7 @@ domain. This is because the certificate contains a Subject Alternate Name (SAN)
 of `DNS: gov.uk`. This TXT record needs to be requested through JISC following
 the process for [DNS for the gov.uk top level domain](/manual/dns.html#dns-for-the-gov-uk-top-level-domain).
 
-Credentials for the Fastly Zendesk support site are in the [2nd line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly).
+Credentials for the Fastly Zendesk support site are in the [Technical 2nd Line password store](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/fastly).
 
 ## Renewing wildcard certificates
 
