@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-accounts-tech"
+owner_slack: "#find-and-view-tech"
 title: SLO Error Rate on GOV.UK Accounts has exceeded an acceptable threshold across the last 10 minutes
 section: Icinga alerts
 layout: manual_layout
@@ -22,7 +22,7 @@ This is an early warning that, if these errors continue at a consistent rate,
 the GOV.UK Account team would spend its entire error budget across the full
 monitoring period.
 
-This warning automatically triggers a message to the `#govuk-accounts-tech`
+This warning automatically triggers a message to the `#find-and-view-tech`
 slack channel.
 
 No further action is required from GOV.UK 2ndline or any other team.
@@ -37,7 +37,7 @@ This is an early warning that, if these errors continue at a consistent rate,
 the GOV.UK Account team would spend its entire error budget across the full
 monitoring period.
 
-This warning automatically triggers a message to the `#govuk-accounts-tech`
+This warning automatically triggers a message to the `#find-and-view-tech`
 slack channel.
 
 No further action is required from GOV.UK 2ndline or any other team.
