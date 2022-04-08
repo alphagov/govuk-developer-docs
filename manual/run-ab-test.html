@@ -195,15 +195,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/09769d8ab926819d1a5ef47872ea4f455b770dae">22 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4755884e36bd014575d69eeb9ce3a8f54bee1c0a">8 Apr 2022</a>
 </div>
 
  <h1 id='header'>Run an A/B or multivariate test</h1> <p>Before you run an A/B or multivariate test, you should read the <a href="/manual/ab-testing.html">guidance on how A/B testing works</a>.</p>
@@ -220,7 +213,7 @@ testing headers on pages that you are measuring. See this <a href="https://githu
 <h2 id='2-set-up-an-ab-test'>2. Set up an A/B test</h2>
 <ol>
 <li>Write the A/B test. Use the information in the <a href="https://github.com/alphagov/govuk_ab_testing">govuk_ab_testing gem</a> to understand how to serve different versions to your users.</li>
-<li>Add your test to the <a href="https://docs.google.com/spreadsheets/d/1voQzdoGAFO9Tnvl7Xq4ahLEAyGtkeAtvTC26SxEP6rE/edit">A/B test register</a>.</li>
+<li>Add your test to the <a href="https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit">A/B test register</a>.</li>
 <li>If you want to use Google Analytics to monitor the A/B test, talk to a performance analyst and pick a <a href="https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK">GA dimension</a> to use for your test.</li>
 <li>Create dictionary and A/B test files in the <a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config repo</a>. See an <a href="https://github.com/alphagov/govuk-cdn-config-secrets/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda">example for the dictionaries</a> and an <a href="https://github.com/alphagov/fastly-configure/pull/29/files">example for the A/B configuration</a>. For more information, see the <a href="https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries">dictionaries README</a>.</li>
 </ol>
@@ -239,7 +232,7 @@ To do this, <a href="https://github.com/alphagov/search-performance-explorer/com
 <li>Remove your test from the <a href="https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml">ab_tests configuration file</a> in the <a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config</a> repo and remove the dictionary files.</li>
 <li>Deploy the Fastly configuration to each environment using the <a href="https://deploy.blue.staging.govuk.digital/job/Deploy_CDN/">Deploy_CDN Jenkins job</a>. Set the <code>vhost</code> to <code>www</code>. The credentials are in the <a href="https://github.com/alphagov/govuk-secrets"><code>govuk-secrets</code> repo</a>.</li>
 <li>Deploy the <code>govuk-cdn-config</code> changes to each environment using the <a href="https://deploy.blue.staging.govuk.digital/job/Update_CDN_Dictionaries/">Update_CDN_Dictionaries Jenkins job</a>. Use the same parameters as the previous step.</li>
-<li>Mark the end date in the <a href="https://docs.google.com/spreadsheets/d/1voQzdoGAFO9Tnvl7Xq4ahLEAyGtkeAtvTC26SxEP6rE/edit">A/B test register</a>.</li>
+<li>Mark the end date in the <a href="https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit">A/B test register</a>.</li>
 </ol>
 
 
