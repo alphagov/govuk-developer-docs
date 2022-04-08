@@ -66,4 +66,4 @@ To do this, [add your A/B test to the application](https://github.com/alphagov/s
 [configuration-file]: https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml
 [update-cdn-dictionaries]: https://deploy.blue.staging.govuk.digital/job/Update_CDN_Dictionaries/
 [deploy-cdn]: https://deploy.blue.staging.govuk.digital/job/Deploy_CDN/
-[register]: https://docs.google.com/spreadsheets/d/1voQzdoGAFO9Tnvl7Xq4ahLEAyGtkeAtvTC26SxEP6rE/edit
+[register]: https://docs.google.com/spreadsheets/d/1h4vGXzIbhOWwUzourPLIc8WM-iU1b6WYOVDOZxmU1Uo/edit
