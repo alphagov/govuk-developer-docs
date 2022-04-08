@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-accounts-tech"
+owner_slack: "#find-and-view-tech"
 title: How does the GOV.UK Account work?
 section: GOV.UK Account
 type: learn
