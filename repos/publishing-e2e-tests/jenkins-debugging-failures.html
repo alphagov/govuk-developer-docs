@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: publishing-e2e-tests - GOV.UK Developer Documentation</title>
+    <title>publishing-e2e-tests: Debugging Jenkins failures - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/jenkins-debugging-failures.html">
 
-      <meta name="description" content="Everything about the publishing-e2e-tests application (End to end tests for the Publishing pipeline of GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: publishing-e2e-tests - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests.html" />
+      <meta name="twitter:title" content="publishing-e2e-tests: Debugging Jenkins failures - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/jenkins-debugging-failures.html" />
 
-      <meta property="og:description" content="Everything about the publishing-e2e-tests application (End to end tests for the Publishing pipeline of GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: publishing-e2e-tests" />
+      <meta property="og:title" content="publishing-e2e-tests: Debugging Jenkins failures" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/jenkins-debugging-failures.html" />
 
     
   </head>
@@ -237,7 +235,7 @@
           <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
           <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
           <li><a href="/repos/govuk_taxonomy_helpers.html"><span>govuk_taxonomy_helpers</span></a></li>
-          <li><a href="/repos/publishing-e2e-tests.html" class="toc-link--in-view"><span>publishing-e2e-tests</span></a></li>
+          <li><a href="/repos/publishing-e2e-tests.html"><span>publishing-e2e-tests</span></a></li>
           <li><a href="/repos/seal.html"><span>seal</span></a></li>
           <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
           <li><a href="/repos/sidekiq-monitoring.html"><span>sidekiq-monitoring</span></a></li>
@@ -382,114 +380,74 @@
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Repository: publishing-e2e-tests</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>End to end tests for the Publishing pipeline of GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/publishing-e2e-tests">publishing-e2e-tests</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-publishing-tech</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div></dl>    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/8ad2efe9586a42bb1f28ae0935804bf4786d1bcc">11 Apr 2022</a>
 </div>
-<h2 id='imported-documents'>Imported documents</h2>
-<ul>
-<li><a href='/repos/publishing-e2e-tests/jenkins-debugging-failures.html' class='govuk-link'>Debugging Jenkins failures</a></li>
-        <li><a href='/repos/publishing-e2e-tests/jenkins-breaking-changes.html' class='govuk-link'>Getting a breaking app change through Jenkins</a></li>
-        <li><a href='/repos/publishing-e2e-tests/testing-with-a-branch.html' class='govuk-link'>Testing with a branch</a></li>
-        <li><a href='/repos/publishing-e2e-tests/troubleshooting.html' class='govuk-link'>Troubleshooting</a></li>
-        <li><a href='/repos/publishing-e2e-tests/what-belongs-in-these-tests.html' class='govuk-link'>What belongs in publishing-e2e-tests</a></li>
-        <li><a href='/repos/publishing-e2e-tests/writing-tests.html' class='govuk-link'>Writing tests</a></li>
-</ul>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>A suite of end-to-end tests for publisher user journeys. The tests are written in <a href="http://rspec.info/">RSpec</a> / <a href="https://github.com/teamcapybara/capybara">Capybara</a> and mimic the behaviour of content editors in a web browser, using <a href="https://github.com/alphagov/publishing-e2e-tests/blob/2044d7eb3c00194d9fd6d1452849b7afc77b3608/spec/spec_helper.rb#L119">headless Chrome</a>.</p>
+  <h1 class="page-title">publishing-e2e-tests: Debugging Jenkins failures</h1>
 
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>To see which apps are tested check the contents of the <a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/spec">spec</a> directory.</p>
-
-<p>To view the details of all the apps involved check <a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docker-compose.yml">docker-compose.yml</a>.</p>
-
-<h3 id="before-running-the-tests">Before running the tests</h3>
-
-<p>If this is your first time running the E2E project make sure you have <a href="https://www.docker.com/community-edition">installed Docker</a> and run:</p>
-
-<pre lang="bash"><code>$ bundle install
+  
+<h2 id="using-the-junit-test-results">Using the JUnit test results</h2>
+<p>The easiest way to get an overview of test output is to view the Test Result
+file created after the tests are complete - there are links to it on the build
+summary.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/publishing-e2e-tests/main/docs/jenkins-debugging-failures/jenkins_test_results.png" alt="Test results"></p>
+<h3 id="screenshots">Screenshots</h3>
+<p>For each test failure there will be a corresponding screenshot of what PhantomJS
+was seeing at the time the test failed.  This can be a useful resource when
+Poltergeist complains about being unable to see or click on a link.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/publishing-e2e-tests/main/docs/jenkins-debugging-failures/jenkins_build_artifacts.png" alt="Jenkins build artifacts"></p>
+<h2 id="using-the-pipeline-steps-view">Using the pipeline steps view</h2>
+<p>If there aren’t test results available, then the error will likely have occurred
+during the setup before the apps have run.  The “Pipeline Steps” give a more
+detailed breakdown of which steps failed.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/publishing-e2e-tests/main/docs/jenkins-debugging-failures/jenkins_pipeline_steps_link.png" alt="Jenkins pipeline steps link"></p>
+<p>From there, click on the console button to the left of any red error step to
+view related console output at that time which will explain the error.</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/publishing-e2e-tests/main/docs/jenkins-debugging-failures/jenkins_pipeline_steps.png" alt="Jenkins pipeline steps"></p>
+<h2 id="using-the-errors-log">Using the errors log</h2>
+<p>When an error occurs in one of the Ruby microservices, but detailed information
+isn’t displayed in the console output you can dig into one of the two error
+logs.</p>
+<p>The abridged version of the log file which displays brief exception details
+is dumped into the full console output as part of the build script.  The full
+console output can be accessed from “Console output” &gt; “Full Log”.  Scroll
+through the output until you see the distinctive Ruby symbolized output.</p>
+<pre lang="console"><code>13:48:18 ---
+13:48:18 :timestamp: 2018-02-20 13:47:24.348153233 +00:00
+13:48:18 :errors:
+13:48:18 - :type: GovukIndex::InvalidFormatError
+13:48:18   :message: GovukIndex::InvalidFormatError
+13:48:18 :context:
+13:48:18   :environment: search-api-worker
+13:48:18   :hostname:
+13:48:18   :url:
+13:48:18 ---
 </code></pre>
-
-<p><em>We recommend that you configure Docker to use at least 4 CPUs with 6 GB of memory, otherwise you may find the apps struggle to run well enough to pass the tests.</em></p>
-
-<p>If it has been some time since you last worked on the E2E project it is recommended to run:</p>
-
-<pre lang="bash"><code>$ make clean
+<p>Example error style to look out for in the console output.</p>
+<p>In the rare occasions that the abridged error doesn’t have enough information
+on the issue, there is also the errors-verbose.log, provided as a build
+artifact. This file lists the same errors, but with full stack trace
+information.</p>
+<h2 id="failures-that-dont-raise-ruby-errors">Failures that don’t raise Ruby errors</h2>
+<p>Builds can fail from flakiness caused by the timing of inter-container
+communication.  In scenarios where you can’t see an error in the full console
+output or errors log the <code>docker.log</code> build artefact <em>MAY</em> provide a useful
+source of information.  The docker.log file contains all the stdout + stderr
+from all the docker containers.  Ranging between 3 and 10MB, it is important you have a
+clear idea of what you are looking for before jumping into it.
+If you believe there is a problem with a specific service you can grep for
+that service name:</p>
+<pre><code>grep “publishing-api_1” docker.log
 </code></pre>
-
-<p>This will remove all your local apps (in <code>./apps/</code>), clone them again and check them out to the deployed-to-production branch (in case one of the apps is on an old branch).</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p>Build and run the test suite with:</p>
-
-<pre lang="bash"><code>$ make -j4
+<p>Another technique is to track the publishing events between applications for
+a test by using its slug.  E.g. when finding events related to the
+“Publishing with Specialist Publisher” test, it publishes the sluglified
+title <code>"Publishing Specialist Publisher #{SecureRandom.uuid}"</code> →
+<code>“publishing-specialist-publisher-uuid”</code>.</p>
+<pre><code>grep -C 5 “publishing-specialist-publisher” docker.log
 </code></pre>
-
-<h3 id="running-a-single-test">Running a single test</h3>
-
-<p>Running <code>make</code> executes the following targets in order, which you can
-choose to run separately to speed up development: <code>clone</code>, <code>pull</code>, <code>build</code>,
-<code>start</code>, <code>test</code> and <code>stop</code>.</p>
-
-<p>For example, to run only the tests for the specialist publisher, you need only
-do:</p>
-
-<pre lang="bash"><code>$ make -j4 clone
-$ make pull build start test-specialist-publisher stop
-</code></pre>
-
-<h2 id="further-documentation">Further documentation</h2>
-
-<ul>
-<li><a href="/repos/publishing-e2e-tests/jenkins-breaking-changes.html">Getting a breaking app change through Jenkins</a></li>
-<li><a href="/repos/publishing-e2e-tests/jenkins-debugging-failures.html">Debugging Jenkins failures</a></li>
-<li><a href="/repos/publishing-e2e-tests/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/repos/publishing-e2e-tests/what-belongs-in-these-tests.html">What belongs in publishing-e2e-tests</a></li>
-<li><a href="/repos/publishing-e2e-tests/writing-tests.html">Writing tests</a></li>
-<li><a href="/repos/publishing-e2e-tests/testing-with-a-branch.html">Testing with a branch</a></li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
 
 
             
@@ -497,8 +455,8 @@ $ make pull build start test-specialist-publisher stop
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-e2e-tests.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docs/jenkins-debugging-failures.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-e2e-tests%2Fjenkins-debugging-failures.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publishing-e2e-tests: Getting a breaking app change through Jenkins - GOV.UK Developer Documentation</title>
+    <title>publishing-e2e-tests: Testing with a branch - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/breaking-app-change.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/testing-with-a-branch.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publishing-e2e-tests: Getting a breaking app change through Jenkins - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/breaking-app-change.html" />
+      <meta name="twitter:title" content="publishing-e2e-tests: Testing with a branch - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/testing-with-a-branch.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publishing-e2e-tests: Getting a breaking app change through Jenkins" />
+      <meta property="og:title" content="publishing-e2e-tests: Testing with a branch" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/breaking-app-change.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests/testing-with-a-branch.html" />
 
     
   </head>
@@ -382,64 +382,35 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/d2d6f115eac7039ad281c7674a997877668af0c0">25 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/1e440db1c94ed91a198ec06fbc54348a2a163abd">11 Apr 2022</a>
 </div>
 
-  <h1 class="page-title">publishing-e2e-tests: Getting a breaking app change through Jenkins</h1>
+  <h1 class="page-title">publishing-e2e-tests: Testing with a branch</h1>
 
   
-<p>This guide describes the scenario where you are changing the behaviour of an
-application, and the E2E tests require changes to get the tests passing
-against your change.</p>
-<ol>
-<li>
-<p>Create a PR on the publishing-e2e-tests which makes the E2E tests pass when
-run against the updated version of your application(s). The
-<a href="/repos/publishing-e2e-tests/README.html">how to run the tests guide</a> explains how to perform this
-on your development machine.</p>
-</li>
-<li>
-<p>Once your test works locally you’ll want to get both your application and E2E
-tests repo changes passing the GitHub CI checks.</p>
-<ol>
-<li>
-<p>Go to the <a href="https://ci.integration.publishing.service.gov.uk/job/publishing-e2e-tests/">publishing-e2e-tests project on Jenkins</a> and click
-through into your branch with the updated tests.</p>
-</li>
-<li>
-<p>Using the “Build with Parameters” option on the left hand bar replace the
-following parameters.</p>
-<p><code>${YOUR_APP_NAME}_COMMITTISH</code> with the commit SHA of your change</p>
-<p><code>ORIGIN_REPO</code> with your application repo name, e.g. government-frontend</p>
-<p><code>ORIGIN_COMMIT</code> with the same commit SHA as above</p>
-<p>Publishing E2E tests uses the <code>ORIGIN_REPO</code> + <code>ORIGIN_COMMIT</code> when pushing
-the GitHub status, and the <code>_COMMITTISH</code> to know which version of each app
-to test against.</p>
-</li>
-<li>
-<p>Hit the Build button</p>
-</li>
-</ol>
-</li>
-<li>
-<p>Merge your application changes as you would normally.  Unless your change to
-E2E tests is compatible with the old version of your application, don’t
-merge your change to E2E tests at this stage.</p>
-</li>
-<li>
-<p>Deploy your application change to production as you would normally,
-waiting for deployed-to-production to be updated.</p>
-</li>
-<li>
-<p>Merge your E2E tests change into main branch. This will trigger the
-main build which also updates the test-against branch.  Once test-against
-branch is updated any subsequent test runs will use both your updated tests
-and your updated application code on deployed-to-production.</p>
-</li>
-</ol>
-<p>If you are making significant changes to any of the tests, it is recommended you
-treat the test as though it were new and attach the new tag as per the
-<a href="/repos/publishing-e2e-tests/CONTRIBUTING.html">Adding new tests guidance</a></p>
+<h2 id="using-a-remote-branch">Using a remote branch</h2>
+<p>If you need to run the tests against a branch of an application other than
+deployed-to-production you need to explicitly build it as below:</p>
+<pre lang="bash"><code>$ make -j4 clone pull PUBLISHER_COMMITISH=your_branch
+$ docker-compose build publisher
+$ make start test-publisher stop
+</code></pre>
+<p>When making changes to an application you will need to rebuild the image before
+the new version will be used.</p>
+<pre lang="bash"><code>$ docker-compose build publisher
+</code></pre>
+<p>When you have finished testing against your branch version and want to switch back
+to the deployed-to-production version you will need to untag the built image before
+you can re-pull.  The <code>clean_docker</code> make recipe will untag all locally built images.</p>
+<pre lang="bash"><code>$ make clean_docker
+$ make pull
+</code></pre>
+<h2 id="using-a-local-branch">Using a local branch</h2>
+<p>If you want to use a local version of an application, symlink your
+directory into <code>./apps</code>. For example:</p>
+<pre><code>rm -rf apps/publishing-api
+ln -s path/to/publishing-api apps/publishing-api
+</code></pre>
 
 
             
@@ -447,8 +418,8 @@ treat the test as though it were new and attach the new tag as per the
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docs/breaking-app-change.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-e2e-tests%2Fbreaking-app-change.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docs/testing-with-a-branch.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-e2e-tests%2Ftesting-with-a-branch.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
