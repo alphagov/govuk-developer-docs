@@ -7,24 +7,13 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-[Pact](https://docs.pact.io/) is a tool for *consumer-driven contract testing*.
-It's a way of testing the integration between microservices without performing
-end-to-end testing.
+[Pact](https://docs.pact.io/) is a tool we use for *contract testing*. Contract testing involves creating a set of tests that are shared between an API (the "provider") and its users ("consumers") using some kind of "broker". For example, the Publishing API has a "pact" or "contract" with GDS API Adapters:
 
-"Consumer-driven" means that the consumer of a service sets expectations about
-behaviour it needs from the provider.
+- the expected interactions are defined in [the publishing_api_test.rb in gds-api-adapters](https://github.com/alphagov/gds-api-adapters/blob/master/test/publishing_api_test.rb)
+- when these tests are run they output a JSON pactfile which is published to [our pact broker](https://github.com/alphagov/govuk-pact-broker) ([live site](https://pact-broker.cloudapps.digital/))
+- the build of publishing api will use this pactfile to test the publishing-api service
 
-For example, [the publishing API is set up to run pact tests](https://github.com/alphagov/publishing-api/blob/main/docs/pact_testing.md).
-This means that any consumer of the publishing API can create contracts using the pact gem,
-and the publishing api deployment pipeline will check that consumers' contracts are still met by new builds.
-
-The [Pact Broker](https://docs.pact.io/getting_started/sharing_pacts) is
-a repository for all the contracts. The consumers publish to it, and the producers query from it when they run the tests.
-
-## Information you need to know
-
-* It runs on the Government PaaS at <https://pact-broker.cloudapps.digital/>
-* It is deployed from <https://github.com/alphagov/govuk-pact-broker>
+GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We have [a set of shared stubs](https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers) that are used to test GDS API Adapters with each app - ensuring they are in sync. GDS API Adapters can then do "proper contract testing" on behalf of all the apps that use it.
 
 ## Accessing and logging on
 
