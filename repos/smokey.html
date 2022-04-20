@@ -456,8 +456,6 @@ applications within the GOV.UK stack.</p>
 <pre><code>ENVIRONMENT=integration \
 SIGNON_EMAIL="&lt;email-address&gt;" \
 SIGNON_PASSWORD="&lt;password&gt;" \
-AUTH_USERNAME="&lt;username&gt;" \
-AUTH_PASSWORD="&lt;password&gt;" \
 bundle exec cucumber
 </code></pre>
 
@@ -468,16 +466,14 @@ bundle exec cucumber
 <code>ENVIRONMENT</code>: used to set environment variables for <a href="https://github.com/alphagov/plek">Plek</a>
 </li>
 <li>
-<code>AUTH_USERNAME</code>: the HTTP Basic auth username (required for Integration)</li>
-<li>
-<code>AUTH_PASSWORD</code>: the HTTP Basic auth password (required for Integration)</li>
-<li>
 <code>SIGNON_EMAIL</code>: email address of a user with a Signon account in the environment the tests are being run in</li>
 <li>
 <code>SIGNON_PASSWORD</code>: password of a user with a Signon account in the environment the tests are being run in</li>
 <li>
 <code>RATE_LIMIT_TOKEN</code>: a token used to bypass the default rate limiting</li>
 </ul>
+
+<p><strong>Note: you will need to be connected to the VPN to test against Integration or Staging.</strong></p>
 
 <h2 id="layout">Layout</h2>
 
