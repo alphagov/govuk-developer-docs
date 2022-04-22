@@ -15,6 +15,28 @@ parent: "/manual.html"
 
 GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We have [a set of shared stubs](https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers) that are used to test GDS API Adapters with each app - ensuring they are in sync. GDS API Adapters can then do "proper contract testing" on behalf of all the apps that use it.
 
+## Running Pact tests locally
+
+Example for Frontend (provider of `/bank-holidays.json`):
+
+```sh
+bundle exec rake pact:verify
+```
+
+You can also test against a specific branch of GDS API Adapters:
+
+```sh
+env PACT_CONSUMER_VERSION=branch-<branch-of-gds-api-adapters> bundle exec rake pact:verify
+```
+
+_Note: when a build runs for GDS API Adapters, [the generated JSON pact is pushed to the broker as `branch-<branch-name>`](https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Jenkinsfile#L7) using [the `pact:publish:branch` rake task](https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Rakefile#L26); this is why `PACT_CONSUMER_VERSION` needs to start with `branch-`._
+
+Alternatively, you can test against local changes to GDS API Adapters:
+
+```sh
+env PACT_URI="../gds-api-adapters/spec/pacts/gds_api_adapters-bank_holidays_api.json" bundle exec rake pact:verify
+```
+
 ## Adding new tests for an app
 
 This has to be done in several stages:
@@ -39,5 +61,4 @@ Due to the co-dependent nature of Pact providers and consumers, changes need to 
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.
 1. Run a parameterised build of the consumer, specifying the new branch name of the provider to test against.
   - The build should pass.
-  - It should also be possible to test this locally e.g. `bundle exec rake PACT_URI="../gds-api-adapters/spec/pacts/gds_api_adapters-collections_organisation_api.json" pact:verify`.
 1. Merge the consumer PR, followed by the provider PR.
