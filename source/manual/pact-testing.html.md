@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-developers"
-title: Pact Broker
+title: Pact Testing
 section: Testing
 type: learn
 layout: manual_layout
