@@ -7,7 +7,6 @@
     - name: Frontend apps
     - name: data.gov.uk apps
     - name: Licensing apps
-    - name: Specialist apps
 
 - name: Community
   sections:
@@ -55,7 +54,6 @@
         - govspeak
         - govuk_document_types
         - govuk_message_queue_consumer
-        - govuk_navigation_helpers
         - govuk_personalisation
         - govuk_publishing_components
         - govuk_sidekiq
@@ -68,7 +66,6 @@
         - govuk-rfcs
         - rubocop-govuk
         - publishing-e2e-tests
-        - styleguides
         - stylelint-config-gds
 
 - name: Infrastructure
@@ -90,12 +87,10 @@
     - name: Configuration
       repos:
         - govuk-puppet
-        - fabric-scripts
 
     - name: Monitoring
       repos:
         - email-alert-monitoring
-        - govuk-tagging-monitor
         - sidekiq-monitoring
         - govuk-saas-config
         - govuk_app_config
@@ -110,9 +105,6 @@
 
     - name: Deployment
       sites:
-        - name: alphagov-deployment
-          url: https://github.com/alphagov/alphagov-deployment
-          description: (Deprecated) Capistrano scripts for deploying GOV.UK apps
         - name: govuk-secrets
           url: https://github.com/alphagov/govuk-secrets
           description: Encrypted secrets for GOV.UK infrastucture
