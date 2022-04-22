@@ -17,18 +17,6 @@ GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We 
 
 ## About the app itself
 
-### Codebase
-
-Pact Broker is a ruby app that's provided as [a
-gem](https://github.com/bethesque/pact_broker) that needs to be wrapped in a
-small rack app. The resulting 'application' lives at
-<https://github.com/alphagov/govuk-pact-broker>.
-
-### Persistence
-
-Pact Broker stores its data in a PostgreSQL database. The location and creds for
-this are passed in the `DATABASE_URL` environment variable.
-
 ### Logging
 
 The app logs to `/var/log/pact_broker.log` and `/var/log/pact_broker.err.log`.
