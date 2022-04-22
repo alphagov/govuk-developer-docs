@@ -46,12 +46,16 @@ Write both parts at the same time so you can check they work together.
 
 ## Changing existing Pact tests
 
-Due to the co-dependent nature of Pact providers and consumers, changes need to be made in a particular order:
+Follow these steps in order to change the provider and consumer in tandem.
 
-1. Make the change to the API (your provider, e.g. Frontend), in a branch.
+1. Make the change to the API (your provider, e.g. Imminence), in a branch.
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the consumer.
-1. Make the change to the pactfile in the consumer (e.g. gds-api-adapters), in a branch.
+
+1. Make the change to the pactfile in the consumer (e.g. GDS API Adapters), in a branch.
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.
+
 1. Run a parameterised build of the consumer, specifying the new branch name of the provider to test against.
-  - The build should pass.
-1. Merge the consumer PR, followed by the provider PR.
+  - The build should pass so you can now merge the PR, which will mean the change is on the default branch.
+
+1. Re-run the build for the provider PR now the consumer is merged.
+  - The build should pass so you can now merge the PR.
