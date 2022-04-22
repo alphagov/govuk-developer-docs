@@ -15,13 +15,6 @@ parent: "/manual.html"
 
 GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We have [a set of shared stubs](https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers) that are used to test GDS API Adapters with each app - ensuring they are in sync. GDS API Adapters can then do "proper contract testing" on behalf of all the apps that use it.
 
-## Accessing and logging on
-
-The application is open to the internet with no authentication for read
-requests. Write requests are restricted with HTTP basic auth. These credentials
-are exposed as environment variables to jobs on CI to enable them to publish
-pacts to the broker.
-
 ## About the app itself
 
 ### Codebase
