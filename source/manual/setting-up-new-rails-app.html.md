@@ -172,6 +172,10 @@ You should:
 
 Add your Rails app to GOV.UK Docker so you can run the app locally. See an [example GOV.UK Docker pull request](https://github.com/alphagov/govuk-docker/pull/465).
 
+### Set up contract tests for your app
+
+If your app provides an internal API, it should have [contract tests](https://docs.publishing.service.gov.uk/manual/pact-testing.html).
+
 ## Set up a GitHub repo for your Rails app
 
 When you’ve finished developing your Rails app, you can [set up a GitHub repo for your Rails app][auto-config].
