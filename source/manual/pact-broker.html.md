@@ -17,10 +17,6 @@ GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We 
 
 ## About the app itself
 
-### Logging
-
-The app logs to `/var/log/pact_broker.log` and `/var/log/pact_broker.err.log`.
-
 ### Pactfile versioning
 
 Out of the box, the Pact Broker allows uploading of pact files with semver
