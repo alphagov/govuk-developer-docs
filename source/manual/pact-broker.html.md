@@ -15,7 +15,7 @@ parent: "/manual.html"
 
 GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We have [a set of shared stubs](https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers) that are used to test GDS API Adapters with each app - ensuring they are in sync. GDS API Adapters can then do "proper contract testing" on behalf of all the apps that use it.
 
-## Writing Pact tests
+## Adding new tests for an app
 
 This has to be done in several stages:
 
@@ -29,7 +29,7 @@ This has to be done in several stages:
 1. Configure the consumer to test against the provider as part of its deployment pipeline, using the rake task defined above ([example](https://github.com/alphagov/gds-api-adapters/pull/1036)).
 1. Merge.
 
-### Updating Pact tests
+## Changing existing Pact tests
 
 Due to the co-dependent nature of Pact providers and consumers, changes need to be made in a particular order:
 
