@@ -39,17 +39,10 @@ env PACT_URI="../gds-api-adapters/spec/pacts/gds_api_adapters-bank_holidays_api.
 
 ## Adding new tests for an app
 
-This has to be done in several stages:
+Write both parts at the same time so you can check they work together.
 
-1. Write the consumer tests ([example](https://github.com/alphagov/gds-api-adapters/pull/1035)).
-1. Write the provider pact ([example](https://github.com/alphagov/frontend/pull/2643)).
-  - You'll need to write these two in conjunction with each other.
-1. Merge both of the above PRs.
-1. Configure the provider to test against the default branch of the consumer as part of its deployment pipeline ([example](https://github.com/alphagov/frontend/pull/2644)).
-  - You'll need to expose this as a rake task that takes a branch argument (see the example PR above). This is needed in the next step.
-1. Merge.
-1. Configure the consumer to test against the provider as part of its deployment pipeline, using the rake task defined above ([example](https://github.com/alphagov/gds-api-adapters/pull/1036)).
-1. Merge.
+- [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066)
+- [Provider example](https://github.com/alphagov/imminence/pull/644)
 
 ## Changing existing Pact tests
 
