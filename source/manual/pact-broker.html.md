@@ -37,12 +37,29 @@ Alternatively, you can test against local changes to GDS API Adapters:
 env PACT_URI="../gds-api-adapters/spec/pacts/gds_api_adapters-bank_holidays_api.json" bundle exec rake pact:verify
 ```
 
-## Adding new tests for an app
+## Adding tests for a new app
 
-Write both parts at the same time so you can check they work together.
+_If the app already had some Pact tests, follow [the steps for changing existing Pact tests](#changing-existing-pact-tests)._
 
-- [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066)
-- [Provider example](https://github.com/alphagov/imminence/pull/644)
+1. Write the consumer and provider tests.
+  - [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066).
+  - [Provider example](https://github.com/alphagov/imminence/pull/644).
+
+1. Check the consumer tests pass locally.
+  - CI won't do this for you yet because it doesn't know about the new app.
+
+1. Merge the consumer tests for the new app.
+  - Warning: the build will pass because it runs with the old Jenkinsfile.
+
+1. Check the main build of the consumer.
+  - [This will clone the default branch of the provider](https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L72) and [try to test it](https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L82).
+  - The build should fail until the provider part is merged.
+
+1. Merge tests for the provider.
+  - Re-run the build if you made the PR before merging the consumer one.
+
+1. Re-run the main build for the consumer.
+  - This will pass because the provider part now exists on the default branch.
 
 ## Changing existing Pact tests
 
