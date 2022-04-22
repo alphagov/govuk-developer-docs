@@ -9,9 +9,9 @@ parent: "/manual.html"
 
 [Pact](https://docs.pact.io/) is a tool we use for *contract testing*. Contract testing involves creating a set of tests that are shared between an API (the "provider") and its users ("consumers") using some kind of "broker". For example, the Publishing API has a "pact" or "contract" with GDS API Adapters:
 
-- the expected interactions are defined in [the publishing_api_test.rb in gds-api-adapters](https://github.com/alphagov/gds-api-adapters/blob/master/test/publishing_api_test.rb)
+- the expected interactions are defined in [imminence_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/master/test/imminence/imminence_api_pact_test.rb)
 - when these tests are run they output a JSON pactfile which is published to [our pact broker](https://github.com/alphagov/govuk-pact-broker) ([live site](https://pact-broker.cloudapps.digital/))
-- the build of publishing api will use this pactfile to test the publishing-api service
+- the build of Imminence will use this pactfile to test the Imminence service
 
 GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We have [a set of shared stubs](https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers) that are used to test GDS API Adapters with each app - ensuring they are in sync. GDS API Adapters can then do "proper contract testing" on behalf of all the apps that use it.
 
@@ -76,3 +76,7 @@ Follow these steps in order to change the provider and consumer in tandem.
 
 1. Re-run the build for the provider PR now the consumer is merged.
   - The build should pass so you can now merge the PR.
+
+## Special cases and tech debt
+
+Publishing API and Content Store have a direct pact, with [Publishing API acting as the consumer](https://github.com/alphagov/publishing-api/tree/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/pacts/content_store) and [Content Store acting as the provider](https://github.com/alphagov/content-store/blob/de729dfe12e6e9da4a27a52259f59b9051e4da27/spec/service_consumers/pact_helper.rb#L32). This can be confusing as [Publishing API is also a provider for GDS API Adapters](https://github.com/alphagov/publishing-api/blob/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/service_consumers/pact_helper.rb#L20). It's unclear if the direct pact was intentional. In future we should consider changing Publishing API to use GDS API Adapters to talk to Content Store and have an indirect pact like we do for all other apps.
