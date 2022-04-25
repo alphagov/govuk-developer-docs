@@ -183,13 +183,13 @@ with Yarn, providing default tasks and automating some workflows.
 
 ### Frontend assets
 
-GOV.UK applications use the Rails [asset pipeline][] for building assets. We
-aspire to migrate to [webpacker][] as the conventional approach when we have
-resolved [blocking issues][].
+GOV.UK applications use the Rails [asset pipeline][] for precompiling assets -
+we are currently prevented from broadly adopting a more modern approach,
+due to [asset pipeline coupling][] in our components gem, but do aspire to
+retire asset pipeline and encourage decoupling wherever possible.
 
 [asset pipeline]: https://guides.rubyonrails.org/asset_pipeline.html
-[webpacker]: https://github.com/rails/webpacker
-[blocking issues]: https://github.com/alphagov/govuk_publishing_components/issues/505
+[asset pipeline coupling]: https://github.com/alphagov/govuk_publishing_components/issues/505
 
 ### Sending emails
 
