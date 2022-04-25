@@ -381,15 +381,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0c5dcbf52963ced2a77ede90fafdc41c07468237">17 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/cebf8ab65c65eb376865dbaa2dc4048e72d2844d">5 Apr 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Real User Metrics</h1>
@@ -409,12 +402,8 @@
 <p>Because of this the customer ID needs to be set at the end of the <code>lux.js</code> file:</p>
 <pre lang="javascript"><code>LUX.customerid = 47044334
 </code></pre>
-<h3 id="beacon-mode">Beacon mode</h3>
-<p>LUX has two methods of sending information which involves loading a file from a remote server. The default is to fetch a JavaScript file; and the other method is to load an image.</p>
-<p>The <a href="https://github.com/alphagov/govuk_app_config/blob/87e445eccee5fba2449a170d5ba628e8a380fcb8/lib/govuk_app_config/govuk_content_security_policy.rb#L36-L38">content security policy in <code>govuk_app_config</code></a> allows only images to be loaded from <code>lux.speedcurve.com</code>. When this CSP is enforced it will mean that the JavaScript method will be blocked and LUX will stop working.</p>
-<p>Setting the beacon mode to <code>"simple"</code> turns the non-default image method on:</p>
-<pre lang="javascript"><code>LUX.beaconMode = 'simple'
-</code></pre>
+<h3 id="sending-information">Sending information</h3>
+<p>LUX needs the <a href="https://github.com/alphagov/govuk_app_config/blob/87e445eccee5fba2449a170d5ba628e8a380fcb8/lib/govuk_app_config/govuk_content_security_policy.rb#L36-L38">content security policy in <code>govuk_app_config</code></a> to be configured to allow communication to LUX servers. <a href="https://support.speedcurve.com/docs/add-rum-to-your-csp">Documentation</a> is provided on how to configure this.</p>
 <h3 id="sample-rate">Sample rate</h3>
 <p>LUX defaults to sending every event to Speedcurve - this can be changed by setting <code>LUX.samplerate</code> to a integer:</p>
 <pre lang="javascript"><code>LUX.samplerate = 1 // Whole number from 1 to 100.
