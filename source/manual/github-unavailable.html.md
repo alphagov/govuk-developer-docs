@@ -15,7 +15,38 @@ If GitHub is unavailable, we lose:
 * Access to our primary code repository
 * The ability to authenticate with Jenkins, as it makes use of GitHub groups
 
-We [mirror all GitHub repositories](repository-mirroring.html) tagged with `govuk` to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos. This requires help from a GOV.UK AWS admin.
+We [mirror all GitHub repositories](repository-mirroring.html) tagged with `govuk` to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos.
+
+### Cloning from AWS CodeCommit
+
+First, find the SSH key ID for the `govuk-repo-mirror-user` AWS user, by logging into the AWS console (`gds aws govuk-integration-admin -l`) and navigating to the user: https://us-east-1.console.aws.amazon.com/iam/home#/users/govuk-repo-mirror-user?section=security_credentials
+
+Then append the following to your `~/.ssh/config` file, replacing `SSH_USER_ID` with the value above (begins with `APKA`):
+
+```
+Host git-codecommit.*.amazonaws.com
+  User SSH_USER_ID
+  IdentityFile ~/.ssh/mirrorer
+```
+
+You'll need to grab the private SSH key:
+
+```
+$ cd ~/govuk/govuk-secrets/puppet_aws/hieradata 
+$ git pull
+$ bundle exec rake 'eyaml:decrypt_value[integration,govuk_jenkins::jobs::mirror_github_repositories::ssh_private_key]'
+```
+
+Copy and paste the output from `-----BEGIN RSA PRIVATE KEY-----` to `-----END RSA PRIVATE KEY-----`, and store this in `~/.ssh/mirrorer`.
+
+Finally, navigate to the repository in CodeCommit (remember to switch to the right region first, i.e. `eu-west-2`). For example, Whitehall:
+https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories/whitehall/browse?region=eu-west-2
+
+Using the `Clone URL` dropdown, select `Clone SSH` and then clone the repo:
+
+```
+git clone ssh://git-codecommit.eu-west-2.amazonaws.com/v1/repos/whitehall
+```
 
 ### Deploying from AWS CodeCommit
 
@@ -24,23 +55,6 @@ Use the normal deployment Jenkins job but check the box to deploy from AWS CodeC
 #### Making changes to code in AWS CodeCommit before deployment
 
 GOV.UK AWS admin users can give access to developers who need to make changes to the code before deployment.
-
-1. In the root of the local repo, run the following commands to install the AWS
-   credential helper and add CodeCommit as a remote:
-
-   ```
-   git config credential.helper '!aws codecommit credential-helper $@'
-   git config credential.UseHttpPath true
-   git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/<app>
-   ```
-
-1. Get some credentials for the GOV.UK Tools AWS account:
-
-   ```
-   gds aws govuk-tools-poweruser -e
-   ```
-
-1. Fetch the AWS upstream by running `git fetch aws`
 
 1. Checkout a new branch on the upstream by running `git checkout -b aws/my-super-secret-fix`
 
