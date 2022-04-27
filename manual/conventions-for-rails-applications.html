@@ -254,7 +254,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e897194363f3af69d92c44830c089b2f62d3c97e">14 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d553f3b99c5425832f0e5642d060d24a601a08cf">25 Apr 2022</a>
 </div>
 
  <h1 id='header'>Conventions for Rails applications</h1> <p>The majority of GOV.UK applications are built using <a href="https://rubyonrails.org/">Ruby on Rails</a> and over
@@ -354,9 +354,10 @@ where <a href="https://github.com/moove-it/sidekiq-scheduler">sidekiq-scheduler<
 manager for JavaScript packages. Yarn is preferable to using
 <a href="https://www.npmjs.com/">NPM</a> as Rails <a href="https://guides.rubyonrails.org/5_1_release_notes.html#yarn-support">integrates</a> directly
 with Yarn, providing default tasks and automating some workflows.</p>
-<h3 id='frontend-assets'>Frontend assets</h3><p>GOV.UK applications use the Rails <a href="#frontend-assets">asset pipeline</a> for building assets. We
-aspire to migrate to <a href="https://github.com/rails/webpacker">webpacker</a> as the conventional approach when we have
-resolved <a href="https://github.com/alphagov/govuk_publishing_components/issues/505">blocking issues</a>.</p>
+<h3 id='frontend-assets'>Frontend assets</h3><p>GOV.UK applications use the Rails <a href="#frontend-assets">asset pipeline</a> for precompiling assets -
+we are currently prevented from broadly adopting a more modern approach,
+due to <a href="https://github.com/alphagov/govuk_publishing_components/issues/505">asset pipeline coupling</a> in our components gem, but do aspire to
+retire asset pipeline and encourage decoupling wherever possible.</p>
 <h3 id='sending-emails'>Sending emails</h3><p><a href="https://www.notifications.service.gov.uk/">GOV.UK Notify</a> is the preferred approach for sending email. The
 <a href="https://github.com/dxw/mail-notify">mail-notify</a> gem is conventionally used to integrate Notify with
 <a href="https://guides.rubyonrails.org/action_mailer_basics.html">ActionMailer</a>. There is <a href="/manual/govuk-notify.html">further documentation</a> on how
