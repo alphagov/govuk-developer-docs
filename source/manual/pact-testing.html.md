@@ -17,6 +17,21 @@ GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. We 
 
 ## Running Pact tests locally
 
+### For a consumer (GDS API Adapters)
+
+Pact tests are run alongside normal tests e.g.
+
+```sh
+bundle exec rake test 'TEST=test/imminence/*'
+```
+
+This will run [both sets of tests for Imminence](https://github.com/alphagov/gds-api-adapters/tree/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence):
+
+- Normal unit tests using [the shared stubs](https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/lib/gds_api/test_helpers/imminence.rb).
+- [Pact tests, which define their own stubs](https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence/imminence_api_pact_test.rb).
+
+### For a provider
+
 Example for Frontend (provider of `/bank-holidays.json`):
 
 ```sh
@@ -80,3 +95,5 @@ Follow these steps in order to change the provider and consumer in tandem.
 ## Special cases and tech debt
 
 Publishing API and Content Store have a direct pact, with [Publishing API acting as the consumer](https://github.com/alphagov/publishing-api/tree/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/pacts/content_store) and [Content Store acting as the provider](https://github.com/alphagov/content-store/blob/de729dfe12e6e9da4a27a52259f59b9051e4da27/spec/service_consumers/pact_helper.rb#L32). This can be confusing as [Publishing API is also a provider for GDS API Adapters](https://github.com/alphagov/publishing-api/blob/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/service_consumers/pact_helper.rb#L20). It's unclear if the direct pact was intentional. In future we should consider changing Publishing API to use GDS API Adapters to talk to Content Store and have an indirect pact like we do for all other apps.
+
+The tests are run in the same way as other consumers and providers (see above).
