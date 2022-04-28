@@ -45,10 +45,6 @@ To deploy and activate an A/B test, you must [set up a personal API token](https
 1. Deploy the Fastly configuration to each environment using the [Deploy_CDN Jenkins job][deploy-cdn]. Use the same parameters as the previous step. You can test the deployment on staging by visiting <https://www.staging.publishing.service.gov.uk>. Changes should appear almost immediately as there is no caching of the CDN config.
 1. To activate or deactivate the test, or to change the B percentage, update your test in [the govuk-cdn-config repo][govuk-cdn-config] and deploy the dictionaries.
 
-If you're making a change to Search API, you may also want to test using
-the [search performance explorer](https://github.com/alphagov/search-performance-explorer/).
-To do this, [add your A/B test to the application](https://github.com/alphagov/search-performance-explorer/commit/01e3d21ceca96951425b5ddc87116f0756411691) and manually deploy the test to Heroku.
-
 [analytics-dimensions]: https://gov-uk.atlassian.net/wiki/display/GOVUK/Analytics+on+GOV.UK
 [dictionaries-readme]: https://github.com/alphagov/govuk-cdn-config#fastly-dictionaries
 [dictionary-config-example]: https://github.com/alphagov/govuk-cdn-config-secrets/commit/ba3ec923c0bb5bdf17bdaf02419ff4e049516fda
