@@ -190,13 +190,13 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0a4a99f63d922c4d6357989771d4e8b7c1151ed8">28 Apr 2022</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>These rules apply to developers, SREs, and technical architects in the GOV.UK programme.</p>
 <h2 id='what-production-access-means'>What production access means</h2>
 <ul>
-<li>Permission to <a href="https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/production_credentials.yaml">read &amp; write production and staging hieradata</a> in govuk-secrets using GPG</li>
+<li>Permission to <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml">read &amp; write production and staging hieradata</a> in govuk-secrets using GPG</li>
 <li>Permission to read &amp; write from the Pass in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
 <li>Access to Production Deploy Jenkins and Staging Deploy Jenkins to deploy applications via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
 <li>SSH access to production and staging servers via <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
@@ -209,8 +209,8 @@ access to all spaces in <a href="https://admin.cloud.service.gov.uk/organisation
 <h2 id='when-you-get-production-access'>When you get production access</h2>
 <ul>
 <li>Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only)</li>
-<li>Supervised access after second shadow shift and probation has been passed</li>
-<li>Permanent access once a non-shadow Technical 2nd Line shift has been completed</li>
+<li>Supervised access during the second shadow shift and probation has been passed</li>
+<li>Permanent access once two shadow shifts have been completed</li>
 </ul>
 <p>&ldquo;Supervised&rdquo; means &ldquo;we trust you, but just be extra careful,&rdquo; and the dev should
 ensure they&rsquo;re getting necessary and appropriate support from their team and
