@@ -20,7 +20,7 @@ If Fastly goes down, we would manually [switch to AWS CloudFront](https://docs.p
 
 ## GOV.UK mirror locations and access
 
-The GOV.UK mirror is hosted in an [Amazon Web Services (AWS) S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html). The bucket contains copies of GOV.UK HTML files. The mirror is static, meaning dynamic pages such as search pages will not work.
+The GOV.UK mirror is hosted in an [Amazon Web Services (AWS) S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html). The bucket contains copies of GOV.UK HTML files. The mirror is static, meaning dynamic pages such as search pages will not work. S3 will return 403 Forbidden response for non-existent pages instead of 404, because we don't allow the ListBucket permission. This also affects requests for features such as Search, which are not covered by the mirrors.
 
 The term "GOV.UK mirror" actually refers to 3 separate mirrors:
 
