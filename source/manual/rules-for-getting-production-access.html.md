@@ -11,7 +11,7 @@ These rules apply to developers, SREs, and technical architects in the GOV.UK pr
 
 ## What production access means
 
-- Permission to [read & write production and staging hieradata](https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/production_credentials.yaml) in govuk-secrets using GPG
+- Permission to [read & write production and staging hieradata](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml) in govuk-secrets using GPG
 - Permission to read & write from the Pass in govuk-secrets store using [GPG](https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id)
 - Access to Production Deploy Jenkins and Staging Deploy Jenkins to deploy applications via the [GOV.UK Production GitHub team](https://github.com/orgs/alphagov/teams/gov-uk-production)
 - SSH access to production and staging servers via [govuk-puppet](https://github.com/alphagov/govuk-puppet)
@@ -24,8 +24,8 @@ These rules apply to developers, SREs, and technical architects in the GOV.UK pr
 ## When you get production access
 
 - Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only)
-- Supervised access after second shadow shift and probation has been passed
-- Permanent access once a non-shadow Technical 2nd Line shift has been completed
+- Supervised access during the second shadow shift and probation has been passed
+- Permanent access once two shadow shifts have been completed
 
 "Supervised" means "we trust you, but just be extra careful," and the dev should
 ensure they're getting necessary and appropriate support from their team and
