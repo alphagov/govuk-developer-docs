@@ -196,7 +196,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4755884e36bd014575d69eeb9ce3a8f54bee1c0a">8 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1cdb272443dc27e31d554b4616ea92be7028e371">28 Apr 2022</a>
 </div>
 
  <h1 id='header'>Run an A/B or multivariate test</h1> <p>Before you run an A/B or multivariate test, you should read the <a href="/manual/ab-testing.html">guidance on how A/B testing works</a>.</p>
@@ -224,9 +224,6 @@ testing headers on pages that you are measuring. See this <a href="https://githu
 <li>Deploy the Fastly configuration to each environment using the <a href="https://deploy.blue.staging.govuk.digital/job/Deploy_CDN/">Deploy_CDN Jenkins job</a>. Use the same parameters as the previous step. You can test the deployment on staging by visiting <a href="https://www.staging.publishing.service.gov.uk">https://www.staging.publishing.service.gov.uk</a>. Changes should appear almost immediately as there is no caching of the CDN config.</li>
 <li>To activate or deactivate the test, or to change the B percentage, update your test in <a href="https://github.com/alphagov/govuk-cdn-config">the govuk-cdn-config repo</a> and deploy the dictionaries.</li>
 </ol>
-<p>If you&rsquo;re making a change to Search API, you may also want to test using
-the <a href="https://github.com/alphagov/search-performance-explorer/">search performance explorer</a>.
-To do this, <a href="https://github.com/alphagov/search-performance-explorer/commit/01e3d21ceca96951425b5ddc87116f0756411691">add your A/B test to the application</a> and manually deploy the test to Heroku.</p>
 <h2 id='4-remove-the-ab-test'>4. Remove the A/B test</h2>
 <ol>
 <li>Remove your test from the <a href="https://github.com/alphagov/govuk-cdn-config/blob/master/ab_tests/ab_tests.yaml">ab_tests configuration file</a> in the <a href="https://github.com/alphagov/govuk-cdn-config">govuk-cdn-config</a> repo and remove the dictionary files.</li>
