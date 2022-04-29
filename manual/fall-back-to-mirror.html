@@ -194,7 +194,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b74282108ee087fe876693ccaf95c4447886defe">28 Apr 2022</a>
 </div>
 
  <h1 id='header'>GOV.UK CDN static mirrors</h1> <p>The GOV.UK mirror is a static copy of GOV.UK.</p>
@@ -202,7 +202,7 @@
 <p>When a user requests a GOV.UK page, Fastly retrieves that page from its cache, or fetches the page from GOV.UK Origin if Fastly does not have the page in its cache.</p>
 <p>Sometimes, GOV.UK Origin may time out or return a 5xx error response. When that happens, Fastly automatically fetches the page from the GOV.UK mirror instead.</p>
 <p>If Fastly goes down, we would manually <a href="https://docs.publishing.service.gov.uk/manual/fall-back-to-aws-cloudfront.html">switch to AWS CloudFront</a> instead of Fastly. Where Fastly makes requests to GOV.UK Origin, AWS CloudFront instead makes all its requests to the GOV.UK mirror.</p>
-<h2 id='gov-uk-mirror-locations-and-access'>GOV.UK mirror locations and access</h2><p>The GOV.UK mirror is hosted in an <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html">Amazon Web Services (AWS) S3 bucket</a>. The bucket contains copies of GOV.UK HTML files. The mirror is static, meaning dynamic pages such as search pages will not work.</p>
+<h2 id='gov-uk-mirror-locations-and-access'>GOV.UK mirror locations and access</h2><p>The GOV.UK mirror is hosted in an <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/Welcome.html">Amazon Web Services (AWS) S3 bucket</a>. The bucket contains copies of GOV.UK HTML files. The mirror is static, meaning dynamic pages such as search pages will not work. S3 will return 403 Forbidden response for non-existent pages instead of 404, because we don&rsquo;t allow the ListBucket permission. This also affects requests for features such as Search, which are not covered by the mirrors.</p>
 <p>The term &ldquo;GOV.UK mirror&rdquo; actually refers to 3 separate mirrors:</p>
 
 <ul>
