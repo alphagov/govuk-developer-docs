@@ -7,13 +7,13 @@ class Repo
 
   def api_payload
     {
-      app_name: app_name,
+      app_name: repo_name, # beware renaming the key - it's used here: https://github.com/alphagov/govuk-dependencies/blob/b3a2a29eb80aefa08098a08633b4a08b05bcc527/lib/gateways/team.rb#L15
       team: team,
       dependencies_team: dependencies_team,
       puppet_name: puppet_name,
       production_hosted_on: production_hosted_on,
       links: {
-        self: "https://docs.publishing.service.gov.uk/repos/#{app_name}.json",
+        self: "https://docs.publishing.service.gov.uk/repos/#{repo_name}.json",
         html_url: html_url,
         repo_url: repo_url,
         sentry_url: sentry_url,
@@ -23,7 +23,7 @@ class Repo
 
   def aws_puppet_class
     Hosts.aws_machines.each do |puppet_class, keys|
-      if keys["apps"].include?(app_name) || keys["apps"].include?(puppet_name)
+      if keys["apps"].include?(repo_name) || keys["apps"].include?(puppet_name)
         return puppet_class
       end
     end
@@ -51,7 +51,7 @@ class Repo
   end
 
   def html_url
-    "https://docs.publishing.service.gov.uk/repos/#{app_name}.html"
+    "https://docs.publishing.service.gov.uk/repos/#{repo_name}.html"
   end
 
   def retired?
@@ -65,22 +65,22 @@ class Repo
   def page_title
     type = is_app? ? "Application" : "Repository"
     if retired?
-      "#{type}: #{app_name} (retired)"
+      "#{type}: #{repo_name} (retired)"
     else
-      "#{type}: #{app_name}"
+      "#{type}: #{repo_name}"
     end
   end
 
-  def app_name
-    repo_data["app_name"] || github_repo_name
+  def repo_name
+    github_repo_name
   end
 
   def example_published_pages
-    RepoData.publishing_examples[app_name]
+    RepoData.publishing_examples[repo_name]
   end
 
   def example_rendered_pages
-    RepoData.rendering_examples[app_name]
+    RepoData.rendering_examples[repo_name]
   end
 
   def github_repo_name
@@ -101,7 +101,7 @@ class Repo
     elsif repo_data["sentry_url"]
       repo_data["sentry_url"]
     else
-      "https://sentry.io/govuk/app-#{app_name}"
+      "https://sentry.io/govuk/app-#{repo_name}"
     end
   end
 
@@ -126,7 +126,7 @@ class Repo
   def dashboard_url
     return if repo_data["dashboard_url"] == false
 
-    repo_data["dashboard_url"] || "https://grafana.production.govuk.digital/dashboard/file/#{app_name}.json"
+    repo_data["dashboard_url"] || "https://grafana.production.govuk.digital/dashboard/file/#{repo_name}.json"
   end
 
   def api_docs_url
@@ -161,7 +161,7 @@ class Repo
   def production_url
     return if repo_data["production_url"] == false
 
-    repo_data["production_url"] || (type.in?(["Publishing apps", "Supporting apps"]) ? "https://#{app_name}.publishing.service.gov.uk" : nil)
+    repo_data["production_url"] || (type.in?(["Publishing apps", "Supporting apps"]) ? "https://#{repo_name}.publishing.service.gov.uk" : nil)
   end
 
   def readme
@@ -175,7 +175,7 @@ class Repo
   def rake_task_url(environment, rake_task = "")
     return unless production_hosted_on_aws?
 
-    query_params = "?TARGET_APPLICATION=#{app_name}&MACHINE_CLASS=#{machine_class}&RAKE_TASK=#{rake_task}"
+    query_params = "?TARGET_APPLICATION=#{repo_name}&MACHINE_CLASS=#{machine_class}&RAKE_TASK=#{rake_task}"
 
     if environment == "integration"
       "https://deploy.#{environment}.publishing.service.gov.uk/job/run-rake-task/parambuild/#{query_params}"
@@ -187,7 +187,7 @@ class Repo
 private
 
   def puppet_name
-    repo_data["puppet_name"] || app_name.underscore
+    repo_data["puppet_name"] || repo_name.underscore
   end
 
   def description_from_github

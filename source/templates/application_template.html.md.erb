@@ -44,7 +44,7 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
   ].reject(&:nil?),
 ).strip %>
 
-<% if manual.pages_for_application(application.app_name).any? %>
+<% if manual.pages_for_application(application.repo_name).any? %>
 ## Relevant manual pages
 <%= partial("partials/application/relevant_manual_pages") %>
 <% end %>
@@ -67,12 +67,12 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
 %>
 
 <% if application.example_published_pages %>
-## Example pages published by <%= application.app_name %>
+## Example pages published by <%= application.repo_name %>
 <%= partial("partials/application/example_published_pages") %>
 <% end %>
 
 <% if application.example_rendered_pages %>
-## Example pages rendered by <%= application.app_name %>
+## Example pages rendered by <%= application.repo_name %>
 <%= partial("partials/application/example_rendered_pages") %>
 <% end %>
 

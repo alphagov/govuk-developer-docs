@@ -11,7 +11,7 @@ separate applications. Most of them are built using [Ruby on Rails][rails].
 | Hosting | Count | Applications |
 | --- | --- | --- |
 <% Hosts::hosters_descending(Repos.active_apps).each do |id, label:, apps:| %>
-| # <%= label %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.app_name}](/repos/#{app.app_name}.html)" }.join(", ") %> |
+| # <%= label %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Reuse this data

@@ -58,10 +58,6 @@ RSpec.describe Repo do
       expect(Repo.new("github_repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
     end
 
-    it "should find puppet class via app name" do
-      expect(Repo.new("app_name" => "licencefinder").aws_puppet_class).to eq("calculators_frontend")
-    end
-
     it "should find puppet class via puppet name" do
       expect(Repo.new("puppet_name" => "smartanswers", "github_repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
     end

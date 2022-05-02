@@ -45,6 +45,6 @@ class RunRakeTask
   end
 
   def self.find_application(name)
-    Repos.all.select { |app| app.app_name == name }.first
+    Repos.all.select { |app| app.repo_name == name }.first
   end
 end

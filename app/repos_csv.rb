@@ -13,7 +13,7 @@ class ReposCSV
 
       @repos.each do |repo|
         csv << [
-          repo.app_name,
+          repo.repo_name,
           repo.team,
           repo.dependencies_team,
           repo.html_url,
