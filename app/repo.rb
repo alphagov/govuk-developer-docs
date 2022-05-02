@@ -72,7 +72,7 @@ class Repo
   end
 
   def repo_name
-    github_repo_name
+    repo_data.fetch("repo_name")
   end
 
   def example_published_pages
@@ -83,16 +83,12 @@ class Repo
     RepoData.rendering_examples[repo_name]
   end
 
-  def github_repo_name
-    repo_data.fetch("github_repo_name")
-  end
-
   def management_url
     repo_data["management_url"]
   end
 
   def repo_url
-    repo_data["repo_url"] || "https://github.com/alphagov/#{github_repo_name}"
+    repo_data["repo_url"] || "https://github.com/alphagov/#{repo_name}"
   end
 
   def sentry_url
@@ -119,7 +115,7 @@ class Repo
     if production_hosted_on == "paas"
       repo_data["deploy_url"]
     else
-      "https://github.com/alphagov/govuk-app-deployment/blob/master/#{github_repo_name}/config/deploy.rb"
+      "https://github.com/alphagov/govuk-app-deployment/blob/master/#{repo_name}/config/deploy.rb"
     end
   end
 
@@ -197,12 +193,12 @@ private
   def github_repo_data
     return {} if private_repo?
 
-    @github_repo_data ||= GitHubRepoFetcher.instance.repo(github_repo_name)
+    @github_repo_data ||= GitHubRepoFetcher.instance.repo(repo_name)
   end
 
   def github_readme
     return nil if private_repo?
 
-    @github_readme ||= GitHubRepoFetcher.instance.readme(github_repo_name)
+    @github_readme ||= GitHubRepoFetcher.instance.readme(repo_name)
   end
 end

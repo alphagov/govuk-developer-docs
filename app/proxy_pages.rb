@@ -10,7 +10,7 @@ class ProxyPages
 
   def self.app_docs
     docs = Repos.public.map do |app|
-      docs_for_app = GitHubRepoFetcher.instance.docs(app.github_repo_name) || []
+      docs_for_app = GitHubRepoFetcher.instance.docs(app.repo_name) || []
       docs_for_app.map do |page|
         {
           path: page[:path],
@@ -20,7 +20,7 @@ class ProxyPages
             locals: {
               title: "#{app.repo_name}: #{page[:title]}",
               markdown: page[:markdown],
-              repository: app.github_repo_name,
+              repository: app.repo_name,
               relative_path: page[:relative_path],
             },
             data: {

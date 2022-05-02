@@ -8,50 +8,50 @@ RSpec.describe Repos do
   describe "public" do
     let(:applications) do
       [
-        { github_repo_name: "whitehall", private_repo: true },
-        { github_repo_name: "asset-manager", private_repo: false },
+        { repo_name: "whitehall", private_repo: true },
+        { repo_name: "asset-manager", private_repo: false },
       ]
     end
 
     it "should return only apps with public repos" do
-      expect(Repos.public.map(&:github_repo_name)).to eq(%w[asset-manager])
+      expect(Repos.public.map(&:repo_name)).to eq(%w[asset-manager])
     end
   end
 
   describe "active" do
     let(:applications) do
       [
-        { github_repo_name: "whitehall", retired: true },
-        { github_repo_name: "asset-manager", retired: false },
+        { repo_name: "whitehall", retired: true },
+        { repo_name: "asset-manager", retired: false },
       ]
     end
 
     it "should return only repos that are not retired" do
-      expect(Repos.active.map(&:github_repo_name)).to eq(%w[asset-manager])
+      expect(Repos.active.map(&:repo_name)).to eq(%w[asset-manager])
     end
   end
 
   describe "active_apps" do
     let(:applications) do
       [
-        { github_repo_name: "whitehall", retired: true },
-        { github_repo_name: "asset-manager", retired: false, production_hosted_on: "aws" },
-        { github_repo_name: "some-non-hosted-thing", retired: false },
+        { repo_name: "whitehall", retired: true },
+        { repo_name: "asset-manager", retired: false, production_hosted_on: "aws" },
+        { repo_name: "some-non-hosted-thing", retired: false },
       ]
     end
 
     it "should return only apps that are not retired and are hosted" do
-      expect(Repos.active_apps.map(&:github_repo_name)).to eq(%w[asset-manager])
+      expect(Repos.active_apps.map(&:repo_name)).to eq(%w[asset-manager])
     end
   end
 
   describe "for_team" do
     let(:applications) do
       [
-        { github_repo_name: "retired", team: "#foo", retired: true },
-        { github_repo_name: "private", team: "#foo", private_repo: true },
-        { github_repo_name: "hosted-app", team: "#foo", retired: false, production_hosted_on: "aws" },
-        { github_repo_name: "unhosted-tool", team: "#foo", retired: false },
+        { repo_name: "retired", team: "#foo", retired: true },
+        { repo_name: "private", team: "#foo", private_repo: true },
+        { repo_name: "hosted-app", team: "#foo", retired: false, production_hosted_on: "aws" },
+        { repo_name: "unhosted-tool", team: "#foo", retired: false },
       ]
     end
 

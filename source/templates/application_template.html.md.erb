@@ -19,7 +19,7 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
   items: [
     {
       field: "GitHub",
-      value: sanitize("<a href='#{application.repo_url}'>#{application.github_repo_name}</a>"),
+      value: sanitize("<a href='#{application.repo_url}'>#{application.repo_name}</a>"),
     },
     {
       field: "Ownership",
@@ -51,14 +51,14 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
 
 <%
   unless application.private_repo?
-    imported_docs = GitHubRepoFetcher.instance.docs(application.github_repo_name)
+    imported_docs = GitHubRepoFetcher.instance.docs(application.repo_name)
     unless imported_docs.nil? || imported_docs.empty?
 %>
 ## Imported documents
 <%= partial(
   "partials/application/imported_docs",
   locals: {
-    path_to_app_docs: "/repos/#{application.github_repo_name}",
+    path_to_app_docs: "/repos/#{application.repo_name}",
     imported_docs: imported_docs,
   }).strip %>
 <%

@@ -12,13 +12,13 @@ RSpec.describe Repo do
   describe "api_payload" do
     it "returns a hash of keys describing the app" do
       app_details = {
-        "github_repo_name" => "foo",
+        "repo_name" => "foo",
         "team" => "bar",
         "dependencies_team" => "baz",
         "production_hosted_on" => "aws",
       }
       payload = Repo.new(app_details).api_payload
-      expect(payload[:app_name]).to eq(app_details["github_repo_name"])
+      expect(payload[:app_name]).to eq(app_details["repo_name"])
       expect(payload[:team]).to eq(app_details["team"])
       expect(payload[:dependencies_team]).to eq(app_details["dependencies_team"])
       expect(payload[:production_hosted_on]).to eq(app_details["production_hosted_on"])
@@ -28,7 +28,7 @@ RSpec.describe Repo do
 
   describe "production_url" do
     it "has a good default" do
-      app = Repo.new("type" => "Publishing apps", "github_repo_name" => "my-app")
+      app = Repo.new("type" => "Publishing apps", "repo_name" => "my-app")
 
       expect(app.production_url).to eql("https://my-app.publishing.service.gov.uk")
     end
@@ -55,15 +55,15 @@ RSpec.describe Repo do
     end
 
     it "should find puppet class via github repo name if neither app name nor puppet name provided" do
-      expect(Repo.new("github_repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
+      expect(Repo.new("repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should find puppet class via puppet name" do
-      expect(Repo.new("puppet_name" => "smartanswers", "github_repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
+      expect(Repo.new("puppet_name" => "smartanswers", "repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should return error message if no puppet class found" do
-      expect(Repo.new("github_repo_name" => "foo").aws_puppet_class)
+      expect(Repo.new("repo_name" => "foo").aws_puppet_class)
         .to eq("Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml")
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe Repo do
     let(:app) do
       described_class.new(
         "type" => "Publishing app",
-        "github_repo_name" => "my-app",
+        "repo_name" => "my-app",
         "dashboard_url" => configured_dashboard_url,
       )
     end
@@ -100,7 +100,7 @@ RSpec.describe Repo do
     let(:rake_task) { "" }
     let(:app) do
       described_class.new(
-        "github_repo_name" => "content-publisher",
+        "repo_name" => "content-publisher",
         "machine_class" => "backend",
         "production_hosted_on" => production_hosted_on,
       )
