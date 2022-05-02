@@ -4,61 +4,61 @@ parent: /apps.html
 source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml
 ---
 
-<% if application.retired? %>
+<% if repo.retired? %>
   This application is retired.
 
-  <%= ExternalDoc.parse(application.description) %>
+  <%= ExternalDoc.parse(repo.description) %>
 
-  <a href="<%= application.repo_url %>">GitHub repository</a>
+  <a href="<%= repo.repo_url %>">GitHub repository</a>
 <% else %>
 
-<%= ExternalDoc.parse(application.description) %>
+<%= ExternalDoc.parse(repo.description) %>
 
 <%= GovukPublishingComponents.render(
   "govuk_publishing_components/components/summary_list",
   items: [
     {
       field: "GitHub",
-      value: sanitize("<a href='#{application.repo_url}'>#{application.repo_name}</a>"),
+      value: sanitize("<a href='#{repo.repo_url}'>#{repo.repo_name}</a>"),
     },
     {
       field: "Ownership",
-      value: sanitize(partial("partials/application/ownership").strip),
+      value: sanitize(partial("partials/repo/ownership").strip),
     },
     {
       field: "Hosting",
-      value: sanitize(partial("partials/application/hosting").strip),
+      value: sanitize(partial("partials/repo/hosting").strip),
     },
     {
       field: "Category",
-      value: application.type,
+      value: repo.type,
     },
-    (application.can_run_rake_tasks_in_jenkins? ? {
+    (repo.can_run_rake_tasks_in_jenkins? ? {
       field: "Rake tasks",
-      value: RunRakeTask.terse_links(application).html_safe,
+      value: RunRakeTask.terse_links(repo).html_safe,
     } : nil),
-    ((links = partial("partials/application/links")) && links.strip.present? ? {
+    ((links = partial("partials/repo/links")) && links.strip.present? ? {
       field: "Links",
       value: links,
     } : nil),
   ].reject(&:nil?),
 ).strip %>
 
-<% if manual.pages_for_repo(application.repo_name).any? %>
+<% if manual.pages_for_repo(repo.repo_name).any? %>
 ## Relevant manual pages
-<%= partial("partials/application/relevant_manual_pages") %>
+<%= partial("partials/repo/relevant_manual_pages") %>
 <% end %>
 
 <%
-  unless application.private_repo?
-    imported_docs = GitHubRepoFetcher.instance.docs(application.repo_name)
+  unless repo.private_repo?
+    imported_docs = GitHubRepoFetcher.instance.docs(repo.repo_name)
     unless imported_docs.nil? || imported_docs.empty?
 %>
 ## Imported documents
 <%= partial(
-  "partials/application/imported_docs",
+  "partials/repo/imported_docs",
   locals: {
-    path_to_app_docs: "/repos/#{application.repo_name}",
+    path_to_app_docs: "/repos/#{repo.repo_name}",
     imported_docs: imported_docs,
   }).strip %>
 <%
@@ -66,18 +66,18 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
   end
 %>
 
-<% if application.example_published_pages %>
-## Example pages published by <%= application.repo_name %>
-<%= partial("partials/application/example_published_pages") %>
+<% if repo.example_published_pages %>
+## Example pages published by <%= repo.repo_name %>
+<%= partial("partials/repo/example_published_pages") %>
 <% end %>
 
-<% if application.example_rendered_pages %>
-## Example pages rendered by <%= application.repo_name %>
-<%= partial("partials/application/example_rendered_pages") %>
+<% if repo.example_rendered_pages %>
+## Example pages rendered by <%= repo.repo_name %>
+<%= partial("partials/repo/example_rendered_pages") %>
 <% end %>
 
 ## README
 
-<%= partial("partials/application/readme") %>
+<%= partial("partials/repo/readme") %>
 
 <% end %>
