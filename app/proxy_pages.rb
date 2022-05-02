@@ -60,7 +60,7 @@ class ProxyPages
     Repos.all.map do |repo|
       {
         path: "/repos/#{repo.repo_name}.html",
-        template: "templates/application_template.html",
+        template: "templates/repo_template.html",
         frontmatter: {
           title: repo.page_title,
           locals: {
