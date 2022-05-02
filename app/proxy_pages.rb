@@ -20,7 +20,7 @@ class ProxyPages
             locals: {
               title: "#{repo.repo_name}: #{page[:title]}",
               markdown: page[:markdown],
-              repository: repo.repo_name,
+              repo: repo,
               relative_path: page[:relative_path],
             },
             data: {

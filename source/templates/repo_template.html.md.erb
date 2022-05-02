@@ -49,23 +49,6 @@ source_url: https://github.com/alphagov/govuk-developer-docs/blob/main/data/repo
 <%= partial("partials/repo/relevant_manual_pages") %>
 <% end %>
 
-<%
-  unless repo.private_repo?
-    imported_docs = GitHubRepoFetcher.instance.docs(repo.repo_name)
-    unless imported_docs.nil? || imported_docs.empty?
-%>
-## Imported documents
-<%= partial(
-  "partials/repo/imported_docs",
-  locals: {
-    path_to_app_docs: "/repos/#{repo.repo_name}",
-    imported_docs: imported_docs,
-  }).strip %>
-<%
-    end
-  end
-%>
-
 <% if repo.example_published_pages %>
 ## Example pages published by <%= repo.repo_name %>
 <%= partial("partials/repo/example_published_pages") %>
