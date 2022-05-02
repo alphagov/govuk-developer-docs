@@ -1,25 +1,25 @@
 RSpec.describe Repos do
   before :each do
     allow(Repos).to receive(:all) do
-      applications.map(&:stringify_keys).map { |repo_data| Repo.new(repo_data) }
+      repos.map(&:stringify_keys).map { |repo_data| Repo.new(repo_data) }
     end
   end
 
   describe "public" do
-    let(:applications) do
+    let(:repos) do
       [
         { repo_name: "whitehall", private_repo: true },
         { repo_name: "asset-manager", private_repo: false },
       ]
     end
 
-    it "should return only apps with public repos" do
+    it "should return only repos that are public" do
       expect(Repos.public.map(&:repo_name)).to eq(%w[asset-manager])
     end
   end
 
   describe "active" do
-    let(:applications) do
+    let(:repos) do
       [
         { repo_name: "whitehall", retired: true },
         { repo_name: "asset-manager", retired: false },
@@ -32,7 +32,7 @@ RSpec.describe Repos do
   end
 
   describe "active_apps" do
-    let(:applications) do
+    let(:repos) do
       [
         { repo_name: "whitehall", retired: true },
         { repo_name: "asset-manager", retired: false, production_hosted_on: "aws" },
