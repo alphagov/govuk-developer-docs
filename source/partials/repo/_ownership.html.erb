@@ -1,0 +1,10 @@
+<% if repo.team && repo.dependencies_team &&
+      repo.team != repo.dependencies_team %>
+  <strong><%= repo.team %></strong> owns the repo. <strong><%= repo.dependencies_team %></strong> is responsible for updating its dependencies.
+<% elsif repo.team %>
+  <%= repo.team %>
+<% elsif repo.dependencies_team %>
+  <%= repo.dependencies_team %>
+<% else %>
+  N/A
+<% end %>

@@ -1,6 +1,6 @@
 <%= GovukPublishingComponents.render(
   "govuk_publishing_components/components/list",
-  items: manual.pages_for_repo(application.repo_name).map do |page|
+  items: manual.pages_for_repo(repo.repo_name).map do |page|
     "<a href=\"#{page.url}\" class=\"govuk-link\">#{page.data.title}</a>"
   end
 ) %>
