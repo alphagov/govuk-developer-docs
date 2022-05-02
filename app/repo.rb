@@ -1,4 +1,4 @@
-class App
+class Repo
   attr_reader :app_data
 
   def initialize(app_data)
