@@ -24,7 +24,7 @@
 <% end %>
 
 <% wrap_layout :core do %>
-  <% app_slug = current_page.path.match(/apps\/([^\/]+)\//) %>
+  <% app_slug = current_page.path.match(/repos\/([^\/]+)\//) %>
   <%= GovukPublishingComponents.render("govuk_publishing_components/components/breadcrumbs", {
     breadcrumbs: [
       { title: "Home", url: "/" },
