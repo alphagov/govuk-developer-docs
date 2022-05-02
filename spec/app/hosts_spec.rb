@@ -1,7 +1,7 @@
 RSpec.describe Hosts do
   before :each do
     allow(Repos).to receive(:all) do
-      applications.map(&:stringify_keys).map { |app_data| Repo.new(app_data) }
+      applications.map(&:stringify_keys).map { |repo_data| Repo.new(repo_data) }
     end
   end
 

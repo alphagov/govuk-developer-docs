@@ -42,7 +42,7 @@ RSpec.describe Repo do
 
   describe "aws_puppet_class" do
     before do
-      app_data = {
+      repo_data = {
         "calculators_frontend" => {
           "apps" => %w[
             finder-frontend
@@ -51,7 +51,7 @@ RSpec.describe Repo do
           ],
         },
       }
-      allow(Hosts).to receive(:aws_machines).and_return(app_data)
+      allow(Hosts).to receive(:aws_machines).and_return(repo_data)
     end
 
     it "should find puppet class via github repo name if neither app name nor puppet name provided" do

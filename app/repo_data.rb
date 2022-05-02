@@ -1,4 +1,4 @@
-class AppData
+class RepoData
   SEARCH_URL = "https://www.gov.uk/api/search.json?facet_publishing_app=100,examples:10,example_scope:global&facet_rendering_app=100,examples:10,example_scope:global&count=0".freeze
 
   def self.publishing_examples
