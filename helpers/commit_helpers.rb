@@ -3,7 +3,7 @@ require "git"
 module CommitHelpers
   def commit_url(current_page)
     if current_page.data.latest_commit
-      "https://github.com/alphagov/#{current_page.data.app_name}/commit/#{current_page.data.latest_commit[:sha]}"
+      "https://github.com/alphagov/#{current_page.data.repo_name}/commit/#{current_page.data.latest_commit[:sha]}"
     elsif local_commit(current_page)
       "https://github.com/alphagov/govuk-developer-docs/commit/#{local_commit(current_page).sha}"
     else

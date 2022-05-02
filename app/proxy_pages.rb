@@ -16,15 +16,15 @@ class ProxyPages
           path: page[:path],
           template: "templates/external_doc_template.html",
           frontmatter: {
-            title: "#{app.app_name}: #{page[:title]}",
+            title: "#{app.repo_name}: #{page[:title]}",
             locals: {
-              title: "#{app.app_name}: #{page[:title]}",
+              title: "#{app.repo_name}: #{page[:title]}",
               markdown: page[:markdown],
               repository: app.github_repo_name,
               relative_path: page[:relative_path],
             },
             data: {
-              app_name: app.app_name,
+              repo_name: app.repo_name,
               source_url: page[:source_url],
               latest_commit: page[:latest_commit],
             },
@@ -59,13 +59,13 @@ class ProxyPages
   def self.app_overviews
     Repos.all.map do |application|
       {
-        path: "/repos/#{application.app_name}.html",
+        path: "/repos/#{application.repo_name}.html",
         template: "templates/application_template.html",
         frontmatter: {
           title: application.page_title,
           locals: {
             title: application.page_title,
-            description: "Everything about the #{application.app_name} application (#{application.description})",
+            description: "Everything about the #{application.repo_name} application (#{application.description})",
             application: application,
           },
         },
@@ -76,7 +76,7 @@ class ProxyPages
   def self.app_overviews_json
     Repos.all.map do |application|
       {
-        path: "/repos/#{application.app_name}.json",
+        path: "/repos/#{application.repo_name}.json",
         template: "templates/json_response.json",
         frontmatter: {
           locals: {

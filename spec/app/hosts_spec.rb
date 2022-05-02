@@ -31,7 +31,7 @@ RSpec.describe Hosts do
     it "should return apps hosted on the named host" do
       paas_app = Hosts.on_host(Repos.all, "paas").first
       expect(paas_app).to be_a(Repo)
-      expect(paas_app.app_name).to eq("app-on-paas")
+      expect(paas_app.repo_name).to eq("app-on-paas")
     end
   end
 end
