@@ -1,10 +1,57 @@
 <% content_for :sidebar do %>
-  &nbsp;
-  <%
-    # TODO: recreate table of contents as per the default layout: https://tdt-documentation.london.cloudapps.digital/configure_project/frontmatter/#layout
-    # For now, keep whitespace so that `sidebar` isn't `nil`, otherwise we'd lose the sidebar/search altogether.
-  %>
-<% end %>
+  <ul class="imported-docs">
+    <li>
+      <a href="/repos/<%= repo.repo_name %>.html">
+        <span><%= repo.repo_name %></span>
+      </a>
+    </li>
+
+    <%
+    unless repo.private_repo?
+      imported_docs = GitHubRepoFetcher.instance.docs(repo.repo_name)
+    %>
+      <li>
+        <hr>
+        <ul>
+          <li>
+            <a href="/repos/<%= repo.repo_name %>.html#readme">
+              <span>README</span>
+            </a>
+          </li>
+          <%
+            unless imported_docs.nil? || imported_docs.empty?
+              path_to_app_docs = "/repos/#{repo.repo_name}"
+
+              docs_grouped_by_parent = imported_docs.each_with_object({}) do |page, hash|
+                path = page[:path].split("/")
+                dir = path.take(path.count - 1).join("/")
+                hash[dir] ||= []
+                hash[dir] << page
+              end
+
+              docs_grouped_by_parent.keys.each do |subpath|
+                list_of_links = capture do %>
+                  <% docs_grouped_by_parent[subpath].sort_by { |hash| hash[:title] }.each do |page| %>
+                    <%= "<li><a href='#{page[:path]}' class='govuk-link'>#{page[:title]}</a></li>" %>
+                  <% end %>
+                <% end %>
+
+              <% if subpath == path_to_app_docs %>
+                <%= list_of_links %>
+              <% else %>
+                <li><strong class="imported-docs__submenu-heading"><%= subpath.sub(path_to_app_docs, "") %></strong></li>
+                <ul class="imported-docs__submenu">
+                  <%= list_of_links %>
+                </ul>
+              <% end %>
+
+            <% end # docs_grouped_by_parent.keys loop %>
+          <% end # imported docs nil check %>
+        </ul>
+      </li>
+    <% end # private repo check %>
+  </ul>
+<% end # sidebar content %>
 
 <% wrap_layout :core do %>
   <% app_slug = current_page.path.match(/repos\/([^\/]+)\//) %>
