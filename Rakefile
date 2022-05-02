@@ -34,7 +34,7 @@ task :verify_deployable_apps do
     HTTP.get_yaml("https://raw.githubusercontent.com/alphagov/govuk-puppet/master/hieradata_aws/common.yaml")
   end
   deployable_applications = common_yaml["deployable_applications"].map { |k, v| v["repository"] || k }
-  our_applications = Repos.all.map(&:github_repo_name)
+  our_applications = Repos.all.map(&:repo_name)
 
   intentionally_missing =
     %w[

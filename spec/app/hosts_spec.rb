@@ -7,13 +7,13 @@ RSpec.describe Hosts do
 
   let(:applications) do
     [
-      { github_repo_name: "whitehall", production_hosted_on: "aws" },
-      { github_repo_name: "asset-manager", production_hosted_on: "aws" },
-      { github_repo_name: "content-store", production_hosted_on: "aws" },
-      { github_repo_name: "govuk-frontend", production_hosted_on: "aws" },
-      { github_repo_name: "app-on-heroku", production_hosted_on: "heroku" },
-      { github_repo_name: "app-on-paas", production_hosted_on: "paas" },
-      { github_repo_name: "some-retired-application" },
+      { repo_name: "whitehall", production_hosted_on: "aws" },
+      { repo_name: "asset-manager", production_hosted_on: "aws" },
+      { repo_name: "content-store", production_hosted_on: "aws" },
+      { repo_name: "govuk-frontend", production_hosted_on: "aws" },
+      { repo_name: "app-on-heroku", production_hosted_on: "heroku" },
+      { repo_name: "app-on-paas", production_hosted_on: "paas" },
+      { repo_name: "some-retired-application" },
     ]
   end
 

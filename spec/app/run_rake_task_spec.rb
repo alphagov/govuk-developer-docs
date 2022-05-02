@@ -11,7 +11,7 @@ RSpec.describe RunRakeTask do
     describe "given a Repo instance" do
       let(:application) do
         Repo.new(
-          "github_repo_name" => "content-publisher",
+          "repo_name" => "content-publisher",
           "machine_class" => "backend",
           "production_hosted_on" => "aws",
         )
@@ -48,7 +48,7 @@ RSpec.describe RunRakeTask do
     describe "given a Repo instance" do
       let(:application) do
         Repo.new(
-          "github_repo_name" => "content-publisher",
+          "repo_name" => "content-publisher",
           "machine_class" => "backend",
           "production_hosted_on" => "aws",
         )

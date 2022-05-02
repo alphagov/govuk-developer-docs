@@ -25,7 +25,6 @@ RSpec.describe ExternalDoc do
         lipsum = double(
           "Lipsum",
           repo_name: "Lipsum",
-          github_repo_name: "lipsum",
         )
         allow(Repos).to receive(:all) { [lipsum] }
       end
