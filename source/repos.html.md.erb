@@ -1,0 +1,33 @@
+---
+title: All GOV.UK repositories
+---
+
+# All GOV.UK repositories
+
+GOV.UK maintains at least <%= Repos.active.size %> repositories including apps, services, gems and documentation.
+
+## Repos by team
+
+| Type | Count | Applications |
+| --- | --- | --- |
+<% Repos.active.group_by(&:team).sort.each do |name, apps| %>
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+<% end %>
+
+## Repos by type
+
+| Type | Count | Applications |
+| --- | --- | --- |
+<% Repos.active.group_by(&:type).sort.each do |name, apps| %>
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+<% end %>
+
+## Reuse this data
+
+You can download this data as JSON or as CSV ([repos.json](/repos.json) and [repos.csv](/repos.csv)).
+
+In Google Spreadsheets, use the following formula to import all of the data:
+
+```
+=importData("https://docs.publishing.service.gov.uk/repos.csv")
+```

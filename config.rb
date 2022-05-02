@@ -33,10 +33,6 @@ helpers do
     Manual.new(sitemap)
   end
 
-  def teams
-    Repos.teams
-  end
-
   def related_things
     @related_things ||= RelatedThings.new(manual, current_page)
   end

@@ -1,12 +1,37 @@
 ---
-layout: application_layout
 title: Applications on GOV.UK
 ---
 
-The publishing platform of GOV.UK consists of at least <%= Repos.active_apps.size %>
-separate applications. Most of them are built using [Ruby on Rails][rails].
+# Applications on GOV.UK
 
-## Hosting
+GOV.UK consists of at least <%= Repos.active_apps.size %> separate applications.
+Most of them are built using [Ruby on Rails][rails], hosted on an infrastructure [configured using puppet][govuk-puppet] and deployed using [capistrano scripts][govuk-app-deployment].
+
+## Apps by team
+
+| Type | Count | Applications |
+| --- | --- | --- |
+<% Repos.active_apps.group_by(&:team).sort.each do |name, apps| %>
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+<% end %>
+
+## Apps by type
+
+Apps can be loosely grouped into different types:
+
+- **APIs** provide functionality to other apps. For example, an app can send an email via Email Alert API.
+- **Frontend apps** render content to GOV.UK users. For example, a [HMRC manual page][hmrc-manual] is rendered by an application called [manuals-frontend][manuals-frontend]. Use the [chrome extension][extension] to find out which application
+is rendering any given page, and [read more about the frontend architecture on GOV.UK](/manual/frontend-architecture.html).
+- **Publishing apps** are used by editors to publish content to GOV.UK. For example, [specialist-publisher][specialist-publisher] publishes [specialist documents][specialist documents]. The apps are secured by behind a [single signon system][signon]. They use an [omniauth adapter called gds-sso][gds-sso] to authenticate the user.
+- Other types of app exist - see below.
+
+| Type | Count | Applications |
+| --- | --- | --- |
+<% Repos.active_apps.group_by(&:type).sort.each do |name, apps| %>
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+<% end %>
+
+## Apps by host
 
 | Hosting | Count | Applications |
 | --- | --- | --- |
@@ -25,31 +50,6 @@ In Google Spreadsheets, use the following formula to import all of the data:
 ```
 =importData("https://docs.publishing.service.gov.uk/apps.csv")
 ```
-
-## Infrastructure
-
-Applications are hosted on an infrastructure [configured using puppet][govuk-puppet].
-They are deployed using [capistrano scripts][govuk-app-deployment].
-
-## Frontend apps
-
-Frontend apps render content to visitors to [www.gov.uk](https://www.gov.uk/).
-For example, a [HMRC manual page][hmrc-manual] is rendered by an application called
-[manuals-frontend][manuals-frontend].
-
-You can use the [chrome extension][extension] to find out which application
-is rendering any given page.
-
-You can [read more about the frontend architecture on GOV.UK](/manual/frontend-architecture.html).
-
-## Publishing apps
-
-Publishing apps are used by editors to publish content to GOV.UK. For example,
-[specialist-publisher][specialist-publisher] publishes
-[specialist documents][specialist documents].
-
-The apps are secured by behind a [single signon system][signon]. They use an
-[omniauth adapter called gds-sso][gds-sso] to authenticate the user.
 
 [rails]: http://rubyonrails.org/
 [extension]: https://github.com/alphagov/govuk-browser-extension
