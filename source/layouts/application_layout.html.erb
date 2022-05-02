@@ -1,26 +1,9 @@
 <% content_for :sidebar do %>
-  <ul>
-    <li>
-      <a href="/apps/by-team.html">
-        <span>Repository ownership by team</span>
-      </a>
-    </li>
-
-    <% Repos.public.group_by(&:type).each do |name, apps| %>
-      <li>
-        <a href="/apps.html">
-          <span><%= name %></span>
-        </a>
-      </li>
-      <li>
-        <ul class='subnav'>
-        <% apps.each do |app| %>
-          <li><%= sidebar_link app.repo_name, "/repos/#{app.repo_name}.html" %></li>
-        <% end %>
-        </ul>
-      </li>
-    <% end %>
-  </ul>
+  &nbsp;
+  <%
+    # TODO: recreate table of contents as per the default layout: https://tdt-documentation.london.cloudapps.digital/configure_project/frontmatter/#layout
+    # For now, keep whitespace so that `sidebar` isn't `nil`, otherwise we'd lose the sidebar/search altogether.
+  %>
 <% end %>
 
 <% wrap_layout :core do %>
