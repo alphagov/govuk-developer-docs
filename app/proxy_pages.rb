@@ -66,7 +66,7 @@ class ProxyPages
           locals: {
             title: repo.page_title,
             description: "Everything about #{repo.repo_name} (#{repo.description})",
-            application: repo,
+            repo: repo,
           },
         },
       }
