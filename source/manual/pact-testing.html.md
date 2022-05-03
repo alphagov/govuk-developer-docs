@@ -64,7 +64,7 @@ _If the app already had some Pact tests, follow [the steps for changing existing
   - CI won't do this for you yet because it doesn't know about the new app.
 
 1. Merge the consumer tests for the new app.
-  - Warning: the build will pass because it runs with the old Jenkinsfile.
+  - The build will pass because it runs with the old Jenkinsfile.
 
 1. Check the main build of the consumer.
   - [This will clone the default branch of the provider](https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L72) and [try to test it](https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L82).
@@ -87,10 +87,10 @@ Follow these steps in order to change the provider and consumer in tandem.
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.
 
 1. Run a parameterised build of the consumer, specifying the new branch name of the provider to test against.
-  - The build should pass so you can now merge the PR, which will mean the change is on the default branch.
+  - The build should pass so you can now merge the consumer PR, which will mean the change is on the default branch.
 
 1. Re-run the build for the provider PR now the consumer is merged.
-  - The build should pass so you can now merge the PR.
+  - The build should pass so you can now merge the provider PR.
 
 ## Special cases and tech debt
 
