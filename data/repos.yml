@@ -21,13 +21,6 @@
   production_hosted_on: aws
   production_url: false
 
-- repo_name: blinkenjs
-  management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
-  production_hosted_on: heroku
-  type: Utilities
-  sentry_url: false
-  dashboard_url: false
-
 - repo_name: bouncer
   type: Transition apps
   team: "#find-and-view-tech"
@@ -411,6 +404,14 @@
 
 - repo_name: govuk-saas-config
   team:
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: govuk-secondline-blinken
+  app_name: govuk-secondline-blinken
+  management_url: https://dashboard.heroku.com/apps/govuk-secondline-blinken
+  production_hosted_on: heroku
   type: Utilities
   sentry_url: false
   dashboard_url: false

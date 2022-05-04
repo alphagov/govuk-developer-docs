@@ -87,8 +87,8 @@ This screen shows a summary of the critical and warning alerts for our environme
 in colour-coded boxes (red for critical errors, yellow for warnings, purple for
 unknown errors and green for no issues). It automatically refreshes once a minute.
 
-This is powered by [blinkenjs][] which is [deployed to Heroku][govuk-secondline-blinken-heroku]. You must be in the
+This is powered by [govuk-secondline-blinken][] which is [deployed to Heroku][govuk-secondline-blinken-heroku]. You must be in the
 office or on the VPN to access the Icinga instances it gets its data from.
 
-[blinkenjs]: https://github.com/alphagov/blinkenjs
+[govuk-secondline-blinken]: https://github.com/alphagov/govuk-secondline-blinken
 [govuk-secondline-blinken-heroku]: https://govuk-secondline-blinken.herokuapp.com/blinken.html
