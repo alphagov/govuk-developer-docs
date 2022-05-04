@@ -190,7 +190,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/81f2096f88d5b8b7a5ceca6ce5afe1872d8360bb">4 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='public-github-application-code'>Public GitHub (application code)</h2><p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. We may need to deploy changes at any time, and GitHub is a Software as a Service (SaaS) product which is not guaranteed to be available.</p>
@@ -208,32 +208,37 @@
 <li>In the root of the local repo, run the following commands to install the AWS
 credential helper and add CodeCommit as a remote:</li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/&lt;app&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   git config credential.helper '!aws codecommit credential-helper $@'
+   git config credential.UseHttpPath true
+   git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/&lt;app&gt;
 </code></pre></div>
 <ol>
-<li><p>Fetch the AWS upstream by running <code>git fetch aws</code>.
-You&rsquo;ll need to provide a username and password, which you can retrieve from govuk-secrets
-(pass/2ndline/govuk-repo-mirror/https_git_credentials.gpg).</p></li>
+<li>Get some credentials for the GOV.UK Tools AWS account:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   gds aws govuk-tools-poweruser -e
+</code></pre></div>
+<ol>
+<li><p>Fetch the AWS upstream by running <code>git fetch aws</code></p></li>
 <li><p>Checkout a new branch on the upstream by running <code>git checkout -b aws/my-super-secret-fix</code></p></li>
 <li><p>Make and commit your changes to this branch, and make sure all tests run successfully
 locally (since CodeCommit does not run tests)</p></li>
-<li><p>Push your changes to CodeCommit by running <code>git push -u aws HEAD</code></p></li>
+<li><p>Push your changes to CodeCommit by running <code>git push</code></p></li>
 <li><p>Tag your changes by running <code>git tag release_XYZ</code>, where XYZ is one more that the latest
 release tag for the application you&rsquo;re working on, as reported by the Release app</p></li>
 <li><p>Push your new tag to CodeCommit by running <code>git push aws release_XYZ</code></p></li>
 </ol>
 <h4 id='deploying-the-code-change'>Deploying the code change</h4>
 <ol>
-<li><p>Review the pull request on AWS CodeCommit through the <a href="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2">AWS Console</a> (access to GOV.UK repos must be granted by a GDS AWS administrator).</p></li>
+<li><p>Review the pull request on AWS CodeCommit through the <a href="https://eu-west-1.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-1#">AWS Console</a> (access to GOV.UK repos must be granted by a GDS AWS administrator).</p></li>
 <li><p>Create a release tag manually in git. This should follow the standard format
 <code>release_X</code>. Tag the branch directly instead of merging it.</p></li>
-<li><p>Don&rsquo;t use the Release app. Go directly to the <code>Deploy_App</code> Jenkins job, and
+<li><p>Don&rsquo;t use the release app. Go directly to the <code>Deploy_App</code> Jenkins job, and
 check <code>DEPLOY_FROM_AWS_CODECOMMIT</code>.</p></li>
 </ol>
 <h4 id='after-deploying-the-change'>After deploying the change</h4>
 <ol>
 <li><p>Push the branch and tag to GitHub.</p></li>
-<li><p>Merge the branch into <code>main</code>.</p></li>
+<li><p>Merge the branch into master.</p></li>
 <li><p>Record the missing deployment in the Release app.</p></li>
 </ol>
 <h4 id='troubleshooting'>Troubleshooting</h4><p>If running any <code>git</code> commands against CodeCommit returns you a 403, you probably
