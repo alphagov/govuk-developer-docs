@@ -127,11 +127,6 @@
     <ul>
       <li>
         <a href="#purging-a-page-from-the-cache"><span>Purging a page from the cache</span></a>
-        <ul>
-          <li>
-            <a href="#assets"><span>Assets</span></a>
-          </li>
-        </ul>
       </li>
       <li>
         <a href="#purging-a-page-from-fastly-manually-e-g-if-gov-uk-production-is-dead"><span>Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)</span></a>
@@ -190,29 +185,46 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ed9ec6c5e9a421fc591670f335517a966557ac9e">3 May 2022</a>
 </div>
 
  <h1 id='header'>Purge a page from cache</h1> <p>The <code>www.gov.uk</code> domain is served through Fastly, which honours the
-cache control headers sent by Varnish. When new content is published, the
-<a href="https://github.com/alphagov/cache-clearing-service">Cache Clearing Service</a> should take care of purging
-the page from Varnish and Fastly.</p>
-<p>If, for whatever reason, this hasn&rsquo;t worked properly content already seen by
-Fastly may be cached for up to an hour (depending on the Varnish cache
-headers). In this case, you may need to manually purge a page from the two
-caches.</p>
-<h2 id='purging-a-page-from-the-cache'>Purging a page from the cache</h2><p>Cache Clearing Service provides three Rake tasks which can be used to clear
-the various caches manually:</p>
+cache control headers sent by GOV.UK&rsquo;s running instance of <a href="https://varnish-cache.org/">Varnish</a>.
+Most pages are set with cache headers of 5 minutes, so when new changes
+are published it may take 5 minutes for users to see those changes.</p>
+<p>You can check the cache headers of a page with a curl command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-sI</span> https://www.gov.uk/vat-rates | <span class="nb">grep</span> <span class="s2">"cache-control: </span><span class="se">\|</span><span class="s2">age: </span><span class="se">\|</span><span class="s2">x-cache"</span>
+age: 107
+cache-control: max-age<span class="o">=</span>300, public,private
+x-cache: MISS, HIT
+x-cache-hits: 1
+</code></pre></div><p>Where:</p>
 
 <ul>
-<li><strong>Varnish</strong>: <a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=cache:clear_varnish[/your-path-here]"><code>rake cache:clear_varnish[/your-path-here]</code></a></li>
-<li><strong>Fastly</strong>: <a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=cache:clear_fastly[/your-path-here]"><code>rake cache:clear_fastly[/your-path-here]</code></a></li>
-<li><strong>Both</strong>: <a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=cache:clear[/your-path-here]"><code>rake cache:clear[/your-path-here]</code></a></li>
+<li><code>age</code> is time since the resource was cached</li>
+<li><code>cache-control</code> dictates how long a resource can be cached for</li>
+<li><code>x-cache</code> indicates whether the request was served from a cache (the two
+values are GOV.UK&rsquo;s internal varnish and Fastly CDN - a result of MISS, HIT
+indicates that Fastly CDN was a cache hit, and when Fastly CDN originally
+requested GOV.UK&rsquo;s varnish this was a cache miss),</li>
+<li><code>x-cache-hits</code> is the amount of cache hits on the CDN point of presence.</li>
 </ul>
-<h3 id='assets'>Assets</h3><p>If you need to clear the Fastly cache for a URL which is not <code>www.gov.uk</code> (e.g. for assets),
-you can provide a full URL to the <a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=cache:clear_fastly[%22https://assets.example.gov.uk/your-path-here%22]">Fastly cache clearing rake task</a>.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>rake cache:clear_fastly[<span class="s2">"https://assets.example.gov.uk/your-path-here"</span><span class="o">]</span>
-</code></pre></div><h2 id='purging-a-page-from-fastly-manually-e-g-if-gov-uk-production-is-dead'>Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)</h2><p>To purge content on the Fastly cache nodes, SSH onto a <code>cache</code> machine and use the
+<p>If an item is seemingly cached longer than expected or needs to be urgently
+removed from the cache, you can manually remove it by purging our caches.</p>
+<h2 id='purging-a-page-from-the-cache'>Purging a page from the cache</h2><p>There is a Jenkins task to clear an item from the Fastly CDN and GOV.UK internal
+varnish cache.</p>
+<p>If you enter a path (e.g. <code>/vat-rates</code>) it will remove the item from both
+caches. For resources that are not on <code>www.gov.uk</code>, such as assets,
+you can enter a full URL (e.g. <code>https://assets.example.gov.uk/your-path-here</code>)
+and this will remove them from Fastly - these items are not stored in the
+GOV.UK internal varnish.</p>
+
+<ul>
+<li><a href="https://deploy.integration.publishing.service.gov.uk/job/clear-cdn-cache/build">Clear CDN cache on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/build">Clear CDN cache on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/build">Clear CDN cache on Production</a></li>
+</ul>
+<h2 id='purging-a-page-from-fastly-manually-e-g-if-gov-uk-production-is-dead'>Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)</h2><p>To purge content on the Fastly cache nodes, SSH onto a <code>cache</code> machine and use the
 PURGE method against the URL you wish to purge. For instance:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-XPURGE</span> https://www.gov.uk/bank-holidays
 </code></pre></div><p>You should receive <code>ok</code> returned as a response. If not, you may wish to request
