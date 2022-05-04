@@ -23,7 +23,7 @@ class Manual
   end
 
   def pages_for_repo(repo_name)
-    manual_pages.select { |page| page.data.related_applications.to_a.include?(repo_name) }
+    manual_pages.select { |page| page.data.related_repos.to_a.include?(repo_name) }
   end
 
   def other_pages_from_section(other_page)

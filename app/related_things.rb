@@ -6,8 +6,8 @@ class RelatedThings
     @current_page = current_page
   end
 
-  def related_applications
-    @related_applications ||= current_page.data.related_applications.to_a.map do |repo_name|
+  def related_repos
+    @related_repos ||= current_page.data.related_repos.to_a.map do |repo_name|
       [repo_name, "/repos/#{repo_name}.html"]
     end
   end

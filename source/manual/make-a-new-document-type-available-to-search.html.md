@@ -4,7 +4,7 @@ title: Make a new document type available to search
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-related_applications: [search-api]
+related_repos: [search-api]
 ---
 
 Any document type that the Publishing API knows about can be added to our

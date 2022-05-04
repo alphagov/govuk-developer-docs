@@ -4,7 +4,7 @@ title: How to remove jQuery from JavaScript
 section: Frontend
 layout: manual_layout
 parent: "/manual.html"
-related_applications:
+related_repos:
  - govuk_publishing_components
 ---
 

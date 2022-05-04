@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 type: learn
 section: Frontend
-related_applications:
+related_repos:
  - static
  - slimmer
  - govuk_publishing_components

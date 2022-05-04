@@ -4,7 +4,7 @@ title: Search API index size has significantly increased/decreased
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
-related_applications: [search-api]
+related_repos: [search-api]
 ---
 
 This alert indicates that a large number of documents have been added to or
