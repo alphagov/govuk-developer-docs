@@ -4,7 +4,7 @@ title: Add an organisation's brand colour
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
-related_applications: [whitehall, government-frontend]
+related_repos: [whitehall, government-frontend]
 ---
 
 An organistion's brand colour is used to style their organisation page (such as

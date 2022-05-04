@@ -4,7 +4,7 @@ title: Rename a country
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-related_applications: [travel-advice-publisher, content-tagger, whitehall]
+related_repos: [travel-advice-publisher, content-tagger, whitehall]
 ---
 > **Note**
 >

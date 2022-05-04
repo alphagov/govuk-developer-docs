@@ -1,24 +1,24 @@
-RSpec.describe App do
+RSpec.describe Repo do
   describe "is_app?" do
     it "returns false if 'production_hosted_on' is omitted" do
-      expect(App.new({}).is_app?).to be(false)
+      expect(Repo.new({}).is_app?).to be(false)
     end
 
     it "returns true if 'production_hosted_on' is supplied" do
-      expect(App.new({ "production_hosted_on" => "aws" }).is_app?).to be(true)
+      expect(Repo.new({ "production_hosted_on" => "aws" }).is_app?).to be(true)
     end
   end
 
   describe "api_payload" do
     it "returns a hash of keys describing the app" do
       app_details = {
-        "github_repo_name" => "foo",
+        "repo_name" => "foo",
         "team" => "bar",
         "dependencies_team" => "baz",
         "production_hosted_on" => "aws",
       }
-      payload = App.new(app_details).api_payload
-      expect(payload[:app_name]).to eq(app_details["github_repo_name"])
+      payload = Repo.new(app_details).api_payload
+      expect(payload[:app_name]).to eq(app_details["repo_name"])
       expect(payload[:team]).to eq(app_details["team"])
       expect(payload[:dependencies_team]).to eq(app_details["dependencies_team"])
       expect(payload[:production_hosted_on]).to eq(app_details["production_hosted_on"])
@@ -28,13 +28,13 @@ RSpec.describe App do
 
   describe "production_url" do
     it "has a good default" do
-      app = App.new("type" => "Publishing apps", "github_repo_name" => "my-app")
+      app = Repo.new("type" => "Publishing apps", "repo_name" => "my-app")
 
       expect(app.production_url).to eql("https://my-app.publishing.service.gov.uk")
     end
 
     it "allows override" do
-      app = App.new("type" => "Publishing apps", "production_url" => "something else")
+      app = Repo.new("type" => "Publishing apps", "production_url" => "something else")
 
       expect(app.production_url).to eql("something else")
     end
@@ -42,7 +42,7 @@ RSpec.describe App do
 
   describe "aws_puppet_class" do
     before do
-      app_data = {
+      repo_data = {
         "calculators_frontend" => {
           "apps" => %w[
             finder-frontend
@@ -51,23 +51,19 @@ RSpec.describe App do
           ],
         },
       }
-      allow(Hosts).to receive(:aws_machines).and_return(app_data)
+      allow(Hosts).to receive(:aws_machines).and_return(repo_data)
     end
 
     it "should find puppet class via github repo name if neither app name nor puppet name provided" do
-      expect(App.new("github_repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
-    end
-
-    it "should find puppet class via app name" do
-      expect(App.new("app_name" => "licencefinder").aws_puppet_class).to eq("calculators_frontend")
+      expect(Repo.new("repo_name" => "finder-frontend").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should find puppet class via puppet name" do
-      expect(App.new("puppet_name" => "smartanswers", "github_repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
+      expect(Repo.new("puppet_name" => "smartanswers", "repo_name" => "foo").aws_puppet_class).to eq("calculators_frontend")
     end
 
     it "should return error message if no puppet class found" do
-      expect(App.new("github_repo_name" => "foo").aws_puppet_class)
+      expect(Repo.new("repo_name" => "foo").aws_puppet_class)
         .to eq("Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml")
     end
   end
@@ -77,7 +73,7 @@ RSpec.describe App do
     let(:app) do
       described_class.new(
         "type" => "Publishing app",
-        "github_repo_name" => "my-app",
+        "repo_name" => "my-app",
         "dashboard_url" => configured_dashboard_url,
       )
     end
@@ -104,7 +100,7 @@ RSpec.describe App do
     let(:rake_task) { "" }
     let(:app) do
       described_class.new(
-        "github_repo_name" => "content-publisher",
+        "repo_name" => "content-publisher",
         "machine_class" => "backend",
         "production_hosted_on" => production_hosted_on,
       )

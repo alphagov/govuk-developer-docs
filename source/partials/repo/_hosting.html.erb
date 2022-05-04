@@ -1,0 +1,7 @@
+<% if repo.production_hosted_on == "aws" %>
+  <strong><%= repo.hosting_name %></strong>, on the <strong><%= repo.aws_puppet_class %></strong> machine class
+<% elsif repo.is_app? %>
+  <strong><%= repo.hosting_name %></strong>
+<% else %>
+  N/A
+<% end %>

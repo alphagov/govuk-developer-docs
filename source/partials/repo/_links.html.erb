@@ -1,0 +1,21 @@
+<%
+
+links = [
+  (link_to(repo.production_url.gsub("https://", ""), repo.production_url, class: "govuk-link") if repo.production_url),
+  (link_to("Sentry (error tracking)", repo.sentry_url, class: "govuk-link") if repo.sentry_url),
+  (link_to("Manage repo", repo.management_url, class: "govuk-link") if repo.management_url),
+  (link_to("Puppet configuration", repo.puppet_url, class: "govuk-link") if repo.puppet_url),
+  (link_to("Deploy scripts", repo.deploy_url, class: "govuk-link") if repo.deploy_url),
+  (link_to("Deployment dashboard", repo.dashboard_url, class: "govuk-link") if repo.dashboard_url),
+  (link_to("API docs", repo.api_docs_url, class: "govuk-link") if repo.api_docs_url),
+  (link_to("Component guide", repo.component_guide_url, class: "govuk-link") if repo.component_guide_url),
+  (link_to("Metrics dashboard", repo.metrics_dashboard_url, class: "govuk-link") if repo.metrics_dashboard_url),
+]
+
+if links.any?
+%>
+<ul class="govuk-list">
+  <% links.each do |link| %>
+    <li><%= link %></li>
+  <% end %>
+<% end %>

@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 type: learn
-related_applications: [content-tagger]
+related_repos: [content-tagger]
 ---
 
 GOV.UK aims to organise content with a single taxonomy, [the topic taxonomy][topic-taxonomy], however due to legacy reasons there is a disassociated branch of this taxonomy known as the world taxonomy. The world taxonomy is used to tag guidance to particular world locations, for example [Latvia: doctors][latvia-doctors] is content tagged to the [Living in Latvia][live-latvia] section of the world taxonomy. The full list of world location pages can be seen on <https://www.gov.uk/world>.

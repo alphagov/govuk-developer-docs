@@ -8,10 +8,10 @@ RSpec.describe RunRakeTask do
 
     let(:rake_task) { "publishing_api:republish" }
 
-    describe "given an application instance" do
+    describe "given a Repo instance" do
       let(:application) do
-        App.new(
-          "github_repo_name" => "content-publisher",
+        Repo.new(
+          "repo_name" => "content-publisher",
           "machine_class" => "backend",
           "production_hosted_on" => "aws",
         )
@@ -45,10 +45,10 @@ RSpec.describe RunRakeTask do
       Capybara.string(described_class.terse_links(application))
     end
 
-    describe "given an application instance" do
+    describe "given a Repo instance" do
       let(:application) do
-        App.new(
-          "github_repo_name" => "content-publisher",
+        Repo.new(
+          "repo_name" => "content-publisher",
           "machine_class" => "backend",
           "production_hosted_on" => "aws",
         )

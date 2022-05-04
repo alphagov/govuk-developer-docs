@@ -1,30 +1,30 @@
 class ProxyPages
   def self.resources
-    app_docs +
+    repo_docs +
       govuk_schema_names +
-      app_overviews +
-      app_overviews_json +
+      repo_overviews +
+      repo_overviews_json +
       document_types +
       supertypes
   end
 
-  def self.app_docs
-    docs = Repos.public.map do |app|
-      docs_for_app = GitHubRepoFetcher.instance.docs(app.github_repo_name) || []
-      docs_for_app.map do |page|
+  def self.repo_docs
+    docs = Repos.public.map do |repo|
+      docs_for_repo = GitHubRepoFetcher.instance.docs(repo.repo_name) || []
+      docs_for_repo.map do |page|
         {
           path: page[:path],
           template: "templates/external_doc_template.html",
           frontmatter: {
-            title: "#{app.app_name}: #{page[:title]}",
+            title: "#{repo.repo_name}: #{page[:title]}",
             locals: {
-              title: "#{app.app_name}: #{page[:title]}",
+              title: "#{repo.repo_name}: #{page[:title]}",
               markdown: page[:markdown],
-              repository: app.github_repo_name,
+              repository: repo.repo_name,
               relative_path: page[:relative_path],
             },
             data: {
-              app_name: app.app_name,
+              repo_name: repo.repo_name,
               source_url: page[:source_url],
               latest_commit: page[:latest_commit],
             },
@@ -56,31 +56,31 @@ class ProxyPages
     end
   end
 
-  def self.app_overviews
-    Repos.all.map do |application|
+  def self.repo_overviews
+    Repos.all.map do |repo|
       {
-        path: "/repos/#{application.app_name}.html",
-        template: "templates/application_template.html",
+        path: "/repos/#{repo.repo_name}.html",
+        template: "templates/repo_template.html",
         frontmatter: {
-          title: application.page_title,
+          title: repo.page_title,
           locals: {
-            title: application.page_title,
-            description: "Everything about the #{application.app_name} application (#{application.description})",
-            application: application,
+            title: repo.page_title,
+            description: "Everything about #{repo.repo_name} (#{repo.description})",
+            repo: repo,
           },
         },
       }
     end
   end
 
-  def self.app_overviews_json
-    Repos.all.map do |application|
+  def self.repo_overviews_json
+    Repos.all.map do |repo|
       {
-        path: "/repos/#{application.app_name}.json",
+        path: "/repos/#{repo.repo_name}.json",
         template: "templates/json_response.json",
         frontmatter: {
           locals: {
-            payload: application.api_payload,
+            payload: repo.api_payload,
           },
         },
       }

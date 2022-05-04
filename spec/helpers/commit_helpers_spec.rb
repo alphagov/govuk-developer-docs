@@ -11,15 +11,15 @@ RSpec.describe CommitHelpers do
 
   describe "#commit_url" do
     it "returns the commit_url associated with the page data, if that exists" do
-      app_name = "some-repo"
+      repo_name = "some-repo"
       commit_sha = SecureRandom.hex(40)
       current_page = OpenStruct.new(data: OpenStruct.new(
-        app_name: app_name,
+        repo_name: repo_name,
         latest_commit: {
           sha: commit_sha,
         },
       ))
-      expect(helper.commit_url(current_page)).to eq("https://github.com/alphagov/#{app_name}/commit/#{commit_sha}")
+      expect(helper.commit_url(current_page)).to eq("https://github.com/alphagov/#{repo_name}/commit/#{commit_sha}")
     end
 
     it "returns commit URL for the commit associated with the source file of current_page" do

@@ -4,7 +4,7 @@ title: Transition a site to GOV.UK
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-related_applications: [bouncer, transition]
+related_repos: [bouncer, transition]
 ---
 
 When a site is going to move to GOV.UK, there are two ways that the old site

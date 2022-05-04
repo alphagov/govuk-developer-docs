@@ -5,7 +5,7 @@ parent: "/manual.html"
 layout: manual_layout
 section: Publishing
 type: learn
-related_applications: [content-tagger]
+related_repos: [content-tagger]
 ---
 
 The Topic Taxonomy is a classification scheme for organising and
