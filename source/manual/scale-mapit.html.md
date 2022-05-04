@@ -4,7 +4,7 @@ title: Scale Mapit
 layout: manual_layout
 parent: "/manual.html"
 section: Infrastructure
-related_applications:
+related_repos:
   - mapit
 ---
 

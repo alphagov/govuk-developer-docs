@@ -5,7 +5,7 @@ section: Transition
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-related_applications: [bouncer, transition]
+related_repos: [bouncer, transition]
 ---
 
 The Transition system is built to transition government websites to GOV.UK. The

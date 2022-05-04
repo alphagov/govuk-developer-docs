@@ -4,7 +4,7 @@ title: Request Fastly TLS certificate
 section: Transition
 layout: manual_layout
 parent: "/manual.html"
-related_applications: [bouncer, transition]
+related_repos: [bouncer, transition]
 ---
 
 When transitioning HTTPS domains, these are the steps to request a TLS

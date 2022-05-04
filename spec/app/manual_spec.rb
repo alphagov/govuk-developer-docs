@@ -58,8 +58,8 @@ RSpec.describe Manual do
     it "returns the pages that are relevant to a repo" do
       sitemap = double(resources: [
         double(path: "foo.html", data: double(title: "Won't be included", important: true, review_by: Date.today, section: "Foo", type: nil)),
-        double(path: "manual/foo.html", data: double(title: "Foo", related_applications: %w[publisher], section: "Foo", type: nil)),
-        double(path: "manual/bar.html", data: double(title: "Bar", related_applications: %w[collections], section: "Bar", type: nil)),
+        double(path: "manual/foo.html", data: double(title: "Foo", related_repos: %w[publisher], section: "Foo", type: nil)),
+        double(path: "manual/bar.html", data: double(title: "Bar", related_repos: %w[collections], section: "Bar", type: nil)),
       ])
 
       pages_for_repo = Manual.new(sitemap).pages_for_repo("publisher")
