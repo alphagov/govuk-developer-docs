@@ -57,6 +57,6 @@ Follow these Slack channels while working on Technical 2nd Line:
 
 [Technical 2nd Line dashboard]: https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&layout=2x1-responsive&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&url%5B%5D=
 [GOV.UK Technical 2nd Line Trello board]: https://trello.com/b/M7UzqXpk/govuk-2nd-line
-[install our Chrome extension]: https://github.com/alphagov/blinkenjs#chrome-extension
+[install our Chrome extension]: https://github.com/alphagov/govuk-secondline-blinken#chrome-extension
 [PagerDuty]: https://governmentdigitalservice.pagerduty.com
 [Zendesk]: https://govuk.zendesk.com
