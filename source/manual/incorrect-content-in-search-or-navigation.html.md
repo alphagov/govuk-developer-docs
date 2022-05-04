@@ -4,7 +4,7 @@ title: Content that doesn't show up correctly in search or list pages
 parent: "/manual.html"
 layout: manual_layout
 section: Publishing
-related_applications: [search-api]
+related_repos: [search-api]
 ---
 
 The Elasticsearch cluster utilised by [Search API](/repos/search-api.html) can

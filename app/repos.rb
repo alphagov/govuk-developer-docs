@@ -4,8 +4,8 @@ class Repos
   def self.all
     @all ||=
       YAML.load_file("data/repos.yml")
-        .map { |app_data| App.new(app_data) }
-        .sort_by(&:app_name)
+        .map { |repo_data| Repo.new(repo_data) }
+        .sort_by(&:repo_name)
   end
 
   def self.public
@@ -29,7 +29,7 @@ class Repos
   end
 
   def self.for_team(team)
-    Repos.grouped_by_team.fetch(team, []).map(&:app_name)
+    Repos.grouped_by_team.fetch(team, []).map(&:repo_name)
   end
 
   def self.no_known_owner

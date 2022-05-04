@@ -5,7 +5,7 @@ section: Assets
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-related_applications: [asset-manager, static]
+related_repos: [asset-manager, static]
 ---
 
 There are three types of asset files.

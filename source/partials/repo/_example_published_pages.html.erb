@@ -1,7 +1,7 @@
 <% absolute_path = Regexp.new('^([a-z]+://|//)') %>
 <%= GovukPublishingComponents.render(
   "govuk_publishing_components/components/list",
-  items: application.example_published_pages.map do |example|
+  items: repo.example_published_pages.map do |example|
     if absolute_path.match(example['link'])
       "<a href=\"#{example['link']}\" class=\"govuk-link\">#{example['title']}</a>"
     else

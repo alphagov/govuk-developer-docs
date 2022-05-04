@@ -5,7 +5,7 @@ section: Monitoring
 type: learn
 layout: manual_layout
 parent: "/manual.html"
-related_applications:
+related_repos:
   - hmrc-manuals-api
   - manuals-publisher
   - specialist-publisher

@@ -15,7 +15,7 @@
       <li>
         <ul class='subnav'>
         <% apps.each do |app| %>
-          <li><%= sidebar_link app.app_name, "/repos/#{app.app_name}.html" %></li>
+          <li><%= sidebar_link app.repo_name, "/repos/#{app.repo_name}.html" %></li>
         <% end %>
         </ul>
       </li>
@@ -24,7 +24,7 @@
 <% end %>
 
 <% wrap_layout :core do %>
-  <% app_slug = current_page.path.match(/apps\/([^\/]+)\//) %>
+  <% app_slug = current_page.path.match(/repos\/([^\/]+)\//) %>
   <%= GovukPublishingComponents.render("govuk_publishing_components/components/breadcrumbs", {
     breadcrumbs: [
       { title: "Home", url: "/" },
