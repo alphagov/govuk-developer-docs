@@ -29,25 +29,19 @@ GOV.UK AWS admin users can give access to developers who need to make changes to
    credential helper and add CodeCommit as a remote:
 
    ```
-   git config credential.helper '!aws codecommit credential-helper $@'
-   git config credential.UseHttpPath true
    git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/<app>
    ```
 
-1. Get some credentials for the GOV.UK Tools AWS account:
-
-   ```
-   gds aws govuk-tools-poweruser -e
-   ```
-
-1. Fetch the AWS upstream by running `git fetch aws`
+1. Fetch the AWS upstream by running `git fetch aws`.
+   You'll need to provide a username and password, which you can retrieve from govuk-secrets
+   (pass/2ndline/govuk-repo-mirror/https_git_credentials.gpg).
 
 1. Checkout a new branch on the upstream by running `git checkout -b aws/my-super-secret-fix`
 
 1. Make and commit your changes to this branch, and make sure all tests run successfully
    locally (since CodeCommit does not run tests)
 
-1. Push your changes to CodeCommit by running `git push`
+1. Push your changes to CodeCommit by running `git push -u aws HEAD`
 
 1. Tag your changes by running `git tag release_XYZ`, where XYZ is one more that the latest
    release tag for the application you're working on, as reported by the Release app
@@ -56,19 +50,19 @@ GOV.UK AWS admin users can give access to developers who need to make changes to
 
 #### Deploying the code change
 
-1. Review the pull request on AWS CodeCommit through the [AWS Console](https://eu-west-1.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-1#) (access to GOV.UK repos must be granted by a GDS AWS administrator).
+1. Review the pull request on AWS CodeCommit through the [AWS Console](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2) (access to GOV.UK repos must be granted by a GDS AWS administrator).
 
 1. Create a release tag manually in git. This should follow the standard format
    `release_X`. Tag the branch directly instead of merging it.
 
-1. Don't use the release app. Go directly to the `Deploy_App` Jenkins job, and
+1. Don't use the Release app. Go directly to the `Deploy_App` Jenkins job, and
    check `DEPLOY_FROM_AWS_CODECOMMIT`.
 
 #### After deploying the change
 
 1. Push the branch and tag to GitHub.
 
-1. Merge the branch into master.
+1. Merge the branch into `main`.
 
 1. Record the missing deployment in the Release app.
 
