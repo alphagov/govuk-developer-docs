@@ -8,38 +8,49 @@ important: true
 ---
 
 The `www.gov.uk` domain is served through Fastly, which honours the
-cache control headers sent by Varnish. When new content is published, the
-[Cache Clearing Service][cache-clearing-service] should take care of purging
-the page from Varnish and Fastly.
+cache control headers sent by GOV.UK's running instance of [Varnish][].
+Most pages are set with cache headers of 5 minutes, so when new changes
+are published it may take 5 minutes for users to see those changes.
 
-[cache-clearing-service]: https://github.com/alphagov/cache-clearing-service
+[Varnish]: https://varnish-cache.org/
 
-If, for whatever reason, this hasn't worked properly content already seen by
-Fastly may be cached for up to an hour (depending on the Varnish cache
-headers). In this case, you may need to manually purge a page from the two
-caches.
+You can check the cache headers of a page with a curl command:
+
+```bash
+$ curl -sI https://www.gov.uk/vat-rates | grep "cache-control: \|age: \|x-cache"
+age: 107
+cache-control: max-age=300, public,private
+x-cache: MISS, HIT
+x-cache-hits: 1
+```
+
+Where:
+
+- `age` is time since the resource was cached
+- `cache-control` dictates how long a resource can be cached for
+- `x-cache` indicates whether the request was served from a cache (the two
+  values are GOV.UK's internal varnish and Fastly CDN - a result of MISS, HIT
+  indicates that Fastly CDN was a cache hit, and when Fastly CDN originally
+  requested GOV.UK's varnish this was a cache miss),
+- `x-cache-hits` is the amount of cache hits on the CDN point of presence.
+
+If an item is seemingly cached longer than expected or needs to be urgently
+removed from the cache, you can manually remove it by purging our caches.
 
 ## Purging a page from the cache
 
-Cache Clearing Service provides three Rake tasks which can be used to clear
-the various caches manually:
+There is a Jenkins task to clear an item from the Fastly CDN and GOV.UK internal
+varnish cache.
 
-- **Varnish**: [`rake cache:clear_varnish[/your-path-here]`][jenkins-varnish-task]
-- **Fastly**: [`rake cache:clear_fastly[/your-path-here]`][jenkins-fastly-task]
-- **Both**: [`rake cache:clear[/your-path-here]`][jenkins-both-task]
+If you enter a path (e.g. `/vat-rates`) it will remove the item from both
+caches. For resources that are not on `www.gov.uk`, such as assets,
+you can enter a full URL (e.g. `https://assets.example.gov.uk/your-path-here`)
+and this will remove them from Fastly - these items are not stored in the
+GOV.UK internal varnish.
 
-[jenkins-varnish-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_varnish[/your-path-here]
-[jenkins-fastly-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[/your-path-here]
-[jenkins-both-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear[/your-path-here]
-
-### Assets
-
-If you need to clear the Fastly cache for a URL which is not `www.gov.uk` (e.g. for assets),
-you can provide a full URL to the [Fastly cache clearing rake task](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=cache-clearing-service&MACHINE_CLASS=backend&RAKE_TASK=cache:clear_fastly[%22https://assets.example.gov.uk/your-path-here%22]).
-
-```sh
-$ rake cache:clear_fastly["https://assets.example.gov.uk/your-path-here"]
-```
+- [Clear CDN cache on Integration](https://deploy.integration.publishing.service.gov.uk/job/clear-cdn-cache/build)
+- [Clear CDN cache on Staging](https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/build)
+- [Clear CDN cache on Production](https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/build)
 
 ## Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)
 
