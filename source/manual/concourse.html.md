@@ -22,19 +22,13 @@ To change pipelines within this Concourse team, you need to be a member of the G
 
 ## Pipelines
 
-### What pipelines do we currently have?
-
-#### The info pipeline
-
-The `info` pipeline is a meta pipeline. Its main use is as a method to store secrets that can then be used in other pipelines. How to add and remove secrets is documented [in the Reliability Engineering manual](https://reliability-engineering.cloudapps.digital/continuous-deployment.html#secrets).
+GOV.UK currently has no Concourse pipelines.
 
 ### Creating new pipelines
 
-The above pipelines serve as good examples for how to do continuous deployment and scheduled tasks with Concourse.
-
 Whenever a pipeline YAML is created or changed, it needs to be applied for the changes to take effect.
 
-Some of our Concourse pipelines use the beta Concourse "self-update" feature that runs a task whenever a change to the pipeline YAML is merged to master. If you're writing a new Concourse pipeline, you have to run `fly set-pipeline` manually:
+Concourse pipelines can use the beta Concourse "self-update" feature that runs a task whenever a change to the pipeline YAML is merged to master. If you're writing a new Concourse pipeline, you have to run `fly set-pipeline` manually:
 
 1. If this is your first time using Concourse, download the `fly` CLI by clicking the appropriate OS logo at the bottom right corner of the [team page](https://cd.gds-reliability.engineering/teams/govuk-tools) and move it to somewhere in your `$PATH`. If that doesn't download an executable file, try `brew install fly`.
 1. Set a target for the team you want to login to: `fly login -c https://cd.gds-reliability.engineering -n govuk-tools -t cd-govuk-tools`
