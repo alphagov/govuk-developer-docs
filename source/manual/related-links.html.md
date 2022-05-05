@@ -46,11 +46,9 @@ Machine learning generated related links are created exclusively for Whitehall c
 - If links exist with `ordered_related_items` for a content item, we do not show generated related links.
 - Requests need to have the header `Govuk-Use-Recommended-Related-Links` header set to `True` in order to show suggested related links - [this is set by the CDN for all requests](https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L242).
 
-### Concourse pipeline details
-
-Related links are generated and ingested via the following jobs, which are defined in the [govuk-related-links pipeline on Concourse](https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-related-links).
-
 #### `link-generation`
+
+<https://deploy.integration.publishing.service.gov.uk/job/run-related-links-generation/>
 
 This job runs the process to generate new related links for a subset of pages on GOV.UK, via the `provision-generation-machine` and `run_link_generation` scripts, which in turn triggers the Python script `run_all.py`.
 
@@ -59,6 +57,8 @@ The related links generated from this process are stored in an S3 environment-sp
 This job runs once every two weeks via a `time` resource attached to the production `run-generation-production` step.
 
 #### `link-ingestion`
+
+<https://deploy.integration.publishing.service.gov.uk/job/run-related-links-ingestion/>
 
 This job runs the process of ingesting related links via the Publishing API.
 
