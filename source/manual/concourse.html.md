@@ -24,10 +24,6 @@ To change pipelines within this Concourse team, you need to be a member of the G
 
 ### What pipelines do we currently have?
 
-#### The coronavirus forms pipelines
-
-More information about these can be found [on the docs page for the forms](/manual/covid-19-services.html#deployment).
-
 #### The info pipeline
 
 The `info` pipeline is a meta pipeline. Its main use is as a method to store secrets that can then be used in other pipelines. How to add and remove secrets is documented [in the Reliability Engineering manual](https://reliability-engineering.cloudapps.digital/continuous-deployment.html#secrets).
