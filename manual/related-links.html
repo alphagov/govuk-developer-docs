@@ -138,9 +138,6 @@
             <a href="#when-we-show-the-new-related-links"><span>When we show the new related links</span></a>
           </li>
           <li>
-            <a href="#concourse-pipeline-details"><span>Concourse pipeline details</span></a>
-          </li>
-          <li>
             <a href="#rolling-back-links"><span>Rolling back Links</span></a>
           </li>
         </ul>
@@ -195,15 +192,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7e7c2da3df7812653eb71fd5a046c4f96986a698">26 Oct 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e5a912253b78c35dde2c8eff19e3c93c75716f27">5 May 2022</a>
 </div>
 
  <h1 id='header'>Related links</h1> <h2 id='manual'>Manual</h2><p>Related links can be added or removed manually through <a href="https://content-tagger.publishing.service.gov.uk">Content Tagger</a>.
@@ -230,11 +220,12 @@ links using Content Tagger.</p>
 <li>If links exist with <code>ordered_related_items</code> for a content item, we do not show generated related links.</li>
 <li>Requests need to have the header <code>Govuk-Use-Recommended-Related-Links</code> header set to <code>True</code> in order to show suggested related links - <a href="https://github.com/alphagov/govuk-cdn-config/blob/master/vcl_templates/www.vcl.erb#L242">this is set by the CDN for all requests</a>.</li>
 </ul>
-<h3 id='concourse-pipeline-details'>Concourse pipeline details</h3><p>Related links are generated and ingested via the following jobs, which are defined in the <a href="https://cd.gds-reliability.engineering/teams/govuk-tools/pipelines/govuk-related-links">govuk-related-links pipeline on Concourse</a>.</p>
-<h4 id='link-generation'><code>link-generation</code></h4><p>This job runs the process to generate new related links for a subset of pages on GOV.UK, via the <code>provision-generation-machine</code> and <code>run_link_generation</code> scripts, which in turn triggers the Python script <code>run_all.py</code>.</p>
+<h4 id='link-generation'><code>link-generation</code></h4><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-related-links-generation/">https://deploy.integration.publishing.service.gov.uk/job/run-related-links-generation/</a></p>
+<p>This job runs the process to generate new related links for a subset of pages on GOV.UK, via the <code>provision-generation-machine</code> and <code>run_link_generation</code> scripts, which in turn triggers the Python script <code>run_all.py</code>.</p>
 <p>The related links generated from this process are stored in an S3 environment-specific <code>govuk-related-links</code> bucket.</p>
 <p>This job runs once every two weeks via a <code>time</code> resource attached to the production <code>run-generation-production</code> step.</p>
-<h4 id='link-ingestion'><code>link-ingestion</code></h4><p>This job runs the process of ingesting related links via the Publishing API.</p>
+<h4 id='link-ingestion'><code>link-ingestion</code></h4><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-related-links-ingestion/">https://deploy.integration.publishing.service.gov.uk/job/run-related-links-ingestion/</a></p>
+<p>This job runs the process of ingesting related links via the Publishing API.</p>
 <p>Links are retrieved from the environment-specific S3 bucket mentioned previously and then fed (in batches) to the Publishing API. There is a 20 minute delay between batches. Exclusions are applied during this stage from a <code>related_link_exclusions.json</code> file which is available in S3; for these links, we obtain the respective content ids and use them to remove any suggested links that may exist for the current batch of links being ingested.</p>
 <p>This job runs once every two weeks via a <code>time</code> resource attached to the production <code>run-generation-production</code> step, and specifically runs a few days after the generation of new related links takes place.</p>
 <h3 id='rolling-back-links'>Rolling back Links</h3><p>Should we ever need to roll back any suggested related links, there are a number of ways we can do this, which are described below. If the request to roll back links is coming from a content designer, the process at the top of this document should be applied unless the request is to roll back links for more than a few pages.</p>
