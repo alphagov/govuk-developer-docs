@@ -31,7 +31,7 @@ a copy.
 - [Original GitHub Repository](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form)
 - [Information on how to bring this service back to life](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/docs/how-to-bring-back-this-service.md)
 - [PaaS deployment YAML file](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/76ba8ce4e6b08bc2a7c3cc6acb9cdaea35530933/concourse/tasks/deploy-to-govuk-paas.yml) for [restoring the PaaS infrastructure](#restoring-the-paas-infrastructure)
-- [Concourse pipeline YAML definition file](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/concourse/pipeline.yml) for [restoring the Concourse pipeline](#restoring-the-concourse-pipeline)
+- [Concourse pipeline YAML definition file](https://github.com/alphagov/govuk-coronavirus-business-volunteer-form/blob/master/concourse/pipeline.yml) for restoring the Concourse pipeline
 - Here are screenshots of the [required settings](https://drive.google.com/file/d/1kNoWpiF494Yng6HNc_wz2R_WyRpFs6y8/view?usp=sharing) and [optional settings](https://drive.google.com/file/d/12gs79eNyy7CUb3fmOTcpaSNojdX0LME8/view?usp=sharing) to recreate the Pingdom check
 - [Restoring the Sentry error monitor](https://drive.google.com/file/d/1olTHkQwwq0mlMWsg3BOyjwFy2xhuzcf9/view?usp=sharing)
 - [Restoring the AWS infrastructure](https://github.com/alphagov/covid-engineering/pull/948)
@@ -89,10 +89,6 @@ Here are a series of screenshots that may assist with the recreation process:
 - [Backing services](https://drive.google.com/file/d/1vd6JtUJxPqTz6kC4ShjkxL4SPa11Pqu4/view?usp=sharing)
 - [Business volunteer service](https://drive.google.com/file/d/1chsWl-MyAZKH00mrxFhkMCC0W35i7EMW/view?usp=sharing)
 - [Vulnerable people service](https://drive.google.com/file/d/17s-uCd1lvrzIkRqOebOgigM7jp0Vm07R/view?usp=sharing)
-
-## Restoring the Concourse pipeline
-
-Details on how to restore or recreate a Concourse pipeline can be found [here](https://docs.publishing.service.gov.uk/manual/concourse.html#creating-new-pipelines).
 
 ## Restoring the PagerDuty alert
 

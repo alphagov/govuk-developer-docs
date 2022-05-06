@@ -7,9 +7,9 @@ parent: "/manual.html"
 ---
 
 [GitHub Actions](https://github.com/features/actions) is an automated workflow
-system that GOV.UK uses for [Continuous Integration (CI)][ci], we also have
-[Jenkins](/manual/testing-projects.html) and [Concourse](/manual/concourse.html)
-that provide similar functionality. In [GOV.UK RFC 123][] we decided that
+system that GOV.UK uses for [Continuous Integration (CI)][ci]. We also have
+[Jenkins](/manual/testing-projects.html) (and previously had Concourse) which
+provides similar functionality. In [GOV.UK RFC 123][] we decided that
 GitHub Actions is the preferred platform for GOV.UK CI usage where the wider
 platform integration of Jenkins is not required.
 
