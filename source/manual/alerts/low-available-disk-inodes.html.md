@@ -30,13 +30,27 @@ with a row for each filesystem currently mounted.
 ### Low available disk inodes (Jenkins)
 
 If Jenkins is running out of inodes (rather than disk space) then it may be
-possible to free some by clearing out old workspaces:
+possible to free some by clearing out old workspaces (on the `ci-agent` machines), or failed jobs (on the `ci-master` machine):
+
+#### Clearing old workspaces
 
 ```sh
 $ sudo find /var/lib/jenkins/workspace/ -maxdepth 1 -type d -mtime +1 -exec rm -rf {} \;
 ```
 
 This will find any directories that are older than 1 day and delete them.
+
+#### Clearing failed jobs
+
+```sh
+$ sudo find /var/lib/jenkins/jobs/ -mindepth 3 -maxdepth 3 -type d -mtime +30 | grep -v -P "main|master" | xargs -I {} sudo rm -rf {}
+```
+
+This will find any job branches that are older than 30 days (except for main and master, which it might be prudent to keep) and delete them. If you want to know how many folders will be affected, you can see with:
+
+```sh
+$ sudo find /var/lib/jenkins/jobs/ -mindepth 3 -maxdepth 3 -type d -mtime +30 | grep -v -P "main|master" | wc -l
+```
 
 ### Low available disk space on Jenkins
 
