@@ -395,7 +395,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/696779fa49de5daf31a13783791b056e39bb3807">23 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0646b2b87a7ce11c1d9363358c903e7054c02595">9 May 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Analytics</h1>
@@ -623,7 +623,7 @@ for pages like:</p>
 named tracker, and sessions will persist to the other domain.</p>
 <h3 id="adding-more-domains-to-gov-uks-cross-domain-linker">Adding more domains to GOV.UK's cross domain linker</h3>
 <p>Once a service starts sending analytics data to the shared GA property and has configured their system to include <code>www.gov.uk</code> in their cross domain linking, we must also configure <code>www.gov.uk</code> to include their domain in our cross linker configuration.</p>
-<p>Add the domain of the service to <a href="https://github.com/alphagov/static/blob/master/app/assets/javascripts/analytics/init.js.erb#L44"><code>init.js.erb</code></a>.</p>
+<p>Add the domain of the service to <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/analytics.js.erb"><code>init.js.erb</code></a>.</p>
 <p>Here's an <a href="https://github.com/alphagov/static/pull/1845">example of an earlier PR</a> to do this.</p>
 <p>Only the domain should be added, GA will ignore any path details e.g. <code>/government/service/</code></p>
 <p>Note that GA matches subdomains of any domains added this way. So <code>passport.service.gov.uk</code> also includes <code>www.passport.service.gov.uk</code>.</p>

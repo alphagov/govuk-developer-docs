@@ -395,7 +395,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b248ebf79fd917b4c4ff78e691f72fedbd104567">16 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0646b2b87a7ce11c1d9363358c903e7054c02595">9 May 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component Conventions</h1>
@@ -513,8 +513,8 @@
 &lt;% endif %&gt;
 </code></pre>
 <p>If a component includes a heading, consider including an option to control the heading level (see the <a href="https://components.publishing.service.gov.uk/component-guide/heading/specific_heading_level">heading component</a> for example).</p>
-<p>Components can use other components within their template, if required (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_input.html.erb#L37">input component</a> for example).</p>
-<p>Complex components can be split into smaller partials to make them easier to understand and maintain (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/views/govuk_publishing_components/components/_feedback.html.erb">feedback component</a> for example).</p>
+<p>Components can use other components within their template, if required (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/views/govuk_publishing_components/components/_input.html.erb#L37">input component</a> for example).</p>
+<p>Complex components can be split into smaller partials to make them easier to understand and maintain (see the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/views/govuk_publishing_components/components/_feedback.html.erb">feedback component</a> for example).</p>
 <p>Components should not have an option to include arbitrary classes as this could violate the principle of isolation. If there is a requirement for a styling variation on a component this should be included as an option e.g. <code>small: true</code>.</p>
 <h2 id="write-documentation">Write documentation</h2>
 <p>Each component is represented with a single <code>.yml</code> file. eg <code>lead_paragraph.yml</code></p>
@@ -619,7 +619,7 @@ examples:
 </code></pre>
 <h4 id="accessibility-acceptance-criteria"><a href="/repos/govuk_publishing_components/accessibility_acceptance_criteria.html">Accessibility Acceptance Criteria</a></h4>
 <p>Markdown listing what this component must do to be accessible.</p>
-<p><a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/models/govuk_publishing_components/shared_accessibility_criteria.rb">Shared accessibility criteria</a> can be included in a list as shown. They are pre-written accessibility criteria that can apply to more than one component, created to avoid duplication. For example, links within components should all accept focus, be focusable with a keyboard, etc.</p>
+<p><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/models/govuk_publishing_components/shared_accessibility_criteria.rb">Shared accessibility criteria</a> can be included in a list as shown. They are pre-written accessibility criteria that can apply to more than one component, created to avoid duplication. For example, links within components should all accept focus, be focusable with a keyboard, etc.</p>
 <p>A component can have accessibility criteria, shared accessibility criteria, or both.</p>
 <h4 id="description">Description</h4>
 <p>An example can have an optional description. This is a govspeak markdown block.</p>
@@ -640,7 +640,7 @@ examples:
 </code></pre>
 <p>The component guide will wrap a <code>dark_background</code> context example with a <code>dark-background</code> class that sets the parent element background color to govuk-blue. The component should either already work on a dark background or contain a param that, when set to <code>true</code>, allows it to work against darker colours.</p>
 <h2 id="styles">Styles</h2>
-<p>With the exception of namespaces, follow the <a href="https://github.com/alphagov/govuk-frontend/blob/master/docs/contributing/coding-standards/css.md">GOV.UK Frontend CSS conventions</a>, which describes in more detail our approach to namespaces, linting and BEM (block, element, modifier) CSS naming methodology.</p>
+<p>With the exception of namespaces, follow the <a href="https://github.com/alphagov/govuk-frontend/blob/main/docs/contributing/coding-standards/css.md">GOV.UK Frontend CSS conventions</a>, which describes in more detail our approach to namespaces, linting and BEM (block, element, modifier) CSS naming methodology.</p>
 <p>Components can rely on classes from GOV.UK Frontend to allow for modification that build on top of the styles from the Design System. This follows the <a href="https://design-system.service.gov.uk/get-started/extending-and-modifying-components/#small-modifications-to-components">recommendations for extending</a> from the Design System guide.</p>
 <p>For example, extending the button from GOV.UK Frontend could be done like so:</p>
 <pre lang="html"><code>&lt;button class="govuk-button gem-c-button--inverse"&gt;
@@ -653,7 +653,7 @@ examples:
 <p><code>.block__element {}</code></p>
 <p><code>.block--modifier {}</code></p>
 <p><code>.block__element--modifier {}</code></p>
-<p>All CSS selectors should follow the BEM naming convention shown above, explained in <a href="https://github.com/alphagov/govuk-frontend/blob/master/docs/contributing/coding-standards/css.md#block-element-modifier-bem">more detail here</a>.</p>
+<p>All CSS selectors should follow the BEM naming convention shown above, explained in <a href="https://github.com/alphagov/govuk-frontend/blob/main/docs/contributing/coding-standards/css.md#block-element-modifier-bem">more detail here</a>.</p>
 <p>Note: to avoid long and complicated class names, we follow the <a href="http://getbem.com/faq/#css-nested-elements">BEM guidance</a> that classes do not have to reflect the nested nature of the DOM. We also try to avoid nesting classes too deeply so that styles can be overridden if needed.</p>
 <pre lang="scss"><code>  // Avoid this:
   .block__elem1__elem2__elem3
@@ -683,9 +683,9 @@ bundle exec govuk-lint-sass app/assets/stylesheets/components
 </code></pre>
 <p>SVGs can also be used for images, ideally inline in templates and compressed.</p>
 <h2 id="javascript">JavaScript</h2>
-<p>Follow the <a href="https://github.com/alphagov/govuk-frontend/blob/master/docs/contributing/coding-standards/js.md">GOV.UK Frontend JS conventions</a>.</p>
+<p>Follow the <a href="https://github.com/alphagov/govuk-frontend/blob/main/docs/contributing/coding-standards/js.md">GOV.UK Frontend JS conventions</a>.</p>
 <p>Scripts should use the <a href="/repos/govuk_publishing_components/javascript-modules.html">module pattern</a> and be linted using <a href="https://standardjs.com/">StandardJS</a>.</p>
-<p>Most components should have an option to include arbitrary data attributes (see the <a href="https://components.publishing.service.gov.uk/component-guide/checkboxes/checkboxes_with_data_attributes">checkboxes component</a> for example). These can be used for many purposes including tracking (see the <a href="https://components.publishing.service.gov.uk/component-guide/select/with_tracking">select component</a> for <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/components/select.js">example code</a>) but specific tracking should only be added to a component where there is a real need for it.</p>
+<p>Most components should have an option to include arbitrary data attributes (see the <a href="https://components.publishing.service.gov.uk/component-guide/checkboxes/checkboxes_with_data_attributes">checkboxes component</a> for example). These can be used for many purposes including tracking (see the <a href="https://components.publishing.service.gov.uk/component-guide/select/with_tracking">select component</a> for <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/components/select.js">example code</a>) but specific tracking should only be added to a component where there is a real need for it.</p>
 <p>Some <a href="https://github.com/alphagov/govuk_publishing_components/tree/master/app/assets/javascripts/govuk_publishing_components/lib">common JavaScript modules</a> are available. If new functionality is required, consider adding it as a common module.</p>
 <h2 id="tests">Tests</h2>
 <p>Component tests should include a check that the component doesn't fail if no data is passed.</p>
@@ -711,7 +711,7 @@ bundle exec govuk-lint-sass app/assets/stylesheets/components
 &lt;%= card_helper.heading_tag %&gt;
 </code></pre>
 <h3 id="shared-helper">Shared helper</h3>
-<p>There is a <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/lib/govuk_publishing_components/presenters/shared_helper.rb">shared helper</a> that can provide common functionality to all components. This includes:</p>
+<p>There is a <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/lib/govuk_publishing_components/presenters/shared_helper.rb">shared helper</a> that can provide common functionality to all components. This includes:</p>
 <ul>
 <li>set margin bottom and top</li>
 <li>set heading level and heading font size</li>

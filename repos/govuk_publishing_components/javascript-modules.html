@@ -395,7 +395,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/e292f20f97bb93acf3be2760f8543199925f187c">29 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0646b2b87a7ce11c1d9363358c903e7054c02595">9 May 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # JavaScript Modules</h1>
@@ -408,7 +408,7 @@
   &lt;strong&gt;Some other markup inside the module&lt;/strong&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Modules are found and started in <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/dependencies.js">dependencies.js</a> by including <code>./modules.js</code> and running the following. This is called by <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/application.js#L1">static</a> once for all applications on GOV.UK.</p>
+<p>Modules are found and started in <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/dependencies.js">dependencies.js</a> by including <code>./modules.js</code> and running the following. This is called by <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/application.js#L1">static</a> once for all applications on GOV.UK.</p>
 <pre lang="javascript"><code>document.addEventListener('DOMContentLoaded', function () {
   GOVUK.modules.start()
 })
@@ -435,7 +435,7 @@ GOVUK.modules.start($container)
   } else {
     this.startModule = this.startModule.bind(this)
     window.addEventListener('cookie-consent', this.startModule)
-  }  
+  }
 }
 
 AnExampleModule.prototype.startModule = function () {

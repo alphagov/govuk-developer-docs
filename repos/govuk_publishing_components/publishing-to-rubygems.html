@@ -394,15 +394,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7c9580f9d2cce108f7c8e9f9704cb90fb4519d6d">15 Jul 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/78d6890715df911d1b276e1ee38ea6521dfcf006">9 May 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Publishing to RubyGems</h1>
@@ -411,7 +404,7 @@
 <p>Before publishing a new version <a href="https://github.com/alphagov/govuk_publishing_components/pulls?q=is%3Apr+is%3Aopen+review%3Aapproved">check the open and approved pull requests</a> and reach out to the authors to see if you can get their work published in the same release.</p>
 <ol>
 <li>
-<p>Checkout <strong>master</strong> and pull latest changes.</p>
+<p>Checkout <strong>main</strong> and pull latest changes.</p>
 </li>
 <li>
 <p>Create and checkout a new branch (<code>release-[version-number]</code>).
@@ -430,7 +423,7 @@ The version number is determined by looking at the <a href="https://github.com/a
 <p>See <a href="https://semver.org/">Semantic Versioning</a> for more information.</p>
 <ol start="3">
 <li>
-<p>Update <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a> "Unreleased" heading with the new version number and <a href="https://github.com/alphagov/govuk_publishing_components/commits/master">review the latest commits</a> to make sure the latest changes are correctly reflected in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/(/CHANGELOG.md)">CHANGELOG</a>.</p>
+<p>Update <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/CHANGELOG.md"><code>CHANGELOG.md</code></a> "Unreleased" heading with the new version number and <a href="https://github.com/alphagov/govuk_publishing_components/commits/main">review the latest commits</a> to make sure the latest changes are correctly reflected in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/(/CHANGELOG.md)">CHANGELOG</a>.</p>
 </li>
 <li>
 <p>Update <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/lib/govuk_publishing_components/version.rb"><code>lib/govuk_publishing_components/version.rb</code></a> version with the new version number.</p>
@@ -452,7 +445,7 @@ The version number is determined by looking at the <a href="https://github.com/a
 <p>Create a pull request and copy the changelog text for the current version in the pull request description.</p>
 </li>
 <li>
-<p>Once the pull request is approved, merge to master. This action will trigger the CI to publish the new version to RubyGems. A <a href="https://github.com/dependabot">dependabot</a> pull request will automatically be raised in frontend applications.</p>
+<p>Once the pull request is approved, merge into the <code>main</code> branch. This action will trigger the CI to publish the new version to RubyGems. A <a href="https://github.com/dependabot">dependabot</a> pull request will automatically be raised in frontend applications.</p>
 </li>
 </ol>
 <p>See an <a href="https://github.com/alphagov/govuk_publishing_components/pull/873/files">example pull request</a> for publishing a new version to RubyGems.</p>
