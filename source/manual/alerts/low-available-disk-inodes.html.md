@@ -6,6 +6,8 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+See also: [low available disk space](low-available-disk-space.html)
+
 This alerts means that a machine's filesystem has too many files or directories.
 
 An inode is a data structure used on unix filesystems to store metadata about files and dirs. On a given filesystem the number of inodes is limited, so a machine may run out if it creates too many files -- even if there's plenty of disk space left. The solution is therefore to remove unused files or dirs.
