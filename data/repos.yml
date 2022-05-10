@@ -78,6 +78,14 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: ckan-helm
+  type: Utilities
+  team: "#govuk-replatforming"
+
+- repo_name: ckan-mock-harvest-sources
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+
 - repo_name: ckanext-datagovuk
   puppet_name: ckan
   type: data.gov.uk apps
@@ -159,6 +167,11 @@
   sentry_url: https://sentry.io/govuk/publish-data
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
 
+- repo_name: datagovuk_publish_elasticsearch_monitor
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  production_hosted_on: paas
+
 - repo_name: datagovuk_publish_queue_monitor
   production_hosted_on: paas
   type: data.gov.uk apps
@@ -187,6 +200,7 @@
 
 - repo_name: eligibility-viewer
   private_repo: true
+  retired: true
   team: "#govuk-data-labs"
   type: Data science
   description: Prototype to show content with eligibility based on a user's circumstances
@@ -364,6 +378,14 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-helm-charts
+  type: Utilities
+  team: "#govuk-replatforming"
+
+- repo_name: govuk-infrastructure
+  type: Utilities
+  team: "#govuk-replatforming"
+
 - repo_name: govuk-jenkinslib
   team: "#govuk-platform-reliability-team"
   type: Utilities
@@ -380,11 +402,19 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-kubernetes-cluster-user-docs
+  type: Utilities
+  team: "#govuk-replatforming"
+
 - repo_name: govuk-load-testing
   type: Utilities
   team: "#govuk-platform-reliability-team"
   sentry_url: false
   dashboard_url: false
+
+- repo_name: govuk-network-data
+  team: "#govuk-data-labs"
+  type: Data science
 
 - repo_name: govuk-pact-broker
   team: "#govuk-platform-reliability-team"
@@ -407,6 +437,11 @@
   description: Machine learning model to recommend related content
   sentry_url: false
   dashboard_url: false
+
+- repo_name: govuk-replatforming-discovery-2020
+  private_repo: true
+  type: Utilities
+  team: "#govuk-replatforming"
 
 - repo_name: govuk-saas-config
   team: "#govuk-platform-reliability-team"
@@ -459,6 +494,10 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+
+- repo_name: govuk_ab_analysis
+  team: "#govuk-data-labs"
+  type: Data science
 
 - repo_name: govuk_ab_testing
   team: "#find-and-view-tech"
@@ -855,6 +894,10 @@
   type: APIs
   team: "#govuk-platform-reliability-team"
   production_hosted_on: aws
+
+- repo_name: tagging-suggester
+  team: "#govuk-data-labs"
+  type: Data science
 
 - repo_name: transition
   type: Transition apps
