@@ -218,6 +218,7 @@
       <li>
         <ul class='subnav'>
           <li><a href="/repos/bulk-merger.html"><span>bulk-merger</span></a></li>
+          <li><a href="/repos/ckan-helm.html"><span>ckan-helm</span></a></li>
           <li><a href="/repos/email-alert-monitoring.html"><span>email-alert-monitoring</span></a></li>
           <li><a href="/repos/govspeak-preview.html"><span>govspeak-preview</span></a></li>
           <li><a href="/repos/govuk-app-deployment.html"><span>govuk-app-deployment</span></a></li>
@@ -231,7 +232,10 @@
           <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
           <li><a href="/repos/govuk-dns.html"><span>govuk-dns</span></a></li>
           <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-helm-charts.html"><span>govuk-helm-charts</span></a></li>
+          <li><a href="/repos/govuk-infrastructure.html"><span>govuk-infrastructure</span></a></li>
           <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-kubernetes-cluster-user-docs.html"><span>govuk-kubernetes-cluster-user-docs</span></a></li>
           <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
           <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
           <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
@@ -295,10 +299,12 @@
       <li>
         <ul class='subnav'>
           <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckan-mock-harvest-sources.html"><span>ckan-mock-harvest-sources</span></a></li>
           <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
           <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
           <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
           <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_elasticsearch_monitor.html"><span>datagovuk_publish_elasticsearch_monitor</span></a></li>
           <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
           <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
         </ul>
@@ -336,7 +342,10 @@
       <li>
         <ul class='subnav'>
           <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-network-data.html"><span>govuk-network-data</span></a></li>
           <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+          <li><a href="/repos/govuk_ab_analysis.html"><span>govuk_ab_analysis</span></a></li>
+          <li><a href="/repos/tagging-suggester.html"><span>tagging-suggester</span></a></li>
         </ul>
       </li>
   </ul>
@@ -424,8 +433,7 @@
 </div>
 <h2 id='imported-documents'>Imported documents</h2>
 <ul>
-<li><a href='/repos/smokey/troubleshooting.html' class='govuk-link'>Troubleshooting</a></li>
-        <li><a href='/repos/smokey/writing-tests.html' class='govuk-link'>Writing tests</a></li>
+<li><a href='/repos/smokey/writing-tests.html' class='govuk-link'>Writing tests</a></li>
 </ul>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
@@ -438,20 +446,12 @@ applications within the GOV.UK stack.</p>
 
 <h2 id="installation">Installation</h2>
 
-<p>Smokey requires Java to be installed, because of its use of the BrowserUp Proxy.</p>
-
-<ul>
-<li>
-<p>On your host Mac, run <code>brew install adoptopenjdk</code>.</p>
-</li>
-<li>
-<p>If you don&rsquo;t have Homebrew installed, <a href="https://adoptopenjdk.net/">download the Java JDK from the AdpotOpenJDK website</a>.</p>
-</li>
-</ul>
-
-<p>After that, it&rsquo;s a standard Ruby setup: <code>bundle install</code>.</p>
+<pre><code>bundle install
+</code></pre>
 
 <h2 id="running-the-tests">Running the tests</h2>
+
+<p><strong>Note: you will need to be connected to the VPN to test against Integration or Staging.</strong></p>
 
 <p>The tests require additional configuration to run successfully on a local machine.</p>
 
@@ -465,15 +465,18 @@ bundle exec cucumber
 
 <ul>
 <li>
-<code>ENVIRONMENT</code>: used to set environment variables for <a href="https://github.com/alphagov/plek">Plek</a>
-</li>
+<code>ENVIRONMENT</code>: controls domains returned by <a href="https://github.com/alphagov/plek">Plek</a> (see <a href="https://github.com/alphagov/smokey/blob/19c21ac4be3f67ef994f327670121209c8632c0d/features/support/env.rb#L9-L21">env.rb</a>)</li>
 <li>
-<code>SIGNON_EMAIL</code>: email address of a user with a Signon account in the environment the tests are being run in</li>
+<code>SIGNON_EMAIL</code>: email of a Signon user in $ENVIRONMENT</li>
 <li>
-<code>SIGNON_PASSWORD</code>: password of a user with a Signon account in the environment the tests are being run in</li>
+<code>SIGNON_PASSWORD</code>: password of a Signon user in $ENVIRONMENT</li>
 </ul>
 
-<p><strong>Note: you will need to be connected to the VPN to test against Integration or Staging.</strong></p>
+<p>You can try using your own Signon account, but this won&rsquo;t work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in <code>govuk-secrets/puppet_aws</code>:</p>
+
+<pre><code>bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]
+bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
+</code></pre>
 
 <h2 id="layout">Layout</h2>
 
@@ -481,15 +484,6 @@ bundle exec cucumber
 files to describe single applications (eg
 <a href="https://github.com/alphagov/whitehall"><code>whitehall</code></a>,
 <a href="https://github.com/alphagov/frontend"><code>frontend</code></a>) or <a href="https://github.com/alphagov/smokey/blob/main/features/gov_uk.feature">cross-application behaviour</a>.</p>
-
-<p>We configure Selenium with a BrowserUp Proxy. The proxy allows us to capture and check for asynchronous requests made by JavaScript in our app e.g. for analytics. It relates to the following files:</p>
-
-<ul>
-<li>
-<code>bin/browserup-proxy</code>: a runner script</li>
-<li>
-<code>lib/*</code>: JARs for BrowserUp Proxy and its dependencies</li>
-</ul>
 
 <p>This repo also contains several scripts to support external systems running the tests and checking their output.</p>
 
@@ -507,7 +501,6 @@ files to describe single applications (eg
 <h2 id="further-documentation">Further documentation</h2>
 
 <ul>
-<li><a href="/repos/smokey/troubleshooting.html">troubleshooting</a></li>
 <li><a href="/repos/smokey/writing-tests.html">writing-tests</a></li>
 <li><a href="https://github.com/alphagov/smokey/blob/main/.github/pull_request_template.md">pr-template</a></li>
 </ul>

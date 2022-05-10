@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>smokey: Troubleshooting - GOV.UK Developer Documentation</title>
+    <title>govuk-infrastructure: 2. Use aws-eks terraform module - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smokey/troubleshooting.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="smokey: Troubleshooting - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smokey/troubleshooting.html" />
+      <meta name="twitter:title" content="govuk-infrastructure: 2. Use aws-eks terraform module - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="smokey: Troubleshooting" />
+      <meta property="og:title" content="govuk-infrastructure: 2. Use aws-eks terraform module" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smokey/troubleshooting.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html" />
 
     
   </head>
@@ -216,6 +216,7 @@
       <li>
         <ul class='subnav'>
           <li><a href="/repos/bulk-merger.html"><span>bulk-merger</span></a></li>
+          <li><a href="/repos/ckan-helm.html"><span>ckan-helm</span></a></li>
           <li><a href="/repos/email-alert-monitoring.html"><span>email-alert-monitoring</span></a></li>
           <li><a href="/repos/govspeak-preview.html"><span>govspeak-preview</span></a></li>
           <li><a href="/repos/govuk-app-deployment.html"><span>govuk-app-deployment</span></a></li>
@@ -229,7 +230,10 @@
           <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
           <li><a href="/repos/govuk-dns.html"><span>govuk-dns</span></a></li>
           <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-helm-charts.html"><span>govuk-helm-charts</span></a></li>
+          <li><a href="/repos/govuk-infrastructure.html"><span>govuk-infrastructure</span></a></li>
           <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-kubernetes-cluster-user-docs.html"><span>govuk-kubernetes-cluster-user-docs</span></a></li>
           <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
           <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
           <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
@@ -293,10 +297,12 @@
       <li>
         <ul class='subnav'>
           <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckan-mock-harvest-sources.html"><span>ckan-mock-harvest-sources</span></a></li>
           <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
           <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
           <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
           <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_elasticsearch_monitor.html"><span>datagovuk_publish_elasticsearch_monitor</span></a></li>
           <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
           <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
         </ul>
@@ -334,7 +340,10 @@
       <li>
         <ul class='subnav'>
           <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-network-data.html"><span>govuk-network-data</span></a></li>
           <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+          <li><a href="/repos/govuk_ab_analysis.html"><span>govuk_ab_analysis</span></a></li>
+          <li><a href="/repos/tagging-suggester.html"><span>tagging-suggester</span></a></li>
         </ul>
       </li>
   </ul>
@@ -371,8 +380,8 @@
       "@type": "ListItem",
       "position": 3,
       "item": {
-        "name": "smokey",
-        "@id": "http://www.dev.gov.uk/repos/smokey.html"
+        "name": "govuk-infrastructure",
+        "@id": "http://www.dev.gov.uk/repos/govuk-infrastructure.html"
       }
     }
   ]
@@ -388,7 +397,7 @@
           <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/smokey.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;smokey&quot;}" class="govuk-breadcrumbs__link" href="/repos/smokey.html">smokey</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk-infrastructure.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-infrastructure&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-infrastructure.html">govuk-infrastructure</a>
         </li>
   </ol>
 </div>
@@ -402,22 +411,24 @@
       </strong>
     </div>
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/c8c85bd340d13ec215cc4fbb0a025a34608b1174">24 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/6ba43589d4e803c67d814b7f6026025e214b0e79">11 Aug 2021</a>
 </div>
 
-  <h1 class="page-title">smokey: Troubleshooting</h1>
+  <h1 class="page-title">govuk-infrastructure: 2. Use aws-eks terraform module</h1>
 
   
-<h2 id="http-status-code-failure">HTTP status code failure</h2>
-<p>A common test failure is <code>HTTP status code 550 (RestClient::RequestFailed)</code>. This is a result of the BrowserUp Proxy java process running as part of a previously aborted smokey-loop and the new smoke tests cannot start a new proxy.</p>
-<p>It's necessary to kill the existing java process (replace process numbers as appropriate).</p>
-<pre lang="sh"><code>$ ps -ef | grep java
-&gt; smokey    6385  6380 26 14:58 ?        00:00:54 java -Dapp.name=browserup-proxy -Dbasedir=/opt/smokey -jar /opt/smokey/lib/browserup-dist-2.0.1.jar --port 3222
-$ sudo kill -9 6385
-</code></pre>
-<p>You can even set up an alias in your <code>~/.bash_profile</code>:</p>
-<pre lang="sh"><code>alias killbrowserup="ps xu | grep [b]rowserup-proxy | grep -v grep | awk '{ print \$2 }' | xargs kill -9"
-</code></pre>
+<p>Date: 2021-08-10</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>A fully configured EKS cluster requires many AWS resources and a lot of configuration. Defining each resource in our own Terraform module maximises flexibility but also requires a significant level of effort. We could instead make use of the <a href="https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest">existing Terraform registry EKS module</a> to optimise for speed of delivery.</p>
+<h2 id="decision">Decision</h2>
+<p>Adopt the <a href="https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/latest">existing Terraform registry EKS module</a>.</p>
+<h2 id="consequences">Consequences</h2>
+<p>A fully configured EKS cluster can be defined quickly and easily, as many module defaults will be fine for our purposes for the foreseeable future.</p>
+<p>The EKS module has comprehensive support for many of the options for EKS cluster config (e.g. worker node types). This will allow us to make changes more easily, and to experiment with different options quickly.</p>
+<p>It is possible that we will in future discover some areas of the module that don't work for our needs. Potential options in that instance include contributing to the module, forking it, or moving to our own module (likely with large chunks of code taken from the EKS module).</p>
+<p>We must be careful to avoid errors and issues that may be caused by the module's default use of a terraform <code>kubernetes</code> provider that is configured by AWS resource outputs. The behaviour of providers derived from other providers' resources is non-deterministic and can lead to intermittent and unpredictable issues - see the <a href="https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs#stacking-with-managed-kubernetes-cluster-resources">warning callout in the Kubernetes provider docs</a>. The approach for handling this limitation will be covered in a subsequent ADR.</p>
 
 
             
@@ -425,8 +436,8 @@ $ sudo kill -9 6385
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/smokey/blob/main/docs/troubleshooting.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmokey%2Ftroubleshooting.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs/architecture/decisions/0002-use-aws-eks-terraform-module.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-infrastructure%2Farchitecture%2Fdecisions%2F0002-use-aws-eks-terraform-module.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
