@@ -496,7 +496,7 @@ bundle exec cucumber
 
 <p>You can try using your own Signon account, but this won&rsquo;t work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in <code>govuk-secrets/puppet_aws</code>:</p>
 
-<pre><code>bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]
+<pre><code>bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]'
 bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
 </code></pre>
 
