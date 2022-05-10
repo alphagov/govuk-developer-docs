@@ -446,6 +446,28 @@ applications within the GOV.UK stack.</p>
 
 <h2 id="installation">Installation</h2>
 
+<h3 id="chromedriver">chromedriver</h3>
+
+<p>You will need to have the Chrome browser installed on your machine, as well as the <code>chromedriver</code> package, which Selenium uses to communicate with Chrome.</p>
+
+<pre><code>brew install chromedriver
+
+# trust chromedriver (in Preferences &gt; Security)
+xattr -d com.apple.quarantine $(which chromedriver)
+</code></pre>
+
+<p>As your version of Chrome updates, you may need to run <code>brew upgrade chromedriver</code>, as the package will only work with a fairly narrow range of Chrome versions.</p>
+
+<h3 id="ruby">Ruby</h3>
+
+<p>Install <a href="https://github.com/rbenv/rbenv">Rbenv</a> and then the required version of Ruby:</p>
+
+<pre><code>rbenv install
+gem install bundler
+</code></pre>
+
+<p>Finally, install the required gems:</p>
+
 <pre><code>bundle install
 </code></pre>
 
