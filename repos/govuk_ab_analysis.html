@@ -1,0 +1,750 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Repository: govuk_ab_analysis - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_ab_analysis.html">
+
+      <meta name="description" content="Everything about govuk_ab_analysis (Statistical tools to help analyse A/B tests of processed BigQuery user journey data.)" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Repository: govuk_ab_analysis - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_ab_analysis.html" />
+
+      <meta property="og:description" content="Everything about govuk_ab_analysis (Statistical tools to help analyse A/B tests of processed BigQuery user journey data.)" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Repository: govuk_ab_analysis" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_ab_analysis.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Gems</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/asset_bom_removal-rails.html"><span>asset_bom_removal-rails</span></a></li>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/gds-sso.html"><span>gds-sso</span></a></li>
+          <li><a href="/repos/govspeak.html"><span>govspeak</span></a></li>
+          <li><a href="/repos/govuk_ab_testing.html"><span>govuk_ab_testing</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_document_types.html"><span>govuk_document_types</span></a></li>
+          <li><a href="/repos/govuk_message_queue_consumer.html"><span>govuk_message_queue_consumer</span></a></li>
+          <li><a href="/repos/govuk_publishing_components.html"><span>govuk_publishing_components</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/govuk_sidekiq.html"><span>govuk_sidekiq</span></a></li>
+          <li><a href="/repos/govuk_test.html"><span>govuk_test</span></a></li>
+          <li><a href="/repos/omniauth-gds.html"><span>omniauth-gds</span></a></li>
+          <li><a href="/repos/optic14n.html"><span>optic14n</span></a></li>
+          <li><a href="/repos/plek.html"><span>plek</span></a></li>
+          <li><a href="/repos/rack-logstasher.html"><span>rack-logstasher</span></a></li>
+          <li><a href="/repos/rails_translation_manager.html"><span>rails_translation_manager</span></a></li>
+          <li><a href="/repos/rubocop-govuk.html"><span>rubocop-govuk</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+          <li><a href="/repos/transition-config.html"><span>transition-config</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bulk-merger.html"><span>bulk-merger</span></a></li>
+          <li><a href="/repos/ckan-helm.html"><span>ckan-helm</span></a></li>
+          <li><a href="/repos/email-alert-monitoring.html"><span>email-alert-monitoring</span></a></li>
+          <li><a href="/repos/govspeak-preview.html"><span>govspeak-preview</span></a></li>
+          <li><a href="/repos/govuk-app-deployment.html"><span>govuk-app-deployment</span></a></li>
+          <li><a href="/repos/govuk-aws.html"><span>govuk-aws</span></a></li>
+          <li><a href="/repos/govuk-browser-extension.html"><span>govuk-browser-extension</span></a></li>
+          <li><a href="/repos/govuk-cdn-config.html"><span>govuk-cdn-config</span></a></li>
+          <li><a href="/repos/govuk-content-schemas.html"><span>govuk-content-schemas</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-deploy-lag-badger.html"><span>govuk-deploy-lag-badger</span></a></li>
+          <li><a href="/repos/govuk-developer-docs.html"><span>govuk-developer-docs</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-dns.html"><span>govuk-dns</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-helm-charts.html"><span>govuk-helm-charts</span></a></li>
+          <li><a href="/repos/govuk-infrastructure.html"><span>govuk-infrastructure</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-kubernetes-cluster-user-docs.html"><span>govuk-kubernetes-cluster-user-docs</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-saas-config.html"><span>govuk-saas-config</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_taxonomy_helpers.html"><span>govuk_taxonomy_helpers</span></a></li>
+          <li><a href="/repos/publishing-e2e-tests.html"><span>publishing-e2e-tests</span></a></li>
+          <li><a href="/repos/seal.html"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/sidekiq-monitoring.html"><span>sidekiq-monitoring</span></a></li>
+          <li><a href="/repos/smokey.html"><span>smokey</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckan-mock-harvest-sources.html"><span>ckan-mock-harvest-sources</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_elasticsearch_monitor.html"><span>datagovuk_publish_elasticsearch_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-network-data.html"><span>govuk-network-data</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+          <li><a href="/repos/govuk_ab_analysis.html" class="toc-link--in-view"><span>govuk_ab_analysis</span></a></li>
+          <li><a href="/repos/tagging-suggester.html"><span>tagging-suggester</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  
+  <h1 class="page-title">Repository: govuk_ab_analysis</h1>
+
+  <p>Statistical tools to help analyse A/B tests of processed BigQuery user journey data.</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk_ab_analysis">govuk_ab_analysis</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">#govuk-data-labs</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value">N/A</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">Data science</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul class="govuk-list">
+    <li></li>
+    <li><a href="https://sentry.io/govuk/app-govuk_ab_analysis" class="govuk-link">Sentry (error tracking)</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk_ab_analysis.json" class="govuk-link">Deployment dashboard</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</dd>
+
+
+
+</div></dl>    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<blockquote>
+<p>Statistical tools to help analyse A/B tests of processed BigQuery user journey data.</p>
+</blockquote>
+
+<p>An analytical pipeline for analysing A/B test data output from this
+<a href="https://github.com/alphagov/govuk-network-data">GOV.UK data pipeline</a>.
+The data should be provided as one <code>processed_journey.csv.gz</code> file per day the test was run.
+This pipeline will then be <code>sample.py</code>&lsquo;ed from those days provided to achieve a user defined sample size.
+This outputs a single <code>sampled_processed_journey.csv.gz</code> file that is analysed with <code>analysis.py</code>.
+The analysis will check statistical assumptions for you and alert you if there is a problem.
+The script or notebook options outputs the information for a statistician to interpret.
+This knowledge can inform a decision as to whether there was a difference between page variants A and B.</p>
+
+<h2 id="requirements">Requirements</h2>
+
+<ul>
+<li>Python 3.7</li>
+<li>See <a href="https://github.com/alphagov/govuk_ab_analysis/blob/main/base-requirements.txt">base-requirements.txt</a> for python dependencies.</li>
+<li>
+<code>document_types.csv.gz</code> in the <code>DATA_DIR/metadata</code> dir - essentially a lookup table,
+to work out from page document types whether those pages are &ldquo;finding&rdquo; pages or &ldquo;thing&rdquo; pages.
+See <code>notebooks/document_type_query.ipynb</code> for details.</li>
+</ul>
+
+<h2 id="preparing-your-python-environment">Preparing your python environment</h2>
+
+<p>Run <code>pip install -r requirements.txt</code> to install package dependencies.</p>
+
+<h2 id="setting-environment-variables">Setting environment variables</h2>
+
+<p>A number of environment variables need to be set before running the modules on your system:</p>
+
+<table>
+<thead>
+<tr>
+<th>ENV VAR</th>
+<th>Description</th>
+<th>Nominal value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DATA_DIR</td>
+<td>Path to the directory storing the data</td>
+<td>
+<code>./data</code> (relative to the root of the repository &ndash; you may need to set an absolute path)</td>
+</tr>
+<tr>
+<td>LOGGING_CONFIG</td>
+<td>Path to the logging configuration file</td>
+<td>
+<code>./logging.conf</code> (relative to the root of the repository &ndash; you may need to set an absolute path)</td>
+</tr>
+<tr>
+<td>REPORTS_DIR</td>
+<td>Path to the reports dir where reports and outputs are stored</td>
+<td>
+<code>./reports</code> (relative to the root of the repository &ndash; you may need to set an absolute path)</td>
+</tr>
+<tr>
+<td>BQ_KEY_DIR</td>
+<td>Path to where your private key (.json) is. There should only be one key.</td>
+<td>Not defined, you could point to the dir used in the data pipeline repo</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="metadata-required-for-analysis">Metadata required for analysis</h2>
+
+<p>Some of the metrics used in our analysis are derived from the types of pages that users visit;
+is a page a &ldquo;finding&rdquo; or a &ldquo;thing&rdquo;? Users need a contemporary lookup table to determine this.
+<code>notebooks/document_type_query.ipynb</code> is a notebook with a query to work out from page document types whether those
+pages are &ldquo;finding&rdquo; pages or &ldquo;thing&rdquo; pages,
+as detailed <a href="https://docs.publishing.service.gov.uk/document-types/user_journey_document_supertype.html">here</a>.
+Rerun this query for the period you want to analyse an A/B test for to get information for all pages visited in that
+period. The output file is then used to calculate our metrics. This file should be placed into <code>./data/metadata</code>.</p>
+
+<h2 id="supported-ab-analyses">Supported A/B analyses</h2>
+
+<ul>
+<li>Related links
+<ul>
+<li>events with category <code>relatedLinkClicked</code> and action<code>Related content</code>
+</li>
+<li>The detailed reasoning behind this can be found
+<a href="https://github.com/alphagov/govuk-network-data/pull/88/files#diff-815d8e4ad52e4baf14e58409ed32215f">here</a>,
+with derived metrics used to pose hypotheses given below:
+<ul>
+<li>Prop of journeys containing at least one related link</li>
+<li>Average journey length</li>
+<li>Proportion of journeys containing no navigation events</li>
+</ul>
+<p></li>
+</ul>
+</li>
+</ul>
+<p>An analytical pipeline for analysing A/B test data output from this <a href="https://github.com/alphagov/govuk-network-data">GOV.UK data pipeline</a>.</p>
+<h3 id="basic-steps-to-acquire-data-for-and-run-stratified-analyses">Basic steps to acquire data for and run stratified analyses</h3>
+<p>For more detail see sections below and the editable table is <a href="https://docs.google.com/presentation/d/15HCMMV0nwKIIHdb6jW0tC81LnELMo7uvPhFLtypPa0w/edit#slide=id.p">here</a></p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk_ab_analysis/main/dataprep_analyses_steps.jpg" alt="stratified data prep and analyses steps"></p>
+<h3 id="stratify-journeys-into-lovedunloved">stratify journeys into loved/unloved</h3>
+<p>Our processed journey data from the <a href="https://github.com/alphagov/govuk-network-data">GOV.UK data pipeline</a>
+is in the <code>processed_journey</code> directory in our DATA_DIR (as specified in our <code>.envrc</code> file) and filenames are prefixed
+with taxon_ab.</p>
+<p>Loved journeys are those which include at least one loved page.
+Unloved journeys do not contain any loved pages.</p>
+<p>Loved pages are defined as any of:</p>
+<ul>
+<li>pages with related links present:
+<ul>
+<li>related_mainstream_content,</li>
+<li>ordered_related_items,</li>
+<li>part_of_step_navs or quick_links</li>
+</ul>
+</li>
+<li>foreign-travel-advice pages</li>
+<li>hmrc_contact_pages</li>
+<li>help pages</li>
+<li>premises-licence</li>
+<li>find-local-council</li>
+<li>smart answer</li>
+</ul>
+<p>To produce the files for loved and unloved journeys, from all taxon_ab*.csv.gz files in processed_journey, run the
+notebook: &ldquo;get_unloved_and_loved_journeys.ipynb&rdquo;</p>
+<h3 id="sample_processed-py">sample_processed.py</h3>
+<pre><code>usage: sample_processed.py [-h] [--seed SEED] [--k K]
+                           [--with_replacement WITH_REPLACEMENT]
+                           [--debug-level DEBUG_LEVEL]
+                           filename_prefix
+Module for sampling processed data for an A/B test</p>
+<p>positional arguments:
+  filename_prefix       Prefix of files we want to sample. We will read from
+                        the processed_journey directory from the DATA_DIR
+                        specified in you .envrc, and write to the
+                        sampled_journey directory in DATA_DIR, the overall
+                        sample will be saved as
+                        full_sample_&lt;&lt;filename_prefix&gt;&gt;_&lt;&lt;k&gt;&gt;.csv.gz
+optional arguments:
+  -h, --help            show this help message and exit
+  --seed SEED           Seed for the random number generator for
+                        pandas.DataFrame.sample (default: 1337)
+  --k K                 number of journeys per variant you want in your
+                        sampled DataFrame (default: 1000)
+  --with_replacement WITH_REPLACEMENT
+                        do you want to sample with or without replacement?
+                        (default: True)
+  --debug-level DEBUG_LEVEL
+                        debug level of messages (DEBUG, INFO, WARNING, etc...)
+                        (default: INFO)
+</code></pre>
+<p>The columns from the original files that are included in the samples are: [&ldquo;Occurrences&rdquo;, &ldquo;ABVariant&rdquo;,
+&ldquo;Page_Event_List&rdquo;, &ldquo;Page_List&rdquo;,  &ldquo;Event_cat_act_agg&rdquo;]</p>
+<h4 id="example">Example</h4>
+<pre><code>python src/sample_processed.py taxon_ab_2019 --k 947858 --debug-level DEBUG
+</code></pre>
+<p>Our processed journey data from the <a href="https://github.com/alphagov/govuk-network-data">GOV.UK data pipeline</a>
+is in the <code>processed_journey</code> directory in our DATA_DIR (as specified in our <code>.envrc</code> file). We want to sample from all
+the files whose names begin with <code>taxon_ab_2019</code> and end with <code>.csv.gz</code>.</p>
+<p>A single row in <code>taxon_ab_2019*csv.gz</code> files represents a journey type which has been completed x times (Occurrences).
+So sessions are rolled up.
+The sampling selects journey types in proportion to the number of occurrences of that type
+(sampling is weighted by occurrences). Sessions are then rolled up into journey types.</p>
+<p>For this example we specify that we want 947858 journeys in each variant, a number we have come to after doing a
+power analysis (see <code>z_prop_test_power_analysis.Rmd</code>). And we&rsquo;ve set the debug level to DEBUG to be extra verbose, so
+we can see what&rsquo;s going in more detail.</p>
+<p>The output will be: samples for each file, saved under their names but in the <code>sampled_journey</code> directory in DATA_DIR,
+and a combined file with the overall sample, saved as <code>full_sample_taxon_ab_2019_947858.csv.gz</code> in <code>sampled_journey</code>.</p>
+<p>Some rounding may result in a very small amount more or less than the k value being included in the final sample, so
+ideally specify a k a few journeys higher than the k you require.</p>
+<h3 id="analysis-py">analysis.py</h3>
+<pre><code>usage: analysis.py [-h] [--alpha ALPHA] [--m M] [--boot_reps BOOT_REPS]
+                   [--debug-level DEBUG_LEVEL]
+                   filename</p>
+<p>Analysing sampled processed data module</p>
+<p>positional arguments:
+  filename              Prefix of files we want to analyse without csv.gz
+                        ending. We will read from the sampled_journey
+                        directory from the DATA_DIR specified in your .envrc,
+                        and write to the rl_sampled_processed_journey
+                        directory in DATA_DIR, the two dataframes with
+                        analyses outputs, will be saved as
+                        bayesbootstrap_&lt;&lt;filename_prefix&gt;&gt;.csv.gz and
+                        zprop_&lt;&lt;filename_prefix&gt;&gt;.csv.gz</p>
+<p>optional arguments:
+  -h, --help            show this help message and exit
+  --alpha ALPHA         The false positive rate. With respect to hypothesis
+                        tests , alpha refers to significance level, the
+                        probability of making a Type I error.
+  --m M                 The number of hypotheses tested. Given we are testing
+                        4 null hypotheses we should control for multiple
+                        comparisons, the simplest and most conservative
+                        approach is to use the Bonferroni correction, alpha /
+                        m. So 0.05 / 4 = 0.0125 = alpha_corrected The
+                        Bonferroni correction can be used to adjust confidence
+                        intervals. If one establishes m confidence intervals,
+                        and wishes to have an overall confidence level of
+                        1-alpha, each individual confidence interval can be
+                        adjusted to the level of 1-(alpha/m).
+  --boot_reps BOOT_REPS
+                        The number of bootstrap replicates. The number of
+                        times we draw n-1 times with replacement from a sample
+                        and estimate a statistic. Monte Carlo sampling builds
+                        an estimate of the sampling distribution by randomly
+                        drawing a large number of samples of size boot_reps
+                        from a population, and calculating for each one the
+                        associated value of the statistic. In this module we
+                        calculate the mean.
+  --debug-level DEBUG_LEVEL
+                        debug level of messages (DEBUG, INFO, WARNING etc...)
+</code></pre>
+<p>Our processed and sampled journey data from <code>sample_processed.py</code>, following the above example is
+<code>full_sample_taxon_ab_2019_947858.csv.gz</code> in <code>sampled_journey</code> in <code>DATA_DIR</code>.</p>
+<p>When implementation this analysis for the first time it is recommended to use the notebook to take yourself through the
+thinking and analysis.  We deliberately leave in the function definitions to this end.
+The script contains the most up to date code.</p>
+<h4 id="using-the-notebook">Using the notebook</h4>
+<p>You can open the <code>generate_ab_rl_mvp.ipynb</code> notebook and adjust the <code>filename</code> therein,
+to <code>full_sample_taxon_ab_2019_947858.csv.gz</code>. The bootstrap reps is set to a standard 10,000 and alpha<br>
+of 0.05 is automatically corrected to ~0.0125 after the Bon Ferroni correction of alpha / number of tests.
+Prior to running the code you may want to uncomment the cell in section 6.1 Save, in case your kernel
+crashes during bootstrapping.</p>
+<h4 id="running-the-analysis-module-programmatically">Running the analysis module programmatically</h4>
+<p>In the console run the script and pass it the <code>filename</code> of the processed sampled dataframe found in the <code>sampled_journey</code> directory in DATA_DIR.
+The lookup table for page content document type also needs to be passed. See earlier in the README for getting this data.
+You can also adjust the logging level for extra verbosity and detail as the derivation of metrics can take some time.
+We suggest you leave the default settings for alpha, m and boot_reps.</p>
+<pre><code>python src/analysis.py full_sample_loved_947858.csv.gz document_types.csv.gz --debug-level DEBUG --control_group &quot;B&quot; --intervention_group &quot;C&quot;
+</code></pre>
+<p>This analyses and compares the difference of various metrics by page variant.
+It outputs two <code>.csv.gz</code>, one containing the z proportion tests and the other
+the Bayesian bootstrap confidence intervals.</p>
+  </div></p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_ab_analysis.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>

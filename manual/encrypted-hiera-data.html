@@ -76,6 +76,9 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
             <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
               <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
@@ -177,9 +180,6 @@
             <a href="#encryption-fails-when-running-the-rake-task-because-of-quotunusable-public-keyquot"><span>Encryption fails when running the Rake task because of “Unusable public key”</span></a>
           </li>
           <li>
-            <a href="#manually-import-the-key"><span>Manually import the key</span></a>
-          </li>
-          <li>
             <a href="#puppet-fails-because-it-can39t-find-a-usable-gpg-key"><span>Puppet fails because it can’t find a usable GPG key</span></a>
           </li>
           <li>
@@ -241,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c3f581843b0f0bb139ff5c338c9916be0a5433be">11 May 2022</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -359,20 +359,18 @@ file is able to decrypt data belonging to the environment that the
 recipient file pertains to.</p>
 <h3 id='what-to-do-when-someone-joins'>What to do when someone joins</h3>
 <ol>
-<li>Ask the joiner to <a href="/manual/create-a-gpg-key.html">create a GPG key</a> and upload it
-to a public key server (such as <a href="https://pgp.mit.edu/">https://pgp.mit.edu/</a>). You may need to <a href="#manually-import-the-key">manually import the key</a> to your GPG Keychain.</li>
-<li>Get the fingerprint of the new GPG key by running <code>gpg --fingerprint</code>.</li>
-<li>Add the joiners&rsquo;s GPG fingerprint to the recipient files
-AWS <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp">integration</a></li>
-<li>Recrypt the hieradata by running <code>re-encrypt-all.sh &lt;message&gt;</code> where <code>&lt;message&gt;</code>
-is something like &ldquo;Adding new key for Jane Smith&rdquo;.</li>
-<li>Commit your changes and raise a pull request for review.</li>
-<li>Check that the joiner has uploaded their GPG key.
-If their key isn&rsquo;t on a public keyserver it interupts other people&rsquo;s workflow so please make sure it has been uploaded.</li>
-<li>Take care when rebasing changes to main that have been merged since you
+<li><p>Ask the joiner to <a href="/manual/create-a-gpg-key.html">create a GPG key</a> and send you the <code>.asc</code> file they created that contains their public key.</p></li>
+<li><p>Raise a PR to add the joiner&rsquo;s public key (the <code>.asc</code> file) to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys"><code>gpg_public_keys</code> directory</a> in govuk-secrets.</p></li>
+<li><p>Get the fingerprint of the new GPG key by running <code>gpg --fingerprint</code>.</p></li>
+<li><p>Add the joiners&rsquo;s GPG fingerprint to the recipient files
+AWS <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp">integration</a></p></li>
+<li><p>Recrypt the hieradata by running <code>re-encrypt-all.sh &lt;message&gt;</code> where <code>&lt;message&gt;</code>
+is something like &ldquo;Adding new key for Jane Smith&rdquo;.</p></li>
+<li><p>Commit your changes and raise a pull request for review.</p></li>
+<li><p>Take care when rebasing changes to main that have been merged since you
 started your PR. The encrypted hieradata files are effectively binary data
 that git&rsquo;s text diff may not correctly merge. You will likely have to
-reset your recrypted versions and start again from the versions on main.</li>
+reset your recrypted versions and start again from the versions on main.</p></li>
 </ol>
 <h3 id='what-to-do-when-someone-gets-production-access'>What to do when someone gets production access</h3><p>Follow the steps above but add their GPG fingerprint to the production recipient files AWS <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/production_hiera_gpg.rcp">production</a>.</p>
 <p>Note there are no staging recipient files - access to staging secrets is controlled by the production recipient files.</p>
@@ -380,12 +378,13 @@ reset your recrypted versions and start again from the versions on main.</li>
 credentials.</p>
 
 <ol>
-<li>Delete the leaver&rsquo;s GPG fingerprint from each of the recipient files
+<li><p>Delete the leaver&rsquo;s GPG fingerprint from each of the recipient files
 AWS <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp">integration</a>
 and <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/production_hiera_gpg.rcp">production</a>.
 There are no staging recipient files since these are the same as the
-production recipient files.</li>
-<li>Commit your changes and raise a pull request for review.</li>
+production recipient files.</p></li>
+<li><p>Delete their public key from the <a href="https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys"><code>gpg_public_keys</code> directory</a> in govuk-secrets.</p></li>
+<li><p>Commit your changes and raise a pull request for review.</p></li>
 </ol>
 
 <blockquote>
@@ -614,11 +613,9 @@ relevant recipient files.</p>
 <p>If you see this error:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[hiera-eyaml-core] No key found on keyring for &lt;fingerprint&gt;
 </code></pre></div><p>This means that you don&rsquo;t have one of the recipient&rsquo;s key on your keyring.
-You can download one or more keys with the following command:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gpg <span class="nt">--keyserver</span> keyserver.ubuntu.com <span class="nt">--recv-keys</span> &lt;fingerprint&gt;
-</code></pre></div><p>Alternatively, you can run the <code>govuk-secrets/pass/trust_all.sh</code> script. This
-will fetch all recipient keys from the keyserver.
-<a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#trust-user-public-keys">More information can be found in the govuk-secrets README</a>.</p>
+You can import all public keys with the following command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gpg <span class="nt">--import</span> ~/govuk/govuk-secrets/gpg_public_keys/<span class="k">*</span>.asc
+</code></pre></div><p><a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#trust-user-public-keys">More information can be found in the govuk-secrets README</a>.</p>
 <h3 id='encryption-fails-when-running-the-rake-task-because-of-quotunusable-public-keyquot'>Encryption fails when running the Rake task because of &ldquo;Unusable public key&rdquo;</h3><p>You may encounter an error with the following output after trying to encrypt secrets using the Rake task:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[hiera-eyaml-core] Unusable public key
 </code></pre></div><p>If prefixed with &ldquo;There is no assurance this key belongs to the named user&rdquo;, then you likely just need to run the trust script:</p>
@@ -628,22 +625,11 @@ will fetch all recipient keys from the keyserver.
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --list-options show-unusable-subkeys --list-keys {}
 </code></pre></div><p>You can check the output for any keys that may have expired. (Or pipe the output into grep <code>| grep expired</code>)</p>
 <p>If a key has expired, it&rsquo;s possible that your local copy of the key is out of date. Follow the steps below, and if that doesn&rsquo;t resolve the issue, contact the owner and ask them to extend the expiry date or renew their key, then repeat the steps below.</p>
-<h4 id='get-someone39s-latest-gpg-key'>Get someone&rsquo;s latest GPG key</h4><p>If you&rsquo;re on a Mac, open the &ldquo;GPG Keychain&rdquo; app, right click on the name of the person in the list, then choose &ldquo;Update from key server&rdquo;. Alternatively, on the command line you can run:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --recv-keys --keyserver &lt;keyserver_address&gt; &lt;key_fingerprint&gt;
-</code></pre></div><p>or the following to update all keys:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --recv-keys --keyserver &lt;keyserver_address&gt; {}
-</code></pre></div><p>If you see this error:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg: keyserver receive failed: Network is unreachable
-</code></pre></div><p>&hellip;try specifying the port number, e.g. <code>gpg --keyserver keyserver.ubuntu.com:80 --recv-keys &lt;key_fingerprint&gt;</code>.</p>
-<p>If you see this error:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg: keyserver receive failed: No keyserver available
-</code></pre></div><p>&hellip;try a different key server (e.g. <keys.openpgp.org>, <hkps.pool.sks-keyservers.net>, or <keys.gnupg.net>).
-You can run <code>gpg-connect-agent --dirmngr &#39;keyserver --hosttable&#39;</code> to see a list of available servers.</p>
-<p>If you continue to see these errors, you&rsquo;ll have to try <a href="#manually-import-the-key">manually importing the key</a>.</p>
-<h3 id='manually-import-the-key'>Manually import the key</h3><p>If you struggle to find the GPG key (either via the <code>gpg</code> CLI or via GPG Keychain), try going to the keyserver in your browser to find the key there (you may need to prefix the key id with <code>0x</code>).</p>
-<p>For example, visit https://keyserver.ubuntu.com/pks/lookup?op=get&amp;search=0x0263e23315ae661ecac4947c50476cd528c86c4c.</p>
-<p>Copy the public key to your clipboard. If you have GPG Keychain open, it should automatically detect the key and prompt you to import it.</p>
-<h3 id='puppet-fails-because-it-can39t-find-a-usable-gpg-key'>Puppet fails because it can&rsquo;t find a usable GPG key</h3><p>When Puppet runs, you may see the following error:</p>
+<h4 id='get-someone39s-latest-gpg-key'>Get someone&rsquo;s latest GPG key</h4><p>Pull the latest version of the <code>govuk-secrets</code> repo, then import all keys again.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cd ~/govuk/govuk-secrets
+git pull
+gpg --import ./gpg_public_keys/*.asc
+</code></pre></div><h3 id='puppet-fails-because-it-can39t-find-a-usable-gpg-key'>Puppet fails because it can&rsquo;t find a usable GPG key</h3><p>When Puppet runs, you may see the following error:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Hiera eYAML GPG encryption backend is not working; check that Puppet has a valid GPG key
 </code></pre></div><p>This error can occur for the following reasons:</p>
 

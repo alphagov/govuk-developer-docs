@@ -76,6 +76,9 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
             <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
               <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
@@ -137,10 +140,10 @@
           <li>
             <a href="#working-out-your-key-id-and-fingerprint"><span>Working out your key ID and fingerprint</span></a>
           </li>
-          <li>
-            <a href="#upload-your-gpg-key-to-a-keyserver"><span>Upload your GPG key to a keyserver</span></a>
-          </li>
         </ul>
+      </li>
+      <li>
+        <a href="#save-your-public-key-to-govuk-secrets"><span>Save your public key to govuk-secrets</span></a>
       </li>
       <li>
         <a href="#make-sure-your-passphrase-works"><span>Make sure your passphrase works</span></a>
@@ -210,7 +213,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f40dae1de0fa88de47fecb2d5f7d6588ffdf92ba">8 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c3f581843b0f0bb139ff5c338c9916be0a5433be">11 May 2022</a>
 </div>
 
  <h1 id='header'>Create a GPG key</h1> <p>We use GPG keys to encrypt our secrets. Documentation for using your GPG key can be found <a href="/manual/encrypted-hiera-data.html#common-tasks-for-handling-encrypted-hiera-data">here</a>.</p>
@@ -241,18 +244,9 @@ laptop, maybe a USB stick in your locker).</p>
       sub   rsa2048 2013-02-08 [E]
 </code></pre></div><p>The  fingerprint is <code>37CC 021A C5C2 4E27 C4D9 5735 9B0E 9DD1 90E6 5803</code>,
 and the key ID is <code>90E65803</code> — the last 8 characters of the fingerprint.</p>
-<h3 id='upload-your-gpg-key-to-a-keyserver'>Upload your GPG key to a keyserver</h3><p>Before doing this, make sure that your default keyserver is <code>hkps://keys.openpgp.org/</code>. You can do this by changing the default keyserver in <code>~/.gnupg/dirmngr.conf</code>:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>keyserver hkps://keys.openpgp.org/
-</code></pre></div><p>You should also ensure that there is no <code>keyserver</code> directive in <code>~/.gnupg/gpg.conf</code>.</p>
-<p>Send your key to a keyserver by running:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --send-keys $KEYID
-</code></pre></div><p>If you are having problems uploading your key, it&rsquo;s worth trying another keyserver. Those trying to receive your key may be connecting to a different keyserver than the one you sent your key to. This is fine, as the keyservers synchronise, but this may take some time to happen.</p>
-<p>You now should be able to find your key on <a href="https://keys.openpgp.org/">https://keys.openpgp.org/</a>.</p>
-<p>You may find you also need to configure <code>dirmngr</code> to successfully connect to a keyserver by adding either or both of the following lines to <code>~/.gnupg/dirmngr.conf</code>:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>standard-resolver
-disable-ipv6
-</code></pre></div><p>You may need to run <code>gpgconf --kill all</code> in order for these changes to take effect.</p>
-<h2 id='make-sure-your-passphrase-works'>Make sure your passphrase works</h2><p>You can test your passphrase like this:</p>
+<h2 id='save-your-public-key-to-govuk-secrets'>Save your public key to <code>govuk-secrets</code></h2><p>In the <a href="https://github.com/alphagov/govuk-secrets"><code>govuk-secrets</code> repository</a>, dump your public key into the <code>gpg_public_keys</code> directory then open a PR.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --export -a --output ~/govuk/govuk-secrets/gpg_public_keys/your_name.asc your.email@digital.cabinet-office.gov.uk
+</code></pre></div><h2 id='make-sure-your-passphrase-works'>Make sure your passphrase works</h2><p>You can test your passphrase like this:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>echo "1234" | gpg -o /dev/null --local-user YOUR_FINGERPRINT_WITHOUT_SPACES -as - &amp;&amp; echo "The correct passphrase was entered for this key"
 </code></pre></div><p>You will be prompted to enter your passphrase upon running this command then if you have entered your passphrase correctly you will see &ldquo;The correct passphrase was entered for this key&rdquo;.</p>
 <h2 id='backup-a-gpg-key'>Backup a GPG key</h2><h3 id='backup-and-transfer-gpg-key-to-another-computer-using-the-gui'>Backup and transfer GPG key to another computer (using the GUI)</h3><p>To backup your key, select the key you want to backup in <a href="https://gpgtools.org/">GPG Keychain</a> and then click on &ldquo;Export&rdquo;. This will download your key in the following format:</p>
@@ -266,7 +260,8 @@ disable-ipv6
 <p>so to encrypt your GPG key you&rsquo;ll use:</p>
 <p><code>zip -e &quot;Name (keyID) – Public.asc.zip&quot; &quot;Name (keyID) – Public.asc&quot;</code></p>
 <h2 id='extend-an-expired-gpg-key'>Extend an expired GPG key</h2><p>If your GPG key has expired, the easiest way to update it is to <a href="https://superuser.com/questions/813421/can-you-extend-the-expiration-date-of-an-already-expired-gpg-key">extend the expiry date</a>.</p>
-<p>You may also find that you have sub-keys that are due to expire too. If you are using a Mac, the easiest way to check is to use the GPG Keychain application. In GPG Keychain, double-click on your key to see the details and go the the &ldquo;Subkeys&rdquo; tab. If you have a sub-key that is due to expire, you&rsquo;ll be asked if you want to update it and push the key to the keyserver.</p>
+<p>You may also find that you have sub-keys that are due to expire too. If you are using a Mac, the easiest way to check is to use the GPG Keychain application. In GPG Keychain, double-click on your key to see the details and go the the &ldquo;Subkeys&rdquo; tab. If you have a sub-key that is due to expire, you&rsquo;ll be asked if you want to update it.</p>
+<p>After extending (or renewing) your GPG key, you will need to <a href="#save-your-public-key-to-govuk-secrets">extract the public key</a> and raise a PR to update <code>govuk_secrets</code>.</p>
 
 
   <div class='related-content'>
