@@ -59,34 +59,13 @@ pub   rsa2048 2013-02-08 [SC]
 The  fingerprint is `37CC 021A C5C2 4E27 C4D9 5735 9B0E 9DD1 90E6 5803`,
 and the key ID is `90E65803` — the last 8 characters of the fingerprint.
 
-### Upload your GPG key to a keyserver
+## Save your public key to `govuk-secrets`
 
-Before doing this, make sure that your default keyserver is `hkps://keys.openpgp.org/`. You can do this by changing the default keyserver in `~/.gnupg/dirmngr.conf`:
-
-```
-keyserver hkps://keys.openpgp.org/
-```
-
-You should also ensure that there is no `keyserver` directive in `~/.gnupg/gpg.conf`.
-
-Send your key to a keyserver by running:
+In the [`govuk-secrets` repository](https://github.com/alphagov/govuk-secrets), dump your public key into the `gpg_public_keys` directory then open a PR.
 
 ```
-gpg --send-keys $KEYID
+gpg --export -a --output ~/govuk/govuk-secrets/gpg_public_keys/your_name.asc your.email@digital.cabinet-office.gov.uk
 ```
-
-If you are having problems uploading your key, it's worth trying another keyserver. Those trying to receive your key may be connecting to a different keyserver than the one you sent your key to. This is fine, as the keyservers synchronise, but this may take some time to happen.
-
-You now should be able to find your key on <https://keys.openpgp.org/>.
-
-You may find you also need to configure `dirmngr` to successfully connect to a keyserver by adding either or both of the following lines to `~/.gnupg/dirmngr.conf`:
-
-```
-standard-resolver
-disable-ipv6
-```
-
-You may need to run `gpgconf --kill all` in order for these changes to take effect.
 
 ## Make sure your passphrase works
 
@@ -128,4 +107,6 @@ so to encrypt your GPG key you'll use:
 
 If your GPG key has expired, the easiest way to update it is to [extend the expiry date](https://superuser.com/questions/813421/can-you-extend-the-expiration-date-of-an-already-expired-gpg-key).
 
-You may also find that you have sub-keys that are due to expire too. If you are using a Mac, the easiest way to check is to use the GPG Keychain application. In GPG Keychain, double-click on your key to see the details and go the the "Subkeys" tab. If you have a sub-key that is due to expire, you'll be asked if you want to update it and push the key to the keyserver.
+You may also find that you have sub-keys that are due to expire too. If you are using a Mac, the easiest way to check is to use the GPG Keychain application. In GPG Keychain, double-click on your key to see the details and go the the "Subkeys" tab. If you have a sub-key that is due to expire, you'll be asked if you want to update it.
+
+After extending (or renewing) your GPG key, you will need to [extract the public key](#save-your-public-key-to-govuk-secrets) and raise a PR to update `govuk_secrets`.
