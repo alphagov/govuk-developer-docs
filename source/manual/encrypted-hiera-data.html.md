@@ -150,17 +150,21 @@ recipient file pertains to.
 
 ### What to do when someone joins
 
-1. Ask the joiner to [create a GPG key](create-a-gpg-key.html) and upload it
-   to a public key server (such as <https://pgp.mit.edu/>). You may need to [manually import the key](#manually-import-the-key) to your GPG Keychain.
-2. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
-3. Add the joiners's GPG fingerprint to the recipient files
+1. Ask the joiner to [create a GPG key](create-a-gpg-key.html) and send you the `.asc` file they created that contains their public key.
+
+1. Raise a PR to add the joiner's public key (the `.asc` file) to the [`gpg_public_keys` directory](https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys) in govuk-secrets.
+
+1. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
+
+1. Add the joiners's GPG fingerprint to the recipient files
    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
-4. Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
+
+1. Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
    is something like "Adding new key for Jane Smith".
-5. Commit your changes and raise a pull request for review.
-6. Check that the joiner has uploaded their GPG key.
-    If their key isn't on a public keyserver it interupts other people's workflow so please make sure it has been uploaded.
-7. Take care when rebasing changes to main that have been merged since you
+
+1. Commit your changes and raise a pull request for review.
+
+1. Take care when rebasing changes to main that have been merged since you
    started your PR. The encrypted hieradata files are effectively binary data
    that git's text diff may not correctly merge. You will likely have to
    reset your recrypted versions and start again from the versions on main.
@@ -181,7 +185,10 @@ credentials.
    and [production](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/production_hiera_gpg.rcp).
    There are no staging recipient files since these are the same as the
    production recipient files.
-2. Commit your changes and raise a pull request for review.
+
+1. Delete their public key from the [`gpg_public_keys` directory](https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys) in govuk-secrets.
+
+1. Commit your changes and raise a pull request for review.
 
 > **WARNING**
 >
@@ -495,14 +502,12 @@ If you see this error:
 ```
 
 This means that you don't have one of the recipient's key on your keyring.
-You can download one or more keys with the following command:
+You can import all public keys with the following command:
 
 ```shell
-gpg --keyserver keyserver.ubuntu.com --recv-keys <fingerprint>
+gpg --import ~/govuk/govuk-secrets/gpg_public_keys/*.asc
 ```
 
-Alternatively, you can run the `govuk-secrets/pass/trust_all.sh` script. This
-will fetch all recipient keys from the keyserver.
 [More information can be found in the govuk-secrets README](https://github.com/alphagov/govuk-secrets/tree/main/pass#trust-user-public-keys).
 
 ### Encryption fails when running the Rake task because of "Unusable public key"
@@ -533,44 +538,13 @@ If a key has expired, it's possible that your local copy of the key is out of da
 
 #### Get someone's latest GPG key
 
-If you're on a Mac, open the "GPG Keychain" app, right click on the name of the person in the list, then choose "Update from key server". Alternatively, on the command line you can run:
+Pull the latest version of the `govuk-secrets` repo, then import all keys again.
 
 ```
-gpg --recv-keys --keyserver <keyserver_address> <key_fingerprint>
+cd ~/govuk/govuk-secrets
+git pull
+gpg --import ./gpg_public_keys/*.asc
 ```
-
-or the following to update all keys:
-
-```
-cat ~/govuk/govuk-secrets/puppet_aws/gpg_recipients/production_hiera_gpg.rcp | cut -f 1 -d " " | xargs -I{} -n1 gpg --recv-keys --keyserver <keyserver_address> {}
-```
-
-If you see this error:
-
-```
-gpg: keyserver receive failed: Network is unreachable
-```
-
-...try specifying the port number, e.g. `gpg --keyserver keyserver.ubuntu.com:80 --recv-keys <key_fingerprint>`.
-
-If you see this error:
-
-```
-gpg: keyserver receive failed: No keyserver available
-```
-
-...try a different key server (e.g. <keys.openpgp.org>, <hkps.pool.sks-keyservers.net>, or <keys.gnupg.net>).
-You can run `gpg-connect-agent --dirmngr 'keyserver --hosttable'` to see a list of available servers.
-
-If you continue to see these errors, you'll have to try [manually importing the key](#manually-import-the-key).
-
-### Manually import the key
-
-If you struggle to find the GPG key (either via the `gpg` CLI or via GPG Keychain), try going to the keyserver in your browser to find the key there (you may need to prefix the key id with `0x`).
-
-For example, visit https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x0263e23315ae661ecac4947c50476cd528c86c4c.
-
-Copy the public key to your clipboard. If you have GPG Keychain open, it should automatically detect the key and prompt you to import it.
 
 ### Puppet fails because it can't find a usable GPG key
 
