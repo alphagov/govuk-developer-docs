@@ -406,15 +406,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/ckanext-datagovuk/commit/4c7b6df22d8e523aeca157698357895259f6f795">9 Jan 2019</a>
+  Last updated: <a href="https://github.com/alphagov/ckanext-datagovuk/commit/184bc8ebcc923f8fced3cbc4613f142af9f424bd">10 May 2022</a>
 </div>
 
   <h1 class="page-title">ckanext-datagovuk: CKAN release rehearsal</h1>
@@ -429,57 +422,60 @@
 <h3 id="step-by-step">Step by step</h3>
 <p>Make sure you have the following:</p>
 <ol>
-<li>The AWS DB admin password from govuk-secrets</li>
+<li>The AWS CKAN DB admin password from govuk-secrets (<code>govuk::node::s_ckan_db_admin::postgres_password</code>, in <code>puppet_aws/hieradata/blue/{ENV}_credentials.yaml</code>)</li>
 <li>The full AWS hostname of the CKAN machine you want to restore to e.g. <code>ip-10-1-4-229.eu-west-1.compute.internal.integration</code>
 </li>
 </ol>
-<p>ckan $
-govuk_puppet --test # Establish a baseline
-sudo service puppet stop
-sudo service ckan stop
-sudo rm -rf /data/vhost/ckan/shared/venv/
-jenkins <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/</a>
-redeploy CKAN
+<pre><code>ckan $
+  govuk_puppet --test # Establish a baseline
+  sudo service puppet stop
+  sudo service ckan stop
+  sudo rm -rf /data/vhost/ckan/shared/venv/
+jenkins https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/
+  redeploy CKAN
 ckan $
-sudo service puppet stop
-sudo service ckan stop
+  sudo service puppet stop
+  sudo service ckan stop
 db_admin $
-rm -rf ckanext-datagovuk
-git clone <a href="https://github.com/alphagov/ckanext-datagovuk">https://github.com/alphagov/ckanext-datagovuk</a> --branch bytemark-migration
-eval $(ssh-agent); ssh-add
-./ckanext-datagovuk/bin/import-ckan-db.sh # approx 2 hours, use a screen
-ckan $</p>
-<h1 id="sudo-remove-plugins-line-90-from-varckanckan-ini">sudo remove plugins line (90) from /var/ckan/ckan.ini</h1>
-<p>cd /var/apps/ckan/
-sudo -u deploy govuk_setenv ckan venv/bin/paster --plugin=ckan db upgrade -c /var/ckan/ckan.ini # 2 to 8 hours, use a screen
-govuk_puppet --test # Restore correct CKAN config
-sudo service puppet stop
-sudo service ckan stop
-sudo -u deploy govuk_setenv ckan venv/bin/paster --plugin=ckan db upgrade -c /var/ckan/ckan.ini
-govuk_puppet --test
-sudo service puppet restart # may need to edit the puppet config to <code>yes</code> if you're told it can't restart
-sudo service ckan restart</p>
+  rm -rf ckanext-datagovuk
+  git clone https://github.com/alphagov/ckanext-datagovuk --branch bytemark-migration
+  eval $(ssh-agent); ssh-add
+  ./ckanext-datagovuk/bin/import-ckan-db.sh # approx 2 hours, use a screen
+ckan $
+  # sudo remove plugins line (90) from /var/ckan/ckan.ini
+  cd /var/apps/ckan/
+  sudo -u deploy govuk_setenv ckan venv/bin/paster --plugin=ckan db upgrade -c /var/ckan/ckan.ini # 2 to 8 hours, use a screen
+  govuk_puppet --test # Restore correct CKAN config
+  sudo service puppet stop
+  sudo service ckan stop
+  sudo -u deploy govuk_setenv ckan venv/bin/paster --plugin=ckan db upgrade -c /var/ckan/ckan.ini
+  govuk_puppet --test
+  sudo service puppet restart # may need to edit the puppet config to `yes` if you're told it can't restart
+  sudo service ckan restart
+</code></pre>
 <p>To reindex Solr, there are three ways to do this:</p>
 <ol>
 <li>Full reindex which destroys the existing index and creates a new index, default behaviour if no options are specified (WARNING: removes all existing data and takes several days to complete).</li>
 <li>Add only missing datasets using option <code>-m</code> (approximately 15 seconds per dataset).</li>
 <li>Update all records in the index, but do not delete the old index using option <code>-r</code> (this allows the website to continue running whilst the reindex takes place).</li>
 </ol>
-<p>ckan $
-cd /var/apps/ckan
-sudo -u deploy govuk_setenv ckan venv/bin/paster search-index rebuild [OPTIONS] -c /var/ckan/ckan.ini</p>
+<pre><code>ckan $
+  cd /var/apps/ckan
+  sudo -u deploy govuk_setenv ckan venv/bin/paster search-index rebuild [OPTIONS] -c /var/ckan/ckan.ini
+</code></pre>
 <h3 id="copying-legacy-organograms">Copying legacy organograms</h3>
-<p>local $
-aws sts assume-role --role-arn &lt;role_arn&gt; --serial-number &lt;mfa_arn&gt; --token-code &lt;mfa_token&gt; --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" --duration-seconds 28800 --profile gds
+<pre><code>local $
+  aws sts assume-role --role-arn &lt;role_arn&gt; --serial-number &lt;mfa_arn&gt; --token-code &lt;mfa_token&gt; --role-session-name "$(whoami)-$(date +%d-%m-%y_%H-%M)" --duration-seconds 28800 --profile gds
 bytemark $
-export AWS_SECRET_ACCESS_KEY=<!-- raw HTML omitted -->
-export AWS_ACCESS_KEY_ID=<!-- raw HTML omitted -->
-export AWS_SESSION_TOKEN="<!-- raw HTML omitted -->"
-aws s3 sync /var/www/files/drupal/dgud7/organogram s3://datagovuk-production-ckan-organogram/legacy/organogram # 3 mins if full upload, 10 seconds if no-op
-exit # Clear your environment variables and flush bash history to disk
+  export AWS_SECRET_ACCESS_KEY=&lt;from previous output&gt;
+  export AWS_ACCESS_KEY_ID=&lt;from previous output&gt;
+  export AWS_SESSION_TOKEN="&lt;from previous output&gt;"
+  aws s3 sync /var/www/files/drupal/dgud7/organogram s3://datagovuk-production-ckan-organogram/legacy/organogram # 3 mins if full upload, 10 seconds if no-op
+  exit # Clear your environment variables and flush bash history to disk
 bytemark $
-vi ~/.bash_history # remove your secrets
-aws console:
+  vi ~/.bash_history # remove your secrets
+</code></pre>
+<p>aws console:
 Check the box next to the <code>legacy</code> directory and click Actions -&gt; Make public.  This will take a few minutes.</p>
 
 
