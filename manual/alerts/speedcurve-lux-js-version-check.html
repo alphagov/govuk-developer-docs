@@ -154,15 +154,15 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ad84c724e009aa5d606071b4c246d9017508ac67">12 May 2022</a>
 </div>
 
- <h1 id='header'>SpeedCurve LUX JavaScript version check</h1> <p>GOV.UK makes uses of a frontend performance tool, <a href="https://www.speedcurve.com/features/performance-monitoring/">SpeedCurve Live User Experience (LUX)</a>, this is provided by a <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-reporter.js">JavaScript file provided by govuk_publishing_components</a>. Typically the SpeedCurve LUX JavaScript is hosted by SpeedCurve we, however, <a href="https://support.speedcurve.com/docs/self-hosted-real-user-monitoring">we host a copy ourselves</a> for security. Therefore we have to try keep our self-hosted copy up-to-date with the one SpeedCurve host.</p>
+ <h1 id='header'>SpeedCurve LUX JavaScript version check</h1> <p>GOV.UK makes uses of a frontend performance tool, <a href="https://www.speedcurve.com/features/performance-monitoring/">SpeedCurve Live User Experience (LUX)</a>, this is provided by a <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-reporter.js">JavaScript file provided by govuk_publishing_components</a>. Typically the SpeedCurve LUX JavaScript is hosted by SpeedCurve we, however, <a href="https://support.speedcurve.com/docs/self-hosted-real-user-monitoring">we host a copy ourselves</a> for security. Therefore we have to try keep our self-hosted copy up-to-date with the one SpeedCurve host.</p>
 <p>This alert fires when the version of lux.js that SpeedCurve is hosting has a different version number to what we expect. This indicates we are hosting an out of date version of lux.js, which lead to problems with the data we are recording.</p>
 <h2 id='to-resolve-this-alert'>To resolve this alert</h2>
 <ol>
 <li>Establish the current version number of lux.js from <a href="https://app.speedcurve.com/updates/">https://app.speedcurve.com/updates/</a></li>
-<li>Find the <a href="https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-reporter.js">lux-reporter.js</a> in govuk_publishing_components</li>
+<li>Find the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-reporter.js">lux-reporter.js</a> in govuk_publishing_components</li>
 <li>Download the source code of lux.js from <a href="https://cdn.speedcurve.com/js/lux.js?id=47044334">https://cdn.speedcurve.com/js/lux.js?id=47044334</a></li>
 <li>Run the source code through a tool to deminifiy it, such as <a href="https://beautifier.io/">https://beautifier.io/</a></li>
 <li>Replace the corresponding section of lux-reporter.js with the deminified code</li>
