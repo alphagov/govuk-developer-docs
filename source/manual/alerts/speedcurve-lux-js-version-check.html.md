@@ -23,6 +23,6 @@ This alert fires when the version of lux.js that SpeedCurve is hosting has a dif
 1. Ensure that puppet is deployed with the updated Jenkins check to resolve the alert
 
 [speedcurve]: https://www.speedcurve.com/features/performance-monitoring/
-[js-file]: https://github.com/alphagov/govuk_publishing_components/blob/master/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-reporter.js
+[js-file]: https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-reporter.js
 [self-hosting]: https://support.speedcurve.com/docs/self-hosted-real-user-monitoring
 [Jenkins check]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_jenkins/templates/jobs/speedcurve_lux_js_version_check.yaml.erb
