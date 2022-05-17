@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>smokey: Writing tests - GOV.UK Developer Documentation</title>
+    <title>smokey: Deployment - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smokey/writing-tests.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smokey/deployment.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="smokey: Writing tests - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smokey/writing-tests.html" />
+      <meta name="twitter:title" content="smokey: Deployment - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smokey/deployment.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="smokey: Writing tests" />
+      <meta property="og:title" content="smokey: Deployment" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smokey/writing-tests.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smokey/deployment.html" />
 
     
   </head>
@@ -407,35 +407,25 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/9bd922f284a903d3b3240df1cea031c0a798329d">29 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/193549f01b3456a437207b466d2bcf937f563667">4 May 2022</a>
 </div>
 
-  <h1 class="page-title">smokey: Writing tests</h1>
+  <h1 class="page-title">smokey: Deployment</h1>
 
   
-<h2 id="alerting-in-icinga">Alerting in Icinga</h2>
-<p>All of the Cucumber features in this repo are run in <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf">a continuous Smokey loop</a>. In order to alert on a failing scenario in Icinga, you need to ensure the feature is <a href="https://github.com/alphagov/govuk-puppet/blob/d7af16e96aed682facb5cf5bc3e3972510c64ca2/hieradata_aws/integration.yaml#L378">listed in the Puppet config</a>.</p>
-<h2 id="filtering-with-tags">Filtering with tags</h2>
-<p><code>@...</code> tags should <em>only</em> be used for filtering (<a href="https://github.com/alphagov/smokey/pull/903">not functionality hooks</a>).</p>
-<h2 id="app-"><code>@app-&lt;app_name&gt;</code></h2>
-<p>The Smokey job in Jenkins <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/modules/govuk_jenkins/templates/jobs/smokey.yaml.erb#L34">has an option to filter scenarios by application</a>, so that we can avoid running the entire test suite when only some scenarios are relevant to a change. To associate tests with an app, you need to tag the relevant scenarios (or entire feature) with <code>@app-&lt;app_name&gt;</code>.</p>
-<p><strong>Important: make sure <code>&lt;app_name&gt;</code> matches against <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/hieradata_aws/common.yaml#L145">the list of apps for the Deploy_App job</a></strong>. This is so the filtering will work with <a href="https://github.com/alphagov/smokey/pull/675">the Continuous Deployment pipeline</a>.</p>
-<h2 id="not"><code>@not&lt;environment&gt;</code></h2>
-<p>All features should run in <strong>all</strong> environments. Sometimes this isn't possible e.g.</p>
+<h2 id="before-you-merge">Before you merge</h2>
+<p>This app doesn't have CI setup, and it would be misleading to do so: the behaviour of the tests changes depending on the environment they are run in. You should manually test in applicable environments, until you are confident your change is not a breaking one.</p>
+<p>Example steps to test in Integration:</p>
 <ul>
-<li>
-<p><a href="https://github.com/alphagov/smokey/blob/83fa09aa2aacec3053d58c52a2cb3af1ca27ba2b/features/mirror.feature">The actual functionality only exists in Production</a>. Tag the feature or scenario with <code>@notintegration</code> and <code>@notstaging</code> so it doesn't run in these environments i.e. its only runs in Production.</p>
+<li>Click "Configure" for the <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a>
 </li>
-<li>
-<p><a href="https://github.com/alphagov/smokey/blob/5caf9635f4c4601df69c39075f5438fc3d3f3df0/features/info_frontend.feature#L1">The functionality is being replatformed</a>. Tag the feature or scenario with <code>@replatforming</code> or <code>@notreplatforming</code> depending on whether you expect it to work in the new platform.</p>
-</li>
+<li>Change the "Branch specifier" to the name of your branch</li>
+<li>Run a new build of the Smokey project and check the results</li>
 </ul>
-<h2 id="pending"><code>@pending</code></h2>
-<p>This will stop a feature or scenario from running in all environments.</p>
-<p><strong>Only use this tag if you know you will re-enable it soon</strong>. Otherwise, it's clearer to just remove it - either way you will need to make a PR to restore it, so the amount of work is similar.</p>
-<h2 id="local-network"><code>@local-network</code></h2>
-<p>This will stop a feature or scenario running on a local machine. Use this tag if there's a network policy in place that prevents your local machine from accessing protected functionality.</p>
-<p><strong>Before adding this tag, check if you could write a better test.</strong> It's hard to maintain tests that can't be run locally, so only use this tag if there's no practical way to fix the access issue.</p>
+<h2 id="after-you-merge">After you merge</h2>
+<p>The manual <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a> will pick up changes on <code>main</code> automatically.</p>
+<p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf">continuous Smokey Loop</a> is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb">deployed daily by Jenkins</a> using <code>deploy.sh</code> and the latest version of the <code>main</code> branch. You should still consider manually deploying your change using the <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey_Deploy/">Smokey deploy job</a>, in case it causes a problem.</p>
+<p>If you are adding a new feature file, you need to ensure the feature is <a href="https://github.com/alphagov/govuk-puppet/blob/d7af16e96aed682facb5cf5bc3e3972510c64ca2/hieradata_aws/integration.yaml#L378">listed in the Puppet config for the Smokey Loop</a> in order to alert on a failing scenario in Icinga.</p>
 
 
             
@@ -443,8 +433,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/smokey/blob/main/docs/writing-tests.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmokey%2Fwriting-tests.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/smokey/blob/main/docs/deployment.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmokey%2Fdeployment.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

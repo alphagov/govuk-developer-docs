@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: smokey - GOV.UK Developer Documentation</title>
+    <title>smokey: Tagging - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smokey.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smokey/tagging.html">
 
-      <meta name="description" content="Everything about smokey (Smoke tests for GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: smokey - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smokey.html" />
+      <meta name="twitter:title" content="smokey: Tagging - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smokey/tagging.html" />
 
-      <meta property="og:description" content="Everything about smokey (Smoke tests for GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: smokey" />
+      <meta property="og:title" content="smokey: Tagging" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smokey.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smokey/tagging.html" />
 
     
   </head>
@@ -250,7 +248,7 @@
           <li><a href="/repos/seal.html"><span>seal</span></a></li>
           <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
           <li><a href="/repos/sidekiq-monitoring.html"><span>sidekiq-monitoring</span></a></li>
-          <li><a href="/repos/smokey.html" class="toc-link--in-view"><span>smokey</span></a></li>
+          <li><a href="/repos/smokey.html"><span>smokey</span></a></li>
           <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
         </ul>
       </li>
@@ -380,6 +378,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "smokey",
+        "@id": "http://www.dev.gov.uk/repos/smokey.html"
+      }
     }
   ]
 }
@@ -391,113 +397,42 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/smokey.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;smokey&quot;}" class="govuk-breadcrumbs__link" href="/repos/smokey.html">smokey</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Repository: smokey</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Smoke tests for GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/smokey">smokey</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-developers</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div></dl>    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/193549f01b3456a437207b466d2bcf937f563667">4 May 2022</a>
 </div>
-<h2 id='imported-documents'>Imported documents</h2>
-<ul>
-<li><a href='/repos/smokey/deployment.html' class='govuk-link'>Deployment</a></li>
-        <li><a href='/repos/smokey/tagging.html' class='govuk-link'>Tagging</a></li>
-</ul>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>A suite of <a href="https://cucumber.io/">Cucumber</a> tests that probe GOV.UK frontend and backend publishing functionality. We use feature files to describe single applications (eg <a href="https://github.com/alphagov/whitehall"><code>whitehall</code></a>, <a href="https://github.com/alphagov/frontend"><code>frontend</code></a>) or <a href="https://github.com/alphagov/smokey/blob/main/features/gov_uk.feature">cross-application behaviour</a>. The tests <a href="https://github.com/alphagov/smokey/blob/main/features/support/env.rb">use Selenium to manipulate a headless Chrome browser</a>.</p>
+  <h1 class="page-title">smokey: Tagging</h1>
 
-<p>The tests are run in two different ways:</p>
-
+  
+<p><code>@...</code> tags should <em>only</em> be used for filtering (<a href="https://github.com/alphagov/smokey/pull/903">not functionality hooks</a>).</p>
+<h2 id="app-"><code>@app-&lt;app_name&gt;</code></h2>
+<p>The Smokey job in Jenkins <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/modules/govuk_jenkins/templates/jobs/smokey.yaml.erb#L34">has an option to filter scenarios by application</a>, so that we can avoid running the entire test suite when only some scenarios are relevant to a change. To associate tests with an app, you need to tag the relevant scenarios (or entire feature) with <code>@app-&lt;app_name&gt;</code>.</p>
+<p><strong>Important: make sure <code>&lt;app_name&gt;</code> matches against <a href="https://github.com/alphagov/govuk-puppet/blob/7f4b1684471daf09cff72c1372db88b1ed3fd1dc/hieradata_aws/common.yaml#L145">the list of apps for the Deploy_App job</a></strong>. This is so the filtering will work with <a href="https://github.com/alphagov/smokey/pull/675">the Continuous Deployment pipeline</a>.</p>
+<h2 id="not"><code>@not&lt;environment&gt;</code></h2>
+<p>All features should run in <strong>all</strong> environments. Sometimes this isn't possible e.g.</p>
 <ul>
 <li>
-<p>On demand, to check if a change breaks something. This is done using the <a href="https://github.com/alphagov/govuk-puppet/blob/b103dd3b4adcc8c39343dd85b68f4f5b93e38d9d/modules/govuk_jenkins/manifests/jobs/smokey.pp">Smokey job in Jenkins</a> when deploying GOV.UK applications, <a href="https://github.com/alphagov/govuk-puppet/blob/27faad21eadd52e8d8b37366eac0d8e1e123adbb/modules/govuk_jenkins/templates/jobs/deploy_puppet.yaml.erb#L44">Puppet</a> and other code, such as <a href="https://github.com/alphagov/govuk-puppet/blob/0e1f84954831188e22a1a76cedc4463318edf1e8/modules/govuk_jenkins/templates/jobs/deploy_cdn.yaml.erb#L49">CDN config</a>.</p>
+<p><a href="https://github.com/alphagov/smokey/blob/83fa09aa2aacec3053d58c52a2cb3af1ca27ba2b/features/mirror.feature">The actual functionality only exists in Production</a>. Tag the feature or scenario with <code>@notintegration</code> and <code>@notstaging</code> so it doesn't run in these environments i.e. its only runs in Production.</p>
 </li>
 <li>
-<p>Periodically, to check for transient failures e.g. in infrastructure. The tests are run in <a href="https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/templates/smokey-loop.conf">a continuous &ldquo;Smokey Loop&rdquo;</a>, with <a href="https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/manifests/checks/smokey.pp">corresponding alerts in Icinga</a>.</p>
+<p><a href="https://github.com/alphagov/smokey/blob/5caf9635f4c4601df69c39075f5438fc3d3f3df0/features/info_frontend.feature#L1">The functionality is being replatformed</a>. Tag the feature or scenario with <code>@replatforming</code> or <code>@notreplatforming</code> depending on whether you expect it to work in the new platform.</p>
 </li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><strong>Note: you will need to be connected to the VPN to test against Integration or Staging.</strong></p>
-
-<p>The tests require additional configuration to run successfully on a local machine.</p>
-
-<pre><code>env \
-ENVIRONMENT=integration \
-SIGNON_EMAIL="&lt;email-address&gt;" \
-SIGNON_PASSWORD="&lt;password&gt;" \
-bundle exec cucumber
-</code></pre>
-
-<p>You can use the following environment variables to configure the tests:</p>
-
-<ul>
-<li>
-<code>ENVIRONMENT</code>: controls domains returned by <a href="https://github.com/alphagov/plek">Plek</a> (see <a href="https://github.com/alphagov/smokey/blob/19c21ac4be3f67ef994f327670121209c8632c0d/features/support/env.rb#L9-L21">env.rb</a>)</li>
-<li>
-<code>SIGNON_EMAIL</code>: email of a Signon user in $ENVIRONMENT</li>
-<li>
-<code>SIGNON_PASSWORD</code>: password of a Signon user in $ENVIRONMENT</li>
-</ul>
-
-<p>You can try using your own Signon account, but this won&rsquo;t work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in <code>govuk-secrets/puppet_aws</code>:</p>
-
-<pre><code>bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]'
-bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
-</code></pre>
-
-<h2 id="further-documentation">Further documentation</h2>
-
-<ul>
-<li><a href="/repos/smokey/deployment.html">deployment</a></li>
-<li><a href="/repos/smokey/tagging.html">tagging</a></li>
-<li><a href="https://github.com/alphagov/smokey/blob/main/.github/pull_request_template.md">pr-template</a></li>
-</ul>
-<p></div></p>
+<h2 id="pending"><code>@pending</code></h2>
+<p>This will stop a feature or scenario from running in all environments.</p>
+<p><strong>Only use this tag if you know you will re-enable it soon</strong>. Otherwise, it's clearer to just remove it - either way you will need to make a PR to restore it, so the amount of work is similar.</p>
+<h2 id="local-network"><code>@local-network</code></h2>
+<p>This will stop a feature or scenario running on a local machine. Use this tag if there's a network policy in place that prevents your local machine from accessing protected functionality.</p>
+<p><strong>Before adding this tag, check if you could write a better test.</strong> It's hard to maintain tests that can't be run locally, so only use this tag if there's no practical way to fix the access issue.</p>
 
 
             
@@ -505,8 +440,8 @@ bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmokey.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/smokey/blob/main/docs/tagging.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmokey%2Ftagging.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
