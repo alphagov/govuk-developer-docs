@@ -436,16 +436,20 @@
 </div>
 <h2 id='imported-documents'>Imported documents</h2>
 <ul>
-<li><a href='/repos/publishing-e2e-tests/jenkins-debugging-failures.html' class='govuk-link'>Debugging Jenkins failures</a></li>
+<li><a href='/repos/publishing-e2e-tests/adding-new-apps.html' class='govuk-link'>Adding new apps</a></li>
+        <li><a href='/repos/publishing-e2e-tests/jenkins-debugging-failures.html' class='govuk-link'>Debugging Jenkins failures</a></li>
         <li><a href='/repos/publishing-e2e-tests/jenkins-breaking-changes.html' class='govuk-link'>Getting a breaking app change through Jenkins</a></li>
         <li><a href='/repos/publishing-e2e-tests/testing-with-a-branch.html' class='govuk-link'>Testing with a branch</a></li>
         <li><a href='/repos/publishing-e2e-tests/troubleshooting.html' class='govuk-link'>Troubleshooting</a></li>
-        <li><a href='/repos/publishing-e2e-tests/what-belongs-in-these-tests.html' class='govuk-link'>What belongs in publishing-e2e-tests</a></li>
         <li><a href='/repos/publishing-e2e-tests/writing-tests.html' class='govuk-link'>Writing tests</a></li>
 </ul>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
 <p>A suite of end-to-end tests for publisher user journeys. The tests are written in <a href="http://rspec.info/">RSpec</a> / <a href="https://github.com/teamcapybara/capybara">Capybara</a> and mimic the behaviour of content editors in a web browser, using <a href="https://github.com/alphagov/publishing-e2e-tests/blob/2044d7eb3c00194d9fd6d1452849b7afc77b3608/spec/spec_helper.rb#L119">headless Chrome</a>.</p>
+
+<blockquote>
+<p><strong>Warning: this repo is DEPRECATED as of <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#delete-publishing-e2e-tests">RFC 128 (Continuous Deployment)</a></strong>. The tests are slow and brittle and do not run in a realistic GOV.UK environment. Do not add any new tests to this repo.</p>
+</blockquote>
 
 <h2 id="technical-documentation">Technical documentation</h2>
 
@@ -495,9 +499,9 @@ $ make pull build start test-specialist-publisher stop
 <li><a href="/repos/publishing-e2e-tests/jenkins-breaking-changes.html">Getting a breaking app change through Jenkins</a></li>
 <li><a href="/repos/publishing-e2e-tests/jenkins-debugging-failures.html">Debugging Jenkins failures</a></li>
 <li><a href="/repos/publishing-e2e-tests/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/repos/publishing-e2e-tests/what-belongs-in-these-tests.html">What belongs in publishing-e2e-tests</a></li>
 <li><a href="/repos/publishing-e2e-tests/writing-tests.html">Writing tests</a></li>
 <li><a href="/repos/publishing-e2e-tests/testing-with-a-branch.html">Testing with a branch</a></li>
+<li><a href="/repos/publishing-e2e-tests/adding-new-apps.html">Adding new apps</a></li>
 </ul>
 
 <h2 id="licence">Licence</h2>

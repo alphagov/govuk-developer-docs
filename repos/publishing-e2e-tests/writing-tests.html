@@ -407,122 +407,48 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/e0490ee2f9c28109a64342b81d097218e41f4844">11 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/f0d0d56185cf0bb4bd90c83ec78d085e25032de7">6 May 2022</a>
 </div>
 
   <h1 class="page-title">publishing-e2e-tests: Writing tests</h1>
 
   
-<p>This guide covers the basics for contributing to this project.</p>
+<blockquote>
+<p><strong>Warning: this repo is DEPRECATED as of <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#delete-publishing-e2e-tests">RFC 128 (Continuous Deployment)</a></strong>. The tests are slow and brittle and do not run in a realistic GOV.UK environment. Do not add any new tests to this repo.</p>
+<p>Instead of adding a test here, you can add a <a href="https://github.com/alphagov/smokey">smoke test</a> for the publishing action in real GOV.UK environments. See the Smokey docs for guidance about writing this kind of "mutating state" test.</p>
+</blockquote>
+<h2 id="what-belongs-here">What belongs here</h2>
+<p>This repo contains tests for critical publishing actions and their impact on the draft or live site. For example, publishing a document and checking it's visible on GOV.UK.</p>
+<p>Do not add tests that can be implemented in other ways. We want this to be the tip of of the <a href="https://martinfowler.com/bliki/TestPyramid.html">testing pyramid</a>, not a <a href="http://saeedgatson.com/the-software-testing-ice-cream-cone/">testing ice cream cone</a>. Instead of adding a test here, you can:</p>
 <ul>
-<li><a href="#coding-style">Coding style</a></li>
-<li><a href="#adding-new-tests">Adding new tests</a></li>
-<li><a href="#dealing-with-flaky-tests">Dealing with flaky tests</a></li>
-<li><a href="#testing-new-applications">Testing new applications</a></li>
+<li>
+<p>Add <a href="https://docs.publishing.service.gov.uk/manual/pact-broker.html">contract tests</a> to cover the chain of APIs in a publishing action. For example, publishing a document involves Publishing API, Email Alert API, Content Store and Router.</p>
+</li>
+<li>
+<p>Add unit or integration tests to cover in-app behaviour. For example, the way each document format is rendered can be tested in the frontend app that does the rendering.</p>
+</li>
 </ul>
-<h2 id="coding-style">Coding style</h2>
+<p>In contrast, the tests in this repo provide coverage at a higher level. They check that the chain of state changes in a publishing action culminate in a change on the draft or live site.</p>
+<h2 id="adding-new-tests">Adding new tests</h2>
 <p>The feature tests are written in a style consistent with this article:
 <a href="https://about.futurelearn.com/blog/how-we-write-readable-feature-tests-with-rspec">How we write readable feature tests with rspec</a>.</p>
-<h2 id="adding-new-tests">Adding new tests</h2>
-<p>New tests that are added should be providing coverage of flows that touch more
-than 2 applications in the GOV.UK stack. Further guidance can be found in
-<a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docs/docs/what-belongs-in-these-tests.md">what-belongs-in-these-tests.md</a>.</p>
-<p>When adding a new scenario it has previously been valuable to consult with the
-team responsible for maintaining the Publisher application that will be
-affected.</p>
-<p>It is easy to accidentally introduce <a href="https://testing.googleblog.com/2016/05/flaky-tests-at-google-and-how-we.html">flaky tests</a> to this project given the
-nature of end-to-end testing. It's expected that new tests being added will
-have been run a number of times and that the developer will monitor them after
-introduction so they're
-<a href="#dealing-with-flaky-tests">ready to act on a flaky test</a>.</p>
-<p>Common reasons for a flaky tests can include:</p>
+<p>Tests should be tagged to the publishing and rendering applications they are testing using <a href="https://relishapp.com/rspec/rspec-core/v/3-7/docs/command-line/tag-option">rspec tags</a> to only run tests that concern that application e.g. <code>feature "Some feature", whitehall: true</code>.</p>
+<p>Use <code>new: true</code> when adding a new test, until it has been run for a sufficiently long period for you to be confident it is not flakey. Tests that are tagged with <code>new</code> will not fail the overall build.</p>
+<p>Rules to follow for new tests:</p>
 <ul>
-<li>Applications not in a suitable state to be tested - Adding a Docker
-<a href="https://docs.docker.com/engine/reference/builder/#healthcheck">healthcheck</a> can alieviate this because it is syncronised
-on as part of the <a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docs/lib/tasks/docker.rake">wait_for_apps</a> rake task run during
-<code>make setup</code>
+<li>Aim for one scenario per file.</li>
+<li>Test what <em>should</em> happen, not what shouldn't.</li>
+<li>Test critical functionality, not superficial behaviour e.g. flash messages.</li>
+</ul>
+<p>Some tips for writing tests:</p>
+<ul>
+<li>
+<p>Starting up the docker containers is <em>slow</em>. Use <code>binding.pry</code> to pry into your test and use the console to debug and write your test. Additionally, <code>save_screenshot('filename.png')</code> will help you see what is going on.</p>
 </li>
-<li>Checking conditions on pages that haven't yet been updated -
-<a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docs/spec/support/retry_helpers.rb">RetryHelpers</a> can be used for this</li>
-<li>Not waiting for a unique element to appear when moving between web pages.
-An example of this can be found in <a href="https://github.com/alphagov/publishing-e2e-tests/commit/fb24c281c728424656410fb2e6c7d173e75ff2c3">fb24c2</a>
+<li>
+<p>If you are relying on code in a repo, ensure that the code is in the <code>deployed-to-production</code> branch. If not, see main README for guidance on running the tests against a different branch.</p>
 </li>
 </ul>
-<p>Tests should be tagged to the publishing and rendering applications they are
-testing using <a href="https://relishapp.com/rspec/rspec-core/v/3-7/docs/command-line/tag-option">rspec tags</a> to only run tests that concern that application.
-This is because the tests are slow and doing this can limit the impact of
-a flaky test.</p>
-<p>When adding a new test into the project it can also be tagged with <code>new: true</code>, tests that are tagged with <code>new</code> or <code>flaky</code> are executed in the new/flaky stage. This stage runs separately from the existing tests and will not fail the overall build. If this stage fails a notification is posted to the <code>#end-to-end-tests</code> slack channel to provide easy monitoring.
-This allows for a chance to build confidence in new tests without impacting the current suite should there be any flakiness as they run at a much higher volume than when being developed originally.</p>
-<h3 id="tips">Tips</h3>
-<ul>
-<li>Starting up the docker containers is <em>slow</em>. Use <code>binding.pry</code> to pry into your test and use the console to debug and write your test. Additionally, <code>save_screenshot('filename.png')</code> will help you see what is going on.</li>
-<li>If you are relying on code in a repo, ensure that the code is in the <code>deployed-to-production</code> branch. If not, see main README for guidance on running the tests against a different branch.</li>
-</ul>
-<h2 id="dealing-with-flaky-tests">Dealing with flaky tests</h2>
-<p>Sometimes these tests have been found to be sensitive to race hazards and other
-timing issues that are not surfaced until they are run at scale. Even with
-care, some of these race hazards will only become apparent once the tests have
-been run 10s - or even 100s - of times.</p>
-<p>As this is a testing library, whose value correlates to the level of trust in
-it, it is important to keep these tests as trustworthy as possible. A flaky
-test can erode this trust.</p>
-<h3 id="think-a-test-might-be-flaky">Think a test might be flaky?</h3>
-<ul>
-<li>First step is to be able to confidently say that test is flaky:
-<ul>
-<li>For a flaky test it should be passing and failing given the same
-environment</li>
-<li>If the test is failing consistently it might be a sign that something
-different in the stack is broken</li>
-</ul>
-</li>
-<li>Next we want to stop the test failing for users of the suite:
-<ul>
-<li>Create a PR which marks the test as flaky in this repository e.g.
-<pre lang="ruby"><code>scenario "Change note on a Countryside Stewardship Grant", flaky: true do
-  ...
-end
-</code></pre>
-</li>
-<li>In the commit outline the full failure message with any other information
-that would help when understanding why it was failing. E.g. was the test
-the first to run?</li>
-</ul>
-</li>
-</ul>
-<h3 id="fixing-a-flaky-test">Fixing a flaky test</h3>
-<p>The challenge with fixing a flaky test is to be confident that what you have
-done has resolved the issue, and that you can convince someone reviewing the
-fix that your changes resolve this. It can be valuable to point to a number of successful test runs on the flaky stage.</p>
-<p>It is therefore useful to use the commit message as a place to explain exactly
-what the cause of the flaky result is and how the changes introduced resolve
-that.</p>
-<p>If a flaky test cannot be fixed it should be removed from the suite.</p>
-<h2 id="testing-new-applications">Testing new applications</h2>
-<ul>
-<li>Create a <code>Dockerfile</code> in the repository of the app you want to add.</li>
-<li>Edit <code>Makefile</code> to include the repository for the app.</li>
-<li>Define the service and its relationship to other services in
-<code>docker-compose.yml</code>
-</li>
-</ul>
-<p>Now follow the <a href="#adding-new-tests">adding new tests</a> process.</p>
-<p>When adding a new app you should add a RSpec tag to associate tests with that
-app, and a step in the Makefile to run those tests. E.g. if you were adding
-whitehall as an app you would tag the tests with <code>whitehall: true</code> and create a
-step in the make file called <code>test-whitehall</code>.</p>
-<p>To run against specific revisions of the applications (such as commits and branches),
-you'll need to add an entry for the application being tested to the apps array in
-the Jenkinsfile.</p>
-<p>Once you have merged your tests into this repository and removed the <code>new: true</code>
-tag, because you are confident in them, you'll want to enable the tests to be
-run on every commit to the applications repositories.  The Jenkinsfile for
-most applications uses the <code>buildProject</code> which  has a <code>publishingE2ETests</code>
-parameter that enables this functionality. The Publisher Jenkinsfile has an
-<a href="https://github.com/alphagov/publisher/commit/712563d5d3e72685b1848bb61ea6cfc28b3449c3">example of enabling</a> the E2E tests,
-and using the <code>PUBLISHING_E2E_TESTS_COMMAND</code> variable to only run
-<code>publisher: true</code> tagged specs.</p>
 
 
             

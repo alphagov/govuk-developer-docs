@@ -407,7 +407,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/f669e11bc9071792a64981e6ed12047f4d765057">12 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/8f24681a4b329f5aa872f45d471e0d03a55dbf2c">5 May 2022</a>
 </div>
 
   <h1 class="page-title">publishing-e2e-tests: Troubleshooting</h1>
@@ -420,9 +420,15 @@ for a Jenkins failure inside the docs folder.</p>
 requires a change one of these tests, we have
 <a href="/repos/publishing-e2e-tests/jenkins-breaking-changes.html">detailed guidance</a> on how to achieve that.</p>
 <h2 id="dealing-with-a-flaky-test">Dealing with a flaky test</h2>
-<p>A key aim of these tests is to be as reliable as possible, however this can be
-difficult - particularly early in a test's introduction - therefore we have a
-<a href="/repos/publishing-e2e-tests/writing-tests.html">strategy</a> to deal with flaky tests.</p>
+<p>As this is a testing library, whose value correlates to the level of trust in
+it, it is important to keep these tests as trustworthy as possible. A flaky
+test can erode this trust.</p>
+<p>Once you are confident a test is flakey, you can stop it failing the build while you investigate a potential fix. Use the <code>flaky: true</code> flag for this e.g.</p>
+<pre lang="ruby"><code>scenario "Change note on a Countryside Stewardship Grant", flaky: true do
+  ...
+end
+</code></pre>
+<p>Use <a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docs/spec/support/retry_helpers.rb">RetryHelpers</a> to cope with pages that are slow to update, and <a href="https://github.com/alphagov/publishing-e2e-tests/commit/fb24c281c728424656410fb2e6c7d173e75ff2c3">page-specific assertions</a> to ensure the assertions that follow are checking the page you expect.</p>
 <h2 id="manually-running-containers">Manually running containers</h2>
 <ul>
 <li>Run programs within containers using <code>docker-compose</code>:
