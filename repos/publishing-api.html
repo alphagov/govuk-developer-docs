@@ -470,7 +470,6 @@
 <h2 id='imported-documents'>Imported documents</h2>
 <ul>
 <li><a href='/repos/publishing-api/admin-tasks.html' class='govuk-link'>Admin Tasks</a></li>
-        <li><a href='/repos/publishing-api/pact_testing.html' class='govuk-link'>Contract testing with Pact</a></li>
         <li><a href='/repos/publishing-api/deleting-content.html' class='govuk-link'>Deleting Documents, Editions and Links</a></li>
         <li><a href='/repos/publishing-api/dependency-resolution.html' class='govuk-link'>Dependency Resolution</a></li>
         <li><a href='/repos/publishing-api/link-expansion.html' class='govuk-link'>Link Expansion</a></li>
@@ -548,10 +547,7 @@
 
 <p>You can run the tests locally with: <code>bundle exec rake</code>.</p>
 
-<p>The publishing API includes <a href="/repos/publishing-api/pact_testing.html">Pact contract tests</a>, which verify that the service behaves in the way expected by its clients. The tests the <em>consumer driven contract testing</em> pattern. You can run these on their own using:</p>
-
-<pre lang="sh"><code>$ bundle exec rake pact:verify
-</code></pre>
+<p>The Publishing API also has <a href="https://docs.publishing.service.gov.uk/manual/pact-testing.html">contract tests with GDS API Adapters</a> (where it acts as the &ldquo;provider&rdquo;) and <a href="https://docs.publishing.service.gov.uk/manual/pact-testing.html#special-cases-and-tech-debt">with Content Store</a> ( where it acts as the contract &ldquo;consumer&rdquo;). <a href="https://docs.publishing.service.gov.uk/manual/pact-testing.html#running-pact-tests-locally">Read the guidance for how to run the tests locally</a>.</p>
 
 <h3 id="further-documentation">Further documentation</h3>
 
