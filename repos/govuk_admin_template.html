@@ -1,0 +1,810 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Repository: govuk_admin_template - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_admin_template.html">
+
+      <meta name="description" content="Everything about govuk_admin_template ([Deprecated] Styles, scripts and templates for building GOV.UK backend admin apps)" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Repository: govuk_admin_template - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_admin_template.html" />
+
+      <meta property="og:description" content="Everything about govuk_admin_template ([Deprecated] Styles, scripts and templates for building GOV.UK backend admin apps)" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Repository: govuk_admin_template" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_admin_template.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/apps/by-team.html">
+        <span>Repository ownership by team</span>
+      </a>
+    </li>
+
+      <li>
+        <a href="/apps.html">
+          <span>APIs</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/account-api.html"><span>account-api</span></a></li>
+          <li><a href="/repos/asset-manager.html"><span>asset-manager</span></a></li>
+          <li><a href="/repos/business-support-api.html"><span>business-support-api</span></a></li>
+          <li><a href="/repos/content-data-api.html"><span>content-data-api</span></a></li>
+          <li><a href="/repos/content-store.html"><span>content-store</span></a></li>
+          <li><a href="/repos/email-alert-api.html"><span>email-alert-api</span></a></li>
+          <li><a href="/repos/govuk-delivery.html"><span>govuk-delivery</span></a></li>
+          <li><a href="/repos/govuk_content_api.html"><span>govuk_content_api</span></a></li>
+          <li><a href="/repos/govuk_need_api.html"><span>govuk_need_api</span></a></li>
+          <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
+          <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
+          <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
+          <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
+          <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
+          <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
+          <li><a href="/repos/router-api.html"><span>router-api</span></a></li>
+          <li><a href="/repos/search-api.html"><span>search-api</span></a></li>
+          <li><a href="/repos/support-api.html"><span>support-api</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Gems</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/asset_bom_removal-rails.html"><span>asset_bom_removal-rails</span></a></li>
+          <li><a href="/repos/deprecated_columns.html"><span>deprecated_columns</span></a></li>
+          <li><a href="/repos/gds-api-adapters.html"><span>gds-api-adapters</span></a></li>
+          <li><a href="/repos/gds-sso.html"><span>gds-sso</span></a></li>
+          <li><a href="/repos/gds_zendesk.html"><span>gds_zendesk</span></a></li>
+          <li><a href="/repos/govspeak.html"><span>govspeak</span></a></li>
+          <li><a href="/repos/govuk_ab_testing.html"><span>govuk_ab_testing</span></a></li>
+          <li><a href="/repos/govuk_admin_template.html" class="toc-link--in-view"><span>govuk_admin_template</span></a></li>
+          <li><a href="/repos/govuk_app_config.html"><span>govuk_app_config</span></a></li>
+          <li><a href="/repos/govuk_document_types.html"><span>govuk_document_types</span></a></li>
+          <li><a href="/repos/govuk_message_queue_consumer.html"><span>govuk_message_queue_consumer</span></a></li>
+          <li><a href="/repos/govuk_personalisation.html"><span>govuk_personalisation</span></a></li>
+          <li><a href="/repos/govuk_publishing_components.html"><span>govuk_publishing_components</span></a></li>
+          <li><a href="/repos/govuk_schemas.html"><span>govuk_schemas</span></a></li>
+          <li><a href="/repos/govuk_seed_crawler.html"><span>govuk_seed_crawler</span></a></li>
+          <li><a href="/repos/govuk_sidekiq.html"><span>govuk_sidekiq</span></a></li>
+          <li><a href="/repos/govuk_test.html"><span>govuk_test</span></a></li>
+          <li><a href="/repos/omniauth-gds.html"><span>omniauth-gds</span></a></li>
+          <li><a href="/repos/optic14n.html"><span>optic14n</span></a></li>
+          <li><a href="/repos/plek.html"><span>plek</span></a></li>
+          <li><a href="/repos/rack-logstasher.html"><span>rack-logstasher</span></a></li>
+          <li><a href="/repos/rails_translation_manager.html"><span>rails_translation_manager</span></a></li>
+          <li><a href="/repos/rubocop-govuk.html"><span>rubocop-govuk</span></a></li>
+          <li><a href="/repos/slimmer.html"><span>slimmer</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Utilities</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/assets-businesslink.html"><span>assets-businesslink</span></a></li>
+          <li><a href="/repos/assets-directgov.html"><span>assets-directgov</span></a></li>
+          <li><a href="/repos/bulk-merger.html"><span>bulk-merger</span></a></li>
+          <li><a href="/repos/ckan-helm.html"><span>ckan-helm</span></a></li>
+          <li><a href="/repos/data-community-tech-docs.html"><span>data-community-tech-docs</span></a></li>
+          <li><a href="/repos/email-alert-monitoring.html"><span>email-alert-monitoring</span></a></li>
+          <li><a href="/repos/govspeak-preview.html"><span>govspeak-preview</span></a></li>
+          <li><a href="/repos/govuk-app-deployment.html"><span>govuk-app-deployment</span></a></li>
+          <li><a href="/repos/govuk-aws.html"><span>govuk-aws</span></a></li>
+          <li><a href="/repos/govuk-browser-extension.html"><span>govuk-browser-extension</span></a></li>
+          <li><a href="/repos/govuk-cdn-config.html"><span>govuk-cdn-config</span></a></li>
+          <li><a href="/repos/govuk-connect.html"><span>govuk-connect</span></a></li>
+          <li><a href="/repos/govuk-content-api-docs.html"><span>govuk-content-api-docs</span></a></li>
+          <li><a href="/repos/govuk-content-schemas.html"><span>govuk-content-schemas</span></a></li>
+          <li><a href="/repos/govuk-csp-forwarder.html"><span>govuk-csp-forwarder</span></a></li>
+          <li><a href="/repos/govuk-dependencies.html"><span>govuk-dependencies</span></a></li>
+          <li><a href="/repos/govuk-dependency-checker.html"><span>govuk-dependency-checker</span></a></li>
+          <li><a href="/repos/govuk-deploy-lag-badger.html"><span>govuk-deploy-lag-badger</span></a></li>
+          <li><a href="/repos/govuk-developer-docs.html"><span>govuk-developer-docs</span></a></li>
+          <li><a href="/repos/govuk-display-screen.html"><span>govuk-display-screen</span></a></li>
+          <li><a href="/repos/govuk-dns.html"><span>govuk-dns</span></a></li>
+          <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
+          <li><a href="/repos/govuk-helm-charts.html"><span>govuk-helm-charts</span></a></li>
+          <li><a href="/repos/govuk-infrastructure.html"><span>govuk-infrastructure</span></a></li>
+          <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
+          <li><a href="/repos/govuk-kubernetes-cluster-user-docs.html"><span>govuk-kubernetes-cluster-user-docs</span></a></li>
+          <li><a href="/repos/govuk-lambda-app-deployment.html"><span>govuk-lambda-app-deployment</span></a></li>
+          <li><a href="/repos/govuk-load-testing.html"><span>govuk-load-testing</span></a></li>
+          <li><a href="/repos/govuk-pact-broker.html"><span>govuk-pact-broker</span></a></li>
+          <li><a href="/repos/govuk-puppet.html"><span>govuk-puppet</span></a></li>
+          <li><a href="/repos/govuk-repo-mirror.html"><span>govuk-repo-mirror</span></a></li>
+          <li><a href="/repos/govuk-rfcs.html"><span>govuk-rfcs</span></a></li>
+          <li><a href="/repos/govuk-saas-config.html"><span>govuk-saas-config</span></a></li>
+          <li><a href="/repos/govuk-secondline-blinken.html"><span>govuk-secondline-blinken</span></a></li>
+          <li><a href="/repos/govuk-sentry-monitor.html"><span>govuk-sentry-monitor</span></a></li>
+          <li><a href="/repos/govuk-user-research-panel.html"><span>govuk-user-research-panel</span></a></li>
+          <li><a href="/repos/govuk-zendesk-display-screen.html"><span>govuk-zendesk-display-screen</span></a></li>
+          <li><a href="/repos/govuk_crawler_worker.html"><span>govuk_crawler_worker</span></a></li>
+          <li><a href="/repos/govuk_taxonomy_helpers.html"><span>govuk_taxonomy_helpers</span></a></li>
+          <li><a href="/repos/icinga_slack_webhook.html"><span>icinga_slack_webhook</span></a></li>
+          <li><a href="/repos/mapit-scripts.html"><span>mapit-scripts</span></a></li>
+          <li><a href="/repos/miller-columns-element.html"><span>miller-columns-element</span></a></li>
+          <li><a href="/repos/packager.html"><span>packager</span></a></li>
+          <li><a href="/repos/paste-html-to-govspeak.html"><span>paste-html-to-govspeak</span></a></li>
+          <li><a href="/repos/publishing-e2e-tests.html"><span>publishing-e2e-tests</span></a></li>
+          <li><a href="/repos/puppet-gor.html"><span>puppet-gor</span></a></li>
+          <li><a href="/repos/seal.html"><span>seal</span></a></li>
+          <li><a href="/repos/search-performance-explorer.html"><span>search-performance-explorer</span></a></li>
+          <li><a href="/repos/sidekiq-monitoring.html"><span>sidekiq-monitoring</span></a></li>
+          <li><a href="/repos/smokey.html"><span>smokey</span></a></li>
+          <li><a href="/repos/special-route-publisher.html"><span>special-route-publisher</span></a></li>
+          <li><a href="/repos/stylelint-config-gds.html"><span>stylelint-config-gds</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Supporting apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/authenticating-proxy.html"><span>authenticating-proxy</span></a></li>
+          <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
+          <li><a href="/repos/release.html"><span>release</span></a></li>
+          <li><a href="/repos/router.html"><span>router</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
+          <li><a href="/repos/signon.html"><span>signon</span></a></li>
+          <li><a href="/repos/support.html"><span>support</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Transition apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/bouncer.html"><span>bouncer</span></a></li>
+          <li><a href="/repos/side-by-side-browser.html"><span>side-by-side-browser</span></a></li>
+          <li><a href="/repos/transition.html"><span>transition</span></a></li>
+          <li><a href="/repos/transition-config.html"><span>transition-config</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Frontend apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/business-support-finder.html"><span>business-support-finder</span></a></li>
+          <li><a href="/repos/calculators.html"><span>calculators</span></a></li>
+          <li><a href="/repos/calendars.html"><span>calendars</span></a></li>
+          <li><a href="/repos/collections.html"><span>collections</span></a></li>
+          <li><a href="/repos/contacts-frontend.html"><span>contacts-frontend</span></a></li>
+          <li><a href="/repos/design-principles.html"><span>design-principles</span></a></li>
+          <li><a href="/repos/email-alert-frontend.html"><span>email-alert-frontend</span></a></li>
+          <li><a href="/repos/feedback.html"><span>feedback</span></a></li>
+          <li><a href="/repos/finder-frontend.html"><span>finder-frontend</span></a></li>
+          <li><a href="/repos/frontend.html"><span>frontend</span></a></li>
+          <li><a href="/repos/government-frontend.html"><span>government-frontend</span></a></li>
+          <li><a href="/repos/info-frontend.html"><span>info-frontend</span></a></li>
+          <li><a href="/repos/licence-finder.html"><span>licence-finder</span></a></li>
+          <li><a href="/repos/manuals-frontend.html"><span>manuals-frontend</span></a></li>
+          <li><a href="/repos/multipage-frontend.html"><span>multipage-frontend</span></a></li>
+          <li><a href="/repos/service-manual-frontend.html"><span>service-manual-frontend</span></a></li>
+          <li><a href="/repos/smart-answers.html"><span>smart-answers</span></a></li>
+          <li><a href="/repos/specialist-frontend.html"><span>specialist-frontend</span></a></li>
+          <li><a href="/repos/static.html"><span>static</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Services</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/cache-clearing-service.html"><span>cache-clearing-service</span></a></li>
+          <li><a href="/repos/email-alert-service.html"><span>email-alert-service</span></a></li>
+          <li><a href="/repos/search-analytics.html"><span>search-analytics</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>data.gov.uk apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/ckan-functional-tests.html"><span>ckan-functional-tests</span></a></li>
+          <li><a href="/repos/ckan-mock-harvest-sources.html"><span>ckan-mock-harvest-sources</span></a></li>
+          <li><a href="/repos/ckanext-datagovuk.html"><span>ckanext-datagovuk</span></a></li>
+          <li><a href="/repos/datagovuk-tech-docs.html"><span>datagovuk-tech-docs</span></a></li>
+          <li><a href="/repos/datagovuk_find.html"><span>datagovuk_find</span></a></li>
+          <li><a href="/repos/datagovuk_publish.html"><span>datagovuk_publish</span></a></li>
+          <li><a href="/repos/datagovuk_publish_elasticsearch_monitor.html"><span>datagovuk_publish_elasticsearch_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_publish_queue_monitor.html"><span>datagovuk_publish_queue_monitor</span></a></li>
+          <li><a href="/repos/datagovuk_reference.html"><span>datagovuk_reference</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Publishing apps</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/collections-publisher.html"><span>collections-publisher</span></a></li>
+          <li><a href="/repos/contacts-admin.html"><span>contacts-admin</span></a></li>
+          <li><a href="/repos/content-publisher.html"><span>content-publisher</span></a></li>
+          <li><a href="/repos/content-tagger.html"><span>content-tagger</span></a></li>
+          <li><a href="/repos/local-links-manager.html"><span>local-links-manager</span></a></li>
+          <li><a href="/repos/manuals-publisher.html"><span>manuals-publisher</span></a></li>
+          <li><a href="/repos/maslow.html"><span>maslow</span></a></li>
+          <li><a href="/repos/organisations-publisher.html"><span>organisations-publisher</span></a></li>
+          <li><a href="/repos/panopticon.html"><span>panopticon</span></a></li>
+          <li><a href="/repos/policy-publisher.html"><span>policy-publisher</span></a></li>
+          <li><a href="/repos/publisher.html"><span>publisher</span></a></li>
+          <li><a href="/repos/service-manual-publisher.html"><span>service-manual-publisher</span></a></li>
+          <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
+          <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
+          <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/apps.html">
+          <span>Data science</span>
+        </a>
+      </li>
+      <li>
+        <ul class='subnav'>
+          <li><a href="/repos/govuk-accessibility-reports.html"><span>govuk-accessibility-reports</span></a></li>
+          <li><a href="/repos/govuk-network-data.html"><span>govuk-network-data</span></a></li>
+          <li><a href="/repos/govuk-related-links-recommender.html"><span>govuk-related-links-recommender</span></a></li>
+          <li><a href="/repos/govuk_ab_analysis.html"><span>govuk_ab_analysis</span></a></li>
+          <li><a href="/repos/tagging-suggester.html"><span>tagging-suggester</span></a></li>
+        </ul>
+      </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  
+  <h1 class="page-title">Repository: govuk_admin_template</h1>
+
+  <p>[Deprecated] Styles, scripts and templates for building GOV.UK backend admin apps</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk_admin_template">govuk_admin_template</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">#govuk-publishing-tech</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value">N/A</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">Gems</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul class="govuk-list">
+    <li></li>
+    <li><a href="https://sentry.io/govuk/app-govuk_admin_template" class="govuk-link">Sentry (error tracking)</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk_admin_template.json" class="govuk-link">Deployment dashboard</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</dd>
+
+
+
+</div></dl>    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<blockquote>
+<p><strong>NOTE</strong>: This project is deprecated. New GOV.UK admin applications should be built using the <a href="https://govuk-publishing-components.herokuapp.com/component-guide/layout_for_admin">layout component in govuk_publishing_components</a>. Projects outside of GDS can use the <a href="https://design-system.service.gov.uk/">GOV.UK Design System</a> directly to build interfaces.</p>
+</blockquote>
+<p><hr>
+<p>Styles, scripts and templates wrapped up in a gem for getting up and running with <a href="https://getbootstrap.com/docs/3.4/">Bootstrap 3.4</a> based backend admin apps.</p>
+<p>This gem provides (via a Rails engine):</p>
+<ul>
+<li>jQuery</li>
+<li>Bootstrap 3 standard styles and javascript — including HTML5 and respond.js shims necessary for IE &lt;= IE8</li>
+<li>An admin layout with header and footer</li>
+<li>A <a href="https://github.com/alphagov/govuk_admin_template/blob/main/JAVASCRIPT.md">lightweight javascript framework</a>
+</li>
+<li>Admin design patterns available from <code>/style-guide</code> (when routes are mounted)</li>
+<li>
+<a href="https://github.com/alphagov/govuk_admin_template/blob/main/CSS.md">CSS helpers and SASS variables</a> for the admin theme</li>
+<li>GOV.UK user friendly date formats</li>
+<li>Google Analytics tracking code (Universal Analytics), using the &ldquo;GOV.UK apps&rdquo; profile</li>
+</ul>
+<p><a href="https://github.com/search?q=govuk_admin_template+user%3Aalphagov+filename%3AGemfile">Apps using this gem</a> include:</p>
+<ul>
+<li><a href="https://github.com/alphagov/collections-publisher">Collections publisher</a></li>
+<li><a href="https://github.com/alphagov/imminence">Imminence</a></li>
+<li><a href="https://github.com/alphagov/maslow">Maslow</a></li>
+<li><a href="https://github.com/alphagov/publisher">Publisher</a></li>
+<li><a href="https://github.com/alphagov/search-admin">Search admin</a></li>
+<li><a href="https://github.com/alphagov/signonotron2">Sign on</a></li>
+<li><a href="https://github.com/alphagov/service-manual-publisher">Service manual publisher</a></li>
+<li><a href="https://github.com/alphagov/specialist-publisher">Specialist publisher</a></li>
+<li><a href="https://github.com/alphagov/support">Support</a></li>
+<li><a href="https://github.com/alphagov/transition">Transition</a></li>
+<li><a href="https://github.com/alphagov/travel-advice-publisher">Travel advice publisher</a></li>
+</ul>
+<h2 id="usage">Usage</h2>
+<p>Firstly, include the gem in your Gemfile, pinned to the appropriate version and run <code>bundle</code>:</p>
+<pre lang="ruby"><code># Gemfile
+gem &#39;govuk_admin_template&#39;, &#39;~&gt; 6.8&#39;
+</code></pre>
+<p>At the top of <code>application.scss</code> include the styles (this provides all the mixins and variables from the gem as well as from bootstrap — <a href="https://github.com/twbs/bootstrap-sass/blob/v3.4.1/assets/stylesheets/bootstrap/_mixins.scss">bootstrap mixins</a>):</p>
+<pre lang="css"><code>/* application.scss <em>/
+@import &#39;govuk_admin_template&#39;;
+</code></pre>
+<p>In <code>application.html.erb</code> after any content blocks you want to include, render the base template:</p>
+<pre lang="erb"><code># views/layouts/application.html.rb
+&lt;%= render template: &#39;layouts/govuk_admin_template&#39; %&gt;
+</code></pre>
+<p>The <a href="https://github.com/alphagov/govuk_admin_template/blob/main/app/views/layouts/govuk_admin_template.html.erb">base template</a> includes:</p>
+<ul>
+<li>Javascript and non-Javascript classes</li>
+<li>Mobile friendly viewport</li>
+<li>Bootstrap and jQuery javascript</li>
+<li>IE HTML5 and respondjs shims, and HTML classes</li>
+<li>header HTML</li>
+<li>footer HTML</li>
+</ul>
+<p>You will also need to include your styles and javascripts:</p>
+<pre lang="erb"><code># views/layouts/application.html.rb
+&lt;% content_for :head do %&gt;
+  &lt;%= stylesheet_link_tag &quot;application&quot;, media: &quot;all&quot; %&gt;
+  &lt;%= javascript_include_tag &#39;application&#39; %&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>Note that <code>jquery</code> and <code>jquery_ujs</code> are already imported by <code>govuk_admin_template</code>,
+so you should remove them from your <code>app/assets/javascripts/application.js</code>. This may
+cause your jasmine tests to fail, so you&rsquo;ll need to include <code>assets/govuk-admin-template.js</code>
+in your <code>spec/support/jasmine-browser.json</code> like this:</p>
+<pre lang="json"><code>&quot;srcFiles&quot;: [
+  &quot;govuk-admin-template-</em>.js&quot;,
+  &quot;application-*.js&quot;
+]
+</code></pre>
+<p>It is recommended that the style guide is also made available within your app at the route <code>/style-guide</code>. Add this to your <code>config/routes.rb</code> file:</p>
+<pre lang="ruby"><code># config/routes.rb
+if Rails.env.development?
+  mount GovukAdminTemplate::Engine, at: &quot;/style-guide&quot;
+end
+</code></pre>
+<p>The gem source includes a <a href="https://github.com/alphagov/govuk_admin_template/blob/main/spec/dummy">dummy app</a> configured to behave like an app using the gem. If you have the gem checked out it can be run from the <code>spec/dummy</code> directory using <code>rails s</code>.</p>
+<p>For Javascript usage, available modules and writing modules, see the <a href="https://github.com/alphagov/govuk_admin_template/blob/main/JAVASCRIPT.md">Javascript guide</a>.</p>
+<h3 id="configuration">Configuration</h3>
+<p>You can configure the gem with a config block in an initializer:</p>
+<pre lang="ruby"><code># config/initializers/govuk_admin_template.rb
+GovukAdminTemplate.configure do |c|
+  c.app_title = &quot;My Publisher&quot;
+  c.show_flash = true
+  c.show_signout = true
+  c.disable_google_analytics = false
+end
+</code></pre>
+<h3 id="forms">Forms</h3>
+<p>Some GOV.UK admin apps use the <a href="https://github.com/plataformatec/simple_form">Simple
+Form</a> library for writing form
+markup. This repo contains a recommended configuration in
+<code>lib/govuk_admin_template/simple_form.rb</code>.</p>
+<p>To use this configuration:</p>
+<ol start="0">
+<li>Add <code>simple_form</code> to your Gemfile.</li>
+<li>Add an initializer in <code>config/initializers/simple_form.rb</code> containing the
+following:</li>
+</ol>
+<pre lang="ruby"><code>SimpleForm.setup do |config|
+  GovukAdminTemplate.setup_simple_form(config)
+end
+</code></pre>
+<p>This gem also provides an i18n file in <code>config/locales/simple_form.en.yml</code>.
+This removes the need for this file to be present in the host project unless
+specific customisations are required.</p>
+<h3 id="content-blocks">Content blocks</h3>
+<p>The gem <a href="https://guides.rubyonrails.org/layouts_and_rendering.html#using-nested-layouts">uses nested layouts</a> for customisation.</p>
+<table>
+<thead>
+<tr>
+<th><code>content_for</code></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:app_title</code></td>
+<td>Name of your admin application</td>
+</tr>
+<tr>
+<td><code>:app_home_path</code></td>
+<td>Path to the home page of your application, defaults to <code>root_path</code>
+</td>
+</tr>
+<tr>
+<td><code>:content</code></td>
+<td>Main content</td>
+</tr>
+<tr>
+<td><code>:head</code></td>
+<td>HTML to include in the <code>&lt;head&gt;</code> of your application</td>
+</tr>
+<tr>
+<td><code>:page_title</code></td>
+<td>Page title</td>
+</tr>
+<tr>
+<td><code>:navbar_items</code></td>
+<td>A set of HTML list items (<code>&lt;li&gt;</code>) forming the primary navigation</td>
+</tr>
+<tr>
+<td><code>:navbar_right</code></td>
+<td>Text to the right of the nav bar. Logged in user, sign out link, etc</td>
+</tr>
+<tr>
+<td>
+<code>:footer_top</code> (optional)</td>
+<td>Footer content before copyright text</td>
+</tr>
+<tr>
+<td>
+<code>:footer_version</code> (optional)</td>
+<td>Text indicating the release, eg commit SHA</td>
+</tr>
+<tr>
+<td>
+<code>:body_start</code> (optional)</td>
+<td>Just after the <code>&lt;body&gt;</code> tag</td>
+</tr>
+<tr>
+<td>
+<code>:body_end</code> (optional)</td>
+<td>Just before the <code>&lt;/body&gt;</code> tag</td>
+</tr>
+<tr>
+<td>
+<code>:full_width</code> (optional, boolean)</td>
+<td>Expand content to edges of screen.</td>
+</tr>
+<tr>
+<td>
+<code>:navbar</code> (optional)</td>
+<td>Custom navbar content, overrides default navbar</td>
+</tr>
+</tbody>
+</table>
+<p>Example navbar_items:</p>
+<pre lang="erb"><code># views/layouts/application.html.rb
+&lt;% content_for :navbar_items do %&gt;
+  &lt;li&gt;
+    &lt;a href=&quot;#&quot;&gt;navbar_item&lt;/a&gt;
+  &lt;/li&gt;
+&lt;% end %&gt;
+</code></pre>
+<h3 id="date-formats">Date formats</h3>
+<p>The <a href="https://github.com/alphagov/govuk_admin_template/blob/main/lib/govuk_admin_template/engine.rb">gem includes</a> date and time formats which match the recommended styles for <a href="https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style#dates">dates</a> and <a href="https://www.gov.uk/guidance/style-guide/a-to-z-of-gov-uk-style#times">times</a>.</p>
+<pre lang="ruby"><code># 1 January 2013
+date.to_fs(:govuk_date)</p>
+<h1 id='115pm-1-january-2013'>1:15pm, 1 January 2013</h1><p>time.to_fs(:govuk_date)</p>
+<h1 id='1-jan-2013'>1 Jan 2013</h1><p>date.to_fs(:govuk_date_short)</p>
+<h1 id='115pm-1-jan-2013'>1:15pm, 1 Jan 2013</h1><p>time.to_fs(:govuk_date_short)</p>
+<h1 id='115pm'>1:15pm</h1><p>time.to_fs(:govuk_time)
+</code></pre>
+<h3 id="environment-indicators">Environment indicators</h3>
+<p>The gem includes default styles for development, integration and production. This includes a coloured environment label, a coloured strip beneath the main navigation and a coloured favicon. They are based on two variables that are set at deploy time (if they aren’t set no indicator will be shown).</p>
+<p>The following should be set within an initializer:</p>
+<pre lang="ruby"><code># used for the classname and favicon
+GovukAdminTemplate.environment_style = [integration|production|development]</p>
+<h1 id='used-for-the-human-readable-label'>used for the human readable label</h1><p>GovukAdminTemplate.environment_label = [Integration|Staging|Production|Development]
+</code></pre>
+<h2 id="flash-messages">Flash messages</h2>
+<p>Turn on flash messages in the config:</p>
+<pre lang="ruby"><code># config/initializers/govuk_admin_template.rb
+GovukAdminTemplate.configure do |c|
+  c.show_flash = true
+end
+</code></pre>
+<p>Use like this:</p>
+<pre lang="ruby"><code># app/controllers/my_controller.rb
+class MyController &lt; ApplicationController
+  def create
+    if thing.save
+      flash[:success] = &quot;Your thing has been created!&quot;
+    else
+      flash[:danger] = &quot;Sorry, it did not work.&quot;
+    end</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>redirect_to :back
+</code></pre></div><p>end
+end
+</code></pre>
+<p>We support <code>:success</code>, <code>:info</code>, <code>:warning</code> and <code>:danger</code>:</p>
+<p><img src="https://raw.githubusercontent.com/alphagov/govuk_admin_template/main/docs/flash-types.png" alt="Flash types"></p>
+<p>You can register your types to allow them to be used as arguments
+to <code>redirect_to</code>.</p>
+<pre lang="ruby"><code># app/controllers/application_controller.rb
+class ApplicationController &lt; ActionController::Base
+  add_flash_types :success, :info, :warning, :danger
+end</p>
+<h1 id='now-this-works'>Now this works:</h1><p>redirect_to :back, success: &quot;Well done!&quot;
+redirect_to :back, danger: &quot;This didn&#39;t work.&quot;
+</code></pre>
+<h2 id="development">Development</h2>
+<ol>
+<li>Clone the repository</li>
+<li>Run <code>bundle install</code>
+</li>
+<li>Run <code>yarn install</code>
+</li>
+</ol>
+<p>The source files are in the <a href="https://github.com/alphagov/govuk_admin_template/blob/main/app">app</a> directory. Unlike other GOVUK frontend gems, there is no compile step. The app directory is included in the gem and hooked in as a Rails engine.</p>
+<p>While developing it may be helpful to see how the gem will render. The dummy app at <a href="https://github.com/alphagov/govuk_admin_template/blob/main/spec/dummy">spec/dummy</a> is configured to act like an application using the gem and can be started from that directory using <code>rails s</code>. Changes will show immediately. The tests also run against this app.</p>
+<p>The dummy app’s rake tasks have been loaded into the gem’s task list under the namespace <code>app</code> for convenience – e.g. <code>bundle exec rake app:assets:precompile</code></p>
+<h3 id="running-tests">Running tests</h3>
+<p>The default rake task runs all tests:</p>
+<pre><code>bundle exec rake
+</code></pre>
+<p>Layout and nested layouts are tested using RSpec and Capybara:</p>
+<pre><code>bundle exec rake spec
+</code></pre>
+<p>Javascript is tested using Jasmine and <a href="https://jasmine.github.io/setup/browser.html">jasmine-browser-runner</a>. Tests can be run either in the browser or on the command line:</p>
+<pre lang="sh"><code># browser
+yarn run jasmine:browser</p>
+<h1 id='command-line'>command line</h1><p>yarn run jasmine:ci
+</code></pre>
+<h3 id="testing-against-different-rails-versions">Testing against different Rails versions</h3>
+<p>The CI pipeline is configured to test this gem against multiple versions of Rails.</p>
+<p>Each Rails version has a corresponding Gemfile located in the <a href="https://github.com/alphagov/govuk_admin_template/blob/main/gemfiles/">gemfiles</a> directory. And the CI pipeline defines a <a href="https://github.com/alphagov/govuk_admin_template/blob/8f53865fa3d33f741642783f9bfcaefc201c3751/.github/workflows/ci.yml#L13">matrix of Gemfiles</a> to test against.</p>
+<p>It&rsquo;s also possible to run tests against multiple Rails versions locally.</p>
+<ol>
+<li>Run <code>export BUNDLE_GEMFILE=&quot;gemfiles/rails_X.gemfile&quot;</code> where <code>X</code> is the version to test against.
+This tells Bundler which Gemfile to use.</li>
+<li>Run <code>bundle install</code> and then <code>bundle exec rake</code> as usual.</li>
+</ol>
+<h2 id="publishing">Publishing</h2>
+<p>Version bumps will automatically update RubyGems.org.</p>
+  </div></p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_admin_template.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
