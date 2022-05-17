@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Test & build a project on Jenkins CI - GOV.UK Developer Documentation</title>
+    <title>Pact Testing - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/pact-testing.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Test &amp; build a project on Jenkins CI - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html" />
+      <meta name="twitter:title" content="Pact Testing - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/pact-testing.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Test &amp; build a project on Jenkins CI" />
+      <meta property="og:title" content="Pact Testing" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/pact-testing.html" />
 
     
   </head>
@@ -126,33 +126,27 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Test & build a project on Jenkins CI</span></a>
+    <a href="#header"><span>Pact Testing</span></a>
     <ul>
       <li>
-        <a href="#setting-up"><span>Setting up</span></a>
+        <a href="#running-pact-tests-locally"><span>Running Pact tests locally</span></a>
         <ul>
           <li>
-            <a href="#1-create-the-job-in-jenkins"><span>1. Create the job in Jenkins</span></a>
+            <a href="#for-a-consumer-gds-api-adapters"><span>For a consumer (GDS API Adapters)</span></a>
           </li>
           <li>
-            <a href="#2-add-a-jenkinsfile"><span>2. Add a Jenkinsfile</span></a>
-          </li>
-          <li>
-            <a href="#3-trigger-builds-from-github"><span>3. Trigger builds from GitHub</span></a>
-          </li>
-          <li>
-            <a href="#4-branch-indexing"><span>4. Branch indexing</span></a>
-          </li>
-          <li>
-            <a href="#5-set-up-schema-testing"><span>5. Set up schema testing</span></a>
+            <a href="#for-a-provider"><span>For a provider</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#specifying-which-database-to-use"><span>Specifying which database to use</span></a>
+        <a href="#adding-tests-for-a-new-app"><span>Adding tests for a new app</span></a>
       </li>
       <li>
-        <a href="#fixing-the-build-number"><span>Fixing the build number</span></a>
+        <a href="#changing-existing-pact-tests"><span>Changing existing Pact tests</span></a>
+      </li>
+      <li>
+        <a href="#special-cases"><span>Special cases</span></a>
       </li>
     </ul>
   </li>
@@ -205,69 +199,95 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e07a0f89207c725a4a845ab31e7e643cc5b6cd59">2 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/770d71913e9cfe7bbfb3c88e79f13c91940d2e87">17 May 2022</a>
 </div>
 
- <h1 id='header'>Test & build a project on Jenkins CI</h1> <p>Application tests run in a continuous integration (CI) environment.</p>
-<p><a href="https://ci.integration.publishing.service.gov.uk/">https://ci.integration.publishing.service.gov.uk/</a></p>
-<p><a href="/manual/jenkins-ci.html">Read here about the CI infrastructure</a>.</p>
-<h2 id='setting-up'>Setting up</h2><h3 id='1-create-the-job-in-jenkins'>1. Create the job in Jenkins</h3><p>You need to add your repo to the <code>govuk_ci::master::pipeline_jobs</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/common.yaml">govuk-puppet</a>. This will create the job in Jenkins.</p>
-<h3 id='2-add-a-jenkinsfile'>2. Add a Jenkinsfile</h3><p>Your repo needs to contain a <code>Jenkinsfile</code> in the root which has
-details of how the application is built. In most cases the <code>Jenkinsfile</code> will need to run the tests for your project. For applications the build process includes <a href="/manual/development-pipeline.html">creating a release tag</a>. For gems the build process includes releasing the packaged gem to <a href="https://rubygems.org">rubygems.org</a>.</p>
-<p>The following <code>Jenkinsfile</code> should be sufficient for most projects:</p>
-<div class="highlight"><pre class="highlight groovy" tabindex="0"><code><span class="err">#</span><span class="o">!</span><span class="s">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">groovy</span>
-
-<span class="n">library</span><span class="o">(</span><span class="s2">"govuk"</span><span class="o">)</span>
-
-<span class="n">node</span> <span class="o">{</span>
-  <span class="n">govuk</span><span class="o">.</span><span class="na">buildProject</span><span class="o">()</span>
-<span class="o">}</span>
-</code></pre></div><p><a href="https://github.com/alphagov/govuk-jenkinslib">Read the documentation for this in alphagov/govuk-jenkinslib</a></p>
-<h3 id='3-trigger-builds-from-github'>3. Trigger builds from GitHub</h3><p>Adding a Jenkins webhook to the repo on GitHub will allow branches to be
-built automatically when commits are pushed.</p>
-<p>There is a task that can be run to add this webhook to the new repo. Find
-out more about <a href="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html">automatically configuring a GitHub repo</a>.</p>
-<h3 id='4-branch-indexing'>4. Branch indexing</h3><p>Once your Jenkinsfile is on a branch, you can go to your job in new Jenkins and
-run &ldquo;Branch Indexing&rdquo; from the menu. This should trigger a build of all branches
-with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you&rsquo;ve merged your <code>Jenkinsfile</code> into <code>main</code>.</p>
-<h3 id='5-set-up-schema-testing'>5. Set up schema testing</h3><p>Many GOV.UK applications test against the
-<a href="https://github.com/alphagov/govuk-content-schemas/">content schemas</a>.</p>
-<p>To test your application for each PR on govuk-content-schemas, add it to the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/Jenkinsfile">govuk-content-schemas
-Jenkinsfile</a>.</p>
-<h2 id='specifying-which-database-to-use'>Specifying which database to use</h2><p>The CI machines have installations of a number of database technologies, such
-as PostgreSQL, MySQL and MongoDB, these tend to be quite old versions (at the
-time of writing PostgreSQL 9.6 and MySQL 5.5). We have utilised Docker as a
-way to provide access to newer versions of databases which can be used as
-part of your build. These can be accessed with the following connection strings:</p>
+ <h1 id='header'>Pact Testing</h1> <p><a href="https://docs.pact.io/">Pact</a> is a tool we use for <em>contract testing</em>. Contract testing involves creating a set of tests that are shared between an API (the &ldquo;provider&rdquo;) and its users (&ldquo;consumers&rdquo;) using some kind of &ldquo;broker&rdquo;. For example, the Publishing API has a &ldquo;pact&rdquo; or &ldquo;contract&rdquo; with GDS API Adapters:</p>
 
 <ul>
-<li>MySQL 8: <code>mysql2://root:root@127.0.0.1:33068/&lt;your-database-name&gt;</code></li>
-<li>PostgreSQL 13: <code>postgresql://postgres@127.0.0.1:54313/&lt;your-database-name&gt;</code></li>
+<li>the expected interactions are defined in <a href="https://github.com/alphagov/gds-api-adapters/blob/master/test/imminence/imminence_api_pact_test.rb">imminence_api_pact_test.rb in GDS API Adapters</a></li>
+<li>when these tests are run they output a JSON pactfile which is published to <a href="https://github.com/alphagov/govuk-pact-broker">our pact broker</a> (<a href="https://pact-broker.cloudapps.digital/">live site</a>)</li>
+<li>the build of Imminence will setup a <a href="https://github.com/alphagov/imminence/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb">test environment</a> and use this pactfile to test the real API</li>
 </ul>
-<p>Typically for these to work with a Rails application you&rsquo;ll need to set an
-environment variable. For example, in your Jenkinsfile, for an application
-that uses <code>TEST_DATABASE_URL</code>, you can set:</p>
-<div class="highlight"><pre class="highlight groovy" tabindex="0"><code><span class="err">#</span><span class="o">!</span><span class="s">/usr/</span><span class="n">bin</span><span class="o">/</span><span class="n">env</span> <span class="n">groovy</span>
+<p>GDS API Adapters is really a proxy for real &ldquo;consumer&rdquo; apps, like Whitehall. The gem includes <a href="https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers">a set of shared stubs</a> for use in each app&rsquo;s own tests (<a href="https://github.com/alphagov/contacts-admin/blob/e935fa54bf71c0063bb92faeaf8a27d1618e00ee/spec/interactors/admin/clone_contact_spec.rb#L11">example</a>). Using the stubs ensures each app stays in sync with GDS API Adapters, which can then do contract testing on their behalf.</p>
+<h2 id='running-pact-tests-locally'>Running Pact tests locally</h2><h3 id='for-a-consumer-gds-api-adapters'>For a consumer (GDS API Adapters)</h3><p>Pact tests are run alongside normal tests e.g.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake <span class="nb">test</span> <span class="s1">'TEST=test/imminence/*'</span>
+</code></pre></div><p>This will run <a href="https://github.com/alphagov/gds-api-adapters/tree/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence">both sets of tests for Imminence</a>:</p>
 
-<span class="n">library</span><span class="o">(</span><span class="s2">"govuk"</span><span class="o">)</span>
+<ul>
+<li>Normal unit tests using <a href="https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/lib/gds_api/test_helpers/imminence.rb">the shared stubs</a>.</li>
+<li><a href="https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence/imminence_api_pact_test.rb">Pact tests, which define their own stubs</a>.</li>
+</ul>
+<h3 id='for-a-provider'>For a provider</h3><p>Example for Frontend (provider of <code>/bank-holidays.json</code>):</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake pact:verify
+</code></pre></div><p>You can also test against a specific branch of GDS API Adapters:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">env </span><span class="nv">PACT_CONSUMER_VERSION</span><span class="o">=</span>branch-&lt;branch-of-gds-api-adapters&gt; bundle <span class="nb">exec </span>rake pact:verify
+</code></pre></div><p><em>Note: when a build runs for GDS API Adapters, <a href="https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Jenkinsfile#L7">the generated JSON pact is pushed to the broker as <code>branch-&lt;branch-name&gt;</code></a> using <a href="https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Rakefile#L26">the <code>pact:publish:branch</code> rake task</a>; this is why <code>PACT_CONSUMER_VERSION</code> needs to start with <code>branch-</code>.</em></p>
+<p>Alternatively, you can test against local changes to GDS API Adapters:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">env </span><span class="nv">PACT_URI</span><span class="o">=</span><span class="s2">"../gds-api-adapters/spec/pacts/gds_api_adapters-bank_holidays_api.json"</span> bundle <span class="nb">exec </span>rake pact:verify
+</code></pre></div><h2 id='adding-tests-for-a-new-app'>Adding tests for a new app</h2><p><em>If the app already had some Pact tests, follow <a href="#changing-existing-pact-tests">the steps for changing existing Pact tests</a>.</em></p>
 
-<span class="n">node</span> <span class="o">{</span>
-  <span class="n">govuk</span><span class="o">.</span><span class="na">setEnvar</span><span class="o">(</span><span class="s2">"TEST_DATABASE_URL"</span><span class="o">,</span> <span class="s2">"postgresql://postgres@127.0.0.1:54313/content-publisher-test"</span><span class="o">)</span>
+<ol>
+<li><p>Write the consumer and provider tests.</p>
 
-  <span class="n">govuk</span><span class="o">.</span><span class="na">buildProject</span><span class="o">()</span>
-<span class="o">}</span>
-</code></pre></div><h2 id='fixing-the-build-number'>Fixing the build number</h2><p>Main branch builds are often tagged with the Jenkins build number so that a
-specific version can be deployed to each environment.</p>
-<p>This can fail if the build number is reset, for example if all the old builds
-are deleted or if a job is migrated from a different CI server. The error will
-be something like this:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fatal: tag 'release_1' already exists
-</code></pre></div><p>To fix this, set the build number to the next release number using the <a href="https://ci.integration.publishing.service.gov.uk/script">Jenkins
-script console</a>:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>def job = Jenkins.instance.getItemByFullName("your-project-name/main")
-job.nextBuildNumber = 1234
-job.save()
-</code></pre></div>
+<ul>
+<li><a href="https://github.com/alphagov/gds-api-adapters/pull/1066">Consumer example</a>.</li>
+<li><a href="https://github.com/alphagov/imminence/pull/644">Provider example</a>.</li>
+</ul></li>
+<li><p>Check the consumer tests pass locally.</p>
+
+<ul>
+<li>CI won&rsquo;t do this for you yet because it doesn&rsquo;t know about the new app.</li>
+</ul></li>
+<li><p>Merge the consumer tests for the new app.</p>
+
+<ul>
+<li>The build will pass because it runs with the old Jenkinsfile.</li>
+</ul></li>
+<li><p>Check the main build of the consumer.</p>
+
+<ul>
+<li><a href="https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L72">This will clone the default branch of the provider</a> and <a href="https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L82">try to test it</a>.</li>
+<li>The build should fail until the provider part is merged.</li>
+</ul></li>
+<li><p>Merge tests for the provider.</p>
+
+<ul>
+<li>Re-run the build if you made the PR before merging the consumer one.</li>
+</ul></li>
+<li><p>Re-run the main build for the consumer.</p>
+
+<ul>
+<li>This will pass because the provider part now exists on the default branch.</li>
+</ul></li>
+</ol>
+<h2 id='changing-existing-pact-tests'>Changing existing Pact tests</h2><p>Follow these steps in order to change the provider and consumer in tandem.</p>
+
+<ol>
+<li><p>Make the change to the API (your provider, e.g. Imminence), in a branch.</p>
+
+<ul>
+<li>Its build should fail at the Pact test stage, because it is testing against the default branch of the consumer.</li>
+</ul></li>
+<li><p>Make the change to the pactfile in the consumer (e.g. GDS API Adapters), in a branch.</p>
+
+<ul>
+<li>Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.</li>
+</ul></li>
+<li><p>Run a parameterised build of the consumer, specifying the new branch name of the provider to test against.</p>
+
+<ul>
+<li>The build should pass so you can now merge the consumer PR, which will mean the change is on the default branch.</li>
+</ul></li>
+<li><p>Re-run the build for the provider PR now the consumer is merged.</p>
+
+<ul>
+<li>The build should pass so you can now merge the provider PR.</li>
+</ul></li>
+</ol>
+<h2 id='special-cases'>Special cases</h2><p>Publishing API and Content Store have a direct pact, with <a href="https://github.com/alphagov/publishing-api/tree/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/pacts/content_store">Publishing API acting as the consumer</a> and <a href="https://github.com/alphagov/content-store/blob/de729dfe12e6e9da4a27a52259f59b9051e4da27/spec/service_consumers/pact_helper.rb#L32">Content Store acting as the provider</a>. This can be confusing as <a href="https://github.com/alphagov/publishing-api/blob/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/service_consumers/pact_helper.rb#L20">Publishing API is also a provider for GDS API Adapters</a>.</p>
+<p>The tests are run in the same way as other consumers and providers (see above).</p>
+
 
   <div class='related-content'>
 
@@ -280,7 +300,6 @@ job.save()
           <ul class="govuk-list">
             <li><a href="/manual/brakeman.html">Brakeman</a></li>
             <li><a href="/manual/jenkins-ci.html">Jenkins CI infrastructure</a></li>
-            <li><a href="/manual/pact-testing.html">Pact Testing</a></li>
           </ul>
         </div>
 
@@ -288,6 +307,7 @@ job.save()
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/test-and-build-a-project-on-jenkins-ci.html">Test & build a project on Jenkins CI</a></li>
             <li><a href="/manual/test-and-build-a-project-with-github-actions.html">Test & build a project with GitHub Actions</a></li>
             <li><a href="/manual/troubleshooting-jenkins-performance.html">Troubleshoot CI Jenkins Performance</a></li>
             <li><a href="/manual/publishing-e2e-tests.html">Work with the end to end publishing tests</a></li>
@@ -303,8 +323,8 @@ job.save()
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/test-and-build-a-project-on-jenkins-ci.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Test+%26+build+a+project+on+Jenkins+CI%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Ftest-and-build-a-project-on-jenkins-ci.html%29&amp;labels=bug&amp;title=Re%3A+%27Test+%26+build+a+project+on+Jenkins+CI%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/pact-testing.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Pact+Testing%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fpact-testing.html%29&amp;labels=bug&amp;title=Re%3A+%27Pact+Testing%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
