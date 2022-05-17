@@ -140,6 +140,9 @@
           <li>
             <a href="#add-your-rails-app-to-gov-uk-docker"><span>Add your Rails app to GOV.UK Docker</span></a>
           </li>
+          <li>
+            <a href="#set-up-contract-tests-for-your-app"><span>Set up contract tests for your app</span></a>
+          </li>
         </ul>
       </li>
       <li>
@@ -236,7 +239,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c5af9361c5bce171c9f4917fc924f2d79adc7522">25 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/aa2dfa1251ae9867d147ceb5f921a1b9f9588b56">22 Apr 2022</a>
 </div>
 
  <h1 id='header'>Set up a new Rails application</h1> <h2 id='before-you-start'>Before you start</h2><p>Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the <a href="https://docs.publishing.service.gov.uk/manual/get-started.html">GOV.UK developer get started documentation</a>.</p>
@@ -352,6 +355,7 @@ GovukUnicorn.configure(self)
 </code></pre></div></li>
 </ol>
 <h3 id='add-your-rails-app-to-gov-uk-docker'>Add your Rails app to GOV.UK Docker</h3><p>Add your Rails app to GOV.UK Docker so you can run the app locally. See an <a href="https://github.com/alphagov/govuk-docker/pull/465">example GOV.UK Docker pull request</a>.</p>
+<h3 id='set-up-contract-tests-for-your-app'>Set up contract tests for your app</h3><p>If your app provides an internal API, it should have <a href="https://docs.publishing.service.gov.uk/manual/pact-testing.html">contract tests</a>.</p>
 <h2 id='set-up-a-github-repo-for-your-rails-app'>Set up a GitHub repo for your Rails app</h2><p>When you’ve finished developing your Rails app, you can <a href="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html#auto-configuration">set up a GitHub repo for your Rails app</a>.</p>
 <p>You must add a description to the <em>About</em> section in the GitHub repo, or the GOV.UK developer documentation build will break when it tries to build the <a href="https://docs.publishing.service.gov.uk/#applications">list of apps</a>.</p>
 <h3 id='add-a-software-licence'>Add a software licence</h3><p>You must add a <code>LICENCE</code> file to your project’s root folder that specifies the software licence. You should usually use the following MIT License text. Replace <YEAR> with the current year.</p>
