@@ -14,6 +14,14 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: assets-businesslink
+  type: Utilities
+  team: "#find-and-view-tech"
+
+- repo_name: assets-directgov
+  type: Utilities
+  team: "#find-and-view-tech"
+
 - repo_name: authenticating-proxy
   type: Supporting apps
   team: "#find-and-view-tech"
@@ -145,6 +153,10 @@
   team: "#govuk-publishing-tech"
   production_hosted_on: aws
 
+- repo_name: data-community-tech-docs
+  type: Utilities
+  team: "#govuk-data-labs"
+
 - repo_name: datagovuk-tech-docs
   production_url: https://guidance.data.gov.uk/
   production_hosted_on: paas
@@ -187,6 +199,10 @@
   type: data.gov.uk apps
   sentry_url: false
   dashboard_url: false
+
+- repo_name: deprecated_columns
+  type: Gems
+  team: "#find-and-view-tech"
 
 - repo_name: design-principles
   type: Frontend apps
@@ -240,6 +256,11 @@
   component_guide_url: https://finder-frontend.herokuapp.com/component-guide
   production_hosted_on: aws
 
+- repo_name: fonts
+  private_repo: true
+  type: Utilities
+  team: "#find-and-view-tech"
+
 - repo_name: frontend
   type: Frontend apps
   team: "#find-and-view-tech"
@@ -257,6 +278,10 @@
   description: OmniAuth adapter to allow apps to sign in via GOV.UK Signon.
   sentry_url: false
   dashboard_url: false
+
+- repo_name: gds_zendesk
+  team: "#govuk-platform-reliability-team"
+  type: Gems
 
 - repo_name: government-frontend
   type: Frontend apps
@@ -286,6 +311,16 @@
     on GOV.UK.
   sentry_url: false
   dashboard_url: false
+
+- repo_name: govuk-account-architecture
+  private_repo: true
+  team: "#find-and-view-tech"
+  type: Utilities
+
+- repo_name: govuk-account-scaling-docs
+  private_repo: true
+  team: "#find-and-view-tech"
+  type: Utilities
 
 - repo_name: govuk-app-deployment
   team: "#govuk-platform-reliability-team"
@@ -319,6 +354,14 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-connect
+  team: "#govuk-developers"
+  type: Utilities
+
+- repo_name: govuk-content-api-docs
+  team: "#govuk-publishing-tech"
+  type: Utilities
+
 - repo_name: govuk-content-schemas
   production_url: https://govuk-content-store-examples.herokuapp.com/
   management_url: https://dashboard.heroku.com/apps/govuk-content-store-examples
@@ -327,6 +370,10 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+
+- repo_name: govuk-csp-forwarder
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
 
 - repo_name: govuk-delivery
   retired: true
@@ -344,6 +391,10 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+
+- repo_name: govuk-dependency-checker
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
 
 - repo_name: govuk-deploy-lag-badger
   team: "#govuk-platform-reliability-team"
@@ -386,6 +437,11 @@
   type: Utilities
   team: "#govuk-replatforming"
 
+- repo_name: govuk-ithc-documentation
+  private_repo: true
+  team: "#govuk-developers"
+  type: Utilities
+
 - repo_name: govuk-jenkinslib
   team: "#govuk-platform-reliability-team"
   type: Utilities
@@ -406,6 +462,10 @@
   type: Utilities
   team: "#govuk-replatforming"
 
+- repo_name: govuk-lambda-app-deployment
+  type: Utilities
+  team: "#govuk-platform-reliability-team"
+
 - repo_name: govuk-load-testing
   type: Utilities
   team: "#govuk-platform-reliability-team"
@@ -415,6 +475,11 @@
 - repo_name: govuk-network-data
   team: "#govuk-data-labs"
   type: Data science
+
+- repo_name: govuk-paas-office-ip-router
+  private_repo: true
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
 
 - repo_name: govuk-pact-broker
   team: "#govuk-platform-reliability-team"
@@ -443,6 +508,19 @@
   type: Utilities
   team: "#govuk-replatforming"
 
+- repo_name: govuk-repo-mirror
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
+- repo_name: govuk-rfcs
+  team: "#govuk-developers"
+  type: Utilities
+
+- repo_name: govuk-rota-announcer
+  private_repo: true
+  team: "#govuk-developers"
+  type: Utilities
+
 - repo_name: govuk-saas-config
   team: "#govuk-platform-reliability-team"
   type: Utilities
@@ -464,6 +542,10 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-sentry-monitor
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
 - repo_name: govuk-user-intent-survey-explorer
   private_repo: true
   team: "#govuk-data-labs"
@@ -480,9 +562,13 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-user-research-panel
+  team:
+  type: Utilities
+
 - repo_name: govuk-user-reviewer
   private_repo: true
-  team:
+  team: "#govuk-developers"
   type: Utilities
   sentry_url: false
   dashboard_url: false
@@ -505,6 +591,10 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk_admin_template
+  team: "#govuk-publishing-tech"
+  type: Gems
+
 - repo_name: govuk_app_config
   team: "#govuk-platform-reliability-team"
   type: Gems
@@ -519,6 +609,10 @@
     API that used to store and serve published content to the rendering applications
     for display from public-facing URLs. This has now been superceded by the
     [content-store](/repos/content-store.html).
+
+- repo_name: govuk_crawler_worker
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
 
 - repo_name: govuk_document_types
   team: "#find-and-view-tech"
@@ -541,6 +635,10 @@
     app which was part of the GOV.UK Publishing Platform. The need information is now
     stored in the Publishing API, and available in the Content Store.
 
+- repo_name: govuk_personalisation
+  team: "#find-and-view-tech"
+  type: Gems
+
 - repo_name: govuk_publishing_components
   team: "#govuk-frontenders"
   type: Gems
@@ -553,6 +651,10 @@
   type: Gems
   sentry_url: false
   dashboard_url: false
+
+- repo_name: govuk_seed_crawler
+  team: "#govuk-platform-reliability-team"
+  type: Gems
 
 - repo_name: govuk_sidekiq
   team: "#govuk-publishing-tech"
@@ -576,6 +678,10 @@
   type: APIs
   team: "#govuk-publishing-tech"
   production_hosted_on: aws
+
+- repo_name: icinga_slack_webhook
+  type: Utilities
+  team: "#govuk-platform-reliability-team"
 
 - repo_name: imminence
   type: APIs
@@ -649,6 +755,11 @@
   api_docs_url: https://mapit.mysociety.org/docs/
   production_hosted_on: aws
 
+- repo_name: mapit-scripts
+  type: Utilities
+  team: "#govuk-platform-reliability-team"
+  production_hosted_on: aws
+
 - repo_name: maslow
   type: Publishing apps
   team: "#govuk-publishing-tech"
@@ -664,6 +775,10 @@
     then be parsed by `metadata-api` and handed over to `info-frontend`. `info-frontend` is
     now getting need information via the `backdrop read API` which it talks to using
     `gds-api-adapters`.
+
+- repo_name: miller-columns-element
+  type: Utilities
+  team: "#find-and-view-tech"
 
 - repo_name: multipage-frontend
   type: Frontend apps
@@ -692,6 +807,10 @@
     organisations-publisher was a proposed app to create and edit organisations,
     people and roles, taking over from whitehall. It was never released.
 
+- repo_name: packager
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
 - repo_name: panopticon
   retired: true
   type: Publishing apps
@@ -705,6 +824,10 @@
     of artefacts was moved to [publisher](/repos/publisher.html), and tagging moved
     to [content-tagger](/repos/content-tagger.html). Publishing apps became
     responsible for sending their pages to search.
+
+- repo_name: paste-html-to-govspeak
+  team: "#govuk-publishing-tech"
+  type: Utilities
 
 - repo_name: plek
   team: "#govuk-platform-reliability-team"
@@ -738,6 +861,10 @@
   type: Utilities
   sentry_url: false
   dashboard_url: false
+
+- repo_name: puppet-gor
+  type: Utilities
+  team: "#govuk-platform-reliability-team"
 
 - repo_name: rack-logstasher
   team: "#govuk-platform-reliability-team"
@@ -884,6 +1011,10 @@
   type: Frontend apps
   team: "#find-and-view-tech"
   production_hosted_on: aws
+
+- repo_name: stylelint-config-gds
+  team: "#govuk-frontenders"
+  type: Utilities
 
 - repo_name: support
   type: Supporting apps
