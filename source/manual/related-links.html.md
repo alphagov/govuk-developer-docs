@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-data-labs"
+owner_slack: "#data-products"
 title: Related links
 parent: "/manual.html"
 layout: manual_layout
