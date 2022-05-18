@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-data-labs"
+owner_slack: "#data-products"
 title: Knowledge Graph
 parent: "/manual.html"
 layout: manual_layout
@@ -47,8 +47,8 @@ Once the long-term value of the knowledge graph has been evaluated, a decision w
 
 ## Using the knowledge graph
 
-To start using the knowledge graph, get in touch with the Data Labs team (#govuk-data-labs) and we'll provide you with the credentials to access the graph and some tips on how to get started querying the content.
+To start using the knowledge graph, get in touch with the Data Products team (#data-products) and we'll provide you with the credentials to access the graph and some tips on how to get started querying the content.
 
 ## Questions
 
-If you have any questions about the knowledge graph, get in touch with the Data Labs team (#govuk-data-labs) and we'll be happy to help.
+If you have any questions about the knowledge graph, get in touch with the Data Products team (#data-products) and we'll be happy to help.
