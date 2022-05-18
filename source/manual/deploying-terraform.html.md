@@ -57,15 +57,21 @@ Click "build" and terraform should deploy as expected. Remember to deploy to sta
 
 ### Other ways of invoking Jenkins
 
-As of version `v2.15.0` of `gds-cli`, you can use it to deploy terraform via Jenkins. Run `gds govuk terraform --help` for details.
-
-Alternatively, you can invoke this [script in the govuk-aws repository](https://github.com/alphagov/govuk-aws/blob/master/tools/deploy.rb):
+As of version `v2.15.0` of `gds-cli`, you can use it to deploy terraform via Jenkins.
+Note that you should use at least [v5.25.0](https://github.com/alphagov/gds-cli/releases/tag/v5.25.0) of `gds-cli`, otherwise you will need to manually specify the branches of `govuk-aws` and `govuk-aws-data` (see below).
 
 ```sh
 GITHUB_USERNAME=<your GitHub username> \
   GITHUB_TOKEN=<your GitHub personal access token> \
-  gds aws <your role e.g. govuk-integration-admin> -- \
-  ~/govuk/govuk-aws/tools/deploy.rb <stackname> <project> integration plan
+  gds govuk terraform -r <your role e.g. govuk-integration-admin> \
+  -e <environment, eg integration> \
+  -p <project to deploy> \
+  -s <stack to deploy to, eg blue for projects, govuk for infrastructure> \
+  -a <action, eg plan or apply>
+  -b <(optional) branch of govuk-aws>
+  -d <(optional) branch of govuk-aws-data>
 ```
 
-Both of these alternatives take care of requesting temporary AWS credentials with an assumed role and queue the deployment Jenkins job. However, they don't allow you to specify a branch of govuk-aws / govuk-aws-data, so using Jenkins directly is often preferred.
+This command takes care of requesting temporary AWS credentials with an assumed role and queue the deployment Jenkins job, and is a little less awkward than copying and pasting your credentials into Jenkins repeatedly. You'll still need to view the job progress in Jenkins.
+
+For more details, run `gds govuk terraform --help`.
