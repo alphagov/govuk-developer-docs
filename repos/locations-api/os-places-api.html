@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: locations-api - GOV.UK Developer Documentation</title>
+    <title>locations-api: OS Places API - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/locations-api.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/locations-api/os-places-api.html">
 
-      <meta name="description" content="Everything about locations-api (An interface between GOV.UK's frontend applications and external APIs involved in location based services.)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: locations-api - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/locations-api.html" />
+      <meta name="twitter:title" content="locations-api: OS Places API - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/locations-api/os-places-api.html" />
 
-      <meta property="og:description" content="Everything about locations-api (An interface between GOV.UK's frontend applications and external APIs involved in location based services.)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: locations-api" />
+      <meta property="og:title" content="locations-api: OS Places API" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/locations-api.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/locations-api/os-places-api.html" />
 
     
   </head>
@@ -147,7 +145,7 @@
           <li><a href="/repos/hmrc-manuals-api.html"><span>hmrc-manuals-api</span></a></li>
           <li><a href="/repos/imminence.html"><span>imminence</span></a></li>
           <li><a href="/repos/link-checker-api.html"><span>link-checker-api</span></a></li>
-          <li><a href="/repos/locations-api.html" class="toc-link--in-view"><span>locations-api</span></a></li>
+          <li><a href="/repos/locations-api.html"><span>locations-api</span></a></li>
           <li><a href="/repos/mapit.html"><span>mapit</span></a></li>
           <li><a href="/repos/metadata-api.html"><span>metadata-api</span></a></li>
           <li><a href="/repos/publishing-api.html"><span>publishing-api</span></a></li>
@@ -405,6 +403,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "locations-api",
+        "@id": "http://www.dev.gov.uk/repos/locations-api.html"
+      }
     }
   ]
 }
@@ -416,129 +422,29 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/locations-api.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;locations-api&quot;}" class="govuk-breadcrumbs__link" href="/repos/locations-api.html">locations-api</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: locations-api</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>An interface between GOV.UK&rsquo;s frontend applications and external APIs involved in location based services.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/locations-api">locations-api</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-platform-reliability-team</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>locations_api</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">APIs</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=locations-api&MACHINE_CLASS=locations_api&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=locations-api&MACHINE_CLASS=locations_api&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=locations-api&MACHINE_CLASS=locations_api&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-locations-api" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/locations_api.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/locations-api/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/locations-api.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/locations-api/commit/4985ee259e2b260e68356424fb9e86d964eb5770">18 May 2022</a>
 </div>
-<h2 id='imported-documents'>Imported documents</h2>
-<ul>
-<li><a href='/repos/locations-api/postcodes-added-cached-updated.html' class='govuk-link'>How postcodes are added, cached and updated</a></li>
-        <li><a href='/repos/locations-api/api.html' class='govuk-link'>Locations API&rsquo;s API</a></li>
-        <li><a href='/repos/locations-api/os-places-api.html' class='govuk-link'>OS Places API</a></li>
-</ul>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Acts as an interface between GOV.UK&rsquo;s frontend applications and external APIs involved in location based services (e.g. postcode lookups).</p>
+  <h1 class="page-title">locations-api: OS Places API</h1>
 
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p>To run all tests and linters:</p>
-
-<pre><code>bundle exec rake
-</code></pre>
-
-<p>To run all tests:</p>
-
-<pre><code>bundle exec rake test
-</code></pre>
-
-<p>To run a single rspec file:</p>
-
-<pre><code>bundle exec rspec spec/my_spec.rb
-</code></pre>
-
-<p>To run all linters:</p>
-
-<pre><code>bundle exec rake lint
-</code></pre>
-
-<h3 id="further-documentation">Further documentation</h3>
-
-<ul>
-<li><a href="/repos/locations-api/postcodes-added-cached-updated.html">How postcodes are added, cached and updated</a></li>
-<li><a href="/repos/locations-api/os-places-api.html">OS Places API</a></li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/locations-api/blob/main/LICENCE">MIT LICENCE</a>.</p>
-<p></div></p>
+  
+<p>Locations API uses OS Places API under the hood. It makes requests to OS Places API whenever it needs to add or update the results for a given postcode.</p>
+<h2 id="api-keys">API keys</h2>
+<p>Each of the three environments Locations API runs in - Integration, Staging and Production - is set up as its own 'project' in the OS Data Hub. Each project defines its own set of API keys.</p>
+<p>These keys are stored in govuk-secrets under <code>puppet_aws/hieradata/apps</code>, in their respective environment.</p>
+<h2 id="login-credentials">Login credentials</h2>
+<p>You can log into the <a href="https://osdatahub.os.uk/">OS Data Hub</a> to view usage and to regenerate API keys if needed.
+The credentials for the account are stored in govuk-secrets, under <code>govuk-secrets/pass/2ndline/ordnance-survey/os-data-hub.gpg</code>.</p>
 
 
             
@@ -546,8 +452,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flocations-api.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/locations-api/blob/main/docs/os-places-api.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Flocations-api%2Fos-places-api.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
