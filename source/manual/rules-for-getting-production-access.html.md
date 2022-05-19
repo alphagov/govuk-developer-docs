@@ -25,6 +25,7 @@ These rules apply to developers, SREs, and technical architects in the GOV.UK pr
 
 - Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only)
 - Supervised access during the second shadow shift and probation has been passed
+- A minimum of BPSS (a blue building pass) security clearance
 - Permanent access once two shadow shifts have been completed
 
 "Supervised" means "we trust you, but just be extra careful," and the dev should
