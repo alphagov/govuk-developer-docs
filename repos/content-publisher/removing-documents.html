@@ -431,15 +431,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-publisher/commit/7fb97d849141a97b924a1405a02be17a88ee087f">8 Feb 2020</a>
+  Last updated: <a href="https://github.com/alphagov/content-publisher/commit/500708f7fbfada95280e6b589f03e2d9dc2c939d">20 May 2022</a>
 </div>
 
   <h1 class="page-title">content-publisher: Removing or removing and redirecting a document</h1>
@@ -458,7 +451,9 @@ email address, for example:
 <code>rake remove:gone['a-content-id'] USER_EMAIL=me@example.com</code>. This is so
 the change can be associated with you, the developer that performed the task,
 and attributed correctly in the document history.</p>
-<h2 id="removing-documents">Removing documents</h2>
+<h2 id="remove-a-document">Remove a document</h2>
+<h3 id="return-a-410-gone-response">Return a <code>410 Gone</code> response</h3>
+<p>This will remove a document, and future requests for it will return a <code>410 Gone</code> response.</p>
 <p>Required parameters:</p>
 <ul>
 <li>content_id</li>
@@ -472,7 +467,8 @@ and attributed correctly in the document history.</p>
 </ul>
 <pre><code>rake remove:gone['a-content-id']
 </code></pre>
-<h2 id="redirect-removed-documents-to-another-page-on-gov-uk">Redirect removed documents to another page on GOV.UK</h2>
+<h3 id="redirect-to-a-different-url">Redirect to a different URL</h3>
+<p>This will remove a document, and future requests for it will redirect to the specified URL.</p>
 <p>Required parameters:</p>
 <ul>
 <li>content_id</li>
