@@ -508,12 +508,15 @@ bundle exec cucumber
 <code>SIGNON_EMAIL</code>: email of a Signon user in $ENVIRONMENT</li>
 <li>
 <code>SIGNON_PASSWORD</code>: password of a Signon user in $ENVIRONMENT</li>
+<li>
+<code>RATE_LIMIT_TOKEN</code>: (optional) a token used to bypass rate limiting if present on apps.</li>
 </ul>
 
 <p>You can try using your own Signon account, but this won&rsquo;t work if you have Multi Factor Auth enabled. Another option is to use the credentials for the Smokey test user in <code>govuk-secrets/puppet_aws</code>:</p>
 
 <pre><code>bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_email]'
 bundle exec rake 'eyaml:decrypt_value[integration,smokey_signon_password]'
+bundle exec rake 'eyaml:decrypt_value[integration,smokey_rate_limit_token]'
 </code></pre>
 
 <h2 id="further-documentation">Further documentation</h2>
