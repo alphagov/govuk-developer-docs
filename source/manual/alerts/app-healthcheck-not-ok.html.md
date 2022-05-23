@@ -13,6 +13,12 @@ Many apps on GOV.UK have a healthcheck endpoint.
 
 The alert works by [making a request for the healthcheck endpoint](https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155) on the machine where the app is running.
 
+Most healthcheck endpoints use [checks from govuk_app_config](https://github.com/alphagov/govuk_app_config/blob/master/docs/healthchecks.md); see below for guidance on these. Some apps also implement custom checks and the alert links to custom documentation to explain them:
+
+- [Search API app healthcheck not ok](https://docs.publishing.service.gov.uk/manual/alerts/search-api-app-healthcheck-not-ok.html)
+- [content-data-api app healthcheck not ok](https://docs.publishing.service.gov.uk/manual/alerts/content-data-api-app-healthcheck-not-ok.html)
+- [datagovuk_publish app healthcheck not ok](https://docs.publishing.service.gov.uk/manual/alerts/datagovuk-publish-healthcheck-not-ok.html)
+
 ## Test the healthcheck endpoint manually
 
 You can SSH onto the machine and `curl` it yourself.
@@ -27,8 +33,6 @@ ps -ef | grep content-publisher | grep master
 # Do the Icinga check manually
 curl localhost:3221/healthcheck
 ```
-
-Apps with a custom healthcheck endpoint often make use of [the generic checks in govuk_app_config](https://github.com/alphagov/govuk_app_config/blob/master/docs/healthchecks.md). Some apps also implement [custom checks](https://github.com/alphagov/content-publisher/blob/2a6e68e5161cde6f8ee4329deee9a242f6d04668/app/controllers/healthcheck_controller.rb#L8), and the alert should link to custom documentation to explain these.
 
 ## Connection Refused Error
 
