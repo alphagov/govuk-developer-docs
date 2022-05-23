@@ -13,10 +13,6 @@ Many apps on GOV.UK have a healthcheck endpoint.
 
 The alert works by [making a request for the healthcheck endpoint](https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155) on the machine where the app is running.
 
-## Check if the app is running
-
-If the alert is appearing alongside an [`upstart not up` alert](/manual/alerts/check-process-running.html), it's likely that the process isn't even running, therefore any requests to the healthcheck endpoint will also fail.
-
 ## Test the healthcheck endpoint manually
 
 You can SSH onto the machine and `curl` it yourself.
@@ -36,7 +32,7 @@ Apps with a custom healthcheck endpoint often make use of [the generic checks in
 
 ## Connection Refused Error
 
-This means the app is not accepting requests for the healthcheck endpoint, and is probably down.
+This means the app is not accepting requests for the healthcheck endpoint, and is probably down e.g. if the alert is appearing alongside an [`upstart not up` alert](/manual/alerts/check-process-running.html).
 
 - Check [the processes are running](check-process-running.html).
 - Try the healthcheck endpoint manually, as above.
