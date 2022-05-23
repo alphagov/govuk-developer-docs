@@ -88,28 +88,5 @@ redis-cli -h backend-redis
 keys *
 ```
 
-## Sidekiq Retry Size Check
-
-This means that [Sidekiq][] jobs are failing.
-
-- Check the Sidekiq ['Retry set size'][Sidekiq dash] graph to see if we have a
-  high number of failed jobs.
-- Are the workers reporting any problems or any issues being raised in [Sentry]?
-- Check [Kibana] for Sidekiq error logs (`application: <app> AND @type: sidekiq`).
-
-## Sidekiq Queue Latency Check
-
-This means the time it takes for a [Sidekiq][] job to be processed is unusually high.
-
-- Check the Sidekiq ['Queue Length'][Sidekiq dash] graph to see if we have a
-  high number of jobs queued up.
-- Check the [Machine dashboard][machine metrics] or the [AWS RDS postgres dashboard][rds dash] to see if we're experiencing resourcing issues.
-- Are the workers reporting any problems or any issues being raised in [Sentry]?
-- Check [Kibana] for Sidekiq error logs (`application: <app> AND @type: sidekiq`).
-
-[Sidekiq]: /manual/sidekiq.html
-[Sentry]: https://sentry.io/organizations/govuk
-[Sidekiq dash]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json
-[Kibana]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))
 [machine metrics]: https://grafana.blue.production.govuk.digital/dashboard/file/machine.json
 [rds dash]: https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&var-region=eu-west-1&from=now-3h&to=now
