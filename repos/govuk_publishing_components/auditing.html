@@ -431,15 +431,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/56224e297e8d62a5b79628d4d97fe9373478e0ea">14 Oct 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/ac3be120638c3633a9c6e5a035b4181ab3855cee">6 May 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # Auditing</h1>
@@ -452,7 +445,7 @@
 <li>where an application is using a component but has not included required assets</li>
 <li>where an application is not using a component but has included unneeded assets</li>
 </ul>
-<p>Note that there may be reasons behind warnings reported by the auditing that mean no action is required. For example, at time of writing the action link component is being used in <code>collections</code> and also in the site header, so the Sass for the component is included only in <code>static</code>, to prevent duplication. This causes a warning to be raised for <code>collections</code>, as it uses the component but doesn't include the Sass.</p>
+<p>In some cases an application may use a component but not include its assets. This is usually because the assets are already included globally in <code>static</code>. For example, at time of writing the action link component is being used in <code>collections</code> and also in the site header, so the Sass for the component is included only in <code>static</code>, to prevent duplication. The auditing checks this and suppresses any warnings for missing assets in applications where they are already included in <code>static</code>.</p>
 <p>The auditing also includes other warnings, such as:</p>
 <ul>
 <li>where applications contain jQuery</li>
