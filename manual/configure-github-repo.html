@@ -181,21 +181,14 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a0613e63791b221b342e3c087c18688253ad9eb3">12 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a2b3822f70df62df19a9a42551f9ab689768996a">19 May 2022</a>
 </div>
 
  <h1 id='header'>Configure a GitHub repo</h1> <p>Repositories in GOV.UK must:</p>
 
 <ul>
-<li>Have the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a> and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production</a> teams as <code>Admin</code></li>
+<li>Have the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>, <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>, and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production</a> teams as <code>Admin</code></li>
 <li>Have a good description</li>
 <li>Link to relevant documentation</li>
 <li>Have the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
@@ -204,7 +197,7 @@
 <p>Almost all repos should:</p>
 
 <ul>
-<li>Have <a href="https://help.github.com/articles/about-protected-branches">branch protection</a> on <code>main</code> (<code>master</code> if the repo hasn&rsquo;t been updated yet)</li>
+<li>Have <a href="https://help.github.com/articles/about-protected-branches">branch protection</a> on <code>main</code></li>
 <li>Have <a href="/manual/test-and-build-a-project-on-jenkins-ci.html">Jenkins CI</a> configured, if the repo uses Jenkins</li>
 <li>Have <a href="/manual/github-trello-poster.html">GitHub Trello Poster</a> enabled</li>
 </ul>
@@ -212,12 +205,12 @@
 <p>When you create a new repo:</p>
 
 <ul>
-<li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a> and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production</a> teams <code>Admin</code> access</li>
+<li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>, <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>, and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production</a> teams <code>Admin</code> access</li>
 <li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK</a> <code>Write</code> access</li>
 <li>Tag it with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
 <li><a href="https://deploy.blue.production.govuk.digital/job/configure-github-repos">Kick off a build of the Jenkins job</a> to automate the rest</li>
 </ul>
-<p>If your repo will be continuously deployed, restrict merge access to users with production access with <a href="https://github.com/alphagov/govuk-saas-config/blob/master/github/repo_overrides.yml">the <code>repo_overrides.yml</code> file</a>.</p>
+<p>If your repo will be continuously deployed, restrict merge access to users with production deploy access with <a href="https://github.com/alphagov/govuk-saas-config/blob/master/github/repo_overrides.yml">the <code>repo_overrides.yml</code> file</a>.</p>
 
 
   <div class='related-content'>

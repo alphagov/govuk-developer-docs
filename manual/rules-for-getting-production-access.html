@@ -130,12 +130,20 @@
     <ul>
       <li>
         <a href="#what-production-access-means"><span>What production access means</span></a>
-      </li>
-      <li>
-        <a href="#when-you-get-production-access"><span>When you get production access</span></a>
         <ul>
           <li>
-            <a href="#what-is-temporary-supervised-production-access"><span>What is temporary supervised production access?</span></a>
+            <a href="#production-deploy-access"><span>Production Deploy access</span></a>
+          </li>
+          <li>
+            <a href="#production-admin-access"><span>Production Admin access</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#when-you-get-production-admin-access"><span>When you get Production Admin access</span></a>
+        <ul>
+          <li>
+            <a href="#what-is-temporary-supervised-production-admin-access"><span>What is temporary supervised Production Admin access?</span></a>
           </li>
         </ul>
       </li>
@@ -193,23 +201,52 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0e2493b52547349792fce2218d672951535b20cb">19 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1e9f83f51354dfda2c4e46244a1f3c6eb462124e">23 May 2022</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>These rules apply to developers, SREs, and technical architects in the GOV.UK programme.</p>
-<h2 id='what-production-access-means'>What production access means</h2>
+<h2 id='what-production-access-means'>What production access means</h2><p>We have two types of production access:</p>
+
+<ol>
+<li><a href="#production-deploy-access">Production Deploy access</a></li>
+<li><a href="#production-admin-access">Production Admin access</a></li>
+</ol>
+<h3 id='production-deploy-access'>Production Deploy access</h3><p>This level of access allows engineers to deploy code but not administer admin related
+systems. It should be granted to both civil servants and contractors as needed.</p>
+<p>Access includes:</p>
+
 <ul>
-<li>Permission to <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml">read &amp; write production and staging hieradata</a> in govuk-secrets using GPG</li>
-<li>Permission to read &amp; write from the Pass in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
-<li>Access to Production Deploy Jenkins and Staging Deploy Jenkins to deploy applications via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
-<li>SSH access to production and staging servers via <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
+<li>Permission to <a href="https://docs.publishing.service.gov.uk/manual/development-pipeline.html#deployment">deploy apps</a> in Jenkins via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy Github team</a></li>
+<li>Permission to <a href="https://docs.publishing.service.gov.uk/manual/merge-pr.html#header">merge pull requests</a> in continuously deployed applications</li>
+<li>Readonly access to logging systems such as Logit, etc.</li>
+<li>AWS readonly access via the <code>role_user_user_arns</code> role in <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/staging/common.tfvars">Staging</a> and <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/production/common.tfvars">Production</a></li>
+<li>&ldquo;Normal&rdquo; role in to GOV.UK Signon on Staging and Production (with app permissions granted as needed)</li>
+</ul>
+<p>The steps above are outlined in the <a href="https://trello.com/c/S9sex2XU/1391-govuk-production-deploy-access-for-name">GOV.UK Production Deploy template Trello card</a>, which can be copied to
+your team&rsquo;s board and carried out by developers. You can ask 2nd line for help if you have
+any access issues.</p>
+<h4 id='when-you-get-production-deploy-access'>When you get Production Deploy access</h4><p>Access should be granted at the discretion of the engineer&rsquo;s tech lead, once the engineer has the required level of security clearance (BPSS). Before approving access, tech leads should ensure that the engineer:</p>
+
+<ul>
+<li>is aware of our processes and standards around <a href="https://gds-way.cloudapps.digital/manuals/code-review-guidelines.html">code review</a></li>
+<li>understands the responsibilities that <a href="https://docs.publishing.service.gov.uk/manual/development-pipeline.html#deployment">releasing code</a> brings with it</li>
+<li>knows how to roll back to an older release if there are any issues</li>
+<li>knows <a href="https://docs.publishing.service.gov.uk/manual/ask-for-help.html">how to get help</a> from someone with more access if they need it</li>
+</ul>
+<h3 id='production-admin-access'>Production Admin access</h3>
+<ul>
+<li>Permission to read &amp; write <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml">production</a> and <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml">staging</a> <a href="https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access">hieradata</a> in govuk-secrets using GPG</li>
+<li>Permission to read &amp; write to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">password store</a> in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
+<li>Access to <a href="https://deploy.blue.production.govuk.digital/">Production Deploy Jenkins</a> and <a href="https://deploy.blue.staging.govuk.digital/">Staging Deploy Jenkins</a> to deploy applications via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
+<li><a href="https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html">SSH access</a> to production and staging servers via <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
 <li>AWS <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars">PowerUser Access</a> via the <code>role_poweruser_user_arns</code> role</li>
 <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> access to role to manage <a href="/manual/fall-back-to-mirror.html">static mirrors</a> and DNS</li>
 <li>Signon &ldquo;Super Admin&rdquo; access in production</li>
-<li>GOV.UK PaaS <a href="https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer">Space developer</a>
-access to all spaces in <a href="https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35">the govuk_development organisation</a></li>
+<li>GOV.UK PaaS <a href="https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer">Space developer</a> and <code>Org manager</code>
+access to all spaces in the <a href="https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35">govuk_development</a> and <a href="https://admin.cloud.service.gov.uk/organisations/39c3d2c5-8809-4dcf-8cd6-a8f62923a295/users">data-gov-uk</a> organisations</li>
 </ul>
-<h2 id='when-you-get-production-access'>When you get production access</h2>
+<p>The steps above are outlined in the <a href="https://trello.com/c/GIHPZi2o/382-production-access-for-2nd-line">GOV.UK Production template Trello card</a>, which is normally given whilst on 2nd line.</p>
+<h2 id='when-you-get-production-admin-access'>When you get Production Admin access</h2>
 <ul>
 <li>Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only)</li>
 <li>Supervised access during the second shadow shift and probation has been passed</li>
@@ -220,7 +257,7 @@ access to all spaces in <a href="https://admin.cloud.service.gov.uk/organisation
 ensure they&rsquo;re getting necessary and appropriate support from their team and
 tech lead during this time. The tech lead of the mission team is responsible for
 the supervision, whether it&rsquo;s by them or the team.</p>
-<h3 id='what-is-temporary-supervised-production-access'>What is temporary supervised production access?</h3><p>Access to production may be granted to GDS civil servants or contractors who
+<h3 id='what-is-temporary-supervised-production-admin-access'>What is temporary supervised Production Admin access?</h3><p>Admin access to production may be granted to GDS civil servants or contractors who
 don’t meet the criteria above for a time limited period. In these cases, we
 require:</p>
 
@@ -231,7 +268,9 @@ require:</p>
 <li>Supervision to be given by a production cleared person during access</li>
 <li>Agreement from the person that they will only use their access while supervised. We trust our staff to be sensible and operate within these rules.</li>
 </ul>
-<h2 id='temporarily-revoking-access'>Temporarily revoking access</h2><p>If you&rsquo;re absent more than 6 weeks, your access will be revoked.</p>
+<h2 id='temporarily-revoking-access'>Temporarily revoking access</h2><p>If you&rsquo;re absent more than 6 weeks, your access will be revoked. See <a href="https://trello.com/c/IQIV54Pc/378-leaver-name-here-tech-role">the Trello
+leaver template card</a>
+for the steps.</p>
 
 
   <div class='related-content'>
