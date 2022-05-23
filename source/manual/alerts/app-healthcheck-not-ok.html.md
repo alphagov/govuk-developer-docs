@@ -18,27 +18,23 @@ Most healthcheck endpoints use [checks from govuk_app_config](https://github.com
 
 > **Note:** most apps also have a separate `/healthcheck/live` endpoint, which often just returns "200 OK" ([example](https://github.com/alphagov/publishing-api/blob/50af13759827318fb953086c836490b2f3de1242/config/routes.rb#L52)). This endpoint is meant to be a lightweight check for use with certain types of infrastructure, such as [AWS Elastic Load Balancers (ELBs)](https://github.com/alphagov/govuk-aws/pull/1438). [Read more about separate healthchecks](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-141-application-healthchecks.md).
 
-## Test the healthcheck endpoint manually
-
-You can SSH onto the machine and `curl` it yourself.
-
-```
-# SSH on to a machine running Content Publisher
-gds govuk connect ssh -e integration backend
-
-# Find the port it's running on
-ps -ef | grep content-publisher | grep master
-
-# Do the Icinga check manually
-curl localhost:3221/healthcheck
-```
-
 ## Connection Refused Error
 
 This means the app is not accepting requests for the healthcheck endpoint, and is probably down e.g. if the alert is appearing alongside an [`upstart not up` alert](/manual/alerts/check-process-running.html).
 
 - Check [the processes are running](check-process-running.html).
-- Try the healthcheck endpoint manually, as above.
+- Try the healthcheck endpoint manually:
+
+  ```
+  # SSH on to a machine running Content Publisher
+  gds govuk connect ssh -e integration backend
+
+  # Find the port it's running on
+  ps -ef | grep content-publisher | grep master
+
+  # Do the Icinga check manually
+  curl localhost:3221/healthcheck/ready
+  ```
 
 ## Timeout Error
 
