@@ -8,7 +8,7 @@ section: Incidents
 
 This page is for reference only. Use the [incident report template][tpl] on Google Drive when drafting the report.
 
-[tpl]: https://docs.google.com/document/d/1YDA13RU6wicXoKgDv5VucJe3o_Z0k_Qhug9EJC_XdSE/edit
+[tpl]: https://docs.google.com/document/d/1YDA13RU6wicXoKgDv5VucJe3o_Z0k_Qhug9EJC_XdSE/copy
 
 ## Incident report checklist:
 
