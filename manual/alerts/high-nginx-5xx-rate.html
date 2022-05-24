@@ -132,6 +132,9 @@
         <a href="#spikes"><span>Spikes</span></a>
       </li>
       <li>
+        <a href="#multiple-applications-reporting-errors"><span>Multiple applications reporting errors</span></a>
+      </li>
+      <li>
         <a href="#scaling-up"><span>Scaling up</span></a>
       </li>
     </ul>
@@ -157,7 +160,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/52a5bffc083882c646704aaf0c57ce894e92465c">23 May 2022</a>
 </div>
 
  <h1 id='header'>High Nginx 5xx rate</h1> <p>You can view the 5xx logs across all machines on this dashboard:</p>
@@ -170,6 +173,10 @@
 such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let a team that is working on the app
 know (or alert Platform Reliability).</p>
+<h2 id='multiple-applications-reporting-errors'>Multiple applications reporting errors</h2><p>If multiple applications are reporting 5xx errors, there is likely to be a common
+cause. The first thing to check is whether <a href="https://grafana.production.govuk.digital/dashboard/file/content-store.json?refresh=5s&amp;orgId=1&amp;from=now-6h&amp;to=now">content store is erroring</a>.
+If content-store is not reporting any errors, but the dependent frontend apps are
+(see the bottom of the dashboard), it could be that the <a href="/manual/flush-the-arp-cache.html">ARP cache needs to be flushed</a>.</p>
 <h2 id='scaling-up'>Scaling up</h2><p>Sometimes a high 5xx rate can be because of a sudden increase in traffic to the
 site. You can use the <a href="https://grafana.production.govuk.digital/dashboard/file/nginx_requests.json?refresh=1m&amp;orgId=1&amp;from=now-30m&amp;to=now">Nginx Requests (AWS)</a> dashboard to see
 if there are an unusually high number of requests to a particular machine
