@@ -61,6 +61,8 @@ with its ARP cache.
 If there are other machines with similar issues, you should flush the cache on
 those too.
 
+> Related: [how to run ssh commands on many machines](/manual/howto-run-ssh-commands-on-many-machines.html)
+
 ## What is the ARP cache?
 
 Address Resolution Protocol (ARP) resolves IP addresses into MAC addresses. The

@@ -74,6 +74,8 @@ brief outage, e.g. MySQL.
 > to and you MUST have some plan for restarting the service in the near
 > future so that it's not inconsistent with its configuration.
 
+There are also instructions on [how to disable and enable puppet without using fabric scripts](/manual/howto-run-ssh-commands-on-many-machines.html).
+
 1. Disable normal Puppet runs on the affected nodes:
 
    ```
