@@ -14,12 +14,9 @@ The Search API uses elasticsearch as an underlying data store and search
 engine.
 
 If the application cannot connect to the elasticsearch cluster,
-this will prevent end users performing searches.
+this will prevent end users performing searches. Search API has [a custom healthcheck](https://github.com/alphagov/search-api/blob/05df032d2791769837d2b23cb8fd08a2bc474456/lib/rummager/app.rb#L311-L315) to check for this scenario.
 
 Note: We use a managed elasticsearch, [Amazon Elasticsearch Service][aws-elasticsearch], rather than running our own.
-
-To solve this issue, look at the logs of the application to see what
-is wrong.
 
 ### How do I investigate this?
 

@@ -6,8 +6,10 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
+See also: [how healthcheck alerts work on GOV.UK](app-healthcheck-not-ok.html)
+
 [datagovuk_publish](https://github.com/alphagov/datagovuk_publish)
-has a healthcheck that monitors two Sidekiq jobs,
+has a [healthcheck](https://github.com/alphagov/datagovuk_publish/blob/d9295ff9162e802084e42f516166021163ba0902/config/routes.rb#L71-L75) that monitors two Sidekiq jobs,
 [`ckan_v26_package_sync`](https://github.com/alphagov/datagovuk_publish/blob/main/app/workers/ckan/v26/package_sync_worker.rb)
 and [`ckan_v26_ckan_org_sync`](https://github.com/alphagov/datagovuk_publish/blob/main/app/workers/ckan/v26/ckan_org_sync_worker.rb).
 

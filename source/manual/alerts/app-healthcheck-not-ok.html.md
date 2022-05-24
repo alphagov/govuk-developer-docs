@@ -6,40 +6,35 @@ layout: manual_layout
 section: Icinga alerts
 ---
 
-Many apps on GOV.UK have a healthcheck endpoint.
+Most apps on GOV.UK have a `/healthcheck/ready` endpoint that checks if the app is "ready" to respond to requests, including things like connecting to a database ([example](https://github.com/alphagov/content-publisher/blob/8df63907dab486a54894105b829ab9ea02936b67/config/routes.rb#L115-L118)).
 
-- This is usually `/healthcheck` [[1](https://github.com/alphagov/govuk-puppet/blob/2693343ebc1aced7a7f94e8aba31fee8b05df8a5/modules/govuk/manifests/apps/email_alert_api.pp#L166)].
-- Some apps just pick a random page [[1](https://github.com/alphagov/govuk-puppet/blob/2693343ebc1aced7a7f94e8aba31fee8b05df8a5/modules/govuk/manifests/apps/collections.pp#L51)].
+This alert works by [making a request to the app's healthcheck endpoint](https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155) on a machine where the app runs. For most apps the endpoint is `/healthcheck/ready`; for legacy apps it's just a random page ([example](https://github.com/alphagov/govuk-puppet/blob/3f05678f36fde027efd3bbaae2421ebe04103136/modules/licensify/manifests/apps/licensify.pp#L63)).
 
-The alert works by [making a request for the healthcheck endpoint](https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155) on the machine where the app is running.
+Most healthcheck endpoints use [checks from govuk_app_config](https://github.com/alphagov/govuk_app_config/blob/master/docs/healthchecks.md); see below for guidance on these. Some apps also implement custom checks and the alert links to custom documentation to explain them:
 
-## Check if the app is running
+- [Search API app healthcheck not ok](https://docs.publishing.service.gov.uk/manual/alerts/search-api-app-healthcheck-not-ok.html)
+- [content-data-api app healthcheck not ok](https://docs.publishing.service.gov.uk/manual/alerts/content-data-api-app-healthcheck-not-ok.html)
+- [datagovuk_publish app healthcheck not ok](https://docs.publishing.service.gov.uk/manual/alerts/datagovuk-publish-healthcheck-not-ok.html)
 
-If the alert is appearing alongside an [`upstart not up` alert](/manual/alerts/check-process-running.html), it's likely that the process isn't even running, therefore any requests to the healthcheck endpoint will also fail.
-
-## Test the healthcheck endpoint manually
-
-You can SSH onto the machine and `curl` it yourself.
-
-```
-# SSH on to a machine running Content Publisher
-gds govuk connect ssh -e integration backend
-
-# Find the port it's running on
-ps -ef | grep content-publisher | grep master
-
-# Do the Icinga check manually
-curl localhost:3221/healthcheck
-```
-
-Apps with a custom healthcheck endpoint often make use of [the generic checks in govuk_app_config](https://github.com/alphagov/govuk_app_config/blob/master/docs/healthchecks.md). Some apps also implement [custom checks](https://github.com/alphagov/content-publisher/blob/2a6e68e5161cde6f8ee4329deee9a242f6d04668/app/controllers/healthcheck_controller.rb#L8), and the alert should link to custom documentation to explain these.
+> **Note:** most apps also have a separate `/healthcheck/live` endpoint, which often just returns "200 OK" ([example](https://github.com/alphagov/publishing-api/blob/50af13759827318fb953086c836490b2f3de1242/config/routes.rb#L52)). This endpoint is meant to be a lightweight check for use with certain types of infrastructure, such as [AWS Elastic Load Balancers (ELBs)](https://github.com/alphagov/govuk-aws/pull/1438). [Read more about separate healthchecks](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-141-application-healthchecks.md).
 
 ## Connection Refused Error
 
-This means the app is not accepting requests for the healthcheck endpoint, and is probably down.
+This means the app is not accepting requests for the healthcheck endpoint, and is probably down e.g. if the alert is appearing alongside an [`upstart not up` alert](/manual/alerts/check-process-running.html).
 
 - Check [the processes are running](check-process-running.html).
-- Try the healthcheck endpoint manually, as above.
+- Try the healthcheck endpoint manually:
+
+  ```
+  # SSH on to a machine running Content Publisher
+  gds govuk connect ssh -e integration backend
+
+  # Find the port it's running on
+  ps -ef | grep content-publisher | grep master
+
+  # Do the Icinga check manually
+  curl localhost:3221/healthcheck/ready
+  ```
 
 ## Timeout Error
 
@@ -92,28 +87,5 @@ redis-cli -h backend-redis
 keys *
 ```
 
-## Sidekiq Retry Size Check
-
-This means that [Sidekiq][] jobs are failing.
-
-- Check the Sidekiq ['Retry set size'][Sidekiq dash] graph to see if we have a
-  high number of failed jobs.
-- Are the workers reporting any problems or any issues being raised in [Sentry]?
-- Check [Kibana] for Sidekiq error logs (`application: <app> AND @type: sidekiq`).
-
-## Sidekiq Queue Latency Check
-
-This means the time it takes for a [Sidekiq][] job to be processed is unusually high.
-
-- Check the Sidekiq ['Queue Length'][Sidekiq dash] graph to see if we have a
-  high number of jobs queued up.
-- Check the [Machine dashboard][machine metrics] or the [AWS RDS postgres dashboard][rds dash] to see if we're experiencing resourcing issues.
-- Are the workers reporting any problems or any issues being raised in [Sentry]?
-- Check [Kibana] for Sidekiq error logs (`application: <app> AND @type: sidekiq`).
-
-[Sidekiq]: /manual/sidekiq.html
-[Sentry]: https://sentry.io/organizations/govuk
-[Sidekiq dash]: https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json
-[Kibana]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))
 [machine metrics]: https://grafana.blue.production.govuk.digital/dashboard/file/machine.json
 [rds dash]: https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&var-region=eu-west-1&from=now-3h&to=now
