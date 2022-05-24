@@ -11,8 +11,18 @@ parent: "/manual.html"
 >
 > This page is for before you go on call to prep for incident handling.
 
-GOV.UK developers and reliability engineers are part of an on-call rota
-to keep GOV.UK running at night, on the weekends and on public holidays.
+GOV.UK developers are part of an on-call rota to keep GOV.UK running at night, on
+the weekends and on public holidays.
+
+Developers are drafted on the on-call rota after:
+
+- they have completed 2 shadow 2nd line shifts
+- they have completed 2 Secondary 2nd line shifts
+
+They will be automatically opted into the rota the same time they join the Primary 2nd line rota.
+If a developer is unable to be rota'd on-call, then they need to request to opt
+out by contacting their tech leads. This will only be granted if they have a strong
+reason be exempt (e.g. health issues, caring responsibilities).
 
 ## On call checklist
 
