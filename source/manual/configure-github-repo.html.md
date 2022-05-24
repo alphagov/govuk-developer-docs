@@ -8,7 +8,7 @@ section: GitHub
 
 Repositories in GOV.UK must:
 
-- Have the [GOV.UK CI Bots][govuk-ci-bots-team], [GOV.UK Production Deploy][govuk-production-deploy-team], and [GOV.UK Production][govuk-production-team] teams as `Admin`
+- Have the [GOV.UK CI Bots][govuk-ci-bots-team], [GOV.UK Production Deploy][govuk-production-deploy-team], and [GOV.UK Production Admin][govuk-production-team] teams as `Admin`
 - Have a good description
 - Link to relevant documentation
 - Have the [`govuk`][govuk-topic] topic
@@ -31,7 +31,7 @@ When your repo is tagged with `govuk`, it will be auto-configured by [govuk-saas
 
 When you create a new repo:
 
-- Give the [GOV.UK CI Bots][govuk-ci-bots-team], [GOV.UK Production Deploy][govuk-production-deploy-team], and [GOV.UK Production][govuk-production-team] teams `Admin` access
+- Give the [GOV.UK CI Bots][govuk-ci-bots-team], [GOV.UK Production Deploy][govuk-production-deploy-team], and [GOV.UK Production Admin][govuk-production-team] teams `Admin` access
 - Give the [GOV.UK][govuk-team] `Write` access
 - Tag it with the [`govuk`][govuk-topic] topic
 - [Kick off a build of the Jenkins job][jenkins-job] to automate the rest

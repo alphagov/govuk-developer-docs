@@ -55,7 +55,7 @@ Licensify is built and deployed using Jenkins. There are four relevant Jenkins i
 
 Access to Jenkins is controlled through GitHub teams. Users in the "GOV.UK" team have full access to the CI and
 Integration Jenkins instances, and read only access to the Staging and Production Jenkins instances. Users in the "
-GOV.UK Production" team have full access in all environments.
+GOV.UK Production Admin" team have full access in all environments.
 
 Usually, GOV.UK developers coordinate deployments through these Jenkins instances using
 [the Release app](https://release.publishing.service.gov.uk/applications). This shows which releases are deployed to
