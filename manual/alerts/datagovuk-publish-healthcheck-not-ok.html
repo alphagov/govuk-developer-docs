@@ -149,11 +149,12 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/28ce61565afa55d9067b4e5cf4b18788174e968c">23 May 2022</a>
 </div>
 
- <h1 id='header'>datagovuk_publish app healthcheck not ok</h1> <p><a href="https://github.com/alphagov/datagovuk_publish">datagovuk_publish</a>
-has a healthcheck that monitors two Sidekiq jobs,
+ <h1 id='header'>datagovuk_publish app healthcheck not ok</h1> <p>See also: <a href="/manual/alerts/app-healthcheck-not-ok.html">how healthcheck alerts work on GOV.UK</a></p>
+<p><a href="https://github.com/alphagov/datagovuk_publish">datagovuk_publish</a>
+has a <a href="https://github.com/alphagov/datagovuk_publish/blob/d9295ff9162e802084e42f516166021163ba0902/config/routes.rb#L71-L75">healthcheck</a> that monitors two Sidekiq jobs,
 <a href="https://github.com/alphagov/datagovuk_publish/blob/main/app/workers/ckan/v26/package_sync_worker.rb"><code>ckan_v26_package_sync</code></a>
 and <a href="https://github.com/alphagov/datagovuk_publish/blob/main/app/workers/ckan/v26/ckan_org_sync_worker.rb"><code>ckan_v26_ckan_org_sync</code></a>.</p>
 <p>The healthcheck alert notifies us if one or both of these jobs are not running in

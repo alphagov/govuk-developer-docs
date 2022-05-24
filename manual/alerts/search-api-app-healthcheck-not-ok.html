@@ -159,17 +159,15 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/28ce61565afa55d9067b4e5cf4b18788174e968c">23 May 2022</a>
 </div>
 
  <h1 id='header'>Search API app healthcheck not ok</h1> <p>See also: <a href="/manual/alerts/app-healthcheck-not-ok.html">how healthcheck alerts work on GOV.UK</a></p>
 <h2 id='elasticsearch-connectivity-is-not-ok'>Elasticsearch connectivity is not OK</h2><p>The Search API uses elasticsearch as an underlying data store and search
 engine.</p>
 <p>If the application cannot connect to the elasticsearch cluster,
-this will prevent end users performing searches.</p>
+this will prevent end users performing searches. Search API has <a href="https://github.com/alphagov/search-api/blob/05df032d2791769837d2b23cb8fd08a2bc474456/lib/rummager/app.rb#L311-L315">a custom healthcheck</a> to check for this scenario.</p>
 <p>Note: We use a managed elasticsearch, <a href="https://aws.amazon.com/elasticsearch-service/">Amazon Elasticsearch Service</a>, rather than running our own.</p>
-<p>To solve this issue, look at the logs of the application to see what
-is wrong.</p>
 <h3 id='how-do-i-investigate-this'>How do I investigate this?</h3><p>Find out why the Search API can&rsquo;t connect to elasticsearch.</p>
 
 <ul>

@@ -129,12 +129,6 @@
     <a href="#header"><span>App healthcheck not ok</span></a>
     <ul>
       <li>
-        <a href="#check-if-the-app-is-running"><span>Check if the app is running</span></a>
-      </li>
-      <li>
-        <a href="#test-the-healthcheck-endpoint-manually"><span>Test the healthcheck endpoint manually</span></a>
-      </li>
-      <li>
         <a href="#connection-refused-error"><span>Connection Refused Error</span></a>
       </li>
       <li>
@@ -145,12 +139,6 @@
       </li>
       <li>
         <a href="#sidekiq-redis-check"><span>Sidekiq / Redis Check</span></a>
-      </li>
-      <li>
-        <a href="#sidekiq-retry-size-check"><span>Sidekiq Retry Size Check</span></a>
-      </li>
-      <li>
-        <a href="#sidekiq-queue-latency-check"><span>Sidekiq Queue Latency Check</span></a>
       </li>
     </ul>
   </li>
@@ -175,34 +163,37 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/13fef5906c1874d15677795a0849cbd796e712bf">23 May 2022</a>
 </div>
 
- <h1 id='header'>App healthcheck not ok</h1> <p>Many apps on GOV.UK have a healthcheck endpoint.</p>
+ <h1 id='header'>App healthcheck not ok</h1> <p>Most apps on GOV.UK have a <code>/healthcheck/ready</code> endpoint that checks if the app is &ldquo;ready&rdquo; to respond to requests, including things like connecting to a database (<a href="https://github.com/alphagov/content-publisher/blob/8df63907dab486a54894105b829ab9ea02936b67/config/routes.rb#L115-L118">example</a>).</p>
+<p>This alert works by <a href="https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155">making a request to the app&rsquo;s healthcheck endpoint</a> on a machine where the app runs. For most apps the endpoint is <code>/healthcheck/ready</code>; for legacy apps it&rsquo;s just a random page (<a href="https://github.com/alphagov/govuk-puppet/blob/3f05678f36fde027efd3bbaae2421ebe04103136/modules/licensify/manifests/apps/licensify.pp#L63">example</a>).</p>
+<p>Most healthcheck endpoints use <a href="https://github.com/alphagov/govuk_app_config/blob/master/docs/healthchecks.md">checks from govuk_app_config</a>; see below for guidance on these. Some apps also implement custom checks and the alert links to custom documentation to explain them:</p>
 
 <ul>
-<li>This is usually <code>/healthcheck</code> [<a href="https://github.com/alphagov/govuk-puppet/blob/2693343ebc1aced7a7f94e8aba31fee8b05df8a5/modules/govuk/manifests/apps/email_alert_api.pp#L166">1</a>].</li>
-<li>Some apps just pick a random page [<a href="https://github.com/alphagov/govuk-puppet/blob/2693343ebc1aced7a7f94e8aba31fee8b05df8a5/modules/govuk/manifests/apps/collections.pp#L51">1</a>].</li>
+<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/search-api-app-healthcheck-not-ok.html">Search API app healthcheck not ok</a></li>
+<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/content-data-api-app-healthcheck-not-ok.html">content-data-api app healthcheck not ok</a></li>
+<li><a href="https://docs.publishing.service.gov.uk/manual/alerts/datagovuk-publish-healthcheck-not-ok.html">datagovuk_publish app healthcheck not ok</a></li>
 </ul>
-<p>The alert works by <a href="https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155">making a request for the healthcheck endpoint</a> on the machine where the app is running.</p>
-<h2 id='check-if-the-app-is-running'>Check if the app is running</h2><p>If the alert is appearing alongside an <a href="/manual/alerts/check-process-running.html"><code>upstart not up</code> alert</a>, it&rsquo;s likely that the process isn&rsquo;t even running, therefore any requests to the healthcheck endpoint will also fail.</p>
-<h2 id='test-the-healthcheck-endpoint-manually'>Test the healthcheck endpoint manually</h2><p>You can SSH onto the machine and <code>curl</code> it yourself.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># SSH on to a machine running Content Publisher
-gds govuk connect ssh -e integration backend
 
-# Find the port it's running on
-ps -ef | grep content-publisher | grep master
-
-# Do the Icinga check manually
-curl localhost:3221/healthcheck
-</code></pre></div><p>Apps with a custom healthcheck endpoint often make use of <a href="https://github.com/alphagov/govuk_app_config/blob/master/docs/healthchecks.md">the generic checks in govuk_app_config</a>. Some apps also implement <a href="https://github.com/alphagov/content-publisher/blob/2a6e68e5161cde6f8ee4329deee9a242f6d04668/app/controllers/healthcheck_controller.rb#L8">custom checks</a>, and the alert should link to custom documentation to explain these.</p>
-<h2 id='connection-refused-error'>Connection Refused Error</h2><p>This means the app is not accepting requests for the healthcheck endpoint, and is probably down.</p>
+<blockquote>
+<p><strong>Note:</strong> most apps also have a separate <code>/healthcheck/live</code> endpoint, which often just returns &ldquo;200 OK&rdquo; (<a href="https://github.com/alphagov/publishing-api/blob/50af13759827318fb953086c836490b2f3de1242/config/routes.rb#L52">example</a>). This endpoint is meant to be a lightweight check for use with certain types of infrastructure, such as <a href="https://github.com/alphagov/govuk-aws/pull/1438">AWS Elastic Load Balancers (ELBs)</a>. <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-141-application-healthchecks.md">Read more about separate healthchecks</a>.</p>
+</blockquote>
+<h2 id='connection-refused-error'>Connection Refused Error</h2><p>This means the app is not accepting requests for the healthcheck endpoint, and is probably down e.g. if the alert is appearing alongside an <a href="/manual/alerts/check-process-running.html"><code>upstart not up</code> alert</a>.</p>
 
 <ul>
 <li>Check <a href="/manual/alerts/check-process-running.html">the processes are running</a>.</li>
-<li>Try the healthcheck endpoint manually, as above.</li>
+<li>Try the healthcheck endpoint manually:</li>
 </ul>
-<h2 id='timeout-error'>Timeout Error</h2><p>This means the app is accepting requests, but taking too long to respond (over <a href="https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155">20 seconds</a>).</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  # SSH on to a machine running Content Publisher
+  gds govuk connect ssh -e integration backend
+
+  # Find the port it's running on
+  ps -ef | grep content-publisher | grep master
+
+  # Do the Icinga check manually
+  curl localhost:3221/healthcheck/ready
+</code></pre></div><h2 id='timeout-error'>Timeout Error</h2><p>This means the app is accepting requests, but taking too long to respond (over <a href="https://github.com/alphagov/govuk-puppet/blob/fab936cb82be7fad42636fcafca3718a8368ebfe/modules/icinga/files/usr/lib/nagios/plugins/check_json_healthcheck#L155">20 seconds</a>).</p>
 
 <ul>
 <li>Try the healthcheck endpoint manually, as above, to confirm.</li>
@@ -244,24 +235,7 @@ redis-cli -h backend-redis
 
 # Try a command
 keys *
-</code></pre></div><h2 id='sidekiq-retry-size-check'>Sidekiq Retry Size Check</h2><p>This means that <a href="/manual/sidekiq.html">Sidekiq</a> jobs are failing.</p>
-
-<ul>
-<li>Check the Sidekiq <a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json">&lsquo;Retry set size&rsquo;</a> graph to see if we have a
-high number of failed jobs.</li>
-<li>Are the workers reporting any problems or any issues being raised in <a href="https://sentry.io/organizations/govuk">Sentry</a>?</li>
-<li>Check <a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&amp;_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))">Kibana</a> for Sidekiq error logs (<code>application: &lt;app&gt; AND @type: sidekiq</code>).</li>
-</ul>
-<h2 id='sidekiq-queue-latency-check'>Sidekiq Queue Latency Check</h2><p>This means the time it takes for a <a href="/manual/sidekiq.html">Sidekiq</a> job to be processed is unusually high.</p>
-
-<ul>
-<li>Check the Sidekiq <a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json">&lsquo;Queue Length&rsquo;</a> graph to see if we have a
-high number of jobs queued up.</li>
-<li>Check the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/machine.json">Machine dashboard</a> or the <a href="https://grafana.production.govuk.digital/dashboard/file/aws-rds.json?orgId=1&amp;var-region=eu-west-1&amp;from=now-3h&amp;to=now">AWS RDS postgres dashboard</a> to see if we&rsquo;re experiencing resourcing issues.</li>
-<li>Are the workers reporting any problems or any issues being raised in <a href="https://sentry.io/organizations/govuk">Sentry</a>?</li>
-<li>Check <a href="https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-1h,mode:quick,to:now))&amp;_a=(columns:!('@message',host),index:'*-*',interval:auto,query:(query_string:(query:'@type:%20sidekiq%20AND%20application:%20email-alert-api')),sort:!('@timestamp',desc))">Kibana</a> for Sidekiq error logs (<code>application: &lt;app&gt; AND @type: sidekiq</code>).</li>
-</ul>
-
+</code></pre></div>
 
   <div class='related-content'>
 
