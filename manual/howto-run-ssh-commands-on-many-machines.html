@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Google Cloud Platform (GCP) - GOV.UK Developer Documentation</title>
+    <title>Run commands on many machines - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/google-cloud-platform-gcp.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Google Cloud Platform (GCP) - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/google-cloud-platform-gcp.html" />
+      <meta name="twitter:title" content="Run commands on many machines - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Google Cloud Platform (GCP)" />
+      <meta property="og:title" content="Run commands on many machines" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/google-cloud-platform-gcp.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines.html" />
 
     
   </head>
@@ -126,21 +126,44 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Google Cloud Platform (GCP)</span></a>
+    <a href="#header"><span>Run commands on many machines</span></a>
     <ul>
       <li>
-        <a href="#gcp-access"><span>GCP access</span></a>
+        <a href="#breaking-the-script-down"><span>Breaking the script down</span></a>
         <ul>
           <li>
-            <a href="#accessing-the-console"><span>Accessing the console</span></a>
+            <a href="#find-out-the-public-dns-names-of-all-cache-machines"><span>Find out the public DNS names of all cache machines</span></a>
           </li>
           <li>
-            <a href="#using-the-cli"><span>Using the CLI</span></a>
+            <a href="#loop-over-the-machines"><span>Loop over the machines</span></a>
+          </li>
+          <li>
+            <a href="#ssh-to-a-host-and-run-a-command"><span>SSH to a host and run a command:</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#support-tasks-which-involve-gcp"><span>Support tasks which involve GCP</span></a>
+        <a href="#stricthostkeychecking"><span>StrictHostKeyChecking</span></a>
+      </li>
+      <li>
+        <a href="#useful-commands"><span>Useful commands</span></a>
+        <ul>
+          <li>
+            <a href="#run-puppet"><span>Run Puppet</span></a>
+          </li>
+          <li>
+            <a href="#disable-puppet"><span>Disable Puppet</span></a>
+          </li>
+          <li>
+            <a href="#enable-puppet"><span>Enable Puppet</span></a>
+          </li>
+          <li>
+            <a href="#flush-the-arp-cache-on-integration-frontend-machines"><span>Flush the ARP cache (on integration frontend machines)</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#run-a-command-on-an-arbitrary-list-of-machines"><span>Run a command on an arbitrary list of machines</span></a>
       </li>
     </ul>
   </li>
@@ -193,55 +216,68 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/afa32951220ed3be7a8bac44433be07c66cd837f">23 May 2022</a>
 </div>
 
- <h1 id='header'>Google Cloud Platform (GCP)</h1> <p>GOV.UK uses Google Cloud Platform (GCP) for three main things:</p>
+ <h1 id='header'>Run commands on many machines</h1> <p>We used to rely heavily on Fabric scripts to help us do things like running commands on all machines in a class. This approach has been deprecated, but we still need to do those things occasionally.</p>
 
+<blockquote>
+<p><strong>WARNING</strong> Please test your command before unleashing it on production machines.</p>
+</blockquote>
+<p>Imagine you need to enable puppet on all cache machines. Here&rsquo;s one way to do that:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache)
+do
+  gds govuk connect ssh -e integration $host -- govuk_puppet --enable
+done
+</code></pre></div><p>All commands in this guide are written to be run from your developer laptop.</p>
+<h2 id='breaking-the-script-down'>Breaking the script down</h2><h3 id='find-out-the-public-dns-names-of-all-cache-machines'>Find out the public DNS names of all <code>cache</code> machines</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache
+</code></pre></div>
 <ul>
-<li><a href="/manual/fall-back-to-mirror.html">Static mirrors of GOV.UK</a> (these are hosted in AWS and GCP).</li>
-<li><a href="/manual/dns.html">DNS</a> (DNS for www.gov.uk, service.gov.uk and other domains we manage is mirrored to name servers in AWS Route53 and Google CloudDNS)</li>
-<li>Various data science tasks such as <a href="/manual/view-extract-feedback-data-bigquery.html">BigQuery</a></li>
+<li><p>For this to work you need to have <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#3-install-gds-command-line-tools">set up the GDS command line tools</a></p></li>
+<li><p>You need to set which environment this command is running on. The example uses integration. Other options include staging and production.</p></li>
+<li><p>govuk-puppet holds <a href="https://github.com/alphagov/govuk-puppet/blob/main/hieradata_aws/common.yaml#L14">a list of the applications hosted on each node type</a>.</p></li>
 </ul>
-<h2 id='gcp-access'>GCP access</h2><p>Access to GCP is managed through the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-gcp-access">GOV.UK GCP access Google Group</a>.</p>
-<p>Access to this group is granted manually once <a href="/manual/rules-for-getting-production-access.html">permanent Production access</a> is
-approved and merged to <a href="https://github.com/alphagov/govuk-user-reviewer">GOV.UK user reviewer</a> repository.</p>
-<p>If you should have access but don&rsquo;t, the Technical 2nd Line team should be able to add you to the Google Group.</p>
-<h3 id='accessing-the-console'>Accessing the console</h3><p>You can login to the GCP console at <a href="https://console.cloud.google.com/">https://console.cloud.google.com/</a> using
-your <code>@digital.cabinet-office.gov.uk</code> email address.</p>
-<p>There are four main GCP projects in GOV.UK:</p>
-
-<ul>
-<li><a href="https://console.cloud.google.com/home/dashboard?project=govuk-production">GOVUK Production</a></li>
-<li><a href="https://console.cloud.google.com/home/dashboard?project=govuk-integration">GOVUK Integration</a></li>
-<li><a href="https://console.cloud.google.com/home/dashboard?project=govuk-staging-160211">GOVUK Staging</a></li>
-<li><a href="https://console.cloud.google.com/home/dashboard?project=govuk-test">GOVUK Test</a></li>
-</ul>
-<p>The interesting services are:</p>
-
-<ul>
-<li><a href="https://console.cloud.google.com/storage/browser?project=govuk-production">Google Cloud Storage</a> - where the static mirrors are stored</li>
-<li><a href="https://console.cloud.google.com/net-services/dns/zones?project=govuk-production">Google Cloud DNS</a> - where the DNS is configured</li>
-</ul>
-<h3 id='using-the-cli'>Using the CLI</h3><p>As with AWS, you can access GCP using the command line. The standard GCP command line interface is <code>gcloud</code>.</p>
-<p>You can install <code>gcloud</code> with <code>brew cask install google-cloud-sdk</code> or by following the instructions at <a href="https://cloud.google.com/sdk/docs/quickstart#mac">google&rsquo;s installation instructions</a>.</p>
-<p>NOTE: By default <code>gcloud</code> doesn&rsquo;t put itself on your PATH, so there&rsquo;s an extra manual step to add it.
-Make sure you follow all of the instructions from <a href="https://formulae.brew.sh/cask/google-cloud-sdk">homebrew&rsquo;s google-cloud-sdk cask</a>
-or <a href="https://cloud.google.com/sdk/docs/quickstart#mac">google&rsquo;s installation instructions</a>.</p>
-<p>Once you&rsquo;ve installed <code>gcloud</code> you can check it&rsquo;s working using some of these commands:</p>
-
-<ul>
-<li><code>gcloud help</code> - get help</li>
-<li><code>gcloud auth login</code> - sign in</li>
-<li><code>gcloud config set project govuk-production</code> - select the GOVUK Production project</li>
-<li><code>gcloud dns managed-zones list</code> - list the managed DNS zones</li>
-<li><code>gcloud dns record-sets list --zone alpha-gov-uk</code> - list the DNS record sets for the alpha.gov.uk. zone</li>
-</ul>
-<p>If you need to interact with the Cloud Storage (e.g. for the mirrors) from the CLI, you need to install the separate <code>gsutil</code> CLI.</p>
-<h2 id='support-tasks-which-involve-gcp'>Support tasks which involve GCP</h2><p>You may need login to GCP to <a href="/manual/howto-manually-remove-assets.html">remove an asset</a> or
-to <a href="/manual/fall-back-to-mirror.html#emergency-publishing-using-the-static-mirror">emergency publish content using the static mirrors</a>.</p>
-<p>You will also need GCP access to update DNS if you need to <a href="/manual/fall-back-to-aws-cloudfront.html.md">Fall back to the secondary CDN (AWS CloudFront)</a>.</p>
-
+<h3 id='loop-over-the-machines'>Loop over the machines</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(&lt;hostnames&gt;)
+do
+   &lt;something fun&gt;
+done
+</code></pre></div><h3 id='ssh-to-a-host-and-run-a-command'>SSH to a host and run a command:</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e integration $host -- govuk_puppet --enable
+</code></pre></div><p>This connects to the current <code>host</code> specified in the for loop, via the <code>integration</code> jumpbox.</p>
+<p>The <code>--</code> separator is used to tell govuk-connect to send all the arguments afterwards to <code>ssh</code>. The command to run on the remote host is provided after that.</p>
+<p>In this example, the command will run in its entirety on each host in turn. Sometimes this can take a while, but has the benefit of the operator being able to watch for any errors.</p>
+<h2 id='stricthostkeychecking'>StrictHostKeyChecking</h2><p>Over time machines will be recycled and will eventually reuse their hostnames. If you&rsquo;ve previously logged into a different machine with the same host name, then you may run into the <a href="/manual/unable-to-ssh-into-machine.html#ssh-known-hosts-changed">SSH known hosts changed issue</a>.</p>
+<p>If you&rsquo;re in a hurry and need to skip this check, then add <code>-oStrictHostKeyChecking=no</code> to your command:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache)
+do
+   gds govuk connect ssh -e integration $host -- -oStrictHostKeyChecking=no govuk_puppet --enable
+done
+</code></pre></div><h2 id='useful-commands'>Useful commands</h2><h3 id='run-puppet'>Run Puppet</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache)
+do
+   gds govuk connect ssh -e integration $host -- govuk_puppet --test
+done
+</code></pre></div><h3 id='disable-puppet'>Disable Puppet</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache)
+do
+   gds govuk connect ssh -e integration $host -- govuk_puppet --disable \'Han Solo testing a new power inverter\'
+done
+</code></pre></div><p>Note the backslashes escaping the quotes in the puppet command.</p>
+<h3 id='enable-puppet'>Enable Puppet</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache)
+do
+   gds govuk connect ssh -e integration $host -- govuk_puppet --enable
+done
+</code></pre></div><h3 id='flush-the-arp-cache-on-integration-frontend-machines'>Flush the ARP cache (on integration frontend machines)</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c frontend)
+do
+   gds govuk connect ssh -e integration $host -- sudo ip neigh flush all
+done
+</code></pre></div><p><a href="/manual/flush-the-arp-cache.html">Further information on ARP cache</a></p>
+<h2 id='run-a-command-on-an-arbitrary-list-of-machines'>Run a command on an arbitrary list of machines</h2><p>Get your list of machines, perhaps from Icinga or maybe collating it from a few govuk_node_list commands. We&rsquo;ll store them in a text file:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e integration jumpbox -- govuk_node_list -c cache &gt; ./cache-machines.txt
+</code></pre></div><p>Edit the file to list just the machines you want to run the command on.</p>
+<p>Run the command using your file as input:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for host in $(cat ./cache-machines.txt)
+do
+   gds govuk connect ssh -e integration $host -- govuk_puppet --enable
+done
+</code></pre></div>
 
   <div class='related-content'>
 
@@ -263,7 +299,7 @@ to <a href="/manual/fall-back-to-mirror.html#emergency-publishing-using-the-stat
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/howto-run-ssh-commands-on-many-machines.html">Run commands on many machines</a></li>
+            <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a></li>
             <li><a href="/manual/howto-ssh-to-machines.html">SSH into machines</a></li>
           </ul>
         </div>
@@ -277,8 +313,8 @@ to <a href="/manual/fall-back-to-mirror.html#emergency-publishing-using-the-stat
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/google-cloud-platform-gcp.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Google+Cloud+Platform+%28GCP%29%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fgoogle-cloud-platform-gcp.html%29&amp;labels=bug&amp;title=Re%3A+%27Google+Cloud+Platform+%28GCP%29%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-run-ssh-commands-on-many-machines.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Run+commands+on+many+machines%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-run-ssh-commands-on-many-machines.html%29&amp;labels=bug&amp;title=Re%3A+%27Run+commands+on+many+machines%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

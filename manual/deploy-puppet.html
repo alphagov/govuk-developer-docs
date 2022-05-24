@@ -190,15 +190,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c887159ca81b3293e9df0aaedc37b031dbae9cfa">11 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8b48b9bd521984fff432eb35187ab7e83d9e5d8a">24 May 2022</a>
 </div>
 
  <h1 id='header'>Deploy Puppet</h1> <h2 id='deploying-a-branch'>Deploying a branch</h2><p>Before merging your PR, it&rsquo;s recommended that you deploy the change to
@@ -248,6 +241,7 @@ brief outage, e.g. MySQL.</p>
 to and you MUST have some plan for restarting the service in the near
 future so that it&rsquo;s not inconsistent with its configuration.</p>
 </blockquote>
+<p>There are also instructions on <a href="/manual/howto-run-ssh-commands-on-many-machines.html">how to disable and enable puppet without using fabric scripts</a>.</p>
 
 <ol>
 <li>Disable normal Puppet runs on the affected nodes:</li>
