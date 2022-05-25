@@ -167,9 +167,6 @@
             <a href="#rebooting-router-backend-machines"><span>Rebooting router-backend machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-jumpbox-machines"><span>Rebooting jumpbox machines</span></a>
-          </li>
-          <li>
             <a href="#rebooting-docker-management"><span>Rebooting docker-management</span></a>
           </li>
           <li>
@@ -228,7 +225,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/54f96a8f1fc12520ae99834a824d6155911621fa">25 May 2022</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances most machines reboot automatically when an update is required.
@@ -363,11 +360,7 @@ hours however it is prudent to warn colleagues that uploading attachments will
 be unavailable during this period.</p>
 <h3 id='rebooting-router-backend-machines'>Rebooting router-backend machines</h3><p>Router backend machines are instances of MongoDB machines and can be rebooted
 as per the <a href="#rebooting-mongodb-machines">MongoDB rebooting guidance</a>.</p>
-<h3 id='rebooting-jumpbox-machines'>Rebooting jumpbox machines</h3><p>These machines are safe to reboot during the day. During the night they
-are involved in a data sync processes and rebooting could cause the data
-sync to fail.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo reboot
-</code></pre></div><h3 id='rebooting-docker-management'>Rebooting docker-management</h3><p>It is safe to reboot while no other unattended reboot is underway:</p>
+<h3 id='rebooting-docker-management'>Rebooting docker-management</h3><p>It is safe to reboot while no other unattended reboot is underway:</p>
 
 <ol>
 <li>Set <code>govuk_unattended_reboot::enabled</code> to <code>false</code> in the <a href="https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166">govuk-puppet common configuration</a> - you can do this in a branch.</li>
