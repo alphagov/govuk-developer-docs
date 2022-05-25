@@ -432,7 +432,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/f0d0d56185cf0bb4bd90c83ec78d085e25032de7">6 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/393220a395e30b45c7588f37227976fd4879ff6b">25 May 2022</a>
 </div>
 
   <h1 class="page-title">publishing-e2e-tests: Writing tests</h1>
@@ -446,6 +446,9 @@
 <p>This repo contains tests for critical publishing actions and their impact on the draft or live site. For example, publishing a document and checking it's visible on GOV.UK.</p>
 <p>Do not add tests that can be implemented in other ways. We want this to be the tip of of the <a href="https://martinfowler.com/bliki/TestPyramid.html">testing pyramid</a>, not a <a href="http://saeedgatson.com/the-software-testing-ice-cream-cone/">testing ice cream cone</a>. Instead of adding a test here, you can:</p>
 <ul>
+<li>
+<p>Add or extend <a href="https://github.com/alphagov/govuk_app_config/blob/main/docs/healthchecks.md">health checks for application infrastructure</a>. For example, drafting a document in a publishing app involves connecting to infrastructure like a database or AWS S3.</p>
+</li>
 <li>
 <p>Add <a href="https://docs.publishing.service.gov.uk/manual/pact-broker.html">contract tests</a> to cover the chain of APIs in a publishing action. For example, publishing a document involves Publishing API, Email Alert API, Content Store and Router.</p>
 </li>

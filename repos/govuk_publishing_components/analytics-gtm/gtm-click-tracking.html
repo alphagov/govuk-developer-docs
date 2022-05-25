@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Tag Manager click tracking - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html">
 
-      <meta name="description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Tag Manager click tracking - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" />
 
-      <meta property="og:description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="govuk_publishing_components: Google Tag Manager click tracking" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" />
 
     
   </head>
@@ -261,7 +259,7 @@
           <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
           <li><a href="/repos/release.html"><span>release</span></a></li>
           <li><a href="/repos/router.html"><span>router</span></a></li>
-          <li><a href="/repos/search-admin.html" class="toc-link--in-view"><span>search-admin</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
           <li><a href="/repos/signon.html"><span>signon</span></a></li>
           <li><a href="/repos/support.html"><span>support</span></a></li>
         </ul>
@@ -405,6 +403,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk_publishing_components",
+        "@id": "http://www.dev.gov.uk/repos/govuk_publishing_components.html"
+      }
     }
   ]
 }
@@ -416,129 +422,113 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk_publishing_components.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk_publishing_components&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk_publishing_components.html">govuk_publishing_components</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: search-admin</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#find-and-view-tech</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://search-admin.publishing.service.gov.uk" class="govuk-link">search-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/search_admin.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/search-admin/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/search-admin.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/5c8f08ee2558ae7f216a7ef4ca5f1046bdc103d9">23 May 2022</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.chichester.gov.uk" class="govuk-link">Chichester District Council</a></li>
-      <li><a href="https://www.nhs.uk/" class="govuk-link">NHS</a></li>
-      <li><a href="https://www.ethnicity-facts-figures.service.gov.uk/crime-justice-and-the-law/policing/stop-and-search/latest" class="govuk-link">Stop and search | Ethnicity facts and figures</a></li>
-      <li><a href="https://www.nhs.uk/conditions/stress-anxiety-depression/benefits-of-talking-therapy/" class="govuk-link">Talking therapy - NHS</a></li>
-      <li><a href="http://www.westsussex.gov.uk/" class="govuk-link">West Sussex County Council</a></li>
-      <li><a href="http://www.hertsmere.gov.uk/" class="govuk-link">Hertsmere Borough Council</a></li>
-      <li><a href="http://www.coventry.gov.uk" class="govuk-link">Coventry City Council</a></li>
-      <li><a href="http://www.inverclyde.gov.uk" class="govuk-link">Inverclyde Council</a></li>
-      <li><a href="https://www.lewes-eastbourne.gov.uk" class="govuk-link">Lewes District Council</a></li>
-      <li><a href="http://www.cheltenham.gov.uk" class="govuk-link">Cheltenham Borough Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+  <h1 class="page-title">govuk_publishing_components: Google Tag Manager click tracking</h1>
 
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
-
+  
+<p>This is an experimental script to allow click tracking through Google Tag Manager to be added to any element using data attributes.</p>
+<h2 id="basic-use">Basic use</h2>
+<pre lang="html"><code>&lt;div data-module="gtm-click-tracking"&gt;
+  &lt;div
+    data-gtm-event-name="anything"
+    data-gtm-attributes='{"type":"something","index":0,"index-total":1,"section":"n/a","text":"Click me"}'&gt;
+    Click me
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>The module is initialised on the parent element, but tracking only occurs when clicks happen:</p>
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li>on child elements that have a <code>data-gtm-event-name</code> attribute</li>
+<li>on the parent if it has a <code>data-gtm-event-name</code> attribute</li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
+<p>The contents of <code>data-gtm-attributes</code> are parsed as a JSON object and included in the information passed to GTM. In the example above, the following would be pushed to the dataLayer. Note that the <code>link_url</code> attribute is automatically populated with the current page path.</p>
+<pre><code>{
+  'event': 'analytics',
+  'event_name': 'anything',
+  'link_url': '/government/publications/cheese',
+  'ui': {
+    'type': 'something',
+    'index': '0',
+    'index-total': '1',
+    'section': 'n/a',
+    'text': 'Click me'
+  }
+}
+</code></pre>
+<h2 id="advanced-use">Advanced use</h2>
+<p>In some situations we want to track dynamic elements like the 'Show/hide all' links on accordions. This is complicated by the element being created and updated dynamically using separate JavaScript, and the need to track the state of the element when clicked (to record whether it was opened or closed).</p>
+<p>This is handled using the following approach.</p>
+<pre lang="erb"><code>&lt;div data-module="gtm-click-tracking"&gt;
+  &lt;%
+    show_all_attributes = {
+      type: "accordion",
+      index: 0,
+      "index-total": 5,
+      section: "n/a"
+    }
+  %&gt;
+  &lt;%= render 'govuk_publishing_components/components/accordion', {
+    data_attributes_show_all: {
+      "gtm-event-name": "select_content",
+      "gtm-attributes": show_all_attributes.to_json
+    },
+    items: []
+  } %&gt;
+&lt;/div&gt;
+</code></pre>
+<p>This works as follows.</p>
+<ul>
+<li>data attributes are added to the accordion's 'Show/hide all' link using the <code>data_attributes_show_all</code> option in the component</li>
+<li>
+<code>GtmClickTracking</code> can now be triggered because the accordion is wrapped in the module and its 'Show/hide all' link has a <code>gtm-event-name</code> attribute</li>
+<li>
+<code>GtmClickTracking</code> checks for the presence of an <code>aria-expanded</code> attribute, either on the clicked element or a child of the clicked element</li>
+<li>if it finds one, it sets the <code>state</code> attribute of <code>ui</code> to either 'opened' or 'closed' depending on the value of <code>aria-expanded</code>
+</li>
+<li>if <code>data-gtm-attributes</code> does not include <code>text</code>, <code>GtmClickTracking</code> automatically uses the text of the clicked element</li>
+</ul>
+<p>When a user clicks 'Show all sections' the following information is pushed to the dataLayer.</p>
+<pre><code>{
+  'event': 'analytics',
+  'event_name': 'select_content',
+  'link_url': '/government/publications/cheese',
+  'ui': {
+    'type': 'accordion',
+    'index': '0',
+    'index-total': '5',
+    'section': 'n/a',
+    'text': 'Show all sections',
+    'state': 'opened'
+  }
+}
+</code></pre>
+<p>When a user clicks 'Hide all sections' the following information is pushed to the dataLayer.</p>
+<pre><code>{
+  'event': 'analytics',
+  'event_name': 'select_content',
+  'link_url': '/government/publications/cheese',
+  'ui': {
+    'type': 'accordion',
+    'index': '0',
+    'index-total': '5',
+    'section': 'n/a',
+    'text': 'Hide all sections',
+    'state': 'closed'
+  }
+}
+</code></pre>
 
 
             
@@ -546,8 +536,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-gtm/gtm-click-tracking.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-gtm%2Fgtm-click-tracking.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
