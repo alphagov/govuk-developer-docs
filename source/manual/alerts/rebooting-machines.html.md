@@ -231,16 +231,6 @@ be unavailable during this period.
 Router backend machines are instances of MongoDB machines and can be rebooted
 as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
 
-### Rebooting jumpbox machines
-
-These machines are safe to reboot during the day. During the night they
-are involved in a data sync processes and rebooting could cause the data
-sync to fail.
-
-```
-sudo reboot
-```
-
 ### Rebooting docker-management
 
 It is safe to reboot while no other unattended reboot is underway:
