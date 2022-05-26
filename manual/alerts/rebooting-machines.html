@@ -155,9 +155,6 @@
             <a href="#rebooting-mongodb-machines"><span>Rebooting MongoDB machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-redis-machines"><span>Rebooting Redis machines</span></a>
-          </li>
-          <li>
             <a href="#rebooting-rabbitmq-machines"><span>Rebooting RabbitMQ machines</span></a>
           </li>
           <li>
@@ -225,7 +222,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e36e93b8659d4b3923910e18008e7d6cff0833b9">26 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d49fa69b202c2bebae03010d59fc84abba3ae5d0">26 May 2022</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances most machines reboot automatically when an update is required.
@@ -314,14 +311,6 @@ to reboot overnight:</p>
 <li>Reboot the primary. The <code>mongo.safe_reboot</code> Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.</li>
 </ul></li>
 </ul>
-<h3 id='rebooting-redis-machines'>Rebooting Redis machines</h3><p>Unless there are urgent updates to apply, these machines should not be
-rebooted during working hours in production. Other services rely directly on
-particular Redis hosts and may error if they are unvailable.</p>
-<p>Reboots of these machines, in the production environment, should be organised
-by On Call staff and search-api workers must be restarted (by re-deploying the latest release) after the reboot.</p>
-<p>They may be rebooted in working hours in other environments, however you
-should notify colleagues before doing so as this may remove in-flight jobs
-that Sidekiq has added to the Redis queues but not yet processed.</p>
 <h3 id='rebooting-rabbitmq-machines'>Rebooting RabbitMQ machines</h3><p>There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.</p>
 
 <ol>
