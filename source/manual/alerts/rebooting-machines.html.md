@@ -233,7 +233,9 @@ as per the [MongoDB rebooting guidance](#rebooting-mongodb-machines).
 
 ### Rebooting docker-management
 
-It is safe to reboot while no other unattended reboot is underway:
+It is only safe to reboot while no other unattended reboot is underway. This is because it is used to manage locks for unattended reboots of other machines. If this machine is down, then multiple machines in high availability groups may choose to reboot themselves at the same time.
+
+To avoid this happening, we need to disable unattended reboots on all the other machines in the environment while we reboot this one:
 
 1. Set `govuk_unattended_reboot::enabled` to `false` in the [govuk-puppet common configuration](https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166) - you can do this in a branch.
 1. Build the branch of govuk-puppet to Production
