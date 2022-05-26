@@ -225,7 +225,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/54f96a8f1fc12520ae99834a824d6155911621fa">25 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e36e93b8659d4b3923910e18008e7d6cff0833b9">26 May 2022</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances most machines reboot automatically when an update is required.
@@ -360,7 +360,8 @@ hours however it is prudent to warn colleagues that uploading attachments will
 be unavailable during this period.</p>
 <h3 id='rebooting-router-backend-machines'>Rebooting router-backend machines</h3><p>Router backend machines are instances of MongoDB machines and can be rebooted
 as per the <a href="#rebooting-mongodb-machines">MongoDB rebooting guidance</a>.</p>
-<h3 id='rebooting-docker-management'>Rebooting docker-management</h3><p>It is safe to reboot while no other unattended reboot is underway:</p>
+<h3 id='rebooting-docker-management'>Rebooting docker-management</h3><p>It is only safe to reboot while no other unattended reboot is underway. This is because it is used to manage locks for unattended reboots of other machines. If this machine is down, then multiple machines in high availability groups may choose to reboot themselves at the same time.</p>
+<p>To avoid this happening, we need to disable unattended reboots on all the other machines in the environment while we reboot this one:</p>
 
 <ol>
 <li>Set <code>govuk_unattended_reboot::enabled</code> to <code>false</code> in the <a href="https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166">govuk-puppet common configuration</a> - you can do this in a branch.</li>
