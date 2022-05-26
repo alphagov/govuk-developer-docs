@@ -173,11 +173,12 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/87dc559dba895cb7f2d9b0acc94eff969711ce52">26 May 2022</a>
 </div>
 
  <h1 id='header'>Check process running</h1> <p>This alert means that a process which should be running is not. It&rsquo;s highly likely that this process corresponds to a service.</p>
 <p>If the process doesn&rsquo;t correspond to a service then it will be necessary to find out more about how the process runs. Read <a href="#troubleshooting-the-process">troubleshooting the process</a> at the end of this page.</p>
+<p>If the alert is accompanied by a <code>&lt;app-name&gt; app unicornherder not running</code> alert, then <a href="/manual/alerts/unicorn-herder.html">fix that first</a> (it should automatically solve this alert too).</p>
 <h2 id='check-the-status-of-the-service'>Check the status of the service</h2><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>service &lt;process&gt; status
 </code></pre></div><p>If this doesn&rsquo;t work, you may need to do some digging to find out the name of the service. For example, the <code>postgresql</code> service runs the <code>postgres</code> process.</p>
 <h3 id='determining-the-name-of-the-service'>Determining the name of the service</h3><p>Look in <code>/etc/init</code> for services that may be in charge of the process.</p>

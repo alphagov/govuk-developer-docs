@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: 2. Google Analytics 4 tracking and code location - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html">
 
-      <meta name="description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: 2. Google Analytics 4 tracking and code location - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" />
 
-      <meta property="og:description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="govuk_publishing_components: 2. Google Analytics 4 tracking and code location" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" />
 
     
   </head>
@@ -262,7 +260,7 @@
           <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
           <li><a href="/repos/release.html"><span>release</span></a></li>
           <li><a href="/repos/router.html"><span>router</span></a></li>
-          <li><a href="/repos/search-admin.html" class="toc-link--in-view"><span>search-admin</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
           <li><a href="/repos/signon.html"><span>signon</span></a></li>
           <li><a href="/repos/support.html"><span>support</span></a></li>
         </ul>
@@ -415,6 +413,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk_publishing_components",
+        "@id": "http://www.dev.gov.uk/repos/govuk_publishing_components.html"
+      }
     }
   ]
 }
@@ -426,129 +432,61 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk_publishing_components.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk_publishing_components&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk_publishing_components.html">govuk_publishing_components</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: search-admin</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#find-and-view-tech</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://search-admin.publishing.service.gov.uk" class="govuk-link">search-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/search_admin.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/search-admin/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/search-admin.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6a40327a26f7d4ebe1c6f65a55dc17b90bd1c9ea">9 May 2022</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.preston.gov.uk" class="govuk-link">Preston City Council</a></li>
-      <li><a href="http://www.manchester.gov.uk" class="govuk-link">Manchester City Council</a></li>
-      <li><a href="http://www.cookstown.gov.uk/" class="govuk-link">Cookstown District Council</a></li>
-      <li><a href="http://www.uttlesford.gov.uk" class="govuk-link">Uttlesford District Council</a></li>
-      <li><a href="http://www.bromley.gov.uk" class="govuk-link">London Borough of Bromley Council</a></li>
-      <li><a href="http://www.powys.gov.uk" class="govuk-link">Powys County Council</a></li>
-      <li><a href="http://www.sheffield.gov.uk" class="govuk-link">Sheffield City Council</a></li>
-      <li><a href="https://www.lewes-eastbourne.gov.uk" class="govuk-link">Lewes District Council</a></li>
-      <li><a href="http://www.walthamforest.gov.uk/" class="govuk-link">London Borough of Waltham Forest Council</a></li>
-      <li><a href="http://www.maidstone.gov.uk/" class="govuk-link">Maidstone Borough Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+  <h1 class="page-title">govuk_publishing_components: 2. Google Analytics 4 tracking and code location</h1>
 
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
-
+  
+<p>Date: 2022-05-09</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="context">Context</h2>
+<p>Glossary of terms/acronyms</p>
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li>GA - Google Analytics</li>
+<li>UA - Universal analytics, sometimes referred to as GA3, the version of GA we are upgrading from</li>
+<li>GA4 - the new version of UA that we are upgrading to</li>
+<li>GTM - Google Tag Manager</li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
+<p>GOV.UK currently uses UA for analytics. However, UA is due to be retired next year. We will have to upgrade to GA4. We are taking this opportunity to do a full overhaul of our existing analytics. This will involve rethinking how our analytics works, bringing consistency into the way we do it, and introducing GTM.</p>
+<h2 id="decision">Decision</h2>
+<p>We will put the new code for GA4/GTM analytics into govuk_publishing_components:</p>
+<ul>
+<li>other options were static or a new gem</li>
+<li>static was rejected because ultimately <a href="https://github.com/alphagov/govuk-rfcs/blob/bc8ffe85cdf5cdf5005502cba50d5b64237f1b71/rfc-084-frontend-in-a-gem.md">we’re trying to retire static</a>, although no team is actively working on this</li>
+<li>a new gem was considered but this would require time and effort to set up, and we’re not yet sure how the new analytics code will need to interact with the cookie consent code (also in govuk_publishing_components)</li>
+</ul>
+<p>GTM tracking will be done using specific data attributes attached to elements, which contains the data to send to GA.</p>
+<p>An alternative plan using component specific analytics was originally considered, but this would have added code to every component and involved DOM traversal to find relevant information.</p>
+<p>GTM will be configured in a minimal way, the majority of the code will be part of GOV.UK.</p>
+<h2 id="consequences">Consequences</h2>
+<p>Having the analytics code in govuk_publishing_components has an impact on deployments:</p>
+<ul>
+<li>the code is included once for all of GOV.UK via static</li>
+<li>changes to the analytics code will require a new version of govuk_publishing_components and a deployment of static, which combined can take at least an hour if not more</li>
+</ul>
+<p>Using data attributes for tracking means that these attributes will need to be added manually wherever they are needed on GOV.UK:</p>
+<ul>
+<li>this will be a lot of work, as attributes are numerous and often implemented in complex code</li>
+</ul>
+<p>The minimal configuration of GTM will mean the following:</p>
+<ul>
+<li>code will be discoverable as part of the GOV.UK codebase</li>
+<li>scripts will not be added to GTM, which could have slowed down the site for users or introduce security risks</li>
+<li>we will not be taking advantage of the full capability of GTM</li>
+<li>developers will still be required to make any changes to the tracking on GOV.UK</li>
+</ul>
 
 
             
@@ -556,8 +494,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/adr/0002-google-analytics-4-tracking-and-code-location.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fadr%2F0002-google-analytics-4-tracking-and-code-location.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
