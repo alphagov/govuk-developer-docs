@@ -156,19 +156,6 @@ The general approach for rebooting machines in a MongoDB cluster is:
   * Reboot the secondaries
   * Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
 
-### Rebooting Redis machines
-
-Unless there are urgent updates to apply, these machines should not be
-rebooted during working hours in production. Other services rely directly on
-particular Redis hosts and may error if they are unvailable.
-
-Reboots of these machines, in the production environment, should be organised
-by On Call staff and search-api workers must be restarted (by re-deploying the latest release) after the reboot.
-
-They may be rebooted in working hours in other environments, however you
-should notify colleagues before doing so as this may remove in-flight jobs
-that Sidekiq has added to the Redis queues but not yet processed.
-
 ### Rebooting RabbitMQ machines
 
 There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.
