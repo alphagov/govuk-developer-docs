@@ -135,34 +135,31 @@
         <a href="#checklist-for-transitioning-a-new-site"><span>Checklist for transitioning a new site</span></a>
         <ul>
           <li>
-            <a href="#1-ensure-the-department-is-aware-of-the-technical-limitation-of-https-enabled-sites"><span>1) Ensure the department is aware of the technical limitation of HTTPS enabled sites</span></a>
+            <a href="#1-add-a-site-to-the-transition-app"><span>1) Add a site to the Transition app</span></a>
           </li>
           <li>
-            <a href="#2-add-a-site-to-the-transition-app"><span>2) Add a site to the Transition app</span></a>
+            <a href="#2-consider-aka-domains"><span>2) Consider AKA domains</span></a>
           </li>
           <li>
-            <a href="#3-consider-aka-domains"><span>3) Consider AKA domains</span></a>
+            <a href="#3-get-a-list-of-old-urls"><span>3) Get a list of old URLs</span></a>
           </li>
           <li>
-            <a href="#4-get-a-list-of-old-urls"><span>4) Get a list of old URLs</span></a>
+            <a href="#4-clean-up-urls"><span>4) Clean up URLs</span></a>
           </li>
           <li>
-            <a href="#5-clean-up-urls"><span>5) Clean up URLs</span></a>
+            <a href="#5-add-the-old-urls-as-mappings"><span>5) Add the old URLs as mappings</span></a>
           </li>
           <li>
-            <a href="#6-add-the-old-urls-as-mappings"><span>6) Add the old URLs as mappings</span></a>
+            <a href="#6-get-the-organisation-to-do-the-mapping-work"><span>6) Get the organisation to do the mapping work</span></a>
           </li>
           <li>
-            <a href="#7-get-the-organisation-to-do-the-mapping-work"><span>7) Get the organisation to do the mapping work</span></a>
+            <a href="#7-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead"><span>7) Get the organisation to lower the TTL on the DNS records a day ahead</span></a>
           </li>
           <li>
-            <a href="#8-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead"><span>8) Get the organisation to lower the TTL on the DNS records a day ahead</span></a>
+            <a href="#8-point-the-domain-at-us"><span>8) Point the domain at us</span></a>
           </li>
           <li>
-            <a href="#9-point-the-domain-at-us"><span>9) Point the domain at us</span></a>
-          </li>
-          <li>
-            <a href="#10-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app"><span>10) Get the organisation to monitor the traffic data in the Transition app</span></a>
+            <a href="#9-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app"><span>9) Get the organisation to monitor the traffic data in the Transition app</span></a>
           </li>
         </ul>
       </li>
@@ -220,7 +217,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0f000cb8ae3526bd95ccc806a877b8b5d143b33e">4 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a3945681b1af73c35368c71228f847c20574fb9">26 May 2022</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
@@ -233,14 +230,8 @@ handle requests to those old domains.</p>
 it, or changing the configuration of an existing site in the Transition app.</p>
 <h2 id='changing-the-configuration-of-a-site-that-is-already-in-the-transition-app'>Changing the configuration of a site that is already in the Transition app</h2><p>The <a href="https://github.com/alphagov/transition-config/blob/main/README.md">transition-config README</a> gives more details on how to
 edit the relevant <a href="https://github.com/alphagov/transition-config/tree/main/data/transition-sites">transition configuration file</a>.</p>
-<h2 id='checklist-for-transitioning-a-new-site'>Checklist for transitioning a new site</h2><h3 id='1-ensure-the-department-is-aware-of-the-technical-limitation-of-https-enabled-sites'>1) Ensure the department is aware of the technical limitation of HTTPS enabled sites</h3><p>Unless the domain being transitioned is a subdomain of one of our wildcard
-<a href="https://en.wikipedia.org/wiki/Subject_Alternative_Name">SANs</a>, we <a href="/manual/transition-architecture.html#https-support-for-transitioned-sites">do not support HTTPS</a> for transitioned sites.</p>
-<p>If a domain is not in our SAN but wants to keep HTTPS integrity, the best
-alternative is to set up redirects on their own server.</p>
-<p>The content team might ask a developer to offer the department some guidance
-around this.</p>
-<h3 id='2-add-a-site-to-the-transition-app'>2) Add a site to the Transition app</h3><p>Follow the instructions in the <a href="https://github.com/alphagov/transition-config/blob/main/README.md">transition-config README</a>.</p>
-<h3 id='3-consider-aka-domains'>3) Consider AKA domains</h3><p>If the department want to use the side-by-side browser to preview how their
+<h2 id='checklist-for-transitioning-a-new-site'>Checklist for transitioning a new site</h2><h3 id='1-add-a-site-to-the-transition-app'>1) Add a site to the Transition app</h3><p>Follow the instructions in the <a href="https://github.com/alphagov/transition-config/blob/main/README.md">transition-config README</a>.</p>
+<h3 id='2-consider-aka-domains'>2) Consider AKA domains</h3><p>If the department want to use the side-by-side browser to preview how their
 redirects will appear after transitioning they will need to set up AKA domains.</p>
 <p>They will need one new CNAME DNS entry for each domain/subdomain they wish to
 preview according to the following pattern:</p>
@@ -254,7 +245,7 @@ Transition</a>.</p>
 <p>These AKA domains should be CNAMEd to: <code>bouncer-cdn.production.govuk.service.gov.uk</code></p>
 <p>Previously we used a <code>redirector-cdn</code> address which reached its capacity and will now fail if added as the
 CNAME record for any new domains.</p>
-<h3 id='4-get-a-list-of-old-urls'>4) Get a list of old URLs</h3><p>In order for us to redirect anything but the homepage, we need a list of URLs
+<h3 id='3-get-a-list-of-old-urls'>3) Get a list of old URLs</h3><p>In order for us to redirect anything but the homepage, we need a list of URLs
 for the old site so that they can be mapped. In the past, this is something
 GDS did for the organisation as it requires some technical skill and
 experience.</p>
@@ -273,7 +264,7 @@ might take several hours. This will give you a list of URLs for a domain:</p>
 <blockquote>
 <p><strong>Note:</strong> This will include 404s, 301s, etc.</p>
 </blockquote>
-<h3 id='5-clean-up-urls'>5) Clean up URLs</h3><h4 id='strip-paths-and-pattern'>Strip paths and pattern</h4><p>There are lots of file formats we don&rsquo;t want to provide mappings for, like
+<h3 id='4-clean-up-urls'>4) Clean up URLs</h3><h4 id='strip-paths-and-pattern'>Strip paths and pattern</h4><p>There are lots of file formats we don&rsquo;t want to provide mappings for, like
 static assets, images, or common spammy/malicious crawlers. These can be
 stripped using the <a href="https://github.com/alphagov/transition-config/blob/main/tools/strip_mappings.sh">strip_mappings.sh</a> script.</p>
 <h4 id='query-parameter-analysis'>Query parameter analysis</h4><p>From your set of URLs, you can attempt to identify significant query string
@@ -301,7 +292,7 @@ mapped to a different new URL.</p>
 <li>analytics</li>
 <li>search queries</li>
 </ul>
-<h3 id='6-add-the-old-urls-as-mappings'>6) Add the old URLs as mappings</h3><p>Ideally, any significant query string parameters should be identified and
+<h3 id='5-add-the-old-urls-as-mappings'>5) Add the old URLs as mappings</h3><p>Ideally, any significant query string parameters should be identified and
 added to the site before adding the mappings. This is because URLs are
 canonicalised and then deduplicated before being saved and part of
 canonicalisation is to remove non-significant parameters. However,
@@ -317,12 +308,12 @@ the <a href="https://transition.publishing.service.gov.uk">transition app</a>, f
 the site and click <code>Add mappings</code> to add them in bulk.</p>
 <p>To allow mappings which redirect away from GOV.UK, you&rsquo;ll need to add the site
 into <a href="https://transition.publishing.service.gov.uk/admin/whitelisted_hosts">the allowlisted hosts in Transition</a>. You&rsquo;ll need the <code>admin</code> permission in Transition to be able to see this page.</p>
-<h3 id='7-get-the-organisation-to-do-the-mapping-work'>7) Get the organisation to do the mapping work</h3><p>By default, the mappings will present an archive page to users visiting
+<h3 id='6-get-the-organisation-to-do-the-mapping-work'>6) Get the organisation to do the mapping work</h3><p>By default, the mappings will present an archive page to users visiting
 the old URL. The objective is to get users to somewhere that best serves
 the need fulfilled by the old page. Usually this means redirecting them
 to the page on GOV.UK or elsewhere. It is really important that this is
 done by people who understand the users and content.</p>
-<h3 id='8-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead'>8) Get the organisation to lower the TTL on the DNS records a day ahead</h3><p>In order to cleanly switch the domain from the old site, the TTL needs
+<h3 id='7-get-the-organisation-to-lower-the-ttl-on-the-dns-records-a-day-ahead'>7) Get the organisation to lower the TTL on the DNS records a day ahead</h3><p>In order to cleanly switch the domain from the old site, the TTL needs
 to be low enough that there isn&rsquo;t a significant period where some users
 will get the old site and some get the new one. This is important for
 several reasons, including user experience and giving a professional
@@ -330,7 +321,7 @@ impression to stakeholders. We normally ask for this to be done a day in
 advance, and to be lowered to 300 seconds (5 minutes). It can be raised
 again once everyone is happy there is no need to switch back - normally
 the day after.</p>
-<h3 id='9-point-the-domain-at-us'>9) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
+<h3 id='8-point-the-domain-at-us'>8) Point the domain at us</h3><p>Once the site has been imported successfully, the domain can be pointed
 at us by the organisation. For hostnames which can have a <code>CNAME</code>
 record, this is <code>bouncer-cdn.production.govuk.service.gov.uk</code>.
 Domains at the root of their zone can&rsquo;t use <code>CNAME</code> records, so must use
@@ -341,7 +332,7 @@ addresses</a>.</p>
 <p>You&rsquo;ll need to create a TLS certificate in Fastly for HTTPS domains, otherwise
 users will see a certificate error when being redirected from an external
 HTTPS URL to GOV.UK via Bouncer. Read how to <a href="/manual/request-fastly-tls-certificate.html">request a Fastly TLS certificate</a></p>
-<h3 id='10-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app'>10) Get the organisation to monitor the traffic data in the Transition app</h3><p>There are two things that need to be responded to:</p>
+<h3 id='9-get-the-organisation-to-monitor-the-traffic-data-in-the-transition-app'>9) Get the organisation to monitor the traffic data in the Transition app</h3><p>There are two things that need to be responded to:</p>
 
 <ul>
 <li>high numbers of 404s - this means a mapping is missing</li>
