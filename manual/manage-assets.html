@@ -196,7 +196,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ee5873ba4590bc9ba2e0e014b2fb09e1745d7387">21 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0824ee2a3c7e4a26a121dfe1f76c994b278e392d">27 May 2022</a>
 </div>
 
  <h1 id='header'>Manage assets</h1> <h2 id='removing-an-asset'>Removing an asset</h2><p>If you need to remove an asset manually from <code>assets.publishing.service.gov.uk</code>,
@@ -212,18 +212,18 @@ follow these steps:</p>
 </blockquote>
 <p>Decide if the asset can be marked as deleted or whether all traces need to be
    removed (e.g. if it contains secret information). If all traces need to be
-   removed, append <code>, true</code> in the square brackets when running the rake tasks
+   removed, append <code>,true</code> in the square brackets when running the rake tasks
    below.</p>
 <p>To mark the file as deleted, run one of the following Rake tasks:</p>
-<p>Whitehall Assets, where <code>LEGACY_URL_PATH</code> is the document slug (i.e. <code>/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf</code>
-   for the example above):
+<p>Whitehall Assets, where <code>LEGACY_URL_PATH</code> is the document slug, i.e. <code>/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf</code>
+   for the example above. The square brackets are part of the command, so don&rsquo;t remove them:
    <ul>
   <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[LEGACY_URL_PATH]" class="govuk-link">Run assets:whitehall_delete[LEGACY_URL_PATH] on Integration</a></li>
 <li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[LEGACY_URL_PATH]" class="govuk-link">Run assets:whitehall_delete[LEGACY_URL_PATH] on Staging</a></li>
 <li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:whitehall_delete[LEGACY_URL_PATH]" class="govuk-link">⚠️ Run assets:whitehall_delete[LEGACY_URL_PATH] on Production ⚠️</a></li>
 </ul></p>
-<p>Other Assets, where <code>ASSET_ID</code> is the asset ID (i.e. <code>abcd1234efgh</code> from the
-   example above):
+<p>Other Assets, where <code>ASSET_ID</code> is the asset ID, i.e. <code>abcd1234efgh</code> from the
+   example above (keep the square brackets):
    <ul>
   <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[ASSET_ID]" class="govuk-link">Run assets:delete[ASSET_ID] on Integration</a></li>
 <li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=asset-manager&MACHINE_CLASS=backend&RAKE_TASK=assets:delete[ASSET_ID]" class="govuk-link">Run assets:delete[ASSET_ID] on Staging</a></li>
