@@ -19,17 +19,17 @@ follow these steps:
 
    Decide if the asset can be marked as deleted or whether all traces need to be
    removed (e.g. if it contains secret information). If all traces need to be
-   removed, append `, true` in the square brackets when running the rake tasks
+   removed, append `,true` in the square brackets when running the rake tasks
    below.
 
    To mark the file as deleted, run one of the following Rake tasks:
 
-   Whitehall Assets, where `LEGACY_URL_PATH` is the document slug (i.e. `/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf`
-   for the example above):
+   Whitehall Assets, where `LEGACY_URL_PATH` is the document slug, i.e. `/government/uploads/system/uploads/attachment_data/file/12345/filename.pdf`
+   for the example above. The square brackets are part of the command, so don't remove them:
    <%= RunRakeTask.links("asset-manager", "assets:whitehall_delete[LEGACY_URL_PATH]") %>
 
-   Other Assets, where `ASSET_ID` is the asset ID (i.e. `abcd1234efgh` from the
-   example above):
+   Other Assets, where `ASSET_ID` is the asset ID, i.e. `abcd1234efgh` from the
+   example above (keep the square brackets):
    <%= RunRakeTask.links("asset-manager", "assets:delete[ASSET_ID]") %>
 
 1. Add a query string to the URL (e.g. `?cache-bust=12345`) to bypass the cache
