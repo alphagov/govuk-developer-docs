@@ -139,8 +139,9 @@ you can terminate the instance via the AWS EC2 user interface.
 
 [how to terminate an instance]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console
 
-Note that when you've detached and terminated an instance, you may get sentry alerts from puppet. These should 
-disappear when puppet next runs (every 30 minutes).
+Note that when you've detached and terminated an instance, you may get sentry alerts from puppet about healthchecks for the affected application(s) not
+returning OK, as it still expects the old instance to be healthy. These should disappear when puppet next runs (every 30 minutes) and picks up the 
+new instance.
 
 ## How to scale up vertically
 
