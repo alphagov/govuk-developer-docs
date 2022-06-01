@@ -90,6 +90,10 @@ Log into the AWS console for the relevant environment:
   gds aws govuk-production-poweruser -l
   ```
 
+First, make a note of the instance ID in case you need to investigate the logs later
+following an incident. If you forget to do this, follow the instructions below on
+how to find a detached instance.
+
 Refer to the AWS documentation on steps for on [how to detach an instance from an ASG][]
 
 If a machine is unhealthy, you may want to detach an instance from its Auto
@@ -111,11 +115,18 @@ running (desired capacity).
 _**Note**: check if the ASG has just a single instance. If so, removing the
 instance from the ASG may cause downtime for a service._
 
-Make a note of the instance ID in case you need to investigate the logs later
-following an incident. The detached instance will stick around, so make sure to
+The detached instance will stick around, so make sure to
 terminate it when you no longer need it. See the section below for further details.
 
 [how to detach an instance from an ASG]: https://docs.aws.amazon.com/autoscaling/ec2/userguide/detach-instance-asg.html#detach-instance-console
+
+## How to find a detached instance
+
+If you made a note of the instance id before you detached it, you should be able to find it in
+the console. If you forgot this step, you can work out which is the detached instance for an
+application by comparing the instances you get for the application under 'instances' (which displays all instances)
+and the instances you get for an application by looking at the ASG for that application's instances
+(which displays only attached instances).
 
 ## Terminating an instance
 
@@ -127,6 +138,10 @@ instance automatically. Once connections have drained from a detached instance,
 you can terminate the instance via the AWS EC2 user interface.
 
 [how to terminate an instance]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console
+
+Note that when you've detached and terminated an instance, you may get sentry alerts from puppet about healthchecks for the affected application(s) not
+returning OK, as it still expects the old instance to be healthy. These should disappear when puppet next runs (every 30 minutes) and picks up the
+new instance.
 
 ## How to scale up vertically
 
