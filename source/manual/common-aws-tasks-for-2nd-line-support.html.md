@@ -122,10 +122,10 @@ terminate it when you no longer need it. See the section below for further detai
 
 ## How to find a detached instance
 
-If you made a note of the instance id before you detached it, you should be able to find it in 
-the console. If you forgot this step, you can work out which is the detached instance for an 
-application by comparing the instances you get for the application under 'instances' (which displays all instances) 
-and the instances you get for an application by looking at the ASG for that application's instances 
+If you made a note of the instance id before you detached it, you should be able to find it in
+the console. If you forgot this step, you can work out which is the detached instance for an
+application by comparing the instances you get for the application under 'instances' (which displays all instances)
+and the instances you get for an application by looking at the ASG for that application's instances
 (which displays only attached instances).
 
 ## Terminating an instance
@@ -140,7 +140,7 @@ you can terminate the instance via the AWS EC2 user interface.
 [how to terminate an instance]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console
 
 Note that when you've detached and terminated an instance, you may get sentry alerts from puppet about healthchecks for the affected application(s) not
-returning OK, as it still expects the old instance to be healthy. These should disappear when puppet next runs (every 30 minutes) and picks up the 
+returning OK, as it still expects the old instance to be healthy. These should disappear when puppet next runs (every 30 minutes) and picks up the
 new instance.
 
 ## How to scale up vertically
