@@ -40,18 +40,18 @@ You should do these things before going on call so you're prepared.
 1. Make sure you can VPN to the office or disaster recovery location.
 1. Ensure your PagerDuty alert settings will wake you if you're called. You might want
    to install the [PagerDuty App](https://www.pagerduty.com/features/mobile-incident-management/)
-   on your phone.
+   on your phone and [send a test notification](https://support.pagerduty.com/docs/notification-troubleshooting#send-a-test-notification).
 1. Ensure you can [decrypt secrets][govuk-secrets] with your GPG setup.
 1. Ensure you have single-sign-on set up for GOV.UK PaaS ([instructions on setting up single-sign-on](https://docs.cloud.service.gov.uk/get_started.html#use-single-sign-on))
 1. Ensure you can access the `govuk_development` organisation in GOV.UK PaaS
    from the command line ([instructions for setting up the cloud foundry command line](https://docs.cloud.service.gov.uk/get_started.html#set-up-the-cloud-foundry-command-line)).
-1. Ensure you know how to escalate an issue to RE, ie infrastructure
-   issues.
 1. Read these documents:
     - [So, you're having an incident](/manual/incident-what-to-do.html)
     - [Falling back to the static mirror](/manual/fall-back-to-mirror.html)
     - [Emergency publishing](/manual/emergency-publishing.html)
     - [Non-emergency global banner](/manual/global-banner.html)
+
+The steps above are outlined in the [On call template Trello card](https://trello.com/c/mK6p8hH4/977-on-call-checklist), which developers should drill when given [Production Admin access](https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html#when-you-get-production-admin-access).
 
 ## Things that may result in you being contacted
 

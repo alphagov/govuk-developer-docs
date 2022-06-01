@@ -58,10 +58,10 @@ The steps above are outlined in the [GOV.UK Production Admin template Trello car
 
 ## When you get Production Admin access
 
-- Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only)
-- Supervised access during the second shadow shift and probation has been passed
 - A minimum of BPSS (a blue building pass) security clearance
-- Permanent access once two shadow shifts have been completed
+- Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only) and probation has been passed
+- Permanent access once two 2nd line Shadow shifts have been completed
+- You will be drafted into the 2nd line [on-call](https://docs.publishing.service.gov.uk/manual/on-call.html) rota after completing two Secondary in hour shifts
 
 "Supervised" means "we trust you, but just be extra careful," and the dev should
 ensure they're getting necessary and appropriate support from their team and
