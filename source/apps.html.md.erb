@@ -7,6 +7,8 @@ title: Applications on GOV.UK
 GOV.UK consists of at least <%= Repos.active_apps.size %> separate applications.
 Most of them are built using [Ruby on Rails][rails], hosted on an infrastructure [configured using puppet][govuk-puppet] and deployed using [capistrano scripts][govuk-app-deployment].
 
+Each application should be owned by a team. [What application ownership means in practice][application-ownership-meaning].
+
 Apps can be loosely grouped into different types, including:
 
 - **APIs** provide functionality to other apps. For example, an app can publish content via Publishing API.
@@ -49,6 +51,7 @@ In Google Spreadsheets, use the following formula to import all of the data:
 =importData("https://docs.publishing.service.gov.uk/apps.csv")
 ```
 
+[application-ownership-meaning]: /manual/ownership-meaning.html
 [rails]: http://rubyonrails.org/
 [extension]: https://github.com/alphagov/govuk-browser-extension
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
