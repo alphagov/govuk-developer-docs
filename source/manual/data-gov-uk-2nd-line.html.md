@@ -84,6 +84,10 @@ Since CKAN was upgraded some usernames with non alphanumeric or uppercase charac
 
 ## Datasets
 
+### Viewing a log of dataset activity
+
+A log of publisher activity on a dataset is available by inserting `/activity` into the dataset's URL, such as https://ckan.publishing.service.gov.uk/dataset/activity/monthly_statistics_of_building_materials_and_components.
+
 ### Delete or withdraw a dataset
 
 Users are not permitted to remove their own datasets.  There are a [limited number of circumstances](https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data) in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.  Datasets are never hard-deleted (known as "purged" in CKAN), instead they are marked as "withdrawn" (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).
