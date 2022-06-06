@@ -13,34 +13,25 @@ You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-do
 
 **Use GOV.UK Docker to run any commands that follow.**
 
-### Running the app
+### Before running the app
 
-The docs include pages pulled from other GitHub repositories. By default, these are loaded eagerly by Middleman.
+The docs include pages pulled from other GitHub repositories. By default, all these "proxy" pages are pulled when you start the app, which can lead to rate limit error. Using a GitHub API token avoids this.
 
-You can skip eager loading of resources by setting a `SKIP_PROXY_PAGES` variable.
+[Create a GitHub auth token](https://github.com/settings/tokens/new) (the token doesn't need any permissions).
 
-If you do not do this, you will need to create a GitHub auth token to avoid getting rate limited.
-
-#### Skipping proxied pages from other repositories
-
-```
-SKIP_PROXY_PAGES=true ./startup.sh
-```
-
-Note that `middleman server` will still try to load these pages lazily on some pages (e.g. the docs homepage, or the applications list), so you'll either need to avoid these pages or use a GitHub auth token.
-
-#### Using a GitHub auth token
-
-[Create a GitHub auth token](https://github.com/settings/tokens/new) (the token doesn't need any permissions). Store the token in a `.env` file like this:
+Store the token in a `.env` file like this:
 
 ```
 GITHUB_TOKEN=somethingsomething
 ```
-Example start up commands:
+
+Alternatively, you can also disable proxy pages temporarily e.g.
+
 ```
-govuk-docker-up env GITHUB_TOKEN=$(cat ~/github_token.txt)
-GITHUB_TOKEN=$(cat ~/github_token.txt) ./startup.sh
+env SKIP_PROXY_PAGES=true ./startup.sh
 ```
+
+Disabling proxy pages means you'll get a "Not Found" error if you try to access them locally.
 
 ### Testing the app
 
