@@ -155,6 +155,9 @@
         <a href="#datasets"><span>Datasets</span></a>
         <ul>
           <li>
+            <a href="#viewing-a-log-of-dataset-activity"><span>Viewing a log of dataset activity</span></a>
+          </li>
+          <li>
             <a href="#delete-or-withdraw-a-dataset"><span>Delete or withdraw a dataset</span></a>
           </li>
           <li>
@@ -253,7 +256,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/786851bb392ae79021857ec63c285704a23819a8">6 Jun 2022</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk</h1> <p>This document details some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk.  <a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
@@ -323,7 +326,8 @@
 <p>Users should first be guided to request addition by an admin of their organisation, if possible.  This is to reduce the burden of these requests on the 2nd line team and to ensure only those with the correct authority are actually added as publishers.</p>
 <p>Check the authenticity of a request before adding a user as a publisher (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).</p>
 </blockquote>
-<h2 id='datasets'>Datasets</h2><h3 id='delete-or-withdraw-a-dataset'>Delete or withdraw a dataset</h3><p>Users are not permitted to remove their own datasets.  There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.  Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are marked as &ldquo;withdrawn&rdquo; (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).</p>
+<h2 id='datasets'>Datasets</h2><h3 id='viewing-a-log-of-dataset-activity'>Viewing a log of dataset activity</h3><p>A log of publisher activity on a dataset is available by inserting <code>/activity</code> into the dataset&rsquo;s URL, such as https://ckan.publishing.service.gov.uk/dataset/activity/monthly_statistics_of_building_materials_and_components.</p>
+<h3 id='delete-or-withdraw-a-dataset'>Delete or withdraw a dataset</h3><p>Users are not permitted to remove their own datasets.  There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.  Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are marked as &ldquo;withdrawn&rdquo; (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).</p>
 
 <blockquote>
 <p>Before making any deletions, you should check that the person making the request actually belongs to the organisation who own the document (or are from a superseding department, e.g. someone from BEIS could request a withdrawal for a dataset published by BIS).</p>
