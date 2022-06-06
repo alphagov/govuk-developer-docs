@@ -1,15 +1,11 @@
-- name: "Applications"
+- name: Joining GOV.UK
   sections:
-    - name: Publishing apps
-    - name: APIs
-    - name: Services
-    - name: Supporting apps
-    - name: Frontend apps
-    - name: data.gov.uk apps
-    - name: Licensing apps
-
-- name: Community
-  sections:
+    - name: Get started
+      sites:
+        - name: Get started developing on GOV.UK
+          url: /manual/get-started.html
+        - name: Learn how GOV.UK works
+          url: /manual/learn-govuk.html
     - name: Slack channels
       sites:
         - name: "#govuk-developers"
@@ -35,102 +31,22 @@
           url: https://docs.google.com/spreadsheets/d/1aPY2D_1_HrXFOEmt1yUsgk51spWfMd2TXaU8BGW2Sww/edit#gid=0
           description: Sign up to volunteer as a mentor to junior and apprentice devs.
 
-- name: Developing
+- name: Main navigation
   sections:
-    - name: Development environment
-      repos:
-        - govuk-docker
-
-    - name: Schemas
-      repos:
-        - govuk_schemas
-        - govuk-content-schemas
-
-    - name: Gems &amp; Libraries
-      repos:
-        - asset_bom_removal-rails
-        - gds-api-adapters
-        - gds-sso
-        - govspeak
-        - govuk_document_types
-        - govuk_message_queue_consumer
-        - govuk_personalisation
-        - govuk_publishing_components
-        - govuk_sidekiq
-        - govuk_taxonomy_helpers
-        - plek
-        - slimmer
-
-    - name: Ensuring quality
-      repos:
-        - govuk-rfcs
-        - rubocop-govuk
-        - publishing-e2e-tests
-        - stylelint-config-gds
-
-- name: Infrastructure
-  sections:
-    - name: Routing
-      repos:
-        - authenticating-proxy
-        - govuk-cdn-config
-        - router
+    - name: GOV.UK codebases
       sites:
-        - name: router-data
-          url: https://github.com/alphagov/router-data
-          description: Send routes directly to the router-api (deprecated)
+        - name: Applications
+          url: /apps.html
+          description: All the applications and services that make up the GOV.UK website.
+        - name: Repositories
+          url: /repos.html
+          description: All the applications and other repositories we use to build GOV.UK.
+    - name: GOV.UK publishing
       sites:
-        - name: govuk-cdn-config-secrets
-          url: https://github.com/alphagov/govuk-cdn-config-secrets
-          description: Configuration secrets for Fastly
+        - name: Schemas
+          url: /schemas.html
+          description: Schemas that describe the structure of documents published on GOV.UK.
+        - name: Document types
+          url: /document-types.html
+          description: The kinds of documents that are published on GOV.UK using one of the schemas.
 
-    - name: Configuration
-      repos:
-        - govuk-puppet
-
-    - name: Monitoring
-      repos:
-        - email-alert-monitoring
-        - sidekiq-monitoring
-        - govuk-saas-config
-        - govuk_app_config
-
-      sites:
-        - name: Sentry
-          url: https://sentry.io/govuk
-          description: Our error tracking service
-        - name: govuk-user-reviewer
-          url: https://www.github.com/alphagov/govuk-user-reviewer
-          description: Monitor user lists to make sure leavers are removed from all systems
-
-    - name: Deployment
-      sites:
-        - name: govuk-secrets
-          url: https://github.com/alphagov/govuk-secrets
-          description: Encrypted secrets for GOV.UK infrastucture
-
-      repos:
-        - release
-        - govuk-app-deployment
-
-- name: Transition
-  sections:
-    - name: Transition apps
-    - name: Supporting transition
-      repos:
-        - transition-config
-        - optic14n
-        - assets-directgov
-        - assets-businesslink
-        - side-by-side-browser
-
-- name: Team tools
-  sections:
-    - name: Misc
-      repos:
-        - seal
-        - govuk-browser-extension
-        - govuk-dependencies
-        - govuk-deploy-lag-badger
-        - govuk-display-screen
-        - govuk-zendesk-display-screen
