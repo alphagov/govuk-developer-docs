@@ -44,9 +44,9 @@ This command works for macOS or Linux.
 1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer] and [seal].
 
     If your tech lead is not available, ask in the [Technical 2nd Line Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
-1. Ask in `#govuk-tech-leads` for someone to add you to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos & CI.
+1. Email <govuk-github-owners@digital.cabinet-office.gov.uk> to request to be added to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos and CI environment, add your tech lead a CC of the email. Please explain in the email which team you are working on and in what role; include a link to the pull request created in the previous step.
 
-    Select __Accept__ in the GitHub email invitation when you receive this email. If your tech lead is not available, ask one of the [GOV.UK GitHub owners](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-github-owners/members?pli=1).
+    Once this request has been actioned you'll receive an email from GitHub, select __Accept__ in the email.
 
 1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key] for your GitHub account.
 1. [Add the SSH key to your GitHub account][add-ssh-key].
