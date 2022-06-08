@@ -53,6 +53,8 @@ task :verify_deployable_apps do
 
       kibana-gds
       sidekiq-monitoring
+
+      manuals-frontend
     ]
 
   missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq
