@@ -442,7 +442,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/e7fcd13d5a6d19d449c21cd4250e0ee12b5a95ba">25 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/cb56bb6a26f658b0ba1b0aa4d973f6844c13d405">6 Jun 2022</a>
 </div>
 
   <h1 class="page-title">account-api: API documentation</h1>
@@ -467,7 +467,7 @@ management. This API is not for other government services.</p>
 <li><a href="#post-apioauth2callback"><code>POST /api/oauth2/callback</code></a></li>
 <li><a href="#get-apioauth2end-session"><code>GET /api/oauth2/end-session</code></a></li>
 <li><a href="#get-apiuser"><code>GET /api/user</code></a></li>
-<li><a href="#get-apiusermatch-by-email"><code>GET /user/match-by-email</code></a></li>
+<li><a href="#get-usermatch-by-email"><code>GET /user/match-by-email</code></a></li>
 <li><a href="#get-apiattributes"><code>GET /api/attributes</code></a></li>
 <li><a href="#patch-apiattributes"><code>PATCH /api/attributes</code></a></li>
 <li><a href="#get-apiemail-subscriptionssubscription_name"><code>GET /api/email-subscriptions/:subscription_name</code></a></li>
@@ -476,6 +476,7 @@ management. This API is not for other government services.</p>
 <li><a href="#put-apioidc-userssubject_identifier"><code>PUT /api/oidc-users/:subject_identifier</code></a></li>
 <li><a href="#delete-apioidc-userssubject_identifier"><code>DELETE /api/oidc-users/:subject_identifier</code></a></li>
 <li><a href="#get-apipersonalisationcheck-email-subscription"><code>GET /api/personalisation/check-email-subscription</code></a></li>
+<li><a href="#post-apioidc_eventsbackchannel_logout"><code>POST /api/oidc_events/backchannel_logout</code></a></li>
 </ul>
 </li>
 <li>
@@ -1074,7 +1075,7 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 <li>
 <code>subject_identifier</code>
 <ul>
-<li>the subject identifier of the user to delete</li>
+<li>the subject identifier of the user to update</li>
 </ul>
 </li>
 </ul>
@@ -1248,6 +1249,24 @@ As a personalisation endpoint, it allows us to progressively enhance pages from 
     "button_html": "&lt;form&gt;...&lt;/form&gt;"
 }
 </code></pre>
+<h3 id="post-apioidc_eventsbackchannel_logout"><code>POST /api/oidc_events/backchannel_logout</code></h3>
+<p>A public API endpoint that Implements OpenID Connect Back-Channel Logout 1.0 - draft 07.</p>
+<h4 id="query-parameters">Query parameters</h4>
+<ul>
+<li>
+<code>logout_token</code>
+<ul>
+<li>A signed JWT</li>
+</ul>
+</li>
+</ul>
+<h4 id="response-codes">Response codes</h4>
+<ul>
+<li>400 if the Logout Token JWT is invalid or signature cannot be verified</li>
+<li>200 otherwise</li>
+</ul>
+<h4 id="note">Note</h4>
+<p>This endpoint will only ever receive calls from the Oidc OP (Digital Identity), as an OIDC event. Because of that, there is not an GDS API Adaptor for this endpoint, as it will not be called from another Ruby application.</p>
 <h2 id="api-errors">API errors</h2>
 <p>API errors are returned as an <a href="https://tools.ietf.org/html/rfc7807">RFC 7807</a> "Problem Detail" object, in
 the following format:</p>
