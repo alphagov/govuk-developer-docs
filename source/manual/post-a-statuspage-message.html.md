@@ -16,7 +16,7 @@ Use [manage.statuspage.io][man] to post messages. The Technical 2nd Line deliver
 
 Remember: government publishers are the main audience of the page.
 They'll want to know what isn't working, and how long it will take to fix. Write in non-technical language.
-Use the pre-written templates, they've been proofread and can be customised to most situations.
+Use the pre-written templates, they've been proof-read and can be customised to most situations.
 
 This is what the [Statuspage admin interface][man] looks like:
 
@@ -98,6 +98,20 @@ Example messages:
 
 <!-- -->
 > The invading alien army has retreated. Everything is fine again.
+
+## Posting a status update retrospectively ("Backfilling")
+
+Sometimes it may be necessary to post a status update after an incident has been resolved.
+
+1. Tick the `backfill` option
+1. Add the date of the incident and a suitable description. Bear in mind when writing the message that it will automatically be marked as resolved.
+1. Click `create`
+
+When backfilling a status update, subscribers will not be notified. It will update relevant Slack channels though.
+
+Example message:
+
+> On 30 to 31 May 2022 users of GOV.UK were unable to subscribe and unsubscribe from email alerts to page changes.
 
 [inc]: /manual/incident-management-guidance.html
 [status]: https://status.publishing.service.gov.uk
