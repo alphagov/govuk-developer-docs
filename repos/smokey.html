@@ -474,10 +474,11 @@
 <ul>
 <li><a href='/repos/smokey/deployment.html' class='govuk-link'>Deployment</a></li>
         <li><a href='/repos/smokey/tagging.html' class='govuk-link'>Tagging</a></li>
+        <li><a href='/repos/smokey/writing-tests.html' class='govuk-link'>Writing tests</a></li>
 </ul>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>A suite of <a href="https://cucumber.io/">Cucumber</a> tests that probe GOV.UK frontend and backend publishing functionality. We use feature files to describe single applications (eg <a href="https://github.com/alphagov/whitehall"><code>whitehall</code></a>, <a href="https://github.com/alphagov/frontend"><code>frontend</code></a>) or <a href="https://github.com/alphagov/smokey/blob/main/features/gov_uk.feature">cross-application behaviour</a>. The tests <a href="https://github.com/alphagov/smokey/blob/main/features/support/env.rb">use Selenium to manipulate a headless Chrome browser</a>.</p>
+<p>A suite of <a href="https://cucumber.io/">Cucumber</a> tests that probe GOV.UK frontend and backend publishing functionality. The tests <a href="https://github.com/alphagov/smokey/blob/main/features/support/env.rb">use Selenium to manipulate a headless Chrome browser</a>.</p>
 
 <p>The tests are run in two different ways:</p>
 
@@ -489,6 +490,8 @@
 <p>Periodically, to check for transient failures e.g. in infrastructure. The tests are run in <a href="https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/templates/smokey-loop.conf">a continuous &ldquo;Smokey Loop&rdquo;</a>, with <a href="https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/manifests/checks/smokey.pp">corresponding alerts in Icinga</a>.</p>
 </li>
 </ul>
+
+<p>Each test should check that a critical area of GOV.UK is working as expected. <a href="/repos/smokey/writing-tests.html">Read the guidance on what tests belong here and how to write new ones</a>.</p>
 
 <h2 id="technical-documentation">Technical documentation</h2>
 
@@ -534,6 +537,7 @@ bundle exec rake 'eyaml:decrypt_value[integration,smokey_rate_limit_token]'
 <ul>
 <li><a href="/repos/smokey/deployment.html">deployment</a></li>
 <li><a href="/repos/smokey/tagging.html">tagging</a></li>
+<li><a href="/repos/smokey/writing-tests.html">writing tests</a></li>
 <li><a href="https://github.com/alphagov/smokey/blob/main/.github/pull_request_template.md">pr-template</a></li>
 </ul>
 <p></div></p>

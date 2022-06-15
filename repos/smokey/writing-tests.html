@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>smokey: Writing tests - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/smokey/writing-tests.html">
 
-      <meta name="description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="smokey: Writing tests - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/smokey/writing-tests.html" />
 
-      <meta property="og:description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="smokey: Writing tests" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/smokey/writing-tests.html" />
 
     
   </head>
@@ -262,7 +260,7 @@
           <li><a href="/repos/content-data-admin.html"><span>content-data-admin</span></a></li>
           <li><a href="/repos/release.html"><span>release</span></a></li>
           <li><a href="/repos/router.html"><span>router</span></a></li>
-          <li><a href="/repos/search-admin.html" class="toc-link--in-view"><span>search-admin</span></a></li>
+          <li><a href="/repos/search-admin.html"><span>search-admin</span></a></li>
           <li><a href="/repos/signon.html"><span>signon</span></a></li>
           <li><a href="/repos/support.html"><span>support</span></a></li>
         </ul>
@@ -415,6 +413,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "smokey",
+        "@id": "http://www.dev.gov.uk/repos/smokey.html"
+      }
     }
   ]
 }
@@ -426,129 +432,102 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/smokey.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;smokey&quot;}" class="govuk-breadcrumbs__link" href="/repos/smokey.html">smokey</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: search-admin</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#find-and-view-tech</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://search-admin.publishing.service.gov.uk" class="govuk-link">search-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/search_admin.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/search-admin/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/search-admin.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/9a3d84c94e6be40506fe0751cff0b9f336ab12de">27 May 2022</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.dover.gov.uk" class="govuk-link">Dover District Council</a></li>
-      <li><a href="http://www.northwarks.gov.uk" class="govuk-link">North Warwickshire Borough Council</a></li>
-      <li><a href="https://find-a-professional-service-abroad.service.csd.fcdo.gov.uk/find?serviceType=lawyers&country=Germany" class="govuk-link">Find a lawyer in Germany</a></li>
-      <li><a href="http://www.manchester.gov.uk" class="govuk-link">Manchester City Council</a></li>
-      <li><a href="http://www.watford.gov.uk/" class="govuk-link">Watford Borough Council</a></li>
-      <li><a href="https://find-a-professional-service-abroad.service.csd.fcdo.gov.uk/find?serviceType=lawyers&country=France" class="govuk-link">Find a lawyer in France</a></li>
-      <li><a href="http://www.barking-dagenham.gov.uk" class="govuk-link">London Borough of Barking and Dagenham Council</a></li>
-      <li><a href="http://www.staffsmoorlands.gov.uk" class="govuk-link">Staffordshire Moorlands District Council</a></li>
-      <li><a href="http://www.redbridge.gov.uk/" class="govuk-link">London Borough of Redbridge Council</a></li>
-      <li><a href="http://www.northdown.gov.uk" class="govuk-link">North Down Borough Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
+  <h1 class="page-title">smokey: Writing tests</h1>
 
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
-
+  
+<h2 id="what-belongs-here">What belongs here</h2>
+<p>This repo contains tests that check critical areas of GOV.UK are working as expected. Any new test should meet one or more of the following criteria:</p>
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li>
+<p><strong>Covers vital site-wide configuration</strong>. The test checks that the foundations of GOV.UK exist, with some indication they work as expected:</p>
+<ul>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/mirror.feature#L11">Good example</a> - covers fallback mirrors exist</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/gov_uk_redirect.feature#L13">Good example</a> - covers Fastly CDN configuration</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/gov_uk.feature#L9">Bad example</a> - covers an edge case of limited value</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/gov_uk.feature#L27">Bad example</a> - covers a negative or "unhappy" outcome</li>
 </ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p><code>bundle exec rake</code></p>
-
-<h3 id="external-links">External links</h3>
-
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
+</li>
+<li>
+<p><strong>Targets app-to-app data transfer</strong>. The test checks that data can flow between multiple apps to provide an end-to-end feature of GOV.UK:</p>
+<ul>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/service_manual.feature#L7">Good example</a> - basic test that an app is accessible via Router
+<ul>
+<li>Implicitly checks the app can talk to the Content Store</li>
+<li>Each app can have one (and only one) of these tests</li>
+</ul>
+</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L53">Good example</a> - covers data transfer with Email Alert API</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/router.feature#L8">Bad example</a> - doesn’t check content data was transferred</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/0d7134e3e99a8c0bd9b4ada13d6ce298bbf03f44/features/benchmarking.feature#L7">Bad example</a> - performance testing is out-of-scope</li>
+</ul>
+</li>
+<li>
+<p><strong>Second critical functional check</strong>. A very similar test exists at a lower level but the functionality is so absolutely critical we test it again:</p>
+<ul>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/frontend.feature#L18">Good example</a> - undeniably a critical page for GOV.UK (<a href="https://github.com/alphagov/frontend/blob/a40ba988c58dd882d841a6f1d82d5b894939fdc5/test/integration/help_test.rb#L18">lower level test exists</a>)</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/frontend.feature#L59">Good example</a> - one of the most critical features of GOV.UK (<a href="https://github.com/alphagov/router/blob/96d5912cec4c8052c2f9f71d257f2add2787b65d/integration_tests/redirect_test.go?L23#L12">lower level test exists</a>)</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L29">Bad example</a> - checks an arbitrary, non-critical page (<a href="https://github.com/alphagov/collections/blob/cc94525a05b2651fee621b588e530aca8e1f77e4/features/viewing_browse.feature">lower level test exists</a>)</li>
+<li>
+<a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/finder_frontend.feature#L45">Bad example</a> - missing a lower level test in the app itself (<a href="https://github.com/alphagov/finder-frontend/blob/d70a01903e2813719e7d5adbf79fbcb1d49335fb/spec/controllers/email_alert_subscriptions_controller_spec.rb#L363">example test to copy</a>)</li>
+</ul>
+</li>
+</ul>
+<p>Do not duplicate tests. For example, <a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L47">"Email signup from an organisation home page"</a> duplicates <a href="https://github.com/alphagov/smokey/blob/aaa0522666d49db116b939276f0e0969357e3ed4/features/collections.feature#L53">"Email signup from a taxon page"</a>: both cover data transfer with Email Alert API.</p>
+<p>Do not add tests that can be implemented in other ways. We want this to be the tip of the <a href="https://martinfowler.com/bliki/TestPyramid.html">testing pyramid</a>, not a <a href="http://saeedgatson.com/the-software-testing-ice-cream-cone/">testing ice cream cone</a>. Instead of adding a test here, you can:</p>
+<ul>
+<li>
+<p>Add or extend <a href="https://github.com/alphagov/govuk_app_config/blob/main/docs/healthchecks.md">health checks for application infrastructure</a>. For example, drafting a document in a publishing app involves connecting to infrastructure like a database or AWS S3.</p>
+</li>
+<li>
+<p>Add <a href="https://docs.publishing.service.gov.uk/manual/pact-broker.html">contract tests</a> to cover a chain of APIs. For example, subscribing to an email involves communication with Email Alert API and Content Store, which can be tested via GDS API Adapters.</p>
+</li>
+<li>
+<p>Add unit or integration tests to cover in-app behaviour. For example, the way each document format is rendered can be tested in the frontend app that does the rendering.</p>
+</li>
+</ul>
+<p>In contrast, the tests in this repo provide coverage at a higher level. We should be willing to page someone when tests are failing, once they are reliable enough.</p>
+<h2 id="adding-new-tests">Adding new tests</h2>
+<p>We use feature files to describe single applications (e.g. <a href="https://github.com/alphagov/whitehall"><code>whitehall</code></a>, <a href="https://github.com/alphagov/frontend"><code>frontend</code></a>), as well as <a href="https://github.com/alphagov/smokey/blob/main/features/gov_uk.feature">cross-application behaviour</a>.</p>
+<p>Try to use existing step definitions e.g. <a href="https://github.com/alphagov/smokey/blob/b656e65ef6853d65de3e24a7e884911054c8bf7d/features/step_definitions/smokey_steps.rb#L70-L72"><code>When I visit "/some/path"</code></a>. If a more specific step is required, name the <code>_steps.rb</code> file after the feature file i.e. <code>myfeature_steps.rb</code>.</p>
+<h3 id="tests-that-makes-changes-to-gov-uk">Tests that makes changes to GOV.UK</h3>
+<p>Any test that changes GOV.UK must be discreet:</p>
+<ol>
+<li>
+<p>Any page that is published must not be visible to search engines or linked to from elsewhere on GOV.UK. Ideally it should only be visible internally.</p>
+</li>
+<li>
+<p>Any trace of the change should be hidden from departmental users. For example, a document could be published in a dedicated "test" organisation.</p>
+</li>
+<li>
+<p>Data must not accumulate over time - tests run many times a day. Running the test multiple times should have no impact on databases or other storage.</p>
+</li>
+</ol>
+<p>If criteria (1) or (3) can’t be met in Production, then it’s acceptable to only run the test in Integration or Staging, where <a href="https://docs.publishing.service.gov.uk/manual/govuk-env-sync.html">the data is wiped daily</a>.</p>
+<p>Tests that change state are particularly vulnerable to flakiness. You must ensure any new tests are highly reliable after they are added (<a href="https://github.com/alphagov/smokey/pull/916">bad example</a>).</p>
 
 
             
@@ -556,8 +535,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/smokey/blob/main/docs/writing-tests.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsmokey%2Fwriting-tests.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
