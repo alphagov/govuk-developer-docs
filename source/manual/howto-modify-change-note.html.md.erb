@@ -10,52 +10,17 @@ Spelling mistakes can creep into [change notes](https://www.gov.uk/guidance/cont
 
 ## Whitehall
 
-The following commands show you how to find the document, get the correct edition within it, and update it. To complete this you will need the document ID, a string to search for to identify the right change log entry (search is fuzzy, be precise to get the right one), and the string you want to replace the current change note text.
+To modify a change note in Whitehall, perform the following steps:
 
-Connect to the Whitehall console (test your change on Integration first):
+1. Run a rake task to list the change notes for each edition, given the document's Content ID:
 
-```
-govuk-connect app-console -e integration whitehall_backend/whitehall
-```
+   <%= RunRakeTask.links("whitehall", "change_note:list[content_id]") %>
 
-Find the document:
+1. From the output of the previous rake task, get the ID for the edition whose change note needs updating, then run the following rake task to update this:
 
-```
-document=Document.find_by_content_id("YOUR_CONTENT_ID_HERE")
-```
+   <%= RunRakeTask.links("whitehall", "change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']") %>
 
-Output will be a summary of your document. Next, select the editions:
-
-```
-editions=document.editions
-```
-
-Output is a potentially long list of the editions. Next set up the parameters for fuzzy matching:
-
-```
-fuzzy_match = FuzzyMatch.new(editions, read: :change_note)
-```
-
-Output should show the change notes. Select the relevant one:
-
-```
-edition = fuzzy_match.find("A_STRING_FROM_YOUR_CHANGE_NOTE", must_match_at_least_one_word: true)
-```
-
-Check the returned edition and change note to ensure it's the correct one:
-
-```
-edition.change_note
-edition.major_change_published_at
-```
-
-Update it (without validation checks):
-
-```
-edition.update_attribute(:change_note, "YOUR_DESIRED_CHANGE_NOTE_STRING")
-```
-
-Republish the document using a [Whitehall Rake task](https://docs.publishing.service.gov.uk/manual/republishing-content.html)
+> This rake task will fail if you have never logged into Whitehall Publisher in the environment where you are running the task.
 
 ## Publishing API
 
