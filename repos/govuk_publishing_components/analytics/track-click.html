@@ -441,22 +441,15 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/02af4424f715a18a642fb27d22a0e60ccf3b439f">3 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/2ede3f2f8b81cf34eda5fcb8e04b56a6a600f874">17 Jun 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Track click script</h1>
 
   
 <p>The gem includes a script that allows tracking to be added to clicked elements with relative ease. It depends upon the main analytics code to function.</p>
-<p>Basic use:</p>
+<h2 id="basic-use">Basic use</h2>
 <pre lang="html"><code>&lt;a href="/link"
   data-module="gem-track-click"
   data-track-category="category"
@@ -466,7 +459,8 @@
 &lt;/a&gt;
 </code></pre>
 <p><strong>NOTE:</strong>  According to <a href="https://support.google.com/analytics/answer/1033068">Google Analytics Help</a>, event label is optional, but recommended.</p>
-<p>Advanced use. Adds a custom dimension of <code>dimension29</code> with a value of <code>dimension-value</code>, and a <code>value</code> of <code>9</code>.</p>
+<h2 id="advanced-use">Advanced use</h2>
+<p>Adds a custom dimension of <code>dimension29</code> with a value of <code>dimension-value</code>, and a <code>value</code> of <code>9</code>.</p>
 <pre lang="html"><code>&lt;a href="/link"
   data-module="gem-track-click"
   data-track-category="category"
@@ -478,7 +472,7 @@
   Link
 &lt;/a&gt;
 </code></pre>
-<p>Track with arbitrary JSON:</p>
+<h2 id="track-with-arbitrary-json">Track with arbitrary JSON</h2>
 <pre lang="html"><code>&lt;a href='/link'
   data-module='gem-track-click'
   data-track-category='category'
@@ -488,23 +482,28 @@
   Link
 &lt;/a&gt;
 </code></pre>
-<p>Specific tracking can also be applied to elements within a container.</p>
+<h2 id="track-more-than-one-element">Track more than one element</h2>
+<p>Specific tracking can be applied to multiple elements within a container, by applying the data module once to the parent element.</p>
 <pre lang="html"><code>&lt;div data-module="gem-track-click"&gt;
+  &lt;p&gt;This element has no tracking.&lt;/p&gt;
   &lt;a href="/link1"
     data-track-category="cat1"
     data-track-action="action1"
     data-track-label="label1"&gt;
-    Link 1
+    This link has tracking
   &lt;/a&gt;
-  &lt;a href="/link2"
-    data-track-category="cat2"
-    data-track-action="action2"
-    data-track-label="label2"&gt;
-    Link 2
-  &lt;/a&gt;
+  &lt;div&gt;
+    &lt;a href="/link2"
+      data-track-category="cat2"
+      data-track-action="action2"
+      data-track-label="label2"&gt;
+      This link also has tracking
+    &lt;/a&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Where specific attributes cannot be applied to elements, links can be tracked with the link href as the tracking label (and other attributes set on the parent). The <code>data-track-links-only</code> attribute ensures that only link clicks are tracked (without it, any click inside the element is tracked).</p>
+<h2 id="track-links-within-content">Track links within content</h2>
+<p>Where tracking attributes cannot be applied to elements, links can be tracked with the link href as the tracking label (and other attributes set on the parent). The <code>data-track-links-only</code> attribute ensures that only link clicks are tracked (without it, any click inside the element is tracked). This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
 <pre lang="html"><code>&lt;div data-module="gem-track-click"
   data-track-category="category"
   data-track-action="action"
@@ -513,15 +512,16 @@
   &lt;a class="second" href="/link2"&gt;Link 2&lt;/a&gt;
 &lt;/div&gt;
 </code></pre>
+<h2 id="track-links-within-content-within-a-specific-element">Track links within content within a specific element</h2>
 <p>To apply tracking to links within a specific element within part of a page, use the <code>data-limit-to-element-class</code> attribute. This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
 <pre lang="html"><code>&lt;div data-module="gem-track-click"
   data-track-category="category"
   data-track-action="action"
   data-track-links-only
   data-limit-to-element-class="demoBox"&gt;
-  &lt;a class="first" href="/link1"&gt;Link clicks will not be tracked&lt;/a&gt;
+  &lt;a class="first" href="/link1"&gt;This link will not be tracked&lt;/a&gt;
   &lt;div class="demoBox"&gt;
-    &lt;a class="second" href="/link2"&gt;Link clicks will be tracked&lt;/a&gt;
+    &lt;a class="second" href="/link2"&gt;This link will be tracked&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
