@@ -485,33 +485,23 @@ Ruby code needs to go into <code>/app</code>.</p>
 
 <p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
 
-<h3 id="running-the-app">Running the app</h3>
+<h3 id="before-running-the-app">Before running the app</h3>
 
-<p>The docs include pages pulled from other GitHub repositories. By default, these are loaded eagerly by Middleman.</p>
+<p>The docs include pages pulled from other GitHub repositories. By default, all these &ldquo;proxy&rdquo; pages are pulled when you start the app, which can lead to rate limit error. Using a GitHub API token avoids this.</p>
 
-<p>You can skip eager loading of resources by setting a <code>SKIP_PROXY_PAGES</code> variable.</p>
+<p><a href="https://github.com/settings/tokens/new">Create a GitHub auth token</a> (the token doesn&rsquo;t need any permissions).</p>
 
-<p>If you do not do this, you will need to create a GitHub auth token to avoid getting rate limited.</p>
-
-<h4 id="skipping-proxied-pages-from-other-repositories">Skipping proxied pages from other repositories</h4>
-
-<pre><code>SKIP_PROXY_PAGES=true ./startup.sh
-</code></pre>
-
-<p>Note that <code>middleman server</code> will still try to load these pages lazily on some pages (e.g. the docs homepage, or the applications list), so you&rsquo;ll either need to avoid these pages or use a GitHub auth token.</p>
-
-<h4 id="using-a-github-auth-token">Using a GitHub auth token</h4>
-
-<p><a href="https://github.com/settings/tokens/new">Create a GitHub auth token</a> (the token doesn&rsquo;t need any permissions). Store the token in a <code>.env</code> file like this:</p>
+<p>Store the token in a <code>.env</code> file like this:</p>
 
 <pre><code>GITHUB_TOKEN=somethingsomething
 </code></pre>
 
-<p>Example start up commands:</p>
+<p>Alternatively, you can also disable proxy pages temporarily e.g.</p>
 
-<pre><code>govuk-docker-up env GITHUB_TOKEN=$(cat ~/github_token.txt)
-GITHUB_TOKEN=$(cat ~/github_token.txt) ./startup.sh
+<pre><code>env SKIP_PROXY_PAGES=true ./startup.sh
 </code></pre>
+
+<p>Disabling proxy pages means you&rsquo;ll get a &ldquo;Not Found&rdquo; error if you try to access them locally.</p>
 
 <h3 id="testing-the-app">Testing the app</h3>
 
