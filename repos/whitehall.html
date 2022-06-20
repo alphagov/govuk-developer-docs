@@ -593,18 +593,6 @@
 
 <p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
 
-<h3 id="shared-mustache-templates">Shared mustache templates</h3>
-
-<p>The shared mustache templates must be compiled for JavaScript and functional tests to pass.</p>
-
-<pre><code>bundle exec rake shared_mustache:compile
-bundle exec rake shared_mustache:clean
-</code></pre>
-
-<p>Shared mustache templates are generated and stored in app/assets/javascripts/templates.js.</p>
-
-<p>In absence of this generated template, shared mustache inlines mustache templates in <code>&lt;script&gt;</code> blocks on the page, which enables developers to see changes to mustache without compiling. If this generated template is checked-in, shared mustache uses this file instead of inlining templates. Hence, we don&rsquo;t check-in this file.</p>
-
 <h3 id="running-the-test-suite">Running the test suite</h3>
 
 <pre><code># run all the test suites
