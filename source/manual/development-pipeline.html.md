@@ -123,11 +123,9 @@ is responsible for providing access to deploy software for teams who can't deplo
 
 #### Wait for the release to deploy to Integration
 
-When a new release is created, CI sends a message to Integration Deploy
-Jenkins to deploy the tag and run [Smokey][smokey]. You should verify
-your changes work in Integration before deploying downstream:
+When a new release is created, CI sends a message to Integration Deploy Jenkins to deploy the tag. You should verify your changes work in Integration before deploying downstream:
 
-- Check the results of the [smoke tests][smokey].
+- Run a build of [smoke tests][smokey-integration].
 - Look for any Icinga alerts related to your application.
 
 Our apps should always be in a state where `main` is deployable. You
@@ -157,8 +155,9 @@ After a deployment:
 - [Check Sentry for any new errors](/manual/error-reporting.html).
 - Look for [any Icinga alerts](/manual/icinga.html) related to your application.
 - Check the [Deployment Dashboard](/manual/deployment-dashboards.html) for any issues.
-- Check the results of the [smoke tests][smokey].
+- Run a build of [smoke tests][smokey] in the environment you're deploying to.
 
 [release]: https://release.publishing.service.gov.uk
 [slides]: https://docs.google.com/presentation/d/1A0zdYHwOxV2jO_0YVsKplySXvd777pXDwn1YnETXSh8/edit
 [smokey]: https://github.com/alphagov/smokey
+[smokey-integration]: https://deploy.integration.publishing.service.gov.uk/job/Smokey/
