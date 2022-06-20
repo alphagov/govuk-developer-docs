@@ -213,7 +213,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/63faf148de731cd03836e94e1711e2407f89e362">20 Jun 2022</a>
 </div>
 
  <h1 id='header'>The development and deployment pipeline</h1> <blockquote>
@@ -311,12 +311,10 @@ is responsible for providing access to deploy software for teams who can&rsquo;t
 <li>You can manually deploy your change if the automation fails e.g. due to a flakey <a href="https://github.com/alphagov/smokey">Smokey test</a>.</li>
 </ul></li>
 </ul>
-<h3 id='manual-deployment'>Manual Deployment</h3><h4 id='wait-for-the-release-to-deploy-to-integration'>Wait for the release to deploy to Integration</h4><p>When a new release is created, CI sends a message to Integration Deploy
-Jenkins to deploy the tag and run <a href="https://github.com/alphagov/smokey">Smokey</a>. You should verify
-your changes work in Integration before deploying downstream:</p>
+<h3 id='manual-deployment'>Manual Deployment</h3><h4 id='wait-for-the-release-to-deploy-to-integration'>Wait for the release to deploy to Integration</h4><p>When a new release is created, CI sends a message to Integration Deploy Jenkins to deploy the tag. You should verify your changes work in Integration before deploying downstream:</p>
 
 <ul>
-<li>Check the results of the <a href="https://github.com/alphagov/smokey">smoke tests</a>.</li>
+<li>Run a build of <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">smoke tests</a>.</li>
 <li>Look for any Icinga alerts related to your application.</li>
 </ul>
 <p>Our apps should always be in a state where <code>main</code> is deployable. You
@@ -345,7 +343,7 @@ Individual app deploy freezes are usually announced here.</li>
 <li><a href="/manual/error-reporting.html">Check Sentry for any new errors</a>.</li>
 <li>Look for <a href="/manual/icinga.html">any Icinga alerts</a> related to your application.</li>
 <li>Check the <a href="/manual/deployment-dashboards.html">Deployment Dashboard</a> for any issues.</li>
-<li>Check the results of the <a href="https://github.com/alphagov/smokey">smoke tests</a>.</li>
+<li>Run a build of <a href="https://github.com/alphagov/smokey">smoke tests</a> in the environment you&rsquo;re deploying to.</li>
 </ul>
 
 
