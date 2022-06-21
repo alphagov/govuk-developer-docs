@@ -14,7 +14,57 @@ Install `gpg` if you don't already have it.
 
 You can use `brew install gpg-suite` to install the graphical [GPG Suite](https://gpgtools.org/). This comes with GPG Mail, which you may not want - you can install a [mailless version](https://formulae.brew.sh/cask/gpg-suite-no-mail) by running `brew install --cask gpg-suite-no-mail` instead.
 
-## Creating a GPG key (using the GUI)
+## If you have a YubiKey
+
+> If asked for a user and PIN by the YubiKey and you have never set your own, the defaults are:
+> user: 123456
+> admin: 12345678
+
+### Creating a new GPG key
+
+1. Insert the YubiKey into a USB port.
+
+1. Enter the following command to the terminal:
+
+   ```
+   gpg --card-edit
+   ```
+
+1. If the key has never been used before: at the `gpg/card>`, enter `passwd` then the default PIN. After this, you will be prompted to choose your own PIN for the device.
+
+1. At the `gpg/card>` prompt, enter `admin`, then `key-attr`.
+
+1. Select the option for `ECC` then `Curve 25519` when asked for the key strength. You will be asked this 3 times (one each for the signature, encryption and authentication keys).
+
+1. Enter the command `generate`.
+
+1. You will be asked if you wish to make a backup of your key. This is not recommended unless the backup is stored securely.
+
+1. When asked for the expiry, enter `0` to ensure your key never expires.
+
+1. Enter your real name and `digital.cabinet-office.gov.uk` email address.
+
+1. The green light will flash on the key whilst it is being written. This may take a few minutes.
+
+1. Enter `quit` to exit.
+
+### Enabling your existing GPG key from a YubiKey on a new machine
+
+1. Insert the YubiKey into a USB port.
+
+1. Enter the following command to the terminal:
+
+   ```
+   gpg --card-edit
+   ```
+
+1. At the `gpg/card>` prompt, enter `fetch`, then `verify`.
+
+1. Enter `quit` to exit.
+
+## If you don't have a YubiKey
+
+### Creating a GPG key (using the GUI)
 
 [GPGtools](https://gpgtools.org/) comes with a GUI which can perform most of the operations you need.
 
@@ -28,7 +78,7 @@ On the main page which lists all of your keys you can double click your key to g
 
 See below for checking your passphrase.
 
-## Creating a GPG key (using the command line)
+### Creating a GPG key (using the command line)
 
 Create a gpg key with `gpg --gen-key` using your
 digital.cabinet-office.gov.uk email address. Defaults for the questions
@@ -41,7 +91,7 @@ should be fine, although you should choose a 4096-bit key.
 > with `gpg --gen-revoke` and store it in a safe place (*not* on your
 > laptop, maybe a USB stick in your locker).
 
-### Working out your key ID and fingerprint
+## Working out your key ID and fingerprint
 
 ```
 gpg --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
