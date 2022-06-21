@@ -37,7 +37,49 @@ Run the following in your command line to install the [Homebrew package manager]
 
 This command works for macOS or Linux.
 
-## 2. Set up your GitHub account
+## 2. Generate a SSH key
+
+### If you have a YubiKey
+
+If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which requires a GPG key to have been generated.
+
+1. Create a GPG key as per the [Create a GPG Key](create-gpg-key) documentation.
+
+1. Add the following to the `~/.gnupg/gpg-agent.conf` file:
+
+   ```
+   enable-ssh-support
+   pinentry-program /usr/local/bin/pinentry-mac
+   default-cache-ttl 60
+   max-cache-ttl 120
+   ```
+
+1. Add the following to your `~/.zprofile` file:
+
+   ```
+   export GPG_TTY=$(tty)
+   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+   gpgconf --launch gpg-agent
+   ```
+
+1. Run `killall gpg-agent` to stop any running `gpg-agent` processes.
+
+1. Run `ssh-add -L`. This will output your public SSH key, which should end `cardno:000000000000` (indicating it is from a YubiKey).
+
+### If you do not have a YubiKey
+
+1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key] for your GitHub account.
+
+1. Add the following code into your `.zshrc`, `~/.bash_profile`, or equivalent so that it is persistent between restarts:
+
+   ```
+   $ /usr/bin/ssh-add -K <YOUR-PRIVATE-KEY>
+   ```
+
+[create-gpg-key]: /manual/create-a-gpg-key.html
+[generate-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+## 3. Set up your GitHub account
 
 1. Set up a [GitHub] account. You can use your existing personal account.
 1. [Associate your GitHub account with your GDS email address][associate-email-github], this can be in addition to your personal email address.
@@ -48,14 +90,7 @@ This command works for macOS or Linux.
 
     Once this request has been actioned you'll receive an email from GitHub, select __Accept__ in the email.
 
-1. [Generate a new SSH key for your laptop and add it to the ssh-agent][generate-ssh-key] for your GitHub account.
 1. [Add the SSH key to your GitHub account][add-ssh-key].
-1. Add the following code into your `.zshrc`, `~/.bash_profile`, or equivalent so that it is persistent between restarts:
-
-    ```
-    $ /usr/bin/ssh-add -K <YOUR-PRIVATE-KEY>
-    ```
-
 1. Test that the SSH key works by running `ssh -T git@github.com`.
 1. Add your name and email to your git commits. For example:
 
@@ -69,12 +104,11 @@ This command works for macOS or Linux.
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
 [govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk/members
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
-[generate-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 [seal]: https://github.com/alphagov/seal
 
-## 3. Install GDS command line tools
+## 4. Install GDS command line tools
 
 On GOV.UK we use the following command-line tools for AWS and SSH access:
 
@@ -107,7 +141,7 @@ On GOV.UK we use the following command-line tools for AWS and SSH access:
 
     Run `gds config yubikey true` if you use a Yubikey.
 
-## 4. Connect to the GDS VPN
+## 5. Connect to the GDS VPN
 
 If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/we-are-gds/service-design-and-assurance/govwifi), you must connect to the GDS VPN to access to our infrastructure and internal services.
 
@@ -122,7 +156,7 @@ Follow the [VPN guide for Bring Your Own Devices (BYOD)](https://docs.google.com
 [gds-it-helpdesk]: https://gdshelpdesk.digital.cabinet-office.gov.uk/helpdesk/WebObjects/Helpdesk.woa
 [gds-vpn-wiki]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit
 
-## 5. Set up GOV.UK Docker
+## 6. Set up GOV.UK Docker
 
 We use a `govuk-docker` Docker environment for local development.
 
@@ -130,7 +164,7 @@ To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker
 
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md
 
-## 6. Get SSH access to integration
+## 7. Get SSH access to integration
 
 ### Get access
 
@@ -150,13 +184,11 @@ User accounts in our integration environments are managed in the [govuk-puppet][
     git clone git@github.com:alphagov/govuk-puppet.git
     ```
 
-1. Add your SSH key. If you created a new SSH key for Github in step 2, you can use that.
+1. Add your SSH key which you created in [step 2](#generate-a-ssh-key).
 
-    Run `more ~/.ssh/id_ed25519.pub` and copy your outputted SSH public key value.
+   If you do not have a YubiKey, run `more ~/.ssh/id_ed25519.pub` to retrieve your public key. The key should begin with `ssh-ed25519 AAA` and end with `== <WORK EMAIL>`. If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
 
-    The key should begin with `ssh-ed25519 AAA` and end with `== <WORK EMAIL>`.
-
-    If you have an existing RSA public key you could add that instead, although ed25519 keys are preferable. An RSA public key will start with `ssh-rsa AAA`. You may need to manually add the email address to the end of your key.
+   If you have a YubiKey, run `ssh-add -L` to retrieve the key from your device. The key should end with `cardno:000000000000`.
 
 1. Create a user manifest file at `~/govuk/govuk-puppet/modules/users/manifests/<FIRSTNAMELASTNAME>.pp` with the following code:
 
@@ -224,7 +256,7 @@ As a shortcut, to remove the need to look up the machine class for an applicatio
 gds govuk connect --environment integration app-console publisher
 ```
 
-## 7. Get AWS access
+## 8. Get AWS access
 
 GDS maintains a central account for AWS access.
 
@@ -316,7 +348,7 @@ to find out how to deploy infrastructure changes. The stackname is `govuk` and t
 
 See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) for more information.
 
-## 8. Access AWS for the first time
+## 9. Access AWS for the first time
 
 1. Open the [GDS CLI](#3-install-gds-command-line-tools) and run `gds aws govuk-integration-readonly -l` to open the AWS console in your web browser.
 1. In the GDS CLI, enter your [AWS access key ID and secret access key](#generate-a-pair-of-access-keys).
@@ -351,7 +383,7 @@ If you forget your `aws-vault` password, you must reset that password.
 1. Delete the `aws-vault` keychain by running `rm ~/Library/Keychains/aws-vault.keychain-db` in the command line.
 1. Re-initialise the `gds-cli` by opening `~/.gds/config.yml` and changing `initialised: true` to `initialised: false`.
 
-## 9. Get a Signon account for integration
+## 10. Get a Signon account for integration
 
 [Signon](https://docs.publishing.service.gov.uk/repos/signon.html) is the application used to control access to the
 GOV.UK Publishing applications.
@@ -359,7 +391,7 @@ GOV.UK Publishing applications.
 Ask another developer to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new),
 at 'Superadmin' level with permission to access the applications that your team are likely to work on.
 
-## 10. Get access to the Release app
+## 11. Get access to the Release app
 
 [Release](https://docs.publishing.service.gov.uk/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
