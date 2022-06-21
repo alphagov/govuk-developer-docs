@@ -16,6 +16,7 @@ class Repo
         self: "https://docs.publishing.service.gov.uk/repos/#{repo_name}.json",
         html_url: html_url,
         repo_url: repo_url,
+        git_ssh_url: git_ssh_url,
         sentry_url: sentry_url,
       },
     }
@@ -89,6 +90,10 @@ class Repo
 
   def repo_url
     repo_data["repo_url"] || "https://github.com/alphagov/#{repo_name}"
+  end
+
+  def git_ssh_url
+    "git@github.com:alphagov/#{repo_name}.git"
   end
 
   def sentry_url
