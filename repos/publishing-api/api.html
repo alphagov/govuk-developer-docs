@@ -441,15 +441,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/f06e8b7fff2a713183587d086a2373417b7be603">7 Jul 2020</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/63c97394a956d91808e5ec9ad6cda9b9c387fecc">21 Jun 2022</a>
 </div>
 
   <h1 class="page-title">publishing-api: Publishing API's API</h1>
@@ -468,10 +461,8 @@ message queue for other apps (e.g. <code>email-alert-service</code>) to consume.
 <li><a href="#post-v2contentcontent_idrepublish"><code>POST /v2/content/:content_id/republish</code></a></li>
 <li><a href="#post-v2contentcontent_idunpublish"><code>POST /v2/content/:content_id/unpublish</code></a></li>
 <li><a href="#post-v2contentcontent_iddiscard-draft"><code>POST /v2/content/:content_id/discard-draft</code></a></li>
-<li><a href="#post-v2contentcontent_idimport"><code>POST /v2/content/:content_id/import</code></a></li>
 <li><a href="#get-v2content"><code>GET /v2/content</code></a></li>
 <li><a href="#get-v2contentcontent_id"><code>GET /v2/content/:content_id</code></a></li>
-<li><a href="#post-v2actionscontent_id"><code>POST /v2/actions/:content_id</code></a></li>
 <li><a href="#patch-v2linkscontent_id"><code>PATCH /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2linkscontent_id"><code>GET /v2/links/:content_id</code></a></li>
 <li><a href="#get-v2expanded-linkscontent_id"><code>GET /v2/expanded-links/:content_id</code></a></li>
@@ -996,12 +987,6 @@ the draft content store with the published item, if one exists. Uses
 <li>The draft edition will be removed from the draft content store.</li>
 <li>If a published edition exists it will be added to the draft content store.</li>
 </ul>
-<h2 id="post-v2contentcontent_idimport"><code>POST /v2/content/:content_id/import</code></h2>
-<p><strong>Temporary Endpoint</strong></p>
-<p>The import endpoint is a temporary endpoint added for the usage of importing
-Maslow. This endpoint is expected to be removed by March 2017.</p>
-<p>We are planning to introduce an import endpoint in Q4 2016, however this may
-have a different API.</p>
 <h2 id="get-v2content"><code>GET /v2/content</code></h2>
 <p><a href="https://pact-broker.cloudapps.digital/pacts/provider/Publishing%20API/consumer/GDS%20API%20Adapters/latest#a_get_entries_request_given_a_content_item_exists_in_multiple_locales_with_content_id:_bed722e6-db68-43e5-9079-063f623335a7">Request/Response detail</a></p>
 <p>Retrieves a paginated list of editions for the provided query string
@@ -1125,53 +1110,6 @@ included within the response.</p>
 <ul>
 <li>Specify a particular edition of this document</li>
 <li>If omitted the most recent edition.</li>
-</ul>
-</li>
-</ul>
-<h2 id="post-v2actionscontent_id"><code>POST /v2/actions/:content_id</code></h2>
-<p>TODO: Request/Response pact for actions</p>
-<p><strong>Note - The usage opportunities for this endpoint is currently in discovery,
-this feature may change significantly in time.</strong></p>
-<p>Creates an action for the document that is specified, defaults to
-targeting a draft edition but can be specified to target
-live version. Uses <a href="#optimistic-locking-previous_version">optimistic-locking</a>.</p>
-<h3 id="path-parameters">Path parameters</h3>
-<ul>
-<li>
-<a href="/repos/publishing-api/model.html"><code>content_id</code></a>
-<ul>
-<li>Identifies the document of which edition will be targeted.</li>
-</ul>
-</li>
-</ul>
-<h3 id="json-attributes">JSON attributes</h3>
-<ul>
-<li>
-<code>action</code> <em>(required)</em>
-<ul>
-<li>Currently an arbitrary name describing the workflow a edition has gone
-through</li>
-<li>Provided in CamelCase</li>
-</ul>
-</li>
-<li>
-<code>draft</code> <em>(optional, default: "true")</em>
-<ul>
-<li>Whether to target the live or draft edition of a document.</li>
-</ul>
-</li>
-<li>
-<code>locale</code> <em>(optional, default: "en")</em>
-<ul>
-<li>Accepts: An available locale from the <a href="https://github.com/svenfuchs/rails-i18n">Rails I18n gem</a>
-</li>
-<li>Specifies which locale of a document to delete.</li>
-</ul>
-</li>
-<li>
-<code>previous_version</code> <em>(optional, recommended)</em>
-<ul>
-<li>Used to ensure the document hasn't been updated before sending this request</li>
 </ul>
 </li>
 </ul>
