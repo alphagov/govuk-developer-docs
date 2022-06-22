@@ -15,10 +15,6 @@ When a test fails, you should see a "Smokey loop for \<feature\>"
 alert. The alert description should contain the reason for the
 failure, so you can diagnose the problem.
 
-> **NOTE**: we have [a separate "Smokey" alert] for manual runs
-> of the Smokey job in Jenkins. This alert covers all Smokey
-> features, while "Smokey loop" alerts are more granular.
-
 ## Try kicking the Nginx machines
 
 If many of the tests are failing in an AWS environment, it may be because the Nginx services haven't registered new
