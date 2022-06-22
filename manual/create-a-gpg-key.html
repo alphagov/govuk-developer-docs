@@ -132,15 +132,29 @@
         <a href="#prerequisites"><span>Prerequisites</span></a>
       </li>
       <li>
-        <a href="#creating-a-gpg-key-using-the-gui"><span>Creating a GPG key (using the GUI)</span></a>
-      </li>
-      <li>
-        <a href="#creating-a-gpg-key-using-the-command-line"><span>Creating a GPG key (using the command line)</span></a>
+        <a href="#if-you-have-a-yubikey"><span>If you have a YubiKey</span></a>
         <ul>
           <li>
-            <a href="#working-out-your-key-id-and-fingerprint"><span>Working out your key ID and fingerprint</span></a>
+            <a href="#creating-a-new-gpg-key"><span>Creating a new GPG key</span></a>
+          </li>
+          <li>
+            <a href="#enabling-your-existing-gpg-key-from-a-yubikey-on-a-new-machine"><span>Enabling your existing GPG key from a YubiKey on a new machine</span></a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="#if-you-don39t-have-a-yubikey"><span>If you don’t have a YubiKey</span></a>
+        <ul>
+          <li>
+            <a href="#creating-a-gpg-key-using-the-gui"><span>Creating a GPG key (using the GUI)</span></a>
+          </li>
+          <li>
+            <a href="#creating-a-gpg-key-using-the-command-line"><span>Creating a GPG key (using the command line)</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#working-out-your-key-id-and-fingerprint"><span>Working out your key ID and fingerprint</span></a>
       </li>
       <li>
         <a href="#save-your-public-key-to-govuk-secrets"><span>Save your public key to govuk-secrets</span></a>
@@ -213,19 +227,54 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c3f581843b0f0bb139ff5c338c9916be0a5433be">11 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e292f155dfeecc302e05eb859ee4516c5743bf87">21 Jun 2022</a>
 </div>
 
  <h1 id='header'>Create a GPG key</h1> <p>We use GPG keys to encrypt our secrets. Documentation for using your GPG key can be found <a href="/manual/encrypted-hiera-data.html#common-tasks-for-handling-encrypted-hiera-data">here</a>.</p>
 <h2 id='prerequisites'>Prerequisites</h2><p>Install <code>gpg</code> if you don&rsquo;t already have it.</p>
 <p>You can use <code>brew install gpg-suite</code> to install the graphical <a href="https://gpgtools.org/">GPG Suite</a>. This comes with GPG Mail, which you may not want - you can install a <a href="https://formulae.brew.sh/cask/gpg-suite-no-mail">mailless version</a> by running <code>brew install --cask gpg-suite-no-mail</code> instead.</p>
-<h2 id='creating-a-gpg-key-using-the-gui'>Creating a GPG key (using the GUI)</h2><p><a href="https://gpgtools.org/">GPGtools</a> comes with a GUI which can perform most of the operations you need.</p>
+<h2 id='if-you-have-a-yubikey'>If you have a YubiKey</h2>
+<blockquote>
+<p>If asked for a user and PIN by the YubiKey and you have never set your own, the defaults are:
+user: 123456
+admin: 12345678</p>
+</blockquote>
+<h3 id='creating-a-new-gpg-key'>Creating a new GPG key</h3>
+<ol>
+<li><p>Insert the YubiKey into a USB port.</p></li>
+<li><p>Enter the following command to the terminal:</p></li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   gpg --card-edit
+</code></pre></div>
+<ol>
+<li><p>If the key has never been used before: at the <code>gpg/card&gt;</code>, enter <code>passwd</code> then the default PIN. After this, you will be prompted to choose your own PIN for the device.</p></li>
+<li><p>At the <code>gpg/card&gt;</code> prompt, enter <code>admin</code>, then <code>key-attr</code>.</p></li>
+<li><p>Select the option for <code>ECC</code> then <code>Curve 25519</code> when asked for the key strength. You will be asked this 3 times (one each for the signature, encryption and authentication keys).</p></li>
+<li><p>Enter the command <code>generate</code>.</p></li>
+<li><p>You will be asked if you wish to make a backup of your key. This is not recommended unless the backup is stored securely.</p></li>
+<li><p>When asked for the expiry, enter <code>0</code> to ensure your key never expires.</p></li>
+<li><p>Enter your real name and <code>digital.cabinet-office.gov.uk</code> email address.</p></li>
+<li><p>The green light will flash on the key whilst it is being written. This may take a few minutes.</p></li>
+<li><p>Enter <code>quit</code> to exit.</p></li>
+</ol>
+<h3 id='enabling-your-existing-gpg-key-from-a-yubikey-on-a-new-machine'>Enabling your existing GPG key from a YubiKey on a new machine</h3>
+<ol>
+<li><p>Insert the YubiKey into a USB port.</p></li>
+<li><p>Enter the following command to the terminal:</p></li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   gpg --card-edit
+</code></pre></div>
+<ol>
+<li><p>At the <code>gpg/card&gt;</code> prompt, enter <code>fetch</code>, then <code>verify</code>.</p></li>
+<li><p>Enter <code>quit</code> to exit.</p></li>
+</ol>
+<h2 id='if-you-don39t-have-a-yubikey'>If you don&rsquo;t have a YubiKey</h2><h3 id='creating-a-gpg-key-using-the-gui'>Creating a GPG key (using the GUI)</h3><p><a href="https://gpgtools.org/">GPGtools</a> comes with a GUI which can perform most of the operations you need.</p>
 <p>Before creating your key, make sure that your keyserver (the public server where your key is stored) is set to <code>hkps://keys.openpgp.org/</code> (the default). You can do this by going to preferences and setting your keyserver.</p>
 <p>To create a new key, click &ldquo;New&rdquo;. The <code>Name</code> field should be your name. For <code>Length</code>, you should have at least 4096.</p>
 <p>The creation process will give you the option to upload to a public server. Say yes. You can check your key has been uploaded using the Lookup Key button in the GUI.</p>
 <p>On the main page which lists all of your keys you can double click your key to get the required details (fingerprint and id).</p>
 <p>See below for checking your passphrase.</p>
-<h2 id='creating-a-gpg-key-using-the-command-line'>Creating a GPG key (using the command line)</h2><p>Create a gpg key with <code>gpg --gen-key</code> using your
+<h3 id='creating-a-gpg-key-using-the-command-line'>Creating a GPG key (using the command line)</h3><p>Create a gpg key with <code>gpg --gen-key</code> using your
 digital.cabinet-office.gov.uk email address. Defaults for the questions
 should be fine, although you should choose a 4096-bit key.</p>
 
@@ -236,7 +285,7 @@ certificate</a>
 with <code>gpg --gen-revoke</code> and store it in a safe place (<em>not</em> on your
 laptop, maybe a USB stick in your locker).</p>
 </blockquote>
-<h3 id='working-out-your-key-id-and-fingerprint'>Working out your key ID and fingerprint</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
+<h2 id='working-out-your-key-id-and-fingerprint'>Working out your key ID and fingerprint</h2><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gpg --fingerprint firstname.lastname@digital.cabinet-office.gov.uk
 </code></pre></div><p>Should look something like this.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>pub   rsa2048 2013-02-08 [SC]
       37CC 021A C5C2 4E27 C4D9  5735 9B0E 9DD1 90E6 5803
