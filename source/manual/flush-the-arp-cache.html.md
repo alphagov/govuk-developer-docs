@@ -6,6 +6,8 @@ layout: manual_layout
 section: 2nd line
 ---
 
+> These instructions should no longer be required. Please alert #govuk-platform-reliability-team if you have to use them.
+
 We're aware of a rare situation where our servers can find themselves with
 incorrect entries in their ARP cache (more detail below in [What is the ARP
 cache?](#what-is-the-arp-cache) and [What is wrong with our ARP cache?](#what-is-wrong-with-our-arp-cache))
