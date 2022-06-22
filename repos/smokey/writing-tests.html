@@ -442,7 +442,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/9a3d84c94e6be40506fe0751cff0b9f336ab12de">27 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/55637e6ee1d0e6a9f84f788ab336b0d5a647f317">20 Jun 2022</a>
 </div>
 
   <h1 class="page-title">smokey: Writing tests</h1>
@@ -511,7 +511,31 @@
 </ul>
 <p>In contrast, the tests in this repo provide coverage at a higher level. We should be willing to page someone when tests are failing, once they are reliable enough.</p>
 <h2 id="adding-new-tests">Adding new tests</h2>
-<p>We use feature files to describe single applications (e.g. <a href="https://github.com/alphagov/whitehall"><code>whitehall</code></a>, <a href="https://github.com/alphagov/frontend"><code>frontend</code></a>), as well as <a href="https://github.com/alphagov/smokey/blob/main/features/gov_uk.feature">cross-application behaviour</a>.</p>
+<p>Scenarios should be organised by the "component" they are testing:</p>
+<ul>
+<li>
+<p><strong><code>apps/&lt;app&gt;.feature</code></strong> should contain tests that target a feature of &lt;app&gt; e.g.</p>
+<ul>
+<li>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/foreign_travel_advice.feature#L15">Email signup from foreign travel advice</a>" is targeting Government Frontend, so should be in <code>apps/government_frontend.feature</code>.</p>
+</li>
+<li>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/publishing_tools.feature#L4">Can log in to collections-publisher</a>" is targeting Collections Publisher, so should be in <code>apps/collections_publisher.feature</code>.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>&lt;layer&gt;.feature</code></strong> should contain tests that target an infrastructure layer e.g.</p>
+<ul>
+<li>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/gov_uk_redirect.feature#L3">Check redirect from bare domain to www.gov.uk is working for HTTP</a>" is <a href="https://github.com/alphagov/govuk-cdn-config/blob/8ca5780ec513c0c17f64304c26bbd3de18c5138d/vcl_templates/tldredirect.vcl.erb#L46">targeting site-wide behaviour of our CDN</a>, so should be in <code>cdn.feature</code>.</p>
+</li>
+<li>
+<p>"<a href="https://github.com/alphagov/smokey/blob/a529bae614f28ab5073203a7a7d667c77c65c19d/features/draft_environment.feature#L11">Check visiting a draft page requires a signon session</a>" is targeting site-wide behaviour of our (draft) origin, so should be in <code>origin.feature</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
 <p>Try to use existing step definitions e.g. <a href="https://github.com/alphagov/smokey/blob/b656e65ef6853d65de3e24a7e884911054c8bf7d/features/step_definitions/smokey_steps.rb#L70-L72"><code>When I visit "/some/path"</code></a>. If a more specific step is required, name the <code>_steps.rb</code> file after the feature file i.e. <code>myfeature_steps.rb</code>.</p>
 <h3 id="tests-that-makes-changes-to-gov-uk">Tests that makes changes to GOV.UK</h3>
 <p>Any test that changes GOV.UK must be discreet:</p>
