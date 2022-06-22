@@ -213,7 +213,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/63faf148de731cd03836e94e1711e2407f89e362">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3e84a6239723a2832b28b9c6b35b28f2741f9e38">22 Jun 2022</a>
 </div>
 
  <h1 id='header'>The development and deployment pipeline</h1> <blockquote>
@@ -232,10 +232,7 @@
 </ol>
 <h2 id='wait-for-continuous-integration-to-pass'>Wait for Continuous Integration to pass</h2><p>When a Pull Request (PR) is opened, it often triggers an automated
 job, which typically lints the code and runs the tests.</p>
-<p>Increasingly we&rsquo;re using <a href="/manual/test-and-build-a-project-with-github-actions.html">GitHub Actions</a>
-to perform these checks, but historically we&rsquo;ve run these jobs on
-<a href="/manual/test-and-build-a-project-on-jenkins-ci.html">our CI infrastructure</a>.
-Some applications also trigger a run of the <a href="/manual/publishing-e2e-tests.html">end-to-end tests</a>.</p>
+<p><a href="/manual/testing.html#continuous-integration-checks">Read about Continuous Integration checks</a>.</p>
 <h2 id='review-your-own-changes'>Review your own changes</h2><p>As well as double-checking your code and commits, you may refer
 to the following:</p>
 <h3 id='heroku-app-review'>Heroku App Review</h3><p>Sometimes you may need to demo a running version of your change.
