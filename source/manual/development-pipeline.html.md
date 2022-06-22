@@ -24,10 +24,7 @@ Our development and deployment pipeline looks like this:
 When a Pull Request (PR) is opened, it often triggers an automated
 job, which typically lints the code and runs the tests.
 
-Increasingly we're using [GitHub Actions](/manual/test-and-build-a-project-with-github-actions.html)
-to perform these checks, but historically we've run these jobs on
-[our CI infrastructure](/manual/test-and-build-a-project-on-jenkins-ci.html).
-Some applications also trigger a run of the [end-to-end tests](/manual/publishing-e2e-tests.html).
+[Read about Continuous Integration checks](/manual/testing.html#continuous-integration-checks).
 
 ## Review your own changes
 
