@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-2ndline-tech"
+owner_slack: "#govuk-publishing-experience-tech"
 title: Whitehall Attachment Stuck in Uploading State
 parent: "/manual.html"
 layout: manual_layout

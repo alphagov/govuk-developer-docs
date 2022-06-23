@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-developers"
+owner_slack: "#govuk-publishing-platform"
 title: Work with the end to end publishing tests
 section: Testing
 layout: manual_layout
