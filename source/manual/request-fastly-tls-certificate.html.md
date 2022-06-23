@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-publishing-tech"
+owner_slack: "#govuk-publishing-platform"
 title: Request Fastly TLS certificate
 section: Transition
 layout: manual_layout
