@@ -507,28 +507,50 @@
 
 <h2 id="docker-and-mongodb">Docker and MongoDB</h2>
 
+<h3 id="prepare-data">Prepare data</h3>
+
+<p>Download a copy of the production version of the Content Store. This version can be found in the <code>govuk-integration-database-backups</code> AWS S3 bucket in the <code>mongo-api</code> folder. The file is called:</p>
+
+<pre><code>{DATETIME}-content_store_production.gz
+</code></pre>
+
+<p>where <code>{DATETIME}</code> is a datetime in <code>YYYY-MM-DDTHH:MM:SS</code> format.</p>
+
+<p>If you do not have access to AWS, ask a fellow GOV.UK data scientist or developer for assistance.</p>
+
+<p>Extract the <code>content_items.bson</code> file from the <code>content_store_production</code> folder of the downloaded file by entering the following command in your terminal:</p>
+
+<pre lang="shell"><code>tar -xvf PATH/TO/DATETIME-content_store_production.gz content_store_production/content_items.bson
+</code></pre>
+
+<p>The database file <code>content_items.bson</code> is now in <code>content_store_production/</code>. Move the .bson file into <code>/tmp/mongodb/</code> (or wherever location you will choose in the <code>docker run</code> command in the next section). Note that you may have to create this folder.</p>
+
+<p>Your data should now be in a directory that your container will be able to access.</p>
+
 <h3 id="get-the-image-and-run-the-container">Get the Image and run the container</h3>
 
-<p>The first time you run the following code the Image will need to be downloaded</p>
+<p>The first time you run the following code the Image will need to be downloaded:</p>
 
 <pre><code>docker pull mongo
 </code></pre>
 
-<p>Then go make a cup of tea whilst waiting for docker to run the image.</p>
+<p>and wait for docker to run the image. This may take a while.</p>
+
+<p>Next run:</p>
 
 <pre><code>docker run --name govuk -d -v /tmp/mongodb:/data/db -p 27017:27017 mongo
 </code></pre>
 
-<p>Where the arguments are:</p>
+<p>where the arguments are:</p>
 
 <pre><code>--name: Name of the container.  
 -d: Will start the container as a background (daemon) process. Don’t specify this argument to run the container as foreground process.  
 -v: Attach the /tmp/mongodb volume of the host system to /data/db volume of the container.  Note to non-MacOS users, `/tmp` might be RAM rather than disk, so use a different path instead (unless you have copious amounts of RAM).  The path can be whatever you like.
 -p: Map the host port to the container port.
-hello-mongo: Last argument is the name/id of the image. The version can be specified for reproducibility with a colon.    
+mongo: Last argument is the name/id of the image. The version can be specified for reproducibility with a colon.    
 </code></pre>
 
-<p>If you already have previously run a mongodb image also called <code>govuk</code> then you will need to drop it first.</p>
+<p>⚠️ If you already have previously run a mongodb image also called <code>govuk</code>, then you will need to drop it first:</p>
 
 <pre><code>docker rm -f govuk
 </code></pre>
@@ -536,12 +558,6 @@ hello-mongo: Last argument is the name/id of the image. The version can be speci
 <p>Use <code>docker ps</code> to check what containers are running.</p>
 
 <p>You can <a href="https://medium.com/@nagarwal/lifecycle-of-docker-container-d2da9f85959">stop or kill</a> the container at any time - you can restart it with <code>docker start govuk</code>.</p>
-
-<h3 id="prepare-data">Prepare data</h3>
-
-<p>Get the content store database dump from a fellow GOV.UK data scientist or developer. Move your data dump of the content store, something like, <code>content_items.bson</code> into <code>/tmp/mongodb</code> (or wherever you chose in the previous <code>docker run</code> command).</p>
-
-<p>Your data should be in a directory that your container can now access.</p>
 
 <h3 id="check-for-data">Check for data</h3>
 
@@ -552,6 +568,11 @@ hello-mongo: Last argument is the name/id of the image. The version can be speci
 
 <p>Check that you can see <code>content_items.bson</code> in the correct directory (i.e. the container can access your local volume specified above and the files therein). You can do so via the normal command lines operations such as <code>ls ...</code></p>
 
+<p>If you followed the instructions so far, you should see <code>content_items.bson</code> listed under:</p>
+
+<pre><code>ls data/db
+</code></pre>
+
 <h3 id="restore-mongodb-from-bson">Restore MongoDB from .bson</h3>
 
 <p>From the bash shell of the container run:</p>
@@ -561,7 +582,7 @@ hello-mongo: Last argument is the name/id of the image. The version can be speci
 
 <p>This should start restoring the <code>content_items</code> collection in the <code>content_store</code> database on the MongoDB instance.</p>
 
-<p>If you already have previously restored a mongodb then you will need to drop it first, otherwise it won&rsquo;t get replaced with your newer version.</p>
+<p>⚠️ If you already have previously restored a mongodb, then you will need to drop it first, otherwise it won&rsquo;t get replaced with your newer version:</p>
 
 <pre><code>mongorestore --drop -d content_store -c content_items data/db/content_items.bson
 </code></pre>
@@ -571,7 +592,7 @@ hello-mongo: Last argument is the name/id of the image. The version can be speci
 <pre><code>mongo 27017
 </code></pre>
 
-<p>Type help for help in the mongo shell.</p>
+<p>Type <code>help</code> for help in the mongo shell.</p>
 
 <p>Run some of these commands to test the database is there.</p>
 
