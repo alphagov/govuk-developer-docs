@@ -33,7 +33,7 @@ Troubleshooting steps (aim is to switch off and on the VPN):
 2. Once you logged in, you have to log into the `Production` organization by selecting: `VMWARE CLOUD` and then `GOV.UK Production`. You will be asked for the password again.
 3. In the `Production` organization, go to the `GOV.UK Management` virtual datacenter.
 4. Click `edges` in the left column to bring the list of edges.
-5. Click on the `GOV.UK Management` edges in the right main frame and `Configure Services` above it.
+5. Click on the `GOV.UK Management` edges in the right main frame and `Services` above it.
 6. In the pop-up window, click on `VPN` in the menu bar and then `IPsec VPN Sites`
 7. In the list of VPN sites, select `UKC Licensify to AWS` VPN and click on the edit icon above.
 8. In the new pop-up window, turn the VPN off by toggling the `enable` switch and clicking `KEEP`
