@@ -61,7 +61,7 @@ original's.
 
 ```
 aws rds restore-db-instance-from-db-snapshot \
-    --db-subnet-group-name <db-subnet-group-name>
+    --db-subnet-group-name <db-subnet-group-name> \
     --db-instance-identifier <restored-db-instance-identifier> \
     --db-snapshot-identifier <snapshot-arn>
 ```
@@ -107,7 +107,7 @@ eg `/var/tmp/update_dns.json`, with the following content.
                 "TTL": 300,
                 "ResourceRecords": [
                     {
-                        "Value": "<restored-db-endpoint>",
+                        "Value": "<restored-db-endpoint>"
                     }
                 ]
             }
