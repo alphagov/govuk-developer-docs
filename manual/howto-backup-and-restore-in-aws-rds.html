@@ -189,7 +189,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8c0fd500625f834422dfb4fc8ebfd2e05562ba56">27 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ffb21b5ac3cf3529b3f44dba17f9b69bdb249947">27 Jun 2022</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>Backups of RDS instances are <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance">taken
@@ -199,44 +199,44 @@ They are stored in Amazon S3. SQL dumps are also taken nightly from the various
 process.</p>
 <h3 id='restore-an-rds-instance-via-the-aws-console'>Restore an RDS instance via the AWS Console</h3><p>Follow <a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_RestoreFromSnapshot.html">the AWS documentation on Restoring from a DB Snapshot</a>.</p>
 <h3 id='restore-an-rds-instance-via-the-aws-cli'>Restore an RDS instance via the AWS CLI</h3><p>Retrieve the ARNs (unique identifiers) of the snapshots into a variable.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>SNAPSHOTS=$(aws rds describe-db-snapshots --query 'DBSnapshots[].DBSnapshotArn' | jq -r '@csv' | tr ',' ' ' | tr -d '"')
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>SNAPSHOTS=$(gds-cli aws govuk-&lt;environment&gt;-admin aws rds describe-db-snapshots --query 'DBSnapshots[].DBSnapshotArn' | jq -r '@csv' | tr ',' ' ' | tr -d '"')
 </code></pre></div><p>Loop through the snapshot ARN list and use the <code>list-tags-for-resource</code>
 parameter to get the tags for the snapshot. The tags have
 human-readable &ldquo;Name&rdquo; parameters (like whitehall-mysql). These tell you which
 RDS instance the snapshot is from.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>for SNAPSHOT in $SNAPSHOTS ; do
-  echo -ne "\n-- $I -- " ;  aws rds list-tags-for-resource --resource-name $SNAPSHOT | jq -r '.TagList[] | [.Key, .Value] | @csv' | tr -d '"' | grep Name ;
+  echo -ne "\n-- $I -- " ; gds-cli aws govuk-&lt;environment&gt;-admin aws rds list-tags-for-resource --resource-name $SNAPSHOT | jq -r '.TagList[] | [.Key, .Value] | @csv' | tr -d '"' | grep Name ;
 done
 </code></pre></div><p>Databases need to restore into the same VPC and with the same security groups as
 the original instance the snapshot came from. To do this, find which database
 the snapshot was generated from:</p>
-<p><code>aws rds describe-db-snapshots --db-snapshot-identifier &lt;snapshot-arn&gt; --query &#39;DBSnapshots[].DBInstanceIdentifier&#39;</code></p>
+<p><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds describe-db-snapshots --db-snapshot-identifier &lt;snapshot-arn&gt; --query &#39;DBSnapshots[].DBInstanceIdentifier&#39;</code></p>
 <p>With the output of the above command - the original database instance ID
 (something like <code>terraform-2017000...</code>) - find the security groups, parameter
 groups and subnet groups for that instance.</p>
 <p>The restored database must have the same security groups and be in the same VPC
 (that&rsquo;s the &ldquo;subnet group name&rdquo; parameter) as the original one, otherwise apps
 won&rsquo;t be able to connect to it.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws rds describe-db-instances --db-instance-identifier mydb-xxx \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds describe-db-instances --db-instance-identifier mydb-xxx \
       --query 'DBInstances[].[VpcSecurityGroups[].VpcSecurityGroupId,DBParameterGroups[].DBParameterGroupName,DBSubnetGroup.DBSubnetGroupName]'
 </code></pre></div><p>You have all the parameters you need (snapshot-arn, restored-db-instance-identifier,
 security-group-id, db-parameter-group-name, and db-subnet-group-name) to restore
 the database and change the restored database&rsquo;s security groups to match the
 original&rsquo;s.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws rds restore-db-instance-from-db-snapshot \
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds restore-db-instance-from-db-snapshot \
     --db-subnet-group-name &lt;db-subnet-group-name&gt; \
     --db-instance-identifier &lt;restored-db-instance-identifier&gt; \
     --db-snapshot-identifier &lt;snapshot-arn&gt;
-</code></pre></div><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws rds modify-db-instance \
+</code></pre></div><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds modify-db-instance \
     --db-instance-identifier &lt;restored-db-instance-id \
     --vpc-security-group-ids &lt;security-group-id&gt; \
     --db-parameter-group-name &lt;db-parameter-group-name&gt;
 </code></pre></div><p>Once restored, you will need to update the DNS so that the restored database can
 be accessed on the internal domain.</p>
 <p>Get the endpoint of the restored instance:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws rds describe-db-instances --db-instance-identifier &lt;restored-db-instance-id --query 'DBInstances[].Endpoint'
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds describe-db-instances --db-instance-identifier &lt;restored-db-instance-id --query 'DBInstances[].Endpoint'
 </code></pre></div><p>Get the zone ID of the GOV.UK internal domain name:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws route53 list-hosted-zones-by-name --dns-name &lt;integration-internal-domain&gt; --max-items 1
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws route53 list-hosted-zones-by-name --dns-name &lt;integration-internal-domain&gt; --max-items 1
 </code></pre></div><p>(It&rsquo;ll be in the form <code>&quot;Id&quot;: &quot;/hostedzone/ZXXXXX&quot;</code> - only the <code>Z</code> section is
 required.)</p>
 <p>Amazon Route53 doesn&rsquo;t have a command line to update just one DNS record. It
@@ -261,7 +261,7 @@ eg <code>/var/tmp/update_dns.json</code>, with the following content.</p>
     ]
 }
 </code></pre></div><p>Apply these changes with the following command, and then the restore is finished!</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws route53 change-resource-record-sets --hosted-zone-id &lt;zone-id&gt; --change-batch file:///var/tmp/update_dns.json
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws route53 change-resource-record-sets --hosted-zone-id &lt;zone-id&gt; --change-batch file:///var/tmp/update_dns.json
 </code></pre></div>
 
   <div class='related-content'>
