@@ -189,7 +189,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8c0fd500625f834422dfb4fc8ebfd2e05562ba56">27 Jun 2022</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>Backups of RDS instances are <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance">taken
@@ -224,7 +224,7 @@ security-group-id, db-parameter-group-name, and db-subnet-group-name) to restore
 the database and change the restored database&rsquo;s security groups to match the
 original&rsquo;s.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws rds restore-db-instance-from-db-snapshot \
-    --db-subnet-group-name &lt;db-subnet-group-name&gt;
+    --db-subnet-group-name &lt;db-subnet-group-name&gt; \
     --db-instance-identifier &lt;restored-db-instance-identifier&gt; \
     --db-snapshot-identifier &lt;snapshot-arn&gt;
 </code></pre></div><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>aws rds modify-db-instance \
@@ -253,7 +253,7 @@ eg <code>/var/tmp/update_dns.json</code>, with the following content.</p>
                 "TTL": 300,
                 "ResourceRecords": [
                     {
-                        "Value": "&lt;restored-db-endpoint&gt;",
+                        "Value": "&lt;restored-db-endpoint&gt;"
                     }
                 ]
             }
