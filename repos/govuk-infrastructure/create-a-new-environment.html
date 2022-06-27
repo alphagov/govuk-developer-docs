@@ -442,7 +442,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/2f73d7d7953f6f1ce4b4441351edbf821c302169">7 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/4554c056ce77c0f076a9d85f740b264fb66f04ed">24 Jun 2022</a>
 </div>
 
   <h1 class="page-title">govuk-infrastructure: Create a new environment</h1>
@@ -462,43 +462,13 @@ containing the old EC2/<a href="https://github.com/alphagov/govuk-puppet">Puppet
 <p>The Terraform code is organised into several <a href="https://www.terraform.io/docs/language/modules/#the-root-module">root
 modules</a>,
 which we call <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments">deployments</a>.</p>
-<p>Some of these deployments require external <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/variables">tfvars
-files</a>. To create a new environment, you
-will need to copy the variables directory for an existing environment (e.g.
-<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/variables/integration">integration</a>) and modify as
-appropriate.</p>
-<p>There are some dependencies between the root modules. The order to deploy them is:</p>
-<ol>
-<li>
-<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/ecr"><code>ecr</code></a>: creates the ECR container registry from
-which the cluster pull container images. There is a single registry for all
-of the environments (to avoid consistency problems with image tags and
-having to copy images between registries), so this module is not deployed
-per-environment.</li>
-<li>
-<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/terraform-lock"><code>terraform-lock</code></a>: creates the
-DynamoDB table which Terraform uses to control concurrent access to the
-state files in S3.</li>
-<li>
-<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-infrastructure"><code>cluster-infrastructure</code></a>
-creates the AWS resources for the cluster.</li>
-<li>
-<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/cluster-services"><code>cluster-services</code></a>
-deploys the base services into the cluster.</li>
-<li>
-<a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/govuk-publishing-infrastructure"><code>govuk-publishing-infrastructure</code></a>
-creates AWS resources specific to the GOV.UK apps where we are not yet
-able to manage those resources via Kubernetes.</li>
-</ol>
-<p>Each these root modules (except <code>ecr</code>) requires a <a href="https://www.terraform.io/docs/language/settings/backends/configuration.html#partial-configuration">backend config
-file</a>
-You can use an existing backend file as a template.</p>
 <p>To deploy the root modules, see <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/docs/applying-terraform.md">Applying Terraform</a>.</p>
-<h2 id="cluster-services-deployment">
-<code>cluster-services</code> deployment</h2>
-<p>There are some <a href="/repos/govuk-infrastructure/prerequisite-secrets.html">prerequisite secrets</a>
-which are not generated automatically. Create these secrets before running
-<code>terraform apply</code> for the first time.</p>
+<h2 id="gov-uk-apps-deployment">GOV.UK apps deployment</h2>
+<p>GOV.UK apps are deployed by ArgoCD and the config is stored in the
+<a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/argocd-apps">argocd-apps</a>
+helm chart of the [govuk-helm-charts] GitHub repository.</p>
+<p>Please see the <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/">GOV.UK k8s manual website</a>
+for further details on how to operate the platform.</p>
 
 
             
