@@ -163,22 +163,16 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/89df1eee4d8e07bd78a7f5a51bbd328dac59de01">22 Jun 2022</a>
 </div>
 
  <h1 id='header'>Smokey loop tests</h1> <p><a href="https://github.com/alphagov/smokey">Smokey</a> runs in a continuous loop in each environment.
 and dumps the output of each run into a <code>tmp/smokey.json</code> file.
-We have <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp">Icinga checks</a> for <a href="https://github.com/alphagov/smokey/blob/main/docs/writing-tests.md#alerting-in-icinga">most Smokey features</a>, so that
+We have <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp">Icinga checks</a> for <a href="https://github.com/alphagov/smokey/blob/main/docs/deployment.md#after-you-merge">each Smokey feature</a>, so that
 we are alerted when some aspect of GOV.UK may be in trouble.</p>
 <p>When a test fails, you should see a &ldquo;Smokey loop for &lt;feature&gt;&rdquo;
 alert. The alert description should contain the reason for the
 failure, so you can diagnose the problem.</p>
-
-<blockquote>
-<p><strong>NOTE</strong>: we have <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/icinga/manifests/config/smokey.pp">a separate &ldquo;Smokey&rdquo; alert</a> for manual runs
-of the Smokey job in Jenkins. This alert covers all Smokey
-features, while &ldquo;Smokey loop&rdquo; alerts are more granular.</p>
-</blockquote>
 <h2 id='try-kicking-the-nginx-machines'>Try kicking the Nginx machines</h2><p>If many of the tests are failing in an AWS environment, it may be because the Nginx services haven&rsquo;t registered new
 boxes coming online or old ones going offline. You can try to fix this by:</p>
 <p>SSHing into each <code>cache</code>, <code>draft_cache</code> and <code>monitoring</code> box and restarting nginx:</p>
