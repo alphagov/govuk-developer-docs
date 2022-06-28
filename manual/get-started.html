@@ -269,7 +269,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4f2775557fcbaba0730cd0fa9c3c2af64dbabcc6">21 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d08197a0f0de651e37e96d70a4791142e071a4eb">27 Jun 2022</a>
 </div>
 
  <h1 id='header'>Get started on GOV.UK</h1> <p>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a> or CDDO.</p>
@@ -356,7 +356,8 @@ brew <span class="nb">install</span> <span class="nt">--cask</span> aws-vault
 <h3 id='for-bring-your-own-devices-byod'> For Bring Your Own Devices (BYOD)</h3><p>Follow the <a href="https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit#">VPN guide for Bring Your Own Devices (BYOD)</a></p>
 <h2 id='6-set-up-gov-uk-docker'>6. Set up GOV.UK Docker</h2><p>We use a <code>govuk-docker</code> Docker environment for local development.</p>
 <p>To set up GOV.UK Docker, see the <a href="https://github.com/alphagov/govuk-docker/blob/master/README.md">installation instructions in the <code>govuk-docker</code> GitHub repo</a>.</p>
-<h2 id='7-get-ssh-access-to-integration'>7. Get SSH access to integration</h2><h3 id='get-access'>Get access</h3><p>Ask your tech lead or <a href="https://gds.slack.com/archives/CADKZN519">GOV.UK Technical 2nd Line on Slack</a> to add your SSH username (<code>firstnamelastname</code>) to the <a href="https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml">list of GOV.UK tech users</a> in the <a href="https://github.com/alphagov/govuk-user-reviewer">user monitoring system</a>.</p>
+<h2 id='7-get-ssh-access-to-integration'>7. Get SSH access to integration</h2><p>If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
+<h3 id='get-access'>Get access</h3><p>Ask your tech lead or <a href="https://gds.slack.com/archives/CADKZN519">GOV.UK Technical 2nd Line on Slack</a> to add your SSH username (<code>firstnamelastname</code>) to the <a href="https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml">list of GOV.UK tech users</a> in the <a href="https://github.com/alphagov/govuk-user-reviewer">user monitoring system</a>.</p>
 <h3 id='create-a-user-to-ssh-into-integration'>Create a user to SSH into integration</h3><p>User accounts in our integration environments are managed in the <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> repository.</p>
 
 <ol>
@@ -404,7 +405,8 @@ class users::&lt;johnsmith&gt; {
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>govuk_app_console publisher
 </code></pre></div><p>As a shortcut, to remove the need to look up the machine class for an application, you can use the following without SSHing first:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">--environment</span> integration app-console publisher
-</code></pre></div><h2 id='8-get-aws-access'>8. Get AWS access</h2><p>GDS maintains a central account for AWS access.</p>
+</code></pre></div><h2 id='8-get-aws-access'>8. Get AWS access</h2><p>If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
+<p>GDS maintains a central account for AWS access.</p>
 <p>You must have access to this GDS account to work with <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a> and <a href="https://github.com/alphagov/govuk-aws-data">govuk-aws-data</a>.</p>
 <h3 id='request-access-to-the-gds-aws-account'>Request access to the GDS AWS account</h3><p>You request access to the GDS AWS account through the <a href="https://gds-request-an-aws-account.cloudapps.digital">Request an AWS account form</a>.</p>
 <p>Select <strong>Request user access</strong> to request access to the GDS AWS account and complete the form.</p>
@@ -463,7 +465,8 @@ See <a href="https://docs.publishing.service.gov.uk/manual/deploying-terraform.h
 to find out how to deploy infrastructure changes. The stackname is <code>govuk</code> and the project is
 <code>infra-security</code>.</p>
 <p>See the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html">AWS IAM users documentation</a> for more information.</p>
-<h2 id='9-access-aws-for-the-first-time'>9. Access AWS for the first time</h2>
+<h2 id='9-access-aws-for-the-first-time'>9. Access AWS for the first time</h2><p>If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
+
 <ol>
 <li>Open the <a href="#3-install-gds-command-line-tools">GDS CLI</a> and run <code>gds aws govuk-integration-readonly -l</code> to open the AWS console in your web browser.</li>
 <li>In the GDS CLI, enter your <a href="#generate-a-pair-of-access-keys">AWS access key ID and secret access key</a>.</li>
