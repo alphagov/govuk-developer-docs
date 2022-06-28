@@ -20,7 +20,11 @@ GOV.UK has several layers of testing:
 
 Recommended reading: [A new standard of testing for GOV.UK](https://technology.blog.gov.uk/2021/10/08/a-new-standard-of-testing-for-gov-uk/).
 
-This manual is about how we currently test GOV.UK. We will never have "perfect" tests but we can also do better than what we have now e.g. by having more types of tests run before a change is merged, so we can learn about issues earlier in the development process.
+This manual is about how we currently test GOV.UK. We will never have "perfect" tests but we can also do better than what we have now e.g. by
+
+- Having more types of tests that run before a change is merged, so we can learn about issues earlier in the development process.
+
+- Investing in other ways to test changes, so that we are less relient on expensive end-to-end tests for things like CDN config ([tech debt](https://trello.com/c/y6MIgxjp/14-cdn-configuration-is-spread-over-multiple-repositories-and-not-reproducible)).
 
 ## Continuous Deployment checks
 
