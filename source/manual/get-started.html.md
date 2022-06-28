@@ -166,6 +166,8 @@ To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker
 
 ## 7. Get SSH access to integration
 
+If you are a frontend developer you do not need to complete this step as part of your initial setup.
+
 ### Get access
 
 Ask your tech lead or [GOV.UK Technical 2nd Line on Slack](https://gds.slack.com/archives/CADKZN519) to add your SSH username (`firstnamelastname`) to the [list of GOV.UK tech users](https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml) in the [user monitoring system][user-reviewer].
@@ -258,6 +260,8 @@ gds govuk connect --environment integration app-console publisher
 
 ## 8. Get AWS access
 
+If you are a frontend developer you do not need to complete this step as part of your initial setup.
+
 GDS maintains a central account for AWS access.
 
 You must have access to this GDS account to work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data).
@@ -349,6 +353,8 @@ to find out how to deploy infrastructure changes. The stackname is `govuk` and t
 See the [AWS IAM users documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) for more information.
 
 ## 9. Access AWS for the first time
+
+If you are a frontend developer you do not need to complete this step as part of your initial setup.
 
 1. Open the [GDS CLI](#3-install-gds-command-line-tools) and run `gds aws govuk-integration-readonly -l` to open the AWS console in your web browser.
 1. In the GDS CLI, enter your [AWS access key ID and secret access key](#generate-a-pair-of-access-keys).
