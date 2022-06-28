@@ -8,16 +8,12 @@ section: Icinga alerts
 
 [Smokey][smokey] runs in a continuous loop in each environment.
 and dumps the output of each run into a `tmp/smokey.json` file.
-We have [Icinga checks] for [most Smokey features], so that
+We have [Icinga checks] for [each Smokey feature], so that
 we are alerted when some aspect of GOV.UK may be in trouble.
 
 When a test fails, you should see a "Smokey loop for \<feature\>"
 alert. The alert description should contain the reason for the
 failure, so you can diagnose the problem.
-
-> **NOTE**: we have [a separate "Smokey" alert] for manual runs
-> of the Smokey job in Jenkins. This alert covers all Smokey
-> features, while "Smokey loop" alerts are more granular.
 
 ## Try kicking the Nginx machines
 
@@ -76,6 +72,6 @@ hieradata. Here's an [example PR in govuk-secrets](https://github.com/alphagov/g
 
 [signon]: https://github.com/alphagov/signon
 [smokey]: https://github.com/alphagov/smokey
-[most Smokey features]: https://github.com/alphagov/smokey/blob/main/docs/writing-tests.md#alerting-in-icinga
+[each Smokey feature]: https://github.com/alphagov/smokey/blob/main/docs/deployment.md#after-you-merge
 [Icinga checks]: https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/manifests/checks/smokey.pp
 [a separate "Smokey" alert]: https://github.com/alphagov/govuk-puppet/blob/master/modules/icinga/manifests/config/smokey.pp
