@@ -142,6 +142,9 @@
           </li>
         </ul>
       </li>
+      <li>
+        <a href="#troublshooting"><span>Troublshooting</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -193,7 +196,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/175490be21cacbdab13d56cb6170b56484ac29e5">27 Jun 2022</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.</p>
@@ -248,6 +251,18 @@ edition.major_change_published_at
 </code></pre></div><p>Update edition:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.update(details: details)
 </code></pre></div><p>Finally, <a href="https://docs.publishing.service.gov.uk/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
+<h2 id='troublshooting'>Troublshooting</h2><p>The steps below helped us in a situation where the change note was present in the content item
+in both Whitehall and publishing-api, but was not being reflected on the page itself. We
+found this was due to the content-store not being in sync with the publishing-api. This can
+happen in <code>staging</code> due to an issue with the overnight data sync.</p>
+<p>Things we tried:</p>
+
+<ul>
+<li><a href="https://docs.publishing.service.gov.uk/manual/purge-cache.html">purge the page from cache</a></li>
+<li>check the <a href="https://docs.publishing.service.gov.uk/manual/sidekiq.html#monitoring">Sidekiq monitoring queue</a> to see if the document is stuck somewhere in a queue</li>
+<li>look in <a href="https://docs.publishing.service.gov.uk/manual/tools.html#kibana">Kibana</a> - there might be some with the status <code>409</code> which might be due to the content-store thinking it&rsquo;s got more up to date data than the publishing-api</li>
+<li>compare the <code>payload_version</code> in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this <a href="https://docs.publishing.service.gov.uk/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages">doc on publishing-api messages</a>)</li>
+</ul>
 
 
   <div class='related-content'>
