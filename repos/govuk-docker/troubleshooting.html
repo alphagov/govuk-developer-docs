@@ -442,7 +442,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/b9c43c5cd17ae6c338aceec3ce8ece967d324fa8">14 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/891a4a113030b1f7d1c233759d9b814807f55c25">20 Jun 2022</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -458,8 +458,18 @@
 ssh_username: "yourname"
 </code></pre>
 <h2 id="diagnose-common-issues-when-setting-up-gov-uk-docker">Diagnose common issues when setting up GOV.UK Docker</h2>
-<p>Run the following command in <code>~/govuk/govuk-docker</code>. Since this script makes use of Ruby Gems, you will need to <a href="https://github.com/alphagov/govuk-docker/blob/main/CONTRIBUTING.md#testing">install some additional dependencies</a> in order to do this.</p>
+<p>Run the following command in <code>~/govuk/govuk-docker</code>.</p>
 <pre><code>bin/doctor
+</code></pre>
+<p>Since this script makes use of Ruby Gems, you will need to install some additional dependencies in order to do this.</p>
+<p>First make sure you have the following dependencies:</p>
+<ul>
+<li><a href="https://github.com/rbenv/rbenv#installation">rbenv</a></li>
+</ul>
+<p>Next install Ruby / dependencies and run all the tests:</p>
+<pre lang="sh"><code>rbenv install
+
+bundle install
 </code></pre>
 <h2 id="diagnose-database-issues-with-a-projectapp-not-making">Diagnose database issues with a project/app not making</h2>
 <p>If you run <code>make</code> on an app inside govuk-docker and face any of the following database issues:</p>

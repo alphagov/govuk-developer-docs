@@ -204,7 +204,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d42edef8be52bfb4f797908d4ba83541da5c5b3c">6 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36d0b939b2fe7618ded07bf81c5a275f834993f7">22 Jun 2022</a>
 </div>
 
  <h1 id='header'>How we test GOV.UK</h1> <p>GOV.UK has several layers of testing:</p>
@@ -225,7 +225,12 @@
 </ul></li>
 </ul>
 <p>Recommended reading: <a href="https://technology.blog.gov.uk/2021/10/08/a-new-standard-of-testing-for-gov-uk/">A new standard of testing for GOV.UK</a>.</p>
-<p>This manual is about how we currently test GOV.UK. We will never have &ldquo;perfect&rdquo; tests but we can also do better than what we have now e.g. by having more types of tests run before a change is merged, so we can learn about issues earlier in the development process.</p>
+<p>This manual is about how we currently test GOV.UK. We will never have &ldquo;perfect&rdquo; tests but we can also do better than what we have now e.g. by</p>
+
+<ul>
+<li><p>Having more types of tests that run before a change is merged, so we can learn about issues earlier in the development process.</p></li>
+<li><p>Investing in other ways to test changes, so that we are less relient on expensive end-to-end tests for things like CDN config (<a href="https://trello.com/c/y6MIgxjp/14-cdn-configuration-is-spread-over-multiple-repositories-and-not-reproducible">tech debt</a>).</p></li>
+</ul>
 <h2 id='continuous-deployment-checks'>Continuous Deployment checks</h2><h3 id='smokey'>Smokey</h3><p><a href="https://github.com/alphagov/smokey">Smokey</a> is the smoke test suite for GOV.UK.</p>
 <p>Smoke tests are meant to be &ldquo;probes&rdquo;: their purpose is to monitor real environments for transient failures. Conversely, a &ldquo;test&rdquo; should be run in a temporary, isolated environment. We use Smokey as a suite of probes and a suite of &ldquo;surrogate&rdquo; end-to-end tests:</p>
 
