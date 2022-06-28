@@ -150,6 +150,24 @@ edition.update(details: details)
 
 Finally, [send the document downstream] using the content id.
 
+## Troublshooting
+
+The steps below helped us in a situation where the change note was present in the content item
+in both Whitehall and publishing-api, but was not being reflected on the page itself. We
+found this was due to the content-store not being in sync with the publishing-api. This can
+happen in `staging` due to an issue with the overnight data sync.
+
+Things we tried:
+
+- [purge the page from cache]
+- check the [Sidekiq monitoring queue] to see if the document is stuck somewhere in a queue
+- look in [Kibana] - there might be some with the status `409` which might be due to the content-store thinking it's got more up to date data than the publishing-api
+- compare the `payload_version` in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this [doc on publishing-api messages])
+
 [ChangeNote]: https://github.com/alphagov/publishing-api/blob/main/app/models/change_note.rb
 [details JSON]: https://github.com/alphagov/publishing-api/blob/d6707237ee31090b2bb04015ba71d476f462448a/db/schema.rb#L85
 [send the document downstream]: https://docs.publishing.service.gov.uk/repos/publishing-api/admin-tasks.html#representing-data-downstream
+[sidekiq monitoring queue]: https://docs.publishing.service.gov.uk/manual/sidekiq.html#monitoring
+[Kibana]: https://docs.publishing.service.gov.uk/manual/tools.html#kibana
+[doc on publishing-api messages]: https://docs.publishing.service.gov.uk/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages
+[purge the page from cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html
