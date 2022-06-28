@@ -24,7 +24,7 @@ gds govuk connect -e production ssh aws/jumpbox "govuk_node_list -C rabbitmq"
 If the dead node is not in the list, then it can be safely removed from the cluster. To do this, run the following with the dead node:
 
 ```bash
-gds govuk connect -e production ssh aws/rabbitmq "sudo rabbitmqctl forget_cluster_node [dead_node e.g. rabbit@ip-10-13-5-19]"
+gds govuk connect -e production ssh aws/rabbitmq "sudo rabbitmqctl forget_cluster_node rabbit@ip-xx-xx-x-xx"
 ```
 
 For information about how we use RabbitMQ, see [here][rabbitmq_doc].
