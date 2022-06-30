@@ -441,15 +441,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/470054bda41385a0bd39a6151bdbdba6026c7063">7 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/0683efc7b8f9e2b020609876367950edce47f37d">7 Jun 2022</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Receive emails from Email Alert API in Integration and Staging</h1>
@@ -459,6 +452,11 @@
 Google groups for the integration and staging environments. Emails
 sent to addresses other than those of these groups will be
 <a href="https://github.com/alphagov/email-alert-api/blob/006afa2ee6c35631b83b16519f8af2c6c2ea5c59/app/services/send_email_service/send_pseudo_email.rb#L10-L20">written to a logfile</a>.</p>
+<blockquote>
+<p>Note that these two emails are sometimes accidentally used to sign up to GOV.UK
+accounts. If you try to test a signup and are stopped by the requirement to log
+into an account, you can fix using the procedure below under "Troubleshooting"</p>
+</blockquote>
 <h2 id="in-integration">In Integration</h2>
 <p>In Integration there is the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-integration">Email Alert API Integration Google
 group</a>. It has an email address of
@@ -484,6 +482,11 @@ alert email.</p>
 databases in Integration and Staging are reset due to the <a href="https://github.com/alphagov/email-alert-api/blob/main/manual/govuk-env-sync.html">data sync</a>.
 This will mean that any test subscriptions you've created will be lost and
 you'll need to recreate them.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>Sometimes these email addresses get linked to GOV.UK accounts, making them impossible to use for testing these journeys. If that happens, you can use the accounts-api console in the relevant environment to clear the account:</p>
+<pre><code>% gds govuk connect app-console -e integration account-api
+&gt; OidcUser.where(email: "email-alert-api-integration@digital.cabinet-office.gov.uk").delete_all
+</code></pre>
 
 
             
