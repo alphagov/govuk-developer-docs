@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-infrastructure - GOV.UK Developer Documentation</title>
+    <title>govuk-infrastructure: Content Delivery Network (CDN) - Fastly - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/setting-up-content-delivery-network.html">
 
-      <meta name="description" content="Everything about govuk-infrastructure (The infrastructure as code for GOV.UK (paired with https://github.com/alphagov/govuk-aws))" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-infrastructure - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure.html" />
+      <meta name="twitter:title" content="govuk-infrastructure: Content Delivery Network (CDN) - Fastly - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/setting-up-content-delivery-network.html" />
 
-      <meta property="og:description" content="Everything about govuk-infrastructure (The infrastructure as code for GOV.UK (paired with https://github.com/alphagov/govuk-aws))" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-infrastructure" />
+      <meta property="og:title" content="govuk-infrastructure: Content Delivery Network (CDN) - Fastly" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-infrastructure/setting-up-content-delivery-network.html" />
 
     
   </head>
@@ -219,7 +217,7 @@
           <li><a href="/repos/govuk-dns.html"><span>govuk-dns</span></a></li>
           <li><a href="/repos/govuk-docker.html"><span>govuk-docker</span></a></li>
           <li><a href="/repos/govuk-helm-charts.html"><span>govuk-helm-charts</span></a></li>
-          <li><a href="/repos/govuk-infrastructure.html" class="toc-link--in-view"><span>govuk-infrastructure</span></a></li>
+          <li><a href="/repos/govuk-infrastructure.html"><span>govuk-infrastructure</span></a></li>
           <li><a href="/repos/govuk-jenkinslib.html"><span>govuk-jenkinslib</span></a></li>
           <li><a href="/repos/govuk-kubernetes-cluster-user-docs.html"><span>govuk-kubernetes-cluster-user-docs</span></a></li>
           <li><a href="/repos/govuk-lambda-app-deployment.html"><span>govuk-lambda-app-deployment</span></a></li>
@@ -415,6 +413,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-infrastructure",
+        "@id": "http://www.dev.gov.uk/repos/govuk-infrastructure.html"
+      }
     }
   ]
 }
@@ -426,132 +432,52 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk-infrastructure.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-infrastructure&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-infrastructure.html">govuk-infrastructure</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Repository: govuk-infrastructure</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>The infrastructure as code for GOV.UK (paired with <a href="https://github.com/alphagov/govuk-aws">https://github.com/alphagov/govuk-aws</a>)</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-infrastructure">govuk-infrastructure</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-replatforming</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-infrastructure" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk-infrastructure.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk-infrastructure/commit/001b12723a2a61054303feede5d5924a6e6c3b4a">28 Jun 2022</a>
 </div>
-<h2 id='imported-documents'>Imported documents</h2>
-<ul>
-<li><a href='/repos/govuk-infrastructure/setting-up-content-delivery-network.html' class='govuk-link'>Content Delivery Network (CDN) - Fastly</a></li>
-        <li><a href='/repos/govuk-infrastructure/create-a-new-environment.html' class='govuk-link'>Create a new environment</a></li>
-        <li><a href='/repos/govuk-infrastructure/kubernetes-external-secrets.html' class='govuk-link'>Kubernetes external secrets</a></li>
-        <li><a href='/repos/govuk-infrastructure/prerequisite-secrets.html' class='govuk-link'>Prerequisite Secrets</a></li>
-        <li><a href='/repos/govuk-infrastructure/signon-secrets.html' class='govuk-link'>Signon secrets</a></li>
-        <li><a href='/repos/govuk-infrastructure/start-here.html' class='govuk-link'>Start here</a></li>
-        <li><a href='/repos/govuk-infrastructure/cluster-upgrade.html' class='govuk-link'>Upgrading the cluster</a></li>
 
+  <h1 class="page-title">govuk-infrastructure: Content Delivery Network (CDN) - Fastly</h1>
 
-      <li><strong>/architecture/decisions</strong></li>
-      <ul>
-                <li><a href='/repos/govuk-infrastructure/architecture/decisions/0001-record-architecture-decisions.html' class='govuk-link'>1. Record architecture decisions</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0010-use-dex-idp-for-user-web-auth.html' class='govuk-link'>10. Use Dex IdP for user web auth</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0002-use-aws-eks-terraform-module.html' class='govuk-link'>2. Use aws-eks terraform module</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0003-split-terraform-state-into-separate-aws-cluster-and-kubernetes-resource-phases.html' class='govuk-link'>3. Split terraform state into separate AWS cluster and Kubernetes resource phases</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0004-use-aws-load-balancer-controller-for-edge-traffic-services.html' class='govuk-link'>4. Use AWS Load Balancer Controller for edge traffic services</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0005-use-eks-managed-node-groups.html' class='govuk-link'>5. Use EKS managed node groups</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0006-use-helm-for-application-package-management.html' class='govuk-link'>6. Use Helm for application package management</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0007-use-fluentbit-elasticsearch-and-kibana-for-application-logs.html' class='govuk-link'>7. Use fluentbit, elasticsearch and kibana for application logs</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0008-use-external-secrets-for-secrets-storage.html' class='govuk-link'>8. Use external-secrets for secrets storage</a></li>
-        <li><a href='/repos/govuk-infrastructure/architecture/decisions/0009-use-external-dns-for-dns-record-management.html' class='govuk-link'>9. Use external-dns for DNS record management</a></li>
-
-      </ul>
-</ul>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><strong>This is a work in progress. This code does not represent production infrastructure yet. For the canonical source of GOV.UK&rsquo;s infrastructure, see <a href="https://github.com/alphagov/govuk-aws">alphagov/govuk-aws</a> and <a href="https://github.com/alphagov/govuk-puppet">alphagov/govuk-puppet</a> repos.</strong></p>
-
-<h3 id="whats-in-this-repo">What&rsquo;s in this repo</h3>
-
-<p>The govuk-infrastructure repo contains Terraform modules for turning up an EKS cluster for GOV.UK.</p>
-
-<p>Helm charts have moved to <a href="https://github.com/alphagov/govuk-helm-charts">alphagov/govuk-helm-charts</a>.</p>
-
-<h3 id="usage">Usage</h3>
-
-<p>To install the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/.terraform-version">currently used version of Terraform</a>:</p>
-
-<pre lang="shell"><code>brew install tfenv
-cd terraform/
-tfenv install
-</code></pre>
-
-<h3 id="working-on-this-repo">Working on this repo</h3>
-
-<p>We have some recommended pre-commit scripts. If you&rsquo;re making changes to this
-repo, it&rsquo;s worth setting up the pre-commit hooks on your machine:</p>
-
-<p><a href="https://pre-commit.com/#install">https://pre-commit.com/#install</a></p>
-
-<p>See <a href="https://github.com/alphagov/gds-pre-commit">alphagov/gds-pre-commit</a> for
-more recommendations on using pre-commit.</p>
-
-<h3 id="documentation">Documentation</h3>
-
-<p>Further documentation about how to perform various tasks can be found <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs">here</a></p>
-
-<p>There are also docs in the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/docs">terraform/docs</a> and directories.</p>
-
-<h3 id="who-we-are">Who we are</h3>
-
-<p>We&rsquo;re the GOV.UK Replatforming team, discovering the future of GOV.UK&rsquo;s infrastructure, one line of code at a time. You can find us in #govuk-replatforming on the GDS Slack, and our <a href="https://trello.com/b/u4FCzm53/">(internal) Trello board exists</a>.</p>
-<p></div></p>
+  
+<p>GOV.UK uses Fastly as its Content Delivery Network (CDN).</p>
+<h2 id="setting-up">Setting-up</h2>
+<p>To setup Fastly, log into the Fastly web management <a href="https://manage.fastly.com/">portal</a>.</p>
+<h3 id="tls-certificate">TLS certificate</h3>
+<ol>
+<li>Choose a domain that users will use to reach your GOV.UK environment, e.g.
+the GOV.UK EKS platform uses domain with format <code>www.eks.&lt;environment&gt;.govuk.digital</code>
+</li>
+<li>Create a Fastly/letsencrypt TLS certificate for your chosen domain and attach
+it to the "govuk" TLS configuration. Further details are available <a href="https://docs.fastly.com/en/guides/serving-https-traffic-using-fastly-managed-certificates">here</a>
+</li>
+<li>You will be asked to create a CNAME to point to a specific given address, you should use
+this address as the value of the variable <code>www_dns_validation_rdata</code> in the <code>commons.yaml</code> file
+of the environment you are deploying, e.g. for integration it is located <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/deployments/variables/integration/common.tfvars">here</a>
+</li>
+</ol>
+<h3 id="cdn-service">CDN service</h3>
+<ol>
+<li>In the Fastly portal, create a new CDN service, e.g. <code>&lt;environment&gt; GOV.UK EKS</code>.
+You should use the same domain that you have chosen above. Make a note of the new service ID.</li>
+<li>Create a pull request in the <a href="https://github.com/alphagov/govuk-cdn-config-secrets">GitHub repo</a>
+with a new service under <code>www-eks</code>. You can use this previous <a href="https://github.com/alphagov/govuk-cdn-config-secrets/pull/151">pull request</a>
+as example.</li>
+<li>The Fastly CDN service is currently configured by running the Jenkins <code>Deploy_CDN</code>
+job in the relevant EC2 Jenkins instance of the particular GOV.UK environment
+where you want to deploy. You should deploy your changes by running <code>www-eks</code>
+vhost version of that job. Further details on how to deploy deploy CDN changes
+are available <a href="https://docs.publishing.service.gov.uk/manual/cdn.html">here</a>
+</li>
+</ol>
 
 
             
@@ -559,8 +485,8 @@ more recommendations on using pre-commit.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-infrastructure.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs/setting-up-content-delivery-network.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-infrastructure%2Fsetting-up-content-delivery-network.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
