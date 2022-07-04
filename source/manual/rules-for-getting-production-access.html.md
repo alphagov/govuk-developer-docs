@@ -53,8 +53,11 @@ Access should be granted at the discretion of the engineer's tech lead, once the
 - Signon "Super Admin" access in production
 - GOV.UK PaaS [Space developer](https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer) and `Org manager`
   access to all spaces in the [govuk_development](https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35) and [data-gov-uk](https://admin.cloud.service.gov.uk/organisations/39c3d2c5-8809-4dcf-8cd6-a8f62923a295/users) organisations
+- [Sentry](https://sentry.io/settings/govuk/members/) "Manager" role to administer teams and people
 
 The steps above are outlined in the [GOV.UK Production Admin template Trello card](https://trello.com/c/GIHPZi2o/382-production-admin-access-for-2nd-line), which is normally given whilst on 2nd line.
+
+The full list of permissions is managed in [here](https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing).
 
 ## When you get Production Admin access
 
