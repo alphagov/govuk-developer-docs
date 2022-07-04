@@ -134,9 +134,6 @@
       <li>
         <a href="#how-violations-are-reported"><span>How violations are reported</span></a>
       </li>
-      <li>
-        <a href="#how-the-csp-forwarder-is-built-and-deployed"><span>How the CSP forwarder is built and deployed</span></a>
-      </li>
     </ul>
   </li>
 </ul>
@@ -187,15 +184,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f8c7489f22bc8d9a6705cf1c76a4e558a53d335e">3 Aug 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a04bbefbd70410c34f8e6afd13d22bf7d3be7bd5">30 Jun 2022</a>
 </div>
 
  <h1 id='header'>Content Security Policy on GOV.UK</h1> <p>Content Security Policy (CSP) is a browser standard to prevent cross-site scripting (XSS), clickjacking and other code
@@ -215,32 +205,6 @@ information is gathered about which parts of the site currently rely on behaviou
 CSP.</p>
 <p>In other environments such as development and test, CSP is running in enforcement mode to allow errors to be captured
 at an early stage.</p>
-<p>In report only mode, all violations are reported to an endpoint defined in the policy. This endpoint URL points to an
-AWS Lambda function running <a href="https://github.com/alphagov/govuk-csp-forwarder"><code>govuk-csp-forwarder</code></a>. This is a Go
-app that receives CSP violation reports from browsers, performs some filtering, and forwards all other reports to
-<a href="https://sentry.io/govuk/">Sentry</a> where they are further filtered on the way in, and then logged.</p>
-<p>The aim of the filtering steps is to remove a large amount of false positive reports that are generated when browser
-extensions modify GOV.UK pages to inject custom scripts or other assets which violate the policy.</p>
-<h2 id='how-the-csp-forwarder-is-built-and-deployed'>How the CSP forwarder is built and deployed</h2><p>Whenever a branch is merged into <code>master</code>, CI Jenkins runs the <code>Jenkinsfile</code> to build an artefact by compiling the
-Go source code and compressing it into a zip file. This zip file is then uploaded to the
-<code>govuk-integration-artefact-replication-destination</code> S3 bucket, which is in the <code>govuk-infrastructure-integration</code> AWS
-account. The Lambda function itself runs in the <code>govuk-tools</code> AWS account.</p>
-<p>This zip file can be uploaded to Lambda using the AWS console:</p>
-
-<ol>
-<li>Log in to the AWS console</li>
-<li>Select &ldquo;Lambda&rdquo; from the Services menu</li>
-<li>Select the &ldquo;EU (London)&rdquo; region</li>
-<li>Select the <code>govuk-csp-forwarder</code> function from the list</li>
-<li>Scroll down to the &ldquo;Function code&rdquo; section</li>
-<li>Select &ldquo;Upload a file from Amazon S3&rdquo; from the drop down menu</li>
-<li>Paste the S3 URL in the text box - <code>s3://govuk-integration-artefact-replication-destination/govuk-csp-forwarder/release/csp_forwarder.zip</code>
-<a href="images/govuk-csp-forwarder-function-code.png" rel="noopener noreferrer"><img src="/manual/images/govuk-csp-forwarder-function-code.png" alt="Function code section of the Lambda function page" /></a></li>
-<li>Click the orange &ldquo;Save&rdquo; button on the top right-hand side
-<a href="images/govuk-csp-forwarder-function-save.png" rel="noopener noreferrer"><img src="/manual/images/govuk-csp-forwarder-function-save.png" alt="Top bar of the Lambda function page" /></a></li>
-<li>You should see a green &ldquo;saved&rdquo; text and tick on the Lambda function
-<a href="images/govuk-csp-forwarder-function-saved.png" rel="noopener noreferrer"><img src="/manual/images/govuk-csp-forwarder-function-saved.png" alt="Lambda function saved" /></a></li>
-</ol>
 
 
   <div class='related-content'>
