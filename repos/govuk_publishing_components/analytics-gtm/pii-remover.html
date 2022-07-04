@@ -6,25 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: whitehall - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Stripping Personally Identifiable Information (PII) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/pii-remover.html">
 
-      <meta name="description" content="Everything about whitehall (Publishes government content on GOV.UK)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: whitehall - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Stripping Personally Identifiable Information (PII) - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" />
 
-      <meta property="og:description" content="Everything about whitehall (Publishes government content on GOV.UK)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: whitehall" />
+      <meta property="og:title" content="govuk_publishing_components: Stripping Personally Identifiable Information (PII)" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" />
 
     
   </head>
@@ -360,7 +358,7 @@
           <li><a href="/repos/short-url-manager.html"><span>short-url-manager</span></a></li>
           <li><a href="/repos/specialist-publisher.html"><span>specialist-publisher</span></a></li>
           <li><a href="/repos/travel-advice-publisher.html"><span>travel-advice-publisher</span></a></li>
-          <li><a href="/repos/whitehall.html" class="toc-link--in-view"><span>whitehall</span></a></li>
+          <li><a href="/repos/whitehall.html"><span>whitehall</span></a></li>
         </ul>
       </li>
       <li>
@@ -415,6 +413,14 @@
         "name": "Apps",
         "@id": "http://www.dev.gov.uk/apps.html"
       }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk_publishing_components",
+        "@id": "http://www.dev.gov.uk/repos/govuk_publishing_components.html"
+      }
     }
   ]
 }
@@ -426,205 +432,98 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk_publishing_components.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk_publishing_components&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk_publishing_components.html">govuk_publishing_components</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: whitehall</h1>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Publishes government content on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/whitehall">whitehall</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-publishing-experience-tech</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>whitehall_backend</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Publishing apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://whitehall-admin.publishing.service.gov.uk" class="govuk-link">whitehall-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-whitehall" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/whitehall.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/whitehall/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/whitehall.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/165549d0e1d40456a190078eb158e7134d6edb2f">30 Jun 2022</a>
 </div>
-<h2 id='relevant-manual-pages'>Relevant manual pages</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="/manual/howto-add-organisation-brand-colour.html" class="govuk-link">Add an organisation&rsquo;s brand colour</a></li>
-      <li><a href="/manual/rename-a-country.html" class="govuk-link">Rename a country</a></li>
-      <li><a href="/manual/uptime-metrics.html" class="govuk-link">Uptime Metrics</a></li>
-</ul></p>
-<h2 id='imported-documents'>Imported documents</h2>
+
+  <h1 class="page-title">govuk_publishing_components: Stripping Personally Identifiable Information (PII)</h1>
+
+  
+<p>A module exists for stripping out PII from values. It can accept strings, query parameters, arrays or objects. If the value is an array or object, the child values are looped through and then treated as strings.</p>
+<h2 id="what-is-redacted">What is redacted</h2>
+<p>The values that are redacted by default are:</p>
 <ul>
-<li><a href='/repos/whitehall/troubleshooting.html' class='govuk-link'># Whitehall troubleshooting</a></li>
-        <li><a href='/repos/whitehall/edition_workflow.html' class='govuk-link'>Edition Workflow</a></li>
-        <li><a href='/repos/whitehall/finders.html' class='govuk-link'>Finders</a></li>
-        <li><a href='/repos/whitehall/internationalisation_guide.html' class='govuk-link'>Internationalisation guide</a></li>
-        <li><a href='/repos/whitehall/link_checker_api_integration.html' class='govuk-link'>Link Checker API Integrations</a></li>
-        <li><a href='/repos/whitehall/search_setup_guide.html' class='govuk-link'>Search setup guide</a></li>
-        <li><a href='/repos/whitehall/timestamps.html' class='govuk-link'>Timestamps</a></li>
-        <li><a href='/repos/whitehall/api.html' class='govuk-link'>Whitehall API</a></li>
-        <li><a href='/repos/whitehall/css.html' class='govuk-link'>Whitehall CSS Styleguide</a></li>
-        <li><a href='/repos/whitehall/javascript.html' class='govuk-link'>Whitehall JavaScript</a></li>
-
-
-      <li><strong>/migration_to_content_publisher</strong></li>
-      <ul>
-                <li><a href='/repos/whitehall/migration_to_content_publisher/locked-documents.html' class='govuk-link'>Locked documents</a></li>
-
-      </ul>
-
-      <li><strong>/misc</strong></li>
-      <ul>
-                <li><a href='/repos/whitehall/misc/guidelines-for-translators.html' class='govuk-link'>guidelines-for-translators</a></li>
-
-      </ul>
-
-      <li><strong>/sequence_diagrams</strong></li>
-      <ul>
-                <li><a href='/repos/whitehall/sequence_diagrams/README.html' class='govuk-link'>Sequence Diagrams</a></li>
-
-      </ul>
-</ul>
-<h2 id='example-pages-published-by-whitehall'>Example pages published by whitehall</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="https://www.gov.uk/government/ministers" class="govuk-link">Ministers</a></li>
-      <li><a href="https://www.gov.uk/world/embassies" class="govuk-link">Find a British embassy, high commission or consulate</a></li>
-      <li><a href="https://www.gov.uk/government/people/christopher-pincher" class="govuk-link">The Rt Hon Christopher Pincher MP</a></li>
-      <li><a href="https://www.gov.uk/government/people/patrick-sanders" class="govuk-link">General Sir Patrick Sanders KCB CBE DSO ADC Gen</a></li>
-      <li><a href="https://www.gov.uk/government/people/boris-johnson" class="govuk-link">The Rt Hon Boris Johnson MP</a></li>
-      <li><a href="https://www.gov.uk/government/people/therese-coffey" class="govuk-link">The Rt Hon Thérèse Coffey MP</a></li>
-      <li><a href="https://www.gov.uk/government/people/abi-tierney" class="govuk-link">Abi Tierney</a></li>
-      <li><a href="https://www.gov.uk/government/people/nadine-dorries" class="govuk-link">The Rt Hon Nadine Dorries MP</a></li>
-      <li><a href="https://www.gov.uk/government/people/dominic-raab" class="govuk-link">The Rt Hon Dominic Raab MP</a></li>
-      <li><a href="https://www.gov.uk/government/people/priti-patel" class="govuk-link">The Rt Hon Priti Patel MP</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Whitehall is deployed in two modes:</p>
-
-<ul>
-<li>&lsquo;admin&rsquo; for publishers to create and manage content (e.g. <a href="http://whitehall-admin.dev.gov.uk/government/admin/news/new">http://whitehall-admin.dev.gov.uk/government/admin/news/new</a>)</li>
-<li>&lsquo;frontend&rsquo; for rendering some legacy content (see live examples that follow)</li>
-</ul>
-
-<h2 id="live-examples-frontend">Live examples (frontend)</h2>
-
-<ul>
-<li>Field of Operation: <a href="https://www.gov.uk/government/fields-of-operation/iraq">https://www.gov.uk/government/fields-of-operation/iraq</a>
+<li>Email addresses - <code>email@gov.uk</code> becomes <code>[email]</code>
 </li>
-<li>World Embassies: <a href="https://www.gov.uk/world/embassies">https://www.gov.uk/world/embassies</a>
+<li>Reset password tokens become <code>reset_password_token=[reset_password_token]</code>
 </li>
-<li>Topical Events: <a href="https://www.gov.uk/government/topical-events/cop26">https://www.gov.uk/government/topical-events/cop26</a>
+<li>Unlock tokens become <code>unlock_token=[unlock_token]</code>
+</li>
+<li>State values become <code>state=[state]</code>
 </li>
 </ul>
-
-<h3 id="running-the-application">Running the Application</h3>
-
-<p><strong>Use <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker</a> to run any commands that follow.</strong></p>
-
-<p>Traditionally, the two sides of Whitehall are available on different domains in development, which reflect their counterparts in production:</p>
-
-<p>While this usually results in different routing behaviour, in development <a href="https://github.com/alphagov/whitehall/blob/main/config/routes.rb#L3-L5">all routes can be accessed from either domain</a>, although <a href="https://github.com/alphagov/whitehall/blob/main/config/routes.rb#L25-L28">the redirect behaviour may differ</a>.</p>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
+<p>Additional values that can be redacted are:</p>
 <ul>
-<li>
-<em>Govspeak</em> A variation of <a href="https://daringfireball.net/projects/markdown">Markdown</a> used throughout whitehall as the general publishing format</li>
+<li>Dates - <code>2022-02-22</code> becomes <code>[date]</code>
+</li>
+<li>Postcodes - <code>sw1a 1aa</code> becomes <code>[postcode]</code>
+</li>
 </ul>
+<p>These aren't enabled by default due to the higher likelihood of producing false positives.</p>
+<h2 id="basic-use">Basic use</h2>
+<pre lang="JavaScript"><code>var PIIRemover = new GOVUK.PIIRemover()
 
-<h2 id="technical-documentation">Technical documentation</h2>
+var myInfo = 'this is an@email.com address, this is a 2019-01-21 date, this is a sw1a 1aa postcode,'
 
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
+var example1 = PIIRemover.stripPII(myInfo)
+// this is [email] address, this is a 2019-01-21 date, this is a sw1a 1aa postcode 
 
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
+var example2 = PIIRemover.stripPIIWithOverride(myInfo, true, false)
+// this is [email] address, this is a [date] date, this is a sw1a 1aa postcode
 
-<h3 id="running-the-test-suite">Running the test suite</h3>
+var example3 = PIIRemover.stripPIIWithOverride(myInfo, true, true)
+// this is [email] address, this is a [date] date, this is a [postcode] postcode
 
-<pre><code># run all the test suites
-bundle exec rake
+var myObject = {'email': 'email@gov.uk', 'other': 'value', 'piiSafe': new PIIRemover.PIISafe('example@gov.uk')}
+
+var example4 = PIIRemover.stripPII(myObject)
+// {'email' : '[email]', 'other': 'value', 'piiSafe': 'example@gov.uk'}
+
+var myArray = ['email@gov.uk', 'hello world']
+var example5 = PIIRemover.stripPII(myArray)
+// ['[email]', 'hello world']
+
+// Meta tag of &lt;meta name="govuk:static-analytics:strip-query-string-parameters" content="strip-parameter-1,strip-parameter-2" /&gt;
+var myQueryString = '/test?strip-parameter-1=secret&amp;strip-parameter-2=more-secret'
+var example6 = PIIRemover.stripPII(myQueryString)
+// /test?strip-parameter-1=[strip-parameter-1]&amp;strip-parameter-2=[strip-parameter-2]
 </code></pre>
-
-<p>Javascript unit tests can also be run separately:</p>
-
-<pre><code># run all the JavaScript tests
-bundle exec rake jasmine
+<h2 id="enabling-additional-redaction">Enabling additional redaction</h2>
+<p>To enable additional redaction you can add meta tags to your application via the <code>Meta Tags</code> publishing component.</p>
+<h3 id="for-dates-and-postcodes">For dates and postcodes:</h3>
+<pre lang="Ruby"><code>&lt;%= render "govuk_publishing_components/components/meta_tags", {
+  content_item: null,
+  local_assigns: {
+    strip_dates_pii: true,
+    strip_postcodes_pii: true
+  }
+} %&gt;
 </code></pre>
-
-<h3 id="further-documentation">Further documentation</h3>
-
-<p>See the <a href="https://github.com/alphagov/whitehall/blob/main/docs/"><code>docs/</code></a> directory.</p>
-
-<ul>
-<li><a href="/repos/whitehall/css.html">CSS</a></li>
-<li><a href="/repos/whitehall/edition_workflow.html">Edition workflow</a></li>
-<li><a href="/repos/whitehall/finders.html">How to publish a finder in whitehall</a></li>
-<li><a href="/repos/whitehall/internationalisation_guide.html">Internationalisation</a></li>
-<li><a href="/repos/whitehall/javascript.html">JavaScript</a></li>
-<li><a href="/repos/whitehall/search_setup_guide.html">Search setup guide</a></li>
-<li><a href="/repos/whitehall/timestamps.html">Timestamps</a></li>
-<li><a href="/repos/whitehall/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="https://github.com/alphagov/whitehall/blob/main/db/data_migration/README.md">Adding a data migration</a></li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/whitehall/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+<p>The <code>shouldStripDates()</code> and <code>shouldStripPostcodes()</code> functions in the JavaScript will then check if these values exist in order to strip dates and postcodes.</p>
+<p>However, this will redact dates and postcodes from every call of the PIIRemover. In order to apply extra redaction to specific values, you can use the <code>stripPIIWithOverride()</code> function.</p>
+<h3 id="for-query-string-parameters">For query string parameters:</h3>
+<p>Query string parameters are redacted if there is presence of a <code>meta[name="govuk:static-analytics:strip-query-string-parameters"]</code> meta tag, with comma separated query string parameters keys in its <code>content</code> attribute. The usage of this query string PII removal in production is unknown at this time.</p>
+<p>Add this meta tag with your query string parameter keys in the <code>content</code> section:
+<code>&lt;meta name="govuk:static-analytics:strip-query-string-parameters" content="query-string-key-1,query-string-key-2"</code></p>
+<h2 id="using-the-strippiiwithoverride-function">Using the stripPIIWithOverride() function</h2>
+<p>You can call this function to manually enable the date or postcode stripping on a specific value:</p>
+<pre lang="JavaScript"><code>var enableDateStripping = true
+var enablePostCodeStripping = true
+var myRedactedValue = this.PIIRemover.stripPIIWithOverride(myValue, enableDateStripping, enablePostcodeStripping)
+</code></pre>
+<h3 id="preventing-redaction-from-running-on-a-value">Preventing redaction from running on a value</h3>
+<p>There is a <code>PIISafe</code> class that you can wrap your objects or strings in.</p>
+<p><code>var myValue = new this.PIIRemover.PIISafe(myValue)</code></p>
+<p>If <code>myValue</code> is then passed through to a <code>stripPII</code> function, instead of having its PII redacted, its original value will be returned, bypassing any redaction.</p>
 
 
             
@@ -632,8 +531,8 @@ bundle exec rake jasmine
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-gtm/pii-remover.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-gtm%2Fpii-remover.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
