@@ -442,7 +442,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/6f0bdaed55cf437f947298b420812b9ce16d5d01">1 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/f434dad2bc9589123610443426951746b54c12f6">5 Jul 2022</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating or editing specialist document types</h1>
@@ -553,9 +553,11 @@ irb(main):002:0&gt; SecureRandom.uuid
 </ol>
 <h2 id="adding-or-amending-values-for-existing-fields-on-a-specialist-document">Adding or amending values for existing fields on a specialist document</h2>
 <ol>
-<li>
-<p>In govuk-content-schemas, find the field you are amending in the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>, and add the new values. See <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/b81ec718f52b1e6603c201c44db07f0357158723">this</a> commit for an example. Once approved, this change can be merged and deployed.</p>
-</li>
+<li>In govuk-content-schemas, find the field you are amending in the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>, and add the new values. See <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/b81ec718f52b1e6603c201c44db07f0357158723">this</a> commit for an example.</li>
+</ol>
+<p>NOTE: You will need to run <code>bundle exec rake build</code> to regenerate schemas after adding the new value(s) - as is done in <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/34dd343fd7de8eb48bb842c2fc7fe3c59ae77168">this commit</a>.</p>
+<p>Once approved, this change can be merged and deployed.</p>
+<ol start="2">
 <li>
 <p>In specialist-publisher, add the new values to the relevant file in the <a href="https://github.com/alphagov/specialist-publisher/tree/main/lib/documents/schemas">schema</a> directory. See <a href="https://github.com/alphagov/specialist-publisher/pull/1899/commits/97c8d713f8e62b0cb8763fe26e1dcf5a0435c12d">this</a> commit for an example.</p>
 </li>
