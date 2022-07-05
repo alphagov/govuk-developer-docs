@@ -557,6 +557,32 @@ return access-limited content to authenticated and authorised users.</p>
 
 <p>See <a href="https://github.com/alphagov/gds-api-adapters/blob/main/lib/gds_api/test_helpers">all the test helpers in lib/gds_api/test_helpers</a>.</p>
 
+<h2 id="pact-verification-during-ci">Pact Verification During CI</h2>
+
+<p>During the CI test suite, Jenkins downloads and runs the pact:verify tasks for
+each provider app. It&rsquo;s run directly on the Jenkins machine rather than in
+docker containers for each app. For this reason the email-alert-api app
+requires a specific setup on the CI machine - on db creation it copies the
+database from the template1 db (this is the usual PG behaviour, but for some
+reason rails needs to be told to do this explicitly). This template1 db has
+to have the uuid-ossp extension installed by superuser, because the jenkins
+user that CI runs under cannot create this extension. If this test stops
+working with errors like:</p>
+
+<pre><code>Caused by:
+PG::InsufficientPrivilege: ERROR:  permission denied to create extension "uuid-ossp"
+HINT:  Must be superuser to create this extension.
+</code></pre>
+
+<p>&hellip;the template may have been deleted or changed. Log in to the relevant CI
+agent and run:</p>
+
+<p><code>&gt; sudo -u postgres psql -d template1</code></p>
+
+<p>Then at the PSQL command line:</p>
+
+<p><code>template1=# CREATE EXTENSION IF NOT EXISTS "uuid-ossp";</code></p>
+
 <h2 id="licence">Licence</h2>
 
 <p>Released under the MIT Licence, a copy of which can be found in the file
