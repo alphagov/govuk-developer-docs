@@ -162,6 +162,8 @@ We use a `govuk-docker` Docker environment for local development.
 
 To set up GOV.UK Docker, see the [installation instructions in the `govuk-docker` GitHub repo][govuk-docker].
 
+You can also try developing outside of Docker, using tools like [rbenv](https://github.com/rbenv/rbenv) directly. [This approach generally works for frontend apps](https://docs.publishing.service.gov.uk/manual/local-frontend-development.html) but not for other apps with databases, etc., and is not officially supported.
+
 [govuk-docker]: https://github.com/alphagov/govuk-docker/blob/master/README.md
 
 ## 7. Get SSH access to integration
