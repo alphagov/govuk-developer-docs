@@ -504,6 +504,14 @@ split by <code>major</code>, <code>minor</code> and <code>patch</code> version. 
 much work we do on Dependabot and how we approach the various
 version bumps.</p>
 </li>
+<li>
+<p>Statistics on &ldquo;time to merge&rdquo; Dependabot PRs, showing how many days
+have passed between Dependabot PRs being opened and merged. GitHub
+Search API has a limit of 1000 results, and that&rsquo;s before filtering
+out the non govuk repos, so we can only get statistics for the last
+few weeks. GitHub&rsquo;s Search API applies strict secondary rate-limiting,
+hence the need to stagger requests, which makes this a bit slow to run.</p>
+</li>
 </ul>
 
 <p>They all require <code>GITHUB_TOKEN</code> as an environment variable, with at
