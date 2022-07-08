@@ -59,7 +59,7 @@ Logs are also available in Splunk in the `govuk_cdn` index. Here's an [example q
 
 ## SSH logs
 
-We ship `/var/log/auth.log` and `/var/log/secure` to Splunk [via CloudWatch](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/files/node/s_base/amazon-cloudwatch-agent.json) and CDIO Cyber's [centralised security logging service](https://github.com/alphagov/centralised-security-logging-service/blob/master/kinesis_processor%2Faccounts_loggroup_index.toml#L1430-L1440).
+We ship `/var/log/auth.log` and `/var/log/secure.log` to Splunk [via CloudWatch](https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/files/node/s_base/amazon-cloudwatch-agent.json) and CDIO Cyber's [centralised security logging service](https://github.com/alphagov/centralised-security-logging-service/blob/master/kinesis_processor%2Faccounts_loggroup_index.toml#L1430-L1440).
 
 There are different indices for each environment:
 
