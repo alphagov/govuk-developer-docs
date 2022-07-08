@@ -441,23 +441,20 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/708bd39b51f75a8b80e614c043671c18a007a351">14 Apr 2021</a>
+  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/290d9c9ba0f66a5c902c736a053ca629e43f1c82">7 Jul 2022</a>
 </div>
 
   <h1 class="page-title">local-links-manager: # Example API output</h1>
 
   <h2 id="example-api-output">Example API output</h2>
 <p><strong>Endoint for local authorities</strong></p>
-<p><code>GET /api/local-authority?authority_slug=&lt;authority_slug&gt;</code></p>
-<p>This takes parameters for Authority Slug.</p>
+<p><code>GET /api/local-authority</code></p>
+<p>This endpoint takes either an <code>authority_slug</code> or a <code>local_custodian_code</code> endpoint:</p>
+<ul>
+<li><code>GET /api/local-authority?authority_slug=&lt;authority_slug&gt;</code></li>
+<li><code>GET /api/local-authority?local_custodian_code=&lt;local_custodian_code&gt;</code></li>
+</ul>
 <p>Returns a JSON array containing details for the local authority and (if appropriate), the county council that contains the district.</p>
 <p>This example is for <code>GET /api/local-authority?authority_slug=rochford</code></p>
 <pre><code>[
@@ -465,13 +462,15 @@
     "name" =&gt; 'Rochford District Council',
     "homepage_url" =&gt; "http://rochford.example.com",
     "country_name" =&gt; "England",
-    "tier" =&gt; "district"
+    "tier" =&gt; "district",
+    "slug" =&gt; "rochford"
   },
   {
     "name" =&gt; 'Essex County Council',
     "homepage_url" =&gt; "http://essex.example.com",
     "country_name" =&gt; "England",
-    "tier" =&gt; "county"
+    "tier" =&gt; "county",
+    "slug" =&gt; "essex"
   }
 ]
 </code></pre>
@@ -481,14 +480,17 @@
     "name" =&gt; 'Camden Borough Council',
     "homepage_url" =&gt; "http://camden.example.com",
     "country_name" =&gt; "England",
-    "tier" =&gt; "unitary"
+    "tier" =&gt; "unitary",
+    "slug" =&gt; "camden"
   }
 ]
 </code></pre>
 <p>We do not require authentication for this request.</p>
 <p><strong>Endpoint for local transactions links</strong></p>
 <p><code>GET /api/link?authority_slug=&lt;authority_slug&gt;&amp;lgsl=&lt;lgsl&gt;&amp;lgil=&lt;lgil&gt;</code></p>
-<p>This takes parameters for Authority Slug, LGSL and optionally LGIL.</p>
+<p>Or:</p>
+<p><code>GET /api/link?local_custodian_code=&lt;local_custodian_code&gt;&amp;lgsl=&lt;lgsl&gt;&amp;lgil=&lt;lgil&gt;</code></p>
+<p>This takes parameters for Authority Slug or Local Custodian Code, as well as LGSL and (optionally) LGIL.</p>
 <p>Returns JSON details for local authority and interaction or just local authority depending whether the LGIL parameter is passed in. If the LGIL is passed in we return the link for the LGIL if it exists. If not then only the local authority details are returned. If the LGIL is not passed in it returns the appropriate fallback link. If no appropriate link is found then once again we only return the local authority details.</p>
 <pre><code>{
   "local_authority" =&gt; {
@@ -497,6 +499,7 @@
       "tier" =&gt; "unitary",
       "homepage_url" =&gt; "http://blackburn.example.com",
       "country_name" =&gt; "England",
+      "slug" =&gt; "blackburn",
   },
     "local_interaction" =&gt; {
       "lgsl_code" =&gt; 2,
