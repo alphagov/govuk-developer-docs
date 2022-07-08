@@ -441,20 +441,37 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/1fff7001f104ebf41ec10a8e7436d42aaa6e7e44">23 Nov 2017</a>
+  Last updated: <a href="https://github.com/alphagov/manuals-publisher/commit/165c0f5cedef02bf17c38fd29441649c06c2b1de">7 Jul 2022</a>
 </div>
 
   <h1 class="page-title">manuals-publisher: Rake tasks</h1>
 
   
+<h2 id="withdraw-and-redirect-manuals">Withdraw and redirect manuals</h2>
+<p>A manual can be withdrawn and redirected to another page on <a href="http://www.gov.uk">www.gov.uk</a>.</p>
+<p>There are a few rake tasks, depending on the requirements.</p>
+<h3 id="withdraw-and-redirect-a-single-manual-which-can-include-its-sections">Withdraw and redirect a single manual which can include its sections</h3>
+<p>The last two boolean arguments flag whether to include sections and discard
+drafts, respectively.</p>
+<pre><code>withdraw_and_redirect_manual[guidance/manual,/redirect/blah,true,true]
+</code></pre>
+<h3 id="withdraw-and-redirect-a-single-section">Withdraw and redirect a single section</h3>
+<p>The last boolean argument flags whether to discard drafts.</p>
+<pre><code>withdraw_and_redirect_section[guidance/manual,guidance/manual/section,/redirect/blah,true]
+</code></pre>
+<h3 id="bulk-withdraw-and-redirect-multiple-manuals-and-sections">Bulk withdraw and redirect multiple manuals and sections</h3>
+<p>If multiple manuals need to be redirected, or there are multiple redirect
+destinations within manuals, e.g sections need to redirect to different places,
+then we can do this by uploading a CSV and running the below tasks. Example CSV
+PR: <a href="https://github.com/alphagov/manuals-publisher/pull/1895">https://github.com/alphagov/manuals-publisher/pull/1895</a>.</p>
+<p><strong>Dry-run (checks all manuals exist in Manuals Publisher)</strong></p>
+<pre><code>withdraw_and_redirect_manuals_to_multiple_paths:dry_run[lib/tasks/path_to_csv.csv]
+</code></pre>
+<p><strong>Run the task for real</strong></p>
+<p>The last boolean argument flags whether to discard drafts.</p>
+<pre><code>withdraw_and_redirect_manuals_to_multiple_paths:real[lib/tasks/path_to_csv.csv,true]
+</code></pre>
 <h2 id="deleting-or-removing-draft-manuals">Deleting or removing draft manuals</h2>
 <h3 id="deleting-a-draft-manual">Deleting a draft manual</h3>
 <p>If a manual has been created in draft but never published it can be deleted using a rake task to delete draft manuals:</p>

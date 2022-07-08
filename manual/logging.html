@@ -197,7 +197,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6b051ad4b6395bce1fe6bf4ca7162c0715c3cea7">23 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/33490c77297ea88b07de4c5489e0106a4982346d">7 Jul 2022</a>
 </div>
 
  <h1 id='header'>How logging works on GOV.UK</h1> <p><a href="/manual/images/logging.png" rel="noopener noreferrer"><img src="/manual/images/logging.png" alt="" /></a>
@@ -217,7 +217,7 @@
 <p>In the future this will be replaced.</p>
 <h2 id='fastly'>Fastly</h2><p>Fastly sends logs to S3 for the www, assets and bouncer services. These can be <a href="/manual/query-cdn-logs.html">queried through Athena</a>.</p>
 <p>Logs are also available in Splunk in the <code>govuk_cdn</code> index. Here&rsquo;s an <a href="https://gds.splunkcloud.com/en-GB/app/gds-006-govuk/search?q=search%20index%3Dgovuk_cdn%20http_method%3Dpost">example query for POST requests</a></p>
-<h2 id='ssh-logs'>SSH logs</h2><p>We ship <code>/var/log/auth.log</code> and <code>/var/log/secure</code> to Splunk <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/files/node/s_base/amazon-cloudwatch-agent.json">via CloudWatch</a> and CDIO Cyber&rsquo;s <a href="https://github.com/alphagov/centralised-security-logging-service/blob/master/kinesis_processor%2Faccounts_loggroup_index.toml#L1430-L1440">centralised security logging service</a>.</p>
+<h2 id='ssh-logs'>SSH logs</h2><p>We ship <code>/var/log/auth.log</code> and <code>/var/log/secure.log</code> to Splunk <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/files/node/s_base/amazon-cloudwatch-agent.json">via CloudWatch</a> and CDIO Cyber&rsquo;s <a href="https://github.com/alphagov/centralised-security-logging-service/blob/master/kinesis_processor%2Faccounts_loggroup_index.toml#L1430-L1440">centralised security logging service</a>.</p>
 <p>There are different indices for each environment:</p>
 
 <ul>
