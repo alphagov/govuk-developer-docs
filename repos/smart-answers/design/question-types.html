@@ -441,15 +441,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/1477fc852d0052f5c003cffd71ea34ed09d2dfc7">14 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/c8fe538812177f67da94769e47aa606060585758">8 Jul 2022</a>
 </div>
 
   <h1 class="page-title">smart-answers: Question types</h1>
@@ -483,6 +476,12 @@
 <li>User input: Choose a single date.</li>
 <li>Validation: Must be a valid date.</li>
 <li>Response: <code>Date</code> object.</li>
+</ul>
+<h2 id="year_question"><code>year_question</code></h2>
+<ul>
+<li>User input: Choose a single year.</li>
+<li>Validation: Must be a valid date in format YYYY that can be parsed as a valid date.</li>
+<li>Response: String of year extracted from <code>Date</code> object.</li>
 </ul>
 <h2 id="money_question"><code>money_question</code></h2>
 <ul>
