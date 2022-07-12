@@ -78,3 +78,12 @@
 .technical-documentation > p:first-child {
   margin: govuk-spacing(3) 0 0 0;
 }
+
+.subdir__heading {
+  padding: 8px 30px 8px 0;
+}
+
+/* high specificity required, otherwise overwritten by `.toc ul` */
+ul.subdir__menu {
+  padding-left: 20px;
+}
