@@ -1,25 +1,42 @@
 <% content_for :sidebar do %>
   <ul>
     <li>
-      <a href="/apps/by-team.html">
-        <span>Repository ownership by team</span>
-      </a>
+      <a href="/repos/<%= repo.repo_name %>.html" rel="noopener" class="govuk-link"><%= repo.repo_name %></a>
     </li>
-
-    <% Repos.public.group_by(&:type).each do |name, apps| %>
-      <li>
-        <a href="/apps.html">
-          <span><%= name %></span>
-        </a>
-      </li>
-      <li>
-        <ul class='subnav'>
-        <% apps.each do |app| %>
-          <li><%= sidebar_link app.repo_name, "/repos/#{app.repo_name}.html" %></li>
-        <% end %>
-        </ul>
-      </li>
-    <% end %>
+    <li>
+      <ul>
+        <%
+          unless repo.private_repo?
+            add_imported_docs = -> (docs_to_import) do
+              docs_subdirs = docs_to_import.map { |doc| doc[:path].split("/")[3..(doc[:path].split("/").count - 2)].join("/") }.uniq.reject(&:empty?)
+              docs_at_root_level = docs_to_import.reject do |doc|
+                docs_subdirs.any? { |subdir| doc[:path].include?(subdir) }
+              end
+              docs_at_root_level.each do |doc|
+        %>
+          <li><a href="<%= doc[:path] %>" rel="noopener" class="govuk-link"><%= doc[:title] %></a></li>
+          <%
+              end
+              docs_subdirs.each do |subdir|
+          %>
+          <li class="subdir__heading"><%= subdir %></li>
+          <ul class="subdir__menu">
+            <% docs_to_import.select { |doc| doc[:path].include?(subdir) }.each do |doc| %>
+              <li><a href="<%= doc[:path] %>" rel="noopener" class="govuk-link"><%= doc[:title] %></a></li>
+            <% end %>
+          </ul>
+        <%
+              end # end of `docs_subdirs` iteration
+            end # end of add_imported_docs lambda definition
+  
+            imported_docs = GitHubRepoFetcher.instance.docs(repo.repo_name)
+            unless imported_docs.nil? || imported_docs.empty?
+              add_imported_docs.call(imported_docs)
+            end
+          end # end of 'private_repo?' check
+        %>
+      </ul>
+    </li>
   </ul>
 <% end %>
 

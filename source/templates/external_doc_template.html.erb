@@ -5,4 +5,4 @@ hide_from_sitemap: true
 show_last_updated: true
 ---
 
-<%= ExternalDoc.parse(markdown, repository: repository, path: relative_path) %>
+<%= ExternalDoc.parse(markdown, repository: repo.repo_name, path: relative_path) %>
