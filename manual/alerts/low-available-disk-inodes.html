@@ -131,6 +131,9 @@
       <li>
         <ul>
           <li>
+            <a href="#locating-high-inode-usage"><span>Locating high inode usage</span></a>
+          </li>
+          <li>
             <a href="#low-available-disk-inodes-jenkins"><span>Low available disk inodes (Jenkins)</span></a>
           </li>
           <li>
@@ -161,7 +164,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c13f2fcb0a7efd673b09c48f756d7d2cb7886b50">9 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bb75cedc8458c4afdaea701cbc529a74c4afc12f">13 Jul 2022</a>
 </div>
 
  <h1 id='header'>Low available disk inodes</h1> <p>See also: <a href="/manual/alerts/low-available-disk-space.html">low available disk space</a></p>
@@ -173,6 +176,10 @@
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Filesystem           Inodes  IUsed   IFree IUse% Mounted on
 /dev/mapper/os-root 3121152 151646 2969506    5% /
 </code></pre></div><p>with a row for each filesystem currently mounted.</p>
+<h3 id='locating-high-inode-usage'>Locating high inode usage</h3><p>The following command will print out a list of directories prefixed with the number of files they contain, sorted low to high. The largest are therefore most likely candidates for removal.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="o">{</span> find / <span class="nt">-xdev</span> <span class="nt">-printf</span> <span class="s1">'%h\n'</span> | <span class="nb">sort</span> | <span class="nb">uniq</span> <span class="nt">-c</span> | <span class="nb">sort</span> <span class="nt">-k</span> 1 <span class="nt">-n</span><span class="p">;</span> <span class="o">}</span> 2&gt;/dev/null
+</code></pre></div><p>Change the <code>find /</code> to <code>find /some-other-path</code> if the <code>df -i</code> command identified some other filesystem as being the full one.</p>
+<p>Note that if the <code>/tmp</code> directory is on the full filesystem <code>sort</code> may be unable to create a tempfile. In that case, add the <code>-T /some-other-path</code> parameter to both of the <code>sort</code> commands in the above one-liner.</p>
 <h3 id='low-available-disk-inodes-jenkins'>Low available disk inodes (Jenkins)</h3><p>If Jenkins is running out of inodes (rather than disk space) then it may be
 possible to free some by clearing out old workspaces (on the <code>ci-agent</code> machines), or failed jobs (on the <code>ci-master</code> machine):</p>
 <h4 id='clearing-old-workspaces'>Clearing old workspaces</h4><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>find /var/lib/jenkins/workspace/ <span class="nt">-maxdepth</span> 1 <span class="nt">-type</span> d <span class="nt">-mtime</span> +1 <span class="nt">-exec</span> <span class="nb">rm</span> <span class="nt">-rf</span> <span class="o">{}</span> <span class="se">\;</span>
