@@ -142,3 +142,30 @@ You can force a logrotate run afterwards:
 **If you have nowhere to move the logs and it is causing an incident,
 uptime of the server takes precedence over logfiles, so just truncate the
 logs to free up space**
+
+## Low available disk space on Jenkins
+
+One possible cause of this is that the `/var/lib/docker` directory is consuming
+a large amount of disk space. This has been found to happen on the `ci-agent`
+machines.
+
+Verify this:
+
+```sh
+$ cd /var/lib
+$ sudo ncdu
+```
+
+If `/var/lib/docker` is consuming a large amount of disk space run the
+following as root:
+
+```sh
+$ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+$ docker volume rm $(docker volume ls -qf dangling=true)
+```
+
+This will remove 'dangling' images and volumes. A comprehensive set of
+instructions can be found in this
+[Docker resource cleanup gist][docker-cleanup].
+
+[docker-cleanup]: https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430
