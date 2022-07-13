@@ -136,9 +136,6 @@
           <li>
             <a href="#low-available-disk-inodes-jenkins"><span>Low available disk inodes (Jenkins)</span></a>
           </li>
-          <li>
-            <a href="#low-available-disk-space-on-jenkins"><span>Low available disk space on Jenkins</span></a>
-          </li>
         </ul>
       </li>
     </ul>
@@ -164,7 +161,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bb75cedc8458c4afdaea701cbc529a74c4afc12f">13 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4f56e8ca8c0f51d371bf4058d837b14c6b6a0dba">13 Jul 2022</a>
 </div>
 
  <h1 id='header'>Low available disk inodes</h1> <p>See also: <a href="/manual/alerts/low-available-disk-space.html">low available disk space</a></p>
@@ -187,20 +184,7 @@ possible to free some by clearing out old workspaces (on the <code>ci-agent</cod
 <h4 id='clearing-failed-jobs'>Clearing failed jobs</h4><div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>find /var/lib/jenkins/jobs/ <span class="nt">-mindepth</span> 3 <span class="nt">-maxdepth</span> 3 <span class="nt">-type</span> d <span class="nt">-mtime</span> +30 | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nt">-P</span> <span class="s2">"main|master"</span> | xargs <span class="nt">-I</span> <span class="o">{}</span> <span class="nb">sudo rm</span> <span class="nt">-rf</span> <span class="o">{}</span>
 </code></pre></div><p>This will find any job branches that are older than 30 days (except for main and master, which it might be prudent to keep) and delete them. If you want to know how many folders will be affected, you can see with:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>find /var/lib/jenkins/jobs/ <span class="nt">-mindepth</span> 3 <span class="nt">-maxdepth</span> 3 <span class="nt">-type</span> d <span class="nt">-mtime</span> +30 | <span class="nb">grep</span> <span class="nt">-v</span> <span class="nt">-P</span> <span class="s2">"main|master"</span> | <span class="nb">wc</span> <span class="nt">-l</span>
-</code></pre></div><h3 id='low-available-disk-space-on-jenkins'>Low available disk space on Jenkins</h3><p>One possible cause of this is that the <code>/var/lib/docker</code> directory is consuming
-a large amount of disk space. This has been found to happen on the <code>ci-agent</code>
-machines.</p>
-<p>Verify this:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">cd</span> /var/lib
-<span class="nv">$ </span><span class="nb">sudo </span>ncdu
-</code></pre></div><p>If <code>/var/lib/docker</code> is consuming a large amount of disk space run the
-following as root:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>docker rmi <span class="si">$(</span>docker images <span class="nt">--filter</span> <span class="s2">"dangling=true"</span> <span class="nt">-q</span> <span class="nt">--no-trunc</span><span class="si">)</span>
-<span class="nv">$ </span>docker volume <span class="nb">rm</span> <span class="si">$(</span>docker volume <span class="nb">ls</span> <span class="nt">-qf</span> <span class="nv">dangling</span><span class="o">=</span><span class="nb">true</span><span class="si">)</span>
-</code></pre></div><p>This will remove &lsquo;dangling&rsquo; images and volumes. A comprehensive set of
-instructions can be found in this
-<a href="https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430">Docker resource cleanup gist</a>.</p>
-
+</code></pre></div>
 
   <div class='related-content'>
 

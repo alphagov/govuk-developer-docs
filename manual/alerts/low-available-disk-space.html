@@ -151,6 +151,9 @@
       <li>
         <a href="#disk-space-used-by-logfiles"><span>Disk space used by logfiles</span></a>
       </li>
+      <li>
+        <a href="#low-available-disk-space-on-jenkins"><span>Low available disk space on Jenkins</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -174,7 +177,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c988400bb7a42905f7f21cf33a59d3afd4385371">13 Jul 2022</a>
 </div>
 
  <h1 id='header'>Low available disk space</h1> <p>See also: <a href="/manual/alerts/low-available-disk-inodes.html">low available disk inodes</a></p>
@@ -283,6 +286,19 @@ and put it back in the log file directory.</p>
 <p><strong>If you have nowhere to move the logs and it is causing an incident,
 uptime of the server takes precedence over logfiles, so just truncate the
 logs to free up space</strong></p>
+<h2 id='low-available-disk-space-on-jenkins'>Low available disk space on Jenkins</h2><p>One possible cause of this is that the <code>/var/lib/docker</code> directory is consuming
+a large amount of disk space. This has been found to happen on the <code>ci-agent</code>
+machines.</p>
+<p>Verify this:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">cd</span> /var/lib
+<span class="nv">$ </span><span class="nb">sudo </span>ncdu
+</code></pre></div><p>If <code>/var/lib/docker</code> is consuming a large amount of disk space run the
+following as root:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>docker rmi <span class="si">$(</span>docker images <span class="nt">--filter</span> <span class="s2">"dangling=true"</span> <span class="nt">-q</span> <span class="nt">--no-trunc</span><span class="si">)</span>
+<span class="nv">$ </span>docker volume <span class="nb">rm</span> <span class="si">$(</span>docker volume <span class="nb">ls</span> <span class="nt">-qf</span> <span class="nv">dangling</span><span class="o">=</span><span class="nb">true</span><span class="si">)</span>
+</code></pre></div><p>This will remove &lsquo;dangling&rsquo; images and volumes. A comprehensive set of
+instructions can be found in this
+<a href="https://gist.github.com/bastman/5b57ddb3c11942094f8d0a97d461b430">Docker resource cleanup gist</a>.</p>
 
 
   <div class='related-content'>
