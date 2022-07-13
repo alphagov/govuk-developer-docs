@@ -27,6 +27,18 @@ Filesystem           Inodes  IUsed   IFree IUse% Mounted on
 
 with a row for each filesystem currently mounted.
 
+### Locating high inode usage
+
+The following command will print out a list of directories prefixed with the number of files they contain, sorted low to high. The largest are therefore most likely candidates for removal.
+
+```sh
+{ find / -xdev -printf '%h\n' | sort | uniq -c | sort -k 1 -n; } 2>/dev/null
+```
+
+Change the `find /` to `find /some-other-path` if the `df -i` command identified some other filesystem as being the full one.
+
+Note that if the `/tmp` directory is on the full filesystem `sort` may be unable to create a tempfile. In that case, add the `-T /some-other-path` parameter to both of the `sort` commands in the above one-liner.
+
 ### Low available disk inodes (Jenkins)
 
 If Jenkins is running out of inodes (rather than disk space) then it may be
