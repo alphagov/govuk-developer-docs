@@ -129,7 +129,7 @@
     <a href="#header"><span>Whitehall scheduled publishing</span></a>
     <ul>
       <li>
-        <a href="#39overdue-publications-in-whitehall39"><span>‘overdue publications in Whitehall’</span></a>
+        <a href="#overdue-publications-in-whitehall"><span>Overdue publications in Whitehall</span></a>
         <ul>
           <li>
             <a href="#after-a-database-restore"><span>After a database restore</span></a>
@@ -137,7 +137,7 @@
         </ul>
       </li>
       <li>
-        <a href="#39scheduled-publications-in-whitehall-not-queued39"><span>‘scheduled publications in Whitehall not queued’</span></a>
+        <a href="#scheduled-publications-in-whitehall-not-queued"><span>Scheduled publications in Whitehall not queued</span></a>
       </li>
     </ul>
   </li>
@@ -162,10 +162,10 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7ea2491fab51a656c81667603bec591a5c0cbade">14 Jul 2022</a>
 </div>
 
- <h1 id='header'>Whitehall scheduled publishing</h1> <h2 id='39overdue-publications-in-whitehall39'>&lsquo;overdue publications in Whitehall&rsquo;</h2><p>This alert means that there are scheduled editions which have passed their
+ <h1 id='header'>Whitehall scheduled publishing</h1> <h2 id='overdue-publications-in-whitehall'>Overdue publications in Whitehall</h2><p>This alert means that there are scheduled editions which have passed their
 publication due date but haven&rsquo;t been published by the scheduled publishing
 workers. Scheduled publishing is performed by Sidekiq workers picking up jobs
 from a scheduled queue.</p>
@@ -205,7 +205,7 @@ with the filename <code>redacted.pdf</code>.</p>
 <code>RestClient::UnprocessableEntity: 422 Unprocessable Entity</code> error.</p>
 <p>The situation is likely to be re-created the next day by the above process on
 the same documents/editions.</p>
-<h2 id='39scheduled-publications-in-whitehall-not-queued39'>&lsquo;scheduled publications in Whitehall not queued&rsquo;</h2><p>This alert means that the number of editions in the database which are
+<h2 id='scheduled-publications-in-whitehall-not-queued'>Scheduled publications in Whitehall not queued</h2><p>This alert means that the number of editions in the database which are
 scheduled to be published in the future is different from the number currently
 in the queue.</p>
 <p>Run the <code>publishing:scheduled:requeue_all_jobs</code> Rake task to requeue all
