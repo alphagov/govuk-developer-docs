@@ -120,25 +120,6 @@ To fix this:
 
 There is more information about setting up your access key in the [AWS guide](https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html)
 
-<!-- ### Authenticating with Jenkins
-
-If GitHub.com is down, we will not be able to log in to Jenkins.
-
-In this scenario, Jenkins security should be disabled to enable deployment:
-
-1. SSH to the Jenkins deploy instance:
-
-```console
-gds govuk connect -e production ssh aws/jenkins
-```
-
-2. Disable Puppet: `govuk_puppet -r "Emergency Jenkins deploy" --disable`
-3. Edit the Jenkins configuration file: `sudo vim /var/lib/jenkins/config.xml`
-4. Replace `<useSecurity>true</useSecurity>` with `<useSecurity>false</useSecurity>` and save
-5. Restart Jenkins: `sudo service jenkins restart`
-6. Browse to the Jenkins UI and begin the deployment process
-7. When completed, enable and run Puppet on the instance: `govuk_puppet --enable && govuk_puppet --test` -->
-
 ### Simulating a GitHub outage on Technical 2nd Line
 
 You can simulate an outage of GitHub.com by modifying your local hosts file.
