@@ -159,6 +159,8 @@ recipient file pertains to.
 1. Add the joiners's GPG fingerprint to the recipient files
    AWS [integration](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp)
 
+1. Ensure you have `pass` installed by running `brew install pass`.
+
 1. Recrypt the hieradata by running `re-encrypt-all.sh <message>` where `<message>`
    is something like "Adding new key for Jane Smith".
 
