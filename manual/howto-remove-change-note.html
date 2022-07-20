@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Upload HMRC PAYE files - GOV.UK Developer Documentation</title>
+    <title>Remove a change note - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/hmrc-paye-files.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/howto-remove-change-note.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Upload HMRC PAYE files - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/hmrc-paye-files.html" />
+      <meta name="twitter:title" content="Remove a change note - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-remove-change-note.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Upload HMRC PAYE files" />
+      <meta property="og:title" content="Remove a change note" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/hmrc-paye-files.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-remove-change-note.html" />
 
     
   </head>
@@ -126,13 +126,27 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Upload HMRC PAYE files</span></a>
+    <a href="#header"><span>Remove a change note</span></a>
     <ul>
       <li>
-        <a href="#where-are-the-files"><span>Where are the files?</span></a>
+        <a href="#what-is-a-change-note"><span>What is a change note?</span></a>
       </li>
       <li>
-        <a href="#the-process-for-uploading-new-versions-of-the-app"><span>The process for uploading new versions of the app</span></a>
+        <a href="#change-note-rake-tasks"><span>Change note rake tasks</span></a>
+      </li>
+      <li>
+        <a href="#whitehall"><span>Whitehall</span></a>
+        <ul>
+          <li>
+            <a href="#remove-a-change-note-from-whitehall"><span>Remove a Change Note from Whitehall</span></a>
+          </li>
+          <li>
+            <a href="#remove-an-editorial-remark-from-whitehall"><span>Remove an Editorial Remark from Whitehall</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#other-apps"><span>Other apps</span></a>
       </li>
     </ul>
   </li>
@@ -185,110 +199,49 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/46ef52473576fe4e56e21a95c3de3a1410bd0df2">19 Jul 2022</a>
 </div>
 
- <h1 id='header'>Upload HMRC PAYE files</h1> <p><a href="https://www.gov.uk/basic-paye-tools">Basic PAYE Tools</a> is a free software package HMRC provide for small employers to run their payroll. This is available on Windows, Linux, and OS X.</p>
-<p>It&rsquo;s updated annually at the start of April with &lsquo;uprated&rsquo; tax rates and thresholds for the new tax year. These updates are critical for employers as if they&rsquo;re using the wrong version their employees could end up paying the wrong amount of tax. Sometimes HMRC release minor updates during the tax year but these are less regular.</p>
-<p>HMRC should submit the ticket to request updates to the exe files at least 2 weeks before the new versions are scheduled to go live. If you get a request with a tighter deadline than this, contact the &lsquo;green&rsquo; content support team through their <a href="https://gds.slack.com/messages/CADGKPQHJ/">Slack channel</a>.</p>
-<p>As part of the initial tranche of ministerial department migration their
-upload site was switched off. However, we don&rsquo;t currently allow <code>exe</code>
-files or other executable binary types to be uploaded to GOV.UK.
-Therefore we determined the quickest course of action to meet the user
-need of keeping their desktop software up to date was to manually upload
-and host the files ourselves, bundled inside ZIP files.</p>
-<p>This document describes the process by which this is actioned.</p>
-<p>The way the updates work:</p>
+ <h1 id='header'>Remove a change note</h1> <p>Follow the <a href="#whitehall">instructions for Whitehall</a> if removing a change note from Whitehall, otherwise follow the <a href="#other-apps">instructions for other apps</a>.</p>
+<h2 id='what-is-a-change-note'>What is a change note?</h2><p>An Edition in Publishing API can have just one <code>change_note</code>, which is public-facing. The Publishing API creates a list of all the <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a> from all versions of the edition and presents them to the Content Store. You can read more about this in the <a href="https://docs.publishing.service.gov.uk/apis/publishing-api/model.html#changenote">Publishing API docs</a>.</p>
+<p>In Whitehall, an Edition can also have multiple editorial remarks (otherwise known as <a href="https://www.gov.uk/guidance/how-to-publish-on-gov-uk/creating-and-updating-pages#internal-notes">internal notes</a>). These are visible only in Whitehall Admin.</p>
+<h2 id='change-note-rake-tasks'>Change note rake tasks</h2><p>Rake Tasks exist in both Publishing API and Whitehall to quickly remove change notes for a document. The tasks take a content id, content locale and the text of the change note.</p>
+<p>There are two interfaces for dry and real runs, to ensure the correct change note is being targetted before removing it.</p>
+<p>It performs a fuzzy-search of the change note text, and will return the first best match. So searching for generic words such as &ldquo;Update&rdquo; may not return the exact ChangeNote you desire. It is advised to use the dry run first to ensure the correct ChangeNote will be deleted.</p>
+<h2 id='whitehall'>Whitehall</h2><p>You first need to determine whether the request is referring to a <code>change_note</code> (public-facing) or an <code>editorial_remark</code> (only visible in Whitehall Admin).</p>
+<h3 id='remove-a-change-note-from-whitehall'>Remove a Change Note from Whitehall</h3><p>Dry run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'</span>
+</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
+<p>This attempts to locate the selected change note for the content, and if found, report to the user the change note text that would have been removed.</p>
+<p>Real run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:real[content_id,locale,change note text]'</span>
+</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
+<p>This will downgrade the edition to a <code>minor change</code>, set the change note text to <code>nil</code> and the <code>major_change_published_at</code> to the previous major change. It then re-represents to the content store with the updated edition history.</p>
+<h3 id='remove-an-editorial-remark-from-whitehall'>Remove an Editorial Remark from Whitehall</h3>
+<ol>
+<li>Obtain the content ID of the document on which the change note was created.
+This document will contain multiple editions. You need to extract the
+<code>editorial_remark</code> from these editions.</li>
+<li>Create a data migration in Whitehall <a href="https://github.com/alphagov/whitehall/blob/19cd7d72de32454d532c195f35b027fa1b3ba6ac/db/data_migration/README.md">docs here</a></li>
+<li>In the data migration, search for the document by the content ID and
+extract the <code>editorial_remark</code> that contains the text you are looking to delete.</li>
+<li>If such an editorial remark is present, then destroy the <code>editorial_remark</code>
+and check that it is no longer displayed.</li>
+</ol>
+<h2 id='other-apps'>Other apps</h2><p><strong>Note</strong></p>
 
-<ul>
-<li>Binaries are provided for Windows, OS X and Linux</li>
-<li>Deltas of the binaries are also provided for partial updates</li>
-<li>The software hits a manifest file
-(<code>realtimepayetools-update-vXX.xml</code>) to determine which files
-to download. This manifest contains the version number and partial
-paths to each of the available binaries. This manifest URL is
-hard-coded in the desktop software and only changes with each major version.</li>
-<li>The software downloads the relevant binaries from our asset host and
-updates itself</li>
-<li>There is also a <a href="https://www.gov.uk/basic-paye-tools">mainstream content item</a>
-and a <a href="https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem">Welsh translation</a>
-which should be updated to link to the full downloads of the new versions</li>
-</ul>
-<h2 id='where-are-the-files'>Where are the files?</h2><p>The files are stored in S3, along with the rest of our uploaded assets.</p>
-<h2 id='the-process-for-uploading-new-versions-of-the-app'>The process for uploading new versions of the app</h2><p>The manifest file version vXX is given as an example. You should confirm the
-version number to use with HMRC because it must match the URL hard-coded into
-the previous version of the software.</p>
-
-<ol>
-<li>HMRC submit a ticket via Zendesk
-(<a href="https://govuk.zendesk.com/tickets/771694">example</a>)</li>
-<li>Check that GOV.UK content teams are aware of the ticket. They may
-need to request further tickets to be raised to cover the content updates.</li>
-<li>Download all zip files and XML file in the ticket</li>
-<li>Log into a backend machine: <code>gds govuk connect ssh -e production aws/backend:1</code>.
-<strong>Yes, production - don&rsquo;t use integration or staging to test. There&rsquo;s a test procedure on production.</strong></li>
-<li>Create a directory for the files to go into: <code>mkdir /tmp/hmrc-paye</code></li>
-<li>Either <code>exit</code> to return to your dev machine, or open another shell</li>
-<li>Upload the new files:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nv">$mac</span> gds govuk connect scp-push <span class="nt">-e</span> production aws/backend:1 <span class="k">*</span>.zip /tmp/hmrc-paye
-   <span class="nv">$mac</span> gds govuk connect scp-push <span class="nt">-e</span> production aws/backend:1 <span class="k">*</span>.xml /tmp/hmrc-paye
-</code></pre></div>
-<ol>
-<li><p>SSH back into the machine if you exited earlier:
-<code>gds govuk connect ssh -e production aws/backend:1</code></p></li>
-<li><p>Verify that the files copied over correctly: <code>ls /tmp/hmrc-paye</code></p></li>
-<li><p>Upload the ZIP files into Asset Manager</p></li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nb">cd</span> /var/apps/asset-manager
-   <span class="nb">sudo</span> <span class="nt">-udeploy</span> govuk_setenv asset-manager bundle <span class="nb">exec </span>rake govuk_assets:create_hmrc_paye_zips[/tmp/hmrc-paye]
-</code></pre></div><p>The command should take a few seconds to run, and the output will look something like this
-   (it can be safely ignored):
-    &gt; <code>/home/yourname</code> is not writable.
-    &gt; Bundler will use `/tmp/user/2899/bundler/home/deploy&rsquo; as your home directory temporarily.</p>
-
-<ol>
-<li><p>You should be able to access your zip, e.g. at
-https://assets.publishing.service.gov.uk/government/uploads/uploaded/hmrc/payetools-rti-[version-and-os].zip
-You may also see some &ldquo;high memory for asset-manager app&rdquo; alerts in the meantime.</p></li>
-<li><p>Now upload the manifest, <strong>but with &ldquo;test-&rdquo; at the start of the filename</strong>:</p></li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   <span class="nb">sudo</span> <span class="nt">-udeploy</span> govuk_setenv asset-manager bundle <span class="nb">exec </span>rake <span class="se">\</span>
-   govuk_assets:create_hmrc_paye_asset[/home/yourname/hmrc-paye/realtimepayetools-update-vXX.xml,test-realtimepayetools-update-vXX.xml]
-</code></pre></div>
-<ol>
-<li><p><a href="https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets">Purge the cache</a> for the test file.</p></li>
-<li><p>Reply to the Zendesk ticket, providing the <code>test-*.xml</code> URL of:</p></li>
-</ol>
-<p>https://www.gov.uk/government/uploads/uploaded/hmrc/test-realtimepayetools-update-vXX.xml</p>
-
-<ol>
-<li><p>Wait for HMRC to confirm that it (and/or its suppliers) have tested the file
-and would like to proceed. Pass the Zendesk ticket over to content support by
-reassigning it to <code>3rd line--GOV.UK Content</code> and adding the green team tag,
-<code>business_defence_environment</code>.
-In your handover comment, link to the <a href="https://www.gov.uk/basic-paye-tools">mainstream content item</a>
-(<a href="https://publisher.publishing.service.gov.uk/editions/5e7e2e44e5274a6fbfebfbc2">publisher link</a>)
-and <a href="https://www.gov.uk/lawrlwytho-offer-twe-sylfaenol-cthem">Welsh translation</a>
-(<a href="https://publisher.publishing.service.gov.uk/editions/5d72732f40f0b66279dc1ce8">publisher link</a>).
-The content team will prep these pages with the new links, file sizes and
-version number, ready to publish at the launch time.</p></li>
-<li><p>When the launch time comes (which should be specified in the Zendesk ticket),
-re-load the test file to the production path:</p></li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>   gds govuk connect ssh <span class="nt">-e</span> production &lt;aws_machine_ip_address&gt;
-   <span class="nb">cd</span> /var/apps/asset-manager
-   <span class="nb">sudo</span> <span class="nt">-udeploy</span> govuk_setenv asset-manager bundle <span class="nb">exec </span>rake govuk_assets:create_hmrc_paye_asset[/tmp/hmrc-paye/realtimepayetools-update-vXX.xml]
-</code></pre></div><p>If the SSH connection fails, or if the file is missing, the machine has
-   likely been rebooted and you&rsquo;ll need to repeat some of the earlier steps
-   to copy the XML file onto the machine again.</p>
-
-<ol>
-<li><p><a href="https://docs.publishing.service.gov.uk/manual/purge-cache.html#assets">Purge the cache</a>
-for the new file.</p></li>
-<li><p>Reassign back to the content team to publish the content items. They will
-then resolve the Zendesk ticket.</p></li>
-</ol>
+<blockquote>
+<p>Individual publishing apps may have their own equivalent of this task. If possible, remove change notes in the
+specific publishing application. Use this Publishing API task only if no alternatives exist.</p>
+</blockquote>
+<p>Dry run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'</span>
+</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=publishing-api&amp;MACHINE_CLASS=publishing_api&amp;RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
+<p>This attempts to locate the selected change note for the content, and if found, report to the user the change note object that would have been removed.</p>
+<p>Real run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:real[content_id,locale,change note text]'</span>
+</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=publishing-api&amp;MACHINE_CLASS=publishing_api&amp;RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
+<p>This will actually <em>delete</em> the selected change note and re-represent to the content store, also updating the edition history.</p>
 
 
   <div class='related-content'>
@@ -329,11 +282,11 @@ then resolve the Zendesk ticket.</p></li>
             <li><a href="/manual/howto-modify-change-note.html">Modify a change note in Publishing API or Whitehall</a></li>
             <li><a href="/manual/howto-redirect-html-attachment-urls-from-whitehall.html">Redirect an HTML attachment's URL in Whitehall</a></li>
             <li><a href="/manual/reindex-elasticsearch.html">Reindex an Elasticsearch index</a></li>
-            <li><a href="/manual/howto-remove-change-note.html">Remove a change note</a></li>
             <li><a href="/manual/howto-remove-invalid-about-page-drafts-from-world-organisations.html">Remove invalid WorldwideOrganisation draft CorporateInformationPages</a></li>
             <li><a href="/manual/rename-a-country.html">Rename a country</a></li>
             <li><a href="/manual/republishing-content.html">Republish content</a></li>
             <li><a href="/manual/government-changes.html">Support government changes</a></li>
+            <li><a href="/manual/hmrc-paye-files.html">Upload HMRC PAYE files</a></li>
           </ul>
         </div>
 
@@ -346,8 +299,8 @@ then resolve the Zendesk ticket.</p></li>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/hmrc-paye-files.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Upload+HMRC+PAYE+files%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhmrc-paye-files.html%29&amp;labels=bug&amp;title=Re%3A+%27Upload+HMRC+PAYE+files%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-remove-change-note.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Remove+a+change+note%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-remove-change-note.html%29&amp;labels=bug&amp;title=Re%3A+%27Remove+a+change+note%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
