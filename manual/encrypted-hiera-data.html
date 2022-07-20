@@ -241,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c3f581843b0f0bb139ff5c338c9916be0a5433be">11 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36095045f4347c4ca14d9b459a32fb0ba80d6be6">20 Jul 2022</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -364,6 +364,7 @@ recipient file pertains to.</p>
 <li><p>Get the fingerprint of the new GPG key by running <code>gpg --fingerprint</code>.</p></li>
 <li><p>Add the joiners&rsquo;s GPG fingerprint to the recipient files
 AWS <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp">integration</a></p></li>
+<li><p>Ensure you have <code>pass</code> installed by running <code>brew install pass</code>.</p></li>
 <li><p>Recrypt the hieradata by running <code>re-encrypt-all.sh &lt;message&gt;</code> where <code>&lt;message&gt;</code>
 is something like &ldquo;Adding new key for Jane Smith&rdquo;.</p></li>
 <li><p>Commit your changes and raise a pull request for review.</p></li>
