@@ -231,15 +231,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-user-journey-analysis-tools/commit/bb4e04b262a34dd167fee9cf07ba251159378c47">20 Sep 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-user-journey-analysis-tools/commit/23ff06937aed6f5fb97238afc167f109f04d0e03">18 Jul 2022</a>
 </div>
 
   <h1 class="page-title">govuk-user-journey-analysis-tools: How to execute the Reverse Path tool</h1>
@@ -310,8 +303,8 @@ the <code>Run Anyway</code> option (see below)</p>
 <p>Next, edit the <code>Set query parameters</code> cell.</p>
 <ul>
 <li>There are a number of query parameters that are mandatory to set.</li>
-<li>Mandatory: the date range for the analyses to run, the page path of interest, the number of stages to include (i.e. the number of pages/events the journeys will be subsetted by), whether to include page and/or event hits, and the device category(ies) included in the analysis.</li>
-<li>Optional: whether query strings are removed from the page path of interest, whether page paths associated with events are appended with an [E], whether page paths associated with events are appended with event information event category, event action, and/or event label, whether journeys that include the entrance page should be flagged, whether refreshes of the page of interest should be removed, and finally whether search pages only show the search content type, and search keywords.</li>
+<li>Mandatory: the date range for the analyses to run, the page path of interest, whether to use the first or last hit of the desired page in the session, the number of stages to include (i.e. the number of pages/events the journeys will be subsetted by), whether to include page and/or event hits, and the device category(ies) included in the analysis.</li>
+<li>Optional: whether query strings are removed from the page path of interest, whether page paths associated with events are appended with an [E], whether page paths associated with events are appended with event information event category, event action, and/or event label, whether journeys that include the entrance page should be flagged, whether journeys that include the exit page should be flagged, whether refreshes of the page of interest should be removed, and finally whether search pages only show the search content type, and search keywords.</li>
 </ul>
 </li>
 <li>
@@ -343,6 +336,21 @@ something else, the query will not be executed, and the code will stop running</
 <p>If no files are downloaded, check the end of the URL search bar. If you see a download icon with a red cross (as shown below), select the icon and change the option to <code>Always allow....</code> before clicking <code>Done</code></p>
 <p><img src="https://raw.githubusercontent.com/alphagov/govuk-user-journey-analysis-tools/main/docs/user_guide/images/download-multiple-files.png" alt="Download multiple files option"></p>
 </li>
+</ul>
+</li>
+<li>
+<p>A pseduo Sankey diagram is generated to summarise the top 10 and remainder journeys.</p>
+<ul>
+<li>Left click on the nodes and drag to adjust their position</li>
+<li>Hover over the diagram and click the <code>Download plot as a PNG</code> camera icon in the top right corner of the diagram</li>
+</ul>
+</li>
+<li>
+<p>It is possible to also generate a Google Sheet displaying the top 10 journeys</p>
+<ul>
+<li>Under the <code>Presenting results in Google sheets</code> header, type <code>yes</code> into the user input box to confirm that you want to generate a Google Sheet</li>
+<li>The URL to the Google Sheet in Google Drive is displayed in cell 21.</li>
+<li>Note: the query will only run if you type <code>yes</code> in the user input box. If you leave the input blank or type in something else, the query will not be executed, and the code will stop running</li>
 </ul>
 </li>
 </ol>
