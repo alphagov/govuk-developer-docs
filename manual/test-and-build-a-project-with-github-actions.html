@@ -216,7 +216,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b399696117ab43354721c60c561fc0ccea61ae9a">21 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cda3d5025ace563e7d45be2854595f46ca4e0b08">21 Jul 2022</a>
 </div>
 
  <h1 id='header'>Test & build a project with GitHub Actions</h1> <p><a href="https://github.com/features/actions">GitHub Actions</a> is an automated workflow
@@ -333,35 +333,16 @@ this results in 6 variations for the workflow to test against.</p>
     <span class="na">steps</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="na">run</span><span class="pi">:</span> <span class="s">echo "All matrix tests have passed 🚀"</span>
 
-  <span class="na">release</span><span class="pi">:</span>
+  <span class="c1"># We have a shared workflow that can be used for most gem publishing needs. You may have to write</span>
+  <span class="c1"># your own if you have a gem that is released in a complex way.</span>
+  <span class="na">publish</span><span class="pi">:</span>
     <span class="na">needs</span><span class="pi">:</span> <span class="s">test</span>
-    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
     <span class="na">if</span><span class="pi">:</span> <span class="s">${{ github.ref == 'refs/heads/main' }}</span>
     <span class="na">permissions</span><span class="pi">:</span>
       <span class="na">contents</span><span class="pi">:</span> <span class="s">write</span>
-    <span class="na">steps</span><span class="pi">:</span>
-    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
-    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
-      <span class="na">with</span><span class="pi">:</span>
-        <span class="na">rubygems</span><span class="pi">:</span> <span class="s">latest</span>
-    <span class="pi">-</span> <span class="na">env</span><span class="pi">:</span>
-        <span class="na">GEM_HOST_API_KEY</span><span class="pi">:</span> <span class="s">${{ secrets.ALPHAGOV_RUBYGEMS_API_KEY }}</span>
-        <span class="na">GEM_NAME</span><span class="pi">:</span> <span class="s">govuk_example_gem</span>
-      <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
-        <span class="s">VERSION=$(ruby -e "puts eval(File.read('$GEM_NAME.gemspec')).version")</span>
-        <span class="s">GEM_VERSION=$(gem list --exact --remote $GEM_NAME)</span>
-
-        <span class="s"># Publish to RubyGems.org</span>
-        <span class="s">if [ "${GEM_VERSION}" != "$GEM_NAME (${VERSION})" ]; then</span>
-          <span class="s">gem build $GEM_NAME.gemspec</span>
-          <span class="s">gem push "$GEM_NAME-${VERSION}.gem"</span>
-        <span class="s">fi</span>
-
-        <span class="s"># Create a release tag</span>
-        <span class="s">if ! git ls-remote --tags --exit-code origin v${VERSION}; then</span>
-          <span class="s">git tag v${VERSION}</span>
-          <span class="s">git push --tags</span>
-        <span class="s">fi</span>
+    <span class="na">uses</span><span class="pi">:</span> <span class="s">alphagov/govuk-infrastructure/.github/workflows/publish-rubygem.yaml@main</span>
+    <span class="na">secrets</span><span class="pi">:</span>
+      <span class="na">GEM_HOST_API_KEY</span><span class="pi">:</span> <span class="s">${{ secrets.ALPHAGOV_RUBYGEMS_API_KEY }}</span>
 </code></pre></div><p>For each Rails version, a <code>*.gemfile</code> should exist in a top-level directory called <code>gemfiles</code>.</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="c1"># gemfiles/rails_7.gemfile</span>
 <span class="n">source</span> <span class="s2">"https://rubygems.org"</span>
@@ -375,6 +356,10 @@ this results in 6 variations for the workflow to test against.</p>
 <li>Our preference is to test the gems we publish against the latest version of
 <a href="https://www.ruby-lang.org/en/downloads/branches/">all currently supported minor versions of Ruby MRI</a>.</li>
 <li>For a real world example of this workflow, see <a href="https://github.com/alphagov/govuk_admin_template">govuk_admin_template</a>.</li>
+<li>The <code>ALPHAGOV_RUBYGEMS_API_KEY</code> secret is an organisation secret that is added
+to individual repositories by a GitHub Admin. Please talk to
+<a href="mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk">GOV.UK Senior Tech</a>
+for this to be added to a repo.</li>
 </ul>
 <h2 id='gov-uk-rails-application-with-postgres-redis-yarn-and-gov-uk-content-schemas-dependencies'>GOV.UK Rails application with Postgres, Redis, Yarn and GOV.UK Content Schemas dependencies</h2><p>This is an example that suits a relatively complex GOV.UK Rails application
 (this was written for <a href="https://github.com/alphagov/content-publisher">Content Publisher</a>) that has software dependencies

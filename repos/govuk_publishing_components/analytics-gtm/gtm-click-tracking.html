@@ -147,12 +147,14 @@
           </ul>
           <li class="subdir__heading">analytics-gtm</li>
           <ul class="subdir__menu">
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
@@ -219,38 +221,39 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/5c8f08ee2558ae7f216a7ef4ca5f1046bdc103d9">23 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/104ea9138339e241a9802cf97cda58da2da4d29e">20 Jul 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Tag Manager click tracking</h1>
 
   
-<p>This is an experimental script to allow click tracking through Google Tag Manager to be added to any element using data attributes.</p>
+<p>This is a script to allow click tracking through Google Tag Manager to be added to any element using data attributes.</p>
 <h2 id="basic-use">Basic use</h2>
 <pre lang="html"><code>&lt;div data-module="gtm-click-tracking"&gt;
-  &lt;div
-    data-gtm-event-name="anything"
-    data-gtm-attributes='{"type":"something","index":0,"index-total":1,"section":"n/a","text":"Click me"}'&gt;
+  &lt;div data-ga4='{"event_name":"select_content", "type":"something", "index":0, "index_total":1, "text":"Click me"}'&gt;
     Click me
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 <p>The module is initialised on the parent element, but tracking only occurs when clicks happen:</p>
 <ul>
-<li>on child elements that have a <code>data-gtm-event-name</code> attribute</li>
-<li>on the parent if it has a <code>data-gtm-event-name</code> attribute</li>
+<li>on child elements that have a valid <code>data-ga4</code> attribute</li>
+<li>on the parent if it has a valid <code>data-ga4</code> attribute</li>
 </ul>
-<p>The contents of <code>data-gtm-attributes</code> are parsed as a JSON object and included in the information passed to GTM. In the example above, the following would be pushed to the dataLayer. Note that the <code>link_url</code> attribute is automatically populated with the current page path.</p>
+<p>A valid <code>data-ga4</code> attribute is a JSON string that can be parsed into an object, that contains a recognised value for <code>event_name</code>. Pushes to the dataLayer that do not include a valid <code>event_name</code> attribute will be ignored by Tag Manager.</p>
+<p>In the example above, the following would be pushed to the dataLayer. Note that the schema automatically populates empty values, and that attributes not in the schema are ignored.</p>
 <pre><code>{
-  'event': 'analytics',
-  'event_name': 'anything',
-  'link_url': '/government/publications/cheese',
-  'ui': {
+  'event': 'event_data',
+  'event_data': {
+    'event_name': 'select_content',
     'type': 'something',
+    'url': 'n/a',
+    'text': 'Click me',
     'index': '0',
-    'index-total': '1',
+    'index_total': '1',
     'section': 'n/a',
-    'text': 'Click me'
+    'action': 'n/a',
+    'external': 'n/a'
   }
 }
 </code></pre>
@@ -260,16 +263,16 @@
 <pre lang="erb"><code>&lt;div data-module="gtm-click-tracking"&gt;
   &lt;%
     show_all_attributes = {
+      event_name: "select_content",
       type: "accordion",
       index: 0,
-      "index-total": 5,
+      index_total: 5,
       section: "n/a"
     }
   %&gt;
   &lt;%= render 'govuk_publishing_components/components/accordion', {
     data_attributes_show_all: {
-      "gtm-event-name": "select_content",
-      "gtm-attributes": show_all_attributes.to_json
+      "ga4": show_all_attributes.to_json
     },
     items: []
   } %&gt;
@@ -284,35 +287,37 @@
 <code>GtmClickTracking</code> checks for the presence of an <code>aria-expanded</code> attribute, either on the clicked element or a child of the clicked element</li>
 <li>if it finds one, it sets the <code>state</code> attribute of <code>ui</code> to either 'opened' or 'closed' depending on the value of <code>aria-expanded</code>
 </li>
-<li>if <code>data-gtm-attributes</code> does not include <code>text</code>, <code>GtmClickTracking</code> automatically uses the text of the clicked element</li>
+<li>if <code>data-ga4</code> does not include <code>text</code>, <code>GtmClickTracking</code> automatically uses the text of the clicked element</li>
 </ul>
 <p>When a user clicks 'Show all sections' the following information is pushed to the dataLayer.</p>
 <pre><code>{
-  'event': 'analytics',
-  'event_name': 'select_content',
-  'link_url': '/government/publications/cheese',
-  'ui': {
+  'event': 'event_data',
+  'event_data': {
+    'event_name': 'select_content',
     'type': 'accordion',
+    'url': 'n/a',
+    'text': 'Show all sections',
     'index': '0',
     'index-total': '5',
     'section': 'n/a',
-    'text': 'Show all sections',
-    'state': 'opened'
+    'action': 'opened',
+    'external': 'n/a'
   }
 }
 </code></pre>
 <p>When a user clicks 'Hide all sections' the following information is pushed to the dataLayer.</p>
 <pre><code>{
-  'event': 'analytics',
-  'event_name': 'select_content',
-  'link_url': '/government/publications/cheese',
-  'ui': {
+  'event': 'event_data',
+  'event_data': {
+    'event_name': 'select_content',
     'type': 'accordion',
+    'url': 'n/a',
+    'text': 'Hide all sections',
     'index': '0',
     'index-total': '5',
     'section': 'n/a',
-    'text': 'Hide all sections',
-    'state': 'closed'
+    'action': 'closed',
+    'external': 'n/a'
   }
 }
 </code></pre>

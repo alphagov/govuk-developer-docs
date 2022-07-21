@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Accessibility acceptance criteria - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 and Google Tag Manager - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/accessibility_acceptance_criteria.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/analytics.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Accessibility acceptance criteria - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/accessibility_acceptance_criteria.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 and Google Tag Manager - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/analytics.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Accessibility acceptance criteria" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 and Google Tag Manager" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/accessibility_acceptance_criteria.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/analytics.html" />
 
     
   </head>
@@ -221,77 +221,52 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0646b2b87a7ce11c1d9363358c903e7054c02595">9 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/104ea9138339e241a9802cf97cda58da2da4d29e">20 Jul 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Accessibility acceptance criteria</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
 
   
-<p>Accessibility acceptance criteria are a list of criteria that a user interface must meet to be considered accessible. They define what makes the building blocks of a user interface accessible and give teams criteria to test against. They are a record of accessibility decisions.</p>
-<p><a href="https://accessibility.blog.gov.uk/2016/05/16/what-we-mean-when-we-talk-about-accessibility-2/">As Alistair Duggan said</a>:</p>
-<blockquote>
-<p>it is lack of awareness that most commonly results in things being inaccessible</p>
-</blockquote>
-<p>Accessibility acceptance criteria raise awareness about what accessible means in a specific context. They’re more specific than general accessibility guidance, such as the Web Content Accessibility Guidelines (WCAG).</p>
-<p>By drafting accessibility acceptance criteria upfront we are forced to think about accessibility from the start. It helps us to <a href="https://accessibility.blog.gov.uk/2016/05/16/consider-the-range-of-people-that-will-use-your-product-or-service/">consider the range of users</a>. The criteria become a starting point for building accessible things.</p>
-<h2 id="writing-accessibility-acceptance-criteria">Writing accessibility acceptance criteria</h2>
-<h3 id="start-with-accessibility-needs">Start with accessibility needs</h3>
-<p>Identify where there is a high risk of introducing an accessibility barrier and include criteria that prevent them.</p>
-<p>If similar things already exist, review them to find barriers. Test them with users who have access needs. The original criteria for the accessible autocomplete were derived from tests made by Theodor Vararu on existing autocomplete libraries.</p>
-<p>For many patterns the hard work of defining what accessible means has been documented in guidelines like WCAG. Do the hard work to extract rules specific to what you’re building and link back to the guidelines to give context. Consider which rules are most easily broken and give them prominence.</p>
-<h3 id="dont-be-too-generic">Don't be too generic</h3>
-<p>Criteria are useful if they are specific and testable.</p>
-<p>When we began writing accessibility acceptance criteria for components we had difficulty knowing what to include. Consider a component that contains links – do the criteria need to list everything that makes a link accessible? How much of this becomes a reproduction of existing guidelines?</p>
-<p>In this case it was helpful to create a shared definition of an accessible link that could be linked to. This avoided diluting the criteria while giving us a place to record more generic decisions.</p>
-<h3 id="dont-define-the-solution">Don't define the solution</h3>
-<p>Accessibility acceptance criteria are similar to <a href="https://www.gov.uk/service-manual/agile-delivery/writing-user-stories#acceptance-criteria">acceptance criteria in user stories</a>. Good acceptance criteria describe an outcome rather than the solution.</p>
-<p>The criteria should give room for interpretation and allow designers and developers to make improvements over time. Ideally if technology or designs change the criteria will still apply.</p>
-<p>In our banner component example we state the required contrast ratio, but we do not limit the design with implementation specifics such as font size or colour.</p>
-<h3 id="iterate-criteria">Iterate criteria</h3>
-<p>As something is built and tested, continue to refine your criteria as you find missing needs. When accessibility bugs are found – a browser bug, a screen reader quirk, new technology misbehaving, add further criteria and treat them like a failing unit test.</p>
-<h2 id="criteria-maintain-accessibility">Criteria maintain accessibility</h2>
-<p>When building user interfaces we do our best to ensure they are accessible. But without a definition of what made it accessible it’s hard to iterate on and too easy to introduce accessibility regressions. Even when we know it’s been built well, and that effort went into making it accessible – how do we make changes without breaking accessibility? What stops our new definition of accessibility from being incomplete or different to the original definition?</p>
-<p>Making something accessible can be nuanced and complex and <a href="https://accessibility.blog.gov.uk/2017/02/24/what-we-found-when-we-tested-tools-on-the-worlds-least-accessible-webpage/">not all accessibility testing can be automated</a>. There are always manual steps needed to test features in the way they impact users.</p>
-<p>Outlining accessibility issues in criteria records the decisions that were made and define the rules that keep something accessible.</p>
-<p>In code we can use these criteria to write unit tests that prevent regressions. In our translation component we can test that links have a <code>lang</code> attribute, and in our banner component we can <a href="https://github.com/alphagov/govuk_frontend_toolkit/pull/374">test the contrast ratio</a>.</p>
-<h2 id="example-criteria">Example criteria</h2>
-<h3 id="accessible-autocomplete">Accessible autocomplete</h3>
-<p>At GDS we first used accessibility acceptance criteria when building the <a href="https://github.com/alphagov/accessible-autocomplete">accessible autocomplete</a>. Theodor Vararu, Léonie Watson and Ed Horsford defined the following <a href="https://github.com/alphagov/accessible-autocomplete/blob/main/accessibility-criteria.md">autocomplete accessibility criteria</a> — the necessary behaviours that an autocomplete needs to meet to be usable by assistive technologies:</p>
-<blockquote>
-<p>The field with autocomplete must:</p>
-<ol>
-<li>Be focusable with a keyboard</li>
-<li>Indicate when it has keyboard focus</li>
-<li>Inform the user that it is an editable field</li>
-<li>Inform the user if there is a pre-filled value</li>
-<li>Inform the user that autocomplete is available</li>
-<li>Explain how to use autocomplete</li>
-<li>Inform the user that content has been expanded</li>
-<li>Inform the user when there are matches, or if there are no matches</li>
-<li>(Optional) Inform the user how many matches are currently available</li>
-<li>Inform the user as the number of matches changes</li>
-<li>Enable the user to navigate the available matches using touch or keyboard</li>
-<li>Inform the user when a match is selected</li>
-<li>(Optional) Inform the user which number the currently selected match is (1 of 3 for example)</li>
-<li>Inform the user if a match is pre-selected</li>
-<li>Enable the user to confirm the selected match</li>
-<li>Inform the user when a match is confirmed</li>
-<li>Return focus to the editable field when a selected match is confirmed</li>
-</ol>
-</blockquote>
-<h3 id="gov-uk-publishing-components">GOV.UK publishing components</h3>
-<h4 id="navigating-translations">Navigating translations</h4>
-<p>For a component that lists links to translations of the current page we identify the following criteria:</p>
-<blockquote>
-<p>The translation navigation links must identify the language of the link for correct screen reader pronunciation</p>
-</blockquote>
-<p>While this is true for all words that are in a language different to the main content’s language, it is especially important to consider in the context of this component. Here there is a high risk of introducing an accessibility barrier.</p>
-<h4 id="banners">Banners</h4>
-<p>On a banner component that places white text on a blue background we use the criteria to highlight the importance of contrast ratios:</p>
-<blockquote>
-<p>The banner must have a text contrast ratio of at least 4.5:1 against the background colour to meet <a href="https://www.w3.org/TR/WCAG20/#visual-audio-contrast-contrast">WCAG AA</a></p>
-</blockquote>
-<p>While all text must have a sufficient contrast ratio, given this component’s use of colour it has an increased risk of introducing a barrier.</p>
+<p>This document describes the use of Google Tag Manager (GTM) with Google Analytics 4 (GA4) on GOV.UK Publishing.</p>
+<p>No analytics code is initialised and no data is gathered without user consent.</p>
+<h2 id="general-approach">General approach</h2>
+<p>We pass three types of data to GA4.</p>
+<ul>
+<li>page views</li>
+<li>events</li>
+<li>search data</li>
+</ul>
+<p>Page views happen when a page loads.</p>
+<p>Events happen when a user interacts with certain things, for example clicking on an accordion, tab, or link.</p>
+<p>Search data is gathered when users perform a search.</p>
+<h2 id="data-schemas">Data schemas</h2>
+<p>All of the data sent to GTM is based on a common schema.</p>
+<pre><code>{
+  event: '',
+  page: {},
+  event_data: {},
+  search_results: {}
+}
+</code></pre>
+<p><code>event</code> must have a specific value to activate the right trigger in GTM.</p>
+<p><code>page</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/gtm-page-views.js">gtm-page-views script</a>.</p>
+<p><code>event_data</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/gtm-schemas.js">gtm-schemas script</a> and used in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/gtm-click-tracking.js">gtm-click-tracking script</a>.</p>
+<p><code>search_results</code> has not been implemented yet.</p>
+<h2 id="how-the-datalayer-works">How the dataLayer works</h2>
+<p>GTM's dataLayer has two elements - an array and an object. <code>window.dataLayer = []</code> is executed when the page loads.</p>
+<p>GOV.UK JavaScript (JS) pushes objects to the dataLayer array when certain things happen e.g. when the page loads, or a user clicks on a certain type of link. Once that happens GTM takes over. It reads the latest object in the array and passes the data found into the dataLayer object. Importantly, it only adds to the object, so data can persist from previous array pushes.</p>
+<p>For example:</p>
+<ul>
+<li>an event happens and JS pushes <code>{ a: 1 }</code> to the dataLayer array</li>
+<li>GTM adds this to the dataLayer object, which is now <code>{ a: 1 }</code>
+</li>
+<li>another event happens and JS pushes <code>{ b: 1 }</code> to the array</li>
+<li>GTM adds this to the dataLayer object, which is now <code>{ a: 1, b: 1 }</code>
+</li>
+</ul>
+<p>If data shouldn't persist it can be erased in a following push, for example by sending <code>{ a: 1, b: false }</code>, but often this overall behaviour is desirable - for example, page view data will persist in events that happen on that page, providing more context for analysts.</p>
+<p>If the data given to GTM contains a recognised <code>event</code> attribute value, GTM then sends that data on to GA4.</p>
+<p>The dataLayer is recreated when a user navigates to another page, so no data in the dataLayer will persist between pages.</p>
 
 
             
@@ -299,8 +274,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/accessibility_acceptance_criteria.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Faccessibility_acceptance_criteria.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-gtm/analytics.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-gtm%2Fanalytics.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
