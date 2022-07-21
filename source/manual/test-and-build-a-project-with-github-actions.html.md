@@ -14,7 +14,7 @@ GitHub Actions is the preferred platform for GOV.UK CI usage where the wider
 platform integration of Jenkins is not required.
 
 **If your workflow requires the use of secrets, please talk to
-[GOV.UK senior tech](mailto:govuk-senior-tech@digital.cabinet-office.gov.uk)
+[GOV.UK senior tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk)
 before deploying it.** This is to help GOV.UK establish consistent and
 effective secret management for GitHub Actions across the wider alphagov
 GitHub organisation.
