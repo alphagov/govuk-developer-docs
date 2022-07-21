@@ -81,7 +81,7 @@ See the [Jenkins documentation](https://jenkins.io/doc/book/system-administratio
 
 1. When completed, enable and run Puppet on the instance: `govuk_puppet --enable && govuk_puppet --test`
 
-1. Restart Jenkins: `sudo serviced jenkins restart`
+1. Restart Jenkins: `sudo service jenkins restart`
 
 ### After deploying the change
 
