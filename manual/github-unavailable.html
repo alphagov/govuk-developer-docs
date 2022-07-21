@@ -138,15 +138,6 @@
             <a href="#authenticating-with-jenkins"><span>Authenticating with Jenkins</span></a>
           </li>
           <li>
-            <a href="#deploying-the-code-change"><span>Deploying the code change</span></a>
-          </li>
-          <li>
-            <a href="#after-deploying-the-change"><span>After deploying the change</span></a>
-          </li>
-          <li>
-            <a href="#troubleshooting"><span>Troubleshooting</span></a>
-          </li>
-          <li>
             <a href="#simulating-a-github-outage-on-technical-2nd-line"><span>Simulating a GitHub outage on Technical 2nd Line</span></a>
           </li>
         </ul>
@@ -202,7 +193,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2c39914ea92ca952aa1d638f5380d2fdd1827dba">21 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/81f2096f88d5b8b7a5ceca6ce5afe1872d8360bb">4 May 2022</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='public-github-application-code'>Public GitHub (application code)</h2><p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. We may need to deploy changes at any time, and GitHub is a Software as a Service (SaaS) product which is not guaranteed to be available.</p>
@@ -234,39 +225,21 @@ locally (since CodeCommit does not run tests)</p></li>
 release tag for the application you&rsquo;re working on, as reported by the Release app</p></li>
 <li><p>Push your new tag to CodeCommit by running <code>git push aws release_XYZ</code></p></li>
 </ol>
-<h3 id='authenticating-with-jenkins'>Authenticating with Jenkins</h3><p>If GitHub.com is down, we will not be able to log in to Jenkins.</p>
-<p>In this scenario, Jenkins security should be disabled to enable deployment:</p>
-
-<ol>
-<li>SSH to the Jenkins deploy instance:</li>
-</ol>
-<div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="go">gds govuk connect -e production ssh aws/jenkins
-</span></code></pre></div>
-<ol>
-<li>Disable Puppet: <code>govuk_puppet -r &quot;Emergency Jenkins deploy&quot; --disable</code></li>
-<li>Edit the Jenkins configuration file: <code>sudo vim /var/lib/jenkins/config.xml</code></li>
-<li>Replace <code>&lt;useSecurity&gt;true&lt;/useSecurity&gt;</code> with <code>&lt;useSecurity&gt;false&lt;/useSecurity&gt;</code> and save</li>
-<li>Restart Jenkins: <code>sudo service jenkins restart</code></li>
-</ol>
-<p>Note that once security is disabled, anyone on GDS trusted IPs will be able to deploy to that environment. This will bypass protection for Production - do not leave Production without security for any longer than necessary.</p>
-<p>See the <a href="https://jenkins.io/doc/book/system-administration/security/#disabling-security">Jenkins documentation</a> for further details.</p>
-<h3 id='deploying-the-code-change'>Deploying the code change</h3>
+<h4 id='deploying-the-code-change'>Deploying the code change</h4>
 <ol>
 <li><p>Review the pull request on AWS CodeCommit through the <a href="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2">AWS Console</a> (access to GOV.UK repos must be granted by a GDS AWS administrator).</p></li>
 <li><p>Create a release tag manually in git. This should follow the standard format
 <code>release_X</code>. Tag the branch directly instead of merging it.</p></li>
-<li><p>Browse to the Jenkins UI and begin the deployment process. Don&rsquo;t use the Release app. Go directly to the <code>Deploy_App</code> Jenkins job, and
+<li><p>Don&rsquo;t use the Release app. Go directly to the <code>Deploy_App</code> Jenkins job, and
 check <code>DEPLOY_FROM_AWS_CODECOMMIT</code>.</p></li>
-<li><p>When completed, enable and run Puppet on the instance: <code>govuk_puppet --enable &amp;&amp; govuk_puppet --test</code></p></li>
-<li><p>Restart Jenkins: <code>sudo service jenkins restart</code></p></li>
 </ol>
-<h3 id='after-deploying-the-change'>After deploying the change</h3>
+<h4 id='after-deploying-the-change'>After deploying the change</h4>
 <ol>
 <li><p>Push the branch and tag to GitHub.</p></li>
 <li><p>Merge the branch into <code>main</code>.</p></li>
 <li><p>Record the missing deployment in the Release app.</p></li>
 </ol>
-<h3 id='troubleshooting'>Troubleshooting</h3><p>If running any <code>git</code> commands against CodeCommit returns you a 403, you probably
+<h4 id='troubleshooting'>Troubleshooting</h4><p>If running any <code>git</code> commands against CodeCommit returns you a 403, you probably
 have expired credentials stored in your macOS keychain from a previous attempt.
 Apparently macOS stores these the first time you use it and subsequently tries
 to use them again despite you setting new AWS credentials.</p>
@@ -284,6 +257,24 @@ to use them again despite you setting new AWS credentials.</p>
 <li><p>If you are prompted to add the item to keychain, deny.</p></li>
 </ol>
 <p>There is more information about setting up your access key in the <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html">AWS guide</a></p>
+<h3 id='authenticating-with-jenkins'>Authenticating with Jenkins</h3><p>If GitHub.com is down, we will not be able to log in to Jenkins.</p>
+<p>In this scenario, Jenkins security should be disabled to enable deployment:</p>
+
+<ol>
+<li>SSH to the Jenkins deploy instance:</li>
+</ol>
+<div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="go">gds govuk connect -e production ssh aws/jenkins
+</span></code></pre></div>
+<ol>
+<li>Disable Puppet: <code>govuk_puppet -r &quot;Emergency Jenkins deploy&quot; --disable</code></li>
+<li>Edit the Jenkins configuration file: <code>sudo vim /var/lib/jenkins/config.xml</code></li>
+<li>Replace <code>&lt;useSecurity&gt;true&lt;/useSecurity&gt;</code> with <code>&lt;useSecurity&gt;false&lt;/useSecurity&gt;</code> and save</li>
+<li>Restart Jenkins: <code>sudo service jenkins restart</code></li>
+<li>Browse to the Jenkins UI and begin the deployment process</li>
+<li>When completed, enable and run Puppet on the instance: <code>govuk_puppet --enable &amp;&amp; govuk_puppet --test</code></li>
+</ol>
+<p>Note that once security is disabled, anyone on GDS trusted IPs will be able to deploy to that environment. This will bypass protection for Production - do not leave Production without security for any longer than necessary.</p>
+<p>See the <a href="https://jenkins.io/doc/book/system-administration/security/#disabling-security">Jenkins documentation</a> for further details.</p>
 <h3 id='simulating-a-github-outage-on-technical-2nd-line'>Simulating a GitHub outage on Technical 2nd Line</h3><p>You can simulate an outage of GitHub.com by modifying your local hosts file.</p>
 
 <ol>
