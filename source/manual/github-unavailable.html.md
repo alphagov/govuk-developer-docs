@@ -59,6 +59,7 @@ In this scenario, Jenkins security should be disabled to enable deployment:
 ```console
 gds govuk connect -e production ssh aws/jenkins
 ```
+
 2. Disable Puppet: `govuk_puppet -r "Emergency Jenkins deploy" --disable`
 3. Edit the Jenkins configuration file: `sudo vim /var/lib/jenkins/config.xml`
 4. Replace `<useSecurity>true</useSecurity>` with `<useSecurity>false</useSecurity>` and save
@@ -67,7 +68,6 @@ gds govuk connect -e production ssh aws/jenkins
 Note that once security is disabled, anyone on GDS trusted IPs will be able to deploy to that environment. This will bypass protection for Production - do not leave Production without security for any longer than necessary.
 
 See the [Jenkins documentation](https://jenkins.io/doc/book/system-administration/security/#disabling-security) for further details.
-
 
 ### Deploying the code change
 
