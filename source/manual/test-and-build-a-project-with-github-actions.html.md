@@ -156,35 +156,16 @@ jobs:
     steps:
       - run: echo "All matrix tests have passed 🚀"
 
-  release:
+  # We have a shared workflow that can be used for most gem publishing needs. You may have to write
+  # your own if you have a gem that is released in a complex way.
+  publish:
     needs: test
-    runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
     permissions:
       contents: write
-    steps:
-    - uses: actions/checkout@v3
-    - uses: ruby/setup-ruby@v1
-      with:
-        rubygems: latest
-    - env:
-        GEM_HOST_API_KEY: ${{ secrets.ALPHAGOV_RUBYGEMS_API_KEY }}
-        GEM_NAME: govuk_example_gem
-      run: |
-        VERSION=$(ruby -e "puts eval(File.read('$GEM_NAME.gemspec')).version")
-        GEM_VERSION=$(gem list --exact --remote $GEM_NAME)
-
-        # Publish to RubyGems.org
-        if [ "${GEM_VERSION}" != "$GEM_NAME (${VERSION})" ]; then
-          gem build $GEM_NAME.gemspec
-          gem push "$GEM_NAME-${VERSION}.gem"
-        fi
-
-        # Create a release tag
-        if ! git ls-remote --tags --exit-code origin v${VERSION}; then
-          git tag v${VERSION}
-          git push --tags
-        fi
+    uses: alphagov/govuk-infrastructure/.github/workflows/publish-rubygem.yaml@main
+    secrets:
+      GEM_HOST_API_KEY: ${{ secrets.ALPHAGOV_RUBYGEMS_API_KEY }}
 ```
 
 For each Rails version, a `*.gemfile` should exist in a top-level directory called `gemfiles`.
@@ -203,6 +184,10 @@ Notes:
 - Our preference is to test the gems we publish against the latest version of
   [all currently supported minor versions of Ruby MRI][ruby-branches].
 - For a real world example of this workflow, see [govuk_admin_template][].
+- The `ALPHAGOV_RUBYGEMS_API_KEY` secret is an organisation secret that is added
+  to individual repositories by a GitHub Admin. Please talk to
+  [GOV.UK Senior Tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk)
+  for this to be added to a repo.
 
 ## GOV.UK Rails application with Postgres, Redis, Yarn and GOV.UK Content Schemas dependencies
 
