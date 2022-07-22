@@ -217,7 +217,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fac62b27176649ccb2dd3982486b009efc1aef70">18 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b6ffa40b45041713a1643f60718bd4eb26aa6626">22 Jul 2022</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>Backups of <a href="https://aws.amazon.com/rds/">RDS</a> instances are <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance">taken
@@ -293,14 +293,14 @@ db_subnet_group_name=&lt;replace_with_previous_output&gt;
 </code></pre></div><p>Store the output as a variable</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>next_hosted_zone_id=&lt;replace_with_NextHostedZoneId&gt;
 </code></pre></div><h3 id='step-9'>Step 9</h3><p>Amazon Route53 doesn&rsquo;t have a command line to update just one DNS record. It requires a file for batch changes (even if there&rsquo;s only one).</p>
-<p>For this step you will need to create a file (locally) - e.g. /var/tmp/update_dns.json, with the following code below.</p>
+<p>For this step you will need to create a file (locally) - e.g. <code>/var/tmp/update_dns.json</code>, with the following code below.</p>
 <p>Please be aware that you can store the file anywhere on your local drive but remember to update the file path in the next step.</p>
 <p>Example</p>
 
 <ul>
-<li>database-name = restored-<name_old_db></li>
+<li>database-name = <code>restored-&lt;name_old_db&gt;</code></li>
 <li>stack-name = blue</li>
-<li>govuk-internal-domain = <enviornment>.govuk-internal.digital</li>
+<li>govuk-internal-domain = <code>&lt;environment&gt;.govuk-internal.digital</code></li>
 <li>restored-db-endpoint= echo ${endpoint_address} in your terminal then copy and past into file</li>
 </ul>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>{
