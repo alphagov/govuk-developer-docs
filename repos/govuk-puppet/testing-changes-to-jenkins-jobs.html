@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk-puppet: Process supervision - GOV.UK Developer Documentation</title>
+    <title>govuk-puppet: Testing changes to Jenkins jobs - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-puppet/process-supervision.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-puppet/testing-changes-to-jenkins-jobs.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk-puppet: Process supervision - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-puppet/process-supervision.html" />
+      <meta name="twitter:title" content="govuk-puppet: Testing changes to Jenkins jobs - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-puppet/testing-changes-to-jenkins-jobs.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk-puppet: Process supervision" />
+      <meta property="og:title" content="govuk-puppet: Testing changes to Jenkins jobs" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-puppet/process-supervision.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-puppet/testing-changes-to-jenkins-jobs.html" />
 
     
   </head>
@@ -193,25 +193,25 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/514b7790402f76b8dbce81a1b372ba13da5fee30">27 Sep 2017</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-puppet/commit/21b9f23ee81a1427aeb14e8a8cf9d88cfb760490">21 Jul 2022</a>
 </div>
 
-  <h1 class="page-title">govuk-puppet: Process supervision</h1>
+  <h1 class="page-title">govuk-puppet: Testing changes to Jenkins jobs</h1>
 
   
-<p>If you are starting a daemonised process, you should strive to create an
-Upstart script for it, so that it benefits from supervision (ie it will
-be restarted if it dies). There is more
-<a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/wiki/projects-and-processes/projects-products/hosting-and-infrastructure-1/processsupervision">documentation</a>
-available on the Infrastructure Wiki.</p>
+<p>Our Jenkins jobs are configured in YAML (<a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_jenkins/templates/jobs/mirror_github_repositories.yaml.erb">example</a>).</p>
+<p>If you ever need to test a change to the configuration of a Jenkins job, you could push your branch of govuk-puppet to GitHub, deploy it using the <code>Deploy_Puppet</code> Jenkins job, then wait half an hour for your changes to be applied. But this is an extremely slow feedback loop!</p>
+<p>A much quicker way is to:</p>
+<ol>
+<li>SSH onto the Jenkins machine (<code>gds govuk connect -e integration ssh jenkins</code>)</li>
+<li>Disable Puppet on the machine (<code>govuk_puppet --disable "Testing changes to a Jenkins job"</code>)</li>
+<li>Make your edits to the YAML on the machine, e.g. <code>sudo vi /etc/jenkins_jobs/jobs/mirror_github_repositories.yaml</code>
+</li>
+<li>Recompile all the jobs: <code>/usr/local/bin/jenkins-jobs update --delete-old /etc/jenkins_jobs/jobs/</code>
+</li>
+</ol>
+<p>Repeat steps 3 and 4 until you have the right configuration. Then re-enable Puppet (<code>govuk_puppet --enable</code>) and run <code>govuk_puppet --test</code> to reset back to the original configuration.</p>
 
 
             
@@ -219,8 +219,8 @@ available on the Infrastructure Wiki.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-puppet/blob/main/docs/process-supervision.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-puppet%2Fprocess-supervision.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-puppet/blob/main/docs/testing-changes-to-jenkins-jobs.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-puppet%2Ftesting-changes-to-jenkins-jobs.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
