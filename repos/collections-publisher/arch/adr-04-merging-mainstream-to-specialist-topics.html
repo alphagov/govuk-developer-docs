@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>collections-publisher: Merging of Mainstream Topics into Specialist Topics - GOV.UK Developer Documentation</title>
+    <title>collections-publisher: Merging of Mainstream Browse Topics into Specialist Topics - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -15,12 +15,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="collections-publisher: Merging of Mainstream Topics into Specialist Topics - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="collections-publisher: Merging of Mainstream Browse Topics into Specialist Topics - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="collections-publisher: Merging of Mainstream Topics into Specialist Topics" />
+      <meta property="og:title" content="collections-publisher: Merging of Mainstream Browse Topics into Specialist Topics" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html" />
 
@@ -130,7 +130,7 @@
           <ul class="subdir__menu">
               <li><a href="/repos/collections-publisher/arch/adr-001-defer-merging-of-taxonomy-apps.html" rel="noopener" class="govuk-link">Decision record: Defer Merging of Taxonomy Apps</a></li>
               <li><a href="/repos/collections-publisher/arch/adr-002-discarding-drafts.html" rel="noopener" class="govuk-link">Discarding drafts of previously published step by step pages</a></li>
-              <li><a href="/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html" rel="noopener" class="govuk-link">Merging of Mainstream Topics into Specialist Topics</a></li>
+              <li><a href="/repos/collections-publisher/arch/adr-04-merging-mainstream-to-specialist-topics.html" rel="noopener" class="govuk-link">Merging of Mainstream Browse Topics into Specialist Topics</a></li>
               <li><a href="/repos/collections-publisher/arch/adr-3-store-status.html" rel="noopener" class="govuk-link">Storing the status of step-by-steps</a></li>
           </ul>
       </ul>
@@ -193,34 +193,56 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/collections-publisher/commit/16abc5f3b808c65decea7416c184ab38a15e2a24">22 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/collections-publisher/commit/d2bed44ac84e5c71a1bc11e014d4733e4299e522">22 Jul 2022</a>
 </div>
 
-  <h1 class="page-title">collections-publisher: Merging of Mainstream Topics into Specialist Topics</h1>
+  <h1 class="page-title">collections-publisher: Merging of Mainstream Browse Topics into Specialist Topics</h1>
 
   
 <h2 id="status">Status</h2>
-<p>Accepted</p>
+<p>Rejected 22/07/22</p>
 <h2 id="context">Context</h2>
-<p>GOV.UK currently maintains 2 separate topic trees that represent a navigational structure for users. Mainstream Browse is the oldest and considered legacy. Specialist Topics are newer but need tidying up and do not power breadcrumbs.</p>
-<p>Previous attempts to merge the two stalled (since 2015).</p>
-<p>The newest tree, Taxonomy, does not affect navigation and is treated as a purely metadata type categorisation tree and is ignored by this work.</p>
-<p>There is no connection between Mainstream Browse and the Specialist Topics. Users who navigate Mainstream Browse are siloed away from Specialist Topics content. It also causes a confusing and inconsistent way for tagging and curating content.</p>
-<h2 id="decision">Decision</h2>
-<p>We initially planned to map each Mainstream Browse Topic to an equivalent within the Specialist Topics tree. This would have been complex and difficult to even begin the merging of the two trees.</p>
-<p>For example Benefits (mainstream) and Benefits and Credits (specialist) may seem equivalent, but there is no parity in the content linked. There's also no strict mapping between levels, as in Level 1 in mainstream may be Level 2 in specialist for one topic area, but there may be a L2 to L2 mapping in another.</p>
-<p>If we were to tidy up as we merged, this would be a very slow and difficult process to manage.</p>
-<p>But deeper discussion brought us to realise that we may not need to concern ourselves now about there being overlaps, allowing us to naively merge the trees and tidy up the data in one place instead.</p>
-<h2 id="consequences">Consequences</h2>
-<p>Once we've ported the topics across, we would have to periodically (interval TBD) sync data across from Mainstream Browse to Specialist Topics:</p>
+<p>GOV.UK currently maintains 3 topic systems that represent a navigational structure for users. The Topic Taxonomy (schema: <code>taxon</code>), Specialist Topics (schema: <code>topic</code>) and Mainstream Browse (schema: <code>mainstream_browse_page</code>).</p>
+<p>Mainstream Browse is the oldest topic system. Documents are tagged to Mainstream Browse topics by GDS Editors in <a href="https://github.com/alphagov/content-tagger">Content Tagger</a> or <a href="https://github.com/alphagov/publisher">Publisher</a>. Tagging adds a Mainstream Browse breadcrumb. For the tagged content to be visible on the Mainstream Browse topic page, a further curation step is required in collections publisher.</p>
+<p>The Specialist Topic system is concerned with specialist content, and is the only topic system integrated with email notifications. Government publishers are able to tag content to the Specialist Topic system in Whitehall. Doing so adds a Specialist Topic breadcrumb to the page, and results in that content appearing on some Specialist Topic pages.</p>
+<p>The most recent topic system is the Topic Taxonomy, which was intended to replace Specialist Topics and Mainstream Browse. Whilst tagging a piece of content to this system will provide navigational elements if the content is not tagged to other topic systems, the Topic Taxonomy is not viewed as a navigational system. It is primarily concerned with search, and the filtering of search results.</p>
+<h4 id="problems">Problems</h4>
 <ul>
-<li>keep all creation logic in Collections Publisher</li>
-<li>Create and run rake task to create new topics based on existing browse pages, any new pages created from this are hidden (schema change).</li>
-<li>Have logic to do this whenever a new Browse page is added in collections publisher</li>
-<li>Modify patch links (tagging) behaviour to patch a relevant Topic whenever a Browse page is tagged in the two apps that allow it (Tagger and Publisher)</li>
+<li>There is no connection between Mainstream Browse and Specialist Topics, i.e. users who navigate to a Mainstream Browse page are siloed away from Specialist Topic content.</li>
+<li>The result of tagging to these taxonomies is unclear to government publishers.</li>
 </ul>
-<p>We would have to set our apps to ignore the newly ported topics for a time, while we check that the data is workable and that we can affect changes to apps to switch over, and update our tagging tools and publishing apps.</p>
-<p>Ultimately we want to be able to allow content specialists to curate one structure within one place (or just fewer than we currently have).</p>
+<h4 id="previous-attempts-to-solve-these-problems">Previous attempts to solve these problems</h4>
+<p>There have been a number of previous plans and attempts to merge these trees.</p>
+<ul>
+<li>See <a href="https://github.com/alphagov/govuk-rfcs/pull/119">this RFC</a> that considered merging Specialist Topics and Mainstream Browse into the Topic Taxonomy.</li>
+</ul>
+<h2 id="decision">Decision</h2>
+<p>For this work, the #navigation-and-presentation team has decided to merge the two navigational topic systems (Mainstream Browse and Specialist Topics), and ignore the Topic Taxonomy.</p>
+<p>We initially planned to map each Mainstream Browse topic to an equivalent Specialist Topic, so that content tagged to the Mainstream Browse topic would become tagged to its equivalent in the Specialist Topic tree. But creating this mapping would have been overly complex and slow. For example <a href="https://www.gov.uk/browse/benefits">Benefits</a> (a Mainstream Browse topic) and <a href="https://www.gov.uk/topic/benefits-credits">Benefits and Credits</a> (a Specialist topic) may seem equivalent, but there is no parity in the content linked. There's also no strict mapping between levels, for example Level 1 in mainstream may be Level 2 for one Specialist topic area, but there may be a Level 2 to Level 2 mapping in another.</p>
+<p>We now intend to merge the trees without a mapping. When a Mainstream Browse topic is imported into the Specialist Topic tree it will become a new Specialist Topic. This will mean that there are similarly named topics - for example we will have a Benefits topic, as well as a Benefits and Credits topic. So once the trees are merged there will be a piece of work to curate and deduplicate.</p>
+<h3 id="how-will-we-merge-the-two-systems">How will we merge the two systems</h3>
+<p>Our intention is to merge the trees without any visible changes for users or publishers. We do not want publishers to tag to these new 'browse topics', and we do not want users to be able to navigate to new browse topic pages until we have completed the curation of the extended Specialist Topic tree. An important implementation detail: New browse topics will contain a reference to their parent mainstream browse topic.</p>
+<h4 id="overview-of-roll-out-plan">Overview of roll out plan</h4>
+<p><img src="https://raw.githubusercontent.com/docs/merging-topics-plan.png" alt="Screenshot"></p>
+<h5 id="prepare">Prepare</h5>
+<ul>
+<li>Add code to hide new browse topics from tagging interfaces in publishing applications, and navigational elements in frontend applications.</li>
+<li>Create a redirect in Collections so new browse topic pages are not findable.</li>
+<li>Implement autotagging, so that a piece of content being tagged to a Mainstream Browse page is also tagged to the related new browse topic in the Specialist Topic tree.</li>
+</ul>
+<h5 id="merge">Merge</h5>
+<ul>
+<li>Import the Mainstream Browse topic tree into the Specialist Topic tree on production (after testing the task on integration first).</li>
+<li>We will be leaving behind some Mainstream Browse specific data, such as <code>active_top_level_browse_page</code>, <code>second_level_browse_pages</code>, <code>top_level_browse_pages</code>.</li>
+</ul>
+<h5 id="tag-content-to-new-tree">Tag content to new tree</h5>
+<ul>
+<li>Run a rake task, that for a given new browse topic, fetches all content tagged to the parent mainstream browse topic, and tags it to the new browse topic. And reciprocally, adds the content to the links of the new browse topic.</li>
+</ul>
+<h2 id="consequences">Consequences</h2>
+<p>Once these trees are merged, the second phase of this work will be to curate and de-duplicate the tree. Currently the Specialist Topic curation panel in this application does not support untagging content to a specialist topic. Instead, it links out to Content Tagger where the tags can be amended. However Content Tagger does not support the tagging or untagging of Whitehall content to Specialist Topics, it is necessary to do that via the Whitehall admin UI. This limitation might make the process of curating the tree painful - so we are working on the functional requirements of an improved topic curation UI in this application.</p>
+<p>Once a branch of the new browse tree has been curated, we will update <a href="https://github.com/alphagov/collections">Collections</a> to build the browse page from the new browse topic content item instead of from the original mainstream browse content item, and then archive the mainstream browse page.</p>
+<p>The point at which we will allow tagging to this new tree is still up for discussion.</p>
 
 
             
