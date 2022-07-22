@@ -160,15 +160,15 @@ next_hosted_zone_id=<replace_with_NextHostedZoneId>
 
 Amazon Route53 doesn't have a command line to update just one DNS record. It requires a file for batch changes (even if there's only one).
 
-For this step you will need to create a file (locally) - e.g. /var/tmp/update_dns.json, with the following code below.
+For this step you will need to create a file (locally) - e.g. `/var/tmp/update_dns.json`, with the following code below.
 
 Please be aware that you can store the file anywhere on your local drive but remember to update the file path in the next step.
 
 Example
 
-* database-name = restored-<name_old_db>
+* database-name = `restored-<name_old_db>`
 * stack-name = blue
-* govuk-internal-domain = <enviornment>.govuk-internal.digital
+* govuk-internal-domain = `<environment>.govuk-internal.digital`
 * restored-db-endpoint= echo ${endpoint_address} in your terminal then copy and past into file
 
 ```
