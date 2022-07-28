@@ -250,12 +250,7 @@
 
 <h2 id="configure-the-script">Configure the script</h2>
 
-<p>Get an updated list of repos:</p>
-
-<pre><code>curl https://docs.publishing.service.gov.uk/repos.json | jq -r ".[].app_name | \"'alphagov/\" + . + \"',\""
-</code></pre>
-
-<p>Set the <a href="https://github.com/alphagov/upgrade-ruby-version/blob/67c9b1285c9601bd6020206e57480d1a14c66f28/main.py#L7">list of repos</a> and <a href="https://github.com/alphagov/upgrade-ruby-version/blob/67c9b1285c9601bd6020206e57480d1a14c66f28/main.py#L216">configure which Ruby versions should be upgraded</a>.</p>
+<p><a href="https://github.com/alphagov/upgrade-ruby-version/blob/67c9b1285c9601bd6020206e57480d1a14c66f28/main.py#L216">Configure which Ruby versions should be upgraded</a>.</p>
 
 <h2 id="run-the-script">Run the script</h2>
 
