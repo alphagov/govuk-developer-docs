@@ -187,7 +187,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/520fd329a5f87d56a3c04318cf73b87827f6cc19">24 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b61ccb7a453c67d26ebdb55d88a4515c845d413e">29 Jul 2022</a>
 </div>
 
  <h1 id='header'>GOV.UK and Virtual Private Networks (VPNs)</h1> <h2 id='vpn-between-aws-and-ukcloud-for-licensify-civica-payment-status-requests'>VPN between AWS and UKCloud for Licensify Civica payment status requests</h2><p>There&rsquo;s a VPN between AWS Production (only) and UKCloud Production which exists
@@ -198,6 +198,8 @@ GOV.UK Tech Debt</a>.</p>
 
 <ul>
 <li>The <a href="https://alert.production.govuk.digital/cgi-bin/icinga/status.cgi?search_string=vpn.*licensify">check_uk_cloud_vpn_up</a> alert will fire in Icinga.</li>
+<li>HTTP(S) requests from Licensify to Civica will originate from our AWS NAT gateways instead of UKCloud. This means the source IP address will fail to match Civica&rsquo;s IP-based access control lists.</li>
+<li>Civica will start returning <code>403 Access Denied</code> instead of <code>200 OK</code> to Licensify and to the probe which triggers the vpn-down alert.</li>
 <li>Users who are paying for licence applications to certain licencing authorities will still be able to complete their application but the last step of their journey will display a message saying &ldquo;We have received your application, but were unable to confirm payment with the authority.&rdquo; (<a href="https://github.com/alphagov/licensify/blob/master/frontend/app/views/licensing/payments/unknown.scala.html">source</a>)</li>
 <li>The page still gives the user a reference number for their transaction and asks the user to contact the licencing authority to confirm that they have received the payment.</li>
 <li>Payments will still be processed as normal. The only difference is that Licensify is unable to tell the user whether the payment went through or not.</li>
