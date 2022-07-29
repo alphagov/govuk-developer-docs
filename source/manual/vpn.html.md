@@ -19,6 +19,8 @@ GOV.UK Tech Debt][tech-debt-card].
 If this VPN is down:
 
 * The [check_uk_cloud_vpn_up](https://alert.production.govuk.digital/cgi-bin/icinga/status.cgi?search_string=vpn.*licensify) alert will fire in Icinga.
+* HTTP(S) requests from Licensify to Civica will originate from our AWS NAT gateways instead of UKCloud. This means the source IP address will fail to match Civica's IP-based access control lists.
+* Civica will start returning `403 Access Denied` instead of `200 OK` to Licensify and to the probe which triggers the vpn-down alert.
 * Users who are paying for licence applications to certain licencing authorities will still be able to complete their application but the last step of their journey will display a message saying "We have received your application, but were unable to confirm payment with the authority." ([source](https://github.com/alphagov/licensify/blob/master/frontend/app/views/licensing/payments/unknown.scala.html))
 * The page still gives the user a reference number for their transaction and asks the user to contact the licencing authority to confirm that they have received the payment.
 * Payments will still be processed as normal. The only difference is that Licensify is unable to tell the user whether the payment went through or not.
