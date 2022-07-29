@@ -193,22 +193,14 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/8da4c07e31a656d99b0920faf22a938c42b0456e">1 Jul 2020</a>
+  Last updated: <a href="https://github.com/alphagov/local-links-manager/commit/52ee0076ccc68bc7f132f693bb0549460b011d37">27 Jul 2022</a>
 </div>
 
   <h1 class="page-title">local-links-manager: Importing Local Authorities data</h1>
 
   
-<p>Before running the import rake tasks make sure you have Mapit running locally and have imported data into it.</p>
-<p>Import all local authorities:</p>
+<p>Import all local authorities from <code>data/local-authorities.csv</code>:</p>
 <p><code>bundle exec rake import:local_authorities:import_all</code></p>
 <p>Then import services and interactions:</p>
 <p><code>bundle exec rake import:service_interactions:import_all</code></p>
