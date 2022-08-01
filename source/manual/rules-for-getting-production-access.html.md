@@ -7,9 +7,14 @@ section: 2nd line
 type: learn
 ---
 
-These rules apply to developers, SREs, and technical architects in the GOV.UK programme.
+In the GOV.UK programme we restrict access to production systems for new or
+returning developers, SREs, and technical architects. We do so to defend
+against accidental mistakes and to provide time for people build knowledge in
+how to interact with our production systems safely. Note we have separate
+processes to protect against malicious activity, for example security
+clearance, probation, building secure systems with audibility etc.
 
-## What production access means
+## Types of production access
 
 We have two types of production access:
 
