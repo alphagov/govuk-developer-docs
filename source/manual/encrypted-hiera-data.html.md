@@ -154,6 +154,8 @@ recipient file pertains to.
 
 1. Raise a PR to add the joiner's public key (the `.asc` file) to the [`gpg_public_keys` directory](https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys) in govuk-secrets.
 
+1. Import the GPG key into your keychain (see "[Get someone's latest GPG key](#get-someone39s-latest-gpg-key)")
+
 1. Get the fingerprint of the new GPG key by running `gpg --fingerprint`.
 
 1. Add the joiners's GPG fingerprint to the recipient files
