@@ -196,27 +196,33 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/175490be21cacbdab13d56cb6170b56484ac29e5">27 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cfdf42a1b9c9386fbfd92945246d1188307b6fad">16 Jun 2022</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.</p>
-<h2 id='whitehall'>Whitehall</h2><p>The following commands show you how to find the document, get the correct edition within it, and update it. To complete this you will need the document ID, a string to search for to identify the right change log entry (search is fuzzy, be precise to get the right one), and the string you want to replace the current change note text.</p>
-<p>Connect to the Whitehall console (test your change on Integration first):</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk-connect app-console -e integration whitehall_backend/whitehall
-</code></pre></div><p>Find the document:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>document=Document.find_by_content_id("YOUR_CONTENT_ID_HERE")
-</code></pre></div><p>Output will be a summary of your document. Next, select the editions:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>editions=document.editions
-</code></pre></div><p>Output is a potentially long list of the editions. Next set up the parameters for fuzzy matching:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fuzzy_match = FuzzyMatch.new(editions, read: :change_note)
-</code></pre></div><p>Output should show the change notes. Select the relevant one:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition = fuzzy_match.find("A_STRING_FROM_YOUR_CHANGE_NOTE", must_match_at_least_one_word: true)
-</code></pre></div><p>Check the returned edition and change note to ensure it&rsquo;s the correct one:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.change_note
-edition.major_change_published_at
-</code></pre></div><p>Update it (without validation checks):</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.update_attribute(:change_note, "YOUR_DESIRED_CHANGE_NOTE_STRING")
-</code></pre></div><p>Republish the document using a <a href="https://docs.publishing.service.gov.uk/manual/republishing-content.html">Whitehall Rake task</a></p>
+<h2 id='whitehall'>Whitehall</h2><p>To modify a change note in Whitehall, perform the following steps:</p>
+
+<ol>
+<li>Run a rake task to list the change notes for each edition, given the document&rsquo;s Content ID:</li>
+</ol>
+<p><ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:list[content_id]" class="govuk-link">Run change_note:list[content_id] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:list[content_id]" class="govuk-link">Run change_note:list[content_id] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:list[content_id]" class="govuk-link">⚠️ Run change_note:list[content_id] on Production ⚠️</a></li>
+</ul></p>
+
+<ol>
+<li>From the output of the previous rake task, get the ID for the edition whose change note needs updating, then run the following rake task to update this:</li>
+</ol>
+<p><ul>
+  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']" class="govuk-link">Run change_note:amend[&lsquo;edition_id&rsquo;,&lsquo;new_change_note&rsquo;,&lsquo;your.email@digital.cabinet-office.gov.uk&rsquo;] on Integration</a></li>
+<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']" class="govuk-link">Run change_note:amend[&lsquo;edition_id&rsquo;,&lsquo;new_change_note&rsquo;,&lsquo;your.email@digital.cabinet-office.gov.uk&rsquo;] on Staging</a></li>
+<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']" class="govuk-link">⚠️ Run change_note:amend[&lsquo;edition_id&rsquo;,&lsquo;new_change_note&rsquo;,&lsquo;your.email@digital.cabinet-office.gov.uk&rsquo;] on Production ⚠️</a></li>
+</ul></p>
+
+<blockquote>
+<p>This rake task will fail if you have never logged into Whitehall Publisher in the environment where you are running the task.</p>
+</blockquote>
 <h2 id='publishing-api'>Publishing API</h2><p>Publishing API handles change notes in two different ways. To update the change history of a document, you&rsquo;ll either need to update an individual <a href="https://github.com/alphagov/publishing-api/blob/main/app/models/change_note.rb">ChangeNote</a> or update the <code>change_history</code> in the <a href="https://github.com/alphagov/publishing-api/blob/d6707237ee31090b2bb04015ba71d476f462448a/db/schema.rb#L85">details JSON</a> of the published edition.</p>
 <p><strong>Note</strong></p>
 
@@ -320,7 +326,7 @@ happen in <code>staging</code> due to an issue with the overnight data sync.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-modify-change-note.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-modify-change-note.html.md.erb">View source</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Modify+a+change+note+in+Publishing+API+or+Whitehall%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-modify-change-note.html%29&amp;labels=bug&amp;title=Re%3A+%27Modify+a+change+note+in+Publishing+API+or+Whitehall%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
