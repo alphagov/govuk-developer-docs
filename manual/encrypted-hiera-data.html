@@ -241,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36095045f4347c4ca14d9b459a32fb0ba80d6be6">20 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da62ed934e560eda4f9e0a07e55aec8d5045bb2b">3 Aug 2022</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -361,6 +361,7 @@ recipient file pertains to.</p>
 <ol>
 <li><p>Ask the joiner to <a href="/manual/create-a-gpg-key.html">create a GPG key</a> and send you the <code>.asc</code> file they created that contains their public key.</p></li>
 <li><p>Raise a PR to add the joiner&rsquo;s public key (the <code>.asc</code> file) to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys"><code>gpg_public_keys</code> directory</a> in govuk-secrets.</p></li>
+<li><p>Import the GPG key into your keychain (see &ldquo;<a href="#get-someone39s-latest-gpg-key">Get someone&rsquo;s latest GPG key</a>&rdquo;)</p></li>
 <li><p>Get the fingerprint of the new GPG key by running <code>gpg --fingerprint</code>.</p></li>
 <li><p>Add the joiners&rsquo;s GPG fingerprint to the recipient files
 AWS <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_recipients/integration_hiera_gpg.rcp">integration</a></p></li>
