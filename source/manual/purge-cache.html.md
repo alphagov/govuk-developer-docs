@@ -54,18 +54,39 @@ GOV.UK internal varnish.
 
 ## Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)
 
-To purge content on the Fastly cache nodes, SSH onto a `cache` machine and use the
-PURGE method against the URL you wish to purge. For instance:
+To purge content on the Fastly cache nodes, use the PURGE method against the URL
+you wish to purge, passing the correct Fastly API token for the environment.
+
+First, connect to the GDS VPN if you're out of the office or on GovWiFi. Our
+Fastly account is configured with an IP allowlist, preventing access to the
+Fastly website or API from outside the GDS network.
+
+Next, extract the Fastly API token. Check out the `govuk-secrets` repo, install
+dependencies with `bundle install`, `cd` into the `puppet_aws` directory,
+and run the following command, replacing `production` with a different
+environment if required:
 
 ```sh
-$ curl -XPURGE https://www.gov.uk/bank-holidays
+$ bundle exec rake 'eyaml:decrypt_value[production,govuk_jenkins::jobs::clear_cdn_cache::fastly_api_token]'
 ```
 
-You should receive `ok` returned as a response. If not, you may wish to request
+You may be prompted to enter the password for your keychain.
+
+You can then issue a PURGE request to Fastly using the following command
+(replacing FASTLY_API_TOKEN with the token retrieved in the previous step).
+
+**Note**: this request must be issued over HTTPS to prevent the Fastly API token
+from being sent as plaintext.
+
+```sh
+$ curl -H "Fastly-Key: FASTLY_API_TOKEN" -XPURGE https://www.gov.uk/bank-holidays
+```
+
+You should receive `{ "status": "ok" }` returned as a response. If not, you may wish to request
 more verbose output using the `-i` switch:
 
 ```sh
-$ curl -i -XPURGE https://www.gov.uk/bank-holidays
+$ curl -i -H "Fastly-Key: FASTLY_API_TOKEN" -XPURGE https://www.gov.uk/bank-holidays
 ```
 
 ## Full Edge Flush on Fastly
