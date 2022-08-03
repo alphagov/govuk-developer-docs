@@ -191,7 +191,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/471514503b803f3e1ba90ba3b0cbc032575ffdd5">11 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-e2e-tests/commit/6ff0456b7799dbe78746783a3275708bde80eded">14 Jul 2022</a>
 </div>
 
   <h1 class="page-title">publishing-e2e-tests: Getting a breaking app change through Jenkins</h1>
@@ -218,11 +218,11 @@ through into your branch with the updated tests.</p>
 <li>
 <p>Using the “Build with Parameters” option on the left hand bar replace the
 following parameters.</p>
-<p><code>${YOUR_APP_NAME}_COMMITTISH</code> with the commit SHA of your change</p>
+<p><code>${YOUR_APP_NAME}_COMMITISH</code> with the commit SHA of your change</p>
 <p><code>ORIGIN_REPO</code> with your application repo name, e.g. government-frontend</p>
 <p><code>ORIGIN_COMMIT</code> with the same commit SHA as above</p>
 <p>Publishing E2E tests uses the <code>ORIGIN_REPO</code> + <code>ORIGIN_COMMIT</code> when pushing
-the GitHub status, and the <code>_COMMITTISH</code> to know which version of each app
+the GitHub status, and the <code>_COMMITISH</code> to know which version of each app
 to test against.</p>
 </li>
 <li>
