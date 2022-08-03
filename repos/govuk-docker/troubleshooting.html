@@ -203,7 +203,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/891a4a113030b1f7d1c233759d9b814807f55c25">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/69bade9c928a85ce577984d5fcae0a83d1714df1">3 Aug 2022</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Troubleshooting</h1>
@@ -325,6 +325,49 @@ Target /usr/local/bin/docker-compose
 <li>Alter the way the root user identifies itself. <code>ALTER USER 'root' IDENTIFIED WITH mysql_native_password BY 'root';</code>
 </li>
 </ul>
+<h2 id="browser-based-tests-fail-with-nosuchsessionerror-invalid-session-id">Browser based tests fail with <code>NoSuchSessionError: invalid session id</code>
+</h2>
+<p>For example: Jasmine unit tests or feature specs that use Capybara</p>
+<p>Docker allocates 64mb shared memory to containers by default, but recent versions of Chrome require more than this. Otherwise you'll start to see error messages complaining about an "invalid session id". In a previous discussion on Slack, it was informally agreed that 512mb seems to be the 'right sized' amount to allocate – but this was anecdotal, so other values may work equally well for our needs.</p>
+<p>If the <code>shm_size</code> is too small, you'll get error messages that look something like this in your terminal:</p>
+<pre><code>NoSuchSessionError: invalid session id
+    at Object.throwDecodedError (/govuk/whitehall/node_modules/selenium-webdriver/lib/error.js:522:15)
+    at parseHttpResponse (/govuk/whitehall/node_modules/selenium-webdriver/lib/http.js:548:13)
+    at Executor.execute (/govuk/whitehall/node_modules/selenium-webdriver/lib/http.js:474:28)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5)
+    at async thenableWebDriverProxy.execute (/govuk/whitehall/node_modules/selenium-webdriver/lib/webdriver.js:735:17)
+    at async Object.runSpecs (/govuk/whitehall/node_modules/jasmine-browser-runner/index.js:116:9)
+    at async Command.runSpecs (/govuk/whitehall/node_modules/jasmine-browser-runner/lib/command.js:187:5) {
+  remoteStacktrace: '#0 0xaaaabaf6b1b0 &lt;unknown&gt;\n' +
+    '#1 0xaaaabada13b0 &lt;unknown&gt;\n' +
+    '#2 0xaaaabadc7fe4 &lt;unknown&gt;\n' +
+    '#3 0xaaaabadc9864 &lt;unknown&gt;\n' +
+    '#4 0xaaaabafa75f8 &lt;unknown&gt;\n' +
+    '#5 0xaaaabafa9d98 &lt;unknown&gt;\n' +
+    '#6 0xaaaabafa9acc &lt;unknown&gt;\n' +
+    '#7 0xaaaabaf987e0 &lt;unknown&gt;\n' +
+    '#8 0xaaaabafaa500 &lt;unknown&gt;\n' +
+    '#9 0xaaaabaf8e080 &lt;unknown&gt;\n' +
+    '#10 0xaaaabafc1790 &lt;unknown&gt;\n' +
+    '#11 0xaaaabafc1950 &lt;unknown&gt;\n' +
+    '#12 0xaaaabafdbbd4 &lt;unknown&gt;\n' +
+    '#13 0xffffb0f28628 &lt;unknown&gt;\n' +
+    '#14 0xffffb075501c &lt;unknown&gt;\n'
+}
+error Command failed with exit code 1.
+</code></pre>
+<p>To resolve it, check your project's <code>docker-compose.yml</code> file. The <code>*-lite</code> service will need a <code>shm_size</code> config to be added.</p>
+<p>For example:</p>
+<pre lang="yaml"><code>services:
+  whitehall-lite:
+    &lt;&lt;: *whitehall
+    shm_size: 512mb
+    depends_on:
+      - mysql-8
+      - redis
+    # ...
+</code></pre>
+<p>For further examples, see the PR <a href="https://github.com/alphagov/govuk-docker/pull/613">alphagov/govuk-docker#613</a>.</p>
 
 
             
