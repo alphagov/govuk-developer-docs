@@ -356,6 +356,9 @@
             <a href="/content-schemas/world_location.html"><span>world_location</span></a>
           </li>
           <li>
+            <a href="/content-schemas/world_location_news.html"><span>world_location_news</span></a>
+          </li>
+          <li>
             <a href="/content-schemas/world_location_news_article.html"><span>world_location_news_article</span></a>
           </li>
       </ul>
@@ -397,8 +400,8 @@
 <tr><td><strong>formatted_title</strong><br/><code>string</code></td> <td><br/></td></tr>
 <tr><td><strong>image</strong><br/></td> <td><br/></td></tr></table></td></tr>
 <tr><td><strong>ordered_corporate_information_pages</strong><br/><code>array</code></td> <td>A set of links to corporate information pages to display for the organisation.<br/></td></tr>
-<tr><td><strong>ordered_featured_documents</strong><br/><code>array</code></td> <td>A set of featured documents to display for the organisation. Turn into proper links once organisations are fully migrated.<br/></td></tr>
-<tr><td><strong>ordered_featured_links</strong><br/><code>array</code></td> <td>A set of featured links to display for the organisation.<br/></td></tr>
+<tr><td><strong>ordered_featured_documents</strong><br/><code>array</code></td> <td>A set of featured documents to display.<br/></td></tr>
+<tr><td><strong>ordered_featured_links</strong><br/><code>array</code></td> <td>A set of featured links to display.<br/></td></tr>
 <tr><td><strong>ordered_promotional_features</strong><br/><code>array</code></td> <td>A set of promotional features to display for the organisation. Turn into proper links once organisations are fully migrated.<br/></td></tr>
 <tr><td><strong>organisation_featuring_priority</strong><br/><code>string</code></td> <td>Whether to prioritise news or services on the organisation&rsquo;s home page.<br/>Allowed values: <code>news</code>, <code>service</code></td></tr>
 <tr><td><strong>organisation_govuk_status</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>status</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>changed_name</code>, <code>devolved</code>, <code>exempt</code>, <code>joining</code>, <code>left_gov</code>, <code>live</code>, <code>merged</code>, <code>no_longer_exists</code>, <code>replaced</code>, <code>split</code>, <code>superseded_by_devolved_administration</code>, <code>transitioning</code></td></tr>
@@ -2196,8 +2199,8 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>formatted_title</strong><br/><code>string</code></td> <td><br/></td></tr>
 <tr><td><strong>image</strong><br/></td> <td><br/></td></tr></table></td></tr>
 <tr><td><strong>ordered_corporate_information_pages</strong><br/><code>array</code></td> <td>A set of links to corporate information pages to display for the organisation.<br/></td></tr>
-<tr><td><strong>ordered_featured_documents</strong><br/><code>array</code></td> <td>A set of featured documents to display for the organisation. Turn into proper links once organisations are fully migrated.<br/></td></tr>
-<tr><td><strong>ordered_featured_links</strong><br/><code>array</code></td> <td>A set of featured links to display for the organisation.<br/></td></tr>
+<tr><td><strong>ordered_featured_documents</strong><br/><code>array</code></td> <td>A set of featured documents to display.<br/></td></tr>
+<tr><td><strong>ordered_featured_links</strong><br/><code>array</code></td> <td>A set of featured links to display.<br/></td></tr>
 <tr><td><strong>ordered_promotional_features</strong><br/><code>array</code></td> <td>A set of promotional features to display for the organisation. Turn into proper links once organisations are fully migrated.<br/></td></tr>
 <tr><td><strong>organisation_featuring_priority</strong><br/><code>string</code></td> <td>Whether to prioritise news or services on the organisation&rsquo;s home page.<br/>Allowed values: <code>news</code>, <code>service</code></td></tr>
 <tr><td><strong>organisation_govuk_status</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>status</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>changed_name</code>, <code>devolved</code>, <code>exempt</code>, <code>joining</code>, <code>left_gov</code>, <code>live</code>, <code>merged</code>, <code>no_longer_exists</code>, <code>replaced</code>, <code>split</code>, <code>superseded_by_devolved_administration</code>, <code>transitioning</code></td></tr>
