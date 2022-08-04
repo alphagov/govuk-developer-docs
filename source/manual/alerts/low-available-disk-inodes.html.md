@@ -46,11 +46,14 @@ possible to free some by clearing out old workspaces (on the `ci-agent` machines
 
 #### Clearing old workspaces
 
+We have a [process which deletes old workspaces automatically](https://github.com/alphagov/govuk-puppet/pull/11760/files). The threshold is [90 days by default](https://github.com/alphagov/govuk-puppet/blob/16d467705ce60befee568a77ab943e3059c1465d/modules/govuk_ci/manifests/cleanup.pp#L11), and [30 days for CI agents](https://github.com/alphagov/govuk-puppet/blob/16d467705ce60befee568a77ab943e3059c1465d/hieradata_aws/class/integration/ci_agent.yaml#L10).
+
+If the number of workspaces is still too high on a particular machine, you can delete workspaces manually with the command below. However, you should also consider lowering the thresholds above (and updating this documentation) so that manual intervention is not required again.
+
 ```sh
+# Delete any workspaces older than 1 day
 $ sudo find /var/lib/jenkins/workspace/ -maxdepth 1 -type d -mtime +1 -exec rm -rf {} \;
 ```
-
-This will find any directories that are older than 1 day and delete them.
 
 #### Clearing failed jobs
 
