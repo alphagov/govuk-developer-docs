@@ -177,7 +177,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/989adb72a9edb260efffb88b3fdd9d200e8d0db6">23 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/768fcef02d78c8364c18f94cabb2e2b372d7d65b">5 Aug 2022</a>
 </div>
 
  <h1 id='header'>Request Fastly TLS certificate</h1> <p>When transitioning HTTPS domains, these are the steps to request a TLS
@@ -203,22 +203,22 @@ certificate from Fastly.</p>
 <ol>
 <li>Enter the domain name(s) that you want a TLS certificate to be created for. Select <strong>Let&rsquo;s encrypt</strong> as the certification authority. And select one of the following two TLS configurations. To decide, you need to know where your domain resolves to. A quick way to find out is:</li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ping &lt;your-domain-name&gt;
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   ping &lt;your-domain-name&gt;
 </code></pre></div><p>or</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>dig &lt;your-domain-name&gt; +short
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   dig &lt;your-domain-name&gt; +short
 </code></pre></div><p><strong>gds_bouncer</strong> - for any domain name which resolves to:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>- bouncer-cdn.production.govuk.service.gov.uk
-- bouncer.gds.map.fastly.net
-- 151.101.2.30, 151.101.66.30, 151.101.130.30, 151.101.194.30
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   - bouncer-cdn.production.govuk.service.gov.uk
+   - bouncer.gds.map.fastly.net
+   - 151.101.2.30, 151.101.66.30, 151.101.130.30, 151.101.194.30
 </code></pre></div><p><strong>govuk</strong> - for any domain name which resolves to:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>- backend.production.alphagov.co.uk
-- redirector-cdn.production.govuk.service.gov.uk
-- redirector-cdn-ssl-businesslink.production.govuk.service.gov.uk
-- redirector-cdn-ssl-directgov.production.govuk.service.gov.uk
-- redirector-cdn-ssl-events-businesslink.production.govuk.service.gov.uk
-- www-cdn.production.govuk.service.gov.uk
-- www-gov-uk.map.fastly.net
-- 151.101.0.144, 151.101.64.144, 151.101.128.144, 151.101.192.144
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   - backend.production.alphagov.co.uk
+   - redirector-cdn.production.govuk.service.gov.uk
+   - redirector-cdn-ssl-businesslink.production.govuk.service.gov.uk
+   - redirector-cdn-ssl-directgov.production.govuk.service.gov.uk
+   - redirector-cdn-ssl-events-businesslink.production.govuk.service.gov.uk
+   - www-cdn.production.govuk.service.gov.uk
+   - www-gov-uk.map.fastly.net
+   - 151.101.0.144, 151.101.64.144, 151.101.128.144, 151.101.192.144
 </code></pre></div><p><a href="images/fastly/4.png" rel="noopener noreferrer"><img src="/manual/images/fastly/4.png" alt="Photo of the step 4" /></a></p>
 <p>Click <strong>Submit</strong></p>
 
