@@ -130,6 +130,20 @@
     <ul>
       <li>
         <a href="#whitehall"><span>Whitehall</span></a>
+        <ul>
+          <li>
+            <a href="#to-republish-a-single-document-by-slug"><span>To republish a single document by slug</span></a>
+          </li>
+          <li>
+            <a href="#to-republish-all-documents-of-a-specific-type"><span>To republish all documents of a specific type</span></a>
+          </li>
+          <li>
+            <a href="#to-republish-multiple-documents"><span>To republish multiple documents</span></a>
+          </li>
+          <li>
+            <a href="#to-republish-all-documents"><span>To republish all documents</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#content-publisher"><span>Content Publisher</span></a>
@@ -185,16 +199,18 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/332cee3592028f634a6e0682416516cd853553f6">4 Aug 2022</a>
 </div>
 
- <h1 id='header'>Republish content</h1> <p>Sometimes it may be necessary to republish content to make it show up on the website. For example if we make an update to <a href="https://github.com/alphagov/govspeak/">govspeak</a> that would require us to re-render and save new HTML for content.</p>
+ <h1 id='header'>Republish content</h1> <p>Sometimes it may be necessary to republish content to the Publishing API. This will refresh the content on the website.</p>
+<p>For example if we make an update to <a href="https://github.com/alphagov/govspeak/">govspeak</a> and a publishing application pre-renders that content prior to its submission to Publishing API, that would require us to re-render and save new HTML for content.</p>
 <p>This process varies per app and requires</p>
 
 <ul>
 <li>Connection to the [VPN][vpn] and</li>
 <li><a href="https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html">Production access</a></li>
 </ul>
+<p>You may wish to test first on integration, prior to carrying out the republish in production.</p>
 <h2 id='whitehall'>Whitehall</h2><p>If the documents are in Whitehall, there are Rake tasks you can run as outlined below. Try to pick the one most focused to the scope of what you need to republish to avoid unnecessary load. You can monitor the effect on the publishing queue via these Grafana dashboards:</p>
 
 <ul>
@@ -202,51 +218,86 @@
 <li><a href="https://grafana.blue.staging.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">staging</a></li>
 <li><a href="https://grafana.blue.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&amp;orgId=1&amp;var-Application=whitehall&amp;var-Interval=$__auto_interval">production</a></li>
 </ul>
-
+<h3 id='to-republish-a-single-document-by-slug'>To republish a single document by slug</h3>
 <ul>
   <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:document_by_slug[slug]" class="govuk-link">Run publishing_api:republish:document_by_slug[slug] on Integration</a></li>
 <li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:document_by_slug[slug]" class="govuk-link">Run publishing_api:republish:document_by_slug[slug] on Staging</a></li>
 <li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:document_by_slug[slug]" class="govuk-link">⚠️ Run publishing_api:republish:document_by_slug[slug] on Production ⚠️</a></li>
 </ul>
-<p>For organisations, use the <code>organisation_by_slug</code> rake task:</p>
+
+<blockquote>
+<p>Replace <code>slug</code> with the document&rsquo;s slug, but not the full base path. For example the slug for <code>https://www.gov.uk/government/important-news</code> would be <code>important-news</code>.</p>
+</blockquote>
+<h3 id='to-republish-all-documents-of-a-specific-type'>To republish all documents of a specific type</h3><p>To republish all instances of the following document types, run the following rake task.</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:organisation_by_slug[slug]" class="govuk-link">Run publishing_api:republish:organisation_by_slug[slug] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:organisation_by_slug[slug]" class="govuk-link">Run publishing_api:republish:organisation_by_slug[slug] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish:organisation_by_slug[slug]" class="govuk-link">⚠️ Run publishing_api:republish:organisation_by_slug[slug] on Production ⚠️</a></li>
+<li>CaseStudy</li>
+<li>Consultation</li>
+<li>Contact</li>
+<li>CorporateInformationPage</li>
+<li>DetailedGuide</li>
+<li>DocumentCollection</li>
+<li>FatalityNotice</li>
+<li>Government</li>
+<li>NewsArticle</li>
+<li>OperationalField</li>
+<li>Organisation</li>
+<li>Person</li>
+<li>PolicyGroup</li>
+<li>Publication</li>
+<li>Role</li>
+<li>RoleAppointment</li>
+<li>Speech</li>
+<li>StatisticalDataSet</li>
+<li>StatisticsAnnouncement</li>
+<li>TakePartPage</li>
+<li>TopicalEvent</li>
+<li>TopicalEventAboutPage</li>
+<li>WorldLocation</li>
+<li>WorldwideOrganisation</li>
 </ul>
-<p>For all of a single document type, use the <code>bulk_republish</code> rake task:</p>
 
 <ul>
   <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:document_type[DocumentClass]" class="govuk-link">Run publishing_api:bulk_republish:document_type[DocumentClass] on Integration</a></li>
 <li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:document_type[DocumentClass]" class="govuk-link">Run publishing_api:bulk_republish:document_type[DocumentClass] on Staging</a></li>
 <li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:document_type[DocumentClass]" class="govuk-link">⚠️ Run publishing_api:bulk_republish:document_type[DocumentClass] on Production ⚠️</a></li>
 </ul>
-<p>For example:
-<code>/government/case-studies/alexander-dennis-maximum-capacity</code>
-<code>publishing_api:bulk_republish:document_type[CaseStudies]</code></p>
-<p>You may wish to test first on Integration.</p>
-<p>For a short list of Content IDs, use the <code>documents_by_content_ids</code> rake task:</p>
+
+<blockquote>
+<p>Replace <code>DocumentClass</code> with the camelized (i.e. as it is written above) class name.</p>
+</blockquote>
+<h3 id='to-republish-multiple-documents'>To republish multiple documents</h3><p>For a small number of documents, use the following rake task:</p>
 
 <ul>
   <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2] on Integration</a></li>
 <li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2] on Staging</a></li>
 <li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2]" class="govuk-link">⚠️ Run publishing_api:bulk_republish:documents_by_content_ids[content_id_1 content_id_2] on Production ⚠️</a></li>
 </ul>
-<p>For a significant number of Content IDs, some preparation is needed for this as a CSV file needs to be in place.</p>
+
+<blockquote>
+<p>Replace <code>content_id_1</code> and <code>content_id_2</code> with the content ID (i.e. UUID) for the documents to republish. You can add more than 2 content IDs.</p>
+</blockquote>
+<p>For a significant number of documents, a CSV file should be added to the repository:</p>
 
 <ol>
-<li>The CSV should have a column called content_id that contains all the relevant IDS. This should be added to the whitehall repository at <code>lib/tasks/{FILENAME}.csv</code>.</li>
-<li><p>Run the <code>documents_by_content_ids_from_csv</code> rake task:
+<li>Create a CSV file that contains a single column headed <code>content_id</code>. Put the content ID for each document on a separate line below this. The file should be saved in <code>lib/tasks/{FILENAME}.csv</code> and a PR raised.</li>
+<li>Merge and deploy the PR to the relevant environment.</li>
+<li>Run the <code>documents_by_content_ids_from_csv</code> rake task:
 <ul>
 <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name] on Integration</a></li>
 <li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]" class="govuk-link">Run publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name] on Staging</a></li>
 <li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name]" class="govuk-link">⚠️ Run publishing_api:bulk_republish:documents_by_content_ids_from_csv[csv_file_name] on Production ⚠️</a></li>
-</ul></p></li>
-<li><p>After the job has completed, remove the CSV from the repository.</p></li>
+</ul></li>
 </ol>
-<p>To republish all documents:
-Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with Technical 2nd Line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.</p>
+
+<blockquote>
+<p>Replace <code>csv_file_name</code> with the filename of the CSV, including the <code>.csv</code> extension.
+1. After the job has completed, remove the CSV from the repository.</p>
+</blockquote>
+<h3 id='to-republish-all-documents'>To republish all documents</h3>
+<blockquote>
+<p>Caution: this is a lot of content and will take hours to complete. If it is possible to scope the republish do so and use a different task, but if you have made a change such as something in govspeak that will affect the majority of content, this is available. Before running this job confirm with Technical 2nd Line that they are happy for you to proceed as it could cause backed up publishing queues and alerts.</p>
+</blockquote>
 
 <ul>
   <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:bulk_republish:all" class="govuk-link">Run publishing_api:bulk_republish:all on Integration</a></li>
