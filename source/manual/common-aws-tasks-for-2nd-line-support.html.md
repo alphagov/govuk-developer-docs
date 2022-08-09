@@ -128,6 +128,12 @@ application by comparing the instances you get for the application under 'instan
 and the instances you get for an application by looking at the ASG for that application's instances
 (which displays only attached instances).
 
+## Logging into a detached instance
+
+When you've found the detached instance in the AWS console, you can click on the instance ID column to get the summary. This includes the private IP. Copy this, and use it with the gds govuk connect command instead of an app/machine type, eg:
+
+`gds govuk connect ssh -e integration ip-10-1-4-96.eu-west-1.compute.internal`
+
 ## Terminating an instance
 
 Refer to the AWS documentation for steps on [how to terminate an instance][].
