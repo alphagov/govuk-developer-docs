@@ -117,9 +117,10 @@ by:
 ## Disk space used by logfiles
 
 You may discover that disk space is mostly being used up by logfiles.
-This is probably caused by logrotate failing to properly rotate a
-logfile for whatever reason, so it will probably just be one or two of
-the latest logfiles using a high proportion of the disk space.
+Some work has been done to logrotate to [make it aware of disk space](https://github.com/alphagov/govuk-puppet/pull/11671/files), and to delete every log file over a certain size, in reverse chronological order, until disk space is brought below the threshold.
+If logfiles continue to cause issues for disk space, you should look into tweaking the thresholds for the above code first.
+
+logrotate sometimes fails to properly rotate a logfile for whatever reason, so it can just be one or two of the latest logfiles using a high proportion of the disk space.
 
 If it is out of hours, free up room to resolve the incident without
 performing the maintenace tasks described below. Pass to 2ndline to deal
