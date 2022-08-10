@@ -188,7 +188,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ed9ec6c5e9a421fc591670f335517a966557ac9e">3 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bd9b30739a857ac7e9b10456bdcc2e8e0f976a4c">3 Aug 2022</a>
 </div>
 
  <h1 id='header'>Purge a page from cache</h1> <p>The <code>www.gov.uk</code> domain is served through Fastly, which honours the
@@ -227,12 +227,25 @@ GOV.UK internal varnish.</p>
 <li><a href="https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/build">Clear CDN cache on Staging</a></li>
 <li><a href="https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/build">Clear CDN cache on Production</a></li>
 </ul>
-<h2 id='purging-a-page-from-fastly-manually-e-g-if-gov-uk-production-is-dead'>Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)</h2><p>To purge content on the Fastly cache nodes, SSH onto a <code>cache</code> machine and use the
-PURGE method against the URL you wish to purge. For instance:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-XPURGE</span> https://www.gov.uk/bank-holidays
-</code></pre></div><p>You should receive <code>ok</code> returned as a response. If not, you may wish to request
+<h2 id='purging-a-page-from-fastly-manually-e-g-if-gov-uk-production-is-dead'>Purging a page from Fastly manually (e.g. if GOV.UK Production is dead)</h2><p>To purge content on the Fastly cache nodes, use the PURGE method against the URL
+you wish to purge, passing the correct Fastly API token for the environment.</p>
+<p>First, connect to the GDS VPN if you&rsquo;re out of the office or on GovWiFi. Our
+Fastly account is configured with an IP allowlist, preventing access to the
+Fastly website or API from outside the GDS network.</p>
+<p>Next, extract the Fastly API token. Check out the <code>govuk-secrets</code> repo, install
+dependencies with <code>bundle install</code>, <code>cd</code> into the <code>puppet_aws</code> directory,
+and run the following command, replacing <code>production</code> with a different
+environment if required:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake <span class="s1">'eyaml:decrypt_value[production,govuk_jenkins::jobs::clear_cdn_cache::fastly_api_token]'</span>
+</code></pre></div><p>You may be prompted to enter the password for your keychain.</p>
+<p>You can then issue a PURGE request to Fastly using the following command
+(replacing FASTLY_API_TOKEN with the token retrieved in the previous step).</p>
+<p><strong>Note</strong>: this request must be issued over HTTPS to prevent the Fastly API token
+from being sent as plaintext.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-H</span> <span class="s2">"Fastly-Key: FASTLY_API_TOKEN"</span> <span class="nt">-XPURGE</span> https://www.gov.uk/bank-holidays
+</code></pre></div><p>You should receive <code>{ &quot;status&quot;: &quot;ok&quot; }</code> returned as a response. If not, you may wish to request
 more verbose output using the <code>-i</code> switch:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-i</span> <span class="nt">-XPURGE</span> https://www.gov.uk/bank-holidays
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>curl <span class="nt">-i</span> <span class="nt">-H</span> <span class="s2">"Fastly-Key: FASTLY_API_TOKEN"</span> <span class="nt">-XPURGE</span> https://www.gov.uk/bank-holidays
 </code></pre></div><h2 id='full-edge-flush-on-fastly'>Full Edge Flush on Fastly</h2><p>There are two steps involved in flushing <em>everything</em>; our origin (the cache
 servers) followed by Fastly.</p>
 <p>If possible, speak to a member of the senior tech team before doing this, to
