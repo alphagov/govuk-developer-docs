@@ -177,7 +177,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c988400bb7a42905f7f21cf33a59d3afd4385371">13 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d8f49ce0a1e674f103831cc8ae0ad1b52d3ecef1">10 Aug 2022</a>
 </div>
 
  <h1 id='header'>Low available disk space</h1> <p>See also: <a href="/manual/alerts/low-available-disk-inodes.html">low available disk inodes</a></p>
@@ -267,9 +267,9 @@ by:</p>
 <li>If the app is stateless and the volume ephemeral you can resize it in govuk-aws-data at data/&lt;app&gt;/&lt;env&gt;/common.tfvars and modify root_block_device_volume .You will then have to terminate the instances for them to be respawned by the autoscaling group with the new resized volume.</li>
 </ol>
 <h2 id='disk-space-used-by-logfiles'>Disk space used by logfiles</h2><p>You may discover that disk space is mostly being used up by logfiles.
-This is probably caused by logrotate failing to properly rotate a
-logfile for whatever reason, so it will probably just be one or two of
-the latest logfiles using a high proportion of the disk space.</p>
+Some work has been done to logrotate to <a href="https://github.com/alphagov/govuk-puppet/pull/11671/files">make it aware of disk space</a>, and to delete every log file over a certain size, in reverse chronological order, until disk space is brought below the threshold.
+If logfiles continue to cause issues for disk space, you should look into tweaking the thresholds for the above code first.</p>
+<p>logrotate sometimes fails to properly rotate a logfile for whatever reason, so it can just be one or two of the latest logfiles using a high proportion of the disk space.</p>
 <p>If it is out of hours, free up room to resolve the incident without
 performing the maintenace tasks described below. Pass to 2ndline to deal
 with during working hours.</p>
