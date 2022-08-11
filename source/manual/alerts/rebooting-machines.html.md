@@ -11,9 +11,6 @@ Under normal circumstances, most machines reboot automatically when an update is
 
 Icinga alerts state when machines need rebooting, and will tell you if it's a manual reboot and whether it can be done in-hours or should be done out-of-hours.
 
-Note that much of the following documentation assumes you have correctly
-[set up your fabric scripts](https://github.com/alphagov/fabric-scripts#setup).
-
 ## Automatic rebooting
 
 If machines are not rebooting automatically, there may be a problem with the locking mechanism.
@@ -25,20 +22,21 @@ See next section.
 ensure that systems are available. It is possible that a problem could occur
 where they can't reboot automatically.
 
-```command-line
-$ fab <ENVIRONMENT> all locksmith.status
+SSH into the machine in question, and run the following command, replacing 'integration' with whatever environment the machine is running in:
+
+```
+$ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' status
 ```
 
 If a lock is in place, it will detail which machine holds the lock.
 
 You can remove it with:
 
-```command-line
-$ fab <ENVIRONMENT> -H <machine-name> locksmith.unlock:"<machine-name>"
+```
+$ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' unlock '<machine-name>'
 ```
 
-Machines that are safe to reboot should then do so at the scheduled
-time.
+Machines that are safe to reboot should then do so at the scheduled time.
 
 ## Manual rebooting
 
@@ -123,6 +121,8 @@ You can also follow this process manually:
 1. Check the traffic is flowing from the load balancer with `tail -f /var/log/nginx/lb-access.log` again.
 
 ### Rebooting MongoDB machines
+
+Note that the following documentation assumes you have correctly [set up your fabric scripts](https://github.com/alphagov/fabric-scripts#setup).
 
 You can see our MongoDB machines by running:
 
