@@ -43,9 +43,10 @@ Machines that are safe to reboot should then do so at the scheduled time.
 You can manually reboot virtual machines. You should follow these general rules:
 
 1. Do not reboot more than one machine of the same class at the same time.
-1. Before you reboot, check whether the machine is safe to reboot, by looking in the [`hieradata_aws` folder in govuk-puppet](https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws).
-  - If a machine is safe to reboot, the `govuk_safe_to_reboot` class shows `$can_reboot = 'yes'`.
-  - For more information, read the [`govuk_safe_to_reboot` class definition](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp).
+1. Before you reboot, check whether the machine is safe to reboot, by looking at the [machine hieradata in govuk-puppet](https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws/class).
+  - If a machine is not safe to reboot, its YAML file will have a `govuk_safe_to_reboot::can_reboot` property with a value of "no", "careful" or "overnight" ([example](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/hieradata_aws/class/production/graphite.yaml#L1)).
+  - Be sure to check _all_ of the YAML files for your machine class, as the `govuk_safe_to_reboot` configuration may differ between environments.
+  - If there is no `govuk_safe_to_reboot` configuration, the machine is [considered safe to reboot](https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_safe_to_reboot/manifests/init.pp#L20).
   - Even if a safe isn't considered 'safe' to reboot, you may need to do so in the event of an incident. Just be mindful of the downstream effects of the reboot.
 1. Check if there are special instructions below for the machine type you're rebooting. If there aren't, then skip to the "[rebooting other machines](#rebooting-other-machines)" instructions.
 
