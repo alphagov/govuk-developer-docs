@@ -7,8 +7,9 @@ parent: "/manual.html"
 important: true
 ---
 
-Under normal circumstances most machines reboot automatically when an update is required.
-Some machines need to be rebooted manually.
+Under normal circumstances, most machines reboot automatically when an update is required. Some machines need to be rebooted manually.
+
+Icinga alerts state when machines need rebooting, and will tell you if it's a manual reboot and whether it can be done in-hours or should be done out-of-hours.
 
 Note that much of the following documentation assumes you have correctly
 [set up your fabric scripts](https://github.com/alphagov/fabric-scripts#setup).
@@ -42,8 +43,6 @@ time.
 ## Manual rebooting
 
 You can manually reboot virtual machines.
-
-Icinga alerts state when machines need rebooting. These alerts tell you if it's a manual reboot, and whether it's in or out-of-hours.
 
 Do not reboot more than one machine of the same class at the same time.
 
