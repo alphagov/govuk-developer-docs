@@ -65,8 +65,6 @@ If you need to reboot a machine in AWS, extended reboot times may result in AWS 
 
 If this happens, AWS should then automatically create a new machine to replace the old one.
 
-If AWS does not automatically create a new machine, [contact the Reliability Engineering team](mailto:reliability-engineering@digital.cabinet-office.gov.uk) for support.
-
 See the [documentation on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws) for more information.
 
 ### Rebooting Jenkins CI agents
