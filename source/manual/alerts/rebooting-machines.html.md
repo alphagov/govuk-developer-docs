@@ -136,6 +136,16 @@ To avoid this happening, we need to disable unattended reboots on all the other 
 1. Reboot the docker-management machine (`sudo reboot`)
 1. Deploy the previous release of govuk-puppet to Production
 
+### Rebooting `jenkins` machines
+
+We only have one instance on each environment that runs Jenkins, therefore rebooting Jenkins will cause downtime for developers.
+It will prevent developers from being able to deploy code, apply Terraform, run Smokey, and lots of other things.
+
+Before rebooting Jenkins, put a message in `#govuk-2ndline-tech` and consider doing the same in `#govuk-developers`.
+Check that there are no (important) jobs in progress. When things look free, `sudo reboot`.
+
+Avoid doing this late in the day, as Jenkins is quite brittle and a reboot may cause runtime issues that require SRE assistance. Worse, it may trigger a new instance (see [manual rebooting](#manual-rebooting)), which can sometimes fail to provision correctly due to the original instance retaining a 'lock' on the volume, which then can't be mounted on the new instance. In this case, terminating the new instance should fix things, as that will cause another new instance to be created, and this time there will be no lock on the volume.
+
 ### Rebooting `mongo` machines
 
 Note that the following documentation assumes you have correctly [set up your fabric scripts](https://github.com/alphagov/fabric-scripts#setup).
