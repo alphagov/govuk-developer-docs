@@ -40,21 +40,14 @@ Machines that are safe to reboot should then do so at the scheduled time.
 
 ## Manual rebooting
 
-You can manually reboot virtual machines.
+You can manually reboot virtual machines. You should follow these general rules:
 
-Do not reboot more than one machine of the same class at the same time.
-
-The way that you reboot machines depends on the type of machine.
-
-### Before you start
-
-Before you start manually rebooting, you must check whether the machine is safe to reboot.
-
-This information is stored in the [`hieradata_aws` folder in the `govuk-puppet` repo](https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws). If a machine is safe to reboot, the `govuk_safe_to_reboot` class shows `$can_reboot = 'yes'`.
-
-See the [`govuk_safe_to_reboot/manifests/init.pp` file in the `govuk-puppet` repo](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp) for more information.
-
-Because of an incident, you may need to reboot a machine that is not safe to reboot. You can reboot that machine as long as you have considered the downstream effects of this reboot.
+1. Do not reboot more than one machine of the same class at the same time.
+1. Before you reboot, check whether the machine is safe to reboot, by looking in the [`hieradata_aws` folder in govuk-puppet](https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws).
+  - If a machine is safe to reboot, the `govuk_safe_to_reboot` class shows `$can_reboot = 'yes'`.
+  - For more information, read the [`govuk_safe_to_reboot` class definition](https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp).
+  - Even if a safe isn't considered 'safe' to reboot, you may need to do so in the event of an incident. Just be mindful of the downstream effects of the reboot.
+1. Check if there are special instructions below for the machine type you're rebooting. If there aren't, then skip to the "[rebooting other machines](#rebooting-other-machines)" instructions.
 
 ### Rebooting AWS machines
 
