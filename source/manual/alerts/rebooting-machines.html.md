@@ -49,13 +49,7 @@ You can manually reboot virtual machines. You should follow these general rules:
   - Even if a safe isn't considered 'safe' to reboot, you may need to do so in the event of an incident. Just be mindful of the downstream effects of the reboot.
 1. Check if there are special instructions below for the machine type you're rebooting. If there aren't, then skip to the "[rebooting other machines](#rebooting-other-machines)" instructions.
 
-### Rebooting AWS machines
-
-If you need to reboot a machine in AWS, extended reboot times may result in AWS automatically terminating that machine.
-
-If this happens, AWS should then automatically create a new machine to replace the old one.
-
-See the [documentation on rebooting `cache` machines in AWS](#rebooting-cache-machines-in-aws) for more information.
+Note that if a reboot gets stuck or takes too long, it can result in AWS automatically terminating that machine. If this happens, AWS should automatically create a new machine to replace the old one.
 
 ### Rebooting Jenkins CI agents
 
