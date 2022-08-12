@@ -140,31 +140,28 @@
         <a href="#manual-rebooting"><span>Manual rebooting</span></a>
         <ul>
           <li>
-            <a href="#before-you-start"><span>Before you start</span></a>
+            <a href="#rebooting-asset_master-machines"><span>Rebooting asset_master machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-aws-machines"><span>Rebooting AWS machines</span></a>
+            <a href="#rebooting-cache-machines"><span>Rebooting cache machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-jenkins-ci-agents"><span>Rebooting Jenkins CI agents</span></a>
+            <a href="#rebooting-ci_agent-machines"><span>Rebooting ci_agent machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-cache-machines-in-aws"><span>Rebooting Cache machines in AWS</span></a>
+            <a href="#rebooting-docker_management-machines"><span>Rebooting docker_management machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-mongodb-machines"><span>Rebooting MongoDB machines</span></a>
+            <a href="#rebooting-jenkins-machines"><span>Rebooting jenkins machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-rabbitmq-machines"><span>Rebooting RabbitMQ machines</span></a>
+            <a href="#rebooting-mongo-machines"><span>Rebooting mongo machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-asset-primary-and-secondary-machines"><span>Rebooting asset primary and secondary machines</span></a>
+            <a href="#rebooting-rabbitmq-machines"><span>Rebooting rabbitmq machines</span></a>
           </li>
           <li>
-            <a href="#rebooting-router-backend-machines"><span>Rebooting router-backend machines</span></a>
-          </li>
-          <li>
-            <a href="#rebooting-docker-management"><span>Rebooting docker-management</span></a>
+            <a href="#rebooting-router_backend-machines"><span>Rebooting router_backend machines</span></a>
           </li>
           <li>
             <a href="#rebooting-other-machines"><span>Rebooting other machines</span></a>
@@ -222,50 +219,48 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d49fa69b202c2bebae03010d59fc84abba3ae5d0">26 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/921f5fbfd264b9bcc8bebb594294e2ae9ce3d486">11 Aug 2022</a>
 </div>
 
- <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances most machines reboot automatically when an update is required.
-Some machines need to be rebooted manually.</p>
-<p>Note that much of the following documentation assumes you have correctly
-<a href="https://github.com/alphagov/fabric-scripts#setup">set up your fabric scripts</a>.</p>
+ <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances, most machines reboot automatically when an update is required. Some machines need to be rebooted manually.</p>
+<p>Icinga alerts state when machines need rebooting, and will tell you if it&rsquo;s a manual reboot and whether it can be done in-hours or should be done out-of-hours.</p>
 <h2 id='automatic-rebooting'>Automatic rebooting</h2><p>If machines are not rebooting automatically, there may be a problem with the locking mechanism.
 See next section.</p>
 <h3 id='checking-locking-status'>Checking locking status</h3><p><a href="https://github.com/coreos/locksmith">locksmith</a> manages unattended reboots to
 ensure that systems are available. It is possible that a problem could occur
 where they can&rsquo;t reboot automatically.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; all locksmith.status
+<p>SSH into the machine in question, and run the following command, replacing &lsquo;integration&rsquo; with whatever environment the machine is running in:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' status
 </code></pre></div><p>If a lock is in place, it will detail which machine holds the lock.</p>
 <p>You can remove it with:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; -H &lt;machine-name&gt; locksmith.unlock:"&lt;machine-name&gt;"
-</code></pre></div><p>Machines that are safe to reboot should then do so at the scheduled
-time.</p>
-<h2 id='manual-rebooting'>Manual rebooting</h2><p>You can manually reboot virtual machines.</p>
-<p>Icinga alerts state when machines need rebooting. These alerts tell you if it&rsquo;s a manual reboot, and whether it&rsquo;s in or out-of-hours.</p>
-<p>Do not reboot more than one machine of the same class at the same time.</p>
-<p>The way that you reboot machines depends on the type of machine.</p>
-<h3 id='before-you-start'>Before you start</h3><p>Before you start manually rebooting, you must check whether the machine is safe to reboot.</p>
-<p>This information is stored in the <a href="https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws"><code>hieradata_aws</code> folder in the <code>govuk-puppet</code> repo</a>. If a machine is safe to reboot, the <code>govuk_safe_to_reboot</code> class shows <code>$can_reboot = &#39;yes&#39;</code>.</p>
-<p>See the <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_safe_to_reboot/manifests/init.pp"><code>govuk_safe_to_reboot/manifests/init.pp</code> file in the <code>govuk-puppet</code> repo</a> for more information.</p>
-<p>Because of an incident, you may need to reboot a machine that is not safe to reboot. You can reboot that machine as long as you have considered the downstream effects of this reboot.</p>
-<h3 id='rebooting-aws-machines'>Rebooting AWS machines</h3><p>If you need to reboot a machine in AWS, extended reboot times may result in AWS automatically terminating that machine.</p>
-<p>If this happens, AWS should then automatically create a new machine to replace the old one.</p>
-<p>If AWS does not automatically create a new machine, <a href="mailto:reliability-engineering@digital.cabinet-office.gov.uk">contact the Reliability Engineering team</a> for support.</p>
-<p>See the <a href="#rebooting-cache-machines-in-aws">documentation on rebooting <code>cache</code> machines in AWS</a> for more information.</p>
-<h3 id='rebooting-jenkins-ci-agents'>Rebooting Jenkins CI agents</h3><p>Sometimes a CI agent starts continually erroring on Jenkins jobs, and the
-most straightforward way of fixing the issue is to reboot the machine.</p>
-<p>First, visit the <a href="https://ci.integration.publishing.service.gov.uk/computer/">Jenkins nodes list</a>.
-Click on the problematic agent and then &ldquo;Mark this node temporarily
-offline&rdquo;. You&rsquo;ll need to provide a reason, which could just be &ldquo;to reboot
-problematic agent&rdquo;. This will stop the agent from being used for new jobs.</p>
-<p>SSH into the agent; the machine number to SSH into will match the agent
-number. For example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect ssh <span class="nt">-e</span> integration ci_agent:6
-</code></pre></div><p>Reboot the machine: <code>sudo reboot</code>.</p>
-<p>Finally, go back into the Jenkins nodes list to take the node online and
-then to &ldquo;Launch agent&rdquo;. You&rsquo;ll be taken to the live log for the agent,
-where you should see the output <code>Agent successfully connected and online</code>.</p>
-<h3 id='rebooting-cache-machines-in-aws'>Rebooting Cache machines in AWS</h3><p>The <code>cache</code> machines run the <code>router</code> app which handles live user traffic.
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' unlock '&lt;machine-name&gt;'
+</code></pre></div><p>Machines that are safe to reboot should then do so at the scheduled time.</p>
+<h2 id='manual-rebooting'>Manual rebooting</h2><p>You can manually reboot virtual machines. You should follow these general rules:</p>
+
+<ol>
+<li>Do not reboot more than one machine of the same class at the same time.</li>
+<li>Before you reboot, check whether the machine is safe to reboot, by looking at the <a href="https://github.com/alphagov/govuk-puppet/tree/main/hieradata_aws/class">machine hieradata in govuk-puppet</a>.
+
+<ul>
+<li>If a machine is not safe to reboot, its YAML file will have a <code>govuk_safe_to_reboot::can_reboot</code> property with a value of &ldquo;no&rdquo;, &ldquo;careful&rdquo; or &ldquo;overnight&rdquo; (<a href="https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/hieradata_aws/class/production/graphite.yaml#L1">example</a>).</li>
+<li>Be sure to check <em>all</em> of the YAML files for your machine class, as the <code>govuk_safe_to_reboot</code> configuration may differ between environments.</li>
+<li>If there is no <code>govuk_safe_to_reboot</code> configuration, the machine is <a href="https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk_safe_to_reboot/manifests/init.pp#L20">considered safe to reboot</a>.</li>
+<li>Even if a safe isn&rsquo;t considered &lsquo;safe&rsquo; to reboot, you may need to do so in the event of an incident. Just be mindful of the downstream effects of the reboot.</li>
+</ul></li>
+<li>Check if there are special instructions below for the machine type you&rsquo;re rebooting. If there aren&rsquo;t, then skip to the &ldquo;<a href="#rebooting-other-machines">rebooting other machines</a>&rdquo; instructions.</li>
+</ol>
+<p>Note that if a reboot gets stuck or takes too long, it can result in AWS automatically terminating that machine. If this happens, AWS should automatically create a new machine to replace the old one.</p>
+<h3 id='rebooting-asset_master-machines'>Rebooting <code>asset_master</code> machines</h3><p>Unless there are urgent updates to apply the primary machine should not be
+rebooted in production during working hours - as the primary machine is required
+for attachments to be uploaded.</p>
+<p>The secondary machines can be rebooted as they hold a copy of data and are resynced
+regularly.</p>
+<p>Reboots of the step_down_primary machine should be organised by On Call staff,
+for the production environment.</p>
+<p>You may reboot the primary machine in the staging environment during working
+hours however it is prudent to warn colleagues that uploading attachments will
+be unavailable during this period.</p>
+<h3 id='rebooting-cache-machines'>Rebooting <code>cache</code> machines</h3><p>The <code>cache</code> machines run the <code>router</code> app which handles live user traffic.
 To safely reboot them without serving too many errors to users, we must
 remove them from the AWS load balancer target groups before rebooting.</p>
 <p>The tool for rebooting cache machines is in the govuk-puppet repository. This
@@ -291,7 +286,36 @@ from the reboots required alert listing)</li>
 which will re-add the instance to the Target Groups</li>
 <li>Check the traffic is flowing from the load balancer with <code>tail -f /var/log/nginx/lb-access.log</code> again.</li>
 </ol>
-<h3 id='rebooting-mongodb-machines'>Rebooting MongoDB machines</h3><p>You can see our MongoDB machines by running:</p>
+<h3 id='rebooting-ci_agent-machines'>Rebooting <code>ci_agent</code> machines</h3><p>Sometimes a CI agent starts continually erroring on Jenkins jobs, and the
+most straightforward way of fixing the issue is to reboot the machine.</p>
+<p>First, visit the <a href="https://ci.integration.publishing.service.gov.uk/computer/">Jenkins nodes list</a>.
+Click on the problematic agent and then &ldquo;Mark this node temporarily
+offline&rdquo;. You&rsquo;ll need to provide a reason, which could just be &ldquo;to reboot
+problematic agent&rdquo;. This will stop the agent from being used for new jobs.</p>
+<p>SSH into the agent; the machine number to SSH into will match the agent
+number. For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect ssh <span class="nt">-e</span> integration ci_agent:6
+</code></pre></div><p>Reboot the machine: <code>sudo reboot</code>.</p>
+<p>Finally, go back into the Jenkins nodes list to take the node online and
+then to &ldquo;Launch agent&rdquo;. You&rsquo;ll be taken to the live log for the agent,
+where you should see the output <code>Agent successfully connected and online</code>.</p>
+<h3 id='rebooting-docker_management-machines'>Rebooting <code>docker_management</code> machines</h3><p>It is only safe to reboot while no other unattended reboot is underway. This is because it is used to manage locks for unattended reboots of other machines. If this machine is down, then multiple machines in high availability groups may choose to reboot themselves at the same time.</p>
+<p>To avoid this happening, we need to disable unattended reboots on all the other machines in the environment while we reboot this one:</p>
+
+<ol>
+<li>Set <code>govuk_unattended_reboot::enabled</code> to <code>false</code> in the <a href="https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166">govuk-puppet common configuration</a> - you can do this in a branch.</li>
+<li>Build the branch of govuk-puppet to Production</li>
+<li>Wait half an hour to allow all machines to pull from the puppetmaster</li>
+<li>Reboot the docker-management machine (<code>sudo reboot</code>)</li>
+<li>Deploy the previous release of govuk-puppet to Production</li>
+</ol>
+<h3 id='rebooting-jenkins-machines'>Rebooting <code>jenkins</code> machines</h3><p>We only have one instance on each environment that runs Jenkins, therefore rebooting Jenkins will cause downtime for developers.
+It will prevent developers from being able to deploy code, apply Terraform, run Smokey, and lots of other things.</p>
+<p>Before rebooting Jenkins, put a message in <code>#govuk-2ndline-tech</code> and consider doing the same in <code>#govuk-developers</code>.
+Check that there are no (important) jobs in progress. When things look free, <code>sudo reboot</code>.</p>
+<p>Avoid doing this late in the day, as Jenkins is quite brittle and a reboot may cause runtime issues that require SRE assistance. Worse, it may trigger a new instance (see <a href="#manual-rebooting">manual rebooting</a>), which can sometimes fail to provision correctly due to the original instance retaining a &lsquo;lock&rsquo; on the volume, which then can&rsquo;t be mounted on the new instance. In this case, terminating the new instance should fix things, as that will cause another new instance to be created, and this time there will be no lock on the volume.</p>
+<h3 id='rebooting-mongo-machines'>Rebooting <code>mongo</code> machines</h3><p>Note that the following documentation assumes you have correctly <a href="https://github.com/alphagov/fabric-scripts#setup">set up your fabric scripts</a>.</p>
+<p>You can see our MongoDB machines by running:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; puppet_class:mongodb::server hosts
 </code></pre></div><p>All secondary Mongo machines will reboot overnight. If you don&rsquo;t need to
 reboot the cluster right now, step the current primary down and allow it
@@ -311,7 +335,7 @@ to reboot overnight:</p>
 <li>Reboot the primary. The <code>mongo.safe_reboot</code> Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.</li>
 </ul></li>
 </ul>
-<h3 id='rebooting-rabbitmq-machines'>Rebooting RabbitMQ machines</h3><p>There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.</p>
+<h3 id='rebooting-rabbitmq-machines'>Rebooting <code>rabbitmq</code> machines</h3><p>There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.</p>
 
 <ol>
 <li><p>SSH into the machine and environment you want to reboot by running the following command:</p>
@@ -337,28 +361,8 @@ to reboot overnight:</p>
 <p>When you have rebooted the machine, you should monitor alerts to see if there are any RabbitMQ-related alerts. You might also wish to monitor the cluster via the <a href="/manual/rabbitmq.html#connecting-to-the-rabbitmq-web-control-panel">RabbitMQ web control panel</a> dashboard. This dashboard shows the current members of the cluster and means that you can avoid polling <code>sudo rabbitmqctl cluster_status</code> to determine when your restarted machine has rejoined the cluster.</p>
 <p>For more information on RabbitMQ-related alerts, see the <a href="https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/manifests/monitoring.pp">GOV.UK Puppet RabbitMQ <code>monitoring.pp</code> file</a>.</p>
 <p>There have been two incidents after rebooting RabbitMQ machines. For more information, see the <a href="https://docs.google.com/document/d/19gCq7p7OggkG0pGNL8iAspfnwR1UrsZfDQnOYniQlvM/edit?pli=1#">No non-idle RabbitMQ consumers</a> and <a href="https://docs.google.com/document/d/1ia3OGn-v0bimW4P0vRtKUVeVVNh7VEiXjHqlc9jfeFY/edit#heading=h.p99426yo0rbv">Publishing API jobs became stuck</a> incident reports.</p>
-<h3 id='rebooting-asset-primary-and-secondary-machines'>Rebooting asset primary and secondary machines</h3><p>Unless there are urgent updates to apply the primary machine should not be
-rebooted in production during working hours - as the primary machine is required
-for attachments to be uploaded.</p>
-<p>The secondary machines can be rebooted as they hold a copy of data and are resynced
-regularly.</p>
-<p>Reboots of the step_down_primary machine should be organised by On Call staff,
-for the production environment.</p>
-<p>You may reboot the primary machine in the staging environment during working
-hours however it is prudent to warn colleagues that uploading attachments will
-be unavailable during this period.</p>
-<h3 id='rebooting-router-backend-machines'>Rebooting router-backend machines</h3><p>Router backend machines are instances of MongoDB machines and can be rebooted
+<h3 id='rebooting-router_backend-machines'>Rebooting <code>router_backend</code> machines</h3><p>Router backend machines are instances of MongoDB machines and can be rebooted
 as per the <a href="#rebooting-mongodb-machines">MongoDB rebooting guidance</a>.</p>
-<h3 id='rebooting-docker-management'>Rebooting docker-management</h3><p>It is only safe to reboot while no other unattended reboot is underway. This is because it is used to manage locks for unattended reboots of other machines. If this machine is down, then multiple machines in high availability groups may choose to reboot themselves at the same time.</p>
-<p>To avoid this happening, we need to disable unattended reboots on all the other machines in the environment while we reboot this one:</p>
-
-<ol>
-<li>Set <code>govuk_unattended_reboot::enabled</code> to <code>false</code> in the <a href="https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166">govuk-puppet common configuration</a> - you can do this in a branch.</li>
-<li>Build the branch of govuk-puppet to Production</li>
-<li>Wait half an hour to allow all machines to pull from the puppetmaster</li>
-<li>Reboot the docker-management machine (<code>sudo reboot</code>)</li>
-<li>Deploy the previous release of govuk-puppet to Production</li>
-</ol>
 <h3 id='rebooting-other-machines'>Rebooting other machines</h3><p>This guidance applies if you want to reboot a machine that is not one of the previous types.</p>
 
 <ol>
