@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Use a component - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Tag Manager link click tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/use-components.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Use a component - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/use-components.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Tag Manager link click tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Use a component" />
+      <meta property="og:title" content="govuk_publishing_components: Google Tag Manager link click tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/use-components.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" />
 
     
   </head>
@@ -222,33 +222,67 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/05d40997f6658b01b6cd2561f043355ca1a78d1f">30 Apr 2019</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/961eafa8f0a9982ff3b910ae268e77e1c57673ad">14 Aug 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Use a component</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Tag Manager link click tracker</h1>
 
   
-<p>Components are included in templates in slightly different ways depending on whether the component is in the application itself or in the gem.</p>
-<p>A component from the application would be included in a template like this:</p>
-<pre lang="erb"><code>&lt;%= render "components/back-to-top", href: "#contents" %&gt;
+<p>A module for tracking link clicks on GOV.UK.</p>
+<p>When initialised, the JS adds an event listener to the <code>&lt;body&gt;</code> of the page with the following listeners:</p>
+<ul>
+<li>A <code>click</code> listener (for left clicks, control clicks, and "Meta key" clicks - "Meta key" clicks are command + clicks or windows key + clicks.)</li>
+<li>A <code>mousedown</code> listener (for middle clicks.)</li>
+<li>A <code>contextmenu</code> listener (for right clicks / context menu keypresses.)</li>
+</ul>
+<p>When one of these listeners are fired, they check if the <code>event.target</code> is an <code>&lt;a&gt;</code> tag with a <code>href</code>. If so, it will then check if the link is:</p>
+<ul>
+<li>A <code>download</code> link - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path.</li>
+<li>A <code>mailto</code> link - This is an email href that starts with <code>mailto:</code>.</li>
+<li>An <code>external</code> link - This is a href that is not on the <code>www.gov.uk</code> domain.
+<ul>
+<li>To calculate this, it checks if the href starts with <code>http://www.gov.uk/</code>, <code>https://www.gov.uk/</code>, <code>//www.gov.uk/</code>, <code>www.gov.uk/</code>, <code>http://gov.uk/</code>, <code>https://gov.uk/</code>, <code>//gov.uk</code>, or <code>gov.uk/</code> (NB: <code>gov.uk/</code> and <code>www./</code> are technically relative links as a href must contain a <code>/</code> or http method at the start to be treated as non-relative).</li>
+<li>It also checks if a <code>href</code> starts with <code>/</code> and does not start with <code>//</code> to determine if it's a relative link like <code>/bank-holidays</code> , but not a protocol relative link <code>//google.com</code>
+</li>
+<li>If the <code>href</code> does not meet both of these criteria, then it is considered an external link.</li>
+</ul>
+</li>
+</ul>
+<h2 id="basic-use">Basic use</h2>
+<p><code>&lt;a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf"&gt;A Quick Guide to the Government’s Healthy Eating Recommendations&lt;/a&gt;</code></p>
+<p>In the example above, on a left click of the link, the following would be pushed to the dataLayer, using the <code>eventSchema</code> found in <code>gtm-schemas.js</code>:</p>
+<pre><code>{
+    "event": "analytics",
+    "event_data": {
+        "event_name": "navigation",
+        "type": "download",
+        "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf",
+        "text": "A Quick Guide to the Government’s Healthy Eating Recommendations",
+        "index": null,
+        "index_total": null,
+        "section": null,
+        "action": null,
+        "external": "false",
+        "link_method": "primary click"
+    }
+}
 </code></pre>
-<p>A component from the gem would be included like this:</p>
-<pre lang="erb"><code>&lt;%= render "govuk_publishing_components/components/back_link", href: "#" %&gt;
-</code></pre>
-<p>Components can be rendered from outside of a Rails view by calling a render method directly on <code>GovukPublishingComponents</code>.</p>
-<pre lang="ruby"><code>GovukPublishingComponents.render("govuk_publishing_components/components/back_link", href: "#")
-</code></pre>
-<p>A locale can be specified as an argument to render a component in a particular localisation.</p>
-<pre lang="ruby"><code>GovukPublishingComponents.render("govuk_publishing_components/components/back_link", href: "#", locale: "cy")
-</code></pre>
+<p>External links would turn <code>external</code> to <code>true</code> and <code>type</code> to <code>generic link</code>.</p>
+<p>Mailto links would turn <code>external</code> to <code>true</code> and <code>type</code> to <code>email</code></p>
+<p>For <code>link_method</code>:</p>
+<ul>
+<li>Left clicks are a <code>primary click</code>
+</li>
+<li>Right clicks and context menu keypresses are <code>secondary click</code>
+</li>
+<li>Middle mouse button clicks are <code>middle click</code>
+</li>
+<li>Meta key clicks are <code>command/win click</code>
+</li>
+<li>Control clicks are <code>ctrl click</code>
+</li>
+</ul>
 
 
             
@@ -256,8 +290,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/use-components.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fuse-components.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-gtm/gtm-link-click-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-gtm%2Fgtm-link-click-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

@@ -149,6 +149,7 @@
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" rel="noopener" class="govuk-link">Google Tag Manager link click tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
@@ -156,6 +157,7 @@
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" rel="noopener" class="govuk-link">Google Tag Manager link click tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
@@ -221,7 +223,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0bd44252438ab0ca43674090ecc7cc3c86225cf4">2 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/961eafa8f0a9982ff3b910ae268e77e1c57673ad">14 Aug 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Tag Manager click tracking</h1>
@@ -247,13 +249,13 @@
   'event_data': {
     'event_name': 'select_content',
     'type': 'something',
-    'url': 'n/a',
+    'url': null,
     'text': 'Click me',
     'index': '0',
     'index_total': '1',
-    'section': 'n/a',
-    'action': 'n/a',
-    'external': 'n/a'
+    'section': null,
+    'action': null,
+    'external': null
   }
 }
 </code></pre>
@@ -311,13 +313,13 @@
   'event_data': {
     'event_name': 'select_content',
     'type': 'accordion',
-    'url': 'n/a',
+    'url': null,
     'text': 'Show all sections',
     'index': '0',
     'index-total': '5',
-    'section': 'n/a',
+    'section': null,
     'action': 'opened',
-    'external': 'n/a'
+    'external': null
   }
 }
 </code></pre>
@@ -327,13 +329,13 @@
   'event_data': {
     'event_name': 'select_content',
     'type': 'accordion',
-    'url': 'n/a',
+    'url': null,
     'text': 'Hide all sections',
     'index': '0',
     'index-total': '5',
-    'section': 'n/a',
+    'section': null,
     'action': 'closed',
-    'external': 'n/a'
+    'external': null
   }
 }
 </code></pre>
