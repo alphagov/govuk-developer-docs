@@ -202,15 +202,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/55ab65f0dd33c3452a7145205a8653ce1d83b5f2">3 Dec 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/a4b504c5cb1c67620e8829f223c29f7719278dde">17 Aug 2022</a>
 </div>
 
   <h1 class="page-title">govuk-docker: How To's</h1>
@@ -248,10 +241,10 @@ alias gdbe="govuk-docker-run bundle exec"
 </ul>
 <p>You will need to assume-role into AWS using the <a href="https://docs.publishing.service.gov.uk/manual/access-aws-console.html">gds-cli</a> before running the scripts. For example, to replicate data for Content Publisher, run:</p>
 <pre><code># as an AWS PowerUser...
-gds aws govuk-integration-poweruser ./bin/replicate-postgresql.sh content-publisher
+gds aws govuk-integration-poweruser --assume-role-ttl 180m ./bin/replicate-postgresql.sh content-publisher
 
 # as an AWS User...
-gds aws govuk-integration-readonly ./bin/replicate-postgresql.sh content-publisher
+gds aws govuk-integration-readonly --assume-role-ttl 180m ./bin/replicate-postgresql.sh content-publisher
 </code></pre>
 <p>All the scripts, other than <code>replicate-elasticsearch.sh</code>, take the name of the app to replicate data for.</p>
 <p>Draft data can be replicated with <code>replicate-mongodb.sh draft-content-store</code> and <code>replicate-mongodb.sh draft-router</code>.</p>
