@@ -148,16 +148,16 @@
           <li class="subdir__heading">analytics-gtm</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" rel="noopener" class="govuk-link">Google Tag Manager link click tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" rel="noopener" class="govuk-link">Google Tag Manager link click tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
@@ -223,7 +223,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/104ea9138339e241a9802cf97cda58da2da4d29e">20 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/095fd574b96fb870d599c3a70f5756be017b5e91">15 Aug 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
@@ -252,7 +252,7 @@
 </code></pre>
 <p><code>event</code> must have a specific value to activate the right trigger in GTM.</p>
 <p><code>page</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/gtm-page-views.js">gtm-page-views script</a>.</p>
-<p><code>event_data</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/gtm-schemas.js">gtm-schemas script</a> and used in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/gtm-click-tracking.js">gtm-click-tracking script</a>.</p>
+<p><code>event_data</code> is defined in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/gtm-schemas.js">gtm-schemas script</a> and used in the <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/analytics-ga4/ga4-event-tracker.js">ga4-event-tracker script</a>.</p>
 <p><code>search_results</code> has not been implemented yet.</p>
 <h2 id="how-the-datalayer-works">How the dataLayer works</h2>
 <p>GTM's dataLayer has two elements - an array and an object. <code>window.dataLayer = []</code> is executed when the page loads.</p>

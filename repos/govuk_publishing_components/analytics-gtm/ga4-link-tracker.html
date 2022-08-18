@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Google Tag Manager click tracking - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics link tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Google Tag Manager click tracking - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics link tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Google Tag Manager click tracking" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics link tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" />
 
     
   </head>
@@ -148,16 +148,16 @@
           <li class="subdir__heading">analytics-gtm</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" rel="noopener" class="govuk-link">Google Tag Manager link click tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-click-tracking.html" rel="noopener" class="govuk-link">Google Tag Manager click tracking</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/gtm-link-click-tracker.html" rel="noopener" class="govuk-link">Google Tag Manager link click tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
@@ -223,122 +223,66 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/961eafa8f0a9982ff3b910ae268e77e1c57673ad">14 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a4041368ac7bc44678f279ebdfa259285828ee61">15 Aug 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Google Tag Manager click tracking</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics link tracker</h1>
 
   
-<p>This is a script to allow click tracking through Google Tag Manager to be added to any element using data attributes.</p>
+<p>A module for tracking link clicks on GOV.UK.</p>
+<p>When initialised, the JS adds an event listener to the <code>&lt;body&gt;</code> of the page with the following listeners:</p>
+<ul>
+<li>A <code>click</code> listener (for left clicks, control clicks, and "Meta key" clicks - "Meta key" clicks are command + clicks or windows key + clicks.)</li>
+<li>A <code>mousedown</code> listener (for middle clicks.)</li>
+<li>A <code>contextmenu</code> listener (for right clicks / context menu keypresses.)</li>
+</ul>
+<p>When one of these listeners are fired, they check if the <code>event.target</code> is an <code>&lt;a&gt;</code> tag with a <code>href</code>. If so, it will then check if the link is:</p>
+<ul>
+<li>A <code>download</code> link - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path.</li>
+<li>A <code>mailto</code> link - This is an email href that starts with <code>mailto:</code>.</li>
+<li>An <code>external</code> link - This is a href that is not on the <code>www.gov.uk</code> domain.
+<ul>
+<li>To calculate this, it checks if the href starts with <code>http://www.gov.uk/</code>, <code>https://www.gov.uk/</code>, <code>//www.gov.uk/</code>, <code>www.gov.uk/</code>, <code>http://gov.uk/</code>, <code>https://gov.uk/</code>, <code>//gov.uk</code>, or <code>gov.uk/</code> (NB: <code>gov.uk/</code> and <code>www./</code> are technically relative links as a href must contain a <code>/</code> or http method at the start to be treated as non-relative).</li>
+<li>It also checks if a <code>href</code> starts with <code>/</code> and does not start with <code>//</code> to determine if it's a relative link like <code>/bank-holidays</code> , but not a protocol relative link <code>//google.com</code>
+</li>
+<li>If the <code>href</code> does not meet both of these criteria, then it is considered an external link.</li>
+</ul>
+</li>
+</ul>
 <h2 id="basic-use">Basic use</h2>
-<pre lang="html"><code>&lt;div data-module="gtm-click-tracking"&gt;
-  &lt;div data-ga4='{"event_name":"select_content", "type":"something", "index":0, "index_total":1, "text":"Click me"}'&gt;
-    Click me
-  &lt;/div&gt;
-&lt;/div&gt;
-</code></pre>
-<p>The module is initialised on the parent element, but tracking only occurs when clicks happen:</p>
-<ul>
-<li>on child elements that have a valid <code>data-ga4</code> attribute</li>
-<li>on the parent if it has a valid <code>data-ga4</code> attribute</li>
-</ul>
-<p>A valid <code>data-ga4</code> attribute is a JSON string that can be parsed into an object, that contains a recognised value for <code>event_name</code>. Pushes to the dataLayer that do not include a valid <code>event_name</code> attribute will be ignored by Tag Manager.</p>
-<p>In the example above, the following would be pushed to the dataLayer. Note that the schema automatically populates empty values, and that attributes not in the schema are ignored.</p>
+<p><code>&lt;a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf"&gt;A Quick Guide to the Government’s Healthy Eating Recommendations&lt;/a&gt;</code></p>
+<p>In the example above, on a left click of the link, the following would be pushed to the dataLayer, using the <code>eventSchema</code> found in <code>ga4-schemas.js</code>:</p>
 <pre><code>{
-  'event': 'event_data',
-  'event_data': {
-    'event_name': 'select_content',
-    'type': 'something',
-    'url': null,
-    'text': 'Click me',
-    'index': '0',
-    'index_total': '1',
-    'section': null,
-    'action': null,
-    'external': null
-  }
+    "event": "analytics",
+    "event_data": {
+        "event_name": "navigation",
+        "type": "download",
+        "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf",
+        "text": "A Quick Guide to the Government’s Healthy Eating Recommendations",
+        "index": null,
+        "index_total": null,
+        "section": null,
+        "action": null,
+        "external": "false",
+        "link_method": "primary click"
+    }
 }
 </code></pre>
-<h2 id="advanced-use">Advanced use</h2>
-<p>In some scenarios we use components that cannot be modified directly (i.e. unable to place the <code>data-ga4</code> attribute on the element as shown in the 'Basic use' section). In these cases, we attach the necessary data attributes for tracking by passing an argument containing our data attributes to the render method.</p>
-<p>Many components already accept data attributes in this way (see the <a href="https://components.publishing.service.gov.uk/component-guide">component guide</a> for examples) but some, like the accordion, are more complicated.</p>
-<h3 id="overview">Overview</h3>
-<p>To track clicks on the 'Show/hide all sections' accordion link, pass data to the accordion using the <code>data_attributes_show_all</code> option as shown.</p>
-<pre lang="erb"><code>&lt;%
-  ga4_attributes = {
-    event_name: "select_content",
-    type: "accordion",
-    # other attributes
-  }
-%&gt;
-&lt;div data-module="gtm-click-tracking"&gt;
-  &lt;%= render 'govuk_publishing_components/components/accordion', {
-    data_attributes_show_all: {
-      "ga4": ga4_attributes.to_json
-    },
-    items: []
-  } %&gt;
-&lt;/div&gt;
-</code></pre>
-<h3 id="detailed-guide">Detailed guide</h3>
-<p>In some situations we want to track dynamic elements like the 'Show/hide all sections' links on accordions. This is complicated by the element being created and updated dynamically using JavaScript and the need to track the state of the element when clicked (to record whether it was opened or closed).</p>
-<p>It is also complicated by the fact that the JavaScript that creates this element is imported from <code>govuk-frontend</code> and therefore can't be modified directly. In order to get attributes onto this link, we have to do the following.</p>
+<p>External links would turn <code>external</code> to <code>true</code> and <code>type</code> to <code>generic link</code>.</p>
+<p>Mailto links would turn <code>external</code> to <code>true</code> and <code>type</code> to <code>email</code></p>
+<p>For <code>link_method</code>:</p>
 <ul>
-<li>pass attributes to the accordion for the 'Show/hide all' link using the <code>data_attributes_show_all</code> option
-<ul>
-<li>this should contain an object with one or many keys, each with a value converted into JSON</li>
-<li>this is appended to the main component element as <code>data-show-all-attributes</code>
+<li>Left clicks are a <code>primary click</code>
+</li>
+<li>Right clicks and context menu keypresses are <code>secondary click</code>
+</li>
+<li>Middle mouse button clicks are <code>middle click</code>
+</li>
+<li>Meta key clicks are <code>command/win click</code>
+</li>
+<li>Control clicks are <code>ctrl click</code>
 </li>
 </ul>
-</li>
-<li>the 'Show/hide all' link is created by govuk-frontend JavaScript</li>
-<li>the accordion JavaScript reads <code>data-show-all-attributes</code>
-<ul>
-<li>it creates a <code>data-</code> attribute on the 'Show/hide all' link for each key in the JSON</li>
-<li>in the example above, the result will be <code>data-ga4="{ "event_name": "select_content", "type": "accordion" }"</code>
-</li>
-</ul>
-</li>
-<li>wrap the accordion in the click tracking script
-<ul>
-<li>tracking will be activated by clicks on elements with a <code>data-ga4</code> attribute</li>
-<li>it checks for an <code>aria-expanded</code> attribute, either on the clicked element or a child of the clicked element, and sets the <code>action</code> of the GA data accordingly</li>
-<li>the current text of the clicked element is also recorded (this can be overridden to a non-dynamic value by including <code>text</code> in the attributes if required)</li>
-</ul>
-</li>
-</ul>
-<p>When a user clicks 'Show all sections' the following information is pushed to the dataLayer.</p>
-<pre><code>{
-  'event': 'event_data',
-  'event_data': {
-    'event_name': 'select_content',
-    'type': 'accordion',
-    'url': null,
-    'text': 'Show all sections',
-    'index': '0',
-    'index-total': '5',
-    'section': null,
-    'action': 'opened',
-    'external': null
-  }
-}
-</code></pre>
-<p>When a user clicks 'Hide all sections' the following information is pushed to the dataLayer.</p>
-<pre><code>{
-  'event': 'event_data',
-  'event_data': {
-    'event_name': 'select_content',
-    'type': 'accordion',
-    'url': null,
-    'text': 'Hide all sections',
-    'index': '0',
-    'index-total': '5',
-    'section': null,
-    'action': 'closed',
-    'external': null
-  }
-}
-</code></pre>
 
 
             
@@ -346,8 +290,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-gtm/gtm-click-tracking.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-gtm%2Fgtm-click-tracking.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-gtm/ga4-link-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-gtm%2Fga4-link-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
