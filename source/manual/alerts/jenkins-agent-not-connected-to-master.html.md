@@ -38,6 +38,14 @@ If the master is failing to SSH into the agent with a message like "Host key ver
 
 ```
 $ gds govuk connect ssh -e ci_master
+$ sudo -u jenkins ssh ci-agent-<n>.blue.integration.govuk-internal.digital
+```
+
+where \<n\> is the number assigned to the node.
+You should receive a message from ssh telling you what line to get rid of in known_hosts.
+Then you can edit the known_hosts acccordingly.
+
+```
 $ sudo nano /var/lib/jenkins/.ssh/known_hosts
 ```
 
