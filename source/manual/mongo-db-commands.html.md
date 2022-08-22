@@ -6,6 +6,15 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+## Check the MongoDB version
+
+SSH into a `mongo` machine and run:
+
+```
+$ mongo --quiet --eval 'db.version()'
+2.6.12
+```
+
 ## Check cluster status
 
 Check cluster status by SSH'ing into a `mongo` machine and running:
