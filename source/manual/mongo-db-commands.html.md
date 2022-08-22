@@ -27,6 +27,33 @@ The command above cannot be parsed by JSON parsers. You can output true JSON by 
 mongo --quiet --eval 'JSON.stringify(rs.status())' | jq '.members'
 ```
 
+## Check replication info
+
+Find out where the primary node's [oplog](http://docs.mongodb.org/manual/core/replica-set-oplog/) is up to:
+
+```
+$ mongo --quiet --eval 'db.printReplicationInfo()'
+
+configured oplog size:   14392MB
+log length start to end: 19991secs (5.55hrs)
+oplog first event time:  Mon Aug 22 2022 02:26:55 GMT+0000 (UTC)
+oplog last event time:   Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+now:                     Mon Aug 22 2022 10:38:13 GMT+0000 (UTC)
+```
+
+Find out where each secondary is synced to and how far behind the primary they are:
+
+```
+$ mongo --quiet --eval 'db.printSlaveReplicationInfo()'
+
+source: mongo-1.staging.govuk-internal.digital:27017
+	syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+	0 secs (0 hrs) behind the primary 
+source: mongo-2.staging.govuk-internal.digital:27017
+	syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+	0 secs (0 hrs) behind the primary 
+```
+
 ## Force resync
 
 > **WARNING**
