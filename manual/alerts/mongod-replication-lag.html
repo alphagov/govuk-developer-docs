@@ -161,41 +161,19 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7834f86333fa7053c986f03083f7a7a08317c411">22 Aug 2022</a>
 </div>
 
- <h1 id='header'>mongod replication lag</h1> <h3 id='investigating-the-problem'>Investigating the problem</h3><p>There is a Fabric task to show various MongoDB replication status
-information.:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  fab &lt;environment&gt; -H api-mongo-[n].api mongo.status
-</code></pre></div>
-<ul>
-<li>The <code>db.printReplicationInfo()</code> section shows where the primary
-node&rsquo;s <a href="http://docs.mongodb.org/manual/core/replica-set-oplog/">oplog</a>
-is up to.</li>
-<li>The <code>db.printSlaveReplicationInfo()</code> section shows where each
-secondary is synced to and how far behind the master it is.</li>
-<li>The <code>rs.status()</code> section shows the current status of each node and
-the last heartbeat error message for the secondaries.</li>
-</ul>
-<h3 id='possible-fixes'>Possible fixes</h3>
-<blockquote>
-<p>Be mindful that load on the primary mongo node may be increased by
-the replication and consider to limit restarts to one node at a time.</p>
-</blockquote>
-
-<ul>
-<li>Try restarting one of the lagging mongod secondaries:</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  fab &lt;environment&gt; -H api-mongo-[n].api app.restart:mongodb
-</code></pre></div><p>This may restart replication on that node, and also cause the other
-lagging node to resync with the primary node and restart its own
+ <h1 id='header'>mongod replication lag</h1> <h3 id='investigating-the-problem'>Investigating the problem</h3><p>Begin by <a href="/manual/mongo-db-commands.html#check-cluster-status">checking the Mongo cluster status</a>,
+then <a href="/manual/mongo-db-commands.html#check-replication-info">checking the replication info</a></p>
+<h3 id='possible-fixes'>Possible fixes</h3><p>Try restarting one of the lagging mongodb secondaries.</p>
+<p>SSH into a <a href="/manual/mongo-db-commands.html#find-the-primary">non-primary machine</a> and run:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo service mongodb restart
+</code></pre></div><p>This may restart replication on that node, and also cause the other lagging node to resync with the primary node and restart its own
 replication.</p>
+<p>If you need to restart mongodb on the other secondaries, do this one node at a time, as load on the primary mongo node may be increased by the replication.</p>
+<p>If restarting doesn&rsquo;t solve the problem, you can <a href="/manual/mongo-db-commands.html#force-resync">force a resync</a>.</p>
 
-<ul>
-<li>If restarting doesn&rsquo;t solve the problem force a resync with Fabric:</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  fab &lt;environment&gt; -H api-mongo-[n].api mongo.force_resync
-</code></pre></div>
 
   <div class='related-content'>
 

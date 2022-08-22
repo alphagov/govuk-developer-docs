@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Resync a MongoDB database - GOV.UK Developer Documentation</title>
+    <title>MongoDB infra commands - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/resync-mongo-db.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/mongo-db-commands.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Resync a MongoDB database - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/resync-mongo-db.html" />
+      <meta name="twitter:title" content="MongoDB infra commands - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/mongo-db-commands.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Resync a MongoDB database" />
+      <meta property="og:title" content="MongoDB infra commands" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/resync-mongo-db.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/mongo-db-commands.html" />
 
     
   </head>
@@ -126,7 +126,27 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Resync a MongoDB database</span></a>
+    <a href="#header"><span>MongoDB infra commands</span></a>
+    <ul>
+      <li>
+        <a href="#check-the-mongodb-version"><span>Check the MongoDB version</span></a>
+      </li>
+      <li>
+        <a href="#check-cluster-status"><span>Check cluster status</span></a>
+      </li>
+      <li>
+        <a href="#check-replication-info"><span>Check replication info</span></a>
+      </li>
+      <li>
+        <a href="#step-down-the-primary"><span>Step down the primary</span></a>
+      </li>
+      <li>
+        <a href="#find-the-primary"><span>Find the primary</span></a>
+      </li>
+      <li>
+        <a href="#force-resync"><span>Force resync</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -177,10 +197,57 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/880895be1d4cbf43b3d79e7c47615b9c75c005d8">22 Aug 2022</a>
 </div>
 
- <h1 id='header'>Resync a MongoDB database</h1> <blockquote>
+ <h1 id='header'>MongoDB infra commands</h1> <h2 id='check-the-mongodb-version'>Check the MongoDB version</h2><p>SSH into a <code>mongo</code> machine and run:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ mongo --quiet --eval 'db.version()'
+2.6.12
+</code></pre></div><h2 id='check-cluster-status'>Check cluster status</h2><p>Check cluster status by SSH&#39;ing into a <code>mongo</code> machine and running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>mongo --quiet --eval 'printjson(rs.status())'
+</code></pre></div><p>This will output a JSON-like representation of the Mongo cluster. The <code>members</code> property contains an array of objects, each including:</p>
+
+<ul>
+<li><code>stateStr</code>: &ldquo;PRIMARY&rdquo; for the primary machine, &ldquo;SECONDARY&rdquo; for secondary machines. There should only be one primary.</li>
+<li><code>name</code>: the address of the machine, e.g. <code>mongo-3.staging.govuk-internal.digital:27017</code>.</li>
+<li><code>health</code>: <code>1</code> if the machine is healthy.</li>
+<li><code>lastHeartbeat</code>: shows the last heartbeat error message for the secondaries, or a timestamp if machine is healthy.</li>
+</ul>
+<p>The command above cannot be parsed by JSON parsers. You can output true JSON by substituting <code>printjson</code> with <code>JSON.stringify</code>, which you can then manipulate on the command line using something like <code>jq</code>. For example, output just the <code>members</code> array by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>mongo --quiet --eval 'JSON.stringify(rs.status())' | jq '.members'
+</code></pre></div><h2 id='check-replication-info'>Check replication info</h2><p>Find out where the primary node&rsquo;s <a href="http://docs.mongodb.org/manual/core/replica-set-oplog/">oplog</a> is up to:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ mongo --quiet --eval 'db.printReplicationInfo()'
+
+configured oplog size:   14392MB
+log length start to end: 19991secs (5.55hrs)
+oplog first event time:  Mon Aug 22 2022 02:26:55 GMT+0000 (UTC)
+oplog last event time:   Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+now:                     Mon Aug 22 2022 10:38:13 GMT+0000 (UTC)
+</code></pre></div><p>Find out where each secondary is synced to and how far behind the primary they are:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ mongo --quiet --eval 'db.printSlaveReplicationInfo()'
+
+source: mongo-1.staging.govuk-internal.digital:27017
+    syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+    0 secs (0 hrs) behind the primary
+source: mongo-2.staging.govuk-internal.digital:27017
+    syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+    0 secs (0 hrs) behind the primary
+</code></pre></div><h2 id='step-down-the-primary'>Step down the primary</h2><p>&ldquo;Stepping down&rdquo; the primary will change it to a secondary machine, and one of the secondary machines will become the new primary.</p>
+<p>First, you&rsquo;ll need to SSH into the primary machine (see &ldquo;<a href="#find-the-primary">find the primary</a>&rdquo;).</p>
+<p>Once on the machine, you can step it down with the following command:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>mongo --quiet --eval 'printjson(rs.stepDown())'
+</code></pre></div><p>You may see the following output (and an exit code of 252) but the command did in fact work. The machine may also disconnect the current console session after a short while.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>2022-08-22T11:18:29.340+0000 DBClientCursor::init call() failed
+2022-08-22T11:18:29.341+0000 Error: error doing query: failed at src/mongo/shell/query.js:81
+</code></pre></div><p>You can verify that it worked by following the &ldquo;find the primary&rdquo; instructions again, noting that one of the other machines will be the new primary.</p>
+<h2 id='find-the-primary'>Find the primary</h2><p>To do this, SSH into each <code>mongo</code> machine in turn, i.e.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect -e staging ssh mongo:1
+gds govuk connect -e staging ssh mongo:2
+# ... etc
+</code></pre></div><p>On each machine, run <code>mongo --quiet --eval &#39;JSON.stringify(rs.isMaster())&#39; | jq &#39;.ismaster&#39;</code>.
+When the output is <code>true</code>, you&rsquo;re on the primary machine.</p>
+<h2 id='force-resync'>Force resync</h2>
+<blockquote>
 <p><strong>WARNING</strong></p>
 <p>This process deletes all data from a MongoDB node and forces a full
 copy from the current primary member of the replica set. This causes
@@ -188,16 +255,18 @@ additional load on the primary member of the replica set and reduces the
 number of available copies of the database, so is best performed at a quiet
 time. Try not to resync more than one secondary at a time.</p>
 </blockquote>
-<p>To
-<a href="https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/">resync</a>
-a member of a MongoDB cluster, run our <code>force_resync</code>
-<a href="https://github.com/alphagov/fabric-scripts">Fabric</a> script:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fab $environment -H $hostname mongo.force_resync
-</code></pre></div><p>The <code>mongo.force_resync</code> command checks that you are not trying to
-perform a resync on the primary member.</p>
-<p>You can run <code>mongo.status</code> at any time to see the status of the cluster:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fab $environment -H $hostname mongo.status
-</code></pre></div>
+<p>To <a href="https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/">resync</a> a member of a MongoDB cluster:</p>
+
+<ol>
+<li>Check that the member <a href="#find-the-primary">isn&rsquo;t the primary</a>. Again: <strong>do not run this on the primary</strong>.</li>
+<li>Disable Puppet (<code>govuk_puppet --disable &quot;Forcing mongodb resync&quot;</code>)</li>
+<li>Stop the app (<code>sudo service mongodb stop</code>)</li>
+<li>Wait for the process to stop (<code>ps -C mongod</code> should show no processes)</li>
+<li>Delete the data (<code>rm -rf /var/lib/mongodb/*</code>)</li>
+<li>Start the app (<code>sudo service mongodb start</code>)</li>
+<li>Re-enable Puppet (<code>govuk_puppet --enable</code>)</li>
+</ol>
+
 
   <div class='related-content'>
 
@@ -222,8 +291,8 @@ perform a resync on the primary member.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/resync-mongo-db.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Resync+a+MongoDB+database%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fresync-mongo-db.html%29&amp;labels=bug&amp;title=Re%3A+%27Resync+a+MongoDB+database%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/mongo-db-commands.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27MongoDB+infra+commands%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fmongo-db-commands.html%29&amp;labels=bug&amp;title=Re%3A+%27MongoDB+infra+commands%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

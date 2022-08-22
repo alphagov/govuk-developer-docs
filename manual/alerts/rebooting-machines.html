@@ -219,7 +219,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/921f5fbfd264b9bcc8bebb594294e2ae9ce3d486">11 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/640e7ffc13a0f55c8f030b91d0bfaaa448e6570c">22 Aug 2022</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances, most machines reboot automatically when an update is required. Some machines need to be rebooted manually.</p>
@@ -314,27 +314,9 @@ It will prevent developers from being able to deploy code, apply Terraform, run 
 <p>Before rebooting Jenkins, put a message in <code>#govuk-2ndline-tech</code> and consider doing the same in <code>#govuk-developers</code>.
 Check that there are no (important) jobs in progress. When things look free, <code>sudo reboot</code>.</p>
 <p>Avoid doing this late in the day, as Jenkins is quite brittle and a reboot may cause runtime issues that require SRE assistance. Worse, it may trigger a new instance (see <a href="#manual-rebooting">manual rebooting</a>), which can sometimes fail to provision correctly due to the original instance retaining a &lsquo;lock&rsquo; on the volume, which then can&rsquo;t be mounted on the new instance. In this case, terminating the new instance should fix things, as that will cause another new instance to be created, and this time there will be no lock on the volume.</p>
-<h3 id='rebooting-mongo-machines'>Rebooting <code>mongo</code> machines</h3><p>Note that the following documentation assumes you have correctly <a href="https://github.com/alphagov/fabric-scripts#setup">set up your fabric scripts</a>.</p>
-<p>You can see our MongoDB machines by running:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; puppet_class:mongodb::server hosts
-</code></pre></div><p>All secondary Mongo machines will reboot overnight. If you don&rsquo;t need to
-reboot the cluster right now, step the current primary down and allow it
-to reboot overnight:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ fab &lt;ENVIRONMENT&gt; -H &lt;HOSTNAME&gt; mongo.step_down_primary
-</code></pre></div><p>Example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab aws_production <span class="nt">-H</span> ip-127-0-0-11.eu-west-1.compute.internal mongo.step_down_primary
-</code></pre></div><p>(note that the example IP is fake)</p>
-<p>The general approach for rebooting machines in a MongoDB cluster is:</p>
-
-<ul>
-<li>Check cluster status with <code>fab &lt;ENVIRONMENT&gt; -H &lt;HOSTNAME&gt; mongo.status</code></li>
-<li>Using <code>fab &lt;ENVIRONMENT&gt; -H &lt;HOSTNAME&gt; mongo.safe_reboot</code>
-
-<ul>
-<li>Reboot the secondaries</li>
-<li>Reboot the primary. The <code>mongo.safe_reboot</code> Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.</li>
-</ul></li>
-</ul>
+<h3 id='rebooting-mongo-machines'>Rebooting <code>mongo</code> machines</h3><p>Read &ldquo;<a href="/manual/mongo-db-commands.html#find-the-primary">find the primary</a>&rdquo; to figure out which Mongo machine is the primary and which are the secondaries.</p>
+<p>All secondary Mongo machines reboot overnight automatically. If you need to reboot them sooner, reboot them one at a time, ensuring that you <a href="/manual/mongo-db-commands.html#check-cluster-status">check that the Mongo cluster is healthy</a> before moving onto the next machine.</p>
+<p>To reboot the primary, you&rsquo;ll need to <a href="/manual/mongo-db-commands.html#step-down-the-primary">step the current primary down</a> so that it becomes a secondary machine. You&rsquo;re then free to reboot it as above.</p>
 <h3 id='rebooting-rabbitmq-machines'>Rebooting <code>rabbitmq</code> machines</h3><p>There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.</p>
 
 <ol>
