@@ -56,11 +56,11 @@ Find out where each secondary is synced to and how far behind the primary they a
 $ mongo --quiet --eval 'db.printSlaveReplicationInfo()'
 
 source: mongo-1.staging.govuk-internal.digital:27017
-	syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
-	0 secs (0 hrs) behind the primary 
+    syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+    0 secs (0 hrs) behind the primary
 source: mongo-2.staging.govuk-internal.digital:27017
-	syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
-	0 secs (0 hrs) behind the primary 
+    syncedTo: Mon Aug 22 2022 08:00:06 GMT+0000 (UTC)
+    0 secs (0 hrs) behind the primary
 ```
 
 ## Step down the primary
