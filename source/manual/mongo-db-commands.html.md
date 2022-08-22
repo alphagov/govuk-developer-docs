@@ -6,6 +6,8 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
+## Force resync
+
 > **WARNING**
 >
 > This process deletes all data from a MongoDB node and forces a full
