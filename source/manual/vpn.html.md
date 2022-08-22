@@ -31,7 +31,7 @@ If this VPN is down:
 
 Troubleshooting steps (aim is to switch off and on the VPN):
 
-1. Go to Production Skyscape portal, the credentials are in GOV.UK 2ndline Pass under: `ukcloud/portal`.
+1. Go to [Production Skyscape portal](https://portal.skyscapecloud.com/), the credentials are in GOV.UK 2ndline Pass under: `ukcloud/portal`. If you are out of the office or on GovWifi, you will need to connect to the GDS VPN first.
 2. Once you logged in, you have to log into the `Production` organization by selecting: `VMWARE CLOUD` and then `GOV.UK Production`. You will be asked for the password again.
 3. In the `Production` organization, go to the `GOV.UK Management` virtual datacenter.
 4. Click `edges` in the left column to bring the list of edges.
