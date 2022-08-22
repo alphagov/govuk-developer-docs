@@ -8,7 +8,8 @@ section: Icinga alerts
 
 ### Investigating the problem
 
-Begin by [checking the Mongo cluster status](/manual/mongo-db-commands.html#check-cluster-status).
+Begin by [checking the Mongo cluster status](/manual/mongo-db-commands.html#check-cluster-status),
+then [checking the replication info](/manual/mongo-db-commands.html#check-replication-info)
 
 ### Possible fixes
 
