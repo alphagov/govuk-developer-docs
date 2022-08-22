@@ -13,21 +13,17 @@ then [checking the replication info](/manual/mongo-db-commands.html#check-replic
 
 ### Possible fixes
 
-> Be mindful that load on the primary mongo node may be increased by
-> the replication and consider to limit restarts to one node at a time.
+Try restarting one of the lagging mongodb secondaries.
 
-- Try restarting one of the lagging mongod secondaries:
+SSH into a [non-primary machine](/manual/mongo-db-commands.html#find-the-primary) and run:
 
-  ```
-  fab <environment> -H api-mongo-[n].api app.restart:mongodb
-  ```
+```
+sudo service mongodb restart
+```
 
-This may restart replication on that node, and also cause the other
-lagging node to resync with the primary node and restart its own
+This may restart replication on that node, and also cause the other lagging node to resync with the primary node and restart its own
 replication.
 
-- If restarting doesn't solve the problem force a resync with Fabric:
+If you need to restart mongodb on the other secondaries, do this one node at a time, as load on the primary mongo node may be increased by the replication.
 
-  ```
-  fab <environment> -H api-mongo-[n].api mongo.force_resync
-  ```
+If restarting doesn't solve the problem, you can [force a resync](/manual/mongo-db-commands.html#force-resync).
