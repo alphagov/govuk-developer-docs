@@ -54,6 +54,40 @@ source: mongo-2.staging.govuk-internal.digital:27017
 	0 secs (0 hrs) behind the primary 
 ```
 
+## Step down the primary
+
+"Stepping down" the primary will change it to a secondary machine, and one of the secondary machines will become the new primary.
+
+First, you'll need to SSH into the primary machine (see "[find the primary](#find-the-primary)").
+
+Once on the machine, you can step it down with the following command:
+
+```
+mongo --quiet --eval 'printjson(rs.stepDown())'
+```
+
+You may see the following output (and an exit code of 252) but the command did in fact work. The machine may also disconnect the current console session after a short while.
+
+```
+2022-08-22T11:18:29.340+0000 DBClientCursor::init call() failed
+2022-08-22T11:18:29.341+0000 Error: error doing query: failed at src/mongo/shell/query.js:81
+```
+
+You can verify that it worked by following the "find the primary" instructions again, noting that one of the other machines will be the new primary.
+
+## Find the primary
+
+To do this, SSH into each `mongo` machine in turn, i.e.
+
+```
+gds govuk connect -e staging ssh mongo:1
+gds govuk connect -e staging ssh mongo:2
+# ... etc
+```
+
+On each machine, run `mongo --quiet --eval 'JSON.stringify(rs.isMaster())' | jq '.ismaster'`.
+When the output is `true`, you're on the primary machine.
+
 ## Force resync
 
 > **WARNING**
