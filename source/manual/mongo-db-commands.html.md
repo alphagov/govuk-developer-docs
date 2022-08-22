@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: Resync a MongoDB database
+title: MongoDB infra commands
 section: Databases
 layout: manual_layout
 parent: "/manual.html"
