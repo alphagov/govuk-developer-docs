@@ -8,38 +8,22 @@ section: Icinga alerts
 
 ### Investigating the problem
 
-There is a Fabric task to show various MongoDB replication status
-information.:
-
-  ```
-  fab <environment> -H api-mongo-[n].api mongo.status
-  ```
-
-- The `db.printReplicationInfo()` section shows where the primary
-  node's [oplog](http://docs.mongodb.org/manual/core/replica-set-oplog/)
-  is up to.
-- The `db.printSlaveReplicationInfo()` section shows where each
-  secondary is synced to and how far behind the master it is.
-- The `rs.status()` section shows the current status of each node and
-  the last heartbeat error message for the secondaries.
+Begin by [checking the Mongo cluster status](/manual/mongo-db-commands.html#check-cluster-status),
+then [checking the replication info](/manual/mongo-db-commands.html#check-replication-info)
 
 ### Possible fixes
 
-> Be mindful that load on the primary mongo node may be increased by
-> the replication and consider to limit restarts to one node at a time.
+Try restarting one of the lagging mongodb secondaries.
 
-- Try restarting one of the lagging mongod secondaries:
+SSH into a [non-primary machine](/manual/mongo-db-commands.html#find-the-primary) and run:
 
-  ```
-  fab <environment> -H api-mongo-[n].api app.restart:mongodb
-  ```
+```
+sudo service mongodb restart
+```
 
-This may restart replication on that node, and also cause the other
-lagging node to resync with the primary node and restart its own
+This may restart replication on that node, and also cause the other lagging node to resync with the primary node and restart its own
 replication.
 
-- If restarting doesn't solve the problem force a resync with Fabric:
+If you need to restart mongodb on the other secondaries, do this one node at a time, as load on the primary mongo node may be increased by the replication.
 
-  ```
-  fab <environment> -H api-mongo-[n].api mongo.force_resync
-  ```
+If restarting doesn't solve the problem, you can [force a resync](/manual/mongo-db-commands.html#force-resync).

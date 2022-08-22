@@ -148,36 +148,11 @@ Avoid doing this late in the day, as Jenkins is quite brittle and a reboot may c
 
 ### Rebooting `mongo` machines
 
-Note that the following documentation assumes you have correctly [set up your fabric scripts](https://github.com/alphagov/fabric-scripts#setup).
+Read "[find the primary](/manual/mongo-db-commands.html#find-the-primary)" to figure out which Mongo machine is the primary and which are the secondaries.
 
-You can see our MongoDB machines by running:
+All secondary Mongo machines reboot overnight automatically. If you need to reboot them sooner, reboot them one at a time, ensuring that you [check that the Mongo cluster is healthy](/manual/mongo-db-commands.html#check-cluster-status) before moving onto the next machine.
 
-```
-$ fab <ENVIRONMENT> puppet_class:mongodb::server hosts
-```
-
-All secondary Mongo machines will reboot overnight. If you don't need to
-reboot the cluster right now, step the current primary down and allow it
-to reboot overnight:
-
-```
-$ fab <ENVIRONMENT> -H <HOSTNAME> mongo.step_down_primary
-```
-
-Example:
-
-```shell
-$ fab aws_production -H ip-127-0-0-11.eu-west-1.compute.internal mongo.step_down_primary
-```
-
-(note that the example IP is fake)
-
-The general approach for rebooting machines in a MongoDB cluster is:
-
-* Check cluster status with `fab <ENVIRONMENT> -H <HOSTNAME> mongo.status`
-* Using `fab <ENVIRONMENT> -H <HOSTNAME> mongo.safe_reboot`
-  * Reboot the secondaries
-  * Reboot the primary. The `mongo.safe_reboot` Fabric task automates stepping down the primary and waiting for the cluster to recover before rebooting.
+To reboot the primary, you'll need to [step the current primary down](/manual/mongo-db-commands.html#step-down-the-primary) so that it becomes a secondary machine. You're then free to reboot it as above.
 
 ### Rebooting `rabbitmq` machines
 
