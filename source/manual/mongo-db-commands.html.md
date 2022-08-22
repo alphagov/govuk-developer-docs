@@ -107,14 +107,12 @@ When the output is `true`, you're on the primary machine.
 > number of available copies of the database, so is best performed at a quiet
 > time. Try not to resync more than one secondary at a time.
 
-To
-[resync](https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/)
-a member of a MongoDB cluster, run our `force_resync`
-[Fabric](https://github.com/alphagov/fabric-scripts) script:
+To [resync](https://docs.mongodb.org/v2.4/tutorial/resync-replica-set-member/) a member of a MongoDB cluster:
 
-```
-fab $environment -H $hostname mongo.force_resync
-```
-
-The `mongo.force_resync` command checks that you are not trying to
-perform a resync on the primary member.
+1. Check that the member [isn't the primary](#find-the-primary). Again: **do not run this on the primary**.
+1. Disable Puppet (`govuk_puppet --disable "Forcing mongodb resync"`)
+1. Stop the app (`sudo service mongodb stop`)
+1. Wait for the process to stop (`ps -C mongod` should show no processes)
+1. Delete the data (`rm -rf /var/lib/mongodb/*`)
+1. Start the app (`sudo service mongodb start`)
+1. Re-enable Puppet (`govuk_puppet --enable`)
