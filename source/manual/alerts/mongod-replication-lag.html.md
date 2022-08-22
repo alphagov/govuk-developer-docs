@@ -8,20 +8,7 @@ section: Icinga alerts
 
 ### Investigating the problem
 
-There is a Fabric task to show various MongoDB replication status
-information.:
-
-  ```
-  fab <environment> -H api-mongo-[n].api mongo.status
-  ```
-
-- The `db.printReplicationInfo()` section shows where the primary
-  node's [oplog](http://docs.mongodb.org/manual/core/replica-set-oplog/)
-  is up to.
-- The `db.printSlaveReplicationInfo()` section shows where each
-  secondary is synced to and how far behind the master it is.
-- The `rs.status()` section shows the current status of each node and
-  the last heartbeat error message for the secondaries.
+Begin by [checking the Mongo cluster status](/manual/mongo-db-commands.html#check-cluster-status).
 
 ### Possible fixes
 
