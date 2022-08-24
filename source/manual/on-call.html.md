@@ -31,7 +31,6 @@ You should do these things before going on call so you're prepared.
 1. Have the numbers of other people on your shift saved in your phone. This
    includes whoever is on [Escalations](https://governmentdigitalservice.pagerduty.com/schedules#PCK3XB2).
    Get these numbers from PagerDuty.
-1. Set to be notified for every new message in the [#govuk-incident](https://gds.slack.com/archives/CAH9L36LR) Slack channel by clicking “Change notifications” and selecting “All new messages”.
 1. Make sure you know [how to contact the rest of SMT](https://docs.google.com/spreadsheets/d/180ICOnzM_h9eCFM9SMRaxnwr3qbzxazUS5SaTyvtdzk/edit#gid=144846749), if the on-call SMT is unavailable.
 1. Ensure you have an up to date local copy of the [Developer Docs][docs] repository and that you can build it.
 1. Make sure you can [use ssh to access machines][]
@@ -50,6 +49,8 @@ You should do these things before going on call so you're prepared.
 
 The steps above are outlined in the [On call template Trello card](https://trello.com/c/mK6p8hH4/977-on-call-checklist), which developers should drill when given [Production Admin access](https://docs.publishing.service.gov.uk/manual/rules-for-getting-production-access.html#when-you-get-production-admin-access). Developers should speak to the 2nd line tech lead(s)
 if they have any issues with the above steps.
+
+You may also want to set to be notified for every new message in the [#govuk-incident](https://gds.slack.com/archives/CAH9L36LR) Slack channel, but this is strictly optional. People should not expect to be able to contact you on Slack during your shift. You can change your Slack notification settings by clicking “Change notifications” and selecting “All new messages”.
 
 ## Things that may result in you being contacted
 
