@@ -228,7 +228,23 @@
 <pre><code>bundle exec rake
 </code></pre>
 
-<h2 id="running-the-rake-tasks">Running the rake tasks</h2>
+<h2 id="adding-new-routes">Adding new routes</h2>
+
+<p>Add an entry to <code>/data/special_routes.yaml</code>, for example:</p>
+
+<pre><code>- :content_id: 'c1f08359-21f7-49c1-8811-54bf6690b6a3'
+  :base_path: '/account/home'
+  :title: 'Account home page'
+  :rendering_app: 'frontend'
+</code></pre>
+
+<p>You can generate a new value for <code>content_id</code> by running <code>SecureRandom.uuid</code> in a ruby console.</p>
+
+<h3 id="note">NOTE</h3>
+
+<p>If there is any other route published at that base_path by another app, that will get overridden by <a href="https://github.com/alphagov/special-route-publisher/blob/a74101c47fffd80123efbfd1d095398a40bdc594/lib/special_route_publisher.rb#L46-L54">routes published here</a>.</p>
+
+<h2 id="publishing-routes">Publishing routes</h2>
 
 <p><em>You will need to start Publishing API and Content Store to run the following commands locally.</em></p>
 
