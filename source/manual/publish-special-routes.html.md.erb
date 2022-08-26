@@ -14,5 +14,10 @@ All new special routes should be created in this tool, and existing special rout
 
 There are two Jenkins jobs to publish special routes:
 
-- Publish a single special route: <%= RunJenkinsJob.terse_links("Publish_Single_Special_Route") %>
-- Publish all special routes: <%= RunJenkinsJob.terse_links("Publish_Special_Routes") %>
+## Publish a single special route
+
+<%= RunJenkinsJob.links("Publish_Single_Special_Route") %>
+
+## Publish all special routes
+
+<%= RunJenkinsJob.links("Publish_Special_Routes") %>
