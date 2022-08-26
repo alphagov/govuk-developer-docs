@@ -127,14 +127,6 @@
   <ul>
   <li>
     <a href="#header"><span>Publish special routes</span></a>
-    <ul>
-      <li>
-        <a href="#publish-a-single-special-route"><span>Publish a single special route</span></a>
-      </li>
-      <li>
-        <a href="#publish-all-special-routes"><span> Publish all special routes</span></a>
-      </li>
-    </ul>
   </li>
 </ul>
 
@@ -185,23 +177,34 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/63edb82d3eb8c6a2c28974cbe88324e72c7a95db">25 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
 </div>
 
  <h1 id='header'>Publish special routes</h1> <p>The <a href="https://github.com/alphagov/special-route-publisher">Special Route Publisher</a> is the home for all special routes that are currently published by a variety of apps to the Publishing API.</p>
 <p>All new special routes should be created in this tool, and existing special routes should be moved as necessary.</p>
 <p>There are two Jenkins jobs to publish special routes:</p>
-<h2 id='publish-a-single-special-route'>Publish a single special route</h2>
+
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/Publish_Single_Special_Route" class="govuk-link">Run Publish_Single_Special_Route on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/Publish_Single_Special_Route" class="govuk-link">Run Publish_Single_Special_Route on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/Publish_Single_Special_Route" class="govuk-link">⚠️ Run Publish_Single_Special_Route on Production ⚠️</a></li>
-</ul>
-<h2 id='publish-all-special-routes'> Publish all special routes</h2>
-<ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/Publish_Special_Routes" class="govuk-link">Run Publish_Special_Routes on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/Publish_Special_Routes" class="govuk-link">Run Publish_Special_Routes on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/Publish_Special_Routes" class="govuk-link">⚠️ Run Publish_Special_Routes on Production ⚠️</a></li>
+<li>Publish a single special route: <span aria-hidden='true'>Run Publish_Single_Special_Route on</span> <a
+  href="https://deploy.integration.publishing.service.gov.uk/job/Publish_Single_Special_Route"
+  class="govuk-link"
+  aria-label="Run Publish_Single_Special_Route on Integration">Integration</a>, <a
+  href="https://deploy.blue.staging.govuk.digital/job/Publish_Single_Special_Route"
+  class="govuk-link"
+  aria-label="Run Publish_Single_Special_Route on Staging">Staging</a> or <a
+  href="https://deploy.blue.production.govuk.digital/job/Publish_Single_Special_Route"
+  class="govuk-link"
+  aria-label="Run Publish_Single_Special_Route on Production">⚠️ Production ⚠️</a></li>
+<li>Publish all special routes: <span aria-hidden='true'>Run Publish_Special_Routes on</span> <a
+  href="https://deploy.integration.publishing.service.gov.uk/job/Publish_Special_Routes"
+  class="govuk-link"
+  aria-label="Run Publish_Special_Routes on Integration">Integration</a>, <a
+  href="https://deploy.blue.staging.govuk.digital/job/Publish_Special_Routes"
+  class="govuk-link"
+  aria-label="Run Publish_Special_Routes on Staging">Staging</a> or <a
+  href="https://deploy.blue.production.govuk.digital/job/Publish_Special_Routes"
+  class="govuk-link"
+  aria-label="Run Publish_Special_Routes on Production">⚠️ Production ⚠️</a></li>
 </ul>
 
 
