@@ -7,14 +7,22 @@ section: 2nd line
 type: learn
 ---
 
-2nd line has three main responsibilities:
+2ndline is the user support function of GOV.UK. 2nd line’s main responsibilities:
 
 - Monitoring the state of the GOV.UK infrastructure
 - Investigating and responding to technical bug reports
 - Providing first line support to queries from data.gov.uk users
-- Taking on urgent work or work that doesn't necessarily belong in any team
+- Taking on urgent work or work that doesn’t necessarily belong in any team
 
-If you're new to Technical 2nd Line, read about our [working patterns, ceremonies and policies](/manual/welcome-to-2nd-line.html).
+You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. 2ndline shifts are a great opportunity to learn about the GOV.UK stack.
+
+Every Monday, at least 2 people from GOV.UK - 2 developers and usually a shadow developer - join the team to work on Technical 2nd Line. [An ‘interruptible’ Site Reliability Engineer (SRE) is also available][].
+
+> Technical 2nd line takes priority over the work you do in your usual team.
+
+Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rota to find out when your shift is][]. You are required to attend a daily morning standup with your paired 2ndline partner and the 2ndline team. There’s a short retrospective at the handover meeting at the end of your shift.
+
+If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, you’ll need to prioritise Technical 2nd Line above your meetings.
 
 ## Monitoring
 
@@ -60,3 +68,5 @@ Follow these Slack channels while working on Technical 2nd Line:
 [install our Chrome extension]: https://github.com/alphagov/govuk-secondline-blinken#chrome-extension
 [PagerDuty]: https://governmentdigitalservice.pagerduty.com
 [Zendesk]: https://govuk.zendesk.com
+[An ‘interruptible’ Site Reliability Engineer (SRE) is also available]:https://docs.publishing.service.gov.uk/manual/raising-issues-with-reliability-engineering.html
+[You can check the Technical 2nd Line rota to find out when your shift is]:https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378
