@@ -24,17 +24,39 @@ Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rot
 
 If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, you’ll need to prioritise Technical 2nd Line above your meetings.
 
+## Shift swaps, working patterns and sickness
+
+2nd Line takes priority over the work you do in your usual team. If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
+
+- If you need cover for a day or two, arrange a swap for those days with another developer. Please ensure delivery managers are aware of this.
+
+- If you need a whole shift swap, arrange this with another developer from your team.
+
+For either of the above, let the Technical 2nd Line delivery manager know. Please update the schedule on [Pager Duty][].
+
+If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.
+
+If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.
+
+If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.
+
 ## Monitoring
 
 We have a [Technical 2nd Line dashboard][] showing a high level overview of the state of the GOV.UK environments. You can also [install our Chrome extension][] if you want a permanently visible overview. You will need to be on the [VPN](/manual/vpn.html) if accessing from home.
 
 ### Icinga
 
-We use Icinga to monitor our platform and alert us when things go wrong. Many alerts have corresponding  documentation in these developer docs, detailing how to respond.
+We use Icinga to monitor our platform across our environments ([CI/Integration][], [Staging][], [Production][]) and alert us when things go wrong. Many alerts have corresponding documentation in our [GOV.UK developer docs][], detailing how to respond. [Read more about Icinga][].
 
-You should record critical alerts that aren't easily solved to the [GOV.UK Technical 2nd Line Trello board][] to help inform the Technical 2nd Line tech lead(s) and the GOV.UK SREs. Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.
+If you see critical alerts that aren't easily solved, you can create a card on the [GOV.UK Technical 2nd Line Trello board][] and add it to the appropriate column:
 
-[Read more about Icinga](/manual/icinga.html).
+- [Alerts which don't add value][]
+- [Ongoing issues to be aware of & unexplained events][]
+- [Missing documentation][]
+
+See the 2nd line Trello board section for more information.
+
+NB: Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.
 
 ### PagerDuty
 
@@ -70,3 +92,11 @@ Follow these Slack channels while working on Technical 2nd Line:
 [Zendesk]: https://govuk.zendesk.com
 [An ‘interruptible’ Site Reliability Engineer (SRE) is also available]:https://docs.publishing.service.gov.uk/manual/raising-issues-with-reliability-engineering.html
 [You can check the Technical 2nd Line rota to find out when your shift is]:https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378
+[CI/Integration]: https://alert.integration.publishing.service.gov.uk/
+[Staging]: https://alert.blue.staging.govuk.digital/
+[Production]: https://alert.blue.production.govuk.digital/
+[GOV.UK developer docs]: https://docs.publishing.service.gov.uk/
+[Read more about Icinga]: https://docs.publishing.service.gov.uk/manual/icinga.html
+[Alerts which don't add value]: https://trello.com/c/A3mKmh5s/583-this-column-is-to-record-the-same-alerts-are-coming-up-again-and-again-but-cant-action-when-it-spikes
+[Ongoing issues to be aware of & unexplained events]: https://trello.com/c/TwquoCfW/316-readme
+[Missing documentation]: https://trello.com/c/owAK2OjY/1009-please-use-this-column-to-record-any-missing-documentation-you-notice-and-were-not-able-to-add-during-your-shift
