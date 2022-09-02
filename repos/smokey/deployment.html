@@ -188,7 +188,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/193549f01b3456a437207b466d2bcf937f563667">4 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/9a11acabd08c7413581e3379aa12d1c8bbc92145">2 Sep 2022</a>
 </div>
 
   <h1 class="page-title">smokey: Deployment</h1>
@@ -204,8 +204,8 @@
 <li>Run a new build of the Smokey project and check the results</li>
 </ul>
 <h2 id="after-you-merge">After you merge</h2>
-<p>The manual <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a> will pick up changes on <code>main</code> automatically.</p>
-<p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf">continuous Smokey Loop</a> is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb">deployed daily by Jenkins</a> using <code>deploy.sh</code> and the latest version of the <code>main</code> branch. You should still consider manually deploying your change using the <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey_Deploy/">Smokey deploy job</a>, in case it causes a problem.</p>
+<p>The manual <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a> will pick up changes on <code>main</code> automatically and trigger a deploy to all environments.</p>
+<p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf">continuous Smokey Loop</a> is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb">deployed automatically by Jenkins</a> to all environments when changes are merged.</p>
 <p>If you are adding a new feature file, you need to ensure the feature is <a href="https://github.com/alphagov/govuk-puppet/blob/d7af16e96aed682facb5cf5bc3e3972510c64ca2/hieradata_aws/integration.yaml#L378">listed in the Puppet config for the Smokey Loop</a> in order to alert on a failing scenario in Icinga.</p>
 
 

@@ -357,173 +357,44 @@ docker run -it --rm --name seal \
   seal
 </code></pre>
 
-<h2 id="diary-of-how-this-app-was-built">Diary of how this app was built</h2>
-
-<p>10th April:</p>
-
-<ul>
-<li>
-<p>Finalised what the app does:</p>
-<ul>
-<li>Checks if any pull requests are over 2 days old (angry seal)</li>
-<li>at 9.45am prepares an overview of all pull requests that need reviewing (informative seal)</li>
-<li>when a team member posts a new pull request, publishes it on slack (notification seal) (this feature was then abandoned, as I thought it&rsquo;s best for this not to be automated, it&rsquo;s more motivating when real people ask for a review, not a bot)</li>
-</ul>
-<p></li>
-<li>
-<p>Researched what technologies and gems I could use and what the app structure would be like</p>
-</li>
-<li>
-<p>Started the Rails app</p>
-</li>
-</ul>
-<p>17th April:</p>
-<ul>
-<li>researched github_api</li>
-</ul>
-<p>24th April:</p>
-<ul>
-<li>got github_api working, first test with dummy data passing</li>
-</ul>
-<p>1st of May</p>
-<ul>
-<li>got github_listener to take into account organisations</li>
-</ul>
-<p>8th of May:</p>
-<ul>
-<li>tried stubbing Github API</li>
-</ul>
-<p>15th of May:</p>
-<ul>
-<li>Github listener can now return the list of repos of an organisation</li>
-<li>further attempts to stub GithubAPI using these methods: <a href="https://robots.thoughtbot.com/how-to-stub-external-services-in-tests">https://robots.thoughtbot.com/how-to-stub-external-services-in-tests</a>.</li>
-</ul>
-<p>21st of May:</p>
-<ul>
-<li>Building Sinatra app for stubbing</li>
-<li>Attempts to filter the 3,400 repo list by date the repo was modified - tests (and app) are still very slow</li>
-</ul>
-<p>28th of May:</p>
-<ul>
-<li>Due to new team structure that assigns a list of repos to each team, decided the manually enter the list of repos that belong to a team instead of scanning through all of them. That should sort the speed problem, the stubbing problem, a lot of things.</li>
-<li>moved to a non-Rails app to make it lighter</li>
-<li>got Github to list repos; works for my personal pull requests, but doesn&rsquo;t work with the GOV.UK stuff yet, need to figure out why</li>
-</ul>
-<p>5th of June:</p>
-<ul>
-<li>Github fetcher class now works with organisations, hence GOV.UK stuff</li>
-</ul>
-<p>11th of June:</p>
-<ul>
-<li>Stubbed Github API</li>
-</ul>
-<p>12th of June:</p>
-<ul>
-<li>Github Fetcher now also returns the link to the pull request</li>
-<li>Started Slackbot poster class, it can post to Slack</li>
-<li>Started Message builder class, not finished</li>
-</ul>
-<p>13th of June:</p>
-<ul>
-<li>finished Slackbot poster class</li>
-<li>finished Message builder class</li>
-<li>added name of repo to info sent by GithubFetcher</li>
-<li>added options to the Slackbot poster class so each post comes from informative seal</li>
-<li>Works locally in test room. YEAY!</li>
-</ul>
-<p>17th of June:</p>
-<ul>
-<li>refactoring of Github fetcher</li>
-<li>pushed to Heroku</li>
-</ul>
-<p>18th of June:</p>
-<ul>
-<li>started Heroku scheduler and launched on core-formats team room!</li>
-</ul>
-<p>22nd of June</p>
-<ul>
-<li>Ensure Angry seal doesn&rsquo;t get triggered at the weekend</li>
-</ul>
-<p>26th of June:</p>
-<ul>
-<li>launched on finding-stuff team</li>
-<li>investigated adding comments</li>
-</ul>
-<p>3rd of July:</p>
-<ul>
-<li>launched on custom team</li>
-<li>added comments</li>
-<li>investigating angry seal - stuck by a strange syntax error line 34 when trying to run the script</li>
-</ul>
-<p>10th of July</p>
-<ul>
-<li>Extracted config information to yaml files</li>
-<li>fixed informative seal - mood_hash was causing issues</li>
-</ul>
-<p>17th of July</p>
-<ul>
-<li>Angry Seal!</li>
-</ul>
-<p>21st of July</p>
-<ul>
-<li>fix API stubbing</li>
-</ul>
-<p>22nd of July</p>
-<ul>
-<li>Add age of pull requests</li>
-</ul>
-<p>24th of July</p>
-<ul>
-<li>Optionally display labels for a pull request, if they exist (<code>use_labels</code> config option)</li>
-<li>Optionally hide pull requests with certain labels (<code>exclude_labels</code> config
-list)</li>
-<li>Optionally hide pull requests with certain phrases in the title
-(<code>exclude_titles</code> config list)</li>
-</ul>
-<p>19th of August</p>
-<ul>
-<li>Seal will bark at all teams in the config if no team is specified as an
-argument to <code>./bin/{angry,informative}_seal.rb</code>, making Heroku scheduling
-easier.</li>
-</ul>
-<p>4th of September</p>
-<ul>
-<li>Seal now displays thumbs up when present in comments</li>
-<li>Angry seal now looks angrier</li>
-</ul>
-<p>13th of September</p>
-<ul>
-<li>Seal now has only one script to be triggered - will start either the angry seal, the informative seal or the seal of approval each day.</li>
-</ul>
-<p>6th of January</p>
-<ul>
-<li>Seal can now post random quotes from the team&rsquo;s list of quotes in the config. Can be used as a reminder or for inspirational quotes!</li>
-</ul>
 <h2 id="tips">Tips</h2>
+
 <p>How to list your organisation&rsquo;s repositories modified within the last year:</p>
+
 <p>In <code>irb</code>, from the folder of the project, run:</p>
-<pre lang="ruby"><code>require &#39;octokit&#39;
-github = Octokit::Client.new(:access_token =&gt; ENV[&#39;GITHUB_TOKEN&#39;], auto_pagination: true)
-response = github.repos(org: ENV[&#39;SEAL_ORGANISATION&#39;])
+
+<pre lang="ruby"><code>require 'octokit'
+github = Octokit::Client.new(:access_token =&gt; ENV['GITHUB_TOKEN'], auto_pagination: true)
+response = github.repos(org: ENV['SEAL_ORGANISATION'])
 repo_names = response.select { |repo| Date.parse(repo.updated_at.to_s) &gt; (Date.today - 365) }.map(&amp;:name)
 </code></pre>
+
 <h2 id="crc">CRC</h2>
+
 <p>Github fetcher:</p>
+
 <ul>
 <li>queries Github&rsquo;s API</li>
 </ul>
+
 <p>Message Builder:</p>
+
 <ul>
 <li>produces message from Github API&rsquo;s content</li>
 </ul>
+
 <p>Slack Poster:</p>
+
 <ul>
 <li>posts message to Slack</li>
 </ul>
+
 <p>Trello board: <a href="https://trello.com/b/sgakJmlY/moody-seal">https://trello.com/b/sgakJmlY/moody-seal</a></p>
+
 <h2 id="license">License</h2>
+
 <p>See the <a href="https://github.com/alphagov/seal/blob/main/LICENSE">LICENSE</a> file for license rights and limitations (MIT).</p>
-  </div></p>
+<p></div></p>
 
 
             
