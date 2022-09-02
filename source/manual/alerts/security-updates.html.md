@@ -32,6 +32,3 @@ If the unattended upgrades log looks okay, check which security updates are outs
 ```bash
 apt-get upgrade -s | grep -i security
 ```
-
-You may find that the upgrades are on a [deny list in govuk-puppet](https://github.com/alphagov/govuk-puppet/commit/a0872cb1c9e6e7981863660b1500f3a2ede631fe)
-(for example, `mysql-server-5.5` which [needs upgrading manually](/manual/upgrading-mysql.html)).
