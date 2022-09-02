@@ -149,7 +149,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b4ab8b0d239d6ed5f6f45a1340d21d13fbd722e3">2 Sep 2022</a>
 </div>
 
  <h1 id='header'>Outstanding security updates</h1> <p>Machines are configured to <a href="https://help.ubuntu.com/community/AutomaticSecurityUpdates#Using_the_.22unattended-upgrades.22_package">automatically install security updates</a> on a daily basis.</p>
@@ -166,9 +166,7 @@ You could acknowledge it until it is next scheduled to run, or you could try run
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">sudo </span>unattended-upgrade <span class="nt">-d</span> <span class="nt">--dry-run</span>
 </code></pre></div><p>If the unattended upgrades log looks okay, check which security updates are outstanding:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>apt-get upgrade <span class="nt">-s</span> | <span class="nb">grep</span> <span class="nt">-i</span> security
-</code></pre></div><p>You may find that the upgrades are on a <a href="https://github.com/alphagov/govuk-puppet/commit/a0872cb1c9e6e7981863660b1500f3a2ede631fe">deny list in govuk-puppet</a>
-(for example, <code>mysql-server-5.5</code> which <a href="/manual/upgrading-mysql.html">needs upgrading manually</a>).</p>
-
+</code></pre></div>
 
   <div class='related-content'>
 
