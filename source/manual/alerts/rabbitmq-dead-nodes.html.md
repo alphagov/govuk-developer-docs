@@ -27,7 +27,27 @@ If the dead node is not in the list, then it can be safely removed from the clus
 gds govuk connect -e production ssh aws/rabbitmq "sudo rabbitmqctl forget_cluster_node rabbit@ip-xx-xx-x-xx"
 ```
 
-For information about how we use RabbitMQ, see [here][rabbitmq_doc].
-
 [rabbitmq_doc]: https://docs.publishing.service.gov.uk/manual/rabbitmq.html
 [alert_check]: https://github.com/alphagov/govuk-puppet/blob/ae1be54779ae6912fe693cc66394e6e61afccd9b/modules/govuk_rabbitmq/templates/check_rabbitmq_dead_nodes.cfg.erb
+[restart_an_application]: https://docs.publishing.service.gov.uk/manual/restart-application.html
+
+## Unhealthy nodes
+
+In some cases the nodes may not actually be dead. For example, RabbitMQ believes the host is not running, but it is up and running in AWS.
+
+To resolve this issue, identify the node that isn’t running, e.g. `rabbit@ip-10-13-4-190` and use this to SSH into the box:
+
+```bash
+ssh -J <Your user name>@jumpbox.<GOV.UK environment>.govuk.digital <Your user name>@<RabbitMQ ip address>.eu-west-1.compute.internal
+```
+
+Then restart the RabbitMQ service:
+
+```
+sudo service rabbitmq-server restart
+```
+
+## Further reading
+
+* [How we use RabbitMQ][rabbitmq_doc]
+* [Restart an application][restart_an_application]
