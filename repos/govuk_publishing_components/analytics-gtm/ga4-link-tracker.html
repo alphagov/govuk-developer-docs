@@ -223,7 +223,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/a4041368ac7bc44678f279ebdfa259285828ee61">15 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/76b737da8d057ba703a0225d5e761b83e5957b66">25 Aug 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics link tracker</h1>
@@ -238,25 +238,26 @@
 </ul>
 <p>When one of these listeners are fired, they check if the <code>event.target</code> is an <code>&lt;a&gt;</code> tag with a <code>href</code>. If so, it will then check if the link is:</p>
 <ul>
-<li>A <code>download</code> link - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path.</li>
+<li>A <code>generic download</code> - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path.</li>
+<li>A <code>preview</code> link - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path which has <code>/preview</code> in the URL after the file path.</li>
 <li>A <code>mailto</code> link - This is an email href that starts with <code>mailto:</code>.</li>
-<li>An <code>external</code> link - This is a href that is not on the <code>www.gov.uk</code> domain.
+<li>An <code>generic link</code>  - This is a href that is not on the <code>www.gov.uk</code> domain.
 <ul>
 <li>To calculate this, it checks if the href starts with <code>http://www.gov.uk/</code>, <code>https://www.gov.uk/</code>, <code>//www.gov.uk/</code>, <code>www.gov.uk/</code>, <code>http://gov.uk/</code>, <code>https://gov.uk/</code>, <code>//gov.uk</code>, or <code>gov.uk/</code> (NB: <code>gov.uk/</code> and <code>www./</code> are technically relative links as a href must contain a <code>/</code> or http method at the start to be treated as non-relative).</li>
-<li>It also checks if a <code>href</code> starts with <code>/</code> and does not start with <code>//</code> to determine if it's a relative link like <code>/bank-holidays</code> , but not a protocol relative link <code>//google.com</code>
-</li>
+<li>It also checks if a <code>href</code> starts with <code>/</code> and does not start with <code>//</code> to determine if it's a relative link like <code>/bank-holidays</code> , but not a protocol relative link such as <code>//google.com</code>.</li>
 <li>If the <code>href</code> does not meet both of these criteria, then it is considered an external link.</li>
 </ul>
 </li>
 </ul>
+<p>Events can either have an <code>event_name</code> of <code>navigation</code> or <code>file_download</code>. Download and preview links will use the <code>file_download</code> value, while generic external links and mailto links will use <code>navigation</code>.</p>
 <h2 id="basic-use">Basic use</h2>
 <p><code>&lt;a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf"&gt;A Quick Guide to the Government’s Healthy Eating Recommendations&lt;/a&gt;</code></p>
 <p>In the example above, on a left click of the link, the following would be pushed to the dataLayer, using the <code>eventSchema</code> found in <code>ga4-schemas.js</code>:</p>
 <pre><code>{
-    "event": "analytics",
+    "event": "event_data",
     "event_data": {
-        "event_name": "navigation",
-        "type": "download",
+        "event_name": "file_download",
+        "type": "generic download",
         "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf",
         "text": "A Quick Guide to the Government’s Healthy Eating Recommendations",
         "index": null,
