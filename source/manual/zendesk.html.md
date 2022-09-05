@@ -95,8 +95,9 @@ any GOV.UK accounts.
 
 You can search for their name in the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository. If you find a reference, create a card from one of two templates on the Technical 2nd Line Trello board:
 
-* if the user is in [config/govuk_non_tech.yml](https://github.com/alphagov/govuk-user-reviewer/blob/368966ef18ebd4c86653edac6abf37d59b063c0c/config/govuk_non_tech.yml) create a card using the ["Leaver (non tech role)"](https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role) template card
-* if the user is in any of the other config files, create a card using the ["Leaver (tech role)"](https://trello.com/c/IQIV54Pc/378-leaver-tech-role) template card
+* if the user is in [config/govuk_tech.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml) create a card using the ["Leaver (tech role)"](https://trello.com/c/IQIV54Pc/378-leaver-tech-role) template card
+
+* Otherwise create a card using the ["Leaver (non tech role)"](https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role) template card.
 
 Add the card to the "To do" column with a due date, which will be the leaving date from the Zendesk ticket ready. You can then
 close the ticket with an internal comment which includes a link to the new Trello card.
