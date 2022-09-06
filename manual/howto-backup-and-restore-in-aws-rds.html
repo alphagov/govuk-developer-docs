@@ -164,7 +164,21 @@
         </ul>
       </li>
       <li>
-        <a href="#how-to-delete-a-database-instance"><span>How to Delete a Database Instance</span></a>
+        <a href="#restore-an-rds-instance-via-the-aws-cli"><span>Restore an RDS instance via the AWS CLI</span></a>
+        <ul>
+          <li>
+            <a href="#1-make-a-change-to-the-database-contents"><span>1. Make a change to the database contents</span></a>
+          </li>
+          <li>
+            <a href="#2-connect-to-the-restored-backup-database"><span>2. Connect to the restored backup database</span></a>
+          </li>
+          <li>
+            <a href="#3-connect-back-to-the-original-database"><span>3. Connect back to the original database</span></a>
+          </li>
+          <li>
+            <a href="#4-delete-the-restored-backup-database"><span>4. Delete the restored backup database</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -217,7 +231,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b549208772cc72b1d335fa521483727710aad7fb">2 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a98d31ebbee6a13c4be2fd243986b054e79481e">6 Sep 2022</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>Backups of <a href="https://aws.amazon.com/rds/">RDS</a> instances are <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance">taken
@@ -323,7 +337,30 @@ db_subnet_group_name=&lt;replace_with_previous_output&gt;
 </code></pre></div><p>The restore is now finished!</p>
 <p>Please be aware that if you changed the file path in the previous step, remember to change the code below.</p>
 <h3 id='10-check-the-changes-in-route53'>10. Check the changes in Route53</h3><p>To see the changes to AWS Route 53, Log into AWS Console &gt; Route 53 &gt; Hosted Zones &gt; Check the Public and private link to <environment>.govuk-internal.digital and search for the restored DB.</p>
-<h2 id='how-to-delete-a-database-instance'>How to Delete a Database Instance</h2>
+<h2 id='restore-an-rds-instance-via-the-aws-cli'>Restore an RDS instance via the AWS CLI</h2><p>Once you have restored a database in AWS RDS, you can now use this in your app.</p>
+<h3 id='1-make-a-change-to-the-database-contents'>1. Make a change to the database contents</h3><p>Through the app&rsquo;s user interface, or via the app console or database console, make
+a change that you can use as a sense check to verify that the database switch has
+been successful.</p>
+<p>For example, you might create a draft edition of something, or modify or delete
+a record. After switching to the restored database, your changes should be undone.</p>
+<p>In this example we want to make a change to the database <code>local-links-manager_production</code>
+such as delete an old record:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo psql -U aws_db_admin -h local-links-manager-postgres -d local-links-manager_production
+</code></pre></div><h3 id='2-connect-to-the-restored-backup-database'>2. Connect to the restored backup database</h3><p>This requires updating the CNAME for <code>local-links-manager-postgres</code>.</p>
+
+<ol>
+<li>In AWS Route53 navigate to <code>Route 53 &gt; Hosted zones &gt; integration.govuk-internal.digital</code></li>
+<li>In the list search for the hostname and select it to edit the record.</li>
+<li>Make a note of the current value if you are planning on reconnecting to the original database afterwards e.g. if you&rsquo;re carrying this out as a drill</li>
+<li>Replace the value with the new RDS backup and save your changes. This takes about 60 seconds, you can click &ldquo;view status&rdquo; for updates. Once updated it will say <code>INSYNC</code>.</li>
+<li>SSH back into the machine and query for the record you deleted. If the record is back this should verify the app is now using the backup database.</li>
+</ol>
+<h3 id='3-connect-back-to-the-original-database'>3. Connect back to the original database</h3><p>Repeat the steps covered in <a href="#connect-to-the-restored-backup-database">Step 5</a>.</p>
+
+<blockquote>
+<p>If you need to find the endpoint again for the original database, navigate to Amazon RDS, find the database in the list and look for <code>Endpoint &amp; Port</code> under the <code>Connectivity &amp; Security</code> tab.</p>
+</blockquote>
+<h3 id='4-delete-the-restored-backup-database'>4. Delete the restored backup database</h3>
 <blockquote>
 <p>PLEASE BE CAREFUL WHEN EXECUTING THIS COMMAND AS IT CANNOT BE UNDONE</p>
 </blockquote>
