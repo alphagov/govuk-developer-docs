@@ -200,7 +200,43 @@ Please be aware that if you changed the file path in the previous step, remember
 
 To see the changes to AWS Route 53, Log into AWS Console > Route 53 > Hosted Zones > Check the Public and private link to <environment>.govuk-internal.digital and search for the restored DB.
 
-## How to Delete a Database Instance
+## Restore an RDS instance via the AWS CLI
+
+Once you have restored a database in AWS RDS, you can now use this in your app.
+
+### 1. Make a change to the database contents
+
+Through the app's user interface, or via the app console or database console, make
+a change that you can use as a sense check to verify that the database switch has
+been successful.
+
+For example, you might create a draft edition of something, or modify or delete
+a record. After switching to the restored database, your changes should be undone.
+
+In this example we want to make a change to the database `local-links-manager_production`
+such as delete an old record:
+
+```
+sudo psql -U aws_db_admin -h local-links-manager-postgres -d local-links-manager_production
+```
+
+### 2. Connect to the restored backup database
+
+This requires updating the CNAME for `local-links-manager-postgres`.
+
+1. In AWS Route53 navigate to `Route 53 > Hosted zones > integration.govuk-internal.digital`
+2. In the list search for the hostname and select it to edit the record.
+3. Make a note of the current value if you are planning on reconnecting to the original database afterwards e.g. if you're carrying this out as a drill
+4. Replace the value with the new RDS backup and save your changes. This takes about 60 seconds, you can click "view status" for updates. Once updated it will say `INSYNC`.
+5. SSH back into the machine and query for the record you deleted. If the record is back this should verify the app is now using the backup database.
+
+### 3. Connect back to the original database
+
+Repeat the steps covered in [Step 5](#connect-to-the-restored-backup-database).
+
+> If you need to find the endpoint again for the original database, navigate to Amazon RDS, find the database in the list and look for `Endpoint & Port` under the `Connectivity & Security` tab.
+
+### 4. Delete the restored backup database
 
 > PLEASE BE CAREFUL WHEN EXECUTING THIS COMMAND AS IT CANNOT BE UNDONE
 
