@@ -200,9 +200,9 @@ Please be aware that if you changed the file path in the previous step, remember
 
 To see the changes to AWS Route 53, Log into AWS Console > Route 53 > Hosted Zones > Check the Public and private link to <environment>.govuk-internal.digital and search for the restored DB.
 
-## Restore an RDS instance via the AWS CLI
+## Point the application to the new RDS instance
 
-Once you have restored a database in AWS RDS, you can now use this in your app.
+Once you have restored a database in AWS RDS, you now need to point the corresponding app towards it.
 
 ### 1. Make a change to the database contents
 
@@ -230,13 +230,26 @@ This requires updating the CNAME for `local-links-manager-postgres`.
 4. Replace the value with the new RDS backup and save your changes. This takes about 60 seconds, you can click "view status" for updates. Once updated it will say `INSYNC`.
 5. SSH back into the machine and query for the record you deleted. If the record is back this should verify the app is now using the backup database.
 
-### 3. Connect back to the original database
+> This is only a temporary solution, to be used in an incident. You should continue onto the next section for a permanent solution.
 
-Repeat the steps covered in [Step 5](#connect-to-the-restored-backup-database).
+## Ensure your setup will continue to work if infrastructure is reprovisioned
 
-> If you need to find the endpoint again for the original database, navigate to Amazon RDS, find the database in the list and look for `Endpoint & Port` under the `Connectivity & Security` tab.
+If new infrastructure is provisioned, then the "Point the application to the new RDS instance" solution above will break, as Terraform would fall out of sync with the manual changes. We either need to update Terraform with our changes, or manually get our infrastructure back to how it used to be.
 
-### 4. Delete the restored backup database
+*For the purposes of drilling*, it's quicker and easier to do the latter. Simply repeat the steps to [point the application to the new RDS instance](#point-the-application-to-the-new-rds-instance), but this time connect to the original database. If you need to find the endpoint again for the original database, navigate to Amazon RDS, find the database in the list and look for `Endpoint & Port` under the `Connectivity & Security` tab.
+
+*If this is not a drill*, then you would not want to connect to the original database again - you've created a database from a backup for a reason!
+The safest approach would be to update Terraform to refer to the new database.
+
+Alternatively, you could:
+
+1. [Delete the original database](#delete-an-obsolete-database)
+1. Create a snapshot from your new database (which we'll call the "temporary" database)
+1. [Restore an RDS instance](#restore-an-rds-instance-via-the-aws-cli) (we'll call this the "new" database) from your temporary database's snapshot, but using the original hostname this time
+1. Repeat the steps to [point the application to the new RDS instance](#point-the-application-to-the-new-rds-instance), this time connecting to the "new" database.
+1. [Delete the temporary database](#delete-an-obsolete-database)
+
+## Delete an obsolete database
 
 > PLEASE BE CAREFUL WHEN EXECUTING THIS COMMAND AS IT CANNOT BE UNDONE
 
