@@ -164,7 +164,7 @@
         </ul>
       </li>
       <li>
-        <a href="#restore-an-rds-instance-via-the-aws-cli"><span>Restore an RDS instance via the AWS CLI</span></a>
+        <a href="#point-the-application-to-the-new-rds-instance"><span>Point the application to the new RDS instance</span></a>
         <ul>
           <li>
             <a href="#1-make-a-change-to-the-database-contents"><span>1. Make a change to the database contents</span></a>
@@ -172,13 +172,13 @@
           <li>
             <a href="#2-connect-to-the-restored-backup-database"><span>2. Connect to the restored backup database</span></a>
           </li>
-          <li>
-            <a href="#3-connect-back-to-the-original-database"><span>3. Connect back to the original database</span></a>
-          </li>
-          <li>
-            <a href="#4-delete-the-restored-backup-database"><span>4. Delete the restored backup database</span></a>
-          </li>
         </ul>
+      </li>
+      <li>
+        <a href="#ensure-your-setup-will-continue-to-work-if-infrastructure-is-reprovisioned"><span>Ensure your setup will continue to work if infrastructure is reprovisioned</span></a>
+      </li>
+      <li>
+        <a href="#delete-an-obsolete-database"><span>Delete an obsolete database</span></a>
       </li>
     </ul>
   </li>
@@ -231,7 +231,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a98d31ebbee6a13c4be2fd243986b054e79481e">6 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4629ddae8284476ccfaad45b050614e3a33b5038">7 Sep 2022</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>Backups of <a href="https://aws.amazon.com/rds/">RDS</a> instances are <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance">taken
@@ -337,7 +337,7 @@ db_subnet_group_name=&lt;replace_with_previous_output&gt;
 </code></pre></div><p>The restore is now finished!</p>
 <p>Please be aware that if you changed the file path in the previous step, remember to change the code below.</p>
 <h3 id='10-check-the-changes-in-route53'>10. Check the changes in Route53</h3><p>To see the changes to AWS Route 53, Log into AWS Console &gt; Route 53 &gt; Hosted Zones &gt; Check the Public and private link to <environment>.govuk-internal.digital and search for the restored DB.</p>
-<h2 id='restore-an-rds-instance-via-the-aws-cli'>Restore an RDS instance via the AWS CLI</h2><p>Once you have restored a database in AWS RDS, you can now use this in your app.</p>
+<h2 id='point-the-application-to-the-new-rds-instance'>Point the application to the new RDS instance</h2><p>Once you have restored a database in AWS RDS, you now need to point the corresponding app towards it.</p>
 <h3 id='1-make-a-change-to-the-database-contents'>1. Make a change to the database contents</h3><p>Through the app&rsquo;s user interface, or via the app console or database console, make
 a change that you can use as a sense check to verify that the database switch has
 been successful.</p>
@@ -355,12 +355,24 @@ such as delete an old record:</p>
 <li>Replace the value with the new RDS backup and save your changes. This takes about 60 seconds, you can click &ldquo;view status&rdquo; for updates. Once updated it will say <code>INSYNC</code>.</li>
 <li>SSH back into the machine and query for the record you deleted. If the record is back this should verify the app is now using the backup database.</li>
 </ol>
-<h3 id='3-connect-back-to-the-original-database'>3. Connect back to the original database</h3><p>Repeat the steps covered in <a href="#connect-to-the-restored-backup-database">Step 5</a>.</p>
 
 <blockquote>
-<p>If you need to find the endpoint again for the original database, navigate to Amazon RDS, find the database in the list and look for <code>Endpoint &amp; Port</code> under the <code>Connectivity &amp; Security</code> tab.</p>
+<p>This is only a temporary solution, to be used in an incident. You should continue onto the next section for a permanent solution.</p>
 </blockquote>
-<h3 id='4-delete-the-restored-backup-database'>4. Delete the restored backup database</h3>
+<h2 id='ensure-your-setup-will-continue-to-work-if-infrastructure-is-reprovisioned'>Ensure your setup will continue to work if infrastructure is reprovisioned</h2><p>If new infrastructure is provisioned, then the &ldquo;Point the application to the new RDS instance&rdquo; solution above will break, as Terraform would fall out of sync with the manual changes. We either need to update Terraform with our changes, or manually get our infrastructure back to how it used to be.</p>
+<p><em>For the purposes of drilling</em>, it&rsquo;s quicker and easier to do the latter. Simply repeat the steps to <a href="#point-the-application-to-the-new-rds-instance">point the application to the new RDS instance</a>, but this time connect to the original database. If you need to find the endpoint again for the original database, navigate to Amazon RDS, find the database in the list and look for <code>Endpoint &amp; Port</code> under the <code>Connectivity &amp; Security</code> tab.</p>
+<p><em>If this is not a drill</em>, then you would not want to connect to the original database again - you&rsquo;ve created a database from a backup for a reason!
+The safest approach would be to update Terraform to refer to the new database.</p>
+<p>Alternatively, you could:</p>
+
+<ol>
+<li><a href="#delete-an-obsolete-database">Delete the original database</a></li>
+<li>Create a snapshot from your new database (which we&rsquo;ll call the &ldquo;temporary&rdquo; database)</li>
+<li><a href="#restore-an-rds-instance-via-the-aws-cli">Restore an RDS instance</a> (we&rsquo;ll call this the &ldquo;new&rdquo; database) from your temporary database&rsquo;s snapshot, but using the original hostname this time</li>
+<li>Repeat the steps to <a href="#point-the-application-to-the-new-rds-instance">point the application to the new RDS instance</a>, this time connecting to the &ldquo;new&rdquo; database.</li>
+<li><a href="#delete-an-obsolete-database">Delete the temporary database</a></li>
+</ol>
+<h2 id='delete-an-obsolete-database'>Delete an obsolete database</h2>
 <blockquote>
 <p>PLEASE BE CAREFUL WHEN EXECUTING THIS COMMAND AS IT CANNOT BE UNDONE</p>
 </blockquote>
