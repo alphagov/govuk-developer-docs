@@ -21,6 +21,8 @@ We have two types of production access:
 1. [Production Deploy access](#production-deploy-access)
 2. [Production Admin access](#production-admin-access)
 
+We have a [spreadsheet documenting the full list of permissions for both access levels](https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing).
+
 ### Production Deploy access
 
 This level of access allows engineers to deploy code but not administer admin related
@@ -56,13 +58,12 @@ Access should be granted at the discretion of the engineer's tech lead, once the
 - AWS [PowerUser Access](https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars) via the `role_poweruser_user_arns` role
 - [Google Cloud Platform (GCP)](/manual/google-cloud-platform-gcp.html) access to role to manage [static mirrors](/manual/fall-back-to-mirror.html) and DNS
 - Signon "Super Admin" access in production
+- `engineer` and "Access all services" permissions in Fastly
 - GOV.UK PaaS [Space developer](https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer) and `Org manager`
   access to all spaces in the [govuk_development](https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35) and [data-gov-uk](https://admin.cloud.service.gov.uk/organisations/39c3d2c5-8809-4dcf-8cd6-a8f62923a295/users) organisations
 - [Sentry](https://sentry.io/settings/govuk/members/) "Manager" role to administer teams and people
 
 The steps above are outlined in the [GOV.UK Production Admin template Trello card](https://trello.com/c/GIHPZi2o/382-production-admin-access-for-2nd-line), which is normally given whilst on 2nd line.
-
-The full list of permissions is managed in [here](https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing).
 
 ## When you get Production Admin access
 
