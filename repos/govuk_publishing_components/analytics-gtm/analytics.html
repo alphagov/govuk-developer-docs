@@ -223,7 +223,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/095fd574b96fb870d599c3a70f5756be017b5e91">15 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/75ad14c3863104aef690f591548892cd155b0b37">7 Sep 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
@@ -241,6 +241,31 @@
 <p>Page views happen when a page loads.</p>
 <p>Events happen when a user interacts with certain things, for example clicking on an accordion, tab, or link.</p>
 <p>Search data is gathered when users perform a search.</p>
+<h2 id="cookie-consent">Cookie consent</h2>
+<p>The analytics code is only loaded if users consent to cookies. This is managed by the <code>init-ga4.js</code> script.</p>
+<p>If the page loads and cookie consent has already been given, the analytics code is initialised. This includes sending a page view and creating any event listeners for analytics code such as link tracking.</p>
+<p>If the page loads and cookie consent has not been given, an event listener is created for the <code>cookie-consent</code> event, which is dispatched by the <a href="https://github.com/alphagov/govuk_publishing_components/pull/2041/commits/777a381d2ccb67f0a7e78ebf659be806d8d6442d">cookie banner component</a>. If triggered, the event listener will initialise the analytics code as described above. This allows analytics to begin on the page where the user consents to cookies.</p>
+<h2 id="code-structure">Code structure</h2>
+<p>It is important that no analytics code runs until cookie consent is given. Code to be initialised as part of cookie consent should be attached to the <code>window.GOVUK.analyticsGA4.analyticsModules</code> object and include an <code>init</code> function, using the structure shown below.</p>
+<pre lang="JavaScript"><code>window.GOVUK = window.GOVUK || {}
+window.GOVUK.analyticsGA4 = window.GOVUK.analyticsGA4 || {}
+window.GOVUK.analyticsGA4.analyticsModules = window.GOVUK.analyticsGA4.analyticsModules || {};
+
+(function (analyticsModules) {
+  'use strict'
+
+  var ExampleCode = {
+    init: function () {
+      // do analytics stuff, like send a page view
+    }
+  }
+
+  analyticsModules.ExampleCode = ExampleCode
+})(window.GOVUK.analyticsGA4.analyticsModules)
+</code></pre>
+<p>When cookie consent is given, <code>init-ga4.js</code> looks through the <code>analyticsModules</code> object for anything with an <code>init</code> function, and executes them if found. This means that analytics code will not be executed unless consent is given, and gives a standard way to add more analytics code without additional initialisation.</p>
+<h3 id="code-structure-for-modules">Code structure for Modules</h3>
+<p>Where analytics code is required as a <a href="/repos/govuk_publishing_components/javascript-modules.html">GOV.UK JavaScript Module</a>, the code structure for the <a href="/repos/govuk_publishing_components/javascript-modules.html">existing model for deferred loading</a> should be used.</p>
 <h2 id="data-schemas">Data schemas</h2>
 <p>All of the data sent to GTM is based on a common schema.</p>
 <pre><code>{
