@@ -201,7 +201,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1a0e2456786cce25b2547a71daf671da90fec211">1 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/19e3a6f3cca8e621fe2198fcd8e3e331c15a03a7">8 Sep 2022</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -216,6 +216,7 @@ clearance, probation, building secure systems with audibility etc.</p>
 <li><a href="#production-deploy-access">Production Deploy access</a></li>
 <li><a href="#production-admin-access">Production Admin access</a></li>
 </ol>
+<p>We have a <a href="https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing">spreadsheet documenting the full list of permissions for both access levels</a>.</p>
 <h3 id='production-deploy-access'>Production Deploy access</h3><p>This level of access allows engineers to deploy code but not administer admin related
 systems. It should be granted to both civil servants and contractors as needed.</p>
 <p>Access includes:</p>
@@ -247,12 +248,12 @@ any access issues.</p>
 <li>AWS <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars">PowerUser Access</a> via the <code>role_poweruser_user_arns</code> role</li>
 <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> access to role to manage <a href="/manual/fall-back-to-mirror.html">static mirrors</a> and DNS</li>
 <li>Signon &ldquo;Super Admin&rdquo; access in production</li>
+<li><code>engineer</code> and &ldquo;Access all services&rdquo; permissions in Fastly</li>
 <li>GOV.UK PaaS <a href="https://docs.cloud.service.gov.uk/orgs_spaces_users.html#space-developer">Space developer</a> and <code>Org manager</code>
 access to all spaces in the <a href="https://admin.cloud.service.gov.uk/organisations/f8718311-b9a4-49d3-b1c7-7c5345a74e35">govuk_development</a> and <a href="https://admin.cloud.service.gov.uk/organisations/39c3d2c5-8809-4dcf-8cd6-a8f62923a295/users">data-gov-uk</a> organisations</li>
 <li><a href="https://sentry.io/settings/govuk/members/">Sentry</a> &ldquo;Manager&rdquo; role to administer teams and people</li>
 </ul>
 <p>The steps above are outlined in the <a href="https://trello.com/c/GIHPZi2o/382-production-admin-access-for-2nd-line">GOV.UK Production Admin template Trello card</a>, which is normally given whilst on 2nd line.</p>
-<p>The full list of permissions is managed in <a href="https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing">here</a>.</p>
 <h2 id='when-you-get-production-admin-access'>When you get Production Admin access</h2>
 <ul>
 <li>A minimum of BPSS (a blue building pass) security clearance</li>
