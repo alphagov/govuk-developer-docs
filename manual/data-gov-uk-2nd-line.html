@@ -256,7 +256,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/786851bb392ae79021857ec63c285704a23819a8">6 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c475f5966cabdd9f25774f2b7bbf61cef5dcbec7">12 Sep 2022</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk</h1> <p>This document details some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk.  <a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
@@ -393,23 +393,7 @@ This is to be done by Technical 2nd Line, following a request from the publisher
 </blockquote>
 <h2 id='harvesting'>Harvesting</h2><p>Harvesting is where publishers can automatically import their data to data.gov.uk without having to manually enter it into the web interface. They can be set up to run automatically at specified periods, or run manually on-demand.</p>
 <p>See the <a href="/manual/data-gov-uk-supporting-ckan.html#harvesting">&ldquo;Harvesting&rdquo; section in &ldquo;Support tasks for CKAN&rdquo;</a> for troubleshooting.</p>
-<h2 id='map-previews-issues'>Map previews issues</h2><p>Datagovuk Find supports links to show a map preview, but sometimes the map link is not available.
-There may be a number of reasons for this:</p>
-
-<ol>
-<li>The harvest source is broken.</li>
-<li>The harvest source WMS version is incompatible.
-
-<ul>
-<li>Only 1.1.1 or 1.3.0 WMS versions are supported</li>
-<li>the error should be available to users from the harvest jobs page:</li>
-<li><code>https://ckan.publishing.service.gov.uk/harvest/&lt;harvest name&gt;/job/&lt;harvest job id&gt;</code></li>
-<li>if the error is not shown you can investigate the harvest source by using the ckan api:</li>
-<li><code>https://ckan.publishing.service.gov.uk/api/action/package_show?id=&lt;id or name of dataset&gt;</code></li>
-<li>the URL in each resource should provide a version number which might be part of the link</li>
-</ul></li>
-</ol>
-<p>In both of these cases 2ndine should ask the user to fix the issue on their harvest server.</p>
+<h2 id='map-previews-issues'>Map previews issues</h2><p>Map previews on data.gov.uk have been deprecated; this means that map preview links will no longer be available and existing map preview pages will have a note around map previews to be deprecated. There is quite a low volume of users using this service.</p>
 <h2 id='organogram-publishing'>Organogram Publishing</h2><p>Organograms are files that allow the people structure of an organisation to be visualised.  They are split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades).  The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.</p>
 <p>Organograms are the only datasets in data.gov.uk where we host the data itself rather than linking to an external resource.  The data files are hosted in a S3 bucket (named <code>datagovuk-integration-ckan-organogram</code>, <code>datagovuk-staging-ckan-organogram</code> or <code>datagovuk-production-ckan-organogram</code>, depending on the environment).</p>
 <p>Read <a href="https://guidance.data.gov.uk/publish_and_manage_data/harvest_or_add_data/add_data/#publishing-organograms">publishing organograms</a> to find out how to upload new organograms and datasets. You can direct user queries to that guidance.</p>
