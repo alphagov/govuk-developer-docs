@@ -210,19 +210,7 @@ See the ["Harvesting" section in "Support tasks for CKAN"](data-gov-uk-supportin
 
 ## Map previews issues
 
-Datagovuk Find supports links to show a map preview, but sometimes the map link is not available.
-There may be a number of reasons for this:
-
-1. The harvest source is broken.
-2. The harvest source WMS version is incompatible.
-  - Only 1.1.1 or 1.3.0 WMS versions are supported
-  - the error should be available to users from the harvest jobs page:
-    - `https://ckan.publishing.service.gov.uk/harvest/<harvest name>/job/<harvest job id>`
-  - if the error is not shown you can investigate the harvest source by using the ckan api:
-    - `https://ckan.publishing.service.gov.uk/api/action/package_show?id=<id or name of dataset>`
-    - the URL in each resource should provide a version number which might be part of the link
-
-In both of these cases 2ndine should ask the user to fix the issue on their harvest server.
+Map previews on data.gov.uk have been deprecated; this means that map preview links will no longer be available and existing map preview pages will have a note around map previews to be deprecated. There is quite a low volume of users using this service.
 
 ## Organogram Publishing
 
