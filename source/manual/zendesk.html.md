@@ -11,6 +11,8 @@ Technical 2nd Line Zendesk tickets are technical errors reported by our users, i
 
 ## Get started
 
+See the [Zendesk best practice slidedeck](https://docs.google.com/presentation/d/1iUbD-_uWyaNMeNj9h7Zvo9g2GWvRarg9kUh7pd0u32M/edit#slide=id.g134fafb13dc_0_0) for an overview and tour of the service.
+
 [Create an account][zendesk-create-account], then ask a fellow 2nd liner to assign a new ticket to
 `2nd/3rd Line--Zendesk Administration` asking to give you access to `2nd Line--GOV.UK Alerts and Issues`.
 
@@ -79,14 +81,18 @@ Click the "take it" link under "Assignee", followed by "Submit as Open", to form
 If you know you cannot solve a ticket immediately, fill in a "Public reply" to the requester to let them
 know you’re looking into it.
 
-Read [Common Technical 2nd Line tasks for data.gov.uk](/manual/data-gov-uk-2nd-line.html), which outlines
-some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
-
 You can use Internal Notes to keep a log of actions you've taken so far: this can make it easier for other
 staff to pick up where you left off if you're unable to solve the ticket yourself. Please note that departments
 can see internal notes, so don’t write anything you wouldn’t say to someone publicly.
 
 If you need more information from the user, fill in the "Public reply" as appropriate and click "Submit as Pending".
+
+## data.gov.uk tickets
+
+Read [Common Technical 2nd Line tasks for data.gov.uk](/manual/data-gov-uk-2nd-line.html), which outlines
+some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
+For more thorny issues, respond to the user that you are passing this on for further
+review and assign to the `3rd Line--GOV.UK Product Requests` Zendesk group.
 
 ## Leaver tickets
 
