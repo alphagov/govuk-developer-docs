@@ -217,11 +217,15 @@
 
 <p>Configuration for GOV.UK&rsquo;s content delivery network (CDN). You can read more about <a href="https://docs.publishing.service.gov.uk/manual/cdn.html">how GOV.UK CDN works</a> in the developer docs.</p>
 
-<p>ℹ️ This repo has some <a href="https://trello.com/c/y6MIgxjp">documented tech debt</a>. It doesn&rsquo;t conform to GOV.UK standards, and lacks sufficient testing (especially for the bouncer and dictionary deploy scripts). Be sure to perform manual testing after making changes to the code.</p>
+<p>ℹ️ This repo has some <a href="https://trello.com/c/y6MIgxjp">documented tech debt</a>. It doesn&rsquo;t conform to GOV.UK standards.</p>
+
+<p>⚠️ Be sure to deploy manually the changes made to all relevant environments. Check in the task output if the differences between configurations are the expected ones.</p>
 
 <h2 id="tasks">Tasks</h2>
 
 <p>This repo contains 3 scripts to configure our <a href="https://fastly.com">Fastly CDN</a> account.</p>
+
+<p>We are using Fastly API for all the processes (see <a href="https://developer.fastly.com/reference/api/vcl-services/vcl/">documentation</a>).</p>
 
 <h3 id="deploy-service">Deploy Service</h3>
 
@@ -229,7 +233,8 @@
 
 <p>Invoked via the <a href="https://deploy.blue.production.govuk.digital/job/Deploy_CDN">CDN: deploy service</a> Jenkins job.</p>
 
-<p>This script allows you to configure a number of Fastly services:</p>
+<p>This script allows you to deploy a new VSL on a number of Fastly services (see table bellow) and
+replaces the old configuration.</p>
 
 <table>
 <thead>
