@@ -78,7 +78,7 @@ Manually re-attach the EBS volume tagged with mirrorer to the mirrorer
 instance, then run puppet on the instance. This will cause puppet to correctly
 mount the EBS volume in /mnt/crawler_worker.
 
-1. Login to the AWS Web Console: `gds aws govuk-integration-powerusers -l`
+1. Login to the AWS Web Console: `gds aws govuk-integration-poweruser -l`
 1. Click Services -> EC2
 1. Change region to "Europe (Ireland) eu-west-1"
 1. Click Instances on the left hand side menu bar and filter by "mirrorer"
