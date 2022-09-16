@@ -6,7 +6,7 @@ layout: manual_layout
 section: Learning GOV.UK
 ---
 
-This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in [GDS][] or CDDO.
+**This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in [GDS][]. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.**
 
 Ask your tech lead to take you through the [overview slides][overview-slides] if they have not already done so.
 
