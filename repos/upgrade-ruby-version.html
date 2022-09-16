@@ -234,6 +234,15 @@
 
 <p>A script to upgrade the version of Ruby used by a project.</p>
 
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ul>
+<li>
+<a href="https://pipenv.pypa.io/en/latest/">pipenv</a> (<code>brew install pipenv</code>)</li>
+<li>
+<a href="https://stedolan.github.io/jq/">jq</a> (<code>brew install jq</code>)</li>
+</ul>
+
 <h2 id="setup">Setup</h2>
 
 <p>Create a <code>.env</code> file with the following contents:</p>
@@ -241,7 +250,11 @@
 <pre><code>GITHUB_ACCESS_TOKEN=personal_access_token
 </code></pre>
 
-<p>You&rsquo;ll need to create a personal access token with a <code>repo</code> <a href="https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps">scope</a> so that you have write access to GOV.UK repositories.</p>
+<p>You&rsquo;ll need to <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token">create a personal access token</a> with a <code>repo</code> <a href="https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps">scope</a> so that you have write access to GOV.UK repositories.</p>
+
+<blockquote>
+<p>It&rsquo;s advised not to use your personal GitHub account to create the access token, as another developer will need to approve the PRs. You can use <a href="https://github.com/govuk-ci">govuk-ci GitHub account</a>.</p>
+</blockquote>
 
 <p>Install dependencies:</p>
 
@@ -251,6 +264,14 @@
 <h2 id="configure-the-script">Configure the script</h2>
 
 <p><a href="https://github.com/alphagov/upgrade-ruby-version/blob/67c9b1285c9601bd6020206e57480d1a14c66f28/main.py#L216">Configure which Ruby versions should be upgraded</a>.</p>
+
+<p>When upgrading a specific list of repos (e.g. only those owned by your team), set up <a href="https://github.com/alphagov/upgrade-ruby-version/blob/cf13233184bbda51550439b3d76b7af571a10121/main.py#L8-L11">the list of repos</a> with hardcoded values:</p>
+
+<pre><code>repos = [
+    'alphagov/authenticating-proxy',
+    'alphagov/bouncer',
+]
+</code></pre>
 
 <h2 id="run-the-script">Run the script</h2>
 
