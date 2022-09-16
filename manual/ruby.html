@@ -198,15 +198,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e5ee274b7e5322b0577747a7729e20cc6a6913db">8 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/76ffbb6fdf5d8665dcb6cae51e850d62eee1f019">16 Sep 2022</a>
 </div>
 
  <h1 id='header'>Add a new Ruby version</h1> <p>The <a href="https://www.ruby-lang.org/en/">Ruby language</a> is a core part of GOV.UK - most of our applications are written in it.</p>
@@ -239,9 +232,10 @@ so it might take time for the package to become available.</p>
 then <code>govuk_puppet --test</code>. You should see a successful Ruby install as part of the Puppet run.</p>
 <p>You&rsquo;ll need to do that on <code>jenkins</code> (and, if impatient, each of the <code>ci_agent</code> machines) first to get the PR&rsquo;s tests passing,
 and then on the respective machine that your app will run on (e.g. <code>backend</code>).</p>
-<h3 id='update-ruby-version-in-the-relevant-repos'>Update Ruby version in the relevant repos</h3><p>We use <a href="https://github.com/alphagov/upgrade-ruby-version">upgrade-ruby-version</a> to automatically raise pull requests in GOV.UK repositories which use Ruby.
-See an <a href="https://github.com/alphagov/upgrade-ruby-version/pull/1">example PR</a> for how to specify the repos and versions.</p>
-<p>Once the PRs are raised, you should test the changes before merge, as follows:</p>
+<h3 id='update-ruby-version-in-the-relevant-repos'>Update Ruby version in the relevant repos</h3><p>We use <a href="https://github.com/alphagov/upgrade-ruby-version">upgrade-ruby-version</a> to automatically raise pull requests in GOV.UK repositories which use Ruby.</p>
+<p>It&rsquo;s advised not to use your personal GitHub account to create the access token required by the script, as another developer will need to approve the PRs. You can use <a href="https://github.com/govuk-ci">govuk-ci GitHub account</a>. The login credentials for the account can be fetched from <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> with:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass github/govuk-ci
+</code></pre></div><p>Once the PRs are raised, you should test the changes before merge, as follows:</p>
 
 <ol>
 <li>Most apps will run a test suite through CI. You should check the output of this for any Ruby deprecation warnings. If there are any warnings, they should be fixed.</li>
