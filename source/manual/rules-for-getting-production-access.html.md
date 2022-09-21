@@ -23,6 +23,8 @@ We have two types of production access:
 
 We have a [spreadsheet documenting the full list of permissions for both access levels](https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing).
 
+There's also a [flow diagram showing when you get Production Deploy and Production Admin access](https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit).
+
 ### Production Deploy access
 
 This level of access allows engineers to deploy code but not administer admin related
@@ -65,29 +67,24 @@ Access should be granted at the discretion of the engineer's tech lead, once the
 
 The steps above are outlined in the [GOV.UK Production Admin template Trello card](https://trello.com/c/GIHPZi2o/382-production-admin-access-for-2nd-line), which is normally given whilst on 2nd line.
 
-## When you get Production Admin access
+#### When you get Production Admin access
 
-- A minimum of BPSS (a blue building pass) security clearance
-- Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only) and probation has been passed
-- Permanent access once two 2nd line Shadow shifts have been completed
-- You will be drafted into the 2nd line [on-call](https://docs.publishing.service.gov.uk/manual/on-call.html) rota after completing two Secondary in hour shifts
+- You have a minimum of BPSS security clearance (blue building pass), AND
+- You have passed your probation period, AND
+- You have had at least one Technical 2nd Line shadow shift
 
-"Supervised" means "we trust you, but just be extra careful," and the dev should
-ensure they're getting necessary and appropriate support from their team and
-tech lead during this time. The tech lead of the mission team is responsible for
-the supervision, whether it's by them or the team.
+Once these conditions are met, you will be drafted onto one last Technical 2nd Line shadow shift, where you will be granted supervised Production Admin access. You will need to ensure the Primary or Secondary supervises you whenever you use that access.
 
-### What is temporary supervised Production Admin access?
+At the end of your shadow shift, you will retain your Production Admin access, and will no longer need to be supervised. However, you should ensure you are careful with the new access, and seek the support of your tech lead or your team whenever you're in doubt.
 
-Admin access to production may be granted to GDS civil servants or contractors who
-don’t meet the criteria above for a time limited period. In these cases, we
-require:
+Note that a Lead Developer or the Head of Technology is able to approve Production Admin access for individuals who may not have met all of the conditions above, where there is a business case to do so. In these cases, access should ideally be supervised at all times, and revoked after a pre-determined period of time.
 
-- A minimum of BPSS (a blue building pass) security clearance
-- Approval from a Lead Developer or the Head of Technology
-- Access to be removed at the end of the time limited period
-- Supervision to be given by a production cleared person during access
-- Agreement from the person that they will only use their access while supervised. We trust our staff to be sensible and operate within these rules.
+## Rules for Primary, Secondary and On Call
+
+Once you have Production Admin access, you'll be given the Secondary role on your next Technical 2nd line shift.
+
+After two sessions as Secondary, you will be drafted onto the 2nd line [on-call](https://docs.publishing.service.gov.uk/manual/on-call.html) rota.
+You will also begin to fill the Primary role on some in-hours shifts.
 
 ## Temporarily revoking access
 
