@@ -140,12 +140,7 @@
         </ul>
       </li>
       <li>
-        <a href="#when-you-get-production-admin-access"><span>When you get Production Admin access</span></a>
-        <ul>
-          <li>
-            <a href="#what-is-temporary-supervised-production-admin-access"><span>What is temporary supervised Production Admin access?</span></a>
-          </li>
-        </ul>
+        <a href="#rules-for-primary-secondary-and-on-call"><span>Rules for Primary, Secondary and On Call</span></a>
       </li>
       <li>
         <a href="#temporarily-revoking-access"><span>Temporarily revoking access</span></a>
@@ -201,7 +196,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/19e3a6f3cca8e621fe2198fcd8e3e331c15a03a7">8 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06f592152faa610f3c1c48ac414cc0d2eaa8c801">16 Sep 2022</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -217,6 +212,7 @@ clearance, probation, building secure systems with audibility etc.</p>
 <li><a href="#production-admin-access">Production Admin access</a></li>
 </ol>
 <p>We have a <a href="https://docs.google.com/spreadsheets/d/1oqy7tKpB8mHBhHQ9jAZu0NR0GKKZXOqtQGBKHYVnpmk/edit?usp=sharing">spreadsheet documenting the full list of permissions for both access levels</a>.</p>
+<p>There&rsquo;s also a <a href="https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit">flow diagram showing when you get Production Deploy and Production Admin access</a>.</p>
 <h3 id='production-deploy-access'>Production Deploy access</h3><p>This level of access allows engineers to deploy code but not administer admin related
 systems. It should be granted to both civil servants and contractors as needed.</p>
 <p>Access includes:</p>
@@ -254,28 +250,18 @@ access to all spaces in the <a href="https://admin.cloud.service.gov.uk/organisa
 <li><a href="https://sentry.io/settings/govuk/members/">Sentry</a> &ldquo;Manager&rdquo; role to administer teams and people</li>
 </ul>
 <p>The steps above are outlined in the <a href="https://trello.com/c/GIHPZi2o/382-production-admin-access-for-2nd-line">GOV.UK Production Admin template Trello card</a>, which is normally given whilst on 2nd line.</p>
-<h2 id='when-you-get-production-admin-access'>When you get Production Admin access</h2>
+<h4 id='when-you-get-production-admin-access'>When you get Production Admin access</h4>
 <ul>
-<li>A minimum of BPSS (a blue building pass) security clearance</li>
-<li>Temporary supervised access during two Technical 2nd Line shadow shifts (GOV.UK developers only) and probation has been passed</li>
-<li>Permanent access once two 2nd line Shadow shifts have been completed</li>
-<li>You will be drafted into the 2nd line <a href="https://docs.publishing.service.gov.uk/manual/on-call.html">on-call</a> rota after completing two Secondary in hour shifts</li>
+<li>You have a minimum of BPSS security clearance (blue building pass), AND</li>
+<li>You have passed your probation period, AND</li>
+<li>You have had at least one Technical 2nd Line shadow shift</li>
 </ul>
-<p>&ldquo;Supervised&rdquo; means &ldquo;we trust you, but just be extra careful,&rdquo; and the dev should
-ensure they&rsquo;re getting necessary and appropriate support from their team and
-tech lead during this time. The tech lead of the mission team is responsible for
-the supervision, whether it&rsquo;s by them or the team.</p>
-<h3 id='what-is-temporary-supervised-production-admin-access'>What is temporary supervised Production Admin access?</h3><p>Admin access to production may be granted to GDS civil servants or contractors who
-don’t meet the criteria above for a time limited period. In these cases, we
-require:</p>
-
-<ul>
-<li>A minimum of BPSS (a blue building pass) security clearance</li>
-<li>Approval from a Lead Developer or the Head of Technology</li>
-<li>Access to be removed at the end of the time limited period</li>
-<li>Supervision to be given by a production cleared person during access</li>
-<li>Agreement from the person that they will only use their access while supervised. We trust our staff to be sensible and operate within these rules.</li>
-</ul>
+<p>Once these conditions are met, you will be drafted onto one last Technical 2nd Line shadow shift, where you will be granted supervised Production Admin access. You will need to ensure the Primary or Secondary supervises you whenever you use that access.</p>
+<p>At the end of your shadow shift, you will retain your Production Admin access, and will no longer need to be supervised. However, you should ensure you are careful with the new access, and seek the support of your tech lead or your team whenever you&rsquo;re in doubt.</p>
+<p>Note that a Lead Developer or the Head of Technology is able to approve Production Admin access for individuals who may not have met all of the conditions above, where there is a business case to do so. In these cases, access should ideally be supervised at all times, and revoked after a pre-determined period of time.</p>
+<h2 id='rules-for-primary-secondary-and-on-call'>Rules for Primary, Secondary and On Call</h2><p>Once you have Production Admin access, you&rsquo;ll be given the Secondary role on your next Technical 2nd line shift.</p>
+<p>After two sessions as Secondary, you will be drafted onto the 2nd line <a href="https://docs.publishing.service.gov.uk/manual/on-call.html">on-call</a> rota.
+You will also begin to fill the Primary role on some in-hours shifts.</p>
 <h2 id='temporarily-revoking-access'>Temporarily revoking access</h2><p>If you&rsquo;re absent more than 6 weeks, your access will be revoked. See <a href="https://trello.com/c/IQIV54Pc/378-leaver-name-here-tech-role">the Trello
 leaver template card</a>
 for the steps.</p>
