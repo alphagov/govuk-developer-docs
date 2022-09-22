@@ -154,6 +154,15 @@ All secondary Mongo machines reboot overnight automatically. If you need to rebo
 
 To reboot the primary, you'll need to [step the current primary down](/manual/mongo-db-commands.html#step-down-the-primary) so that it becomes a secondary machine. You're then free to reboot it as above.
 
+### Rebooting `monitoring` machines
+
+Before rebooting, post a message in the `#govuk-2ndline-tech` channel in case anyone is looking
+at the alerts.
+
+SSH into the machine and run `sudo reboot`. The Icinga alerts will be temporarily unavailable.
+Whilst the machine is coming back up this will trigger a number of smokey loop errors which
+will resolve themselves in half an hour.
+
 ### Rebooting `rabbitmq` machines
 
 There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.
