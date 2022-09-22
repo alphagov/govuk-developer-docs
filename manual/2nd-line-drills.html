@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Change in-hours time period for daylight savings - GOV.UK Developer Documentation</title>
+    <title>2nd line drills - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/change-in-hours-time-period-for-dst.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/2nd-line-drills.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Change in-hours time period for daylight savings - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/change-in-hours-time-period-for-dst.html" />
+      <meta name="twitter:title" content="2nd line drills - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/2nd-line-drills.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Change in-hours time period for daylight savings" />
+      <meta property="og:title" content="2nd line drills" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/change-in-hours-time-period-for-dst.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/2nd-line-drills.html" />
 
     
   </head>
@@ -126,7 +126,39 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Change in-hours time period for daylight savings</span></a>
+    <a href="#header"><span>2nd line drills</span></a>
+    <ul>
+      <li>
+        <a href="#drill-an-end-to-end-incident"><span>Drill an end to end incident</span></a>
+      </li>
+      <li>
+        <a href="#deploy-from-aws-codecommit-when-github-is-unavailable"><span>Deploy from AWS CodeCommit when Github is unavailable</span></a>
+      </li>
+      <li>
+        <a href="#run-a-terraform-plan"><span>Run a Terraform plan</span></a>
+      </li>
+      <li>
+        <a href="#update-homepage-promotion-slots"><span>Update homepage promotion slots</span></a>
+      </li>
+      <li>
+        <a href="#use-a-restored-database-in-an-app"><span>Use a restored database in an app</span></a>
+      </li>
+      <li>
+        <a href="#force-failover-to-gov-uk-mirror-and-emergency-publishing-using-the-gov-uk-mirror"><span>Force failover to GOV.UK mirror and Emergency publishing using the GOV.UK mirror</span></a>
+      </li>
+      <li>
+        <a href="#drill-logging-into-accounts"><span>Drill logging into accounts</span></a>
+      </li>
+      <li>
+        <a href="#drill-how-to-communicate-when-slack-is-down"><span>Drill how to communicate when Slack is down</span></a>
+      </li>
+      <li>
+        <a href="#drill-scaling-up-number-of-workers"><span>Drill scaling up number of workers</span></a>
+      </li>
+      <li>
+        <a href="#drill-enabling-a-code-freeze"><span>Drill enabling a code freeze</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -177,19 +209,48 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cf57e962e5bec648f30e145ea20b951121dca8f5">12 Sep 2022</a>
 </div>
 
- <h1 id='header'>Change in-hours time period for daylight savings</h1> <p>We call people for different things in-hours and out-of-hours.  The
-Icinga configuration doesn&rsquo;t appear to accept a timezone, so we can&rsquo;t
-set the end of day to 17:30 Europe/London time.  This means the
-threshold needs manually changing.</p>
-<p>Here are two examples:</p>
+ <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line. This is to make developers familiar with the process, as well as to validate that the drill steps continue to work.</p>
+<h2 id='drill-an-end-to-end-incident'>Drill an end to end incident</h2><p>Decide on a hypothetical incident scenario, e.g. &ldquo;GOV.UK is down&rdquo;.
+Walk through the <a href="/manual/incident-management-guidance.html">incident management guidance</a>.
+Use common sense when following the steps (i.e. don&rsquo;t actually publish an incident to Statuspage or email stakeholders).</p>
+<h2 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h2><p>Choose an app and decide on an old release tag or branch to deploy.
+Follow the <a href="/manual/github-unavailable.html#deploying-from-aws-codecommit">Deploying from AWS CodeCommit</a> instructions in the Integration or Staging environment.</p>
+<h2 id='run-a-terraform-plan'>Run a Terraform <code>plan</code></h2><p>Follow the <a href="/manual/deploying-terraform.html">Deploy Terraform</a> instructions, picking a project at random.
+You can run this in any environment, as you&rsquo;re only running <code>plan</code> - not <code>apply</code> - so shouldn&rsquo;t be making any changes.</p>
+<h2 id='update-homepage-promotion-slots'>Update homepage promotion slots</h2><p>Follow the <a href="/repos/frontend/update-homepage-promotion-slots.html">Update homepage promotion slots</a> instructions, using an appropriate image and text.
+Do this on Integration or Staging.</p>
+<h2 id='use-a-restored-database-in-an-app'>Use a restored database in an app</h2><p>Follow the <a href="/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli">Restore an RDS instance via the AWS CLI</a> instructions for an app of your choice, on Integration or Staging.</p>
+<h2 id='force-failover-to-gov-uk-mirror-and-emergency-publishing-using-the-gov-uk-mirror'>Force failover to GOV.UK mirror and Emergency publishing using the GOV.UK mirror</h2>
+<ol>
+<li>Warn in <code>#govuk-2ndline-tech</code> that you&rsquo;re about to do this, as it will lead to a spike in alerts and will also break continuous deployment for a while (due to Smokey failures).</li>
+<li>Follow the <a href="/manual/fall-back-to-mirror.html#forcing-failover-to-the-gov-uk-mirrors">Forcing failover to the GOV.UK mirrors</a> instructions on Integration or Staging.</li>
+<li>To verify that it worked, visit a page at random and <a href="/manual/purge-cache.html">purge the page from cache</a>. Reload the page, to see the &lsquo;mirrored&rsquo; version of the content. NB: you wouldn&rsquo;t do this in a real incident, as we&rsquo;d want to serve Fastly&rsquo;s cached version for as long as possible.</li>
+<li>Undo your changes to have Nginx handling requests again.</li>
+</ol>
+<h2 id='drill-logging-into-accounts'>Drill logging into accounts</h2><p>Make sure you can log into the following accounts:</p>
 
-<ul>
-<li><a href="https://github.com/alphagov/govuk-puppet/commit/1f9c585d9d2968fbf456bd88165cefe7cbb97337">Going from BST to UTC</a></li>
-<li><a href="https://github.com/alphagov/govuk-puppet/commit/f30976df346af65bfb9bb46cdc5b2f59ccb4e4df">Going from UTC to BST</a></li>
-</ul>
+<ol>
+<li>Your individual Fastly account</li>
+<li>Your individual Statuspage account</li>
+<li>Your individual Logit account</li>
+<li><a href="/manual/heroku.html">Shared Heroku account</a></li>
+<li><a href="/manual/data-gov-uk-2nd-line.html">Shared CKAN account</a></li>
+<li><a href="/manual/publishing-a-ruby-gem.html">Shared Rubygems account</a></li>
+<li><a href="https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm">Shared NPM account</a></li>
+</ol>
+<h2 id='drill-how-to-communicate-when-slack-is-down'>Drill how to communicate when Slack is down</h2><p>Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
+See &ldquo;<a href="https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp">If Slack is unavailable</a>&rdquo; for details.</p>
+<h2 id='drill-scaling-up-number-of-workers'>Drill scaling up number of workers</h2><p>In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.
+See <a href="/manual/alerts/established-connections-exceed.html">established connections exceeded</a> for details.</p>
+<p>Pick an application and drill scaling up the number of workers - see <a href="https://github.com/alphagov/govuk-puppet/pull/11194">example</a>.</p>
+<p>You can create a branch of <code>govuk-puppet</code> and deploy that branch to Integration to see the unicorn worker change take effect. Delete the branch and re-deploy the latest release of Puppet when you&rsquo;re done.</p>
+<h2 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h2><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.</p>
+<p>Either before merging the change, or part way through the continuous deployment process, follow the instructions for <a href="/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze">implementing a deploy freeze</a> for that app.</p>
+<p>Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.</p>
+<p>Remove the code freeze, then manually push the changes to all remaining environments so that they&rsquo;re in sync.</p>
 
 
   <div class='related-content'>
@@ -202,7 +263,6 @@ threshold needs manually changing.</p>
 
           <ul class="govuk-list">
             <li><a href="/manual/2nd-line.html">2nd line</a></li>
-            <li><a href="/manual/2nd-line-drills.html">2nd line drills</a></li>
             <li><a href="/manual/access-to-licensing-for-third-parties.html">Access to Licensify for Third Parties</a></li>
             <li><a href="/manual/licensing.html">Licensify - supporting licensing</a></li>
             <li><a href="/manual/on-call.html">Out of hours support (on-call)</a></li>
@@ -218,6 +278,7 @@ threshold needs manually changing.</p>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/change-in-hours-time-period-for-dst.html">Change in-hours time period for daylight savings</a></li>
             <li><a href="/manual/flush-the-arp-cache.html">How to flush the ARP cache</a></li>
             <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
             <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
@@ -234,8 +295,8 @@ threshold needs manually changing.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/change-in-hours-time-period-for-dst.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Change+in-hours+time+period+for+daylight+savings%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fchange-in-hours-time-period-for-dst.html%29&amp;labels=bug&amp;title=Re%3A+%27Change+in-hours+time+period+for+daylight+savings%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/2nd-line-drills.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%272nd+line+drills%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2F2nd-line-drills.html%29&amp;labels=bug&amp;title=Re%3A+%272nd+line+drills%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
