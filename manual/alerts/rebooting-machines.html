@@ -158,6 +158,9 @@
             <a href="#rebooting-mongo-machines"><span>Rebooting mongo machines</span></a>
           </li>
           <li>
+            <a href="#rebooting-monitoring-machines"><span>Rebooting monitoring machines</span></a>
+          </li>
+          <li>
             <a href="#rebooting-rabbitmq-machines"><span>Rebooting rabbitmq machines</span></a>
           </li>
           <li>
@@ -219,7 +222,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/640e7ffc13a0f55c8f030b91d0bfaaa448e6570c">22 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/253f7184d52c5b6d48070c7436cbe94ed3a9775b">22 Sep 2022</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances, most machines reboot automatically when an update is required. Some machines need to be rebooted manually.</p>
@@ -317,6 +320,11 @@ Check that there are no (important) jobs in progress. When things look free, <co
 <h3 id='rebooting-mongo-machines'>Rebooting <code>mongo</code> machines</h3><p>Read &ldquo;<a href="/manual/mongo-db-commands.html#find-the-primary">find the primary</a>&rdquo; to figure out which Mongo machine is the primary and which are the secondaries.</p>
 <p>All secondary Mongo machines reboot overnight automatically. If you need to reboot them sooner, reboot them one at a time, ensuring that you <a href="/manual/mongo-db-commands.html#check-cluster-status">check that the Mongo cluster is healthy</a> before moving onto the next machine.</p>
 <p>To reboot the primary, you&rsquo;ll need to <a href="/manual/mongo-db-commands.html#step-down-the-primary">step the current primary down</a> so that it becomes a secondary machine. You&rsquo;re then free to reboot it as above.</p>
+<h3 id='rebooting-monitoring-machines'>Rebooting <code>monitoring</code> machines</h3><p>Before rebooting, post a message in the <code>#govuk-2ndline-tech</code> channel in case anyone is looking
+at the alerts.</p>
+<p>SSH into the machine and run <code>sudo reboot</code>. The Icinga alerts will be temporarily unavailable.
+Whilst the machine is coming back up this will trigger a number of smokey loop errors which
+will resolve themselves in half an hour.</p>
 <h3 id='rebooting-rabbitmq-machines'>Rebooting <code>rabbitmq</code> machines</h3><p>There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.</p>
 
 <ol>
