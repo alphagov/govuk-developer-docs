@@ -9,6 +9,22 @@ type: learn
 
 There are a number of areas that are important to drill on 2nd line. This is to make developers familiar with the process, as well as to validate that the drill steps continue to work.
 
+## Drill detaching an instance
+
+Follow the [Detaching an instance from an Auto Scaling Group](/manual/common-aws-tasks-for-2nd-line-support.html#detaching-an-instance-from-an-auto-scaling-group) guidance.
+
+## Drill publishing emergency banner
+
+Follow the [Deploy an emergency banner](https://docs.publishing.service.gov.uk/manual/emergency-publishing.html) on Staging.
+
+You'll need to choose a non-serious and clearly fake news headline. For example:
+
+- `CAMPAIGN_CLASS`: Death of a notable person
+- `HEADING`: Henry Fielding dies
+- `SHORT_DESCRIPTION`: English novelist and dramatist known for his earthy humour and satire dies, age 47
+- `LINK`: https://en.wikipedia.org/wiki/Henry_Fielding
+- `LINK_TEXT`: More information
+
 ## Drill an end to end incident
 
 Decide on a hypothetical incident scenario, e.g. "GOV.UK is down".
