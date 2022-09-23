@@ -11,18 +11,25 @@ type: learn
 
 - Monitoring the state of the GOV.UK infrastructure
 - Investigating and responding to technical bug reports
-- Providing first line support to queries from data.gov.uk users
 - Taking on urgent work or work that doesn’t necessarily belong in any team
 
 You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.
 
-Every Monday, at least 2 people from GOV.UK - 2 developers and usually a shadow developer - join the team to work on Technical 2nd Line. [An ‘interruptible’ Site Reliability Engineer (SRE) is also available][].
+Every Wednesday, at least 2 people from GOV.UK - 2 developers and usually a shadow developer - join the team to work on Technical 2nd Line.
+
+Frontend developers, backend developers and SREs are all expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out.
+
+Note that frontend developers are not expected to be on-call rota.
 
 > Technical 2nd Line takes priority over the work you do in your usual team.
 
-Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rota to find out when your shift is][]. You are required to attend a daily morning standup with your paired 2nd Line partner and the 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.
+Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rota to find out when your shift is][2ndline-rota].
 
-If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, you’ll need to prioritise Technical 2nd Line above your meetings.
+[2ndline-rota]: https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378.
+
+You are required to attend a daily morning standup with your paired 2nd Line partner and the 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.
+
+If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there's a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.
 
 ## Shift swaps, working patterns and sickness
 
@@ -32,7 +39,7 @@ If you have meetings to attend then attend them. Please let the delivery manager
 
 - If you need a whole shift swap, arrange this with another developer from your team.
 
-For either of the above, let the Technical 2nd Line delivery manager know. Please update the schedule on [Pager Duty][].
+For either of the above, let the Technical 2nd Line delivery manager know. Please update the schedule on [PagerDuty][].
 
 If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.
 
@@ -48,13 +55,7 @@ We have a [Technical 2nd Line dashboard][] showing a high level overview of the 
 
 We use Icinga to monitor our platform across our environments ([CI/Integration][], [Staging][], [Production][]) and alert us when things go wrong. Many alerts have corresponding documentation in our [GOV.UK developer docs][], detailing how to respond. [Read more about Icinga][].
 
-If you see critical alerts that aren't easily solved, you can create a card on the [GOV.UK Technical 2nd Line Trello board][] and add it to the appropriate column:
-
-- [Alerts which don't add value][]
-- [Ongoing issues to be aware of & unexplained events][]
-- [Missing documentation][]
-
-See the 2nd line Trello board section for more information.
+If you see critical alerts that aren't easily solved, start a thread in the #govuk-2ndline-tech Slack channel.
 
 NB: Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.
 
@@ -98,9 +99,7 @@ It is your responsibility to help maintain this board so that it is up to date f
 
 At the start of your 2nd Line shift you should:
 
-- Read through the cards under [alerts which don't add value](https://trello.com/c/A3mKmh5s/583-this-column-is-to-record-the-same-alerts-are-coming-up-again-and-again-but-cant-action-when-it-spikes) so that you are aware of any noisy Icinga alerts that can be ignored during your shift
-- Read through the cards under [ongoing issues to be aware of & unexplained events](https://trello.com/c/TwquoCfW/316-readme) so that you are aware of any ongoing problems that have already been identified. You should try to investigate these issues when there is downtime. At the end of your shift please comment on cards as to whether you saw this issue/alert. This will help the 2nd Line leads review them over a longer period of time and identify any stale cards
-- Take a look at the [missing documentation](https://trello.com/c/owAK2OjY/1009-please-use-this-column-to-record-any-missing-documentation-you-notice-and-were-not-able-to-add-during-your-shift) column and help us improve the docs if you see any areas you know well
+- Read through the cards under [Ongoing issues, useful Info & unexplained events](https://trello.com/c/TwquoCfW/316-readme) so that you are aware of any ongoing problems that have already been identified. You should try to investigate these issues when there is downtime. At the end of your shift please comment on cards as to whether you saw this issue/alert. This will help the 2nd Line leads review them over a longer period of time and identify any stale cards
 
 When creating a new card please include:
 
@@ -126,7 +125,6 @@ Follow these Slack channels while working on Technical 2nd Line:
 [install our Chrome extension]: https://github.com/alphagov/govuk-secondline-blinken#chrome-extension
 [PagerDuty]: https://governmentdigitalservice.pagerduty.com
 [Zendesk]: https://govuk.zendesk.com
-[An ‘interruptible’ Site Reliability Engineer (SRE) is also available]:https://docs.publishing.service.gov.uk/manual/raising-issues-with-reliability-engineering.html
 [You can check the Technical 2nd Line rota to find out when your shift is]:https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378
 [CI/Integration]: https://alert.integration.publishing.service.gov.uk/
 [Staging]: https://alert.blue.staging.govuk.digital/
@@ -134,5 +132,5 @@ Follow these Slack channels while working on Technical 2nd Line:
 [GOV.UK developer docs]: https://docs.publishing.service.gov.uk/
 [Read more about Icinga]: https://docs.publishing.service.gov.uk/manual/icinga.html
 [Alerts which don't add value]: https://trello.com/c/A3mKmh5s/583-this-column-is-to-record-the-same-alerts-are-coming-up-again-and-again-but-cant-action-when-it-spikes
-[Ongoing issues to be aware of & unexplained events]: https://trello.com/c/TwquoCfW/316-readme
+[Ongoing issues, useful Info & unexplained events]: https://trello.com/c/TwquoCfW/316-readme
 [Missing documentation]: https://trello.com/c/owAK2OjY/1009-please-use-this-column-to-record-any-missing-documentation-you-notice-and-were-not-able-to-add-during-your-shift
