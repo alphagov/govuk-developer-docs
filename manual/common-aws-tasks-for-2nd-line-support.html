@@ -166,6 +166,9 @@
         <a href="#how-to-find-a-detached-instance"><span>How to find a detached instance</span></a>
       </li>
       <li>
+        <a href="#logging-into-a-detached-instance"><span>Logging into a detached instance</span></a>
+      </li>
+      <li>
         <a href="#terminating-an-instance"><span>Terminating an instance</span></a>
       </li>
       <li>
@@ -245,7 +248,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1eedd4d15a47044531752c5f67235ab2b2a7338c">1 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fdf05205f8fe03304411591325b9f4e050d982aa">9 Aug 2022</a>
 </div>
 
  <h1 id='header'>Common AWS tasks for Technical 2nd Line</h1> <p>This document details some of the tasks that GOV.UK Technical 2nd Line may
@@ -307,6 +310,8 @@ the console. If you forgot this step, you can work out which is the detached ins
 application by comparing the instances you get for the application under &lsquo;instances&rsquo; (which displays all instances)
 and the instances you get for an application by looking at the ASG for that application&rsquo;s instances
 (which displays only attached instances).</p>
+<h2 id='logging-into-a-detached-instance'>Logging into a detached instance</h2><p>When you&rsquo;ve found the detached instance in the AWS console, you can click on the instance ID column to get the summary. This includes the private IP. Copy this, and use it with the gds govuk connect command instead of an app/machine type, eg:</p>
+<p><code>gds govuk connect ssh -e integration ip-10-1-4-96.eu-west-1.compute.internal</code></p>
 <h2 id='terminating-an-instance'>Terminating an instance</h2><p>Refer to the AWS documentation for steps on <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#terminating-instances-console">how to terminate an instance</a>.</p>
 <p>If you do not want a detached instance to serve traffic again in future, you
 should terminate it. Detaching an instance from an ASG does not terminate the
