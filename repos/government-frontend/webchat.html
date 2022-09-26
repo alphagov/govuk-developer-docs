@@ -185,15 +185,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/government-frontend/commit/dcf76e0bb8c1a4c5cc95328f1dd94c42aed98435">17 May 2021</a>
+  Last updated: <a href="https://github.com/alphagov/government-frontend/commit/6601a3423431d33385c368ae98368872527d0475">26 Sep 2022</a>
 </div>
 
   <h1 class="page-title">government-frontend: Webchat Component</h1>
@@ -203,18 +196,16 @@
 <h2 id="supporting-backend-api-proxy">Supporting backend API Proxy</h2>
 <p>See the <a href="https://github.com/alphagov/reference-webchat-proxy">reference implementation</a> for the backend API that is used alongside this component.</p>
 <h2 id="usage">Usage</h2>
-<p>The Webchat should be accessed through a shared <a href="https://github.com/alphagov/government-frontend/blob/957e3fb325eb3ff78b277ceb7054417849009756/app/views/shared/_webchat.html.erb">shared partial</a> in which you need to pass the locals <code>webchat_availability_url</code> and <code>webchat_open_url</code>.</p>
+<p>The Webchat should be accessed through a shared <a href="https://github.com/alphagov/government-frontend/blob/main/app/views/shared/_webchat.html.erb">shared partial</a> in which you need to pass the locals <code>webchat_availability_url</code> and <code>webchat_open_url</code>.</p>
 <p><code>webchat_availability_url</code> will be polled at an interval to check for the webchat instances' avaliability.</p>
-<p><code>webchat_open_url</code> is the page that will be opened when a user clicks the webchat call-to-action showm in the 'avaliable' state.</p>
-<p>Finally once you have your partial rendering on the page, you will need to make sure the <a href="https://github.com/alphagov/government-frontend/blob/957e3fb325eb3ff78b277ceb7054417849009756/app/assets/javascripts/webchat/library.js">library</a> is included on your page and this in your initialisation code.</p>
-<pre><code>  $('.js-webchat').map(function () {
-    return new GOVUK.Webchat({
-      $el: $(this),
-    })
-  })
-
+<p><code>webchat_open_url</code> is the page that will be opened when a user clicks the webchat call-to-action shown in the 'avaliable' state.</p>
+<p>Finally once you have your partial rendering on the page, you will need to make sure the <a href="https://github.com/alphagov/government-frontend/blob/main/app/assets/javascripts/webchat/library.js">library</a> is included on your page and this in your initialisation code.</p>
+<pre lang="javascript"><code>  var webchats = document.querySelectorAll('.js-webchat')
+  for (var i = 0; i &lt; webchats.length; i++) {
+    new GOVUK.Webchat(webchats[i])
+  }
 </code></pre>
-<p>a fuller example can be seen <a href="https://github.com/alphagov/government-frontend/blob/957e3fb325eb3ff78b277ceb7054417849009756/app/assets/javascripts/webchat.js#L31-L41">here</a> that has an implementation of the normalisation as noted below</p>
+<p>a fuller example can be seen <a href="https://github.com/alphagov/government-frontend/blob/main/app/assets/javascripts/webchat.js">here</a> that has an implementation of the normalisation as noted below</p>
 <h3 id="note-regarding-response-normalisation">Note regarding response Normalisation</h3>
 <p>As can be seen in the fuller example above, we currently have the option to do the normalisation in JavaScript, this is deprecated, and is shim code until all current users of Wbchat have their own proxies up and running.</p>
 <p>Once this shim is removed we can move this component into Static as a GOV.UK Publishing Component</p>
@@ -235,7 +226,7 @@
 <li>Finished</li>
 </ol>
 <h2 id="cors-considerations">CORS considerations</h2>
-<p>To avoid CORS and CSP issues a new provider would need to be added to the Content Security Policy</p>
+<p>To avoid CORS and CSP issues a new provider would need to be added to the <a href="https://docs.publishing.service.gov.uk/manual/content-security-policy.html">Content Security Policy</a></p>
 <h2 id="required-configuration">Required configuration</h2>
 <h3 id="base-path">Base path</h3>
 <p>This is the base path of a contact page, for example, <code>/government/organisations/hm-revenue-customs/contact/child-benefit</code>.
