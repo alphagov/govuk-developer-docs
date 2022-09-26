@@ -226,51 +226,14 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/c3981f9983752a2c486972db4c6bd84591a2a83b">23 Jul 2021</a>
+  Last updated: <a href="https://github.com/alphagov/smart-answers/commit/0e3cb45f8179083d56308ce35e28782261f4d7e8">26 Sep 2022</a>
 </div>
 
   <h1 class="page-title">smart-answers: How to retire a Smart Answer</h1>
 
   
-<p>The process to retire a published Smart Answer involves
-<a href="#remove-smart-answer-code">removing the code</a> for the Smart Answer and then
-using an <a href="#removing-from-govuk">unpublish task</a> to update GOV.UK the content
-item that represents the Smart Answer flow.</p>
-<h2 id="remove-smart-answer-code">Remove Smart Answer code</h2>
-<p>Remove all the files and directories associated with the individual Smart
-Answer and their associated tests, examples of common files:</p>
-<ul>
-<li>Flow class files
-<ul>
-<li>app/flows/&lt;\smart-answer&gt;_flow.rb</li>
-</ul>
-</li>
-<li>ERB templates directory
-<ul>
-<li>app/flows/&lt;\smart-answer&gt;_flow</li>
-</ul>
-</li>
-<li>YAML files
-<ul>
-<li>config/smart_answers/rates/&lt;\smart-answer&gt;.yml</li>
-<li>config/smart_answers/&lt;\smart-answer&gt;.yml</li>
-</ul>
-</li>
-<li>Calculators, data query and other ruby files
-<ul>
-<li>lib/smart_answer/calculators/&lt;\smart-answer&gt;_calculator.rb</li>
-<li>lib/smart_answer/calculators/&lt;\smart-answer&gt;_data_query.rb</li>
-</ul>
-</li>
-</ul>
+<p>The process to retire a published Smart Answer involves using a <a href="#removing-the-content-item">rake task</a> to update on GOV.UK the content item that represents the Smart Answer flow, and then <a href="#remove-smart-answer-code">removing the code</a> for the Smart Answer.</p>
 <h2 id="removing-the-content-item">Removing the content item</h2>
 <p>Before removing a Smart Answer you will need the content_id for the Smart
 Answer. These can be found in the
@@ -279,6 +242,9 @@ is being retired. For redirecting or replacing a Smart Answer you will also
 need to know the paths of these pages these are based off the <code>name</code> attribute
 of the <code>app/flows/&lt;\smart-answer&gt;_flow.rb</code> file. For example, for
 the Marriage Abroad Smart Answer the path is <code>/marriage-abroad</code>.</p>
+<blockquote>
+<p>NOTE: These URLs are usually cached, so you may need to wait 5-10 minutes to see the effect of these rake tasks.</p>
+</blockquote>
 <h3 id="redirecting-users-to-a-different-url">Redirecting users to a different URL</h3>
 <p>To send visitors to the Smart Answer to a new page you can run the
 <code>unpublish_redirect</code> task. For example to redirect requests to a new
@@ -325,6 +291,33 @@ by a new document type as Publisher is still reserving the slug. [You will need 
 the old artefact]<a href="https://github.com/alphagov/publisher/pull/1474/files">https://github.com/alphagov/publisher/pull/1474/files</a>), once confirmed
 it is no longer needed.</p>
 </blockquote>
+<h2 id="remove-smart-answer-code">Remove Smart Answer code</h2>
+<p>Remove all the files and directories associated with the individual Smart
+Answer and their associated tests, examples of common files:</p>
+<ul>
+<li>Flow class files
+<ul>
+<li>app/flows/&lt;\smart-answer&gt;_flow.rb</li>
+</ul>
+</li>
+<li>ERB templates directory
+<ul>
+<li>app/flows/&lt;\smart-answer&gt;_flow</li>
+</ul>
+</li>
+<li>YAML files
+<ul>
+<li>config/smart_answers/rates/&lt;\smart-answer&gt;.yml</li>
+<li>config/smart_answers/&lt;\smart-answer&gt;.yml</li>
+</ul>
+</li>
+<li>Calculators, data query and other ruby files
+<ul>
+<li>lib/smart_answer/calculators/&lt;\smart-answer&gt;_calculator.rb</li>
+<li>lib/smart_answer/calculators/&lt;\smart-answer&gt;_data_query.rb</li>
+</ul>
+</li>
+</ul>
 
 
             
