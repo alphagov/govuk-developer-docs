@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Stripping Personally Identifiable Information (PII) - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics link tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/pii-remover.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Stripping Personally Identifiable Information (PII) - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics link tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Stripping Personally Identifiable Information (PII)" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics link tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" />
 
     
   </head>
@@ -145,20 +145,20 @@
               <li><a href="/repos/govuk_publishing_components/adr/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
           </ul>
-          <li class="subdir__heading">analytics-gtm</li>
+          <li class="subdir__heading">analytics-ga4</li>
           <ul class="subdir__menu">
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-gtm/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/track-click.html" rel="noopener" class="govuk-link">Track click script</a></li>
@@ -223,88 +223,106 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/165549d0e1d40456a190078eb158e7134d6edb2f">30 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b368425cf4b94ffb3383a75c03d1125e35978793">23 Sep 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Stripping Personally Identifiable Information (PII)</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics link tracker</h1>
 
   
-<p>A module exists for stripping out PII from values. It can accept strings, query parameters, arrays or objects. If the value is an array or object, the child values are looped through and then treated as strings.</p>
-<h2 id="what-is-redacted">What is redacted</h2>
-<p>The values that are redacted by default are:</p>
+<p>A module for tracking link clicks on GOV.UK.</p>
+<p>When initialised, the JS adds an event listener to the <code>&lt;body&gt;</code> of the page with the following listeners:</p>
 <ul>
-<li>Email addresses - <code>email@gov.uk</code> becomes <code>[email]</code>
+<li>A <code>click</code> listener (for left clicks, control clicks, and "Meta key" clicks - "Meta key" clicks are command + clicks or windows key + clicks.)</li>
+<li>A <code>mousedown</code> listener (for middle clicks.)</li>
+<li>A <code>contextmenu</code> listener (for right clicks / context menu keypresses.)</li>
+</ul>
+<p>When one of these listeners are fired, they check if the <code>event.target</code> is an <code>&lt;a&gt;</code> tag with a <code>href</code>. If so, it will then check if the link is:</p>
+<ul>
+<li>A <code>share</code> or <code>follow</code> link - This allows analysts to track if a page was shared, or if a user clicked on one of our social media channels, which are usually under a 'Follow us' heading. The tracking is added to the component by adding <code>track_as_share: true</code> or <code>track_as_follow: true</code> to the template import of a share links component. If one of these booleans is set to true, a <code>data-ga4-link</code> attribute is added to all the component's <code>&lt;a&gt;</code> tags. This <code>data-ga4-link</code> attribute houses a stringified JSON, containing the relevant data to push to GTM. The link tracker will always check for <code>data-ga4-link</code> first before checking the link matches our other link types. Therefore, this <code>data-ga4-link</code> pattern can be expanded to track other types of links, which can't be categorised by simply running checks against the href. Some keys in the JSON cannot be calculated in the template. Therefore, the value of these keys are set to <code>"populated-via-js"</code>. This <code>"populated-via-js"</code> is detected by the JS, and is subsequently overwritten in JS with the correct value.</li>
+<li>A <code>generic download</code> - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path.</li>
+<li>A <code>preview</code> link - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path which has <code>/preview</code> in the URL after the file path.</li>
+<li>A <code>mailto</code> link - This is an email href that starts with <code>mailto:</code>.</li>
+<li>An <code>generic link</code>  - This is a href that is not on the internal domains. Internal domains include the current hostname, and any domains passed through to the <code>init({internalDomains: []})</code> array.
+<ul>
+<li>To calculate this, it checks the start of the href. If we were to use <code>www.gov.uk</code> as an example, it would check if the href starts with:
+<ul>
+<li>
+<code>http://www.gov.uk/</code>,</li>
+<li>
+<code>https://www.gov.uk/</code>,</li>
+<li>
+<code>//www.gov.uk/</code>,</li>
+<li>
+<code>www.gov.uk/</code>,</li>
+<li>(NB: <code>www.gov.uk/</code> is technically a relative link, as a href must contain a <code>/</code> or http method at the start to be treated as non-relative).</li>
+</ul>
 </li>
-<li>Reset password tokens become <code>reset_password_token=[reset_password_token]</code>
-</li>
-<li>Unlock tokens become <code>unlock_token=[unlock_token]</code>
-</li>
-<li>State values become <code>state=[state]</code>
+<li>It also checks if a <code>href</code> starts with <code>/</code> and does not start with <code>//</code> to determine if it's a relative link like <code>/bank-holidays</code> , but not a protocol relative link such as <code>//google.com</code>.</li>
+<li>If the <code>href</code> does not meet the above criteria, then it is considered an external link.</li>
+</ul>
 </li>
 </ul>
-<p>Additional values that can be redacted are:</p>
-<ul>
-<li>Dates - <code>2022-02-22</code> becomes <code>[date]</code>
-</li>
-<li>Postcodes - <code>sw1a 1aa</code> becomes <code>[postcode]</code>
-</li>
-</ul>
-<p>These aren't enabled by default due to the higher likelihood of producing false positives.</p>
+<p>Events can either have an <code>event_name</code> of <code>navigation</code>, <code>file_download</code>, or <code>share</code>. Download and preview links will use the <code>file_download</code> value, while generic external links, mailto links, and follow links will use <code>navigation</code>. Share links use <code>share</code>.</p>
 <h2 id="basic-use">Basic use</h2>
-<pre lang="JavaScript"><code>var PIIRemover = new GOVUK.PIIRemover()
+<pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-link-tracker
 
-var myInfo = 'this is an@email.com address, this is a 2019-01-21 date, this is a sw1a 1aa postcode,'
-
-var example1 = PIIRemover.stripPII(myInfo)
-// this is [email] address, this is a 2019-01-21 date, this is a sw1a 1aa postcode 
-
-var example2 = PIIRemover.stripPIIWithOverride(myInfo, true, false)
-// this is [email] address, this is a [date] date, this is a sw1a 1aa postcode
-
-var example3 = PIIRemover.stripPIIWithOverride(myInfo, true, true)
-// this is [email] address, this is a [date] date, this is a [postcode] postcode
-
-var myObject = {'email': 'email@gov.uk', 'other': 'value', 'piiSafe': new PIIRemover.PIISafe('example@gov.uk')}
-
-var example4 = PIIRemover.stripPII(myObject)
-// {'email' : '[email]', 'other': 'value', 'piiSafe': 'example@gov.uk'}
-
-var myArray = ['email@gov.uk', 'hello world']
-var example5 = PIIRemover.stripPII(myArray)
-// ['[email]', 'hello world']
-
-// Meta tag of &lt;meta name="govuk:static-analytics:strip-query-string-parameters" content="strip-parameter-1,strip-parameter-2" /&gt;
-var myQueryString = '/test?strip-parameter-1=secret&amp;strip-parameter-2=more-secret'
-var example6 = PIIRemover.stripPII(myQueryString)
-// /test?strip-parameter-1=[strip-parameter-1]&amp;strip-parameter-2=[strip-parameter-2]
+window.GOVUK.analyticsGa4.linkTracker.init()
 </code></pre>
-<h2 id="enabling-additional-redaction">Enabling additional redaction</h2>
-<p>To enable additional redaction you can add meta tags to your application via the <code>Meta Tags</code> publishing component.</p>
-<h3 id="for-dates-and-postcodes">For dates and postcodes:</h3>
-<pre lang="Ruby"><code>&lt;%= render "govuk_publishing_components/components/meta_tags", {
-  content_item: null,
-  local_assigns: {
-    strip_dates_pii: true,
-    strip_postcodes_pii: true
-  }
-} %&gt;
+<p>Passing a config object with arrays to <code>init()</code> is optional, but passing each array enables extra functionality:</p>
+<ul>
+<li>Passing an <code>internalDomains</code> array allows you to class domains which aren't the current hostname as internal domains. For example, if you were adding tracking and your hostname was <code>helpforhouseholds.campaign.gov.uk</code>, <code>www.gov.uk</code> links would be classed as external links, unless you add <code>www.gov.uk</code> to this array. The link tracker will automatically add the domain with <code>www.</code> removed as well (<code>gov.uk</code> in this case,) as sometimes <code>www.</code> is omitted from <code>href</code> values.</li>
+<li>Passing an <code>internalDownloadPaths</code> array allows you to specify paths which should be classified as paths to a downloads route in your internal domains. If the path exists in an internal <code>href</code>, it will be treated as a download link.</li>
+<li>Passing a <code>dedicatedDownloadDomains</code> array allows you to specify domains which will always be classed as a download link. For example, <code>dropbox.com</code> could be added to always track dropbox links as download links.</li>
+<li>Passing <code>disableListeners: true</code> prevents click listeners from being added to the page on initilisation. This is useful if you'd like use the link detection features elsewhere without adding extra click listeners to the DOM.</li>
+</ul>
+<pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-link-tracker
+
+window.GOVUK.analyticsGa4.linkTracker.init({
+    internalDomains: ['www.gov.uk'],
+    internalDownloadPaths: ['/government/uploads/', '/downloads/'],
+    dedicatedDownloadDomains: ['assets.publishing.service.gov.uk', 'dropbox.com'],
+    disableListeners: // true/false
+})
+
 </code></pre>
-<p>The <code>shouldStripDates()</code> and <code>shouldStripPostcodes()</code> functions in the JavaScript will then check if these values exist in order to strip dates and postcodes.</p>
-<p>However, this will redact dates and postcodes from every call of the PIIRemover. In order to apply extra redaction to specific values, you can use the <code>stripPIIWithOverride()</code> function.</p>
-<h3 id="for-query-string-parameters">For query string parameters:</h3>
-<p>Query string parameters are redacted if there is presence of a <code>meta[name="govuk:static-analytics:strip-query-string-parameters"]</code> meta tag, with comma separated query string parameters keys in its <code>content</code> attribute. The usage of this query string PII removal in production is unknown at this time.</p>
-<p>Add this meta tag with your query string parameter keys in the <code>content</code> section:
-<code>&lt;meta name="govuk:static-analytics:strip-query-string-parameters" content="query-string-key-1,query-string-key-2"</code></p>
-<h2 id="using-the-strippiiwithoverride-function">Using the stripPIIWithOverride() function</h2>
-<p>You can call this function to manually enable the date or postcode stripping on a specific value:</p>
-<pre lang="JavaScript"><code>var enableDateStripping = true
-var enablePostCodeStripping = true
-var myRedactedValue = this.PIIRemover.stripPIIWithOverride(myValue, enableDateStripping, enablePostcodeStripping)
+<p><code>&lt;a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf"&gt;A Quick Guide to the Government’s Healthy Eating Recommendations&lt;/a&gt;</code></p>
+<p>In the example above, on a left click of the link, the following would be pushed to the dataLayer, using the <code>eventSchema</code> found in <code>ga4-schemas.js</code>:</p>
+<pre lang="JSON"><code>{
+    "event": "event_data",
+    "event_data": {
+        "event_name": "file_download",
+        "type": "generic download",
+        "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf",
+        "text": "A Quick Guide to the Government’s Healthy Eating Recommendations",
+        "index": null,
+        "index_total": null,
+        "section": null,
+        "action": null,
+        "external": "true",
+        "link_method": "primary click"
+    }
+}
 </code></pre>
-<h3 id="preventing-redaction-from-running-on-a-value">Preventing redaction from running on a value</h3>
-<p>There is a <code>PIISafe</code> class that you can wrap your objects or strings in.</p>
-<p><code>var myValue = new this.PIIRemover.PIISafe(myValue)</code></p>
-<p>If <code>myValue</code> is then passed through to a <code>stripPII</code> function, instead of having its PII redacted, its original value will be returned, bypassing any redaction.</p>
+<p>Preview links would turn <code>type</code> to <code>preview</code>.</p>
+<p>External links would turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>generic link</code>.</p>
+<p>Mailto links would turn turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>email</code>.</p>
+<p>Share links would turn <code>event_name</code> to <code>share</code> and type to <code>share this page</code>.</p>
+<p>Follow links would turn <code>event_name</code> to <code>navigation</code> and type to <code>follow us</code></p>
+<p>For <code>link_method</code>:</p>
+<ul>
+<li>Left clicks are a <code>primary click</code>
+</li>
+<li>Right clicks and context menu keypresses are <code>secondary click</code>
+</li>
+<li>Middle mouse button clicks are <code>middle click</code>
+</li>
+<li>Meta key clicks are <code>command/win click</code>
+</li>
+<li>Shift key clicks are <code>shift click</code>
+</li>
+<li>Control clicks are <code>ctrl click</code>
+</li>
+</ul>
 
 
             
@@ -312,8 +330,8 @@ var myRedactedValue = this.PIIRemover.stripPIIWithOverride(myValue, enableDateSt
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-gtm/pii-remover.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-gtm%2Fpii-remover.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-link-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-link-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
