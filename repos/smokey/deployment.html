@@ -188,14 +188,14 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/9a11acabd08c7413581e3379aa12d1c8bbc92145">2 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/7627789d8259f901eddf89333a2e595a2bc4c921">27 Sep 2022</a>
 </div>
 
   <h1 class="page-title">smokey: Deployment</h1>
 
   
 <h2 id="before-you-merge">Before you merge</h2>
-<p>This app doesn't have CI setup, and it would be misleading to do so: the behaviour of the tests changes depending on the environment they are run in. You should manually test in applicable environments, until you are confident your change is not a breaking one.</p>
+<p>This app only has minimal CI set up, running a single check to ensure that Smokey is able to make requests. It would be misleading to run all of the tests on CI because their behaviour changes depending on the environment they are run in. You should manually test in applicable environments, until you are confident your change is not a breaking one.</p>
 <p>Example steps to test in Integration:</p>
 <ul>
 <li>Click "Configure" for the <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a>
