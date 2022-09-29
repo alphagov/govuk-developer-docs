@@ -211,7 +211,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/43b58c3fb50f225ee4b930b7147e0f606f84423b">12 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d07688bc934be99f1a1d13c6d1bed28fd07cf5d1">29 Sep 2022</a>
 </div>
 
  <h1 id='header'>Zendesk</h1> <p>Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.</p>
@@ -276,16 +276,16 @@ can see internal notes, so don’t write anything you wouldn’t say to someone 
 some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
 For more thorny issues, respond to the user that you are passing this on for further
 review and assign to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk group.</p>
-<h2 id='leaver-tickets'>Leaver tickets</h2><p>As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have
-any GOV.UK accounts.</p>
-<p>You can search for their name in the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository. If you find a reference, create a card from one of two templates on the Technical 2nd Line Trello board:</p>
+<h2 id='leaver-tickets'>Leaver tickets</h2><p>As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.</p>
+<p>Search for their name/email in the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository.</p>
 
-<ul>
-<li><p>if the user is in <a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml">config/govuk_tech.yml</a> create a card using the <a href="https://trello.com/c/IQIV54Pc/378-leaver-tech-role">&ldquo;Leaver (tech role)&rdquo;</a> template card</p></li>
-<li><p>Otherwise create a card using the <a href="https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role">&ldquo;Leaver (non tech role)&rdquo;</a> template card.</p></li>
-</ul>
-<p>Add the card to the &ldquo;To do&rdquo; column with a due date, which will be the leaving date from the Zendesk ticket ready. You can then
-close the ticket with an internal comment which includes a link to the new Trello card.</p>
+<ol>
+<li>If you find a reference in <a href="https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml">config/govuk_tech.yml</a>, create a card using the <a href="https://trello.com/c/IQIV54Pc/378-leaver-tech-role">&ldquo;Leaver (tech role)&rdquo;</a> template card on the Technical 2nd Line Trello board</li>
+<li>If you don&rsquo;t find a reference - or you find a reference in the <code>govuk_non_tech.yml</code> - create a card using the <a href="https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role">&ldquo;Leaver (non tech role)&rdquo;</a> template card</li>
+</ol>
+<p>Add the card to the &ldquo;To do&rdquo; column with a due date, which will be the leaving date from the Zendesk ticket.</p>
+<p>You can then close the ticket with an internal comment which includes a link to the new Trello card.</p>
+<p>Finally, it&rsquo;s a case of working through the Trello card checklist (on or after the due date), then moving the card to Done.</p>
 <h2 id='closing-a-ticket'>Closing a ticket</h2><p>Once you&rsquo;ve resolved a ticket, click &ldquo;Submit as Solved&rdquo;. You do not need to wait for user confirmation to
 close the ticket.</p>
 <h2 id='tickets-left-pending-without-a-response'>Tickets left pending without a response</h2><p>Note that if a ticket has been pending a response for 5 or more days with no response from the
