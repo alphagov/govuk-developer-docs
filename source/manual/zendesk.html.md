@@ -96,17 +96,18 @@ review and assign to the `3rd Line--GOV.UK Product Requests` Zendesk group.
 
 ## Leaver tickets
 
-As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have
-any GOV.UK accounts.
+As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.
 
-You can search for their name in the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository. If you find a reference, create a card from one of two templates on the Technical 2nd Line Trello board:
+Search for their name/email in the [govuk-user-reviewer](https://github.com/alphagov/govuk-user-reviewer) repository.
 
-* if the user is in [config/govuk_tech.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml) create a card using the ["Leaver (tech role)"](https://trello.com/c/IQIV54Pc/378-leaver-tech-role) template card
+1. If you find a reference in [config/govuk_tech.yml](https://github.com/alphagov/govuk-user-reviewer/blob/main/config/govuk_tech.yml), create a card using the ["Leaver (tech role)"](https://trello.com/c/IQIV54Pc/378-leaver-tech-role) template card on the Technical 2nd Line Trello board
+1. If you don't find a reference - or you find a reference in the `govuk_non_tech.yml` - create a card using the ["Leaver (non tech role)"](https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role) template card
 
-* Otherwise create a card using the ["Leaver (non tech role)"](https://trello.com/c/g9iK9fcL/1115-leaver-non-tech-role) template card.
+Add the card to the "To do" column with a due date, which will be the leaving date from the Zendesk ticket.
 
-Add the card to the "To do" column with a due date, which will be the leaving date from the Zendesk ticket ready. You can then
-close the ticket with an internal comment which includes a link to the new Trello card.
+You can then close the ticket with an internal comment which includes a link to the new Trello card.
+
+Finally, it's a case of working through the Trello card checklist (on or after the due date), then moving the card to Done.
 
 ## Closing a ticket
 
