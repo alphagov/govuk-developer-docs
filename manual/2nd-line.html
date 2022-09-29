@@ -129,21 +129,30 @@
     <a href="#header"><span>2nd line</span></a>
     <ul>
       <li>
+        <a href="#shift-swaps-working-patterns-and-sickness"><span>Shift swaps, working patterns and sickness</span></a>
+      </li>
+      <li>
         <a href="#monitoring"><span>Monitoring</span></a>
         <ul>
           <li>
             <a href="#icinga"><span>Icinga</span></a>
           </li>
           <li>
-            <a href="#pagerduty"><span>PagerDuty</span></a>
+            <a href="#grafana"><span>Grafana</span></a>
           </li>
           <li>
-            <a href="#incidents"><span>Incidents</span></a>
+            <a href="#pagerduty"><span>PagerDuty</span></a>
           </li>
         </ul>
       </li>
       <li>
+        <a href="#incidents"><span>Incidents</span></a>
+      </li>
+      <li>
         <a href="#zendesk"><span>Zendesk</span></a>
+      </li>
+      <li>
+        <a href="#2nd-line-trello-board"><span>2nd Line Trello Board</span></a>
       </li>
       <li>
         <a href="#slack-channels"><span>Slack channels</span></a>
@@ -199,32 +208,82 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/efe5459661b595c8efc98428a1c3ae4ac11f2b5d">4 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6b800e833b50e4e63444dca8ef0d2122735ccb81">23 Sep 2022</a>
 </div>
 
- <h1 id='header'>2nd line</h1> <p>2nd line has three main responsibilities:</p>
+ <h1 id='header'>2nd line</h1> <p>2nd Line is the user support function of GOV.UK. 2nd Line’s main responsibilities:</p>
 
 <ul>
 <li>Monitoring the state of the GOV.UK infrastructure</li>
 <li>Investigating and responding to technical bug reports</li>
-<li>Providing first line support to queries from data.gov.uk users</li>
-<li>Taking on urgent work or work that doesn&rsquo;t necessarily belong in any team</li>
+<li>Taking on urgent work or work that doesn’t necessarily belong in any team</li>
 </ul>
-<p>If you&rsquo;re new to Technical 2nd Line, read about our <a href="/manual/welcome-to-2nd-line.html">working patterns, ceremonies and policies</a>.</p>
+<p>You’ll be set up in <a href="/manual/2nd-line#pagerduty">PagerDuty</a> so that you can be called if there are any urgent alerts during working hours. 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.</p>
+<p>Every Wednesday, at least 2 people from GOV.UK - 2 developers and usually a shadow developer - join the team to work on Technical 2nd Line.</p>
+<p>Frontend developers, backend developers and SREs are all expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out.</p>
+<p>Note that frontend developers are not expected to be on-call rota.</p>
+
+<blockquote>
+<p>Technical 2nd Line takes priority over the work you do in your usual team.</p>
+</blockquote>
+<p>Shifts start at 9:30 and end at 17:30. <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378.">You can check the Technical 2nd Line rota to find out when your shift is</a>.</p>
+<p>You are required to attend a daily morning standup with your paired 2nd Line partner and the 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.</p>
+<p>If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there&rsquo;s a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.</p>
+<h2 id='shift-swaps-working-patterns-and-sickness'>Shift swaps, working patterns and sickness</h2><p>2nd Line takes priority over the work you do in your usual team. If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.</p>
+
+<ul>
+<li><p>If you need cover for a day or two, arrange a swap for those days with another developer. Please ensure delivery managers are aware of this.</p></li>
+<li><p>If you need a whole shift swap, arrange this with another developer from your team.</p></li>
+</ul>
+<p>For either of the above, let the Technical 2nd Line delivery manager know. Please update the schedule on <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a>.</p>
+<p>If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.</p>
+<p>If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.</p>
+<p>If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.</p>
 <h2 id='monitoring'>Monitoring</h2><p>We have a <a href="https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&amp;layout=2x1-responsive&amp;url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&amp;url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&amp;url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&amp;url%5B%5D=">Technical 2nd Line dashboard</a> showing a high level overview of the state of the GOV.UK environments. You can also <a href="https://github.com/alphagov/govuk-secondline-blinken#chrome-extension">install our Chrome extension</a> if you want a permanently visible overview. You will need to be on the <a href="/manual/vpn.html">VPN</a> if accessing from home.</p>
-<h3 id='icinga'>Icinga</h3><p>We use Icinga to monitor our platform and alert us when things go wrong. Many alerts have corresponding  documentation in these developer docs, detailing how to respond.</p>
-<p>You should record critical alerts that aren&rsquo;t easily solved to the <a href="https://trello.com/b/M7UzqXpk/govuk-2nd-line">GOV.UK Technical 2nd Line Trello board</a> to help inform the Technical 2nd Line tech lead(s) and the GOV.UK SREs. Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.</p>
-<p><a href="/manual/icinga.html">Read more about Icinga</a>.</p>
-<h3 id='pagerduty'>PagerDuty</h3><p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a> to notify the primary and secondary engineers on Technical 2nd Line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours.</p>
+<h3 id='icinga'>Icinga</h3><p>We use Icinga to monitor our platform across our environments (<a href="https://alert.integration.publishing.service.gov.uk/">CI/Integration</a>, <a href="https://alert.blue.staging.govuk.digital/">Staging</a>, <a href="https://alert.blue.production.govuk.digital/">Production</a>) and alert us when things go wrong. Many alerts have corresponding documentation in our <a href="https://docs.publishing.service.gov.uk/">GOV.UK developer docs</a>, detailing how to respond. <a href="https://docs.publishing.service.gov.uk/manual/icinga.html">Read more about Icinga</a>.</p>
+<p>If you see critical alerts that aren&rsquo;t easily solved, start a thread in the #govuk-2ndline-tech Slack channel.</p>
+<p>NB: Technical 2nd Line should investigate these alerts when there is downtime; you do not necessarily have to fix them.</p>
+<h3 id='grafana'>Grafana</h3><p>We use Grafana dashboards to monitor the health of our applications and service across our environments (<a href="https://grafana.blue.integration.govuk.digital/?orgId=1">Integration</a>, <a href="https://grafana.blue.staging.govuk.digital/?orgId=1">Staging</a>, <a href="https://grafana.blue.production.govuk.digital/">Production</a>. Some useful dashboards include:</p>
+
+<ul>
+<li>Second line, which includes data from our Origin health and Edge health dashboards</li>
+<li>Sidekiq</li>
+<li>Application deployment dashboards</li>
+</ul>
+<p><a href="https://docs.publishing.service.gov.uk/manual/grafana.html">Read more about Grafana</a>.</p>
+<h3 id='pagerduty'>PagerDuty</h3><p>Some alerts are urgent enough to warrant immediate attention, such as parts of the site becoming unavailable or large quantities of error pages being served. We use <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a> to notify the primary and secondary engineers on Technical 2nd Line during office hours (9:30am to 5:30pm), and on-call engineers outside of office hours. We carry out a <a href="https://docs.publishing.service.gov.uk/manual/pagerduty.html#pagerduty-drill">Pagerduty drill</a> every Wednesday morning at 10am UTC.</p>
 <p><a href="/manual/pagerduty.html">Read more about PagerDuty</a>.</p>
-<h3 id='incidents'>Incidents</h3><p>If there is a service outage or loss of functionality to a service (whether external or internal), or a security vulnerability is discovered, Technical 2nd Line will <a href="/manual/incident-management-guidance.html">declare an incident</a>.</p>
+<h2 id='incidents'>Incidents</h2><p>If there is a service outage or loss of functionality to a service (whether external or internal), or a security vulnerability is discovered, Technical 2nd Line will <a href="/manual/incident-management-guidance.html">declare an incident</a> and write up an incident report. We normally review incidents on Mondays at 2-3pm.</p>
 <h2 id='zendesk'>Zendesk</h2><p><a href="https://govuk.zendesk.com">Zendesk</a> is our support ticketing system. When not dealing with incidents and alerts, we should be working through Zendesk tickets.</p>
 <p>Read more about <a href="/manual/zendesk.html">processing Zendesk tickets on Technical 2nd Line</a>.</p>
-<p>You will likely need to use <a href="/manual/grafana.html">Grafana</a> to investigate service issues.</p>
+<h2 id='2nd-line-trello-board'>2nd Line Trello Board</h2><p>We use the <a href="https://trello.com/b/M7UzqXpk/govuk-2nd-line">GOV.UK Technical 2nd Line Trello board</a> to capture pieces of work 2nd Line are required to do, such as:</p>
+
+<ul>
+<li>Leaver tickets</li>
+<li>Setting up production access</li>
+<li>Recording technical issues</li>
+</ul>
+<p>The board is reviewed during the weekly 2nd Line handover meeting where developers can talk the next team through any new cards and oustanding issues.</p>
+<p>It is your responsibility to help maintain this board so that it is up to date for the next 2nd Line team.</p>
+<p>At the start of your 2nd Line shift you should:</p>
+
+<ul>
+<li>Read through the cards under <a href="https://trello.com/c/TwquoCfW/316-readme">Ongoing issues, useful Info &amp; unexplained events</a> so that you are aware of any ongoing problems that have already been identified. You should try to investigate these issues when there is downtime. At the end of your shift please comment on cards as to whether you saw this issue/alert. This will help the 2nd Line leads review them over a longer period of time and identify any stale cards</li>
+</ul>
+<p>When creating a new card please include:</p>
+
+<ul>
+<li>A summary of the issue</li>
+<li>A screenshot of the alert/issue</li>
+<li>Any additional information that maybe be lost over time e.g. logs</li>
+<li>Links to related Zendesk tickets and suggested reply to users</li>
+<li>Any investigation you have done so far/steps you have taken as a workaround</li>
+</ul>
+<p>This will help inform developers, Technical 2nd Line tech lead(s), and the GOV.UK Sire Reliability Engineers (SREs) about known issues.</p>
 <h2 id='slack-channels'>Slack channels</h2><p>Follow these Slack channels while working on Technical 2nd Line:</p>
 
 <ul>
-<li><code>#govuk-2ndline-tech</code> - the main channel for people on technical 2nd line</li>
+<li><code>#govuk-2ndline-tech</code> - the main channel for people on Technical 2nd Line</li>
 <li><code>#govuk-deploy</code> - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing</li>
 <li><code>#govuk-developers</code> - this is a general channel for developers and can be a good place to ask questions if you are struggling</li>
 <li><code>#govuk-replatforming</code> - this is the channel for the Replatforming team, where the SREs are currently working. However, you should use #govuk-2ndline-tech to contact the RE interruptible person about urgent GOV.UK infrastructure issues.</li>
@@ -247,7 +306,6 @@
             <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
             <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
             <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
-            <li><a href="/manual/welcome-to-2nd-line.html">Welcome to 2nd line</a></li>
             <li><a href="/manual/zendesk.html">Zendesk</a></li>
           </ul>
         </div>
