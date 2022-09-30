@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: 2. Google Analytics 4 tracking and code location - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics ecommerce tracker (i.e. search) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: 2. Google Analytics 4 tracking and code location - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics ecommerce tracker (i.e. search) - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: 2. Google Analytics 4 tracking and code location" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics ecommerce tracker (i.e. search)" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" />
 
     
   </head>
@@ -225,51 +225,99 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6a40327a26f7d4ebe1c6f65a55dc17b90bd1c9ea">9 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6f247089b8d3d3b281c1761ddc6a16674050f1de">30 Sep 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: 2. Google Analytics 4 tracking and code location</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics ecommerce tracker (i.e. search)</h1>
 
   
-<p>Date: 2022-05-09</p>
-<h2 id="status">Status</h2>
-<p>Accepted</p>
-<h2 id="context">Context</h2>
-<p>Glossary of terms/acronyms</p>
+<p>The ecommerce tracker script tracks search results in finder applications (e.g. search) and sends them to the <code>dataLayer</code>. There are 3 scenarios that result in a push to the <code>dataLayer</code>:</p>
 <ul>
-<li>GA - Google Analytics</li>
-<li>UA - Universal analytics, sometimes referred to as GA3, the version of GA we are upgrading from</li>
-<li>GA4 - the new version of UA that we are upgrading to</li>
-<li>GTM - Google Tag Manager</li>
+<li>on page load</li>
+<li>the application of filters and/or sorting</li>
+<li>clicking a search result</li>
 </ul>
-<p>GOV.UK currently uses UA for analytics. However, UA is due to be retired next year. We will have to upgrade to GA4. We are taking this opportunity to do a full overhaul of our existing analytics. This will involve rethinking how our analytics works, bringing consistency into the way we do it, and introducing GTM.</p>
-<h2 id="decision">Decision</h2>
-<p>We will put the new code for GA4/GTM analytics into govuk_publishing_components:</p>
-<ul>
-<li>other options were static or a new gem</li>
-<li>static was rejected because ultimately <a href="https://github.com/alphagov/govuk-rfcs/blob/bc8ffe85cdf5cdf5005502cba50d5b64237f1b71/rfc-084-frontend-in-a-gem.md">we’re trying to retire static</a>, although no team is actively working on this</li>
-<li>a new gem was considered but this would require time and effort to set up, and we’re not yet sure how the new analytics code will need to interact with the cookie consent code (also in govuk_publishing_components)</li>
-</ul>
-<p>GTM tracking will be done using specific data attributes attached to elements, which contains the data to send to GA.</p>
-<p>An alternative plan using component specific analytics was originally considered, but this would have added code to every component and involved DOM traversal to find relevant information.</p>
-<p>GTM will be configured in a minimal way, the majority of the code will be part of GOV.UK.</p>
-<h2 id="consequences">Consequences</h2>
-<p>Having the analytics code in govuk_publishing_components has an impact on deployments:</p>
-<ul>
-<li>the code is included once for all of GOV.UK via static</li>
-<li>changes to the analytics code will require a new version of govuk_publishing_components and a deployment of static, which combined can take at least an hour if not more</li>
-</ul>
-<p>Using data attributes for tracking means that these attributes will need to be added manually wherever they are needed on GOV.UK:</p>
-<ul>
-<li>this will be a lot of work, as attributes are numerous and often implemented in complex code</li>
-</ul>
-<p>The minimal configuration of GTM will mean the following:</p>
-<ul>
-<li>code will be discoverable as part of the GOV.UK codebase</li>
-<li>scripts will not be added to GTM, which could have slowed down the site for users or introduce security risks</li>
-<li>we will not be taking advantage of the full capability of GTM</li>
-<li>developers will still be required to make any changes to the tracking on GOV.UK</li>
-</ul>
+<h2 id="basic-use">Basic use</h2>
+<p>In <code>analytics-ga4.js</code>:</p>
+<pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-ecommerce-tracker
+</code></pre>
+<p>In <code>live_search.js</code> in the <code>finder-frontend</code> repository (<a href="https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L129">https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L129</a>):</p>
+<pre lang="JavaScript"><code>GOVUK.analyticsGa4.Ga4EcommerceTracker.init(isNewPage) // isNewPage is a boolean and is used to detect whether a new page has been loaded or not
+</code></pre>
+<p>Unlike the other GA4 tracking scripts in this repository, ecommerce tracking is not initialised by <code>init-ga4.js</code>. Instead, it is initialised by the JS that runs on finder pages (specifically, the <code>LiveSearch.prototype.Ga4EcommerceTracking()</code> function). It is called:</p>
+<p>On page load - <a href="https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L55">https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L55</a></p>
+<p>And whenever search results are updated - <a href="https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L121">https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L121</a></p>
+<p>Note: ecommerce tracking will only run if there is an element which has the <code>data-ga4-ecommerce</code> attribute. If the script can't find an element with this attribute, it will stop running.</p>
+<h2 id="ecommerce-tracking">Ecommerce tracking</h2>
+<h3 id="on-page-load">On page load</h3>
+<p>Upon initialisation, the ecommerce tracker script will first detect whether a new page has been loaded (this is determined by the boolean passed when <code>Ga4EcommerceTracker.init()</code> is called). If <code>true</code>, this indicates that a new page has been loaded (i.e. the user has conducted a new search or has navigated to a new page using the pagination) and the initial set of search results that is loaded is pushed to the <code>dataLayer</code>.</p>
+<p>For example, if a user searches for "tax", the following object will be pushed to the <code>dataLayer</code> on page load:</p>
+<pre lang="JSON"><code>{
+    "event": "search_results",
+    "search_results": {
+        "event_name": "view_item_list",
+        "results": 65426,
+        "sort": "Relevance",
+        "term": "tax",
+        "ecommerce": {
+            "items": [
+                {
+                    "index": 1,
+                    "item_id": "/vehicle-tax",
+                    "item_list_name": "Search"
+                },
+                {
+                    "index": 2,
+                    "item_id": "/income-tax",
+                    "item_list_name": "Search"
+                },
+                {
+                    "index": 3,
+                    "item_id": "/income-tax/overview",
+                    "item_list_name": "Search"
+                },
+                "etc..."
+            ]
+        }
+    }
+}
+</code></pre>
+<h3 id="application-of-filters-andor-sorting">Application of filters and/or sorting</h3>
+<p>If a user applies a filter (such as a topic or content type) or changes the sorting option (such as sorting by newest), the list of search results will be updated accordingly and this will result in another push to the <code>dataLayer</code>. The object that is pushed follows the same structure as the object described in the 'On page load' section above. The only differences are that the results in the <code>search_results.ecommerce.items</code> array will change to reflect the updated list of search results and, if a new sorting option has been applied, the <code>search_results.sort</code> property will change to reflect what was selected.</p>
+<p>Additionally, updating the search results causes the URL to change and this also needs to be tracked. For example, if the user searches for "tax", the initial URL would be:</p>
+<p><code>https://www.gov.uk/search/all?keywords=tax&amp;order=relevance</code></p>
+<p>Then if the user applies the "Corporate information" topic filter and sorts by newest, the URL would become:</p>
+<p><code>https://www.gov.uk/search/all?keywords=tax&amp;level_one_taxon=a544d48b-1e9e-47fb-b427-7a987c658c14&amp;order=updated-newest</code></p>
+<p>To track these changes to the URL, a new <code>pageView</code> object is sent to the <code>dataLayer</code> along with the updated search results so that the user journey can be tracked.</p>
+<p>Note: currently, filters that have been applied are not tracked; only the <code>search_results.ecommerce.items</code> and <code>search_result.sort</code> properties are updated.</p>
+<h3 id="clicking-a-search-result">Clicking a search result</h3>
+<p>If a user clicks on a search result, the following object will be pushed to the <code>dataLayer</code>:</p>
+<pre lang="JSON"><code>{
+    "event": "search_results",
+    "event_data": {
+        "external": "false"
+    },
+    "search_results": {
+        "event_name": "select_item",
+        "results": 65426,
+        "sort": "Relevance",
+        "term": "tax",
+        "ecommerce": {
+            "items": [
+                {
+                    "index": 1,
+                    "item_id": "/vehicle-tax",
+                    "item_list_name": "Search",
+                    "item_name": "Tax your vehicle"
+                }
+            ]
+        }
+    }
+}
+</code></pre>
+<p>In this case, the <code>search_results.ecommerce.items</code> array will only ever contain 1 item (i.e. the clicked result) with the addition of the <code>item_name</code> property. In addition, the <code>event_data.external</code> property is included to indicate whether the search result is an internal (i.e. within gov.uk) or external (e.g. <a href="http://www.google.co.uk">www.google.co.uk</a>) link.</p>
+<h3 id="nullifying-the-ecommerce-object">Nullifying the ecommerce object</h3>
+<p>Each time the <code>ecommerce</code> object is pushed to the <code>dataLayer</code>, it needs to be nullified first. This results in 2 pushes to the <code>dataLayer</code>; the first push contains the nullified <code>ecommerce</code> object and the second contains the <code>ecommerce</code> object with the data. Nullifying the <code>ecommerce</code> object clears it and prevents multiple ecommerce events on a page from affecting each other. This is considered best practice (further details can be found here: <a href="https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce">https://developers.google.com/analytics/devguides/collection/ua/gtm/enhanced-ecommerce</a>).</p>
 
 
             
@@ -277,8 +325,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/adr/0002-google-analytics-4-tracking-and-code-location.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fadr%2F0002-google-analytics-4-tracking-and-code-location.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-ecommerce-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-ecommerce-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
