@@ -265,9 +265,19 @@ host is returned.</p>
 
 <p>You can prepend strings to the hostnames generated using: <code>PLEK_HOSTNAME_PREFIX</code>.</p>
 
+<p>If <code>PLEK_HOSTNAME_PREFIX</code> is present, it will be prepended to the hostname
+unless the hostname appears in the comma-separated list
+<code>PLEK_UNPREFIXABLE_HOSTS</code>.</p>
+
 <p>Override the asset URL with: <code>GOVUK_ASSET_ROOT</code>. The default is to generate a URL for the <code>static</code> service.</p>
 
 <p>Override the website root with <code>GOVUK_WEBSITE_ROOT</code>. The default is to generate a URL for the <code>www</code> service.</p>
+
+<p>If <code>PLEK_USE_HTTP_FOR_SINGLE_LABEL_DOMAINS=1</code> (or anything beginning with <code>t</code>
+or <code>y</code>), Plek will use <code>http</code> as the URL scheme instead of <code>https</code> for
+single-label domains. Single-label domains are domains with just a single name
+component, for example <code>frontend</code> or <code>content-store</code>, as opposed to
+<code>frontend.example.com</code> or <code>content-store.test.govuk.digital</code>.</p>
 
 <h2 id="licence">Licence</h2>
 
