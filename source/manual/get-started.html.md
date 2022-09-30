@@ -43,7 +43,7 @@ This command works for macOS or Linux.
 
 If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which requires a GPG key to have been generated.
 
-1. Create a GPG key as per the [Create a GPG Key](create-gpg-key) documentation.
+1. Create a GPG key as per the [Create a GPG Key][create-gpg-key] documentation.
 
 1. Add the following to the `~/.gnupg/gpg-agent.conf` file:
 
