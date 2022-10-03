@@ -17,9 +17,7 @@ will remain on our servers forever more, [unless you perform a workaround](#what
    [example][absent-example].
 1. Once this has been raised as a PR and merged, deploy Puppet to all
    environments.
-1. Create a PR in [GOV.UK secrets][govuk-secrets] that:
-  - Removes the user from [production hieradata][production-hieradata]. Read [what to do when someone leaves][what-to-do-when-someone-leaves]
-  - Removes the user from [AWS production hieradata][aws-production-hieradata]. Read [what to do when someone leaves][what-to-do-when-someone-leaves]
+1. Create a PR in [GOV.UK secrets][govuk-secrets] that removes the user from [AWS production hieradata][aws-production-hieradata]. Follow the instructions in [what to do when someone leaves][what-to-do-when-someone-leaves]
 1. Create another PR for Puppet that:
   - Removes the user manifest file
   - Removes the user from [Integration users][integration-users]

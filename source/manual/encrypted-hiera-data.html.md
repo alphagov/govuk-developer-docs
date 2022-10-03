@@ -192,6 +192,8 @@ credentials.
 
 1. Delete their public key from the [`gpg_public_keys` directory](https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys) in govuk-secrets.
 
+1. Remove any other references to the user.
+
 1. Commit your changes and raise a pull request for review.
 
 > **WARNING**
