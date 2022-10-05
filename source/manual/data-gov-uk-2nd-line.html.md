@@ -15,6 +15,10 @@ parent: "/manual.html"
 
 This document details some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk.  [Separate documentation][dgu-docs] exists for publishers.
 
+## Logging into the publisher
+
+You can log into [CKAN](https://ckan.publishing.service.gov.uk/) using our shared 2nd line account. The credentials are available [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/main/pass) under [datagovuk/ckan](https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg).
+
 ## Users and Publishers
 
 Users have their own accounts and can login using either their username or email address.   A user can be a member of one or more publishing organisations, and can have either the role 'Admin' or 'Editor' for each organisation.  Users with 'Admin' status can add/remove users from the organisation for which they are an admin.  They only have 'admin' rights on their own organisation, contrasted to a 'sysadmin' who has admin rights across all organisations.
