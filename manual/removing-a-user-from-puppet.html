@@ -182,7 +182,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/805fc1543bec4d96d203ca5292177440757bf7ad">3 Oct 2022</a>
 </div>
 
  <h1 id='header'>Remove a user from Puppet</h1> <p>Removing a user from our infrastructure via Puppet is a 2 change process that
@@ -197,12 +197,7 @@ will remain on our servers forever more, <a href="#what-to-do-if-you-miss-the-en
 <a href="https://github.com/alphagov/govuk-puppet/commit/0757bad41ed577f15c7f5d9e508f55e78c612ddb">example</a>.</li>
 <li>Once this has been raised as a PR and merged, deploy Puppet to all
 environments.</li>
-<li>Create a PR in <a href="https://github.com/alphagov/govuk-secrets">GOV.UK secrets</a> that:
-
-<ul>
-<li>Removes the user from <a href="https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata">production hieradata</a>. Read <a href="https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-leaves">what to do when someone leaves</a></li>
-<li>Removes the user from <a href="https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata">AWS production hieradata</a>. Read <a href="https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-leaves">what to do when someone leaves</a></li>
-</ul></li>
+<li>Create a PR in <a href="https://github.com/alphagov/govuk-secrets">GOV.UK secrets</a> that removes the user from <a href="https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata">AWS production hieradata</a>. Follow the instructions in <a href="https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-leaves">what to do when someone leaves</a></li>
 <li>Create another PR for Puppet that:
 
 <ul>

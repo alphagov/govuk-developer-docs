@@ -241,7 +241,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/da62ed934e560eda4f9e0a07e55aec8d5045bb2b">3 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/805fc1543bec4d96d203ca5292177440757bf7ad">3 Oct 2022</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -386,6 +386,7 @@ and <a href="https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/gpg_
 There are no staging recipient files since these are the same as the
 production recipient files.</p></li>
 <li><p>Delete their public key from the <a href="https://github.com/alphagov/govuk-secrets/tree/main/gpg_public_keys"><code>gpg_public_keys</code> directory</a> in govuk-secrets.</p></li>
+<li><p>Remove any other references to the user.</p></li>
 <li><p>Commit your changes and raise a pull request for review.</p></li>
 </ol>
 
