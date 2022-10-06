@@ -14,8 +14,8 @@ The page is managed using a third party service called [Statuspage][sp].
 
 Use [manage.statuspage.io][man] to post messages. The Technical 2nd Line delivery manager can grant you access.
 
-Remember: government publishers are the main audience of the page.
-They'll want to know what isn't working, and how long it will take to fix. Write in non-technical language.
+Remember: government publishers are the main audience of the page, although it may also be used publicly depending on the incident.
+Users will want to know what isn't working, and how long it will take to fix. Write in non-technical language.
 Use the pre-written templates, they've been proof-read and can be customised to most situations.
 
 This is what the [Statuspage admin interface][man] looks like:
