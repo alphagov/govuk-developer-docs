@@ -44,7 +44,8 @@ You can run this in any environment, as you're only running `plan` - not `apply`
 ## Update homepage promotion slots
 
 Follow the [Update homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html) instructions, using an appropriate image and text.
-Do this on Integration or Staging.
+Open a draft PR, and [deploy your branch to integration](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/).
+Once deployed, [check your change](https://www-origin.integration.govuk.digital/) and redeploy the previous branch to integration.
 
 ## Use a restored database in an app
 
