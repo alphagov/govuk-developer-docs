@@ -208,7 +208,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6b800e833b50e4e63444dca8ef0d2122735ccb81">23 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/50f6ffaa7b37794bfb6052471a9da911957ab2ee">3 Oct 2022</a>
 </div>
 
  <h1 id='header'>2nd line</h1> <p>2nd Line is the user support function of GOV.UK. 2nd Line’s main responsibilities:</p>
@@ -219,7 +219,7 @@
 <li>Taking on urgent work or work that doesn’t necessarily belong in any team</li>
 </ul>
 <p>You’ll be set up in <a href="/manual/2nd-line#pagerduty">PagerDuty</a> so that you can be called if there are any urgent alerts during working hours. 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.</p>
-<p>Every Wednesday, at least 2 people from GOV.UK - 2 developers and usually a shadow developer - join the team to work on Technical 2nd Line.</p>
+<p>Every Wednesday, at least 2 people from GOV.UK - 2 developers (a Primary and Secondary) and usually a shadow developer - join the team to work on Technical 2nd Line. There are also standby developers for the Primary and Secondary.</p>
 <p>Frontend developers, backend developers and SREs are all expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out.</p>
 <p>Note that frontend developers are not expected to be on-call rota.</p>
 
@@ -228,15 +228,18 @@
 </blockquote>
 <p>Shifts start at 9:30 and end at 17:30. <a href="https://docs.google.com/spreadsheets/d/1OTVm_k6MDdCFN1EFzrKXWu4iIPI7uR9mssI8AMwn7lU/edit#gid=1297388378.">You can check the Technical 2nd Line rota to find out when your shift is</a>.</p>
 <p>You are required to attend a daily morning standup with your paired 2nd Line partner and the 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.</p>
+<p>Standby developers are not expected to attend the standups or the incoming handover. If they&rsquo;re called onto the shift, they should attend the next standup, and may wish to attend the outgoing handover at the end of the shift.</p>
 <p>If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there&rsquo;s a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.</p>
-<h2 id='shift-swaps-working-patterns-and-sickness'>Shift swaps, working patterns and sickness</h2><p>2nd Line takes priority over the work you do in your usual team. If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.</p>
+<h2 id='shift-swaps-working-patterns-and-sickness'>Shift swaps, working patterns and sickness</h2><p>2nd Line takes priority over the work you do in your usual team. It also takes priority over things like All Staff events, which you will be unable to attend in person, though can attend remotely (if possible) provided you keep on top of Zendesk and alerts. Note that standby developers can attend such events in person, but must be contactable by phone and able to access their laptop at short notice.</p>
+<p>If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.</p>
 
 <ul>
 <li><p>If you need cover for a day or two, arrange a swap for those days with another developer. Please ensure delivery managers are aware of this.</p></li>
 <li><p>If you need a whole shift swap, arrange this with another developer from your team.</p></li>
 </ul>
 <p>For either of the above, let the Technical 2nd Line delivery manager know. Please update the schedule on <a href="https://governmentdigitalservice.pagerduty.com">PagerDuty</a>.</p>
-<p>If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.</p>
+<p>If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.
+The corresponding standby developer will then take your place.</p>
 <p>If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.</p>
 <p>If you do not work a 5-day week, please talk to your delivery manager to arrange cover with another developer on your team.</p>
 <h2 id='monitoring'>Monitoring</h2><p>We have a <a href="https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&amp;layout=2x1-responsive&amp;url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&amp;url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&amp;url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&amp;url%5B%5D=">Technical 2nd Line dashboard</a> showing a high level overview of the state of the GOV.UK environments. You can also <a href="https://github.com/alphagov/govuk-secondline-blinken#chrome-extension">install our Chrome extension</a> if you want a permanently visible overview. You will need to be on the <a href="/manual/vpn.html">VPN</a> if accessing from home.</p>
