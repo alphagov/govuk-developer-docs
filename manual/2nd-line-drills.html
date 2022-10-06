@@ -215,7 +215,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/00db0a85fa7057161ed17d0fc60c061010f5f7f4">22 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/33fab59b754c6aa1616d44e932928fe239c8d39e">6 Oct 2022</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line. This is to make developers familiar with the process, as well as to validate that the drill steps continue to work.</p>
@@ -238,7 +238,8 @@ Follow the <a href="/manual/github-unavailable.html#deploying-from-aws-codecommi
 <h2 id='run-a-terraform-plan'>Run a Terraform <code>plan</code></h2><p>Follow the <a href="/manual/deploying-terraform.html">Deploy Terraform</a> instructions, picking a project at random.
 You can run this in any environment, as you&rsquo;re only running <code>plan</code> - not <code>apply</code> - so shouldn&rsquo;t be making any changes.</p>
 <h2 id='update-homepage-promotion-slots'>Update homepage promotion slots</h2><p>Follow the <a href="/repos/frontend/update-homepage-promotion-slots.html">Update homepage promotion slots</a> instructions, using an appropriate image and text.
-Do this on Integration or Staging.</p>
+Open a draft PR, and <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">deploy your branch to integration</a>.
+Once deployed, <a href="https://www-origin.integration.govuk.digital/">check your change</a> and redeploy the previous branch to integration.</p>
 <h2 id='use-a-restored-database-in-an-app'>Use a restored database in an app</h2><p>Follow the <a href="/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli">Restore an RDS instance via the AWS CLI</a> instructions for an app of your choice, on Integration or Staging.</p>
 <h2 id='force-failover-to-gov-uk-mirror-and-emergency-publishing-using-the-gov-uk-mirror'>Force failover to GOV.UK mirror and Emergency publishing using the GOV.UK mirror</h2>
 <ol>
