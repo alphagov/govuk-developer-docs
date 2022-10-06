@@ -15,7 +15,7 @@ type: learn
 
 You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.
 
-Every Wednesday, at least 2 people from GOV.UK - 2 developers and usually a shadow developer - join the team to work on Technical 2nd Line.
+Every Wednesday, at least 2 people from GOV.UK - 2 developers (a Primary and Secondary) and usually a shadow developer - join the team to work on Technical 2nd Line. There are also standby developers for the Primary and Secondary.
 
 Frontend developers, backend developers and SREs are all expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out.
 
@@ -29,11 +29,15 @@ Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rot
 
 You are required to attend a daily morning standup with your paired 2nd Line partner and the 2nd Line team. There’s a short retrospective at the handover meeting at the end of your shift.
 
+Standby developers are not expected to attend the standups or the incoming handover. If they're called onto the shift, they should attend the next standup, and may wish to attend the outgoing handover at the end of the shift.
+
 If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there's a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.
 
 ## Shift swaps, working patterns and sickness
 
-2nd Line takes priority over the work you do in your usual team. If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
+2nd Line takes priority over the work you do in your usual team. It also takes priority over things like All Staff events, which you will be unable to attend in person, though can attend remotely (if possible) provided you keep on top of Zendesk and alerts. Note that standby developers can attend such events in person, but must be contactable by phone and able to access their laptop at short notice.
+
+If you need to swap your shift, it’s your responsibility to ensure that adequate cover is in place.
 
 - If you need cover for a day or two, arrange a swap for those days with another developer. Please ensure delivery managers are aware of this.
 
@@ -42,6 +46,7 @@ If you have meetings to attend then attend them. Please let the delivery manager
 For either of the above, let the Technical 2nd Line delivery manager know. Please update the schedule on [PagerDuty][].
 
 If you cannot make your shift because you’re ill, message the delivery manager and #govuk-2ndline-tech Slack channel.
+The corresponding standby developer will then take your place.
 
 If your working patterns are not compatible with a 9.30am-5.30pm shift, let the Technical 2nd Line team know so they can find extra support.
 
