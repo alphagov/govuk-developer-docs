@@ -95,7 +95,7 @@ slug and the new slug as arguments.
 If you run a task and find the redirect has worked but the new location returns
 a 404, it's likely because the republish command is languishing in the
 low-priority queue ([check queue volumes in Grafana][grafana-queue-volumes]).
-Whitehall appears to put the redirect in the high priority queue, so there can
+Whitehall appears to put the redirect in the low-priority queue, so there can
 be a delay between the redirect being applied and the content being republished.
 
 This should resolve itself over time, but if you need to process the content
