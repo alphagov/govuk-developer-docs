@@ -6,16 +6,36 @@ layout: manual_layout
 section: 2nd line
 ---
 
-We use postcode data from the [ONS Postcode Directory](https://geoportal.statistics.gov.uk/search?q=ONS%20Postcode%20Directory%20) (ONSPD) and Ordnance Survey for boundary
-line data. We typically [import the data into Mapit](https://github.com/alphagov/mapit/blob/master/IMPORTING-DATA.md) every 6 months.
+We get our postcode data from Locations API, which uses OS Places API (Ordnance Survey) under the hood. Locations API postcodes [keep themselves up to date automatically](https://github.com/alphagov/locations-api/blob/main/docs/postcodes-added-cached-updated.md#how-postcodes-are-updated) and should never be more than about a week out of date.
 
-We sometimes receive Zendesk tickets about postcodes not returning the right results.
-You can check the accuracy of the postcode by:
+In case the data is incorrect, a first step would be checking the Locations API result with the OS Places API result.
 
-* Looking up the postcode on Mapit, for example https://mapit.mysociety.org/postcode/E18QS
-  and viewing the parents. There can be more than one parent which can be the case
-  if the postcode sits between two boundaries
-* Get the latitude/longitude and look it up on Google Maps
+```shell
+gds govuk connect --environment integration app-console locations-api
+```
 
-If the data is incorrect you can contact ONS Geography ons.geography@ons.gov.uk
-and ask them to correct the data for the next postcode release.
+```ruby
+# The OS Places API response
+token_manager = OsPlacesApi::AccessTokenManager.new
+response = HTTParty.get(
+  "https://api.os.uk/search/places/v1/postcode",
+  {
+    query: { postcode: "E18QS", output_srs: "WGS84", "dataset": "DPA,LPI" },
+    headers: { "Authorization": "Bearer #{token_manager.access_token}" },
+  }
+
+# The information we currently have in Locations API
+Postcode.find_by(postcode: "E18QS").results
+```
+
+If the results are not the same (especially the Local Custodian Code), then either the user happens to have looked up the postcode in the exact week where it has been updated by OS Places API but we haven't updated our cache yet, or - more likely - our mechanism for self-updating postcodes has broken, and requires further investigation.
+
+This is how you can manually force Locations API to update its cache for a given postcode:
+
+```ruby
+token_manager = OsPlacesApi::AccessTokenManager.new
+OsPlacesApi::Client.new(token_manager).update_postcode("E18QS")
+
+# check if the record was updated
+Postcode.find_by(postcode: "E18QS").updated_at
+```
