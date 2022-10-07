@@ -255,10 +255,15 @@ Alternatively, you could:
 
 For reference, here is the [AWS documentation for deleting a database instance](https://docs.aws.amazon.com/cli/latest/reference/rds/delete-db-instance.html#delete-db-instance).
 
-The command below will delete a database instance, this is only to be used if there is an error with the current deployment of the replacement database or once created you've restored a database from a snapshot, you may also need to delete the old database.
+It is likely that the restored database is missing data since the snapshot was taken and you
+will want to have a copy of the original database for comparison before deleting it.
 
-The command below will also create a DB snapshot before the DB instance is deleted. If you don't want this, omit the `--no-skip-final-snapshot` parameter.
+The command below will create a DB snapshot before the DB instance is deleted. If you don't want this, omit the `--final-db-snapshot-identifier` parameter.
 
 ```
-gds-cli aws govuk-<environment>-admin aws rds delete-db-instance --db-instance-identifier <db_instance_identifier> --no-skip-final-snapshot
+gds-cli aws govuk-<environment>-admin aws rds delete-db-instance --db-instance-identifier <db_instance_identifier> --final-db-snapshot-identifier <snapshot_name>
 ```
+
+You can check the snapshot is available by navigating to RDS > Snapshots in the AWS console.
+Now that the original RDS instance has been removed this will free up the name for the
+[permanent fix](#ensure-your-setup-will-continue-to-work-if-infrastructure-is-reprovisioned)).
