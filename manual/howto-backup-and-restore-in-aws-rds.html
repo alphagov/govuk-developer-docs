@@ -231,7 +231,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4629ddae8284476ccfaad45b050614e3a33b5038">7 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/10f2231d8eddcb065e77d1cbc90f2193d0081dd2">7 Oct 2022</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>Backups of <a href="https://aws.amazon.com/rds/">RDS</a> instances are <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance">taken
@@ -377,10 +377,14 @@ The safest approach would be to update Terraform to refer to the new database.</
 <p>PLEASE BE CAREFUL WHEN EXECUTING THIS COMMAND AS IT CANNOT BE UNDONE</p>
 </blockquote>
 <p>For reference, here is the <a href="https://docs.aws.amazon.com/cli/latest/reference/rds/delete-db-instance.html#delete-db-instance">AWS documentation for deleting a database instance</a>.</p>
-<p>The command below will delete a database instance, this is only to be used if there is an error with the current deployment of the replacement database or once created you&rsquo;ve restored a database from a snapshot, you may also need to delete the old database.</p>
-<p>The command below will also create a DB snapshot before the DB instance is deleted. If you don&rsquo;t want this, omit the <code>--no-skip-final-snapshot</code> parameter.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds delete-db-instance --db-instance-identifier &lt;db_instance_identifier&gt; --no-skip-final-snapshot
-</code></pre></div>
+<p>It is likely that the restored database is missing data since the snapshot was taken and you
+will want to have a copy of the original database for comparison before deleting it.</p>
+<p>The command below will create a DB snapshot before the DB instance is deleted. If you don&rsquo;t want this, omit the <code>--final-db-snapshot-identifier</code> parameter.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds delete-db-instance --db-instance-identifier &lt;db_instance_identifier&gt; --final-db-snapshot-identifier &lt;snapshot_name&gt;
+</code></pre></div><p>You can check the snapshot is available by navigating to RDS &gt; Snapshots in the AWS console.
+Now that the original RDS instance has been removed this will free up the name for the
+<a href="#ensure-your-setup-will-continue-to-work-if-infrastructure-is-reprovisioned">permanent fix</a>).</p>
+
 
   <div class='related-content'>
 
