@@ -1,0 +1,385 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-aws: 39. Non-GOV.UK domain policy - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-aws/architecture/decisions/0039-non-govuk-domain-policy.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="govuk-aws: 39. Non-GOV.UK domain policy - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-aws/architecture/decisions/0039-non-govuk-domain-policy.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-aws: 39. Non-GOV.UK domain policy" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-aws/architecture/decisions/0039-non-govuk-domain-policy.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-aws.html" rel="noopener" class="govuk-link">govuk-aws</a>
+    </li>
+    <li>
+      <ul>
+          <li class="subdir__heading">architecture</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-aws/architecture/README.html" rel="noopener" class="govuk-link">Architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0002-hosting-platforms.html" rel="noopener" class="govuk-link">2. Hosting Platforms</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0003-aws-networking-outline.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0004-dns-definitions-for-hosts-and-services.html" rel="noopener" class="govuk-link">4. DNS definitions for hosts and services</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0005-terraform-module-location.html" rel="noopener" class="govuk-link">5. Terraform Module Location</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0006-puppet-architecture.html" rel="noopener" class="govuk-link">6. Puppet architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0007-puppet-cert-management.html" rel="noopener" class="govuk-link">7. Puppet certificate management</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0008-postgres-on-puppetmaster.html" rel="noopener" class="govuk-link">8. Postgres on Puppetmaster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0009-environment-bootstrapping-process.html" rel="noopener" class="govuk-link">9. Environment bootstrapping process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0010-terraform-directory-structure.html" rel="noopener" class="govuk-link">10. Terraform directory structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0011-migration-strategy.html" rel="noopener" class="govuk-link">11. Migration Strategy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0012-security-groups-in-terraform.html" rel="noopener" class="govuk-link">12. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0013-userdata-provisioning-snippets.html" rel="noopener" class="govuk-link">13. Userdata provisioning snippets</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0014-launch-config-change-propagation-process.html" rel="noopener" class="govuk-link">14. Launch Config change propagation process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0015-dns-infrastructure.html" rel="noopener" class="govuk-link">15. DNS infrastructure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0016-internal-dns-zones.html" rel="noopener" class="govuk-link">16. internal DNS zones</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0017-terraform-data-structure.html" rel="noopener" class="govuk-link">17. Terraform Data Structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0018-use-rds-instead-of-provisioned-ec2-databases.html" rel="noopener" class="govuk-link">18. Use RDS instead of provisioned EC2 databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0019-centralise-mysql-databases.html" rel="noopener" class="govuk-link">19. Centralise MySQL Databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0020-merge-api-postgresql-instance-into-main-postgresql-instance.html" rel="noopener" class="govuk-link">20. Merge API PostgreSQL instance into main PostgreSQL instance</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0021-use-acm-for-ssl-purchases-and-terminate-certificates-on-elbs.html" rel="noopener" class="govuk-link">21. Use ACM for SSL purchases and terminate certificates on ELBs</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0022-remove-the-elasticsearch-proxy.html" rel="noopener" class="govuk-link">22. Remove the Elasticsearch proxy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0023-use-separate-data-repository.html" rel="noopener" class="govuk-link">23. Use separate data repository</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0024-ami-lookups.html" rel="noopener" class="govuk-link">24. AMI Lookups</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0025-use-elasticache-for-redis.html" rel="noopener" class="govuk-link">25. Use Elasticache for Redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0026-remove-load-balancer-tier.html" rel="noopener" class="govuk-link">26. Remove load balancer tier</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0027-move-publicapi-away-from-frontend-lb.html" rel="noopener" class="govuk-link">27. Move PublicAPI away from frontend-lb</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0028-combine-api-mongo-cluster-into-mongo-cluster.html" rel="noopener" class="govuk-link">28. Combine api-mongo cluster into mongo cluster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0029-combine-api-redis-into-backend-redis.html" rel="noopener" class="govuk-link">29. Combine api-redis into backend-redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0030-change-in-architecture-to-asset-master.html" rel="noopener" class="govuk-link">30. Change in architecture to Asset Master</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0031-security-group-naming.html" rel="noopener" class="govuk-link">31. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0032-transfer-artefact-binary.html" rel="noopener" class="govuk-link">32. transfer artefact binary</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0033-ip-ranges.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0035-bouncer-load-balancer-on-port-80-and-443.html" rel="noopener" class="govuk-link">3. Bouncer Public Load Balancer Configuration</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0036-performance-platform-and-backdrop-architecture.html" rel="noopener" class="govuk-link">36. Performance-Platform-And-BackDrop-Architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0037-alb-health-checks.html" rel="noopener" class="govuk-link">37. ALB Health Checks</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0038-mongo_replacement_by_documentdb.html" rel="noopener" class="govuk-link">38. Mongo Replacement by DocumentDB</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0039-non-govuk-domain-policy.html" rel="noopener" class="govuk-link">39. Non-GOV.UK domain policy</a></li>
+          </ul>
+          <li class="subdir__heading">architecture/decisions</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-aws/architecture/decisions/0001-record-architecture-decisions.html" rel="noopener" class="govuk-link">1. Record architecture decisions</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0002-hosting-platforms.html" rel="noopener" class="govuk-link">2. Hosting Platforms</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0003-aws-networking-outline.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0004-dns-definitions-for-hosts-and-services.html" rel="noopener" class="govuk-link">4. DNS definitions for hosts and services</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0005-terraform-module-location.html" rel="noopener" class="govuk-link">5. Terraform Module Location</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0006-puppet-architecture.html" rel="noopener" class="govuk-link">6. Puppet architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0007-puppet-cert-management.html" rel="noopener" class="govuk-link">7. Puppet certificate management</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0008-postgres-on-puppetmaster.html" rel="noopener" class="govuk-link">8. Postgres on Puppetmaster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0009-environment-bootstrapping-process.html" rel="noopener" class="govuk-link">9. Environment bootstrapping process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0010-terraform-directory-structure.html" rel="noopener" class="govuk-link">10. Terraform directory structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0011-migration-strategy.html" rel="noopener" class="govuk-link">11. Migration Strategy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0012-security-groups-in-terraform.html" rel="noopener" class="govuk-link">12. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0013-userdata-provisioning-snippets.html" rel="noopener" class="govuk-link">13. Userdata provisioning snippets</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0014-launch-config-change-propagation-process.html" rel="noopener" class="govuk-link">14. Launch Config change propagation process</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0015-dns-infrastructure.html" rel="noopener" class="govuk-link">15. DNS infrastructure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0016-internal-dns-zones.html" rel="noopener" class="govuk-link">16. internal DNS zones</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0017-terraform-data-structure.html" rel="noopener" class="govuk-link">17. Terraform Data Structure</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0018-use-rds-instead-of-provisioned-ec2-databases.html" rel="noopener" class="govuk-link">18. Use RDS instead of provisioned EC2 databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0019-centralise-mysql-databases.html" rel="noopener" class="govuk-link">19. Centralise MySQL Databases</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0020-merge-api-postgresql-instance-into-main-postgresql-instance.html" rel="noopener" class="govuk-link">20. Merge API PostgreSQL instance into main PostgreSQL instance</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0021-use-acm-for-ssl-purchases-and-terminate-certificates-on-elbs.html" rel="noopener" class="govuk-link">21. Use ACM for SSL purchases and terminate certificates on ELBs</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0022-remove-the-elasticsearch-proxy.html" rel="noopener" class="govuk-link">22. Remove the Elasticsearch proxy</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0023-use-separate-data-repository.html" rel="noopener" class="govuk-link">23. Use separate data repository</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0024-ami-lookups.html" rel="noopener" class="govuk-link">24. AMI Lookups</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0025-use-elasticache-for-redis.html" rel="noopener" class="govuk-link">25. Use Elasticache for Redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0026-remove-load-balancer-tier.html" rel="noopener" class="govuk-link">26. Remove load balancer tier</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0027-move-publicapi-away-from-frontend-lb.html" rel="noopener" class="govuk-link">27. Move PublicAPI away from frontend-lb</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0028-combine-api-mongo-cluster-into-mongo-cluster.html" rel="noopener" class="govuk-link">28. Combine api-mongo cluster into mongo cluster</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0029-combine-api-redis-into-backend-redis.html" rel="noopener" class="govuk-link">29. Combine api-redis into backend-redis</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0030-change-in-architecture-to-asset-master.html" rel="noopener" class="govuk-link">30. Change in architecture to Asset Master</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0031-security-group-naming.html" rel="noopener" class="govuk-link">31. Security Groups in Terraform</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0032-transfer-artefact-binary.html" rel="noopener" class="govuk-link">32. transfer artefact binary</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0033-ip-ranges.html" rel="noopener" class="govuk-link">3. Networking Outline</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0035-bouncer-load-balancer-on-port-80-and-443.html" rel="noopener" class="govuk-link">3. Bouncer Public Load Balancer Configuration</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0036-performance-platform-and-backdrop-architecture.html" rel="noopener" class="govuk-link">36. Performance-Platform-And-BackDrop-Architecture</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0037-alb-health-checks.html" rel="noopener" class="govuk-link">37. ALB Health Checks</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0038-mongo_replacement_by_documentdb.html" rel="noopener" class="govuk-link">38. Mongo Replacement by DocumentDB</a></li>
+              <li><a href="/repos/govuk-aws/architecture/decisions/0039-non-govuk-domain-policy.html" rel="noopener" class="govuk-link">39. Non-GOV.UK domain policy</a></li>
+          </ul>
+          <li class="subdir__heading">guides</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-aws/guides/bootstrap-aws.html" rel="noopener" class="govuk-link">Bootstrap GOV.UK AWS</a></li>
+              <li><a href="/repos/govuk-aws/guides/certificate-validation.html" rel="noopener" class="govuk-link">Certificate Validation</a></li>
+              <li><a href="/repos/govuk-aws/guides/db-admin-database-restore-process.html" rel="noopener" class="govuk-link">db-admin-database-restore-process</a></li>
+              <li><a href="/repos/govuk-aws/guides/deploying-google-terraform.html" rel="noopener" class="govuk-link"># Deploying Google Terraform</a></li>
+              <li><a href="/repos/govuk-aws/guides/environment-provisioning.html" rel="noopener" class="govuk-link">Environment Provisioning</a></li>
+              <li><a href="/repos/govuk-aws/guides/getting-started.html" rel="noopener" class="govuk-link">Getting Started</a></li>
+              <li><a href="/repos/govuk-aws/guides/rds-database-management.html" rel="noopener" class="govuk-link">RDS Database Management</a></li>
+              <li><a href="/repos/govuk-aws/guides/redeploying-applications-on-rebuild.html" rel="noopener" class="govuk-link">Redeploying Applications on Rebuild</a></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-aws",
+        "@id": "http://www.dev.gov.uk/repos/govuk-aws.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk-aws.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-aws&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-aws.html">govuk-aws</a>
+        </li>
+  </ol>
+</div>
+
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/7feb4727a6691fd705da66f86a5d4ff0d2ac07b8">10 Oct 2022</a>
+</div>
+
+  <h1 class="page-title">govuk-aws: 39. Non-GOV.UK domain policy</h1>
+
+  
+<p>Date: 2022-10-10</p>
+<h2 id="status">Status</h2>
+<p>Accepted</p>
+<h2 id="definitions">Definitions</h2>
+<p>This proposal uses the <a href="https://www.ietf.org/rfc/rfc2119.txt">RFC2119</a> standard for definitions of MUST, MUST NOT and MAY.</p>
+<p>Definitions:</p>
+<ul>
+<li>"Authenticated": through an authentication method such as Signon, through <a href="https://en.wikipedia.org/wiki/Basic_access_authentication">basic access authentication</a>, or similar</li>
+<li>"Non-GOV.UK domain": a domain that does not end in <code>gov.uk</code>, such as <code>govuk.digital</code> or <code>govuk-internal.digital</code>. Note that <code>assets.publishing.service.gov.uk</code> is considered a GOV.UK domain.</li>
+</ul>
+<h2 id="context">Context</h2>
+<p>It is dangerous to have a Non-GOV.UK domain that is publicly routable, without any authentication layer, and which does either of the following:</p>
+<ol>
+<li>Looks like a GOV.UK site</li>
+<li>Plays any publicly detectable part in serving content to a GOV.UK site</li>
+</ol>
+<p>In either case, the domain might be flagged as a phishing site by systems such as <a href="https://transparencyreport.google.com/safe-browsing/search">Google's Safe Browsing</a> technology, which is used by browsers including (but not limited to) Chrome to automatically block requests to the site.</p>
+<p>At best, this would be an inconvenience, perhaps making it difficult to access internal tooling. At worst, this could cause a major incident, making large parts of GOV.UK inaccessible.</p>
+<h2 id="proposal">Proposal</h2>
+<p>Any web page that lives on a Non-GOV.UK domain, and that is designed to look like a page or service on GOV.UK, MUST either be Authenticated or Unavailable to the Public Internet.</p>
+<p>Additionally, the serving of any GOV.UK web page or assets MUST NOT use a Non-GOV.UK domain in any publicly detectable part of the request. Some examples of things to avoid:</p>
+<ol>
+<li>Using a Non-GOV.UK domain in the redirect chain for a GOV.UK page or asset.</li>
+<li>Making requests to a Non-GOV.UK domain for 'metadata' associated with a GOV.UK page or asset, e.g. a request for a GOV.UK asset triggering a second request for a favicon from a Non-GOV.UK domain.</li>
+</ol>
+<p>To be clear, a Non-GOV.UK domain MAY be used in serving GOV.UK pages or assets, provided the domain in question is not publicly detectable. For example, <code>govuk-internal.digital</code> MAY be used under the hood to process a request, provided the domain is not exposed to the browser at any point in the request.</p>
+<h2 id="consequences">Consequences</h2>
+<p>A number of Signon domains are currently in violation of this proposal. They MUST either be made Authenticated, Unavailable to the Public Internet, or else moved to a GOV.UK domain.</p>
+<ul>
+<li><a href="https://signon.integration.govuk.digital/">https://signon.integration.govuk.digital/</a></li>
+<li><a href="https://signon.staging.govuk.digital/">https://signon.staging.govuk.digital/</a></li>
+<li><a href="https://signon.production.govuk.digital/">https://signon.production.govuk.digital/</a></li>
+</ul>
+<p>We should consider what automated tests can be written to enforce this proposal GOV.UK-wide, e.g. in Smokey.</p>
+<p>We should also consider the work involved and the merits of retiring any Non-GOV.UK domains.</p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-aws/blob/main/docs/architecture/decisions/0039-non-govuk-domain-policy.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-aws%2Farchitecture%2Fdecisions%2F0039-non-govuk-domain-policy.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
