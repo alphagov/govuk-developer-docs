@@ -182,7 +182,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/805fc1543bec4d96d203ca5292177440757bf7ad">3 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3691c881d2fc58165615731c81084ed85c585f04">10 Oct 2022</a>
 </div>
 
  <h1 id='header'>Remove a user from Puppet</h1> <p>Removing a user from our infrastructure via Puppet is a 2 change process that
@@ -203,6 +203,7 @@ environments.</li>
 <ul>
 <li>Removes the user manifest file</li>
 <li>Removes the user from <a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml">Integration users</a></li>
+<li>DO NOT remove the user&rsquo;s email from the <a href="https://github.com/alphagov/govuk-puppet/blob/main/.mailmap">.mailmap file</a> if present - this allows the user to keep a nicer git commit history.</li>
 </ul></li>
 <li>Once these have been merged, deploy Puppet again to all environments.</li>
 </ol>
