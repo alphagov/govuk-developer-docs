@@ -57,6 +57,18 @@ Then create the account:
 
 An account can have API tokens for multiple applications.
 
+## Manage user accounts
+
+### Unsuspending a user
+
+Find the user under the [list of users](https://signon.publishing.service.gov.uk/users).
+On the edit page select ` Unsuspend user`.
+
+### Resetting a user's 2FA
+
+Find the user under the [list of users](https://signon.publishing.service.gov.uk/users).
+On the edit page under "Account security" select `Reset 2-step verification`.
+
 ## Organisations with multiple parents
 
 This [structure cannot currently be modelled in Signon][signon-multiple-parents-issue]
