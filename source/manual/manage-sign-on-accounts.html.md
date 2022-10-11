@@ -62,7 +62,7 @@ An account can have API tokens for multiple applications.
 ### Unsuspending a user
 
 Find the user under the [list of users](https://signon.publishing.service.gov.uk/users).
-On the edit page select ` Unsuspend user`.
+On the edit page select `Unsuspend user`.
 
 ### Resetting a user's 2FA
 
