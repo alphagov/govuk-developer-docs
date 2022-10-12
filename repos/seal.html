@@ -325,30 +325,7 @@ export SEAL_QUOTES="Everyone should have the opportunity to learn. Don’t be af
 
 <h2 id="how-to-run-the-tests">How to run the tests?</h2>
 
-<p>Just run <code>rspec</code> in the command line</p>
-
-<h2 id="docker-container">Docker container</h2>
-
-<p>You can build your own docker container, Dockerfile is provided.</p>
-
-<pre lang="sh"><code>docker build -t seal .
-</code></pre>
-
-<p>And then run it (assuming you already set all the env variables)</p>
-
-<pre lang="sh"><code>#!/bin/bash
-docker run -it --rm --name seal \
-  -e "SEAL_ORGANISATION=${SEAL_ORGANISATION}" \
-  -e GITHUB_TOKEN=${GITHUB_TOKEN} \
-  -e GITHUB_API_ENDPOINT=${GITHUB_API_ENDPOINT} \
-  -e SLACK_WEBHOOK=${SLACK_WEBHOOK} \
-  -e DYNO=${DYNO} \
-  -e SLACK_CHANNEL=${SLACK_CHANNEL} \
-  -e GITHUB_USE_LABELS=${GITHUB_USE_LABELS} \
-  -e "GITHUB_EXCLUDE_LABELS=${GITHUB_EXCLUDE_LABELS}" \
-  -e "SEAL_QUOTES=${SEAL_QUOTES}" \
-  seal
-</code></pre>
+<p>Just run <code>rspec</code> in the command line.</p>
 
 <h2 id="tips">Tips</h2>
 
