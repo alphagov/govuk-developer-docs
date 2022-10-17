@@ -162,7 +162,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c279e4e70ebf51800849576d5c1fdfb74717f7f">13 Oct 2022</a>
 </div>
 
  <h1 id='header'>Publisher: Unprocessed fact-check emails</h1> <p>As part of the <a href="https://github.com/alphagov/publisher/blob/main/docs/fact-checking.md">Publisher fact checking process</a>, this alert appears if emails
@@ -180,8 +180,7 @@ because they&rsquo;re missing the identification for the edition they relate to
 <h4 id='retrieving-credentials'>Retrieving credentials</h4><p>The passwords for the @digital.cabinet-office.gov.uk addresses are found in
 <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">PASSWORD_STORE_DIR</span><span class="o">=</span>~/govuk/govuk-secrets/pass/2ndline pass google-accounts/govuk-fact-check@digital.cabinet-office.gov.uk
-</code></pre></div><p>The password for the factcheck@alphagov.co.uk address can be found by logging
-into the Publisher console:</p>
+</code></pre></div><p>Or by logging into the Publisher console:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect app-console <span class="nt">-e</span> production publisher
 </code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="o">&gt;</span> <span class="no">Publisher</span><span class="o">::</span><span class="no">Application</span><span class="p">.</span><span class="nf">mail_fetcher_config</span>
 </code></pre></div><h3 id='investigate-the-unprocessed-emails'>Investigate the unprocessed emails</h3><p>There are a number of different ways of proceeding here based on why the email
