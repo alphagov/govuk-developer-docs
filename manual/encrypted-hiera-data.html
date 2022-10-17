@@ -180,6 +180,9 @@
             <a href="#encryption-fails-when-running-the-rake-task-because-of-quotunusable-public-keyquot"><span>Encryption fails when running the Rake task because of “Unusable public key”</span></a>
           </li>
           <li>
+            <a href="#decryption-fails-with-quotno-secret-keyquot"><span>Decryption fails with “No secret key”</span></a>
+          </li>
+          <li>
             <a href="#puppet-fails-because-it-can39t-find-a-usable-gpg-key"><span>Puppet fails because it can’t find a usable GPG key</span></a>
           </li>
           <li>
@@ -241,7 +244,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/805fc1543bec4d96d203ca5292177440757bf7ad">3 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/aa89510d4198fc826b8c28202d675e952246eeee">17 Oct 2022</a>
 </div>
 
  <h1 id='header'>Handle encrypted hieradata</h1> <p><a href="https://docs.puppetlabs.com/hiera/1/">Hiera</a> is a key-value lookup tool
@@ -632,7 +635,12 @@ You can import all public keys with the following command:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cd ~/govuk/govuk-secrets
 git pull
 gpg --import ./gpg_public_keys/*.asc
-</code></pre></div><h3 id='puppet-fails-because-it-can39t-find-a-usable-gpg-key'>Puppet fails because it can&rsquo;t find a usable GPG key</h3><p>When Puppet runs, you may see the following error:</p>
+</code></pre></div><h3 id='decryption-fails-with-quotno-secret-keyquot'>Decryption fails with &ldquo;No secret key&rdquo;</h3><p>If you see the following error when trying to decrypt a GPG file:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>[gpg] Warning: General exception decrypting GPG file
+[hiera-eyaml-core] No secret key
+</code></pre></div><p>&hellip;this suggests you don&rsquo;t have permission to decrypt the file.</p>
+<p>Make sure you&rsquo;ve followed the &ldquo;<a href="/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access">What to do when someone gets production access</a>&rdquo; instructions and that someone with production access has re-encrypted the secrets with your GPG key included.</p>
+<h3 id='puppet-fails-because-it-can39t-find-a-usable-gpg-key'>Puppet fails because it can&rsquo;t find a usable GPG key</h3><p>When Puppet runs, you may see the following error:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Hiera eYAML GPG encryption backend is not working; check that Puppet has a valid GPG key
 </code></pre></div><p>This error can occur for the following reasons:</p>
 
