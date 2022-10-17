@@ -552,6 +552,19 @@ git pull
 gpg --import ./gpg_public_keys/*.asc
 ```
 
+### Decryption fails with "No secret key"
+
+If you see the following error when trying to decrypt a GPG file:
+
+```
+[gpg] Warning: General exception decrypting GPG file
+[hiera-eyaml-core] No secret key
+```
+
+...this suggests you don't have permission to decrypt the file.
+
+Make sure you've followed the "[What to do when someone gets production access](/manual/encrypted-hiera-data.html#what-to-do-when-someone-gets-production-access)" instructions and that someone with production access has re-encrypted the secrets with your GPG key included.
+
 ### Puppet fails because it can't find a usable GPG key
 
 When Puppet runs, you may see the following error:
