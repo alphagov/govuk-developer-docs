@@ -39,8 +39,7 @@ The passwords for the @digital.cabinet-office.gov.uk addresses are found in
 PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass google-accounts/govuk-fact-check@digital.cabinet-office.gov.uk
 ```
 
-The password for the factcheck@alphagov.co.uk address can be found by logging
-into the Publisher console:
+Or by logging into the Publisher console:
 
 ```sh
 $ gds govuk connect app-console -e production publisher
