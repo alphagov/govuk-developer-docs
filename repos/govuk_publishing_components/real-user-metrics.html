@@ -224,30 +224,33 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/cebf8ab65c65eb376865dbaa2dc4048e72d2844d">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/9868217f094373150bd4e22fd582d116b118c099">14 Oct 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Real User Metrics</h1>
 
   
-<p>Real user metrics allow a user's browser to report on how a page loaded using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance_API">Performance API</a>. The tool that we use to do this is called <a href="https://speedcurve.com/features/lux/">LUX</a> - short for Live User Experience - and is run by Speedcurve.</p>
+<p>Real user metrics (RUM) allow a user's browser to report on how a page loaded using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance_API">Performance API</a>. The tool that we use to do this is called <a href="https://speedcurve.com/features/lux/">LUX</a> - short for Live User Experience - and is run by SpeedCurve.</p>
 <p>The benefit of RUM is that it shows how pages are performing in real situations, rather than on synthetic tests. This means that we don't have to guess at what conditions might be - RUM provides insight into what conditions actually are.</p>
 <h2 id="loading">Loading</h2>
 <p>The LUX scripts should only be loaded when a user has opted into usage tracking. This is done using the <code>rum-loader</code> script, which checks if the <code>usage</code> cookie is <code>true</code> and then loads the required scripts. This is already part of the <a href="https://components.publishing.service.gov.uk/component-guide/layout_for_public">Public Layout component</a>.</p>
-<h2 id="custom-changes-when-updating-lux">Custom changes when updating LUX</h2>
-<p>The scripts for the real user metrics are loaded from our servers - this allows us to know what is contained within the scripts and reduce the risk of unwelcome things being added to GOV.UK.</p>
-<p>Because of this, the scripts are audited before being updated and then two extra lines are added to make sure it works correctly. These two lines set the customer ID and turn on beacon mode.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>The scripts for the real user metrics are loaded from our servers - this allows us to know what is contained within the scripts and reduce the risk of unwelcome things being added to GOV.UK. Normally LUX is loaded from SpeedCurve's servers, so our setup is unusual.</p>
+<h3 id="the-scripts">The scripts</h3>
+<p>There are three scripts involved.</p>
+<ul>
+<li>
+<a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/rum-loader.js">the loader</a> is a script that we wrote. If cookies have been accepted, it <a href="https://github.com/alphagov/govuk_publishing_components/commit/0edd70614589d5fbd2a619483d3a63272714b384#diff-68c3e9ad18ca1324acd992819b248cd5b0e3e336f923a972b98ab09e8a06bd9dR58">finds the LUX script</a>, attaches it to the DOM and executes it. If cookies haven't been accepted, it sets a listener for the <code>cookie-consent</code> event.</li>
+<li>
+<a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-measurer.js">the measurer</a> measures performance from the start of page load, but doesn't report anything. This file shouldn't ever change. The source is from the RUM dashboard, in Settings, Edit RUM, at the end. We don't use this in the way SpeedCurve recommends, because we load the scripts ourselves.</li>
+<li>
+<a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-reporter.js">the reporter</a> is the script that the loader pulls down and attaches to the DOM. This file is <a href="https://github.com/alphagov/govuk_publishing_components/blob/0a70273097ab4cc4abb9b81726c3fc84db880091/app/assets/config/govuk_publishing_components_manifest.js#L12-L13">compiled as a separate asset</a> and isn't included until users consent to cookies.</li>
+</ul>
+<p>The reporter is the file that SpeedCurve occasionally changes (in SpeedCurve's repo it's called <code>lux.js</code>). Because we load our own modified copy of this script we currently have to manually download and update it. The script is audited before being updated and then two extra lines are added to make sure it works correctly. These two lines set the customer ID and set the sampling rate.</p>
 <h3 id="customer-id">Customer ID</h3>
 <p>The customer ID is an identifier for the site using LUX, not for the user visiting the site. It won't change from page to page, or from visitor to visitor.</p>
-<p>When loading <code>lux.js</code> from Speedcurve's CDN, the customer ID is appended to the end of the URI as a query string. The script looks for a script in the DOM with a source of <code>lux.js</code>, and from that extracts the customer ID.</p>
+<p>When loading <code>lux.js</code> from SpeedCurve's CDN, the customer ID is appended to the end of the URI as a query string. The script looks for a script in the DOM with a source of <code>lux.js</code>, and from that extracts the customer ID.</p>
 <p>Rails adds a fingerprint to the URI which means that <code>lux.js</code> becomes (for example) <code>lux.self-7137780d5344a93190a2c698cd660619d4197420b9b1ef963b639a825a6aa5ff.js</code> and the script can't find itself.</p>
 <p>Because of this the customer ID needs to be set at the end of the <code>lux.js</code> file:</p>
 <pre lang="javascript"><code>LUX.customerid = 47044334
@@ -255,7 +258,7 @@
 <h3 id="sending-information">Sending information</h3>
 <p>LUX needs the <a href="https://github.com/alphagov/govuk_app_config/blob/87e445eccee5fba2449a170d5ba628e8a380fcb8/lib/govuk_app_config/govuk_content_security_policy.rb#L36-L38">content security policy in <code>govuk_app_config</code></a> to be configured to allow communication to LUX servers. <a href="https://support.speedcurve.com/docs/add-rum-to-your-csp">Documentation</a> is provided on how to configure this.</p>
 <h3 id="sample-rate">Sample rate</h3>
-<p>LUX defaults to sending every event to Speedcurve - this can be changed by setting <code>LUX.samplerate</code> to a integer:</p>
+<p>LUX defaults to sending every event to SpeedCurve - this can be changed by setting <code>LUX.samplerate</code> to a integer:</p>
 <pre lang="javascript"><code>LUX.samplerate = 1 // Whole number from 1 to 100.
 </code></pre>
 <p>This then only sends 1% of visits.</p>
@@ -270,6 +273,34 @@
 <p>Sampling can also be forced by placing <code>LUX.forceSample()</code> at the end of the file:</p>
 <pre lang="javascript"><code>LUX.forceSample()
 </code></pre>
+<h2 id="how-to-update-to-a-new-version">How to update to a new version</h2>
+<h3 id="being-notified">Being notified</h3>
+<p>2nd line have an icinga alert set up to tell us when a new version of LUX is available. This checks the <a href="https://cdn.speedcurve.com/js/lux.js?id=47044334">live LUX script</a> for a variable called <code>SCRIPT_VERSION</code>. Since the file is minified it is actually looking for the pattern <code>V=[version_number]</code>, where <code>version_number</code> is currently <code>302</code>. If it does not match this, an alert is triggered.</p>
+<p>The <a href="https://github.com/alphagov/govuk-puppet/pull/11339">icinga alert was originally added in this PR</a>, for reference.</p>
+<h3 id="getting-the-new-code">Getting the new code</h3>
+<p>You will need to download the new script from <a href="https://github.com/SpeedCurve-Metrics/lux.js">the SpeedCurve github repo</a>. This is a private repo and you will need to request access. Matt Hobbs (head of frontend) is our point of contact for this. Once you have access it's worth turning on notifications for this repo in case the icinga alert fails.</p>
+<p>The script is written in TypeScript so you will first need to <code>npm install</code> and <code>npm build</code> to create a JavaScript version of the file (see repo README for details).</p>
+<h3 id="updating">Updating</h3>
+<p>Updating the reporter is a case of copying and pasting, reformatting, and updating to include the variables mentioned earlier. Try to format the file so that indenting differences don't make reviewing difficult.</p>
+<p>Instructions for how to update are in our copy of the file. In summary:</p>
+<ul>
+<li>
+<code>customerid</code> and <code>samplerate</code> are the things we need to set (copy them from the current version)</li>
+<li>the structure of the file sometimes changes so you might need to comb through to find them (<code>samplerate</code> is currently on line 157, but might change)</li>
+<li>
+<code>customerid</code> has to be at the end of the file</li>
+</ul>
+<h3 id="testing">Testing</h3>
+<p>You can test the changes locally to ensure the file has been updated correctly.</p>
+<ul>
+<li>temporarily set the <code>debug</code> option in the reporter to <code>true</code> for testing purposes</li>
+<li>load your local system and accept cookies</li>
+<li>paste this command into the browser console: <code>copy(window.LUX.getDebug())</code> (it'll say <code>undefined</code> but the output will be in your copy/paste buffer)</li>
+<li>visit the <a href="https://speedcurve-metrics.github.io/lux.js/debug-parser.html">SpeedCurve debugging tool</a> and paste the output into it, and check the output for errors</li>
+</ul>
+<p>If you're using docker to run the application, your local server will have a <code>dev.gov.uk</code> domain name and it is possible to set up SpeedCurve to see the data from it. You will need to uncomment the <code>forceSample</code> line to make this work.</p>
+<h2 id="protocol-measuring">Protocol measuring</h2>
+<p>We've added an extra bit to the end of the measurer script to <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/app/assets/javascripts/govuk_publishing_components/vendor/lux/lux-measurer.js#L161-L196">determine what protocol is in use</a> - HTTP 1, 2 or 3. This shouldn't need any updating as the measurer shouldn't change.</p>
 
 
             
