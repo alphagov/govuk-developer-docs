@@ -21,14 +21,12 @@ will remain on our servers forever more, [unless you perform a workaround](#what
 1. Create another PR for Puppet that:
   - Removes the user manifest file
   - Removes the user from [Integration users][integration-users]
-  - DO NOT remove the user's email from the [.mailmap file][mailmap] if present - this allows the user to keep a nicer git commit history.
 1. Once these have been merged, deploy Puppet again to all environments.
 
 [what-to-do-when-someone-leaves]: https://docs.publishing.service.gov.uk/manual/encrypted-hiera-data.html#what-to-do-when-someone-leaves
 [manifest-path]: https://github.com/alphagov/govuk-puppet/tree/master/modules/users/manifests
 [absent-example]: https://github.com/alphagov/govuk-puppet/commit/0757bad41ed577f15c7f5d9e508f55e78c612ddb
 [integration-users]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
-[mailmap]: https://github.com/alphagov/govuk-puppet/blob/main/.mailmap
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 [production-hieradata]: https://github.com/alphagov/govuk-secrets/tree/master/puppet/hieradata
 [aws-production-hieradata]: https://github.com/alphagov/govuk-secrets/tree/master/puppet_aws/hieradata
