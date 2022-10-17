@@ -225,7 +225,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b368425cf4b94ffb3383a75c03d1125e35978793">23 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/3d10ed0b086fce89c9abbfd6e1bbfad04d5eb3a2">6 Oct 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics link tracker</h1>
@@ -265,6 +265,24 @@
 </li>
 </ul>
 <p>Events can either have an <code>event_name</code> of <code>navigation</code>, <code>file_download</code>, or <code>share</code>. Download and preview links will use the <code>file_download</code> value, while generic external links, mailto links, and follow links will use <code>navigation</code>. Share links use <code>share</code>.</p>
+<p>Link URLs are stripped of the <code>_ga</code> and <code>_gl</code> query parameters. These are only relevant for cross domain tracking and aren't useful for our click tracking. Link text is stripped of multiple lines and multiple spaces, as this causes issues in the analytics dashboards.</p>
+<p>GA4 only allows event values to have a maximum character length of 100. This is a problem for tracking URLs, as many of them exceed 100 characters. Therefore, to solve this we have:</p>
+<ul>
+<li>Added a separate <code>link_domain</code> value which captures the protocol and domain of a link, such as <code>https://www.gov.uk</code>
+</li>
+<li>Created an object called <code>link_path_parts</code>, which splits the path into 100 character segments (max 5 segments, or 500 characters). For example, if your link was <code>https://gov.uk/supercalifragilisticexpialidocious-even-though-the-sound-of-it-is-something-quite-atrocious-if-you-say-it-loud-enough-youll-always-sound-precocious-supercalifragilisticexpialidocious-supercalifragili</code>, your GA4 push would contain:
+<pre lang="JavaScript"><code>"link_domain": "https://www.gov.uk",
+"link_path_parts": {
+     "1": "/supercalifragilisticexpialidocious-even-though-the-sound-of-it-is-something-quite-atrocious-if-you-",
+     "2": "say-it-loud-enough-youll-always-sound-precocious-supercalifragilisticexpialidocious-supercalifragili",
+     "3": undefined,
+     "4": undefined,
+     "5": undefined
+   },
+</code></pre>
+</li>
+<li>The link is then reconstructed in Data Studio.</li>
+</ul>
 <h2 id="basic-use">Basic use</h2>
 <pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-link-tracker
 
@@ -301,7 +319,12 @@ window.GOVUK.analyticsGa4.linkTracker.init({
         "section": null,
         "action": null,
         "external": "true",
-        "link_method": "primary click"
+        "method": "primary click",
+        "link_domain": "https://assets.publishing.service.gov.uk",
+        "link_path_parts": {
+            "1": "/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_",
+            "2": "update.pdf"
+        }
     }
 }
 </code></pre>
@@ -310,7 +333,7 @@ window.GOVUK.analyticsGa4.linkTracker.init({
 <p>Mailto links would turn turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>email</code>.</p>
 <p>Share links would turn <code>event_name</code> to <code>share</code> and type to <code>share this page</code>.</p>
 <p>Follow links would turn <code>event_name</code> to <code>navigation</code> and type to <code>follow us</code></p>
-<p>For <code>link_method</code>:</p>
+<p>For <code>method</code>:</p>
 <ul>
 <li>Left clicks are a <code>primary click</code>
 </li>
