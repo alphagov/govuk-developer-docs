@@ -18,8 +18,8 @@ jobs:
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1.1.1
-        env: 
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        with: 
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Enable auto-merge for Dependabot PRs
         if: ${{contains(fromJson('["govuk_publishing_components"]'), steps.metadata.outputs.dependency-names) && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
