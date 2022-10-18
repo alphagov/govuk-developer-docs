@@ -25,5 +25,4 @@ jobs:
         # if: ${{contains(fromJson('["govuk_publishing_components"]'), steps.metadata.outputs.dependency-names) && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
         run: gh pr review --comment -b "@dependabot merge"
         env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
