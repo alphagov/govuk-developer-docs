@@ -2,7 +2,7 @@ name: Dependabot auto-merge
 on: 
   pull_request:
     branches:
-      - ma
+      - main
 
 permissions: 
   pull-requests: write
@@ -26,4 +26,4 @@ jobs:
         # if: ${{contains(fromJson('["govuk_publishing_components"]'), steps.metadata.outputs.dependency-names) && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
         run: gh pr review --comment -b "@dependabot merge"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
