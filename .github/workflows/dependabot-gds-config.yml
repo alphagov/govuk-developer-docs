@@ -5,18 +5,14 @@ permissions:
   pull-requests: write
   contents: write
 
-auto_merge:
-  - package-ecosystem: bundler
-    packages:
-      - name: govuk_publishing_components
-        semver: patches_only # or 'patches_and_minor' or 'all'
-      # - name: gds-api-adapters
-      #   semver: patches_only
+env:
+  ALLOWED_PACKAGES:
+    - govuk_publishing_components
 
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
+    # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
@@ -28,9 +24,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable auto-merge for Dependabot PRs
-        if: ${{contains(steps.metadata.outputs.dependency-names, 'govuk_publishing_components') && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
-        run: gh pr merge --auto --merge "$PR_URL"
+        if: ${{contains(env.ALLOWED_PACKAGES, steps.metadata.outputs.dependency-names) && steps.metadata.outputs.update-type == 'version-update:semver-patch'}}
+        run: gh pr review --approve --comment -b "@dependabot merge"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ACTIONS_RUNNER_DEBUG: true
