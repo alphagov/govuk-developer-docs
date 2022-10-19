@@ -7,7 +7,6 @@ on:
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
     permissions:
       contents: write 
     # if: ${{ github.actor == 'dependabot[bot]' }}
