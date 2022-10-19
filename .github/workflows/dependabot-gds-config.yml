@@ -4,13 +4,12 @@ on:
     branches:
       - main
 
-permissions: 
-  pull-requests: write
-  contents: write
-
 jobs:
   dependabot:
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    permissions:
+      contents: write 
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Checkout source code
