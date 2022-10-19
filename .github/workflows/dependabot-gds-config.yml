@@ -1,14 +1,15 @@
 name: Dependabot auto-merge
-on: 
+on:
   pull_request:
-    branches:
-      - main
+    branches: main
+
+permissions: 
+  pull-requests: write
+  contents: write
 
 jobs:
   dependabot:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write 
     # if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Checkout source code
@@ -21,13 +22,13 @@ jobs:
       #     github-token: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Enable auto-merge for Dependabot PRs
-        #- uses: actions/github-script@v3
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+        - uses: actions/github-script@v3
+          with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              github.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: '👋 Thanks for reporting!'
+              })
