@@ -10,6 +10,22 @@ parent: "/manual.html"
 This document details some of the tasks that GOV.UK Technical 2nd Line may
 carry out regarding AWS.
 
+## Logging into AWS
+
+Once you've [set up AWS access](/manual/get-started.html#9-access-aws-for-the-first-time), you can log into the AWS console for the relevant environment by running:
+
+```
+gds aws govuk-<environment>-<role> -l
+```
+
+See [these notes](https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/integration/common.tfvars#L1-L13) about the different AWS IAM roles e.g.
+
+```
+gds aws govuk-integration-readonly -l
+```
+
+It will then ask you to supply your AWS vault password, followed by your 2FA code.
+
 ## Getting help with AWS
 
 ### Read the docs
