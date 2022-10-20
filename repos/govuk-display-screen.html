@@ -253,6 +253,9 @@ REFRESH_TOKEN
 console</a>. You need to generate the refresh token, there is a <a href="https://gist.github.com/edds/9363713">short Ruby
 script to create one for you</a>.</p>
 
+<p>Or, you can <a href="https://devcenter.heroku.com/articles/config-vars">obtain these values from Heroku</a>. For this approach you will need
+to log into Heroku using the 2nd line credentials held in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#usage">govuk-secrets</a>.</p>
+
 <p>Once you have them you can start the server running:</p>
 
 <pre><code>CLIENT_ID=... CLIENT_SECRET=... REFRESH_TOKEN=... ruby ./server.rb
