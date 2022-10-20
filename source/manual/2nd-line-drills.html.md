@@ -7,7 +7,7 @@ section: 2nd line
 type: learn
 ---
 
-There are a number of areas that are important to drill on 2nd line. This is to make developers familiar with the process, as well as to validate that the drill steps continue to work.
+There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going [on call](https://docs.publishing.service.gov.uk/manual/on-call.html) if you are part of the out of hours rota.
 
 ## Drill detaching an instance
 
@@ -69,6 +69,7 @@ Make sure you can log into the following accounts:
 1. [Shared CKAN account](/manual/data-gov-uk-2nd-line.html)
 1. [Shared Rubygems account](/manual/publishing-a-ruby-gem.html)
 1. [Shared NPM account](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm)
+1. [Shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher)
 
 ## Drill how to communicate when Slack is down
 
@@ -93,3 +94,49 @@ Either before merging the change, or part way through the continuous deployment 
 Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.
 
 Remove the code freeze, then manually push the changes to all remaining environments so that they're in sync.
+
+## Drill getting a password out of govuk-secrets
+
+Most of our shared accounts are stored in this repo. Follow the steps to [get a password](https://github.com/alphagov/govuk-secrets/tree/main/pass#get-a-password), a useful one for 2nd line is the [Technical 2nd line Dashboard](https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&layout=2x1-responsive&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&url%5B%5D=) which shows a high level overview of the state of GOV.UK environments.
+Upon loading this dashboard it will ask for the `govuk-zendesk-display-screen` credentials.
+
+## Drill making changes to user accounts
+
+### Assign a user to their publisher in data.gov.uk
+
+[Log into our shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher). Pick a [publisher](https://ckan.publishing.service.gov.uk/organization) to do a hypothetical walk though of [Assign users to publishers](/manual/data-gov-uk-2nd-line.html#assign-users-to-publishers-setting-user-permissions).
+
+### Change a user's permissions in Signon
+
+Carry out a hypothetical walk through of [unsuspending a user](manual/manage-sign-on-accounts#unsuspending-a-user) and [resetting a user's 2FA](manual/manage-sign-on-accounts#resetting-a-users-2fa).
+
+## Drill creating and changing redirects
+
+### Redirect a route
+
+Follow the [Removing a route created in the Short URL Manager](/manual/redirect-routes.html#removing-a-route-created-in-the-short-url-manager) and [Removing a route completely so it can be replaced with another route](/manual/redirect-routes.html#removing-a-route-completely-so-it-can-be-replaced-with-another-route) instructions.
+Do this on Integration or Staging.
+
+### Change a slug and create a redirect
+
+Follow the [Change a slug and create redirect in Whitehall](/manual/howto-change-slug-and-create-redirect.html), picking something
+at random in Whitehall from one of the group of entities listed ([people](https://whitehall-admin.publishing.service.gov.uk/government/admin/people), [role](https://whitehall-admin.publishing.service.gov.uk/government/admin/roles), [organisation](https://whitehall-admin.publishing.service.gov.uk/government/admin/organisations), etc).
+Do this on Integration or Staging.
+
+## Drill modifying a document's change note
+
+### Modify and remove a document's change note in Whitehall
+
+Follow [Modify a change note Whitehall](/manual/howto-modify-change-note.html#whitehall) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
+Once you have successfully updated the change note you can drill [removing a change note in Whitehall](/manual/howto-remove-change-note.html#whitehall).
+Do this on Integration or Staging.
+
+### Modify a document's change note in Publishing API
+
+Follow [Modify a change note in Publishing API](/manual/howto-modify-change-note.html#publishing-api) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
+Once you have successfully updated the change note you can drill [removing a change note in Publishing API](/manual/howto-remove-change-note.html#other-apps).
+Do this on Integration or Staging.
+
+## Drill updating homepage popular links
+
+Change the homepage popular links similar to [this PR](https://github.com/alphagov/frontend/pull/3382/files#diff-44438ce218f5287c58d0017f965d888715635d94280669896f75841fbd7b4cd7). Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.
