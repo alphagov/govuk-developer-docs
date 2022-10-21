@@ -176,31 +176,32 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4ce13af45f9b8a593f916c7a52528b2c83ed5a86">6 Oct 2022</a>
 </div>
 
- <h1 id='header'>Incorrect postcode data</h1> <p>We use postcode data from the <a href="https://geoportal.statistics.gov.uk/search?q=ONS%20Postcode%20Directory%20">ONS Postcode Directory</a> (ONSPD) and Ordnance Survey for boundary
-line data. We typically <a href="https://github.com/alphagov/mapit/blob/master/IMPORTING-DATA.md">import the data into Mapit</a> every 6 months.</p>
-<p>We sometimes receive Zendesk tickets about postcodes not returning the right results.
-You can check the accuracy of the postcode by:</p>
+ <h1 id='header'>Incorrect postcode data</h1> <p>We get our postcode data from Locations API, which uses OS Places API (Ordnance Survey) under the hood. Locations API postcodes <a href="https://github.com/alphagov/locations-api/blob/main/docs/postcodes-added-cached-updated.md#how-postcodes-are-updated">keep themselves up to date automatically</a> and should never be more than about a week out of date.</p>
+<p>In case the data is incorrect, a first step would be checking the Locations API result with the OS Places API result.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">--environment</span> integration app-console locations-api
+</code></pre></div><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="c1"># The OS Places API response</span>
+<span class="n">token_manager</span> <span class="o">=</span> <span class="no">OsPlacesApi</span><span class="o">::</span><span class="no">AccessTokenManager</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">response</span> <span class="o">=</span> <span class="no">HTTParty</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
+  <span class="s2">"https://api.os.uk/search/places/v1/postcode"</span><span class="p">,</span>
+  <span class="p">{</span>
+    <span class="ss">query: </span><span class="p">{</span> <span class="ss">postcode: </span><span class="s2">"E18QS"</span><span class="p">,</span> <span class="ss">output_srs: </span><span class="s2">"WGS84"</span><span class="p">,</span> <span class="s2">"dataset"</span><span class="p">:</span> <span class="s2">"DPA,LPI"</span> <span class="p">},</span>
+    <span class="ss">headers: </span><span class="p">{</span> <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Bearer </span><span class="si">#{</span><span class="n">token_manager</span><span class="p">.</span><span class="nf">access_token</span><span class="si">}</span><span class="s2">"</span> <span class="p">},</span>
+  <span class="p">}</span>
 
-<ul>
-<li>Looking up the postcode on Mapit, for example https://mapit.mysociety.org/postcode/E18QS
-and viewing the parents. There can be more than one parent which can be the case
-if the postcode sits between two boundaries</li>
-<li>Get the latitude/longitude and look it up on Google Maps</li>
-</ul>
-<p>If the data is incorrect you can contact ONS Geography ons.geography@ons.gov.uk
-and ask them to correct the data for the next postcode release.</p>
+<span class="c1"># The information we currently have in Locations API</span>
+<span class="no">Postcode</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">postcode: </span><span class="s2">"E18QS"</span><span class="p">).</span><span class="nf">results</span>
+</code></pre></div><p>If the results are not the same (especially the Local Custodian Code), then either the user happens to have looked up the postcode in the exact week where it has been updated by OS Places API but we haven&rsquo;t updated our cache yet, or - more likely - our mechanism for self-updating postcodes has broken, and requires further investigation.</p>
+<p>This is how you can manually force Locations API to update its cache for a given postcode:</p>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">token_manager</span> <span class="o">=</span> <span class="no">OsPlacesApi</span><span class="o">::</span><span class="no">AccessTokenManager</span><span class="p">.</span><span class="nf">new</span>
+<span class="no">OsPlacesApi</span><span class="o">::</span><span class="no">Client</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">token_manager</span><span class="p">).</span><span class="nf">update_postcode</span><span class="p">(</span><span class="s2">"E18QS"</span><span class="p">)</span>
 
+<span class="c1"># check if the record was updated</span>
+<span class="no">Postcode</span><span class="p">.</span><span class="nf">find_by</span><span class="p">(</span><span class="ss">postcode: </span><span class="s2">"E18QS"</span><span class="p">).</span><span class="nf">updated_at</span>
+</code></pre></div>
 
   <div class='related-content'>
 
