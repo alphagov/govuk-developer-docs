@@ -129,6 +129,9 @@
     <a href="#header"><span>Common AWS tasks for Technical 2nd Line</span></a>
     <ul>
       <li>
+        <a href="#logging-into-aws"><span>Logging into AWS</span></a>
+      </li>
+      <li>
         <a href="#getting-help-with-aws"><span>Getting help with AWS</span></a>
         <ul>
           <li>
@@ -248,11 +251,16 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fdf05205f8fe03304411591325b9f4e050d982aa">9 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5205434d9ef22cae97e46277b83804a01cd14ca9">20 Oct 2022</a>
 </div>
 
  <h1 id='header'>Common AWS tasks for Technical 2nd Line</h1> <p>This document details some of the tasks that GOV.UK Technical 2nd Line may
 carry out regarding AWS.</p>
+<h2 id='logging-into-aws'>Logging into AWS</h2><p>Once you&rsquo;ve <a href="/manual/get-started.html#9-access-aws-for-the-first-time">set up AWS access</a>, you can log into the AWS console for the relevant environment by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-&lt;environment&gt;-&lt;role&gt; -l
+</code></pre></div><p>See <a href="https://github.com/alphagov/govuk-aws-data/blob/main/data/infra-security/integration/common.tfvars#L1-L13">these notes</a> about the different AWS IAM roles e.g.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-integration-readonly -l
+</code></pre></div><p>It will then ask you to supply your AWS vault password, followed by your 2FA code.</p>
 <h2 id='getting-help-with-aws'>Getting help with AWS</h2><h3 id='read-the-docs'>Read the docs</h3><p>The <a href="https://docs.aws.amazon.com/">AWS docs</a> are comprehensive, and the
 GOV.UK developer docs explain how to do common tasks.</p>
 <h3 id='raise-an-aws-support-request'>Raise an AWS support request</h3><p>We pay AWS for Premium Support. You are strongly encouraged to contact AWS to
