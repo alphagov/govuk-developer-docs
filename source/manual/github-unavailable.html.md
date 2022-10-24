@@ -91,6 +91,8 @@ See the [Jenkins documentation](https://jenkins.io/doc/book/system-administratio
 
 1. Record the missing deployment in the Release app.
 
+1. Re-enable puppet: `govuk_puppet --enable`
+
 ### Troubleshooting
 
 If running any `git` commands against CodeCommit returns you a 403, you probably
