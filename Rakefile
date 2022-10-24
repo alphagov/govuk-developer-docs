@@ -55,6 +55,7 @@ task :verify_deployable_apps do
       sidekiq-monitoring
 
       manuals-frontend
+      mapit
     ]
 
   missing_apps = (deployable_applications - (our_applications + intentionally_missing)).uniq
