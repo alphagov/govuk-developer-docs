@@ -225,7 +225,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b368425cf4b94ffb3383a75c03d1125e35978793">23 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/1a91c411c6c9a93257c9a46b3327a94f75917080">19 Oct 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics event tracker</h1>
@@ -304,7 +304,7 @@
 <li>wrap the accordion in the event tracking script
 <ul>
 <li>tracking will be activated by clicks on elements with a <code>data-ga4</code> attribute</li>
-<li>it checks for an <code>aria-expanded</code> attribute, either on the clicked element or a child of the clicked element, and sets the <code>action</code> of the GA data accordingly</li>
+<li>it checks for an <code>aria-expanded</code> attribute if the clicked element or parent element contains a <code>data-ga4-expandable</code> value or the <code>gem-c-accordion</code> class. If it detects one of those, it sets the <code>action</code> of the GA data accordingly.</li>
 <li>the current text of the clicked element is also recorded (this can be overridden to a non-dynamic value by including <code>text</code> in the attributes if required)</li>
 </ul>
 </li>
