@@ -76,7 +76,7 @@ sudo chown postgres:postgres /var/lib/postgresql/name_of_database.bak
 Stop any services that are relying on the database, e.g.:
 
 ```sh
-sudo service mapit stop
+sudo service unknown-govuk-service stop
 ```
 
 Assume the PostgreSQL user role:
@@ -122,7 +122,7 @@ sudo service postgresql restart
 Restart whatever services you stopped, e.g.:
 
 ```sh
-sudo service mapit start
+sudo service unknown-govuk-service start
 ```
 
 Tidy up after yourself:
