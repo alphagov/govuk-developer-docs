@@ -28,15 +28,13 @@ GOV.UK AWS admin users can give access to developers who need to make changes to
 1. In the root of the local repo, run the following commands to install the AWS
    credential helper and add CodeCommit as a remote:
 
-   ```
-   git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/<app>
-   ```
+   `git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/<app>`
 
 1. Fetch the AWS upstream by running `git fetch aws`.
    You'll need to provide a username and password, which you can retrieve from govuk-secrets
-   (pass/2ndline/govuk-repo-mirror/https_git_credentials.gpg).
+   (pass/2ndline/govuk-repo-mirror/https_git_credentials).
 
-1. Checkout a new branch on the upstream by running `git checkout -b aws/my-super-secret-fix`
+1. Checkout a new branch on CodeCommit by running `git checkout -b aws/my-super-secret-fix`
 
 1. Make and commit your changes to this branch, and make sure all tests run successfully
    locally (since CodeCommit does not run tests)
@@ -56,14 +54,18 @@ In this scenario, Jenkins security should be disabled to enable deployment:
 
 1. SSH to the Jenkins deploy instance:
 
-```console
-gds govuk connect -e production ssh aws/jenkins
-```
+    ```console
+    # 2ndline drill: use the `integration/staging` rather than `production` environment in the following console.
+    gds govuk connect -e production ssh aws/jenkins
+    ```
 
 2. Disable Puppet: `govuk_puppet -r "Emergency Jenkins deploy" --disable`
-3. Edit the Jenkins configuration file: `sudo vim /var/lib/jenkins/config.xml`
-4. Replace `<useSecurity>true</useSecurity>` with `<useSecurity>false</useSecurity>` and save
-5. Restart Jenkins: `sudo service jenkins restart`
+
+2. Edit the Jenkins configuration file: `sudo vim /var/lib/jenkins/config.xml`
+
+2. Replace `<useSecurity>true</useSecurity>` with `<useSecurity>false</useSecurity>` and save
+
+2. Restart Jenkins: `sudo service jenkins restart`
 
 Note that once security is disabled, anyone on GDS trusted IPs will be able to deploy to that environment. This will bypass protection for Production - do not leave Production without security for any longer than necessary.
 
@@ -71,9 +73,13 @@ See the [Jenkins documentation](https://jenkins.io/doc/book/system-administratio
 
 ### Deploying the code change
 
-1. Review the pull request on AWS CodeCommit through the [AWS Console](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2) (access to GOV.UK repos must be granted by a GDS AWS administrator).
+1. `2ndline drill only:` Ensure that you check the `Freeze deployments?` box on the settings page of the app in the Release website.
 
-1. Create a release tag manually in git. This should follow the standard format
+1. Log on to the AWS Console as a `govuk-tools-poweruser` and ensure that you are in region `eu-west-2`.
+
+1. Review the branch on AWS CodeCommit through the [AWS Console](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2) (access to GOV.UK repos must be granted by a GDS AWS administrator).
+
+1. If you have not already tagged your release then create a release tag manually in git. This should follow the standard format
    `release_X`. Tag the branch directly instead of merging it.
 
 1. Browse to the Jenkins UI and begin the deployment process. Don't use the Release app. Go directly to the `Deploy_App` Jenkins job, and
@@ -83,13 +89,23 @@ See the [Jenkins documentation](https://jenkins.io/doc/book/system-administratio
 
 1. Restart Jenkins: `sudo service jenkins restart`
 
-### After deploying the change
+### After deploying the change -
 
-1. Push the branch and tag to GitHub.
+1. `2ndline drill only:` Ensure that you uncheck the `Freeze deployments?` box on the app in the Release website.
 
-1. Merge the branch into `main`.
+1. Edit the Jenkins configuration file: `sudo vim /var/lib/jenkins/config.xml`.
 
-1. Record the missing deployment in the Release app.
+1. Replace `<useSecurity>false</useSecurity>` with `<useSecurity>true</useSecurity>` and save.
+
+1. `2ndline drill only:` Delete your branch from CodeCommit used in the drill.
+
+#### The following steps are NOT for 2ndline drill
+
+5. Push the branch and tag to GitHub.
+
+5. Merge the branch into `main`.
+
+5. Record the missing deployment in the Release app.
 
 ### Troubleshooting
 
