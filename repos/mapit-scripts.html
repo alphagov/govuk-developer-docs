@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: mapit-scripts - GOV.UK Developer Documentation</title>
+    <title>Application: mapit-scripts (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/mapit-scripts.html">
 
-      <meta name="description" content="Everything about mapit-scripts (Custom scripts we run on MapIt data during the import process)" />
+      <meta name="description" content="Everything about mapit-scripts (Scripts used by mapit (now retired))" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: mapit-scripts - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Application: mapit-scripts (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/mapit-scripts.html" />
 
-      <meta property="og:description" content="Everything about mapit-scripts (Custom scripts we run on MapIt data during the import process)" />
+      <meta property="og:description" content="Everything about mapit-scripts (Scripts used by mapit (now retired))" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: mapit-scripts" />
+      <meta property="og:title" content="Application: mapit-scripts (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/mapit-scripts.html" />
 
@@ -175,147 +175,11 @@
 </div>
 
   
-  <h1 class="page-title">Application: mapit-scripts</h1>
+  <h1 class="page-title">Application: mapit-scripts (retired)</h1>
 
-  <p>Custom scripts we run on MapIt data during the import process</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/mapit-scripts">mapit-scripts</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-platform-reliability-team</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=mapit-scripts&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=mapit-scripts&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=mapit-scripts&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-mapit-scripts" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/mapit_scripts.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/mapit-scripts/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/mapit-scripts.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme">
-    <p>For some more information about Mapit and things we should be aware of, please see</p>
-<ul>
-<li><a href="https://github.gds/pages/gds/opsmanual/2nd-line/applications/mapit.html">the notes in the Opsmanual</a></li>
-<li><a href="https://github.com/alphagov/mapit">the MapIt repo</a></li>
-<li>
-<a href="https://gov-uk.atlassian.net/wiki/display/TECH/MapIt">the MapIt wiki page</a>.</li>
-</ul>
-<p>You should also refer to the official <a href="http://mapit.poplus.org/">Mapit documentation</a>.</p>
-<p><strong>Note that we currently use data imported using the <code>import-uk-onspd</code> script.</strong></p></p>
-
-<ul>
-<li>Repo, from GitHub</li>
-<li>Packages needed are in conf/packages.ubuntu-trusty (+ unzip if you want to
-unzip data for import)</li>
-<li>PostGIS database
-<ul>
-<li>we run <a href="https://docs.djangoproject.com/en/dev/_downloads/create_template_postgis-debian.sh">https://docs.djangoproject.com/en/dev/_downloads/create_template_postgis-debian.sh</a>
-</li>
-<li>Check to see if 27700/29902 changes are needed
-(see install_postgis() in <a href="https://github.com/mysociety/commonlib/blob/master/bin/install-site.sh">https://github.com/mysociety/commonlib/blob/master/bin/install-site.sh</a> )</li>
-</ul>
-<p></li>
-<li>compass (if you want the front end)
-<ul>
-<li>bin/make_css</li>
-</ul>
-</li>
-<li>conf/general.yml set up - DB config, COUNTRY: &lsquo;GB&rsquo;, AREA_SRID: 27700, SECRET_KEY: &hellip;</li>
-<li>./manage.py syncdb &ndash;noinput
-./manage.py migrate mapit</li>
-<li>Run import-uk-onspd</li>
-</ul>
-<h1 id="scripts">Scripts</h1>
-<h2 id="import-uk-onspd">import-uk-onspd</h2>
-<p><em>This script needs to be updated to point to new datasets as they are released.</em></p>
-<p>This script runs instructions similar to <a href="http://code.mapit.mysociety.org/import/uk/">http://code.mapit.mysociety.org/import/uk/</a></p>
-<p>It downloads Boundary-Line and ONSPD data, and OSNI (Northern Ireland) boundaries from the <a href="http://parlvid.mysociety.org/os/">mySociety cache</a></p>
-<p>It loads fixtures, runs all the various importing scripts on this downloaded data,
-and activates the generation. It also adds old ONS codes to the matching new GSS codes.</p>
-<p>It downloads local authority slugs from the GOV.UK Frontend app and assigns them as Codes of type <code>govuk_slug</code> to the relevant Areas.</p>
-<p>It does not use Code-Point data (unlike <code>import-uk</code>)</p>
-<h2 id="setup-and-import-uk">setup-and-import-uk</h2>
-<p><em>This script is not currently used for our production data set - please see
-<a href="#import-uk-onspd">import-uk-onspd</a></em></p>
-<p>This script runs the mySociety install-site script to set up mapit (this does
-things like install nginx, postgres, and so on, probably only useful if you&rsquo;re
-e.g. running on an empty EC2 instance), changes the necessary bits of
-configuration for running a UK instance (COUNTRY to &ldquo;GB&rdquo;, AREA_SRID to 27700,
-and DEBUG to False), sets up the database with a migrate, then runs import-uk.</p>
-<p>Please see <a href="http://code.mapit.mysociety.org/install/install-script/">http://code.mapit.mysociety.org/install/install-script/</a> for more
-information on the install script, <a href="http://code.mapit.mysociety.org/install/">http://code.mapit.mysociety.org/install/</a> for
-more manual instructions.</p>
-<h2 id="import-uk">import-uk</h2>
-<p><em>This script is not currently used for our production data set - please see
-<a href="#import-uk-onspd">import-uk-onspd</a></em></p>
-<p>This script runs instructions similar to <a href="http://code.mapit.mysociety.org/import/uk/">http://code.mapit.mysociety.org/import/uk/</a></p>
-<p>It downloads the Boundary-Line from the <a href="http://parlvid.mysociety.org/os/">mySociety cache</a>, and all Code-Points
-up to May 2015, which it merges together (in order to allow deleted
-postcodes to also be imported). It uses the November 2015 ONSPD from the mySociety cache.</p>
-<p>It loads fixtures, runs all the various importing scripts on this downloaded data,
-and activates the generation. It also adds old ONS codes to the matching new GSS codes.</p>
-<h2 id="get-all-codepoints-merge-all-codepoints">get-all-codepoints / merge-all-codepoints</h2>
-<p>Called by import-uk, these fetch all Code-Points up to May 2015 from the
-mySociety cache, and merge them together, respectively.</p>
-<h2 id="notes">Notes</h2>
-<p>Please note <a href="https://github.com/mysociety/mapit/wiki/NotesOnIDs">https://github.com/mysociety/mapit/wiki/NotesOnIDs</a> regarding ID
-usage now and in future.  As part of import-uk and import-uk-onspd we matches some old ONS codes to their GSS  equivalents.  However it&rsquo;s likely that new
-releases of the data will increase the number of mismatches and we will need to update these scripts as more boundaries change.</p>
-  </div></p>
+  <p>This application is retired.</p>
+<p><p>Scripts used by mapit (now retired)</p></p>
+<p><a href="https://github.com/alphagov/mapit-scripts">GitHub repository</a></p>
 
 
             

@@ -6,23 +6,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: mapit - GOV.UK Developer Documentation</title>
+    <title>Application: mapit (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/mapit.html">
 
-      <meta name="description" content="Everything about mapit (GOV.UK fork of Mapit, a web service to map postcodes to administrative boundaries)" />
+      <meta name="description" content="Everything about mapit (Used to do postcode lookups for Imminence and Frontend (now
+replaced by locations-api)
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: mapit - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Application: mapit (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/mapit.html" />
 
-      <meta property="og:description" content="Everything about mapit (GOV.UK fork of Mapit, a web service to map postcodes to administrative boundaries)" />
+      <meta property="og:description" content="Everything about mapit (Used to do postcode lookups for Imminence and Frontend (now
+replaced by locations-api)
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: mapit" />
+      <meta property="og:title" content="Application: mapit (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/mapit.html" />
 
@@ -179,159 +183,12 @@
 </div>
 
   
-  <h1 class="page-title">Application: mapit</h1>
+  <h1 class="page-title">Application: mapit (retired)</h1>
 
-  <p>GOV.UK fork of Mapit, a web service to map postcodes to administrative boundaries</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/mapit">mapit</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-platform-reliability-team</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">APIs</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=mapit&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=mapit&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=mapit&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-mapit" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/mapit.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/mapit/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/mapit.json" class="govuk-link">Deployment dashboard</a></li>
-    <li><a href="https://mapit.mysociety.org/docs/" class="govuk-link">API docs</a></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='relevant-manual-pages'>Relevant manual pages</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="/manual/mapit-caches.html" class="govuk-link">Mapit Caches</a></li>
-      <li><a href="/manual/scale-mapit.html" class="govuk-link">Scale Mapit</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>This is a fork of <a href="https://github.com/mysociety/mapit">the MapIt repo</a>. MapIt is a Python/Django application (backed by PostgreSQL), that provides RESTful API for looking up postcodes, council boundaries, etc.</p>
-
-<p><strong>Avoid adding features, changing behaviours, or touching the code of MapIt itself</strong>. The only <a href="https://github.com/mysociety/mapit/compare/master...alphagov:main">differences against the original repo</a> should only be to help integrate it into the GOV.UK stack. So far this includes:</p>
-
-<ul>
-<li>
-<a href="https://github.com/alphagov/mapit/pull/1">Pinning to specific versions of Python dependencies</a>, for reliability</li>
-<li>
-<a href="https://github.com/alphagov/mapit/pull/2">Adding a Procfile</a> and <a href="https://github.com/alphagov/mapit/pull/12">unicornherder</a>, to standardise deployment with other apps</li>
-<li>
-<a href="https://github.com/alphagov/mapit/pull/3">A GOV.UK specific README</a>, to provide context for GOV.UK developers</li>
-<li>
-<a href="https://github.com/alphagov/mapit/blob/main/import-db-from-s3.sh">Importing a DB from S3</a>, to simplify bringing new servers online with the same data</li>
-</ul>
-
-<p>If we need to change the code itself, we should communicate with mysociety to try and push the work back upstream so everyone benefits.</p>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
-<ul>
-<li>
-<strong>Area</strong>: a set of points that define an area that represents a geopolitical boundary of some sort.  A country, a parliamentary constituency, a national park, a civil parish, etc.</li>
-<li>
-<strong>Postcode</strong>: an identifier for a small geographical area usually derived from postal data.  Postcodes don&rsquo;t have boundaries, instead they have a lat/lng point which is the centroid of their area.  The <strong>Area</strong>s for that <strong>Postcode</strong> are looked up by doing a geo search for those that contain the point.</li>
-<li>
-<strong>Generation</strong>: because areas change over time we add <strong>Area</strong>s to generations.  If an area is in one generation but not another it is likely because legislation was enacted between those generations that meant it ceased to exist (often it is replaced by another similar but not exactly the same Area).  Unless specified in the request mapit only searches in the current generation.</li>
-<li>
-<strong>Type</strong>: to identify what an area is it has a type.  For example European parliamentary constituencies are type &lsquo;EUR&rsquo; compared to Westminister parliamentary constituencies of type &lsquo;WMC&rsquo;.</li>
-<li>
-<strong>CodeType</strong>: Areas have codes to allow them to be identified, issued by the ONS.  Prior to 2011 these were SNAC codes (stored as type &lsquo;ons&rsquo;) (see: <a href="http://www.ons.gov.uk/ons/guide-method/geography/products/names--codes-and-look-ups/standard-names-and-codes/index.html">http://www.ons.gov.uk/ons/guide-method/geography/products/names&ndash;codes-and-look-ups/standard-names-and-codes/index.html</a>), since 2011 these are GSS codes (stored as type &lsquo;gss&rsquo;) (see: <a href="http://neighbourhood.statistics.gov.uk/dissemination/Info.do?m=0&amp;s=1460381709047&amp;enc=1&amp;page=nessgeography/new-geography-codes-and-naming-policy-from-1-january-2011.htm&amp;nsjs=true&amp;nsck=false&amp;nssvg=false&amp;nswid=1212">http://neighbourhood.statistics.gov.uk/dissemination/Info.do?m=0&amp;s=1460381709047&amp;enc=1&amp;page=nessgeography/new-geography-codes-and-naming-policy-from-1-january-2011.htm&amp;nsjs=true&amp;nsck=false&amp;nssvg=false&amp;nswid=1212</a>)</li>
-<li>
-<strong>ONSPD</strong>: The Office for National Statistics Postcode Database - one of the open data sources we use to import data. We get UK postcodes from this.</li>
-<li>
-<strong>Boundary Line</strong>: The Ordnance Survey boundary line data - one of the open data sources we use to import data.  We get GB Areas from this.</li>
-<li>
-<strong>OSNI</strong>: The Ordnance Survey of Northern Ireland - one of the providers of the open data sources we use to import data.  We get NI Areas from them.</li>
-<li>
-<strong>ONS</strong>: Office for National Statistics</li>
-<li>
-<strong>GSS</strong>: Government Statistical Service, new ONS codes - GSS codes start with a letter, and are 9 characters long e.g. <code>S14000051</code>
-</li>
-<li>
-<strong>SNAC</strong>: old ONS codes - ONS codes consist of a number and/or character combination that could be
-2, 4, 6, 8, or 10 characters long, and depending on the length, may only be numbers</li>
-<li>
-<strong>SRID</strong>: spatial reference identifier</li>
-</ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
-<h3 id="running-the-application">Running the application</h3>
-
-<p>To run management commands in other (non-development) environments, you&rsquo;ll need the <code>GOVUK_ENV</code> environment variable set.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre><code>./manage.py test mapit mapit_gb
-</code></pre>
-
-<h3 id="further-documentation">Further documentation</h3>
-
-<ul>
-<li><a href="https://github.com/alphagov/mapit/blob/main/README.rst">Original README</a></li>
-<li><a href="/repos/mapit/importing-data.html">Importing data</a></li>
-<li><a href="/repos/mapit/testing-server.html">Testing a server with an updated Mapit database</a></li>
-<li><a href="/repos/mapit/api.html">Example API output</a></li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/mapit/blob/main/LICENSE.txt">GNU Affero GPL</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Used to do postcode lookups for Imminence and Frontend (now
+replaced by locations-api)</p></p>
+<p><a href="https://github.com/alphagov/mapit">GitHub repository</a></p>
 
 
             
