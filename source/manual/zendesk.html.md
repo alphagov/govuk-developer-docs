@@ -94,6 +94,22 @@ some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
 For more thorny issues, respond to the user that you are passing this on for further
 review and assign to the `3rd Line--GOV.UK Product Requests` Zendesk group.
 
+## DNS delegation tickets
+
+As of October 2022, Technical 2nd line may be asked to process DNS delegation requests. This used to be handled by a dedicated `3rd Line--GDS Reliability Engineering` Zendesk queue, which has now been merged into `2nd Line--GOV.UK Alerts and Issues`.
+
+The requests will look something like the following:
+
+> Please delegate the following to `something.service.gov.uk`
+> `nameserver1.example.com`
+> `nameserver2.example.com`
+
+We should process these as per the [SRE interruptible documentation](https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.wg0s4ugkpdpc).
+
+The workflow for these requests is that a requester emails a particular email address, which creates a Zendesk ticket for the GOV.UK Policy and Strategy team. The request is then signed off and routed to us. We then double-check with someone from GOV.UK Policy and Strategy that the change has been agreed, then add/change the necessary DNS records (see [example](https://github.com/alphagov/govuk-dns-config/pull/854/files)) and respond to the requestor via the ticket.
+
+Note that some requests come directly via the [hostmaster Google group](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster). If you are in any doubt about the legitimacy of a request, reassign the ticket to `3rd Line--Policy and Strategy` and add an internal note asking them.
+
 ## Leaver tickets
 
 As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.
