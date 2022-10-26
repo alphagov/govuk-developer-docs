@@ -278,15 +278,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/326cab9d6a8204215088b477f6beba276603375e">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-aws/commit/430e8fd7d579694560f80ea11174140d8f966364">25 Oct 2022</a>
 </div>
 
   <h1 class="page-title">govuk-aws: RDS Database Management</h1>
@@ -294,11 +287,7 @@
   
 <p>We're using <a href="https://aws.amazon.com/rds/">Amazon Relational Database Service (RDS)</a> to manage shared MySQL and PostgreSQL backend databases.</p>
 <p>Please see the <a href="https://github.com/alphagov/govuk-aws/blob/master/docs/architecture/decisions/0018-use-rds-instead-of-provisioned-ec2-databases.md">related ADR</a> for context on this decision.</p>
-<p>There are two exceptions to this:</p>
-<ul>
-<li>PuppetDB is using a local PostgreSQL instance</li>
-<li>Mapit uses a local PostgreSQL on each instance</li>
-</ul>
+<p>PuppetDB is the one exception to this (it is using a local PostgreSQL instance)</p>
 <h2 id="administering-rds-databases">Administering RDS databases</h2>
 <p>Administer RDS databases using the <code>db_admin</code> machine class.</p>
 <p>This machine class has full access to RDS, and has both PostgreSQL and MySQL clients installed.</p>
