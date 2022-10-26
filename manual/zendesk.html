@@ -152,6 +152,9 @@
         <a href="#data-gov-uk-tickets"><span>data.gov.uk tickets</span></a>
       </li>
       <li>
+        <a href="#dns-delegation-tickets"><span>DNS delegation tickets</span></a>
+      </li>
+      <li>
         <a href="#leaver-tickets"><span>Leaver tickets</span></a>
       </li>
       <li>
@@ -211,7 +214,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d07688bc934be99f1a1d13c6d1bed28fd07cf5d1">29 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8013c6732952a1e5f5cb1e8b4bd016b77dd4d044">26 Oct 2022</a>
 </div>
 
  <h1 id='header'>Zendesk</h1> <p>Technical 2nd Line Zendesk tickets are technical errors reported by our users, including government publishers.</p>
@@ -276,6 +279,17 @@ can see internal notes, so don’t write anything you wouldn’t say to someone 
 some of the common data.gov.uk (DGU) tickets that come in and how to fix them.
 For more thorny issues, respond to the user that you are passing this on for further
 review and assign to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk group.</p>
+<h2 id='dns-delegation-tickets'>DNS delegation tickets</h2><p>As of October 2022, Technical 2nd line may be asked to process DNS delegation requests. This used to be handled by a dedicated <code>3rd Line--GDS Reliability Engineering</code> Zendesk queue, which has now been merged into <code>2nd Line--GOV.UK Alerts and Issues</code>.</p>
+<p>The requests will look something like the following:</p>
+
+<blockquote>
+<p>Please delegate the following to <code>something.service.gov.uk</code>
+<code>nameserver1.example.com</code>
+<code>nameserver2.example.com</code></p>
+</blockquote>
+<p>We should process these as per the <a href="https://docs.google.com/document/d/1QzxwlN9-HoewVlyrOhFRZYc1S0zX-pd97igY8__ZLAo/edit#heading=h.wg0s4ugkpdpc">SRE interruptible documentation</a>.</p>
+<p>The workflow for these requests is that a requester emails a particular email address, which creates a Zendesk ticket for the GOV.UK Policy and Strategy team. The request is then signed off and routed to us. We then double-check with someone from GOV.UK Policy and Strategy that the change has been agreed, then add/change the necessary DNS records (see <a href="https://github.com/alphagov/govuk-dns-config/pull/854/files">example</a>) and respond to the requestor via the ticket.</p>
+<p>Note that some requests come directly via the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/hostmaster">hostmaster Google group</a>. If you are in any doubt about the legitimacy of a request, reassign the ticket to <code>3rd Line--Policy and Strategy</code> and add an internal note asking them.</p>
 <h2 id='leaver-tickets'>Leaver tickets</h2><p>As part of the leaver process, 1st line pass leaver tickets over to us so that we can check if they still have any GOV.UK access.</p>
 <p>Search for their name/email in the <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a> repository.</p>
 
