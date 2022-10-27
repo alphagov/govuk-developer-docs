@@ -225,7 +225,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6f247089b8d3d3b281c1761ddc6a16674050f1de">30 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/72d74009972f78a5f948949c73e4b82815526a3a">25 Oct 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics ecommerce tracker (i.e. search)</h1>
@@ -234,7 +234,7 @@
 <p>The ecommerce tracker script tracks search results in finder applications (e.g. search) and sends them to the <code>dataLayer</code>. There are 3 scenarios that result in a push to the <code>dataLayer</code>:</p>
 <ul>
 <li>on page load</li>
-<li>the application of filters and/or sorting</li>
+<li>the application of filters and/or sorting (i.e. a dynamic page update)</li>
 <li>clicking a search result</li>
 </ul>
 <h2 id="basic-use">Basic use</h2>
@@ -242,15 +242,20 @@
 <pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-ecommerce-tracker
 </code></pre>
 <p>In <code>live_search.js</code> in the <code>finder-frontend</code> repository (<a href="https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L129">https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L129</a>):</p>
-<pre lang="JavaScript"><code>GOVUK.analyticsGa4.Ga4EcommerceTracker.init(isNewPage) // isNewPage is a boolean and is used to detect whether a new page has been loaded or not
+<pre lang="JavaScript"><code>GOVUK.analyticsGa4.Ga4EcommerceTracker.init(referrer) 
 </code></pre>
+<p>The init() function takes a string (<code>referrer</code>) as an optional parameter to detect whether dynamic updates have been made to the page via AJAX requests. The presence of the <code>referrer</code> parameter is used to determine what is pushed to the dataLayer. If a parameter is not passed, this indicates a fresh page load (e.g. by refreshing the page or using the pagination) and that the page has not been dynamically updated via JS.</p>
 <p>Unlike the other GA4 tracking scripts in this repository, ecommerce tracking is not initialised by <code>init-ga4.js</code>. Instead, it is initialised by the JS that runs on finder pages (specifically, the <code>LiveSearch.prototype.Ga4EcommerceTracking()</code> function). It is called:</p>
-<p>On page load - <a href="https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L55">https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L55</a></p>
-<p>And whenever search results are updated - <a href="https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L121">https://github.com/alphagov/finder-frontend/blob/main/app/assets/javascripts/live_search.js#L121</a></p>
+<p>On page load (where no parameters are passed) e.g.</p>
+<pre><code>this.Ga4EcommerceTracking()
+</code></pre>
+<p>And whenever search results are updated (where a string parameter is passed) e.g.</p>
+<pre><code>this.Ga4EcommerceTracking(this.previousSearchUrl)
+</code></pre>
 <p>Note: ecommerce tracking will only run if there is an element which has the <code>data-ga4-ecommerce</code> attribute. If the script can't find an element with this attribute, it will stop running.</p>
 <h2 id="ecommerce-tracking">Ecommerce tracking</h2>
 <h3 id="on-page-load">On page load</h3>
-<p>Upon initialisation, the ecommerce tracker script will first detect whether a new page has been loaded (this is determined by the boolean passed when <code>Ga4EcommerceTracker.init()</code> is called). If <code>true</code>, this indicates that a new page has been loaded (i.e. the user has conducted a new search or has navigated to a new page using the pagination) and the initial set of search results that is loaded is pushed to the <code>dataLayer</code>.</p>
+<p>Upon initialisation, the ecommerce tracker script will first detect whether a new page has been loaded (this is determined by the presence of the <code>referrer</code> parameter that <code>LiveSearch.prototype.Ga4EcommerceTracking()</code> passes to <code>Ga4EcommerceTracker.init()</code>). If <code>Ga4EcommerceTracker.init()</code> does <em>not</em> receive a parameter, this indicates that a new page has been loaded (i.e. the user has conducted a new search or has navigated to a new page using the pagination) and the initial set of search results that is loaded is pushed to the <code>dataLayer</code>.</p>
 <p>For example, if a user searches for "tax", the following object will be pushed to the <code>dataLayer</code> on page load:</p>
 <pre lang="JSON"><code>{
     "event": "search_results",
@@ -288,7 +293,7 @@
 <p><code>https://www.gov.uk/search/all?keywords=tax&amp;order=relevance</code></p>
 <p>Then if the user applies the "Corporate information" topic filter and sorts by newest, the URL would become:</p>
 <p><code>https://www.gov.uk/search/all?keywords=tax&amp;level_one_taxon=a544d48b-1e9e-47fb-b427-7a987c658c14&amp;order=updated-newest</code></p>
-<p>To track these changes to the URL, a new <code>pageView</code> object is sent to the <code>dataLayer</code> along with the updated search results so that the user journey can be tracked.</p>
+<p>To track these changes to the URL, a new <code>page_view</code> object is sent to the <code>dataLayer</code> along with the updated search results so that the user journey can be tracked. In addition to this, PA's also need to be able to differentiate between a dynamic page update and a fresh page load; this is why the <code>referrer</code> parameter is passed on dynamic page updates and allows the <code>page_view.referrer</code> and <code>page_view.dynamic</code> to be set appropriately.</p>
 <p>Note: currently, filters that have been applied are not tracked; only the <code>search_results.ecommerce.items</code> and <code>search_result.sort</code> properties are updated.</p>
 <h3 id="clicking-a-search-result">Clicking a search result</h3>
 <p>If a user clicks on a search result, the following object will be pushed to the <code>dataLayer</code>:</p>
