@@ -9,6 +9,8 @@ type: learn
 
 [Licensify](/manual/licensing.html) is a GOV.UK application which is usually supported by third parties.
 
+Once staff at third parties have familiarity with the system and at least BPSS level clearance, a GOV.UK lead developer will request that they're granted [Production Deploy Access](/manual/rules-for-getting-production-access.html#production-deploy-access).
+
 This document explains how to access the Licensify infrastructure as a third party, to perform various maintenance tasks.
 
 ## Accessing the source code
