@@ -130,9 +130,6 @@
     <ul>
       <li>
         <a href="#removing-a-class-of-machine"><span>Removing a class of machine</span></a>
-      </li>
-      <li>
-        <a href="#aws"><span>AWS</span></a>
         <ul>
           <li>
             <a href="#1-remove-from-terraform"><span>1. Remove from Terraform</span></a>
@@ -192,28 +189,19 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6aac0f17356e11b6275aedff15ac517d2b882840">28 Oct 2022</a>
 </div>
 
  <h1 id='header'>Remove a machine</h1> <p>Before you start, make sure that the machines you are removing are no longer
 needed for anything.</p>
 <h2 id='removing-a-class-of-machine'>Removing a class of machine</h2><p>If you are removing a class of machines, you will need to <a href="https://github.com/alphagov/govuk-puppet/commit/8a971370a4b35de09a2e1a83ce3421f41f5d0520">remove the definitions</a> from Puppet.</p>
-<h2 id='aws'>AWS</h2><h3 id='1-remove-from-terraform'>1. Remove from Terraform</h3><p>If you&rsquo;re removing a class of machines, first <a href="/manual/deploying-terraform.html#ci-jenkins">deploy Terraform</a>
-for the relevant project using the <code>destroy</code> action. This will remove all the
-EC2 instances.</p>
+<h3 id='1-remove-from-terraform'>1. Remove from Terraform</h3><p>Firstly, <a href="/manual/deploying-terraform.html#ci-jenkins">deploy Terraform</a> for the relevant project using the <code>destroy</code> action. This will remove all the EC2 instances.</p>
 <p>Then, remove the project itself from <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/projects">govuk-aws</a>.</p>
 <p>If you&rsquo;re removing a single machine, change the <code>asg_size</code> for the
 relevant project in <a href="https://github.com/alphagov/govuk-aws-data/tree/master/data">govuk-aws-data</a>
-(<a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/app-whitehall-backend/production/common.tfvars#L4">example</a>) and deploy Terraform.  Unlike
-Carrenza, it is not possible to disable alerts for the machine before
+(<a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/app-whitehall-backend/production/common.tfvars#L4">example</a>) and deploy Terraform.
+It is not possible to disable alerts for the machine before
 it is removed, as the ASG will terminate arbitrary instances to shrink
 to the desired size.</p>
 <p>If there are particular machines in the ASG that you do not want terminated
