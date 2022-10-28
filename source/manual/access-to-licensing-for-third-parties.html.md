@@ -9,7 +9,13 @@ type: learn
 
 [Licensify](/manual/licensing.html) is a GOV.UK application which is usually supported by third parties.
 
+Once staff at third parties have familiarity with the system and at least BPSS level clearance, a GOV.UK lead developer will request that they're granted [Production Deploy Access](/manual/rules-for-getting-production-access.html#production-deploy-access).
+
 This document explains how to access the Licensify infrastructure as a third party, to perform various maintenance tasks.
+
+## Accessing the source code
+
+The source code is hosted on GitHub at [alphagov/licensify](https://github.com/alphagov/licensify).
 
 ## Accessing the logs
 
@@ -23,26 +29,6 @@ This is a prerequisite for accessing Jenkins (which is used for deployments), an
 
 Follow [the VPN guidance for non-GDS devices ("BYOD")](https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit)
 to set up the VPN. You will need to sign into your `@digital.cabinet-office.gov.uk` Google account to access this document.
-
-## Accessing MongoDB
-
-Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in `/etc/licensing/gds-licensing-config.properties` on the `licensing_backend` machines, in the `mongo.database.*` keys.
-
-```sh
-$ grep mongo.database /etc/licensing/gds-licensing-config.properties
-# …
-mongo.database.hosts=licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-1.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-2.abcd1234wxyz.eu-west-1.docdb.amazonaws.com
-mongo.database.reference.name=licensify-refdata
-# …
-mongo.database.auth.username=master
-mongo.database.auth.password=REDACTED
-# …
-$ mongo licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com/licensify-refdata -u master
-MongoDB shell version v3.6.14
-Enter password: REDACTED
-
-…
-```
 
 ## Deploying code with Jenkins
 
@@ -91,6 +77,8 @@ environments is as follows:
 
 ## Accessing machines using SSH
 
+Accessing machines using SSH in production and staging requires Production Admin Access. Third parties are usually only given Production Deploy Access, which only allows SSH in the integration environment.
+
 Follow the [instructions for connecting to a machine via SSH](/manual/howto-ssh-to-machines.html#connecting-with-plain-ssh). The machine classes you will need are `licensing_frontend` and `licensing_backend`. You will need to be on the VPN.
 
 The files most relevant to the Licensify applications can be found in:
@@ -99,6 +87,23 @@ The files most relevant to the Licensify applications can be found in:
 * Logs: `/var/log/licensify`
 * Config: `/etc/licensify`
 
-## Accessing the source code
+## Accessing MongoDB
 
-The source code is hosted on GitHub at [alphagov/licensify](https://github.com/alphagov/licensify).
+Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in `/etc/licensing/gds-licensing-config.properties` on the `licensing_backend` machines, in the `mongo.database.*` keys.
+
+```sh
+$ grep mongo.database /etc/licensing/gds-licensing-config.properties
+# …
+mongo.database.hosts=licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-1.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-2.abcd1234wxyz.eu-west-1.docdb.amazonaws.com
+mongo.database.reference.name=licensify-refdata
+# …
+mongo.database.auth.username=master
+mongo.database.auth.password=REDACTED
+# …
+$ mongo licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com/licensify-refdata -u master
+MongoDB shell version v3.6.14
+Enter password: REDACTED
+
+…
+```
+
