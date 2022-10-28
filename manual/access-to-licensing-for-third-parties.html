@@ -129,13 +129,13 @@
     <a href="#header"><span>Access to Licensify for Third Parties</span></a>
     <ul>
       <li>
-        <a href="#accessing-the-source-code"><span>Accessing the source code</span></a>
-      </li>
-      <li>
         <a href="#accessing-the-logs"><span>Accessing the logs</span></a>
       </li>
       <li>
         <a href="#accessing-the-vpn"><span>Accessing the VPN</span></a>
+      </li>
+      <li>
+        <a href="#accessing-mongodb"><span>Accessing MongoDB</span></a>
       </li>
       <li>
         <a href="#deploying-code-with-jenkins"><span>Deploying code with Jenkins</span></a>
@@ -144,7 +144,7 @@
         <a href="#accessing-machines-using-ssh"><span>Accessing machines using SSH</span></a>
       </li>
       <li>
-        <a href="#accessing-mongodb"><span>Accessing MongoDB</span></a>
+        <a href="#accessing-the-source-code"><span>Accessing the source code</span></a>
       </li>
     </ul>
   </li>
@@ -197,19 +197,31 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f0cd9b448c0449cf03a11c717c4315c08b12757a">28 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5ee28641bf24a9fb3262d94ba48a864636372319">23 May 2022</a>
 </div>
 
  <h1 id='header'>Access to Licensify for Third Parties</h1> <p><a href="/manual/licensing.html">Licensify</a> is a GOV.UK application which is usually supported by third parties.</p>
-<p>Once staff at third parties have familiarity with the system and at least BPSS level clearance, a GOV.UK lead developer will request that they&rsquo;re granted <a href="/manual/rules-for-getting-production-access.html#production-deploy-access">Production Deploy Access</a>.</p>
 <p>This document explains how to access the Licensify infrastructure as a third party, to perform various maintenance tasks.</p>
-<h2 id='accessing-the-source-code'>Accessing the source code</h2><p>The source code is hosted on GitHub at <a href="https://github.com/alphagov/licensify">alphagov/licensify</a>.</p>
 <h2 id='accessing-the-logs'>Accessing the logs</h2><p>Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.</p>
 <p>If you haven&rsquo;t already got access to GDS&rsquo; Logit account, you&rsquo;ll need to <a href="https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit">follow the instructions in the Reliability Engineering documentation to create an account in Logit</a>.</p>
 <h2 id='accessing-the-vpn'>Accessing the VPN</h2><p>This is a prerequisite for accessing Jenkins (which is used for deployments), and for SSH-ing onto instances.</p>
 <p>Follow <a href="https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit">the VPN guidance for non-GDS devices (&ldquo;BYOD&rdquo;)</a>
 to set up the VPN. You will need to sign into your <code>@digital.cabinet-office.gov.uk</code> Google account to access this document.</p>
-<h2 id='deploying-code-with-jenkins'>Deploying code with Jenkins</h2><p>Licensify is built and deployed using Jenkins. There are four relevant Jenkins instances:</p>
+<h2 id='accessing-mongodb'>Accessing MongoDB</h2><p>Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in <code>/etc/licensing/gds-licensing-config.properties</code> on the <code>licensing_backend</code> machines, in the <code>mongo.database.*</code> keys.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">grep </span>mongo.database /etc/licensing/gds-licensing-config.properties
+<span class="c"># …</span>
+mongo.database.hosts<span class="o">=</span>licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-1.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-2.abcd1234wxyz.eu-west-1.docdb.amazonaws.com
+mongo.database.reference.name<span class="o">=</span>licensify-refdata
+<span class="c"># …</span>
+mongo.database.auth.username<span class="o">=</span>master
+mongo.database.auth.password<span class="o">=</span>REDACTED
+<span class="c"># …</span>
+<span class="nv">$ </span>mongo licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com/licensify-refdata <span class="nt">-u</span> master
+MongoDB shell version v3.6.14
+Enter password: REDACTED
+
+…
+</code></pre></div><h2 id='deploying-code-with-jenkins'>Deploying code with Jenkins</h2><p>Licensify is built and deployed using Jenkins. There are four relevant Jenkins instances:</p>
 
 <ol>
 <li><a href="https://ci.integration.publishing.service.gov.uk/job/licensify/">CI Jenkins</a> automatically builds releases from the master branch</li>
@@ -260,8 +272,7 @@ components.
 <li><a href="https://deploy.blue.production.govuk.digital/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed">licensify-feed (Production)</a></li>
 </ol></li>
 </ol>
-<h2 id='accessing-machines-using-ssh'>Accessing machines using SSH</h2><p>Accessing machines using SSH in production and staging requires Production Admin Access. Third parties are usually only given Production Deploy Access, which only allows SSH in the integration environment.</p>
-<p>Follow the <a href="/manual/howto-ssh-to-machines.html#connecting-with-plain-ssh">instructions for connecting to a machine via SSH</a>. The machine classes you will need are <code>licensing_frontend</code> and <code>licensing_backend</code>. You will need to be on the VPN.</p>
+<h2 id='accessing-machines-using-ssh'>Accessing machines using SSH</h2><p>Follow the <a href="/manual/howto-ssh-to-machines.html#connecting-with-plain-ssh">instructions for connecting to a machine via SSH</a>. The machine classes you will need are <code>licensing_frontend</code> and <code>licensing_backend</code>. You will need to be on the VPN.</p>
 <p>The files most relevant to the Licensify applications can be found in:</p>
 
 <ul>
@@ -269,21 +280,8 @@ components.
 <li>Logs: <code>/var/log/licensify</code></li>
 <li>Config: <code>/etc/licensify</code></li>
 </ul>
-<h2 id='accessing-mongodb'>Accessing MongoDB</h2><p>Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in <code>/etc/licensing/gds-licensing-config.properties</code> on the <code>licensing_backend</code> machines, in the <code>mongo.database.*</code> keys.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">grep </span>mongo.database /etc/licensing/gds-licensing-config.properties
-<span class="c"># …</span>
-mongo.database.hosts<span class="o">=</span>licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-1.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-2.abcd1234wxyz.eu-west-1.docdb.amazonaws.com
-mongo.database.reference.name<span class="o">=</span>licensify-refdata
-<span class="c"># …</span>
-mongo.database.auth.username<span class="o">=</span>master
-mongo.database.auth.password<span class="o">=</span>REDACTED
-<span class="c"># …</span>
-<span class="nv">$ </span>mongo licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com/licensify-refdata <span class="nt">-u</span> master
-MongoDB shell version v3.6.14
-Enter password: REDACTED
+<h2 id='accessing-the-source-code'>Accessing the source code</h2><p>The source code is hosted on GitHub at <a href="https://github.com/alphagov/licensify">alphagov/licensify</a>.</p>
 
-…
-</code></pre></div>
 
   <div class='related-content'>
 
