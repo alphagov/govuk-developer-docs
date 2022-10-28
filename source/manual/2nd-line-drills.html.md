@@ -62,6 +62,7 @@ Follow the [Restore an RDS instance via the AWS CLI](/manual/howto-backup-and-re
 
 Make sure you can log into the following accounts:
 
+1. [The AWS Console](/manual/common-aws-tasks-for-2nd-line-support.html#logging-into-aws)
 1. Your individual Fastly account
 1. Your individual Statuspage account
 1. Your individual Logit account
