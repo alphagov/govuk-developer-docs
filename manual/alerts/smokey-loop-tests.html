@@ -163,7 +163,7 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/89df1eee4d8e07bd78a7f5a51bbd328dac59de01">22 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e872f9f13e6af5cd09868ab55d2023496166bba5">28 Oct 2022</a>
 </div>
 
  <h1 id='header'>Smokey loop tests</h1> <p><a href="https://github.com/alphagov/smokey">Smokey</a> runs in a continuous loop in each environment.
@@ -199,8 +199,29 @@ govuk_setenv smokey bundle <span class="nb">exec </span>cucumber <span class="nv
 </blockquote>
 <h2 id='check-the-smokey-credentials'>Check the Smokey credentials</h2><p>These tests rely on a user in <a href="https://github.com/alphagov/signon">GOV.UK Signon</a>. All Signon users have
 their passphrase expire periodically. This will cause the tests to fail.</p>
-<p>You should change the passphrase of the account and rotate it in encrypted
-hieradata. Here&rsquo;s an <a href="https://github.com/alphagov/govuk-secrets/pull/307">example PR in govuk-secrets</a>.</p>
+
+<ol>
+<li>Log in to Signon (in all environments) using the smokey test user email address 2nd-line-support@digital.cabinet-office.gov.uk and follow the flow to reset the password. If the password has already expired you can change it in the Signon login page.</li>
+<li>Access to the 2nd-line-support@digital.cabinet-office.gov.uk Google group where the reset email has been sent to.</li>
+<li>Double check you can log in with the new credentials.</li>
+<li>Add the new password to <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>. It needs to be updated in the following files:</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>- [puppet_aws/hieradata/integration_credentials.yaml](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/integration_credentials.yaml)
+- [puppet_aws/hieradata/staging_credentials.yaml](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/staging_credentials.yaml)
+- [puppet_aws/hieradata/production_credentials.yaml](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/production_credentials.yaml)
+- [puppet_aws/hieradata/test_credentials.yaml](https://github.com/alphagov/govuk-secrets/blob/main/puppet_aws/hieradata/test_credentials.yaml)
+
+Follow [Encrypting a Hiera key](/manual/encrypted-hiera-data.html#encrypting-a-hiera-key) for more information and [this example PR](https://github.com/alphagov/govuk-secrets/pull/1376)
+</code></pre></div>
+<ol>
+<li>Commit and merge PR.</li>
+<li>Rebuild the latest release for the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet">Deploy Puppet</a> Jenkins job, which can be found in the Build History panel on the left. Do this for all environments.</li>
+<li><p><a href="/manual/howto-ssh-to-machines.html#header">SSH into a machine</a>:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh --environment integration monitoring
+</code></pre></div></li>
+<li><p>Run <code>govuk_puppet --test</code> to pull the new secrets into the machine</p></li>
+<li><p>You can check they&rsquo;ve been updated by running <code>less /etc/govuk/smokey/env.d/SIGNON_PASSWORD</code> which should contain the new credentials</p></li>
+</ol>
 
 
   <div class='related-content'>
