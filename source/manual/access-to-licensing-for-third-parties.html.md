@@ -11,6 +11,10 @@ type: learn
 
 This document explains how to access the Licensify infrastructure as a third party, to perform various maintenance tasks.
 
+## Accessing the source code
+
+The source code is hosted on GitHub at [alphagov/licensify](https://github.com/alphagov/licensify).
+
 ## Accessing the logs
 
 Licensify uses an Elasticsearch / Logstash / Kibana system hosted by Logit.io for its logs.
@@ -23,26 +27,6 @@ This is a prerequisite for accessing Jenkins (which is used for deployments), an
 
 Follow [the VPN guidance for non-GDS devices ("BYOD")](https://docs.google.com/document/d/150JX1xiWdXY29ahcYUMb05Si-hEAZvtkGAKojT9Rjis/edit)
 to set up the VPN. You will need to sign into your `@digital.cabinet-office.gov.uk` Google account to access this document.
-
-## Accessing MongoDB
-
-Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in `/etc/licensing/gds-licensing-config.properties` on the `licensing_backend` machines, in the `mongo.database.*` keys.
-
-```sh
-$ grep mongo.database /etc/licensing/gds-licensing-config.properties
-# …
-mongo.database.hosts=licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-1.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-2.abcd1234wxyz.eu-west-1.docdb.amazonaws.com
-mongo.database.reference.name=licensify-refdata
-# …
-mongo.database.auth.username=master
-mongo.database.auth.password=REDACTED
-# …
-$ mongo licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com/licensify-refdata -u master
-MongoDB shell version v3.6.14
-Enter password: REDACTED
-
-…
-```
 
 ## Deploying code with Jenkins
 
@@ -99,6 +83,23 @@ The files most relevant to the Licensify applications can be found in:
 * Logs: `/var/log/licensify`
 * Config: `/etc/licensify`
 
-## Accessing the source code
+## Accessing MongoDB
 
-The source code is hosted on GitHub at [alphagov/licensify](https://github.com/alphagov/licensify).
+Licensify uses a MongoDB cluster hosted by AWS (DocumentDB). The database hosts in use by a particular Licensify instance can be found in `/etc/licensing/gds-licensing-config.properties` on the `licensing_backend` machines, in the `mongo.database.*` keys.
+
+```sh
+$ grep mongo.database /etc/licensing/gds-licensing-config.properties
+# …
+mongo.database.hosts=licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-1.abcd1234wxyz.eu-west-1.docdb.amazonaws.com,licensify-documentdb-2.abcd1234wxyz.eu-west-1.docdb.amazonaws.com
+mongo.database.reference.name=licensify-refdata
+# …
+mongo.database.auth.username=master
+mongo.database.auth.password=REDACTED
+# …
+$ mongo licensify-documentdb-0.abcd1234wxyz.eu-west-1.docdb.amazonaws.com/licensify-refdata -u master
+MongoDB shell version v3.6.14
+Enter password: REDACTED
+
+…
+```
+
