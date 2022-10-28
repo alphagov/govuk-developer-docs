@@ -15,20 +15,16 @@ If you are removing a class of machines, you will need to [remove the definition
 
 [def]: https://github.com/alphagov/govuk-puppet/commit/8a971370a4b35de09a2e1a83ce3421f41f5d0520
 
-## AWS
-
 ### 1. Remove from Terraform
 
-If you're removing a class of machines, first [deploy Terraform][terraform]
-for the relevant project using the `destroy` action. This will remove all the
-EC2 instances.
+Firstly, [deploy Terraform][terraform] for the relevant project using the `destroy` action. This will remove all the EC2 instances.
 
 Then, remove the project itself from [govuk-aws][].
 
 If you're removing a single machine, change the `asg_size` for the
 relevant project in [govuk-aws-data][]
-([example][whitehall-backend-asg-size]) and deploy Terraform.  Unlike
-Carrenza, it is not possible to disable alerts for the machine before
+([example][whitehall-backend-asg-size]) and deploy Terraform.
+It is not possible to disable alerts for the machine before
 it is removed, as the ASG will terminate arbitrary instances to shrink
 to the desired size.
 
