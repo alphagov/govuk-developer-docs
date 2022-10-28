@@ -49,13 +49,7 @@ before the release takes effect. This has an implication on how
 quickly you can go from staging to production.
 
 If you'd rather not wait and you're able to safely determine from the
-diff what classes of machines the change will affect, you can use
-[Fabric](https://github.com/alphagov/fabric-scripts) to force a run of
-Puppet. For example:
-
-```
-fab $environment class:frontend_lb class:backend_lb puppet
-```
+diff what classes of machines the change will affect, [you can force a run of puppet](/manual/howto-run-ssh-commands-on-many-machines.html#run-puppet) on the relevant machine classes.
 
 This will run in serial across the nodes so there is a reduced chance of
 downtime caused by a service restarting on all nodes of a given
@@ -74,31 +68,23 @@ brief outage, e.g. MySQL.
 > to and you MUST have some plan for restarting the service in the near
 > future so that it's not inconsistent with its configuration.
 
-There are also instructions on [how to disable and enable puppet without using fabric scripts](/manual/howto-run-ssh-commands-on-many-machines.html).
+1. Find out which machine class the service is running on
 
-1. Disable normal Puppet runs on the affected nodes:
+2. Disable puppet on all machines of that class
 
-   ```
-   fab $environment class:mysql_master puppet.disable:'Preventing service restart'
-   ```
+3. On each machine, change the file content to match what Puppet wants it to be.
+   If it's a plain file you can probably apply the diff from git using sudo patch source.diff dest.
+   If it's a template then you may need to refer to an existing environment or figure it out yourself.
 
-2. Change the file content to match what Puppet wants it to be. If it's
-   a plain file you can probably apply the diff from git using
-   `sudo patch source.diff dest`. If it's a template then you may need
-   to refer to an existing environment or figure it out yourself.
-3. Verify that Puppet won't change the file or notify the service by
-   running it in `noop` mode. You will need to provide a different lock
-   path to bypass the disable:
+4. Verify that Puppet won't change the file or notify the service by running it in noop mode.
+   ou will need to provide a different lock path to bypass the disable:
 
-   ```
-   govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
-   ```
+```
+govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
+```
 
-4. If you're happy with the results then re-enable Puppet and run it
-   again:
+5. If you're happy with the results then re-enable Puppet on all of the machines
 
-   ```
-   fab $environment class:mysql_master puppet.enable puppet
-   ```
+6. Schedule a time to actually restart the service if necessary.
 
-5. Schedule a time to actually restart the service if necessary.
+Instructions on [how to disable and enable puppet can be found here](/manual/howto-run-ssh-commands-on-many-machines.html).

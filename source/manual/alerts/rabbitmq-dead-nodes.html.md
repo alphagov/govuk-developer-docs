@@ -7,7 +7,7 @@ section: Icinga alerts
 ---
 
 
-This can happen if one of the machines in the cluster is killed by AWS and replaced with a new machine. In this scenario, the cluster is still working, but leaving the dead node will cause problems in future e.g. when we try to [reboot the machines to install updates](https://github.com/alphagov/fabric-scripts/blob/a14686667d27790f0978146634b1e4d281552b8c/rabbitmq.py#L57). The check can be found [here][alert_check].
+This can happen if one of the machines in the cluster is killed by AWS and replaced with a new machine. In this scenario, the cluster is still working, but leaving the dead node will cause problems in future. The check can be found [here][alert_check].
 
 First, check which node is dead:
 
@@ -28,7 +28,7 @@ gds govuk connect -e production ssh aws/rabbitmq "sudo rabbitmqctl forget_cluste
 ```
 
 [rabbitmq_doc]: https://docs.publishing.service.gov.uk/manual/rabbitmq.html
-[alert_check]: https://github.com/alphagov/govuk-puppet/blob/ae1be54779ae6912fe693cc66394e6e61afccd9b/modules/govuk_rabbitmq/templates/check_rabbitmq_dead_nodes.cfg.erb
+[alert_check]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk_rabbitmq/templates/check_rabbitmq_dead_nodes.cfg.erb
 [restart_an_application]: https://docs.publishing.service.gov.uk/manual/restart-application.html
 
 ## Unhealthy nodes
