@@ -225,7 +225,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/2ede3f2f8b81cf34eda5fcb8e04b56a6a600f874">17 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/d9016d93585ba6559823ccb892c666e76eb0f321">31 Oct 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Track click script</h1>
@@ -291,8 +291,11 @@
   data-track-category="category"
   data-track-action="action"
   data-track-links-only&gt;
-  &lt;a class="first" href="/link1"&gt;Link 1&lt;/a&gt;
-  &lt;a class="second" href="/link2"&gt;Link 2&lt;/a&gt;
+  &lt;a class="first" href="/link1"&gt;This link will be tracked&lt;/a&gt;
+  &lt;a class="second" href="/link2"&gt;
+    &lt;span&gt;This link will also be tracked even though it contains child elements&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;span&gt;This span will not be tracked&lt;/span&gt;
 &lt;/div&gt;
 </code></pre>
 <h2 id="track-links-within-content-within-a-specific-element">Track links within content within a specific element</h2>
