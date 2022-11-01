@@ -127,21 +127,11 @@
       <ul>
           <li><a href="/repos/content-store/access-limited-content-items.html" rel="noopener" class="govuk-link">Access-limited content items</a></li>
           <li><a href="/repos/content-store/content-store-api.html" rel="noopener" class="govuk-link">Content Store API</a></li>
-          <li><a href="/repos/content-store/content_item_fields.html" rel="noopener" class="govuk-link">Content Item Fields</a></li>
           <li><a href="/repos/content-store/gone_item.html" rel="noopener" class="govuk-link"># Gone items</a></li>
           <li><a href="/repos/content-store/placeholder_item.html" rel="noopener" class="govuk-link"># Placeholder items</a></li>
           <li><a href="/repos/content-store/publish_intents.html" rel="noopener" class="govuk-link">Publish intents</a></li>
           <li><a href="/repos/content-store/redirect_item.html" rel="noopener" class="govuk-link"># Redirect items</a></li>
           <li><a href="/repos/content-store/route_registration.html" rel="noopener" class="govuk-link"># Registering routes with the router.</a></li>
-          <li class="subdir__heading">output_examples/frontend-app</li>
-          <ul class="subdir__menu">
-              <li><a href="/repos/content-store/output_examples/frontend-app/basic_formats.html" rel="noopener" class="govuk-link">basic_formats</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/find_my_nearest.html" rel="noopener" class="govuk-link">find_my_nearest</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/licence.html" rel="noopener" class="govuk-link">licence</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/local_transaction.html" rel="noopener" class="govuk-link">local_transaction</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/travel-advice-country.html" rel="noopener" class="govuk-link">travel-advice-country</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/travel-advice-index.html" rel="noopener" class="govuk-link">travel-advice-index</a></li>
-          </ul>
       </ul>
     </li>
   </ul>
@@ -201,15 +191,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-store/commit/c0780d1038198c42157b3b79c7178a048b4734fe">29 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/content-store/commit/54e139472e8d44b93bbd1a8616f9959bc3ff24d3">31 Oct 2022</a>
 </div>
 
   <h1 class="page-title">content-store: Content Store API</h1>
@@ -217,9 +200,7 @@
   
 <h2 id="content-items">Content items</h2>
 <p><code>ContentItem</code> is the base unit of content in the content store. They have both a
-private and public-facing JSON representation. More details on these
-representations and the meanings of the individual fields can be found in
-<a href="/repos/content-store/content_item_fields.html">content_item_fields.md</a>.</p>
+private and public-facing JSON representation.</p>
 <h2 id="writing-content-items-to-the-content-store">Writing content items to the content store</h2>
 <p>Content is written by the <a href="https://docs.publishing.service.gov.uk/apps/publishing-api.html">publishing API</a>, which is used by back-end publishing apps such as Travel Advice Publisher.</p>
 <p>To add or update a piece of content in the content store, make a PUT request:</p>
@@ -228,21 +209,15 @@ representations and the meanings of the individual fields can be found in
     -d '&lt;content_item_json&gt;'
 </code></pre>
 <p>where <code>&lt;base_path&gt;</code> is the path on GOV.UK where the content lives (for example
-<code>/vat-rates</code>) and <code>&lt;content_item_json&gt;</code> is the JSON for the content item as
-outlined in <a href="https://github.com/alphagov/content-store/blob/main/docs/input_examples">input_examples</a>.</p>
-<p>There is currently an <a href="https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api/publishing_api.rb">API adapter</a>
-in <a href="https://github.com/alphagov/gds-api-adapters">gds-api-adapters</a> for writing
-content to content-store, although it is likely that this will soon be extracted
-to a separate gem.</p>
+<code>/vat-rates</code>) and <code>&lt;content_item_json&gt;</code> is the JSON for the content item.</p>
 <h2 id="reading-content-from-the-content-store">Reading content from the content store</h2>
-<p>Content is retrieved from the content store via the <a href="https://content-api.publishing.service.gov.uk/">content API</a>, which takes a path and responds with a JSON representation of the content that should be displayed on that path. This API is used by front-end apps but is also exposed externally at <code>/api/content/&lt;path&gt;</code>, such as <a href="https://www.gov.uk/api/content/take-pet-abroad">https://www.gov.uk/api/content/take-pet-abroad</a></p>
+<p>Content is retrieved from the content store via the <a href="https://content-store.publishing.service.gov.uk/">content store</a>, which takes a path and responds with a JSON representation of the content that should be displayed on that path. This API is used by front-end apps but is also exposed externally at <code>/api/content/&lt;path&gt;</code>, such as <a href="https://www.gov.uk/api/content/take-pet-abroad">https://www.gov.uk/api/content/take-pet-abroad</a></p>
 <p>To retrieve content from the content store, make a GET request:</p>
 <pre lang="sh"><code>  curl https://content-store.publishing.service.gov.uk/content&lt;path&gt;
 </code></pre>
 <p>If the <code>path</code> matches a <code>base_path</code> content will be returned, whereas if the
 <code>path</code> matches a route a 303 redirect will be returned to the content at the
 <code>base_path</code>.</p>
-<p>Examples of the JSON representation of content items can be found in <a href="https://github.com/alphagov/content-store/blob/main/docs/output_examples">output_examples</a>.</p>
 <p>Not all content exists as a standalone page like the <code>/take-pet-abroad</code> example. Some content exists as a collection that references other pieces of content, and some content exists as meta content designed to describe a wider whole. We use <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a> to describe all these different content types. The content API itself is not prescriptive about this; it takes any JSON structure.</p>
 
 

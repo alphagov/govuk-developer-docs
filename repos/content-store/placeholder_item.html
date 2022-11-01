@@ -127,21 +127,11 @@
       <ul>
           <li><a href="/repos/content-store/access-limited-content-items.html" rel="noopener" class="govuk-link">Access-limited content items</a></li>
           <li><a href="/repos/content-store/content-store-api.html" rel="noopener" class="govuk-link">Content Store API</a></li>
-          <li><a href="/repos/content-store/content_item_fields.html" rel="noopener" class="govuk-link">Content Item Fields</a></li>
           <li><a href="/repos/content-store/gone_item.html" rel="noopener" class="govuk-link"># Gone items</a></li>
           <li><a href="/repos/content-store/placeholder_item.html" rel="noopener" class="govuk-link"># Placeholder items</a></li>
           <li><a href="/repos/content-store/publish_intents.html" rel="noopener" class="govuk-link">Publish intents</a></li>
           <li><a href="/repos/content-store/redirect_item.html" rel="noopener" class="govuk-link"># Redirect items</a></li>
           <li><a href="/repos/content-store/route_registration.html" rel="noopener" class="govuk-link"># Registering routes with the router.</a></li>
-          <li class="subdir__heading">output_examples/frontend-app</li>
-          <ul class="subdir__menu">
-              <li><a href="/repos/content-store/output_examples/frontend-app/basic_formats.html" rel="noopener" class="govuk-link">basic_formats</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/find_my_nearest.html" rel="noopener" class="govuk-link">find_my_nearest</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/licence.html" rel="noopener" class="govuk-link">licence</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/local_transaction.html" rel="noopener" class="govuk-link">local_transaction</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/travel-advice-country.html" rel="noopener" class="govuk-link">travel-advice-country</a></li>
-              <li><a href="/repos/content-store/output_examples/frontend-app/travel-advice-index.html" rel="noopener" class="govuk-link">travel-advice-index</a></li>
-          </ul>
       </ul>
     </li>
   </ul>
@@ -201,15 +191,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-store/commit/bcec194346509ae232c9b4850291459832b68dc2">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/content-store/commit/54e139472e8d44b93bbd1a8616f9959bc3ff24d3">31 Oct 2022</a>
 </div>
 
   <h1 class="page-title">content-store: # Placeholder items</h1>
@@ -220,8 +203,9 @@ referenced from other content items in the content store.</p>
 <p>During the transition to using the content store as the source of published
 content on GOV.UK, there may be a need to link to content that isn't yet being
 served directly from the content store. In such cases, the content that needs
-to be linked to can be added to the content store with either a format of
-"placeholder" or a format prefixed with "placeholder_".  Placeholder content
+to be linked to can be added to the content store with a schema_name of
+"placeholder" and a document_type of either "placeholder" or
+prefixed with "placeholder_".  Placeholder content
 will be expanded out when linked to in the <code>links</code> field of a content item, and
 can also be retrieved from the content store, but will not have its routes
 registered or updated.</p>
