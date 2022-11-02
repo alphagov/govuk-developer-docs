@@ -15,15 +15,13 @@ If GitHub is unavailable, we lose:
 * Access to our primary code repository
 * The ability to authenticate with Jenkins, as it makes use of GitHub groups
 
-We [mirror all GitHub repositories](repository-mirroring.html) tagged with `govuk` to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos. This requires help from a GOV.UK AWS admin.
+We [mirror all GitHub repositories](repository-mirroring.html) tagged with `govuk` to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos.
 
 ### Deploying from AWS CodeCommit
 
 Use the normal deployment Jenkins job but check the box to deploy from AWS CodeCommit.
 
 #### Making changes to code in AWS CodeCommit before deployment
-
-GOV.UK AWS admin users can give access to developers who need to make changes to the code before deployment.
 
 1. In the root of the local repo, run the following commands to install the AWS
    credential helper and add CodeCommit as a remote:
@@ -71,7 +69,7 @@ See the [Jenkins documentation](https://jenkins.io/doc/book/system-administratio
 
 ### Deploying the code change
 
-1. Review the pull request on AWS CodeCommit through the [AWS Console](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2) (access to GOV.UK repos must be granted by a GDS AWS administrator).
+1. Review the pull request on AWS CodeCommit through the [AWS Console](https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2)
 
 1. Create a release tag manually in git. This should follow the standard format
    `release_X`. Tag the branch directly instead of merging it.
