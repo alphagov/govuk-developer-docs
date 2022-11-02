@@ -14,7 +14,6 @@ GOV.UK has several layers of testing:
   - [Application Healthchecks](#application-healthchecks)
 
 - [Continuous Integration checks](#continuous-integration-checks)
-  - [Publishing End-to-end Tests](#publishing-end-to-end-tests)
   - [Contract Tests](#contract-tests)
   - [Unit, Integration, etc. Tests](#unit-integration-etc-tests)
 
@@ -57,12 +56,6 @@ Note that service apps have no web server to query, so [we check the process is 
 See also: [how we reuse health check endpoints to alert about transient failures](https://docs.publishing.service.gov.uk/manual/alerts/app-healthcheck-not-ok.html).
 
 ## Continuous Integration checks
-
-### Publishing End-to-end Tests
-
-[Publishing End-to-end Tests](https://github.com/alphagov/publishing-e2e-tests#govuk-publishing-end-to-end-tests) uses a Docker environment to run end-to-end tests of publishing actions involving [various apps](https://github.com/alphagov/publishing-e2e-tests/blob/main/Jenkinsfile#L8). Unlike the surrogate suite of end-to-end tests in [Smokey](#smokey), the Docker environment used by Publishing End-to-end Tests means the tests are properly isolated.
-
-**Warning: this test suite is DEPRECATED**. The tests are slow and brittle and do not run in a realistic GOV.UK environment. Do not add any new tests to this repo. [We have agreed to delete these tests once we have sufficiently increased coverage from the other forms of testing described here](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#delete-publishing-e2e-tests).
 
 ### Contract Tests
 
