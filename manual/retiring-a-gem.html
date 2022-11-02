@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Add authentication to an application - GOV.UK Developer Documentation</title>
+    <title>Retire a gem - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/add-authentication-to-an-application.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/retiring-a-gem.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Add authentication to an application - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/add-authentication-to-an-application.html" />
+      <meta name="twitter:title" content="Retire a gem - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/retiring-a-gem.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Add authentication to an application" />
+      <meta property="og:title" content="Retire a gem" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/add-authentication-to-an-application.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/retiring-a-gem.html" />
 
     
   </head>
@@ -126,16 +126,19 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Add authentication to an application</span></a>
+    <a href="#header"><span>Retire a gem</span></a>
     <ul>
       <li>
-        <a href="#setting-up-authentication-for-your-ruby-application"><span>Setting up authentication for your Ruby application</span></a>
+        <a href="#1-ensure-the-gem-is-not-used-by-any-apps"><span>1. Ensure the gem is not used by any apps</span></a>
       </li>
       <li>
-        <a href="#before-an-application-can-be-deployed-with-authentication"><span>Before an application can be deployed with authentication</span></a>
+        <a href="#2-update-gem39s-readme-and-archive-it"><span>2. Update gem’s README and archive it</span></a>
       </li>
       <li>
-        <a href="#deploying"><span>Deploying</span></a>
+        <a href="#3-remove-references-and-update-docs"><span>3. Remove references and update docs</span></a>
+      </li>
+      <li>
+        <a href="#4-yank-the-gem-optional"><span>4. Yank the gem (optional)</span></a>
       </li>
     </ul>
   </li>
@@ -187,107 +190,25 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4e0e3396f23ffc5d8232056ffe30f06da95d4580">1 Nov 2022</a>
 </div>
 
- <h1 id='header'>Add authentication to an application</h1> <p>The process outlined here relies on the <a href="https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html">data sync</a> to synchronise
-credentials between production and staging which will mean that you will have
-to wait overnight from starting this to completing.</p>
-<h2 id='setting-up-authentication-for-your-ruby-application'>Setting up authentication for your Ruby application</h2><p>Prior to merging authentication into an existing application there are a
-<a href="#before-an-application-can-be-deployed-with-authentication">number of steps</a>
-that need to be performed so that users and applications can access the app
-immediately.</p>
-<p>To set up an application:</p>
-
-<ol>
-<li>Install <a href="https://github.com/alphagov/gds-sso">GDS-SSO gem</a> as per the gem instructions.</li>
-<li>Determine whether the whole application or just particular routes need
-authentication.</li>
-<li>Configure the application to require authentication. If you&rsquo;re using a
-non-Rails app, check <a href="https://github.com/omniauth/omniauth">OmniAuth</a> documentation (GDS-SSO uses OmniAuth).</li>
-<li>Update the application tests so that there is a user created or mocked for
-tests. <a href="https://github.com/alphagov/content-store/pull/498/commits/f405ca84940efe9705ee48fc21f373dacc05da63">Example commit</a>.</li>
-<li>If the application is part of <a href="https://github.com/alphagov/publishing-e2e-tests">Publishing End-to-end Tests</a>
-then you may need to add user creation to the database seeds.
-<a href="https://github.com/alphagov/content-store/pull/498/commits/cf41056f3cee446ef94043f3a3b074c71bcfa7d6">Example commit</a>.</li>
-</ol>
-<h2 id='before-an-application-can-be-deployed-with-authentication'>Before an application can be deployed with authentication</h2>
-<ol>
-<li>Your application will need to be registered as an application in
-<a href="/repos/signon.html">signon</a> in <a href="http://signon.publishing.service.gov.uk">production</a> and
-<a href="http://signon.integration.publishing.service.gov.uk">integration</a>. Staging is not required as it will be
-synced with production as part of the <a href="https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html">data sync</a>.
-
-<ul>
-<li>Create the application in signon with a <a href="https://github.com/alphagov/signon/blob/main/docs/usage.md#setup-rake-tasks">rake task</a></li>
-<li>Make a note of the <code>oauth_id</code> and <code>oauth_secret</code> for each environment</li>
-</ul></li>
-<li><em>API application only:</em> Create bearer tokens for all the applications that will
-need authenticated access to your application.
-
-<ul>
-<li>Identify each of the applications that communicate with your application,
-the <a href="https://docs.publishing.service.gov.uk/manual/architecture.html">Architectural overview of GOV.UK applications</a> may
-help, and determine whether they need authenticated access.</li>
-<li>For each of these:
-
-<ul>
-<li>Find or create an API user for the application in
-<a href="https://signon.publishing.service.gov.uk/api_users">Production</a> and
-<a href="https://signon.integration.publishing.service.gov.uk/api_users">Integration</a>;</li>
-<li>Run the &ldquo;Add application token&rdquo; action to create a token for the
-application added in step 1;</li>
-<li>Make a note of the created token;</li>
-<li>Add any necessary app permissions to the application access.</li>
-</ul></li>
-</ul></li>
-<li>Add the tokens and OAuth credentials you have created to <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>.
-This is so they can be used in Puppet hieradata. The production tokens should
-also be added to the staging secrets. <a href="https://github.com/alphagov/govuk-secrets/pull/517">Example PR</a>.</li>
-<li>Create environment variables in <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> for the tokens you have
-created. <a href="https://github.com/alphagov/govuk-puppet/pull/8426">Example PR</a>.
-
-<ul>
-<li>If your application runs on the draft stack you&rsquo;ll also need to ensure
-it can communicate with signon. <a href="https://github.com/alphagov/govuk-puppet/pull/8439">Example PR</a>.</li>
-</ul></li>
-<li><em>API application only:</em> Use the bearer tokens in applications that need to
-authenticate with your application.
-
-<ul>
-<li>Applications differ in how they configure bearer token.</li>
-<li>The ideal approach is for the bearer token to be set automatically in
-<a href="https://github.com/alphagov/gds-api-adapters/pull/852">GDS API Adapters</a>.</li>
-<li>You may need to update <a href="https://github.com/alphagov/publisher/blob/008b79a902795aa25d102913e2f4f2fde1ac834b/app/lib/services.rb">lib/services.rb</a> or find
-where GdsApi classes are <a href="https://github.com/alphagov/whitehall/blob/7b5c5a086b89cb62ffba62b152a0a8dcfc10c8e6/config/initializers/rummager.rb">initiailised</a>.</li>
-</ul></li>
-<li>Once all these changes are merged and deployed you should see the
-environment variables set up in the appropriate environments.</li>
-</ol>
-<h2 id='deploying'>Deploying</h2><p>If you are adding authentication to an existing application, the deployment
-process should be approached with caution as a mistake in copying the
-tokens could break the app in any of the environments.</p>
-<p>Once you have completed all the steps above, you should start by deploying the
-branch of your application to integration and check that:</p>
-
-<ul>
-<li>Authentication is enabled - this can be achieved by doing a cURL request on
-the box against a known authenticated route of the application;</li>
-<li>Check the logs to ensure the application is successfully processing requests.</li>
-</ul>
-<p>Once this is verified the branch can be merged.</p>
-<p>Prior to deploying to staging and production, you should inform Technical 2nd Line so they
-are prepared for any problems. For each environment you deploy to you should
-repeat the same checks that authentication is enabled and that the application
-is still successfully processing requests.</p>
+ <h1 id='header'>Retire a gem</h1> <h2 id='1-ensure-the-gem-is-not-used-by-any-apps'>1. Ensure the gem is not used by any apps</h2><p>Search for references to the gem in our codebase to see if any apps are still using it:</p>
+<p><a href="https://github.com/search?q=org%3Aalphagov+rack-logstasher+filename%3AGemfile+filename%3A*.gemspec&amp;type=Code&amp;ref=advsearch&amp;l=&amp;l=">example</a></p>
+<p>For any repos which are found to have the gem as a dependency, you should confirm that the gem <em>is</em> actually being used and that it&rsquo;s not simply a leftover artefact that is no longer in use.
+Check the usage instructions in the gem&rsquo;s README and then search for the corresponding code in the repo (e.g. <code>use Rack::Logstasher::Logger</code>). Alternatively, find the commits where the gem was added and used, and see if the corresponding code that uses the gem still exists.</p>
+<p>If the gem is being used you will either need to replace it with a different gem or your own code before you can archive it.</p>
+<p>If removing the gem from an app, take the usual measures of due diligence (e.g. ensuring tests pass, monitoring the release for Sentry errors, etc).</p>
+<h2 id='2-update-gem39s-readme-and-archive-it'>2. Update gem&rsquo;s README and archive it</h2><p>When the gem&rsquo;s repo is ready to be archived, push a commit explaining the reasons for archiving it.</p>
+<p><a href="https://github.com/alphagov/govuk_taxonomy_helpers/pull/27">Example</a></p>
+<p>Go into the repository settings in GitHub, and
+<a href="https://github.com/blog/2460-archiving-repositories">archive the repo</a>.</p>
+<h2 id='3-remove-references-and-update-docs'>3. Remove references and update docs</h2><p>Do a [code search on GitHub][https://github.com/search?q=org%3Aalphagov+panopticon&amp;type=Code] to find any references to the gem
+and update or remove them.</p>
+<p>Mark the gem as <code>retired</code> in [govuk-developer-docs][https://github.com/alphagov/govuk-developer-docs].</p>
+<h2 id='4-yank-the-gem-optional'>4. Yank the gem (optional)</h2><p>Once the gem has been archived you may want to <a href="https://guides.rubygems.org/removing-a-published-gem/">yank it from Rubygems</a> if it was published there. You can find the Rubygems credentials in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>.</p>
+<p>You should only really do this if the gem was published in error or contains a security vulnerability. If it&rsquo;s simply that the gem is no longer maintained, it&rsquo;s fine to leave it published.</p>
 
 
   <div class='related-content'>
@@ -312,10 +233,10 @@ is still successfully processing requests.</p>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/add-authentication-to-an-application.html">Add authentication to an application</a></li>
             <li><a href="/manual/ownership-meaning.html">Application ownership</a></li>
             <li><a href="/manual/create-a-local-transaction.html">Create a Local Transaction</a></li>
             <li><a href="/manual/naming.html">Name a new application or gem</a></li>
-            <li><a href="/manual/retiring-a-gem.html">Retire a gem</a></li>
             <li><a href="/manual/retiring-an-application.html">Retire an application</a></li>
             <li><a href="/manual/setting-up-new-rails-app.html">Set up a new Rails application</a></li>
           </ul>
@@ -330,8 +251,8 @@ is still successfully processing requests.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/add-authentication-to-an-application.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Add+authentication+to+an+application%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fadd-authentication-to-an-application.html%29&amp;labels=bug&amp;title=Re%3A+%27Add+authentication+to+an+application%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/retiring-a-gem.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Retire+a+gem%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fretiring-a-gem.html%29&amp;labels=bug&amp;title=Re%3A+%27Retire+a+gem%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
