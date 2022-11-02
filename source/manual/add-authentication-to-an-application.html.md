@@ -26,9 +26,6 @@ To set up an application:
    non-Rails app, check [OmniAuth][] documentation (GDS-SSO uses OmniAuth).
 4. Update the application tests so that there is a user created or mocked for
    tests. [Example commit][gds-sso-test-user].
-5. If the application is part of [Publishing End-to-end Tests][publishing-e2e]
-   then you may need to add user creation to the database seeds.
-   [Example commit][e2e-database-seeds].
 
 ## Before an application can be deployed with authentication
 
@@ -92,8 +89,6 @@ is still successfully processing requests.
 [data sync]: https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html
 [Omniauth]: https://github.com/omniauth/omniauth
 [gds-sso-test-user]: https://github.com/alphagov/content-store/pull/498/commits/f405ca84940efe9705ee48fc21f373dacc05da63
-[publishing-e2e]: https://github.com/alphagov/publishing-e2e-tests
-[e2e-database-seeds]: https://github.com/alphagov/content-store/pull/498/commits/cf41056f3cee446ef94043f3a3b074c71bcfa7d6
 [signon-integration]: http://signon.integration.publishing.service.gov.uk
 [signon-production]: http://signon.publishing.service.gov.uk
 [app-create-rake]: https://github.com/alphagov/signon/blob/main/docs/usage.md#setup-rake-tasks

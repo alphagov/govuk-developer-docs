@@ -270,7 +270,6 @@ Notes:
 [Jenkins]: /manual/testing-projects.html
 [GOV.UK RFC 123]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md
 [actions-secrets]: https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
-[e2e-tests]: /manual/publishing-e2e-tests.html
 [gem-release]: /manual/publishing-a-ruby-gem.html#releasing-gem-versions
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
 [actions-marketplace]: https://github.com/marketplace?type=actions
