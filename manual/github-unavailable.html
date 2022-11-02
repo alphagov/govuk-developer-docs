@@ -202,7 +202,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2c39914ea92ca952aa1d638f5380d2fdd1827dba">21 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c4b4ae434a52bb8fa938a848713e37cb344e9be">2 Nov 2022</a>
 </div>
 
  <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='public-github-application-code'>Public GitHub (application code)</h2><p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. We may need to deploy changes at any time, and GitHub is a Software as a Service (SaaS) product which is not guaranteed to be available.</p>
@@ -212,10 +212,9 @@
 <li>Access to our primary code repository</li>
 <li>The ability to authenticate with Jenkins, as it makes use of GitHub groups</li>
 </ul>
-<p>We <a href="/manual/repository-mirroring.html">mirror all GitHub repositories</a> tagged with <code>govuk</code> to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos. This requires help from a GOV.UK AWS admin.</p>
+<p>We <a href="/manual/repository-mirroring.html">mirror all GitHub repositories</a> tagged with <code>govuk</code> to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos.</p>
 <h3 id='deploying-from-aws-codecommit'>Deploying from AWS CodeCommit</h3><p>Use the normal deployment Jenkins job but check the box to deploy from AWS CodeCommit.</p>
-<h4 id='making-changes-to-code-in-aws-codecommit-before-deployment'>Making changes to code in AWS CodeCommit before deployment</h4><p>GOV.UK AWS admin users can give access to developers who need to make changes to the code before deployment.</p>
-
+<h4 id='making-changes-to-code-in-aws-codecommit-before-deployment'>Making changes to code in AWS CodeCommit before deployment</h4>
 <ol>
 <li>In the root of the local repo, run the following commands to install the AWS
 credential helper and add CodeCommit as a remote:</li>
@@ -252,7 +251,7 @@ release tag for the application you&rsquo;re working on, as reported by the Rele
 <p>See the <a href="https://jenkins.io/doc/book/system-administration/security/#disabling-security">Jenkins documentation</a> for further details.</p>
 <h3 id='deploying-the-code-change'>Deploying the code change</h3>
 <ol>
-<li><p>Review the pull request on AWS CodeCommit through the <a href="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2">AWS Console</a> (access to GOV.UK repos must be granted by a GDS AWS administrator).</p></li>
+<li><p>Review the pull request on AWS CodeCommit through the <a href="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2">AWS Console</a></p></li>
 <li><p>Create a release tag manually in git. This should follow the standard format
 <code>release_X</code>. Tag the branch directly instead of merging it.</p></li>
 <li><p>Browse to the Jenkins UI and begin the deployment process. Don&rsquo;t use the Release app. Go directly to the <code>Deploy_App</code> Jenkins job, and

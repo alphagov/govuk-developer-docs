@@ -196,7 +196,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06f592152faa610f3c1c48ac414cc0d2eaa8c801">16 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c4b4ae434a52bb8fa938a848713e37cb344e9be">2 Nov 2022</a>
 </div>
 
  <h1 id='header'>Rules for getting production access</h1> <p>In the GOV.UK programme we restrict access to production systems for new or
@@ -241,7 +241,7 @@ any access issues.</p>
 <li>Permission to read &amp; write to the <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">password store</a> in govuk-secrets store using <a href="https://github.com/alphagov/govuk-secrets/blob/master/pass/2ndline/.gpg-id">GPG</a></li>
 <li>Access to <a href="https://deploy.blue.production.govuk.digital/">Production Deploy Jenkins</a> and <a href="https://deploy.blue.staging.govuk.digital/">Staging Deploy Jenkins</a> to deploy applications via the <a href="https://github.com/orgs/alphagov/teams/gov-uk-production">GOV.UK Production GitHub team</a></li>
 <li><a href="https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html">SSH access</a> to production and staging servers via <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
-<li>AWS <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars">PowerUser Access</a> via the <code>role_poweruser_user_arns</code> role</li>
+<li>Privileged AWS Access in <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/production/common.tfvars">Production</a>, <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/staging/common.tfvars">Staging</a> and <a href="https://github.com/alphagov/govuk-aws-data/blob/master/data/infra-security/tools/common.tfvars">Tools</a> environments (via the <code>role_admin_user_arns</code> role)</li>
 <li><a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> access to role to manage <a href="/manual/fall-back-to-mirror.html">static mirrors</a> and DNS</li>
 <li>Signon &ldquo;Super Admin&rdquo; access in production</li>
 <li><code>engineer</code> and &ldquo;Access all services&rdquo; permissions in Fastly</li>
