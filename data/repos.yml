@@ -952,10 +952,17 @@
   production_hosted_on: aws
 
 - repo_name: publishing-e2e-tests
-  team: "#govuk-publishing-platform"
+  retired: true
   type: Utilities
-  sentry_url: false
-  dashboard_url: false
+  repo_url: https://github.com/alphagov/publishing-e2e-tests
+  description: |
+    Used to run tests that explored an end-to-end journey of publishing
+    content - from creation to rendering - within a docker replication
+    of the GOV.UK stack. In [RFC-128](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md)
+    we agreed these would be removed because the value they add is low
+    whereas the add significant times to builds and are extremely
+    complicated to debug when they break. They were retired in
+    October 2022.
 
 - repo_name: puppet-gor
   type: Utilities
