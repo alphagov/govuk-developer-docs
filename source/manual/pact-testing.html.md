@@ -9,7 +9,7 @@ parent: "/manual.html"
 
 [Pact](https://docs.pact.io/) is a tool we use for *contract testing*. Contract testing involves creating a set of tests that are shared between an API (the "provider") and its users ("consumers") using some kind of "broker". For example, the Publishing API has a "pact" or "contract" with GDS API Adapters:
 
-- the expected interactions are defined in [imminence_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/master/test/imminence/imminence_api_pact_test.rb)
+- the expected interactions are defined in [imminence_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/imminence_api_pact_test.rb)
 - when these tests are run they output a JSON pactfile which is published to [our pact broker](https://github.com/alphagov/govuk-pact-broker) ([live site](https://pact-broker.cloudapps.digital/))
 - the build of Imminence will setup a [test environment](https://github.com/alphagov/imminence/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb) and use this pactfile to test the real API
 
@@ -19,16 +19,17 @@ GDS API Adapters is really a proxy for real "consumer" apps, like Whitehall. The
 
 ### For a consumer (GDS API Adapters)
 
-Pact tests are run alongside normal tests e.g.
+[Pact tests](https://github.com/alphagov/gds-api-adapters/tree/main/test/pacts) are run as part of the regular test suite:
 
 ```sh
-bundle exec rake test 'TEST=test/imminence/*'
+bundle exec rake test
 ```
 
-This will run [both sets of tests for Imminence](https://github.com/alphagov/gds-api-adapters/tree/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence):
+Or they can be run on their own:
 
-- Normal unit tests using [the shared stubs](https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/lib/gds_api/test_helpers/imminence.rb).
-- [Pact tests, which define their own stubs](https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence/imminence_api_pact_test.rb).
+```sh
+bundle exec rake test TEST=test/pacts/**/*.rb
+```
 
 ### For a provider
 
@@ -57,7 +58,7 @@ env PACT_URI="../gds-api-adapters/spec/pacts/gds_api_adapters-bank_holidays_api.
 _If the app already had some Pact tests, follow [the steps for changing existing Pact tests](#changing-existing-pact-tests)._
 
 1. Write the consumer and provider tests.
-  - [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066).
+  - [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066) (Note: since this example was written [we now store pact tests in the `tests/pacts` directory](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts)).
   - [Provider example](https://github.com/alphagov/imminence/pull/644).
 
 1. Check the consumer tests pass locally.
