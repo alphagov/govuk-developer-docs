@@ -6,23 +6,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: publishing-e2e-tests - GOV.UK Developer Documentation</title>
+    <title>Repository: publishing-e2e-tests (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests.html">
 
-      <meta name="description" content="Everything about publishing-e2e-tests (End to end tests for the Publishing pipeline of GOV.UK)" />
+      <meta name="description" content="Everything about publishing-e2e-tests (Used to run tests that explored an end-to-end journey of publishing
+content - from creation to rendering - within a docker replication
+of the GOV.UK stack. In [RFC-128](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md)
+we agreed these would be removed because the value they add is low
+whereas the add significant times to builds and are extremely
+complicated to debug when they break. They were retired in
+October 2022.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: publishing-e2e-tests - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: publishing-e2e-tests (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests.html" />
 
-      <meta property="og:description" content="Everything about publishing-e2e-tests (End to end tests for the Publishing pipeline of GOV.UK)" />
+      <meta property="og:description" content="Everything about publishing-e2e-tests (Used to run tests that explored an end-to-end journey of publishing
+content - from creation to rendering - within a docker replication
+of the GOV.UK stack. In [RFC-128](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md)
+we agreed these would be removed because the value they add is low
+whereas the add significant times to builds and are extremely
+complicated to debug when they break. They were retired in
+October 2022.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: publishing-e2e-tests" />
+      <meta property="og:title" content="Repository: publishing-e2e-tests (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-e2e-tests.html" />
 
@@ -181,107 +195,17 @@
 </div>
 
   
-  <h1 class="page-title">Repository: publishing-e2e-tests</h1>
+  <h1 class="page-title">Repository: publishing-e2e-tests (retired)</h1>
 
-  <p>End to end tests for the Publishing pipeline of GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/publishing-e2e-tests">publishing-e2e-tests</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-publishing-platform</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><strong>The Publishing End-to-end tests have been retired following <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#delete-publishing-e2e-tests">RFC 128 (Continuous Deployment)</a></strong></p>
-
-<p>A suite of end-to-end tests for publisher user journeys. The tests are written in <a href="http://rspec.info/">RSpec</a> / <a href="https://github.com/teamcapybara/capybara">Capybara</a> and mimic the behaviour of content editors in a web browser, using <a href="https://github.com/alphagov/publishing-e2e-tests/blob/2044d7eb3c00194d9fd6d1452849b7afc77b3608/spec/spec_helper.rb#L119">headless Chrome</a>.</p>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>To see which apps are tested check the contents of the <a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/spec">spec</a> directory.</p>
-
-<p>To view the details of all the apps involved check <a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/docker-compose.yml">docker-compose.yml</a>.</p>
-
-<h3 id="before-running-the-tests">Before running the tests</h3>
-
-<p>If this is your first time running the E2E project make sure you have <a href="https://www.docker.com/community-edition">installed Docker</a> and run:</p>
-
-<pre lang="bash"><code>$ bundle install
-</code></pre>
-
-<p><em>We recommend that you configure Docker to use at least 4 CPUs with 6 GB of memory, otherwise you may find the apps struggle to run well enough to pass the tests.</em></p>
-
-<p>If it has been some time since you last worked on the E2E project it is recommended to run:</p>
-
-<pre lang="bash"><code>$ make clean
-</code></pre>
-
-<p>This will remove all your local apps (in <code>./apps/</code>), clone them again and check them out to the deployed-to-production branch (in case one of the apps is on an old branch).</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<p>Build and run the test suite with:</p>
-
-<pre lang="bash"><code>$ make -j4
-</code></pre>
-
-<h3 id="running-a-single-test">Running a single test</h3>
-
-<p>Running <code>make</code> executes the following targets in order, which you can
-choose to run separately to speed up development: <code>clone</code>, <code>pull</code>, <code>build</code>,
-<code>start</code>, <code>test</code> and <code>stop</code>.</p>
-
-<p>For example, to run only the tests for the specialist publisher, you need only
-do:</p>
-
-<pre lang="bash"><code>$ make -j4 clone
-$ make pull build start test-specialist-publisher stop
-</code></pre>
-
-<h2 id="further-documentation">Further documentation</h2>
-
-<ul>
-<li><a href="/repos/publishing-e2e-tests/jenkins-breaking-changes.html">Getting a breaking app change through Jenkins</a></li>
-<li><a href="/repos/publishing-e2e-tests/jenkins-debugging-failures.html">Debugging Jenkins failures</a></li>
-<li><a href="/repos/publishing-e2e-tests/troubleshooting.html">Troubleshooting</a></li>
-<li><a href="/repos/publishing-e2e-tests/writing-tests.html">Writing tests</a></li>
-<li><a href="/repos/publishing-e2e-tests/testing-with-a-branch.html">Testing with a branch</a></li>
-<li><a href="/repos/publishing-e2e-tests/adding-new-apps.html">Adding new apps</a></li>
-</ul>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Used to run tests that explored an end-to-end journey of publishing
+content - from creation to rendering - within a docker replication
+of the GOV.UK stack. In <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md">RFC-128</a>
+we agreed these would be removed because the value they add is low
+whereas the add significant times to builds and are extremely
+complicated to debug when they break. They were retired in
+October 2022.</p></p>
+<p><a href="https://github.com/alphagov/publishing-e2e-tests">GitHub repository</a></p>
 
 
             

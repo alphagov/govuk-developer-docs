@@ -187,15 +187,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bc37450ead29ae4ca162c1c12cf44e0adfca9955">2 Nov 2022</a>
 </div>
 
  <h1 id='header'>Add authentication to an application</h1> <p>The process outlined here relies on the <a href="https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html">data sync</a> to synchronise
@@ -215,9 +208,6 @@ authentication.</li>
 non-Rails app, check <a href="https://github.com/omniauth/omniauth">OmniAuth</a> documentation (GDS-SSO uses OmniAuth).</li>
 <li>Update the application tests so that there is a user created or mocked for
 tests. <a href="https://github.com/alphagov/content-store/pull/498/commits/f405ca84940efe9705ee48fc21f373dacc05da63">Example commit</a>.</li>
-<li>If the application is part of <a href="https://github.com/alphagov/publishing-e2e-tests">Publishing End-to-end Tests</a>
-then you may need to add user creation to the database seeds.
-<a href="https://github.com/alphagov/content-store/pull/498/commits/cf41056f3cee446ef94043f3a3b074c71bcfa7d6">Example commit</a>.</li>
 </ol>
 <h2 id='before-an-application-can-be-deployed-with-authentication'>Before an application can be deployed with authentication</h2>
 <ol>

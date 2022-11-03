@@ -143,9 +143,6 @@
         <a href="#continuous-integration-checks"><span>Continuous Integration checks</span></a>
         <ul>
           <li>
-            <a href="#publishing-end-to-end-tests"><span>Publishing End-to-end Tests</span></a>
-          </li>
-          <li>
             <a href="#contract-tests"><span>Contract Tests</span></a>
           </li>
           <li>
@@ -204,7 +201,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36d0b939b2fe7618ded07bf81c5a275f834993f7">22 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bc37450ead29ae4ca162c1c12cf44e0adfca9955">2 Nov 2022</a>
 </div>
 
  <h1 id='header'>How we test GOV.UK</h1> <p>GOV.UK has several layers of testing:</p>
@@ -219,7 +216,6 @@
 <li><p><a href="#continuous-integration-checks">Continuous Integration checks</a></p>
 
 <ul>
-<li><a href="#publishing-end-to-end-tests">Publishing End-to-end Tests</a></li>
 <li><a href="#contract-tests">Contract Tests</a></li>
 <li><a href="#unit-integration-etc-tests">Unit, Integration, etc. Tests</a></li>
 </ul></li>
@@ -249,9 +245,7 @@
 </ul>
 <p>Note that service apps have no web server to query, so <a href="https://github.com/alphagov/govuk-puppet/blob/32c1bbbb10067078c1406170666a135b4a10aaea/modules/govuk/files/usr/local/bin/govuk_supervised_initctl">we check the process is running</a>; apps should fail to start if they can’t connect to their infra (<a href="https://github.com/alphagov/email-alert-service/commit/cc6123e88d1ec9542d0d19e719e8e02c37b78538">example</a>).</p>
 <p>See also: <a href="https://docs.publishing.service.gov.uk/manual/alerts/app-healthcheck-not-ok.html">how we reuse health check endpoints to alert about transient failures</a>.</p>
-<h2 id='continuous-integration-checks'>Continuous Integration checks</h2><h3 id='publishing-end-to-end-tests'>Publishing End-to-end Tests</h3><p><a href="https://github.com/alphagov/publishing-e2e-tests#govuk-publishing-end-to-end-tests">Publishing End-to-end Tests</a> uses a Docker environment to run end-to-end tests of publishing actions involving <a href="https://github.com/alphagov/publishing-e2e-tests/blob/main/Jenkinsfile#L8">various apps</a>. Unlike the surrogate suite of end-to-end tests in <a href="#smokey">Smokey</a>, the Docker environment used by Publishing End-to-end Tests means the tests are properly isolated.</p>
-<p><strong>Warning: this test suite is DEPRECATED</strong>. The tests are slow and brittle and do not run in a realistic GOV.UK environment. Do not add any new tests to this repo. <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#delete-publishing-e2e-tests">We have agreed to delete these tests once we have sufficiently increased coverage from the other forms of testing described here</a>.</p>
-<h3 id='contract-tests'>Contract Tests</h3><p>Also known as &ldquo;Pact Tests&rdquo;.</p>
+<h2 id='continuous-integration-checks'>Continuous Integration checks</h2><h3 id='contract-tests'>Contract Tests</h3><p>Also known as &ldquo;Pact Tests&rdquo;.</p>
 <p>Contract tests check that APIs exposed by one app (the &ldquo;provider&rdquo;) are compatible with other apps that use those APIs (&ldquo;consumers&rdquo;). This is done by having a set of shared tests: the tests are run by the provider and the consumers.</p>
 <p>Apps that are automatically deployed all the way to Production should follow the <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-128-continuous-deployment.md#safety-checks">guidance on tests (“safety checks”) in the Continuous Deployment RFC</a>:</p>
 
@@ -294,7 +288,6 @@
             <li><a href="/manual/test-and-build-a-project-on-jenkins-ci.html">Test & build a project on Jenkins CI</a></li>
             <li><a href="/manual/test-and-build-a-project-with-github-actions.html">Test & build a project with GitHub Actions</a></li>
             <li><a href="/manual/troubleshooting-jenkins-performance.html">Troubleshoot CI Jenkins Performance</a></li>
-            <li><a href="/manual/publishing-e2e-tests.html">Work with the end to end publishing tests</a></li>
           </ul>
         </div>
 
