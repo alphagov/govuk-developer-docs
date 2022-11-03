@@ -199,26 +199,22 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/770d71913e9cfe7bbfb3c88e79f13c91940d2e87">17 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7d426716acf781ca3e897e033fc8ebd2399cac6d">2 Nov 2022</a>
 </div>
 
  <h1 id='header'>Pact Testing</h1> <p><a href="https://docs.pact.io/">Pact</a> is a tool we use for <em>contract testing</em>. Contract testing involves creating a set of tests that are shared between an API (the &ldquo;provider&rdquo;) and its users (&ldquo;consumers&rdquo;) using some kind of &ldquo;broker&rdquo;. For example, the Publishing API has a &ldquo;pact&rdquo; or &ldquo;contract&rdquo; with GDS API Adapters:</p>
 
 <ul>
-<li>the expected interactions are defined in <a href="https://github.com/alphagov/gds-api-adapters/blob/master/test/imminence/imminence_api_pact_test.rb">imminence_api_pact_test.rb in GDS API Adapters</a></li>
+<li>the expected interactions are defined in <a href="https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/imminence_api_pact_test.rb">imminence_api_pact_test.rb in GDS API Adapters</a></li>
 <li>when these tests are run they output a JSON pactfile which is published to <a href="https://github.com/alphagov/govuk-pact-broker">our pact broker</a> (<a href="https://pact-broker.cloudapps.digital/">live site</a>)</li>
 <li>the build of Imminence will setup a <a href="https://github.com/alphagov/imminence/blob/9a4801da9d58be0af886d9095328894aac56917c/spec/service_consumers/pact_helper.rb">test environment</a> and use this pactfile to test the real API</li>
 </ul>
 <p>GDS API Adapters is really a proxy for real &ldquo;consumer&rdquo; apps, like Whitehall. The gem includes <a href="https://github.com/alphagov/gds-api-adapters/tree/master/lib/gds_api/test_helpers">a set of shared stubs</a> for use in each app&rsquo;s own tests (<a href="https://github.com/alphagov/contacts-admin/blob/e935fa54bf71c0063bb92faeaf8a27d1618e00ee/spec/interactors/admin/clone_contact_spec.rb#L11">example</a>). Using the stubs ensures each app stays in sync with GDS API Adapters, which can then do contract testing on their behalf.</p>
-<h2 id='running-pact-tests-locally'>Running Pact tests locally</h2><h3 id='for-a-consumer-gds-api-adapters'>For a consumer (GDS API Adapters)</h3><p>Pact tests are run alongside normal tests e.g.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake <span class="nb">test</span> <span class="s1">'TEST=test/imminence/*'</span>
-</code></pre></div><p>This will run <a href="https://github.com/alphagov/gds-api-adapters/tree/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence">both sets of tests for Imminence</a>:</p>
-
-<ul>
-<li>Normal unit tests using <a href="https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/lib/gds_api/test_helpers/imminence.rb">the shared stubs</a>.</li>
-<li><a href="https://github.com/alphagov/gds-api-adapters/blob/a65fe9c46abe4db38ff2dd455821411d734133c2/test/imminence/imminence_api_pact_test.rb">Pact tests, which define their own stubs</a>.</li>
-</ul>
-<h3 id='for-a-provider'>For a provider</h3><p>Example for Frontend (provider of <code>/bank-holidays.json</code>):</p>
+<h2 id='running-pact-tests-locally'>Running Pact tests locally</h2><h3 id='for-a-consumer-gds-api-adapters'>For a consumer (GDS API Adapters)</h3><p><a href="https://github.com/alphagov/gds-api-adapters/tree/main/test/pacts">Pact tests</a> are run as part of the regular test suite:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake <span class="nb">test</span>
+</code></pre></div><p>Or they can be run on their own:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake <span class="nb">test </span><span class="nv">TEST</span><span class="o">=</span><span class="nb">test</span>/pacts/<span class="k">**</span>/<span class="k">*</span>.rb
+</code></pre></div><h3 id='for-a-provider'>For a provider</h3><p>Example for Frontend (provider of <code>/bank-holidays.json</code>):</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake pact:verify
 </code></pre></div><p>You can also test against a specific branch of GDS API Adapters:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">env </span><span class="nv">PACT_CONSUMER_VERSION</span><span class="o">=</span>branch-&lt;branch-of-gds-api-adapters&gt; bundle <span class="nb">exec </span>rake pact:verify
@@ -231,7 +227,7 @@
 <li><p>Write the consumer and provider tests.</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/gds-api-adapters/pull/1066">Consumer example</a>.</li>
+<li><a href="https://github.com/alphagov/gds-api-adapters/pull/1066">Consumer example</a> (Note: since this example was written <a href="https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts">we now store pact tests in the <code>tests/pacts</code> directory</a>).</li>
 <li><a href="https://github.com/alphagov/imminence/pull/644">Provider example</a>.</li>
 </ul></li>
 <li><p>Check the consumer tests pass locally.</p>
