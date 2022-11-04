@@ -40,8 +40,8 @@ the past where user had large files in that directory.
 
 Machines will eventually get recycled as they're scaled up or down, so these
 directories should naturally start to disappear over time. If there is a need
-to remove the directories more quickly, you can consider using a
-[fabric script](https://github.com/alphagov/fabric-scripts#readme).
+to remove the directories more quickly, you can consider
+[running commands on multiple machines](/manual/howto-run-ssh-commands-on-many-machines.html).
 
 Unfortunately it's [not possible to retrospectively reintroduce](https://github.com/alphagov/govuk-puppet/pull/10892#issuecomment-749678673)
 the user with a `ensure => absent` argument, as the user will already have
