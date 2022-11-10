@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Internationalisation guide - GOV.UK Developer Documentation</title>
+    <title>whitehall: View Components - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/internationalisation_guide.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/view_components.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Internationalisation guide - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/internationalisation_guide.html" />
+      <meta name="twitter:title" content="whitehall: View Components - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/view_components.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Internationalisation guide" />
+      <meta property="og:title" content="whitehall: View Components" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/internationalisation_guide.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/view_components.html" />
 
     
   </head>
@@ -203,44 +203,50 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/787ecbf9d793b49ff99535dac15121b836bc60a9">8 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/3386c62e6b71e6a0a68031fc7bb594fb7f10bda4">10 Nov 2022</a>
 </div>
 
-  <h1 class="page-title">whitehall: Internationalisation guide</h1>
+  <h1 class="page-title">whitehall: View Components</h1>
 
   
-<p>This is mostly standard <a href="http://guides.rubyonrails.org/i18n.html">Rails i18n</a>:</p>
-<ul>
-<li>Translations are stored in <code>config/locales/</code>, with a <code>.yml</code> file per locale.</li>
-<li>If translation value is missing from a locale file then the EN value will be used instead.</li>
-</ul>
-<h2 id="changing-an-existing-translation-key">Changing an existing translation key</h2>
+<p><a href="https://viewcomponent.org/">View Components</a> are an extension of the <a href="https://www.rubyguides.com/2019/09/rails-patterns-presenter-service/">presenter pattern</a>. They allow you to consolidate the logic needed for a partial/template into a single class. Unlike a presenter, this class is directly coupled to a <code>.html.erb</code> file. They allow you to encapsulate and test view logic easily and effectively.</p>
+<h2 id="when-we-should-be-using-them">When we should be using them</h2>
 <ol>
-<li>Edit the value of the EN locale</li>
-<li>You then need to set the non-EN locale values to be blank. You can do this manually or follow the <a href="https://github.com/alphagov/rails_translation_manager#i18n-tasks">rails_translation_manager documentation</a>
+<li>
+<p>View Components are intended for controller specific view needs, particularly to provide an easier way to test views. For components used in multiple places we have <a href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components.html">govuk_publishing_components</a>.</p>
+</li>
+<li>
+<p>We consider View Components to be a part of the View layer of the application, so should only contain logic that relates to converting the input arguments into HTML. If more complex business logic is needed you can use Helper functions or add it to methods on the object passed into the component.</p>
+</li>
+<li>
+<p>Tests for View Components should be all based on HTML output. If you need to test something more than that, it's likely not something that belongs in a View Component.</p>
 </li>
 </ol>
-<h2 id="adding-a-new-translation-key">Adding a new translation key</h2>
-<ol>
-<li>Manually create the key in <code>en.yml</code>, with the english text.</li>
-<li>Then run <code>rake translation:add_missing</code> (see <a href="https://github.com/alphagov/rails_translation_manager#rake-command-reference">rails_translation_manager documentation</a>)</li>
-</ol>
-<h3 id="pluralised-translations">Pluralised translations</h3>
-<p>For terms that are translatable in both singular and plural forms (e.g. <a href="https://github.com/alphagov/whitehall/blob/bd1dcd37fbf2c91a10c7927d1d46b3df75cdca2d/config/locales/en.yml#L294-L296"><code>document.type.publication</code></a>), include "one" and "other" keys for the singular and plural translation of the term.</p>
-<p>Note that other languages have different pluralisation rules (such as "few" and "many") but these other plural forms should be <a href="https://github.com/alphagov/whitehall/blob/02666684c7869cc8b633f6382be0ebe6ee22e3b0/config/locales/pl.yml#L401-L405">left blank</a>).</p>
-<p>Note: pluralised translation terms should only ever contain these two plural form keys in <code>en.yml</code>, otherwise the code that regenerates the other translation locale files will not recognise them as being plural translations and will not generate the correct pluralisation keys for the different locales.</p>
-<h2 id="updating-the-locales-files">Updating the locales files</h2>
-<p>There are rake tasks to export and import a CSV file of translations and keys (provided by the <a href="https://github.com/alphagov/rails_translation_manager"><code>rails_translation_manager</code></a>
-gem. These CSV files are exported, edited and then imported back as <code>.yml</code> files.</p>
-<p>Translations were last <a href="https://github.com/alphagov/whitehall/pull/6369">updated in bulk in November 2021</a>. Over time, you can expect more and more translation values to be missing from non-EN locales when performing this update.</p>
+<h2 id="how-to-generate-them">How to generate them</h2>
+<p>You can use:</p>
+<pre><code>govuk-docker-run rails g component admin/ComponentName
+</code></pre>
+<p>or</p>
+<pre><code>govuk-docker-run rails g component admin/component_name
+</code></pre>
+<h2 id="file-structure-and-namespacing">File structure and namespacing</h2>
+<p>View Components are linked to specific views, and should follow the same file structure as the <code>app/views</code> directory. For example, a component that is used on the edit edition page to encapsulate fields for an image could exist as:</p>
+<pre><code>components/admin/editions/edit/image_component.rb
+components/admin/editions/edit/image_component.html.erb
+test/components/admin/editions/edit/image_component_test.rb
+</code></pre>
+<p>Any components used in multiple controller actions should sit in the top level folder for that controller. For example, if the image component is used in the new and edit views, the file structure would be:</p>
+<pre><code>components/admin/editions/image_component.rb
+components/admin/editions/image_component.html.erb
+test/components/admin/editions/image_component_test.rb
+</code></pre>
+<p>If the component needs specific CSS or JavaScript, that should sit in the equivalent path under <code>assets/(javascripts|stylesheets)/admin/views</code>. For example, given an image component shared by multiple views of the editions controller:</p>
+<pre><code>assets/javascript/admin/views/edition/image_component.js
+assets/stylesheets/admin/views/edition/image_component.scss
+</code></pre>
+<h2 id="github-issue">GitHub Issue</h2>
+<p>The GitHub Issue <a href="https://github.com/alphagov/whitehall/issues/6954">#6954</a> was opened to discuss using View Components.</p>
 
 
             
@@ -248,8 +254,8 @@ gem. These CSV files are exported, edited and then imported back as <code>.yml</
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/internationalisation_guide.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Finternationalisation_guide.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/view_components.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fview_components.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
