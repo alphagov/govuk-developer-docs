@@ -65,13 +65,10 @@ When logged in as a `sysadmin` you can access a [user list](https://ckan.publish
 
 There are two methods to create a new user account:
 
-1. An organisation's 'admin' user can [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite new users to create an account.
-This is the preferred approach, as the organisation admin is best placed to know whether the new user
-should be given access.
-2. A 'sysadmin' user (e.g. Technical 2nd Line) can create an account for the new user. This should only
-be done if the organisation has no admins, and if we can verify the authenticity of the request.
- - Follow the instructions to [assign users to publishers](#assigning-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
- - An invite email is generated and sent to the publisher.
+1. An organisation's 'admin' user can [follow these instructions](https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins) to invite new users to create an account. This is the preferred approach, as the organisation admin is best placed to know whether the new user should be given access.
+2. A 'sysadmin' user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+  - Follow the instructions to [assign users to publishers](#assigning-users-to-publishers-setting-user-permissions) inputting the user's email address instead of their username.
+  - An invite email is generated and sent to the publisher.
 
 ### Updating a user's email address
 
@@ -213,11 +210,9 @@ Queries can use the package ID or name (the slug) e.g.
 https://data.gov.uk/api/3/action/package_search?q=id:1e465255-7c45-4860-bf4b-991c151d4ce7
 returns the same as
 https://data.gov.uk/api/3/action/package_search?q=name:population-of-england-and-wales-by-ethnicity
-
 ```
-There's some [API documentation][dgu-api-docs] aimed at general users of data.gov.uk.
 
-Here are some more complex examples of using the API:
+There's some [API documentation][dgu-api-docs] aimed at general users of data.gov.uk. Here are some more complex examples of using the API:
 
 ```
 # Retrieve full details about a package (dataset)
@@ -252,8 +247,8 @@ Here are some more complex examples of using the API:
 
 # View a publisher record
  https://data.gov.uk/api/3/action/organization_show?id=government-digital-service
-
 ```
+
 ## Organogram publishing
 
 Organograms are files that visualise the people structure of an organisation. They're split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades). The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.
