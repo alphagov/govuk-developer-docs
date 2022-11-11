@@ -132,6 +132,26 @@
         <a href="#environments"><span>Environments</span></a>
       </li>
       <li>
+        <a href="#monitoring-data-gov-uk"><span>Monitoring data.gov.uk</span></a>
+        <ul>
+          <li>
+            <a href="#pingdom"><span>Pingdom</span></a>
+          </li>
+          <li>
+            <a href="#sentry"><span>Sentry</span></a>
+          </li>
+          <li>
+            <a href="#log-it"><span>Log.it</span></a>
+          </li>
+          <li>
+            <a href="#sidekiq-publish"><span>Sidekiq (Publish)</span></a>
+          </li>
+          <li>
+            <a href="#analytics"><span>Analytics</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
         <a href="#logging-into-the-publisher"><span>Logging into the publisher</span></a>
       </li>
       <li>
@@ -299,26 +319,6 @@
           </li>
         </ul>
       </li>
-      <li>
-        <a href="#monitoring-data-gov-uk"><span>Monitoring data.gov.uk</span></a>
-        <ul>
-          <li>
-            <a href="#pingdom"><span>Pingdom</span></a>
-          </li>
-          <li>
-            <a href="#sentry"><span>Sentry</span></a>
-          </li>
-          <li>
-            <a href="#log-it"><span>Log.it</span></a>
-          </li>
-          <li>
-            <a href="#sidekiq-publish"><span>Sidekiq (Publish)</span></a>
-          </li>
-          <li>
-            <a href="#analytics"><span>Analytics</span></a>
-          </li>
-        </ul>
-      </li>
     </ul>
   </li>
 </ul>
@@ -370,7 +370,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec69560a919cdb91b06ecd1f967de0d9e40c22b2">11 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/88d4a6e8042c8d7aee2326cd96253584bbcfef5b">11 Nov 2022</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -391,6 +391,16 @@ fix it - open a PR to resolve the problem.</p>
 <li><a href="https://ckan.staging.publishing.service.gov.uk">Staging</a></li>
 <li><a href="https://ckan.integration.publishing.service.gov.uk">Integration</a></li>
 </ul>
+<h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p><a href="/manual/pingdom">Pingdom</a> monitors <code>https://data.gov.uk</code> uptime and alerts <a href="https://govuk.pagerduty.com/">PagerDuty</a> when downtime is detected.</p>
+<h3 id='sentry'>Sentry</h3><p><a href="https://sentry.io/govuk/">Sentry</a> monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
+<h3 id='log-it'>Log.it</h3><p>Each application sends logs to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">Logit</a>. <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> use the corresponding <a href="https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service">PaaS Service</a>.
+Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-beta&quot; &amp;&amp; access.response_code: 500</code>.</p>
+<h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
+<p>First, follow the instructions on <a href="/manual/data-gov-uk-operations">logging into the paas</a></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production-worker
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+&gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
+</code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
 <h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk">CKAN</a> using a shared 2nd line account. The credentials are available in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> under <a href="https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg">datagovuk/ckan</a>.</p>
 <p>For commands not available via the user interface you need to <a href="#connecting-to-CKAN-via-ssh">ssh onto a ckan machine</a>.</p>
 <h2 id='users-and-publishing-organisations'>Users and publishing organisations</h2><p>Publishers login using their email address. A user can be a member of one or more publishing
@@ -750,17 +760,7 @@ caution as it may cause the database to restart to recover consistency.</p>
 <span class="p">(</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">pg_stat_activity</span><span class="p">.</span><span class="n">query_start</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">interval</span> <span class="s1">'5 minutes'</span> <span class="k">AND</span>
 <span class="k">state</span> <span class="o">=</span> <span class="s1">'active'</span> <span class="k">AND</span>
 <span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span><span class="p">;</span>
-</code></pre></div><h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p>[Pingdom] monitors <code>https://data.gov.uk</code> uptime and alerts [PagerDuty] when downtime is detected.</p>
-<h3 id='sentry'>Sentry</h3><p>[Sentry] monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
-<h3 id='log-it'>Log.it</h3><p>Each application sends logs to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">Logit</a>. <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> use the corresponding <a href="https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service">PaaS Service</a>.
-Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-beta&quot; &amp;&amp; access.response_code: 500</code>.</p>
-<h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
-<p>First, follow the instructions on <a href="/manual/data-gov-uk-operations">logging into the paas</a></p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production-worker
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
-&gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
-</code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
-
+</code></pre></div>
 
   <div class='related-content'>
 
