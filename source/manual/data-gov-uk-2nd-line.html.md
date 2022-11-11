@@ -15,7 +15,10 @@ parent: "/manual.html"
 [govuk-connect]: manual/howto-ssh-to-machines
 [logit]: https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74
 [logit-paas]: https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service
+[pagerduty]: https://govuk.pagerduty.com/
+[pingdom]: /manual/pingdom
 [publish]: repos/datagovuk_publish
+[sentry]: https://sentry.io/govuk/
 
 This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).
 
@@ -41,6 +44,37 @@ There are three environments for CKAN:
 - [Production][dgu-ckan]
 - [Staging](https://ckan.staging.publishing.service.gov.uk)
 - [Integration](https://ckan.integration.publishing.service.gov.uk)
+
+## Monitoring data.gov.uk
+
+### Pingdom
+
+[Pingdom] monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downtime is detected.
+
+### Sentry
+
+[Sentry] monitors application errors. The Sentry pages for each app can be found on the [Find] and [Publish] app pages.
+
+### Log.it
+
+Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas].
+Example query: `source_host: "gds-data-gov-uk.data-gov-uk.find-data-beta" && access.response_code: 500`.
+
+### Sidekiq ([Publish])
+
+You can monitor the number of jobs in each queue using the following.
+
+First, follow the instructions on [logging into the paas](/manual/data-gov-uk-operations)
+
+```
+cf ssh publish-data-beta-production-worker
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+>>> Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
+```
+
+### Analytics
+
+Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.
 
 ## Logging into the publisher
 
@@ -700,34 +734,3 @@ WHERE
 state = 'active' AND
 datname = 'ckan_production';
 ```
-
-## Monitoring data.gov.uk
-
-### Pingdom
-
-[Pingdom] monitors `https://data.gov.uk` uptime and alerts [PagerDuty] when downtime is detected.
-
-### Sentry
-
-[Sentry] monitors application errors. The Sentry pages for each app can be found on the [Find] and [Publish] app pages.
-
-### Log.it
-
-Each application sends logs to [Logit]. [Publish] and [Find] use the corresponding [PaaS Service][logit-paas].
-Example query: `source_host: "gds-data-gov-uk.data-gov-uk.find-data-beta" && access.response_code: 500`.
-
-### Sidekiq ([Publish])
-
-You can monitor the number of jobs in each queue using the following.
-
-First, follow the instructions on [logging into the paas](/manual/data-gov-uk-operations)
-
-```
-cf ssh publish-data-beta-production-worker
-/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
->>> Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
-```
-
-### Analytics
-
-Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.
