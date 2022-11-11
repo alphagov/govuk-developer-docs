@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Common 2nd line support tasks for data.gov.uk - GOV.UK Developer Documentation</title>
+    <title>Common 2nd line support tasks for data.gov.uk and CKAN - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Common 2nd line support tasks for data.gov.uk - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Common 2nd line support tasks for data.gov.uk and CKAN - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/data-gov-uk-2nd-line.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Common 2nd line support tasks for data.gov.uk" />
+      <meta property="og:title" content="Common 2nd line support tasks for data.gov.uk and CKAN" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/data-gov-uk-2nd-line.html" />
 
@@ -126,31 +126,34 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Common 2nd line support tasks for data.gov.uk</span></a>
+    <a href="#header"><span>Common 2nd line support tasks for data.gov.uk and CKAN</span></a>
     <ul>
+      <li>
+        <a href="#environments"><span>Environments</span></a>
+      </li>
       <li>
         <a href="#logging-into-the-publisher"><span>Logging into the publisher</span></a>
       </li>
       <li>
-        <a href="#users-and-publishers"><span>Users and Publishers</span></a>
+        <a href="#users-and-publishing-organisations"><span>Users and publishing organisations</span></a>
         <ul>
           <li>
-            <a href="#find-a-user"><span>Find a user</span></a>
+            <a href="#finding-a-user"><span>Finding a user</span></a>
           </li>
           <li>
-            <a href="#create-a-user-account"><span>Create a user account</span></a>
+            <a href="#creating-a-user-account"><span>Creating a user account</span></a>
           </li>
           <li>
-            <a href="#update-a-user-account-email-address"><span>Update a user account email address</span></a>
+            <a href="#updating-a-user39s-email-address"><span>Updating a user’s email address</span></a>
           </li>
           <li>
-            <a href="#update-a-user-account-name"><span>Update a user account name</span></a>
+            <a href="#updating-a-user-account-name"><span>Updating a user account name</span></a>
           </li>
           <li>
-            <a href="#create-a-publishing-organisation"><span>Create a publishing organisation</span></a>
+            <a href="#creating-a-new-publishing-organisation"><span>Creating a new publishing organisation</span></a>
           </li>
           <li>
-            <a href="#assign-users-to-publishers-setting-user-permissions"><span>Assign users to publishers (setting user permissions)</span></a>
+            <a href="#assigning-users-to-publishers-setting-user-permissions"><span>Assigning users to publishers (setting user permissions)</span></a>
           </li>
         </ul>
       </li>
@@ -161,16 +164,16 @@
             <a href="#viewing-a-log-of-dataset-activity"><span>Viewing a log of dataset activity</span></a>
           </li>
           <li>
-            <a href="#delete-or-withdraw-a-dataset"><span>Delete or withdraw a dataset</span></a>
+            <a href="#deleting-or-withdrawing-a-dataset"><span>Deleting (or withdrawing) a dataset</span></a>
           </li>
           <li>
             <a href="#a-dataset-is-wrong-in-some-way"><span>A dataset is wrong in some way</span></a>
           </li>
           <li>
-            <a href="#different-number-of-datasets-in-ckan-app-to-find"><span>Different number of datasets in CKAN-app to Find</span></a>
+            <a href="#different-number-of-datasets-in-ckan-to-data-gov-uk"><span>Different number of datasets in CKAN to data.gov.uk</span></a>
           </li>
           <li>
-            <a href="#datasets-published-in-ckan-are-not-appearing-on-find"><span>Datasets published in CKAN are not appearing on Find</span></a>
+            <a href="#datasets-published-in-ckan-are-not-appearing-on-data-gov-uk"><span>Datasets published in CKAN are not appearing on data.gov.uk</span></a>
           </li>
           <li>
             <a href="#accessing-withdrawn-content"><span>Accessing withdrawn content</span></a>
@@ -178,21 +181,10 @@
         </ul>
       </li>
       <li>
-        <a href="#schema-vocabulary-definitions"><span>Schema vocabulary definitions</span></a>
-        <ul>
-          <li>
-            <a href="#add-a-schema-vocabulary-definition"><span>Add a schema vocabulary definition</span></a>
-          </li>
-        </ul>
+        <a href="#using-the-ckan-api"><span>Using the CKAN api</span></a>
       </li>
       <li>
-        <a href="#harvesting"><span>Harvesting</span></a>
-      </li>
-      <li>
-        <a href="#map-previews-issues"><span>Map previews issues</span></a>
-      </li>
-      <li>
-        <a href="#organogram-publishing"><span>Organogram Publishing</span></a>
+        <a href="#organogram-publishing"><span>Organogram publishing</span></a>
         <ul>
           <li>
             <a href="#xls-to-csv-conversion"><span>XLS to CSV Conversion</span></a>
@@ -203,10 +195,129 @@
         </ul>
       </li>
       <li>
-        <a href="#differences-in-ckan-2-9-vs-2-72-8"><span>Differences in CKAN 2.9 vs 2.7/2.8</span></a>
+        <a href="#connecting-to-ckan-via-ssh"><span>Connecting to CKAN via ssh</span></a>
+        <ul>
+          <li>
+            <a href="#initialising-the-database"><span>Initialising the database</span></a>
+          </li>
+          <li>
+            <a href="#accessing-the-database"><span>Accessing the database</span></a>
+          </li>
+          <li>
+            <a href="#creating-a-system-administrator-account"><span>Creating a system administrator account</span></a>
+          </li>
+          <li>
+            <a href="#removing-a-system-administrator-account"><span>Removing a system administrator account</span></a>
+          </li>
+          <li>
+            <a href="#listing-users"><span>Listing users</span></a>
+          </li>
+          <li>
+            <a href="#viewing-a-user"><span>Viewing a user</span></a>
+          </li>
+          <li>
+            <a href="#adding-a-user"><span>Adding a user</span></a>
+          </li>
+          <li>
+            <a href="#removing-a-user"><span>Removing a user</span></a>
+          </li>
+          <li>
+            <a href="#changing-a-user39s-password"><span>Changing a user’s password</span></a>
+          </li>
+          <li>
+            <a href="#changing-a-publisher-organisation-name"><span>Changing a publisher (organisation) name</span></a>
+          </li>
+          <li>
+            <a href="#purging-a-dataset"><span>Purging a dataset</span></a>
+          </li>
+          <li>
+            <a href="#bulk-deleting-datasets"><span>Bulk deleting datasets</span></a>
+          </li>
+          <li>
+            <a href="#exporting-a-list-of-datasets-to-csv"><span>Exporting a list of datasets to CSV</span></a>
+          </li>
+          <li>
+            <a href="#rebuilding-the-search-index"><span>Rebuilding the search index</span></a>
+          </li>
+        </ul>
       </li>
       <li>
-        <a href="#revision-log"><span>Revision log</span></a>
+        <a href="#harvesting"><span>Harvesting</span></a>
+        <ul>
+          <li>
+            <a href="#listing-current-harvest-jobs"><span>Listing current harvest jobs</span></a>
+          </li>
+          <li>
+            <a href="#finding-the-harvest-source-of-a-dataset"><span>Finding the harvest source of a dataset</span></a>
+          </li>
+          <li>
+            <a href="#getting-the-status-of-a-harvester"><span>Getting the status of a harvester</span></a>
+          </li>
+          <li>
+            <a href="#restart-a-harvest-job"><span>Restart a harvest job</span></a>
+          </li>
+          <li>
+            <a href="#cancelling-a-harvest-job"><span>Cancelling a harvest job</span></a>
+          </li>
+          <li>
+            <a href="#purging-all-currently-queued-tasks"><span>Purging all currently queued tasks</span></a>
+          </li>
+          <li>
+            <a href="#restarting-the-harvest-service"><span>Restarting the harvest service</span></a>
+          </li>
+          <li>
+            <a href="#the-csw-endpoint"><span>The csw endpoint</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#map-previews"><span>Map previews</span></a>
+      </li>
+      <li>
+        <a href="#register-a-brownfield-dataset"><span>Register a brownfield dataset</span></a>
+      </li>
+      <li>
+        <a href="#ckan-on-staging-environment-responds-with-nginx-504-timeout"><span>CKAN on Staging environment responds with Nginx 504 timeout:</span></a>
+        <ul>
+          <li>
+            <a href="#changing-the-connection-limit"><span>Changing the connection limit</span></a>
+          </li>
+          <li>
+            <a href="#trying-to-log-on-to-the-database-will-result-in-this-error"><span>Trying to log on to the database will result in this error:</span></a>
+          </li>
+          <li>
+            <a href="#view-the-number-of-connections-and-types-of-queries"><span>View the number of connections and types of queries:</span></a>
+          </li>
+          <li>
+            <a href="#cancelling-these-queries"><span>Cancelling these queries</span></a>
+          </li>
+          <li>
+            <a href="#identifying-long-running-queries"><span>Identifying long running queries</span></a>
+          </li>
+          <li>
+            <a href="#cancelling-long-running-queries"><span>Cancelling long running queries</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#monitoring-data-gov-uk"><span>Monitoring data.gov.uk</span></a>
+        <ul>
+          <li>
+            <a href="#pingdom"><span>Pingdom</span></a>
+          </li>
+          <li>
+            <a href="#sentry"><span>Sentry</span></a>
+          </li>
+          <li>
+            <a href="#log-it"><span>Log.it</span></a>
+          </li>
+          <li>
+            <a href="#sidekiq-publish"><span>Sidekiq (Publish)</span></a>
+          </li>
+          <li>
+            <a href="#analytics"><span>Analytics</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -259,93 +370,113 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/abede6ad5c2ccb49c165133e8ea7df50db749bec">5 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ec69560a919cdb91b06ecd1f967de0d9e40c22b2">11 Nov 2022</a>
 </div>
 
- <h1 id='header'>Common 2nd line support tasks for data.gov.uk</h1> <p>This document details some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk.  <a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
-<h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk/">CKAN</a> using our shared 2nd line account. The credentials are available <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> under <a href="https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg">datagovuk/ckan</a>.</p>
-<h2 id='users-and-publishers'>Users and Publishers</h2><p>Users have their own accounts and can login using either their username or email address.   A user can be a member of one or more publishing organisations, and can have either the role &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; for each organisation.  Users with &lsquo;Admin&rsquo; status can add/remove users from the organisation for which they are an admin.  They only have &lsquo;admin&rsquo; rights on their own organisation, contrasted to a &lsquo;sysadmin&rsquo; who has admin rights across all organisations.</p>
-<h3 id='find-a-user'>Find a user</h3><p>There is a <a href="https://ckan.publishing.service.gov.uk/user">user list</a> which can be used to locate a user account.  This is useful in cases where a publisher does not know their username or no longer has access to their registered email account.  This list is only accessible when logged in as a sysadmin.</p>
-<h3 id='create-a-user-account'>Create a user account</h3><p>There are two routes for creating an new account for a new user:</p>
-
-<ol>
-<li>A publishing organisation&rsquo;s &lsquo;admin&rsquo; user(s) can invite new users to create an account.  The admin user should <a href="https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins">follow these instructions</a> to invite the new user to join. We should encourage this approach as the organisation admin is best placed to know whether or not the new user should have access, as well as reducing the number of requests to Technical 2nd Line.</li>
-<li>A sysadmin user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+ <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
+<p><a href="https://guidance.data.gov.uk">Separate documentation</a> exists for publishers.</p>
+<p>There&rsquo;s also <a href="/manual/data-gov-uk-architecture.html">an architectural overview of data.gov.uk</a> and <a href="/manual/data-gov-uk-deployment.html">a deployment guide</a>.</p>
+<p><a href="/repos/ckanext-datagovuk.html">ckanext-datagovuk</a> is the primary CKAN extension behind data.gov.uk.</p>
+<p>If you find an issue with CKAN that you believe may be a potential security
+vulnerability please contact security@ckan.org rather than disclosing the
+information publicly (as per their <a href="https://github.com/ckan/ckan/security/policy">security policy</a>).</p>
+<p>If you find an issue that does not appear to be a security vulnerability you
+should first search the <a href="https://github.com/ckan/ckan/issues">issues of the upstream CKAN repository</a> to see if it has already been reported and if there&rsquo;s a workaround.
+If there is not an issue, considering opening a new one or - if you know how to
+fix it - open a PR to resolve the problem.</p>
+<h2 id='environments'>Environments</h2><p>There are three environments for CKAN:</p>
 
 <ul>
-<li>Follow the instructions in <a href="#assign-users-to-publishers-setting-user-permissions">Assign users to publishers</a> inputting the user&rsquo;s email address instead of their username.</li>
+<li><a href="https://ckan.publishing.service.gov.uk">Production</a></li>
+<li><a href="https://ckan.staging.publishing.service.gov.uk">Staging</a></li>
+<li><a href="https://ckan.integration.publishing.service.gov.uk">Integration</a></li>
+</ul>
+<h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk">CKAN</a> using a shared 2nd line account. The credentials are available in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> under <a href="https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg">datagovuk/ckan</a>.</p>
+<p>For commands not available via the user interface you need to <a href="#connecting-to-CKAN-via-ssh">ssh onto a ckan machine</a>.</p>
+<h2 id='users-and-publishing-organisations'>Users and publishing organisations</h2><p>Publishers login using their email address. A user can be a member of one or more publishing
+organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role for each organisation.</p>
+<p>&lsquo;Admin&rsquo; users can add/remove users from their own organisation.</p>
+<p>A &lsquo;sysadmin&rsquo; has admin rights across all organisations.</p>
+<h3 id='finding-a-user'>Finding a user</h3><p>When logged in as a <code>sysadmin</code> you can access a <a href="https://ckan.publishing.service.gov.uk/user">user list</a>. This is useful where a publisher does not know their username or no longer has access to their registered email account.</p>
+<h3 id='creating-a-user-account'>Creating a user account</h3><p>There are two methods to create a new user account:</p>
+
+<ol>
+<li>An organisation&rsquo;s &lsquo;admin&rsquo; user can <a href="https://guidance.data.gov.uk/publish_and_manage_data/get_and_manage_accounts/#add-or-remove-editors-and-admins">follow these instructions</a> to invite new users to create an account. This is the preferred approach, as the organisation admin is best placed to know whether the new user should be given access.</li>
+<li>A &lsquo;sysadmin&rsquo; user (e.g. Technical 2nd Line) can create an account for the new user. This should only be done if the organisation has no admins, and if we can verify the authenticity of the request.
+
+<ul>
+<li>Follow the instructions to <a href="#assigning-users-to-publishers-setting-user-permissions">assign users to publishers</a> inputting the user&rsquo;s email address instead of their username.</li>
 <li>An invite email is generated and sent to the publisher.</li>
 </ul></li>
 </ol>
-
-<blockquote>
-<p>An account should only be created if the user intends to publish on data.gov.uk.  Previously users have been able to register accounts to follow publishers.  This is no longer offered.</p>
-</blockquote>
-<h3 id='update-a-user-account-email-address'>Update a user account email address</h3><p>Since CKAN was upgraded users have needed to login using their email address instead of a username.  Some users have changed their email address and as such are no longer able to login to data.gov.uk. In order to update the email address associated with a user&rsquo;s account:</p>
+<h3 id='updating-a-user39s-email-address'>Updating a user&rsquo;s email address</h3><p>If a user has changed their email address (and so cannot log in) you can update the email address
+associated with their account:</p>
 
 <ol>
-<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a sysadmin user (credentials are available in the <code>govuk-secrets</code> password store, under <code>datagovuk/ckan</code>).</li>
-<li>Click the &lsquo;Publishers&rsquo; button in the header.</li>
+<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
+<li>Click the &lsquo;Publishers&rsquo; button.</li>
 <li>Search for the user&rsquo;s publishing organisation and click on it.</li>
 <li>Click on the &lsquo;Manage&rsquo; button.</li>
 <li>Click on the &lsquo;Members&rsquo; tab.</li>
 <li>Click on the user&rsquo;s username in the list.</li>
 <li>Click on the &lsquo;Manage&rsquo; button.</li>
-<li>Fill in the email field with the user&rsquo;s new email address.</li>
+<li>Change the email address.</li>
 <li>Enter the password you used to log in to CKAN in the &lsquo;Sysadmin password&rsquo; field.</li>
 <li>Set a new password for the user.</li>
 <li>Click &lsquo;Update profile&rsquo;.</li>
 <li>Reply to the user to tell them that their email address has been changed, what the new password you set is and strongly advise them to change the password when they log in.</li>
 </ol>
-<h3 id='update-a-user-account-name'>Update a user account name</h3><p>Since CKAN was upgraded some usernames with non alphanumeric or uppercase characters are no longer valid and users cannot log in to change their password. This cannot be done through the interface so you must make your changes in the database. In order to update their username:</p>
+<h3 id='updating-a-user-account-name'>Updating a user account name</h3><p>Historical usernames with non-alphanumeric or uppercase characters are no longer valid, and so users cannot log in to change their password. Usernames can only be changed directly in the database:</p>
 
 <ol>
-<li>Follow the <a href="/manual/data-gov-uk-supporting-ckan.html#accessing-the-database">instructions</a> to access the CKAN database.</li>
-<li>Enter the following to see your user in the database and check you&rsquo;ve got the right one <code>SELECT * from &quot;user&quot; where name = &#39;old-username&#39; limit 1;</code>.</li>
-<li>Enter the following to update the username <code>UPDATE &quot;user&quot; SET name = &#39;new-username&#39; WHERE name = &#39;old-username&#39;;</code></li>
+<li>Follow the <a href="#accessing-the-database">instructions</a> to access the CKAN database.</li>
+<li>Enter the following to find the user in the database <code>SELECT * from &quot;user&quot; where name = &#39;old-username&#39; limit 1;</code>.</li>
+<li>Update the username <code>UPDATE &quot;user&quot; SET name = &#39;new-username&#39; WHERE name = &#39;old-username&#39;;</code></li>
 <li>Check they were updated by repeating step 2.</li>
 <li>Reply to the user to tell them that their username has been changed and what it&rsquo;s been changed to.</li>
 </ol>
-<h3 id='create-a-publishing-organisation'>Create a publishing organisation</h3>
+<h3 id='creating-a-new-publishing-organisation'>Creating a new publishing organisation</h3>
 <ol>
-<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a sysadmin user (credentials are available in the <code>govuk-secrets</code> password store, under <code>datagovuk/ckan</code>).</li>
-<li>Click the &lsquo;Publishers&rsquo; button in the header.</li>
+<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
+<li>Click the &lsquo;Publishers&rsquo; button.</li>
 <li>Click &lsquo;Add Publisher&rsquo; and complete the form.</li>
-<li>Ensure that a publishing user has been assigned as an &lsquo;Admin&rsquo; for this organisation (this would normally be the person who makes the request, so they can then add further &lsquo;Editor&rsquo; users without needing to contact support).</li>
+<li>Follow the instructions in the section below to add a user as an &lsquo;admin&rsquo; for the organisation (this would normally be the person making the request, so they can then add further users themselves without needing to contact support).</li>
 </ol>
-
-<blockquote>
-<p>Check the authenticity of a request before adding a user as a publishing admin (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).</p>
-</blockquote>
-<h3 id='assign-users-to-publishers-setting-user-permissions'>Assign users to publishers (setting user permissions)</h3>
+<h3 id='assigning-users-to-publishers-setting-user-permissions'>Assigning users to publishers (setting user permissions)</h3>
 <ol>
-<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a sysadmin user (credentials are available in the <code>govuk-secrets</code> password store, under <code>datagovuk/ckan</code>).</li>
-<li>Navigate to the relevant page for the publisher (use the &lsquo;Publishers&rsquo; button in the header).</li>
+<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
+<li>Click the &lsquo;Publishers&rsquo; button.</li>
+<li>Find the user&rsquo;s organisation and click on it.</li>
 <li>Click the &lsquo;Manage&rsquo; button.</li>
-<li>Click onto the &lsquo;Members&rsquo; tab, then the &lsquo;Add Member&rsquo; button.</li>
+<li>Click the &lsquo;Members&rsquo; tab, then the &lsquo;Add Member&rsquo; button.</li>
 <li>Add the user&rsquo;s existing account, or enter their email address to send them an invite, ensuring you select the relevant role for the user (either admin or editor).</li>
 </ol>
 
 <blockquote>
-<p>Users should first be guided to request addition by an admin of their organisation, if possible.  This is to reduce the burden of these requests on the 2nd line team and to ensure only those with the correct authority are actually added as publishers.</p>
+<p>Users should first be asked to request addition by an admin of their organisation, if possible.  This is to reduce the burden of these requests on the 2nd line team and to ensure only those with the correct authority are added as publishers.</p>
 <p>Check the authenticity of a request before adding a user as a publisher (i.e. make sure they actually belong to the department they want to publish for, bearing in mind that some parent organisations may publish on behalf of child organisations, e.g. BEIS can publish for the Civil Nuclear Police Authority).</p>
 </blockquote>
 <h2 id='datasets'>Datasets</h2><h3 id='viewing-a-log-of-dataset-activity'>Viewing a log of dataset activity</h3><p>A log of publisher activity on a dataset is available by inserting <code>/activity</code> into the dataset&rsquo;s URL, such as https://ckan.publishing.service.gov.uk/dataset/activity/monthly_statistics_of_building_materials_and_components.</p>
-<h3 id='delete-or-withdraw-a-dataset'>Delete or withdraw a dataset</h3><p>Users are not permitted to remove their own datasets.  There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.  Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are marked as &ldquo;withdrawn&rdquo; (a soft-deletion), which removes them from the Find interface but allows them to be viewed through the publishing interface (CKAN).</p>
+<h3 id='deleting-or-withdrawing-a-dataset'>Deleting (or withdrawing) a dataset</h3><p>Users are not permitted to remove their own datasets. There are a <a href="https://guidance.data.gov.uk/publish_and_manage_data/managing_published_data/#managing-published-data">limited number of circumstances</a> in which a dataset will be withdrawn.  This is to be done by Technical 2nd Line, following a request from the publisher.</p>
+<p>Datasets are never hard-deleted (known as &ldquo;purged&rdquo; in CKAN), instead they are marked as &ldquo;withdrawn&rdquo; (a soft-deletion), which removes them from the public-facing site but allows them to be viewed through the CKAN publishing interface. Soft-deleted datasets can be undeleted.</p>
 
 <blockquote>
-<p>Before making any deletions, you should check that the person making the request actually belongs to the organisation who own the document (or are from a superseding department, e.g. someone from BEIS could request a withdrawal for a dataset published by BIS).</p>
+<p>Before making any deletions, check that the person making the request actually belongs to the organisation which owns the document (or are from a superseding department, e.g. someone from BEIS could request withdrawal of a dataset published by BIS).</p>
 </blockquote>
-<h4 id='deleting-a-single-dataset'>Deleting a single dataset</h4>
+<h4 id='deleting-a-dataset'>Deleting a dataset</h4>
 <ol>
-<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a sysadmin user (credentials are available in the <code>govuk-secrets</code> password store, under <code>datagovuk/ckan</code>).</li>
-<li>Navigate to the relevant dataset (use the &lsquo;Datasets&rsquo; button in the header).</li>
+<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
+<li>Navigate to the relevant dataset (use the &lsquo;Datasets&rsquo; button).</li>
 <li>Click the &lsquo;Manage&rsquo; button.</li>
 <li>Click the red &lsquo;Delete&rsquo; button.</li>
-<li>Once withdrawn, it will take up to 30 minutes to sync across to Find and clear the cache.</li>
+<li>Once withdrawn, it will take up to 30 minutes to sync across to data.gov.uk and clear the cache.</li>
 </ol>
-<h4 id='bulk-deleting-datasets'>Bulk deleting datasets</h4><p>Sometimes a publisher will request a large deletion of datasets.  In these cases, you can bulk withdraw the datasets using the instructions contained in the <a href="/manual/data-gov-uk-supporting-ckan.html#deleting-a-dataset">supporting CKAN</a> documentation.  Refer to the instructions for &lsquo;Deleting a dataset&rsquo; (which is a soft-delete).  <strong>Do not purge the dataset - this is a hard-delete.</strong></p>
-<h3 id='a-dataset-is-wrong-in-some-way'>A dataset is wrong in some way</h3><p>Responsibility for individual datasets lies with the publishing organisation.  Unless it&rsquo;s clearly a data.gov.uk problem (eg, a dataset page is returning an error response when it shouldn&rsquo;t be), users who report a problem with a dataset should be directed to the publisher.</p>
+
+<blockquote>
+<p>The &lsquo;Delete&rsquo; button is not available for draft datasets. To soft-delete a draft dataset, follow the above steps, but manually change <code>/edit/</code> to <code>/delete/</code> in the URL of the &lsquo;Manage&rsquo; page for the dataset.</p>
+</blockquote>
+<p>You can bulk soft-delete datasets using <a href="#bulk-deleting-datasets">these instructions</a>.</p>
+<h3 id='a-dataset-is-wrong-in-some-way'>A dataset is wrong in some way</h3><p>Responsibility for individual datasets lies with the publishing organisation. Unless it&rsquo;s clearly a data.gov.uk problem (eg a dataset page is returning an error response when it shouldn&rsquo;t be), users reporting a problem with a dataset should be directed to the publisher.</p>
 <p>This is a generic response for such cases:</p>
 
 <blockquote>
@@ -354,101 +485,281 @@
 <p>Contact details for each dataset are towards the bottom of the dataset page.</p>
 <p>I hope that helps. I’ll close this ticket now.</p>
 </blockquote>
-<h3 id='different-number-of-datasets-in-ckan-app-to-find'>Different number of datasets in <a href="/repos/ckanext-datagovuk.html">CKAN-app</a> to <a href="/repos/datagovuk_find.html">Find</a></h3><p>Determine the number of datasets in CKAN using the API:</p>
+<h3 id='different-number-of-datasets-in-ckan-to-data-gov-uk'>Different number of datasets in CKAN to data.gov.uk</h3><p>Determine the number of datasets in CKAN using the API:</p>
 <p><a href="https://data.gov.uk/api/3/search/dataset">https://data.gov.uk/api/3/search/dataset</a></p>
 <p>Determine the number of datasets in the Publish Postgres database using the Rails console.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 &gt;&gt;&gt; Dataset.count
-</code></pre></div><p>If these numbers match, but the number of datasets served on Find is still different, identify the number of published in the Publish Postgres database.</p>
+</code></pre></div><p>If these numbers match, but the number of datasets served on data.gov.uk is still different, identify the number of published datasets in the Postgres database:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 &gt;&gt;&gt; Dataset.published.count
-</code></pre></div><p>With the current set up, all datasets that are available through the CKAN API will be marked as public in the Publish Postgres database.  Therefore, if you get a different number of datasets, you should mark them all as published in the Publish Postgres database.</p>
+</code></pre></div><p>All datasets that are available through the CKAN API will be marked as public in the Postgres database. Therefore, if you get a different number of datasets, you should mark them all as published in the Postgres database.</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production
 /tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
 &gt;&gt;&gt; Dataset.update(status: 'published')
-</code></pre></div><p>A <a href="/manual/data-gov-uk-operations.html#reindexing-find">reindex</a> must then be done to update the status with the Elastic instance that serves Find.</p>
-<h3 id='datasets-published-in-ckan-are-not-appearing-on-find'>Datasets published in CKAN are not appearing on Find</h3><p>Check the Sidekiq queue (see <a href="/manual/data-gov-uk-monitoring.html#sidekiq-publish">monitoring section</a>) length to ensure the queue length is not too long.  You should not be seeing more jobs than the number of datasets in CKAN.</p>
-<p>If the queue is too long, you should <a href="https://github.com/mperham/sidekiq/wiki/API">clear the queue</a>.  The next sync process will repopulate the queue with any relevant datasets that require updating.</p>
-<h3 id='accessing-withdrawn-content'>Accessing withdrawn content</h3><p>Sometimes we get queries from users asking for data that is no longer publicly available, e.g. a withdrawn dataset.</p>
-<h4 id='if-the-withdrawn-content-was-a-dataset'>If the withdrawn content was a dataset</h4><p>Ask the user to email the organisation that originally published the dataset. You can find an email address for the organisation on CKAN.</p>
-<h4 id='if-the-withdrawn-content-was-a-publication'>If the withdrawn content was a publication</h4><p>If the content was published under <a href="http://data.gov.uk/library">http://data.gov.uk/library</a>, this was part of the former Drupal-based data.gov.uk publishing application, which is no longer being hosted on DGU.</p>
-<p>Whilst we do have a backup of the old bytemark server and can access the publications in an emergency, we recommend directing users to the relevant team in government, as the original documents were often incomplete and/or outdated.</p>
-<h2 id='schema-vocabulary-definitions'>Schema vocabulary definitions</h2><h3 id='add-a-schema-vocabulary-definition'>Add a schema vocabulary definition</h3><p>Users are not permitted to add their own schema vocabulary definitions.
-This is to be done by Technical 2nd Line, following a request from the publisher.</p>
+</code></pre></div><p>A <a href="/manual/data-gov-uk-operations.html#reindexing-find">reindex</a> is then needed to update the status with the Elastic instance that serves data.gov.uk.</p>
+<h3 id='datasets-published-in-ckan-are-not-appearing-on-data-gov-uk'>Datasets published in CKAN are not appearing on data.gov.uk</h3><p>Check the Sidekiq queue (see <a href="/manual/data-gov-uk-monitoring.html#sidekiq-publish">monitoring section</a>) to ensure the queue length is not too long.  You should not see more jobs than the number of datasets in CKAN.</p>
+<p>If the queue is too long, you should <a href="https://github.com/mperham/sidekiq/wiki/API">clear the queue</a>. The next sync process will repopulate the queue with any relevant datasets that require updating.</p>
+<h3 id='accessing-withdrawn-content'>Accessing withdrawn content</h3><p>If a user is asking for data that is no longer publicly available, e.g. a withdrawn dataset, they should email the organisation that originally published the dataset. You can find an email address for the organisation on CKAN.</p>
+<h2 id='using-the-ckan-api'>Using the CKAN api</h2><p>It can be useful to access the <a href="https://docs.ckan.org/en/2.9/api/index.html">CKAN API</a> when debugging or resolving issues. Note that the responses may be different depending on your access permissions.</p>
+<p>Queries can use the package ID or name (the slug) e.g.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://data.gov.uk/api/3/action/package_search?q=id:1e465255-7c45-4860-bf4b-991c151d4ce7
+returns the same as
+https://data.gov.uk/api/3/action/package_search?q=name:population-of-england-and-wales-by-ethnicity
+</code></pre></div><p>There&rsquo;s some <a href="https://guidance.data.gov.uk/get_data/api_documentation/">API documentation</a> aimed at general users of data.gov.uk. Here are some more complex examples of using the API:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code># Retrieve full details about a package (dataset)
+ https://data.gov.uk/api/3/action/package_search?q=name:population-of-england-and-wales-by-ethnicity
+
+# Find all packages created during a specific timeframe
+ https://data.gov.uk/api/3/action/package_search?q=metadata_created:[2021-06-01T00:00:00Z%20TO%202021-06-30T00:00:00Z]
+
+# Find all packages modified during a specific timeframe
+ https://data.gov.uk/api/3/action/package_search?q=metadata_modified:[2021-06-01T00:00:00Z%20TO%202021-06-30T00:00:00Z]
+
+# Count all packages and list a sample
+ https://data.gov.uk/api/3/search/dataset?fl=id,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&amp;q=state:active%20and%20dataset_type:dataset
+
+# Count harvested packages and list a sample
+ https://data.gov.uk/api/3/search/dataset?fl=id,state,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&amp;q=state:active%20and%20extras_harvest_object_id:[""%20TO%20*]%20and%20dataset_type:dataset
+
+# Count manually published packages and list a sample
+ https://data.gov.uk/api/3/search/dataset?fl=id,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&amp;q=state:active%20and%20-extras_harvest_object_id:*%20and%20dataset_type:dataset
+
+# Count packages harvested in last 7 days and list a sample
+ https://ckan.publishing.service.gov.uk/api/search/dataset?fl=id,state,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&amp;q=state:active%20and%20extras_harvest_object_id:[%22%22%20TO%20*]%20and%20dataset_type:dataset%20and%20metadata_modified:[NOW-7DAY/DAY%20TO%20NOW]&amp;limit=20
+
+# Count packages manually published in the last 7 days and list a sample
+ https://data.gov.uk/api/3/search/dataset?fl=id,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id&amp;q=state:active%20and%20-extras_harvest_object_id:*%20and%20dataset_type:dataset%20and%20metadata_modified:[NOW-7DAY/DAY%20TO%20NOW]
+
+# Count packages from Daily harvest sources and list a sample
+ https://data.gov.uk/api/3/search/dataset?fl=id,metadata_modified,dataset_type,name,title,extras_guid,extras_harvest_source_title,extras_harvest_object_id,extras_frequency-of-update&amp;q=state:active%20and%20extras_harvest_object_id:%5B%22%22%20TO%20*%5D%20and%20frequency-of-update:daily%20and%20dataset_type:dataset
+
+# List all publishers
+ https://data.gov.uk/api/3/action/organization_list
+
+# View a publisher record
+ https://data.gov.uk/api/3/action/organization_show?id=government-digital-service
+</code></pre></div><h2 id='organogram-publishing'>Organogram publishing</h2><p>Organograms are files that visualise the people structure of an organisation. They&rsquo;re split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades). The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.</p>
+<p>Organograms are the only datasets on data.gov.uk where we host the data itself, rather than linking to an external resource.</p>
+<p>The data files are hosted in a S3 bucket (named <code>datagovuk-integration-ckan-organogram</code>, <code>datagovuk-staging-ckan-organogram</code> or <code>datagovuk-production-ckan-organogram</code>, depending on the environment).</p>
+<p>There&rsquo;s <a href="https://guidance.data.gov.uk/publish_and_manage_data/harvest_or_add_data/add_data/#publishing-organograms">guidance for users on publishing organograms</a>.</p>
+<h3 id='xls-to-csv-conversion'>XLS to CSV Conversion</h3><p>Publishers upload their organograms as an Excel (XLS) file that contains macros.  A script converts these to the two CSV files (junior staff and senior staff).</p>
+
+<blockquote>
+<p>Publishers <strong>must</strong> select the correct &lsquo;Schema Vocabulary&rsquo; for their organogram dataset (i.e. one of the two &lsquo;organisation structure&rsquo; values) in order for the upload option to become available and for the conversion script to run.</p>
+</blockquote>
+<h3 id='dataset-analytics-requests'>Dataset Analytics requests</h3><p>If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
+<h2 id='connecting-to-ckan-via-ssh'>Connecting to CKAN via ssh</h2><p>For commands not available via the user interface you must ssh onto a ckan machine. You can use <a href="/manual/howto-ssh-to-machines.html">the govuk connect cli</a> to do this, eg:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect -e integration ssh ckan
+</code></pre></div><p>Most of the commands to interact with CKAN use the <code>ckan</code> CLI.  Some of these
+commands take a path to the config file with the <code>-c</code> option, which is located at
+<code>/var/ckan/ckan.ini</code> in our deployments.</p>
+<p>Once connected to the <code>ckan</code> machine, the commands should be run from within the <code>/var</code> directory as follows:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan [COMMAND]
+</code></pre></div><h3 id='initialising-the-database'>Initialising the database</h3><p>There may be times when you need to start with an empty database (e.g. on integration).
+The following commands will create the relevant schema for core CKAN and the harvesting
+extension on integration.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan db init
+sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester initdb
+</code></pre></div><h3 id='accessing-the-database'>Accessing the database</h3><p>To access the CKAN database to run queries on the <code>ckan_db_admin</code> machine:</p>
+<p>Get the password for <code>aws_db_admin</code>: <code>sudo cat /root/.pgpass</code></p>
+<p>Supply the password when prompted: <code>psql -U aws_db_admin -h ckan-postgres -p 5432 ckan_production</code></p>
+<h3 id='creating-a-system-administrator-account'>Creating a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin add USERNAME email=EMAIL_ADDRESS
+</code></pre></div><p>You&rsquo;ll be prompted twice for a password.</p>
+<h3 id='removing-a-system-administrator-account'>Removing a system administrator account</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan sysadmin remove USERNAME
+</code></pre></div><h3 id='listing-users'>Listing users</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user list
+</code></pre></div><h3 id='viewing-a-user'>Viewing a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user show USERNAME
+</code></pre></div><h3 id='adding-a-user'>Adding a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user add USERNAME email=EMAIL_ADDRESS
+</code></pre></div><h3 id='removing-a-user'>Removing a user</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user remove USERNAME
+</code></pre></div><h3 id='changing-a-user39s-password'>Changing a user&rsquo;s password</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan user setpass USERNAME
+</code></pre></div><h3 id='changing-a-publisher-organisation-name'>Changing a publisher (organisation) name</h3><p>Change the name in the CKAN UI then reindex that publisher:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild [PUBLISHER]
+</code></pre></div><h3 id='purging-a-dataset'>Purging a dataset</h3><p>Where commands mention DATASET_NAME, this should either be the slug for the dataset, or the
+UUID.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan dataset purge DATASET_NAME
+</code></pre></div><h3 id='bulk-deleting-datasets'>Bulk deleting datasets</h3><p>This needs to be done on the CKAN machine, since <a href="https://github.com/alphagov/govuk-puppet/blob/91471d86c0aa52aea4044835311ae9ba860281f5/modules/govuk/manifests/apps/ckan.pp#L210">the deletion API is protected from external access</a>. Your API key is required, which can be obtained from your user profile in the CKAN web interface. Put a list of dataset slugs or GUIDs in a text file, with one dataset per line, then run the following.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>while read p; do curl --request POST --data "{\"id\": \"$p\"}" --header "Authorization: &lt;your_api_key&gt;" http://localhost:&lt;ckan_port&gt;/api/3/action/package_delete; done &lt; list_of_ids.txt
+</code></pre></div><p>After deleting or purging a dataset, it will take up to 10 minutes to update on data.gov.uk, due to the sync process.</p>
+<h3 id='exporting-a-list-of-datasets-to-csv'>Exporting a list of datasets to CSV</h3><p>You can get a list all datasets (including those which have been soft-deleted) for an organisation by exporting a CSV from the database.</p>
 
 <ol>
-<li>Add the new schema vocabulary definition to the <a href="schemas">schemas</a></li>
-<li>Add the new schema vocabulary definition to the <a href="test-schemas">corresponding test</a></li>
+<li>Find the id of the organisation you want via an API call, eg:</li>
 </ol>
-<p>The format is:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>"&lt;random UUID&gt;": "&lt;schema vocabulary definition title&gt; - &lt;schema vocabulary definition url&gt;"`
-</code></pre></div><p>You can generate a <code>UUID</code> in <code>irb</code> or <code>pry</code>:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>pry
-<span class="o">[</span>1] pry<span class="o">(</span>main<span class="o">)&gt;</span> require <span class="s1">'securerandom'</span>
-<span class="o">=&gt;</span> <span class="nb">true</span>
-<span class="o">[</span>2] pry<span class="o">(</span>main<span class="o">)&gt;</span> SecureRandom.uuid
-<span class="o">=&gt;</span> <span class="s2">"14104757-303a-48ad-8eff-bfbe320b0e0a"</span>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://data.gov.uk/api/3/action/organization_show?id=environment-agency
+</code></pre></div>
+<ol>
+<li>Follow the <a href="#accessing-the-database">instructions to access the database</a></li>
+<li>This query will list all datasets for the Environment Agency, with the number of records for each, and export the result to a CSV file.</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>\copy (SELECT package.name, package.title, package.url, package.state, COUNT(resource.package_id) as num_resources FROM package LEFT JOIN resource ON (resource.package_id = package.id) WHERE package.owner_org='11c51f05-a8bf-4f58-9b95-7ab55f9546d7' GROUP BY package.id) to 'output.csv' csv header;
+</code></pre></div>
+<ol>
+<li>You can then use scp-pull from the govuk-connect tool to download the file.</li>
+</ol>
+<h3 id='rebuilding-the-search-index'>Rebuilding the search index</h3><p>CKAN uses Solr for its search index, and occasionally you may need to refresh the index, or rebuild it from scratch.</p>
+<p>Refresh the entire search index (this adds/removes datasets, but does not clear the index first):</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild -r
+</code></pre></div><p>Rebuild the entire search index (this deletes the index before re-indexing begins):</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index rebuild
 </code></pre></div>
 <blockquote>
-<p><strong>Note</strong></p>
-<p>The added schema will appear in the Schema/Vocabulary dropdown in <a href="https://ckan.publishing.service.gov.uk/dataset/new">https://ckan.publishing.service.gov.uk/dataset/new</a>.</p>
+<p>Rebuilding the entire search index immediately removes all records from the search before re-indexing begins. No datasets will be served from the <code>package_search</code> API endpoint until the re-index has completed. This command should therefore only be used as a last resort since it will cause the sync process to assume there is no data for a period of time.</p>
 </blockquote>
-<h2 id='harvesting'>Harvesting</h2><p>Harvesting is where publishers can automatically import their data to data.gov.uk without having to manually enter it into the web interface. They can be set up to run automatically at specified periods, or run manually on-demand.</p>
-<p>See the <a href="/manual/data-gov-uk-supporting-ckan.html#harvesting">&ldquo;Harvesting&rdquo; section in &ldquo;Support tasks for CKAN&rdquo;</a> for troubleshooting.</p>
-<h2 id='map-previews-issues'>Map previews issues</h2><p>Map previews on data.gov.uk have been deprecated; this means that map preview links will no longer be available and existing map preview pages will have a note around map previews to be deprecated. There is quite a low volume of users using this service.</p>
-<h2 id='organogram-publishing'>Organogram Publishing</h2><p>Organograms are files that allow the people structure of an organisation to be visualised.  They are split into two files: one for senior staff (grades SCS1, SCS2 and SCS3, or equivalent) and another for junior staff (all other grades).  The senior staff file is more detailed than the junior staff file, with staff names included for posts classified as grades SCS2 and SCS3.</p>
-<p>Organograms are the only datasets in data.gov.uk where we host the data itself rather than linking to an external resource.  The data files are hosted in a S3 bucket (named <code>datagovuk-integration-ckan-organogram</code>, <code>datagovuk-staging-ckan-organogram</code> or <code>datagovuk-production-ckan-organogram</code>, depending on the environment).</p>
-<p>Read <a href="https://guidance.data.gov.uk/publish_and_manage_data/harvest_or_add_data/add_data/#publishing-organograms">publishing organograms</a> to find out how to upload new organograms and datasets. You can direct user queries to that guidance.</p>
-<h3 id='xls-to-csv-conversion'>XLS to CSV Conversion</h3><p>Publishers upload their organograms as a Excel (XLS) file that contains macros.  A script is run which converts these to the two CSV files (junior staff and senior staff).</p>
+<p>Only reindex those packages that are not currently indexed:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan search-index -o rebuild
+</code></pre></div><h2 id='harvesting'>Harvesting</h2><p>Harvesting is where data is automatically imported to data.gov.uk without a publisher having to manually enter it via the web interface. This can be set to run automatically at specified periods, or run manually on-demand.</p>
+<p>Although harvesters can mostly be managed from the <a href="https://data.gov.uk/harvest">user interface</a>, it can be easier to perform these tasks from the command line.</p>
+<h3 id='listing-current-harvest-jobs'>Listing current harvest jobs</h3><p>This returns a list of currently running jobs, including the JOB_ID needed to cancel jobs.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester jobs
+</code></pre></div><p>It may be faster to run a SQL query to get the ID of a specific harvest job.
+You can do this by running the command from <a href="#accessing-the-database">Accessing the database</a>
+and passing a <code>-c</code> argument:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&lt;psql_ckan_production_command&gt; -c "SELECT id FROM harvest_source WHERE name = '[NAME]'"
+</code></pre></div><h3 id='finding-the-harvest-source-of-a-dataset'>Finding the harvest source of a dataset</h3><p>The harvest source of a dataset can be found using the CKAN API, using the dataset&rsquo;s slug:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://ckan.publishing.service.gov.uk/api/3/action/package_show?id=&lt;slug&gt;
+</code></pre></div><p>In the response there should be <code>harvest_source_id</code> and <code>harvest_source_title</code> fields.</p>
+<h3 id='getting-the-status-of-a-harvester'>Getting the status of a harvester</h3>
+<ol>
+<li>Login to <a href="https://ckan.publishing.service.gov.uk">CKAN</a> as a &lsquo;sysadmin&rsquo; user (see above for credentials).</li>
+<li>Click the &lsquo;Harvest&rsquo; button and find the relevant harvester.</li>
+<li>You will see a list of the datasets imported by this harvest source.</li>
+<li>Click the &lsquo;Manage&rsquo; button to get the status.</li>
+<li>A summary of the current status will be shown.  Individual runs (and any error messages) can be accessed from the &lsquo;Jobs&rsquo; tab.</li>
+</ol>
+<h3 id='restart-a-harvest-job'>Restart a harvest job</h3>
+<ol>
+<li>Follow the steps to <a href="#getting-the-status-of-a-harvester">get the status of a harvester</a>.</li>
+<li>If the harvester is currently running, click the &lsquo;Stop&rsquo; button. Once it&rsquo;s stopped, or if it&rsquo;s not currently running, click the &lsquo;Reharvest&rsquo; button. You&rsquo;ll know if the harvester is running because the &lsquo;Reharvest&rsquo; button will be disabled.</li>
+</ol>
+<p>If the harvest job is hanging and the &lsquo;Stop&rsquo; button is not responding, you&rsquo;ll have to log on to the <code>ckan</code> machine to restart it:</p>
 
-<blockquote>
-<p>Publishers <strong>must</strong> select the correct &lsquo;Schema Vocabulary&rsquo; for their organogram dataset (i.e. one of the two &lsquo;organisation structure&rsquo; values) in order for the upload option to become available and for the XLS-to-CSV conversion to run.</p>
-</blockquote>
-<h3 id='dataset-analytics-requests'>Dataset Analytics requests</h3><p>It is possible to access analytics for datasets. If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to Martin Lugton or to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
-<h2 id='differences-in-ckan-2-9-vs-2-72-8'>Differences in CKAN 2.9 vs 2.7/2.8</h2><p>If a publisher is attempting to access data directly via the use of the CKAN API endpoints they might encounter problems processing the response:</p>
-
-<ul>
-<li>V1 of the API endpoint has been <a href="https://github.com/ckan/ckan/blob/ckan-2.9.2/CHANGELOG.rst#v280-2018-05-09">dropped</a></li>
-</ul>
-<p>This means that the extras block in some cases has been flattened, this was the previous response:</p>
-
-<blockquote>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>{
- "id": "&lt;package id&gt;",
- ...
- "extras": {
-    "harvest_object_id": "&lt;harvest object id&gt;",
-    "contact-name": "Example User",
-    "harvest_source_title": "example harvest #1",
-    "harvest_source_id": "&lt;harvest source id&gt;"
-  }
-}
-</code></pre></div></blockquote>
-<p>In 2.9 the response looks like this:</p>
-
-<blockquote>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>{
- "id": "&lt;package id&gt;",
- ...
- "harvest_object_id": "&lt;harvest object id&gt;",
- "contact-name": "Example User",
- "harvest_source_title": "example harvest #1",
- "harvest_source_id": "&lt;harvest source id&gt;"
-}
-</code></pre></div></blockquote>
+<ol>
+<li>SSH into the ckan machine as above</li>
+<li>Assume the deploy user - <code>sudo su deploy</code></li>
+<li>Activate the virtual environment - <code>. /var/apps/ckan/venv3/bin/activate</code></li>
+<li>Run the harvest job manually - <code>ckan -c /var/ckan/ckan.ini harvester run-test &lt;harvest source&gt;</code>
 
 <ul>
-<li><p>Accepted Solr params for dataset / package searching have changed:</p>
-
-<ul>
-<li><code>limit</code> and <code>offset</code> have been replaced by <code>rows</code> and <code>start</code> respectively.</li>
-<li><code>all_fields</code> is no longer supported and will cause an error response.</li>
+<li>where <code>harvest source</code> is from the url of the harvest source page, e.g. <code>defra-metadata-catalogue-harvest</code></li>
 </ul></li>
-<li><p>The <code>revision_id</code> is also no longer available, although this has long been deprecated for a number of <a href="https://github.com/ckan/ckan/issues/3484">reasons</a> by the CKAN team.</p></li>
-</ul>
-<h2 id='revision-log'>Revision log</h2><p>There is a <a href="https://ckan.publishing.service.gov.uk/revision">revision log</a> which shows the most recent edits to CKAN datasets, harvester and users performed by all users.</p>
+</ol>
+<h3 id='cancelling-a-harvest-job'>Cancelling a harvest job</h3>
+<ol>
+<li>Follow the steps to <a href="#getting-the-status-of-a-harvester">get the status of a harvester</a>.</li>
+<li>Click the &lsquo;Stop&rsquo; button to stop it.</li>
+</ol>
+<p>Sometimes a harvest job can get stuck and not complete, and can&rsquo;t be cancelled through the UI.
+You can get the <code>JOB_ID</code> from the harvest dashboard under &ldquo;Last Harvest Job&rdquo; (or from <a href="#listing-current-harvest-jobs">Listing current harvest jobs</a>).</p>
+<p>Cancel the job by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester job-abort JOB_ID
+</code></pre></div><p>This can also be done by running SQL:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&lt;psql_ckan_production_command&gt; -c "UPDATE harvest_job SET finished = NOW(), status = 'Finished' WHERE source_id = '[UUID]' AND NOT status = 'Finished';"
+</code></pre></div><h3 id='purging-all-currently-queued-tasks'>Purging all currently queued tasks</h3><p>If there&rsquo;s a schedule clash and the system is too busy, it may be necessary to purge the queues used in the various stages of harvesting.</p>
+
+<blockquote>
+<p><strong>WARNING</strong></p>
+<p>This command will empty the Redis queues</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan harvester purge-queues
+</code></pre></div><h3 id='restarting-the-harvest-service'>Restarting the harvest service</h3><p>The harvesting process runs as a single threaded program. If any harvesting
+process crashes by raising an exception, it&rsquo;ll take out the entire process. Upstart is configured to restart the process automatically, but if the service keeps crashing, Upstart will decide it&rsquo;s unhealthy and stop it after a while.</p>
+<p>You can check whether the process is still running by checking if entries are
+still being written to the log file on the <code>ckan</code> machine:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>gds govuk connect <span class="nt">-e</span> production ssh ckan
+<span class="nv">$ </span><span class="nb">sudo tail</span> <span class="nt">-f</span> /var/log/ckan/procfile_harvester_fetch_consumer.err.log
+</code></pre></div><p>Or you can check that the services are all showing as <code>started</code> on the <code>ckan</code>
+machine:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester
+</code></pre></div><p>If any of the services are not showing as <code>started</code>, you&rsquo;ll need to restart
+them. There are &lsquo;gather&rsquo; and &lsquo;fetch&rsquo; jobs that may need restarting:</p>
+<p>&lsquo;Gather&rsquo; jobs retrieve the identifiers of the updated datasets and create jobs
+in the fetch queue. To restart, run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl restart harvester_gather_consumer-procfile-worker
+</code></pre></div><p>&lsquo;Fetch&rsquo; jobs retrieve the datasets from the remote source and perform the relevant
+updates in CKAN. To restart, run:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl restart harvester_fetch_consumer-procfile-worker
+</code></pre></div><p>Alternatively, if the server has stopped, you can restart it with <code>initctl</code>.
+You must ensure it&rsquo;s safe to restart the process first, by checking if the harvest is still running.</p>
+<p>To check the status of both harvesters:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester_gather_consumer-procfile-worker_child | <span class="nb">grep </span>start
+<span class="nv">$ </span><span class="nb">sudo </span>initctl list | <span class="nb">grep </span>harvester_fetch_consumer-procfile-worker_child | <span class="nb">grep </span>start
+</code></pre></div><p>If either are not running you can restart the gather harvester using the following commands:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl stop harvester_gather_consumer-procfile
+<span class="nv">$ </span><span class="nb">sudo </span>initctl start harvester_gather_consumer-procfile
+</code></pre></div><p>and fetch harvesters using the following commands:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>initctl stop harvester_fetch_consumer-procfile
+<span class="nv">$ </span><span class="nb">sudo </span>initctl start harvester_fetch_consumer-procfile
+</code></pre></div><h3 id='the-csw-endpoint'>The <code>csw</code> endpoint</h3><p>The <code>csw</code> endpoint is available at <a href="https://data.gov.uk/csw">https://data.gov.uk/csw</a> which redirects to
+ <a href="https://ckan.publishing.service.gov.uk/csw">https://ckan.publishing.service.gov.uk/csw</a>.</p>
+<h4 id='csw-endpoint-unavailable'><code>csw</code> endpoint unavailable</h4><p>If it is not showing xml with an error <code>Missing keyword: service</code> you can check
+that it&rsquo;s running on the <code>ckan</code> machine:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>service pycsw_web-procfile-worker status
+pycsw_web-procfile-worker start/running
+
+<span class="nv">$ $ </span>ps aux | <span class="nb">grep </span>pycsw
+root     29503  0.0  0.0  59652  2040 ?        Ss   06:04   0:00 <span class="nb">sudo</span> <span class="nt">-u</span> deploy <span class="nt">-E</span> sh <span class="nt">-c</span> <span class="nv">PATH</span><span class="o">=</span>/usr/lib/rbenv/shims:<span class="nv">$PATH</span> <span class="nb">exec  </span>unicornherder <span class="nt">--gunicorn-bin</span> ./venv/bin/gunicorn <span class="nt">-p</span> /var/run/ckan/pycsw_unicornherder.pid <span class="nt">--</span> ckanext.datagovuk.pycsw_wsgi <span class="nt">--bind</span> localhost:<span class="k">${</span><span class="nv">PYCSW_PORT</span><span class="k">}</span> <span class="nt">--timeout</span> <span class="k">${</span><span class="nv">GUNICORN_TIMEOUT</span><span class="k">}</span> <span class="nt">--workers</span> <span class="k">${</span><span class="nv">GUNICORN_WORKER_PROCESSES</span><span class="k">}</span> <span class="nt">--log-file</span> /var/log/ckan/pycsw.out.log <span class="nt">--error-logfile</span> /var/log/ckan/pycsw.err.log 2&gt;&gt;<span class="s1">'/var/log/ckan/procfile_pycsw_web.err.log'</span> 1&gt;&gt;<span class="s1">'/var/log/ckan/procfile_pycsw_web.out.log'</span>
+...
+</code></pre></div><p>If no running processes are found then you can restart it using this command:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>service pycsw_web-procfile_worker restart
+</code></pre></div><p>It is worth checking the <code>pycsw</code> logs to investigate why it failed:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">tail</span> <span class="nt">-f</span> /var/log/ckan/pycsw.err.log
+</code></pre></div><p>You can get a summary of <code>csw</code> records available from this url <a href="https://ckan.publishing.service.gov.uk/csw?service=CSW&version=2.0.2&request=GetRecords&typenames=csw:Record&elementsetname=brief">https://ckan.publishing.service.gov.uk/csw?service=CSW&amp;version=2.0.2&amp;request=GetRecords&amp;typenames=csw:Record&amp;elementsetname=brief</a></p>
+<h4 id='syncing-the-csw-records-with-ckan-datasets'>Syncing the <code>csw</code> records with <code>ckan</code> datasets</h4><p>Normally the sync between <code>csw</code> and <code>ckan</code> will start at 6 each day, but in
+case it should fail or if the sync needs to happen sooner you can manually
+trigger the sync after Solr has been reindexed.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan ckan-pycsw load <span class="nt">-p</span> /var/ckan/pycsw.cfg <span class="nt">-u</span> http://localhost:3220
+</code></pre></div><h2 id='map-previews'>Map previews</h2><p>Map previews on data.gov.uk have been deprecated. Map preview links are no longer available and existing map preview pages will have a note about them being deprecated.</p>
+<h2 id='register-a-brownfield-dataset'>Register a brownfield dataset</h2><p>See the <a href="https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing">supporting manual</a>.</p>
+<h2 id='ckan-on-staging-environment-responds-with-nginx-504-timeout'>CKAN on Staging environment responds with Nginx 504 timeout:</h2><p>CKAN on the Staging environment can sometime respond with a 504 error, due to it timing out when connecting to the database as there are too many connections. The current limit is 1000, usually the number of connections should be under 100.</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">rolname</span><span class="p">,</span> <span class="n">rolconnlimit</span> <span class="k">FROM</span> <span class="n">pg_roles</span> <span class="k">WHERE</span> <span class="n">rolname</span><span class="o">=</span><span class="s1">'ckan'</span><span class="p">;</span>
+</code></pre></div><h3 id='changing-the-connection-limit'>Changing the connection limit</h3><p>The connection limit can be updated, but should not exceed the hard limit of around 3000.</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">ALTER</span> <span class="k">USER</span> <span class="n">ckan</span> <span class="k">WITH</span> <span class="k">CONNECTION</span> <span class="k">LIMIT</span> <span class="mi">1001</span><span class="p">;</span>
+</code></pre></div><h3 id='trying-to-log-on-to-the-database-will-result-in-this-error'>Trying to log on to the database will result in this error:</h3><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>FATAL:  too many connections for role "ckan"
+</code></pre></div><h3 id='view-the-number-of-connections-and-types-of-queries'>View the number of connections and types of queries:</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">FROM</span> <span class="n">pg_stat_activity</span> <span class="k">WHERE</span> <span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span><span class="p">;</span>
+</code></pre></div><p>In the past, during an overnight sync one of the queries has been found to cause a large number of db connections. This captures part of that query and uses it to target the pid:</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">pid</span> <span class="k">FROM</span> <span class="n">pg_stat_activity</span> <span class="k">WHERE</span> <span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span> <span class="k">and</span> <span class="n">query</span> <span class="k">LIKE</span> <span class="s1">'SELECT "user".password AS user_password%'</span><span class="p">;</span>
+</code></pre></div><h3 id='cancelling-these-queries'>Cancelling these queries</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">pg_cancel_backend</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span> <span class="n">pid</span> <span class="k">IN</span>
+<span class="p">(</span><span class="k">SELECT</span> <span class="n">pid</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span> <span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span> <span class="k">and</span> <span class="n">query</span> <span class="k">LIKE</span> <span class="s1">'SELECT "user".password AS user_password%'</span><span class="p">);</span>
+</code></pre></div><h3 id='identifying-long-running-queries'>Identifying long running queries</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>
+<span class="n">pid</span><span class="p">,</span>
+<span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">pg_stat_activity</span><span class="p">.</span><span class="n">query_start</span> <span class="k">AS</span> <span class="n">duration</span><span class="p">,</span>
+<span class="n">query</span><span class="p">,</span>
+<span class="k">state</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span>
+<span class="p">(</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">pg_stat_activity</span><span class="p">.</span><span class="n">query_start</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">interval</span> <span class="s1">'5 minutes'</span> <span class="k">AND</span>
+<span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span><span class="p">;</span>
+</code></pre></div><h3 id='cancelling-long-running-queries'>Cancelling long running queries</h3><p>This will take a few seconds to be processed</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">pg_cancel_backend</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span>
+<span class="p">(</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">pg_stat_activity</span><span class="p">.</span><span class="n">query_start</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">interval</span> <span class="s1">'5 minutes'</span> <span class="k">AND</span>
+<span class="k">state</span> <span class="o">=</span> <span class="s1">'active'</span> <span class="k">AND</span>
+<span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span><span class="p">;</span>
+</code></pre></div><p>If cancelling does not work you can terminate the query. This must be used with
+caution as it may cause the database to restart to recover consistency.</p>
+<div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">pg_terminate_backend</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">pg_stat_activity</span>
+<span class="k">WHERE</span>
+<span class="p">(</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">pg_stat_activity</span><span class="p">.</span><span class="n">query_start</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">interval</span> <span class="s1">'5 minutes'</span> <span class="k">AND</span>
+<span class="k">state</span> <span class="o">=</span> <span class="s1">'active'</span> <span class="k">AND</span>
+<span class="n">datname</span> <span class="o">=</span> <span class="s1">'ckan_production'</span><span class="p">;</span>
+</code></pre></div><h2 id='monitoring-data-gov-uk'>Monitoring data.gov.uk</h2><h3 id='pingdom'>Pingdom</h3><p>[Pingdom] monitors <code>https://data.gov.uk</code> uptime and alerts [PagerDuty] when downtime is detected.</p>
+<h3 id='sentry'>Sentry</h3><p>[Sentry] monitors application errors. The Sentry pages for each app can be found on the <a href="/repos/datagovuk_find.html">Find</a> and <a href="/repos/datagovuk_publish.html">Publish</a> app pages.</p>
+<h3 id='log-it'>Log.it</h3><p>Each application sends logs to <a href="https://logit.io/a/1c6b2316-16e2-4ca5-a3df-ff18631b0e74">Logit</a>. <a href="/repos/datagovuk_publish.html">Publish</a> and <a href="/repos/datagovuk_find.html">Find</a> use the corresponding <a href="https://docs.cloud.service.gov.uk/#set-up-the-logit-io-log-management-service">PaaS Service</a>.
+Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-beta&quot; &amp;&amp; access.response_code: 500</code>.</p>
+<h3 id='sidekiq-publish'>Sidekiq (<a href="/repos/datagovuk_publish.html">Publish</a>)</h3><p>You can monitor the number of jobs in each queue using the following.</p>
+<p>First, follow the instructions on <a href="/manual/data-gov-uk-operations">logging into the paas</a></p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>cf ssh publish-data-beta-production-worker
+/tmp/lifecycle/launcher /home/vcap/app 'rails console' ''
+&gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
+</code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
 
 
   <div class='related-content'>
@@ -462,7 +773,6 @@ This is to be done by Technical 2nd Line, following a request from the publisher
           <ul class="govuk-list">
             <li><a href="/manual/data-gov-uk-architecture.html">Architecture of data.gov.uk</a></li>
             <li><a href="/manual/data-gov-uk-contracts-archive.html">Data.gov.uk Contracts Archive</a></li>
-            <li><a href="/manual/data-gov-uk-map-previews.html">WMS map previews on data.gov.uk</a></li>
           </ul>
         </div>
 
@@ -470,9 +780,7 @@ This is to be done by Technical 2nd Line, following a request from the publisher
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/data-gov-uk-supporting-ckan.html">Common 2nd line support tasks for CKAN</a></li>
             <li><a href="/manual/data-gov-uk-deployment.html">Deployments for data.gov.uk</a></li>
-            <li><a href="/manual/data-gov-uk-monitoring.html">Monitor data.gov.uk</a></li>
             <li><a href="/manual/data-gov-uk-operations.html">Operation of data.gov.uk</a></li>
           </ul>
         </div>
@@ -487,7 +795,7 @@ This is to be done by Technical 2nd Line, following a request from the publisher
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/data-gov-uk-2nd-line.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Common+2nd+line+support+tasks+for+data.gov.uk%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdata-gov-uk-2nd-line.html%29&amp;labels=bug&amp;title=Re%3A+%27Common+2nd+line+support+tasks+for+data.gov.uk%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Common+2nd+line+support+tasks+for+data.gov.uk+and+CKAN%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdata-gov-uk-2nd-line.html%29&amp;labels=bug&amp;title=Re%3A+%27Common+2nd+line+support+tasks+for+data.gov.uk+and+CKAN%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
