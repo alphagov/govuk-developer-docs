@@ -186,25 +186,19 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/asset-manager/commit/8d365c26fdb05afe48e2f7d156d756c0e452b4b1">23 Feb 2021</a>
+  Last updated: <a href="https://github.com/alphagov/asset-manager/commit/fecb8540ee7d24266a39c8d2a0e562581a761347">5 Nov 2022</a>
 </div>
 
   <h1 class="page-title">asset-manager: API</h1>
 
   
-<p>See the <code>AssetPresenter</code> class for the return format for the above API calls. Unless developing locally, all API requests must be authenticated with a token generated in the Signon application.</p>
+<p>See the <code>AssetPresenter</code> class for the return format for the above API calls.</p>
+<p>Unless developing locally, all API requests must be authenticated with a bearer token generated in the Signon application. With the <code>curl</code> example commands below, you can send a bearer token by appending <code>-H "authorization: Bearer $ASSET_MANAGER_BEARER_TOKEN"</code>.</p>
 <h2 id="create-an-asset">Create an asset</h2>
 <p><code>POST /assets</code> expects a single file uploaded via the <code>asset[file]</code> parameter. This creates the asset and schedules it for scanning.</p>
 <pre><code># Create a temporary file
-echo `date` &gt; tmp.txt
+date &gt; tmp.txt
 
 # Upload file to Asset Manager
 curl http://asset-manager.dev.gov.uk/assets --form "asset[file]=@tmp.txt"
@@ -256,7 +250,7 @@ Tue 18 Jul 2017 16:18:38 BST
 <h2 id="update-asset">Update asset</h2>
 <p><code>PUT /assets/:id</code> expects a file in the same format, and replaces it at the provided ID.</p>
 <pre><code># Create a new tmp file
-echo `date` &gt; tmp123.txt
+date &gt; tmp123.txt
 
 # Update the file on asset-manager
 curl http://asset-manager.dev.gov.uk/assets/597b098a759b743e0b759a96 --request PUT --form "asset[file]=@tmp123.txt"
@@ -325,7 +319,7 @@ curl http://asset-manager.dev.gov.uk/assets/597b098a759b743e0b759a96
 <h2 id="create-a-whitehall-asset">Create a Whitehall asset</h2>
 <p><code>POST /whitehall_assets</code> expects a single file uploaded via the <code>asset[file]</code> parameter and a path set in <code>asset[legacy_url_path]</code>. The latter tells Asset Manager the URL path at which the asset should be served. Note that this is intended as a transitional measure while we move Whitehall assets into Asset Manager. The idea is that eventually all asset URLs will be rationalised and consolidated and at that point Asset Manager will tell Whitehall the URL at which the asset will be served as it currently does for Mainstream assets. This endpoint also accepts two optional parameters, <code>asset[legacy_etag]</code> &amp; <code>asset[legacy_last_modified]</code>. These are only intended for use when we move <em>existing</em> Whitehall assets into Asset Manager so that we can avoid wholesale cache invalidation. <strong>Note</strong> this endpoint should only be used from the Whitehall Admin app; not from any other publishing apps.</p>
 <pre><code># Create a temporary file
-echo `date` &gt; tmp.txt
+date &gt; tmp.txt
 
 # Upload file to Asset Manager
 curl http://asset-manager.dev.gov.uk/whitehall_assets --form "asset[file]=@tmp.txt" --form "asset[legacy_url_path]=/government/uploads/path/to/tmp.txt"
