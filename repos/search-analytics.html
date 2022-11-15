@@ -238,16 +238,34 @@ quality.</p>
 
 <h2 id="installation">Installation</h2>
 
-<p>Requires python 3.4.</p>
+<p>For developing and testing locally, it is recommended that you use the same
+Python version as the one set in <code>nightly-run.sh</code> currently this is <code>3.8.13</code>.</p>
 
-<pre><code>virtualenv ENV
-source ENV/bin/activate
-pip install -r requirements.txt
+<p>To achieve this - if you do not already have this version available - is by
+using <a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a>. <code>pyenv</code> should be familiar
+to anyone who has used <code>rbenv</code> - in fact it is a clone of <code>rbenv</code> so shares
+many of the same commands and concepts.</p>
+
+<p>Once <code>pyenv</code> is installed and the above version is installed (<code>pyenv install 3.8.13</code>),
+you should be able to <code>cd</code> into the root of the project where <code>pyenv</code> will read
+the <code>.python-version</code> file and load the correct version.</p>
+
+<p>From there you can issue the following commands to load a Python virtual environment and
+install the dependencies. Run <code>deactivate</code> at anytime to exit the Python virtual
+environment.</p>
+
+<pre lang="bash"><code>$ python -m venv venv
+$ source venv/bin/activate
+$ pip install -r requirements.txt
 </code></pre>
 
-<p>Note for those unfamiliar with virtualenv: the &ldquo;source ENV/bin/activate&rdquo; line
-will need to be run in each shell that you want to run the scripts in this
-repository from.</p>
+<h2 id="testing-coverage-and-linting">Testing, coverage and linting</h2>
+
+<pre lang="bash"><code>$ python -m unittest discover
+$ coverage run -m unittest discover
+$ coverage report -m
+$ pylint --recursive=y ./analytics_fetcher
+</code></pre>
 
 <h2 id="authentication-with-google-analytics">Authentication with Google Analytics</h2>
 
