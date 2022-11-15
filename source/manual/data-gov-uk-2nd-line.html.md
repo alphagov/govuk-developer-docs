@@ -647,6 +647,8 @@ $ sudo -u deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan ckan-pycsw load
 
 Map previews on data.gov.uk have been deprecated. Map preview links are no longer available and existing map preview pages will have a note about them being deprecated.
 
+The Ordanance Survey API that sat behind this service was turned off. We also conducted an audit of the use of map previews, which showed that less than 1% of requests were to map preview datasets and of the 6% of map preview datasets available on DGU, only 2% were working as expected.
+
 ## Register a brownfield dataset
 
 See the [supporting manual](https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing).
