@@ -34,10 +34,11 @@ for Publishing API expires in X days*. In this example, the API User is
 - Copy the new token and prepare to replace it in [govuk-secrets].
 
 > How to do the last step depends on the application, but it should be
-> something like `rake eyaml:edit[integration,apps]`, depending on the
-> environment you're working on.
+> something like `rake 'eyaml:edit[integration,apps]'` within the `puppet_aws` directory, depending on the
+> environment you're working on. Some tokens are not configured in the 'app' namespace - for these
+> run `rake 'eyaml:edit[integration]'`
 
-- Find a line like `govuk::apps::content_publisher::publishing_api_bearer_token...`
+- Find a line like `govuk::apps::content_publisher::publishing_api_bearer_token...`. To find the relevant line, it may be useful to search for the first few characters shown of the existing token on signon.
 - Replace the long string within `GPG[xxxxxx]` with the new token.
 - Make a PR with your change and once it is merged deploy the change with
   Puppet.
@@ -48,7 +49,8 @@ for Publishing API expires in X days*. In this example, the API User is
 
 - Once puppet has been deployed you can check the new token is there by sshing into a machine and running a command such as `govuk_setenv content-publisher env | grep -i TOKEN_YOU_ARE_ROTATING`
 - Check the app can still access the remote application APIs with the new token.
-- Once you're happy the new token works, you can *Revoke* the old one in Signon.
+- Check the new token works (see below)
+- If all this has been done, and puppet has been run on all the machines, you can *Revoke* the old token in Signon.
 
 > How to check the new token works depends on the application. One way to check
 > the token works is to manually open a console for the application and call
@@ -60,7 +62,13 @@ for Publishing API expires in X days*. In this example, the API User is
 >
 > The api call could be something like
 >
-> `GdsApi::SupportApi.new(Plek.new.find("support-api"), bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"])`
+> `gds_api = GdsApi::Router.new(Plek.new.find("router-api"), bearer_token: ENV["ROUTER_API_BEARER_TOKEN"])`
+>
+> `gds_api.get_route("/foo")`
+>
+> If the token works, then the above should get us something other than an unauthorised error.
+> You could test this out by setting up `gds_api` with an incorrect token, e.g. `bearer_token: "NOT_THE_REAL_TOKEN"`
+> and checking that this gives a different response to when it is set up with the new token.
 
 Finally, most applications should automatically restart when Puppet updates the
 token on each machine, but you may need to [do this manually][restart-app] so
