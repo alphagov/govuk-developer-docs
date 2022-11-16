@@ -148,15 +148,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bd55573083477d8d9f95db40b42ebbae5ed6ee89">15 Nov 2022</a>
 </div>
 
  <h1 id='header'>Expiring API tokens in Signon</h1> <p>One or more tokens for API Users are about to expire. You should rotate
@@ -189,12 +182,13 @@ access token</em>.</li>
 
 <blockquote>
 <p>How to do the last step depends on the application, but it should be
-something like <code>rake eyaml:edit[integration,apps]</code>, depending on the
-environment you&rsquo;re working on.</p>
+something like <code>rake &#39;eyaml:edit[integration,apps]&#39;</code> within the <code>puppet_aws</code> directory, depending on the
+environment you&rsquo;re working on. Some tokens are not configured in the &lsquo;app&rsquo; namespace - for these
+run <code>rake &#39;eyaml:edit[integration]&#39;</code></p>
 </blockquote>
 
 <ul>
-<li>Find a line like <code>govuk::apps::content_publisher::publishing_api_bearer_token...</code></li>
+<li>Find a line like <code>govuk::apps::content_publisher::publishing_api_bearer_token...</code>. To find the relevant line, it may be useful to search for the first few characters shown of the existing token on signon.</li>
 <li>Replace the long string within <code>GPG[xxxxxx]</code> with the new token.</li>
 <li>Make a PR with your change and once it is merged deploy the change with
 Puppet.</li>
@@ -209,7 +203,8 @@ environment. You then need to wait for Puppet to run on each of the affected mac
 <ul>
 <li>Once puppet has been deployed you can check the new token is there by sshing into a machine and running a command such as <code>govuk_setenv content-publisher env | grep -i TOKEN_YOU_ARE_ROTATING</code></li>
 <li>Check the app can still access the remote application APIs with the new token.</li>
-<li>Once you&rsquo;re happy the new token works, you can <em>Revoke</em> the old one in Signon.</li>
+<li>Check the new token works (see below)</li>
+<li>If all this has been done, and puppet has been run on all the machines, you can <em>Revoke</em> the old token in Signon.</li>
 </ul>
 
 <blockquote>
@@ -219,7 +214,11 @@ one of the remote APIs using <a href="https://github.com/alphagov/gds-api-adapte
 <p>For example, to open a console you can run</p>
 <p><code>gds govuk connect -e integration app-console content-data-api</code></p>
 <p>The api call could be something like</p>
-<p><code>GdsApi::SupportApi.new(Plek.new.find(&quot;support-api&quot;), bearer_token: ENV[&quot;SUPPORT_API_BEARER_TOKEN&quot;])</code></p>
+<p><code>gds_api = GdsApi::Router.new(Plek.new.find(&quot;router-api&quot;), bearer_token: ENV[&quot;ROUTER_API_BEARER_TOKEN&quot;])</code></p>
+<p><code>gds_api.get_route(&quot;/foo&quot;)</code></p>
+<p>If the token works, then the above should get us something other than an unauthorised error.
+You could test this out by setting up <code>gds_api</code> with an incorrect token, e.g. <code>bearer_token: &quot;NOT_THE_REAL_TOKEN&quot;</code>
+and checking that this gives a different response to when it is set up with the new token.</p>
 </blockquote>
 <p>Finally, most applications should automatically restart when Puppet updates the
 token on each machine, but you may need to <a href="/manual/restart-application.html">do this manually</a> so

@@ -370,7 +370,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/88d4a6e8042c8d7aee2326cd96253584bbcfef5b">11 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/008dc37d6ba76ef36ab3076c8f34164045de5977">15 Nov 2022</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -721,6 +721,7 @@ case it should fail or if the sync needs to happen sooner you can manually
 trigger the sync after Solr has been reindexed.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv ckan /var/apps/ckan/venv3/bin/ckan ckan-pycsw load <span class="nt">-p</span> /var/ckan/pycsw.cfg <span class="nt">-u</span> http://localhost:3220
 </code></pre></div><h2 id='map-previews'>Map previews</h2><p>Map previews on data.gov.uk have been deprecated. Map preview links are no longer available and existing map preview pages will have a note about them being deprecated.</p>
+<p>The Ordanance Survey API that sat behind this service was turned off. We also conducted an audit of the use of map previews, which showed that less than 1% of requests were to map preview datasets and of the 6% of map preview datasets available on DGU, only 2% were working as expected.</p>
 <h2 id='register-a-brownfield-dataset'>Register a brownfield dataset</h2><p>See the <a href="https://docs.google.com/document/d/1SxzN9Ihat75TXo-fMwFqW_qBS-bPKHRs-a-tAO-qA1c/edit?usp=sharing">supporting manual</a>.</p>
 <h2 id='ckan-on-staging-environment-responds-with-nginx-504-timeout'>CKAN on Staging environment responds with Nginx 504 timeout:</h2><p>CKAN on the Staging environment can sometime respond with a 504 error, due to it timing out when connecting to the database as there are too many connections. The current limit is 1000, usually the number of connections should be under 100.</p>
 <div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">rolname</span><span class="p">,</span> <span class="n">rolconnlimit</span> <span class="k">FROM</span> <span class="n">pg_roles</span> <span class="k">WHERE</span> <span class="n">rolname</span><span class="o">=</span><span class="s1">'ckan'</span><span class="p">;</span>
