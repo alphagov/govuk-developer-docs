@@ -140,4 +140,4 @@ Do this on Integration or Staging.
 
 ## Drill updating homepage popular links
 
-Change the homepage popular links similar to [this PR](https://github.com/alphagov/frontend/pull/3382/files#diff-44438ce218f5287c58d0017f965d888715635d94280669896f75841fbd7b4cd7). Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.
+Change the homepage popular links following [Update popular links](/manual/update_popular_links.html.md). Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.
