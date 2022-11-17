@@ -129,27 +129,27 @@
     <a href="#header"><span>Deploy when GitHub is unavailable</span></a>
     <ul>
       <li>
-        <a href="#public-github-application-code"><span>Public GitHub (application code)</span></a>
+        <a href="#disable-jenkins-security"><span>Disable Jenkins Security</span></a>
+      </li>
+      <li>
+        <a href="#deploy-from-aws-codecommit"><span>Deploy from AWS CodeCommit</span></a>
         <ul>
           <li>
-            <a href="#deploying-from-aws-codecommit"><span>Deploying from AWS CodeCommit</span></a>
+            <a href="#making-changes-to-code-in-aws-codecommit-before-deployment"><span>Making changes to code in AWS CodeCommit before deployment</span></a>
           </li>
           <li>
-            <a href="#authenticating-with-jenkins"><span>Authenticating with Jenkins</span></a>
+            <a href="#deploying-a-hotfix-from-aws-codecommit"><span>Deploying a hotfix from AWS CodeCommit</span></a>
           </li>
           <li>
-            <a href="#deploying-the-code-change"><span>Deploying the code change</span></a>
-          </li>
-          <li>
-            <a href="#after-deploying-the-change"><span>After deploying the change</span></a>
-          </li>
-          <li>
-            <a href="#troubleshooting"><span>Troubleshooting</span></a>
-          </li>
-          <li>
-            <a href="#simulating-a-github-outage-on-technical-2nd-line"><span>Simulating a GitHub outage on Technical 2nd Line</span></a>
+            <a href="#tidy-up-after-deploying-a-hotfix"><span>Tidy up after deploying a hotfix</span></a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="#troubleshooting-403-errors-from-aws"><span>Troubleshooting 403 errors from AWS</span></a>
+      </li>
+      <li>
+        <a href="#drill-creating-and-deploying-a-branch-from-codecommit"><span>Drill creating and deploying a branch from CodeCommit</span></a>
       </li>
     </ul>
   </li>
@@ -202,94 +202,97 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1c4b4ae434a52bb8fa938a848713e37cb344e9be">2 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f62018e8b5fc2848b4ec71477f4feac900b3b0af">25 Oct 2022</a>
 </div>
 
- <h1 id='header'>Deploy when GitHub is unavailable</h1> <h2 id='public-github-application-code'>Public GitHub (application code)</h2><p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. We may need to deploy changes at any time, and GitHub is a Software as a Service (SaaS) product which is not guaranteed to be available.</p>
-<p>If GitHub is unavailable, we lose:</p>
+ <h1 id='header'>Deploy when GitHub is unavailable</h1> <p>Many of the git repositories which make up GOV.UK are hosted on public GitHub. If GitHub becomes unavailable, our Jenkins deployment pipeline breaks. This is because:</p>
 
 <ul>
-<li>Access to our primary code repository</li>
-<li>The ability to authenticate with Jenkins, as it makes use of GitHub groups</li>
+<li>Jenkins uses the <a href="https://plugins.jenkins.io/github-oauth/">GitHub Authentication plugin</a> to manage access: <a href="/manual/access-jenkins.html">only people in certain GitHub groups can access Jenkins</a>. If GitHub goes down, nobody can log into Jenkins</li>
+<li>The <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/"><code>Deploy_App</code> Jenkins job</a>  uses GitHub by default when it clones repositories ready for deploying. If GitHub goes down, it can&rsquo;t clone the repository</li>
 </ul>
-<p>We <a href="/manual/repository-mirroring.html">mirror all GitHub repositories</a> tagged with <code>govuk</code> to AWS CodeCommit every 2 hours. In the event of GitHub being down, we can deploy from AWS CodeCommit repos.</p>
-<h3 id='deploying-from-aws-codecommit'>Deploying from AWS CodeCommit</h3><p>Use the normal deployment Jenkins job but check the box to deploy from AWS CodeCommit.</p>
-<h4 id='making-changes-to-code-in-aws-codecommit-before-deployment'>Making changes to code in AWS CodeCommit before deployment</h4>
-<ol>
-<li>In the root of the local repo, run the following commands to install the AWS
-credential helper and add CodeCommit as a remote:</li>
-</ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   git remote add aws https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/&lt;app&gt;
-</code></pre></div>
-<ol>
-<li><p>Fetch the AWS upstream by running <code>git fetch aws</code>.
-You&rsquo;ll need to provide a username and password, which you can retrieve from govuk-secrets
-(pass/2ndline/govuk-repo-mirror/https_git_credentials.gpg).</p></li>
-<li><p>Checkout a new branch on the upstream by running <code>git checkout -b aws/my-super-secret-fix</code></p></li>
-<li><p>Make and commit your changes to this branch, and make sure all tests run successfully
-locally (since CodeCommit does not run tests)</p></li>
-<li><p>Push your changes to CodeCommit by running <code>git push -u aws HEAD</code></p></li>
-<li><p>Tag your changes by running <code>git tag release_XYZ</code>, where XYZ is one more that the latest
-release tag for the application you&rsquo;re working on, as reported by the Release app</p></li>
-<li><p>Push your new tag to CodeCommit by running <code>git push aws release_XYZ</code></p></li>
-</ol>
-<h3 id='authenticating-with-jenkins'>Authenticating with Jenkins</h3><p>If GitHub.com is down, we will not be able to log in to Jenkins.</p>
-<p>In this scenario, Jenkins security should be disabled to enable deployment:</p>
+<p>The workaround is to disable Jenkins security, then configure the <code>Deploy_App</code> job to clone from AWS CodeCommit instead.</p>
+<h2 id='disable-jenkins-security'>Disable Jenkins Security</h2><p>If GitHub.com is down, we will not be able to log in to Jenkins.
+In this scenario, Jenkins security should be disabled to enable deployment:</p>
 
 <ol>
-<li>SSH to the Jenkins deploy instance:</li>
-</ol>
-<div class="highlight"><pre class="highlight console" tabindex="0"><code><span class="go">gds govuk connect -e production ssh aws/jenkins
-</span></code></pre></div>
-<ol>
+<li>SSH to the Jenkins deploy instance: <code>gds govuk connect -e production ssh aws/jenkins</code></li>
 <li>Disable Puppet: <code>govuk_puppet -r &quot;Emergency Jenkins deploy&quot; --disable</code></li>
 <li>Edit the Jenkins configuration file: <code>sudo vim /var/lib/jenkins/config.xml</code></li>
 <li>Replace <code>&lt;useSecurity&gt;true&lt;/useSecurity&gt;</code> with <code>&lt;useSecurity&gt;false&lt;/useSecurity&gt;</code> and save</li>
 <li>Restart Jenkins: <code>sudo service jenkins restart</code></li>
 </ol>
-<p>Note that once security is disabled, anyone on GDS trusted IPs will be able to deploy to that environment. This will bypass protection for Production - do not leave Production without security for any longer than necessary.</p>
-<p>See the <a href="https://jenkins.io/doc/book/system-administration/security/#disabling-security">Jenkins documentation</a> for further details.</p>
-<h3 id='deploying-the-code-change'>Deploying the code change</h3>
+<p>Once security is disabled, anyone on GDS-trusted IPs will be able to invoke any Jenkins job, including <code>Deploy_App</code>. Do not leave security disabled for any longer than necessary.</p>
+<p>See the <a href="https://www.jenkins.io/doc/book/security/securing-jenkins/">Jenkins documentation</a> for further details.</p>
+<h2 id='deploy-from-aws-codecommit'>Deploy from AWS CodeCommit</h2><p>We mirror all non-archived GitHub repositories tagged with <code>govuk</code> to AWS CodeCommit every 2 hours. This is achieved using a <a href="https://deploy.integration.publishing.service.gov.uk/job/Mirror_Github_Repositories/">&lsquo;Mirror GitHub repositories&rsquo; Jenkins job</a>, which is <a href="https://github.com/alphagov/govuk-puppet/pull/11631/files">configured in govuk-puppet</a> and the <a href="https://github.com/alphagov/govuk-repo-mirror">govuk-repo-mirror repository</a>.</p>
+<p>We can deploy from AWS CodeCommit instead of GitHub, if GitHub is down or if we need a private place to develop fixes for security vulnerabilities before they are deployed.</p>
+<p>To do so, trigger the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/"><code>Deploy_App</code></a> Jenkins job, but check the <code>DEPLOY_FROM_AWS_CODECOMMIT</code> box to deploy from AWS CodeCommit.</p>
+<h3 id='making-changes-to-code-in-aws-codecommit-before-deployment'>Making changes to code in AWS CodeCommit before deployment</h3><p>If you need to deploy from AWS CodeCommit because GitHub is down or you need to test a change of a sensitive nature, you will likely need to push a new branch of code to CodeCommit.</p>
+<p>Log into the Tools account:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-tools-admin -l
+</code></pre></div><p>Switch to the <code>eu-west-2</code> region, and navigate to the <a href="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories">CodeCommit Repositories screen</a>.</p>
+<p>Find the relevant repo and click the &ldquo;HTTPS&rdquo; Clone URL to copy the clone URL, then clone the repository locally. For example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>git clone https://git-codecommit.eu-west-2.amazonaws.com/v1/repos/account-api
+</code></pre></div><p>You will be asked for a username and password, which you can retrieve from govuk-secrets:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass govuk-repo-mirror/https_git_credentials
+</code></pre></div><p>Make the necessary changes in a branch locally. For example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>git checkout -b hotfix
+rm README.md
+git add .
+git commit -m "Test commit: remove README"
+git push -u origin HEAD
+</code></pre></div><p>After you&rsquo;ve pushed the branch, you should see it in AWS CodeCommit.</p>
+<h3 id='deploying-a-hotfix-from-aws-codecommit'>Deploying a hotfix from AWS CodeCommit</h3><p>Once you&rsquo;ve <a href="#making-changes-to-code-in-aws-codecommit-before-deployment">pushed your hotfix branch to CodeCommit</a>, you should:</p>
+
 <ol>
-<li><p>Review the pull request on AWS CodeCommit through the <a href="https://eu-west-2.console.aws.amazon.com/codesuite/codecommit/repositories?region=eu-west-2">AWS Console</a></p></li>
-<li><p>Create a release tag manually in git. This should follow the standard format
-<code>release_X</code>. Tag the branch directly instead of merging it.</p></li>
-<li><p>Browse to the Jenkins UI and begin the deployment process. Don&rsquo;t use the Release app. Go directly to the <code>Deploy_App</code> Jenkins job, and
-check <code>DEPLOY_FROM_AWS_CODECOMMIT</code>.</p></li>
-<li><p>When completed, enable and run Puppet on the instance: <code>govuk_puppet --enable &amp;&amp; govuk_puppet --test</code></p></li>
-<li><p>Restart Jenkins: <code>sudo service jenkins restart</code></p></li>
+<li>Create a pull request in the CodeCommit UI.</li>
+<li>Ask another developer to review it as a sense check.</li>
+<li>With the branch reviewed, you can then <a href="#deploy-from-aws-codecommit">deploy it</a>, specifying your branch name as the <code>TAG</code> (in the example above, &lsquo;hotfix&rsquo;). Do this in Integration or Staging first, then manually test the changes.
+
+<ul>
+<li>In the example above, you can check the README was removed by SSH&#39;ing into the relevant machine and executing <code>ls /var/apps/{REPO_NAME}</code> to confirm that the README is absent.</li>
+</ul></li>
+<li>Once you&rsquo;re confident in your changes, deploy the branch to Production.</li>
+<li>Record the missing deployment in the Release app.</li>
 </ol>
-<h3 id='after-deploying-the-change'>After deploying the change</h3>
+<h3 id='tidy-up-after-deploying-a-hotfix'>Tidy up after deploying a hotfix</h3><p>When GitHub is back online, it&rsquo;s time to make Jenkins secure again and merge your changes back into the main repository.</p>
+
 <ol>
-<li><p>Push the branch and tag to GitHub.</p></li>
-<li><p>Merge the branch into <code>main</code>.</p></li>
-<li><p>Record the missing deployment in the Release app.</p></li>
+<li>Re-enable and run Puppet on the Jenkins instance: <code>govuk_puppet --enable &amp;&amp; govuk_puppet --test</code></li>
+<li>Restart Jenkins: <code>sudo service jenkins restart</code></li>
+<li>Push your hotfix branch to GitHub, open a pull request, and have it reviewed and merged as normal.</li>
+<li>This will create a proper release tag, which will automatically deploy through all of the environments if continuous deployment is enabled, or should be manually deployed to all environments if not.</li>
+<li>Delete your branch from CodeCommit.</li>
 </ol>
-<h3 id='troubleshooting'>Troubleshooting</h3><p>If running any <code>git</code> commands against CodeCommit returns you a 403, you probably
+<h2 id='troubleshooting-403-errors-from-aws'>Troubleshooting 403 errors from AWS</h2><p>If running any <code>git</code> commands against CodeCommit returns a 403 response, you probably
 have expired credentials stored in your macOS keychain from a previous attempt.
 Apparently macOS stores these the first time you use it and subsequently tries
 to use them again despite you setting new AWS credentials.</p>
 <p>To fix this:</p>
 
 <ol>
-<li><p>Open Keychain Access (use cmd-space to search for it).</p></li>
-<li><p>Select &ldquo;Passwords&rdquo; from the &ldquo;Category&rdquo; on the left.</p></li>
-<li><p>Search for <code>git-codecommit</code>.</p></li>
-<li><p>Right click on the item and select &ldquo;Get Info&rdquo;.</p></li>
-<li><p>Click &ldquo;Access Control&rdquo; on the modal that pops up.</p></li>
-<li><p>Select &ldquo;git-credential-osxkeychain&rdquo; from the list.</p></li>
-<li><p>Hit the minus key.</p></li>
-<li><p>Try your terminal commands again.</p></li>
-<li><p>If you are prompted to add the item to keychain, deny.</p></li>
+<li>Open Keychain Access (use cmd-space to search for it).</li>
+<li>Select &ldquo;Passwords&rdquo; from the &ldquo;Category&rdquo; on the left.</li>
+<li>Search for <code>git-codecommit</code>.</li>
+<li>Right click on the item and select &ldquo;Get Info&rdquo;.</li>
+<li>Click &ldquo;Access Control&rdquo; on the modal that pops up.</li>
+<li>Select &ldquo;git-credential-osxkeychain&rdquo; from the list.</li>
+<li>Hit the minus key.</li>
+<li>Try your terminal commands again.</li>
+<li>If you are prompted to add the item to keychain, deny.</li>
 </ol>
 <p>There is more information about setting up your access key in the <a href="https://docs.aws.amazon.com/codecommit/latest/userguide/setting-up-https-unixes.html">AWS guide</a></p>
-<h3 id='simulating-a-github-outage-on-technical-2nd-line'>Simulating a GitHub outage on Technical 2nd Line</h3><p>You can simulate an outage of GitHub.com by modifying your local hosts file.</p>
+<h2 id='drill-creating-and-deploying-a-branch-from-codecommit'>Drill creating and deploying a branch from CodeCommit</h2><p>To ensure that our fallback procedure continues to work, we need to drill it regularly.</p>
 
 <ol>
-<li><code>sudo vi /etc/hosts</code></li>
-<li>Add <code>127.0.0.1       github.com</code></li>
+<li><a href="#disable-jenkins-security">Disable Jenkins security</a></li>
+<li>Pick a publishing app at random (because the risk is lower than a frontend app, should the change be accidentally published to Production)</li>
+<li>Clone the repo from CodeCommit and create a branch with a trivial change (see <a href="#making-changes-to-code-in-aws-codecommit-before-deployment">instructions</a>). Ideally it should be a visible change, such as a text change in one of the pages rendered by the app.</li>
+<li>Get it reviewed by the other developer on 2nd line, and then deploy it to Staging (see <a href="#deploying-a-hotfix-from-aws-codecommit">instructions</a>). Do NOT deploy to Production.</li>
+<li>Manually test that you can see your changes in the app on Staging.</li>
+<li>Record the missing deployment in the Release app on Staging if you wish, just to familiarise yourself with the process</li>
+<li><a href="#tidy-up-after-deploying-a-hotfix">Re-enable Jenkins security</a>, re-deploy the previous release and delete your branch from CodeCommit</li>
 </ol>
-<p>Don&rsquo;t forget to remove it afterwards!</p>
 
 
   <div class='related-content'>
