@@ -197,7 +197,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ff1bdd2b40d02e50510be79e2aa3e3a421a6ad11">17 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f0cd9b448c0449cf03a11c717c4315c08b12757a">28 Oct 2022</a>
 </div>
 
  <h1 id='header'>Access to Licensify for Third Parties</h1> <p><a href="/manual/licensing.html">Licensify</a> is a GOV.UK application which is usually supported by third parties.</p>
@@ -212,7 +212,7 @@ to set up the VPN. You will need to sign into your <code>@digital.cabinet-office
 <h2 id='deploying-code-with-jenkins'>Deploying code with Jenkins</h2><p>Licensify is built and deployed using Jenkins. There are four relevant Jenkins instances:</p>
 
 <ol>
-<li><a href="https://ci.integration.publishing.service.gov.uk/job/licensify/">CI Jenkins</a> automatically builds releases from the main branch</li>
+<li><a href="https://ci.integration.publishing.service.gov.uk/job/licensify/">CI Jenkins</a> automatically builds releases from the master branch</li>
 <li><a href="https://deploy.integration.publishing.service.gov.uk/">Integration Deploy Jenkins</a> deploys releases to integration</li>
 <li><a href="https://deploy.blue.staging.govuk.digital/">Staging Deploy Jenkins</a> deploys releases to staging</li>
 <li><a href="https://deploy.blue.production.govuk.digital/">Production Deploy Jenkins</a> deploys releases to production</li>
@@ -229,11 +229,13 @@ GOV.UK developers.</p>
 environments is as follows:</p>
 
 <ol>
-<li>When a PR/branch is merged into main, this starts a new build of main on the CI Jenkins. This produces the
+<li>When a PR/branch is merged into master, this starts a new build of master on the CI Jenkins. This produces the
 necessary artefacts to deploy Licensify. Each build is given a build number.</li>
-<li>Jenkins will deploy the new build automatically to integration using the
-<a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">integration Jenkins job</a></li>
-<li>To complete the deployment to integration, you need to ensure that the Deploy App job has run for each of the apps:
+<li>Jenkins will attempt to deploy the new build automatically to integration using
+the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">integration Jenkins job</a></li>
+<li>Jenkins only expects to deploy one application per repository, but Licensing is deployed three times (<code>licensify</code>,
+<code>licensify-admin</code>, and <code>licensify-feed</code>). The automated deployment currently only works for <code>licensify</code>.</li>
+<li>To complete the deployment to integration, you need to ensure that the Deploy App job runs for each of the apps:
 
 <ol>
 <li><a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify">licensify (Integration)</a></li>
