@@ -34,7 +34,7 @@ to set up the VPN. You will need to sign into your `@digital.cabinet-office.gov.
 
 Licensify is built and deployed using Jenkins. There are four relevant Jenkins instances:
 
-1. [CI Jenkins](https://ci.integration.publishing.service.gov.uk/job/licensify/) automatically builds releases from the master branch
+1. [CI Jenkins](https://ci.integration.publishing.service.gov.uk/job/licensify/) automatically builds releases from the main branch
 2. [Integration Deploy Jenkins](https://deploy.integration.publishing.service.gov.uk/) deploys releases to integration
 3. [Staging Deploy Jenkins](https://deploy.blue.staging.govuk.digital/) deploys releases to staging
 4. [Production Deploy Jenkins](https://deploy.blue.production.govuk.digital/) deploys releases to production
@@ -53,13 +53,11 @@ GOV.UK developers.
 The process for building a new release and promoting it through the three
 environments is as follows:
 
-1. When a PR/branch is merged into master, this starts a new build of master on the CI Jenkins. This produces the
+1. When a PR/branch is merged into main, this starts a new build of main on the CI Jenkins. This produces the
    necessary artefacts to deploy Licensify. Each build is given a build number.
-1. Jenkins will attempt to deploy the new build automatically to integration using
-   the [integration Jenkins job](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/)
-1. Jenkins only expects to deploy one application per repository, but Licensing is deployed three times (`licensify`,
-   `licensify-admin`, and `licensify-feed`). The automated deployment currently only works for `licensify`.
-1. To complete the deployment to integration, you need to ensure that the Deploy App job runs for each of the apps:
+1. Jenkins will deploy the new build automatically to integration using the
+   [integration Jenkins job](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/)
+1. To complete the deployment to integration, you need to ensure that the Deploy App job has run for each of the apps:
    1. [licensify (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify)
    1. [licensify-admin (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-admin)
    1. [licensify-feed (Integration)](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/parambuild?TARGET_APPLICATION=licensify-feed)
