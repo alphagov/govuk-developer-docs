@@ -33,8 +33,7 @@ Use common sense when following the steps (i.e. don't actually publish an incide
 
 ## Deploy from AWS CodeCommit when Github is unavailable
 
-Choose an app and decide on an old release tag or branch to deploy.
-Follow the [Deploying from AWS CodeCommit](/manual/github-unavailable.html#deploying-from-aws-codecommit) instructions in the Integration or Staging environment.
+Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit) instructions.
 
 ## Run a Terraform `plan`
 
