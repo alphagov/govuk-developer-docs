@@ -21,6 +21,8 @@ Frontend developers, backend developers and SREs are all expected to be on the i
 
 Note that frontend developers are not expected to be on-call rota.
 
+Junior technologists and technologist apprentices also take part in the in-hours rota and not the on-call rota. Junior technologist can be a shadow or a secondary, but won't be a primary. Technologist apprentices will only fulfil the shadow role (however if they are confident they can request to be added to the secondary role at their Line Manager's discretion).
+
 > Technical 2nd Line takes priority over the work you do in your usual team.
 
 Shifts start at 9:30 and end at 17:30. [You can check the Technical 2nd Line rota to find out when your shift is][2ndline-rota].
