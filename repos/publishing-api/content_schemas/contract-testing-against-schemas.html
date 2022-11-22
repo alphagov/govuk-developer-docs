@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publishing-api: Deleting Documents, Editions and Links - GOV.UK Developer Documentation</title>
+    <title>publishing-api: Contract Testing against Schemas - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/deleting-content.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/content_schemas/contract-testing-against-schemas.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publishing-api: Deleting Documents, Editions and Links - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/deleting-content.html" />
+      <meta name="twitter:title" content="publishing-api: Contract Testing against Schemas - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/content_schemas/contract-testing-against-schemas.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publishing-api: Deleting Documents, Editions and Links" />
+      <meta property="og:title" content="publishing-api: Contract Testing against Schemas" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/deleting-content.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/content_schemas/contract-testing-against-schemas.html" />
 
     
   </head>
@@ -217,55 +217,42 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a31db300c543605c25bf407600caa97d0f8fab5f">16 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/9dc6d2a7c36809069748cb5457465bebf983c558">8 Nov 2022</a>
 </div>
 
-  <h1 class="page-title">publishing-api: Deleting Documents, Editions and Links</h1>
+  <h1 class="page-title">publishing-api: Contract Testing against Schemas</h1>
 
   
-<p>To delete content from the Publishing API you will need to create a <a href="/repos/publishing-api/data-migration.html">data
-migration</a>.</p>
-<p>If you need to delete all traces of a document from the system:</p>
-<pre lang="ruby"><code>require_relative "helpers/delete_content"
-
-class RemoveYourDocument &lt; ActiveRecord::Migration
-  # Remove /some/base-path
-  def up
-    Helpers::DeleteContent.destroy_documents_with_links("some-content-id")
-  end
-end
+<p>When changes are made to govuk-content-schemas, the test suite of each of the <a href="https://github.com/alphagov/govuk-content-schemas/blob/aad248a867e878a496dcb488a4ba2170cebdb86b/Jenkinsfile#L7-L38">dependent apps</a> is run against that branch, to ensure that any changes are compatible.</p>
+<p>This method of contract testing is different to our usual <a href="https://docs.publishing.service.gov.uk/manual/pact-broker.html">Pact tests</a>.</p>
+<h2 id="background">Background</h2>
+<p>govuk-content-schemas contract testing was proposed in <a href="https://gov-uk.atlassian.net/wiki/display/WH/RFC+4+%3A+Enabling+the+independent+iteration+of+formats+on+government-frontend">RFC 4</a> and described in the GOV.UK blog post "<a href="https://gdstechnology.blog.gov.uk/2015/01/07/validating-a-distributed-architecture-with-json-schema/">Validating a distributed architecture with JSON Schema</a>".</p>
+<p>We wanted to be able to evolve our publishing systems and have confidence that the changes we make will not break something. We could do this by running all the systems at the same time and testing end-to-end, but setting up such a configuration would be tricky, and keeping it working reliably in a reproducible way which avoids test interference would be very difficult.</p>
+<p>The idea of contract testing is to gain more confidence that the whole system works together properly, but without needing to run all the services at the same time. Instead we can test each service in isolation using a 'contract' which describes the expectations on each interacting service.</p>
+<h2 id="how-govuk-content-schemas-contract-testing-works">How govuk-content-schemas contract testing works</h2>
+<p>Publishing involves three systems and two representations:</p>
+<pre><code>[publishing app] ------&gt; [publishing api/content store] ------&gt; [frontend app]
 </code></pre>
-<p>If you need to delete a single edition:</p>
-<pre lang="ruby"><code>require_relative "helpers/delete_content"
-
-class RemoveYourEdition &lt; ActiveRecord::Migration
-  def up
-    editions = Edition.where(id: 123)
-
-    Helpers::DeleteContent.destroy_supporting_objects(editions)
-
-    editions.destroy_all
-  end
-end
-</code></pre>
-<p>If you need to delete just the links for a document:</p>
-<pre lang="ruby"><code>require_relative "helpers/delete_content"
-
-class RemoveLinks &lt; ActiveRecord::Migration
-  # Remove /some/base-path
-  def up
-    Helpers::DeleteContent.destroy_links("some-content-id")
-  end
-end
-</code></pre>
+<p>The first arrow is the "publishing representation", and the second arrow is the "frontend representation". The latter is more detailed than the former, as the <code>links</code> hash is expanded so
+that it contains full details about links, wheras the publisher representation
+only contains content ids (for full info see <a href="https://github.com/alphagov/publishing-api/blob/main/docs/lib/schema_generator/frontend_schema_generator.rb">frontend_schema_generator.rb</a>).</p>
+<p>This comprises three things:</p>
+<ol>
+<li>json-schema files which define the <em>publishing representation</em> for a given format</li>
+<li>a curated set of frontend examples of that format, which are validated against the schemas</li>
+<li>
+<a href="https://github.com/alphagov/govuk-content-schemas/blob/main/lib/schema_generator/frontend_schema_generator.rb">a mechanism to convert from the 'publisher' schemas to the 'frontend' schemas</a>, simulating the behaviour of the content store</li>
+</ol>
+<p>With those three parts we are able to verify the examples against the schemas.</p>
+<p>This means that if the frontend works ok with the curated examples, and if the publishing tool produces output which matches the schema, then we can be quite confident that the frontends will work with the data produced by the publishing tool.</p>
+<h2 id="adding-govuk-content-schemas-contract-tests-to-your-app">Adding govuk-content-schemas contract tests to your app</h2>
+<p>You will need to provide tests in your app which are part of the full test suite, but can also be run separately from the other tests (unless your test suite is really fast and likely to stay fast). What you need to do differs depending upon the type of app.</p>
+<h3 id="frontend-apps">Frontend apps</h3>
+<p>You should include tests which use the examples from the govuk-content-schemas to test whether your frontend works or not. <a href="https://github.com/alphagov/govuk_schemas">govuk_schemas</a> provides code for doing this.</p>
+<p>Ideally you should have a test which checks your app against every example for the formats it supports dynamically - so that examples added later are still tested in your app - there is an example in the <a href="https://github.com/alphagov/govuk_schemas">govuk_schemas</a> README.</p>
+<h3 id="publishing-apps">Publishing apps</h3>
+<p>You should include tests which generate the JSON your app would send to content-store and validate them against the schemas. <a href="https://github.com/alphagov/govuk_schemas">govuk_schemas</a> provides RSpec and test-unit helpers for this.</p>
 
 
             
@@ -273,8 +260,8 @@ end
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/deleting-content.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Fdeleting-content.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/contract-testing-against-schemas.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Fcontent_schemas%2Fcontract-testing-against-schemas.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

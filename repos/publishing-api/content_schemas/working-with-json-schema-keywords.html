@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>publishing-api: Deleting Documents, Editions and Links - GOV.UK Developer Documentation</title>
+    <title>publishing-api: Working with JSON Schema keywords - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/deleting-content.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/publishing-api/content_schemas/working-with-json-schema-keywords.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="publishing-api: Deleting Documents, Editions and Links - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/deleting-content.html" />
+      <meta name="twitter:title" content="publishing-api: Working with JSON Schema keywords - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/content_schemas/working-with-json-schema-keywords.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="publishing-api: Deleting Documents, Editions and Links" />
+      <meta property="og:title" content="publishing-api: Working with JSON Schema keywords" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/deleting-content.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/publishing-api/content_schemas/working-with-json-schema-keywords.html" />
 
     
   </head>
@@ -217,55 +217,50 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/a31db300c543605c25bf407600caa97d0f8fab5f">16 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/publishing-api/commit/9dc6d2a7c36809069748cb5457465bebf983c558">8 Nov 2022</a>
 </div>
 
-  <h1 class="page-title">publishing-api: Deleting Documents, Editions and Links</h1>
+  <h1 class="page-title">publishing-api: Working with JSON Schema keywords</h1>
 
   
-<p>To delete content from the Publishing API you will need to create a <a href="/repos/publishing-api/data-migration.html">data
-migration</a>.</p>
-<p>If you need to delete all traces of a document from the system:</p>
-<pre lang="ruby"><code>require_relative "helpers/delete_content"
-
-class RemoveYourDocument &lt; ActiveRecord::Migration
-  # Remove /some/base-path
-  def up
-    Helpers::DeleteContent.destroy_documents_with_links("some-content-id")
-  end
-end
-</code></pre>
-<p>If you need to delete a single edition:</p>
-<pre lang="ruby"><code>require_relative "helpers/delete_content"
-
-class RemoveYourEdition &lt; ActiveRecord::Migration
-  def up
-    editions = Edition.where(id: 123)
-
-    Helpers::DeleteContent.destroy_supporting_objects(editions)
-
-    editions.destroy_all
-  end
-end
-</code></pre>
-<p>If you need to delete just the links for a document:</p>
-<pre lang="ruby"><code>require_relative "helpers/delete_content"
-
-class RemoveLinks &lt; ActiveRecord::Migration
-  # Remove /some/base-path
-  def up
-    Helpers::DeleteContent.destroy_links("some-content-id")
-  end
-end
-</code></pre>
+<p>There are various keywords available to use in your content schema. Some of the keywords listed below have been used in our more complex schemas.</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://swagger.io/docs/specification/data-models/data-types/"><code>type</code></a></td>
+<td>The data type of a schema</td>
+</tr>
+<tr>
+<td><a href="https://spacetelescope.github.io/understanding-json-schema/reference/object.html?highlight=required#required"><code>required</code></a></td>
+<td>Specify object-level properties that must exist - by default all object properties are optional</td>
+</tr>
+<tr>
+<td><a href="https://spacetelescope.github.io/understanding-json-schema/reference/object.html?highlight=required#required"><code>enum</code></a></td>
+<td>To specify values a request parameter or model property can accept</td>
+</tr>
+<tr>
+<td>
+<a href="https://spacetelescope.github.io/understanding-json-schema/reference/combining.html?highlight=oneof#oneof"><code>oneOf</code></a>, <a href="https://spacetelescope.github.io/understanding-json-schema/reference/combining.html?highlight=anyof#anyof"><code>anyOf</code></a>, <a href="https://spacetelescope.github.io/understanding-json-schema/reference/combining.html?highlight=allof#allof"><code>allOf</code></a>
+</td>
+<td>These allow you to validate the use of other subschemas in your schema</td>
+</tr>
+<tr>
+<td><a href="https://spacetelescope.github.io/understanding-json-schema/structuring.html?highlight=%24ref"><code>$ref</code></a></td>
+<td>To include a subschema within your schema. It can be either a relative or absolute URI</td>
+</tr>
+<tr>
+<td><a href="https://spacetelescope.github.io/understanding-json-schema/reference/object.html?highlight=additionalproperties#properties"><code>additionalProperties</code></a></td>
+<td>Controls whether properties that are not already specified can be accepted. By default any additional properties are allowed</td>
+</tr>
+</tbody>
+</table>
 
 
             
@@ -273,8 +268,8 @@ end
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/deleting-content.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Fdeleting-content.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/working-with-json-schema-keywords.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fpublishing-api%2Fcontent_schemas%2Fworking-with-json-schema-keywords.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
