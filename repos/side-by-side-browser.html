@@ -6,23 +6,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: side-by-side-browser - GOV.UK Developer Documentation</title>
+    <title>Repository: side-by-side-browser (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/side-by-side-browser.html">
 
-      <meta name="description" content="Everything about side-by-side-browser (Proxy a web site to preview the redirections ahead of it being transitioned to GOV.UK)" />
+      <meta name="description" content="Everything about side-by-side-browser (This used to be a supporting tool for transition which was used to allow
+browsing a preview of a transitioned host with the current host. It
+was retired in November 2022 to reflect the reduced need for transition
+functionality.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: side-by-side-browser - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: side-by-side-browser (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/side-by-side-browser.html" />
 
-      <meta property="og:description" content="Everything about side-by-side-browser (Proxy a web site to preview the redirections ahead of it being transitioned to GOV.UK)" />
+      <meta property="og:description" content="Everything about side-by-side-browser (This used to be a supporting tool for transition which was used to allow
+browsing a preview of a transitioned host with the current host. It
+was retired in November 2022 to reflect the reduced need for transition
+functionality.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: side-by-side-browser" />
+      <meta property="og:title" content="Repository: side-by-side-browser (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/side-by-side-browser.html" />
 
@@ -175,102 +183,14 @@
 </div>
 
   
-  <h1 class="page-title">Application: side-by-side-browser</h1>
+  <h1 class="page-title">Repository: side-by-side-browser (retired)</h1>
 
-  <p>Proxy a web site to preview the redirections ahead of it being transitioned to GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/side-by-side-browser">side-by-side-browser</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-publishing-platform</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>Heroku</strong></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Transition apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://govuk-side-by-side-browser.herokuapp.com/" class="govuk-link">govuk-side-by-side-browser.herokuapp.com/</a></li>
-    <li></li>
-    <li><a href="https://dashboard.heroku.com/apps/govuk-side-by-side-browser" class="govuk-link">Manage repo</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Proxy a web site to preview redirections ahead of it being transitioned to GOV.UK.</p>
-
-<p><a href="http://www.flickr.com/photos/psd/12187616853"><img src="http://farm3.staticflickr.com/2831/12187616853_d4b6008b5f_z.jpg" alt="sketchy explanation" title="sketchy explanation"></a></p>
-
-<h2 id="run-the-tests">Run the tests</h2>
-
-<pre><code>$ npm install
-$ npm test
-</code></pre>
-
-<h2 id="development">Development</h2>
-
-<pre><code>$ node server.js
-</code></pre>
-
-<p>&hellip;then you can use <a href="http://xip.io/">nip.io</a> to make it work with localhost, eg:</p>
-
-<p><a href="http://www.justice.gov.uk.side-by-side.127.0.0.1.nip.io:3023/__/#/">http://www.justice.gov.uk.side-by-side.127.0.0.1.nip.io:3023/__/#/</a></p>
-
-<h2 id="installation">Installation</h2>
-
-<p>Run the server on Heroku. It requires a <code>side-by-side</code> wildcard subdomain pointed to it:</p>
-
-<pre><code>$ heroku domains:add *.side-by-side.publishing.service.gov.uk
-</code></pre>
-
-<p>Follow the returned instructions to CNAME the wildcard to Heroku.</p>
-
-<p>By default, the application will take its list of allowed domains from the production
-instance of the GOV.UK Transition tool. This can be overridden with the <code>SIDE_BY_SIDE_HOSTS</code>
-environment variable. Examples:</p>
-
-<ul>
-<li>
-<code>SIDE_BY_SIDE_HOSTS=https://transition.publishing.service.gov.uk/hosts</code> (the default)</li>
-<li><code>SIDE_BY_SIDE_HOSTS=file:etc/hosts.json</code></li>
-<li><code>SIDE_BY_SIDE_HOSTS=https://example.com/hosts</code></li>
-</ul>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>This used to be a supporting tool for transition which was used to allow
+browsing a preview of a transitioned host with the current host. It
+was retired in November 2022 to reflect the reduced need for transition
+functionality.</p></p>
+<p><a href="https://github.com/alphagov/side-by-side-browser">GitHub repository</a></p>
 
 
             
