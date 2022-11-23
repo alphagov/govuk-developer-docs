@@ -3,7 +3,7 @@ RSpec.describe ContentSchema do
     it "it can link to GitHub" do
       schema = ContentSchema.new("generic").frontend_schema
 
-      expect(schema.link_to_github).to eql("https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/generic/frontend/schema.json")
+      expect(schema.link_to_github).to eql("https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/generic/frontend/schema.json")
     end
 
     it "it has a random example" do
@@ -24,7 +24,7 @@ RSpec.describe ContentSchema do
     it "it can link to GitHub" do
       schema = ContentSchema.new("generic").publisher_content_schema
 
-      expect(schema.link_to_github).to eql("https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/generic/publisher/schema.json")
+      expect(schema.link_to_github).to eql("https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/generic/publisher_v2/schema.json")
     end
 
     it "it has a random example" do
@@ -45,7 +45,7 @@ RSpec.describe ContentSchema do
     it "it can link to GitHub" do
       schema = ContentSchema.new("generic").publisher_links_schema
 
-      expect(schema.link_to_github).to eql("https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/generic/publisher/links.json")
+      expect(schema.link_to_github).to eql("https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/generic/publisher_v2/links.json")
     end
   end
 end
