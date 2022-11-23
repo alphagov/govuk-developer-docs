@@ -61,6 +61,7 @@ New versions of Ruby bring us improved performance and nicer syntax for certain 
 
 - Be running on the current major version
 - Maintain our applications at the current or next-to-current minor version
+- Maintain our gems to support all currently supported Ruby versions (see [Ruby version compatibility for gems](/manual/publishing-a-ruby-gem.html#ruby-version-compatibility))
 
 See [Add a new Ruby version][] for a guide on how to install a new version of Ruby.
 
