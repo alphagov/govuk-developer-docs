@@ -57,7 +57,7 @@ Ruby / Rails applications:
 - [govuk_sidekiq][] - Provides common configuration for using sidekiq with
   GOV.UK infrastructure
 - [govuk_schemas][] - Provides helper utilities for interfacing with
-  [govuk-content-schemas][]
+  [content schemas in Publishing Api][]
 - [govuk_test][] - Provides configuration and dependencies for headless browser
   testing
 - [plek][] - Utility tool to access determine base URLs for GOV.UK applications
@@ -81,7 +81,7 @@ introduced by these gems.
 [govuk_publishing_components]: https://github.com/alphagov/govuk_publishing_components
 [govuk_sidekiq]: https://github.com/alphagov/govuk_sidekiq
 [govuk_schemas]: https://github.com/alphagov/govuk_schemas
-[govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
+[content schemas in Publishing Api]: https://github.com/alphagov/publishing-api/tree/main/content_schemas
 [govuk_test]: https://github.com/alphagov/govuk_test
 [plek]: https://github.com/alphagov/plek
 [rubocop-govuk]: https://github.com/alphagov/rubocop-govuk
