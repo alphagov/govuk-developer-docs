@@ -40,7 +40,7 @@ Now we can run `make content-publisher` and the commands are run for us.
 
 ## Step 2: `/govuk`
 
-At the end of the last tutorial we got some, but not all, of the tests passing. The remaining failures should be due to a missing dependency: [govuk-content-schemas][]. The tests are looking for the shemas at `../govuk-content-schemas`, which doesn't exist inside our container, since we only mapped the `content-publisher` directory to `/app`.
+At the end of the last tutorial we got some, but not all, of the tests passing. The remaining failures should be due to a missing dependency: [content-schemas][]. The tests are looking for the shemas at `../publishing-api/content_schemas`, which doesn't exist inside our container, since we only mapped the `content-publisher` directory to `/app`.
 
 * Mount the whole of the `~/govuk` directory
 
@@ -388,7 +388,7 @@ bin/setup
 [Bundler]: https://bundler.io/
 [content-publisher]: https://github.com/alphagov/content-publisher
 [dnsmasq]: http://www.thekelleys.org.uk/dnsmasq/doc.html
-[govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
+[content-schemas]: https://github.com/alphagov/publishing-api/tree/main/content_schemas
 [govuk-docker]: https://github.com/alphagov/govuk-docker
 [makefile]: https://www.gnu.org/software/make/manual/html_node/Introduction.html
 [nginx-proxy]: https://github.com/jwilder/nginx-proxy

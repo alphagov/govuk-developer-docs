@@ -71,14 +71,17 @@ In [Whitehall](https://github.com/alphagov/whitehall):
          it: Italiano
      ```
 
-### 3. Update GOV.UK Content Schemas
+### 3. Update content schemas in publishing api
+
+Please note that this example PR is for the retired govuk-content-schemas repo - please add examples
+of adding to publishing api when it is available:
 
 [Example PR](https://github.com/alphagov/govuk-content-schemas/pull/906)
 
-In [GOV.UK Content Schemas](https://github.com/alphagov/govuk-content-schemas):
+In [publishing api](https://github.com/alphagov/publishing-api):
 
-1. Edit `formats/shared/definitions/locale.jsonnet` to include the new locale in alphabetical order
-2. Run `rake` to generate all the schemas
+1. Edit `content_schemas/formats/shared/definitions/locale.jsonnet` to include the new locale in alphabetical order
+2. Run `rake build_schemas` to generate all the schemas
 
 ### 4. Update Content Store
 
