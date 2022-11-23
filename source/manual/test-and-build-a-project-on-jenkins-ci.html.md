@@ -60,10 +60,10 @@ with a Jenkinsfile, which should be your new branch. Any open branches need to b
 ### 5. Set up schema testing
 
 Many GOV.UK applications test against the
-[content schemas](https://github.com/alphagov/govuk-content-schemas/).
+[content schemas](https://github.com/alphagov/publishing-api/blob/main/content_schemas). contained in publishing api
 
-To test your application for each PR on govuk-content-schemas, add it to the [govuk-content-schemas
-Jenkinsfile](https://github.com/alphagov/govuk-content-schemas/blob/main/Jenkinsfile).
+To test your application for each PR against any changes to publishing api's content-schemas, add it to the [publishing-api
+Jenkinsfile](https://github.com/alphagov/publishing-api/blob/main/Jenkinsfile).
 
 ## Specifying which database to use
 

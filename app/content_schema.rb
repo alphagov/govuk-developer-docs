@@ -36,7 +36,7 @@ class ContentSchema
     end
 
     def link_to_github
-      "https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/#{schema_name}/frontend/schema.json"
+      "https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/#{schema_name}/frontend/schema.json"
     end
 
     def random_example
@@ -64,7 +64,7 @@ class ContentSchema
     end
 
     def link_to_github
-      "https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/#{schema_name}/publisher/schema.json"
+      "https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/#{schema_name}/publisher_v2/schema.json"
     end
 
     def random_example
@@ -92,7 +92,7 @@ class ContentSchema
     end
 
     def link_to_github
-      "https://github.com/alphagov/govuk-content-schemas/blob/main/dist/formats/#{schema_name}/publisher/links.json"
+      "https://github.com/alphagov/publishing-api/blob/main/content_schemas/dist/formats/#{schema_name}/publisher_v2/links.json"
     end
 
     def random_example

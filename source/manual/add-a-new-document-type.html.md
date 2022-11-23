@@ -12,25 +12,25 @@ The [document type][] describes what a page on GOV.UK looks like.
 
 ## Add the document type in the govuk-content-schema repo
 
-You need to add the document type into the [allowed document types][] in [govuk-content-schemas][]. Once you have added the document type you should:
+You need to add the document type into the [allowed document types][] in [publishing api][]. Once you have added the document type you should:
 
 - Commit the change
 - Run `bundle exec rake` to generate the schemas again
 - Commit this update separately
 
-Examples of implementation:
+Examples of implementation (note that these examples are for the retired govuk-content-schemas repo: please add examples of adding to publishing api when these are available):
 
 - <https://github.com/alphagov/govuk-content-schemas/pull/652>
 - <https://github.com/alphagov/govuk-content-schemas/pull/630>
 
-[allowed document types]: https://github.com/alphagov/govuk-content-schemas/blob/main/lib/govuk_content_schemas/allowed_document_types.yml
-[govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
+[allowed document types]: https://github.com/alphagov/publishing-api/tree/main/content_schemas/allowed_document_types.yml
+[publishing api]: https://github.com/alphagov/publishing-api
 
 ## Add a new content schema
 
 If your document type needs a new content schema, see "[Adding a new schema][]".
 
-[Adding a new schema]: /repos/govuk-content-schemas/adding-a-new-schema.html
+[Adding a new schema]: /repos/publishing-api/content_schemas/adding-a-new-schema.html
 
 ## Make the new document type available to search
 

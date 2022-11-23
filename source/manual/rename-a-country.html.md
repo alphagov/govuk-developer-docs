@@ -128,7 +128,7 @@ Failing this, there is a [rake task](https://github.com/alphagov/search-api/blob
 
 ### 7. Update Specialist Publisher
 
-1. Create and deploy pull requests for GOV.UK Content Schemas ([example](https://github.com/alphagov/govuk-content-schemas/pull/1014)) and Specialist Publisher ([example](https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424)) to support both countries temporarily (during the data migration).
+1. Create and deploy pull requests for schemas in publishing api  ([example](https://github.com/alphagov/govuk-content-schemas/pull/1014)) and Specialist Publisher ([example](https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424)) to support both countries temporarily (during the data migration). Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.
 
 2. Run the rake task [publishing_api:publish_finder[finder]](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:publish_finder[finder]) to republish the updated finders:
    * `export_health_certificates`
@@ -140,7 +140,7 @@ Failing this, there is a [rake task](https://github.com/alphagov/search-api/blob
    * [Export Health Certificates](https://www-origin.integration.publishing.service.gov.uk/export-health-certificates?cachebust=123).
    * [International Development Funds](https://www-origin.integration.publishing.service.gov.uk/international-development-funding?cachebust=123).
 
-5. Create and deploy another pull request for GOV.UK Content Schemas ([example](https://github.com/alphagov/govuk-content-schemas/pull/1015)) and Specialist Publisher ([example](https://github.com/alphagov/specialist-publisher/pull/1724)) to remove support for the old country.
+5. Create and deploy another pull request for content schemas in publishing api ([example](https://github.com/alphagov/govuk-content-schemas/pull/1015)) and Specialist Publisher ([example](https://github.com/alphagov/specialist-publisher/pull/1724)) to remove support for the old country. Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.
 
 6. Re-publish the finders again, as above.
 

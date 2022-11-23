@@ -219,16 +219,16 @@ jobs:
       RAILS_ENV: test
       REDIS_URL: redis://localhost:6379/0
       TEST_DATABASE_URL: postgresql://postgres@localhost/content-publisher
-      GOVUK_CONTENT_SCHEMAS_PATH: vendor/govuk-content-schemas
+      GOVUK_CONTENT_SCHEMAS_PATH: vendor/publishing-api/content_schemas
     steps:
       - name: Clone project
         uses: actions/checkout@v2
-      - name: Clone GOV.UK Content Schemas
+      - name: Clone publishing api for content schemas
         uses: actions/checkout@v2
         with:
-          repository: alphagov/govuk-content-schemas
+          repository: alphagov/publishing-api
           ref: deployed-to-production
-          path: vendor/govuk-content-schemas
+          path: vendor/publishing-api
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
