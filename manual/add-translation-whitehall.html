@@ -137,7 +137,7 @@
             <a href="#2-update-whitehall"><span>2. Update Whitehall</span></a>
           </li>
           <li>
-            <a href="#3-update-gov-uk-content-schemas"><span>3. Update GOV.UK Content Schemas</span></a>
+            <a href="#3-update-content-schemas-in-publishing-api"><span>3. Update content schemas in publishing api</span></a>
           </li>
           <li>
             <a href="#4-update-content-store"><span>4. Update Content Store</span></a>
@@ -197,15 +197,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ac83ee396dc6d1c57703a22fe211be202332e32c">8 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Add support for a new translation in Whitehall</h1> <p>Before starting, it’s worth checking the language tag that is being added is correct: it should be compatible with the <a href="https://en.wikipedia.org/wiki/IETF_language_tag#Syntax_of_language_tags">IETF Language Tag syntax</a> and use correct <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO 639</a> codes (with optional <a href="https://en.wikipedia.org/wiki/ISO_15924">ISO 15924</a> or <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2">ISO 3166</a> subtags where appropriate). This is important to ensure maximum compatibility with accessibility features such as screen readers. Some other useful reading includes <a href="https://github.com/alphagov/rails_translation_manager">Rails Translation Manager</a> and <a href="https://github.com/alphagov/whitehall/blob/main/docs/internationalisation_guide.md">Whitehall Internationalisation guide</a>.</p>
@@ -252,12 +245,14 @@
      <span class="na">it</span><span class="pi">:</span> <span class="s">Italiano</span>
 </code></pre></div></li>
 </ol>
-<h3 id='3-update-gov-uk-content-schemas'>3. Update GOV.UK Content Schemas</h3><p><a href="https://github.com/alphagov/govuk-content-schemas/pull/906">Example PR</a></p>
-<p>In <a href="https://github.com/alphagov/govuk-content-schemas">GOV.UK Content Schemas</a>:</p>
+<h3 id='3-update-content-schemas-in-publishing-api'>3. Update content schemas in publishing api</h3><p>Please note that this example PR is for the retired govuk-content-schemas repo - please add examples
+of adding to publishing api when it is available:</p>
+<p><a href="https://github.com/alphagov/govuk-content-schemas/pull/906">Example PR</a></p>
+<p>In <a href="https://github.com/alphagov/publishing-api">publishing api</a>:</p>
 
 <ol>
-<li>Edit <code>formats/shared/definitions/locale.jsonnet</code> to include the new locale in alphabetical order</li>
-<li>Run <code>rake</code> to generate all the schemas</li>
+<li>Edit <code>content_schemas/formats/shared/definitions/locale.jsonnet</code> to include the new locale in alphabetical order</li>
+<li>Run <code>rake build_schemas</code> to generate all the schemas</li>
 </ol>
 <h3 id='4-update-content-store'>4. Update Content Store</h3><p><a href="https://github.com/alphagov/content-store/pull/580">Example PR</a></p>
 <p>In <a href="https://github.com/alphagov/content-store">Content Store</a>:</p>

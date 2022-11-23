@@ -190,32 +190,25 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Add a new document type</h1> <p>The <a href="/document-types.html">document type</a> describes what a page on GOV.UK looks like.</p>
-<h2 id='add-the-document-type-in-the-govuk-content-schema-repo'>Add the document type in the govuk-content-schema repo</h2><p>You need to add the document type into the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/lib/govuk_content_schemas/allowed_document_types.yml">allowed document types</a> in <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a>. Once you have added the document type you should:</p>
+<h2 id='add-the-document-type-in-the-govuk-content-schema-repo'>Add the document type in the govuk-content-schema repo</h2><p>You need to add the document type into the <a href="https://github.com/alphagov/publishing-api/tree/main/content_schemas/allowed_document_types.yml">allowed document types</a> in <a href="https://github.com/alphagov/publishing-api">publishing api</a>. Once you have added the document type you should:</p>
 
 <ul>
 <li>Commit the change</li>
 <li>Run <code>bundle exec rake</code> to generate the schemas again</li>
 <li>Commit this update separately</li>
 </ul>
-<p>Examples of implementation:</p>
+<p>Examples of implementation (note that these examples are for the retired govuk-content-schemas repo: please add examples of adding to publishing api when these are available):</p>
 
 <ul>
 <li><a href="https://github.com/alphagov/govuk-content-schemas/pull/652">https://github.com/alphagov/govuk-content-schemas/pull/652</a></li>
 <li><a href="https://github.com/alphagov/govuk-content-schemas/pull/630">https://github.com/alphagov/govuk-content-schemas/pull/630</a></li>
 </ul>
-<h2 id='add-a-new-content-schema'>Add a new content schema</h2><p>If your document type needs a new content schema, see &ldquo;<a href="/repos/govuk-content-schemas/adding-a-new-schema.html">Adding a new schema</a>&rdquo;.</p>
+<h2 id='add-a-new-content-schema'>Add a new content schema</h2><p>If your document type needs a new content schema, see &ldquo;<a href="/repos/publishing-api/content_schemas/adding-a-new-schema.html">Adding a new schema</a>&rdquo;.</p>
 <h2 id='make-the-new-document-type-available-to-search'>Make the new document type available to search</h2><p>If your document type should be available in search results, see &ldquo;<a href="/manual/make-a-new-document-type-available-to-search.html">Make a new document type available to search</a>&rdquo;.</p>
 <h2 id='create-a-new-rake-task-in-the-publishing-app'>Create a new Rake task in the publishing app</h2><p>If your new document type will be published as a static route (rather than from a publishing app), you&rsquo;ll need to create a Rake task to publish the route using the new document type.</p>
 <p>Before you begin, you must identify which publishing and rendering applications will use the document type. You need to include these as parameters (payload) when you generate the route.</p>

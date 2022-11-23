@@ -216,7 +216,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bc37450ead29ae4ca162c1c12cf44e0adfca9955">2 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5b4be3871f6708a3019db9414b5c9a2751988321">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Test & build a project with GitHub Actions</h1> <p><a href="https://github.com/features/actions">GitHub Actions</a> is an automated workflow
@@ -387,16 +387,16 @@ management.</p>
       <span class="na">RAILS_ENV</span><span class="pi">:</span> <span class="s">test</span>
       <span class="na">REDIS_URL</span><span class="pi">:</span> <span class="s">redis://localhost:6379/0</span>
       <span class="na">TEST_DATABASE_URL</span><span class="pi">:</span> <span class="s">postgresql://postgres@localhost/content-publisher</span>
-      <span class="na">GOVUK_CONTENT_SCHEMAS_PATH</span><span class="pi">:</span> <span class="s">vendor/govuk-content-schemas</span>
+      <span class="na">GOVUK_CONTENT_SCHEMAS_PATH</span><span class="pi">:</span> <span class="s">vendor/publishing-api/content_schemas</span>
     <span class="na">steps</span><span class="pi">:</span>
       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Clone project</span>
         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
-      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Clone GOV.UK Content Schemas</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Clone publishing api for content schemas</span>
         <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v2</span>
         <span class="na">with</span><span class="pi">:</span>
-          <span class="na">repository</span><span class="pi">:</span> <span class="s">alphagov/govuk-content-schemas</span>
+          <span class="na">repository</span><span class="pi">:</span> <span class="s">alphagov/publishing-api</span>
           <span class="na">ref</span><span class="pi">:</span> <span class="s">deployed-to-production</span>
-          <span class="na">path</span><span class="pi">:</span> <span class="s">vendor/govuk-content-schemas</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">vendor/publishing-api</span>
       <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">ruby/setup-ruby@v1</span>
         <span class="na">with</span><span class="pi">:</span>
           <span class="na">bundler-cache</span><span class="pi">:</span> <span class="no">true</span>

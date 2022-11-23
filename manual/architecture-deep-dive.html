@@ -232,15 +232,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
@@ -397,7 +390,7 @@ retrieved via the &ldquo;<a href="/repos/content-store.html">Content API</a>&rdq
 <p>Content is published to the Content Store via the <a href="https://github.com/alphagov/publishing-api">Publishing API</a>, which
 stores all of the editions of the document, and performs validation checks
 whenever it receives a new edition. Every piece of content has a <code>schema_name</code>
-corresponding to a particular JSON schema defined in <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a>.
+corresponding to a particular JSON schema defined in the <a href="https://github.com/alphagov/publishing-api/tree/main/content_schemas">content schemas in Publishing Api</a>.
 Most backend apps have their own databases modelling documents in their own
 way; at the point of sending the document to Publishing API, they transform the
 document to a JSON payload conforming to the appropriate schema.</p>
@@ -449,7 +442,7 @@ process.</p>
 <p>The process for finding the content items affected by a content change is
 known as <a href="https://github.com/alphagov/publishing-api/blob/main/docs/dependency-resolution.md">dependency resolution</a>. Content items can be associated with
 other content items in a number of ways. For example, you may provide an
-<a href="https://github.com/alphagov/govuk-content-schemas/blob/d9684140462e4a138668539c04829cd808636ed5/dist/formats/news_article/publisher_v2/schema.json#L70-L73">array of organisation IDs</a> in your payload
+<a href="https://github.com/alphagov/publishing-api/blob/a8039d430e44c86c3f54a69569f07ad48a4fc912/content_schemas/dist/formats/news_article/publisher_v2/schema.json#L70-L73">array of organisation IDs</a> in your payload
 when sending to Publishing API, to indicate that those organisations are
 responsible for the content (this is stored on the content item in content
 store as <code>links.organisations</code>).</p>

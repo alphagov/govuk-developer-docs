@@ -204,15 +204,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e07a0f89207c725a4a845ab31e7e643cc5b6cd59">2 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Test & build a project on Jenkins CI</h1> <p>Application tests run in a continuous integration (CI) environment.</p>
@@ -238,8 +231,8 @@ out more about <a href="https://docs.publishing.service.gov.uk/manual/configure-
 run &ldquo;Branch Indexing&rdquo; from the menu. This should trigger a build of all branches
 with a Jenkinsfile, which should be your new branch. Any open branches need to be rebased after you&rsquo;ve merged your <code>Jenkinsfile</code> into <code>main</code>.</p>
 <h3 id='5-set-up-schema-testing'>5. Set up schema testing</h3><p>Many GOV.UK applications test against the
-<a href="https://github.com/alphagov/govuk-content-schemas/">content schemas</a>.</p>
-<p>To test your application for each PR on govuk-content-schemas, add it to the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/Jenkinsfile">govuk-content-schemas
+<a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas">content schemas</a>. contained in publishing api</p>
+<p>To test your application for each PR against any changes to publishing api&rsquo;s content-schemas, add it to the <a href="https://github.com/alphagov/publishing-api/blob/main/Jenkinsfile">publishing-api
 Jenkinsfile</a>.</p>
 <h2 id='specifying-which-database-to-use'>Specifying which database to use</h2><p>The CI machines have installations of a number of database technologies, such
 as PostgreSQL, MySQL and MongoDB, these tend to be quite old versions (at the

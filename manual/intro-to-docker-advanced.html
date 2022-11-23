@@ -202,15 +202,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/30acb35afd0e31e82d017f42c7863191e5e8c41d">23 Nov 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Intro to GOV.UK Docker (Advanced)</h1> <p>In the <a href="/manual/intro-to-docker.html">Intro to Docker tutorial</a> we began with a generic container running the <code>ruby</code> image, and finished with a powerful <code>docker-compose</code> command to run the <a href="https://github.com/alphagov/content-publisher">content-publisher</a> tests against a Postgres DB.</p>
@@ -237,7 +230,7 @@
 <p>Makefiles use strict tabs for indentation, so you may need to adjust your editor if it&rsquo;s inserting spaces automatically.</p>
 </blockquote>
 <p>Now we can run <code>make content-publisher</code> and the commands are run for us.</p>
-<h2 id='step-2-govuk'>Step 2: <code>/govuk</code></h2><p>At the end of the last tutorial we got some, but not all, of the tests passing. The remaining failures should be due to a missing dependency: <a href="https://github.com/alphagov/govuk-content-schemas">govuk-content-schemas</a>. The tests are looking for the shemas at <code>../govuk-content-schemas</code>, which doesn&rsquo;t exist inside our container, since we only mapped the <code>content-publisher</code> directory to <code>/app</code>.</p>
+<h2 id='step-2-govuk'>Step 2: <code>/govuk</code></h2><p>At the end of the last tutorial we got some, but not all, of the tests passing. The remaining failures should be due to a missing dependency: <a href="https://github.com/alphagov/publishing-api/tree/main/content_schemas">content-schemas</a>. The tests are looking for the shemas at <code>../publishing-api/content_schemas</code>, which doesn&rsquo;t exist inside our container, since we only mapped the <code>content-publisher</code> directory to <code>/app</code>.</p>
 
 <ul>
 <li>Mount the whole of the <code>~/govuk</code> directory</li>

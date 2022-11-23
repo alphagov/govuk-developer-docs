@@ -204,7 +204,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Rename a country</h1> <blockquote>
@@ -326,7 +326,7 @@ to update the subscription lists</li>
 <p>Failing this, there is a <a href="https://github.com/alphagov/search-api/blob/4f106e40f2c1690d631f699bf8fc63dc39268866/lib/tasks/delete.rake#L9">rake task</a> that takes care of this.</p>
 <h3 id='7-update-specialist-publisher'>7. Update Specialist Publisher</h3>
 <ol>
-<li><p>Create and deploy pull requests for GOV.UK Content Schemas (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1014">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424">example</a>) to support both countries temporarily (during the data migration).</p></li>
+<li><p>Create and deploy pull requests for schemas in publishing api  (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1014">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424">example</a>) to support both countries temporarily (during the data migration). Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.</p></li>
 <li><p>Run the rake task <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=publishing_api:publish_finder[finder]">publishing_api:publish_finder[finder]</a> to republish the updated finders:</p>
 
 <ul>
@@ -340,7 +340,7 @@ to update the subscription lists</li>
 <li><a href="https://www-origin.integration.publishing.service.gov.uk/export-health-certificates?cachebust=123">Export Health Certificates</a>.</li>
 <li><a href="https://www-origin.integration.publishing.service.gov.uk/international-development-funding?cachebust=123">International Development Funds</a>.</li>
 </ul></li>
-<li><p>Create and deploy another pull request for GOV.UK Content Schemas (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1015">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1724">example</a>) to remove support for the old country.</p></li>
+<li><p>Create and deploy another pull request for content schemas in publishing api (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1015">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1724">example</a>) to remove support for the old country. Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.</p></li>
 <li><p>Re-publish the finders again, as above.</p></li>
 <li><p>Run the rake task <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&amp;MACHINE_CLASS=email_alert_api&amp;RAKE_TASK=data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]]">data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]</a> to update the matching criteria for any subscriber lists in Email Alert API with keys of:</p>
 
