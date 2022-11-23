@@ -232,9 +232,7 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Screen to display live data from GOV.UK. Includes number of people on GOV.UK,
-latest searches, trending and recent content. Not publicly accessible because
-there&rsquo;s sometimes personal data in the latest searches.</p>
+<p>Screen to display live data from GOV.UK. It displays the number of GOV.UK users in last 30 mins and a chart showing user counts over the past day. We also have columns displaying the most recent searches on GOV.UK, the most popular pages and recently published content. Please note, the dashboard is intended as an internal tool only.</p>
 
 <p><img src="https://raw.githubusercontent.com/alphagov/govuk-display-screen/main/docs/screenshot.png" alt="screenshot"></p>
 
@@ -242,26 +240,22 @@ there&rsquo;s sometimes personal data in the latest searches.</p>
 
 <h2 id="running-locally">Running locally</h2>
 
-<p>To run the server you will need the following <code>ENV</code> variables set:</p>
+<p>To run the server you will need to set up some <code>ENV</code> variables.</p>
 
-<pre><code>CLIENT_ID
-CLIENT_SECRET
-REFRESH_TOKEN
+<p>We are using the <a href="https://github.com/bkeepers/dotenv">dotenv gem</a> to load environment variables from a .env file into ENV in development. You will need to create
+a .env file, add it into .gitignore, and then add in the keys for the env vars which can be acquired from the 2nd line Heroku account.
+You can access this account by using the 2nd line credentials held in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#usage">govuk-secrets</a>.</p>
+
+<p>Once you have them, you should be able to start the server by running:</p>
+
+<pre><code>ruby ./server.rb
 </code></pre>
 
-<p>You can create the client id and client secret using the <a href="https://developer.google.com/console">Google developer
-console</a>. You need to generate the refresh token, there is a <a href="https://gist.github.com/edds/9363713">short Ruby
-script to create one for you</a>.</p>
+<p>You can now navigate to the dashboard in your browser: <a href="http://localhost:4567/">http://localhost:4567/</a>.</p>
 
-<p>Or, you can <a href="https://devcenter.heroku.com/articles/config-vars">obtain these values from Heroku</a>. For this approach you will need
-to log into Heroku using the 2nd line credentials held in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#usage">govuk-secrets</a>.</p>
+<h2 id="where-is-the-data-coming-from">Where is the data coming from?</h2>
 
-<p>Once you have them you can start the server running:</p>
-
-<pre><code>CLIENT_ID=... CLIENT_SECRET=... REFRESH_TOKEN=... ruby ./server.rb
-</code></pre>
-
-<p>You can then browse to the server in your browser.</p>
+<p>In the past, the dashboard made use of the <a href="https://github.com/alphagov/performanceplatform-collector">performance platform service</a> for its data. This serivce is now defunct, so we have moved to use the GA4 Ruby <a href="https://github.com/googleapis/google-cloud-ruby/tree/main/google-analytics-data-v1beta">client</a> instead. This client allows us to access the number of active users and most popular content.</p>
 
 <h2 id="custom-search-result-pages">Custom search result pages</h2>
 
