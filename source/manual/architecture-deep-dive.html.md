@@ -277,7 +277,7 @@ retrieved via the "[Content API]", which lives in the content-store repo.
 Content is published to the Content Store via the [Publishing API], which
 stores all of the editions of the document, and performs validation checks
 whenever it receives a new edition. Every piece of content has a `schema_name`
-corresponding to a particular JSON schema defined in [govuk-content-schemas].
+corresponding to a particular JSON schema defined in the [content schemas in Publishing Api].
 Most backend apps have their own databases modelling documents in their own
 way; at the point of sending the document to Publishing API, they transform the
 document to a JSON payload conforming to the appropriate schema.
@@ -298,7 +298,7 @@ sending an edition downstream to the Content Store.
 
 [Content API]: /repos/content-store.html
 [content-store]: https://github.com/alphagov/content-store
-[govuk-content-schemas]: https://github.com/alphagov/govuk-content-schemas
+[content schemas in Publishing Api]: https://github.com/alphagov/publishing-api/tree/main/content_schemas
 [Link expansion]: https://github.com/alphagov/publishing-api/blob/main/docs/link-expansion.md
 [Publishing API]: https://github.com/alphagov/publishing-api
 [rendering]: #rendering
@@ -365,7 +365,7 @@ tag content independently using [content-tagger].
 
 [content-tagger]: https://github.com/alphagov/content-tagger
 [dependency resolution]: https://github.com/alphagov/publishing-api/blob/main/docs/dependency-resolution.md
-[schema-organisations-example]: https://github.com/alphagov/govuk-content-schemas/blob/d9684140462e4a138668539c04829cd808636ed5/dist/formats/news_article/publisher_v2/schema.json#L70-L73
+[schema-organisations-example]: https://github.com/alphagov/publishing-api/blob/a8039d430e44c86c3f54a69569f07ad48a4fc912/content_schemas/dist/formats/news_article/publisher_v2/schema.json#L70-L73
 [taxonomies]: /manual/taxonomy.html
 
 ### Summary
