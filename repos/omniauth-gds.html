@@ -6,23 +6,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: omniauth-gds - GOV.UK Developer Documentation</title>
+    <title>Repository: omniauth-gds (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/omniauth-gds.html">
 
-      <meta name="description" content="Everything about omniauth-gds (Omniauth strategy for GDS)" />
+      <meta name="description" content="Everything about omniauth-gds (omniauth-gds was a gem providing an omniauth strategy for signon. It
+was merged into the gds-sso gem.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: omniauth-gds - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: omniauth-gds (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/omniauth-gds.html" />
 
-      <meta property="og:description" content="Everything about omniauth-gds (Omniauth strategy for GDS)" />
+      <meta property="og:description" content="Everything about omniauth-gds (omniauth-gds was a gem providing an omniauth strategy for signon. It
+was merged into the gds-sso gem.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: omniauth-gds" />
+      <meta property="og:title" content="Repository: omniauth-gds (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/omniauth-gds.html" />
 
@@ -175,89 +179,12 @@
 </div>
 
   
-  <h1 class="page-title">Repository: omniauth-gds</h1>
+  <h1 class="page-title">Repository: omniauth-gds (retired)</h1>
 
-  <p>Omniauth strategy for GDS</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/omniauth-gds">omniauth-gds</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-publishing-platform</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Gems</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><strong>This project was archived in October 2022, the functionality has been ported into <a href="https://github.com/alphagov/gds-sso/pull/262">gds-sso</a>.</strong></p>
-
-<p>Omniauth strategy for GDS oauth2 provider</p>
-
-<h2 id="installation">Installation</h2>
-
-<p>Add this line to your application&rsquo;s Gemfile:</p>
-
-<pre><code>gem 'omniauth-gds'
-</code></pre>
-
-<p>And then execute:</p>
-
-<pre><code>$ bundle
-</code></pre>
-
-<p>Or install it yourself as:</p>
-
-<pre><code>$ gem install omniauth-gds
-</code></pre>
-
-<h2 id="usage">Usage</h2>
-
-<p>To use with Devise, add the following to your Devise initializer (typically <code>devise.rb</code>):</p>
-
-<pre lang="ruby"><code>  config.omniauth :gds,
-    ENV.fetch("APPLICATION_ID"), # Obtained when generating a new application
-    ENV.fetch("APPLICATION_SECRET"),
-    client_options: {
-      site: ENV.fetch("SIGNIN_URL") # The location of your signonotron2 install
-    }
-</code></pre>
-
-<h2 id="contributing">Contributing</h2>
-
-<ol>
-<li>Fork it</li>
-<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
-<li>Commit your changes (<code>git commit -am 'Added some feature'</code>)</li>
-<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
-<li>Create new Pull Request</li>
-</ol>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>omniauth-gds was a gem providing an omniauth strategy for signon. It
+was merged into the gds-sso gem.</p></p>
+<p><a href="https://github.com/alphagov/omniauth-gds">GitHub repository</a></p>
 
 
             

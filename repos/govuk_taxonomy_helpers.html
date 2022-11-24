@@ -6,23 +6,29 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk_taxonomy_helpers - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk_taxonomy_helpers (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_taxonomy_helpers.html">
 
-      <meta name="description" content="Everything about govuk_taxonomy_helpers (Parse the taxonomy of GOV.UK into a browsable tree structure)" />
+      <meta name="description" content="Everything about govuk_taxonomy_helpers (govuk_taxonomy_helpers was a gem that provided code for working with the
+govuk-taxonomy. It was only used by Content Tagger and was retired as a gem
+after the code was merged into Content Tagger.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk_taxonomy_helpers - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk_taxonomy_helpers (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_taxonomy_helpers.html" />
 
-      <meta property="og:description" content="Everything about govuk_taxonomy_helpers (Parse the taxonomy of GOV.UK into a browsable tree structure)" />
+      <meta property="og:description" content="Everything about govuk_taxonomy_helpers (govuk_taxonomy_helpers was a gem that provided code for working with the
+govuk-taxonomy. It was only used by Content Tagger and was retired as a gem
+after the code was merged into Content Tagger.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk_taxonomy_helpers" />
+      <meta property="og:title" content="Repository: govuk_taxonomy_helpers (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_taxonomy_helpers.html" />
 
@@ -175,140 +181,13 @@
 </div>
 
   
-  <h1 class="page-title">Repository: govuk_taxonomy_helpers</h1>
+  <h1 class="page-title">Repository: govuk_taxonomy_helpers (retired)</h1>
 
-  <p>Parse the taxonomy of GOV.UK into a browsable tree structure</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk_taxonomy_helpers">govuk_taxonomy_helpers</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#navigation-and-presentation-govuk</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p><strong>This project was archived in October 2022, the functionality has been ported into <a href="https://github.com/alphagov/content-tagger/pull/1391">content-tagger</a>.</strong></p>
-
-<p>Parses the taxonomy of GOV.UK into a browseable tree structure.</p>
-
-<h2 id="installation">Installation</h2>
-
-<p>Add this line to your application&rsquo;s Gemfile:</p>
-
-<pre lang="ruby"><code>gem 'govuk_taxonomy_helpers'
-</code></pre>
-
-<p>And then execute:</p>
-
-<pre><code>$ bundle
-</code></pre>
-
-<p>Or install it yourself as:</p>
-
-<pre><code>$ gem install govuk_taxonomy_helpers
-</code></pre>
-
-<h2 id="usage">Usage</h2>
-
-<p>The API is provisional and is likely to change for versions &lt; 1.0.0.</p>
-
-<p>To access the taxonomy, first get the content_id of the piece of content you want the taxonomy for, then parse it to get a <code>LinkedContentItem</code> object.</p>
-
-<pre lang="ruby"><code>require 'govuk_taxonomy_helpers'
-
-taxonomy = GovukTaxonomyHelpers::LinkedContentItem.from_content_id(
-  content_id: "c75c541-403f-4cb1-9b34-4ddde816a80d",
-  publishing_api: Services.publishing_api
-)
-</code></pre>
-
-<p>A <code>LinkedContentItem</code> built from a taxon can access all <em>narrower term</em> taxons below it and all <em>broader term</em> taxons above it.</p>
-
-<p>A taxon may have many child taxons, but can only have one or zero parents.</p>
-
-<pre lang="ruby"><code>taxon.children
-# =&gt; [LinkedContentItem(title: child-1-id, ...), LinkedContentItem(title: child-2, ...)]
-
-taxon.parent
-# =&gt; LinkedContentItem(title: root, ...)
-
-taxon.breadcrumb_trail
-# =&gt; [LinkedContentItem(title: root, ...), LinkedContentItem(title: taxon, ...)]
-</code></pre>
-
-<p>A <code>LinkedContentItem</code> built from an content_item that isn&rsquo;t a taxon can access all taxons associated with it.</p>
-
-<pre lang="ruby"><code>content_item.taxons
-# =&gt; [LinkedContentItem(title: taxon, ...),
-#     LinkedContentItem(title: another-taxon, ...)]
-
-content_item.taxons_with_ancestors
-# =&gt; [LinkedContentItem(title: root, ...),
-#     LinkedContentItem(title: taxon-parent, ...),
-#     LinkedContentItem(title: taxon, ...),
-#     LinkedContentItem(title: another-taxon, ...)]
-</code></pre>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
-<ul>
-<li>
-<strong>Taxonomy</strong>: The hierarchy of topics used to classify content by subject on GOV.UK. Not all content is tagged to the taxonomy. We are rolling out the taxonomy and navigation theme-by-theme.</li>
-<li>
-<strong>Taxon</strong>: Any topic within the taxonomy.</li>
-<li>
-<strong>Content Item</strong>: A distinct version of a document. A taxon is also a type of content item.</li>
-</ul>
-
-<h2 id="documentation">Documentation</h2>
-
-<p>To run a Yard server locally to preview documentation, run:</p>
-
-<pre><code>$ bundle exec yard server --reload
-</code></pre>
-
-<h2 id="contributing">Contributing</h2>
-
-<ol>
-<li>Fork it ( <a href="https://github.com/alphagov/govuk_taxonomy_helpers/fork">https://github.com/alphagov/govuk_taxonomy_helpers/fork</a> )</li>
-<li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
-<li>Commit your changes (<code>git commit -am 'Add some feature'</code>)</li>
-<li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
-<li>Create a new Pull Request</li>
-</ol>
-
-<h2 id="license">License</h2>
-
-<p><a href="https://github.com/alphagov/govuk_taxonomy_helpers/blob/main/LICENCE.txt">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>govuk_taxonomy_helpers was a gem that provided code for working with the
+govuk-taxonomy. It was only used by Content Tagger and was retired as a gem
+after the code was merged into Content Tagger.</p></p>
+<p><a href="https://github.com/alphagov/govuk_taxonomy_helpers">GitHub repository</a></p>
 
 
             
