@@ -139,6 +139,9 @@
       </li>
       <li>
         <a href="#releasing-gem-versions"><span>Releasing gem versions</span></a>
+      </li>
+      <li>
+        <a href="#ruby-version-compatibility"><span>Ruby version compatibility</span></a>
         <ul>
           <li>
             <a href="#manually-publishing-gems-from-the-cli"><span>Manually publishing gems from the CLI</span></a>
@@ -198,15 +201,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4ba7baf823c5c2ea0d686d9620490190f58a6c86">16 Jun 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e830e7a444b3064d57225e36003d0c188fff28e3">23 Nov 2022</a>
 </div>
 
  <h1 id='header'>Publish a Ruby gem</h1> <h2 id='naming'>Naming</h2><p>In general, the gem name should be the same as the thing you require when using
@@ -239,6 +235,24 @@ file).</li>
 <code>gemspec</code> file and publish the gem to rubygems.org. See the
 <a href="https://github.com/alphagov/govuk_app_config/blob/master/Jenkinsfile">Jenkinsfile for govuk_app_config</a>
 for an example.</p>
+<h2 id='ruby-version-compatibility'>Ruby version compatibility</h2><p>Our policy is that our Ruby gems are compatible with all <a href="https://www.ruby-lang.org/en/downloads/branches/">currently supported
+minor versions of Ruby</a>. For example, in November 2022, There
+are supported Ruby releases of 2.7, 3.0 and 3.1, thus we expect gems to be
+compatible with each of those and be tested against them (there is
+<a href="/manual/test-and-build-a-project-with-github-actions.html#a-ruby-gem">documentation</a> on the approach to test them).</p>
+<p>We specify the minimum Ruby version supported in the <a href="https://guides.rubygems.org/specification-reference/#required_ruby_version">gemspec file</a>
+and expect the <code>.ruby-version</code> to match that version. For example, if Ruby 2.7
+is the oldest supported minor version we expect gems to require Ruby 2.7 or
+greater and the <code>.ruby-version</code> file to reference the most recent Ruby 2.7
+release (which in November 2022 is 2.7.6).</p>
+<p>When new minor versions of Ruby are released (typically each Christmas) we
+update gems to test against the new version. For example, when Ruby 3.2
+is released our gem test matrices should be expanded to test against Ruby 3.2.</p>
+<p>When Ruby versions reach end-of-life (typically April) we update gems
+to drop support for that Ruby version and update the <code>.ruby-version</code> files to
+the next supported version. For example, when Ruby 2.7 reaches end of life, we drop 2.7
+from the test matrices and we update the <code>.ruby-version</code> file to be the most
+recent release of the 3.0 branch (which in November 2022 is 3.0.4).</p>
 <h3 id='manually-publishing-gems-from-the-cli'>Manually publishing gems from the CLI</h3><p>Sometimes you may be required to publish a gem outside of Jenkins, if you need
 to release a patch or minor version below the current latest major version.
 For example, say you have a gem at version 1.0.0 and later release a major breaking
