@@ -57,7 +57,7 @@ and then on the respective machine that your app will run on (e.g. `backend`).
 
 ### Update Ruby version in the relevant repos
 
-We use [upgrade-ruby-version][] to automatically raise pull requests in GOV.UK repositories which use Ruby.
+We use [upgrade-ruby-version][] to automatically raise pull requests in GOV.UK repositories to update Ruby applications. Please note, we manage the [Ruby version in gems](/manual/publishing-a-ruby-gem.html#ruby-version-compatibility) differently to applications.
 
 It's advised not to use your personal GitHub account to create the access token required by the script, as another developer will need to approve the PRs. You can use [govuk-ci GitHub account](https://github.com/govuk-ci). The login credentials for the account can be fetched from [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/main/pass) with:
 

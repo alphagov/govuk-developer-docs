@@ -47,6 +47,35 @@ The default Jenkins build script will automatically detect the presence of a
 [Jenkinsfile for govuk_app_config](https://github.com/alphagov/govuk_app_config/blob/master/Jenkinsfile)
 for an example.
 
+## Ruby version compatibility
+
+Our policy is that our Ruby gems are compatible with all [currently supported
+minor versions of Ruby][supported-rubies]. For example, in November 2022, There
+are supported Ruby releases of 2.7, 3.0 and 3.1, thus we expect gems to be
+compatible with each of those and be tested against them (there is
+[documentation][testing-gems] on the approach to test them).
+
+We specify the minimum Ruby version supported in the [gemspec file][gemspec-ruby-version]
+and expect the `.ruby-version` to match that version. For example, if Ruby 2.7
+is the oldest supported minor version we expect gems to require Ruby 2.7 or
+greater and the `.ruby-version` file to reference the most recent Ruby 2.7
+release (which in November 2022 is 2.7.6).
+
+When new minor versions of Ruby are released (typically each Christmas) we
+update gems to test against the new version. For example, when Ruby 3.2
+is released our gem test matrices should be expanded to test against Ruby 3.2.
+
+When Ruby versions reach end-of-life (typically April) we update gems
+to drop support for that Ruby version and update the `.ruby-version` files to
+the next supported version. For example, when Ruby 2.7 reaches end of life, we drop 2.7
+from the test matrices and we update the `.ruby-version` file to be the most
+recent release of the 3.0 branch (which in November 2022 is 3.0.4).
+
+[supported-rubies]: https://www.ruby-lang.org/en/downloads/branches/
+[testing-gems]: /manual/test-and-build-a-project-with-github-actions.html#a-ruby-gem
+[gemspec-ruby-version]: https://guides.rubygems.org/specification-reference/#required_ruby_version
+[minimum-ruby-gem]: https://github.com/alphagov/govuk_sidekiq/blob/12183f8781f2755e185e6a14a722e6f3892bda4a/govuk_sidekiq.gemspec#L19
+
 ### Manually publishing gems from the CLI
 
 Sometimes you may be required to publish a gem outside of Jenkins, if you need
