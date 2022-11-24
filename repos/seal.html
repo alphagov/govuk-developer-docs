@@ -289,7 +289,7 @@ export SEAL_QUOTES="Everyone should have the opportunity to learn. Don’t be af
 
 <h3 id="local-testing">Local testing</h3>
 
-<p>To test the script locally, go to Slack and create a channel or private group called &ldquo;#angry-seal-bot-test&rdquo; (the Slack webhook you set up should have its channel set to &ldquo;#angry-seal-bot-test&rdquo; in the Integration Settings). Then run <code>./bin/seal.rb your_team_name</code> in your command line, and you should see the post in the #angry-seal-bot-test channel.</p>
+<p>To test the script locally, go to Slack and create a channel or private group called &ldquo;#angry-seal-bot-test&rdquo; (the Slack webhook you set up should have its channel set to &ldquo;#angry-seal-bot-test&rdquo; in the Integration Settings). Then run <code>./bin/seal.rb your_team_name bot_animal</code> in your command line, and you should see the post in the #angry-seal-bot-test channel.</p>
 
 <p>If you don&rsquo;t want to post github pull requests but a random quote from your team&rsquo;s quotes config, run <code>./bin/seal.rb your_team_name quotes</code></p>
 
@@ -315,7 +315,7 @@ export SEAL_QUOTES="Everyone should have the opportunity to learn. Don’t be af
 
 <p>When that works, you can push the app to Heroku and add the GITHUB_TOKEN and SLACK_WEBHOOK environment variables to heroku.</p>
 
-<p>Use the Heroku scheduler add-on to create repeated tasks - I set the seal to run at 9.30am every morning (the seal won&rsquo;t post on weekends). The scheduler is at <a href="https://scheduler.heroku.com/dashboard">https://scheduler.heroku.com/dashboard</a> and the command to run is <code>bin/seal.rb your_team_name</code></p>
+<p>Use the Heroku scheduler add-on to create repeated tasks - I set the seal to run at 9.30am every morning (the seal won&rsquo;t post on weekends). The scheduler is at <a href="https://scheduler.heroku.com/dashboard">https://scheduler.heroku.com/dashboard</a> and the command to run is <code>bin/seal.rb your_team_name bot_animal</code></p>
 
 <p>Any questions feel free to contact me on Twitter - my handle is binaryberry</p>
 
