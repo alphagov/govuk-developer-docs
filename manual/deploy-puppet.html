@@ -190,15 +190,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8b48b9bd521984fff432eb35187ab7e83d9e5d8a">24 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06b89f88b33cae1796638055bff88668218a516f">28 Oct 2022</a>
 </div>
 
  <h1 id='header'>Deploy Puppet</h1> <h2 id='deploying-a-branch'>Deploying a branch</h2><p>Before merging your PR, it&rsquo;s recommended that you deploy the change to
@@ -230,11 +223,8 @@ runs a Puppet agent every 30 minutes (via cron), so it may be some time
 before the release takes effect. This has an implication on how
 quickly you can go from staging to production.</p>
 <p>If you&rsquo;d rather not wait and you&rsquo;re able to safely determine from the
-diff what classes of machines the change will affect, you can use
-<a href="https://github.com/alphagov/fabric-scripts">Fabric</a> to force a run of
-Puppet. For example:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>fab $environment class:frontend_lb class:backend_lb puppet
-</code></pre></div><p>This will run in serial across the nodes so there is a reduced chance of
+diff what classes of machines the change will affect, <a href="/manual/howto-run-ssh-commands-on-many-machines.html#run-puppet">you can force a run of puppet</a> on the relevant machine classes.</p>
+<p>This will run in serial across the nodes so there is a reduced chance of
 downtime caused by a service restarting on all nodes of a given
 class at the same time. You should still be careful though, because
 some services take longer to restart than others.</p>
@@ -248,33 +238,23 @@ brief outage, e.g. MySQL.</p>
 to and you MUST have some plan for restarting the service in the near
 future so that it&rsquo;s not inconsistent with its configuration.</p>
 </blockquote>
-<p>There are also instructions on <a href="/manual/howto-run-ssh-commands-on-many-machines.html">how to disable and enable puppet without using fabric scripts</a>.</p>
 
 <ol>
-<li>Disable normal Puppet runs on the affected nodes:</li>
+<li><p>Find out which machine class the service is running on</p></li>
+<li><p>Disable puppet on all machines of that class</p></li>
+<li><p>On each machine, change the file content to match what Puppet wants it to be.
+If it&rsquo;s a plain file you can probably apply the diff from git using sudo patch source.diff dest.
+If it&rsquo;s a template then you may need to refer to an existing environment or figure it out yourself.</p></li>
+<li><p>Verify that Puppet won&rsquo;t change the file or notify the service by running it in noop mode.
+ou will need to provide a different lock path to bypass the disable:</p></li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   fab $environment class:mysql_master puppet.disable:'Preventing service restart'
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
 </code></pre></div>
 <ol>
-<li>Change the file content to match what Puppet wants it to be. If it&rsquo;s
-a plain file you can probably apply the diff from git using
-<code>sudo patch source.diff dest</code>. If it&rsquo;s a template then you may need
-to refer to an existing environment or figure it out yourself.</li>
-<li>Verify that Puppet won&rsquo;t change the file or notify the service by
-running it in <code>noop</code> mode. You will need to provide a different lock
-path to bypass the disable:</li>
+<li><p>If you&rsquo;re happy with the results then re-enable Puppet on all of the machines</p></li>
+<li><p>Schedule a time to actually restart the service if necessary.</p></li>
 </ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   govuk_puppet --noop --test --agent_disabled_lockfile=/tmp/puppet.noop
-</code></pre></div>
-<ol>
-<li>If you&rsquo;re happy with the results then re-enable Puppet and run it
-again:</li>
-</ol>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>   fab $environment class:mysql_master puppet.enable puppet
-</code></pre></div>
-<ol>
-<li>Schedule a time to actually restart the service if necessary.</li>
-</ol>
+<p>Instructions on <a href="/manual/howto-run-ssh-commands-on-many-machines.html">how to disable and enable puppet can be found here</a>.</p>
 
 
   <div class='related-content'>

@@ -175,15 +175,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06b89f88b33cae1796638055bff88668218a516f">28 Oct 2022</a>
 </div>
 
  <h1 id='header'>RabbitMQ: No consumers listening to queue</h1> <h2 id='check-that-there-is-at-least-one-non-idle-consumer-for-rabbitmq-queue-queue_name'>Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}</h2><p>Icinga connects to RabbitMQ&rsquo;s admin API to check on the activity of the
@@ -191,9 +184,9 @@ consumers and that at least one consumer is running for a given RabbitMQ
 message queue. See <a href="https://github.com/alphagov/govuk-puppet/blob/eb8a04a7883d4772fa7266c909c7f40563f8f7a0/modules/icinga/files/usr/lib/nagios/plugins/check_rabbitmq_consumers">here</a> for the plugin that implements
 the alert.</p>
 <p>For information about how we use RabbitMQ, see <a href="https://docs.publishing.service.gov.uk/manual/rabbitmq.html">here</a>.</p>
-<h3 id='no-consumers-listening-to-queue'><code>No consumers listening to queue</code></h3><p>This check reports a critical error when <strong>no</strong> consumers are listening to the
+<h3 id='no-consumers-listening-to-queue'>No consumers listening to queue</h3><p>This check reports a critical error when <strong>no</strong> consumers are listening to the
 queue, meaning messages entering the queue will never be processed.</p>
-<h3 id='no-activity-for-x-seconds-idle-times-are-x-y-z'><code>No activity for X seconds: idle times are [X, Y, Z]</code></h3><p>This checks whether the RabbitMQ consumers for a queue have been active in the
+<h3 id='no-activity-for-x-seconds-idle-times-are-x-y-z'>No activity for X seconds: idle times are [X, Y, Z]</h3><p>This checks whether the RabbitMQ consumers for a queue have been active in the
 last 5 minutes. Consumers in an <code>idle</code> state are listening to the queue but are
 unable to process the messages on it.</p>
 <p>Publishing API <a href="https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake">sends a heartbeat message</a> every minute to
@@ -234,14 +227,10 @@ connection is lost).</p></li>
 messages then this could indicate an issue with the consumer.</p>
 <h3 id='troubleshooting-steps'>Troubleshooting steps</h3>
 <ol>
-<li>You could try restarting the consumer applications. After restarting, check
-to see if the problem is solved. E.g for email-alert-service, run:</li>
-</ol>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>fab <span class="nv">$environment</span> class:email_alert_api app.restart:email-alert-service
-</code></pre></div>
-<ol>
-<li>If the issue has not resolved, we should check in the consumers application
-logs to see if any errors are being thrown.</li>
+<li><p>You could try restarting the application <a href="https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines">on all the machines of the relevant class</a>.
+For example, to restart the email-alert-service application, you&rsquo;d SSH into each <code>email_alert_api</code> machine and <a href="/manual/restart-application.html">restart the app</a>. After restarting, check to see if the problem is solved.</p></li>
+<li><p>If the issue has not resolved, we should check in the consumers application
+logs to see if any errors are being thrown.</p></li>
 </ol>
 
 
