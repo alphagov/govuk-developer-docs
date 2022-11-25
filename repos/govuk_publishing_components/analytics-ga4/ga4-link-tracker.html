@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Google Analytics link tracker - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 link tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -15,12 +15,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics link tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 link tracker - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Google Analytics link tracker" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 link tracker" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" />
 
@@ -149,8 +149,9 @@
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
@@ -158,8 +159,9 @@
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
@@ -225,129 +227,75 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/3d10ed0b086fce89c9abbfd6e1bbfad04d5eb3a2">6 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/d5880f80f149ea1b3265ddba17aa60d90d137a37">21 Nov 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Google Analytics link tracker</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 link tracker</h1>
 
   
-<p>A module for tracking link clicks on GOV.UK.</p>
-<p>When initialised, the JS adds an event listener to the <code>&lt;body&gt;</code> of the page with the following listeners:</p>
-<ul>
-<li>A <code>click</code> listener (for left clicks, control clicks, and "Meta key" clicks - "Meta key" clicks are command + clicks or windows key + clicks.)</li>
-<li>A <code>mousedown</code> listener (for middle clicks.)</li>
-<li>A <code>contextmenu</code> listener (for right clicks / context menu keypresses.)</li>
-</ul>
-<p>When one of these listeners are fired, they check if the <code>event.target</code> is an <code>&lt;a&gt;</code> tag with a <code>href</code>. If so, it will then check if the link is:</p>
-<ul>
-<li>A <code>share</code> or <code>follow</code> link - This allows analysts to track if a page was shared, or if a user clicked on one of our social media channels, which are usually under a 'Follow us' heading. The tracking is added to the component by adding <code>track_as_share: true</code> or <code>track_as_follow: true</code> to the template import of a share links component. If one of these booleans is set to true, a <code>data-ga4-link</code> attribute is added to all the component's <code>&lt;a&gt;</code> tags. This <code>data-ga4-link</code> attribute houses a stringified JSON, containing the relevant data to push to GTM. The link tracker will always check for <code>data-ga4-link</code> first before checking the link matches our other link types. Therefore, this <code>data-ga4-link</code> pattern can be expanded to track other types of links, which can't be categorised by simply running checks against the href. Some keys in the JSON cannot be calculated in the template. Therefore, the value of these keys are set to <code>"populated-via-js"</code>. This <code>"populated-via-js"</code> is detected by the JS, and is subsequently overwritten in JS with the correct value.</li>
-<li>A <code>generic download</code> - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path.</li>
-<li>A <code>preview</code> link - This is either a href to <code>assets.publishing.service.gov.uk</code> or a href on the <code>www.gov.uk</code> domain pointing to the <code>/government/uploads/</code> path which has <code>/preview</code> in the URL after the file path.</li>
-<li>A <code>mailto</code> link - This is an email href that starts with <code>mailto:</code>.</li>
-<li>An <code>generic link</code>  - This is a href that is not on the internal domains. Internal domains include the current hostname, and any domains passed through to the <code>init({internalDomains: []})</code> array.
-<ul>
-<li>To calculate this, it checks the start of the href. If we were to use <code>www.gov.uk</code> as an example, it would check if the href starts with:
-<ul>
-<li>
-<code>http://www.gov.uk/</code>,</li>
-<li>
-<code>https://www.gov.uk/</code>,</li>
-<li>
-<code>//www.gov.uk/</code>,</li>
-<li>
-<code>www.gov.uk/</code>,</li>
-<li>(NB: <code>www.gov.uk/</code> is technically a relative link, as a href must contain a <code>/</code> or http method at the start to be treated as non-relative).</li>
-</ul>
-</li>
-<li>It also checks if a <code>href</code> starts with <code>/</code> and does not start with <code>//</code> to determine if it's a relative link like <code>/bank-holidays</code> , but not a protocol relative link such as <code>//google.com</code>.</li>
-<li>If the <code>href</code> does not meet the above criteria, then it is considered an external link.</li>
-</ul>
-</li>
-</ul>
-<p>Events can either have an <code>event_name</code> of <code>navigation</code>, <code>file_download</code>, or <code>share</code>. Download and preview links will use the <code>file_download</code> value, while generic external links, mailto links, and follow links will use <code>navigation</code>. Share links use <code>share</code>.</p>
-<p>Link URLs are stripped of the <code>_ga</code> and <code>_gl</code> query parameters. These are only relevant for cross domain tracking and aren't useful for our click tracking. Link text is stripped of multiple lines and multiple spaces, as this causes issues in the analytics dashboards.</p>
-<p>GA4 only allows event values to have a maximum character length of 100. This is a problem for tracking URLs, as many of them exceed 100 characters. Therefore, to solve this we have:</p>
-<ul>
-<li>Added a separate <code>link_domain</code> value which captures the protocol and domain of a link, such as <code>https://www.gov.uk</code>
-</li>
-<li>Created an object called <code>link_path_parts</code>, which splits the path into 100 character segments (max 5 segments, or 500 characters). For example, if your link was <code>https://gov.uk/supercalifragilisticexpialidocious-even-though-the-sound-of-it-is-something-quite-atrocious-if-you-say-it-loud-enough-youll-always-sound-precocious-supercalifragilisticexpialidocious-supercalifragili</code>, your GA4 push would contain:
-<pre lang="JavaScript"><code>"link_domain": "https://www.gov.uk",
-"link_path_parts": {
-     "1": "/supercalifragilisticexpialidocious-even-though-the-sound-of-it-is-something-quite-atrocious-if-you-",
-     "2": "say-it-loud-enough-youll-always-sound-precocious-supercalifragilisticexpialidocious-supercalifragili",
-     "3": undefined,
-     "4": undefined,
-     "5": undefined
-   },
+<p>This script is intended for adding GA4 tracking to links. It depends upon the main GA4 analytics code to function.</p>
+<h2 id="basic-use-single-link">Basic use (single link)</h2>
+<pre lang="html"><code>&lt;a
+  href="/link"
+  data-module="ga4-link-tracker"
+  data-ga4-link='{ "event_name": "navigation", "type": "home page", "index": 0, "index_total": 1, "section": "name of section" }'&gt;
+    Link
+&lt;/a&gt;
 </code></pre>
-</li>
-<li>The link is then reconstructed in Data Studio.</li>
-</ul>
-<h2 id="basic-use">Basic use</h2>
-<pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-link-tracker
-
-window.GOVUK.analyticsGa4.linkTracker.init()
+<p>Note that the specific detail of the <code>data-ga4-link</code> attribute will depend on the context of the link.</p>
+<h2 id="basic-use-multiple-links">Basic use (multiple links)</h2>
+<p>Specific tracking can be applied to multiple elements within a container, by applying the data module once to the parent element.</p>
+<pre lang="html"><code>&lt;div data-module="ga4-link-tracker"&gt;
+  &lt;a
+    href="/a-page"
+    data-ga4-link='{ "event_name": "navigation", "type": "browse", "index": "0", "index_total": "2", "section": "name of section" }'&gt;
+    Link 1
+  &lt;/a&gt;
+  &lt;a
+    href="/another-page"
+    data-ga4-link='{ "event_name": "navigation", "type": "browse", "index": "1", "index_total": "2", "section": "name of section" }'&gt;
+    Link 2
+  &lt;/a&gt;
+&lt;/div&gt;
 </code></pre>
-<p>Passing a config object with arrays to <code>init()</code> is optional, but passing each array enables extra functionality:</p>
-<ul>
-<li>Passing an <code>internalDomains</code> array allows you to class domains which aren't the current hostname as internal domains. For example, if you were adding tracking and your hostname was <code>helpforhouseholds.campaign.gov.uk</code>, <code>www.gov.uk</code> links would be classed as external links, unless you add <code>www.gov.uk</code> to this array. The link tracker will automatically add the domain with <code>www.</code> removed as well (<code>gov.uk</code> in this case,) as sometimes <code>www.</code> is omitted from <code>href</code> values.</li>
-<li>Passing an <code>internalDownloadPaths</code> array allows you to specify paths which should be classified as paths to a downloads route in your internal domains. If the path exists in an internal <code>href</code>, it will be treated as a download link.</li>
-<li>Passing a <code>dedicatedDownloadDomains</code> array allows you to specify domains which will always be classed as a download link. For example, <code>dropbox.com</code> could be added to always track dropbox links as download links.</li>
-<li>Passing <code>disableListeners: true</code> prevents click listeners from being added to the page on initilisation. This is useful if you'd like use the link detection features elsewhere without adding extra click listeners to the DOM.</li>
-</ul>
-<pre lang="JavaScript"><code>//= require ./analytics-ga4/ga4-link-tracker
-
-window.GOVUK.analyticsGa4.linkTracker.init({
-    internalDomains: ['www.gov.uk'],
-    internalDownloadPaths: ['/government/uploads/', '/downloads/'],
-    dedicatedDownloadDomains: ['assets.publishing.service.gov.uk', 'dropbox.com'],
-    disableListeners: // true/false
-})
-
+<p>Note that the specific detail of the <code>data-ga4-link</code> attribute will depend on the context of the link.</p>
+<h2 id="basic-use-override-text">Basic use (override text)</h2>
+<p>The text of the link can be overridden by another value if passed in the data attribute, as shown.</p>
+<pre lang="html"><code>&lt;a
+  href="/link"
+  data-module="ga4-link-tracker"
+  data-ga4-link='{ "event_name": "navigation", "type": "home page", "index": 0, "index_total": 1, "section": "name of section", "text": "This text will be recorded in the GA event" }'&gt;
+    This text will not be recorded
+&lt;/a&gt;
 </code></pre>
-<p><code>&lt;a href="https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf"&gt;A Quick Guide to the Government’s Healthy Eating Recommendations&lt;/a&gt;</code></p>
-<p>In the example above, on a left click of the link, the following would be pushed to the dataLayer, using the <code>eventSchema</code> found in <code>ga4-schemas.js</code>:</p>
-<pre lang="JSON"><code>{
-    "event": "event_data",
-    "event_data": {
-        "event_name": "file_download",
-        "type": "generic download",
-        "url": "https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_update.pdf",
-        "text": "A Quick Guide to the Government’s Healthy Eating Recommendations",
-        "index": null,
-        "index_total": null,
-        "section": null,
-        "action": null,
-        "external": "true",
-        "method": "primary click",
-        "link_domain": "https://assets.publishing.service.gov.uk",
-        "link_path_parts": {
-            "1": "/government/uploads/system/uploads/attachment_data/file/742746/A_quick_guide_to_govt_healthy_eating_",
-            "2": "update.pdf"
-        }
-    }
-}
+<h2 id="track-links-within-content">Track links within content</h2>
+<p>Where tracking attributes cannot be directly applied to elements, links can be tracked with details applied to the parent. In this configuration the link text and href are automatically determined and included in the event data. This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
+<p>The <code>data-ga4-track-links-only</code> attribute ensures that only link clicks are tracked (without it, any click inside the element is tracked).</p>
+<pre lang="html"><code>&lt;div
+  data-module="ga4-link-tracker"
+  data-ga4-link='{ "event_name": "navigation", "type": "browse", "section": "name of section" }'
+  data-ga4-track-links-only&gt;
+  &lt;a href="/link1"&gt;This link will be tracked&lt;/a&gt;
+  &lt;a href="/link2"&gt;
+    &lt;span&gt;This link will also be tracked even though it contains child elements&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;span&gt;This span will not be tracked&lt;/span&gt;
+&lt;/div&gt;
 </code></pre>
-<p>Preview links would turn <code>type</code> to <code>preview</code>.</p>
-<p>External links would turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>generic link</code>.</p>
-<p>Mailto links would turn turn <code>event_name</code> to <code>navigation</code> and <code>type</code> to <code>email</code>.</p>
-<p>Share links would turn <code>event_name</code> to <code>share</code> and type to <code>share this page</code>.</p>
-<p>Follow links would turn <code>event_name</code> to <code>navigation</code> and type to <code>follow us</code></p>
-<p>For <code>method</code>:</p>
-<ul>
-<li>Left clicks are a <code>primary click</code>
-</li>
-<li>Right clicks and context menu keypresses are <code>secondary click</code>
-</li>
-<li>Middle mouse button clicks are <code>middle click</code>
-</li>
-<li>Meta key clicks are <code>command/win click</code>
-</li>
-<li>Shift key clicks are <code>shift click</code>
-</li>
-<li>Control clicks are <code>ctrl click</code>
-</li>
-</ul>
+<p>Note that in this configuration specific values such as <code>index</code> and <code>index_total</code> cannot currently be applied to links.</p>
+<h2 id="track-links-within-content-within-a-specific-element">Track links within content within a specific element</h2>
+<p>To apply tracking to links within a specific element within part of a page, use the <code>data-ga4-limit-to-element-class</code> alongside the <code>data-ga4-track-links-only</code> attribute. This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
+<pre lang="html"><code>&lt;div
+  data-module="ga4-link-tracker"
+  data-ga4-link='{ "event_name": "navigation", "type": "browse", "section": "name of section" }'
+  data-ga4-track-links-only
+  data-ga4-limit-to-element-class="demoBox"&gt;
+  &lt;a href="/link1"&gt;This link will not be tracked&lt;/a&gt;
+  &lt;div class="demoBox"&gt;
+    &lt;a href="/link2"&gt;This link will be tracked&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
 
 
             

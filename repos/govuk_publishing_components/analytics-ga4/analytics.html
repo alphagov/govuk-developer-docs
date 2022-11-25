@@ -149,8 +149,9 @@
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
@@ -158,8 +159,9 @@
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
@@ -225,7 +227,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6f247089b8d3d3b281c1761ddc6a16674050f1de">30 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b8943690532dcfead6efd40c9faee3f1c936599a">8 Nov 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
@@ -268,6 +270,14 @@ window.GOVUK.analyticsGa4.analyticsModules = window.GOVUK.analyticsGa4.analytics
 <p>When cookie consent is given, <code>init-ga4.js</code> looks through the <code>analyticsModules</code> object for anything with an <code>init</code> function, and executes them if found. This means that analytics code will not be executed unless consent is given, and gives a standard way to add more analytics code without additional initialisation.</p>
 <h3 id="code-structure-for-modules">Code structure for Modules</h3>
 <p>Where analytics code is required as a <a href="/repos/govuk_publishing_components/javascript-modules.html">GOV.UK JavaScript Module</a>, the code structure for the <a href="/repos/govuk_publishing_components/javascript-modules.html">existing model for deferred loading</a> should be used.</p>
+<h2 id="link-and-event-tracking">Link and event tracking</h2>
+<p>There are several types of user initiated tracking. To distinguish them and simplify the code, we consider them as the following:</p>
+<ul>
+<li>interactions with <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-link-tracker.md">links</a> where tracking is added using data attributes on specific links</li>
+<li>interactions with <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-specialist-link-tracker.md">specialist links</a>, e.g. external links, download links, mailto links, where tracking is determined automatically by the content of the link</li>
+<li>interactions with <a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-event-tracker.md">buttons or other interactive elements</a> e.g. details elements, where tracking is added using data attributes on specific elements</li>
+</ul>
+<p>Each type of tracking is handled by a separate script, but some code is shared between them as they do similar things.</p>
 <h2 id="data-schemas">Data schemas</h2>
 <p>All of the data sent to GTM is based on a common schema.</p>
 <pre><code>{

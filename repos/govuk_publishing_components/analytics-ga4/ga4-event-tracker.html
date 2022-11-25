@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Google Analytics event tracker - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 event tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -15,12 +15,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics event tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 event tracker - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Google Analytics event tracker" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 event tracker" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" />
 
@@ -149,8 +149,9 @@
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
@@ -158,8 +159,9 @@
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
@@ -225,26 +227,26 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/1a91c411c6c9a93257c9a46b3327a94f75917080">19 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b8943690532dcfead6efd40c9faee3f1c936599a">8 Nov 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Google Analytics event tracker</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 event tracker</h1>
 
   
-<p>This is a script to allow event tracking (e.g. clicks) through Google Tag Manager to be added to any element using data attributes.</p>
+<p>This script is intended for adding GA4 tracking to interactive elements such as buttons or details elements. It depends upon the main GA4 analytics code to function.</p>
 <h2 id="basic-use">Basic use</h2>
 <pre lang="html"><code>&lt;div data-module="ga4-event-tracker"&gt;
-  &lt;div data-ga4='{"event_name":"select_content", "type":"something", "index":0, "index_total":1, "text":"Click me"}'&gt;
+  &lt;button data-ga4-event='{ "event_name": "select_content", "type": "something", "index": "0", "index_total": "1", "text": "Click me"}'&gt;
     Click me
-  &lt;/div&gt;
+  &lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
 <p>The module is initialised on the parent element, but tracking only occurs when clicks happen:</p>
 <ul>
-<li>on child elements that have a valid <code>data-ga4</code> attribute</li>
-<li>on the parent if it has a valid <code>data-ga4</code> attribute</li>
+<li>on child elements that have a valid <code>data-ga4-event</code> attribute</li>
+<li>on the parent if it has a valid <code>data-ga4-event</code> attribute</li>
 </ul>
-<p>A valid <code>data-ga4</code> attribute is a JSON string that can be parsed into an object, that contains a recognised value for <code>event_name</code>. Pushes to the dataLayer that do not include a valid <code>event_name</code> attribute will be ignored by Tag Manager.</p>
+<p>A valid <code>data-ga4-event</code> attribute is a JSON string that can be parsed into an object, that contains a recognised value for <code>event_name</code> (this is added automatically by the event tracker). Pushes to the dataLayer that do not include a valid <code>event_name</code> attribute will be ignored by Tag Manager.</p>
 <p>In the example above, the following would be pushed to the dataLayer. Note that the schema automatically populates empty values, and that attributes not in the schema are ignored.</p>
 <pre><code>{
   'event': 'event_data',
@@ -262,7 +264,7 @@
 }
 </code></pre>
 <h2 id="advanced-use">Advanced use</h2>
-<p>In some scenarios we use components that cannot be modified directly (i.e. unable to place the <code>data-ga4</code> attribute on the element as shown in the 'Basic use' section). In these cases, we attach the necessary data attributes for tracking by passing an argument containing our data attributes to the render method.</p>
+<p>In some scenarios we use components that cannot be modified directly (i.e. unable to place the <code>data-ga4-event</code> attribute on the element as shown in the 'Basic use' section). In these cases, we attach the necessary data attributes for tracking by passing an argument containing our data attributes to the render method.</p>
 <p>Many components already accept data attributes in this way (see the <a href="https://components.publishing.service.gov.uk/component-guide">component guide</a> for examples) but some, like the accordion, are more complicated.</p>
 <h3 id="overview">Overview</h3>
 <p>To track clicks on the 'Show/hide all sections' accordion link, pass data to the accordion using the <code>data_attributes_show_all</code> option as shown.</p>
@@ -297,13 +299,13 @@
 <li>the accordion JavaScript reads <code>data-show-all-attributes</code>
 <ul>
 <li>it creates a <code>data-</code> attribute on the 'Show/hide all' link for each key in the JSON</li>
-<li>in the example above, the result will be <code>data-ga4="{ "event_name": "select_content", "type": "accordion" }"</code>
+<li>in the example above, the result will be <code>data-ga4-event="{ "event_name": "select_content", "type": "accordion" }"</code>
 </li>
 </ul>
 </li>
 <li>wrap the accordion in the event tracking script
 <ul>
-<li>tracking will be activated by clicks on elements with a <code>data-ga4</code> attribute</li>
+<li>tracking will be activated by clicks on elements with a <code>data-ga4-event</code> attribute</li>
 <li>it checks for an <code>aria-expanded</code> attribute if the clicked element or parent element contains a <code>data-ga4-expandable</code> value or the <code>gem-c-accordion</code> class. If it detects one of those, it sets the <code>action</code> of the GA data accordingly.</li>
 <li>the current text of the clicked element is also recorded (this can be overridden to a non-dynamic value by including <code>text</code> in the attributes if required)</li>
 </ul>

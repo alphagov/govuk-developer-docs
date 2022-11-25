@@ -149,8 +149,9 @@
           <ul class="subdir__menu">
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
           </ul>
           <li class="subdir__heading">analytics</li>
@@ -158,8 +159,9 @@
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics event tracker</a></li>
-              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-event-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 event tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics 4 link tracker</a></li>
+              <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-specialist-link-tracker.html" rel="noopener" class="govuk-link">Google Analytics Specialist Link Tracker</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/pii-remover.html" rel="noopener" class="govuk-link">Stripping Personally Identifiable Information (PII)</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/analytics.html" rel="noopener" class="govuk-link">Analytics</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" rel="noopener" class="govuk-link">Scroll tracking</a></li>
@@ -225,7 +227,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/d9016d93585ba6559823ccb892c666e76eb0f321">31 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b8943690532dcfead6efd40c9faee3f1c936599a">8 Nov 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Track click script</h1>
@@ -291,8 +293,8 @@
   data-track-category="category"
   data-track-action="action"
   data-track-links-only&gt;
-  &lt;a class="first" href="/link1"&gt;This link will be tracked&lt;/a&gt;
-  &lt;a class="second" href="/link2"&gt;
+  &lt;a href="/link1"&gt;This link will be tracked&lt;/a&gt;
+  &lt;a href="/link2"&gt;
     &lt;span&gt;This link will also be tracked even though it contains child elements&lt;/span&gt;
   &lt;/a&gt;
   &lt;span&gt;This span will not be tracked&lt;/span&gt;
@@ -305,9 +307,9 @@
   data-track-action="action"
   data-track-links-only
   data-limit-to-element-class="demoBox"&gt;
-  &lt;a class="first" href="/link1"&gt;This link will not be tracked&lt;/a&gt;
+  &lt;a href="/link1"&gt;This link will not be tracked&lt;/a&gt;
   &lt;div class="demoBox"&gt;
-    &lt;a class="second" href="/link2"&gt;This link will be tracked&lt;/a&gt;
+    &lt;a href="/link2"&gt;This link will be tracked&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
