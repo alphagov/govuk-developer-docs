@@ -15,12 +15,12 @@ the alert.
 
 For information about how we use RabbitMQ, see [here][rabbitmq_doc].
 
-### `No consumers listening to queue`
+### No consumers listening to queue
 
 This check reports a critical error when **no** consumers are listening to the
 queue, meaning messages entering the queue will never be processed.
 
-### `No activity for X seconds: idle times are [X, Y, Z]`
+### No activity for X seconds: idle times are [X, Y, Z]
 
 This checks whether the RabbitMQ consumers for a queue have been active in the
 last 5 minutes. Consumers in an `idle` state are listening to the queue but are
@@ -74,12 +74,8 @@ messages then this could indicate an issue with the consumer.
 
 ### Troubleshooting steps
 
-1. You could try restarting the consumer applications. After restarting, check
-   to see if the problem is solved. E.g for email-alert-service, run:
-
-```bash
-$ fab $environment class:email_alert_api app.restart:email-alert-service
-```
+1. You could try restarting the application [on all the machines of the relevant class](https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines).
+   For example, to restart the email-alert-service application, you'd SSH into each `email_alert_api` machine and [restart the app](/manual/restart-application.html). After restarting, check to see if the problem is solved.
 
 2. If the issue has not resolved, we should check in the consumers application
    logs to see if any errors are being thrown.
