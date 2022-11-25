@@ -193,15 +193,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3723a9795db8942e6090f58c7441b6a084ce4af7">10 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ceeee3e6f88f68dc10710a072e659d7f2a5490fa">25 Nov 2022</a>
 </div>
 
  <h1 id='header'>Manage Ruby dependencies with Dependabot</h1> <p>We&rsquo;re <a href="/manual/keeping-software-current.html">obliged to keep our software current</a>. To help with this, we use a
@@ -233,7 +226,7 @@ and otherwise review the commits in more detail.</p></li>
 </ol>
 <h4 id='ask-dependabot-to-bump-dependencies'>Ask Dependabot to bump dependencies</h4><p>By default Dependabot will bump dependencies at the frequency specified in the configuration file, but you can ask it to bump manually:</p>
 <p>Go to your project in GitHub and click on &ldquo;Insights&rdquo;, then &ldquo;Dependency graph&rdquo;, then &ldquo;Dependabot&rdquo;, then &ldquo;Last checked X minutes ago&rdquo; next to the package manager of choice (e.g. Gemfile). Then you can click &ldquo;Check for updates&rdquo;.</p>
-<h4 id='audit-dependabot-prs'>Audit Dependabot PRs</h4><p>We have the <a href="/repos/govuk-dependencies.html">govuk-dependencies app</a> to monitor outstanding Dependabot PRs on govuk repos.</p>
+<h4 id='audit-dependabot-prs'>Audit Dependabot PRs</h4><p>We have the <a href="/repos/seal.html">seal</a> to monitor outstanding Dependabot PRs on GDS repos.</p>
 <h3 id='security'>Security</h3><p>There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot can only update the repositories that we <a href="https://github.com/organizations/alphagov/settings/installations/87197">explicitly allow on GitHub</a>. This prevents code changes to other repos. Secondly, we&rsquo;ve <a href="/manual/configure-github-repo.html#auto-configuration">set up branch protection</a> for all repos with the <code>govuk</code> label. This prevents Dependabot from writing directly to main.</p>
 
 
