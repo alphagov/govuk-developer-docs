@@ -80,7 +80,7 @@ Traffic for data.gov.uk is recorded using Google Analytics, in specific properti
 
 You can log into [CKAN][dgu-ckan] using a shared 2nd line account. The credentials are available in [govuk-secrets](https://github.com/alphagov/govuk-secrets/tree/main/pass) under [datagovuk/ckan](https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg).
 
-For commands not available via the user interface you need to [ssh onto a ckan machine](#connecting-to-CKAN-via-ssh).
+For commands not available via the user interface you need to [SSH onto a CKAN machine](#connecting-to-ckan-via-ssh).
 
 ## Users and publishing organisations
 
@@ -303,9 +303,9 @@ Publishers upload their organograms as an Excel (XLS) file that contains macros.
 
 If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to the `3rd Line--GOV.UK Product Requests` Zendesk queue.
 
-## Connecting to CKAN via ssh
+## Connecting to CKAN via SSH
 
-For commands not available via the user interface you must ssh onto a ckan machine. You can use [the govuk connect cli][govuk-connect] to do this, eg:
+For commands not available via the user interface you must SSH onto a CKAN machine. You can use [the govuk connect cli][govuk-connect] to do this, eg:
 
 ```
 gds govuk connect -e integration ssh ckan
