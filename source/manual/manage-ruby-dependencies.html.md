@@ -52,7 +52,7 @@ Go to your project in GitHub and click on "Insights", then "Dependency graph", t
 
 #### Audit Dependabot PRs
 
-We have the [govuk-dependencies app][app] to monitor outstanding Dependabot PRs on govuk repos.
+We have the [seal][app] to monitor outstanding Dependabot PRs on GDS repos.
 
 ### Security
 
@@ -64,4 +64,4 @@ There are 2 safeguards to prevent unauthorised code changes. Firstly, Dependabot
 [current]: /manual/keeping-software-current.html
 [Dependabot]: https://dependabot.com
 [admin]: https://app.dependabot.com/accounts/alphagov/repos
-[app]: /repos/govuk-dependencies.html
+[app]: /repos/seal.html
