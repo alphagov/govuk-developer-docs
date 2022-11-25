@@ -215,7 +215,7 @@
         </ul>
       </li>
       <li>
-        <a href="#connecting-to-ckan-via-ssh"><span>Connecting to CKAN via ssh</span></a>
+        <a href="#connecting-to-ckan-via-ssh"><span>Connecting to CKAN via SSH</span></a>
         <ul>
           <li>
             <a href="#initialising-the-database"><span>Initialising the database</span></a>
@@ -370,7 +370,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/008dc37d6ba76ef36ab3076c8f34164045de5977">15 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/32a382d55b2943e6c76634166a3e96e41a00d537">25 Nov 2022</a>
 </div>
 
  <h1 id='header'>Common 2nd line support tasks for data.gov.uk and CKAN</h1> <p>This document covers some of the requests that GOV.UK Technical 2nd Line support may receive regarding data.gov.uk and CKAN (which is the publishing application behind data.gov.uk).</p>
@@ -402,7 +402,7 @@ Example query: <code>source_host: &quot;gds-data-gov-uk.data-gov-uk.find-data-be
 &gt;&gt;&gt; Sidekiq::Queue.new.each_with_object(Hash.new(0)) {|j, h| h[j.klass] += 1 }
 </code></pre></div><h3 id='analytics'>Analytics</h3><p>Traffic for data.gov.uk is recorded using Google Analytics, in specific properties.</p>
 <h2 id='logging-into-the-publisher'>Logging into the publisher</h2><p>You can log into <a href="https://ckan.publishing.service.gov.uk">CKAN</a> using a shared 2nd line account. The credentials are available in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> under <a href="https://github.com/alphagov/govuk-secrets/blob/main/pass/2ndline/datagovuk/ckan.gpg">datagovuk/ckan</a>.</p>
-<p>For commands not available via the user interface you need to <a href="#connecting-to-CKAN-via-ssh">ssh onto a ckan machine</a>.</p>
+<p>For commands not available via the user interface you need to <a href="#connecting-to-ckan-via-ssh">SSH onto a CKAN machine</a>.</p>
 <h2 id='users-and-publishing-organisations'>Users and publishing organisations</h2><p>Publishers login using their email address. A user can be a member of one or more publishing
 organisations, with either the &lsquo;Admin&rsquo; or &lsquo;Editor&rsquo; role for each organisation.</p>
 <p>&lsquo;Admin&rsquo; users can add/remove users from their own organisation.</p>
@@ -561,7 +561,7 @@ https://data.gov.uk/api/3/action/package_search?q=name:population-of-england-and
 <p>Publishers <strong>must</strong> select the correct &lsquo;Schema Vocabulary&rsquo; for their organogram dataset (i.e. one of the two &lsquo;organisation structure&rsquo; values) in order for the upload option to become available and for the conversion script to run.</p>
 </blockquote>
 <h3 id='dataset-analytics-requests'>Dataset Analytics requests</h3><p>If a user requests analytics for datasets, we can provide them with access to an analytics dashboard. Assign tickets like this to the <code>3rd Line--GOV.UK Product Requests</code> Zendesk queue.</p>
-<h2 id='connecting-to-ckan-via-ssh'>Connecting to CKAN via ssh</h2><p>For commands not available via the user interface you must ssh onto a ckan machine. You can use <a href="/manual/howto-ssh-to-machines.html">the govuk connect cli</a> to do this, eg:</p>
+<h2 id='connecting-to-ckan-via-ssh'>Connecting to CKAN via SSH</h2><p>For commands not available via the user interface you must SSH onto a CKAN machine. You can use <a href="/manual/howto-ssh-to-machines.html">the govuk connect cli</a> to do this, eg:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect -e integration ssh ckan
 </code></pre></div><p>Most of the commands to interact with CKAN use the <code>ckan</code> CLI.  Some of these
 commands take a path to the config file with the <code>-c</code> option, which is located at
