@@ -42,10 +42,28 @@ railscast](http://railscasts.com/episodes/245-new-gem-with-bundler?view=asciicas
 
 ## Releasing gem versions
 
-The default Jenkins build script will automatically detect the presence of a
-`gemspec` file and publish the gem to rubygems.org. See the
-[Jenkinsfile for govuk_app_config](https://github.com/alphagov/govuk_app_config/blob/master/Jenkinsfile)
-for an example.
+We use GitHub Actions as a means to create new releases of gems. We have
+a [workflow][release-gem-workflow] that can be imported into apps and an
+organisation [GitHub secret][gh-secret], `ALPHAGOV_RUBYGEMS_API_KEY`, that
+can be used to authenticate with RubyGems.
+
+To utilise these you will need to ask a [GOV.UK GitHub Owner][govuk-github-owners]
+to grant your repository [access to the secret][secret-access] and apply
+the workflow to your GitHub Action ([example][gh-workflow-example]).
+
+Should you have an unconventional need in building your gem for deployment,
+for example [govuk_publishing_components][] requires an npm build step, you
+should not use the shared workflow, or adapt it for your edge case, and
+instead add an app specific workflow to release the gem
+([example][publishing-components-release-workflow]).
+
+[release-gem-workflow]: https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yaml
+[gh-secret]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+[govuk-github-owners]: mailto:govuk-github-owners@digital.cabinet-office.gov.uk
+[secret-access]: https://github.com/organizations/alphagov/settings/secrets/actions
+[gh-workflow-example]: https://github.com/alphagov/govuk_schemas/blob/74c5375505e6f46272c393e49e0d4e081b2cdd21/.github/workflows/ci.yml
+[govuk_publishing_components]: /repos/govuk_publishing_components.html
+[publishing-components-release-workflow]: https://github.com/alphagov/govuk_publishing_components/blob/04225e53f0a70f64589ebd0c66dd4e444430e460/.github/workflows/ci.yml#L41-L70
 
 ## Ruby version compatibility
 
