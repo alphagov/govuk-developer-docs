@@ -28,7 +28,7 @@ bundle exec rake test
 Or they can be run on their own:
 
 ```sh
-bundle exec rake test TEST=test/pacts/**/*.rb
+bundle exec rake pact_test
 ```
 
 ### For a provider
@@ -45,7 +45,7 @@ You can also test against a specific branch of GDS API Adapters:
 env PACT_CONSUMER_VERSION=branch-<branch-of-gds-api-adapters> bundle exec rake pact:verify
 ```
 
-_Note: when a build runs for GDS API Adapters, [the generated JSON pact is pushed to the broker as `branch-<branch-name>`](https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Jenkinsfile#L7) using [the `pact:publish:branch` rake task](https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Rakefile#L26); this is why `PACT_CONSUMER_VERSION` needs to start with `branch-`._
+_Note: when a build runs for GDS API Adapters, [the generated JSON pact is pushed to the broker as `branch-<branch-name>`](https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L37-L51) using [the `pact:publish:branch` rake task](https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Rakefile#L26); this is why `PACT_CONSUMER_VERSION` needs to start with `branch-`._
 
 Alternatively, you can test against local changes to GDS API Adapters:
 
@@ -61,21 +61,17 @@ _If the app already had some Pact tests, follow [the steps for changing existing
   - [Consumer example](https://github.com/alphagov/gds-api-adapters/pull/1066) (Note: since this example was written [we now store pact tests in the `tests/pacts` directory](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts)).
   - [Provider example](https://github.com/alphagov/imminence/pull/644).
 
-1. Check the consumer tests pass locally.
-  - CI won't do this for you yet because it doesn't know about the new app.
+1. Check the tests pass locally for both provider and consumer
+  - CI won't be able to test them yet as they won't be pushed to the pact broker.
 
 1. Merge the consumer tests for the new app.
-  - The build will pass because it runs with the old Jenkinsfile.
+  - This will cause the pact tests to be published to the pact broker, given the [project has been configured to do so](https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L37-L51).
 
-1. Check the main build of the consumer.
-  - [This will clone the default branch of the provider](https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L72) and [try to test it](https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L82).
-  - The build should fail until the provider part is merged.
+1. Merge a GitHub Action ([example](https://github.com/alphagov/asset-manager/blob/7311e5dae03496bde88b4eebf7104ea162603681/.github/workflows/pact-verify.yml)) into the provider app to verify the pact
+  - This will verify the provider app fulfills the contract published by the consumer.
 
-1. Merge tests for the provider.
-  - Re-run the build if you made the PR before merging the consumer one.
-
-1. Re-run the main build for the consumer.
-  - This will pass because the provider part now exists on the default branch.
+1. Update the consumer to utilise the provider GitHub action as part of the build process ([example](https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L101-L117))
+  - This will verify the provider contract when the consumer builds.
 
 ## Changing existing Pact tests
 
@@ -86,12 +82,16 @@ Follow these steps in order to change the provider and consumer in tandem.
 
 1. Make the change to the pactfile in the consumer (e.g. GDS API Adapters), in a branch.
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.
+1. Confirm locally that the provider can verify against the published consumer pact
+  - `env PACT_CONSUMER_VERSION=branch-<branch-of-gds-api-adapters> bundle exec rake pact:verify`
 
-1. Run a parameterised build of the consumer, specifying the new branch name of the provider to test against.
-  - The build should pass so you can now merge the consumer PR, which will mean the change is on the default branch.
+1. Merge the provider change
+  - The failing pact test should not block merging.
 
-1. Re-run the build for the provider PR now the consumer is merged.
-  - The build should pass so you can now merge the provider PR.
+1. Re-run the consumer tests
+  - These should pass now that the provider has been updated.
+
+1. Merge the consumer change
 
 ## Special cases
 
