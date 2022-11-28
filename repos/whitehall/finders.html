@@ -203,15 +203,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/17716547e49fa48b6bf6689173ebb799b277c419">13 Aug 2019</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/ec553343efb68bfd7beaaeecf7308164c0e04b9a">24 Oct 2022</a>
 </div>
 
   <h1 class="page-title">whitehall: Finders</h1>
@@ -225,15 +218,9 @@ finder-frontend and published from <a href="https://github.com/alphagov/search-a
 reasonable experience for users.  Because we need to translate some of the
 query parameters, we do it in the controllers:</p>
 <ul>
-<li><a href="https://github.com/alphagov/whitehall/blob/master/app/controllers/announcements_controller.rb">announcements</a></li>
-<li><a href="https://github.com/alphagov/whitehall/blob/master/app/controllers/publications_controller.rb">publications</a></li>
 <li><a href="https://github.com/alphagov/whitehall/blob/master/app/controllers/statistics_controller.rb">statistics</a></li>
 <li><a href="https://github.com/alphagov/whitehall/blob/master/app/controllers/statistics_announcements_controller.rb">statistics announcements</a></li>
 </ul>
-<p>There are still some remaining finder-like-things for translated content
-(<a href="https://www.gov.uk/government/statistics.cy">example of statistics in Welsh</a>).
-These use the Whitehall database and not Elasticsearch so they're different from
-the things that we've retired.</p>
 <h2 id="how-to-publish-a-finder-in-whitehall">How to publish a finder in whitehall</h2>
 <p><strong>Please consider publishing new finders from <a href="https://github.com/alphagov/search-api/tree/master/config/finders">search-api</a>. There are <a href="https://github.com/alphagov/search-api/tree/630a6947395d11267be3cc056c7370c65bb5723e/spec/unit/content_item_publisher">schema tests for both finders and email signup pages</a> there.</strong></p>
 <p>Create a JSON file in <a href="https://github.com/alphagov/whitehall/tree/master/lib/finders">lib/finders</a>. You can base it on one of the existing files in that folder.</p>
