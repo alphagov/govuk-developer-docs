@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-accessibility-reports - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-accessibility-reports (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-accessibility-reports.html">
 
-      <meta name="description" content="Everything about govuk-accessibility-reports (Project containing numerous report generators to monitor accessibility on GOV.UK.)" />
+      <meta name="description" content="Everything about govuk-accessibility-reports (Project containing numerous report generators to monitor accessibility on GOV.UK. It was retired in November 2022 after Data Products found no evidence of it being used for many months, and moved the data source needed to CPTO's GCloud account.)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-accessibility-reports - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-accessibility-reports (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-accessibility-reports.html" />
 
-      <meta property="og:description" content="Everything about govuk-accessibility-reports (Project containing numerous report generators to monitor accessibility on GOV.UK.)" />
+      <meta property="og:description" content="Everything about govuk-accessibility-reports (Project containing numerous report generators to monitor accessibility on GOV.UK. It was retired in November 2022 after Data Products found no evidence of it being used for many months, and moved the data source needed to CPTO's GCloud account.)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-accessibility-reports" />
+      <meta property="og:title" content="Repository: govuk-accessibility-reports (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-accessibility-reports.html" />
 
@@ -175,267 +175,11 @@
 </div>
 
   
-  <h1 class="page-title">Repository: govuk-accessibility-reports</h1>
+  <h1 class="page-title">Repository: govuk-accessibility-reports (retired)</h1>
 
-  <p>Project containing numerous report generators to monitor accessibility on GOV.UK.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-accessibility-reports">govuk-accessibility-reports</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#data-products</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Data science</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Project containing numerous report generators to monitor accessibility on GOV.UK.</p>
-
-<h2 id="what-it-is-and-how-it-works">What it is and how it works</h2>
-
-<p>This project contains a number of report generators, which each create a specific accessibility report; this might be
-finding all pages where the headings of a page don&rsquo;t follow a particular ordering, or all pages that have links with
-the same URLs but different link texts.</p>
-
-<p>Typically, generating these reports require access to two sources of data to generate the reports - the content items
-which represent GOV.UK pages and the HTML of said pages. To get this from GOV.UK itself would require over 500K HTTP
-requests, which would take a long time to compute, would be an unnecessary overhead for the serving applications and is
-prone to numerous errors (timeouts, exceeding rate-limits etc). As the number of accessibility reports we generate
-increases, processing each of them in this way becomes more unsustainable.</p>
-
-<p>The purpose of this project, the raison d'être, is to create an alternative approach to generating these reports.
-The first way it does this is by relying on a copy of the GOV.UK mirror content and preprocessed content store locally,
-thereby eliminating all HTTP requests. Secondly, it runs all of the report generators simultaneously and streams the
-outputs to separate report files on disk as the process is running. It achieves this by using the <code>multiprocessing</code>
-package to process each batch of content items, with each batch running over all of the mirror content (made of up
-HTML files) exactly once</p>
-
-<h3 id="the-technical-details">The technical details</h3>
-
-<p>The following is a technical breakdown of the report generation process:</p>
-
-<ul>
-<li>First, the <code>ReportRunner</code> takes all of the content items from the preprocessed content store and splits them up into
-batches (controlled by the <code>content_item_batch_size</code> setting in the report config).</li>
-<li>Each batch is then processed in parallel by the <code>multiprocessing</code> package, with each of the report generators run
-for a given content item and HTML content of that particular page and the result written to a multiprocessing <code>Queue</code>.</li>
-<li>The <code>Queue</code> for each report generator is consumed by a separate process which writes to the output CSV file for
-that report.</li>
-</ul>
-
-<p>Through this structure, we can run multiple report generators in parallel have them write their output to a <code>Queue</code>
-continuously, and have the output CSVs written asynchronously. This helps to manage memory consumed on the machine
-as we&rsquo;re always writing to output CSVs (in tandem with the config settings to manage batch and buffer sizes).</p>
-
-<h2 id="prerequisites">Prerequisites</h2>
-
-<p>To use the report runner, you&rsquo;ll need to have a local copy of the preprocessed content store (available from the S3
-<code>govuk-data-infrastructure-integration</code> bucket, with prefix
-<code>knowledge-graph/DATE_OF_YOUR_CHOICE/preprocessed_content_store_DATE_OF_YOUR_CHOICE.csv.gz</code>). You should download this
-file via the <code>gds-cli</code> + AWS CLI to avoid issues when downloading via the console, an example of which might look like:</p>
-
-<p><code>gds aws govuk-integration-poweruser aws s3 cp s3://govuk-data-infrastructure-integration/knowledge-graph/2020-08-14/ preprocessed_content_store_140820.csv.gz /Users/joebloggs/Downloads/preprocessed_content_store_140820.csv.gz</code></p>
-
-<p>You&rsquo;ll also need a copy of the mirror content (a collection of HTML files used by the mirrors). You should use the
-<code>govuk-production-mirror-replica</code> bucket. This should also be downloaded via the <code>gds-cli</code> + AWS CLI (you may wish to
-use the <code>--assume-role-ttl</code> flag as the mirror is a large download and can take some time - setting to <code>180m</code>
-(180 minutes) should be reasonable). An example command might look like:</p>
-
-<p><code>gds aws govuk-production-poweruser --assume-role-ttl 180m aws s3 cp s3://govuk-production-mirror-replica/www.gov.uk /User/joebloggs/Downloads/govuk-production-mirror-replica --recursive</code></p>
-
-<h2 id="getting-started">Getting started</h2>
-
-<p>To get started, you should be running Python 3.7 or higher. Navigate to the project root (where this README is located) and install required packages via <code>pip install -r requirements.txt -c constraints.txt</code>.</p>
-
-<p>Next, you should configure which reports you&rsquo;d like to generate by going into the appropriate config file inside of the
-<code>config</code> directory and setting the <code>skip</code> property of the reports you require to <code>false</code>. No reports are set to run
-by default, in order to ensure that only the reports you require are generated (as generating more reports results
-in a longer processing time).</p>
-
-<p>Once you&rsquo;ve enabled the reports you&rsquo;d like to generate in the config, run the following to generate the reports:</p>
-
-<p><code>python -m src.scripts.run_accessibility_reports &lt;REPORT CONFIG FILENAME&gt;</code></p>
-
-<p>substituting <code>&lt;REPORT CONFIG FILENAME&gt;</code> for the report config you wish to use from the <code>config</code> directory.</p>
-
-<p>This may take some time and you&rsquo;ll be informed of progress. Once complete, the reports will be saved in the <code>data</code>
-directory.</p>
-
-<p>For some reports, some post-processing needs to be done before sharing with the Accessibility team. Where a report
-requires this, then you will find it under <code>src/report_generators/&lt;report_name&gt;_postprocess/py</code>.</p>
-
-<p>For example, if you want to create the <code>src/report_generators/attachment_type_report_generator.py</code> report, then run this
-report as normal and then run <code>src/report_generators/attachment_type_report_postprocess.py</code> to produce the reports for the
-Accessibility team.</p>
-
-<h2 id="creating-a-new-report">Creating a new report</h2>
-
-<p>To create a new report, you should first add a report generator into the <code>report_generators</code> directory and inherit from
-the <code>BaseReportGenerator</code>. You will then have to implement three methods:</p>
-
-<ul>
-<li>
-<code>filename()</code>: the name of the file that you want the report to be saved out as (must include the <code>.csv</code> extension)</li>
-<li>
-<code>headers()</code>: an array of the names of the headers that your report should contain</li>
-<li>
-<code>preprocess_page(content_item, html)</code>: the main component of your report generator, which takes a content item from
-the preprocessed content store and the HTML content of that page, runs some computation and returns an array which
-corresponds to the output for that page to be included in the report CSV.
-<ul>
-<li>You can return an empty array (<code>[]</code>) if the page you&rsquo;re processing should not be recorded in the CSV for whatever
-reason / if you want to skip particular pages etc.</li>
-</ul>
-<p></li>
-</ul>
-<p>Once you have created the report generator, you should add a new entry to the <code>reports</code> property to the various
-configs that can be used to run the reports. These can be found in the <code>config</code> directory, and each report entry should
-contain:</p>
-<ul>
-<li>
-<code>name</code>: the human-friendly name of the report to be used in console output (i.e. <code>Heading accessibility report</code>)</li>
-<li>
-<code>filename</code>: the name of the Python module for your report generator (including the <code>.py</code> extension) (i.e
-<code>heading_ordering_report_generator.py</code>)</li>
-<li>
-<code>class</code>: the name of the class for your report generator (i.e. <code>HeadingOrderingReportGenerator</code>)</li>
-<li>
-<code>skip</code>: whether to run or skip this report - ensure this is set to <code>true</code> when committed</li>
-</ul>
-<p>For testing, you may wish to set the <code>total_content_items</code> property in the config file to a low
-number (i.e. <code>1000</code>). This limits the report generators run to only be run against the first <code>total_content_items</code>
-content items, meaning you&rsquo;ll get output faster.</p>
-<h2 id="configuration-settings">Configuration settings</h2>
-<p>There are a number of configuration settings defined in the configuration files (in the <code>config</code> directory), under
-the <code>settings</code> property (the <code>reports</code> property is covered in the previous section)</p>
-<ul>
-<li>
-<code>turbo_mode</code>: setting this to <code>true</code> increases the number of workers (processes) used when running the report
-generators for a batch of preprocessed content items, to 8x the number of available CPUs on the machine (defaults to
-<code>false</code> so that your machine doesn&rsquo;t become unresponsive, which runs at 0.8x the number of available CPUs)</li>
-<li>
-<code>html_content_dir_path</code>: the absolute path to the directory containing the HTML content from the GOV.UK mirrors</li>
-<li>
-<code>preprocessed_content_store_path</code>: the absolute path to the preprocessed content store (gzipped) file</li>
-<li>
-<code>total_content_items</code>: the total number of content items to process. Set to a low number for testing and a high
-number when running the report for real (defaults to <code>1000</code>)</li>
-<li>
-<code>content_item_batch_size</code>: the number of content items that should be contained in a batch, to be parallel-executed
-by the <code>multiprocessing</code> package (defaults to <code>50000</code>)</li>
-<li>
-<code>csv_writer_buffer_size</code>: the number of rows to cache in-memory for each report before writing them out to the
-appropriate report CSV (defaults to <code>500</code>)</li>
-</ul>
-<h2 id="installing-pre-commit-hooks">Installing pre-commit hooks</h2>
-<p>This repo uses the Python package <code>pre-commit</code> (<a href="https://pre-commit.com">https://pre-commit.com</a>) to manage pre-commit hooks. Pre-commit hooks are
-actions which are run automatically, typically on each commit, to perform some common set of tasks. For example, a
-pre-commit hook might be used to run any code linting automatically, providing any warnings before code is committed,
-ensuring that all of our code adheres to a certain quality standard.</p>
-<p>For this repo, we are using <code>pre-commit</code> for a number of purposes:</p>
-<ul>
-<li>Checking for any secrets being committed accidentally</li>
-<li>Checking for any large files (over 5MB) being committed</li>
-<li>Cleaning Jupyter notebooks, which means removing all outputs and execution counts</li>
-</ul>
-<p>We have configured <code>pre-commit</code> to run automatically on <em>every commit</em>. By running on each commit, we ensure
-that <code>pre-commit</code> will be able to detect all contraventions and keep our repo in a healthy state.</p>
-<p>In order for <code>pre-commit</code> to run, action is needed to configure it on your system.</p>
-<ul>
-<li>Run <code>pip install -r requirements-dev.txt</code> to install <code>pre-commit</code> in your Python environment</li>
-<li>Run <code>pre-commit install</code> to set-up <code>pre-commit</code> to run when code is <em>committed</em>
-</li>
-</ul>
-<h3 id="setting-up-a-baseline-for-the-detect-secrets-hook-if-one-doesnt-already-exist">Setting up a baseline for the <code>detect-secrets</code> hook (if one doesn&rsquo;t already exist)</h3>
-<p>The <code>detect-secrets</code> hook requires that you generate a baseline file if one is not already present within the root
-directory. This is done via running the following at the root of the repo:</p>
-<p><code>detect-secrets scan &gt; .secrets.baseline</code></p>
-<p>Next, audit the baseline that has been generated by running:</p>
-<p><code>detect-secrets audit .secrets.baseline</code></p>
-<p>When you run this command, you&rsquo;ll enter an interactive console and be presented with a list of high-entropy string /
-anything which <em>could</em> be a secret, and asked to verify whether or not this is the case. By doing this, the hook will
-be in a position to know if you&rsquo;re later committing any <em>new</em> secrets to the repo and it will be able to alert you
-accordingly.</p>
-<h3 id="if-pre-commit-detects-secrets-during-commit">If pre-commit detects secrets during commit:</h3>
-<p>If pre-commit detects any secrets when you try to create a commit, it will detail what it found and where to go to check
-the secret.</p>
-<p>If the detected secret is a false-positive, you should update the secrets baseline through the following steps:</p>
-<ul>
-<li>Run <code>detect-secrets scan --update .secrets.baseline</code> to index the false-positive(s)</li>
-<li>Next, audit all indexed secrets via <code>detect-secrets audit .secrets.baseline</code> (the same as during initial set-up, if a
-secrets baseline doesn&rsquo;t exist)</li>
-<li>Finally, ensure that you commit the updated secrets baseline in the same commit as the false-positive(s) it has been
-updated for</li>
-</ul>
-<p>If the detected secret is actually a secret (or other sensitive information), remove the secret and re-commit. There is
-no need to update the secrets baseline in this case.</p>
-<p>If your commit contains a mixture of false-positives and actual secrets, remove the actual secrets first before
-updating and auditing the secrets baseline.</p>
-<h3 id="note-on-jupyter-notebook-cleaning">Note on Jupyter notebook cleaning</h3>
-<p>It may be necessary or useful to keep certain output cells of a Jupyter notebook, for example charts or graphs
-visualising some set of data. To do this, add the following comment at the top of the input block:</p>
-<p><code># [keep_output]</code></p>
-<p>This will tell <code>pre-commit</code> not to strip the resulting output of this cell, allowing it to be committed.</p>
-<h2 id="setting-environment-variables">Setting environment variables</h2>
-<p>Environment variables can be set locally using a <code>.envrc</code> file. This should only be used for local development / running
-of the reports and is ignored by the <code>.gitignore</code> file.</p>
-<h3 id="creating-envrc">Creating <code>.envrc</code>
-</h3>
-<p>You can create the <code>.envrc</code> file by running:</p>
-<pre><code>./make_envrc.sh
-</code></pre>
-<p>Once the file has been created, you should update all of the vars described in the previous section, with the exception
-of <code>DATA_DIR</code> which will be set automatically.</p>
-<h3 id="loading-environment-variables-from-envrc">Loading environment variables from <code>.envrc</code>
-</h3>
-<p>To load environment variables from <code>.envrc</code>, it is assumed that you have <code>direnv</code> installed - <a href="https://direnv.net">https://direnv.net</a>.
-<code>direnv</code> is an extension for your shell, which loads environment variables from <code>.envrc</code> files automatically when you
-navigate to a directory containing such a file, as well as updating those environment variables in your shell whenever
-they change in the file itself.</p>
-<p>Once installed and hooked into your terminal, navigate to this project directory. You should then see the following
-output:</p>
-<pre><code>direnv: loading ~/govuk/govuk-user-journey-models/.envrc
-direnv: export +DATA_DIR (plus any additional environment variables)
-</code></pre>
-<p>If you don&rsquo;t see this, try running <code>direnv allow</code> to enable <code>direnv</code> to access the <code>.envrc</code> file (you will only need to
-do this once.)</p>
-<h2 id="exploring-the-preprocessed_content_store-file">Exploring the preprocessed_content_store file</h2>
-<p>The <code>preprocessed_content_store_*.csv.gz</code> can be explored using the command-line
-tool <a href="https://www.visidata.org/">visidata</a>.  The following command opens the
-file without decompressing the whole thing.</p>
-<pre lang="sh"><code>zcat &lt; preprocessed_content_store_011020.csv.gz | vd --filetype=csv --csv-delimiter=$&#39;\t&#39; -
-</code></pre>
-<p>You can expand the JSON columns by highlighting the column and typing
-<code>=eval(nameofcolumn)</code>, for example, <code>=eval(details)</code>, and then typing <code>(</code> to
-expand the new column that was created.  Type <code>)</code> on an expanded column to
-collapse it.</p>
-  </div></p>
+  <p>This application is retired.</p>
+<p><p>Project containing numerous report generators to monitor accessibility on GOV.UK. It was retired in November 2022 after Data Products found no evidence of it being used for many months, and moved the data source needed to CPTO&rsquo;s GCloud account.</p></p>
+<p><a href="https://github.com/alphagov/govuk-accessibility-reports">GitHub repository</a></p>
 
 
             
