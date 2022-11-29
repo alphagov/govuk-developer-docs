@@ -227,7 +227,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b8943690532dcfead6efd40c9faee3f1c936599a">8 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/c90f379342c89dce1672ac096ed4164061a60fa3">22 Nov 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 event tracker</h1>
@@ -267,19 +267,10 @@
 <p>In some scenarios we use components that cannot be modified directly (i.e. unable to place the <code>data-ga4-event</code> attribute on the element as shown in the 'Basic use' section). In these cases, we attach the necessary data attributes for tracking by passing an argument containing our data attributes to the render method.</p>
 <p>Many components already accept data attributes in this way (see the <a href="https://components.publishing.service.gov.uk/component-guide">component guide</a> for examples) but some, like the accordion, are more complicated.</p>
 <h3 id="overview">Overview</h3>
-<p>To track clicks on the 'Show/hide all sections' accordion link, pass data to the accordion using the <code>data_attributes_show_all</code> option as shown.</p>
-<pre lang="erb"><code>&lt;%
-  ga4_attributes = {
-    event_name: "select_content",
-    type: "accordion",
-    # other attributes
-  }
-%&gt;
-&lt;div data-module="ga4-event-tracker"&gt;
+<p>To track clicks on the 'Show/hide all sections' accordion link, use the <code>ga4_tracking</code> option as shown.</p>
+<pre lang="erb"><code>&lt;div data-module="ga4-event-tracker"&gt;
   &lt;%= render 'govuk_publishing_components/components/accordion', {
-    data_attributes_show_all: {
-      "ga4": ga4_attributes.to_json
-    },
+    ga4_tracking: true,
     items: []
   } %&gt;
 &lt;/div&gt;
@@ -288,25 +279,15 @@
 <p>In some situations we want to track dynamic elements like the 'Show/hide all sections' links on accordions. This is complicated by the element being created and updated dynamically using JavaScript and the need to track the state of the element when clicked (to record whether it was opened or closed).</p>
 <p>It is also complicated by the fact that the JavaScript that creates this element is imported from <code>govuk-frontend</code> and therefore can't be modified directly. In order to get attributes onto this link, we have to do the following.</p>
 <ul>
-<li>pass attributes to the accordion for the 'Show/hide all' link using the <code>data_attributes_show_all</code> option
+<li>Enable tracking for an accordion using the <code>ga4_tracking</code> option</li>
+<li>the 'Show/hide all' link is created by <code>govuk-frontend</code> JavaScript</li>
+<li>the accordion JavaScript checks for <code>ga4-event-tracker</code>
 <ul>
-<li>this should contain an object with one or many keys, each with a value converted into JSON</li>
-<li>this is appended to the main component element as <code>data-show-all-attributes</code>
+<li>it adds <code>data-ga4-event</code> with the relevant GTM JSON to the 'Show/hide all' link</li>
+<li>in the example above, the result will be <code>data-ga4-event="{ "event_name": "select_content", "type": "accordion", index: "0", index_total: "0" }"</code>
 </li>
-</ul>
-</li>
-<li>the 'Show/hide all' link is created by govuk-frontend JavaScript</li>
-<li>the accordion JavaScript reads <code>data-show-all-attributes</code>
-<ul>
-<li>it creates a <code>data-</code> attribute on the 'Show/hide all' link for each key in the JSON</li>
-<li>in the example above, the result will be <code>data-ga4-event="{ "event_name": "select_content", "type": "accordion" }"</code>
-</li>
-</ul>
-</li>
-<li>wrap the accordion in the event tracking script
-<ul>
 <li>tracking will be activated by clicks on elements with a <code>data-ga4-event</code> attribute</li>
-<li>it checks for an <code>aria-expanded</code> attribute if the clicked element or parent element contains a <code>data-ga4-expandable</code> value or the <code>gem-c-accordion</code> class. If it detects one of those, it sets the <code>action</code> of the GA data accordingly.</li>
+<li>it checks for an <code>aria-expanded</code> attribute, as the accordion will contain a <code>data-ga4-expandable</code> value. This sets the <code>action</code> property of the <code>event_data</code> object accordingly.</li>
 <li>the current text of the clicked element is also recorded (this can be overridden to a non-dynamic value by including <code>text</code> in the attributes if required)</li>
 </ul>
 </li>
@@ -317,13 +298,10 @@
   'event_data': {
     'event_name': 'select_content',
     'type': 'accordion',
-    'url': null,
     'text': 'Show all sections',
     'index': '0',
     'index-total': '5',
-    'section': null,
     'action': 'opened',
-    'external': null
   }
 }
 </code></pre>
@@ -333,13 +311,10 @@
   'event_data': {
     'event_name': 'select_content',
     'type': 'accordion',
-    'url': null,
     'text': 'Hide all sections',
     'index': '0',
     'index-total': '5',
-    'section': null,
     'action': 'closed',
-    'external': null
   }
 }
 </code></pre>
