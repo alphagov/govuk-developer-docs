@@ -247,6 +247,11 @@
 
 <p>Include your team&rsquo;s name, repos and the Slack channel you want to post to.</p>
 
+<blockquote>
+<p>If your team is part of the GOV.UK programme, you do not need to add a list of repos to config/alphagov.yml.
+The <a href="https://docs.publishing.service.gov.uk/repos.json">Developer docs repos.json</a> is now the single source of truth for information about GOV.UK repositories and which team is responsible for them.</p>
+</blockquote>
+
 <p>In your shell profile, put in:</p>
 
 <pre lang="sh"><code>export SEAL_ORGANISATION="your_github_organisation"
@@ -289,7 +294,8 @@ export SEAL_QUOTES="Everyone should have the opportunity to learn. Don’t be af
 
 <h3 id="local-testing">Local testing</h3>
 
-<p>To test the script locally, go to Slack and create a channel or private group called &ldquo;#angry-seal-bot-test&rdquo; (the Slack webhook you set up should have its channel set to &ldquo;#angry-seal-bot-test&rdquo; in the Integration Settings). Then run <code>./bin/seal.rb your_team_name bot_animal</code> in your command line, and you should see the post in the #angry-seal-bot-test channel.</p>
+<p>To test the script, create a private Slack channel e.g. &ldquo;#angry-seal-bot-test-abc&rdquo; and update <code>@team_channel</code> on <a href="https://github.com/alphagov/seal/blob/main/lib/slack_poster.rb#L120">this line in slack_poster.rb</a> to the one you created (also remove the <code>if</code> statement).
+Then log in to Heroku (credentials can be found in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>) and under the &ldquo;Deploy&rdquo; tab, you can deploy your branch which should be in the drop down list of branches in the &ldquo;Manual deploy&rdquo; section. Under the &ldquo;More&rdquo; drop down located in the top right, select &ldquo;Run console&rdquo; where you can run <code>./bin/seal.rb your_team_name</code>, and you should see the post in your test channel (assuming you have included it in the list of teams in <a href="https://github.com/alphagov/seal/blob/main/bin/morning_seal.sh">morning_seal.sh</a>).</p>
 
 <p>If you don&rsquo;t want to post github pull requests but a random quote from your team&rsquo;s quotes config, run <code>./bin/seal.rb your_team_name quotes</code></p>
 
