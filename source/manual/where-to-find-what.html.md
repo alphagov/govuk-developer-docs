@@ -32,12 +32,6 @@ These presentations are repeated semi-regularly at the GOV.UK Tech Fortnightly m
 - The [Platform Operations wiki][plops] contains information about Technical 2nd Line and incident management
 - The [Product documentation][prod-docs] contains documentation about the features of the platform
 
-## Opsmanual (legacy)
-
-<https://docs.google.com/document/d/17XUuPaZ5FufyXH00S9qukl6Kf3JbJtAqwHR3eOBVBpI/edit>
-
-- Contains private information on operations, such as phone numbers and account IDs
-
 ## RFCs
 
 <https://github.com/alphagov/govuk-rfcs>
