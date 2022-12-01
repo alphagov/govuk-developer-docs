@@ -204,7 +204,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/f434dad2bc9589123610443426951746b54c12f6">5 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/57cb375406714808aa426b7ead375edd06c04077">1 Dec 2022</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating or editing specialist document types</h1>
@@ -217,13 +217,15 @@ applications.</p>
 <h1 id="creating-a-specialist-document-type">
 <strong>Creating</strong> a specialist document type</h1>
 <h2 id="1-add-a-schema-to-govuk-content-schemas">1. Add a schema to govuk-content-schemas</h2>
-<p>See example <a href="https://github.com/alphagov/govuk-content-schemas/pull/1077">PR for adding <code>product_safety_alert</code></a>.</p>
+<p>See example <a href="https://github.com/alphagov/govuk-content-schemas/pull/1077">PR for adding <code>product_safety_alert</code></a>.
+Note: this is a link to a PR in the now-archived content schemas repo. Content schemas have now been moved to publishing api.
+Please update this document when an example for publishing api is available.</p>
 <ol>
-<li>Add the format to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/specialist_document.jsonnet#L2-L31">this list</a> and to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/lib/govuk_content_schemas/allowed_document_types.yml">this list</a>
+<li>Add the format to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/specialist_document.jsonnet#L2:L33">this list</a> and to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/allowed_document_types.yml">this list</a>
 </li>
-<li>Add any new field definitions to <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/shared/definitions/_specialist_document.jsonnet">this file</a>
+<li>Add any new field definitions to <a href="https://github.com/alphagov/publishing-api/blob/main/content_schemas/formats/shared/definitions/_specialist_document.jsonnet">this file</a>
 </li>
-<li>Add examples <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/docs/adding-a-new-schema.md#examples">as instructed</a>.
+<li>Add examples <a href="https://github.com/alphagov/publishing-api/blob/main/docs/content_schemas/adding-a-new-schema.md">as instructed</a>.
 You can copy and paste from another specialist document format, only changing what is necessary (you can leave the body and headers unchanged).</li>
 </ol>
 <p>You'll need to generate your own UUIDs for the <code>content_id</code> and <code>signup_content_id</code> fields:</p>
@@ -234,7 +236,7 @@ irb(main):002:0&gt; SecureRandom.uuid
 =&gt; "5087e8b6-ee54-40f9-b592-8c2813c7037d"
 </code></pre>
 <ol start="4">
-<li>Run <code>bundle exec rake build</code> to regenerate schemas.</li>
+<li>Run <code>bundle exec rake build_schemas</code> to regenerate schemas.</li>
 </ol>
 <p>When the PR is reviewed and its tests passing, it can be merged and deployed at this point.</p>
 <h2 id="2-create-a-new-specialist-document-format-in-specialist-publisher">2. Create a new specialist document format in Specialist Publisher</h2>
