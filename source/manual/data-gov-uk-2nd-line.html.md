@@ -39,11 +39,11 @@ fix it - open a PR to resolve the problem.
 
 ## Environments
 
-There are three environments for CKAN:
+There are three environments:
 
-- [Production][dgu-ckan]
-- [Staging](https://ckan.staging.publishing.service.gov.uk)
-- [Integration](https://ckan.integration.publishing.service.gov.uk)
+- [Production CKAN][dgu-ckan] which publishes to [data.gov.uk](https://www.data.gov.uk)
+- [Staging CKAN](https://ckan.staging.publishing.service.gov.uk) which publishes to https://find-data-beta-staging.cloudapps.digital/)
+- [Integration CKAN](https://ckan.integration.publishing.service.gov.uk) which publishes to https://find-data-beta-integration.cloudapps.digital/)
 
 ## Monitoring data.gov.uk
 
