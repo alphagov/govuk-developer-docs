@@ -409,6 +409,29 @@ Signon](https://signon.publishing.service.gov.uk/users/invitation/new), at 'Norm
 the 'Release' app only. No permissions should be given for other applications, until [production access](/manual/rules-for-getting-production-access.html)
 is granted.
 
+## Troubleshooting
+
+### Your Ruby version is [version X], but your Gemfile specified [version Y]
+
+To fix this, run the following command in your terminal:
+
+```
+rbenv install [version Y]
+rbenv local [version Y]
+ruby -v (which should display version Y)
+```
+
+If `ruby -v` returns a different version, try restarting the terminal. Otherwise, if the error persists:
+
+1. Add the `rbenv` Ruby binary, and initialisation command, to your `~/.zshrc` file as shown below:
+
+```
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init - zsh)"
+```
+
+2. Run `source ~/.zshrc` to apply the above terminal config, or restart your terminal
+
 ## Supporting information
 
 Now you have completed the get started process, you should look at the following supporting information:
