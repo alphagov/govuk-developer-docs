@@ -63,6 +63,6 @@ This will create a bunch of static files in `/build`.
 
 ## Licence
 
-[MIT License](LICENCE.md)
+[MIT License](LICENCE)
 
 [actions]: https://github.com/alphagov/govuk-developer-docs/blob/main/.github/workflows/ci.yml
