@@ -423,7 +423,7 @@ ruby -v (which should display version Y)
 
 If `ruby -v` returns a different version, try restarting the terminal. Otherwise, if the error persists:
 
-1. Add the `rbenv` Ruby binary, and initialisation command, to your `~/.zshrc` file as shown below:
+1. If you're using `zshell`, add the `rbenv` Ruby binary and initialisation command to your `~/.zshrc` file as shown below:
 
 ```
 export PATH="$HOME/.rbenv/bin:$PATH"
