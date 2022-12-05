@@ -531,6 +531,10 @@ correct upstream hosted zone.</p>
 <p>The <code>generate_terraform</code>, <code>tf:plan</code> and <code>tf:apply</code> tasks carry out the bulk of the work and are used whenever we want to deploy an update to our DNS. Using them in that order gives us confidence in which changes we will make before we make them.</p>
 
 <p>The <code>validate_dns</code> task is run nightly as a check that the YAML file is an accurate representation of our DNS. It has a slight blindspot in that records added manually to the zone may not be detected as the task will not know which subdomain to query.</p>
+
+<h2 id="licence">Licence</h2>
+
+<p><a href="https://github.com/alphagov/govuk-dns/blob/main/LICENCE">MIT License</a></p>
 <p></div></p>
 
 

@@ -199,7 +199,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7d426716acf781ca3e897e033fc8ebd2399cac6d">2 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5e528e3622ad44cf9374ce0c9e52f3c76f4bfab4">5 Dec 2022</a>
 </div>
 
  <h1 id='header'>Pact Testing</h1> <p><a href="https://docs.pact.io/">Pact</a> is a tool we use for <em>contract testing</em>. Contract testing involves creating a set of tests that are shared between an API (the &ldquo;provider&rdquo;) and its users (&ldquo;consumers&rdquo;) using some kind of &ldquo;broker&rdquo;. For example, the Publishing API has a &ldquo;pact&rdquo; or &ldquo;contract&rdquo; with GDS API Adapters:</p>
@@ -213,12 +213,12 @@
 <h2 id='running-pact-tests-locally'>Running Pact tests locally</h2><h3 id='for-a-consumer-gds-api-adapters'>For a consumer (GDS API Adapters)</h3><p><a href="https://github.com/alphagov/gds-api-adapters/tree/main/test/pacts">Pact tests</a> are run as part of the regular test suite:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake <span class="nb">test</span>
 </code></pre></div><p>Or they can be run on their own:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake <span class="nb">test </span><span class="nv">TEST</span><span class="o">=</span><span class="nb">test</span>/pacts/<span class="k">**</span>/<span class="k">*</span>.rb
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake pact_test
 </code></pre></div><h3 id='for-a-provider'>For a provider</h3><p>Example for Frontend (provider of <code>/bank-holidays.json</code>):</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>bundle <span class="nb">exec </span>rake pact:verify
 </code></pre></div><p>You can also test against a specific branch of GDS API Adapters:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">env </span><span class="nv">PACT_CONSUMER_VERSION</span><span class="o">=</span>branch-&lt;branch-of-gds-api-adapters&gt; bundle <span class="nb">exec </span>rake pact:verify
-</code></pre></div><p><em>Note: when a build runs for GDS API Adapters, <a href="https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Jenkinsfile#L7">the generated JSON pact is pushed to the broker as <code>branch-&lt;branch-name&gt;</code></a> using <a href="https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Rakefile#L26">the <code>pact:publish:branch</code> rake task</a>; this is why <code>PACT_CONSUMER_VERSION</code> needs to start with <code>branch-</code>.</em></p>
+</code></pre></div><p><em>Note: when a build runs for GDS API Adapters, <a href="https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L37-L51">the generated JSON pact is pushed to the broker as <code>branch-&lt;branch-name&gt;</code></a> using <a href="https://github.com/alphagov/gds-api-adapters/blob/59cf7dbcf6b70a6d7ef68b3ed8b05b83cb40ecf2/Rakefile#L26">the <code>pact:publish:branch</code> rake task</a>; this is why <code>PACT_CONSUMER_VERSION</code> needs to start with <code>branch-</code>.</em></p>
 <p>Alternatively, you can test against local changes to GDS API Adapters:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">env </span><span class="nv">PACT_URI</span><span class="o">=</span><span class="s2">"../gds-api-adapters/spec/pacts/gds_api_adapters-bank_holidays_api.json"</span> bundle <span class="nb">exec </span>rake pact:verify
 </code></pre></div><h2 id='adding-tests-for-a-new-app'>Adding tests for a new app</h2><p><em>If the app already had some Pact tests, follow <a href="#changing-existing-pact-tests">the steps for changing existing Pact tests</a>.</em></p>
@@ -230,31 +230,25 @@
 <li><a href="https://github.com/alphagov/gds-api-adapters/pull/1066">Consumer example</a> (Note: since this example was written <a href="https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts">we now store pact tests in the <code>tests/pacts</code> directory</a>).</li>
 <li><a href="https://github.com/alphagov/imminence/pull/644">Provider example</a>.</li>
 </ul></li>
-<li><p>Check the consumer tests pass locally.</p>
+<li><p>Check the tests pass locally for both provider and consumer</p>
 
 <ul>
-<li>CI won&rsquo;t do this for you yet because it doesn&rsquo;t know about the new app.</li>
+<li>CI won&rsquo;t be able to test them yet as they won&rsquo;t be pushed to the pact broker.</li>
 </ul></li>
 <li><p>Merge the consumer tests for the new app.</p>
 
 <ul>
-<li>The build will pass because it runs with the old Jenkinsfile.</li>
+<li>This will cause the <a href="https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L37-L51">pact tests to be published to the pact broker</a>.</li>
 </ul></li>
-<li><p>Check the main build of the consumer.</p>
+<li><p>Merge a GitHub Action (<a href="https://github.com/alphagov/asset-manager/blob/7311e5dae03496bde88b4eebf7104ea162603681/.github/workflows/pact-verify.yml">example</a>) into the provider app to verify the pact</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L72">This will clone the default branch of the provider</a> and <a href="https://github.com/alphagov/gds-api-adapters/blob/ddb49a487f5c8b5e28f74b81d98660fb2c02d98d/Jenkinsfile#L82">try to test it</a>.</li>
-<li>The build should fail until the provider part is merged.</li>
+<li>This will verify the provider app fulfills the contract published by the consumer.</li>
 </ul></li>
-<li><p>Merge tests for the provider.</p>
+<li><p>Update the consumer to utilise the provider GitHub action as part of the build process (<a href="https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L101-L117">example</a>)</p>
 
 <ul>
-<li>Re-run the build if you made the PR before merging the consumer one.</li>
-</ul></li>
-<li><p>Re-run the main build for the consumer.</p>
-
-<ul>
-<li>This will pass because the provider part now exists on the default branch.</li>
+<li>This will verify the provider contract when the consumer builds.</li>
 </ul></li>
 </ol>
 <h2 id='changing-existing-pact-tests'>Changing existing Pact tests</h2><p>Follow these steps in order to change the provider and consumer in tandem.</p>
@@ -270,16 +264,22 @@
 <ul>
 <li>Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.</li>
 </ul></li>
-<li><p>Run a parameterised build of the consumer, specifying the new branch name of the provider to test against.</p>
+<li><p>Confirm locally that the provider can verify against the published consumer pact</p>
 
 <ul>
-<li>The build should pass so you can now merge the consumer PR, which will mean the change is on the default branch.</li>
+<li><code>env PACT_CONSUMER_VERSION=branch-&lt;branch-of-gds-api-adapters&gt; bundle exec rake pact:verify</code></li>
 </ul></li>
-<li><p>Re-run the build for the provider PR now the consumer is merged.</p>
+<li><p>Merge the provider change</p>
 
 <ul>
-<li>The build should pass so you can now merge the provider PR.</li>
+<li>We&rsquo;ve configured failing Pact tests to not block merging, so you should still be able to merge.</li>
 </ul></li>
+<li><p>Re-run the consumer tests</p>
+
+<ul>
+<li>These should pass now that the provider has been updated.</li>
+</ul></li>
+<li><p>Merge the consumer change</p></li>
 </ol>
 <h2 id='special-cases'>Special cases</h2><p>Publishing API and Content Store have a direct pact, with <a href="https://github.com/alphagov/publishing-api/tree/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/pacts/content_store">Publishing API acting as the consumer</a> and <a href="https://github.com/alphagov/content-store/blob/de729dfe12e6e9da4a27a52259f59b9051e4da27/spec/service_consumers/pact_helper.rb#L32">Content Store acting as the provider</a>. This can be confusing as <a href="https://github.com/alphagov/publishing-api/blob/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/service_consumers/pact_helper.rb#L20">Publishing API is also a provider for GDS API Adapters</a>.</p>
 <p>The tests are run in the same way as other consumers and providers (see above).</p>
