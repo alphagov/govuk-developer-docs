@@ -65,7 +65,7 @@ _If the app already had some Pact tests, follow [the steps for changing existing
   - CI won't be able to test them yet as they won't be pushed to the pact broker.
 
 1. Merge the consumer tests for the new app.
-  - This will cause the pact tests to be published to the pact broker, given the [project has been configured to do so](https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L37-L51).
+  - This will cause the [pact tests to be published to the pact broker](https://github.com/alphagov/gds-api-adapters/blob/bcc8e58eccf69dd37657d13156cbe11c07535844/.github/workflows/ci.yml#L37-L51).
 
 1. Merge a GitHub Action ([example](https://github.com/alphagov/asset-manager/blob/7311e5dae03496bde88b4eebf7104ea162603681/.github/workflows/pact-verify.yml)) into the provider app to verify the pact
   - This will verify the provider app fulfills the contract published by the consumer.
@@ -86,7 +86,7 @@ Follow these steps in order to change the provider and consumer in tandem.
   - `env PACT_CONSUMER_VERSION=branch-<branch-of-gds-api-adapters> bundle exec rake pact:verify`
 
 1. Merge the provider change
-  - The failing pact test should not block merging.
+  - We've configured failing Pact tests to not block merging, so you should still be able to merge.
 
 1. Re-run the consumer tests
   - These should pass now that the provider has been updated.
