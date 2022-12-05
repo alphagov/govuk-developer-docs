@@ -202,7 +202,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e830e7a444b3064d57225e36003d0c188fff28e3">23 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f26c3f94ea4d5017fdcca384709988a7099fff42">28 Nov 2022</a>
 </div>
 
  <h1 id='header'>Publish a Ruby gem</h1> <h2 id='naming'>Naming</h2><p>In general, the gem name should be the same as the thing you require when using
@@ -231,10 +231,18 @@ dependencies should be specified in the gemspec.</li>
 file).</li>
 </ul>
 </blockquote>
-<h2 id='releasing-gem-versions'>Releasing gem versions</h2><p>The default Jenkins build script will automatically detect the presence of a
-<code>gemspec</code> file and publish the gem to rubygems.org. See the
-<a href="https://github.com/alphagov/govuk_app_config/blob/master/Jenkinsfile">Jenkinsfile for govuk_app_config</a>
-for an example.</p>
+<h2 id='releasing-gem-versions'>Releasing gem versions</h2><p>We use GitHub Actions as a means to create new releases of gems. We have
+a <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.github/workflows/publish-rubygem.yaml">workflow</a> that can be imported into apps and an
+organisation <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub secret</a>, <code>ALPHAGOV_RUBYGEMS_API_KEY</code>, that
+can be used to authenticate with RubyGems.</p>
+<p>To utilise these you will need to ask a <a href="mailto:govuk-github-owners@digital.cabinet-office.gov.uk">GOV.UK GitHub Owner</a>
+to grant your repository <a href="https://github.com/organizations/alphagov/settings/secrets/actions">access to the secret</a> and apply
+the workflow to your GitHub Action (<a href="https://github.com/alphagov/govuk_schemas/blob/74c5375505e6f46272c393e49e0d4e081b2cdd21/.github/workflows/ci.yml">example</a>).</p>
+<p>Should you have an unconventional need in building your gem for deployment,
+for example <a href="/repos/govuk_publishing_components.html">govuk_publishing_components</a> requires an npm build step, you
+should not use the shared workflow, or adapt it for your edge case, and
+instead add an app specific workflow to release the gem
+(<a href="https://github.com/alphagov/govuk_publishing_components/blob/04225e53f0a70f64589ebd0c66dd4e444430e460/.github/workflows/ci.yml#L41-L70">example</a>).</p>
 <h2 id='ruby-version-compatibility'>Ruby version compatibility</h2><p>Our policy is that our Ruby gems are compatible with all <a href="https://www.ruby-lang.org/en/downloads/branches/">currently supported
 minor versions of Ruby</a>. For example, in November 2022, There
 are supported Ruby releases of 2.7, 3.0 and 3.1, thus we expect gems to be
