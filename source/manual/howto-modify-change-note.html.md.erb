@@ -10,17 +10,11 @@ Spelling mistakes can creep into [change notes](https://www.gov.uk/guidance/cont
 
 ## Whitehall
 
-To modify a change note in Whitehall, perform the following steps:
+To modify a change note in Whitehall, visit the following URL, replacing `<edition-id>` with the ID of the edition:
 
-1. Run a rake task to list the change notes for each edition, given the document's Content ID:
-
-   <%= RunRakeTask.links("whitehall", "change_note:list[content_id]") %>
-
-1. From the output of the previous rake task, get the ID for the edition whose change note needs updating, then run the following rake task to update this:
-
-   <%= RunRakeTask.links("whitehall", "change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']") %>
-
-> This rake task will fail if you have never logged into Whitehall Publisher in the environment where you are running the task.
+```
+https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition-id>/change_notes
+```
 
 ## Publishing API
 
