@@ -190,7 +190,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/499c81532e90e3c2f7dd61d8965dc4ca2470ca68">6 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/13a038fe078bf4d12f0d1b671ded5ad6858366aa">9 Dec 2022</a>
 </div>
 
  <h1 id='header'>Change a slug and create redirect in Whitehall</h1> <h2 id='change-a-slug-and-create-a-redirect-in-whitehall'>Change a slug and create a redirect in Whitehall</h2><p>In Whitehall, we have Rake Tasks to change slugs and create redirects for
@@ -215,13 +215,12 @@ slug and the new slug as arguments.</p>
 <li>in <a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=reslug:role[OLD_SLUG,NEW_SLUG]">staging</a></li>
 <li>in <a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=reslug:role[OLD_SLUG,NEW_SLUG]">⚠️ production ⚠️</a></li>
 </ul></li>
-<li><p>Change slug and create redirect for a <code>Document</code>:</p>
-
+<li><p>Change slug and create redirect for a <code>Document</code>:</p></li>
+</ul>
+<p>To update a documents slug, visit the following URL, replacing <code>&lt;edition_id&gt;</code> with the ID of any of a documents editions:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/&lt;edition_id&gt;/edit_slug
+</code></pre></div>
 <ul>
-<li>in <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=reslug:document[OLD_SLUG,NEW_SLUG]">integration</a></li>
-<li>in <a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=reslug:document[OLD_SLUG,NEW_SLUG]">staging</a></li>
-<li>in <a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=reslug:document[OLD_SLUG,NEW_SLUG]">⚠️ production ⚠️</a></li>
-</ul></li>
 <li><p>Change slug and create redirect for a <code>PolicyGroup</code>:</p>
 
 <ul>
