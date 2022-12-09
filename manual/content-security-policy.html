@@ -129,10 +129,18 @@
     <a href="#header"><span>Content Security Policy on GOV.UK</span></a>
     <ul>
       <li>
+        <a href="#gov-uk-csp-history"><span>GOV.UK CSP History</span></a>
+      </li>
+      <li>
         <a href="#how-the-policy-is-set"><span>How the policy is set</span></a>
       </li>
       <li>
         <a href="#how-violations-are-reported"><span>How violations are reported</span></a>
+        <ul>
+          <li>
+            <a href="#querying-violations"><span>Querying violations</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -185,7 +193,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a04bbefbd70410c34f8e6afd13d22bf7d3be7bd5">30 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d5e5b55366420c71079ee7686359a38daa42c816">9 Dec 2022</a>
 </div>
 
  <h1 id='header'>Content Security Policy on GOV.UK</h1> <p>Content Security Policy (CSP) is a browser standard to prevent cross-site scripting (XSS), clickjacking and other code
@@ -194,18 +202,46 @@ which stylesheets, scripts and other assets are allowed to run, is sent with eve
 the browser.</p>
 <p>CSP can be run in two modes - <em>report only</em>, where violations of the policy are reported to a given endpoint but
 allowed to execute, and <em>enforcement</em>, where violations are blocked.</p>
-<h2 id='how-the-policy-is-set'>How the policy is set</h2><p>The specific policy that is sent with a request to the browser as an HTTP header is defined in the
-<a href="https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_content_security_policy.rb"><code>govuk_app_config</code> gem</a>
-which is included in all frontend apps. This central definition means the entire site has a single policy,
-and changes can be rolled out more easily.</p>
-<p>Each frontend app has an <a href="https://github.com/alphagov/government-frontend/blob/master/config/initializers/csp.rb">initialiser</a>
-which invokes the CSP setting code in the gem.</p>
-<h2 id='how-violations-are-reported'>How violations are reported</h2><p>In all production-like environments (production, staging, integration), CSP is running in report only mode while more
-information is gathered about which parts of the site currently rely on behaviour that would be blocked by an enforced
-CSP.</p>
-<p>In other environments such as development and test, CSP is running in enforcement mode to allow errors to be captured
+<h2 id='gov-uk-csp-history'>GOV.UK CSP History</h2><p>As of 2022, GOV.UK has been working, on and off, towards adding a CSP to the public www.gov.uk website for a number of
+years. We have configured one that has been running on the frontend applications, in report only mode, since 2019.
+We track this incomplete implementation as <a href="https://trello.com/c/lxxx5XLZ/178-govuk-has-a-half-implemented-content-security-policy-csp">tech debt</a>.</p>
+<p>We continue to aspire to have the CSP set to enforcement mode and intend to enhance it to forbid <a href="https://content-security-policy.com/unsafe-inline/"><code>unsafe-inline</code></a>
+scripts and styles (in applicable applications) before launching it.</p>
+<h2 id='how-the-policy-is-set'>How the policy is set</h2><p>GOV.UK has a base policy set in the <a href="https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_content_security_policy.rb"><code>govuk_app_config</code> gem</a>. This policy is shared amongst GOV.UK
+applications and should contain directives that are either global or common to many applications.</p>
+<p>Each frontend app has an <a href="https://github.com/alphagov/government-frontend/blob/main/config/initializers/csp.rb">initialiser</a>
+which invokes the CSP setting code in the gem. Each application can make customisations to the policy for
+application/route specific needs (<a href="https://github.com/alphagov/smart-answers/blob/1a2ff1d9f430afcc7435ac9775cc44de6b0a98f1/app/controllers/smart_answers_controller.rb#L8-L12">example in Smart Answers</a>).</p>
+<h2 id='how-violations-are-reported'>How violations are reported</h2><p>In all production-like environments (production, staging, integration), CSP is running in report only mode. In other
+environments such as development and test, CSP is running in enforcement mode to allow errors to be captured
 at an early stage.</p>
-
+<p>We log reports to Amazon S3 bucket which can be queried with <a href="https://aws.amazon.com/athena/">Athena</a>. We store them
+for 30 days. Many of the reports we receive are from browser extensions we can&rsquo;t control so we
+<a href="https://github.com/alphagov/govuk-aws/blob/main/terraform/lambda/CspReportsToFirehose/index.mjs">filter the most prolific of them</a> from our logs.</p>
+<p>As we receive high volumes of false positive alerts, it is likely we will remove the reporting functionality once
+a CSP is enforced.</p>
+<h3 id='querying-violations'>Querying violations</h3><p>Athena is available through the AWS control panel. To access, <a href="/manual/get-started.html#sign-in-to-aws">log into AWS</a>,
+navigate to <a href="https://eu-west-1.console.aws.amazon.com/athena/home?region=eu-west-1#/query-editor">Athena</a> and select
+the <code>csp_reports</code> database. The database is available in all environments, however the production environment one is
+that only one that will have good quality data.</p>
+<p>You can use SQL as the means to query Athena. Whenever you query it you should <strong>always use
+<a href="https://docs.aws.amazon.com/athena/latest/ug/partitions.html">partitions</a></strong> which will make the query
+substantially cheaper and faster.</p>
+<h4 id='example-queries'>Example Queries</h4><p>Most recent reports</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>SELECT *
+FROM csp_reports.reports
+-- partitions
+WHERE year = 2022 AND month = 12 AND date = 8
+ORDER BY time DESC
+LIMIT 10;
+</code></pre></div><p>Most commonly blocked URI</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>SELECT blocked_uri, COUNT(*)
+FROM csp_reports.reports
+-- partitions
+WHERE year = 2022 AND month = 12 AND date = 8
+GROUP BY blocked_uri
+ORDER BY COUNT(*) DESC;
+</code></pre></div>
 
   <div class='related-content'>
 
