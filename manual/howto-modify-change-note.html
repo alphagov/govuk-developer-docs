@@ -196,34 +196,13 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cfdf42a1b9c9386fbfd92945246d1188307b6fad">16 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e0d49cdd02f03d2378e43c941d58fdd591605698">8 Dec 2022</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.</p>
-<h2 id='whitehall'>Whitehall</h2><p>To modify a change note in Whitehall, perform the following steps:</p>
-
-<ol>
-<li>Run a rake task to list the change notes for each edition, given the document&rsquo;s Content ID:</li>
-</ol>
-<p><ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:list[content_id]" class="govuk-link">Run change_note:list[content_id] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:list[content_id]" class="govuk-link">Run change_note:list[content_id] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:list[content_id]" class="govuk-link">⚠️ Run change_note:list[content_id] on Production ⚠️</a></li>
-</ul></p>
-
-<ol>
-<li>From the output of the previous rake task, get the ID for the edition whose change note needs updating, then run the following rake task to update this:</li>
-</ol>
-<p><ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']" class="govuk-link">Run change_note:amend[&lsquo;edition_id&rsquo;,&lsquo;new_change_note&rsquo;,&lsquo;your.email@digital.cabinet-office.gov.uk&rsquo;] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']" class="govuk-link">Run change_note:amend[&lsquo;edition_id&rsquo;,&lsquo;new_change_note&rsquo;,&lsquo;your.email@digital.cabinet-office.gov.uk&rsquo;] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=change_note:amend['edition_id','new_change_note','your.email@digital.cabinet-office.gov.uk']" class="govuk-link">⚠️ Run change_note:amend[&lsquo;edition_id&rsquo;,&lsquo;new_change_note&rsquo;,&lsquo;your.email@digital.cabinet-office.gov.uk&rsquo;] on Production ⚠️</a></li>
-</ul></p>
-
-<blockquote>
-<p>This rake task will fail if you have never logged into Whitehall Publisher in the environment where you are running the task.</p>
-</blockquote>
-<h2 id='publishing-api'>Publishing API</h2><p>Publishing API handles change notes in two different ways. To update the change history of a document, you&rsquo;ll either need to update an individual <a href="https://github.com/alphagov/publishing-api/blob/main/app/models/change_note.rb">ChangeNote</a> or update the <code>change_history</code> in the <a href="https://github.com/alphagov/publishing-api/blob/d6707237ee31090b2bb04015ba71d476f462448a/db/schema.rb#L85">details JSON</a> of the published edition.</p>
+<h2 id='whitehall'>Whitehall</h2><p>To modify a change note in Whitehall, visit the following URL, replacing <code>&lt;edition-id&gt;</code> with the ID of the edition:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/&lt;edition-id&gt;/change_notes
+</code></pre></div><h2 id='publishing-api'>Publishing API</h2><p>Publishing API handles change notes in two different ways. To update the change history of a document, you&rsquo;ll either need to update an individual <a href="https://github.com/alphagov/publishing-api/blob/main/app/models/change_note.rb">ChangeNote</a> or update the <code>change_history</code> in the <a href="https://github.com/alphagov/publishing-api/blob/d6707237ee31090b2bb04015ba71d476f462448a/db/schema.rb#L85">details JSON</a> of the published edition.</p>
 <p><strong>Note</strong></p>
 
 <blockquote>

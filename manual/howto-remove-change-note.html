@@ -199,7 +199,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/46ef52473576fe4e56e21a95c3de3a1410bd0df2">19 Jul 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e0d49cdd02f03d2378e43c941d58fdd591605698">8 Dec 2022</a>
 </div>
 
  <h1 id='header'>Remove a change note</h1> <p>Follow the <a href="#whitehall">instructions for Whitehall</a> if removing a change note from Whitehall, otherwise follow the <a href="#other-apps">instructions for other apps</a>.</p>
@@ -209,15 +209,9 @@
 <p>There are two interfaces for dry and real runs, to ensure the correct change note is being targetted before removing it.</p>
 <p>It performs a fuzzy-search of the change note text, and will return the first best match. So searching for generic words such as &ldquo;Update&rdquo; may not return the exact ChangeNote you desire. It is advised to use the dry run first to ensure the correct ChangeNote will be deleted.</p>
 <h2 id='whitehall'>Whitehall</h2><p>You first need to determine whether the request is referring to a <code>change_note</code> (public-facing) or an <code>editorial_remark</code> (only visible in Whitehall Admin).</p>
-<h3 id='remove-a-change-note-from-whitehall'>Remove a Change Note from Whitehall</h3><p>Dry run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'</span>
-</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
-<p>This attempts to locate the selected change note for the content, and if found, report to the user the change note text that would have been removed.</p>
-<p>Real run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:real[content_id,locale,change note text]'</span>
-</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=whitehall&amp;MACHINE_CLASS=whitehall_backend&amp;RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
-<p>This will downgrade the edition to a <code>minor change</code>, set the change note text to <code>nil</code> and the <code>major_change_published_at</code> to the previous major change. It then re-represents to the content store with the updated edition history.</p>
-<h3 id='remove-an-editorial-remark-from-whitehall'>Remove an Editorial Remark from Whitehall</h3>
+<h3 id='remove-a-change-note-from-whitehall'>Remove a Change Note from Whitehall</h3><p>To delete a change note in Whitehall, visit the following URL, replacing <code>&lt;edition-id&gt;</code> with the ID of the edition:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/&lt;edition-id&gt;/change_notes
+</code></pre></div><h3 id='remove-an-editorial-remark-from-whitehall'>Remove an Editorial Remark from Whitehall</h3>
 <ol>
 <li>Obtain the content ID of the document on which the change note was created.
 This document will contain multiple editions. You need to extract the
