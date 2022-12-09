@@ -28,25 +28,11 @@ You first need to determine whether the request is referring to a `change_note` 
 
 ### Remove a Change Note from Whitehall
 
-Dry run:
+To delete a change note in Whitehall, visit the following URL, replacing `<edition-id>` with the ID of the edition:
 
-```bash
-$ bundle exec 'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'
 ```
-
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
-
-This attempts to locate the selected change note for the content, and if found, report to the user the change note text that would have been removed.
-
-Real run:
-
-```bash
-$ bundle exec 'data_hygiene:remove_change_note:real[content_id,locale,change note text]'
+https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition-id>/change_notes
 ```
-
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
-
-This will downgrade the edition to a `minor change`, set the change note text to `nil` and the `major_change_published_at` to the previous major change. It then re-represents to the content store with the updated edition history.
 
 ### Remove an Editorial Remark from Whitehall
 
