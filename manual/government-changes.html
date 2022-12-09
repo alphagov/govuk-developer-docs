@@ -212,15 +212,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2853d87f07e672693ec80c474f5eeaa4073fa920">10 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/86cd33668993ecf86686048e7df3a88a82821474">9 Dec 2022</a>
 </div>
 
  <h1 id='header'>Support government changes</h1> <h2 id='change-a-government-in-whitehall'>Change a government in Whitehall</h2><p>Following a General Election or other reason for governmental change the
@@ -352,75 +345,11 @@ The rake task can then be run from the command line following <a href="https://d
 <p>There is a similar <a href="https://github.com/alphagov/manuals-publisher/blob/main/lib/tasks/update_manual_organisation.rake">Rake task to change the organisations for Manuals</a>.
 A data migration is required to change the organisations for (Mainstream) Publisher documents. This is an example PR: <a href="https://github.com/alphagov/publishing-api/pull/1981">Migrate Publisher docs</a></p>
 <h3 id='reorder-ministerspeoples-role-titles'>Reorder ministers/peoples role titles</h3><p>During a reshuffle, a minister can gain two positions of state, known as <code>RoleAppointments</code>
-in Whitehall. One of these is perceived to be a more senior role than the other.
-However, <a href="https://github.com/alphagov/collections">Collections</a> will just render
-these by ascending order of ActiveRecord IDs as default.</p>
-
-<ol>
-<li><a href="https://docs.publishing.service.gov.uk/manual/howto-ssh-to-machines.html#usage">SSH onto a whitehall machine</a>
-in the environment you wish to apply the changes to and <a href="https://docs.publishing.service.gov.uk/manual/get-started.html#running-a-console">bring up a rails console</a>.</li>
-<li><p>Query the <code>Person</code> you wish to find by <code>slug</code>, or <code>surname</code> and <code>forename</code></p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ person = Person.find_by(slug: 'harry-potter')
-</code></pre></div></li>
-<li><p><code>current_role_appointments</code> are used to construct the <code>current_roles_title</code>
-which is used in collections by the <a href="https://github.com/alphagov/collections/blob/main/app/views/people/_header.html.erb#L4">header partial</a>
-to render the titles. The IDs of each RoleAppointment will be assigned as the
-<code>person_appointment_order</code> which is then used to sort which comes first. So start
-by assigning each role to a variable.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&gt; first_role = person.current_role_appointments.first
-=&gt; #&lt;RoleAppointment id: 5768, role_id: 3645, person_id: 351, created_at: "2021-09-15 16:02:32.000000000 +0100", updated_at: "2021-09-21 15:37:32.000000000 +0100", started_at: "2021-09-15 00:00:00.000000000 +0100", ended_at: nil, content_id: "82c03a1b-4252-44a0-a6b3-9438d589d081"&gt;
-
-&gt; second_role = person.current_role_appointments.second
-=&gt; #&lt;RoleAppointment id: 7114, role_id: 1536, person_id: 351, created_at: "2019-09-10 23:03:53.000000000 +0100", updated_at: "2021-09-21 15:34:30.000000000 +0100", started_at: "2019-09-10 00:00:00.000000000 +0100", ended_at: nil, content_id: "2b671e4e-fca9-4b0e-99f7-eed8706c5f0d"&gt;
-</code></pre></div></li>
-<li><p>So it is clear which roles you are working with, you can use the <code>RoleAppointmentPresenter</code>
-to see how the final content item will appear for this role:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&gt; PublishingApi::RoleAppointmentPresenter.new(first_role).content
-=&gt; {:title=&gt;"The Rt Hon Harry Potter MP - Secretary of State for Hogwarts", :locale=&gt;"en", :details=&gt;{:current=&gt;true, :person_appointment_order=&gt;5768, :started_on=&gt;"2021-09-15T00:00:00+01:00"}, :publishing_app=&gt;"whitehall", :update_type=&gt;"major", :document_type=&gt;"role_appointment", :public_updated_at=&gt;Tue, 21 Sep 2021 15:37:32.000000000 BST +01:00, :schema_name=&gt;"role_appointment"}
-
-&gt; PublishingApi::RoleAppointmentPresenter.new(second_role).content
-=&gt; {:title=&gt;"The Rt Hon Harry Potter MP - Minister for Witchcraft and Wizardry ", :locale=&gt;"en", :details=&gt;{:current=&gt;true, :person_appointment_order=&gt;7114, :started_on=&gt;"2019-09-10T00:00:00+01:00"}, :publishing_app=&gt;"whitehall", :update_type=&gt;"major", :document_type=&gt;"role_appointment", :public_updated_at=&gt;Tue, 21 Sep 2021 15:34:30.000000000 BST +01:00, :schema_name=&gt;"role_appointment"}
-</code></pre></div></li>
-<li><p>You now need to swap the IDs. Start by identifying a safe <code>RoleAppointment</code> ID
-that is not used by any existing role appointment:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>RoleAppointment.maximum(:id).next
-&gt; 7196
-</code></pre></div></li>
-<li><p>Assign the current <code>first_role</code> to the safe <code>RoleAppointment</code> ID, you can use
-<code>update_column</code> to skip validation and other checks.</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>first_role.update_column(:id, 7196)
-</code></pre></div></li>
-<li><p>Now assign the second role to the first role&rsquo;s initial iD</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>second_role.update_column(:id, 5768)
-</code></pre></div></li>
-<li><p>Now assign the <code>first_role</code> to the ID that the<code></code>second_role `previously had</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>first_role.update_column(:id, 7114)
-</code></pre></div></li>
-<li><p>Finally publish the change:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>&gt; first_role.publish_to_publishing_api
-=&gt; [:en]
-&gt; second_role.publish_to_publishing_api
-=&gt; [:en]
-</code></pre></div></li>
-<li><p>Reload the page in collections (cachebust where required) and you should see
-your change reflected.</p></li>
-</ol>
-<h4 id='codeblock-summary'>Codeblock summary</h4><div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>```
-person = Person.find_by(slug: 'harry-potter')
-first_role = person.current_role_appointments.first
-second_role = person.current_role_appointments.second
-safe_id = RoleAppointment.maximum(:id).next
-
-first_role.id # 1234
-second_role.id # 5678
-
-first_role.update_column(:id, safe_id)
-second_role.update_column(:id, 1234)
-first_role.update_column(:id, 5678)
-
-first_role.publish_to_publishing_api
-second_role.publish_to_publishing_api
-```
+in Whitehall. One of these is perceived to be a more senior role than the other.</p>
+<p>To reorder a minister or persons titles, visit the following URL, replacing <code>&lt;person-name&gt;</code> with the hyphenated name of the person:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://whitehall-admin.publishing.service.gov.uk/government/admin/people/&lt;person-name&gt;/reorder_role_appointments
+</code></pre></div><p>For example, for Rishi Sunak it would be:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://whitehall-admin.publishing.service.gov.uk/government/admin/people/rishi-sunak/reorder_role_appointments
 </code></pre></div>
 
   <div class='related-content'>
