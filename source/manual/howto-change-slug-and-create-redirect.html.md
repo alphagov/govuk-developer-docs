@@ -37,13 +37,12 @@ slug and the new slug as arguments.
   [role-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:role[OLD_SLUG,NEW_SLUG]
 
 - Change slug and create redirect for a `Document`:
-  - in [integration][document-integration]
-  - in [staging][document-staging]
-  - in [⚠️ production ⚠️][document-production]
 
-[document-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:document[OLD_SLUG,NEW_SLUG]
-[document-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:document[OLD_SLUG,NEW_SLUG]
-[document-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:document[OLD_SLUG,NEW_SLUG]
+To update a documents slug, visit the following URL, replacing `<edition_id>` with the ID of any of a documents editions:
+
+```
+https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition_id>/edit_slug
+```
 
 - Change slug and create redirect for a `PolicyGroup`:
   - in [integration][policy_group-integration]
