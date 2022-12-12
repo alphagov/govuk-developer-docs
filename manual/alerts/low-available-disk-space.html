@@ -177,12 +177,12 @@
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/95787b64335403c7c800638ddb4301e4cd38b540">15 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c2b886a871824cf41f0aafd9b7063d43a03032ac">12 Dec 2022</a>
 </div>
 
  <h1 id='header'>Low available disk space</h1> <p>See also: <a href="/manual/alerts/low-available-disk-inodes.html">low available disk inodes</a></p>
 <h2 id='low-available-disk-space-on-root'>Low available disk space on root</h2><p>You can try clearing out the APT cache:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span><span class="nb">sudo </span>apt-get clean
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">sudo </span>apt-get clean
 </code></pre></div><h2 id='low-available-disc-space-on-mntuploads-for-asset-master-1-and-asset-slave-1'>Low available disc space on /mnt/uploads for asset-master-1 and asset-slave-1</h2><p>Nagios is set up to monitor disc usage by /mnt/uploads on
 asset-master-1.backend and asset-slave-1.backend. Usually, the culprit
 behind space-chomping is /mnt/uploads/whitehall, and there are two
@@ -195,7 +195,7 @@ folders on which to focus clean-up efforts on:</p>
 <p>Running the following command from within the above folders (ie cd to
 /mnt/uploads&hellip;) usually works best as it means that we don&rsquo;t end up
 with the parent folders being deleted:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>find <span class="nt">-type</span> d <span class="nt">-ctime</span> +1 <span class="nt">-exec</span> <span class="nb">rm</span> <span class="nt">-rf</span> <span class="o">{}</span> +
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>find <span class="nt">-type</span> d <span class="nt">-ctime</span> +1 <span class="nt">-exec</span> <span class="nb">rm</span> <span class="nt">-rf</span> <span class="o">{}</span> +
 </code></pre></div><p>In the above example, we:</p>
 
 <ul>
