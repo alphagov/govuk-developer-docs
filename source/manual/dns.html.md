@@ -27,16 +27,7 @@ We use a few domains:
   We maintain records which point to Bouncer so that these URLs redirect.
 - `publishing.service.gov.uk` and `govuk.service.gov.uk` are where GOV.UK lives.
 
-## Making changes to publishing.service.gov.uk
-
-To make a change to this zone, begin by adding the records to the yaml file for
-the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
-
-We use a Jenkins job that publishes changes to `publishing.service.gov.uk`. The
-job uses [Terraform](https://www.terraform.io/) and pushes changes to the
-selected provider.
-
-### Deployment
+### Deploying 
 
 **Always `plan` first, check that the output is what you expect, then `apply`.**
 
@@ -100,7 +91,29 @@ After you deploy, you can visit the [Jenkins job](https://deploy.blue.production
 > the old one. In this case, the build will fail, and you need to
 > re-run the GCP `apply` job.
 
-### Making changes to internal DNS (govuk.digital and govuk-internal.digital)
+## Requests for domain names and other DNS changes
+
+See [DNS delegation tickets](/manual/zendesk.html#dns-delegation-tickets).
+
+## DNS for `*.service.gov.uk` domains
+
+At the moment GOV.UK Replatforming are also responsible for delegating DNS
+to other government services.
+
+The request will arrive by email or Zendesk from a member of the GOV.UK Proposition
+team. The request will contain the service domain name that needs to be delegated and
+more than one nameserver hostname (usually `ns0.example.com`, `ns1.example.com`).
+
+In Route 53, create a new node for the service domain underneath `service.gov.uk`
+and add `NS` records for that node.
+
+We __do not__ manage DNS for service domains. If you get a request asking you to add
+anything other than `NS` records, it should be rejected. This is so we're not
+the single point of DNS for government.
+
+There are ongoing plans to move this responsibility to a different part of GDS.
+
+## DNS for `govuk.digital` and `govuk-internal.digital`
 
 Currently these zones are only used in environments running on AWS.
 
@@ -109,6 +122,15 @@ made in the [govuk-aws](https://github.com/alphagov/govuk-aws/) and
 [govuk-aws-data](https://github.com/alphagov/govuk-aws-data/) repositories.
 While GOV.UK migrates to AWS speak with GOV.UK Replatforming for support
 making your changes.
+
+## DNS for the `publishing.service.gov.uk` domain
+
+To make a change to this zone, begin by adding the records to the yaml file for
+the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
+
+We use a Jenkins job that publishes changes to `publishing.service.gov.uk`. The
+job uses [Terraform](https://www.terraform.io/) and pushes changes to the
+selected provider.
 
 ## DNS for the `gov.uk` top level domain
 
@@ -136,28 +158,6 @@ Technical 2nd Line should be notified of any planned changes via email.
 - `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which means we
   do not need to make a request to Jisc if we want to change CDN providers. Just change where
   the CNAME points to.
-
-## Delegating `service.gov.uk` domains
-
-At the moment GOV.UK Replatforming are also responsible for delegating DNS
-to other government services.
-
-The request will arrive by email or Zendesk from a member of the GOV.UK Proposition
-team. The request will contain the service domain name that needs to be delegated and
-more than one nameserver hostname (usually `ns0.example.com`, `ns1.example.com`).
-
-In Route 53, create a new node for the service domain underneath `service.gov.uk`
-and add `NS` records for that node.
-
-We __do not__ manage DNS for service domains. If you get a request asking you to add
-anything other than `NS` records, it should be rejected. This is so we're not
-the single point of DNS for government.
-
-There are ongoing plans to move this responsibility to a different part of GDS.
-
-## Requests for domain names and other DNS changes
-
-See [DNS delegation tickets](/manual/zendesk.html#dns-delegation-tickets).
 
 [security-incidents]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/security/security-incidents
 [gds-cli]: https://github.com/alphagov/gds-cli
