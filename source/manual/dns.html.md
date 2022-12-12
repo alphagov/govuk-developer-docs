@@ -7,7 +7,7 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-The GOV.UK Replatforming team is responsible for managing several DNS zones.
+GOV.UK is responsible for managing several DNS zones.
 
 By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS).
 
@@ -18,10 +18,6 @@ gds aws govuk-production-admin -- aws route53 list-hosted-zones | grep Name
 ```
 
 Some individual records within these zones are managed by other teams.
-
-## Amazon Route 53 and Google Cloud DNS
-
-Use the "production" account. [Speak to Infrastructure if you require access](/manual/raising-issues-with-reliability-engineering.html).
 
 ## Records for GOV.UK systems
 
