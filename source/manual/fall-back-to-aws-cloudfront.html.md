@@ -44,8 +44,8 @@ This backup CDN is currently provided by AWS CloudFront.
   - Manually update the CNAME record for assets.publishing.service.gov.uk in GCP and AWS
 - After failing over manually:
   - Merge [the PR to Failover to AWS CloudFront](https://github.com/alphagov/govuk-dns-config/pull/714)
-  - [Deploy DNS using Jenkins and Terraform](/manual/dns.html#making-changes-to-publishing-service-gov-uk)
+  - [Deploy DNS using Jenkins and Terraform](/manual/dns.html#dns-for-the-publishingservicegovuk-domain)
 - Once you've failed over, keep a close eye on Fastly's status
 - As soon as you are confident that Fastly has recovered
   - Manually set the CNAME records you changed above back to www-gov-uk.map.fastly.net.
-  - Raise a PR in [govuk-dns-config](https://github.com/alphagov/govuk-dns-config) to set the records back formally. Get it approved, merged and [Deploy DNS using Jenkins and Terraform](/manual/dns.html#making-changes-to-publishing-service-gov-uk)
+  - Raise a PR in [govuk-dns-config](https://github.com/alphagov/govuk-dns-config) to set the records back formally. Get it approved, merged and [Deploy DNS using Jenkins and Terraform](/manual/dns.html#dns-for-the-publishingservicegovuk-domain)
