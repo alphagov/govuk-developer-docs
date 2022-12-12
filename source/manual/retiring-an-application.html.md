@@ -71,7 +71,7 @@ Follow the [instructions for DNS changes][dns-changes] in order to remove
 these, and ask the GOV.UK Replatforming team to approve any necessary Pull
 Requests.
 
-[dns-changes]: https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk
+[dns-changes]: https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain
 
 ## 9. Update docs
 

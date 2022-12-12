@@ -25,4 +25,4 @@ Check the output of the Jenkins job for information about what didn't match, or 
 
 Re-run the Jenkins job. Does it produce the same result?
 
-If the test seems to be reporting genuine differences, look for [recent changes to govuk-dns-config](https://github.com/alphagov/govuk-dns-config/commits/master) and [run a terraform plan](/manual/dns.html#making-changes-to-publishing-service-gov-uk) for the affected DNS zone.
+If the test seems to be reporting genuine differences, look for [recent changes to govuk-dns-config](https://github.com/alphagov/govuk-dns-config/commits/master) and [run a terraform plan](/manual/dns.html#dns-for-the-publishingservicegovuk-domain) for the affected DNS zone.
