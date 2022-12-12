@@ -217,7 +217,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/190a9e55d7f82368fadcde51b0e3718ca205873a">12 Dec 2022</a>
 </div>
 
  <h1 id='header'>Transition a site to GOV.UK</h1> <p>When a site is going to move to GOV.UK, there are two ways that the old site
@@ -328,7 +328,7 @@ Domains at the root of their zone can&rsquo;t use <code>CNAME</code> records, so
 an <code>A</code> record and point at one of the <a href="https://github.com/alphagov/transition/blob/016c3d30e190c41eaa912ed554384a49f3418a91/app/models/host.rb#L22">Fastly GOV.UK IP
 addresses</a>.</p>
 <p>If the site is one that was <a href="https://github.com/alphagov/gds-dns-config/tree/master/zones">administered by GDS</a>
-(e.g. theorytest.direct.gov.uk), you will need to <a href="/manual/dns.html#making-changes-to-publishing-service-gov-uk">update and re-deploy the DNS config</a>.</p>
+(e.g. theorytest.direct.gov.uk), you will need to <a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">update and re-deploy the DNS config</a>.</p>
 <p>You&rsquo;ll need to create a TLS certificate in Fastly for HTTPS domains, otherwise
 users will see a certificate error when being redirected from an external
 HTTPS URL to GOV.UK via Bouncer. Read how to <a href="/manual/request-fastly-tls-certificate.html">request a Fastly TLS certificate</a></p>

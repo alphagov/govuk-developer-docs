@@ -181,15 +181,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/190a9e55d7f82368fadcde51b0e3718ca205873a">12 Dec 2022</a>
 </div>
 
  <h1 id='header'>Fall back to AWS CloudFront</h1> <p>There is a backup Content Delivery Network (CDN) that can be used if Fastly is down.
@@ -245,14 +238,14 @@ gds aws govuk-production-readonly aws cloudfront list-distributions --query &quo
 
 <ul>
 <li>Merge <a href="https://github.com/alphagov/govuk-dns-config/pull/714">the PR to Failover to AWS CloudFront</a></li>
-<li><a href="/manual/dns.html#making-changes-to-publishing-service-gov-uk">Deploy DNS using Jenkins and Terraform</a></li>
+<li><a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">Deploy DNS using Jenkins and Terraform</a></li>
 </ul></li>
 <li>Once you&rsquo;ve failed over, keep a close eye on Fastly&rsquo;s status</li>
 <li>As soon as you are confident that Fastly has recovered
 
 <ul>
 <li>Manually set the CNAME records you changed above back to www-gov-uk.map.fastly.net.</li>
-<li>Raise a PR in <a href="https://github.com/alphagov/govuk-dns-config">govuk-dns-config</a> to set the records back formally. Get it approved, merged and <a href="/manual/dns.html#making-changes-to-publishing-service-gov-uk">Deploy DNS using Jenkins and Terraform</a></li>
+<li>Raise a PR in <a href="https://github.com/alphagov/govuk-dns-config">govuk-dns-config</a> to set the records back formally. Get it approved, merged and <a href="/manual/dns.html#dns-for-the-publishingservicegovuk-domain">Deploy DNS using Jenkins and Terraform</a></li>
 </ul></li>
 </ul>
 

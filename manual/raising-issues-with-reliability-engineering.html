@@ -129,19 +129,13 @@
     <a href="#header"><span>Raise issues with Reliability Engineering</span></a>
     <ul>
       <li>
-        <a href="#if-you-require-urgent-assistance"><span>If you require urgent assistance</span></a>
-      </li>
-      <li>
-        <a href="#if-you-need-to-handover-a-long-standing-incident"><span>If you need to handover a long-standing incident</span></a>
+        <a href="#if-you-require-assistance"><span>If you require assistance</span></a>
       </li>
       <li>
         <a href="#if-a-problem-is-not-urgent"><span>If a problem is not urgent</span></a>
       </li>
       <li>
-        <a href="#raising-a-zendesk-ticket-with-reliability-engineering"><span>Raising a Zendesk ticket with Reliability Engineering</span></a>
-      </li>
-      <li>
-        <a href="#understanding-what-reliability-engineering-can-assist-with"><span>Understanding what Reliability Engineering can assist with</span></a>
+        <a href="#understanding-what-sres-can-assist-with"><span>Understanding what SREs can assist with</span></a>
       </li>
     </ul>
   </li>
@@ -193,57 +187,28 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6c6b3a5d627d6319631d25f6434136c508760233">12 Dec 2022</a>
 </div>
 
- <h1 id='header'>Raise issues with Reliability Engineering</h1> <p>When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they work as part of the Replatforming team. It is best to use RE GOV.UK channels for communication.</p>
+ <h1 id='header'>Raise issues with Reliability Engineering</h1> <p>When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they mostly work as part of the Replatforming team. It is best to use RE GOV.UK channels for communication.</p>
 <p>There are <a href="https://reliability-engineering.cloudapps.digital/">Reliability Engineering docs</a> for users of their systems. There are also <a href="https://re-team-manual.cloudapps.digital/">other Reliability Engineering docs</a> for use by the team, these may contain more technical details.</p>
-<h2 id='if-you-require-urgent-assistance'>If you require urgent assistance</h2><p>Check the <a href="https://bit.ly/2YLhQis">On call schedule for GOV.UK SRE in-hours</a> to find out who is on the rota.</p>
-<p>It is also possible to &ldquo;Run a Play&rdquo; in the context of an ongoing incident page in PagerDuty. This will automatically call the RE engineer on duty both in- and out-of-hours.</p>
-<h2 id='if-you-need-to-handover-a-long-standing-incident'>If you need to handover a long-standing incident</h2><p>If this is in-hours: A Site Reliabilty Engineer should take over the incident lead role. A GOV.UK Technical 2nd Line engineer will continue the comms lead role.
-If this is out-of-hours: The primary GOV.UK engineer should be the incident lead. The secondary GOV.UK engineer should be the comms lead.</p>
-<p>There is no longer an RE GOV.UK out of hours rota. GOV.UK engineers on the in-hours and out of hours rotas should have all access and documentation required to address any issues.</p>
+<h2 id='if-you-require-assistance'>If you require assistance</h2><p>Ask in <code>#govuk-platform-reliability</code> or in <code>#govuk-replatforming</code>.</p>
 <h2 id='if-a-problem-is-not-urgent'>If a problem is not urgent</h2><p>If the issue you&rsquo;ve identified seems like a non-urgent story you can add it the
 <a href="https://trello.com/b/M7UzqXpk/govuk-2nd-line">GOV.UK Technical 2nd Line trello board</a> in the &ldquo;Ongoing issues to be aware
 of &amp; unexplained events&rdquo; column. The Technical 2nd Line tech lead(s) will then decide whether
 to pass this on to another team, manage the ticket through its life cycle, or to
 resolve this problem themselves.</p>
-<h2 id='raising-a-zendesk-ticket-with-reliability-engineering'>Raising a Zendesk ticket with Reliability Engineering</h2><p>The official way to communicate with Reliability Engineering is through Zendesk
-tickets.</p>
-<p>To raise a ticket:</p>
-
-<ol>
-<li><a href="https://govuk.zendesk.com/agent/tickets/new/1">Create a new ticket on Zendesk</a></li>
-<li>Enter yourself as the requester</li>
-<li>Set assignee to &ldquo;3rd Line&ndash;GDS Reliability Engineering&rdquo;</li>
-<li>Add the Technical 2nd Line Delivery Manager as a CC recipient</li>
-<li>Fill in and submit ticket</li>
-<li>Monitor and contribute to the ticket until it is resolved</li>
-</ol>
-<h2 id='understanding-what-reliability-engineering-can-assist-with'>Understanding what Reliability Engineering can assist with</h2><p>There is a broad explanation of the different areas of support in GOV.UK in
+<h2 id='understanding-what-sres-can-assist-with'>Understanding what SREs can assist with</h2><p>There is a broad explanation of the different areas of support in GOV.UK in
 <a href="/manual/ask-for-help.html">ask for help</a>.</p>
-<p>More specificially to GOV.UK these are things that fall under the
-responsibility of Reliability Engineering (RE):</p>
+<p>More specificially to GOV.UK, SREs can help with:</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/govuk-puppet">GOV.UK Puppet</a> - RE are
-responsible for maintenance and evolution, but as GOV.UK merge changes they
-can too be responsible for problems</li>
-<li>Upgrading software packages that are end-of-life/have security issues/no
-longer fit for purpose</li>
-<li>Running and maintaining the
-<a href="https://github.com/alphagov/govuk-aws/">Terraform configurations</a> for AWS;</li>
+<li><a href="https://github.com/alphagov/govuk-puppet">GOV.UK Puppet</a></li>
+<li>Upgrading software packages that are end-of-life/have security issues/no longer fit for purpose</li>
+<li>Running and maintaining the <a href="https://github.com/alphagov/govuk-aws/">Terraform configurations</a> for AWS</li>
 <li>Maintaining the mirror configuration</li>
-<li>Keeping the CI environment running - GOV.UK are responsible for job
-configuration</li>
+<li>Keeping the CI environment running (GOV.UK are responsible for job configuration)</li>
 </ul>
 
 

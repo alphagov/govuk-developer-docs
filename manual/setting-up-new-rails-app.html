@@ -238,15 +238,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/aa2dfa1251ae9867d147ceb5f921a1b9f9588b56">22 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/190a9e55d7f82368fadcde51b0e3718ca205873a">12 Dec 2022</a>
 </div>
 
  <h1 id='header'>Set up a new Rails application</h1> <h2 id='before-you-start'>Before you start</h2><p>Before you create a Ruby on Rails (“Rails”) app, you must complete all steps in the <a href="https://docs.publishing.service.gov.uk/manual/get-started.html">GOV.UK developer get started documentation</a>.</p>
@@ -393,7 +386,7 @@ SOFTWARE.
 <h2 id='prepare-your-rails-app-to-run-in-production'>Prepare your Rails app to run in production</h2><h3 id='configure-your-rails-app-for-jenkins'>Configure your Rails app for Jenkins</h3><p>Find out how to <a href="https://docs.publishing.service.gov.uk/manual/test-and-build-a-project-on-jenkins-ci.html#setting-up">set up an app in Jenkins</a>.</p>
 <h3 id='add-your-rails-app-to-gov-uk'>Add your Rails app to GOV.UK</h3><p>Find out how to <a href="https://github.com/alphagov/govuk-puppet/blob/master/docs/adding-a-new-app.md#including-the-app-on-machines">add your Rails app to GOV.UK using <code>govuk-puppet</code></a>.</p>
 <h3 id='configure-your-rails-app39s-deployment'>Configure your Rails app&rsquo;s deployment</h3><p>To configure your app&rsquo;s deployment, see the <a href="https://github.com/alphagov/govuk-app-deployment">GOV.UK application deployment scripts</a>.</p>
-<h3 id='enable-external-dns'>Enable external DNS</h3><p>If you need to enable external DNS, find out how to <a href="https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishing-service-gov-uk">make changes to publishing.service.gov.uk</a>.</p>
+<h3 id='enable-external-dns'>Enable external DNS</h3><p>If you need to enable external DNS, find out how to <a href="https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain">make changes to publishing.service.gov.uk</a>.</p>
 <h3 id='add-your-app-to-the-gov-uk-developer-documentation'>Add your app to the GOV.UK developer documentation</h3><p>Open a pull request to add your Rails app to the <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">GOV.UK developer documentation <code>data/repos.yml</code> file</a>.</p>
 <h3 id='create-the-application-in-sentry'>Create the application in Sentry</h3><p>After you’ve added your Rails app to the GOV.UK developer documentation, run the <a href="https://github.com/alphagov/govuk-saas-config/blob/045668beed8aebc50b876108363c8d1a25bdf80c/sentry/Rakefile#L69-L83"><code>update_project</code> rake task</a> in <a href="https://github.com/alphagov/govuk-saas-config">GOV.UK SaaS Config</a> to update Sentry.</p>
 <p>From the <code>sentry</code> directory, run:</p>

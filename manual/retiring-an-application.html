@@ -226,15 +226,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5d051ffb40ebbc9e736ef3d3e7a58e951f5e2b5">6 Dec 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/190a9e55d7f82368fadcde51b0e3718ca205873a">12 Dec 2022</a>
 </div>
 
  <h1 id='header'>Retire an application</h1> <h2 id='1-remove-app-from-puppet'>1. Remove app from puppet</h2><p>Configure Puppet to remove the app from all servers. Change the app resource,
@@ -265,7 +258,7 @@ retired&rdquo;, then save your changes.</p>
 in <a href="https://github.com/alphagov/govuk-docker/blob/master/docker-compose.yml">docker compose</a> or throughout the repo.</p>
 <h2 id='8-update-dns'>8. Update DNS</h2><p>Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the <code>publishing.service.gov.uk</code> domain.</p>
-<p>Follow the <a href="https://docs.publishing.service.gov.uk/manual/dns.html#making-changes-to-publishingservicegovuk">instructions for DNS changes</a> in order to remove
+<p>Follow the <a href="https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain">instructions for DNS changes</a> in order to remove
 these, and ask the GOV.UK Replatforming team to approve any necessary Pull
 Requests.</p>
 <h2 id='9-update-docs'>9. Update docs</h2><p>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a>.</p>
