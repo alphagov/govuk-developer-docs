@@ -6,22 +6,13 @@ layout: manual_layout
 section: 2nd line
 ---
 
-When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they work as part of the Replatforming team. It is best to use RE GOV.UK channels for communication.
+When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they mostly work as part of the Replatforming team. It is best to use RE GOV.UK channels for communication.
 
 There are [Reliability Engineering docs](https://reliability-engineering.cloudapps.digital/) for users of their systems. There are also [other Reliability Engineering docs](https://re-team-manual.cloudapps.digital/) for use by the team, these may contain more technical details.
 
-## If you require urgent assistance
+## If you require assistance
 
-Check the [On call schedule for GOV.UK SRE in-hours](https://bit.ly/2YLhQis) to find out who is on the rota.
-
-It is also possible to "Run a Play" in the context of an ongoing incident page in PagerDuty. This will automatically call the RE engineer on duty both in- and out-of-hours.
-
-## If you need to handover a long-standing incident
-
-If this is in-hours: A Site Reliabilty Engineer should take over the incident lead role. A GOV.UK Technical 2nd Line engineer will continue the comms lead role.
-If this is out-of-hours: The primary GOV.UK engineer should be the incident lead. The secondary GOV.UK engineer should be the comms lead.
-
-There is no longer an RE GOV.UK out of hours rota. GOV.UK engineers on the in-hours and out of hours rotas should have all access and documentation required to address any issues.
+Ask in `#govuk-platform-reliability` or in `#govuk-replatforming`.
 
 ## If a problem is not urgent
 
@@ -33,37 +24,15 @@ resolve this problem themselves.
 
 [2nd-line-trello]: https://trello.com/b/M7UzqXpk/govuk-2nd-line
 
-## Raising a Zendesk ticket with Reliability Engineering
-
-The official way to communicate with Reliability Engineering is through Zendesk
-tickets.
-
-To raise a ticket:
-
-1. [Create a new ticket on Zendesk][new-zendesk-ticket]
-1. Enter yourself as the requester
-1. Set assignee to "3rd Line--GDS Reliability Engineering"
-1. Add the Technical 2nd Line Delivery Manager as a CC recipient
-1. Fill in and submit ticket
-1. Monitor and contribute to the ticket until it is resolved
-
-[new-zendesk-ticket]: https://govuk.zendesk.com/agent/tickets/new/1
-
-## Understanding what Reliability Engineering can assist with
+## Understanding what SREs can assist with
 
 There is a broad explanation of the different areas of support in GOV.UK in
 [ask for help](/manual/ask-for-help.html).
 
-More specificially to GOV.UK these are things that fall under the
-responsibility of Reliability Engineering (RE):
+More specificially to GOV.UK, SREs can help with:
 
-- [GOV.UK Puppet](https://github.com/alphagov/govuk-puppet) - RE are
-  responsible for maintenance and evolution, but as GOV.UK merge changes they
-  can too be responsible for problems
-- Upgrading software packages that are end-of-life/have security issues/no
-  longer fit for purpose
-- Running and maintaining the
-  [Terraform configurations](https://github.com/alphagov/govuk-aws/) for AWS;
+- [GOV.UK Puppet](https://github.com/alphagov/govuk-puppet)
+- Upgrading software packages that are end-of-life/have security issues/no longer fit for purpose
+- Running and maintaining the [Terraform configurations](https://github.com/alphagov/govuk-aws/) for AWS
 - Maintaining the mirror configuration
-- Keeping the CI environment running - GOV.UK are responsible for job
-  configuration
+- Keeping the CI environment running (GOV.UK are responsible for job configuration)
