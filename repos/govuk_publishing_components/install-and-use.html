@@ -226,15 +226,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/39f83ae561b152bf17baf35d1ddab63f9dcf61c1">14 Mar 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/745817ccacdb3bc999e263162885fb0dddd9ea67">6 Dec 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Install and use this gem</h1>
@@ -262,9 +255,7 @@ mount GovukPublishingComponents::Engine, at: "/component-guide" if Rails.env.dev
 <pre lang="ruby"><code># config/initializers/govuk_publishing_components.rb
 GovukPublishingComponents.configure do |c|
   c.component_guide_title = "My component guide"
-
   c.application_stylesheet = "custom_stylesheet" # Defaults to "application"
-  c.application_print_stylesheet = "print" # Not included by default
   c.application_javascript = "custom_javascript" # Defaults to "application"
 end
 </code></pre>
@@ -280,14 +271,10 @@ end
 // component specific sass
 @import "govuk_publishing_components/components/back-link";
 </code></pre>
-<p>If you load the component guide in the application the suggested Sass for it has been generated for you. Click the 'Suggested imports for this application' link, then copy and paste the output into your <code>application.scss</code> file. Remember to also copy the suggested print Sass into your application's <code>print.scss</code> file.</p>
+<p>If you load the component guide in the application the suggested Sass for it has been generated for you. Click the 'Suggested imports for this application' link, then copy and paste the output into your <code>application.scss</code> file.</p>
 <h3 id="import-all-sass-deprecated-will-be-removed-in-a-later-version">Import all Sass (deprecated, will be removed in a later version)</h3>
 <pre lang="scss"><code>// application.scss
 @import "govuk_publishing_components/all_components";
-</code></pre>
-<p>And for print styles</p>
-<pre lang="scss"><code>// print.scss
-@import "govuk_publishing_components/all_components_print";
 </code></pre>
 <h3 id="import-javascript-for-individual-components">Import JavaScript for individual components</h3>
 <p>If your application doesn't use Slimmer/Static:</p>
