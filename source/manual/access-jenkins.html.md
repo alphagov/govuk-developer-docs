@@ -9,8 +9,8 @@ parent: "/manual.html"
 Our Jenkins installations ([deploy](https://deploy.integration.publishing.service.gov.uk/) and [CI](https://ci.integration.publishing.service.gov.uk/)) use GitHub for authentication and authorisation.
 
 - For integration admin access, you need to be added to the [GOV.UK team][]
-- For [staging][] and [production][] [deploy access](manual/rules-for-getting-production-access.html#production-deploy-access), you need to be added to the [GOV.UK Production Deploy team][]
-- For [staging][] and [production][] [admin access](manual/rules-for-getting-production-access.html#production-admin-access), you need to be added to the [GOV.UK Production Admin team][]
+- For [staging][] and [production][] [deploy access](/manual/rules-for-getting-production-access.html#production-deploy-access), you need to be added to the [GOV.UK Production Deploy team][]
+- For [staging][] and [production][] [admin access](/manual/rules-for-getting-production-access.html#production-admin-access), you need to be added to the [GOV.UK Production Admin team][]
 
 Without this you won't see any projects or you'll see a message that says you are unauthorised.
 
