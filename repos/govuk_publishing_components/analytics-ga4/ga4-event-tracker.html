@@ -227,7 +227,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/c90f379342c89dce1672ac096ed4164061a60fa3">22 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7857589429ed856a7cc507eb28bdb0ff393ed26c">13 Dec 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 event tracker</h1>
@@ -236,7 +236,7 @@
 <p>This script is intended for adding GA4 tracking to interactive elements such as buttons or details elements. It depends upon the main GA4 analytics code to function.</p>
 <h2 id="basic-use">Basic use</h2>
 <pre lang="html"><code>&lt;div data-module="ga4-event-tracker"&gt;
-  &lt;button data-ga4-event='{ "event_name": "select_content", "type": "something", "index": "0", "index_total": "1", "text": "Click me"}'&gt;
+  &lt;button data-ga4-event='{ "event_name": "select_content", "type": "something", "index": "0", "index_total": "1" }'&gt;
     Click me
   &lt;/button&gt;
 &lt;/div&gt;
@@ -263,6 +263,7 @@
   }
 }
 </code></pre>
+<p>The value for <code>text</code> will be determined based on the text of the element, or a value can be passed to override this in the <code>data-ga4-event</code> attribute.</p>
 <h2 id="advanced-use">Advanced use</h2>
 <p>In some scenarios we use components that cannot be modified directly (i.e. unable to place the <code>data-ga4-event</code> attribute on the element as shown in the 'Basic use' section). In these cases, we attach the necessary data attributes for tracking by passing an argument containing our data attributes to the render method.</p>
 <p>Many components already accept data attributes in this way (see the <a href="https://components.publishing.service.gov.uk/component-guide">component guide</a> for examples) but some, like the accordion, are more complicated.</p>
