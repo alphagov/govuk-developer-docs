@@ -24,7 +24,7 @@ This document covers some of the requests that GOV.UK Technical 2nd Line support
 
 [Separate documentation][dgu-docs] exists for publishers.
 
-There's also [an architectural overview of data.gov.uk](manual/data-gov-uk-architecture) and [a deployment guide](manual/data-gov-uk-deployment).
+There's also [an architectural overview of data.gov.uk](/manual/data-gov-uk-architecture) and [a deployment guide](/manual/data-gov-uk-deployment).
 
 [ckanext-datagovuk][ckan-app] is the primary CKAN extension behind data.gov.uk.
 
