@@ -478,7 +478,7 @@ eventual JSON you will manually put into the Fastly web UI:
 1. Add your new column name, type and description to the JSON below the
    comments ([example
    for the `govuk_www.cache_response` column][cache-response-json]).
-1. Raise a PR, get a review, merge and [deploy](manual/deploying-terraform.html).
+1. Raise a PR, get a review, merge and [deploy](/manual/deploying-terraform.html).
 
 The manual steps to make Fastly send the log data:
 
