@@ -36,7 +36,7 @@ so that we're able to test things like the performance impact of changes.
 Staging is hosted on [AWS][govuk-in-aws].
 
 Access to Staging is restricted to office IPs, so you'll need to [be
-on the VPN](manual/get-started.html#4-connecting-to-the-gds-vpn).
+on the VPN](/manual/get-started.html#4-connecting-to-the-gds-vpn).
 AWS configuration can be found in
 [govuk-aws-data](https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-security-groups/cache.tf).
 

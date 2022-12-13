@@ -7,7 +7,7 @@ section: 2nd line
 type: learn
 ---
 
-There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going [on call](https://docs.publishing.service.gov.uk/manual/on-call.html) if you are part of the out of hours rota.
+There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going [on call](/manual/on-call.html) if you are part of the out of hours rota.
 
 ## Drill detaching an instance
 
@@ -15,7 +15,7 @@ Follow the [Detaching an instance from an Auto Scaling Group](/manual/common-aws
 
 ## Drill publishing emergency banner
 
-Follow the [Deploy an emergency banner](https://docs.publishing.service.gov.uk/manual/emergency-publishing.html) on Staging.
+Follow the [Deploy an emergency banner](/manual/emergency-publishing.html) on Staging.
 
 You'll need to choose a non-serious and clearly fake news headline. For example:
 
@@ -108,7 +108,7 @@ Upon loading this dashboard it will ask for the `govuk-zendesk-display-screen` c
 
 ### Change a user's permissions in Signon
 
-Carry out a hypothetical walk through of [unsuspending a user](manual/manage-sign-on-accounts#unsuspending-a-user) and [resetting a user's 2FA](manual/manage-sign-on-accounts#resetting-a-users-2fa).
+Carry out a hypothetical walk through of [unsuspending a user](/manual/manage-sign-on-accounts#unsuspending-a-user) and [resetting a user's 2FA](/manual/manage-sign-on-accounts#resetting-a-users-2fa).
 
 ## Drill creating and changing redirects
 
