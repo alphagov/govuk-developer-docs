@@ -127,6 +127,11 @@
   <ul>
   <li>
     <a href="#header"><span>Established connections exceed</span></a>
+    <ul>
+      <li>
+        <a href="#further-reading"><span>Further reading</span></a>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -148,15 +153,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/71f12062dd531bdfd107c1e5d0c6c62254a76f39">13 Dec 2022</a>
 </div>
 
  <h1 id='header'>Established connections exceed</h1> <p>This alert triggers when the number of established connections to a
@@ -171,8 +169,12 @@ back up. This is bad, as it means that the requests will be slower, as
 the application wasn&rsquo;t able to start processing it immediately.</p>
 <p>If you&rsquo;re seeing this alert regularly for an app and the machine it&rsquo;s on has
 enough memory to cope with more workers then you can increase this amount via
-puppet. An example of increasing the unicorn workers for an app can be
-found <a href="https://github.com/alphagov/govuk-puppet/pull/9831">here</a>.</p>
+puppet.</p>
+<h2 id='further-reading'>Further reading</h2>
+<ul>
+<li><a href="https://github.com/alphagov/govuk-puppet/pull/9831">Example PR to increase the unicorn workers for an app</a>.</li>
+<li><a href="/manual/scale-unicorn-workers.html">Scale unicorn workers</a></li>
+</ul>
 
 
   <div class='related-content'>

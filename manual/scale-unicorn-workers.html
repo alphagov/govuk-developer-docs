@@ -1,4 +1,8 @@
 
+
+
+
+
 <!doctype html>
 <html lang="en" class="govuk-template no-js">
   <head>
@@ -6,25 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: search-admin - GOV.UK Developer Documentation</title>
+    <title>Scale unicorn workers - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/search-admin.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/scale-unicorn-workers.html">
 
-      <meta name="description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: search-admin - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta name="twitter:title" content="Scale unicorn workers - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/scale-unicorn-workers.html" />
 
-      <meta property="og:description" content="Everything about search-admin (Admin for GOV.UK search)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: search-admin" />
+      <meta property="og:title" content="Scale unicorn workers" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/search-admin.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/scale-unicorn-workers.html" />
 
     
   </head>
@@ -71,13 +73,13 @@
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
             </li>
-            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+            <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/apps.html">Apps</a>
             </li>
             <li class="govuk-header__navigation-item">
               <a class="govuk-header__link" href="/repos.html">Repos</a>
             </li>
-            <li class="govuk-header__navigation-item">
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
               <a class="govuk-header__link" href="/manual.html">Manual</a>
             </li>
             <li class="govuk-header__navigation-item">
@@ -121,15 +123,25 @@
 
               <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
               <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
-                  <ul>
-    <li>
-      <a href="/repos/search-admin.html" rel="noopener" class="govuk-link">search-admin</a>
-    </li>
-    <li>
-      <ul>
-      </ul>
-    </li>
-  </ul>
+                  <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
+  <ul>
+  <li>
+    <a href="#header"><span>Scale unicorn workers</span></a>
+    <ul>
+      <li>
+        <ul>
+          <li>
+            <a href="#check-the-number-of-unicorn-workers-currently-running"><span>Check the number of unicorn workers currently running</span></a>
+          </li>
+          <li>
+            <a href="#increase-the-number-of-unicorn-workers"><span>Increase the number of unicorn workers</span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
 
               </nav>
             </div>
@@ -137,7 +149,8 @@
 
         <div class="app-pane__content toc-open-disabled">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-              
+            
+    
 <script type="application/ld+json">
   {
   "@context": "http://schema.org",
@@ -155,8 +168,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "Apps",
-        "@id": "http://www.dev.gov.uk/apps.html"
+        "name": "2nd line",
+        "@id": "http://www.dev.gov.uk/manual.html#2nd-line"
       }
     }
   ]
@@ -169,129 +182,77 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#2nd-line" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;2nd line&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#2nd-line">2nd line</a>
         </li>
   </ol>
 </div>
 
-  
-  <h1 class="page-title">Application: search-admin</h1>
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  <p>Admin for GOV.UK search</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/search-admin">search-admin</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#user-experience-measurement-govuk</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>backend</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Supporting apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-admin&MACHINE_CLASS=backend&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li><a href="https://search-admin.publishing.service.gov.uk" class="govuk-link">search-admin.publishing.service.gov.uk</a></li>
-    <li><a href="https://sentry.io/govuk/app-search-admin" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/search_admin.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/search-admin/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/search-admin.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/71f12062dd531bdfd107c1e5d0c6c62254a76f39">13 Dec 2022</a>
 </div>
-<h2 id='example-pages-published-by-search-admin'>Example pages published by search-admin</h2><p><ul class="gem-c-list govuk-list">
-      <li><a href="http://www.bolton.gov.uk" class="govuk-link">Bolton Metropolitan Borough Council</a></li>
-      <li><a href="http://www.dorsetforyou.com/weymouthandportland" class="govuk-link">Weymouth and Portland Borough Council</a></li>
-      <li><a href="http://www.wandsworth.gov.uk/" class="govuk-link">London Borough of Wandsworth Council</a></li>
-      <li><a href="http://www.rbkc.gov.uk/" class="govuk-link">Royal Borough of Kensington and Chelsea Council</a></li>
-      <li><a href="https://find-a-professional-service-abroad.service.csd.fcdo.gov.uk/find?serviceType=lawyers&country=Argentina" class="govuk-link">Find a lawyer in Argentina</a></li>
-      <li><a href="http://www.eden.gov.uk/" class="govuk-link">Eden District Council</a></li>
-      <li><a href="http://www.lambeth.gov.uk" class="govuk-link">London Borough of Lambeth Council</a></li>
-      <li><a href="http://www.dover.gov.uk" class="govuk-link">Dover District Council</a></li>
-      <li><a href="http://www.police.uk/" class="govuk-link">Crime in your area - Police UK</a></li>
-      <li><a href="http://www.oxfordshire.gov.uk/" class="govuk-link">Oxfordshire County Council</a></li>
-</ul></p>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p>Manages search &ldquo;best bets&rdquo; and &ldquo;external links&rdquo; along with other search and browse data.</p>
-
-<h2 id="screenshots">Screenshots</h2>
-
-<p><img src="https://raw.githubusercontent.com/alphagov/search-admin/main/docs/images/screenshot.png" alt="Search Admin"></p>
-
-<h2 id="live-example">Live example</h2>
+ <h1 id='header'>Scale unicorn workers</h1> <h3 id='check-the-number-of-unicorn-workers-currently-running'>Check the number of unicorn workers currently running</h3><p>You will need to SSH into the machine class for your chosen application, you can find this information in the developer docs, for example, the machine class for <a href="https://docs.publishing.service.gov.uk/repos/smart-answers.html">Smart Answers</a> is <code>calculators_frontend</code></p>
+<p>SSH into the machine on Integration using the command below</p>
+<p><code>gds govuk connect -e integration ssh calculators_frontend</code></p>
+<p>Once connected, run the command below to get a list of the Unicorn Workers running on the machine:</p>
+<p><code>ps -ax | grep unicorn | grep smartanswers</code></p>
+<p>You should then get an output similar to that below. In this example we can see that 4 unicorn workers are running on the machine.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>18789 ?        S      0:00 unicorn master <span class="nt">-D</span> <span class="nt">-P</span> /var/run/smartanswers/app.pid <span class="nt">-p</span> 3010 <span class="nt">-c</span> /var/apps/smartanswers/config/unicorn.rb
+18790 ?        S      0:12 unicorn worker[0] <span class="nt">-D</span> <span class="nt">-P</span> /var/run/smartanswers/app.pid <span class="nt">-p</span> 3010 <span class="nt">-c</span> /var/apps/smartanswers/config/unicorn.rb
+18791 ?        S      0:11 unicorn worker[1] <span class="nt">-D</span> <span class="nt">-P</span> /var/run/smartanswers/app.pid <span class="nt">-p</span> 3010 <span class="nt">-c</span> /var/apps/smartanswers/config/unicorn.rb
+18792 ?        S      0:12 unicorn worker[2] <span class="nt">-D</span> <span class="nt">-P</span> /var/run/smartanswers/app.pid <span class="nt">-p</span> 3010 <span class="nt">-c</span> /var/apps/smartanswers/config/unicorn.rb
+18793 ?        S      0:13 unicorn worker[3] <span class="nt">-D</span> <span class="nt">-P</span> /var/run/smartanswers/app.pid <span class="nt">-p</span> 3010 <span class="nt">-c</span> /var/apps/smartanswers/config/unicorn.rb
+</code></pre></div><h3 id='increase-the-number-of-unicorn-workers'>Increase the number of unicorn workers</h3>
+<ul>
+<li>Create a branch of <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a></li>
+<li>Increase the number of unicorn workers for your chosen application
 
 <ul>
-<li><a href="https://search-admin.publishing.service.gov.uk/">https://search-admin.publishing.service.gov.uk/</a></li>
+<li><a href="https://github.com/alphagov/govuk-puppet/pull/11194">Example PR</a></li>
+</ul></li>
+<li><a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Puppet/">Deploy your branch to Integration</a></li>
+<li><a href="/manual/alerts/puppet-last-run-errors.html#re-run-puppet">Run govuk-puppet</a> on the relevant machine, to pull in the changes</li>
+<li>Follow the <a href="#check-the-number-of-unicorn-workers-currently-running">steps from the previous section</a> to confirm the number of unicorn workers is now as expected</li>
 </ul>
 
-<h2 id="technical-documentation">Technical documentation</h2>
 
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
+  <div class='related-content'>
 
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
+    <h3>More in the 2nd line section</h3>
 
-<p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
+    <div class='govuk-grid-row'>
+        <div class='govuk-grid-column-one-half'>
+          <h4>Learn</h4>
 
-<h3 id="running-the-test-suite">Running the test suite</h3>
+          <ul class="govuk-list">
+            <li><a href="/manual/2nd-line.html">2nd line</a></li>
+            <li><a href="/manual/2nd-line-drills.html">2nd line drills</a></li>
+            <li><a href="/manual/access-to-licensing-for-third-parties.html">Access to Licensify for Third Parties</a></li>
+            <li><a href="/manual/licensing.html">Licensify - supporting licensing</a></li>
+            <li><a href="/manual/on-call.html">Out of hours support (on-call)</a></li>
+            <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
+            <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
+            <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
+            <li><a href="/manual/zendesk.html">Zendesk</a></li>
+          </ul>
+        </div>
 
-<p><code>bundle exec rake</code></p>
+        <div class='govuk-grid-column-one-half'>
+          <h4>How to...</h4>
 
-<h3 id="external-links">External links</h3>
+          <ul class="govuk-list">
+            <li><a href="/manual/change-in-hours-time-period-for-dst.html">Change in-hours time period for daylight savings</a></li>
+            <li><a href="/manual/flush-the-arp-cache.html">How to flush the ARP cache</a></li>
+            <li><a href="/manual/incorrect-postcode-data.html">Incorrect postcode data</a></li>
+            <li><a href="/manual/raising-issues-with-reliability-engineering.html">Raise issues with Reliability Engineering</a></li>
+            <li><a href="/manual/smart-survey-scheduled-maintenance.html">SmartSurvey scheduled maintenance</a></li>
+            <li><a href="/manual/update_popular_links.html">Update popular links</a></li>
+          </ul>
+        </div>
 
-<p>Run <code>bundle exec rake publish_external_links:publishing_api</code> to send all external links to the publishing API.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/search-admin/blob/main/LICENSE">MIT License</a></p>
-<p></div></p>
+    </div>
+</div>
 
 
             
@@ -299,8 +260,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fsearch-admin.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/scale-unicorn-workers.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Scale+unicorn+workers%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fscale-unicorn-workers.html%29&amp;labels=bug&amp;title=Re%3A+%27Scale+unicorn+workers%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

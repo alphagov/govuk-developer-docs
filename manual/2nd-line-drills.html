@@ -254,7 +254,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b27d4142a58f00881912b766565be9ac01c6ff92">13 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/730bd091c2d0d8222136e557bf66a158978fbb5b">13 Dec 2022</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
@@ -301,10 +301,9 @@ Once deployed, <a href="https://www-origin.integration.govuk.digital/">check you
 </ol>
 <h2 id='drill-how-to-communicate-when-slack-is-down'>Drill how to communicate when Slack is down</h2><p>Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
 See &ldquo;<a href="https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp">If Slack is unavailable</a>&rdquo; for details.</p>
-<h2 id='drill-scaling-up-number-of-workers'>Drill scaling up number of workers</h2><p>In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.
-See <a href="/manual/alerts/established-connections-exceed.html">established connections exceeded</a> for details.</p>
-<p>Pick an application and drill scaling up the number of workers - see <a href="https://github.com/alphagov/govuk-puppet/pull/11194">example</a>.</p>
-<p>You can create a branch of <code>govuk-puppet</code> and deploy that branch to Integration to see the unicorn worker change take effect. Delete the branch and re-deploy the latest release of Puppet when you&rsquo;re done.</p>
+<h2 id='drill-scaling-up-number-of-workers'>Drill scaling up number of workers</h2><p>In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.</p>
+<p>Pick an application (e.g. <code>smartanswers</code>) and drill scaling up the number of workers, by following <a href="/manual/scale-unicorn-workers.html">scale unicorn workers</a>.</p>
+<p>Note that you&rsquo;ll need to edit the <code>integration.yaml</code> file, not the <code>production.yaml</code> file as described in the docs above. And instead of merging to <code>main</code>, just build your branch directly to Integration. When you&rsquo;re done drilling, re-deploy the previous release and delete your branch.</p>
 <h2 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h2><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.</p>
 <p>Either before merging the change, or part way through the continuous deployment process, follow the instructions for <a href="/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze">implementing a deploy freeze</a> for that app.</p>
 <p>Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.</p>
@@ -342,6 +341,7 @@ Do this on Integration or Staging.</p>
             <li><a href="/manual/on-call.html">Out of hours support (on-call)</a></li>
             <li><a href="/manual/pagerduty.html">PagerDuty</a></li>
             <li><a href="/manual/rules-for-getting-production-access.html">Rules for getting production access</a></li>
+            <li><a href="/manual/scale-unicorn-workers.html">Scale unicorn workers</a></li>
             <li><a href="/manual/subject-access-requests.html">Subject Access Request (SAR)</a></li>
             <li><a href="/manual/zendesk.html">Zendesk</a></li>
           </ul>
