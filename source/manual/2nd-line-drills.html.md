@@ -79,11 +79,10 @@ See "[If Slack is unavailable](https://docs.google.com/document/d/144y8c2Ly-kG3J
 ## Drill scaling up number of workers
 
 In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.
-See [established connections exceeded](/manual/alerts/established-connections-exceed.html) for details.
 
-Pick an application and drill scaling up the number of workers - see [example](https://github.com/alphagov/govuk-puppet/pull/11194).
+Pick an application (e.g. `smartanswers`) and drill scaling up the number of workers, by following [scale unicorn workers](/manual/scale-unicorn-workers.html).
 
-You can create a branch of `govuk-puppet` and deploy that branch to Integration to see the unicorn worker change take effect. Delete the branch and re-deploy the latest release of Puppet when you're done.
+Note that you'll need to edit the `integration.yaml` file, not the `production.yaml` file as described in the docs above. And instead of merging to `main`, just build your branch directly to Integration. When you're done drilling, re-deploy the previous release and delete your branch.
 
 ## Drill enabling a code freeze
 
