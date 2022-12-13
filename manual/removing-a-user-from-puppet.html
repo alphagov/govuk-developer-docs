@@ -182,7 +182,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/06b89f88b33cae1796638055bff88668218a516f">28 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b27d4142a58f00881912b766565be9ac01c6ff92">13 Dec 2022</a>
 </div>
 
  <h1 id='header'>Remove a user from Puppet</h1> <p>Removing a user from our infrastructure via Puppet is a 2 change process that
@@ -213,7 +213,7 @@ the past where user had large files in that directory.</p>
 <p>Machines will eventually get recycled as they&rsquo;re scaled up or down, so these
 directories should naturally start to disappear over time. If there is a need
 to remove the directories more quickly, you can consider using some of the
-<a href="manual/howto-run-ssh-commands-on-many-machines.html#useful-commands">commands here</a>.</p>
+<a href="/manual/howto-run-ssh-commands-on-many-machines.html#useful-commands">commands here</a>.</p>
 <p>Unfortunately it&rsquo;s <a href="https://github.com/alphagov/govuk-puppet/pull/10892#issuecomment-749678673">not possible to retrospectively reintroduce</a>
 the user with a <code>ensure =&gt; absent</code> argument, as the user will already have
 been deleted. Filesystem permissions are done through user IDs rather than names.</p>
