@@ -20,5 +20,9 @@ the application wasn't able to start processing it immediately.
 
 If you're seeing this alert regularly for an app and the machine it's on has
 enough memory to cope with more workers then you can increase this amount via
-puppet. An example of increasing the unicorn workers for an app can be
-found [here](https://github.com/alphagov/govuk-puppet/pull/9831).
+puppet.
+
+## Further reading
+
+* [Example PR to increase the unicorn workers for an app](https://github.com/alphagov/govuk-puppet/pull/9831).
+* [Scale unicorn workers](/manual/scale-unicorn-workers.html)
