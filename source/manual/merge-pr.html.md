@@ -54,21 +54,25 @@ A verbose commit structure isn't itself a problem, and can be merged as-is if yo
 
 We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Our test suite will not run automatically against these PRs.
 
-First, review the code carefully for anything that might be malicious and damaging if run inside our infrastructure. Once you're satisfied, follow the instructions below to pull the forked branch locally, then push it to origin. This will cause the test suite to run with the original commits, which will cause GitHub to green light the original PR. Two people from GDS should review this PR. The first reviewer should approve the PR, and the second reviewer should merge.
-
-You should also thank the contributor with an amount of emoji proportional to the time they're saving GDS developers.
-
-Finally, clean up by deleting the branch you created.
+First, review the code carefully for anything that might be malicious and damaging if run inside our infrastructure. Once you're satisfied, follow the instructions below to pull the forked branch locally, then push it to origin.
 
 ```bash
 brew install hub
+
+# You will need GITHUB_TOKEN set in your environment for the next command
 
 hub pr checkout <PR-NUMBER>
 
 git push --set-upstream origin <BRANCH-NAME>
 ```
 
-where `<BRANCH-NAME>` is the name of the branch that's checked out.
+(where `<BRANCH-NAME>` is the name of the branch that's checked out.)
+
+This will cause the test suite to run with the original commits, which will cause GitHub to green light the original PR. Two people from GDS should review this PR. The first reviewer should approve the PR, and the second reviewer should merge.
+
+You should also thank the contributor with an amount of emoji proportional to the time they're saving GDS developers.
+
+Finally, clean up by deleting the branch you created.
 
 #### Dependabot
 
