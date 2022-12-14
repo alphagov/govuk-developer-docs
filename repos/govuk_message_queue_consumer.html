@@ -280,14 +280,15 @@ end
 
 <p>More options are <a href="http://www.rubydoc.info/gems/govuk_message_queue_consumer/GovukMessageQueueConsumer/Consumer#initialize-instance_method">documented here</a>.</p>
 
-<p>The consumer expects a number of environment variables to be present. On GOV.UK,
-these should be set up in puppet.</p>
+<p>The consumer expects the <a href="https://github.com/ruby-amqp/bunny/blob/066496d/docs/guides/connecting.md#paas-environments"><code>RABBITMQ_URL</code> environment
+variable</a>
+to be set to an AMQP connection string, for example:</p>
 
-<pre><code>RABBITMQ_HOSTS=rabbitmq1.example.com,rabbitmq2.example.com
-RABBITMQ_VHOST=/
-RABBITMQ_USER=a_user
-RABBITMQ_PASSWORD=a_super_secret
-</code></pre>
+<p><code>RABBITMQ_URL=amqp://mrbean:hunter2@rabbitmq.example.com:5672</code></p>
+
+<p>The GOV.UK-specific environment variables <code>RABBITMQ_HOSTS</code>, <code>RABBITMQ_VHOST</code>,
+<code>RABBITMQ_USER</code> and <code>RABBITMQ_PASSWORD</code> are deprecated. Support for these will
+be removed in a future version of govuk_message_queue_consumer.</p>
 
 <p>Define a class that will process the messages:</p>
 
