@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Modify a change note in Publishing API or Whitehall - GOV.UK Developer Documentation</title>
+    <title>Modify a change note in Publishing API, Content Publisher or Whitehall - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -19,12 +19,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Modify a change note in Publishing API or Whitehall - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Modify a change note in Publishing API, Content Publisher or Whitehall - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/howto-modify-change-note.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Modify a change note in Publishing API or Whitehall" />
+      <meta property="og:title" content="Modify a change note in Publishing API, Content Publisher or Whitehall" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/howto-modify-change-note.html" />
 
@@ -126,24 +126,27 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Modify a change note in Publishing API or Whitehall</span></a>
+    <a href="#header"><span>Modify a change note in Publishing API, Content Publisher or Whitehall</span></a>
     <ul>
       <li>
         <a href="#whitehall"><span>Whitehall</span></a>
       </li>
       <li>
+        <a href="#content-publisher"><span>Content Publisher</span></a>
+      </li>
+      <li>
         <a href="#publishing-api"><span>Publishing API</span></a>
         <ul>
           <li>
-            <a href="#method-1-empty-change_history"><span>Method 1 (empty change_history)</span></a>
+            <a href="#method-1-update-an-individual-changenote"><span>Method 1 (update an individual ChangeNote)</span></a>
           </li>
           <li>
-            <a href="#method-2-present-change_history"><span>Method 2 (present change_history)</span></a>
+            <a href="#method-2-update-the-details-change_history"><span>Method 2 update the details.change_history</span></a>
           </li>
         </ul>
       </li>
       <li>
-        <a href="#troublshooting"><span>Troublshooting</span></a>
+        <a href="#troubleshooting"><span>Troubleshooting</span></a>
       </li>
     </ul>
   </li>
@@ -196,34 +199,38 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e0d49cdd02f03d2378e43c941d58fdd591605698">8 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/55454b86d1b8f523026599d4698b8de0c6dcfe5d">15 Dec 2022</a>
 </div>
 
- <h1 id='header'>Modify a change note in Publishing API or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.</p>
-<h2 id='whitehall'>Whitehall</h2><p>To modify a change note in Whitehall, visit the following URL, replacing <code>&lt;edition-id&gt;</code> with the ID of the edition:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/&lt;edition-id&gt;/change_notes
-</code></pre></div><h2 id='publishing-api'>Publishing API</h2><p>Publishing API handles change notes in two different ways. To update the change history of a document, you&rsquo;ll either need to update an individual <a href="https://github.com/alphagov/publishing-api/blob/main/app/models/change_note.rb">ChangeNote</a> or update the <code>change_history</code> in the <a href="https://github.com/alphagov/publishing-api/blob/d6707237ee31090b2bb04015ba71d476f462448a/db/schema.rb#L85">details JSON</a> of the published edition.</p>
-<p><strong>Note</strong></p>
+ <h1 id='header'>Modify a change note in Publishing API, Content Publisher or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.</p>
+<h2 id='whitehall'>Whitehall</h2><p>Whitehall supports modifying change notes directly from the UI. The feature is hidden from publishers, but available to anyone with <code>GDS Admin</code> permissions.
+Content 2nd Line can modify the change note themselves by:</p>
 
-<blockquote>
-<p>Updating change notes in Publishing API should only be done when unable to from the publishing app (to avoid Publishing API being overwritten).</p>
-</blockquote>
-<p>First step is to connect to the Publishing API console:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk-connect app-console -e production publishing_api/publishing-api
-</code></pre></div><p>Find the document:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>document = Document.find_by_content_id("YOUR_CONTENT_ID_HERE")
-</code></pre></div><p>Find the documents live edition:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>live_edition = document.editions.live.last
-</code></pre></div><p>Check edition&rsquo;s details hash for <code>change_history</code>. If this is empty then follow method 1, if not, follow method 2:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>live_edition.details[:change_history]
-</code></pre></div><h3 id='method-1-empty-change_history'>Method 1 (empty change_history)</h3><p>Fetch the change notes for the document:</p>
+<ul>
+<li>Appending <code>/change_notes</code> to the URL of the admin screen, so that the URL looks something like:
+<code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/&lt;edition-id&gt;/change_notes</code></li>
+<li>You may need to swap out the portion after <code>/admin/</code>, for the word <code>editions</code>. For example,
+<code>https://whitehall-admin.publishing.service.gov.uk/government/admin/publications/1389309/change_notes</code> won&rsquo;t work, but
+<code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/1389309/change_notes</code> will.</li>
+</ul>
+<h2 id='content-publisher'>Content Publisher</h2><p>Content Publisher has a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake">set of rake tasks</a> for adding, deleting and editing change notes.</p>
+<h2 id='publishing-api'>Publishing API</h2><p>Updating change notes in Publishing API is rarely adviseable and should ONLY be done if unable to do so from the corresponding publishing app. This is to mitigate the risk of Publishing API being overwritten by the publishing app later on. Thoroughly explore your publishing app first, to see if such functionality exists (we&rsquo;ve documented Whitehall and Content Publisher above), and if it doesn&rsquo;t, consider building the feature in! However, in an emergency, you can edit the changenote directly in Publishing API.</p>
+
+<ol>
+<li><p>Connect to the Publishing API console: <code>govuk-connect app-console -e production publishing_api/publishing-api</code></p></li>
+<li><p>Find the document: <code>document = Document.find_by_content_id(&quot;YOUR_CONTENT_ID_HERE&quot;)</code></p></li>
+<li><p>Find the document&rsquo;s live edition: <code>live_edition = document.editions.live.last</code></p></li>
+<li><p>Check the edition&rsquo;s details hash for the change history: <code>live_edition.details[:change_history]</code></p></li>
+</ol>
+<p>If this is empty, you&rsquo;ll need to follow method 1. Otherwise, follow method 2.</p>
+<h3 id='method-1-update-an-individual-changenote'>Method 1 (update an individual ChangeNote)</h3><p>Fetch the change notes for the document:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_notes = ChangeNote.joins(:edition).where(editions: { document: document }).order(:public_timestamp)
 </code></pre></div><p>Select the relevant change note manually, or by searching for the note text:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note = change_notes.find_by("note LIKE ?", "%SUBSTRING OR FULL CHANGE NOTE TEXT%")
 </code></pre></div><p>Update change note:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note.update(note, "NEW NOTE")
-</code></pre></div><p>Finally, <a href="https://docs.publishing.service.gov.uk/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
-<h3 id='method-2-present-change_history'>Method 2 (present change_history)</h3><p>Fetch details for edition:</p>
+</code></pre></div><p>Finally, [send the document downstream] using the content id.</p>
+<h3 id='method-2-update-the-details-change_history'>Method 2 update the <code>details.change_history</code></h3><p>Fetch details for edition:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details = live_edition.details
 </code></pre></div><p>Ouput change history:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history]
@@ -235,18 +242,18 @@
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history][change_note_index][:note] = "New note"
 </code></pre></div><p>Update edition:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.update(details: details)
-</code></pre></div><p>Finally, <a href="https://docs.publishing.service.gov.uk/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
-<h2 id='troublshooting'>Troublshooting</h2><p>The steps below helped us in a situation where the change note was present in the content item
+</code></pre></div><p>Finally, <a href="/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>The steps below helped us in a situation where the change note was present in the content item
 in both Whitehall and publishing-api, but was not being reflected on the page itself. We
 found this was due to the content-store not being in sync with the publishing-api. This can
 happen in <code>staging</code> due to an issue with the overnight data sync.</p>
 <p>Things we tried:</p>
 
 <ul>
-<li><a href="https://docs.publishing.service.gov.uk/manual/purge-cache.html">purge the page from cache</a></li>
-<li>check the <a href="https://docs.publishing.service.gov.uk/manual/sidekiq.html#monitoring">Sidekiq monitoring queue</a> to see if the document is stuck somewhere in a queue</li>
-<li>look in <a href="https://docs.publishing.service.gov.uk/manual/tools.html#kibana">Kibana</a> - there might be some with the status <code>409</code> which might be due to the content-store thinking it&rsquo;s got more up to date data than the publishing-api</li>
-<li>compare the <code>payload_version</code> in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this <a href="https://docs.publishing.service.gov.uk/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages">doc on publishing-api messages</a>)</li>
+<li><a href="/manual/purge-cache.html">purge the page from cache</a></li>
+<li>check the <a href="/manual/sidekiq.html#monitoring">Sidekiq monitoring queue</a> to see if the document is stuck somewhere in a queue</li>
+<li>look in <a href="/manual/tools.html#kibana">Kibana</a> - there might be some with the status <code>409</code> which might be due to the content-store thinking it&rsquo;s got more up to date data than the publishing-api</li>
+<li>compare the <code>payload_version</code> in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this <a href="/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages">doc on publishing-api messages</a>)</li>
 </ul>
 
 
@@ -306,7 +313,7 @@ happen in <code>staging</code> due to an issue with the overnight data sync.</p>
           <aside>
               <ul class="contribution-banner">
                 <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/howto-modify-change-note.html.md.erb">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Modify+a+change+note+in+Publishing+API+or+Whitehall%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-modify-change-note.html%29&amp;labels=bug&amp;title=Re%3A+%27Modify+a+change+note+in+Publishing+API+or+Whitehall%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Modify+a+change+note+in+Publishing+API%2C+Content+Publisher+or+Whitehall%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhowto-modify-change-note.html%29&amp;labels=bug&amp;title=Re%3A+%27Modify+a+change+note+in+Publishing+API%2C+Content+Publisher+or+Whitehall%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
