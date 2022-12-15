@@ -1,53 +1,43 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: Modify a change note in Publishing API or Whitehall
+title: Modify a change note in Publishing API, Content Publisher or Whitehall
 section: Publishing
 layout: manual_layout
 parent: "/manual.html"
 ---
 
-Spelling mistakes can creep into [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes), and we are often asked to correct them. The instructions below cover doing this task in the Publishing API and in Whitehall - if your change note lives in Whitehall and is updated in the Publishing API it could be overwritten later.
+Spelling mistakes can creep into [change notes](https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes), and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.
 
 ## Whitehall
 
-To modify a change note in Whitehall, visit the following URL, replacing `<edition-id>` with the ID of the edition:
+Whitehall supports modifying change notes directly from the UI. The feature is hidden from publishers, but available to anyone with `GDS Admin` permissions.
+Content 2nd Line can modify the change note themselves by:
 
-```
-https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition-id>/change_notes
-```
+* Appending `/change_notes` to the URL of the admin screen, so that the URL looks something like:
+  `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition-id>/change_notes`
+* You may need to swap out the portion after `/admin/`, for the word `editions`. For example,
+  `https://whitehall-admin.publishing.service.gov.uk/government/admin/publications/1389309/change_notes` won't work, but
+  `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/1389309/change_notes` will.
+
+## Content Publisher
+
+Content Publisher has a [set of rake tasks](https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake) for adding, deleting and editing change notes.
 
 ## Publishing API
 
-Publishing API handles change notes in two different ways. To update the change history of a document, you'll either need to update an individual [ChangeNote] or update the `change_history` in the [details JSON] of the published edition.
+Updating change notes in Publishing API is rarely adviseable and should ONLY be done if unable to do so from the corresponding publishing app. This is to mitigate the risk of Publishing API being overwritten by the publishing app later on. Thoroughly explore your publishing app first, to see if such functionality exists (we've documented Whitehall and Content Publisher above), and if it doesn't, consider building the feature in! However, in an emergency, you can edit the changenote directly in Publishing API.
 
-**Note**
-> Updating change notes in Publishing API should only be done when unable to from the publishing app (to avoid Publishing API being overwritten).
+1. Connect to the Publishing API console: `govuk-connect app-console -e production publishing_api/publishing-api`
 
-First step is to connect to the Publishing API console:
+1. Find the document: `document = Document.find_by_content_id("YOUR_CONTENT_ID_HERE")`
 
-```
-govuk-connect app-console -e production publishing_api/publishing-api
-```
+1. Find the document's live edition: `live_edition = document.editions.live.last`
 
-Find the document:
+1. Check the edition's details hash for the change history: `live_edition.details[:change_history]`
 
-```
-document = Document.find_by_content_id("YOUR_CONTENT_ID_HERE")
-```
+If this is empty, you'll need to follow method 1. Otherwise, follow method 2.
 
-Find the documents live edition:
-
-```
-live_edition = document.editions.live.last
-```
-
-Check edition's details hash for `change_history`. If this is empty then follow method 1, if not, follow method 2:
-
-```
-live_edition.details[:change_history]
-```
-
-### Method 1 (empty change_history)
+### Method 1 (update an individual ChangeNote)
 
 Fetch the change notes for the document:
 
@@ -69,7 +59,7 @@ change_note.update(note, "NEW NOTE")
 
 Finally, [send the document downstream] using the content id.
 
-### Method 2 (present change_history)
+### Method 2 update the `details.change_history`
 
 Fetch details for edition:
 
@@ -107,9 +97,9 @@ Update edition:
 edition.update(details: details)
 ```
 
-Finally, [send the document downstream] using the content id.
+Finally, [send the document downstream](/repos/publishing-api/admin-tasks.html#representing-data-downstream) using the content id.
 
-## Troublshooting
+## Troubleshooting
 
 The steps below helped us in a situation where the change note was present in the content item
 in both Whitehall and publishing-api, but was not being reflected on the page itself. We
@@ -118,15 +108,7 @@ happen in `staging` due to an issue with the overnight data sync.
 
 Things we tried:
 
-- [purge the page from cache]
-- check the [Sidekiq monitoring queue] to see if the document is stuck somewhere in a queue
-- look in [Kibana] - there might be some with the status `409` which might be due to the content-store thinking it's got more up to date data than the publishing-api
-- compare the `payload_version` in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this [doc on publishing-api messages])
-
-[ChangeNote]: https://github.com/alphagov/publishing-api/blob/main/app/models/change_note.rb
-[details JSON]: https://github.com/alphagov/publishing-api/blob/d6707237ee31090b2bb04015ba71d476f462448a/db/schema.rb#L85
-[send the document downstream]: https://docs.publishing.service.gov.uk/repos/publishing-api/admin-tasks.html#representing-data-downstream
-[sidekiq monitoring queue]: https://docs.publishing.service.gov.uk/manual/sidekiq.html#monitoring
-[Kibana]: https://docs.publishing.service.gov.uk/manual/tools.html#kibana
-[doc on publishing-api messages]: https://docs.publishing.service.gov.uk/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages
-[purge the page from cache]: https://docs.publishing.service.gov.uk/manual/purge-cache.html
+- [purge the page from cache](/manual/purge-cache.html)
+- check the [Sidekiq monitoring queue](/manual/sidekiq.html#monitoring) to see if the document is stuck somewhere in a queue
+- look in [Kibana](/manual/tools.html#kibana) - there might be some with the status `409` which might be due to the content-store thinking it's got more up to date data than the publishing-api
+- compare the `payload_version` in publishing-api and content-store in the console, if the request from publishing-api is lower it will be ignored (also see this [doc on publishing-api messages](/repos/content-data-api/processing_publishing_api_messages.html#discarding-messages))
