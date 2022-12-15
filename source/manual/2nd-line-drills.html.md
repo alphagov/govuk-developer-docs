@@ -126,9 +126,15 @@ Do this on Integration or Staging.
 
 ### Modify and remove a document's change note in Whitehall
 
-Follow [Modify a change note Whitehall](/manual/howto-modify-change-note.html#whitehall) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
+Follow [Modify a change note in Whitehall](/manual/howto-modify-change-note.html#whitehall) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
 Once you have successfully updated the change note you can drill [removing a change note in Whitehall](/manual/howto-remove-change-note.html#whitehall).
 Do this on Integration or Staging.
+
+### Modify and remove a document's change note in Content Publisher
+
+Follow [Modify a change note in Content Publisher](/manual/howto-modify-change-note.html#content-publisher) using [this document in Staging](https://www.staging.publishing.service.gov.uk/government/news/cold-weather-alert-issued-by-ukhsa). The 30th November 2021 shows a bespoke change note which you could try changing - click "show all updates" at the bottom of the page.
+
+You can also try deleting the change note. Again, ensure you do this on Staging or Integration.
 
 ### Modify a document's change note in Publishing API
 
