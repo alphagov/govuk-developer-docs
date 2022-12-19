@@ -38,10 +38,6 @@ integration and staging). To access,
 [Athena](https://eu-west-1.console.aws.amazon.com/athena) and select the
 `fastly_logs` database.
 
-You need to set a query result location before running queries in Athena. To do
-this go to the settings tab on the Athena query editor page and click manage.
-Set the query result location to `s3://govuk-athena-results/` and save.
-
 ## Querying
 
 Queries are written using an SQL dialect, [presto](https://prestodb.io/),
