@@ -15,13 +15,9 @@ type: learn
 
 You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.
 
-Every Wednesday, at least 2 people from GOV.UK - 2 developers (a Primary and Secondary) and usually a shadow developer - join the team to work on Technical 2nd Line. There are also standby developers for the Primary and Secondary.
+Every Wednesday, at least 2 people from GOV.UK - a Primary and Secondary, and usually a Shadow - join the team to work on Technical 2nd Line. There are also standbys for the Primary and Secondary.
 
-Frontend developers, backend developers and SREs are all expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out.
-
-Note that frontend developers are not expected to be on-call rota.
-
-Junior technologists and technologist apprentices also take part in the in-hours rota and not the on-call rota. Junior technologist can be a shadow or a secondary, but won't be a primary. Technologist apprentices will only fulfil the shadow role (however if they are confident they can request to be added to the secondary role at their Line Manager's discretion).
+All of these roles can be fulfilled by developers and SREs, whereas only some can be fulfilled by front-end developers, junior technologists and apprentices. See [role specific policies](#role-specific-policies) for details.
 
 > Technical 2nd Line takes priority over the work you do in your usual team.
 
@@ -34,6 +30,18 @@ You are required to attend a daily morning standup with your paired 2nd Line par
 Standby developers are not expected to attend the standups or the incoming handover. If they're called onto the shift, they should attend the next standup, and may wish to attend the outgoing handover at the end of the shift.
 
 If you have meetings to attend then attend them. Please let the delivery manager and the team know when you’ll be away for long periods, and be respectful of the amount of work your colleagues may have to pick up while you’re away. If there are lots of alerts, or there's a live incident, or an urgent Zendesk ticket, you’ll need to prioritise Technical 2nd Line above your meetings.
+
+## Role specific policies
+
+Backend developers and SREs are all expected to be on the in-hours and on-call rota, unless their head of community agrees that they have reason to opt out.
+
+Frontend developers are expected to be on the in-hours rota, unless their head of community agrees that they have reason to opt out. They are _not_ expected to be on the on-call rota. Junior technologists and technologist apprentices are also expected to take part in the in-hours rota and not the on-call rota.
+
+A junior technologist can be a shadow or a secondary, but won't be a primary.
+
+A technologist apprentice will only fulfil the shadow role, and will be limited to Production Deploy access. However, if they are confident, they can request to be added to the secondary role and given Production Admin access, at their Line Manager's discretion.
+
+See the [2nd line roles and Production Access flow diagram](https://docs.google.com/presentation/d/10oRKrXqYki7LSFUySjb1e_FdTYGLihMKjeoH9qWC1kU/edit) for a visualisation of these rules.
 
 ## Shift swaps, working patterns and sickness
 
