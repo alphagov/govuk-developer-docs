@@ -68,6 +68,9 @@ $ bundle exec rake represent_downstream:high_priority:content_id[content_id]
 
 [Run this job in production Jenkins ⚠️](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[content_id])
 
+> WARNING: this task might publish draft content to the live content store. Use with caution.
+> See [this 'ongoing issues' card for more details](https://trello.com/c/bfAEuv4S/1576-consider-improving-documentation-on-the-consequences-of-running-representdownstream-rake-task-on-publishing-api).
+
 Note that if you run this task to fix missing routes, it may not work correctly
 as the Content Store keeps a cache of what it thinks the routes are.
 
