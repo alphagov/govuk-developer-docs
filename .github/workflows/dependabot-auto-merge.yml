@@ -15,7 +15,7 @@ jobs:
         uses: lewagon/wait-on-check-action@v1.2.0
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          check-name: Run tests
+          check-name: test
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
       - name: Dependabot metadata
