@@ -6,8 +6,8 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
-    name: Auto merge qualifying Dependabot PR
+  auto_approval:
+    name: Auto approve qualifying PR
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
@@ -18,12 +18,22 @@ jobs:
           check-name: test
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           wait-interval: 10
+      - name: Approve the PR
+        if: ${{contains(env.AUTO_MERGE, steps.metadata.outputs.dependency-names) && contains(env.SEMVER, steps.metadata.outputs.update-type)}}
+        uses: hmarr/auto-approve-action@v3.1.0
+  dependabot:
+    needs: auto_approval
+    name: Auto merge qualifying Dependabot PR
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
       - name: Dependabot metadata
         id: metadata
         uses: dependabot/fetch-metadata@v1.3.4
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Enable auto-merge for Dependabot PRs
+        # TODO: figure out how to de-duplicate the conditional below
         if: ${{contains(env.AUTO_MERGE, steps.metadata.outputs.dependency-names) && contains(env.SEMVER, steps.metadata.outputs.update-type)}}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
