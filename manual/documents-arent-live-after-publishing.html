@@ -207,15 +207,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f99ea02ee3e7dfc7f9716d510adf7d9f1fb6631c">20 Dec 2022</a>
 </div>
 
  <h1 id='header'>If documents aren't live after being published</h1> <p>If a document isn&rsquo;t live on GOV.UK after a publisher has published the document
@@ -241,6 +234,11 @@ also not be in Specialist Publisher and need redrafting.</p>
 content item to the Content Store.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake represent_downstream:high_priority:content_id[content_id]
 </code></pre></div><p><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&amp;MACHINE_CLASS=publishing_api&amp;RAKE_TASK=represent_downstream:high_priority:content_id[content_id]">Run this job in production Jenkins ⚠️</a></p>
+
+<blockquote>
+<p>WARNING: this task might publish draft content to the live content store. Use with caution.
+See <a href="https://trello.com/c/bfAEuv4S/1576-consider-improving-documentation-on-the-consequences-of-running-representdownstream-rake-task-on-publishing-api">this &lsquo;ongoing issues&rsquo; card for more details</a>.</p>
+</blockquote>
 <p>Note that if you run this task to fix missing routes, it may not work correctly
 as the Content Store keeps a cache of what it thinks the routes are.</p>
 <h2 id='if-routes-aren39t-in-the-router'>If routes aren&rsquo;t in the Router</h2><p>There is a Rake task available in the Content Store that will register the
