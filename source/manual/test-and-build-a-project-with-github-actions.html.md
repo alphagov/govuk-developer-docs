@@ -189,7 +189,7 @@ Notes:
   [GOV.UK Senior Tech](mailto:govuk-senior-tech-members@digital.cabinet-office.gov.uk)
   for this to be added to a repo.
 
-## GOV.UK Rails application with Postgres, Redis, Yarn and GOV.UK Content Schemas dependencies
+### GOV.UK Rails application with Postgres, Redis, Yarn and GOV.UK Content Schemas dependencies
 
 This is an example that suits a relatively complex GOV.UK Rails application
 (this was written for [Content Publisher][]) that has software dependencies
