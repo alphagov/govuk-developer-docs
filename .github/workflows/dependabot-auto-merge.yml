@@ -21,6 +21,8 @@ jobs:
       - name: Approve the PR
         if: ${{contains(env.AUTO_MERGE, steps.metadata.outputs.dependency-names) && contains(env.SEMVER, steps.metadata.outputs.update-type)}}
         uses: hmarr/auto-approve-action@v3.1.0
+        with:
+          github-token: ${{ secrets.APPROVE_PR_ACCESS_TOKEN }}
   dependabot:
     needs: auto_approval
     name: Auto merge qualifying Dependabot PR
