@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: View Components - GOV.UK Developer Documentation</title>
+    <title>whitehall: Deprecated: Whitehall Legacy CSS Styleguide - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/view_components.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/legacy_css.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: View Components - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/view_components.html" />
+      <meta name="twitter:title" content="whitehall: Deprecated: Whitehall Legacy CSS Styleguide - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/legacy_css.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: View Components" />
+      <meta property="og:title" content="whitehall: Deprecated: Whitehall Legacy CSS Styleguide" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/view_components.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/legacy_css.html" />
 
     
   </head>
@@ -209,49 +209,94 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/3386c62e6b71e6a0a68031fc7bb594fb7f10bda4">10 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/6120f802ff4acdc5057aea729776e7a1efc4863f">20 Dec 2022</a>
 </div>
 
-  <h1 class="page-title">whitehall: View Components</h1>
+  <h1 class="page-title">whitehall: Deprecated: Whitehall Legacy CSS Styleguide</h1>
 
   
-<p><a href="https://viewcomponent.org/">View Components</a> are an extension of the <a href="https://www.rubyguides.com/2019/09/rails-patterns-presenter-service/">presenter pattern</a>. They allow you to consolidate the logic needed for a partial/template into a single class. Unlike a presenter, this class is directly coupled to a <code>.html.erb</code> file. They allow you to encapsulate and test view logic easily and effectively.</p>
-<h2 id="when-we-should-be-using-them">When we should be using them</h2>
-<ol>
-<li>
-<p>View Components are intended for controller specific view needs, particularly to provide an easier way to test views. For components used in multiple places we have <a href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components.html">govuk_publishing_components</a>.</p>
-</li>
-<li>
-<p>We consider View Components to be a part of the View layer of the application, so should only contain logic that relates to converting the input arguments into HTML. If more complex business logic is needed you can use Helper functions or add it to methods on the object passed into the component.</p>
-</li>
-<li>
-<p>Tests for View Components should be all based on HTML output. If you need to test something more than that, it's likely not something that belongs in a View Component.</p>
-</li>
-</ol>
-<h2 id="how-to-generate-them">How to generate them</h2>
-<p>You can use:</p>
-<pre><code>govuk-docker-run rails g component admin/ComponentName
+<p>To be read in conjunction with the <a href="https://gds-way.cloudapps.digital/manuals/programming-languages/css.html">GDS Way CSS styleguide</a></p>
+<h2 id="note">Note</h2>
+<p>Please note that this documentation is now deprecated and will be removed with the legacy css files once the migration has been completed.</p>
+<h2 id="file-structure-and-scope">File structure and scope</h2>
+<p>Tech-debt creep in CSS is usually an symptom of a lack of confidence in changing or removing existing CSS. By structuring CSS in the following way, we can help reduce this risk by clearly communicating the scope of any given CSS.</p>
+<p>The stylesheets are split between frontend and admin. The frontend ones are in a much better state and should be the way the admin ones move in the future.</p>
+<p>They are structured to take advantage of the conditionals from the frontend_toolkit. This means you should put your IE fixes inline not in a separate file.</p>
+<p>Within the frontend folder the basic structure of the files looks like:</p>
+<pre><code>./base.scss
+./base-ie6.scss
+./base-ie7.scss
+./base-ie8.scss
+./helpers/
+./views/
+./resets/
+./styleguide/
 </code></pre>
-<p>or</p>
-<pre><code>govuk-docker-run rails g component admin/component_name
+<p>The <code>base.scss</code> is the file that will be compiled with Sass.
+All other files should be referenced from it in the relevant sections.
+The IE variants (<code>base-ie[6-8].scss</code> which you should never need to edit as they include <code>base.scss</code>) enable us to use mixins which only show css to certain IE versions.</p>
+<h3 id="-helpers"><code>./helpers</code></h3>
+<p>Helpers are blocks of reusable widely-scoped sass which cannot be said to be coupled to any particular partial or template. They may style the markup generated by a rails helper, or they may be more general-purpose styles, for example the style of an out-going link.</p>
+<p>When introducing a new helper, take care to consider exactly what it is for, how it's going to be used and if it's needed at all. Helpers can be extremely difficult to manage from a legacy point of view as they can introduce coupling between markup elements creating a kind of CSS soup where it's impossible to change anything without something else changing without there being regressions.</p>
+<h3 id="-views"><code>./views</code></h3>
+<p>Views are where styling for individual layouts or partials live. In general, the css for a template should live in a scss file named after that template, but scss for partials used in multiple templates should be extracted to a separate file named after that partial. SCSS rules within these view files should never affect anything other than the coupled view file.</p>
+<p>Files should be placed and named to match the partial they are styling:</p>
+<p>styling for <code>/app/views/corporate_information_pages/index.html.erb</code> should live at <code>app/assets/stylesheets/frontend/corporate-information-pages/_index.scss</code>
+styling for <code>/app/views/shared/_featured.html.erb</code> should live at <code>app/assets/stylesheets/frontend/editions/_featured.scss</code></p>
+<p>By storing CSS in this way, we are being clear about it's scope. When a segment of the view is removed, the relevant CSS is easy to clean up.</p>
+<h3 id="-resets"><code>./resets</code></h3>
+<p>This contains the base html resets which remove most of the default styling a browser adds to elements. It also houses a reset to change any of the styles which have been added by <code>static</code> which might be flowing into the app.</p>
+<h3 id="-styleguide"><code>./styleguide</code></h3>
+<p>These are a collection of Sass mixins. They shouldn't output any CSS when included and should only produce CSS when called from another file. Things should be put here and used before being standardised and moved into the <a href="https://github.com/alphagov/govuk_frontend_toolkit">frontend_toolkit</a>.</p>
+<h2 id="layouts">Layouts</h2>
+<p>The frontend is built using responsive design in a mobile up fashion. That means that we define the mobile styles by default and then using a Sass mixin add on tablet or desktop styles. The whole site is also fluid so has been built using percentage widths for layout.</p>
+<p>The frontend follows a loose grid based on a 1020px wide base with columns taking either 25% or 33.33% widths or multiples of them. They columns all have a 30px gutter between them. To achieve this we are forced to use extra spacing divs as CSS doesn't allow you to say <code>width: 50% - 60px;</code> without using the <code>calc</code> function which isn't available in most browsers.</p>
+<p>We structure most of our pages like such:</p>
+<pre><code>&lt;div class="block heading-block"&gt;
+  &lt;div class="inner-block"&gt;
+    ... my heading ...
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="block navigation-block"&gt;
+  &lt;div class="inner-block"&gt;
+    ... my navigation ...
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="block content-block"&gt;
+  &lt;div class="inner-block"&gt;
+    ... my content ...
+  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
-<h2 id="file-structure-and-namespacing">File structure and namespacing</h2>
-<p>View Components are linked to specific views, and should follow the same file structure as the <code>app/views</code> directory. For example, a component that is used on the edit edition page to encapsulate fields for an image could exist as:</p>
-<pre><code>components/admin/editions/edit/image_component.rb
-components/admin/editions/edit/image_component.html.erb
-test/components/admin/editions/edit/image_component_test.rb
+<p>The <code>inner-block</code> div has been styled globally to apply the correct amount of padding on desktop and reduce that padding for mobile. All you will need to do in your view Sass file is to define the styles of your block elements for width and float.</p>
+<p>So to create a standard top heading with navigation taking 25% width and content floating next to it which is in a linear column on mobile you would use something like:</p>
+<pre><code>.navigation-block {
+  @include media(tablet){
+    width: 25%;
+    float: left;
+  }
+}
+.content-block {
+  @include media(tablet){
+    width: 75%;
+    float: left;
+  ]
+}
 </code></pre>
-<p>Any components used in multiple controller actions should sit in the top level folder for that controller. For example, if the image component is used in the new and edit views, the file structure would be:</p>
-<pre><code>components/admin/editions/image_component.rb
-components/admin/editions/image_component.html.erb
-test/components/admin/editions/image_component_test.rb
+<h2 id="fonts">Fonts</h2>
+<p>The <code>ig-core-[0-9]{2}</code> font mixins are deprecated. All new Sass should use the <code>core-[0-9]{2}</code> equivalents.</p>
+<p>Always use the helper mixins. We don't have any generic styling for content markup, as such each view should define the font for its headings and paragraphs. Govspeak (markdown) is the exception to this where it should automatically get standard styling.</p>
+<h2 id="sizings">Sizings</h2>
+<p>We use a standard set of dimension variables which are defined in <code>frontend/styleguide/_dimensions.scss</code>. You should use them where ever possible. The idea of using standardised spacings is the whole site will look uniform and won't be pixels out here and there.</p>
+<h2 id="right-to-left">Right to left</h2>
+<p>The right to left support has been built the same way as the IE support. So that you can add styles to pages which display right to left text using the <code>right-to-left</code> mixin:</p>
+<pre><code>.my-element {
+  float: left;
+  @include right-to-left {
+    float: right;
+  }
+}
 </code></pre>
-<p>If the component needs specific CSS or JavaScript, that should sit in the equivalent path under <code>assets/(javascripts|stylesheets)/admin/views</code>. For example, given an image component shared by multiple views of the editions controller:</p>
-<pre><code>assets/javascript/admin/views/edition/image_component.js
-assets/stylesheets/admin/views/edition/image_component.scss
-</code></pre>
-<h2 id="github-issue">GitHub Issue</h2>
-<p>The GitHub Issue <a href="https://github.com/alphagov/whitehall/issues/6954">#6954</a> was opened to discuss using View Components.</p>
 
 
             
@@ -259,8 +304,8 @@ assets/stylesheets/admin/views/edition/image_component.scss
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/view_components.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fview_components.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/legacy_css.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Flegacy_css.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
