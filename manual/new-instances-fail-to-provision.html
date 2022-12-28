@@ -129,13 +129,13 @@
     <a href="#header"><span>New instances fail to provision</span></a>
     <ul>
       <li>
-        <a href="#symptoms"><span>Symptoms</span></a>
+        <a href="#diagnosing-the-issue"><span>Diagnosing the issue</span></a>
       </li>
       <li>
-        <a href="#diagnosis"><span>Diagnosis</span></a>
+        <a href="#configure-puppet-to-authenticate-requests-to-ubuntu-esm"><span>Configure Puppet to authenticate requests to Ubuntu ESM</span></a>
       </li>
       <li>
-        <a href="#treatment"><span>Treatment</span></a>
+        <a href="#synchronise-gov-uk-apps"><span>Synchronise GOV.UK apps</span></a>
       </li>
     </ul>
   </li>
@@ -187,27 +187,30 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c3332ba93e541c8c70643e014a6971763671ae5c">28 Dec 2022</a>
 </div>
 
- <h1 id='header'>New instances fail to provision</h1> <p>Sometimes, it may happen that a new instance is not provisioned correctly due to
-<code>unattended reboot</code> rebooting the instance before all the init scripts have
-time to run.</p>
-<p>This issue is more likely in Staging due to <code>unattended reboot</code> checking <a href="https://github.com/alphagov/govuk-puppet/commit/fd1a291ca69bae254b4b0efacec13f4228939496">every
+ <h1 id='header'>New instances fail to provision</h1> <p>Sometimes, it may happen that a new instance is not provisioned correctly.</p>
+<p>This can happen when an <code>unattended reboot</code> reboots the instance before all the init scripts have had time to run. This issue is more likely in Staging due to <code>unattended reboot</code> checking <a href="https://github.com/alphagov/govuk-puppet/commit/fd1a291ca69bae254b4b0efacec13f4228939496">every
 5 minutes at all hours of the day</a> rather than between <a href="https://github.com/alphagov/govuk-puppet/blob/e76b397c3e570ba807791befbf61758100e143d8/hieradata_aws/common.yaml#L1521">midnight and 5am</a> for Integration and Production.</p>
-<h2 id='symptoms'>Symptoms</h2><p>You&rsquo;ll likely see &ldquo;puppet last run errors&rdquo; on the instance.
-When running <code>govuk_puppet --test</code>, you&rsquo;ll likely see output like this:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>govuk_puppet <span class="nt">--test</span>
-<span class="c"># ...</span>
-Error: Execution of <span class="s1">'/usr/bin/apt-get -q -y -o DPkg::Options::=--force-confold install libxml2-dev'</span> returned 100: E: dpkg was interrupted, you must manually run <span class="s1">'sudo dpkg --configure -a'</span> to correct the problem.
+<p>It can also happen if the instance tries to install ESM (Extended Security Maintenance) Ubuntu packages before Puppet has run and configured a machine to be set up to install the ESM packages.</p>
+<h2 id='diagnosing-the-issue'>Diagnosing the issue</h2><p>SSH into the instance and run <code>govuk_puppet --test</code> to see the Puppet run output.</p>
+<p>If you&rsquo;re unable to SSH into the instance, look at the <code>system logs</code> in AWS console (select the instance in EC2 console -&gt; <code>Actions</code> -&gt; <code>Monitor and troubleshoot</code> -&gt; <code>Get system log</code>).</p>
+<p>If you see <code>HttpError401</code> in the output, follow the instructions to <a href="#configure-puppet-to-authenticate-requests-to-ubuntu-esm">configure Puppet to authenticate requests to Ubuntu ESM</a>. Example:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Get:1 https://esm.ubuntu.com/ubuntu/ trusty-security/main libdpkg-perl all 1.17.5ubuntu5.8+esm1 [930 kB]
+Err https://esm.ubuntu.com/ubuntu/ trusty-security/main libdpkg-perl all 1.17.5ubuntu5.8+esm1
+  HttpError401
+Err https://esm.ubuntu.com/ubuntu/ trusty-security/main dpkg-dev all 1.17.5ubuntu5.8+esm1
+  HttpError401
+E: Failed to fetch https://esm.ubuntu.com/ubuntu/pool/main/d/dpkg/libdpkg-perl_1.17.5ubuntu5.8+esm1_all.deb  HttpError401
+
+E: Failed to fetch https://esm.ubuntu.com/ubuntu/pool/main/d/dpkg/dpkg-dev_1.17.5ubuntu5.8+esm1_all.deb  HttpError401
+
+E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+Error: /Stage[main]/Base/Package[build-essential]/ensure: change from purged to present failed: Execution of '/usr/bin/apt-get -q -y -o DPkg::Options::=--force-confold install build-essential' returned 100: Reading package lists...
+</code></pre></div><p>If instead you see errors like <code>dpkg was interrupted</code>, follow the instructions to <a href="#synchronise-gov-uk-apps">synchronise GOV.UK apps</a>. Example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>Error: Execution of <span class="s1">'/usr/bin/apt-get -q -y -o DPkg::Options::=--force-confold install libxml2-dev'</span> returned 100: E: dpkg was interrupted, you must manually run <span class="s1">'sudo dpkg --configure -a'</span> to correct the problem.
 Error: /Stage[main]/Base::Packages/Package[libxml2-dev]/ensure: change from absent to present failed: Execution of <span class="s1">'/usr/bin/apt-get -q -y -o DPkg::Options::=--force-confold install libxml2-dev'</span> returned 100: E: dpkg was interrupted, you must manually run <span class="s1">'sudo dpkg --configure -a'</span> to correct the problem.
 Info: Class[Nginx::Config]: Scheduling refresh of Class[Nginx::Service]
 Info: Class[Nginx::Service]: Scheduling refresh of Service[nginx]
@@ -215,13 +218,15 @@ Notice: /Stage[main]/Nginx::Service/Service[nginx]: Triggered <span class="s1">'
 Notice: /Stage[main]/Govuk_scripts/Exec[check_boto]: Dependency Package[libxml2-dev] has failures: <span class="nb">true
 </span>Warning: /Stage[main]/Govuk_scripts/Exec[check_boto]: Skipping because of failed dependencies
 Notice: Finished catalog run <span class="k">in </span>24.56 seconds
-</code></pre></div><h2 id='diagnosis'>Diagnosis</h2><p>You may diagnose this issue by looking at the <code>system logs</code> in AWS console
-(select the failed instance in EC2 console -&gt; <code>Actions</code> -&gt;
-<code>Monitor and troubleshoot</code> -&gt; <code>Get system log</code>) and seeing whether all
-init scripts have been run.</p>
-<h2 id='treatment'>Treatment</h2><p>The recommended fix is to run <code>sudo /usr/local/bin/govuk_sync_apps</code> once puppet has run cleanly on the machine.
+</code></pre></div><p>If the above doesn&rsquo;t work, you could try <a href="/manual/reprovision.html">reprovisioning the machine</a>. If the issue persists, you may need to temporarily disable <code>unattended reboot</code> by setting <code>govuk_unattended_reboot::enabled</code> to <code>false</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166">common.yaml</a>. You&rsquo;ll need to deploy the branch of Puppet before creating the new instances again.</p>
+<h2 id='configure-puppet-to-authenticate-requests-to-ubuntu-esm'>Configure Puppet to authenticate requests to Ubuntu ESM</h2><p>SSH into the broken instance. Confirm that the ESM authentication is broken by running <code>sudo ls /etc/apt/auth.conf.d</code>: you should see that there is no <code>90ubuntu-advantage</code> file.</p>
+<p>Now, SSH into an instance that <em>does</em> work. For example, if a <code>service_manual_publisher_db_admin</code> machine is failing to provision, try SSH&#39;ing into a <code>backend</code> machine.</p>
+<p>Retrieve the ESM authentication credentials on the &lsquo;good&rsquo; machine, by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo more /etc/apt/auth.conf.d/90ubuntu-advantage
+</code></pre></div><p>Copy the contents of that file. Then, SSH into the broken instance (in this case, <code>service_manual_publisher_db_admin</code>) and create a <code>/etc/apt/auth.conf.d/90ubuntu-advantage</code> file, pasting the contents from the &lsquo;good&rsquo; machine.</p>
+<p>Finally, running <code>sudo unattended-upgrade -d</code> and <code>govuk_puppet --test</code> should apply the missing packages and finish provisioning the machine.</p>
+<h2 id='synchronise-gov-uk-apps'>Synchronise GOV.UK apps</h2><p>Run <code>sudo /usr/local/bin/govuk_sync_apps</code> once puppet has run cleanly on the machine.
 Note that the script takes some time to complete as there is a <code>sleep 180</code> in it.</p>
-<p>Failing that, you could try <a href="/manual/reprovision.html">reprovisioning the machine</a>. If the issue persists, you may need to temporarily disable <code>unattended reboot</code> by setting <code>govuk_unattended_reboot::enabled</code> to <code>false</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/9c97f1cfe22334e472a48277f5131e0735b16a4e/hieradata_aws/common.yaml#L1166">common.yaml</a>. You&rsquo;ll need to deploy the branch of Puppet before creating the new instances again.</p>
 
 
   <div class='related-content'>
