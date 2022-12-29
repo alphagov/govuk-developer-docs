@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>government-frontend: Webchat Component - GOV.UK Developer Documentation</title>
+    <title>government-frontend: Webchat - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -15,12 +15,12 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="government-frontend: Webchat Component - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="government-frontend: Webchat - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/government-frontend/webchat.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="government-frontend: Webchat Component" />
+      <meta property="og:title" content="government-frontend: Webchat" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/government-frontend/webchat.html" />
 
@@ -125,7 +125,7 @@
     </li>
     <li>
       <ul>
-          <li><a href="/repos/government-frontend/webchat.html" rel="noopener" class="govuk-link">Webchat Component</a></li>
+          <li><a href="/repos/government-frontend/webchat.html" rel="noopener" class="govuk-link">Webchat</a></li>
       </ul>
     </li>
   </ul>
@@ -186,29 +186,12 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/government-frontend/commit/6601a3423431d33385c368ae98368872527d0475">26 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/government-frontend/commit/2e71b8f2892150502b6568e71654751fb6b75ba5">28 Dec 2022</a>
 </div>
 
-  <h1 class="page-title">government-frontend: Webchat Component</h1>
+  <h1 class="page-title">government-frontend: Webchat</h1>
 
   
-<p>This Webchat can represent four 'busy', 'unavailable', 'available', 'error'.</p>
-<h2 id="supporting-backend-api-proxy">Supporting backend API Proxy</h2>
-<p>See the <a href="https://github.com/alphagov/reference-webchat-proxy">reference implementation</a> for the backend API that is used alongside this component.</p>
-<h2 id="usage">Usage</h2>
-<p>The Webchat should be accessed through a shared <a href="https://github.com/alphagov/government-frontend/blob/main/app/views/shared/_webchat.html.erb">shared partial</a> in which you need to pass the locals <code>webchat_availability_url</code> and <code>webchat_open_url</code>.</p>
-<p><code>webchat_availability_url</code> will be polled at an interval to check for the webchat instances' avaliability.</p>
-<p><code>webchat_open_url</code> is the page that will be opened when a user clicks the webchat call-to-action shown in the 'avaliable' state.</p>
-<p>Finally once you have your partial rendering on the page, you will need to make sure the <a href="https://github.com/alphagov/government-frontend/blob/main/app/assets/javascripts/webchat/library.js">library</a> is included on your page and this in your initialisation code.</p>
-<pre lang="javascript"><code>  var webchats = document.querySelectorAll('.js-webchat')
-  for (var i = 0; i &lt; webchats.length; i++) {
-    new GOVUK.Webchat(webchats[i])
-  }
-</code></pre>
-<p>a fuller example can be seen <a href="https://github.com/alphagov/government-frontend/blob/main/app/assets/javascripts/webchat.js">here</a> that has an implementation of the normalisation as noted below</p>
-<h3 id="note-regarding-response-normalisation">Note regarding response Normalisation</h3>
-<p>As can be seen in the fuller example above, we currently have the option to do the normalisation in JavaScript, this is deprecated, and is shim code until all current users of Wbchat have their own proxies up and running.</p>
-<p>Once this shim is removed we can move this component into Static as a GOV.UK Publishing Component</p>
 <h2 id="how-to-add-a-new-webchat-provider">How to add a new webchat provider</h2>
 <ol>
 <li>Open to <code>lib/webchat.yaml</code>
@@ -218,6 +201,7 @@
 <pre lang="yaml"><code>- base_path: /government/contact/my-amazing-service
   open_url: https://www.my-amazing-webchat.com/007/open-chat
   availability_url: https://www.my-amazing-webchat.com/007/check-availability
+  csp_connect_src: https://www.my-amazing-webchat.com
 </code></pre>
 <ol start="3">
 <li>Deploy changes</li>
@@ -225,8 +209,9 @@
 </li>
 <li>Finished</li>
 </ol>
-<h2 id="cors-considerations">CORS considerations</h2>
-<p>To avoid CORS and CSP issues a new provider would need to be added to the <a href="https://docs.publishing.service.gov.uk/manual/content-security-policy.html">Content Security Policy</a></p>
+<h2 id="content-security-policy-considerations">Content Security Policy considerations</h2>
+<p>For a webchat provider to integrate with GOV.UK it needs permissions from the <a href="https://docs.publishing.service.gov.uk/manual/content-security-policy.html">Content Security Policy</a>.</p>
+<p>This will be set-up for a provider by the <code>csp_connect_src</code> option which configures the <code>connect-src</code> directive, however other providers may need additional configuration, such as <code>script-src</code>. This configuration should be done in the same manner as <code>csp_connect_src</code> to only affect resources that embed webchat.</p>
 <h2 id="required-configuration">Required configuration</h2>
 <h3 id="base-path">Base path</h3>
 <p>This is the base path of a contact page, for example, <code>/government/organisations/hm-revenue-customs/contact/child-benefit</code>.
@@ -270,6 +255,10 @@ This url should not include session ids or require anything specific parameters 
 <h3 id="payload-format">Payload format</h3>
 <p>The default response from the api as used by HMRC webchat provider is JSONP. To add a provider that responds using JSON the following entry needs to be added.</p>
 <pre lang="yaml"><code>  availability_payload_format: json
+</code></pre>
+<h3 id="csp-connect-src">CSP connect-src</h3>
+<p>Updates the Content Security Policy for pages that embed webchat to grant permission to make requests to the host specified. This should be in the form of a hostname, ideally with a scheme. For more information see, <a href="https://content-security-policy.com/connect-src/">connect-src</a>.</p>
+<pre lang="yaml"><code>  csp_connect_src: https://webchat.host
 </code></pre>
 
 
