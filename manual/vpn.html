@@ -129,12 +129,7 @@
     <a href="#header"><span>GOV.UK and Virtual Private Networks (VPNs)</span></a>
     <ul>
       <li>
-        <a href="#vpn-between-aws-and-ukcloud-for-licensify-civica-payment-status-requests"><span>VPN between AWS and UKCloud for Licensify Civica payment status requests</span></a>
-        <ul>
-          <li>
-            <a href="#troubleshooting-steps"><span>Troubleshooting Steps</span></a>
-          </li>
-        </ul>
+        <a href="#gov-uk-and-virtual-private-networks-vpns"><span>GOV.UK and Virtual Private Networks (VPNs)</span></a>
       </li>
     </ul>
   </li>
@@ -187,39 +182,14 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/43c3f00921feaae2e186490d13e9372666bff4aa">22 Aug 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a3111be7544af406ad5911c98612398929ec1d61">30 Dec 2022</a>
 </div>
 
- <h1 id='header'>GOV.UK and Virtual Private Networks (VPNs)</h1> <h2 id='vpn-between-aws-and-ukcloud-for-licensify-civica-payment-status-requests'>VPN between AWS and UKCloud for Licensify Civica payment status requests</h2><p>There&rsquo;s a VPN between AWS Production (only) and UKCloud Production which exists
-only as a workaround for routing certain requests from Licensify to Civica, one
-of Licensify&rsquo;s payment gateways. This is undesirable and <a href="https://trello.com/c/CG5mc7Zi/213-licensify-connection-to-civica-still-goes-via-uk-cloud-and-vpn-from-aws">recorded as
-GOV.UK Tech Debt</a>.</p>
-<p>If this VPN is down:</p>
-
-<ul>
-<li>The <a href="https://alert.production.govuk.digital/cgi-bin/icinga/status.cgi?search_string=vpn.*licensify">check_uk_cloud_vpn_up</a> alert will fire in Icinga.</li>
-<li>HTTP(S) requests from Licensify to Civica will originate from our AWS NAT gateways instead of UKCloud. This means the source IP address will fail to match Civica&rsquo;s IP-based access control lists.</li>
-<li>Civica will start returning <code>403 Access Denied</code> instead of <code>200 OK</code> to Licensify and to the probe which triggers the vpn-down alert.</li>
-<li>Users who are paying for licence applications to certain licencing authorities will still be able to complete their application but the last step of their journey will display a message saying &ldquo;We have received your application, but were unable to confirm payment with the authority.&rdquo; (<a href="https://github.com/alphagov/licensify/blob/master/frontend/app/views/licensing/payments/unknown.scala.html">source</a>)</li>
-<li>The page still gives the user a reference number for their transaction and asks the user to contact the licencing authority to confirm that they have received the payment.</li>
-<li>Payments will still be processed as normal. The only difference is that Licensify is unable to tell the user whether the payment went through or not.</li>
-<li>Only those licencing authorities which use Civica as their payment processor are affected. This is a small but significant minority.</li>
-<li>Licencing authorities who do not use Civica are not affected.</li>
-</ul>
-<h3 id='troubleshooting-steps'>Troubleshooting Steps</h3><p>Troubleshooting steps (aim is to switch off and on the VPN):</p>
-
-<ol>
-<li>Go to <a href="https://portal.skyscapecloud.com/">Production Skyscape portal</a>, the credentials are in GOV.UK 2ndline Pass under: <code>ukcloud/portal</code>. If you are out of the office or on GovWifi, you will need to connect to the GDS VPN first.</li>
-<li>Once you logged in, you have to log into the <code>Production</code> organization by selecting: <code>VMWARE CLOUD</code> and then <code>GOV.UK Production</code>. You will be asked for the password again.</li>
-<li>In the <code>Production</code> organization, go to the <code>GOV.UK Management</code> virtual datacenter.</li>
-<li>Click <code>edges</code> in the left column to bring the list of edges.</li>
-<li>Click on the <code>GOV.UK Management</code> edges in the right main frame and <code>Services</code> above it.</li>
-<li>In the pop-up window, click on <code>VPN</code> in the menu bar and then <code>IPsec VPN Sites</code></li>
-<li>In the list of VPN sites, select <code>UKC Licensify to AWS</code> VPN and click on the edit icon above.</li>
-<li>In the new pop-up window, turn the VPN off by toggling the <code>enable</code> switch and clicking <code>KEEP</code></li>
-<li>The pop-up window will disappear and you need to click <code>save changes</code> in put into effect the VPN being now disabled.</li>
-<li>Wait a few minutes and repeat step 7-9 to re-enable the VPN again.</li>
-</ol>
+ <h1 id='header'>GOV.UK and Virtual Private Networks (VPNs)</h1> <h2 id='gov-uk-and-virtual-private-networks-vpns'>GOV.UK and Virtual Private Networks (VPNs)</h2><p>As of 2023 GOV.UK does not currently use VPNs within its infrastructure. The only VPN you should encounter is the <a href="https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit">GDS VPN</a> which members of staff use to connect to the corporate network.</p>
+<p>In the past, GOV.UK used VPNs to connect AWS with other service providers:</p>
+<p>1) Between AWS and Carrenza (while infrastructure was migrated)
+2) Between AWS and UK Cloud (to enable networking with Civica Payments, used by GOV.UK Licensing)</p>
+<p>Both of these VPNs have now been retired - any alerts or documentation mentioning these VPNs is out of date.</p>
 
 
   <div class='related-content'>
