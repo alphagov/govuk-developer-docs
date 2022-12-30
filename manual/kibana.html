@@ -234,15 +234,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d2ca26562898beb88d4de1f64877d87d145c6b20">30 Dec 2022</a>
 </div>
 
  <h1 id='header'>Query Kibana (includes useful queries)</h1> <p>All logs for GOV.UK on all environments are collected in Kibana, which you can
@@ -265,6 +258,7 @@ Elasticsearch queries</a>. See an <a href="#example-elasticsearch-query">example
 <p>You can also manage the timeline bar chart at the top fo the view by changing the dropdown above the bar chart from &ldquo;auto&rdquo; to whichever delimitater suits your needs (hourly, daily, weekly etc) and specify the time frame of the bar chart by clicking the time range in the top right-hand corner.</p>
 <h2 id='examples'>Examples</h2><p>You can save and load queries using the buttons in the top right. You may want to use one of the existing queries as a starting point instead of writing a query from scratch.</p>
 <p><a href="images/kibana_saved_searches.png" rel="noopener noreferrer"><img src="/manual/images/kibana_saved_searches.png" alt="Kibana saved searches" /></a></p>
+<p>Every change to the query changes the URL in the browser. This URL is rather long and unfriendly, and often gets mangled by the Slack or Trello parser when trying to share it. Instead, you can generate a &ldquo;short URL&rdquo; by clicking the &ldquo;Share&rdquo; link in the top right, followed by &ldquo;Short URL&rdquo;.</p>
 <h3 id='all-requests-rendered-by-the-content_items-controller-in-government-frontend'>All requests rendered by the content_items controller in government-frontend</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="ss">application: </span><span class="n">government</span><span class="o">-</span><span class="n">frontend</span> <span class="no">AND</span> <span class="ss">tags: </span><span class="n">request</span> <span class="no">AND</span> <span class="ss">controller: </span><span class="n">content_items</span>
 </code></pre></div><h3 id='all-requests-within-the-governmentgroups-path'>All requests within the /government/groups path</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="ss">tags: </span><span class="n">request</span> <span class="no">AND</span> <span class="ss">path: </span><span class="p">\</span><span class="sr">/government\/groups\/*
 </span></code></pre></div><h3 id='5xx-errors-returned-from-cache-layer'>5xx errors returned from cache layer</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">host</span><span class="ss">:cache</span><span class="o">*</span> <span class="no">AND</span> <span class="p">(</span><span class="vi">@fields</span><span class="p">.</span><span class="nf">status</span><span class="p">:[</span><span class="mi">500</span> <span class="no">TO</span> <span class="mi">504</span><span class="p">]</span> <span class="no">OR</span> <span class="n">status</span><span class="p">:[</span><span class="mi">500</span> <span class="no">TO</span> <span class="mi">504</span><span class="p">])</span>
