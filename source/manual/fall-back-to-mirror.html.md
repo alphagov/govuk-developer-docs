@@ -126,4 +126,4 @@ Once Origin becomes available again, update Origin to reflect the change you mad
 [govuk_crawler_worker]: https://github.com/alphagov/govuk_crawler_worker
 [govuk_seed_crawler]: https://github.com/alphagov/govuk_seed_crawler
 [govuk_mirror-puppet]: https://github.com/alphagov/govuk_mirror-puppet
-[gds-vpn]: https://sites.google.com/a/digital.cabinet-office.gov.uk/gds/working-at-the-white-chapel-building/gds-internal-it/how-to/gds-virtual-private-network-vpn
+[gds-vpn]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit
