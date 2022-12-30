@@ -147,7 +147,7 @@ If you're outside of the office or on [GovWiFi](https://sites.google.com/a/digit
 
 ###  For GDS issued MacBooks
 
-Follow the [Cabinet Office guidance on how to sign into the GDS VPN using Google credentials][gds-vpn-wiki].
+Follow the [GDS guidance on how to sign into the GDS VPN using Google credentials][gds-vpn-wiki].
 
 ###  For Bring Your Own Devices (BYOD)
 

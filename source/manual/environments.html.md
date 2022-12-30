@@ -25,8 +25,6 @@ functionality as part of the publishing platform.
 
 Integration is hosted on [AWS][govuk-in-aws].
 
-[govuk-in-aws]: /manual/govuk-in-aws.html
-
 ## Staging
 
 Used by GOV.UK product teams while deploying changes to ensure that they behave correctly
@@ -36,7 +34,7 @@ so that we're able to test things like the performance impact of changes.
 Staging is hosted on [AWS][govuk-in-aws].
 
 Access to Staging is restricted to office IPs, so you'll need to [be
-on the VPN](/manual/get-started.html#4-connecting-to-the-gds-vpn).
+on the VPN][gds-vpn].
 AWS configuration can be found in
 [govuk-aws-data](https://github.com/alphagov/govuk-aws/blob/master/terraform/projects/infra-security-groups/cache.tf).
 
@@ -45,3 +43,6 @@ AWS configuration can be found in
 The thing that runs the website for real people.
 
 Production is hosted on [AWS][govuk-in-aws].
+
+[gds-vpn]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit
+[govuk-in-aws]: /manual/govuk-in-aws.html
