@@ -13,8 +13,8 @@ As of 2023 GOV.UK does not currently use VPNs within its infrastructure. The onl
 
 In the past, GOV.UK used VPNs to connect AWS with other service providers:
 
-1) Between AWS and Carrenza (while infrastructure was migrated)
-2) Between AWS and UK Cloud (to enable networking with Civica Payments, used by GOV.UK Licensing)
+1. Between AWS and Carrenza (while infrastructure was migrated)
+2. Between AWS and UK Cloud (to enable networking with Civica Payments, used by GOV.UK Licensing)
 
 Both of these VPNs have now been retired - any alerts or documentation mentioning these VPNs is out of date.
 
