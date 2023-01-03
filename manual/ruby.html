@@ -199,7 +199,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e830e7a444b3064d57225e36003d0c188fff28e3">23 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bd6c66401cedf3f0b230741c9a638a47148d2a0b">3 Jan 2023</a>
 </div>
 
  <h1 id='header'>Add a new Ruby version</h1> <p>The <a href="https://www.ruby-lang.org/en/">Ruby language</a> is a core part of GOV.UK - most of our applications are written in it.</p>
@@ -232,7 +232,7 @@ so it might take time for the package to become available.</p>
 then <code>govuk_puppet --test</code>. You should see a successful Ruby install as part of the Puppet run.</p>
 <p>You&rsquo;ll need to do that on <code>jenkins</code> (and, if impatient, each of the <code>ci_agent</code> machines) first to get the PR&rsquo;s tests passing,
 and then on the respective machine that your app will run on (e.g. <code>backend</code>).</p>
-<h3 id='update-ruby-version-in-the-relevant-repos'>Update Ruby version in the relevant repos</h3><p>We use <a href="https://github.com/alphagov/upgrade-ruby-version">upgrade-ruby-version</a> to automatically raise pull requests in GOV.UK repositories to update Ruby applications. Please note, we manage the <a href="/manual/publishing-a-ruby-gem.html#ruby-version-compatibility">Ruby version in gems</a> differently to applications.</p>
+<h3 id='update-ruby-version-in-the-relevant-repos'>Update Ruby version in the relevant repos</h3><p>We use <a href="https://github.com/alphagov/bulk-changer">bulk-changer</a> to automatically raise pull requests in GOV.UK repositories to update Ruby applications. Please note, we manage the <a href="/manual/publishing-a-ruby-gem.html#ruby-version-compatibility">Ruby version in gems</a> differently to applications.</p>
 <p>It&rsquo;s advised not to use your personal GitHub account to create the access token required by the script, as another developer will need to approve the PRs. You can use <a href="https://github.com/govuk-ci">govuk-ci GitHub account</a>. The login credentials for the account can be fetched from <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> with:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass github/govuk-ci
 </code></pre></div><p>Once the PRs are raised, you should test the changes before merge, as follows:</p>
