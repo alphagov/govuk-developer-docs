@@ -28,9 +28,9 @@ SSH into the machine in question, and run the following command, replacing 'inte
 $ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' status
 ```
 
-If a lock is in place, it will detail which machine holds the lock.
+If a lock is in place, it will detail which machine holds the lock. If you want to check which machine created the lock, you can [search for it in AWS](/find-an-instance-in-aws). If the machine doesn't exist, it may have been terminated before it could release the locks. The locking machine is almost always a docker_management machine, so [rebooting the docker management machine](#rebooting-docker_management-machines) will cause it to refresh and clear out-of-date locks. If the docker-management machine needs rebooting anyway, you should try this first.
 
-You can remove it with:
+If you need to manually remove the lock, you can remove it with:
 
 ```
 $ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' unlock '<machine-name>'
