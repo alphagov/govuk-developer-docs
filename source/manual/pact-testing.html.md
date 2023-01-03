@@ -7,7 +7,14 @@ layout: manual_layout
 parent: "/manual.html"
 ---
 
-[Pact](https://docs.pact.io/) is a tool we use for *contract testing*. Contract testing involves creating a set of tests that are shared between an API (the "provider") and its users ("consumers") using some kind of "broker". For example, the Publishing API has a "pact" or "contract" with GDS API Adapters:
+[Pact](https://docs.pact.io/) is a tool we use for *contract testing*. Contract testing involves creating a set of tests that are shared between an API (the "provider") and its users ("consumers"). Contract tests allow consumers to define a contract that it expects its provider to uphold. This means that a consumer can specify what response (both status code and body) they expect from a provider given a certain http call.
+This is useful to ensure that changes to the provider do not break the interaction between it and its consumers.
+
+For example, a consumer might expect a certain field to be returned in a json response from a provider, and use that field in its application code. Without pact tests, we might be able to remove that field from the provider's response without knowing that it is a breaking change. Good pact tests will prevent such breaking changes from being made.
+
+Since in tests we do not want to spin up both apps to test the interactions, pact provides us with a "broker" which deals with the interactions between the two apps in test.
+
+For example, the Imminence API has a "pact" or "contract" with GDS API Adapters:
 
 - the expected interactions are defined in [imminence_api_pact_test.rb in GDS API Adapters](https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/imminence_api_pact_test.rb)
 - when these tests are run they output a JSON pactfile which is published to [our pact broker](https://github.com/alphagov/govuk-pact-broker) ([live site](https://pact-broker.cloudapps.digital/))
@@ -80,8 +87,9 @@ Follow these steps in order to change the provider and consumer in tandem.
 1. Make the change to the API (your provider, e.g. Imminence), in a branch.
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the consumer.
 
-1. Make the change to the pactfile in the consumer (e.g. GDS API Adapters), in a branch.
+1. Make the change to the pactfile in the consumer (see 'Where to define the consumer tests' below) in a branch.
   - Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.
+
 1. Confirm locally that the provider can verify against the published consumer pact
   - `env PACT_CONSUMER_VERSION=branch-<branch-of-gds-api-adapters> bundle exec rake pact:verify`
 
@@ -93,8 +101,11 @@ Follow these steps in order to change the provider and consumer in tandem.
 
 1. Merge the consumer change
 
-## Special cases
+## Where to define the consumer tests
 
-Publishing API and Content Store have a direct pact, with [Publishing API acting as the consumer](https://github.com/alphagov/publishing-api/tree/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/pacts/content_store) and [Content Store acting as the provider](https://github.com/alphagov/content-store/blob/de729dfe12e6e9da4a27a52259f59b9051e4da27/spec/service_consumers/pact_helper.rb#L32). This can be confusing as [Publishing API is also a provider for GDS API Adapters](https://github.com/alphagov/publishing-api/blob/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/service_consumers/pact_helper.rb#L20).
+As is noted above, GDS API Adapters is often used as the consumer for pact tests. This is because many api calls made within our system are made
+via GDS API Adapters. Therefore treating GDS API Adapters as the consumer saves us from needing to write pact tests for the same api call in multiple
+different applications.
 
-The tests are run in the same way as other consumers and providers (see above).
+When an application calls an API directly, not via GDS API Adapters, this application will be the consumer. For example, Publishing API
+is the consumer in the pact tests between it and Content Store, since it makes [direct calls to Content store](https://github.com/alphagov/publishing-api/blob/main/app/adapters/content_store.rb).
