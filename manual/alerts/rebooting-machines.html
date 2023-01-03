@@ -222,7 +222,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/253f7184d52c5b6d48070c7436cbe94ed3a9775b">22 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/32479971758ebf0113922f0ef71c8cc770ec8ed9">28 Nov 2022</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances, most machines reboot automatically when an update is required. Some machines need to be rebooted manually.</p>
@@ -234,8 +234,8 @@ ensure that systems are available. It is possible that a problem could occur
 where they can&rsquo;t reboot automatically.</p>
 <p>SSH into the machine in question, and run the following command, replacing &lsquo;integration&rsquo; with whatever environment the machine is running in:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' status
-</code></pre></div><p>If a lock is in place, it will detail which machine holds the lock.</p>
-<p>You can remove it with:</p>
+</code></pre></div><p>If a lock is in place, it will detail which machine holds the lock. If you want to check which machine created the lock, you can <a href="/find-an-instance-in-aws">search for it in AWS</a>. If the machine doesn&rsquo;t exist, it may have been terminated before it could release the locks. The locking machine is almost always a docker_management machine, so <a href="#rebooting-docker_management-machines">rebooting the docker management machine</a> will cause it to refresh and clear out-of-date locks. If the docker-management machine needs rebooting anyway, you should try this first.</p>
+<p>If you need to manually remove the lock, you can remove it with:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ /usr/bin/locksmithctl -endpoint='http://etcd.integration.govuk-internal.digital:2379' unlock '&lt;machine-name&gt;'
 </code></pre></div><p>Machines that are safe to reboot should then do so at the scheduled time.</p>
 <h2 id='manual-rebooting'>Manual rebooting</h2><p>You can manually reboot virtual machines. You should follow these general rules:</p>
