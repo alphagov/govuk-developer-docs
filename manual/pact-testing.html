@@ -146,7 +146,7 @@
         <a href="#changing-existing-pact-tests"><span>Changing existing Pact tests</span></a>
       </li>
       <li>
-        <a href="#special-cases"><span>Special cases</span></a>
+        <a href="#where-to-define-the-consumer-tests"><span>Where to define the consumer tests</span></a>
       </li>
     </ul>
   </li>
@@ -199,10 +199,14 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5e528e3622ad44cf9374ce0c9e52f3c76f4bfab4">5 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a6d5c3b9a385f855ea59569d4243046a9351d599">20 Dec 2022</a>
 </div>
 
- <h1 id='header'>Pact Testing</h1> <p><a href="https://docs.pact.io/">Pact</a> is a tool we use for <em>contract testing</em>. Contract testing involves creating a set of tests that are shared between an API (the &ldquo;provider&rdquo;) and its users (&ldquo;consumers&rdquo;) using some kind of &ldquo;broker&rdquo;. For example, the Publishing API has a &ldquo;pact&rdquo; or &ldquo;contract&rdquo; with GDS API Adapters:</p>
+ <h1 id='header'>Pact Testing</h1> <p><a href="https://docs.pact.io/">Pact</a> is a tool we use for <em>contract testing</em>. Contract testing involves creating a set of tests that are shared between an API (the &ldquo;provider&rdquo;) and its users (&ldquo;consumers&rdquo;). Contract tests allow consumers to define a contract that it expects its provider to uphold. This means that a consumer can specify what response (both status code and body) they expect from a provider given a certain http call.
+This is useful to ensure that changes to the provider do not break the interaction between it and its consumers.</p>
+<p>For example, a consumer might expect a certain field to be returned in a json response from a provider, and use that field in its application code. Without pact tests, we might be able to remove that field from the provider&rsquo;s response without knowing that it is a breaking change. Good pact tests will prevent such breaking changes from being made.</p>
+<p>Since in tests we do not want to spin up both apps to test the interactions, pact provides us with a &ldquo;broker&rdquo; which deals with the interactions between the two apps in test.</p>
+<p>For example, the Imminence API has a &ldquo;pact&rdquo; or &ldquo;contract&rdquo; with GDS API Adapters:</p>
 
 <ul>
 <li>the expected interactions are defined in <a href="https://github.com/alphagov/gds-api-adapters/blob/main/test/pacts/imminence_api_pact_test.rb">imminence_api_pact_test.rb in GDS API Adapters</a></li>
@@ -259,7 +263,7 @@
 <ul>
 <li>Its build should fail at the Pact test stage, because it is testing against the default branch of the consumer.</li>
 </ul></li>
-<li><p>Make the change to the pactfile in the consumer (e.g. GDS API Adapters), in a branch.</p>
+<li><p>Make the change to the pactfile in the consumer (see &lsquo;Where to define the consumer tests&rsquo; below) in a branch.</p>
 
 <ul>
 <li>Its build should fail at the Pact test stage, because it is testing against the default branch of the provider.</li>
@@ -281,8 +285,11 @@
 </ul></li>
 <li><p>Merge the consumer change</p></li>
 </ol>
-<h2 id='special-cases'>Special cases</h2><p>Publishing API and Content Store have a direct pact, with <a href="https://github.com/alphagov/publishing-api/tree/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/pacts/content_store">Publishing API acting as the consumer</a> and <a href="https://github.com/alphagov/content-store/blob/de729dfe12e6e9da4a27a52259f59b9051e4da27/spec/service_consumers/pact_helper.rb#L32">Content Store acting as the provider</a>. This can be confusing as <a href="https://github.com/alphagov/publishing-api/blob/dd8dd9232d3cbf33b8945fdd898ebe80d7dcfcf6/spec/service_consumers/pact_helper.rb#L20">Publishing API is also a provider for GDS API Adapters</a>.</p>
-<p>The tests are run in the same way as other consumers and providers (see above).</p>
+<h2 id='where-to-define-the-consumer-tests'>Where to define the consumer tests</h2><p>As is noted above, GDS API Adapters is often used as the consumer for pact tests. This is because many api calls made within our system are made
+via GDS API Adapters. Therefore treating GDS API Adapters as the consumer saves us from needing to write pact tests for the same api call in multiple
+different applications.</p>
+<p>When an application calls an API directly, not via GDS API Adapters, this application will be the consumer. For example, Publishing API
+is the consumer in the pact tests between it and Content Store, since it makes <a href="https://github.com/alphagov/publishing-api/blob/main/app/adapters/content_store.rb">direct calls to Content store</a>.</p>
 
 
   <div class='related-content'>
