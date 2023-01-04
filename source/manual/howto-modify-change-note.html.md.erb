@@ -19,6 +19,18 @@ Content 2nd Line can modify the change note themselves by:
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/publications/1389309/change_notes` won't work, but
   `https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/1389309/change_notes` will.
 
+Note that _adding_ a change note is not supported in the UI. Instead, you'd need to use the app console and do something like:
+
+```
+ed = Edition.where(id: <relevant id>).first
+ed.state = "draft"
+ed.save
+ed.update(minor_change: false, change_note: "Change note", major_change_published_at: Time.new(2022,12,21))
+ed.save
+ed.state = "published"
+ed.save
+```
+
 ## Content Publisher
 
 Content Publisher has a [set of rake tasks](https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake) for adding, deleting and editing change notes.
