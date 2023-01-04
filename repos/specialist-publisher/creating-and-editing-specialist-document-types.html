@@ -204,7 +204,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/57cb375406714808aa426b7ead375edd06c04077">1 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/specialist-publisher/commit/67091357608766f6de2b536ca2b8c1b4ef22f2f8">3 Jan 2023</a>
 </div>
 
   <h1 class="page-title">specialist-publisher: Creating or editing specialist document types</h1>
@@ -319,7 +319,7 @@ irb(main):002:0&gt; SecureRandom.uuid
 <ol>
 <li>In govuk-content-schemas, find the field you are amending in the <a href="https://github.com/alphagov/govuk-content-schemas/blob/main/formats/shared/definitions/_specialist_document.jsonnet">specialist_document schema</a>, and add the new values. See <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/b81ec718f52b1e6603c201c44db07f0357158723">this</a> commit for an example.</li>
 </ol>
-<p>NOTE: You will need to run <code>bundle exec rake build</code> to regenerate schemas after adding the new value(s) - as is done in <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/34dd343fd7de8eb48bb842c2fc7fe3c59ae77168">this commit</a>.</p>
+<p>NOTE: You will need to run <code>bundle exec rake build_schemas</code> to regenerate schemas after adding the new value(s) - as is done in <a href="https://github.com/alphagov/govuk-content-schemas/pull/1066/commits/34dd343fd7de8eb48bb842c2fc7fe3c59ae77168">this commit</a>.</p>
 <p>Once approved, this change can be merged and deployed.</p>
 <ol start="2">
 <li>
