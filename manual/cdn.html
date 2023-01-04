@@ -157,6 +157,9 @@
         <a href="#banning-ip-addresses-at-the-cdn-edge"><span>Banning IP addresses at the CDN edge</span></a>
       </li>
       <li>
+        <a href="#banning-requests-based-on-their-ja3-signature-at-the-cdn-edge"><span>Banning requests based on their JA3 signature, at the CDN edge</span></a>
+      </li>
+      <li>
         <a href="#blocking-problematic-traffic-at-the-cdn-edge"><span>Blocking problematic traffic at the CDN edge</span></a>
       </li>
       <li>
@@ -217,15 +220,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/65476fa849c3b08d7e7c53acc809f7eb472389ae">3 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9b79987fcdcf08b4a4c4c98bbaf655033a70c006">4 Jan 2023</a>
 </div>
 
  <h1 id='header'>Our content delivery network (CDN)</h1> <p>GOV.UK uses Fastly as a CDN. Public users aren&rsquo;t accessing GOV.UK servers directly, they connect via the CDN. This is better because:</p>
@@ -304,7 +300,12 @@ Once you&rsquo;ve run the job successfully, you can delete the token.</p>
 </ul>
 <p>Banning IPs shouldn&rsquo;t be taken lightly because many users can share the same IP address and the user behind an IP address can change over time, so there&rsquo;s always a chance that we may block legitimate users.</p>
 <p>You can change the list of banned IP addresses by modifying the <a href="https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_denylist.yaml">YAML config file</a> and <a href="https://deploy.blue.production.govuk.digital/job/Update_CDN_Dictionaries/build">deploying the configuration</a>.</p>
-<h2 id='blocking-problematic-traffic-at-the-cdn-edge'>Blocking problematic traffic at the CDN edge</h2><p>As well as blocking based on source IP address, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.</p>
+<h2 id='banning-requests-based-on-their-ja3-signature-at-the-cdn-edge'>Banning requests based on their JA3 signature, at the CDN edge</h2><p><a href="https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/">JA3 is a way of fingerprinting TLS connections</a>, which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware).</p>
+<p>Much like the IP addresses logic above, we&rsquo;re able to block traffic based on its JA3 signature. To do this:</p>
+<p>1) Update the <a href="https://github.com/alphagov/govuk-cdn-config-secrets/blob/main/fastly/dictionaries/config/ja3_signature_denylist.yaml">JA3 signature denylist dictionary</a>
+2) <a href="https://deploy.blue.production.govuk.digital/job/Update_CDN_Dictionaries/build">Deploy the dictionary</a> to the <code>www</code> and <code>assets</code> services.</p>
+<p>Note that banning JA3s is potentially risky. If we get it wrong, we could ban a legitimate browser version.</p>
+<h2 id='blocking-problematic-traffic-at-the-cdn-edge'>Blocking problematic traffic at the CDN edge</h2><p>As well as blocking based on source IP address or JA3 fingerprint, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.</p>
 <p>We have a mechanism for including VCL code from the private <code>govuk-cdn-config-secrets</code> repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this is <a href="https://github.com/alphagov/govuk-cdn-config-secrets/pull/133/files">alphagov/govuk-cdn-secrets#133</a>.</p>
 <h2 id='bouncer39s-fastly-service'>Bouncer&rsquo;s Fastly service</h2><p>A Fastly CDN service can normally handle up to 1000 domains - this limit is currently undocumented.</p>
 <p>We have asked them to increase this limit for Bouncer&rsquo;s service a few times as the number of domains it handled grew, and the limit is <a href="https://fastly.zendesk.com/requests/7356">currently 3500</a>. We have <a href="https://transition.publishing.service.gov.uk/hosts">about 2000 domains</a> so shouldn&rsquo;t need to increase it again for a while.</p>
