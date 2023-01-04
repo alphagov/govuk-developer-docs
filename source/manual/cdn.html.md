@@ -130,14 +130,24 @@ We occasionally decide to ban an IP address at our CDN edge if they exhibit the 
 
 Banning IPs shouldn't be taken lightly because many users can share the same IP address and the user behind an IP address can change over time, so there's always a chance that we may block legitimate users.
 
-You can change the list of banned IP addresses by modifying the [YAML config file][ip_ban_config] and [deploying the configuration][ip_ban_deploy].
+You can change the list of banned IP addresses by modifying the [YAML config file][ip_ban_config] and [deploying the configuration][dictionary_deploy].
 
 [ip_ban_config]: https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_denylist.yaml
-[ip_ban_deploy]: https://deploy.blue.production.govuk.digital/job/Update_CDN_Dictionaries/build
+
+## Banning requests based on their JA3 signature, at the CDN edge
+
+[JA3 is a way of fingerprinting TLS connections](https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/), which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware).
+
+Much like the IP addresses logic above, we're able to block traffic based on its JA3 signature. To do this:
+
+1) Update the [JA3 signature denylist dictionary](https://github.com/alphagov/govuk-cdn-config-secrets/blob/main/fastly/dictionaries/config/ja3_signature_denylist.yaml)
+2) [Deploy the dictionary][dictionary_deploy] to the `www` and `assets` services.
+
+Note that banning JA3s is potentially risky. If we get it wrong, we could ban a legitimate browser version.
 
 ## Blocking problematic traffic at the CDN edge
 
-As well as blocking based on source IP address, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.
+As well as blocking based on source IP address or JA3 fingerprint, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.
 
 We have a mechanism for including VCL code from the private `govuk-cdn-config-secrets` repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this is [alphagov/govuk-cdn-secrets#133](https://github.com/alphagov/govuk-cdn-config-secrets/pull/133/files).
 
@@ -168,3 +178,5 @@ They have created a map which we access using `bouncer-cdn.production.govuk.serv
 - `151.101.194.30`
 
 Domains do not need to be added to the "Production Bouncer" Fastly service like they used to be.
+
+[dictionary_deploy]: https://deploy.blue.production.govuk.digital/job/Update_CDN_Dictionaries/build
