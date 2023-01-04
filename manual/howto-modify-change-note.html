@@ -199,7 +199,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/55454b86d1b8f523026599d4698b8de0c6dcfe5d">15 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/07c5e4b93f9190e38d0dc8cbb74912b7618063d7">4 Jan 2023</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API, Content Publisher or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.</p>
@@ -213,7 +213,15 @@ Content 2nd Line can modify the change note themselves by:</p>
 <code>https://whitehall-admin.publishing.service.gov.uk/government/admin/publications/1389309/change_notes</code> won&rsquo;t work, but
 <code>https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/1389309/change_notes</code> will.</li>
 </ul>
-<h2 id='content-publisher'>Content Publisher</h2><p>Content Publisher has a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake">set of rake tasks</a> for adding, deleting and editing change notes.</p>
+<p>Note that <em>adding</em> a change note is not supported in the UI. Instead, you&rsquo;d need to use the app console and do something like:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>ed = Edition.where(id: &lt;relevant id&gt;).first
+ed.state = "draft"
+ed.save
+ed.update(minor_change: false, change_note: "Change note", major_change_published_at: Time.new(2022,12,21))
+ed.save
+ed.state = "published"
+ed.save
+</code></pre></div><h2 id='content-publisher'>Content Publisher</h2><p>Content Publisher has a <a href="https://github.com/alphagov/content-publisher/blob/main/lib/tasks/change_history.rake">set of rake tasks</a> for adding, deleting and editing change notes.</p>
 <h2 id='publishing-api'>Publishing API</h2><p>Updating change notes in Publishing API is rarely adviseable and should ONLY be done if unable to do so from the corresponding publishing app. This is to mitigate the risk of Publishing API being overwritten by the publishing app later on. Thoroughly explore your publishing app first, to see if such functionality exists (we&rsquo;ve documented Whitehall and Content Publisher above), and if it doesn&rsquo;t, consider building the feature in! However, in an emergency, you can edit the changenote directly in Publishing API.</p>
 
 <ol>
