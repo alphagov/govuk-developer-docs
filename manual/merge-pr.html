@@ -213,15 +213,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4e6d86c5bab29e495cf310965856053f5371cc13">24 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9aada8e0e19fdf761e29a49a530ec2c255c37f3c">14 Dec 2022</a>
 </div>
 
  <h1 id='header'>Merge a Pull Request</h1> <p>There are five rules for reviewing and merging PRs, which apply to all applications:</p>
@@ -244,15 +237,18 @@
 <p>When reviewing these PRs, you should not expect them to be at the same commit structure standard as we&rsquo;d expect of developers. Changes are often made individually through the GitHub UI, which tends to lead to PRs with lots of commits, each changing a single file at a time.</p>
 <p>A verbose commit structure isn&rsquo;t itself a problem, and can be merged as-is if you do not think it would be difficult to unpick later on. However, if it makes sense to do so, consider using the &ldquo;Squash and merge&rdquo; feature on GitHub (you&rsquo;ll be asked to specify one overall commit message before merging), or rebase the commits yourself for more control.</p>
 <h3 id='a-change-from-an-external-contributor'>A change from an external contributor</h3><p>We occasionally receive PRs from external contributors who use our code. These will come from forks of the main repository. Our test suite will not run automatically against these PRs.</p>
-<p>First, review the code carefully for anything that might be malicious and damaging if run inside our infrastructure. Once you&rsquo;re satisfied, follow the instructions below to pull the forked branch locally, then push it to origin. This will cause the test suite to run with the original commits, which will cause GitHub to green light the original PR. Two people from GDS should review this PR. The first reviewer should approve the PR, and the second reviewer should merge.</p>
-<p>You should also thank the contributor with an amount of emoji proportional to the time they&rsquo;re saving GDS developers.</p>
-<p>Finally, clean up by deleting the branch you created.</p>
+<p>First, review the code carefully for anything that might be malicious and damaging if run inside our infrastructure. Once you&rsquo;re satisfied, follow the instructions below to pull the forked branch locally, then push it to origin.</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>brew <span class="nb">install </span>hub
+
+<span class="c"># You will need GITHUB_TOKEN set in your environment for the next command</span>
 
 hub <span class="nb">pr </span>checkout &lt;PR-NUMBER&gt;
 
 git push <span class="nt">--set-upstream</span> origin &lt;BRANCH-NAME&gt;
-</code></pre></div><p>where <code>&lt;BRANCH-NAME&gt;</code> is the name of the branch that&rsquo;s checked out.</p>
+</code></pre></div><p>(where <code>&lt;BRANCH-NAME&gt;</code> is the name of the branch that&rsquo;s checked out.)</p>
+<p>This will cause the test suite to run with the original commits, which will cause GitHub to green light the original PR. Two people from GDS should review this PR. The first reviewer should approve the PR, and the second reviewer should merge.</p>
+<p>You should also thank the contributor with an amount of emoji proportional to the time they&rsquo;re saving GDS developers.</p>
+<p>Finally, clean up by deleting the branch you created.</p>
 <h4 id='dependabot'>Dependabot</h4><p>As Dependabot changes the Gemfile/Gemfile.lock, or some other package
 management related manifests in the repository, when reviewing the
 diff, you should especially check if this is the case. Dependabot
