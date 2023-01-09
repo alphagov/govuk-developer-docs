@@ -160,8 +160,6 @@ Before rebooting, post a message in the `#govuk-2ndline-tech` channel in case an
 at the alerts.
 
 SSH into the machine and run `sudo reboot`. The Icinga alerts will be temporarily unavailable.
-Whilst the machine is coming back up this will trigger a number of smokey loop errors which
-will resolve themselves in half an hour.
 
 ### Rebooting `rabbitmq` machines
 
