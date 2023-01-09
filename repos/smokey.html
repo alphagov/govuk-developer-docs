@@ -220,15 +220,14 @@
 
 <p>A suite of <a href="https://cucumber.io/">Cucumber</a> tests that probe GOV.UK frontend and backend publishing functionality. The tests <a href="https://github.com/alphagov/smokey/blob/main/features/support/env.rb">use Selenium to manipulate a headless Chrome browser</a>.</p>
 
-<p>The tests are run in two different ways:</p>
+<p>The tests are run via a Jenkins job in each environment (e.g. <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Integration</a>).</p>
+
+<p>The job is triggered in multiple ways:</p>
 
 <ul>
-<li>
-<p>On demand, to check if a change breaks something. This is done using the <a href="https://github.com/alphagov/govuk-puppet/blob/b103dd3b4adcc8c39343dd85b68f4f5b93e38d9d/modules/govuk_jenkins/manifests/jobs/smokey.pp">Smokey job in Jenkins</a> when deploying GOV.UK applications, <a href="https://github.com/alphagov/govuk-puppet/blob/27faad21eadd52e8d8b37366eac0d8e1e123adbb/modules/govuk_jenkins/templates/jobs/deploy_puppet.yaml.erb#L44">Puppet</a> and other code, such as <a href="https://github.com/alphagov/govuk-puppet/blob/0e1f84954831188e22a1a76cedc4463318edf1e8/modules/govuk_jenkins/templates/jobs/deploy_cdn.yaml.erb#L49">CDN config</a>.</p>
+<li>Every few minutes <a href="https://github.com/alphagov/govuk-puppet/blob/278426769a1711c622bcb67a59175f73e8f4db61/modules/govuk_jenkins/manifests/jobs/smokey.pp#L24">via cron scheduler</a>
 </li>
-<li>
-<p>Periodically, to check for transient failures e.g. in infrastructure. The tests are run in <a href="https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/templates/smokey-loop.conf">a continuous &ldquo;Smokey Loop&rdquo;</a>, with <a href="https://github.com/alphagov/govuk-puppet/blob/b4db7542789ecff278ae7defc05f7652f7077806/modules/monitoring/manifests/checks/smokey.pp">corresponding alerts in Icinga</a>.</p>
-</li>
+<li>On demand, to check if a change breaks something. This is done when deploying GOV.UK applications, <a href="https://github.com/alphagov/govuk-puppet/blob/27faad21eadd52e8d8b37366eac0d8e1e123adbb/modules/govuk_jenkins/templates/jobs/deploy_puppet.yaml.erb#L44">Puppet</a> and other code, such as <a href="https://github.com/alphagov/govuk-puppet/blob/0e1f84954831188e22a1a76cedc4463318edf1e8/modules/govuk_jenkins/templates/jobs/deploy_cdn.yaml.erb#L49">CDN config</a>.</li>
 </ul>
 
 <p>Each test should check that a critical area of GOV.UK is working as expected. <a href="/repos/smokey/writing-tests.html">Read the guidance on what tests belong here and how to write new ones</a>.</p>

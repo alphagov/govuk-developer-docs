@@ -188,7 +188,7 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/7627789d8259f901eddf89333a2e595a2bc4c921">27 Sep 2022</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/0f59e3e36640ad3de95e6bfab5dc5b01912f54f2">9 Jan 2023</a>
 </div>
 
   <h1 class="page-title">smokey: Deployment</h1>
@@ -204,9 +204,7 @@
 <li>Run a new build of the Smokey project and check the results</li>
 </ul>
 <h2 id="after-you-merge">After you merge</h2>
-<p>The manual <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a> will pick up changes on <code>main</code> automatically and trigger a deploy to all environments.</p>
-<p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/monitoring/templates/smokey-loop.conf">continuous Smokey Loop</a> is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/smokey_deploy.yaml.erb">deployed automatically by Jenkins</a> to all environments when changes are merged.</p>
-<p>If you are adding a new feature file, you need to ensure the feature is <a href="https://github.com/alphagov/govuk-puppet/blob/d7af16e96aed682facb5cf5bc3e3972510c64ca2/hieradata_aws/integration.yaml#L378">listed in the Puppet config for the Smokey Loop</a> in order to alert on a failing scenario in Icinga.</p>
+<p>The manual <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a> (in every Jenkins environment) will pick up changes on <code>main</code> automatically.</p>
 
 
             
