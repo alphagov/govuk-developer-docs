@@ -233,7 +233,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/57f2f4bbb04e833e8d756ed3e6bad7454e8fc7af">9 Jan 2023</a>
 </div>
 
  <h1 id='header'>Architectural deep-dive of GOV.UK</h1> <p>We can cover a lot of GOV.UK architecture by asking ourselves three questions:</p>
@@ -466,8 +466,7 @@ threefold, as they each exist in the following environments:</p>
 24 hours via <a href="https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging/">automated Jenkins jobs</a>. This way our
 environments are always roughly in sync, although it&rsquo;s worth noting that email
 addresses are anonymised and access-limited documents are obfuscated before data is
-copied. The data copying is mostly <a href="/manual/govuk-env-sync.html">configured in govuk-puppet</a>,
-although apps not hosted on AWS are configured in <a href="https://github.com/alphagov/env-sync-and-backup/">env-sync-and-backup</a>.</p>
+copied. The data copying is <a href="/manual/govuk-env-sync.html">configured in govuk-puppet</a>.</p>
 <h3 id='deploying'>Deploying</h3><p>We have detailed docs on <a href="/manual/development-pipeline.html">how to deploy an application</a>. But
 what happens under the hood?</p>
 <p>When a PR is opened against a GOV.UK repository, the corresponding Jenkins job
