@@ -390,11 +390,9 @@ Data is copied from Production to Staging - and from Staging to Integration - ev
 24 hours via [automated Jenkins jobs][copy-data-to-staging]. This way our
 environments are always roughly in sync, although it's worth noting that email
 addresses are anonymised and access-limited documents are obfuscated before data is
-copied. The data copying is mostly [configured in govuk-puppet][govuk-env-sync],
-although apps not hosted on AWS are configured in [env-sync-and-backup].
+copied. The data copying is [configured in govuk-puppet][govuk-env-sync].
 
 [copy-data-to-staging]: https://deploy.publishing.service.gov.uk/job/Copy_Data_to_Staging/
-[env-sync-and-backup]: https://github.com/alphagov/env-sync-and-backup/
 [govuk-env-sync]: /manual/govuk-env-sync.html
 
 ### Deploying
