@@ -201,7 +201,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bc37450ead29ae4ca162c1c12cf44e0adfca9955">2 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7e7df0137d9746a8b5ed9f0f3b93500bd6293c45">9 Jan 2023</a>
 </div>
 
  <h1 id='header'>How we test GOV.UK</h1> <p>GOV.UK has several layers of testing:</p>
@@ -231,7 +231,7 @@
 <p>Smoke tests are meant to be &ldquo;probes&rdquo;: their purpose is to monitor real environments for transient failures. Conversely, a &ldquo;test&rdquo; should be run in a temporary, isolated environment. We use Smokey as a suite of probes and a suite of &ldquo;surrogate&rdquo; end-to-end tests:</p>
 
 <ul>
-<li><p><strong>Probes</strong>. Smokey is run in a loop <a href="https://github.com/alphagov/govuk-puppet/blob/c939308b87d9db1128218c951a8c106038c01f50/hieradata_aws/production.yaml#L475">with an alert for each feature</a>, which should ideally prompt an engineer to go and fix a problem. However, many of the probes are unreliable so they are not currently used to page people.</p></li>
+<li><p><strong>Probes</strong>. A full run of Smokey is triggered <a href="https://github.com/alphagov/govuk-puppet/blob/278426769a1711c622bcb67a59175f73e8f4db61/modules/govuk_jenkins/manifests/jobs/smokey.pp#L24">every few minutes</a> in every environment, causing a Slack alert if it fails. This should prompt an engineer to go and fix a problem. However, many of the probes are unreliable so they are not currently used to page people.</p></li>
 <li><p><strong>Surrogate Tests</strong>. <a href="https://github.com/alphagov/smokey/blob/main/docs/tagging.md#app-app_name">A subset of the probes</a> are run as part of the <a href="https://docs.publishing.service.gov.uk/manual/development-pipeline.html">Continuous Deployment pipeline</a>. These can fail for reasons unrelated to the app being targeted, which is why we consider this a &ldquo;surrogate&rdquo; form of testing.</p></li>
 </ul>
 <p><a href="https://sentry.io/organizations/govuk/issues/?project=6370326">We use Sentry to monitor flakey probes</a> and identify patterns we can fix.</p>

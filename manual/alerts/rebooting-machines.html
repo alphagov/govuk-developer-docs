@@ -222,7 +222,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/32479971758ebf0113922f0ef71c8cc770ec8ed9">28 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7e7df0137d9746a8b5ed9f0f3b93500bd6293c45">9 Jan 2023</a>
 </div>
 
  <h1 id='header'>Reboot a machine</h1> <p>Under normal circumstances, most machines reboot automatically when an update is required. Some machines need to be rebooted manually.</p>
@@ -322,9 +322,7 @@ Check that there are no (important) jobs in progress. When things look free, <co
 <p>To reboot the primary, you&rsquo;ll need to <a href="/manual/mongo-db-commands.html#step-down-the-primary">step the current primary down</a> so that it becomes a secondary machine. You&rsquo;re then free to reboot it as above.</p>
 <h3 id='rebooting-monitoring-machines'>Rebooting <code>monitoring</code> machines</h3><p>Before rebooting, post a message in the <code>#govuk-2ndline-tech</code> channel in case anyone is looking
 at the alerts.</p>
-<p>SSH into the machine and run <code>sudo reboot</code>. The Icinga alerts will be temporarily unavailable.
-Whilst the machine is coming back up this will trigger a number of smokey loop errors which
-will resolve themselves in half an hour.</p>
+<p>SSH into the machine and run <code>sudo reboot</code>. The Icinga alerts will be temporarily unavailable.</p>
 <h3 id='rebooting-rabbitmq-machines'>Rebooting <code>rabbitmq</code> machines</h3><p>There are 3 RabbitMQ virtual machines in a cluster. You reboot one machine at a time. You should only reboot the RabbitMQ machines in-hours.</p>
 
 <ol>
