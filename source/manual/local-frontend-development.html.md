@@ -88,7 +88,7 @@ PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-https://assets.publishing.serv
 Modify it to the following and then run the startup script as normal. The first page may take a few minutes to appear.
 
 ```ruby
-PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-static.dev.gov.uk}
+PLEK_SERVICE_STATIC_URI=${PLEK_SERVICE_STATIC_URI-http://static.dev.gov.uk}
 ```
 
 ## Using a local components gem
