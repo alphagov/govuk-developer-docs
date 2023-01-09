@@ -210,7 +210,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d6e262fe1a1a387cb94f5da8b8e287fe1b45db9c">10 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4c6737a53fda992dc198459bd4b1161661b15b03">9 Jan 2023</a>
 </div>
 
  <h1 id='header'>Local frontend development</h1> <h2 id='running-applications-locally'>Running applications locally</h2><p>There are several ways of running applications locally when developing and you should choose the option that works best for your situation. For frontend developers, the following is recommended.</p>
@@ -257,7 +257,7 @@ govuk-docker-up app-live
 <p>Next, modify your application&rsquo;s <code>startup.sh</code> script to point to this local static. Find the equivalent of the following line:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">PLEK_SERVICE_STATIC_URI</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="no">PLEK_SERVICE_STATIC_URI</span><span class="o">-</span><span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">assets</span><span class="p">.</span><span class="nf">publishing</span><span class="p">.</span><span class="nf">service</span><span class="p">.</span><span class="nf">gov</span><span class="p">.</span><span class="nf">uk</span><span class="p">}</span>
 </code></pre></div><p>Modify it to the following and then run the startup script as normal. The first page may take a few minutes to appear.</p>
-<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">PLEK_SERVICE_STATIC_URI</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="no">PLEK_SERVICE_STATIC_URI</span><span class="o">-</span><span class="n">static</span><span class="p">.</span><span class="nf">dev</span><span class="p">.</span><span class="nf">gov</span><span class="p">.</span><span class="nf">uk</span><span class="p">}</span>
+<div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">PLEK_SERVICE_STATIC_URI</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="no">PLEK_SERVICE_STATIC_URI</span><span class="o">-</span><span class="n">http</span><span class="ss">:/</span><span class="o">/</span><span class="n">static</span><span class="p">.</span><span class="nf">dev</span><span class="p">.</span><span class="nf">gov</span><span class="p">.</span><span class="nf">uk</span><span class="p">}</span>
 </code></pre></div><h2 id='using-a-local-components-gem'>Using a local components gem</h2><p>If you want to test changes in <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a> against a frontend app, you need to edit your frontend app Gemfile first:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">gem</span> <span class="s1">'govuk_publishing_components'</span><span class="p">,</span> <span class="ss">path: </span><span class="s1">'../govuk_publishing_components'</span>
 </code></pre></div><p>To make this change take effect when using govuk-docker, do the following.</p>
