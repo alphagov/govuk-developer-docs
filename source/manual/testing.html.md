@@ -33,7 +33,7 @@ This manual is about how we currently test GOV.UK. We will never have "perfect" 
 
 Smoke tests are meant to be "probes": their purpose is to monitor real environments for transient failures. Conversely, a "test" should be run in a temporary, isolated environment. We use Smokey as a suite of probes and a suite of "surrogate" end-to-end tests:
 
-- **Probes**. Smokey is run in a loop [with an alert for each feature](https://github.com/alphagov/govuk-puppet/blob/c939308b87d9db1128218c951a8c106038c01f50/hieradata_aws/production.yaml#L475), which should ideally prompt an engineer to go and fix a problem. However, many of the probes are unreliable so they are not currently used to page people.
+- **Probes**. A full run of Smokey is triggered [every few minutes](https://github.com/alphagov/govuk-puppet/blob/278426769a1711c622bcb67a59175f73e8f4db61/modules/govuk_jenkins/manifests/jobs/smokey.pp#L24) in every environment, causing a Slack alert if it fails. This should prompt an engineer to go and fix a problem. However, many of the probes are unreliable so they are not currently used to page people.
 
 - **Surrogate Tests**. [A subset of the probes](https://github.com/alphagov/smokey/blob/main/docs/tagging.md#app-app_name) are run as part of the [Continuous Deployment pipeline](https://docs.publishing.service.gov.uk/manual/development-pipeline.html). These can fail for reasons unrelated to the app being targeted, which is why we consider this a "surrogate" form of testing.
 
