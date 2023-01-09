@@ -14,7 +14,7 @@ RSpec.describe CommitHelpers do
       repo_name = "some-repo"
       commit_sha = SecureRandom.hex(40)
       current_page = OpenStruct.new(data: OpenStruct.new(
-        repo_name: repo_name,
+        repo_name:,
         latest_commit: {
           sha: commit_sha,
         },

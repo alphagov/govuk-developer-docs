@@ -35,7 +35,7 @@ RSpec.describe ExternalDoc do
         Capybara.string(described_class.parse(
           File.read("spec/fixtures/markdown.md"),
           repository: "lipsum",
-          path: path,
+          path:,
         ).to_s)
       end
 

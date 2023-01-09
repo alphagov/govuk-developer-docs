@@ -8,15 +8,15 @@ class Repo
   def api_payload
     {
       app_name: repo_name, # beware renaming the key - it's used here: https://github.com/alphagov/govuk-dependencies/blob/b3a2a29eb80aefa08098a08633b4a08b05bcc527/lib/gateways/team.rb#L15
-      team: team,
-      dependencies_team: dependencies_team,
-      puppet_name: puppet_name,
-      production_hosted_on: production_hosted_on,
+      team:,
+      dependencies_team:,
+      puppet_name:,
+      production_hosted_on:,
       links: {
         self: "https://docs.publishing.service.gov.uk/repos/#{repo_name}.json",
-        html_url: html_url,
-        repo_url: repo_url,
-        sentry_url: sentry_url,
+        html_url:,
+        repo_url:,
+        sentry_url:,
       },
     }
   end

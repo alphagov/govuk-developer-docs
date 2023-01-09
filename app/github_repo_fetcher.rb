@@ -55,7 +55,7 @@ private
   end
 
   def latest_commit(repo_name, path)
-    latest_commit = client.commits("alphagov/#{repo_name}", repo(repo_name).default_branch, path: path).first
+    latest_commit = client.commits("alphagov/#{repo_name}", repo(repo_name).default_branch, path:).first
     {
       sha: latest_commit.sha,
       timestamp: latest_commit.commit.author.date,
@@ -63,7 +63,7 @@ private
   end
 
   def recursively_fetch_files(repo_name, path)
-    docs = client.contents("alphagov/#{repo_name}", path: path)
+    docs = client.contents("alphagov/#{repo_name}", path:)
     top_level_files = docs.select { |doc| doc.path.end_with?(".md") }.map do |doc|
       data_for_github_doc(doc, repo_name)
     end

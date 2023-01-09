@@ -1,10 +1,7 @@
 Dir.glob("source/manual/**/*.md").each do |filename|
   RSpec.describe filename do
     raw = File.read(filename)
-    # rubocop:disable Security/YAMLLoad
     frontmatter = YAML.load(raw.split("---")[1])
-    # rubocop:enable Security/YAMLLoad
-
     it "uses the correct spelling of GOV.UK" do
       expect(raw).not_to match "Gov.uk"
     end
