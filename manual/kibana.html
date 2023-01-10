@@ -150,6 +150,9 @@
             <a href="#syslog-logs"><span>Syslog logs</span></a>
           </li>
           <li>
+            <a href="#syslog-logs-on-a-specific-machine"><span>Syslog logs on a specific machine</span></a>
+          </li>
+          <li>
             <a href="#syslog-logs-filtered-by-program"><span>Syslog logs filtered by program</span></a>
           </li>
           <li>
@@ -235,7 +238,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d2ca26562898beb88d4de1f64877d87d145c6b20">30 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ac8f6ccc297e47490aac7f7f9da94b6154e85aac">10 Jan 2023</a>
 </div>
 
  <h1 id='header'>Query Kibana (includes useful queries)</h1> <p>All logs for GOV.UK on all environments are collected in Kibana, which you can
@@ -271,6 +274,7 @@ Elasticsearch queries</a>. See an <a href="#example-elasticsearch-query">example
 <span class="c1"># master only</span>
 <span class="n">syslog_program</span><span class="ss">:"puppet-master"</span>
 </code></pre></div><h3 id='syslog-logs'>Syslog logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span>
+</code></pre></div><h3 id='syslog-logs-on-a-specific-machine'>Syslog logs on a specific machine</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">source</span><span class="ss">:"/var/log/syslog"</span> <span class="no">AND</span> <span class="n">beat</span><span class="p">.</span><span class="nf">hostname</span><span class="ss">:"ip-10-13-5-15"</span>
 </code></pre></div><h3 id='syslog-logs-filtered-by-program'>Syslog logs filtered by program</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">application</span><span class="ss">:"syslog"</span> <span class="no">AND</span> <span class="n">syslog_program</span><span class="ss">:"rsync"</span>
 </code></pre></div><h3 id='nginx-logs'>Nginx logs</h3><div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="n">tags</span><span class="ss">:"nginx"</span>
 </code></pre></div><p>Nginx logs for frontend:</p>
