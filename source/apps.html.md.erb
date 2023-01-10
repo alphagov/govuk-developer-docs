@@ -35,8 +35,8 @@ Apps can be loosely grouped into different types, including:
 
 | Hosting | Count | Applications |
 | --- | --- | --- |
-<% Hosts::hosters_descending(Repos.active_apps).each do |id, label:, apps:| %>
-| # <%= label %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
+<% Repos.active_apps.group_by(&:hosting_name).sort.each do |name, apps| %>
+| # <%= name %> | <%= apps.count %> | <%= apps.map { |app| "[#{app.repo_name}](/repos/#{app.repo_name}.html)" }.join(", ") %> |
 <% end %>
 
 ## Reuse this data
