@@ -230,7 +230,8 @@
 <li>make changes to the relevant schema fragment under <code>formats/&lt;format name&gt;.jsonnet</code>
 </li>
 <li>change the relevant frontend examples (or add a new example)</li>
-<li>run <code>rake</code> to compile a new schema.json and test the example against the schema</li>
+<li>run <code>rake build_schemas</code> to compile a new schema.json</li>
+<li>run <code>rake</code> to test the example against the schema</li>
 <li>commit and push</li>
 <li>open a PR</li>
 <li>watch the multi-build status to see if all apps are compatible with the change</li>
