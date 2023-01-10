@@ -211,15 +211,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c60fb76f7792d78d80b0271fa05608940717e4b2">10 Jan 2023</a>
 </div>
 
  <h1 id='header'>Environment data sync</h1> <p>The <a href="https://github.com/alphagov/govuk-puppet/tree/main/modules/govuk_env_sync">govuk_env_sync</a> data sync is used for backup and sync tasks in the <a href="/manual/environments.html">GOV.UK AWS environments</a>. It replaces the now archived <a href="https://github.com/alphagov/env-sync-and-backup">env-sync-and-backup</a> data sync.</p>
@@ -235,7 +228,7 @@
 <ul>
 <li>In production, databases <em>push</em> to the <code>govuk-production-database-backups</code> S3 bucket.</li>
 <li>In staging, databases are replaced by <em>pulling</em> data from <code>govuk-production-database-backups</code>.</li>
-<li>In integration, databases are replaced by <em>pulling</em> data from <code>govuk-production-database-backups</code> - some databases have a <a href="#data-sanitisation">data sanitisation process</a>.</li>
+<li>In integration, databases are generally replaced by <em>pulling</em> data from <code>govuk-production-database-backups</code>. However, some databases have a <a href="#data-sanitisation">data sanitisation process</a>, which happens in staging. In those cases, databases are replaced by <a href="https://github.com/alphagov/govuk-puppet/blob/f9c6b136d058b6e0e20fba5d3716b36e60462e2f/hieradata_aws/class/integration/whitehall_db_admin.yaml#L12"><em>pulling</em> from <code>govuk-staging-database-backups</code></a>.</li>
 <li>In integration, databases are <em>pushed</em> to <code>govuk-integration-database-backups</code> nightly - these are produced for developers to use <a href="/repos/govuk-docker/how-tos.html#how-to-replicate-data-locally">real data on their local machines</a>.</li>
 </ul>
 <h3 id='data-sanitisation'>Data sanitisation</h3><p>Data sanitisation (removal of sensitive data) is done by SQL scripts in the <a href="https://github.com/alphagov/govuk-puppet/tree/main/modules/govuk_env_sync/files/transformation_sql"><code>files/transformation_sql</code></a> directory, which are created under <code>/etc/govuk_env_sync/transformation_sql/</code> on the target machine.</p>
