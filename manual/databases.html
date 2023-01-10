@@ -187,22 +187,15 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cae80e1774c846ed71b1b6012eda7a269943e5ff">10 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/9c435a75658d91ab93a2cdacb34eb03845f19aae">9 Jan 2023</a>
 </div>
 
  <h1 id='header'>Databases on GOV.UK</h1> <p>Many GOV.UK applications use a database. See our <a href="https://docs.google.com/spreadsheets/d/1rBZeeaT9XevaRvstMjw2YsbSsoB7IqgWjpJz5oAO9nM/edit#gid=1368371571">spreadsheet of applications and database engines</a> for details.</p>
 <h2 id='database-engines'>Database engines</h2><p>GOV.UK uses mostly PostgreSQL and some MySQL for apps that require a relational database. There&rsquo;s no particular reason why we use both, and the fact that we do is considered <a href="https://trello.com/c/zlfgSJlV/69-govuk-uses-mysql-and-postgresql-and-mongo">tech debt</a>.</p>
 <p>GOV.UK uses MongoDB or DocumentDB for apps that require a document database. Whilst there are some <a href="https://www.mongodb.com/atlas-vs-amazon-documentdb">big differences between the two</a>, they&rsquo;re broadly compatible, and we tend to use the term &ldquo;Mongo&rdquo; to apply to both.</p>
 <p>Finally, GOV.UK uses an ElasticSearch database for search.</p>
-<h2 id='hosting'>Hosting</h2><p>Instead of running these databases locally on the same instance as the application, they&rsquo;re hosted in separate infrastructure (with <a href="/repos/govuk-aws/guides/rds-database-management.html">two exceptions</a>).</p>
+<h2 id='hosting'>Hosting</h2><p>Instead of running these databases locally on the same instance as the application, they&rsquo;re hosted in separate infrastructure (with <a href="/repos/govuk-aws/guides/rds-database-management.html">one exception</a>).</p>
 <p>Each Postgres and MySQL database runs in its own RDS instance. Whilst RDS instances are capable of hosting multiple databases, we decided to grant each database its own instance in <a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-143-split-database-instances.md">RFC-143</a>.</p>
 <p>Mongo databases are hosted either in DocumentDB clusters (managed by AWS) or MongoDB clusters (managed by us on self-hosted EC2 instances). On production, there is currently one DocumentDB cluster for Licensify and one &lsquo;shared&rsquo; DocumentDB cluster, each with three instances. There is also one Mongo cluster of three EC2s. We have agreed that <a href="https://docs.publishing.service.gov.uk/repos/govuk-aws/architecture/decisions/0038-mongo_replacement_by_documentdb.html">we should move apps from MongoDB to DocumentDB</a>.</p>
 <p>ElasticSearch is hosted in <a href="https://eu-west-1.console.aws.amazon.com/esv3/home?region=eu-west-1#opensearch/domains">AWS&rsquo;s OpenSearch service</a>. It has <a href="https://github.com/alphagov/govuk-aws/blob/6b5f78824bb14f5f6aaa7f7d269915b7831a13c3/terraform/projects/app-elasticsearch6/main.tf#L186-L193">two types of node</a> - &ldquo;master&rdquo; and &ldquo;data&rdquo; (instance).</p>
