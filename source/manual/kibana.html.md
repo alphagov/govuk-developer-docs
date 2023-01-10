@@ -75,6 +75,12 @@ syslog_program:"puppet-master"
 application:"syslog"
 ```
 
+### Syslog logs on a specific machine
+
+```rb
+source:"/var/log/syslog" AND beat.hostname:"ip-10-13-5-15"
+```
+
 ### Syslog logs filtered by program
 
 ```rb
