@@ -18,7 +18,7 @@ Finally, GOV.UK uses an ElasticSearch database for search.
 
 ## Hosting
 
-Instead of running these databases locally on the same instance as the application, they're hosted in separate infrastructure (with [two exceptions](/repos/govuk-aws/guides/rds-database-management.html)).
+Instead of running these databases locally on the same instance as the application, they're hosted in separate infrastructure (with [one exception](/repos/govuk-aws/guides/rds-database-management.html)).
 
 Each Postgres and MySQL database runs in its own RDS instance. Whilst RDS instances are capable of hosting multiple databases, we decided to grant each database its own instance in [RFC-143](https://github.com/alphagov/govuk-rfcs/blob/main/rfc-143-split-database-instances.md).
 
