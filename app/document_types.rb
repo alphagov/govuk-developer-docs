@@ -30,7 +30,7 @@ class DocumentTypes
   end
 
   def self.rendering_apps_from_content_store
-    YAML.load_file("data/rendering-apps.yml")
+    YAML.load_file("data/rendering-apps.yml", aliases: true)
   end
 
   class Page

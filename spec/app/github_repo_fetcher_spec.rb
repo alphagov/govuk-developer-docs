@@ -141,7 +141,7 @@ RSpec.describe GitHubRepoFetcher do
       end
 
       def stub_doc(contents: "arbitrary contents", path: "docs/foo.md")
-        doc = double("doc", type: "file", download_url: "foo_url", path: path, html_url: "foo_html_url")
+        doc = double("doc", type: "file", download_url: "foo_url", path:, html_url: "foo_html_url")
         allow(HTTP).to receive(:get).with(doc.download_url).and_return(contents)
         doc
       end

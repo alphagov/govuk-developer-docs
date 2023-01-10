@@ -5,10 +5,10 @@ RSpec.describe DocumentTypesCsv do
         JSON.parse(File.read("spec/fixtures/search-api-app-search-response.json")),
       )
       allow(DocumentTypes).to receive(:all_document_types).and_return(
-        YAML.load_file("spec/fixtures/allowed-document-types-fixture.yml"),
+        YAML.load_file("spec/fixtures/allowed-document-types-fixture.yml", aliases: true),
       )
       allow(Supertypes).to receive(:data).and_return(
-        YAML.load_file("spec/fixtures/supertypes.yml"),
+        YAML.load_file("spec/fixtures/supertypes.yml", aliases: true),
       )
 
       csv = DocumentTypes.to_csv

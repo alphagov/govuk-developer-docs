@@ -20,7 +20,7 @@ class ProxyPages
             locals: {
               title: "#{repo.repo_name}: #{page[:title]}",
               markdown: page[:markdown],
-              repo: repo,
+              repo:,
               relative_path: page[:relative_path],
             },
             data: {
@@ -49,7 +49,7 @@ class ProxyPages
           locals: {
             title: "Schema: #{schema.schema_name}",
             description: "Everything about the '#{schema.schema_name}' schema",
-            schema: schema,
+            schema:,
           },
         },
       }
@@ -66,7 +66,7 @@ class ProxyPages
           locals: {
             title: repo.page_title,
             description: "Everything about #{repo.repo_name} (#{repo.description})",
-            repo: repo,
+            repo:,
           },
         },
       }
@@ -116,7 +116,7 @@ class ProxyPages
           locals: {
             title: "#{supertype.name} supertype",
             description: supertype.description,
-            supertype: supertype,
+            supertype:,
           },
         },
       }

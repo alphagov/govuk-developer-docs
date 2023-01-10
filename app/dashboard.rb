@@ -1,7 +1,7 @@
 # View model for the dashboard.
 class Dashboard
   def chapters
-    YAML.load_file("data/dashboard.yml").map do |chapter|
+    YAML.load_file("data/dashboard.yml", aliases: true).map do |chapter|
       Chapter.new(chapter)
     end
   end

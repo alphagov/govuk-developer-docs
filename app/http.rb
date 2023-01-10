@@ -3,7 +3,7 @@ require "faraday_middleware"
 
 module HTTP
   def self.get_yaml(url)
-    YAML.load(get(url)) # rubocop:disable Security/YAMLLoad
+    YAML.load(get(url), aliases: true)
   end
 
   def self.get(url)

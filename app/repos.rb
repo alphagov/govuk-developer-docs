@@ -3,7 +3,7 @@ class Repos
 
   def self.all
     @all ||=
-      YAML.load_file("data/repos.yml")
+      YAML.load_file("data/repos.yml", aliases: true)
         .map { |repo_data| Repo.new(repo_data) }
         .sort_by(&:repo_name)
   end
