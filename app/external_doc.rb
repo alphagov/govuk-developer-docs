@@ -5,7 +5,7 @@ require_relative "./string_to_id"
 class ExternalDoc
   def self.parse(markdown, repository: "", path: "")
     context = {
-      repository: repository,
+      repository:,
       # Turn off hardbreaks as they behave different to github rendering
       gfm: false,
       base_url: URI.join(
