@@ -22,7 +22,7 @@ The environment synchronisation is achieved by granting cross-account access of 
 
 * In production, databases _push_ to the `govuk-production-database-backups` S3 bucket.
 * In staging, databases are replaced by _pulling_ data from `govuk-production-database-backups`.
-* In integration, databases are replaced by _pulling_ data from `govuk-production-database-backups` - some databases have a [data sanitisation process](#data-sanitisation).
+* In integration, databases are generally replaced by _pulling_ data from `govuk-production-database-backups`. However, some databases have a [data sanitisation process](#data-sanitisation), which happens in staging. In those cases, databases are replaced by [_pulling_ from `govuk-staging-database-backups`](https://github.com/alphagov/govuk-puppet/blob/f9c6b136d058b6e0e20fba5d3716b36e60462e2f/hieradata_aws/class/integration/whitehall_db_admin.yaml#L12).
 * In integration, databases are _pushed_ to `govuk-integration-database-backups` nightly - these are produced for developers to use [real data on their local machines](/repos/govuk-docker/how-tos.html#how-to-replicate-data-locally).
 
 ### Data sanitisation
