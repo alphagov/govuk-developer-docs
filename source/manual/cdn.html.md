@@ -153,6 +153,12 @@ As well as blocking based on source IP address or JA3 fingerprint, we can also b
 
 We have a mechanism for including VCL code from the private `govuk-cdn-config-secrets` repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this is [alphagov/govuk-cdn-secrets#133](https://github.com/alphagov/govuk-cdn-config-secrets/pull/133/files).
 
+### Block traffic using the AWS WAF
+
+Even if we allow traffic through from Fastly, we can block it at the AWS level using the [AWS WAF (Web Application Firewall)](https://aws.amazon.com/waf/).
+
+See the [infra-public-wafs Terraform project](https://github.com/alphagov/govuk-aws/tree/main/terraform/projects/infra-public-wafs) to see what configuration options are currently available.
+
 ## Bouncer's Fastly service
 
 A Fastly CDN service can normally handle up to 1000 domains - this limit is currently undocumented.
