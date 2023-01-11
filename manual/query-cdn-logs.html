@@ -152,6 +152,12 @@
             <a href="#find-out-the-number-of-requests-per-status-per-hour-for-a-gov-uk-url"><span>Find out the number of requests per status per hour for a GOV.UK URL</span></a>
           </li>
           <li>
+            <a href="#ips-with-gt-1000-requests-per-minute"><span>IPs with > 1000 requests per minute</span></a>
+          </li>
+          <li>
+            <a href="#requests-by-ja3-signature"><span>Requests by JA3 signature</span></a>
+          </li>
+          <li>
             <a href="#which-gov-uk-pages-changed-from-200-to-a-410-status-codes"><span>Which GOV.UK pages changed from 200 to a 410 status codes</span></a>
           </li>
           <li>
@@ -271,7 +277,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6a6777a36906eba488f16a7eaca2b143c0b16499">19 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0e8e9cf7015b386035de75e02c97dcf831e9221d">11 Jan 2023</a>
 </div>
 
  <h1 id='header'>Query CDN logs</h1> <p>The <a href="/manual/cdn.html">CDN</a> log files are sent to Amazon S3 every 15 minutes
@@ -360,7 +366,26 @@ write useful queries for particular scenarios.</p>
 <span class="k">AND</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">16</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">7</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2020</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">date_trunc</span><span class="p">(</span><span class="s1">'hour'</span><span class="p">,</span> <span class="n">request_received</span><span class="p">)</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="nb">timestamp</span><span class="p">;</span>
-</code></pre></div><h3 id='which-gov-uk-pages-changed-from-200-to-a-410-status-codes'>Which GOV.UK pages changed from 200 to a 410 status codes</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">response_200</span><span class="p">.</span><span class="n">url</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="n">response_200</span><span class="p">.</span><span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">last_200_response</span><span class="p">,</span> <span class="k">MIN</span><span class="p">(</span><span class="n">response_non_200</span><span class="p">.</span><span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">first_non_200_response</span>
+</code></pre></div><h3 id='ips-with-gt-1000-requests-per-minute'>IPs with &gt; 1000 requests per minute</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span>  <span class="n">client_ip</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">12</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2022</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:45:00'</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&lt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:55:00'</span>
+<span class="k">AND</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">'/'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">client_ip</span>
+<span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">;</span>
+</code></pre></div><h3 id='requests-by-ja3-signature'>Requests by JA3 signature</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">client_ja3</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">AS</span> <span class="n">total</span>
+<span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span>
+<span class="k">WHERE</span> <span class="nb">date</span> <span class="o">=</span> <span class="mi">20</span> <span class="k">AND</span> <span class="k">month</span> <span class="o">=</span> <span class="mi">12</span> <span class="k">AND</span> <span class="nb">year</span> <span class="o">=</span> <span class="mi">2022</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&gt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:35:00'</span>
+<span class="k">AND</span> <span class="n">request_received</span> <span class="o">&lt;</span> <span class="nb">TIMESTAMP</span> <span class="s1">'2022-12-20 22:45:00'</span>
+<span class="k">AND</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">'/'</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">client_ja3</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">desc</span>
+<span class="k">LIMIT</span> <span class="mi">100</span><span class="p">;</span>
+</code></pre></div><p>Tip: you can also group requests by IP address, by swapping <code>client_ja3</code> for <code>client_ip</code>.
+<a href="https://github.com/alphagov/govuk-aws/blob/9026b5ec51f9a7efc831aa9de569876d03cfc2db/terraform/projects/infra-fastly-logs/main.tf#L186">See govuk-aws for a full range of fields</a>.</p>
+<h3 id='which-gov-uk-pages-changed-from-200-to-a-410-status-codes'>Which GOV.UK pages changed from 200 to a 410 status codes</h3><div class="highlight"><pre class="highlight sql" tabindex="0"><code><span class="k">SELECT</span> <span class="n">response_200</span><span class="p">.</span><span class="n">url</span><span class="p">,</span> <span class="k">MAX</span><span class="p">(</span><span class="n">response_200</span><span class="p">.</span><span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">last_200_response</span><span class="p">,</span> <span class="k">MIN</span><span class="p">(</span><span class="n">response_non_200</span><span class="p">.</span><span class="n">request_received</span><span class="p">)</span> <span class="k">AS</span> <span class="n">first_non_200_response</span>
 <span class="k">FROM</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span> <span class="k">AS</span> <span class="n">response_200</span>
 <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">fastly_logs</span><span class="p">.</span><span class="n">govuk_www</span> <span class="k">AS</span> <span class="n">response_non_200</span>
   <span class="k">ON</span> <span class="n">response_200</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">response_non_200</span><span class="p">.</span><span class="n">url</span>
