@@ -142,7 +142,7 @@ You can change the list of banned IP addresses by modifying the [YAML config fil
 
 ### Block requests based on their JA3 signature
 
-[JA3 is a way of fingerprinting TLS connections](https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/), which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware).
+[JA3 is a way of fingerprinting TLS connections](https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/), which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware). They are useful as a way to match botnet/malware traffic if there are no better criteria available. Their opaqueness is a disadvantage in that it's not possible to tell anything about what traffic they might apply to by reading the configuration.
 
 Much like the IP addresses logic above, we're able to block traffic based on its JA3 signature. To do this:
 
