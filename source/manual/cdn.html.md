@@ -104,7 +104,7 @@ This will give you various debugging headers that may be useful:
 
 See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging guide](https://docs.fastly.com/guides/debugging/checking-cache#using-curl) for more details on testing.
 
-## Access controls on cache clearing
+### Access controls on cache clearing
 
 Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
 
@@ -118,7 +118,13 @@ Fastly publish their cache node [IP address ranges as JSON from their API][fastl
 
 [fastly_ips]: https://api.fastly.com/public-ip-list
 
-## Banning IP addresses at the CDN edge
+## Blocking traffic at the CDN edge
+
+If you need to block some subset of traffic, identify a unique field or set of fields to block on that will catch that traffic, but avoid blocking legitimate user traffic as far as possible. There are several options below.
+
+If, for example, you [look at the CDN logs](/manual/query-cdn-logs.html) and see an attack coming from thousands of different IPs, all with different user agent strings but with the same JA3 fingerprint, and if that JA3 fingerprint isn't present in other traffic (from before the attack began), you may want to consider blocking the JA3 fingerprint.
+
+### Block requests based on their IP addresses
 
 We occasionally decide to ban an IP address at our CDN edge if they exhibit the following behaviour:
 
@@ -134,9 +140,9 @@ You can change the list of banned IP addresses by modifying the [YAML config fil
 
 [ip_ban_config]: https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_denylist.yaml
 
-## Banning requests based on their JA3 signature, at the CDN edge
+### Block requests based on their JA3 signature
 
-[JA3 is a way of fingerprinting TLS connections](https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/), which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware).
+[JA3 is a way of fingerprinting TLS connections](https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/), which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware). They are useful as a way to match botnet/malware traffic if there are no better criteria available. Their opaqueness is a disadvantage in that it's not possible to tell anything about what traffic they might apply to by reading the configuration.
 
 Much like the IP addresses logic above, we're able to block traffic based on its JA3 signature. To do this:
 
@@ -145,11 +151,17 @@ Much like the IP addresses logic above, we're able to block traffic based on its
 
 Note that banning JA3s is potentially risky. If we get it wrong, we could ban a legitimate browser version.
 
-## Blocking problematic traffic at the CDN edge
+### Block traffic based on arbitrary criteria
 
 As well as blocking based on source IP address or JA3 fingerprint, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.
 
 We have a mechanism for including VCL code from the private `govuk-cdn-config-secrets` repo into the Fastly config, so that mitigations we make during an attack are not published to the public repo for the attacker to see and work around. An example of this is [alphagov/govuk-cdn-secrets#133](https://github.com/alphagov/govuk-cdn-config-secrets/pull/133/files).
+
+### Block traffic using the AWS WAF
+
+Even if we allow traffic through from Fastly, we can block it at the AWS level using the [AWS WAF (Web Application Firewall)](https://aws.amazon.com/waf/).
+
+See the [infra-public-wafs Terraform project](https://github.com/alphagov/govuk-aws/tree/main/terraform/projects/infra-public-wafs) to see what configuration options are currently available.
 
 ## Bouncer's Fastly service
 

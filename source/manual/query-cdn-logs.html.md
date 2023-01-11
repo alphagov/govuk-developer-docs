@@ -134,6 +134,36 @@ GROUP BY date_trunc('hour', request_received)
 ORDER BY timestamp;
 ```
 
+### IPs with > 1000 requests per minute
+
+```sql
+SELECT  client_ip, COUNT(*) AS total
+FROM fastly_logs.govuk_www
+WHERE date = 20 AND month = 12 AND year = 2022
+AND request_received > TIMESTAMP '2022-12-20 22:45:00'
+AND request_received < TIMESTAMP '2022-12-20 22:55:00'
+AND url = '/'
+GROUP BY client_ip
+HAVING COUNT(*) > 10000;
+```
+
+### Requests by JA3 signature
+
+```sql
+SELECT client_ja3, COUNT(*) AS total
+FROM fastly_logs.govuk_www
+WHERE date = 20 AND month = 12 AND year = 2022
+AND request_received > TIMESTAMP '2022-12-20 22:35:00'
+AND request_received < TIMESTAMP '2022-12-20 22:45:00'
+AND url = '/'
+GROUP BY client_ja3
+ORDER BY COUNT(*) desc
+LIMIT 100;
+```
+
+Tip: you can also group requests by IP address, by swapping `client_ja3` for `client_ip`.
+[See govuk-aws for a full range of fields](https://github.com/alphagov/govuk-aws/blob/9026b5ec51f9a7efc831aa9de569876d03cfc2db/terraform/projects/infra-fastly-logs/main.tf#L186).
+
 ### Which GOV.UK pages changed from 200 to a 410 status codes
 
 ```sql
