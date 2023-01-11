@@ -104,7 +104,7 @@ This will give you various debugging headers that may be useful:
 
 See the Varnish/Fastly docs for what these mean. Check out the Fastly [debugging guide](https://docs.fastly.com/guides/debugging/checking-cache#using-curl) for more details on testing.
 
-## Access controls on cache clearing
+### Access controls on cache clearing
 
 Our [Fastly Varnish config][vcl_config] restricts HTTP purges to specific IP addresses (otherwise anyone would be able to purge the cache).
 
@@ -118,7 +118,9 @@ Fastly publish their cache node [IP address ranges as JSON from their API][fastl
 
 [fastly_ips]: https://api.fastly.com/public-ip-list
 
-## Banning IP addresses at the CDN edge
+## Blocking traffic at the CDN edge
+
+### Block requests based on their IP addresses
 
 We occasionally decide to ban an IP address at our CDN edge if they exhibit the following behaviour:
 
@@ -134,7 +136,7 @@ You can change the list of banned IP addresses by modifying the [YAML config fil
 
 [ip_ban_config]: https://github.com/alphagov/govuk-cdn-config-secrets/blob/master/fastly/dictionaries/config/ip_address_denylist.yaml
 
-## Banning requests based on their JA3 signature, at the CDN edge
+### Block requests based on their JA3 signature
 
 [JA3 is a way of fingerprinting TLS connections](https://engineering.salesforce.com/open-sourcing-ja3-92c9e53c3c41/), which can be used to detect whether a connection comes from a particular browser, or another TLS client (like curl, python, or possibly malware).
 
@@ -145,7 +147,7 @@ Much like the IP addresses logic above, we're able to block traffic based on its
 
 Note that banning JA3s is potentially risky. If we get it wrong, we could ban a legitimate browser version.
 
-## Blocking problematic traffic at the CDN edge
+### Block traffic based on arbitrary criteria
 
 As well as blocking based on source IP address or JA3 fingerprint, we can also block abusive traffic based on headers, URL paths or any arbitrary criteria about the request that we can specify using VCL. This requires care and testing, but can be nonetheless a valueable incident response tool for mitigating DoS and spam attacks.
 
