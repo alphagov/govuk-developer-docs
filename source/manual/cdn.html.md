@@ -120,6 +120,10 @@ Fastly publish their cache node [IP address ranges as JSON from their API][fastl
 
 ## Blocking traffic at the CDN edge
 
+If you need to block some subset of traffic, identify a unique field or set of fields to block on that will catch that traffic, but avoid blocking legitimate user traffic as far as possible. There are several options below.
+
+If, for example, you [look at the CDN logs](/manual/query-cdn-logs.html) and see an attack coming from thousands of different IPs, all with different user agent strings but with the same JA3 fingerprint, and if that JA3 fingerprint isn't present in other traffic (from before the attack began), you may want to consider blocking the JA3 fingerprint.
+
 ### Block requests based on their IP addresses
 
 We occasionally decide to ban an IP address at our CDN edge if they exhibit the following behaviour:
