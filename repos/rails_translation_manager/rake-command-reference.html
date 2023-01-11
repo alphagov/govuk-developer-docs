@@ -187,15 +187,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/rails_translation_manager/commit/4e404768d23f2af70826b359ba6b6ebf55f6a8bf">15 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/rails_translation_manager/commit/a969e382199ab804d3cd600b608930503dc69caf">8 Dec 2022</a>
 </div>
 
   <h1 class="page-title">rails_translation_manager: Rake command reference</h1>
@@ -226,9 +219,19 @@
 <pre><code>rake translation:normalize
 </code></pre>
 <p>Remove keys that are not used anywhere in your application:</p>
+<p><strong>Warning</strong>:</p>
+<blockquote>
+<p>Removing unused keys may remove keys that actually <em>are</em> used by your
+application. This happens when RTM fails to scan certain keys in the
+codebase, e.g when the keys are referenced dynamically. You can make RTM
+ignore these keys by creating a <code>/config/i18n-tasks.yml</code> file with an
+<code>ignore_unused</code> key.</p>
+</blockquote>
+<p>A safer way to remove known unused keys is to use the <a href="https://github.com/glebm/i18n-tasks#delete-keys">Delete keys</a>
+command.</p>
 <pre><code>rake translation:remove_unused
 </code></pre>
-<p>Sometimes RTM might remove keys that actually <em>are</em> used by your application. This happens when the keys are referenced dynamically. You can make RTM ignore these keys by creating a <code>/config/i18n-tasks.yml</code> file with an <code>ignore_unused</code> key. For example:</p>
+<p>Example <code>ignore_unused</code> config:</p>
 <pre lang="yaml"><code>ignore_unused:
   - 'content_item.schema_name.*.{one,other,zero,few,many,two}'
   - 'corporate_information_page.*'

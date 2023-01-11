@@ -187,35 +187,28 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/rails_translation_manager/commit/566e8a1c0b89bbd2a26bf2efa1fb1f66a89dc65c">8 Feb 2022</a>
+  Last updated: <a href="https://github.com/alphagov/rails_translation_manager/commit/a969e382199ab804d3cd600b608930503dc69caf">8 Dec 2022</a>
 </div>
 
   <h1 class="page-title">rails_translation_manager: Adding a language's plural form</h1>
 
   
-<p>We maintain our own <a href="https://github.com/alphagov/rails_translation_manager/blob/master/config/locales/plurals.rb">plurals.rb</a> configuration file. If adding a language to Rails Translation Manager, that doesn't exist in <a href="https://github.com/svenfuchs/rails-i18n">rails-i18n</a>, you may need to edit this file.</p>
-<p>This config is needed to correctly distinguish the <a href="https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html">plural rules</a> for locales not included in <code>rails-i18n</code>, as it is needed for plural validation checks.</p>
-<p>Note that there is currently a <a href="https://github.com/alphagov/govuk_app_config/blob/main/lib/govuk_app_config/govuk_i18n.rb">duplicate list in `govuk_app_config</a>. The intention is for this to be removed and for the Rails Translation Manager version to be the sole version.</p>
+<p>We maintain our own <a href="https://github.com/alphagov/rails_translation_manager/blob/main/config/locales/plurals.rb">plurals.rb</a> configuration file. This is used for plural
+rules that don't exist in <a href="https://github.com/svenfuchs/rails-i18n">rails-i18n</a>.</p>
+<p>If there is a missing plural rule (fails plural validator) then we can add the
+rule to our <a href="https://github.com/alphagov/rails_translation_manager/blob/main/config/locales/plurals.rb">plurals.rb</a> file. Plural rules for most languages can be found
+on the <a href="https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/language_plural_rules.html">unicode website</a> (cardinal type).</p>
 <h2 id="editing-plural-forms">Editing plural forms</h2>
 <p>Keys with incorrect plural forms are more complex to adjust. If there are keys with additional unnecessary plural forms, they can be deleted:</p>
-<pre><code>sed -i '' '/^ \+one:/d' config/locales/xx.yml
+<pre><code>sed -i '' '/^ *one:/d' config/locales/xx.yml
 </code></pre>
-<p>This commonly occurs for e.g. Chinese and Vietnamese which are expected to have only an <code>:other</code> and not a <code>:one</code> form.</p>
 <p>Keys which need a plural form added can be automated with caution. If every key of a specific translation needs the new plural added, it can be done by adding a blank key before every <code>other:</code> key:</p>
-<pre><code>perl -0777 -p -i -e 's/\n(\s+)other:/\n\1nmany:\n\1other:/g' config/locales/xx.yml
+<pre><code>perl -0777 -p -i -e 's/\n(\s+)other:/\n\1many:\n\1other:/g' config/locales/xx.yml
 </code></pre>
 <p>Or if only a specific key needs the plural added:</p>
 <pre><code>perl -0777 -p -i -e 's/(key_with_missing_plural:\n)(\s+)/\1\2zero:\n\2/g' config/locales/xx.yml
 </code></pre>
-<p>This commonly occurs for Slavic languages and Arabic, for example, which have plural forms other than just <code>:one</code> and <code>:other</code>.</p>
 
 
             
