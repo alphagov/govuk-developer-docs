@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: # Whitehall troubleshooting - GOV.UK Developer Documentation</title>
+    <title>whitehall: Deprecated: Whitehall Legacy JavaScript - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/troubleshooting.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/legacy_javascript.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: # Whitehall troubleshooting - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/troubleshooting.html" />
+      <meta name="twitter:title" content="whitehall: Deprecated: Whitehall Legacy JavaScript - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/legacy_javascript.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: # Whitehall troubleshooting" />
+      <meta property="og:title" content="whitehall: Deprecated: Whitehall Legacy JavaScript" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/troubleshooting.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/legacy_javascript.html" />
 
     
   </head>
@@ -209,64 +209,41 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/7c3fcfa1660c05b43cc6e494987594ac43f976a0">7 Oct 2021</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/18bb29c46052681b805dace7ba620b963cd71a20">10 Jan 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: # Whitehall troubleshooting</h1>
+  <h1 class="page-title">whitehall: Deprecated: Whitehall Legacy JavaScript</h1>
 
-  <h2 id="whitehall-troubleshooting">Whitehall troubleshooting</h2>
-<p>You may run into errors while working locally and trying to render pages on the Frontend.</p>
-<p>Problem:</p>
-<pre><code>Mysql2::Error: Access denied for user 'whitehall'@'localhost' (using password: YES)
+  
+<p>Should be read in conjunction with the <a href="https://gds-way.cloudapps.digital/manuals/programming-languages/js.html">GDS Way JS styleguide</a></p>
+<h2 id="note">Note</h2>
+<p>Please note that this documentation is now deprecated and will be removed with the legacy JS files once the migration has been completed.</p>
+<h2 id="file-structure-and-namespacing">File structure and namespacing</h2>
+<p>Each JavaScript object should be stored in its own file with a filename reflecting the object name. In the spirit of keeping things similar to the CSS, they should be stored in:</p>
+<pre><code>./helpers/
+./frontend/views/
+./frontend/modules/
+./frontend/helpers/
+./admin_legacy/views/
+./admin_legacy/modules/
+./admin_legacy/helpers/
 </code></pre>
-<p>Solution:
-Enter <code>govuk-docker</code>, Login, create user, give access &amp; quit</p>
-<pre><code>cd ~/govuk/govuk-docker
-mysql -u root -p
-CREATE USER whitehall@localhost IDENTIFIED BY 'whitehall';
-grant all privileges on *.* to whitehall@localhost with grant option;
-\q
+<p><strong>Views</strong> are view-specific scripts and as with the css, their file path and name should exactly mirror the view template or partial it applies to. The name of the script object should reflect the whole view path (the object in <code>/admin_legacy/editions/index.js</code> should be called <code>GOVUK.adminEditionsIndex</code>).</p>
+<p><strong>Modules</strong> are re-useable things. An example of a module would be the script for a tabbed content block. Modules should not be initialised globally, and should only be initialised when needed, by the layout / partial which needs it (see script initialisation). If a script is only ever going to be used in one place, don't make it a module.</p>
+<p><strong>Helpers</strong> are scripts which are loaded everywhere (such as the script which prevents forms from being submitted twice).</p>
+<p>Namespaces should be kept simple and all constructors should be under <code>GOVUK</code>. The JavaScript layer is thin for whitehall and so (at least at present) there's no need to use deeper namespaces.</p>
+<h2 id="script-initialisation">Script initialisation</h2>
+<p>Scripts should be initialised with <code>GOVUK.init</code>:</p>
+<pre lang="js"><code>GOVUK.init(GOVUK.SomeScript, { el: ".js-the-thing" });
 </code></pre>
-<p>Problem:</p>
-<pre><code>ActiveRecord::SubclassNotFound
-/versions/2.6.6/lib/ruby/gems/2.6.0/gems/sassc-2.4.0/lib/sassc/engine.rb:43: [BUG] Segmentation fault at 0x0000000000000000
+<p>If the passed in object is a constructor, <code>GOVUK.init</code> creates an instance of the passed in constructor, passing the second argument through as an argument. A reference to the new instance is stored in <code>GOVUK.instances</code>.</p>
+<p>Otherwise, <code>GOVUK.init</code> will call init on the passed in hash, treating it as a singleton.</p>
+<p>Scripts should only be initialised when needed and should make use of the rails helper <code>initialise_script</code>:</p>
+<pre><code>&lt;% initialise_script "GOVUK.SomeView", el: '.js-some-view' %&gt;
 </code></pre>
-<p>Solution:
-Restart</p>
-<p>Problem:</p>
-<pre><code>/.rvm/rubies/ruby-2.7.2/lib/ruby/site_ruby/2.7.0/rubygems/core_ext/kernel_gem.rb:67:in `gem'
-/.rvm/rubies/ruby-2.7.2/lib/ruby/site_ruby/2.7.0/rubygems/core_ext/kernel_gem.rb:67:in `synchronize': dead
-</code></pre>
-<p>Solution:
-<code>gem update --system</code></p>
-<p>Problem:</p>
-<pre><code>API Error
-</code></pre>
-<p>Solution:</p>
-<p><a href="https://github.com/alphagov/search-api"><code>search-api</code></a>, <a href="https://github.com/alphagov/static"><code>static</code></a> are helpful to have to running in parallel (depending on what page you are on) via <a href="https://github.com/alphagov/govuk-docker">govuk-docker</a>. Make sure the referenced apps are up to date as well</p>
-<p>Example:</p>
-<pre><code>cd ~/govuk/govuk-docker; git pull; make search-api
-govuk-docker up search-api-app
-</code></pre>
-<p>Problem:</p>
-<pre><code>Error: Failed to load config "standard" to extend from 
-</code></pre>
-<p>Solution:
-Run: <code>yarn</code></p>
-<p><a href="https://github.com/deivid-rodriguez/byebug">Byebug</a> is helpful for testing troubleshooting</p>
-<p>Problem:</p>
-<pre><code>ActiveRecord::PendingMigrationError Migrations are pending. To resolve this issue, run: bin/rails db:migrate RAILS_ENV=development You have 2 pending migrations
-</code></pre>
-<p>Solution:
-<code>govuk-docker-run bundle exec rake db:migrate</code> / <code>govuk-docker-run rake db:migrate</code></p>
+<p>This rails helper takes a ruby hash as a second argument, which is jsonified and passed down to the javascript constructor (in content_for block <code>:javascript_initialisers</code>). This is not done in <code>$.ready</code> by default, so if the script needs to wait for $.ready, it should do so itself.</p>
+<p>This initialise_script line should be in the most appropriate template/partial for view scripts / view-specific helpers, and should be near the <code>:javascript_initialisers</code> yield in the applicable layout for site-wide helpers.</p>
 
 
             
@@ -274,8 +251,8 @@ Run: <code>yarn</code></p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/troubleshooting.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Ftroubleshooting.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/legacy_javascript.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Flegacy_javascript.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
