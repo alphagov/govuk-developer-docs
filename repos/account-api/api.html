@@ -193,15 +193,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/cb56bb6a26f658b0ba1b0aa4d973f6844c13d405">6 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/cb8bd86eab4b8ed7c69e0a6644382987b5a43a63">6 Jan 2023</a>
 </div>
 
   <h1 class="page-title">account-api: API documentation</h1>
@@ -948,12 +941,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 <li>the email-alert-api topic slug</li>
 </ul>
 </li>
-<li>
-<code>button_location</code> <em>(optional)</em>
-<ul>
-<li>the location of the button on the page (<code>top</code> or <code>bottom</code>). This is passed to the button component to add tracking parameters for Google Analytics</li>
-</ul>
-</li>
 </ul>
 <p>Exactly one of <code>base_path</code> and <code>topic_slug</code> must be specified.</p>
 <h4 id="json-response-fields">JSON response fields</h4>
@@ -974,18 +961,6 @@ This endpoint requires the <code>update_protected_attributes</code> scope.</p>
 <code>active</code>
 <ul>
 <li>whether the subscription is active (a boolean)</li>
-</ul>
-</li>
-<li>
-<code>button_html</code>
-<ul>
-<li>the rendered single-page notification button component HTML, if a <code>base_path</code> was given (a string)</li>
-</ul>
-</li>
-<li>
-<code>button_location</code>
-<ul>
-<li>the button_location parameter, if there is one (a string)</li>
 </ul>
 </li>
 </ul>
