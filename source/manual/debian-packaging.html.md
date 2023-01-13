@@ -205,6 +205,23 @@ Once successfully tested, you can add the `.deb` file to aptly - see next sectio
       $ sudo apt-get install rbenv-ruby-2.6.1
     ```
 
+8. If something doesn't look right and you want to revert, you can do that by publishing a previous snapshot.
+
+    ```
+      $ sudo -i aptly publish switch trusty rbenv-ruby <snapshot>
+    ```
+
+    You can check the information for the published repository matches your changes.
+
+    ```
+      $ sudo -i aptly publish show trusty rbenv-ruby
+      Prefix: rbenv-ruby
+      Distribution: trusty
+      Architectures: amd64
+      Sources:
+        main: rbenv-ruby-202301121209 [snapshot]
+    ```
+
 ## Mirroring
 
 We are using [aptly](http://www.aptly.info) to mirror third-party
