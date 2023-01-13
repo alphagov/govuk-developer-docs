@@ -156,6 +156,7 @@
           </ul>
           <li class="subdir__heading">analytics</li>
           <ul class="subdir__menu">
+              <li><a href="/repos/govuk_publishing_components/load-analytics.html" rel="noopener" class="govuk-link">Loading analytics into our applications</a></li>
               <li><a href="/repos/govuk_publishing_components/adr/0002-google-analytics-4-tracking-and-code-location.html" rel="noopener" class="govuk-link">2. Google Analytics 4 tracking and code location</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/analytics.html" rel="noopener" class="govuk-link">Google Analytics 4 and Google Tag Manager</a></li>
               <li><a href="/repos/govuk_publishing_components/analytics-ga4/ga4-ecommerce-tracker.html" rel="noopener" class="govuk-link">Google Analytics ecommerce tracker (i.e. search)</a></li>
@@ -226,15 +227,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0646b2b87a7ce11c1d9363358c903e7054c02595">9 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0c0afc3569e621162f9209fc63b849191c0fba27">15 Dec 2022</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Analytics</h1>
@@ -462,7 +456,7 @@ for pages like:</p>
 named tracker, and sessions will persist to the other domain.</p>
 <h3 id="adding-more-domains-to-gov-uks-cross-domain-linker">Adding more domains to GOV.UK's cross domain linker</h3>
 <p>Once a service starts sending analytics data to the shared GA property and has configured their system to include <code>www.gov.uk</code> in their cross domain linking, we must also configure <code>www.gov.uk</code> to include their domain in our cross linker configuration.</p>
-<p>Add the domain of the service to <a href="https://github.com/alphagov/static/blob/main/app/assets/javascripts/analytics.js.erb"><code>init.js.erb</code></a>.</p>
+<p>Add the domain of the service to <a href="https://github.com/alphagov/govuk_publishing_components/tree/main/app/assets/javascripts/govuk_publishing_components/analytics/linked-domains.js">linked-domains.js</a>.</p>
 <p>Here's an <a href="https://github.com/alphagov/static/pull/1845">example of an earlier PR</a> to do this.</p>
 <p>Only the domain should be added, GA will ignore any path details e.g. <code>/government/service/</code></p>
 <p>Note that GA matches subdomains of any domains added this way. So <code>passport.service.gov.uk</code> also includes <code>www.passport.service.gov.uk</code>.</p>
