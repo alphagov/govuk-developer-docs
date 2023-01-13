@@ -226,15 +226,8 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7a775fce6ca97b32293d20e3956271f90de75ba6">13 Jan 2023</a>
 </div>
 
  <h1 id='header'>Manage Debian packages</h1> <p>This page explains how we manage our Debian packaging.</p>
@@ -378,6 +371,16 @@ APT account which is in <a href="https://github.com/alphagov/govuk-secrets/tree/
 <li><p>You can check it has been published by going to <a href="https://apt.publishing.service.gov.uk/">https://apt.publishing.service.gov.uk</a>.
 For this example navigate to <a href="https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/">https://apt.publishing.service.gov.uk/rbenv-ruby/pool/main/r/</a>. You can also test it works by running <code>apt-get</code> in one of the integration boxes:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  $ sudo apt-get install rbenv-ruby-2.6.1
+</code></pre></div></li>
+<li><p>If something doesn&rsquo;t look right and you want to revert, you can do that by publishing a previous snapshot.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  $ sudo -i aptly publish switch trusty rbenv-ruby &lt;snapshot&gt;
+</code></pre></div><p>You can check the information for the published repository matches your changes.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>  $ sudo -i aptly publish show trusty rbenv-ruby
+  Prefix: rbenv-ruby
+  Distribution: trusty
+  Architectures: amd64
+  Sources:
+    main: rbenv-ruby-202301121209 [snapshot]
 </code></pre></div></li>
 </ol>
 <h2 id='mirroring'>Mirroring</h2><p>We are using <a href="http://www.aptly.info">aptly</a> to mirror third-party
