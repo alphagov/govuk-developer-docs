@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>The component system - GOV.UK Developer Documentation</title>
+    <title>Google Tag Manager change process - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/components.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/gtm-change-process.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="The component system - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/components.html" />
+      <meta name="twitter:title" content="Google Tag Manager change process - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/gtm-change-process.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="The component system" />
+      <meta property="og:title" content="Google Tag Manager change process" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/components.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/gtm-change-process.html" />
 
     
   </head>
@@ -126,13 +126,13 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>The component system</span></a>
+    <a href="#header"><span>Google Tag Manager change process</span></a>
     <ul>
       <li>
-        <a href="#component-guides"><span>Component guides</span></a>
+        <a href="#roles-and-responsibilities"><span>Roles and responsibilities</span></a>
       </li>
       <li>
-        <a href="#building-components"><span>Building components</span></a>
+        <a href="#process"><span>Process</span></a>
       </li>
     </ul>
   </li>
@@ -185,33 +185,69 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a5852031884ec7dbc972dab41334c24dd22a6149">24 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/59e96454e072b7bcee0c3a48306c9286313802ae">11 Jan 2023</a>
 </div>
 
- <h1 id='header'>The component system</h1> <p>Components are packages of template, style, behaviour and documentation. Components live in your application unless needed by multiple applications, then they are shared using the <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components gem</a>.</p>
-<h2 id='component-guides'>Component guides</h2><p>Components in applications are documented in component guides using the <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components gem</a>. It mounts a component guide at the path <code>/component-guide</code>.</p>
-<p>Find components in these guides:</p>
+ <h1 id='header'>Google Tag Manager change process</h1> <p>GOV.UK has implemented Google Analytics 4 (GA4) using Google Tag Manager (GTM) to track user journeys through the site. This page describes the process of making changes to GTM to support improvements to our analytics.</p>
+<p>This process exists because some changes can increase the size of the JavaScript included from GTM in the public frontend of GOV.UK. We do not want to unnecessarily degrade the performance of GOV.UK.</p>
+<h2 id='roles-and-responsibilities'>Roles and responsibilities</h2><p>Performance analysts:</p>
 
 <ul>
-<li><a href="https://components.publishing.service.gov.uk/component-guide">govuk_publishing_components component guide</a></li>
-<li><a href="https://govuk-government-frontend.herokuapp.com/component-guide">government-frontend component guide</a></li>
-<li><a href="https://govuk-collections.herokuapp.com/component-guide/">collections component guide</a></li>
-<li><a href="https://govuk-finder-frontend.herokuapp.com/component-guide">finder-frontend component guide</a></li>
-<li><a href="https://govuk-frontend.herokuapp.com/component-guide">frontend component guide</a></li>
+<li>to make changes in GTM and share the change with a succinct explanation of what it does and why it&rsquo;s needed</li>
+<li>to fully document the details of the change</li>
 </ul>
-<h2 id='building-components'>Building components</h2><p>A component must:</p>
+<p>Developers:</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/govuk_publishing_components/blob/master/docs/component_principles.md">meet the component principles</a></li>
-<li><a href="https://github.com/alphagov/govuk_publishing_components/blob/master/docs/component_conventions.md">follow component conventions</a></li>
+<li>to review and publish the change in GTM</li>
+<li>to check that the changes don&rsquo;t increase the JavaScript size</li>
 </ul>
-<p>The <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components gem</a> provides a generator to stub the files you’ll need in each component:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>bundle exec rails generate govuk_publishing_components:component [component_name]
-</code></pre></div><p>For example, a lead paragraph component would be included in a template like this:</p>
-<div class="highlight"><pre class="highlight erb" tabindex="0"><code><span class="cp">&lt;%=</span> <span class="n">render</span> <span class="s1">'components/lead-paragraph'</span><span class="p">,</span> <span class="ss">text: </span><span class="s2">"A description is one or two leading sentences"</span> <span class="cp">%&gt;</span>
-</code></pre></div>
+<h2 id='process'>Process</h2><p>Analyst creates a change in the GTM web interface.</p>
+
+<ul>
+<li>change is created in a new workspace</li>
+<li>change must include a clear description</li>
+<li>change can be checked in preview mode (optional)</li>
+</ul>
+<p>Analyst gets a second analyst to check the changes.</p>
+<p>Analyst raises a request to have the change approved.</p>
+
+<ul>
+<li>can be raised in the <code>#user-experience-measurement-govuk</code> slack channel</li>
+<li>include a link to the workspace to review</li>
+<li>must specify which environment to publish to</li>
+</ul>
+<p>Developer reviews the change</p>
+
+<ul>
+<li><code>modified</code> is a change to an existing thing</li>
+<li><code>added</code> is a new thing</li>
+<li>specific changes are listed under <code>Version changes</code></li>
+<li><code>Activity history</code> shows previous changes</li>
+<li>ensure no custom HTML or JS included in tags</li>
+</ul>
+<p>Developer approves and publishes the change</p>
+
+<ul>
+<li>publish to the required environment - <code>Production</code>, <code>Staging</code> or <code>Integration</code></li>
+<li>publishing defaults to the <code>Production</code> environment, if it needs to be deployed to a different environment that must be selected first</li>
+<li>publishing may involve more than one publishing act e.g. publish version 35 to <code>Production</code>, publish version 36 to <code>Integration</code></li>
+</ul>
+<p>Analyst tests that change has been successful, in this order</p>
+
+<ul>
+<li><code>Integration</code>: analyst checks that change has been implemented as per specifications</li>
+<li><code>Staging</code>: for wider community/second analyst to check that the change fits the data requirement</li>
+<li><code>Production</code>: analyst must check that change has gone live as expected</li>
+</ul>
+
 
   <div class='related-content'>
+    <h4>Related repositories</h4>
+
+    <ul class="govuk-list">
+      <li><a href="/repos/govuk_publishing_components.html">govuk_publishing_components</a></li>
+    </ul>
 
     <h3>More in the Frontend section</h3>
 
@@ -223,10 +259,10 @@
             <li><a href="/manual/analytics.html">Analytics on GOV.UK</a></li>
             <li><a href="/manual/find-a-rails-template-based-on-a-govuk-url.html">Find a rails template based on a GOV.UK URL or vice verca</a></li>
             <li><a href="/manual/frontend-architecture.html">Frontend architecture</a></li>
-            <li><a href="/manual/gtm-change-process.html">Google Tag Manager change process</a></li>
             <li><a href="/manual/guidance-and-tools-for-digital-accessibility.html">Guidance and tools for digital accessibility</a></li>
             <li><a href="/manual/local-frontend-development.html">Local frontend development</a></li>
             <li><a href="/manual/test-a-branch-of-the-components-gem.html">Test a branch of the components gem</a></li>
+            <li><a href="/manual/components.html">The component system</a></li>
             <li><a href="/manual/browser-support.html">Which browsers we support</a></li>
           </ul>
         </div>
@@ -250,8 +286,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/components.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27The+component+system%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fcomponents.html%29&amp;labels=bug&amp;title=Re%3A+%27The+component+system%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/gtm-change-process.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Google+Tag+Manager+change+process%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fgtm-change-process.html%29&amp;labels=bug&amp;title=Re%3A+%27Google+Tag+Manager+change+process%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
