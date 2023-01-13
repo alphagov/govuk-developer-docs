@@ -15,7 +15,7 @@ type: learn
 
 You’ll be set up in [PagerDuty](/manual/2nd-line#pagerduty) so that you can be called if there are any urgent alerts during working hours. 2nd Line shifts are a great opportunity to learn about the GOV.UK stack.
 
-Every Wednesday, at least 2 people from GOV.UK - a Primary and Secondary, and usually a Shadow - join the team to work on Technical 2nd Line. There are also standbys for the Primary and Secondary.
+Every Monday, at least 2 people from GOV.UK - a Primary and Secondary, and usually a Shadow - join the team to work on Technical 2nd Line. There are also standbys for the Primary and Secondary.
 
 All of these roles can be fulfilled by developers and SREs, whereas only some can be fulfilled by front-end developers, junior technologists and apprentices. See [role specific policies](#role-specific-policies) for details.
 
