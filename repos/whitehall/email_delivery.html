@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Timestamps - GOV.UK Developer Documentation</title>
+    <title>whitehall: Email delivery - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/timestamps.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/email_delivery.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Timestamps - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/timestamps.html" />
+      <meta name="twitter:title" content="whitehall: Email delivery - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/email_delivery.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Timestamps" />
+      <meta property="og:title" content="whitehall: Email delivery" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/timestamps.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/email_delivery.html" />
 
     
   </head>
@@ -210,44 +210,33 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/d5f2fe2481c06cd1859f895ac16305e8ebdd8680">16 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/8abbeb107dae79e4c929a156198631a983de2df3">12 Jan 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Timestamps</h1>
+  <h1 class="page-title">whitehall: Email delivery</h1>
 
   
-<h2 id="public_timestamp"><code>public_timestamp</code></h2>
-<ul>
-<li>point in time the edition became visible to the public on the website. Updated for major changes</li>
-<li>used to sort documents in the atom feed</li>
-<li>for building <code>change_history</code> on a document</li>
-<li>used when comparing edition published dates in scopes on Edition (e.g. <code>published_before(date)</code>)</li>
-<li>set to <code>first_public_at</code> or <code>major_change_published_at</code> on every save</li>
-</ul>
-<h2 id="first_published_at"><code>first_published_at</code></h2>
-<ul>
-<li>signifies when the document was 'first published', which may be before the public timestamp. E.g. transitioned content, etc.</li>
-<li>Either user supplied on the form, or set during publishing to the <code>major_change_published_at</code> timestamp</li>
-</ul>
-<h2 id="first_public_at"><code>first_public_at</code></h2>
-<ul>
-<li>
-<code>first_published_at</code> on Edition</li>
-<li>
-<code>opening_at</code> on Consultation</li>
-</ul>
-<h2 id="major_change_published_at"><code>major_change_published_at</code></h2>
-<ul>
-<li>date of the last major change. Major changes require change notes. This is decided by the user.</li>
-</ul>
+<p>Whitehall sends various kinds of <a href="https://github.com/alphagov/whitehall/blob/ad86a5ea8d7538f787c71cb586adb1b771ea08d9/app/mailers/mail_notifications.rb">email notifications</a> to users – for example, fact check requests and responses. These emails are delivered via <a href="https://www.notifications.service.gov.uk/">GOV.UK Notify</a> using the <a href="https://github.com/dxw/mail-notify">mail-notify</a> gem.</p>
+<h2 id="non-production-environments">Non-production environments</h2>
+<p>Emails sent from Whitehall's integration and staging environments are not delivered to end users.</p>
+<p>Instead, they're <a href="https://github.com/alphagov/whitehall/pull/7240">intercepted and re-routed</a> to a Google Group (shared mailbox) so they can be accessed for debugging purposes. The intended recipient is prepended to the email body so it's easy to see who it would've been delivered to.</p>
+<p>👉 <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/whitehall-emails-integration">See emails from integration</a></p>
+<p>👉 <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/whitehall-emails-staging">See emails from staging</a></p>
+<h2 id="send-a-test-email-from-the-rails-console">Send a test email from the Rails console</h2>
+<blockquote>
+<p><strong>⚠️ Warning</strong></p>
+<p>Running this in <strong>production</strong> will send an email to the specified recipient.
+Use <strong>integration or staging</strong> if you want the email to be intercepted.</p>
+</blockquote>
+<p>To send a test email, open a Rails console and run:</p>
+<pre lang="ruby"><code>ApplicationMailer.new.mail(
+  subject: "Test email",
+  to: "recipient@example.com",
+  body: "This is a test email",
+  template_id: ENV.fetch("GOVUK_NOTIFY_TEMPLATE_ID", "fake-test-template-id")
+).deliver
+</code></pre>
 
 
             
@@ -255,8 +244,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/timestamps.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Ftimestamps.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/email_delivery.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Femail_delivery.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
