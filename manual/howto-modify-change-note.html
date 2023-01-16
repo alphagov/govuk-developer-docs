@@ -199,7 +199,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/07c5e4b93f9190e38d0dc8cbb74912b7618063d7">4 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ad430f70ea7f5cace3c7aea565aa7e6d2b111645">16 Jan 2023</a>
 </div>
 
  <h1 id='header'>Modify a change note in Publishing API, Content Publisher or Whitehall</h1> <p>Spelling mistakes can creep into <a href="https://www.gov.uk/guidance/content-design/writing-for-gov-uk#change-notes">change notes</a>, and we are often asked to correct them. The instructions below cover doing this task in Whitehall, Content Publisher and Publishing API.</p>
@@ -242,14 +242,14 @@ ed.save
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details = live_edition.details
 </code></pre></div><p>Ouput change history:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history]
-</code></pre></div><p>Select relevant change note manually, or by seaching for the node text:</p>
+</code></pre></div><p>Select relevant change note manually, or by seaching for the note text:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>change_note_index = details[:change_history].find_index { |change_note| change_note[:note] =~ /SUBSTRING OR FULL CHANGE NOTE TEXT/ }
-</code></pre></div><p>Check the returned change not is correct:</p>
+</code></pre></div><p>Check the returned change note is correct:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history][change_note_index]
 </code></pre></div><p>Update change note:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>details[:change_history][change_note_index][:note] = "New note"
 </code></pre></div><p>Update edition:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>edition.update(details: details)
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>live_edition.update(details: details)
 </code></pre></div><p>Finally, <a href="/repos/publishing-api/admin-tasks.html#representing-data-downstream">send the document downstream</a> using the content id.</p>
 <h2 id='troubleshooting'>Troubleshooting</h2><p>The steps below helped us in a situation where the change note was present in the content item
 in both Whitehall and publishing-api, but was not being reflected on the page itself. We
