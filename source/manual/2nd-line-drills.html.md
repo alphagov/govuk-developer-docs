@@ -48,7 +48,7 @@ Once deployed, [check your change](https://www-origin.integration.govuk.digital/
 
 ## Use a restored database in an app
 
-Follow the [Restore an RDS instance via the AWS CLI](/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli) instructions for an app of your choice, on Integration or Staging.
+On Integration or Staging, follow the [Restore an RDS instance via the AWS CLI](/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli) instructions for an app of your choice.
 
 ## Force failover to GOV.UK mirror and Emergency publishing using the GOV.UK mirror
 
@@ -113,34 +113,30 @@ Carry out a hypothetical walk through of [unsuspending a user](/manual/manage-si
 
 ### Redirect a route
 
-Follow the [Removing a route created in the Short URL Manager](/manual/redirect-routes.html#removing-a-route-created-in-the-short-url-manager) and [Removing a route completely so it can be replaced with another route](/manual/redirect-routes.html#removing-a-route-completely-so-it-can-be-replaced-with-another-route) instructions.
-Do this on Integration or Staging.
+On Integration or Staging, follow the [Removing a route created in the Short URL Manager](/manual/redirect-routes.html#removing-a-route-created-in-the-short-url-manager) and [Removing a route completely so it can be replaced with another route](/manual/redirect-routes.html#removing-a-route-completely-so-it-can-be-replaced-with-another-route) instructions.
 
 ### Change a slug and create a redirect
 
-Follow the [Change a slug and create redirect in Whitehall](/manual/howto-change-slug-and-create-redirect.html), picking something
+On Integration or Staging, follow the [Change a slug and create redirect in Whitehall](/manual/howto-change-slug-and-create-redirect.html), picking something
 at random in Whitehall from one of the group of entities listed ([people](https://whitehall-admin.publishing.service.gov.uk/government/admin/people), [role](https://whitehall-admin.publishing.service.gov.uk/government/admin/roles), [organisation](https://whitehall-admin.publishing.service.gov.uk/government/admin/organisations), etc).
-Do this on Integration or Staging.
 
 ## Drill modifying a document's change note
 
 ### Modify and remove a document's change note in Whitehall
 
-Follow [Modify a change note in Whitehall](/manual/howto-modify-change-note.html#whitehall) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
+On Integration or Staging, follow [Modify a change note in Whitehall](/manual/howto-modify-change-note.html#whitehall) using [this document](https://www.staging.publishing.service.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
 Once you have successfully updated the change note you can drill [removing a change note in Whitehall](/manual/howto-remove-change-note.html#whitehall).
-Do this on Integration or Staging.
 
 ### Modify and remove a document's change note in Content Publisher
 
-Follow [Modify a change note in Content Publisher](/manual/howto-modify-change-note.html#content-publisher) using [this document in Staging](https://www.staging.publishing.service.gov.uk/government/news/cold-weather-alert-issued-by-ukhsa). The 30th November 2021 shows a bespoke change note which you could try changing - click "show all updates" at the bottom of the page.
+On Integration or Staging, follow [Modify a change note in Content Publisher](/manual/howto-modify-change-note.html#content-publisher) using [this document](https://www.staging.publishing.service.gov.uk/government/news/cold-weather-alert-issued-by-ukhsa). The 30th November 2021 shows a bespoke change note which you could try changing - click "show all updates" at the bottom of the page.
 
 You can also try deleting the change note. Again, ensure you do this on Staging or Integration.
 
 ### Modify a document's change note in Publishing API
 
-Follow [Modify a change note in Publishing API](/manual/howto-modify-change-note.html#publishing-api) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
+On Integration or Staging, follow [Modify a change note in Publishing API](/manual/howto-modify-change-note.html#publishing-api) using [this document](https://www.staging.publishing.service.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
 Once you have successfully updated the change note you can drill [removing a change note in Publishing API](/manual/howto-remove-change-note.html#other-apps).
-Do this on Integration or Staging.
 
 ## Drill updating homepage popular links
 
