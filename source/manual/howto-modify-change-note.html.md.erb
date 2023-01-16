@@ -85,13 +85,13 @@ Ouput change history:
 details[:change_history]
 ```
 
-Select relevant change note manually, or by seaching for the node text:
+Select relevant change note manually, or by seaching for the note text:
 
 ```
 change_note_index = details[:change_history].find_index { |change_note| change_note[:note] =~ /SUBSTRING OR FULL CHANGE NOTE TEXT/ }
 ```
 
-Check the returned change not is correct:
+Check the returned change note is correct:
 
 ```
 details[:change_history][change_note_index]
@@ -106,7 +106,7 @@ details[:change_history][change_note_index][:note] = "New note"
 Update edition:
 
 ```
-edition.update(details: details)
+live_edition.update(details: details)
 ```
 
 Finally, [send the document downstream](/repos/publishing-api/admin-tasks.html#representing-data-downstream) using the content id.
