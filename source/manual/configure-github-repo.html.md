@@ -21,7 +21,7 @@ Almost all repos should:
 - Have [GitHub Trello Poster](/manual/github-trello-poster.html) enabled
 
 [govuk-ci-bots-team]: https://github.com/orgs/alphagov/teams/gov-uk-ci-bots
-[govuk-production-team]: https://github.com/orgs/alphagov/teams/gov-uk-production
+[govuk-production-team]: https://github.com/orgs/alphagov/teams/gov-uk-production-admin
 [govuk-production-deploy-team]: https://github.com/orgs/alphagov/teams/gov-uk-production-deploy
 [govuk-topic]: https://github.com/search?q=topic:govuk
 
