@@ -126,7 +126,7 @@ Do this on Integration or Staging.
 
 ### Modify and remove a document's change note in Whitehall
 
-Follow [Modify a change note in Whitehall](/manual/howto-modify-change-note.html#whitehall) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
+Follow [Modify a change note in Whitehall](/manual/howto-modify-change-note.html#whitehall) using [this document](https://www.staging.publishing.service.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
 Once you have successfully updated the change note you can drill [removing a change note in Whitehall](/manual/howto-remove-change-note.html#whitehall).
 Do this on Integration or Staging.
 
@@ -138,7 +138,7 @@ You can also try deleting the change note. Again, ensure you do this on Staging 
 
 ### Modify a document's change note in Publishing API
 
-Follow [Modify a change note in Publishing API](/manual/howto-modify-change-note.html#publishing-api) using [this document](https://www.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
+Follow [Modify a change note in Publishing API](/manual/howto-modify-change-note.html#publishing-api) using [this document](https://www.staging.publishing.service.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
 Once you have successfully updated the change note you can drill [removing a change note in Publishing API](/manual/howto-remove-change-note.html#other-apps).
 Do this on Integration or Staging.
 
