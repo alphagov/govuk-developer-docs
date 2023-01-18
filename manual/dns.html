@@ -133,6 +133,17 @@
       </li>
       <li>
         <a href="#dns-for-service-gov-uk-domains"><span>DNS for *.service.gov.uk domains</span></a>
+        <ul>
+          <li>
+            <a href="#running-govuk-dns-using-gds-cli"><span>Running govuk-dns using gds-cli</span></a>
+          </li>
+          <li>
+            <a href="#deploying-a-change"><span>Deploying a change</span></a>
+          </li>
+          <li>
+            <a href="#running-govuk-dns-manually-using-jenkins"><span>Running govuk-dns manually using Jenkins</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#dns-for-govuk-digital-and-govuk-internal-digital"><span>DNS for govuk.digital and govuk-internal.digital</span></a>
@@ -194,13 +205,13 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2735af33f5f65348a0e2df24c693d9f1d9d62e63">12 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5c623b118e34bae5695ed84f8b74b18b73c8300">18 Jan 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
 <p>By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud DNS). We use both for redundancy.</p>
 <p>As of December 2022, there are 61 hosted zones. A list is retrievable from a terminal using:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-admin -- aws route53 list-hosted-zones | grep Name
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser -- aws route53 list-hosted-zones | grep Name
 </code></pre></div><p>Some individual records within these zones are managed by other teams.</p>
 <h2 id='records-for-gov-uk-systems'>Records for GOV.UK systems</h2><p>We use a few domains:</p>
 
@@ -215,30 +226,30 @@ Note that we <strong>do not</strong> manage any other DNS records: if you get a 
 
 <ol>
 <li>Make the changes in govuk-dns-config (see <a href="https://github.com/alphagov/govuk-dns-config/pull/851">example</a>)</li>
-<li>Deploy the changes via the <a href="https://deploy.blue.production.govuk.digital/job/Deploy_DNS/">Deploy_DNS Jenkins job</a>. You&rsquo;ll need production admin access to do this.</li>
+<li>Use the gds-cli to deploy the changes via the <a href="https://deploy.blue.production.govuk.digital/job/Deploy_DNS/">Deploy_DNS Jenkins job</a></li>
 </ol>
-<p>Deploying is a multi-step process:</p>
+<p>Before you start make sure your machine is set up so you can access AWS and <a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> using command line tools.</p>
+<p>The deployment process is complex, so it&rsquo;s much easier to <a href="#running-govuk-dns-using-gds-cli">use the automation provided by the GDS CLI</a>, although it <a href="#running-govuk-dns-manually-using-jenkins">can be done manually</a>.</p>
+<h3 id='running-govuk-dns-using-gds-cli'>Running govuk-dns using gds-cli</h3><p>gds-cli provides a command which automates gathering the required credentials and triggering Jenkins. The command authenticates to Jenkins using GitHub, so it expects <code>GITHUB_USERNAME</code> / <code>GITHUB_TOKEN</code> environment variables to be set. It calls out to the <code>aws</code> and <code>gcloud</code> command line tools to fetch the other required credentials.</p>
+<p>You can get the relevant help for your version of gds-cli with:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ gds govuk dns --help
+NAME:
+   gds govuk dns - deploy DNS via Jenkins
+
+USAGE:
+   gds govuk dns [command options] [arguments...]
+
+OPTIONS:
+...
+</code></pre></div><p>For example, to have Jenkins run a terraform plan of changes to service.gov.uk against AWS, run:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ gds govuk dns --provider aws --zone service.gov.uk --action plan --role govuk-production-poweruser
+</code></pre></div><p>This will trigger a build in Jenkins. Check the build output to see what terraform has done / would do.</p>
+<h3 id='deploying-a-change'>Deploying a change</h3><p>Deploying is a multi-step process</p>
 
 <ol>
-<li>Run a <code>plan</code> of the deployment, against the <code>aws</code> provider.
-
-<ul>
-<li>You can get the necessary AWS credentials by running <code>gds aws govuk-production-admin -e</code>.</li>
-</ul></li>
+<li>Run a <code>plan</code> of the deployment, against the <code>aws</code> provider.</li>
 <li>Check that the output is what you expect.</li>
-<li>Retrieve a Google OAuth access token.
-
-<ul>
-<li>You&rsquo;ll need the gcloud CLI (<code>brew install --cask google-cloud-sdk</code>).</li>
-<li>Then run the following - you&rsquo;ll be prompted to login to your Google account to allow Google Cloud SDK access your Google Account. The token will be printed in the terminal:</li>
-<li><code>gcloud config set project govuk-production; gcloud auth login --brief; gcloud auth print-access-token</code></li>
-<li>Use this token for the <code>GOOGLE_OAUTH_ACCESS_TOKEN</code> field in the next step.</li>
-</ul></li>
-<li>Now run a <code>plan</code> of the deployment against the <code>gcp</code> provider.
-
-<ul>
-<li>You&rsquo;ll still need to provide all the AWS credentials as per step 1. This is because the Terraform state is held in an S3 bucket.</li>
-</ul></li>
+<li>Now run a <code>plan</code> of the deployment against the <code>gcp</code> provider.</li>
 <li>Check that the output is what you expect.
 
 <ul>
@@ -250,6 +261,12 @@ Note that we <strong>do not</strong> manage any other DNS records: if you get a 
 <li>Sometimes, the GCP deployment requires multiple runs. This is because, in order to change a DNS record, the Google provider deletes and re-adds that record. This can cause a <a href="https://github.com/alphagov/govuk-dns/issues/67">race condition</a> where Google tries to create the new one before it has successfully deleted the old one. In this case, the build will fail, and you just need to re-run the GCP <code>apply</code> job.</li>
 </ul></li>
 </ol>
+<h3 id='running-govuk-dns-manually-using-jenkins'>Running govuk-dns manually using Jenkins</h3><p>If you run into issues using the <code>gds govuk dns</code> command, you can trigger a build of the <a href="https://deploy.blue.production.govuk.digital/job/Deploy_DNS/">Deploy_DNS Jenkins job</a> directly.</p>
+<p>You will need AWS credentials whichever provider you&rsquo;re targetting. You can get these by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds aws govuk-production-poweruser -e
+</code></pre></div><p>To plan or apply using the <code>gcp</code> provider, you will also need a Google OAuth access token. Once you <a href="/manual/google-cloud-platform-gcp.html">have gcloud set up</a> you can get these by running:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gcloud config set project govuk-production &amp;&amp; gcloud auth login --brief &amp;&amp; gcloud auth print-access-token
+</code></pre></div><p>You&rsquo;ll be prompted to login to your Google account to allow Google Cloud SDK access your Google Account.</p>
 <h2 id='dns-for-govuk-digital-and-govuk-internal-digital'>DNS for <code>govuk.digital</code> and <code>govuk-internal.digital</code></h2><p>Currently these zones are only used in environments running on AWS.</p>
 <p>These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
 made in the <a href="https://github.com/alphagov/govuk-aws/">govuk-aws</a> and
