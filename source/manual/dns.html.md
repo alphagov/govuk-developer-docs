@@ -14,7 +14,7 @@ By default, zones are hosted by AWS (Route 53) and Google Cloud Platform (Cloud 
 As of December 2022, there are 61 hosted zones. A list is retrievable from a terminal using:
 
 ```
-gds aws govuk-production-admin -- aws route53 list-hosted-zones | grep Name
+gds aws govuk-production-poweruser -- aws route53 list-hosted-zones | grep Name
 ```
 
 Some individual records within these zones are managed by other teams.
