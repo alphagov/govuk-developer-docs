@@ -6,23 +6,31 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-user-research-panel - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-user-research-panel (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-user-research-panel.html">
 
-      <meta name="description" content="Everything about govuk-user-research-panel (A User Research Panel - to manage relationships with people who take part in user research and hence improve GOV.UK)" />
+      <meta name="description" content="Everything about govuk-user-research-panel (A PHP based application for managing people who take part in user research.
+At the time of archiving, it had had no commits since December 2016 (and had
+only had 5 commits in total at any rate, most of which were README updates).
+It's therefore reasonable to assume there is no support plan for this app.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-user-research-panel - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-user-research-panel (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-user-research-panel.html" />
 
-      <meta property="og:description" content="Everything about govuk-user-research-panel (A User Research Panel - to manage relationships with people who take part in user research and hence improve GOV.UK)" />
+      <meta property="og:description" content="Everything about govuk-user-research-panel (A PHP based application for managing people who take part in user research.
+At the time of archiving, it had had no commits since December 2016 (and had
+only had 5 commits in total at any rate, most of which were README updates).
+It's therefore reasonable to assume there is no support plan for this app.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-user-research-panel" />
+      <meta property="og:title" content="Repository: govuk-user-research-panel (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-user-research-panel.html" />
 
@@ -175,110 +183,14 @@
 </div>
 
   
-  <h1 class="page-title">Repository: govuk-user-research-panel</h1>
+  <h1 class="page-title">Repository: govuk-user-research-panel (retired)</h1>
 
-  <p>A User Research Panel - to manage relationships with people who take part in user research and hence improve GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-user-research-panel">govuk-user-research-panel</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">unknown</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-user-research-panel" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk-user-research-panel.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>A User Research Panel - to manage relationships with people who take part in user research and hence improve GOV.UK</p>
-
-<h2 id="live-examples-if-available">Live examples (if available)</h2>
-
-<ul>
-<li><a href="https://signup.take-part-in-research.service.gov.uk/">signup.take-part-in-research.service.gov.uk</a></li>
-</ul>
-
-<h2 id="nomenclature">Nomenclature</h2>
-
-<ul>
-<li>
-<strong>Panelist</strong>: A citizen who is interested in participating in the user research panel</li>
-<li>
-<strong>Contact</strong>: Another name for a panelist</li>
-<li>
-<strong>Onboarding Form</strong>: An online form to capture new panelist data</li>
-<li>
-<strong>Survey</strong>: A series of questions to filter down panelists to the ones we want to talk to</li>
-<li>
-<strong>Screener</strong>: Another name for a survey</li>
-</ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a PHP-based application, built on top of SugarCRM with a frontend that faces public
-users to capture names, email addresses, and other personal data. The frontend is accessed
-via links placed on other GOV.UK pages. Please speak with the original authors, Squiz
-(<a href="mailto:adam.frank@squiz.net">adam.frank@squiz.net</a>), if there are any queries about how to use this.</p>
-
-<h3 id="dependencies">Dependencies</h3>
-
-<ul>
-<li>SugarCRM Enterprise Edition - you must have purchased the Sugar application to use this code.</li>
-</ul>
-
-<h3 id="running-the-application">Running the application</h3>
-
-<p>Accessed by visiting the onboarding form in the browser.</p>
-
-<h2 id="licence">Licence</h2>
-
-<p>This code is licensed under the <a href="https://github.com/alphagov/govuk-user-research-panel/blob/main/LICENSE">MIT License</a>, and shareable freely.</p>
-
-<p>It has a depends on SugarCRM, which is commercial software.
-This can be acquired by using <a href="https://www.digitalmarketplace.service.gov.uk/g-cloud/search?q=sugar+crm&amp;lot=saas">Digital Marketplace and procuring via G Cloud</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>A PHP based application for managing people who take part in user research.
+At the time of archiving, it had had no commits since December 2016 (and had
+only had 5 commits in total at any rate, most of which were README updates).
+It&rsquo;s therefore reasonable to assume there is no support plan for this app.</p></p>
+<p><a href="https://github.com/alphagov/govuk-user-research-panel">GitHub repository</a></p>
 
 
             
