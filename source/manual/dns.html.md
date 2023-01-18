@@ -35,24 +35,74 @@ Note that we __do not__ manage any other DNS records: if you get a request conce
 When you've verified the authenticity of the request as per the SRE docs above, you should:
 
 1. Make the changes in govuk-dns-config (see [example](https://github.com/alphagov/govuk-dns-config/pull/851))
-1. Deploy the changes via the [Deploy_DNS Jenkins job](https://deploy.blue.production.govuk.digital/job/Deploy_DNS/). You'll need production admin access to do this.
+1. Use the gds-cli to deploy the changes via the [Deploy_DNS Jenkins job][]
 
-Deploying is a multi-step process:
+Before you start make sure your machine is set up so you can access AWS and [Google Cloud Platform (GCP)][] using command line tools.
+
+The deployment process is complex, so it's much easier to [use the automation provided by the GDS CLI](#running-govuk-dns-using-gds-cli), although it [can be done manually](#running-govuk-dns-manually-using-jenkins).
+
+### Running govuk-dns using gds-cli
+
+gds-cli provides a command which automates gathering the required credentials and triggering Jenkins. The command authenticates to Jenkins using GitHub, so it expects `GITHUB_USERNAME` / `GITHUB_TOKEN` environment variables to be set. It calls out to the `aws` and `gcloud` command line tools to fetch the other required credentials.
+
+You can get the relevant help for your version of gds-cli with:
+
+```
+$ gds govuk dns --help
+NAME:
+   gds govuk dns - deploy DNS via Jenkins
+
+USAGE:
+   gds govuk dns [command options] [arguments...]
+
+OPTIONS:
+   --provider value, -p value            DNS provider to use
+   --zone value, -z value                DNS zone for
+   --action value, -a value              action to apply. e.g. plan
+   --github-username value, -u value     GitHub username used to log into Jenkins, can be set via env variable GITHUB_USERNAME [$GITHUB_USERNAME]
+   --role value, -r value                Name of the AWS role used to get credentials
+   --assume-role-ttl value, --art value  Expiration time for the assumed role. Most roles are configured to permit up to 60m. (default: "60m")
+   --skip-mfa, --sm                      Don't ask for MFA (default: false)
+   --help, -h                            show help (default: false)
+```
+
+For example, to have Jenkins run a terraform plan of changes to service.gov.uk against AWS, run:
+
+```
+$ gds govuk dns --provider aws --zone service.gov.uk --action plan --role govuk-production-poweruser
+```
+
+This will trigger a build in Jenkins. Check the build output to see what terraform has done / would do.
+
+### Deploying a change
+
+Deploying is a multi-step process
 
 1. Run a `plan` of the deployment, against the `aws` provider.
-  - You can get the necessary AWS credentials by running `gds aws govuk-production-admin -e`.
 1. Check that the output is what you expect.
-1. Retrieve a Google OAuth access token.
-  - You'll need the gcloud CLI (`brew install --cask google-cloud-sdk`).
-  - Then run the following - you'll be prompted to login to your Google account to allow Google Cloud SDK access your Google Account. The token will be printed in the terminal:
-  - `gcloud config set project govuk-production; gcloud auth login --brief; gcloud auth print-access-token`
-  - Use this token for the `GOOGLE_OAUTH_ACCESS_TOKEN` field in the next step.
 1. Now run a `plan` of the deployment against the `gcp` provider.
-  - You'll still need to provide all the AWS credentials as per step 1. This is because the Terraform state is held in an S3 bucket.
 1. Check that the output is what you expect.
   - It's normal to see changes in TXT records relating to escaping of quotes. You can safely ignore these if they don't change any of the content of the record. This is a bug in the way we handle splitting long TXT records between AWS and GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
 1. Finally, run an `apply` deployment for both `aws` AND `gcp`. (The order doesn't matter).
   - Sometimes, the GCP deployment requires multiple runs. This is because, in order to change a DNS record, the Google provider deletes and re-adds that record. This can cause a [race condition](https://github.com/alphagov/govuk-dns/issues/67) where Google tries to create the new one before it has successfully deleted the old one. In this case, the build will fail, and you just need to re-run the GCP `apply` job.
+
+### Running govuk-dns manually using Jenkins
+
+If you run into issues using the `gds govuk dns` command, you can trigger a build of the [Deploy_DNS Jenkins job][] directly.
+
+You will need AWS credentials whichever provider you're targetting. You can get these by running:
+
+```
+gds aws govuk-production-poweruser -e
+```
+
+To plan or apply using the `gcp` provider, you will also need a Google OAuth access token. Once you [have gcloud set up][Google Cloud Platform (GCP)] you can get these by running:
+
+```
+gcloud config set project govuk-production && gcloud auth login --brief && gcloud auth print-access-token
+```
+
+You'll be prompted to login to your Google account to allow Google Cloud SDK access your Google Account.
 
 ## DNS for `govuk.digital` and `govuk-internal.digital`
 
@@ -99,3 +149,6 @@ Technical 2nd Line should be notified of any planned changes via email.
 - `www.gov.uk.` is a CNAME to `www-cdn.production.govuk.service.gov.uk.`, which means we
   do not need to make a request to Jisc if we want to change CDN providers. Just change where
   the CNAME points to.
+
+[Deploy_DNS Jenkins job]: https://deploy.blue.production.govuk.digital/job/Deploy_DNS/
+[Google Cloud Platform (GCP)]: /manual/google-cloud-platform-gcp.html
