@@ -56,14 +56,7 @@ USAGE:
    gds govuk dns [command options] [arguments...]
 
 OPTIONS:
-   --provider value, -p value            DNS provider to use
-   --zone value, -z value                DNS zone for
-   --action value, -a value              action to apply. e.g. plan
-   --github-username value, -u value     GitHub username used to log into Jenkins, can be set via env variable GITHUB_USERNAME [$GITHUB_USERNAME]
-   --role value, -r value                Name of the AWS role used to get credentials
-   --assume-role-ttl value, --art value  Expiration time for the assumed role. Most roles are configured to permit up to 60m. (default: "60m")
-   --skip-mfa, --sm                      Don't ask for MFA (default: false)
-   --help, -h                            show help (default: false)
+...
 ```
 
 For example, to have Jenkins run a terraform plan of changes to service.gov.uk against AWS, run:
