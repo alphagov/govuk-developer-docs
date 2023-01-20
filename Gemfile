@@ -18,7 +18,8 @@ gem "git"
 gem "html-pipeline"
 gem "mdl"
 
-gem "govuk_publishing_components"
+gem "govuk_publishing_components", path: "../govuk_publishing_components"
+
 gem "govuk_schemas"
 
 # GitHub API
