@@ -219,62 +219,20 @@
 
 <h2 id="setup-ckan-variables">Setup CKAN variables</h2>
 
-<p>In order to run the tests in docker CKAN using the CKAN static mock harvest source a number of manual steps need to take place:</p>
-
 <ul>
 <li>
-<p>Start up your (docker ckan stack)[https://github.com/alphagov/docker-ckan]</p>
-</li>
-<li>
-<p>Create 2 publishers</p>
-<ul>
-<li>
-<code>Example Publisher #1</code> with <code>Charity</code> organisation type.</li>
-<li>
-<code>Example Publisher #2</code> with any organisation type.</li>
-</ul>
-<p></li>
-<li>
-<p>Add the mock harvest source to CKAN</p>
-<ul>
-<li>url: <code>http://static-mock-harvest-source:11088</code>
-</li>
-<li>name: <code>Example Harvest #1</code>
-</li>
-<li>Source type: <code>CKAN</code>
-</li>
-</ul>
-</li>
-<li>
-<p>After adding the harvest source start the harvest process by clicking on the reharvest button.</p>
-</li>
-<li>
-<p>Edit <code>Example Dataset #1</code> to add in a Contact Name</p>
-<ul>
-<li>Contact name: <code>Example User</code>
-</li>
-</ul>
-</li>
-<li>
-<p>Update the <code>ckan_vars.conf</code> file:</p>
-<p>PACKAGE_ID=a18d2811-13b0-4838-8bfb-5793433317b9
-MOCK_HARVEST_SOURCE_URL=<a href="http://static-mock-harvest-source:11088">http://static-mock-harvest-source:11088</a>
-OWNER_ORG=&lt; Get the id from <a href="http://localhost:5000/api/3/action/organization_show?id=example-publisher-1">http://localhost:5000/api/3/action/organization_show?id=example-publisher-1</a> &gt;</p>
-<ul>
-<li>PACKAGE_ID and MOCK_HARVEST_SOURCE_URL are the default values and should work unless you change the package in the ckan-static-mock-harvest-source, or need to run multiple stacks so the MOCK_HARVEST_SOURCE_URL could change.</li>
-<li>To find the <code>OWNER_ORG</code> go to this URL - <a href="http://localhost:5000/api/3/action/organization_show?id=example-publisher-1">http://localhost:5000/api/3/action/organization_show?id=example-publisher-1</a>
-</li>
-<li>There should be just 1 result, the <code>OWNER_ORG</code> is the value in the <code>id</code> field.</li>
-</ul>
+<p>Before running these tests you will need to setup the test data in CKAN by running <code>ckan datagovuk create-dgu-test-data</code> in the CKAN container.</p>
 </li>
 <li>
 <p>Update <code>config.json</code> to point to the CKAN website that you want to run the tests against.</p>
 <ul>
 <li>make sure that you set the correct version of <code>ckan_version</code> as support for v1 API was dropped in 2.9.</li>
+<li>You may need to update the <code>ckan_mock_harvest_source</code> value in <code>config.json</code> if it has been remapped, the errors in the test results should give you a hint at the correct url which is normally running on port 11088. Other values that the tests need will be automatically generated in <code>ckan-vars.conf</code>.</li>
+<li>If you tear down the CKAN stack and rebuild everything it is probably a good idea to delete <code>ckan-vars.conf</code> so that it gets regenerated with the latest values.</li>
 </ul>
-</li>
+<p></li>
 </ul>
-<p>After all these steps you should be able to run the tests.</p>
+<p>After these steps you should be able to run the tests.</p>
 <h2 id="installing-running">Installing &amp; Running</h2>
 <p>Either use the <code>default.nix</code> file provided or, in a virtualenv, do a normal
 <code>pip install -r requirements.txt</code>. Running should just be a matter of calling</p>
