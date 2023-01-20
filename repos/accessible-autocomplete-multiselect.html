@@ -1,0 +1,740 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Repository: accessible-autocomplete-multiselect - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/accessible-autocomplete-multiselect.html">
+
+      <meta name="description" content="Everything about accessible-autocomplete-multiselect (An autocomplete multi-select component, built to be accessible.)" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="Repository: accessible-autocomplete-multiselect - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/accessible-autocomplete-multiselect.html" />
+
+      <meta property="og:description" content="Everything about accessible-autocomplete-multiselect (An autocomplete multi-select component, built to be accessible.)" />
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="Repository: accessible-autocomplete-multiselect" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/accessible-autocomplete-multiselect.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/accessible-autocomplete-multiselect.html" rel="noopener" class="govuk-link">accessible-autocomplete-multiselect</a>
+    </li>
+    <li>
+      <ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div class="gem-c-breadcrumbs govuk-breadcrumbs" data-module="gem-track-click">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+  </ol>
+</div>
+
+  
+  <h1 class="page-title">Repository: accessible-autocomplete-multiselect</h1>
+
+  <p>An autocomplete multi-select component, built to be accessible.</p>
+
+<div class="gem-c-summary-list  ">
+
+      <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">GitHub</dt>
+            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/accessible-autocomplete-multiselect">accessible-autocomplete-multiselect</a></dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Ownership</dt>
+            <dd class="govuk-summary-list__value">#govuk-publishing-experience-tech</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Hosting</dt>
+            <dd class="govuk-summary-list__value">N/A</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Category</dt>
+            <dd class="govuk-summary-list__value">Utilities</dd>
+
+
+
+</div>          <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">Links</dt>
+            <dd class="govuk-summary-list__value"><ul class="govuk-list">
+    <li></li>
+    <li><a href="https://sentry.io/govuk/app-accessible-autocomplete-multiselect" class="govuk-link">Sentry (error tracking)</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://grafana.production.govuk.digital/dashboard/file/accessible-autocomplete-multiselect.json" class="govuk-link">Deployment dashboard</a></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</dd>
+
+
+
+</div></dl>
+    <div class="gem-c-summary__block"></div>
+</div>
+<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
+
+<p><a href="http://npm.im/accessible-autocomplete"><img src="https://img.shields.io/npm/v/accessible-autocomplete.svg" alt="npm version"></a>
+<a href="https://travis-ci.org/alphagov/accessible-autocomplete"><img src="https://travis-ci.org/alphagov/accessible-autocomplete.svg?branch=master" alt="Build Status"></a>
+<a href="https://coveralls.io/github/alphagov/accessible-autocomplete?branch=master"><img src="https://coveralls.io/repos/github/alphagov/accessible-autocomplete/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a>
+<a href="https://greenkeeper.io/"><img src="https://badges.greenkeeper.io/alphagov/accessible-autocomplete.svg" alt="Greenkeeper badge"></a>
+<a href="https://unpkg.com/accessible-autocomplete/dist/accessible-autocomplete.min.js"><img src="http://img.badgesize.io/https://unpkg.com/accessible-autocomplete/dist/accessible-autocomplete.min.js?compression=gzip" alt="gzip size"></a></p>
+
+<p><a href="https://saucelabs.com/u/tvararu-alphagov"><img src="https://saucelabs.com/browser-matrix/tvararu-alphagov.svg" alt="Sauce Labs Build Status"></a></p>
+
+<p>This is a fork of the <a href="https://github.com/alphagov/accessible-autocomplete">accessible-autocomplete</a> component. It adds additional functionality such as support for <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-multiple">select multiple</a>.</p>
+
+<p><code>accessible-autocomplete</code> is a JavaScript autocomplete built from the ground up to be accessible. The design goals are:</p>
+
+<ul>
+<li>
+<strong>Accessibility</strong>: Following WAI-ARIA best practices and testing with assistive technologies.</li>
+<li>
+<strong>User experience</strong>: Supporting a wide variety of user needs.</li>
+<li>
+<strong>Compatibility</strong>: Working with as many browsers, devices, and assistive technologies as possible.</li>
+</ul>
+
+<p><a href="https://alphagov.github.io/accessible-autocomplete/examples/">Try out the examples!</a></p>
+
+<h2 id="installation-usage">Installation / usage</h2>
+
+<h3 id="using-npm-and-a-module-system">Using npm and a module system</h3>
+
+<p>Install it by running:</p>
+
+<pre lang="bash"><code>npm install --save accessible-autocomplete
+</code></pre>
+
+<p>The <code>accessibleAutocomplete</code> function will render an autocomplete <code>&lt;input&gt;</code> and its accompanying suggestions and <code>aria-live</code> region. Your page should provide a <code>&lt;label&gt;</code> and a container element:</p>
+
+<pre lang="html"><code>&lt;label for="my-autocomplete"&gt;Select your country&lt;/label&gt;
+&lt;div id="my-autocomplete-container"&gt;&lt;/div&gt;
+</code></pre>
+
+<p>Then import it using a module system like Browserify / Webpack / Rollup, and call the <code>accessibleAutocomplete</code> function, providing an array of values:</p>
+
+<pre lang="js"><code>import accessibleAutocomplete from 'accessible-autocomplete'
+
+const countries = [
+  'France',
+  'Germany',
+  'United Kingdom'
+]
+
+accessibleAutocomplete({
+  element: document.querySelector('#my-autocomplete-container'),
+  id: 'my-autocomplete', // To match it to the existing &lt;label&gt;.
+  source: countries
+})
+</code></pre>
+
+<p>If you want to use it as a replacement for a <code>&lt;select&gt;</code> element, read the <a href="#progressive-enhancement">Progressive enhancement</a> section.</p>
+
+<h3 id="as-a-plain-javascript-module">As a plain JavaScript module</h3>
+
+<p>You can copy the <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/dist/accessible-autocomplete.min.js">dist/accessible-autocomplete.min.js</a> file to your JavaScript folder and import it into the browser:</p>
+
+<pre lang="html"><code>&lt;script type="text/javascript" src="assets/js/accessible-autocomplete.min.js"&gt;&lt;/script&gt;
+</code></pre>
+
+<h3 id="styling-the-autocomplete">Styling the autocomplete</h3>
+
+<p>A stylesheet is included with the package at <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/dist/accessible-autocomplete.min.css">dist/accessible-autocomplete.min.css</a>.</p>
+
+<p>You can copy it to your stylesheets folder and import it into the browser:</p>
+
+<pre lang="html"><code>&lt;link rel="stylesheet" href="assets/css/accessible-autocomplete.min.css" /&gt;
+</code></pre>
+
+<p>You can also import it using Sass:</p>
+
+<pre lang="css"><code>@import "accessible-autocomplete";
+</code></pre>
+
+<h3 id="using-with-preact">Using with Preact</h3>
+
+<p>If you already use Preact in your application, you can import a bundle that will use that:</p>
+
+<pre lang="js"><code>import preact from 'preact'
+import Autocomplete from 'accessible-autocomplete/preact'
+
+preact.render(
+  &lt;Autocomplete id='autocomplete' source={suggest} /&gt;,
+  document.querySelector('#container')
+)
+</code></pre>
+
+<p><a href="https://alphagov.github.io/accessible-autocomplete/examples/preact/">Try out the Preact example!</a></p>
+
+<h3 id="using-with-react">Using with React</h3>
+
+<p>If you already use React in your application, you can import a bundle that will use that:</p>
+
+<pre lang="js"><code>import React from 'react'
+import ReactDOM from 'react-dom'
+import Autocomplete from 'accessible-autocomplete/react'
+
+ReactDOM.render(
+  &lt;Autocomplete id='autocomplete' source={suggest} /&gt;,
+  document.querySelector('#container')
+)
+</code></pre>
+
+<p><a href="https://alphagov.github.io/accessible-autocomplete/examples/react/">Try out the React example!</a></p>
+
+<h4 id="react-versions">React versions</h4>
+
+<p>React v15.5.4 has been tested to work with the Accessible Autocomplete - although make sure to check
+out <a href="https://github.com/alphagov/accessible-autocomplete/issues">documented issues</a>.</p>
+
+<p>React v15.6.2 and 16.0 have been incompletely tested with the Accessible Autocomplete: while no undocumented issues were found, we recommend you carry out thorough testing if you wish to use these or later versions of React.</p>
+
+<h2 id="api-documentation">API documentation</h2>
+
+<h3 id="required-options">Required options</h3>
+
+<h4 id="element"><code>element</code></h4>
+
+<p>Type: <code>HTMLElement</code></p>
+
+<p>The container element in which the autocomplete will be rendered in.</p>
+
+<h4 id="id"><code>id</code></h4>
+
+<p>Type: <code>string</code></p>
+
+<p>The <code>id</code> to assign to the autocomplete input field, to use with a <code>&lt;label for=id&gt;</code>. Not required if using <code>enhanceSelectElement</code>.</p>
+
+<h4 id="source"><code>source</code></h4>
+
+<p>Type: <code>Array | Function</code></p>
+
+<p>An array of values to search when the user types in the input field, or a function to take what the user types and call a callback function with the results to be displayed.</p>
+
+<p>An example of an array of values:</p>
+
+<pre lang="js"><code>const countries = [
+  'France',
+  'Germany',
+  'United Kingdom'
+]
+</code></pre>
+
+<p>If <code>source</code> is a function, the arguments are: <code>query: string, populateResults: Function</code></p>
+
+<p>Similar to the <a href="https://github.com/corejavascript/typeahead.js/blob/47d46b40cb834d8285ac9328c4b436e5eccf7197/doc/jquery_typeahead.md#datasets"><code>source</code> argument for typeahead.js</a>, a backing data source for suggestions. <code>query</code> is what gets typed into the input field, which will callback to <code>populateResults</code> synchronously with the array of string results to display in the menu.</p>
+
+<p>An example of a simple suggestion engine:</p>
+
+<pre lang="js"><code>function suggest (query, populateResults) {
+  const results = [
+    'France',
+    'Germany',
+    'United Kingdom'
+  ]
+  const filteredResults = results.filter(result =&gt; result.indexOf(query) !== -1)
+  populateResults(filteredResults)
+}
+</code></pre>
+
+<h3 id="other-options">Other options</h3>
+
+<h4 id="autoselect-default-false">
+<code>autoselect</code> (default: <code>false</code>)</h4>
+
+<p>Type: <code>Boolean</code></p>
+
+<p>Set to true to highlight the first option when the user types in something and receives results. Pressing enter will select it.</p>
+
+<h4 id="confirmonblur-default-true">
+<code>confirmOnBlur</code> (default: <code>true</code>)</h4>
+
+<p>Type: <code>Boolean</code></p>
+
+<p>The autocomplete will confirm the currently selected option when the user clicks outside of the component. Set to <code>false</code> to disable.</p>
+
+<h4 id="cssnamespace-default-autocomplete">
+<code>cssNamespace</code> (default: <code>'autocomplete'</code>)</h4>
+
+<p>Type: <code>string</code></p>
+
+<p>Use this property to override the <a href="http://getbem.com/">BEM</a> block name that the JavaScript component will use. You will need to rewrite the CSS class names to use your specified block name.</p>
+
+<h4 id="defaultvalue-default-">
+<code>defaultValue</code> (default: <code>''</code>)</h4>
+
+<p>Type: <code>string</code></p>
+
+<p>Specify a string to prefill the autocomplete with.</p>
+
+<h4 id="displaymenu-default-inline">
+<code>displayMenu</code> (default: <code>'inline'</code>)</h4>
+
+<p>Type: <code>'inline' | 'overlay'</code></p>
+
+<p>You can set this property to specify the way the menu should appear, whether inline or as an overlay.</p>
+
+<h4 id="minlength-default-0">
+<code>minLength</code> (default: <code>0</code>)</h4>
+
+<p>Type: <code>number</code></p>
+
+<p>The minimum number of characters that should be entered before the autocomplete will attempt to suggest options. When the query length is under this, the aria status region will also provide helpful text to the user informing them they should type in more.</p>
+
+<h4 id="name-default-input-autocomplete">
+<code>name</code> (default: <code>'input-autocomplete'</code>)</h4>
+
+<p>Type: <code>string</code></p>
+
+<p>The <code>name</code> for the autocomplete input field, to use with a parent <code>&lt;form&gt;</code>.</p>
+
+<h4 id="onconfirm-default-">
+<code>onConfirm</code> (default: <code>() =&gt; {}</code>)</h4>
+
+<p>Type: <code>Function</code></p>
+
+<p>Arguments: <code>confirmed: Object</code></p>
+
+<p>This function will be called when the user confirms an option, with the option they&rsquo;ve confirmed.</p>
+
+<h4 id="placeholder-default-warning-not-recommended-warning">
+<code>placeholder</code> (default: <code>''</code>) :warning: not recommended :warning:</h4>
+
+<p>Type: <code>string</code></p>
+
+<p>This option will populate the <code>placeholder</code> attribute on the input element.</p>
+
+<p>We think <a href="http://adamsilver.io/articles/placeholders-are-problematic/">placeholders have usability issues</a> and that there are <a href="https://govuk-elements.herokuapp.com/form-elements/#form-hint-text">better alternatives to input placeholder text</a>, so we do not recommend using this option.</p>
+
+<h4 id="required-default-false">
+<code>required</code> (default: <code>false</code>)</h4>
+
+<p>Type: <code>Boolean</code></p>
+
+<p>The input field will be rendered with a <code>required</code> attribute, see <a href="https://www.w3.org/TR/html5/forms.html#the-required-attribute">W3C <code>required</code> attribute definition</a>.</p>
+
+<h4 id="showallvalues-default-false">
+<code>showAllValues</code> (default: <code>false</code>)</h4>
+
+<p>Type: <code>Boolean</code></p>
+
+<p>If this is set to <code>true</code>, all values are shown when the user clicks the input. This is similar
+to a default dropdown, so the autocomplete is rendered with a dropdown arrow to convey
+this behaviour.</p>
+
+<h4 id="shownooptionsfound-default-true">
+<code>showNoOptionsFound</code> (default: <code>true</code>)</h4>
+
+<p>Type: <code>Boolean</code></p>
+
+<p>The autocomplete will display a &ldquo;No results found&rdquo; template when there are no results. Set to <code>false</code> to disable.</p>
+
+<h4 id="templates-default-undefined">
+<code>templates</code> (default: <code>undefined</code>)</h4>
+
+<p>Type:</p>
+
+<pre lang="js"><code>{
+  inputValue: Function,
+  suggestion: Function
+}
+</code></pre>
+
+<p>This object defines templates (functions) that are used for displaying parts of the autocomplete.</p>
+
+<p><code>inputValue</code> is a function that receives one argument, the currently selected suggestion. It returns the string value to be inserted into the input.</p>
+
+<p><code>suggestion</code> is a function that receives one argument, a suggestion to be displayed. It is used when rendering suggestions, and should return a string, which can contain HTML. :warning: <strong>Caution:</strong> because this function allows you to output arbitrary HTML, you should <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">make sure it&rsquo;s trusted</a>, and accessible.</p>
+
+<h4 id="dropdownarrow-default-a-rectangle-pointing-down">
+<code>dropdownArrow</code> (default: A rectangle pointing down)</h4>
+
+<p>Type: <code>Function</code></p>
+
+<p>A function that gets passed an object with the property <code>className</code> (<code>{ className: '' }</code>) and should return a string of HTML or a (P)React element. :warning: <strong>Caution:</strong> because this function allows you to output arbitrary HTML, you should <a href="https://en.wikipedia.org/wiki/Cross-site_scripting">make sure it&rsquo;s trusted</a>, and accessible.</p>
+
+<h3 id="internationalization">Internationalization</h3>
+
+<h4 id="tnoresults-default-no-results-found">
+<code>tNoResults</code> (default: <code>() =&gt; 'No results found'</code>)</h4>
+
+<p>Type: <code>Function</code></p>
+
+<p>A function that receives no arguments and should return the text used in the dropdown to indicate that there are no results.</p>
+
+<h4 id="tstatusquerytooshort-default-minquerylength-type-in-minquerylength-or-more-characters-for-results-">
+<code>tStatusQueryTooShort</code> (default: <code>(minQueryLength) =&gt; `Type in ${minQueryLength} or more characters for results.`</code>)</h4>
+
+<p>Type: <code>Function</code></p>
+
+<p>A function that receives one argument that indicates the minimal amount of characters needed for the dropdown to trigger and should return the text used in the accessibility hint to indicate that the query is too short.</p>
+
+<h4 id="tstatusnoresults-default-no-search-results-">
+<code>tStatusNoResults</code> (default: <code>() =&gt; 'No search results.'</code>)</h4>
+
+<p>Type: <code>Function</code></p>
+
+<p>A function that receives no arguments and should return the text that is used in the accessibility hint to indicate that there are no results.</p>
+
+<h4 id="tstatusselectedoption-default-selectedoption-length-index-selectedoption-index-1-of-length-is-selected-">
+<code>tStatusSelectedOption</code> (default: <code>(selectedOption, length, index) =&gt; `${selectedOption} (${index + 1} of ${length}) is selected.`</code>)</h4>
+
+<p>Type: <code>Function</code></p>
+
+<p>A function that receives two arguments, the selectedOption and the amount of available options, and it should return the text used in the accessibility hint to indicate which option is selected.</p>
+
+<h4 id="tstatusresults"><code>tStatusResults</code></h4>
+
+<p>Default:</p>
+
+<pre lang="js"><code>(length, contentSelectedOption) =&gt; {
+  const words = {
+    result: (length === 1) ? 'result' : 'results',
+    is: (length === 1) ? 'is' : 'are'
+  }
+
+  return &lt;span&gt;{length} {words.result} {words.is} available. {contentSelectedOption}&lt;/span&gt;
+}
+</code></pre>
+
+<p>Type: <code>Function</code></p>
+
+<p>A function that receives two arguments, the count of available options and the return value of <code>tStatusSelectedOption</code>, and should return the text used in the accessibility hint to indicate which options are available and which is selected.</p>
+
+<h2 id="progressive-enhancement">Progressive enhancement</h2>
+
+<p>If your autocomplete is meant to select from a small list of options (a few hundred), we strongly suggest that you render a <code>&lt;select&gt;</code> menu on the server, and use progressive enhancement.</p>
+
+<p>If you have the following HTML:</p>
+
+<pre lang="html"><code>&lt;select id="location-picker"&gt;
+  &lt;option value="fr"&gt;France&lt;/option&gt;
+  &lt;option value="de"&gt;Germany&lt;/option&gt;
+  &lt;option value="gb"&gt;United Kingdom&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p>You can use the <code>accessibleAutocomplete.enhanceSelectElement</code> function to enhance it into an autocomplete:</p>
+
+<pre lang="js"><code>accessibleAutocomplete.enhanceSelectElement({
+  selectElement: document.querySelector('#location-picker')
+})
+</code></pre>
+
+<p>This will:</p>
+
+<ul>
+<li>Place an autocomplete input field after the specified <code>&lt;select&gt;</code>
+</li>
+<li>Default the autocomplete <code>autoselect</code> to <code>true</code>
+</li>
+<li>Default the autocomplete <code>defaultValue</code> to the select&rsquo;s <code>option[selected]</code>
+</li>
+<li>Default the autocomplete <code>id</code> to the <code>&lt;select&gt;</code>&lsquo;s <code>id</code>
+</li>
+<li>Default the autocomplete <code>name</code> attribute to <code>''</code> to prevent it being included in form submissions</li>
+<li>Default the autocomplete <code>source</code> to use existing <code>&lt;option&gt;</code>s from the <code>&lt;select&gt;</code>
+</li>
+<li>Hide the <code>&lt;select&gt;</code> using inline <code>display: none</code>
+</li>
+<li>Set the <code>&lt;select&gt;</code>&rsquo;s <code>id</code> to <code>${id}-select</code> to decouple from any <code>&lt;label&gt;</code>
+</li>
+<li>Upon confirming a value in the autocomplete, update the original <code>&lt;select&gt;</code>
+</li>
+</ul>
+
+<p>This function takes the same options as <code>accessibleAutocomplete</code>, with the only difference being that it uses <code>selectElement</code> instead of <code>element</code>, which needs to be an instance of <code>HTMLSelectElement</code>.</p>
+
+<blockquote>
+<p><strong>Note</strong>: The <code>accessibleAutocomplete.enhanceSelectElement</code> function is fairly light and wraps the public API for <code>accessibleAutocomplete</code>. If your use case doesn&rsquo;t fit the above defaults, try <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/src/wrapper.js">reading the source</a> and seeing if you can write your own.</p>
+</blockquote>
+
+<h3 id="null-options">Null options</h3>
+
+<p>If your <code>&lt;select&gt;</code> element has a &ldquo;null&rdquo; option - a default option with no value - then you can pass a <code>defaultValue</code> option to <code>enhanceSelectElement</code> which will replace the label of this option when it is selected.</p>
+
+<p>With the following HTML:</p>
+
+<pre lang="html"><code>&lt;select id="location-picker"&gt;
+  &lt;option value=""&gt;Select a country&lt;/option&gt;
+  &lt;option value="fr"&gt;France&lt;/option&gt;
+  &lt;option value="de"&gt;Germany&lt;/option&gt;
+  &lt;option value="gb"&gt;United Kingdom&lt;/option&gt;
+&lt;/select&gt;
+</code></pre>
+
+<p>Then passing a <code>defaultValue</code> option of <code>''</code> will then leave the autocomplete blank if the null option is selected.</p>
+
+<pre lang="js"><code>accessibleAutocomplete.enhanceSelectElement({
+  defaultValue: '',
+  selectElement: document.querySelector('#location-picker')
+})
+</code></pre>
+
+<p>Any null options will also be filtered out of the options used to populate the <code>source</code> of the autocomplete element. To preserve options with no value in the autcomplete then pass a <code>preserveNullOptions</code> flag of <code>true</code> to <code>enhanceSelectElement</code>.</p>
+
+<h2 id="analytics-and-tracking">Analytics and tracking</h2>
+
+<p>The following events get triggered on the input element during the life cycle of the autocomplete:</p>
+
+<ul>
+<li>
+<code>onConfirm</code> - This function will be called when the user confirms an option, with the option they&rsquo;ve chosen.</li>
+</ul>
+
+<p>Example usage:</p>
+
+<pre lang="js"><code>accessibleAutocomplete({
+  // additional options
+  onConfirm: (val) =&gt; {
+    track(val)
+  }
+})
+</code></pre>
+
+<h2 id="why-another-autocomplete">Why another autocomplete?</h2>
+
+<p><code>accessible-autocomplete</code> was built after studying many existing solutions and prototyping patches to fix user experience or accessibility issues. It draws heavy inspiration from the following (and a lot of others):</p>
+
+<ul>
+<li>
+<a href="http://ljwatson.github.io/design-patterns/autocomplete/index.html">ljwatson/design-patterns</a>: great accessible experience</li>
+<li>
+<a href="https://github.com/corejavascript/typeahead.js">corejavascript/corejs-typeahead</a>: flexible autocomplete/suggestion engine architecture</li>
+<li>
+<a href="https://github.com/JamieAppleseed/selectToAutocomplete">JamieAppleseed/selectToAutocomplete</a>: ease of use</li>
+</ul>
+
+<h2 id="developing-locally">Developing locally</h2>
+
+<p>Check out the <a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/CONTRIBUTING.md">CONTRIBUTING</a> guide for instructions.</p>
+
+<p>If you want to help and want to get more familiar with the codebase, try starting with the <a href="https://github.com/alphagov/accessible-autocomplete/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+for+beginners%22">&ldquo;good for beginners&rdquo;</a> issues.</p>
+
+<h2 id="license">License</h2>
+
+<p><a href="https://github.com/alphagov/accessible-autocomplete-multiselect/blob/main/LICENSE.txt">MIT</a>.</p>
+<p></div></p>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccessible-autocomplete-multiselect.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
