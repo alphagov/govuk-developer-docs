@@ -228,20 +228,21 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0c0afc3569e621162f9209fc63b849191c0fba27">15 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/bc5510751089b7dbcef9d043ac4009176365c604">18 Jan 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Loading analytics into our applications</h1>
 
   
-<p>For analytics tracking, each environment (production, staging, integration, development) uses different environment variables. These environment variables are used to determine which dashboard analytics data is sent to. This is useful to us for testing and debugging, as we can test our analytics in isolated environments. Therefore, we want to be able to set different environment variables depending on which environment we are in. This needs to happen before our analytics code is initialised, so <code>load-analytics.js</code> executes before our analytics code is run.</p>
+<p>For analytics tracking, each environment (production, staging, integration, development) uses different environment variables. These environment variables are used to determine which dashboard analytics data is sent to. This is useful to us for testing and debugging, as we can test our analytics in isolated environments. Therefore, we want to be able to set different environment variables depending on which environment we are in. This needs to happen before our analytics code is initialised, so <code>load-analytics.js</code> handles the initialisation of these variables before our analytics code is run.</p>
 <p>Therefore, <code>load-analytics.js</code> has been written to do the following:</p>
 <ol>
 <li>Grab the current domain that the code is running on using <code>window.location.hostname</code>.</li>
 <li>Determine the environment you are on by comparing your domain against hardcoded categorised domains.</li>
-<li>Set the correct environment variables for both Universal Analytics, and Google Analytics 4, depending on the environment you are on. These are also hardcoded now.</li>
-<li>Kick off the initialisation of analytics by running their respective <code>init()</code> functions, which will then run the <code>ga4-core.js</code> code and the UA tracking initialisation code.</li>
-<li>The <code>ga4-core.js</code> / UA code then makes use of these environment variables. It can access them as they are set on the JavaScript <code>window</code> object.</li>
+<li>Set the correct environment variables for both Universal Analytics, and Google Analytics 4, depending on the environment you are on. These envrionment variables are also hardcoded.</li>
+<li>Kick off the initialisation of analytics by adding the <code>gtm.js</code> and <code>analytics.js</code> scripts from Google to the <code>&lt;head&gt;</code> of the page.</li>
+<li>The GA4 code then waits for a <code>DOMContentLoaded</code> event to initialise the analytics modules, as our modules rely on the <code>&lt;body&gt;</code> existing so they cannot be initialised straight away. The UA code however will initiliase at the same point that <code>analytics.js</code> is added to the <code>&lt;head&gt;</code> of the page.</li>
+<li>The <code>loadGa4</code> function in this file also handles cookie consent for GA4. If the user has accepted cookies, the analytics code will run as soon as possible. If they have not accepted cookies, the analytics code will only initialise once it receives a <code>cookie-consent</code> event, which is a custom event we send when cookies are accepted.</li>
 </ol>
 <p>The Google Analytics 4 environment variables are:</p>
 <ul>
