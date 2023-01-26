@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>account-api: 002-progressive-enhancement - GOV.UK Developer Documentation</title>
+    <title>account-api: Rake Tasks - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/account-api/adr/002-progressive-enhancement.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/account-api/support/rake_tasks.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="account-api: 002-progressive-enhancement - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/account-api/adr/002-progressive-enhancement.html" />
+      <meta name="twitter:title" content="account-api: Rake Tasks - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/account-api/support/rake_tasks.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="account-api: 002-progressive-enhancement" />
+      <meta property="og:title" content="account-api: Rake Tasks" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/account-api/adr/002-progressive-enhancement.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/account-api/support/rake_tasks.html" />
 
     
   </head>
@@ -197,232 +197,55 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/account-api/commit/4db254641ddfd5969ca79c8d152300084fd0246b">17 Aug 2021</a>
+  Last updated: <a href="https://github.com/alphagov/account-api/commit/934f134886296e23fb421862c7040510a1fb93f6">26 Jan 2023</a>
 </div>
 
-  <h1 class="page-title">account-api: 002-progressive-enhancement</h1>
+  <h1 class="page-title">account-api: Rake Tasks</h1>
 
   
-<p>We think that there are three sorts of account related functionality
-on GOV.UK:</p>
-<ol>
-<li>
-<p><strong>The Skeleton Account:</strong> the core mechanics of signing in,
-registering, account management, navigating to services, and so on.</p>
-</li>
-<li>
-<p><strong>Navigation:</strong> some content will adjust based on whether the user
-is logged in or not.  For example the global header navigation
-needs to give the user the appropriate links to sign in or to sign
-out.</p>
-</li>
-<li>
-<p><strong>Personalisation:</strong> some content will adjust based on what we know
-about the user.  For example, telling the user that some content is
-not relevant to them, or showing an email notifications sign up
-button in a different state if the user has already signed up.</p>
-</li>
-</ol>
-<p>Arguably, Navigation is part of the Skeleton Account.  But they have
-slightly different implications on implementation (one uses user data,
-the other does not), so I'll discuss them separately.</p>
-<p>The summary of this ADR is that <strong>we have decided Personalisation will
-be done, at least initially, in the frontend, with JavaScript, as a
-form of progressive enhancement.</strong></p>
-<p>The rest of this ADR explains why.</p>
-<h2 id="whats-the-skeleton-account">What's the Skeleton Account?</h2>
-<p>This is the core value proposition of the GOV.UK account: joining up
-services and providing one place where a user can see their activity
-and manage their settings and data.</p>
-<p>If we don't have this, we have failed in our mission.</p>
-<p>So far the Skeleton Account is implemented across the <a href="https://github.com/alphagov/govuk-account-manager-prototype/">account
-manager</a>, running on the PaaS, and <a href="https://github.com/alphagov/frontend">frontend</a>.  We're bringing
-<a href="https://github.com/alphagov/email-alert-frontend/">email-alert-frontend</a> into the fold and, later on, the account
-manager will go away and those parts of the Skeleton Account will be
-replaced by a Digital Identity service.</p>
-<p>The <a href="http://www.gov.uk">www.gov.uk</a> parts of the Skeleton Account live under
-<code>https://www.gov.uk/account/</code>.</p>
-<p><strong>Implications on implementation:</strong></p>
-<ul>
-<li>
-<p>This is critical functionality, so it has to work for all users.</p>
-</li>
-<li>
-<p>This is personalised.  Pages will show users their data, let users
-manage that data, show the user's activity, and so on.  So requests
-have to come through to our origin servers, which is where the data
-lives.</p>
-</li>
-<li>
-<p>This is non-cacheable.  Because it's personalised, at best we can
-cache one copy per user.  But we might not even want to do that,
-because there's a risk of a user seeing slightly out-of-date data.</p>
-</li>
-</ul>
-<h2 id="whats-navigation">What's Navigation?</h2>
-<p>This is likely just going to be the global navigation bar, which we
-want to show in one of two states based on whether the user is logged
-in or not.  I'm not sure where else we only care that the user is
-logged in, and not who they are.</p>
-<p>We currently show account navigation:</p>
-<ul>
-<li>On the Brexit landing page</li>
-<li>In the Brexit checker</li>
-<li>In the Skeleton Account pages</li>
-</ul>
-<p>But the way we do this right now is by caching based on user ID.  This
-is not good, as it means that a request for a new user is sent to our
-origin servers, even though (since there is no user-specific
-information here) we could serve a cached copy which had been served
-to a different user.</p>
-<p><strong>Implications on implementation:</strong></p>
-<ul>
-<li>
-<p>This is also critical functionality, so it has to work for all
-users.  We've seen in user research how lost people are without a
-"Sign In" link in the header.</p>
-</li>
-<li>
-<p>This is <em>not</em> personalised.  All the logged in users will see the
-same navigation.  All the logged out users will see the same
-navigation.</p>
-</li>
-<li>
-<p>This is cacheable.  If a page only has navigation, and nothing
-personalised, it's perfectly safe to cache two copies of that page:
-one for logged in users, one for logged out users.</p>
-</li>
-</ul>
-<h2 id="whats-personalisation">What's Personalisation?</h2>
-<p>This is the nice-to-have of the GOV.UK account.  If the Skeleton
-Account is the cross-gov part of accounts, this is the GOV.UK-specific
-part.  Personalisation features could be things like:</p>
-<ul>
-<li>
-<p>Changing the state of a button to sign up for notifications based on
-whether the user has already done so.</p>
-</li>
-<li>
-<p>Displaying a message saying that this content is not relevant to the
-user based on what we know about them.</p>
-</li>
-<li>
-<p>Pre-selecting a tab on the Bank Holidays page based on knowing the
-user's location.</p>
-</li>
-</ul>
-<p>Unlike the Skeleton Account, Personalisation may end up touching
-almost every page on GOV.UK.</p>
-<p><strong>Implications on implementation:</strong></p>
-<ul>
-<li>
-<p>This is <em>not</em> critical functionality.  It is an addition to the core
-value proposition of the GOV.UK account, but this by itself would
-not justify a GOV.UK account, and it wouldn't be a big loss to have
-the cross-gov part but not this.</p>
-</li>
-<li>
-<p>Like the Skeleton Account, this is personalised.  Pages are adjusted
-based on what we know about the current user.  So requests have to
-come through to our origin servers, which is where the data lives.</p>
-</li>
-<li>
-<p>Like the Skeleton Account, this is non-cacheable.  We could cache
-per-user, but might not want to because there is a risk of showing
-stale data.</p>
-</li>
-</ul>
-<h2 id="decisions">Decisions</h2>
-<p>We will use server-side rendering for the Skeleton Account pages and
-for the Navigation.  We will treat Personalisation as a progressive
-enhancement and do it client-side with JavaScript.</p>
-<p>The upside is that we delay needing to change GOV.UK's architecture
-for a world where almost nothing is cached.  That will be a difficult
-task and take a while.  Iterating things will likely be quicker if
-they're done in the frontend.</p>
-<p>The downside is that we will have two versions of GOV.UK: one with
-personalisation (which JavaScript users see) and one without.  Almost
-all users have JavaScript enabled, but we still need to make sure the
-non-JavaScript version works, and we will have to deal with a "flash
-of unpersonalised content" - where users briefly see the generic page
-before a personalised part loads.</p>
-<h3 id="improving-caching-for-navigation">Improving caching for Navigation</h3>
-<p>To get the nice one-copy-for-all-logged-in-users caching behaviour for
-Navigation, we'll need to add a new custom request header:</p>
-<p><a href="https://github.com/alphagov/govuk-cdn-config/blob/8fd27e2a555f6fcb3edbd9d326210e53dbc2c66b/vcl_templates/www.vcl.erb#L368-L371">In <code>vcl_recv</code></a>:</p>
-<pre lang="vcl"><code>  # RFC 134
-  if (req.http.Cookie ~ "__Host-govuk_account_session") {
-    set req.http.GOVUK-Account-Session = req.http.Cookie:__Host-govuk_account_session;
-    set req.http.GOVUK-Account-Session-Exists = "1";
-  }
+<p>There are a number of Rake tasks available to help with
+sending content to the Publishing API and administrating users.</p>
+<h2 id="publishing-api-tasks">Publishing API Tasks</h2>
+<p>All content items are found in <code>config/content_items.yml</code></p>
+<h3 id="publish-redirects">Publish redirects</h3>
+<p>Publishes all routes in the <code>redirects</code> array</p>
+<pre lang="ruby"><code>publishing_api:publish_redirects
 </code></pre>
-<p><a href="https://github.com/alphagov/govuk-cdn-config/blob/8fd27e2a555f6fcb3edbd9d326210e53dbc2c66b/vcl_templates/www.vcl.erb#L523-L537">In <code>vcl_deliver</code></a>:</p>
-<pre lang="vcl"><code>  # RFC 134
-  if (resp.http.GOVUK-Account-End-Session) {
-    add resp.http.Set-Cookie = "__Host-govuk_account_session=; secure; httponly; samesite=lax; path=/; max-age=0";
-  } else if (resp.http.GOVUK-Account-Session) {
-    add resp.http.Set-Cookie = "__Host-govuk_account_session=" + resp.http.GOVUK-Account-Session + "; secure; httponly; samesite=lax; path=/";
-  }
-
-  if (resp.http.Vary ~ "GOVUK-Account-Session") {
-    set resp.http.Vary:Cookie = "";
-    set resp.http.Cache-Control:private = "";
-  } else if (resp.http.Vary ~ "GOVUK-Account-Session-Exists") {
-    set resp.http.Vary:Cookie = "";
-    set resp.http.Cache-Control:private = "";
-  }
-
-  unset resp.http.GOVUK-Account-Session;
-  unset resp.http.GOVUK-Account-End-Session;
-  unset resp.http.Vary:GOVUK-Account-Session;
-  unset resp.http.Vary:GOVUK-Account-Session-Exists;
+<h3 id="publish_all-special_routes">Publish_all special_routes</h3>
+<p>Publishes all routes in the <code>special_routes</code> array</p>
+<pre lang="ruby"><code>publishing_api:publish_special_routes
 </code></pre>
-<p>Unfortunately, this means we will need navigation-selection logic in
-every frontend app, which will be something like:</p>
-<pre lang="ruby"><code>  before_action do
-    logged_in = request.headers["HTTP_GOVUK_ACCOUNT_SESSION_EXISTS"].present?
-    set_slimmer_headers(remove_search: true, show_accounts: logged_in ? "signed-in" : "signed-out")
-    response.headers["Vary"] = [response.headers["Vary"], "GOVUK-Account-Session-Exists"].compact.join(", ")
-  end
+<h3 id="publish-a-help-page-by-name">Publish a help page by name</h3>
+<p>Publishes a single help page from the help_pages hash, the name
+being the first key for the required help page.</p>
+<pre lang="ruby"><code>publishing_api:publish_help_page[name]
 </code></pre>
-<p>But this can be added to <a href="https://github.com/alphagov/govuk_personalisation/blob/main/lib/govuk_personalisation/controller_concern.rb">the <code>ControllerConcern</code> in govuk_personalisation</a>.</p>
-<h3 id="progressively-enhancing-navigation">Progressively enhancing Navigation</h3>
-<p>Even though every user gets the same Navigation HTML we can still
-personalise it with progressive enhancement.  For example, say we want
-to list a user's most visited pages in the header so they can get to
-them quickly.  We'd do this like so:</p>
-<ol>
-<li>The logged in header just has a link going to a page which lists
-their top pages.</li>
-<li>JavaScript queries an API to fetch the top pages, and replaces the
-link in the header with this list.</li>
-</ol>
-<p>Then users with JavaScript see their top pages, and users without
-JavaScript get a link to go see them instead.</p>
-<p>We will have to make sure that the unenhanced version of GOV.UK
-(GOV.UK with just the Skeleton Account and Navigation) works.</p>
-<h3 id="dealing-with-the-flash-of-unpersonalised-content">Dealing with the Flash of Unpersonalised Content</h3>
-<p>This is the main problem with the JavaScript approach.  Imagine if we
-display a box at the top of a page telling the user that it's not
-relevant to them, and it takes half a second for that box to appear
-after the page has loaded: the content will move around and, if the
-user has already started scrolling down, they may not see the box.</p>
-<p>It's not a great user experience.  But we think the ease of
-implementation is worth this cost.</p>
-<p>Furthermore, as we demonstrate user value, we can begin to migrate
-functionality out of JavaScript and into something like Compute@Edge
-or Edge Side Includes.  It's better to be able to iterate on something
-quickly and prove its value (even if with a less-than-ideal user
-experience) before putting in the hard work to get it up to our usual
-standards.</p>
+<h3 id="publish-single-special-route-by-content_id">Publish single special route by content_id</h3>
+<pre lang="ruby"><code>publishing_api:publish_special_route[content_id]
+</code></pre>
+<h2 id="user-support-tasks">User Support Tasks</h2>
+<h3 id="checking-a-user-exists-by-email-address">Checking a user exists by email address</h3>
+<p>This will return a message confirming if such a
+user can be found.</p>
+<pre lang="ruby"><code>support:find_user[email_address]
+</code></pre>
+<h3 id="deleting-a-user-dry-run">Deleting a user (dry run)</h3>
+<p>This will return a message confirming if the user
+exists for deletion, and the user's OICD sub</p>
+<pre lang="ruby"><code>support:delete_user:dry_run[email_address]
+</code></pre>
+<h3 id="deleting-a-user">Deleting a user</h3>
+<p>This will delete the user, and confirm the user's
+OICD sub</p>
+<pre lang="ruby"><code>support:delete_user:real[email_address]
+</code></pre>
+<h3 id="confirm-if-a-user-previously-existed-by-oicd-sub">Confirm if a user previously existed by OICD sub</h3>
+<p>When deleted, a user will create a Tombstone which shares the
+user's OICD sub. This task will confirm if a user previously
+existed for a given OICD sub,</p>
+<pre lang="ruby"><code>support:find_deleted_user_by_oicd_sub[sub]
+</code></pre>
 
 
             
@@ -430,8 +253,8 @@ standards.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/account-api/blob/main/docs/adr/002-progressive-enhancement.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccount-api%2Fadr%2F002-progressive-enhancement.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/account-api/blob/main/docs/support/rake_tasks.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Faccount-api%2Fsupport%2Frake_tasks.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
