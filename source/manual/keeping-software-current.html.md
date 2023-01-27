@@ -51,7 +51,8 @@ It's very important that we're running a currently supported version of Rails fo
 - Maintain our applications at the latest current bugfix release for the minor version we're on (expressed in Gemfile syntax as: ~> X.Y.Z)
 - Keep abreast of breaking changes for the next major version (eg 5.y.z), and have a plan to migrate our apps before the current version is deprecated
 
-See [Upgrading Ruby on Rails][] for a guide on how to upgrade Rails.
+Upgrading Rails requires carefully following the manual steps at [Upgrading Ruby on Rails][], for major and minor version increases.
+For patch increases, no manual steps are required and it is fine to merge the update provided the tests pass.
 
 [Upgrading Ruby on Rails]: https://guides.rubyonrails.org/upgrading_ruby_on_rails.html
 
