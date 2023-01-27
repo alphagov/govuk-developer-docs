@@ -34,7 +34,7 @@ Note that we __do not__ manage any other DNS records: if you get a request conce
 
 When you've verified the authenticity of the request as per the SRE docs above, you should:
 
-1. Make the changes in govuk-dns-config (see [example](https://github.com/alphagov/govuk-dns-config/pull/851))
+1. Make the changes in [govuk-dns-config][] (see [example](https://github.com/alphagov/govuk-dns-config/pull/851))
 1. Use the gds-cli to deploy the changes via the [Deploy_DNS Jenkins job][]
 
 Before you start make sure your machine is set up so you can access AWS and [Google Cloud Platform (GCP)][] using command line tools.
@@ -143,5 +143,44 @@ Technical 2nd Line should be notified of any planned changes via email.
   do not need to make a request to Jisc if we want to change CDN providers. Just change where
   the CNAME points to.
 
+## DNS for non-`gov.uk` domains
+
+GOV.UK also manages DNS zones for some non-`gov.uk` domains.
+
+These include (but are not limited to):
+
+- `independent-commission.uk`
+- `independent-inquiry.uk`
+- `public-inquiry.uk`
+- `royal-commission.uk`
+
+Some of these are not managed by Terraform. If you can't find a configuration file for the zone in [govuk-dns-config][], then you'll need to update it manually in the AWS console.
+
+1. Login to the **production** AWS console.
+
+    ```
+    $ gds aws govuk-production-poweruser -l
+    ```
+
+2. Go to [Route 53 > Hosted zones](https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones) and select the zone for the domain you need to update.
+
+    For example, if you've been asked to delegate `example.independent-inquiry.uk` you'll need the `independent-inquiry.uk` zone.
+
+3. Expand the 'Hosted zone details' and look for any useful comments in the description field.
+
+    For example, the description will hopefully be something like:
+
+    > This zone is managed manually using the AWS console (i.e. click-ops). It's not managed by Terraform.
+
+    This is a clear indicator that it's safe to update these records manually and they won't be overwritten by Terraform.
+
+    However if it's something like this, then you shouldn't update it manually:
+
+    > Managed by Terraform
+
+4. Update the DNS records as required.
+5. **For bonus points:** If the zone description wasn't clear, but you're certain it's safe to be updated manually, then consider changing the description field so it's clearer for the next person.
+
 [Deploy_DNS Jenkins job]: https://deploy.blue.production.govuk.digital/job/Deploy_DNS/
 [Google Cloud Platform (GCP)]: /manual/google-cloud-platform-gcp.html
+[govuk-dns-config]: https://github.com/alphagov/govuk-dns-config
