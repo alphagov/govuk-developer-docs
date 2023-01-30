@@ -154,6 +154,9 @@
       <li>
         <a href="#dns-for-the-gov-uk-top-level-domain"><span>DNS for the gov.uk top level domain</span></a>
       </li>
+      <li>
+        <a href="#dns-for-non-gov-uk-domains"><span>DNS for non-gov.uk domains</span></a>
+      </li>
     </ul>
   </li>
 </ul>
@@ -205,7 +208,7 @@
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f5c623b118e34bae5695ed84f8b74b18b73c8300">18 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/628f93f236e2c600b461da38230aa91c9c045845">27 Jan 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
@@ -225,7 +228,7 @@ Note that we <strong>do not</strong> manage any other DNS records: if you get a 
 <p>When you&rsquo;ve verified the authenticity of the request as per the SRE docs above, you should:</p>
 
 <ol>
-<li>Make the changes in govuk-dns-config (see <a href="https://github.com/alphagov/govuk-dns-config/pull/851">example</a>)</li>
+<li>Make the changes in <a href="https://github.com/alphagov/govuk-dns-config">govuk-dns-config</a> (see <a href="https://github.com/alphagov/govuk-dns-config/pull/851">example</a>)</li>
 <li>Use the gds-cli to deploy the changes via the <a href="https://deploy.blue.production.govuk.digital/job/Deploy_DNS/">Deploy_DNS Jenkins job</a></li>
 </ol>
 <p>Before you start make sure your machine is set up so you can access AWS and <a href="/manual/google-cloud-platform-gcp.html">Google Cloud Platform (GCP)</a> using command line tools.</p>
@@ -303,6 +306,38 @@ Instead, it contains A records that point to anycast IP addresses for our CDN pr
 do not need to make a request to Jisc if we want to change CDN providers. Just change where
 the CNAME points to.</li>
 </ul>
+<h2 id='dns-for-non-gov-uk-domains'>DNS for non-<code>gov.uk</code> domains</h2><p>GOV.UK also manages DNS zones for some non-<code>gov.uk</code> domains.</p>
+<p>These include (but are not limited to):</p>
+
+<ul>
+<li><code>independent-commission.uk</code></li>
+<li><code>independent-inquiry.uk</code></li>
+<li><code>public-inquiry.uk</code></li>
+<li><code>royal-commission.uk</code></li>
+</ul>
+<p>Some of these are not managed by Terraform. If you can&rsquo;t find a configuration file for the zone in <a href="https://github.com/alphagov/govuk-dns-config">govuk-dns-config</a>, then you&rsquo;ll need to update it manually in the AWS console.</p>
+
+<ol>
+<li><p>Login to the <strong>production</strong> AWS console.</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>$ gds aws govuk-production-poweruser -l
+</code></pre></div></li>
+<li><p>Go to <a href="https://us-east-1.console.aws.amazon.com/route53/v2/hostedzones">Route 53 &gt; Hosted zones</a> and select the zone for the domain you need to update.</p>
+<p>For example, if you&rsquo;ve been asked to delegate <code>example.independent-inquiry.uk</code> you&rsquo;ll need the <code>independent-inquiry.uk</code> zone.</p></li>
+<li><p>Expand the &lsquo;Hosted zone details&rsquo; and look for any useful comments in the description field.</p>
+<p>For example, the description will hopefully be something like:</p>
+
+<blockquote>
+<p>This zone is managed manually using the AWS console (i.e. click-ops). It&rsquo;s not managed by Terraform.</p>
+</blockquote>
+<p>This is a clear indicator that it&rsquo;s safe to update these records manually and they won&rsquo;t be overwritten by Terraform.</p>
+<p>However if it&rsquo;s something like this, then you shouldn&rsquo;t update it manually:</p>
+
+<blockquote>
+<p>Managed by Terraform</p>
+</blockquote></li>
+<li><p>Update the DNS records as required.</p></li>
+<li><p><strong>For bonus points:</strong> If the zone description wasn&rsquo;t clear, but you&rsquo;re certain it&rsquo;s safe to be updated manually, then consider changing the description field so it&rsquo;s clearer for the next person.</p></li>
+</ol>
 
 
   <div class='related-content'>
