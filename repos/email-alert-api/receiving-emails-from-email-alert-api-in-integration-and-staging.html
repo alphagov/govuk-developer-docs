@@ -206,15 +206,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/0683efc7b8f9e2b020609876367950edce47f37d">7 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/email-alert-api/commit/bc45e00e6504d3e4ca1299bf647a0e7a6e9fc24a">27 Jan 2023</a>
 </div>
 
   <h1 class="page-title">email-alert-api: Receive emails from Email Alert API in Integration and Staging</h1>
@@ -224,16 +217,14 @@
 Google groups for the integration and staging environments. Emails
 sent to addresses other than those of these groups will be
 <a href="https://github.com/alphagov/email-alert-api/blob/006afa2ee6c35631b83b16519f8af2c6c2ea5c59/app/services/send_email_service/send_pseudo_email.rb#L10-L20">written to a logfile</a>.</p>
-<blockquote>
-<p>Note that these two emails are sometimes accidentally used to sign up to GOV.UK
-accounts. If you try to test a signup and are stopped by the requirement to log
-into an account, you can fix using the procedure below under "Troubleshooting"</p>
-</blockquote>
 <h2 id="in-integration">In Integration</h2>
 <p>In Integration there is the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-integration">Email Alert API Integration Google
 group</a>. It has an email address of
 <code>email-alert-api-integration@digital.cabinet-office.gov.uk</code>.</p>
-<p>This account can be used to sign up to subscriptions on
+<p>This email is associated with an integration test user account, and
+the credentials are stored in govuk-secrets:</p>
+<p><a href="https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/govuk-account/integration.gpg">https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/govuk-account/integration.gpg</a></p>
+<p>This email address can be used to sign up to subscriptions on
 <a href="https://www.integration.publishing.service.gov.uk/">https://www.integration.publishing.service.gov.uk/</a>.</p>
 <h2 id="in-staging">In Staging</h2>
 <p>In Staging there is the <a href="https://groups.google.com/a/digital.cabinet-office.gov.uk/g/email-alert-api-staging">Email Alert API Staging Google
@@ -241,6 +232,9 @@ group</a>. It has an email address of
 <code>email-alert-api-staging@digital.cabinet-office.gov.uk</code>.</p>
 <p>This account can be used to sign up to subscriptions on
 <a href="https://www.staging.publishing.service.gov.uk/">https://www.staging.publishing.service.gov.uk/</a>.</p>
+<p>Please note: There is no staging environment for the govuk account. This means that
+you will not be able to test signing up on pages that have a single page notification button,
+as that flow requires creating or signing into a govuk account.</p>
 <h2 id="how-to-use">How to use</h2>
 <p>To use these Google groups you need to interact with the Email Alert system
 using the group email as your email address. For example, if you wanted to test
@@ -255,10 +249,8 @@ databases in Integration and Staging are reset due to the <a href="https://githu
 This will mean that any test subscriptions you've created will be lost and
 you'll need to recreate them.</p>
 <h2 id="troubleshooting">Troubleshooting</h2>
-<p>Sometimes these email addresses get linked to GOV.UK accounts, making them impossible to use for testing these journeys. If that happens, you can use the accounts-api console in the relevant environment to clear the account:</p>
-<pre><code>% gds govuk connect app-console -e integration account-api
-&gt; OidcUser.where(email: "email-alert-api-integration@digital.cabinet-office.gov.uk").delete_all
-</code></pre>
+<p>You might be prompted for http basic auth when you are passed through the account authentication process.
+If so, those credentials are listed in <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/govuk-account/integration.gpg">https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/govuk-account/integration.gpg</a></p>
 
 
             
