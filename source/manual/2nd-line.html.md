@@ -124,7 +124,7 @@ When creating a new card please include:
 - Links to related Zendesk tickets and suggested reply to users
 - Any investigation you have done so far/steps you have taken as a workaround
 
-This will help inform developers, Technical 2nd Line tech lead(s), and the GOV.UK Sire Reliability Engineers (SREs) about known issues.
+This will help inform developers, Technical 2nd Line tech lead(s), and the GOV.UK Site Reliability Engineers (SREs) about known issues.
 
 ## Slack channels
 
