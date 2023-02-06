@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: # What - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Component wrapper helper - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/pull_request_template.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/component-wrapper-helper.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: # What - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/pull_request_template.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Component wrapper helper - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/component-wrapper-helper.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: # What" />
+      <meta property="og:title" content="govuk_publishing_components: Component wrapper helper" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/pull_request_template.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/component-wrapper-helper.html" />
 
     
   </head>
@@ -229,23 +229,99 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/cc2ba1df2fe05bf074bf2a15c6b2326b5355dfd7">16 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6f4d1ddb86293cd1e24aadb63ebd2c9009d31732">4 Jan 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: # What</h1>
+  <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
 
-  <h2 id="what">What</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h2 id="why">Why</h2>
-<!-- raw HTML omitted -->
-<h2 id="visual-changes">Visual Changes</h2>
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<!-- raw HTML omitted -->
-<h3 id="before">Before</h3>
-<h3 id="after">After</h3>
+  
+<p>The component wrapper helper is designed to provide a standard way to wrap components so that common options can be passed without having to explicitly define them in the component.</p>
+<h2 id="adding-to-a-component">Adding to a component</h2>
+<p>The helper can be added to a component by including the helper and replacing the component parent element as shown. Note that a <code>div</code> tag is only used as an example.</p>
+<pre><code>&lt;% component_helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns) %&gt;
+
+&lt;%= tag.div(**component_helper.all_attributes) do %&gt;
+  component content
+&lt;% end %&gt;
+</code></pre>
+<p>You must also add the following line to the component documentation YAML file, in order that these extra options are shown when viewing the component in the component guide.</p>
+<pre><code>uses_component_wrapper_helper: true
+</code></pre>
+<h2 id="passing-options">Passing options</h2>
+<p>The component wrapper helper accepts the following options.</p>
+<ul>
+<li>
+<code>id</code> - accepts a string for the element ID attribute</li>
+<li>
+<code>data</code> - accepts a hash of data attributes</li>
+<li>
+<code>aria</code> - accepts a hash of aria attributes</li>
+<li>
+<code>classes</code> - accepts a space separated string of classes, these should not be used for styling and must be prefixed with <code>js-</code>
+</li>
+</ul>
+<p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>.</p>
+<h3 id="data-and-aria">Data and aria</h3>
+<p>The <code>data</code> and <code>aria</code> options must be Ruby hashes of the form that would normally be passed to the <code>tag</code> method. For example:</p>
+<pre><code>&lt;%= render "govuk_publishing_components/components/example", {
+  data: {
+    module: "example-module",
+    other_data_attribute: "other",
+  },
+  aria: {
+    describedby: "element-id",
+  }
+} %&gt;
+</code></pre>
+<p>The helper checks that passed aria attributes are valid, based on a hard coded list.</p>
+<h3 id="class">Class</h3>
+<p>Classes can be passed to components. To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself.</p>
+<p>Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code> or <code>govuk-</code> are also permitted, but should only be used within the component and not passed to it.</p>
+<pre><code>&lt;%= render "govuk_publishing_components/components/example", {
+  classes: "js-example"
+} %&gt;
+</code></pre>
+<h2 id="extending-options">Extending options</h2>
+<p>The helper is designed to collect any options passed through <code>local_assigns</code> to minimise the amount of code required in the component. In many situations it will be necessary to include or override specific values in the component template, instead of always passing them into the component.</p>
+<p>The helper includes additional methods to make this possible.</p>
+<ul>
+<li>
+<code>add_class("gem-c-example govuk-example")</code> - combines the given class with any passed classes, e.g. if <code>js-hook</code> had been passed, the result would be <code>js-hook gem-c-example govuk-example</code>
+</li>
+<li>
+<code>set_id("my-id")</code> - overrides any passed ID with this one (IDs can't be combined)</li>
+<li>
+<code>add_data_attribute({ module: "ga4-event-tracker" })</code> - combines the given data attributes with any that have been passed, merging duplicate keys, e.g. if <code>{ module: "gem-track-click", a: "1" }</code> had been passed, the result would be <code>{ module: "ga4-event-tracker gem-track-click", a: "1" }</code>
+</li>
+<li>
+<code>add_aria_attribute()</code> - works the same as <code>add_data_attribute</code>
+</li>
+</ul>
+<p>This is an example component template using some of these methods.</p>
+<pre><code>&lt;%
+  helper = GovukPublishingComponents::Presenters::ComponentWrapperHelper.new(local_assigns)
+  helper.add_class("gem-c-my-component")
+  helper.add_data_attribute({ module: "gem-track-click" })
+%&gt;
+
+&lt;%= tag.div(**component_helper.all_attributes) do %&gt;
+  component content
+&lt;% end %&gt;
+</code></pre>
+<p>This is an example call to this component.</p>
+<pre><code>&lt;%= render "govuk_publishing_components/components/example", {
+  classes: "js-hook",
+  data: {
+    module: "another-module",
+    example: "example"
+  }
+} %&gt;
+</code></pre>
+<p>This would be the result.</p>
+<pre><code>&lt;div class="gem-c-my-component js-hook" data-module="gem-track-click another-module" data-example="example"&gt;
+  component content
+&lt;/div&gt;
+</code></pre>
 
 
             
@@ -253,8 +329,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/pull_request_template.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fpull_request_template.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/component-wrapper-helper.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fcomponent-wrapper-helper.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
