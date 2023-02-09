@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Scroll tracking - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Test a branch of the components gem - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/test-a-branch-of-the-gem.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Scroll tracking - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Test a branch of the components gem - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/test-a-branch-of-the-gem.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Scroll tracking" />
+      <meta property="og:title" content="govuk_publishing_components: Test a branch of the components gem" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/test-a-branch-of-the-gem.html" />
 
     
   </head>
@@ -231,63 +231,49 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/11cb23f6df1884bb9c6acacf1a3ba90dcf9cd993">6 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/93e6a89e9652107248ed53ca0078843e9ef992fe">8 Feb 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Scroll tracking</h1>
+  <h1 class="page-title">govuk_publishing_components: Test a branch of the components gem</h1>
 
   
-<p>The analytics code includes the ability to add scroll tracking to specified pages for users who have consented to cookies.</p>
-<h2 id="autoscrolltracker">AutoScrollTracker</h2>
-<p>AutoScrollTracker is a GOVUK.Module and can be initialised by adding the relevant code to a template. Since scroll tracking is only required once on a page, it should be initialised using a meta tag in the HEAD element, like this.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker"/&gt;
-&lt;% end %&gt;
+<p>This document explains how to test a github branch of <code>govuk_publishing_components</code> in an application, either locally or for testing a change in the gem on integration.</p>
+<h2 id="prepare-a-branch-of-govuk_publishing_components">Prepare a branch of govuk_publishing_components</h2>
+<p>Create a branch of <code>govuk_publishing_components</code> with the changes that you want to test.</p>
+<p>In a separate commit, modify the <code>.gitignore</code> file, replacing the <code>node_modules</code> line with the following.</p>
+<pre><code>node_modules/@babel
+node_modules/@nodelib
+node_modules/@oclif
+node_modules/acorn
+node_modules/ajv
+node_modules/caniuse-lite
+node_modules/devtools-protocol
+node_modules/es-abstract
+node_modules/eslint
+node_modules/eslint-plugin-import
+node_modules/eslint-plugin-react
+node_modules/lodash
+node_modules/micromark
+node_modules/percy-client
+node_modules/postcss
+node_modules/puppeteer
+node_modules/stylelint
+node_modules/table
 </code></pre>
-<h3 id="options">Options</h3>
-<p>By default, AutoScrollTracker tracks by percentage scrolled. Specifically, it will fire a GA event when the user scrolls to 20%, 40%, 60%, 80% and 100% of the page height.</p>
-<p>It can track headings instead of percentages, using the <code>data-track-type</code> option.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker" data-track-type="headings"/&gt;
-&lt;% end %&gt;
+<p>Commit and push the <code>.gitignore</code> and <code>node_modules</code> directory. This will add to the branch everything needed to make the components gem work - basically all the things that are normally installed as part of installing a gem.</p>
+<p><strong>DO NOT</strong> merge this change to <code>main</code> - once you have finished testing your branch, delete this commit.</p>
+<h2 id="prepare-the-application-to-use-the-gem-branch">Prepare the application to use the gem branch</h2>
+<p>The application to use the branch of the components gem may vary depending on what you are testing, however the process remains the same.</p>
+<p>Create a branch of the application and modify the Gemfile to point to the branch of <code>govuk_publishing_components</code>.</p>
+<pre><code>gem "govuk_publishing_components", git: 'https://github.com/alphagov/govuk_publishing_components.git', branch: 'branch-name'
 </code></pre>
-<p>If only some headings need to be tracked, they can be specified using the <code>data-track-headings</code> option as shown. This option has been included with the module to support legacy tracking. It is not recommended for future use as headings on pages can change, which would prevent the tracking from working.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;%= tag.meta name: "govuk-scroll-tracker", content: "", data: { module: "auto-scroll-tracker", "track-type": "headings", "track-headings": ["Example heading", "Another example heading"].to_json } %&gt;
- end %&gt;
-</code></pre>
-<p>A single template may render multiple pages and different configurations may be required. If this is the case, configuration can be handled by the template.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;% if ["/foreign-travel-advice/benin", "/foreign-travel-advice/france"].include?(content_item.base_path) %&gt;
-    &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker" data-track-type="headings" data-track-headings="['Summary']"/&gt;
-  &lt;% else %&gt;
-    &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker"/&gt;
-  &lt;% end %&gt;
-&lt;% end %&gt;
-</code></pre>
-<h3 id="behaviour">Behaviour</h3>
-<p>AutoScrollTracker finds the position of things (percentages and headings, including the text of headings) on page load to minimise calculations when the user scrolls. This finding is repeated if any of the following occur:</p>
+<p>Test your changes locally.</p>
 <ul>
-<li>the user resizes the page</li>
-<li>the height of the page changes (for example if the cookie banner is dismissed, or an accordion item is expanded). This also detects user font size or zoom level changes</li>
+<li>if you are using the startup scripts to run your application, stop the script, run <code>bundle update govuk_publishing_components</code> and restart</li>
+<li>if you are using govuk-docker, stop the application, run <code>govuk-docker-run bundle update govuk_publishing_components</code> and restart</li>
 </ul>
-<p>Operation:</p>
-<ul>
-<li>Tracking events are only fired once i.e. if a user scrolls up and down a page, duplicate events are not tracked.</li>
-<li>Tracking events are fired on page load for things that are immediately visible.</li>
-<li>If the user has followed a jump link, e.g. <code>https://www.gov.uk/foreign-travel-advice/spain/coronavirus#finance</code> the script detects this and doesn't fire tracking events until after the browser jumps to the relevant section. It also checks that the hash matches a valid element on the page, and continues as normal if it doesn't.</li>
-<li>Headings are tracked only when the whole of the heading is visible in the viewport.</li>
-<li>Headings are only tracked if they are inside the 'main' element, in order to avoid tracking headings in e.g. the cookie banner, the footer (this has been written to be extendable in future if other elements/classes are required)</li>
-<li>Hidden headings are not tracked, unless they become visible (e.g. if inside an accordion that is opened).</li>
-</ul>
+<p>You can also push this branch to github and the heroku preview generated from the pull request will use the branch of <code>govuk_publishing_components</code>. Once you have pushed to github you can also deploy this branch to integration for further testing. Note that you do not need to do anything with the branch of <code>govuk_publishing_components</code> - only the application needs to be deployed to integration.</p>
 
 
             
@@ -295,8 +281,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics/auto_scroll_tracker.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics%2Fauto_scroll_tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/test-a-branch-of-the-gem.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Ftest-a-branch-of-the-gem.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
