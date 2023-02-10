@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Loading analytics into our applications - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: Google Analytics 4 auto tracker - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/load-analytics.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Loading analytics into our applications - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/load-analytics.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: Google Analytics 4 auto tracker - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Loading analytics into our applications" />
+      <meta property="og:title" content="govuk_publishing_components: Google Analytics 4 auto tracker" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/load-analytics.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics-ga4/ga4-auto-tracker.html" />
 
     
   </head>
@@ -234,30 +234,20 @@
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/907e87a3fe906ec3e5bd8185d2e15c43e5b7c2d5">26 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/fb37f77828c4198e5770424304e98580c711eb9c">7 Feb 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Loading analytics into our applications</h1>
+  <h1 class="page-title">govuk_publishing_components: Google Analytics 4 auto tracker</h1>
 
   
-<p>For analytics tracking, each environment (production, staging, integration, development) uses different environment variables. These environment variables are used to determine which dashboard analytics data is sent to. This is useful to us for testing and debugging, as we can test our analytics in isolated environments. Therefore, we want to be able to set different environment variables depending on which environment we are in. This needs to happen before our analytics code is initialised, so <code>load-analytics.js</code> executes before our analytics code is run.</p>
-<p>Therefore, <code>load-analytics.js</code> has been written to do the following:</p>
-<ol>
-<li>Grab the current domain that the code is running on using <code>window.location.hostname</code>.</li>
-<li>Determine the environment you are on by comparing your domain against hardcoded categorised domains.</li>
-<li>Set the correct environment variables for both Universal Analytics, and Google Analytics 4, depending on the environment you are on. These are also hardcoded now.</li>
-<li>Kick off the initialisation of analytics by running their respective <code>init()</code> functions, which will then run the <code>ga4-core.js</code> code and the UA tracking initialisation code.</li>
-<li>The <code>ga4-core.js</code> / UA code then makes use of these environment variables. It can access them as they are set on the JavaScript <code>window</code> object.</li>
-</ol>
-<p>The Google Analytics 4 environment variables are:</p>
-<ul>
-<li>
-<code>id</code> - this is the Google Tag Manager ID used to identify our organisation so that analytics data is sent to the right account.</li>
-<li>
-<code>preview</code> - this is an optional variable that is used to determine what GTM environment the analytics data is sent to. If this is empty, analytics data is sent to the production dashboard. If you wanted to have your integration analytics to an 'integration' dashboard, you would populate this variable with the relevant value.</li>
-<li>
-<code>auth</code> - this is used to authenticate analytics data being sent to another dashboard, such as an 'integration' dashboard. This can be determined through the browser so they're not classified as secret.</li>
-</ul>
+<p>This script is intended for adding GA4 tracking to any page where something must be recorded outside of a normal page view and without user interaction. The script is triggered when the page loads. It depends upon the main GA4 analytics code to function.</p>
+<h2 id="basic-use">Basic use</h2>
+<pre lang="html"><code>&lt;div
+  data-module="ga4-auto-tracker"
+  data-ga4-auto='{ "event_name": "event name", "type": "a type", "section": "a section", "action": "an action", "tool_name": "a tool name" }'&gt;
+&lt;/div&gt;
+</code></pre>
+<p>This module was created to record events within smart answers such as a question input error and reaching a results page, but can be used elsewhere with different attributes.</p>
 
 
             
@@ -265,8 +255,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/load-analytics.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fload-analytics.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics-ga4/ga4-auto-tracker.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics-ga4%2Fga4-auto-tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
