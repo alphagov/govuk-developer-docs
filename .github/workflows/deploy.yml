@@ -1,0 +1,49 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    permissions:
+      contents: write 
+    steps:
+      - name: Set commit message up front
+        id: commit_message_writer
+        run: | # `github.event.number` will be blank if this is a cron
+          if [ "${{ github.event.number }}" == "" ]; then
+            echo "::set-output name=commit_message::Hourly scheduled redeploy"
+          else
+            echo "::set-output name=commit_message::Deploy via merge"
+          fi
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Clone publishing api
+        uses: actions/checkout@v2
+        with:
+          repository: alphagov/publishing-api
+          ref: deployed-to-production
+          path: tmp/publishing-api
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Build 'build' folder ready for deployment
+        run: bundle exec rake build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOVUK_CONTENT_SCHEMAS_PATH: tmp/publishing-api/content_schemas
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          cname: docs.publishing.service.gov.uk
+          commit_message: ${{steps.commit_message_writer.outputs.commit_message}}
