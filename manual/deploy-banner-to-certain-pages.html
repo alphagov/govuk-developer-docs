@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>How to test with Assistiv Labs - GOV.UK Developer Documentation</title>
+    <title>Deploy a banner to certain pages - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/how-to-test-with-assitive-technology.html.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/deploy-banner-to-certain-pages.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="How to test with Assistiv Labs - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/how-to-test-with-assitive-technology.html.html" />
+      <meta name="twitter:title" content="Deploy a banner to certain pages - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/deploy-banner-to-certain-pages.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="How to test with Assistiv Labs" />
+      <meta property="og:title" content="Deploy a banner to certain pages" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/how-to-test-with-assitive-technology.html.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/deploy-banner-to-certain-pages.html" />
 
     
   </head>
@@ -126,16 +126,13 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>How to test with Assistiv Labs</span></a>
+    <a href="#header"><span>Deploy a banner to certain pages</span></a>
     <ul>
       <li>
-        <a href="#get-set-up"><span>Get set up</span></a>
+        <a href="#prerequisites"><span>Prerequisites</span></a>
       </li>
       <li>
-        <a href="#local-testing-with-assistivtunnel"><span>Local testing with AssistivTunnel</span></a>
-      </li>
-      <li>
-        <a href="#using-assistiv-labs"><span>Using Assistiv Labs</span></a>
+        <a href="#steps"><span>Steps</span></a>
       </li>
     </ul>
   </li>
@@ -187,38 +184,37 @@
 </div>
 
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a036c63c172d3d2ba366247ec17d0dda73d8440e">23 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1a527e59eeefbcfb4c55bc8f5973a5fe3810cc71">14 Feb 2023</a>
 </div>
 
- <h1 id='header'>How to test with Assistiv Labs</h1> <p>GOV.UK has to meet government <a href="https://www.gov.uk/service-manual/helping-people-to-use-your-service/making-your-service-accessible-an-introduction">accessibility requirements</a>, digital services must work on the most commonly used assistive technologies - including screen magnifiers, screen readers and speech recognition tools</p>
-<p><a href="https://assistivlabs.com/">Assistiv Labs</a> remotely connects you to real assistive technologies, like NVDA, JAWS, and Windows High Contrast Mode, using any modern web browser.</p>
-<h2 id='get-set-up'>Get set up</h2><p>Contact the Head of Frontend or a Lead Frontend Developer to request an account.</p>
-<h2 id='local-testing-with-assistivtunnel'>Local testing with AssistivTunnel</h2><p>AssistivTunnel is a small command line interface (CLI) that creates a secure connection between your computer and virtual machines or mobile devices running in Assistiv Labs, which enables you to test&hellip;</p>
-
+ <h1 id='header'>Deploy a banner to certain pages</h1> <p>This documentation should be used when we receive a request to publish a banner
+to a single, or group of pages. If you want to publish a sitewide banner then
+reference <a href="https://docs.publishing.service.gov.uk/manual/emergency-publishing.html">deploy emergency banner</a> or <a href="https://docs.publishing.service.gov.uk/manual/global-banner.html">deploy non-emergency
+banner</a>.</p>
+<p>We can publish a few different banner types, depending on the ask. For example,
+we&rsquo;ve previously published a <a href="https://github.com/alphagov/collections/pull/3172/files">notice banner</a> for a
+mini-reshuffle and an <a href="https://github.com/alphagov/collections/pull/3046">intervention banner</a> for a research
+panel.</p>
+<p>The <a href="https://components.publishing.service.gov.uk/component-guide/intervention">component guide</a> has a list of GOV.UK components which
+includes banners like <a href="https://components.publishing.service.gov.uk/component-guide/notice">notice</a> and <a href="https://components.publishing.service.gov.uk/component-guide/intervention">intervention</a> and
+their variants, e.g <a href="https://components.publishing.service.gov.uk/component-guide/notice/with_markup_in_the_title">notice with markup in title</a>.</p>
+<h2 id='prerequisites'>Prerequisites</h2>
 <ul>
-<li>Any site or server running on <code>localhost</code></li>
-<li>Internal staging servers that may require VPN</li>
+<li><p>banner text</p></li>
+<li><p>banner location on page/s</p></li>
 </ul>
-<p><a href="https://assistivlabs.com/support/assistivtunnel">How to get set up with AssistivTunnel</a></p>
-<h2 id='using-assistiv-labs'>Using Assistiv Labs</h2><p>We have been assured by Assistiv Labs that the Virtual Machine (VM) is deleted when you exit, however in the interests of security and to make sure we do not leak any personal data or sensitive material:</p>
-
-<ul>
-<li>treat the VM you are using as if it was a shared device – like using a public computer in an internet cafe or library</li>
-<li>do not use it to test any confidential or secret service, or services containing content that is considered sensitive</li>
-<li>do not use any credentials from live systems with access to &ldquo;real data&rdquo; during your testing</li>
-<li>do not sign in to any accounts, unless those accounts are used solely for the purposes of testing (for example, a test account in an integration or staging environment)</li>
-<li>make configuration changes to the system through your own device rather than the VM</li>
-</ul>
-<p>You should also make sure you understand how using the service affects any other requirements for your service, such as PCI (Payment Card Industry) compliance, and assess any additional risks. You can speak to your service&rsquo;s information assurance lead or the GDS Privacy Team for specific guidance.</p>
-<p><a href="https://gds-way.cloudapps.digital/manuals/accessibility.html#testing-with-assistive-technologies">Read more within the GDS Way</a></p>
+<h2 id='steps'>Steps</h2>
+<ol>
+<li>Find the rendering app of the chosen pages (visit <code>https://gov.uk/api/content/&lt;base-path&gt;</code> and look for <code>rendering_app</code>)</li>
+<li>Create a branch introducing the component in the relevant view and with a helper method that only displays the banner for certain base_paths (e.g <a href="https://github.com/alphagov/collections/pull/3172/files">org pages in Collections</a>).</li>
+<li>Preview the banner locally (e.g using docker <a href="https://github.com/alphagov/govuk-docker/blob/main/projects/collections/docker-compose.yml#L41">collections-app-live</a>, or deploy a branch to integration)</li>
+<li>Check the positioning of the banner and adjust accordingly. See <a href="https://github.com/alphagov/government-frontend/blob/8e8b10768c360c3c10b2f013086de2455e155040/app/views/content_items/corporate_information_page.html.erb#L8-L12">an example</a> of adjusting the margin of the notice banner.</li>
+</ol>
+<p>Once your changes are merged, you should also <a href="https://trello.com/b/oPnw6v3r/govuk-tech-debt">write a technical debt
+card</a> for the banner you&rsquo;ve added, as this is a non-standard
+piece of technical work that has been essentially &lsquo;hacked in&rsquo; due to
+limitations in our current platform.</p>
 
 
   <div class='related-content'>
@@ -245,8 +241,8 @@
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/deploy-banner-to-certain-pages.html">Deploy a banner to certain pages</a></li>
             <li><a href="/manual/how-to-remove-jquery-from-javascript.html">How to remove jQuery from JavaScript</a></li>
+            <li><a href="/manual/how-to-test-with-assitive-technology.html.html">How to test with Assistiv Labs</a></li>
             <li><a href="/manual/frontend-performance.html">Track frontend performance with SpeedCurve</a></li>
           </ul>
         </div>
@@ -260,8 +256,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/how-to-test-with-assitive-technology.html.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27How+to+test+with+Assistiv+Labs%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fhow-to-test-with-assitive-technology.html.html%29&amp;labels=bug&amp;title=Re%3A+%27How+to+test+with+Assistiv+Labs%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/deploy-banner-to-certain-pages.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Deploy+a+banner+to+certain+pages%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdeploy-banner-to-certain-pages.html%29&amp;labels=bug&amp;title=Re%3A+%27Deploy+a+banner+to+certain+pages%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
