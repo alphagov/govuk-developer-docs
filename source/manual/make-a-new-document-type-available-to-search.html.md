@@ -13,7 +13,7 @@ included in the GOV.UK sitemap, which tells external search engines about our
 content.
 
 The app responsible for search is [Search API][search-api]. Search API listens
-to RabbitMQ messages about published documents to know when to index documents.
+to AmazonMQ messages about published documents to know when to index documents.
 For the new document type to be indexed, you need to add it to a whitelist.
 
 ### 1. Decide what fields you want to make available to search
