@@ -1,0 +1,17 @@
+<% if page_versions(current_page) %>
+  <div class="page-version-selector-nav">
+    <ul class="page-version-selector-nav__list">
+      <% page_versions(current_page).each do |page_version| %>
+        <li class="page-version-selector-nav__list-item">
+          <% if page_version[:active] %>
+            <span><%= page_version[:text] %></span>
+          <% else %>
+            <%= link_to page_version[:text], "/" + page_version[:path],
+              class: "govuk-link page-version-selector-nav__link"
+            %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

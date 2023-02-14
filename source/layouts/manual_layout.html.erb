@@ -13,11 +13,22 @@
   }) unless current_page.data.section == "Icinga alerts" %>
 <% end %>
 
+<% page_navigation = capture do %>
+  <div class='govuk-grid-row'>
+    <div class='govuk-grid-column-two-thirds'>
+      <%= breadcrumb %>
+    </div>
+    <div class='govuk-grid-column-one-third'>
+      <%= partial 'partials/_page_version_selector' %>
+    </div>
+  </div>
+<% end %>
+
 <% last_updated_banner = capture do %>
   <%= partial 'partials/last_updated' %>
 <% end %>
 
-<% html = "#{breadcrumb} #{last_updated_banner} <h1 id='header'>#{current_page.data.title}</h1> #{yield}" %>
+<% html = "#{page_navigation} #{last_updated_banner} <h1 id='header'>#{current_page.data.title}</h1> #{yield}" %>
 
 <% content_for :page_description, Snippet.generate(html) %>
 
