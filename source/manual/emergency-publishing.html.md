@@ -39,7 +39,44 @@ The GOV.UK on-call escalations contact will supply you with:
 - (Optional) A URL for users to find more information (it might not be provided at first).
 - (Optional) Link text that will be displayed for the more information URL (this will default to "More information" if you do not supply it).
 
-### 2. Deploy the banner using Jenkins
+### 2. Deploy the banner
+
+You'll need to follow a different method depending on the platform you're deploying to.
+
+#### EKS: run rake task to deploy banner
+
+The banner is deployed by running a rake task in Static. This task stores the
+banner information in Redis, which modifies the page template used by frontend
+apps.
+
+1. Set banner content as environment variables
+
+    ```sh
+    CAMPAIGN_CLASS="notable-death|national-emergency|local-emergency"
+    HEADING="replace with heading"
+    SHORT_DESCRIPTION="replace with desciption"
+    LINK="replace with link"
+    LINK_TEXT="replace with link text"
+    ```
+
+    > **Note**
+    >
+    > You may need to escape certain characters (including `,` and `"`) with a
+    > backslash. For example `\,` or `\"`.
+1. Make sure you can connect to the Kubernetes cluster in the intended environment
+1. Find the name of a pod running Static
+
+    ```sh
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+    ```
+
+1. Run the rake task in the app container to deploy the banner
+
+    ```sh
+    kubectl -n apps exec -i -t $POD_NAME -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
+    ```
+
+#### EC2: deploy banner using Jenkins
 
 The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
 
@@ -60,7 +97,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 >
 > The Jenkins job will also clear the Varnish caches and the CDN cache for [a predefined list of 10 URLs](https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34) (including the website root).
 
-#### Manually running the rake task to deploy the emergency banner
+#### EC2 (alternative): manually deploy banner
 
 If you need to manually run the rake tasks to set the Redis keys, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
 
@@ -152,7 +189,21 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 ## Removing an emergency banner
 
-### Remove the banner using Jenkins
+### EKS: run rake task to remove banner
+
+1. Find the name of a pod running Static
+
+    ```sh
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+    ```
+
+1. Run the rake task in the app container to remove the banner
+
+    ```sh
+    kubectl -n apps exec -i -t $POD_NAME -- rake emergency_banner:remove
+    ```
+
+#### EC2: remove banner using Jenkins
 
 1. Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
    - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
@@ -165,7 +216,7 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 Caches will clear automatically.
 
-#### Remove the banner manually
+#### EC2 (alternative): remove banner manually
 
 If you need to manually run the rake tasks to remove the banner, you can do so:
 
@@ -230,7 +281,37 @@ at various points in our stack as well as locally in your browser. Things to try
 
 ### Manually testing the Redis key
 
-You can manually check whether the data has been stored in Redis by the Jenkins job on one of the frontend machines.
+You can manually check whether the data has been stored in Redis by:
+
+#### EKS method
+
+1. Find the name of a pod running Static
+
+   ```sh
+   POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+   ```
+
+1. Start the Rails console for Static
+
+   ```sh
+   kubectl -n apps exec -i -t $POD_NAME -- rails console
+   ```
+
+1. Check the Redis key exists:
+
+   ```rb
+   irb(main):001:0> Redis.new.hgetall("emergency_banner")
+   #> {}
+   ```
+
+In the above example, the key has not been set. A successfully set key would return a result similar to the following:
+
+   ```rb
+   irb(main):001:0> Redis.new.hgetall("emergency_banner")
+   => {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
+   ```
+
+#### EC2 method
 
 1. Load a Rails console for the static application on the frontend machine in the relevant environment.
 
