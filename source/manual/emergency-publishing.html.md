@@ -32,11 +32,13 @@ Contact numbers for those people are in the [legacy Ops manual](https://docs.goo
 
 The GOV.UK on-call escalations contact will supply you with:
 
-- The emergency banner type or campaign class (one of `notable-death`,
-  `national-emergency` or `local-emergency`)
+- The [emergency banner type or campaign class](#types-of-emergency-banners). Must be one of the following:
+  - `notable-death`
+  - `national-emergency`
+  - `local-emergency`
 - Text for the heading.
 - (Optional) Text for the 'short description', which is a sentence displayed under the heading. This is optional.
-- (Optional) A URL for users to find more information (it might not be provided at first).
+- (Optional) A URL for users to find more information (it might not be provided at first). Use a relative URL if the link on the www.gov.uk domain.
 - (Optional) Link text that will be displayed for the more information URL (this will default to "More information" if you do not supply it).
 
 ### 2. Deploy the banner using Jenkins
@@ -50,7 +52,7 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 1. Click `Build with Parameters`.
 
-1. Fill in the appropriate variables using the form presented by Jenkins. Use a relative URL (i.e. without the www.gov.uk prefix) if a link is required.
+1. Fill in the appropriate variables using the form presented by Jenkins.
 
 1. Click `Build`.
 
@@ -189,12 +191,6 @@ If you need to manually run the rake tasks to set the Redis keys, you can do so:
    ```bash
    $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
    ```
-
-The `campaign_class` is directly injected into the HTML as a `class` and must be one of
-
-- notable-death
-- national-emergency
-- local-emergency
 
 For example, if you are deploying an emergency banner for which you have the
 following information:
