@@ -43,11 +43,13 @@ The GOV.UK on-call escalations contact will supply you with:
 
 ### 2. Deploy the banner
 
-Choose one of the following methods.
+The banner is deployed by running a rake task in Static. This task stores the
+banner information in Redis, which modifies the page template used by frontend
+apps. Choose one of the following methods:
 
 #### EC2: Running a Jenkins Job
 
-The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
+A Jenkins job can be used to run the rake task.
 
 1. Go to the Jenkins task:
    - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
@@ -97,6 +99,35 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
     sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]
     ```
 
+#### EKS: Run the rake task
+
+1. Set banner content as environment variables
+
+    ```bash
+    CAMPAIGN_CLASS="notable-death|national-emergency|local-emergency"
+    HEADING="replace with heading"
+    SHORT_DESCRIPTION="replace with desciption"
+    LINK="replace with link"
+    LINK_TEXT="replace with link text"
+    ```
+
+    > **Note**
+    >
+    > You may need to escape certain characters (including `,` and `"`) with a
+    > backslash. For example `\,` or `\"`.
+
+1. Find the name of a pod running Static
+
+    ```bash
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+    ```
+
+1. Run the rake task in the app container
+
+    ```bash
+    kubectl -n apps exec -i -t $POD_NAME -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
+    ```
+
 ### 3. Test with cache bust strings
 
 Most GOV.UK pages have a cache TTL of 5 minutes. After deploying the emergency
@@ -138,7 +169,7 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 ### 1. Remove the banner
 
-Choose one of the following methods.
+Choose one of the following methods:
 
 #### EC2: Running a Jenkins Job
 
@@ -171,13 +202,27 @@ Choose one of the following methods.
     sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:remove
     ```
 
+#### EKS: Run the rake task
+
+1. Find the name of a pod running Static
+
+    ```bash
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+    ```
+
+1. Run the rake task in the app container
+
+    ```bash
+    kubectl -n apps exec -i -t $POD_NAME -- rake emergency_banner:remove
+    ```
+
 ---
 
 ## Troubleshooting
 
 ### Background
 
-The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we use Jenkins to run [rake tasks in static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake) to set or delete the appropriate hash in Redis.
+The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we run [rake task in static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake) to set or delete the appropriate hash in Redis.
 
 ### The banner is not showing / not clearing
 
@@ -196,7 +241,7 @@ at various points in our stack as well as locally in your browser. Things to try
 - You can also try manually purging the Varnish and CDN caches:
   1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
     This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
-  2. Run the "Clear varnish cache" Jenkins job
+  2. Run the "Clear varnish cache" Jenkins job (Only required if serving traffic from EC2)
      - [Clear varnish on Integration](https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/)
      - [Clear varnish on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/)
      - [⚠️ Clear varnish on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/)
@@ -209,27 +254,39 @@ at various points in our stack as well as locally in your browser. Things to try
 
 ### Manually testing the Redis key
 
-You can manually check whether the data has been stored in Redis by the Jenkins job on one of the frontend machines.
+You can manually check whether the data has been stored in Redis.
 
-1. Load a Rails console for the static application on the frontend machine in the relevant environment.
+1. Start a Rails console for Static
 
-   ```bash
-   $ gds govuk connect -e staging app-console frontend/static
-   ```
+    For EC2 use:
+
+    ```bash
+    gds govuk connect -e staging app-console frontend/static
+    ```
+
+    or for EKS
+
+    ```bash
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+
+    kubectl -n apps exec -i -t $POD_NAME -- rails console
+    ```
 
 1. Check the Redis key exists:
 
-   ```rb
-   irb(main):001:0> Redis.new.hgetall("emergency_banner")
-   #> {}
-   ```
+    ```rb
+    Redis.new.hgetall("emergency_banner")
 
-In the above example, the key has not been set. A successfully set key would return a result similar to the following:
+    #> {}
+    ```
 
-```rb
-irb(main):001:0> Redis.new.hgetall("emergency_banner")
-=> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
-```
+    In the above example, the key has not been set. A successfully set key would return a result similar to the following:
+
+    ```rb
+    Redis.new.hgetall("emergency_banner")
+
+    #> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
+    ```
 
 ---
 
