@@ -34,6 +34,7 @@ class Manual
     return [] if current_page.data.subsection.nil?
 
     sitemap.resources
+      .reject { |page| page.data.index == false }
       .select { |page| page.data.section == ICINGA_ALERTS }
       .select { |page| page.data.subsection == current_page.data.subsection }
       .sort_by { |page| page.data.title.downcase } - [current_page]
@@ -47,6 +48,7 @@ private
 
   def manual_pages
     sitemap.resources
+      .reject { |page| page.data.index == false }
       .reject { |page| page.data.section == ICINGA_ALERTS }
       .select { |page| page.path.start_with?("manual/") && page.path.end_with?(".html") && page.data.title }
       .sort_by { |page| [page.data.type || "how to", page.data.title.downcase] }
