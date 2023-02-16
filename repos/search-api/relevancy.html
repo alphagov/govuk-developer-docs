@@ -217,15 +217,8 @@
 </div>
 
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/search-api/commit/2675a59c7c82a1000f9ac0baf9fa3f97fc68fa26">9 Jun 2020</a>
+  Last updated: <a href="https://github.com/alphagov/search-api/commit/d86253ec397413fd3d4cf7936fe6f71a02af3dd3">22 Nov 2022</a>
 </div>
 
   <h1 class="page-title">search-api: Relevancy</h1>
@@ -316,15 +309,14 @@ with the function result (default)).</p>
 we store its rank relative to other pages on GOV.UK in the <code>rank_14</code>
 field and its number of page views in the <code>vc_14</code> field.</p>
 <h4 id="recency">Recency</h4>
-<p>This is an implementation of <a href="http://www.wolframalpha.com/share/clip?f=d41d8cd98f00b204e9800998ecf8427e5qr62u0si">this curve</a>, and is applied to
-documents of the "announcement" type in the <a href="https://github.com/alphagov/search-api/blob/master/lib/search/query_components/booster.rb">booster.rb</a> file.  It
-serves to increase the score of new documents and decrease the score
-of old documents.</p>
+<p>This is an implementation of <a href="https://solr.apache.org/guide/7_7/function-queries.html#recip-function">this curve</a>,
+and is applied to documents of the "announcement" type in the <a href="https://github.com/alphagov/search-api/blob/master/lib/search/query_components/booster.rb">booster.rb</a>
+file.  It serves to increase the score of new documents and decrease
+the score of old documents.</p>
 <p>Only documents of <code>search_format_types</code> 'announcement' are affected by
 recency boosting.</p>
-<p>The curve came from the solr documentation, but the link to the
-original source is broken, so it is unclear why this particular curve
-was chosen.</p>
+<p>The curve was chosen so that it only applies the boost temporarily (2
+months moderate decay then a rapid decay after that).</p>
 <h4 id="properties">Properties</h4>
 <p>This is defined by the <a href="https://github.com/alphagov/search-api/blob/master/config/query/boosting.yml">boosting.yml</a> file, and is applied in the
 <a href="https://github.com/alphagov/search-api/blob/master/lib/search/query_components/booster.rb">booster.rb</a> file.</p>
