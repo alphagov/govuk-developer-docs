@@ -3,6 +3,12 @@ require_relative "./app/requires"
 
 GovukTechDocs.configure(self)
 
+activate :page_versions do |opts|
+  opts.version_attribute = "platform"
+  opts.default_version = "EC2"
+  opts.version_order = %w[EC2 EKS]
+end
+
 set :markdown,
     renderer: DeveloperDocsRenderer.new(
       with_toc_data: true,
