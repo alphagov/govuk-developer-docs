@@ -56,10 +56,6 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
-> **Note**
->
-> The Jenkins job will also clear the Varnish caches and the CDN cache for [a predefined list of 10 URLs](https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34) (including the website root).
-
 ### 3. Test with cache bust strings
 
 Most GOV.UK pages have a cache TTL of 5 minutes. After deploying the emergency
@@ -109,8 +105,6 @@ Once all caches have had time to clear, check that the emergency banner is visib
 1. Click `Build now` in the left hand menu.
 
 ![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
-
-Caches will clear automatically.
 
 ---
 
@@ -174,7 +168,7 @@ irb(main):001:0> Redis.new.hgetall("emergency_banner")
 
 ### Manually running the rake task to deploy the emergency banner
 
-If you need to manually run the rake tasks to set the Redis keys, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
+If you need to manually run the rake tasks to set the Redis keys, you can do so:
 
 1. SSH into a `frontend` machine appropriate to the environment you are
    deploying the banner on. For example:
