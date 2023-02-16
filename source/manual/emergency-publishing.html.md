@@ -209,12 +209,6 @@ $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy["n
 
 Note there are no spaces after the commas between parameters to the rake task.
 
-Quit your SSH session:
-
-```bash
-$ exit
-```
-
 ### Manually running the rake task to remove an emergency banner
 
 1. SSH into a frontend machine:
@@ -233,12 +227,6 @@ $ exit
 
    ```bash
    $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:remove
-   ```
-
-1. Quit your SSH session
-
-   ```bash
-   $ exit
    ```
 
 ---
