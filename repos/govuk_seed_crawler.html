@@ -262,6 +262,12 @@ so that the <a href="https://github.com/alphagov/govuk_crawler_worker">crawler</
 <pre lang="bash"><code>bundle exec seed-crawler --help
 </code></pre>
 
+<h2 id="deployment">Deployment</h2>
+
+<p>The gem is automatically deployed to RubyGems when the gem <a href="https://github.com/alphagov/govuk_seed_crawler/blob/main/lib/govuk_seed_crawler/version.rb">version</a> is updated on <code>main</code>. (Don&rsquo;t forget to add to the <a href="https://github.com/alphagov/govuk_seed_crawler/blob/main/CHANGELOG.md">CHANGELOG</a>!</p>
+
+<p>For the new gem version to be used on GOV.UK, you&rsquo;ll need to update the <a href="https://github.com/alphagov/govuk-puppet/blob/c5112961e9c3063f077d2de2ffa887b00466c623/modules/govuk_crawler/manifests/init.pp#L142-L150">reference in govuk-puppet</a>.</p>
+
 <h2 id="contributing">Contributing</h2>
 
 <ol>
