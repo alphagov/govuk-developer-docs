@@ -228,7 +228,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/5c989d1561520ae8f5ed766399ac94677e937388">16 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7cb4d1ab8caa87c0b010935fe6d34f8c140c39ef">20 Feb 2023</a>
 </div>
 
  <h1 id='header'>Deploy an emergency banner</h1> <p>There are three types of events that would lead GOV.UK to add an emergency
@@ -408,6 +408,13 @@ Chrome seems to aggressively cache on occasion. You can also test in an
 private browser instance.</li>
 <li>It is possible that the caching layers for the GOV.UK stack have evolved and
 we need to tweak the scripts to clear new caches that have been set up.</li>
+<li>You can check if the banner is being rendered by the relevant applications
+to narrow down the problem:
+
+<ul>
+<li>Check if the banner is present in the <a href="https://assets.integration.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb">page template from Static</a></li>
+<li>Check if the banner is being rendered at <a href="https://www-origin.integration.publishing.service.gov.uk">origin</a></li>
+</ul></li>
 <li>You can also try manually purging the Varnish and CDN caches:
 
 <ol>
