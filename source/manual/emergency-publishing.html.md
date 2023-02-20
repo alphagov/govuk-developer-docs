@@ -32,16 +32,24 @@ Contact numbers for those people are in the [legacy Ops manual](https://docs.goo
 
 The GOV.UK on-call escalations contact will supply you with:
 
-- The emergency banner type or campaign class (one of `notable-death`,
-  `national-emergency` or `local-emergency`)
+- The [emergency banner type or campaign class](#types-of-emergency-banners). Must be one of the following:
+  - `notable-death`
+  - `national-emergency`
+  - `local-emergency`
 - Text for the heading.
 - (Optional) Text for the 'short description', which is a sentence displayed under the heading. This is optional.
-- (Optional) A URL for users to find more information (it might not be provided at first).
+- (Optional) A URL for users to find more information (it might not be provided at first). Use a relative URL if the link on the www.gov.uk domain.
 - (Optional) Link text that will be displayed for the more information URL (this will default to "More information" if you do not supply it).
 
-### 2. Deploy the banner using Jenkins
+### 2. Deploy the banner
 
-The data for the emergency banner is stored in Redis. Jenkins is used to set the variables.
+The banner is deployed by running a rake task in Static. This task stores the
+banner information in Redis, which modifies the page template used by frontend
+apps. Choose one of the following methods:
+
+#### EC2: Running a Jenkins Job
+
+A Jenkins job can be used to run the rake task.
 
 1. Go to the Jenkins task:
    - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
@@ -50,15 +58,75 @@ The data for the emergency banner is stored in Redis. Jenkins is used to set the
 
 1. Click `Build with Parameters`.
 
-1. Fill in the appropriate variables using the form presented by Jenkins. Use a relative URL (i.e. without the www.gov.uk prefix) if a link is required.
+1. Fill in the appropriate variables using the form presented by Jenkins.
 
 1. Click `Build`.
 
 ![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
 
-> **Note**
->
-> The Jenkins job will also clear the Varnish caches and the CDN cache for [a predefined list of 10 URLs](https://github.com/alphagov/govuk-puppet/blob/8cca9aad2b68d6cb396a135f47524fafeca1c947/modules/govuk_jenkins/templates/jobs/clear_cdn_cache.yaml.erb#L22-L34) (including the website root).
+#### EC2: Manually running the rake task
+
+1. SSH into a `frontend` machine in the environment you are deploying the banner on:
+
+    ```bash
+    gds govuk connect -e staging ssh frontend
+    ```
+
+1. Change into the directory for `static`:
+
+    ```bash
+    cd /var/apps/static
+    ```
+
+1. Set banner content as environment variables:
+
+    ```bash
+    CAMPAIGN_CLASS="notable-death|national-emergency|local-emergency"
+    HEADING="replace with heading"
+    SHORT_DESCRIPTION="replace with desciption"
+    LINK="replace with link"
+    LINK_TEXT="replace with link text"
+    ```
+
+    > **Note**
+    >
+    > You may need to escape certain characters (including `,` and `"`) with a
+    > backslash. For example `\,` or `\"`.
+
+1. Run the rake task
+
+    ```bash
+    sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]
+    ```
+
+#### EKS: Run the rake task
+
+1. Set banner content as environment variables
+
+    ```bash
+    CAMPAIGN_CLASS="notable-death|national-emergency|local-emergency"
+    HEADING="replace with heading"
+    SHORT_DESCRIPTION="replace with desciption"
+    LINK="replace with link"
+    LINK_TEXT="replace with link text"
+    ```
+
+    > **Note**
+    >
+    > You may need to escape certain characters (including `,` and `"`) with a
+    > backslash. For example `\,` or `\"`.
+
+1. Find the name of a pod running Static
+
+    ```bash
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+    ```
+
+1. Run the rake task in the app container
+
+    ```bash
+    kubectl -n apps exec -i -t $POD_NAME -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
+    ```
 
 ### 3. Test with cache bust strings
 
@@ -99,7 +167,11 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 ## Removing an emergency banner
 
-### Remove the banner using Jenkins
+### 1. Remove the banner
+
+Choose one of the following methods:
+
+#### EC2: Running a Jenkins Job
 
 1. Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
    - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
@@ -110,7 +182,39 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 ![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
 
-Caches will clear automatically.
+#### EC2: Manually running the rake task
+
+1. SSH into a frontend machine:
+
+    ```bash
+    gds govuk connect -e staging ssh frontend
+    ```
+
+1. Change into the directory for `static`:
+
+    ```bash
+    cd /var/apps/static
+    ```
+
+1. Run the rake task:
+
+    ```bash
+    sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:remove
+    ```
+
+#### EKS: Run the rake task
+
+1. Find the name of a pod running Static
+
+    ```bash
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+    ```
+
+1. Run the rake task in the app container
+
+    ```bash
+    kubectl -n apps exec -i -t $POD_NAME -- rake emergency_banner:remove
+    ```
 
 ---
 
@@ -118,7 +222,7 @@ Caches will clear automatically.
 
 ### Background
 
-The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we use Jenkins to run [rake tasks in static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake) to set or delete the appropriate hash in Redis.
+The information for the emergency banner is stored in Redis. [Static](https://github.com/alphagov/static) is responsible for displaying the data and we run [rake task in static](https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake) to set or delete the appropriate hash in Redis.
 
 ### The banner is not showing / not clearing
 
@@ -137,7 +241,7 @@ at various points in our stack as well as locally in your browser. Things to try
 - You can also try manually purging the Varnish and CDN caches:
   1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
     This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
-  2. Run the "Clear varnish cache" Jenkins job
+  2. Run the "Clear varnish cache" Jenkins job (Only required if serving traffic from EC2)
      - [Clear varnish on Integration](https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/)
      - [Clear varnish on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/)
      - [⚠️ Clear varnish on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/)
@@ -150,106 +254,39 @@ at various points in our stack as well as locally in your browser. Things to try
 
 ### Manually testing the Redis key
 
-You can manually check whether the data has been stored in Redis by the Jenkins job on one of the frontend machines.
+You can manually check whether the data has been stored in Redis.
 
-1. Load a Rails console for the static application on the frontend machine in the relevant environment.
+1. Start a Rails console for Static
 
-   ```bash
-   $ gds govuk connect -e staging app-console frontend/static
-   ```
+    For EC2 use:
+
+    ```bash
+    gds govuk connect -e staging app-console frontend/static
+    ```
+
+    or for EKS
+
+    ```bash
+    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
+
+    kubectl -n apps exec -i -t $POD_NAME -- rails console
+    ```
 
 1. Check the Redis key exists:
 
-   ```rb
-   irb(main):001:0> Redis.new.hgetall("emergency_banner")
-   #> {}
-   ```
+    ```rb
+    Redis.new.hgetall("emergency_banner")
 
-In the above example, the key has not been set. A successfully set key would return a result similar to the following:
+    #> {}
+    ```
 
-```rb
-irb(main):001:0> Redis.new.hgetall("emergency_banner")
-=> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
-```
+    In the above example, the key has not been set. A successfully set key would return a result similar to the following:
 
-### Manually running the rake task to deploy the emergency banner
+    ```rb
+    Redis.new.hgetall("emergency_banner")
 
-If you need to manually run the rake tasks to set the Redis keys, you can do so (remember to follow the instructions above to clear application template caches, restart Whitehall and purge origin caches afterwards):
-
-1. SSH into a `frontend` machine appropriate to the environment you are
-   deploying the banner on. For example:
-
-   ```bash
-   $ gds govuk connect -e staging ssh frontend
-   ```
-
-1. Change into the directory for `static`:
-
-   ```bash
-   $ cd /var/apps/static
-   ```
-
-1. Run the rake task to create the emergency banner hash in Redis, substituting
-   the quoted data for the parameters:
-
-   ```bash
-   $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[campaign_class,heading,short_description,link,link_text]
-   ```
-
-The `campaign_class` is directly injected into the HTML as a `class` and must be one of
-
-- notable-death
-- national-emergency
-- local-emergency
-
-For example, if you are deploying an emergency banner for which you have the
-following information:
-
-- Type: Death
-- Heading: Alas poor Yorick
-- Short description: I knew him Horatio
-- URL: <https://www.gov.uk>
-- Link text: Click for more information
-
-You would enter the following command:
-
-```bash
-$ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy["notable-death","Alas poor Yorick","I knew him Horatio","https://www.gov.uk","Click for more information"]
-```
-
-Note there are no spaces after the commas between parameters to the rake task.
-
-Quit your SSH session:
-
-```bash
-$ exit
-```
-
-### Manually running the rake task to remove an emergency banner
-
-1. SSH into a frontend machine:
-
-   ```bash
-   $ gds govuk connect -e staging ssh frontend
-   ```
-
-1. Change into the directory for `static`:
-
-   ```bash
-   $ cd /var/apps/static
-   ```
-
-1. Run the rake task to remove the emergency banner hash from Redis:
-
-   ```bash
-   $ sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:remove
-   ```
-
-1. Quit your SSH session
-
-   ```bash
-   $ exit
-   ```
+    #> {"campaign_class"=>"notable-death", "heading"=>"The heading", "short_description"=>"The short description", "link"=>"https://www.gov.uk", "link_text"=>"More information about the emergency"}
+    ```
 
 ---
 
