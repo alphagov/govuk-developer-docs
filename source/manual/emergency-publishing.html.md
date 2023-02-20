@@ -238,6 +238,10 @@ at various points in our stack as well as locally in your browser. Things to try
   private browser instance.
 - It is possible that the caching layers for the GOV.UK stack have evolved and
   we need to tweak the scripts to clear new caches that have been set up.
+- You can check if the banner is being rendered by the relevant applications
+  to narrow down the problem:
+  - Check if the banner is present in the [page template from Static](https://assets.integration.publishing.service.gov.uk/templates/gem_layout_homepage.html.erb)
+  - Check if the banner is being rendered at [origin](https://www-origin.integration.publishing.service.gov.uk)
 - You can also try manually purging the Varnish and CDN caches:
   1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
     This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
