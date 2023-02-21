@@ -239,7 +239,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/d5880f80f149ea1b3265ddba17aa60d90d137a37">21 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/3ecb3bff74b274a120f6c01deed4560ce8058002">21 Feb 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 link tracker</h1>
@@ -286,7 +286,8 @@
 <pre lang="html"><code>&lt;div
   data-module="ga4-link-tracker"
   data-ga4-link='{ "event_name": "navigation", "type": "browse", "section": "name of section" }'
-  data-ga4-track-links-only&gt;
+  data-ga4-track-links-only
+  data-ga4-set-indexes&gt;
   &lt;a href="/link1"&gt;This link will be tracked&lt;/a&gt;
   &lt;a href="/link2"&gt;
     &lt;span&gt;This link will also be tracked even though it contains child elements&lt;/span&gt;
@@ -294,7 +295,7 @@
   &lt;span&gt;This span will not be tracked&lt;/span&gt;
 &lt;/div&gt;
 </code></pre>
-<p>Note that in this configuration specific values such as <code>index</code> and <code>index_total</code> cannot currently be applied to links.</p>
+<p>Note: the addition of the <code>data-ga4-set-indexes</code> data attribute on the parent element will allow the <code>index</code> and <code>index_total</code> properties to be set.</p>
 <h2 id="track-links-within-content-within-a-specific-element">Track links within content within a specific element</h2>
 <p>To apply tracking to links within a specific element within part of a page, use the <code>data-ga4-limit-to-element-class</code> alongside the <code>data-ga4-track-links-only</code> attribute. This is helpful where page content is not editable, e.g. content comes from the content item or a publishing tool.</p>
 <pre lang="html"><code>&lt;div
