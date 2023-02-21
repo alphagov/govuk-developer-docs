@@ -20,17 +20,26 @@ Dependabot updates occur relatively soon after a new version is published, which
 there’s a risk of updating to a rogue version. Some updates also contain breaking
 changes, irrespective of when they are published.
 
-When reviewing a Dependabot PR you should do the following:
+When reviewing a Dependabot PR you should do the following as a minimum:
 
-- Check the `CHANGELOG` for any breaking changes or upgrade instructions.
+- Expand the "Release notes" or "Changelog" details.
+  - Click on the link to the `CHANGELOG` file (if there is one).
+  - Read the additions to the file to find out about any breaking changes or upgrade instructions.
+  - Take extra care when this is a 'major' upgrade, e.g. `2.1.0` => `3.0.0`.
 
-- Use "See full diff in compare view" to verify the version bump in the repo matches
-  the one for the PR, from RubyGems.
+If this is the first update the dependency has had in a while, or if this is an unfamiliar dependency that perhaps has a solo maintainer, you'll want to take extra due diligence in your review:
 
-- Verify the author of the version bump commit is a regular contributor to the repo,
-  and otherwise review the commits in more detail.
+- Expand the "Commits" details
+  - Click on the "compare view" link.
+  - Verify that the version bump in the repo matches the one for the PR.
+  - Review the code, not necessarily in a huge amount of depth, but looking for anything odd or potentially risky (e.g. use of `eval`, encoded strings, HTTP requests to non-GOV.UK domains, etc).
+- Find the package in the equivalent package hosting website, e.g. [Rubygems](https://rubygems.org/)
+  - Verify that the 'Homepage' or 'Source Code' links refer back to the git repository you've been reviewing the diff on.
+  - Verify that the version in the PR also exists in the package hosting website.
+- You may want to verify the author of the version bump commit is a regular contributor to the repo.
+- If in doubt, get a second opinion from Senior Tech.
 
-For these reasons we’re not planning to enable auto-merge for Dependabot PRs.
+For these reasons we’re not planning to enable auto-merge for Dependabot PRs for external dependencies.
 
 ### Managing Dependabot
 
