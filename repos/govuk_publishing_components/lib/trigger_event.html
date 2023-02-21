@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Install and use this gem - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: # Trigger Event - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/install-and-use.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/lib/trigger_event.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Install and use this gem - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/install-and-use.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: # Trigger Event - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/lib/trigger_event.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Install and use this gem" />
+      <meta property="og:title" content="govuk_publishing_components: # Trigger Event" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/install-and-use.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/lib/trigger_event.html" />
 
     
   </head>
@@ -238,77 +238,38 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+        This document has not been updated for a while now. It may be out of date.
+      </strong>
+    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/745817ccacdb3bc999e263162885fb0dddd9ea67">6 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/eb969c71d1f35241972a148eefba9358a220e617">28 Jan 2022</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Install and use this gem</h1>
+  <h1 class="page-title">govuk_publishing_components: # Trigger Event</h1>
 
-  
-<h2 id="1-install-the-gem">1. Install the gem</h2>
-<p>Add this line to your application's Gemfile:</p>
-<pre lang="ruby"><code>gem "govuk_publishing_components"
+  <h2 id="trigger-event">Trigger Event</h2>
+<p>The trigger event script provides a cross browser compatible way of triggering a JavaScript event on a DOM element, such as a click or submit.</p>
+<h3 id="usage">Usage</h3>
+<p>Basic usage:</p>
+<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, eventType)
 </code></pre>
-<p>And then execute:</p>
-<pre lang="sh"><code>bundle
+<p>Where <code>element</code> must be a valid DOM node and <code>eventType</code> must be a valid event type e.g. <code>'click'</code> or <code>'submit'</code>.</p>
+<p>With parameters:</p>
+<pre lang="javascript"><code>var element = document.querySelector('.my-element')
+window.GOVUK.triggerEvent(element, 'click', { detail: { test: true } })
 </code></pre>
-<h2 id="2-mount-the-component-guide">2. Mount the component guide</h2>
-<p>Mount the component guide in your application:</p>
-<pre lang="ruby"><code># config/routes.rb
-mount GovukPublishingComponents::Engine, at: "/component-guide" if Rails.env.development?
+<p>With a keyCode:</p>
+<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, 'keyup', { keyCode: 13 })
 </code></pre>
-<p>If your application was <code>government-frontend</code> the component guide would be at:</p>
-<p><a href="http://government-frontend.dev.gov.uk/component-guide">http://government-frontend.dev.gov.uk/component-guide</a></p>
-<p>An example guide this gem created for <code>government-frontend</code>:</p>
-<p><a href="https://government-frontend.herokuapp.com/component-guide">https://government-frontend.herokuapp.com/component-guide</a></p>
-<p>You are encouraged to set up <a href="https://docs.publishing.service.gov.uk/manual/review-apps.html">Heroku review apps</a> for your application, so that any changes to local components can be reviewed by looking at the component guide.</p>
-<h2 id="3-configure-the-gem">3. Configure the gem</h2>
-<p>Use a config block in an initialiser:</p>
-<pre lang="ruby"><code># config/initializers/govuk_publishing_components.rb
-GovukPublishingComponents.configure do |c|
-  c.component_guide_title = "My component guide"
-  c.application_stylesheet = "custom_stylesheet" # Defaults to "application"
-  c.application_javascript = "custom_javascript" # Defaults to "application"
-end
+<p>Prevent the event from bubbling up the DOM:</p>
+<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, 'click', { bubbles: false })
 </code></pre>
-<h2 id="4-include-the-assets">4. Include the assets</h2>
-<p>To make use of the components, you'll have to include the JS and CSS in your application.</p>
-<h3 id="import-sass-for-individual-components">Import Sass for individual components</h3>
-<p>The Sass for any components in use in an application should be imported. In order for this to work you must first import some generic Sass files that include <code>govuk-frontend</code> and some gem specific mixins and variables.</p>
-<p><strong>Note that you will need to keep this up to date if you add or remove components from your application.</strong></p>
-<p>For example:</p>
-<pre lang="scss"><code>// supporting sass
-@import "govuk_publishing_components/govuk_frontend_support";
-@import "govuk_publishing_components/component_support";
-// component specific sass
-@import "govuk_publishing_components/components/back-link";
-</code></pre>
-<p>If you load the component guide in the application the suggested Sass for it has been generated for you. Click the 'Suggested imports for this application' link, then copy and paste the output into your <code>application.scss</code> file.</p>
-<h3 id="import-all-sass-deprecated-will-be-removed-in-a-later-version">Import all Sass (deprecated, will be removed in a later version)</h3>
-<pre lang="scss"><code>// application.scss
-@import "govuk_publishing_components/all_components";
-</code></pre>
-<h3 id="import-javascript-for-individual-components">Import JavaScript for individual components</h3>
-<p>If your application doesn't use Slimmer/Static:</p>
-<pre lang="ruby"><code># application.js
-//= require govuk_publishing_components/dependencies
-//= require govuk_publishing_components/lib
-//= require govuk_publishing_components/components/button
-</code></pre>
-<p>If your application does use Slimmer/Static:</p>
-<pre lang="ruby"><code># application.js
-//= require govuk_publishing_components/lib
-//= require govuk_publishing_components/components/button
-</code></pre>
-<h3 id="import-all-javascript-deprecated-will-be-removed-in-a-later-version">Import all JavaScript (deprecated, will be removed in a later version)</h3>
-<p>If your application doesn't use Slimmer/Static:</p>
-<pre lang="ruby"><code># application.js
-//= require govuk_publishing_components/dependencies
-//= require govuk_publishing_components/all_components
-</code></pre>
-<p>If your application does use Slimmer/Static:</p>
-<pre lang="ruby"><code># application.js
-//= require govuk_publishing_components/all_components
+<p>Prevent the event from being cancelled:</p>
+<pre lang="javascript"><code>window.GOVUK.triggerEvent(element, 'keypress', { cancelable: false })
 </code></pre>
 
 
@@ -317,8 +278,8 @@ end
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/install-and-use.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Finstall-and-use.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/lib/trigger_event.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Flib%2Ftrigger_event.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
