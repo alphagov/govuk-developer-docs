@@ -1,12 +1,12 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: 'RabbitMQ: High number of unprocessed messages'
+title: 'AmazonMQ: High number of unprocessed messages'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
 ---
 
-For information about how we use RabbitMQ, see [here][rabbitmq_doc].
+For information about how we use RabbitMQ on AmazonMQ, see [here][amazonmq_doc].
 
 We check that there is not a significant build up of messages compared to the
 normal amounts on certain queues. The queues this alert applies to are:
@@ -42,14 +42,15 @@ warning.
 
 For troubleshooting steps, see [here][troubleshooting_steps].
 
-[email_service_config]: https://github.com/alphagov/govuk-puppet/blob/e769c1dc74484625cf7afdfe943c08884cc7d90d/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L54-L60
-[email_unpublishing_config]: https://github.com/alphagov/govuk-puppet/blob/e769c1dc74484625cf7afdfe943c08884cc7d90d/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L70-L76
-[email_subscriber_list_major_config]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L101-L107
-[email_subscriber_list_minor_config]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L92-L98
-[cache_config]: https://github.com/alphagov/govuk-puppet/blob/616cae598f91406e29ed2e4fc287c71b690c55b0/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L107-L132
-[troubleshooting_steps]: https://docs.publishing.service.gov.uk/manual/alerts/rabbitmq-no-consumers-listening.html#troubleshooting
-[no_consumers_listening]: https://docs.publishing.service.gov.uk/manual/alerts/rabbitmq-no-consumers-listening.html
+[email_service_config]: https://github.com/alphagov/govuk-puppet/blob/e769c1dc74484625cf7afdfe943c08884cc7d90d/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L57-L63
+[email_unpublishing_config]: https://github.com/alphagov/govuk-puppet/blob/e769c1dc74484625cf7afdfe943c08884cc7d90d/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L81-L87
+[email_subscriber_list_major_config]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#L73-L79
+[email_subscriber_list_minor_config]: https://github.com/alphagov/govuk-puppet/blob/main/modules/govuk/manifests/apps/email_alert_service/rabbitmq.pp#65-L71
+[cache_config]: https://github.com/alphagov/govuk-puppet/blob/616cae598f91406e29ed2e4fc287c71b690c55b0/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L112-L137
+[troubleshooting_steps]: https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-no-consumers-listening.html#troubleshooting
+[no_consumers_listening]: https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-no-consumers-listening.html
 [rabbitmq_doc]: https://docs.publishing.service.gov.uk/manual/rabbitmq.html
+[amazonmq_doc]: https://docs.publishing.service.gov.uk/manual/amazonmq.html
 [email_thresholds]: https://github.com/alphagov/govuk-puppet/blob/8267943e08c314e0a97742fc9443b889d4cf358a/hieradata_aws/common.yaml#L577-L578
 [cache_clearing_thresholds]: https://github.com/alphagov/govuk-puppet/blob/8267943e08c314e0a97742fc9443b889d4cf358a/hieradata_aws/common.yaml#L456-L457
 [plugin]: https://github.com/alphagov/govuk-puppet/blob/80cff45935481a180dc9bfe8e2ab0ac8a0d80344/modules/icinga/files/usr/lib/nagios/plugins/check_rabbitmq_messages

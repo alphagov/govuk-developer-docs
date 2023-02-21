@@ -31,7 +31,7 @@ necessary to help them to ensure it goes out as smoothly as possible.
 
   If there are no alerts, it would suggest that the content change never made it
   to the Email Alert API. In which case, you should [check that Email Alert
-  Service is correctly consuming from RabbitMQ](alerts/rabbitmq-no-consumers-listening.html).
+  Service is correctly consuming from AmazonMQ](alerts/amazonmq-no-consumers-listening.html).
   If all looks fine, it may be necessary to [manually create a `ContentChange` in
   Email Alert API](https://github.com/alphagov/email-alert-api/blob/1aee9703bf303d43ba4ecb5f6fd771b757d52daf/app/services/notification_handler_service.rb#L24-L43).
 
