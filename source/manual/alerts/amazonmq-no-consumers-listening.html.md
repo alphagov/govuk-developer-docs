@@ -1,6 +1,6 @@
 ---
 owner_slack: "#govuk-2ndline-tech"
-title: 'RabbitMQ: No consumers listening to queue'
+title: 'AmazonMQ: No consumers listening to queue'
 parent: "/manual.html"
 layout: manual_layout
 section: Icinga alerts
@@ -8,7 +8,7 @@ section: Icinga alerts
 
 ## Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}
 
-Icinga connects to RabbitMQ's admin API to check on the activity of the
+Icinga connects to AmazonMQ's RabbitMQ admin API to check on the activity of the
 consumers and that at least one consumer is running for a given RabbitMQ
 message queue. See [here][check_rabbitmq_plugin] for the plugin that implements
 the alert.
@@ -41,15 +41,9 @@ never idle for these queues.
 
 ## Troubleshooting
 
-### Check the RabbitMQ logs
+### Check the AmazonMQ Grafana dashboard
 
-Check the logs for the `rabbitmq` application which can be achieved logging
-into Kibana and searching for `application: rabbitmq`. Is there evidence of any
-errors?
-
-### Check the RabbitmQ Grafana dashboard
-
-This [Grafana dashboard][rabbitmq_grafana_dashboard] shows activity across
+This [Grafana dashboard][amazonmq_grafana_dashboard] shows activity across
 multiple exchanges and queues. The main exchange we expect to be monitoring is
 `published_documents` which handles broadcasting to services such as search and
 email-alert-service when content changes across GOV.UK.
@@ -80,10 +74,10 @@ messages then this could indicate an issue with the consumer.
 2. If the issue has not resolved, we should check in the consumers application
    logs to see if any errors are being thrown.
 
-[high_unprocessed_messages]: https://docs.publishing.service.gov.uk/manual/alerts/rabbitmq-high-number-of-unprocessed-messages.html
+[high_unprocessed_messages]: https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-high-number-of-unprocessed-messages.html
 [email_alert_binding]: https://github.com/alphagov/email-alert-service/blob/4412a1b3b0f281733801e1631416ab02fac90e25/lib/tasks/message_queues.rake#L17
-[rabbitmq_doc]: https://docs.publishing.service.gov.uk/manual/rabbitmq.html
+[amazonmq_doc]: https://docs.publishing.service.gov.uk/manual/amazonmq.html
 [check_rabbitmq_plugin]: https://github.com/alphagov/govuk-puppet/blob/eb8a04a7883d4772fa7266c909c7f40563f8f7a0/modules/icinga/files/usr/lib/nagios/plugins/check_rabbitmq_consumers
 [heartbeat_messages]: https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake
-[rabbitmq_grafana_dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/rabbitmq.json?refresh=10s&orgId=1
+[amazonmq_grafana_dashboard]: https://grafana.blue.production.govuk.digital/dashboard/file/amazonmq.json?refresh=10s&orgId=1
 [heartbeat]: https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/queue_publisher.rb#L43

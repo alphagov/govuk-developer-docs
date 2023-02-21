@@ -313,6 +313,9 @@ we want to send an email to anyone subscribed to that content.
 
 We use [Sidekiq] to manage the background processing. When each Sidekiq
 process is evaluated, a message is put onto a [RabbitMQ] queue.
+
+The RabbitMQ cluster used by publishing-api is managed by AWS, via their [AmazonMQ] service.
+
 RabbitMQ is a message broker: when a message is broadcast to a RabbitMQ
 exchange, it forwards the message to its consumers. These consumers
 retrieve the content item and do something in response, such as:
@@ -328,6 +331,7 @@ in a downstream process.
 
 [content-store-router-api]: https://github.com/alphagov/content-store/blob/dd79a03d74f130650bc97d1c84aae557ccea58d3/app/models/content_item.rb#L33
 [message-queues-rake]: https://github.com/alphagov/email-alert-service/blob/main/lib/tasks/message_queues.rake
+[AmazonMQ]: https://aws.amazon.com/amazon-mq/
 [RabbitMQ]: https://www.rabbitmq.com/
 [Sidekiq]: /manual/sidekiq.html
 

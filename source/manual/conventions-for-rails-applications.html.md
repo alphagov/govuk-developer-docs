@@ -142,13 +142,14 @@ environments.
 For [key-value datastore][] access (such as queues or distributed caches)
 [Redis][] should be used. Typically a Redis datastore will not be shared
 between applications, for queue-based communication between applications we
-have precedent for using [RabbitMQ][] via the [Bunny][] gem.
+have precedent for using [RabbitMQ][] via the [Bunny][] gem, and AWS' [AmazonMQ][].
 
 For file storage local to an application [Amazon S3][] is the preferred choice,
 where this needs to be associated with a database [ActiveStorage][] should be
 used.
 
 [ActiveRecord]: https://guides.rubyonrails.org/active_record_basics.html
+[AmazonMQ]: https://aws.amazon.com/amazon-mq/
 [db/seeds.rb]: https://github.com/alphagov/content-publisher/blob/main/db/seeds.rb
 [key-value datastore]: https://en.wikipedia.org/wiki/Key-value_database
 [Redis]: https://redis.io/
