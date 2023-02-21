@@ -193,7 +193,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ceeee3e6f88f68dc10710a072e659d7f2a5490fa">25 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/b2b17ce1441be6237557ea8b8cd3e7f0f0d76e3d">20 Feb 2023</a>
 </div>
 
  <h1 id='header'>Manage Ruby dependencies with Dependabot</h1> <p>We&rsquo;re <a href="/manual/keeping-software-current.html">obliged to keep our software current</a>. To help with this, we use a
@@ -204,16 +204,37 @@ keep our apps up to date.</p>
 <h3 id='reviewing-dependabot-prs'>Reviewing Dependabot PRs</h3><p>Dependabot updates occur relatively soon after a new version is published, which means
 there’s a risk of updating to a rogue version. Some updates also contain breaking
 changes, irrespective of when they are published.</p>
-<p>When reviewing a Dependabot PR you should do the following:</p>
+<p>When reviewing a Dependabot PR you should do the following as a minimum:</p>
 
 <ul>
-<li><p>Check the <code>CHANGELOG</code> for any breaking changes or upgrade instructions.</p></li>
-<li><p>Use &ldquo;See full diff in compare view&rdquo; to verify the version bump in the repo matches
-the one for the PR, from RubyGems.</p></li>
-<li><p>Verify the author of the version bump commit is a regular contributor to the repo,
-and otherwise review the commits in more detail.</p></li>
+<li>Expand the &ldquo;Release notes&rdquo; or &ldquo;Changelog&rdquo; details.
+
+<ul>
+<li>Click on the link to the <code>CHANGELOG</code> file (if there is one).</li>
+<li>Read the additions to the file to find out about any breaking changes or upgrade instructions.</li>
+<li>Take extra care when this is a &lsquo;major&rsquo; upgrade, e.g. <code>2.1.0</code> =&gt; <code>3.0.0</code>.</li>
+</ul></li>
 </ul>
-<p>For these reasons we’re not planning to enable auto-merge for Dependabot PRs.</p>
+<p>If this is the first update the dependency has had in a while, or if this is an unfamiliar dependency that perhaps has a solo maintainer, you&rsquo;ll want to take extra due diligence in your review:</p>
+
+<ul>
+<li>Expand the &ldquo;Commits&rdquo; details
+
+<ul>
+<li>Click on the &ldquo;compare view&rdquo; link.</li>
+<li>Verify that the version bump in the repo matches the one for the PR.</li>
+<li>Review the code, not necessarily in a huge amount of depth, but looking for anything odd or potentially risky (e.g. use of <code>eval</code>, encoded strings, HTTP requests to non-GOV.UK domains, etc).</li>
+</ul></li>
+<li>Find the package in the equivalent package hosting website, e.g. <a href="https://rubygems.org/">Rubygems</a>
+
+<ul>
+<li>Verify that the &lsquo;Homepage&rsquo; or &lsquo;Source Code&rsquo; links refer back to the git repository you&rsquo;ve been reviewing the diff on.</li>
+<li>Verify that the version in the PR also exists in the package hosting website.</li>
+</ul></li>
+<li>You may want to verify the author of the version bump commit is a regular contributor to the repo.</li>
+<li>If in doubt, get a second opinion from Senior Tech.</li>
+</ul>
+<p>For these reasons we’re not planning to enable auto-merge for Dependabot PRs for external dependencies.</p>
 <h3 id='managing-dependabot'>Managing Dependabot</h3><h4 id='add-dependabot-to-a-repo'>Add Dependabot to a repo</h4><p>Any GOV.UK developer with production access can enable GitHub for a repo.</p>
 
 <ol>
