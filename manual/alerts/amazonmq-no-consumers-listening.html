@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Reprovision a machine - GOV.UK Developer Documentation</title>
+    <title>AmazonMQ: No consumers listening to queue - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/reprovision.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-no-consumers-listening.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Reprovision a machine - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/reprovision.html" />
+      <meta name="twitter:title" content="AmazonMQ: No consumers listening to queue - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-no-consumers-listening.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Reprovision a machine" />
+      <meta property="og:title" content="AmazonMQ: No consumers listening to queue" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/reprovision.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-no-consumers-listening.html" />
 
     
   </head>
@@ -126,13 +126,29 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Reprovision a machine</span></a>
+    <a href="#header"><span>AmazonMQ: No consumers listening to queue</span></a>
     <ul>
       <li>
-        <a href="#aws"><span>AWS</span></a>
+        <a href="#check-that-there-is-at-least-one-non-idle-consumer-for-rabbitmq-queue-queue_name"><span>Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}</span></a>
+        <ul>
+          <li>
+            <a href="#no-consumers-listening-to-queue"><span>No consumers listening to queue</span></a>
+          </li>
+          <li>
+            <a href="#no-activity-for-x-seconds-idle-times-are-x-y-z"><span>No activity for X seconds: idle times are [X, Y, Z]</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <ul>
+          <li>
+            <a href="#check-the-amazonmq-grafana-dashboard"><span>Check the AmazonMQ Grafana dashboard</span></a>
+          </li>
+          <li>
+            <a href="#troubleshooting-steps"><span>Troubleshooting steps</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -145,114 +161,75 @@
 
         <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
           <main id="content" class="technical-documentation" data-module="anchored-headings">
-            
-    
-<script type="application/ld+json">
-  {
-  "@context": "http://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "item": {
-        "name": "Home",
-        "@id": "http://www.dev.gov.uk/"
-      }
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "item": {
-        "name": "Infrastructure",
-        "@id": "http://www.dev.gov.uk/manual.html#infrastructure"
-      }
-    }
-  ]
-}
-</script>
-
-<div data-module="gem-track-click" class="gem-c-breadcrumbs govuk-breadcrumbs">
-  <ol class="govuk-breadcrumbs__list">
-        <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" class="govuk-breadcrumbs__link" href="/">Home</a>
-        </li>
-        <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#infrastructure" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Infrastructure&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#infrastructure">Infrastructure</a>
-        </li>
-  </ol>
-</div>
-   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
+                <div class="information-callout">
+      This page describes what to do in case of an
+      <a href='https://docs.publishing.service.gov.uk/manual/tools.html#icinga'>Icinga alert</a>.
+      For more information you could
+      <a href='https://github.com/alphagov/govuk-puppet/search?utf8=%E2%9C%93&q=amazonmq-no-consumers-listening'>
+        search the govuk-puppet repo for the source of the alert
+      </a>
     </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+    
+   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/81218bdf3d57354aec8a98414a0c41b4a0f37225">14 Feb 2023</a>
 </div>
 
- <h1 id='header'>Reprovision a machine</h1> <p>Make sure you are aware what the consequences will be of removing a
-machine from the rotation and consider who needs to be aware of
-potential downtime. In particular, removing a single-point-of-failure
-machine will result in downtime.</p>
-<h2 id='aws'>AWS</h2>
+ <h1 id='header'>AmazonMQ: No consumers listening to queue</h1> <h2 id='check-that-there-is-at-least-one-non-idle-consumer-for-rabbitmq-queue-queue_name'>Check that there is at least one non-idle consumer for rabbitmq queue {queue_name}</h2><p>Icinga connects to AmazonMQ&rsquo;s RabbitMQ admin API to check on the activity of the
+consumers and that at least one consumer is running for a given RabbitMQ
+message queue. See <a href="https://github.com/alphagov/govuk-puppet/blob/eb8a04a7883d4772fa7266c909c7f40563f8f7a0/modules/icinga/files/usr/lib/nagios/plugins/check_rabbitmq_consumers">here</a> for the plugin that implements
+the alert.</p>
+<p>For information about how we use RabbitMQ, see [here][rabbitmq_doc].</p>
+<h3 id='no-consumers-listening-to-queue'>No consumers listening to queue</h3><p>This check reports a critical error when <strong>no</strong> consumers are listening to the
+queue, meaning messages entering the queue will never be processed.</p>
+<h3 id='no-activity-for-x-seconds-idle-times-are-x-y-z'>No activity for X seconds: idle times are [X, Y, Z]</h3><p>This checks whether the RabbitMQ consumers for a queue have been active in the
+last 5 minutes. Consumers in an <code>idle</code> state are listening to the queue but are
+unable to process the messages on it.</p>
+<p>Publishing API <a href="https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/tasks/heartbeat_messages.rake">sends a heartbeat message</a> every minute to
+the following queues - <code>email-alert-service</code>, <code>cache_clearing_service-high</code> and
+<code>content_data_api</code>. This is configured via the queues bindings (e.g
+<a href="https://github.com/alphagov/email-alert-service/blob/4412a1b3b0f281733801e1631416ab02fac90e25/lib/tasks/message_queues.rake#L17">email-alert-service&rsquo;s binding</a>) matching the routing key
+used in the <a href="https://github.com/alphagov/publishing-api/blob/d2552f681e772c9e4f5afb3a76605630fa4a588c/lib/queue_publisher.rb#L43">heartbeat</a>. This should ensure that the consumers are
+never idle for these queues.</p>
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>You may see the <a href="https://docs.publishing.service.gov.uk/manual/alerts/amazonmq-high-number-of-unprocessed-messages.html">high unprocessed messages</a> alert too,
+as issues with consumers processing messages could then lead to a high
+backlog of messages.</p>
+</blockquote>
+<h2 id='troubleshooting'>Troubleshooting</h2><h3 id='check-the-amazonmq-grafana-dashboard'>Check the AmazonMQ Grafana dashboard</h3><p>This <a href="https://grafana.blue.production.govuk.digital/dashboard/file/amazonmq.json?refresh=10s&amp;orgId=1">Grafana dashboard</a> shows activity across
+multiple exchanges and queues. The main exchange we expect to be monitoring is
+<code>published_documents</code> which handles broadcasting to services such as search and
+email-alert-service when content changes across GOV.UK.</p>
+<p>Looking at the queue graphs we should look out for the following:</p>
+
+<ul>
+<li><p><strong>Check for high &lsquo;ready&rsquo; messages for the queue</strong> - indicates these messages are
+waiting to be processed in RabbitMQ by the consumer (e.g
+email-alert-service).</p></li>
+<li><p><strong>Check for high &lsquo;unacknowledged&rsquo; messages for the queue</strong> - implies that
+messages have been read by the consumer but the consumer has never sent back
+an ACK to the RabbitMQ broker to say that it has finished processing.</p></li>
+<li><p><strong>Check for high &lsquo;redeliver&rsquo; rate for the queue</strong> - in the event of network
+failure (or a node failure), messages can be redelivered. An example is if
+the consumer dies (its channel is closed, connection is closed, or TCP
+connection is lost).</p></li>
+</ul>
+<p>If we&rsquo;re seeing high &lsquo;redeliver&rsquo; rates, high &lsquo;ready&rsquo; or &lsquo;unacknowledged&rsquo;
+messages then this could indicate an issue with the consumer.</p>
+<h3 id='troubleshooting-steps'>Troubleshooting steps</h3>
 <ol>
-<li>Log into the AWS console, select the correct environment and go to the EC2 service</li>
-<li>Locate the instance and confirm it&rsquo;s the correct one by either instance ID or private IP address</li>
-<li>Select Terminate from the Actions -&gt; Instance State menu</li>
-<li>The AWS Auto Scaling Group will reprovision the instance automatically</li>
-</ol>
-<h2 id='troubleshooting'>Troubleshooting</h2>
-<ol>
-<li>If you  have issues when reprovisioning new instances, see <a href="/manual/new-instances-fail-to-provision.html">here</a></li>
+<li><p>You could try restarting the application <a href="https://docs.publishing.service.gov.uk/manual/howto-run-ssh-commands-on-many-machines">on all the machines of the relevant class</a>.
+For example, to restart the email-alert-service application, you&rsquo;d SSH into each <code>email_alert_api</code> machine and <a href="/manual/restart-application.html">restart the app</a>. After restarting, check to see if the problem is solved.</p></li>
+<li><p>If the issue has not resolved, we should check in the consumers application
+logs to see if any errors are being thrown.</p></li>
 </ol>
 
 
   <div class='related-content'>
 
-    <h3>More in the Infrastructure section</h3>
-
-    <div class='govuk-grid-row'>
-        <div class='govuk-grid-column-one-half'>
-          <h4>Learn</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/dns.html">Domain Name System (DNS) records</a></li>
-            <li><a href="/manual/vpn.html">GOV.UK and Virtual Private Networks (VPNs)</a></li>
-            <li><a href="/manual/environments.html">GOV.UK's environments (integration, staging, production)</a></li>
-            <li><a href="/manual/load-testing.html">Load Testing</a></li>
-            <li><a href="/manual/new-instances-fail-to-provision.html">New instances fail to provision</a></li>
-            <li><a href="/manual/rate-limiting.html">Rate Limiting</a></li>
-            <li><a href="/manual/rollback-puppet-if-jenkins-is-broken.html">Rollback Puppet if Jenkins is broken</a></li>
-            <li><a href="/manual/upgrade-terraform.html">Upgrade Terraform</a></li>
-          </ul>
-        </div>
-
-        <div class='govuk-grid-column-one-half'>
-          <h4>How to...</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/ruby.html">Add a new Ruby version</a></li>
-            <li><a href="/manual/databases.html">Databases on GOV.UK</a></li>
-            <li><a href="/manual/generate-csr.html">Generate a Certificate Signing Request (CSR) for GOV.UK</a></li>
-            <li><a href="/manual/amazonmq.html">Manage AmazonMQ</a></li>
-            <li><a href="/manual/rabbitmq.html">Manage RabbitMQ</a></li>
-            <li><a href="/manual/auto-scaling-groups.html">Manually resize ASGs (auto scaling groups)</a></li>
-            <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
-            <li><a href="/manual/move-apps-between-servers.html">Move apps between servers</a></li>
-            <li><a href="/manual/patching-jenkins.html">Patch Jenkins</a></li>
-            <li><a href="/manual/provision-machines-for-data-science-research.html">Provision machines for data science research</a></li>
-            <li><a href="/manual/alerts/rebooting-machines.html">Reboot a machine</a></li>
-            <li><a href="/manual/remove-machines.html">Remove a machine</a></li>
-            <li><a href="/manual/renew-a-tls-certificate.html">Renew a TLS certificate for GOV.UK</a></li>
-            <li><a href="/manual/unable-to-ssh-into-machine.html">Unable to SSH into a machine</a></li>
-          </ul>
-        </div>
-
-    </div>
 </div>
 
 
@@ -261,8 +238,8 @@ machine will result in downtime.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/reprovision.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Reprovision+a+machine%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Freprovision.html%29&amp;labels=bug&amp;title=Re%3A+%27Reprovision+a+machine%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/alerts/amazonmq-no-consumers-listening.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27AmazonMQ%3A+No+consumers+listening+to+queue%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Falerts%2Famazonmq-no-consumers-listening.html%29&amp;labels=bug&amp;title=Re%3A+%27AmazonMQ%3A+No+consumers+listening+to+queue%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

@@ -193,15 +193,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0f000cb8ae3526bd95ccc806a877b8b5d143b33e">4 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a82352e924a90691879fda6c0fe5db5be79fa47">14 Feb 2023</a>
 </div>
 
  <h1 id='header'>Make a new document type available to search</h1> <p>Any document type that the Publishing API knows about can be added to our
@@ -209,7 +202,7 @@ internal search. By default, all document types in internal search also get
 included in the GOV.UK sitemap, which tells external search engines about our
 content.</p>
 <p>The app responsible for search is <a href="https://github.com/alphagov/search-api">Search API</a>. Search API listens
-to RabbitMQ messages about published documents to know when to index documents.
+to AmazonMQ messages about published documents to know when to index documents.
 For the new document type to be indexed, you need to add it to a whitelist.</p>
 <h3 id='1-decide-what-fields-you-want-to-make-available-to-search'>1. Decide what fields you want to make available to search</h3><p>Search API has its own concept of <a href="https://github.com/alphagov/search-api/blob/main/docs/schemas.md#elasticsearch-document-types">document type</a>, which represents
 the schema used to store documents in Elasticsearch (the search engine).

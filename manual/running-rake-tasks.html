@@ -129,7 +129,15 @@
     <a href="#header"><span>Run a rake task</span></a>
     <ul>
       <li>
-        <a href="#run-rake-tasks-from-the-command-line"><span>Run rake tasks from the command line</span></a>
+        <a href="#run-a-rake-task-on-ec2"><span>Run a rake task on EC2</span></a>
+        <ul>
+          <li>
+            <a href="#run-rake-tasks-from-the-command-line"><span>Run rake tasks from the command line</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#run-a-rake-task-on-eks"><span>Run a rake task on EKS</span></a>
       </li>
     </ul>
   </li>
@@ -180,18 +188,12 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/aa3432ed418be7ac2c4ce6cc1ab54aedac07b173">12 Nov 2021</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/321704f9a343350e3f85510dd600012283d25f17">20 Feb 2023</a>
 </div>
 
- <h1 id='header'>Run a rake task</h1> <p>There is a Jenkins job that can be used to run any rake task:</p>
+ <h1 id='header'>Run a rake task</h1> <p>Rake is a task runner for Ruby. There are several different methods of running a rake task:</p>
+<h2 id='run-a-rake-task-on-ec2'>Run a rake task on EC2</h2><p>There is a Jenkins job that can be used to run any rake task:</p>
 
 <ul>
 <li>Integration:
@@ -203,7 +205,7 @@
 </ul>
 <p>Jenkins jobs are also linkable. For example:</p>
 <p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE_CLASS=backend-1.backend&RAKE_TASK=routes">https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&amp;MACHINE_CLASS=backend-1.backend&amp;RAKE_TASK=routes</a></p>
-<h2 id='run-rake-tasks-from-the-command-line'>Run rake tasks from the command line</h2><p>It is possible to bypass Jenkins and run the rake tasks directly on the relevant app machines.</p>
+<h3 id='run-rake-tasks-from-the-command-line'>Run rake tasks from the command line</h3><p>It is possible to bypass Jenkins and run the rake tasks directly on the relevant app machines.</p>
 <p>First, SSH into the right machine class (e.g. <code>publishing_api</code>):</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e production publishing_api
 </code></pre></div><p>Secondly, change directory so that the rake task is available:</p>
@@ -211,7 +213,27 @@
 </code></pre></div><p>Finally, run the rake task, e.g.:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv publishing-api bundle exec \
 rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
-</code></pre></div>
+</code></pre></div><h2 id='run-a-rake-task-on-eks'>Run a rake task on EKS</h2><p>To run a rake task in Kubernetes, you execute the rake command inside the relevant application container.</p>
+
+<ol>
+<li><p>Find the name of a pod running the application with the rake task defined:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">APP_NAME</span><span class="o">=</span>government-frontend <span class="c"># Change to relevant application name</span>
+
+<span class="nv">POD_NAME</span><span class="o">=</span><span class="si">$(</span>kubectl <span class="nt">-n</span> apps get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span><span class="nv">$APP_NAME</span> <span class="nt">-o</span> go-template <span class="nt">--template</span> <span class="s1">'{{ (index .items 0).metadata.name }}'</span><span class="si">)</span>
+
+<span class="nb">echo</span> <span class="nv">$POD_NAME</span> <span class="c"># Check you've correctly set a pod name</span>
+</code></pre></div></li>
+<li><p>Execute the rake task in the application container:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> <span class="nt">-t</span> <span class="nv">$POD_NAME</span> <span class="nt">--</span> rake <span class="s1">'some_namespace:task_name[arg1,arg2,arg3]'</span>
+</code></pre></div></li>
+</ol>
+
+<blockquote>
+<p><strong>Note</strong></p>
+<p>You may need to escape certain characters in argument strings (including <code>,</code> and <code>&quot;</code>) with a
+backslash. For example <code>\,</code> or <code>\&quot;</code>.</p>
+</blockquote>
+
 
   <div class='related-content'>
 

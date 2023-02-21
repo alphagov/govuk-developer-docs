@@ -194,15 +194,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a82352e924a90691879fda6c0fe5db5be79fa47">14 Feb 2023</a>
 </div>
 
  <h1 id='header'>Manage RabbitMQ</h1> <p><a href="https://www.rabbitmq.com/">RabbitMQ</a> is a message broker based on the <a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">Advanced Message Queuing
@@ -213,25 +206,23 @@ browser at <a href="http://127.0.0.1:15672">http://127.0.0.1:15672</a> (also ava
 <p>The username for connecting to the RabbitMQ web control panel is <code>root</code> and the password
 can be decrypted from the <code>govuk-secrets</code> repo via <code>bundle exec rake &#39;eyaml:decrypt_value[integration,govuk_rabbitmq::root_password]&#39;</code> (from the <code>puppet_aws</code> directory).</p>
 <h2 id='rabbitmq-metrics'>RabbitMQ metrics</h2><p>A <a href="https://grafana.blue.production.govuk.digital/dashboard/file/rabbitmq.json?refresh=10s&amp;orgId=1">generic RabbitMQ dashboard</a> shows metrics for queues and exchanges.</p>
-<h2 id='how-we-run-rabbitmq'>How we run RabbitMQ</h2><h3 id='overview'>Overview</h3><p><a href="images/rabbitmq_graph.png" rel="noopener noreferrer"><img src="/manual/images/rabbitmq_graph.png" alt="A graph showing the message flow" /></a></p>
-<p><strong>Producer</strong>: an application that publishes messages RabbitMQ. On GOV.UK this could
-be <a href="https://github.com/alphagov/publishing-api">publishing-api</a>.</p>
+<h2 id='how-we-run-rabbitmq'>How we run RabbitMQ</h2><h3 id='overview'>Overview</h3><p><strong>Producer</strong>: an application that publishes messages to RabbitMQ. On GOV.UK this could
+be <a href="https://github.com/alphagov/govuk_seed_crawler">seed-crawler</a>.</p>
 <p><strong>Exchanges</strong> are AMQP entities where messages are sent. They take a message
 and route it into zero or more queues. The routing algorithm used depends on
-the exchange type and rules called <em>bindings</em>.  When a content change is made
-in a publishing application (e.g. Travel Advice Publisher), Publishing API
-<a href="https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L26">publishes a message</a> to our main exchange,
-<code>publishing_documents</code>.</p>
+the exchange type and rules called <em>bindings</em>. Seed Crawler publishes a message
+for every line in the GOV.UK sitemap, to the exchange
+<code>govuk_crawler_exchange</code>.</p>
 <p><strong>Queues</strong> are very similar to queues in other message and task-queueing
 systems: they store messages that are consumed by applications. An example of a
-queue is <code>email_alert_service</code> which is used by
-<a href="https://github.com/alphagov/email-alert-service">email-alert-service</a> to forward publishing activity to
-email-alert-api. Queues are <a href="https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9">created by consumer applications</a>.</p>
+queue is <code>govuk_crawler_queue</code> which is used by
+[govuk_crawler_worker][https://github.com/alphagov/govuk_crawler_worker] as a list
+of URLs to process. Queues are <a href="https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9">created by consumer applications</a>.</p>
 <p><strong>Bindings</strong> are rules that exchanges use (among other things) to route
 messages to queues. To instruct an exchange E to route messages to a queue Q, Q
 has to be bound to E. Bindings may have an optional routing key attribute. An
 example of a binding is the <code>cache_clearing_service-high</code> queue is
-<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L42-L48">bound</a> to the <code>published_documents</code> exchange with a routing
+<a href="https://github.com/alphagov/govuk-aws/blob/main/terraform/projects/app-publishing-amazonmq/publishing-rabbitmq-schema.json.tpl#L248">bound</a> to the <code>published_documents</code> exchange with a routing
 key matching of <code>*.major</code>. E.g messages sent to the exchange with a routing key
 of <code>guide.major</code> will be routed to that queue.</p>
 <p><strong>Messages</strong> consist of a JSON payload and publish options (we predominantly
@@ -293,6 +284,7 @@ AMQP concepts really well.</li>
             <li><a href="/manual/ruby.html">Add a new Ruby version</a></li>
             <li><a href="/manual/databases.html">Databases on GOV.UK</a></li>
             <li><a href="/manual/generate-csr.html">Generate a Certificate Signing Request (CSR) for GOV.UK</a></li>
+            <li><a href="/manual/amazonmq.html">Manage AmazonMQ</a></li>
             <li><a href="/manual/auto-scaling-groups.html">Manually resize ASGs (auto scaling groups)</a></li>
             <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
             <li><a href="/manual/move-apps-between-servers.html">Move apps between servers</a></li>

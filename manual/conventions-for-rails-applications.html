@@ -256,7 +256,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a82352e924a90691879fda6c0fe5db5be79fa47">14 Feb 2023</a>
 </div>
 
  <h1 id='header'>Conventions for Rails applications</h1> <p>The majority of GOV.UK applications are built using <a href="https://rubyonrails.org/">Ruby on Rails</a> and over
@@ -342,7 +342,7 @@ environments.</p>
 <p>For <a href="https://en.wikipedia.org/wiki/Key-value_database">key-value datastore</a> access (such as queues or distributed caches)
 <a href="https://redis.io/">Redis</a> should be used. Typically a Redis datastore will not be shared
 between applications, for queue-based communication between applications we
-have precedent for using <a href="https://www.rabbitmq.com/">RabbitMQ</a> via the <a href="https://github.com/ruby-amqp/bunny">Bunny</a> gem.</p>
+have precedent for using <a href="https://www.rabbitmq.com/">RabbitMQ</a> via the <a href="https://github.com/ruby-amqp/bunny">Bunny</a> gem, and AWS&rsquo; <a href="https://aws.amazon.com/amazon-mq/">AmazonMQ</a>.</p>
 <p>For file storage local to an application <a href="https://aws.amazon.com/s3/">Amazon S3</a> is the preferred choice,
 where this needs to be associated with a database <a href="https://guides.rubyonrails.org/active_storage_overview.html">ActiveStorage</a> should be
 used.</p>

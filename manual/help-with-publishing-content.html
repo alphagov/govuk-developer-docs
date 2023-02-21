@@ -175,15 +175,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bda32dd9d404a1973aff7e9bd2af62b1ee3a9410">23 Sep 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/2a82352e924a90691879fda6c0fe5db5be79fa47">14 Feb 2023</a>
 </div>
 
  <h1 id='header'>Help with publishing content</h1> <p>When a department is publishing content that is high priority, it may be
@@ -202,8 +195,8 @@ should be <a href="alerts/email-alert-api-unprocessed-content-changes.html">an a
 how to solve this</a>.</p></li>
 </ul>
 <p>If there are no alerts, it would suggest that the content change never made it
-  to the Email Alert API. In which case, you should <a href="/manual/alerts/rabbitmq-no-consumers-listening.html">check that Email Alert
-  Service is correctly consuming from RabbitMQ</a>.
+  to the Email Alert API. In which case, you should <a href="/manual/alerts/amazonmq-no-consumers-listening.html">check that Email Alert
+  Service is correctly consuming from AmazonMQ</a>.
   If all looks fine, it may be necessary to <a href="https://github.com/alphagov/email-alert-api/blob/1aee9703bf303d43ba4ecb5f6fd771b757d52daf/app/services/notification_handler_service.rb#L24-L43">manually create a <code>ContentChange</code> in
   Email Alert API</a>.</p>
 <p>We have an alert that checks that email alerts for Travel Advice and Medical

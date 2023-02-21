@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Reprovision a machine - GOV.UK Developer Documentation</title>
+    <title>Manage AmazonMQ - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/reprovision.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/amazonmq.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Reprovision a machine - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/reprovision.html" />
+      <meta name="twitter:title" content="Manage AmazonMQ - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/amazonmq.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Reprovision a machine" />
+      <meta property="og:title" content="Manage AmazonMQ" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/reprovision.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/amazonmq.html" />
 
     
   </head>
@@ -126,13 +126,24 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Reprovision a machine</span></a>
+    <a href="#header"><span>Manage AmazonMQ</span></a>
     <ul>
       <li>
-        <a href="#aws"><span>AWS</span></a>
+        <a href="#connecting-to-the-amazonmq-web-control-panel"><span>Connecting to the AmazonMQ web control panel</span></a>
       </li>
       <li>
-        <a href="#troubleshooting"><span>Troubleshooting</span></a>
+        <a href="#amazonmq-metrics"><span>AmazonMQ metrics</span></a>
+      </li>
+      <li>
+        <a href="#how-we-run-rabbitmq"><span>How we run RabbitMQ</span></a>
+        <ul>
+          <li>
+            <a href="#overview"><span>Overview</span></a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#further-reading"><span>Further reading</span></a>
       </li>
     </ul>
   </li>
@@ -183,32 +194,70 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4ddae9a15f33cb4750a1a17eae401511092bf46d">21 Feb 2023</a>
 </div>
 
- <h1 id='header'>Reprovision a machine</h1> <p>Make sure you are aware what the consequences will be of removing a
-machine from the rotation and consider who needs to be aware of
-potential downtime. In particular, removing a single-point-of-failure
-machine will result in downtime.</p>
-<h2 id='aws'>AWS</h2>
-<ol>
-<li>Log into the AWS console, select the correct environment and go to the EC2 service</li>
-<li>Locate the instance and confirm it&rsquo;s the correct one by either instance ID or private IP address</li>
-<li>Select Terminate from the Actions -&gt; Instance State menu</li>
-<li>The AWS Auto Scaling Group will reprovision the instance automatically</li>
-</ol>
-<h2 id='troubleshooting'>Troubleshooting</h2>
-<ol>
-<li>If you  have issues when reprovisioning new instances, see <a href="/manual/new-instances-fail-to-provision.html">here</a></li>
-</ol>
+ <h1 id='header'>Manage AmazonMQ</h1> <p><a href="https://www.rabbitmq.com/">RabbitMQ</a> is a message broker based on the <a href="https://www.rabbitmq.com/tutorials/amqp-concepts.html">Advanced Message Queuing
+Protocol</a> (AMQP). Publishing&rsquo;s RabbitMQ cluster is provided by AWS&rsquo; <a href="https://aws.amazon.com/amazon-mq/">AmazonMQ</a> service.</p>
+<p><a href="https://www.rabbitmq.com/tutorials/tutorial-one-ruby.html">Learn more about RabbitMQ</a>.</p>
+<h2 id='connecting-to-the-amazonmq-web-control-panel'>Connecting to the AmazonMQ web control panel</h2><p>Run <code>gds govuk connect amazonmq -e integration</code> and point your
+browser at the URL it gives you - it will look like <a href="http://127.0.0.1:45612">http://127.0.0.1:45612</a>, but will have a random port number. You can connect to <code>staging</code> and <code>production</code> the same way, just replace <code>integration</code> above with the environment of your choice.</p>
+<p>The username for connecting to the RabbitMQ web control panel is <code>root</code> and the password
+can be decrypted from the <code>govuk-secrets</code> repo via <code>bundle exec rake &#39;eyaml:decrypt_value[integration,govuk_amazonmq::root_password]&#39;</code> (from the <code>puppet_aws</code> directory).</p>
+<h2 id='amazonmq-metrics'>AmazonMQ metrics</h2><p>A <a href="https://grafana.blue.production.govuk.digital/dashboard/file/amazonmq.json?refresh=10s&amp;orgId=1">generic AmazonMQ dashboard</a> shows metrics for queues and exchanges.</p>
+<h2 id='how-we-run-rabbitmq'>How we run RabbitMQ</h2><h3 id='overview'>Overview</h3><p><a href="images/rabbitmq_graph.png" rel="noopener noreferrer"><img src="/manual/images/rabbitmq_graph.png" alt="A graph showing the message flow" /></a></p>
+<p><strong>Producer</strong>: an application that publishes messages to RabbitMQ. On GOV.UK this could
+be <a href="https://github.com/alphagov/publishing-api">publishing-api</a>.</p>
+<p><strong>Exchanges</strong> are AMQP entities where messages are sent. They take a message
+and route it into zero or more queues. The routing algorithm used depends on
+the exchange type and rules called <em>bindings</em>.  When a content change is made
+in a publishing application (e.g. Travel Advice Publisher), Publishing API
+<a href="https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L26">publishes a message</a> to our main exchange,
+<code>publishing_documents</code>.</p>
+<p><strong>Queues</strong> are very similar to queues in other message and task-queueing
+systems: they store messages that are consumed by applications. An example of a
+queue is <code>email_alert_service</code> which is used by
+<a href="https://github.com/alphagov/email-alert-service">email-alert-service</a> to forward publishing activity to
+email-alert-api. Queues are <a href="https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L9">created by consumer applications</a>.</p>
+<p><strong>Bindings</strong> are rules that exchanges use (among other things) to route
+messages to queues. To instruct an exchange E to route messages to a queue Q, Q
+has to be bound to E. Bindings may have an optional routing key attribute. An
+example of a binding is the <code>cache_clearing_service-high</code> queue is
+<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/cache_clearing_service/rabbitmq.pp#L42-L48">bound</a> to the <code>published_documents</code> exchange with a routing
+key matching of <code>*.major</code>. E.g messages sent to the exchange with a routing key
+of <code>guide.major</code> will be routed to that queue.</p>
+<p><strong>Messages</strong> consist of a JSON payload and publish options (we predominantly
+use content type, routing key and persistant).</p>
+<p>Options:</p>
+
+<ul>
+<li>content_type (string) - tells the consumer the type of message. E.g
+<code>&quot;application/json&quot;</code></li>
+<li>routing_key (string) - matches against bindings to filter messages to certain
+queues. E.g <code>&quot;guide.major&quot;</code></li>
+<li>persistant (boolean) - tells RabbitMQ whether to save the message to disk.</li>
+</ul>
+<p>Message options are set when a message is published. In our use case, the
+message&rsquo;s payload is the content item in JSON format. The code in the
+publishing-api to publish a message is <a href="https://github.com/alphagov/publishing-api/blob/1d6bf06fcb74519b5c379f803ae1df65f93f74f7/lib/queue_publisher.rb#L73">here</a>.</p>
+<p><strong>Consumer applications</strong> are applications which consume messages from one or
+more queues. For email-alert-service this is done by <a href="https://github.com/alphagov/email-alert-service/blob/f8485df2f0916285ade33a9cb1e4a7e73c2491ad/lib/tasks/message_queues.rake#L21">running this rake
+task</a> and using the <a href="https://github.com/alphagov/email-alert-service/blob/2ba8ecd982c2226158b528e5442b012639797d41/email_alert_service/models/major_change_message_processor.rb#L35P">major change
+processor</a> to do the processing of the consumed
+messages. All our consumer applications use the
+<a href="https://github.com/alphagov/govuk_message_queue_consumer">govuk_message_queue_consumer</a> gem to consume messages from
+RabbitMQ in a standardised way.</p>
+<p>You can see live examples of things like queues, exchanges, bindings etc by
+connecting to the RabbitMQ control panel (see above).</p>
+<h2 id='further-reading'>Further reading</h2>
+<ul>
+<li><a href="https://www.rabbitmq.com/getstarted.html">RabbitMQ Tutorials</a></li>
+<li><a href="https://aws.amazon.com/amazon-mq/">AmazonMQ documentation</a></li>
+<li><a href="https://github.com/ruby-amqp/bunny">Bunny</a> is the RabbitMQ client we use.</li>
+<li><a href="http://rubybunny.info/articles/guides.html">The Bunny Guides</a> explain all
+AMQP concepts really well.</li>
+</ul>
 
 
   <div class='related-content'>
@@ -238,7 +287,6 @@ machine will result in downtime.</p>
             <li><a href="/manual/ruby.html">Add a new Ruby version</a></li>
             <li><a href="/manual/databases.html">Databases on GOV.UK</a></li>
             <li><a href="/manual/generate-csr.html">Generate a Certificate Signing Request (CSR) for GOV.UK</a></li>
-            <li><a href="/manual/amazonmq.html">Manage AmazonMQ</a></li>
             <li><a href="/manual/rabbitmq.html">Manage RabbitMQ</a></li>
             <li><a href="/manual/auto-scaling-groups.html">Manually resize ASGs (auto scaling groups)</a></li>
             <li><a href="/manual/manually-resize-ebs.html">Manually resize EBSs (elastic block store)</a></li>
@@ -248,6 +296,7 @@ machine will result in downtime.</p>
             <li><a href="/manual/alerts/rebooting-machines.html">Reboot a machine</a></li>
             <li><a href="/manual/remove-machines.html">Remove a machine</a></li>
             <li><a href="/manual/renew-a-tls-certificate.html">Renew a TLS certificate for GOV.UK</a></li>
+            <li><a href="/manual/reprovision.html">Reprovision a machine</a></li>
             <li><a href="/manual/unable-to-ssh-into-machine.html">Unable to SSH into a machine</a></li>
           </ul>
         </div>
@@ -261,8 +310,8 @@ machine will result in downtime.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/reprovision.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Reprovision+a+machine%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Freprovision.html%29&amp;labels=bug&amp;title=Re%3A+%27Reprovision+a+machine%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/amazonmq.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Manage+AmazonMQ%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Famazonmq.html%29&amp;labels=bug&amp;title=Re%3A+%27Manage+AmazonMQ%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
