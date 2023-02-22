@@ -28,11 +28,8 @@ Anybody on the team should feel comfortable picking up any card, even if they do
 
 For existing teams, tech leads should on-board new developers to the team. You should meet with developers new to the team to introduce the team’s work and overall goals. Discuss the new developer’s objectives so you can help ensure there is suitable work for them and generally help settle them in to be productive team members.
 
-Ensure the developer is in the correct team in the [seal][].
-
 If the developer is new to GOV.UK, then it’s worth taking them through the [overview slides][].
 
-[seal]: https://github.com/alphagov/seal/blob/main/config/alphagov.yml
 [overview slides]: https://docs.google.com/presentation/d/1nAE65Og04JYNAc0VjYaUYLqNLuUOM9r3Mvo0PGFy_Zk/edit
 
 ## Managing leavers
