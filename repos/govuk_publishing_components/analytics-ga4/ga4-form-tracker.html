@@ -239,7 +239,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6d27736197f852ab6654ccbba78fe8d6bfd47bf4">25 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/45661bd69fd73644e22871604df46de40ec391dd">22 Feb 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 form tracker</h1>
@@ -268,7 +268,7 @@
 <code>tool_name</code> records the overall name of the smart answer e.g. <code>How do I eat more healthily?</code>
 </li>
 </ul>
-<p>The script will automatically collect the answer submitted in the <code>text</code> field. For questions where multiple answers are possible, these will be comma separated. Where the answer is a text input, the value given is replaced with <code>[REDACTED]</code>, to avoid collecting personally identifiable information.</p>
+<p>The script will automatically collect the answer submitted in the <code>text</code> field. For questions where multiple answers are possible, these will be comma separated. Where the answer is a text input, the value given is replaced with <code>[REDACTED]</code>, to avoid collecting personally identifiable information. If text should not be redacted, add a <code>data-ga4-form-include-text</code> attribute to the form.</p>
 <p>In the example above, the following would be pushed to the dataLayer. Note that the schema automatically populates empty values, and that attributes not in the schema are ignored.</p>
 <pre><code>{
   'event': 'event_data',
