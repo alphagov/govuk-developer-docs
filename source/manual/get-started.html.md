@@ -83,7 +83,7 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 1. Set up a [GitHub] account. You can use your existing personal account.
 1. [Associate your GitHub account with your GDS email address][associate-email-github], this can be in addition to your personal email address.
-1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer] and [seal].
+1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer].
 
     If your tech lead is not available, ask in the [Technical 2nd Line Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
 1. Email <govuk-github-owners@digital.cabinet-office.gov.uk> to request to be added to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos and CI environment, add your tech lead a CC of the email. Please explain in the email which team you are working on and in what role; include a link to the pull request created in the previous step.
@@ -106,7 +106,6 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 [register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
-[seal]: https://github.com/alphagov/seal
 
 ## 4. Install GDS command line tools
 
