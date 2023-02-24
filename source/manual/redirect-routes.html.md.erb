@@ -265,6 +265,7 @@ In `content-store` _and_ the `content-store-draft`, remove the content item that
 ContentItem.find_by(base_path: "/example-path").delete
 ```
 
+You should now be able to replace the route with another one.
 For documents published in Mainstream Publisher, update and republish the content that should now sit at `/example-path`.
 
 (In Mainstream Publisher the edition id can be found at the end of the URL. For example, the edition found at publisher.publishing.service.gov.uk/editions/<mark>5fb53d8fd3bf7f626687198c</mark> has the edition id `5fb53d8fd3bf7f626687198c`.)
