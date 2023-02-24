@@ -239,10 +239,10 @@ gds govuk connect app-console --environment <environment> <app name>
 
 Replace `<environment>` with `integration`, `staging`, or `production`; and `<app name>` with the name of the app you want to access.
 
-For example, accessing the console for the `publishing-api` app in `staging` would be:
+For example, accessing the console for the `router-api` app in `staging` would be:
 
 ```bash
-gds govuk connect app-console --environment staging publishing-api
+gds govuk connect app-console --environment staging router-api
 ```
 
 Removing the route, we need to know the slug that should be deleted. These examples use `/example-path`.
@@ -259,7 +259,7 @@ In `publishing-api`, delete the reservation that makes sure that the route can't
 PathReservation.find_by(base_path: "/example-path").delete
 ```
 
-In content-store _and_ the content-store-draft, remove the content item that used in inhabit the URL:
+In `content-store` _and_ the `content-store-draft`, remove the content item that used in inhabit the URL:
 
 ```ruby
 ContentItem.find_by(base_path: "/example-path").delete
