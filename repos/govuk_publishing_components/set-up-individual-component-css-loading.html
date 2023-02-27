@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk_publishing_components: Scroll tracking - GOV.UK Developer Documentation</title>
+    <title>govuk_publishing_components: # Set up individual component CSS loading - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/set-up-individual-component-css-loading.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk_publishing_components: Scroll tracking - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" />
+      <meta name="twitter:title" content="govuk_publishing_components: # Set up individual component CSS loading - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/set-up-individual-component-css-loading.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk_publishing_components: Scroll tracking" />
+      <meta property="og:title" content="govuk_publishing_components: # Set up individual component CSS loading" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/analytics/auto_scroll_tracker.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk_publishing_components/set-up-individual-component-css-loading.html" />
 
     
   </head>
@@ -239,63 +239,119 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/11cb23f6df1884bb9c6acacf1a3ba90dcf9cd993">6 Jan 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/1eef988a3f77ebb74a9e021510eef5a8cfe37510">3 Feb 2023</a>
 </div>
 
-  <h1 class="page-title">govuk_publishing_components: Scroll tracking</h1>
+  <h1 class="page-title">govuk_publishing_components: # Set up individual component CSS loading</h1>
 
-  
-<p>The analytics code includes the ability to add scroll tracking to specified pages for users who have consented to cookies.</p>
-<h2 id="autoscrolltracker">AutoScrollTracker</h2>
-<p>AutoScrollTracker is a GOVUK.Module and can be initialised by adding the relevant code to a template. Since scroll tracking is only required once on a page, it should be initialised using a meta tag in the HEAD element, like this.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker"/&gt;
-&lt;% end %&gt;
-</code></pre>
-<h3 id="options">Options</h3>
-<p>By default, AutoScrollTracker tracks by percentage scrolled. Specifically, it will fire a GA event when the user scrolls to 20%, 40%, 60%, 80% and 100% of the page height.</p>
-<p>It can track headings instead of percentages, using the <code>data-track-type</code> option.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker" data-track-type="headings"/&gt;
-&lt;% end %&gt;
-</code></pre>
-<p>If only some headings need to be tracked, they can be specified using the <code>data-track-headings</code> option as shown. This option has been included with the module to support legacy tracking. It is not recommended for future use as headings on pages can change, which would prevent the tracking from working.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;%= tag.meta name: "govuk-scroll-tracker", content: "", data: { module: "auto-scroll-tracker", "track-type": "headings", "track-headings": ["Example heading", "Another example heading"].to_json } %&gt;
- end %&gt;
-</code></pre>
-<p>A single template may render multiple pages and different configurations may be required. If this is the case, configuration can be handled by the template.</p>
-<pre lang="html"><code>&lt;% content_for :extra_head_content do %&gt;
-  &lt;% if ["/foreign-travel-advice/benin", "/foreign-travel-advice/france"].include?(content_item.base_path) %&gt;
-    &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker" data-track-type="headings" data-track-headings="['Summary']"/&gt;
-  &lt;% else %&gt;
-    &lt;meta name="govuk:scroll-tracker" content="" data-module="auto-scroll-tracker"/&gt;
-  &lt;% end %&gt;
-&lt;% end %&gt;
-</code></pre>
-<h3 id="behaviour">Behaviour</h3>
-<p>AutoScrollTracker finds the position of things (percentages and headings, including the text of headings) on page load to minimise calculations when the user scrolls. This finding is repeated if any of the following occur:</p>
+  <h2 id="set-up-individual-component-css-loading">Set up individual component CSS loading</h2>
+<p>Set the component gem up so that rendering applications can (optionally) load each component's stylesheet individually, as described in <a href="https://github.com/alphagov/govuk-rfcs/pull/152">RFC #149</a>.</p>
+<h3 id="tldr">TL;DR</h3>
+<p>An array for stylesheet names is set up in the rendering application using a helper. Templates can then add the names of stylesheets to the array, which is then used by the application to output all the stylesheets needed on the page.</p>
+<p>Example of rendering application upgrade: <a href="https://github.com/alphagov/frontend/pull/3342/">https://github.com/alphagov/frontend/pull/3342/</a></p>
+<h3 id="initial-set-up">Initial set up</h3>
+<p>There are 3 types of stylesheet that are used across GOVUK:</p>
 <ul>
-<li>the user resizes the page</li>
-<li>the height of the page changes (for example if the cookie banner is dismissed, or an accordion item is expanded). This also detects user font size or zoom level changes</li>
+<li>CSS from components in the gem</li>
+<li>CSS from components in the application</li>
+<li>CSS from views in the application</li>
 </ul>
-<p>Operation:</p>
+<p>The helper adds each type of stylesheet to the array - gem components, app components, and views.</p>
+<p>Any other styles should be added in the application's <code>application.scss</code> file.</p>
+<p>Four shorthand methods for adding each type of stylesheet to the array:</p>
 <ul>
-<li>Tracking events are only fired once i.e. if a user scrolls up and down a page, duplicate events are not tracked.</li>
-<li>Tracking events are fired on page load for things that are immediately visible.</li>
-<li>If the user has followed a jump link, e.g. <code>https://www.gov.uk/foreign-travel-advice/spain/coronavirus#finance</code> the script detects this and doesn't fire tracking events until after the browser jumps to the relevant section. It also checks that the hash matches a valid element on the page, and continues as normal if it doesn't.</li>
-<li>Headings are tracked only when the whole of the heading is visible in the viewport.</li>
-<li>Headings are only tracked if they are inside the 'main' element, in order to avoid tracking headings in e.g. the cookie banner, the footer (this has been written to be extendable in future if other elements/classes are required)</li>
-<li>Hidden headings are not tracked, unless they become visible (e.g. if inside an accordion that is opened).</li>
+<li><code>add_gem_component_stylesheet</code></li>
+<li><code>add_app_component_stylesheet</code></li>
+<li><code>add_view</code></li>
+<li><code>add_view_stylesheet</code></li>
 </ul>
+<p>The first three take the name of the Sass file relevant to the component or view:</p>
+<pre lang="ruby"><code>add_gem_component_stylesheet("accordion")
+</code></pre>
+<pre lang="ruby"><code>add_app_component_stylesheet("calendar")
+</code></pre>
+<pre lang="ruby"><code>add_view("homepage")
+</code></pre>
+<p>There is also 1 generic method that takes a file path:</p>
+<pre lang="ruby"><code>add_view_stylesheet("views/dir-1/_partial.css")
+</code></pre>
+<h3 id="precompiling">Precompiling</h3>
+<p>The stylesheets need to be added to the rendering applications list of assets to precompile. The <code>get_component_css_paths</code> method is available from the AssetHelper module in GovukPublishingComponents.</p>
+<pre lang="ruby"><code>#config/application.rb
+module Frontend
+  class Application &lt; Rails::Application
+    include GovukPublishingComponents::AppHelpers::AssetHelper
+    ...
+    config.assets.precompile &lt;&lt; get_component_css_paths
+</code></pre>
+<p>Stylesheets for components in the gem are automatically generated, any app component and view stylesheets should be added to the application's <code>manifest.js</code>.</p>
+<h3 id="known-problems">Known problems</h3>
+<h4 id="nested-components-in-gov-uk-frontend">Nested components in GOV.UK Frontend</h4>
+<p>GOV.UK Frontend has components that use other components - for example, both the radio button and character count component include the label component. These are deduped by GOV.UK Frontend when compiling the CSS to a single file.</p>
+<p>As this pull request includes the stylesheets for the components individually, this will mean that both the radio stylesheet and the character count stylesheet will include the label component.</p>
+<p>This shouldn't make a difference in visual appearance of the site, since the stylesheets were included in alphabetical order and continue to do so. However, it means that there still is some CSS that is unnecessarily included twice.</p>
+<p>The page sizes were calculated from individual compiled CSS files, so there still is a performance improvement - but it could be further improved.</p>
+<p>Ideally there'd be a way of including only the components without including the nested components; for example, the partial for radio inputs would include both the label and radio:</p>
+<pre lang="ruby"><code>add_gem_component_stylesheet("label")
+add_gem_component_stylesheet("radio")
+</code></pre>
+<p>which would then be deduped before being added to the array of stylesheets.</p>
+<h4 id="increased-request-header-size">Increased request header size</h4>
+<p>Rails automatically adds the stylesheets on the page to the request <code>preload</code> header. This means that it gets bigger with every additional stylesheet that's added to the page. Coupled with a large Content Security Policy (CSP), this means that some pages have a header size that nginx doesn't like at all - so causes nginx to return a 502 error. This error is seen on Integration, but not locally or on Heroku.</p>
+<p>A pull request has been raised to fix this by <a href="https://github.com/alphagov/govuk-puppet/pull/11846">increasing the cache size in NGINX</a>.</p>
+<p><strong>Note:</strong></p>
+<p>We will use this feature in the <code>frontend</code> app first and review the performance impact before rolling out to other frontend apps.</p>
+<p>The increased cache size in NGINX is large enough for the loading of individual CSS assets in the <code>frontend</code> app. However, we will need to increase the cache size further before being used in other apps such as <code>government-frontend</code> that use a larger number of components, and before it is used to load individual JS assets.</p>
+<h3 id="step-by-step-changes-to-the-rendering-application">Step by step changes to the rendering application</h3>
+<p><strong>Set up the stylesheets to be precompiled</strong>. Add any app components and views in <code>app/assets/config/manifest.js</code> (and then remove them from <code>app/assets/stylesheets/application.scss</code>).</p>
+<pre lang="js"><code>//= link components/_calendar.css
+//= link views/_homepage.css
+</code></pre>
+<p>Add list of gem components to be precompiled in <code>config/application.rb</code> (and then all gem component <code>@import</code>s can also be removed from <code>app/assets/stylesheets/application.scss</code>):</p>
+<pre lang="ruby"><code>#config/application.rb
+module Frontend
+  class Application &lt; Rails::Application
+    include GovukPublishingComponents::AppHelpers::AssetHelper
+
+   ...
+
+    config.assets.precompile &lt;&lt; get_component_css_paths
+</code></pre>
+<h4 id="using-the-publishing-components-gem-without-the-static-rendering-app">Using the publishing components gem without the <code>static</code> rendering app</h4>
+<p>The <code>static</code> rendering application already includes several components from the publishing components gem. To avoid requesting the same stylesheet twice, we exclude any stylesheets included in <code>static</code> by default.</p>
+<p>If you are using the individual assets loading feature in an app that does not rely on <code>static</code>, we recommend adding the config file below in your application to ensure that the components render correctly.</p>
+<pre lang="rb"><code># config/initializers/govuk_publishing_components.rb
+GovukPublishingComponents.configure do |c|
+  c.exclude_css_from_static = false
+end
+</code></pre>
+<p><strong>Add the app components and views</strong> to the array. This bit will likely take the most time - and really benefits from a comprehensive list of what pages use which templates (and template variations).</p>
+<p>Add the <code>add_view</code> and <code>add_app_component_stylesheet</code> to the top of each partial template that needs it:</p>
+<pre lang="rb"><code>add_view("homepage")
+</code></pre>
+<pre lang="rb"><code>add_app_component_stylesheet("calendar")
+</code></pre>
+<p>Each stylesheet that is used individually will need an extra <code>@import</code> added to allow them to use GOV.UK Frontend variables and mixins:</p>
+<pre lang="scss"><code>@import "govuk_publishing_components/individual_component_support";
+</code></pre>
+<p><strong>Hoist the content of the body to the top of the base template in <code>app/views/layouts/application.html.erb</code></strong>. This ensures that all of the components are added to the array before the array is used in the <code>&lt;head&gt;</code> of the template.</p>
+<p>On line 1:</p>
+<pre lang="rb"><code>&lt;% content_for :body do %&gt;
+  &lt;!-- Everything that was between &lt;body&gt; and &lt;/body&gt; ---&gt;
+&lt;% end %&gt;
+</code></pre>
+<p>And then between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code>:</p>
+<pre lang="rb"><code>&lt;%= yield :body %&gt;
+</code></pre>
+<p><strong>Add the stylesheets just before the closing <code>&lt;/head&gt;</code> tag of the base template</strong>:</p>
+<pre lang="rb"><code>&lt;%= stylesheet_link_tag "application.css", integrity: false %&gt;
+&lt;%=
+  render_component_stylesheets
+%&gt;
+</code></pre>
+<h2 id="why">Why</h2>
+<p>See <a href="https://github.com/alphagov/govuk-rfcs/pull/152">RFC #149</a> for more details about this approach.</p>
 
 
             
@@ -303,8 +359,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/analytics/auto_scroll_tracker.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fanalytics%2Fauto_scroll_tracker.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk_publishing_components/blob/main/docs/set-up-individual-component-css-loading.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk_publishing_components%2Fset-up-individual-component-css-loading.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
