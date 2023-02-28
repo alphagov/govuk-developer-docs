@@ -6,23 +6,27 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Application: service-manual-frontend - GOV.UK Developer Documentation</title>
+    <title>Repository: service-manual-frontend (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
     <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/service-manual-frontend.html">
 
-      <meta name="description" content="Everything about service-manual-frontend (Serves the Service Manual and Service Toolkit on GOV.UK)" />
+      <meta name="description" content="Everything about service-manual-frontend (service-manual-frontend was used to render service manual pages. Those were moved
+to government-frontend in February 2023.
+)" />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Application: service-manual-frontend - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: service-manual-frontend (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/service-manual-frontend.html" />
 
-      <meta property="og:description" content="Everything about service-manual-frontend (Serves the Service Manual and Service Toolkit on GOV.UK)" />
+      <meta property="og:description" content="Everything about service-manual-frontend (service-manual-frontend was used to render service manual pages. Those were moved
+to government-frontend in February 2023.
+)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Application: service-manual-frontend" />
+      <meta property="og:title" content="Repository: service-manual-frontend (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/service-manual-frontend.html" />
 
@@ -174,106 +178,12 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Application: service-manual-frontend</h1>
+  <h1 class="page-title">Repository: service-manual-frontend (retired)</h1>
 
-  <p>Serves the Service Manual and Service Toolkit on GOV.UK</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/service-manual-frontend">service-manual-frontend</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#navigation-and-presentation-govuk</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml</strong> machine class</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Frontend apps</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=service-manual-frontend&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=service-manual-frontend&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=service-manual-frontend&MACHINE_CLASS=Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-service-manual-frontend" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/service_manual_frontend.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/service-manual-frontend/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/service-manual-frontend.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>A public-facing GOV.UK application used to display the <a href="https://www.gov.uk/service-manual">service manual</a> with content fetched from the <a href="https://github.com/alphagov/content-store">Content Store</a>.</p>
-
-<h2 id="live-examples">Live examples</h2>
-
-<ul>
-<li><a href="https://www.gov.uk/service-manual">https://www.gov.uk/service-manual</a></li>
-<li><a href="https://www.gov.uk/service-manual/agile-delivery">https://www.gov.uk/service-manual/agile-delivery</a></li>
-<li><a href="https://www.gov.uk/service-manual/agile-delivery/agile-methodologies">https://www.gov.uk/service-manual/agile-delivery/agile-methodologies</a></li>
-</ul>
-
-<h2 id="technical-documentation">Technical documentation</h2>
-
-<p>This is a Ruby on Rails app, and should follow <a href="https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html">our Rails app conventions</a>.</p>
-
-<p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> or the local <code>startup.sh</code> script to run the app. Read the <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">guidance on local frontend development</a> to find out more about each approach, before you get started.</p>
-
-<p>If you are using GOV.UK Docker, remember to combine it with the commands that follow. See the <a href="https://github.com/alphagov/govuk-docker#usage">GOV.UK Docker usage instructions</a> for examples.</p>
-
-<h3 id="running-the-test-suite">Running the test suite</h3>
-
-<pre><code>bundle exec rake
-</code></pre>
-
-<h2 id="licence">Licence</h2>
-
-<p><a href="https://github.com/alphagov/service-manual-frontend/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>service-manual-frontend was used to render service manual pages. Those were moved
+to government-frontend in February 2023.</p></p>
+<p><a href="https://github.com/alphagov/service-manual-frontend">GitHub repository</a></p>
 
 
             
