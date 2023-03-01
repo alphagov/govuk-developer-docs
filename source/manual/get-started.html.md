@@ -267,6 +267,8 @@ GDS maintains a central account for AWS access.
 
 You must have access to this GDS account to work with [govuk-aws](https://github.com/alphagov/govuk-aws) and [govuk-aws-data](https://github.com/alphagov/govuk-aws-data).
 
+The notes below are a summary - the definitive guide lives [on the reliability engineering site](https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws).
+
 ### Request access to the GDS AWS account
 
 You request access to the GDS AWS account through the [Request an AWS account form](https://gds-request-an-aws-account.cloudapps.digital).
@@ -287,6 +289,8 @@ To sign in, go to [the `gds-users` AWS console][gds-users-aws-signin], and enter
 
 You must set up [Multi-Factor Authentication (MFA)][MFA] to access AWS.
 
+You may add up to 8 MFA devices. However, note that __MFA device names must be prefixed with your IAM username (usually your email address)__, otherwise you will receive a permissions error.
+
 How you set up MFA depends on whether you have a GDS-issued Yubikey or not.
 
 #### If you do not have a Yubikey
@@ -299,6 +303,7 @@ Use the following instructions to set up your MFA device.
 1. Select the link for your email address.
 1. Select the __Security credentials__ tab.
 1. Select __Manage__, which is next to __Assigned MFA device__.
+1. Specify your email address as the MFA device name
 1. Follow the instructions to set up your MFA device.
 
 #### If you have a Yubikey
@@ -310,6 +315,7 @@ Use the following instructions to set up your MFA device.
 1. Select the link for your email address.
 1. Select the __Security credentials__ tab.
 1. Select __Manage__, which is next to __Assigned MFA device__.
+1. Specify your email address as the MFA device name
 1. When asked to scan the QR code with your mobile device, open the Yubico Authenticator app and use that to scan the QR code. The MFA code will now be present on your Yubikey.
 1. Configure gds-cli to use the YubiKey:
 
