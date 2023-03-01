@@ -257,17 +257,24 @@ installed from packages signed by Mozilla.</p>
 
 <h2 id="running-the-tests">Running the tests</h2>
 
-<p>In development, it&rsquo;s easiest to run:</p>
+<p>You&rsquo;ll need jasmine-browser, which you can set up with:</p>
 
-<pre><code>$ bundle exec rake jasmine
+<pre><code>$ npm install
 </code></pre>
 
-<p>This will start a server on <a href="http://localhost:8888/">http://localhost:8888/</a> that serves the tests.</p>
+<p>You can then run the tests with:</p>
 
-<p>You can also run the Jasmine test suite in slower &ldquo;headless&rdquo; mode with:</p>
-
-<pre><code>$ bundle exec rake jasmine:ci
+<pre><code>$ npm test
 </code></pre>
+
+<p>This will start a server and run the tests in a browser (chrome by default).</p>
+
+<p>If you want the browser to remain open with the test results, you can use</p>
+
+<pre><code>$ npx jasmine-browser-runner serve
+</code></pre>
+
+<p>..then navigate to <a href="http://localhost:8888/">http://localhost:8888/</a></p>
 
 <h2 id="getting-permission-to-release">Getting permission to release</h2>
 
@@ -282,7 +289,7 @@ installed from packages signed by Mozilla.</p>
 <ol>
 <li>Update the version in <code>manifest.json</code>
 </li>
-<li>Run <code>bundle exec rake build</code>
+<li>Run <code>npm run build</code>
 </li>
 <li>Create a Pull Request with the new package committed</li>
 <li>Upload newly created package in <code>/build</code> to the <a href="https://chrome.google.com/webstore/devconsole/06b3913d-07a7-479e-94aa-05bb5b3cd44d/dclfaikcemljbaoagjnedmlppnbiljen/edit/package">Chrome web store</a>.</li>
