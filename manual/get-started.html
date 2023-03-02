@@ -268,7 +268,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4b58d926bae5f922aa55b3e0290bd27925789396">22 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6ad608de8ff906ddde7ae767b75f9b56512cf227">1 Mar 2023</a>
 </div>
 
  <h1 id='header'>Get started on GOV.UK</h1> <p><strong>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a>. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.</strong></p>
@@ -408,6 +408,7 @@ class users::&lt;johnsmith&gt; {
 </code></pre></div><h2 id='8-get-aws-access'>8. Get AWS access</h2><p>If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
 <p>GDS maintains a central account for AWS access.</p>
 <p>You must have access to this GDS account to work with <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a> and <a href="https://github.com/alphagov/govuk-aws-data">govuk-aws-data</a>.</p>
+<p>The notes below are a summary - the definitive guide lives <a href="https://reliability-engineering.cloudapps.digital/iaas.html#amazon-web-services-aws">on the reliability engineering site</a>.</p>
 <h3 id='request-access-to-the-gds-aws-account'>Request access to the GDS AWS account</h3><p>You request access to the GDS AWS account through the <a href="https://gds-request-an-aws-account.cloudapps.digital">Request an AWS account form</a>.</p>
 <p>Select <strong>Request user access</strong> to request access to the GDS AWS account and complete the form.</p>
 <p>After submitting the form, you should receive an email to say your account creation is in progress, and later another email saying the work has been completed.</p>
@@ -419,6 +420,7 @@ class users::&lt;johnsmith&gt; {
 <li>your AWS account password in <strong>Password</strong></li>
 </ul>
 <h3 id='set-up-multi-factor-authentication'>Set up Multi-Factor Authentication</h3><p>You must set up <a href="https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#multi-factor-authentication">Multi-Factor Authentication (MFA)</a> to access AWS.</p>
+<p>You may add up to 8 MFA devices. However, note that <strong>MFA device names must be prefixed with your IAM username (usually your email address)</strong>, otherwise you will receive a permissions error.</p>
 <p>How you set up MFA depends on whether you have a GDS-issued Yubikey or not.</p>
 <h4 id='if-you-do-not-have-a-yubikey'>If you do not have a Yubikey</h4><p>Use the following instructions to set up your MFA device.</p>
 
@@ -429,6 +431,7 @@ class users::&lt;johnsmith&gt; {
 <li>Select the link for your email address.</li>
 <li>Select the <strong>Security credentials</strong> tab.</li>
 <li>Select <strong>Manage</strong>, which is next to <strong>Assigned MFA device</strong>.</li>
+<li>Specify your email address as the MFA device name</li>
 <li>Follow the instructions to set up your MFA device.</li>
 </ol>
 <h4 id='if-you-have-a-yubikey'>If you have a Yubikey</h4>
@@ -440,6 +443,7 @@ class users::&lt;johnsmith&gt; {
 <li>Select the link for your email address.</li>
 <li>Select the <strong>Security credentials</strong> tab.</li>
 <li>Select <strong>Manage</strong>, which is next to <strong>Assigned MFA device</strong>.</li>
+<li>Specify your email address as the MFA device name</li>
 <li>When asked to scan the QR code with your mobile device, open the Yubico Authenticator app and use that to scan the QR code. The MFA code will now be present on your Yubikey.</li>
 <li>Configure gds-cli to use the YubiKey:</li>
 </ol>
