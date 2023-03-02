@@ -186,26 +186,19 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/11a16da868e5f40c80ce9d788c75f25fe365e741">22 Apr 2020</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/37f5953a891d537a39e851090ba1555e6e6e338f">2 Mar 2023</a>
 </div>
 
  <h1 id='header'>GitHub Trello Poster</h1> <p>This app uses GitHub webhooks to be notified when a pull request is opened or changed on GitHub. When it finds a link to a Trello card in the pull request, it posts a link to that pull request to a checklist on the given card. When a pull request is merged or closed the app checks the pull request off the checklist.</p>
-<h2 id='background'>Background</h2><p>This app was created by Emma Beynon as a <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds-technology/junior-technologist/previous-20-projects/github-trello-poster">20% time project</a>.  It was built using Ruby and Sinatra and makes use of the Trello and GitHub APIs and GitHub webhooks.  It is hosted on Government PaaS.  You can find the GitHub repo <a href="https://github.com/emmabeynon/github-trello-poster">here</a>.</p>
-<h2 id='credentials'>Credentials</h2><p>The credentials for the Trello account that posts to Trello cards and for PaaS can be found in <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/github-trello-poster">govuk-secrets</a>.</p>
+<h2 id='background'>Background</h2><p>This app was created by Emma Beynon as a <a href="https://sites.google.com/a/digital.cabinet-office.gov.uk/gds-technology/junior-technologist/previous-20-projects/github-trello-poster">20% time project</a>.  It was built using Ruby and Sinatra and makes use of the Trello and GitHub APIs and GitHub webhooks.  It is hosted on Heroku.  You can find the GitHub repo <a href="https://github.com/alphagov/github-trello-poster">here</a>.</p>
+<h2 id='credentials'>Credentials</h2><p>The credentials for the Trello account that posts to Trello cards can be found in <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/github-trello-poster">govuk-secrets</a>.</p>
 <p>The app uses the <code>govuk-ci</code> user&rsquo;s GitHub Personal Access Token.</p>
 <h2 id='using-github-trello-poster'>Using GitHub Trello Poster</h2><p>It&rsquo;s a simple process:</p>
 
 <ol>
 <li>Add user <code>@pullrequestposter</code> to your team&rsquo;s Trello board.  It will need <strong>read and write</strong> access.</li>
-<li>Set up a webhook for your chosen repo, if it hasn&rsquo;t already been done.  For instructions, see the app&rsquo;s <a href="https://github.com/emmabeynon/github-trello-poster">GitHub repo</a>.  You can find the payload URL in <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/github-trello-poster">govuk-secrets</a>.  Alternatively, copy how it&rsquo;s set up in a repo such as <a href="https://github.com/alphagov/publishing-api/settings/hooks">Publishing API</a>.</li>
+<li>Set up a webhook for your chosen repo, if it hasn&rsquo;t already been done.  For instructions, see the app&rsquo;s <a href="https://github.com/alphagov/github-trello-poster">GitHub repo</a>.  You can find the payload URL in <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass/2ndline/github-trello-poster">govuk-secrets</a>.  Alternatively, copy how it&rsquo;s set up in a repo such as <a href="https://github.com/alphagov/publishing-api/settings/hooks">Publishing API</a>.</li>
 <li>That&rsquo;s it!  You should start seeing GitHub Trello Poster posting to your Trello cards once you start opening, modifying and closing pull requests.</li>
 </ol>
 
