@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/7857589429ed856a7cc507eb28bdb0ff393ed26c">13 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/758a07c2c9af79d99a843a00689cfa70e79fb1fc">27 Feb 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 event tracker</h1>
@@ -268,7 +268,9 @@
     'type': 'something',
     'url': null,
     'text': 'Click me',
-    'index': '0',
+    'index': {
+      index_section: '0'
+    },
     'index_total': '1',
     'section': null,
     'action': null,
@@ -313,7 +315,9 @@
     'event_name': 'select_content',
     'type': 'accordion',
     'text': 'Show all sections',
-    'index': '0',
+    'index': {
+      index_section: '0'
+    },
     'index-total': '5',
     'action': 'opened',
   }
@@ -326,7 +330,9 @@
     'event_name': 'select_content',
     'type': 'accordion',
     'text': 'Hide all sections',
-    'index': '0',
+    'index': {
+      index_section: '0'
+    },
     'index-total': '5',
     'action': 'closed',
   }
