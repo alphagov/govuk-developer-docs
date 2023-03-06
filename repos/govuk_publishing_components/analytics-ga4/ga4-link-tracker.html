@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/3ecb3bff74b274a120f6c01deed4560ce8058002">21 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/d51e0d04cdc44267239fc65efcd8d2190bb201e6">23 Feb 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 link tracker</h1>
@@ -309,6 +309,13 @@
     &lt;a href="/link2"&gt;This link will be tracked&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
+</code></pre>
+<h2 id="using-the-link-tracker-on-components">Using the link tracker on components</h2>
+<p>Where possible, link tracking is optional for components in order to provide flexibility where different types of tracking might overlap. To track links within a component (e.g. contextual breadcrumbs), use the <code>ga4_tracking</code> option as shown:</p>
+<pre lang="erb"><code>&lt;%= render 'govuk_publishing_components/components/contextual_breadcrumbs', {
+  ga4_tracking: true,
+  items: []
+} %&gt;
 </code></pre>
 
 
