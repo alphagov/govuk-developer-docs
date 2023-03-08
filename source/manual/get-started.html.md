@@ -243,6 +243,26 @@ Test your SSH access by running:
 gds govuk connect --environment integration ssh backend
 ```
 
+If you see an error `Permission denied`, check the message shown later, similar to: `The SSH username used was: jsmith` - if this is not the user you specified in the puppet config above, you need to specify a username:
+
+```bash
+USER=jaysmith gds govuk connect --environment integration ssh backend
+```
+
+(or you can `export USER=jaysmith` separately to set it for a shell session)
+
+If you see an error similar to `no matching host key type found. Their offer: ssh-rsa,ssh-dss` you will have to change your ssh configuration - this is an issue with OSX Ventura (and possibly other operating systems) - see [this StackOverflow issue](https://stackoverflow.com/questions/74215881/visual-studio-2022-wont-connect-via-ssh-on-macos-after-upgrading-to-ventura)
+
+You need to add the following into your ssh config (e.g. `~/.ssh/config`):
+
+```text
+Host *
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
+```
+
+Note this may happen even if you don't use an rsa ssh private key - it is caused by the _host key_ which is defined by the server you connect to, not your _user key_ which you have defined.
+
 #### Running a console
 
 Once you have SSH access into a remote environment or server, you can also open a Rails app console for a particular application so you can run commands.
