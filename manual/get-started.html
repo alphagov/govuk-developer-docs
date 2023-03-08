@@ -268,7 +268,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/6ad608de8ff906ddde7ae767b75f9b56512cf227">1 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cbea0eca36a572aa93ce40aa0ee27c97a1250cb9">8 Mar 2023</a>
 </div>
 
  <h1 id='header'>Get started on GOV.UK</h1> <p><strong>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a>. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.</strong></p>
@@ -400,7 +400,16 @@ class users::&lt;johnsmith&gt; {
 <p>If you are outside of the office or on GovWiFi, you must first <a href="#4-connect-to-the-gds-vpn">connect to the GDS VPN</a>.</p>
 <p>Test your SSH access by running:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">--environment</span> integration ssh backend
-</code></pre></div><h4 id='running-a-console'>Running a console</h4><p>Once you have SSH access into a remote environment or server, you can also open a Rails app console for a particular application so you can run commands.</p>
+</code></pre></div><p>If you see an error <code>Permission denied</code>, check the message shown later, similar to: <code>The SSH username used was: jsmith</code> - if this is not the user you specified in the puppet config above, you need to specify a username:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">USER</span><span class="o">=</span>jaysmith gds govuk connect <span class="nt">--environment</span> integration ssh backend
+</code></pre></div><p>(or you can <code>export USER=jaysmith</code> separately to set it for a shell session)</p>
+<p>If you see an error similar to <code>no matching host key type found. Their offer: ssh-rsa,ssh-dss</code> you will have to change your ssh configuration - this is an issue with OSX Ventura (and possibly other operating systems) - see <a href="https://stackoverflow.com/questions/74215881/visual-studio-2022-wont-connect-via-ssh-on-macos-after-upgrading-to-ventura">this StackOverflow issue</a></p>
+<p>You need to add the following into your ssh config (e.g. <code>~/.ssh/config</code>):</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>Host *
+  HostkeyAlgorithms +ssh-rsa
+  PubkeyAcceptedAlgorithms +ssh-rsa
+</code></pre></div><p>Note this may happen even if you don&rsquo;t use an rsa ssh private key - it is caused by the <em>host key</em> which is defined by the server you connect to, not your <em>user key</em> which you have defined.</p>
+<h4 id='running-a-console'>Running a console</h4><p>Once you have SSH access into a remote environment or server, you can also open a Rails app console for a particular application so you can run commands.</p>
 <p>For example, to open a console for GOV.UK Publisher, run the following on a <code>backend</code> machine:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>govuk_app_console publisher
 </code></pre></div><p>As a shortcut, to remove the need to look up the machine class for an application, you can use the following without SSHing first:</p>
