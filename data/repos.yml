@@ -2,6 +2,9 @@
   type: Utilities
   team: "#govuk-publishing-experience-tech"
 
+- repo_name: Accessible-Media-Player
+  # TODO: I think this can be deleted - old prototype? Check with Kevin Dew.
+
 - repo_name: account-api
   type: APIs
   team: "#tech-interaction-and-personalisation"
@@ -95,6 +98,20 @@
   type: Utilities
   team: "#govuk-platform-reliability-team"
 
+- repo_name: cdn_users_step_function
+  # TODO: archive. 2 commits, 2 years ago, doesn't appear to be used.
+
+- repo_name: ckan
+  # It's 211 commits behind `ckan:master`, but presumably we're using a fork to prevent
+  # third parties from being able to tamper with it. We reference the fork here:
+  # https://github.com/alphagov/ckanext-datagovuk/blob/4ae4e0eb03c88b4526672527490a6546e95c4d78/docker/ckan/Dockerfile#L69-L72
+  # ...which references this commit within the fork:
+  # https://github.com/alphagov/ckan/commit/0d714b258668ee78a0b19182c53b34689629df37
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: ckan-functional-tests
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
@@ -116,6 +133,29 @@
   production_hosted_on: aws
   dashboard_url: https://grafana-paas.cloudapps.digital/d/xonj40imk/data-gov-uk?refresh=1m&orgId=1
   production_url: https://ckan.publishing.service.gov.uk/
+
+# ditto ^ https://github.com/alphagov/ckanext-datagovuk/blob/4ae4e0eb03c88b4526672527490a6546e95c4d78/docker/ckan/Dockerfile#L105-L112
+- repo_name: ckanext-dcat
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+- repo_name: ckanext-harvest
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+- repo_name: ckanext-spatial
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: ckanext-spatial
+  # Propose archiving. Not touched since 2018, not obviously referenced anywhere.
+
+- repo_name: col-prototypes
+  # Propose that the Cost of Living team add this (very new!) repo in a separate PR.
 
 - repo_name: collections
   type: Frontend apps
@@ -173,6 +213,12 @@
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
 
+- repo_name: contentful-listener-api
+  # Propose Kevin Dew and/or Publishing team add this repo in a separate PR.
+
+- repo_name: cost-of-living-prototype
+  # Propose archiving - check with Richard T.
+
 - repo_name: data-community-tech-docs
   type: Utilities
   team: "#data-products"
@@ -180,6 +226,13 @@
 - repo_name: datagovuk-tech-docs
   production_url: https://guidance.data.gov.uk/
   production_hosted_on: paas
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
+  # Looks active
+- repo_name: datagovuk-visual-regression-tests
   type: data.gov.uk apps
   team: "#govuk-datagovuk"
   sentry_url: false
@@ -233,6 +286,21 @@
   team: "#data-products"
   type: Data science
 
+# Looks active
+- repo_name: docker-ckan
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
+# Looks active, at least until Replatforming happens
+# https://github.com/alphagov/govuk-puppet/commit/8eeaddc6fe07b2305b24400d9934d752bcc4a78a
+- repo_name: docker-collectd-plugin
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: eligibility-viewer
   private_repo: true
   retired: true
@@ -264,6 +332,13 @@
   team: "#tech-interaction-and-personalisation"
   production_hosted_on: eks
 
+# Looks useful and worth keeping?
+- repo_name: fake-ckan_harvest_source
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: feedback
   type: Frontend apps
   team: "#user-experience-measurement-govuk"
@@ -279,6 +354,13 @@
   private_repo: true
   type: Utilities
   team: "#navigation-and-presentation-govuk"
+
+# Supports the Zendesk display screen
+- repo_name: frame-splits
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
 
 - repo_name: frontend
   type: Frontend apps
@@ -304,6 +386,12 @@
 - repo_name: gds_zendesk
   team: "#govuk-platform-reliability-team"
   type: Gems
+
+# Looks useful, perhaps worth incorporating into govuk-user-reviewer?
+- repo_name: gem_ownership_auditor
+
+# A spike being worked on in Platform Reliability. Probably too early to add to the docs.
+- repo_name: github-action-combine-dependabot-prs
 
 - repo_name: github-trello-poster
   team: "#govuk-platform-reliability-team"
@@ -391,6 +479,18 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-cdn-config-secrets
+  private_repo: true
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
+# Looks to be actively developed by Ken
+- repo_name: govuk-ckan-charts
+  type: data.gov.uk apps
+  team: "#govuk-datagovuk"
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: govuk-connect
   team: "#govuk-platform-reliability-team"
   type: Utilities
@@ -403,6 +503,9 @@
   private_repo: true
   team: "#data-products"
   type: Data science
+
+# Propose archiving - prototype, not touched since April 2020
+- repo_name: govuk-content-publisher-prototype
 
 - repo_name: govuk-content-schemas
   team: "#govuk-publishing-platform"
@@ -419,6 +522,9 @@
   team: "#govuk-platform-reliability-team"
   type: Utilities
   retired: true
+
+# Propose archiving - prototype, not touched since July 2020
+- repo_name: govuk-datalabs-eligibility-prototype
 
 - repo_name: govuk-data-science-workshop
   team: "#data-products"
@@ -476,6 +582,11 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-dns-config
+  private_repo: true
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+
 - repo_name: govuk-docker
   team: "#govuk-platform-reliability-team"
   type: Utilities
@@ -486,8 +597,23 @@
   team: "#data-products"
   type: Data science
 
+# Guessing, based on existing entry for `govuk-feedback-pipeline`?
+- repo_name: govuk-feedback-analysis
+  team: "#data-products"
+  type: Data science
+
 - repo_name: govuk-feedback-pipeline
   private_repo: true
+  team: "#data-products"
+  type: Data science
+
+# ditto
+- repo_name: govuk-feedback-processing
+  team: "#data-products"
+  type: Data science
+
+# ditto
+- repo_name: govuk-feedback-visualisation
   team: "#data-products"
   type: Data science
 
@@ -495,6 +621,9 @@
   private_repo: true
   team: "#data-products"
   type: Data science
+
+# Propose deleting or archiving. Looks like a temporary repo written for GIFT week, where the main code lives in Simon's account.
+- repo_name: govuk-formats
 
 - repo_name: govuk-google-analytics
   team: "#user-experience-measurement-govuk"
@@ -508,6 +637,9 @@
   type: Utilities
   team: "#govuk-replatforming"
 
+# Delete - empty repo, untouched in 2 years
+- repo_name: govuk-helm-starter
+
 - repo_name: govuk-infrastructure
   type: Utilities
   team: "#govuk-replatforming"
@@ -516,6 +648,9 @@
   private_repo: true
   team: "#data-products"
   type: Data science
+
+# Propose archiving - untouched in 6 years, looks like a one time use thing
+- repo_name: govuk-intents-workshop-analysis
 
 - repo_name: govuk-ithc-documentation
   private_repo: true
@@ -538,6 +673,17 @@
     and associated content. In November 2022 it was migrated to CPTO's GCloud account.
   sentry_url: false
   dashboard_url: false
+
+# Assume this should be added to Data Products' portfolio, based on `govuk-knowledge-graph`
+- repo_name: govuk-knowledge-graph-gcp
+  private_repo: true # well not really, but it's "internal"
+  team: "#data-products"
+  type: Data science
+
+# ditto
+- repo_name: govuk-knowledge-graph-search
+  team: "#data-products"
+  type: Data science
 
 - repo_name: govuk-kubernetes-cluster-user-docs
   type: Utilities
@@ -585,6 +731,16 @@
   sentry_url: false
   dashboard_url: false
 
+# Propose archiving. This looks like a 2nd line utility that _could_ be handy during migration of people/roles in govt, but hasn't been used (as far as I know) in 4 years and potentially doesn't work anymore.
+- repo_name: govuk-people-roles-migration
+
+# Propose archiving - this is a one-time prototype, no longer used AFAIK.
+# Check with Kevin.
+- repo_name: govuk-personalisation-showcase-2022
+
+# Check with the data team. Consider archiving?
+- repo_name: govuk-polling-analysis
+
 - repo_name: govuk-provisioning
   private_repo: true
   retired: true
@@ -607,6 +763,12 @@
   sentry_url: false
   dashboard_url: false
 
+- repo_name: govuk-replatform-test-app
+  type: Utilities
+  team: "#govuk-replatforming"
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: govuk-replatforming-discovery-2020
   private_repo: true
   type: Utilities
@@ -616,18 +778,58 @@
   team: "#govuk-platform-reliability-team"
   type: Utilities
 
+# Same support model as govuk-user-reviewer, i.e. _really_ just maintained by 2nd line / leads
+# I'll probably add this in a separate PR.
+- repo_name: govuk-rota-generator
+  team: "#govuk-platform-reliability-team"
+  type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: govuk-rfcs
   team: "#govuk-developers"
   type: Utilities
+
+# Check with Roch to see if this is still used
+# (fork with 1 extra commit: https://github.com/alphagov/govuk-ruby/commit/07a14ea112ada861c95efb1ac55881c51f0e830e)
+# I can't see a corresponding commit in govuk-puppet
+# This will go away with Replatforming though, so is ripe for archiving soon anyway.
+- repo_name: govuk-ruby
+
+# Actively used, should be added to this list
+- repo_name: govuk-ruby-images
+  type: Utilities
+  team: "#govuk-replatforming"
+  sentry_url: false
+  dashboard_url: false
 
 - repo_name: govuk-rota-announcer
   private_repo: true
   team: "#govuk-platform-reliability-team"
   type: Utilities
 
+# Looks actively used
+- repo_name: govuk-s3-mirror
+  private_repo: true # internal
+  team: "#data-products"
+  type: Data science
+  sentry_url: false
+  dashboard_url: false
+
 - repo_name: govuk-saas-config
   team: "#govuk-platform-reliability-team"
   type: Utilities
+  sentry_url: false
+  dashboard_url: false
+
+# Propose that User Experience and Measurement adds this in a separate PR
+- repo_name: govuk-search-relevance-tool
+
+# Again, looks active
+- repo_name: govuk-search-terms
+  private_repo: true # internal
+  team: "#data-products"
+  type: Data science
   sentry_url: false
   dashboard_url: false
 
@@ -653,6 +855,9 @@
 - repo_name: govuk-spaCy
   team: "#data-products"
   type: Data science
+
+# Propose archiving - only 2 commits, 2 years ago, looks unused
+- repo_name: govuk-translation-locale-reporting
 
 - repo_name: govuk-user-feedback-processing
   private_repo: true
@@ -744,6 +949,12 @@
 
 - repo_name: govuk_document_types
   team: "#navigation-and-presentation-govuk"
+  type: Gems
+  sentry_url: false
+  dashboard_url: false
+
+- repo_name: govuk_frontend_toolkit_gem
+  team: "#govuk-frontenders"
   type: Gems
   sentry_url: false
   dashboard_url: false
@@ -875,6 +1086,12 @@
   team: "#tech-interaction-and-personalisation"
   production_hosted_on: eks
 
+# Propose deleting - it's a fork far behind the original.
+# I don't see it referenced anywhere (unlike the CKAN forks).
+# And it does appear (based on citations used in [this PR](https://github.com/alphagov/govuk-puppet/pull/9200))
+# that the original is the thing being used now, not the fork.
+- repo_name: logstasher
+
 - repo_name: lstm_segmentation
   private_repo: true
   team: "#data-products"
@@ -916,6 +1133,11 @@
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
 
+# Suggest this is for Publishing
+# It appears to be being used in Content Publisher and Collections Publisher:
+# https://github.com/search?q=org%3Aalphagov+markdown-toolbar-element&type=code
+- repo_name: markdown-toolbar-element
+
 - repo_name: metadata-api
   retired: true
   type: APIs
@@ -937,6 +1159,10 @@
   description: |
     multipage-frontend was used to render travel advice pages. Those were moved
     to government-frontend in March 2017.
+
+# Another one for Publishing. A branch of this fork is used by Publisher:
+# https://github.com/alphagov/publisher/blob/576e5adf96ab3cc3d46a4ce8a3f32c13eb6b4159/Gemfile#L28
+- repo_name: nested_form
 
 - repo_name: omniauth-gds
   type: Gems
@@ -981,6 +1207,11 @@
   team: "#govuk-publishing-experience-tech"
   type: Utilities
 
+# This will be a Platform Reliability / 2nd line leads thing.
+# I've been holding off until we make further changes to it, as we're likely to
+# want to give it a less Pay-related name.
+- repo_name: pay-pagerduty
+
 - repo_name: plek
   team: "#govuk-platform-reliability-team"
   type: Gems
@@ -997,6 +1228,9 @@
     originally extracted from Whitehall in to this app. Then later,
     policy pages were replaced by Topic pages through the work on the
     GOV.UK Topic Taxonomy, removing the need for Policy Publisher.
+
+# Propose archiving - looks like it was developed for a Coronavirus tool and is likely no longer needed.
+- repo_name: postcode-cache-warming-urls
 
 - repo_name: public-asset-checker
   team: "#user-experience-measurement-govuk"
@@ -1026,6 +1260,10 @@
     whereas the add significant times to builds and are extremely
     complicated to debug when they break. They were retired in
     October 2022.
+
+- repo_name: puppet-aptly
+  type: Utilities
+  team: "#govuk-platform-reliability-team"
 
 - repo_name: puppet-gor
   type: Utilities
@@ -1156,6 +1394,9 @@
   team: "#govuk-publishing-platform"
   production_hosted_on: eks
 
+# Check with Clifford Sheppard - suspect there's a better place to keep this (e.g. Google doc)
+- repo_name: siteimprove-crawl
+
 - repo_name: slimmer
   team: "#navigation-and-presentation-govuk"
   type: Gems
@@ -1236,6 +1477,12 @@
   type: Publishing apps
   team: "#govuk-publishing-experience-tech"
   production_hosted_on: eks
+
+# It does appear to be used (does it goes away with Replatforming?)
+# https://github.com/alphagov/govuk-puppet/blob/4c74356f5fe266e0a43fac42d5f7560284ad2c4c/hieradata_aws/common.yaml#L1498
+- repo_name: unicornherder
+  type: Supporting apps
+  team: "#govuk-platform-reliability-team"
 
 - repo_name: upgrade-ruby-version
   type: Utilities
