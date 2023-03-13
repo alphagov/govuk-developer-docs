@@ -1,0 +1,491 @@
+
+<!doctype html>
+<html lang="en" class="govuk-template no-js">
+  <head>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>govuk-google-analytics: page_view - GOV.UK Developer Documentation</title>
+
+    <link href="/stylesheets/manifest.css" rel="stylesheet" />
+
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_events/page_view.html">
+
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
+      <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta name="twitter:title" content="govuk-google-analytics: page_view - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_events/page_view.html" />
+
+      <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
+      <meta property="og:site_name" content="GOV.UK Developer Documentation" />
+      <meta property="og:title" content="govuk-google-analytics: page_view" />
+      <meta property="og:type" content="object" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_events/page_view.html" />
+
+    
+  </head>
+
+  <body class="govuk-template__body">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+    <div class="app-pane">
+      <div class="app-pane__header toc-open-disabled">
+        <a href="#content" class="govuk-skip-link" data-module="govuk-skip-link">Skip to main content</a>
+
+        <header class="govuk-header app-header" role="banner" data-module="govuk-header">
+  <div class="govuk-header__container govuk-header__container--full-width">
+    <div class="govuk-header__logo">
+      <a href="/" class="govuk-header__link govuk-header__link--homepage">
+        <span class="govuk-header__logotype">
+          <svg
+            aria-hidden="true"
+            focusable="false"
+            class="govuk-header__logotype-crown"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 132 97"
+            height="30"
+            width="36"
+          >
+            <path
+              fill="currentColor" fill-rule="evenodd"
+              d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z"
+            ></path>
+          </svg>
+          <span class="govuk-header__logotype-text">
+            GOV.UK
+          </span>
+        </span>
+        <span class="govuk-header__product-name">
+          Developer docs
+        </span>
+      </a>
+    </div>
+    <div class="govuk-header__content">
+      <nav class="govuk-header__navigation govuk-header__navigation--end" aria-label="Menu">
+        <button type="button" class="govuk-header__menu-button govuk-js-header-toggle" aria-controls="navigation" aria-label="Show or hide menu">Menu</button>
+        <ul id="navigation" class="govuk-header__navigation-list">
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual/get-started.html">Get started</a>
+            </li>
+            <li class="govuk-header__navigation-item govuk-header__navigation-item--active">
+              <a class="govuk-header__link" href="/apps.html">Apps</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/repos.html">Repos</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/manual.html">Manual</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/content-schemas.html">Schemas</a>
+            </li>
+            <li class="govuk-header__navigation-item">
+              <a class="govuk-header__link" href="/document-types.html">Document types</a>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+
+      </div>
+
+        <div id="toc-heading" class="toc-show fixedsticky">
+          <button type="button" class="toc-show__label js-toc-show" aria-controls="toc">
+            Table of contents <span class="toc-show__icon"></span>
+          </button>
+        </div>
+
+      <div class="app-pane__body">
+          <div class="app-pane__toc">
+            <div class="toc" data-module="table-of-contents" tabindex="-1" aria-label="Table of contents" role="dialog">
+              <div class="search" data-module="search" data-path-to-site-root="/">
+  <form action="https://www.google.co.uk/search" method="get" role="search" class="search__form govuk-!-margin-bottom-4">
+    <input type="hidden" name="as_sitesearch" value="https://docs.publishing.service.gov.uk"/>
+    <label class="govuk-label search__label" for="search" aria-hidden="true">
+      Search (via Google)
+    </label>
+    <input
+      type="text"
+      id="search" name="q"
+      class="govuk-input govuk-!-margin-bottom-0 search__input"
+      aria-controls="search-results"
+      placeholder="Search">
+    <button type="submit" class="search__button">Search</button>
+  </form>
+</div>
+
+              <button type="button" class="toc__close js-toc-close" aria-controls="toc" aria-label="Hide table of contents"></button>
+              <nav id="toc" class="js-toc-list toc__list" aria-labelledby="toc-heading">
+                  <ul>
+    <li>
+      <a href="/repos/govuk-google-analytics.html" rel="noopener" class="govuk-link">govuk-google-analytics</a>
+    </li>
+    <li>
+      <ul>
+          <li><a href="/repos/govuk-google-analytics/README.html" rel="noopener" class="govuk-link">GOV.UK Google Analytics 4 Implementation Record</a></li>
+          <li class="subdir__heading">_attributes</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_attributes/action.html" rel="noopener" class="govuk-link">action</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/browse_topic.html" rel="noopener" class="govuk-link">browse_topic</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/content_id.html" rel="noopener" class="govuk-link">content_id</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/document_type.html" rel="noopener" class="govuk-link">document_type</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/dynamic.html" rel="noopener" class="govuk-link">dynamic</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/event.html" rel="noopener" class="govuk-link">event</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/event_name.html" rel="noopener" class="govuk-link">event_name</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/external.html" rel="noopener" class="govuk-link">external</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/first_published_at.html" rel="noopener" class="govuk-link">first_published_at</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/history.html" rel="noopener" class="govuk-link">history</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/index.html" rel="noopener" class="govuk-link">index</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/index_link.html" rel="noopener" class="govuk-link">index_link</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/index_section.html" rel="noopener" class="govuk-link">index_section</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/index_section_count.html" rel="noopener" class="govuk-link">index_section_count</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/index_total.html" rel="noopener" class="govuk-link">index_total</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/language.html" rel="noopener" class="govuk-link">language</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/link_domain.html" rel="noopener" class="govuk-link">link_domain</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/link_path_parts.html" rel="noopener" class="govuk-link">link_path_parts</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/location.html" rel="noopener" class="govuk-link">location</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/method.html" rel="noopener" class="govuk-link">method</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/publishing_app.html" rel="noopener" class="govuk-link">publishing_app</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/referrer.html" rel="noopener" class="govuk-link">referrer</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/rendering_app.html" rel="noopener" class="govuk-link">rendering_app</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/schema_name.html" rel="noopener" class="govuk-link">schema_name</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/section_event_data.html" rel="noopener" class="govuk-link">section_event_data</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/status_code.html" rel="noopener" class="govuk-link">status_code</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/taxonomy_all.html" rel="noopener" class="govuk-link">taxonomy_all</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/taxonomy_all_ids.html" rel="noopener" class="govuk-link">taxonomy_all_ids</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/taxonomy_level1.html" rel="noopener" class="govuk-link">taxonomy_level1</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/taxonomy_main.html" rel="noopener" class="govuk-link">taxonomy_main</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/taxonomy_main_id.html" rel="noopener" class="govuk-link">taxonomy_main_id</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/text.html" rel="noopener" class="govuk-link">text</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/title.html" rel="noopener" class="govuk-link">title</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/type.html" rel="noopener" class="govuk-link">type</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/updated_at.html" rel="noopener" class="govuk-link">updated_at</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/url.html" rel="noopener" class="govuk-link">url</a></li>
+              <li><a href="/repos/govuk-google-analytics/_attributes/withdrawn.html" rel="noopener" class="govuk-link">withdrawn</a></li>
+          </ul>
+          <li class="subdir__heading">_events</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_events/accordion.html" rel="noopener" class="govuk-link">accordion</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/feedback.html" rel="noopener" class="govuk-link">feedback</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/links.html" rel="noopener" class="govuk-link">links</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/page_view.html" rel="noopener" class="govuk-link">page_view</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/print_this_page.html" rel="noopener" class="govuk-link">print_this_page</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/related_navigation.html" rel="noopener" class="govuk-link">related_navigation</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/share_links.html" rel="noopener" class="govuk-link">share_links</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/step_by_step_navigation.html" rel="noopener" class="govuk-link">step_by_step_navigation</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/super_navigation_header.html" rel="noopener" class="govuk-link">super_navigation_header</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/tabs.html" rel="noopener" class="govuk-link">tabs</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/accordion</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/accordion/README.html" rel="noopener" class="govuk-link">Accordion</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/back-link</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/back-link/README.html" rel="noopener" class="govuk-link">Back link</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/breadcrumbs</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/breadcrumbs/README.html" rel="noopener" class="govuk-link">Breadcrumbs</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/button</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/button/README.html" rel="noopener" class="govuk-link">Button</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/character-count</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/character-count/README.html" rel="noopener" class="govuk-link">Character count</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/checkboxes</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/checkboxes/README.html" rel="noopener" class="govuk-link">Checkboxes</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/cookie-banner</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/cookie-banner/README.html" rel="noopener" class="govuk-link">Cookie banner</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/date-input</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/date-input/README.html" rel="noopener" class="govuk-link">Date input</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/details</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/details/README.html" rel="noopener" class="govuk-link">Details</a></li>
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/details/implementation.html" rel="noopener" class="govuk-link"># Implementation notes</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/error-message</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/error-message/README.html" rel="noopener" class="govuk-link">Error message</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/error-summary</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/error-summary/README.html" rel="noopener" class="govuk-link">Error summary</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/fieldset</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/fieldset/README.html" rel="noopener" class="govuk-link">Fieldset</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/file-upload</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/file-upload/README.html" rel="noopener" class="govuk-link">File upload</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/footer</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/footer/README.html" rel="noopener" class="govuk-link">Footer</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/header</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/header/README.html" rel="noopener" class="govuk-link">Header</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/hint</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/hint/README.html" rel="noopener" class="govuk-link">Hint</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/input</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/input/README.html" rel="noopener" class="govuk-link">Input</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/inset-text</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/inset-text/README.html" rel="noopener" class="govuk-link">Inset text</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/label</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/label/README.html" rel="noopener" class="govuk-link">Label</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/notification-banner</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/notification-banner/README.html" rel="noopener" class="govuk-link">Notification banner</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/pagination</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/pagination/README.html" rel="noopener" class="govuk-link">Pagination</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/panel</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/panel/README.html" rel="noopener" class="govuk-link">Panel</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/phase-banner</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/phase-banner/README.html" rel="noopener" class="govuk-link">Phase banner</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/radios</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/radios/README.html" rel="noopener" class="govuk-link">Radios</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/select</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/select/README.html" rel="noopener" class="govuk-link">Select</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/skip-link</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/skip-link/README.html" rel="noopener" class="govuk-link">Skip link</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/summary-list</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/summary-list/README.html" rel="noopener" class="govuk-link">Summary list</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/table</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/table/README.html" rel="noopener" class="govuk-link">Table</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/tabs</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/tabs/README.html" rel="noopener" class="govuk-link">Tabs</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/tag</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/tag/README.html" rel="noopener" class="govuk-link">Tag</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/textarea</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/textarea/README.html" rel="noopener" class="govuk-link">Textarea</a></li>
+          </ul>
+          <li class="subdir__heading">_sass/govuk/components/warning-text</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_sass/govuk/components/warning-text/README.html" rel="noopener" class="govuk-link">Warning text</a></li>
+          </ul>
+          <li class="subdir__heading">_trackers</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/govuk-google-analytics/_trackers/event_tracker.html" rel="noopener" class="govuk-link">event_tracker</a></li>
+              <li><a href="/repos/govuk-google-analytics/_trackers/link_tracker.html" rel="noopener" class="govuk-link">link_tracker</a></li>
+              <li><a href="/repos/govuk-google-analytics/_trackers/page_view_tracker.html" rel="noopener" class="govuk-link">page_view_tracker</a></li>
+              <li><a href="/repos/govuk-google-analytics/_trackers/specialist_link_tracker.html" rel="noopener" class="govuk-link">specialist_link_tracker</a></li>
+          </ul>
+      </ul>
+    </li>
+  </ul>
+
+              </nav>
+            </div>
+          </div>
+
+        <div class="app-pane__content toc-open-disabled" aria-label="Content" tabindex="0">
+          <main id="content" class="technical-documentation" data-module="anchored-headings">
+              
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "name": "Home",
+        "@id": "http://www.dev.gov.uk/"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "name": "Apps",
+        "@id": "http://www.dev.gov.uk/apps.html"
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "name": "govuk-google-analytics",
+        "@id": "http://www.dev.gov.uk/repos/govuk-google-analytics.html"
+      }
+    }
+  ]
+}
+</script>
+
+<div data-module="gem-track-click ga4-link-tracker" class="gem-c-breadcrumbs govuk-breadcrumbs">
+  <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumbs&quot;,&quot;index&quot;:&quot;1&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/apps.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;Apps&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumbs&quot;,&quot;index&quot;:&quot;2&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/apps.html">Apps</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a data-track-category="breadcrumbClicked" data-track-action="3" data-track-label="/repos/govuk-google-analytics.html" data-track-options="{&quot;dimension28&quot;:&quot;3&quot;,&quot;dimension29&quot;:&quot;govuk-google-analytics&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumbs&quot;,&quot;index&quot;:&quot;3&quot;,&quot;index_total&quot;:&quot;3&quot;}" class="govuk-breadcrumbs__link" href="/repos/govuk-google-analytics.html">govuk-google-analytics</a>
+        </li>
+  </ol>
+</div>
+  <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
+
+  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/2cf987ffcef98edc4c5130eb6275f2c8cf9fb9d1">27 Feb 2023</a>
+</div>
+
+  <h1 class="page-title">govuk-google-analytics: page_view</h1>
+
+  <hr>
+<p>name: page view
+events:</p>
+<ul>
+<li>name: Page view
+description: When a page loads.
+tracker: page_view_tracker
+data:
+<ul>
+<li>name: event
+value: page_view</li>
+<li>name: page_view
+value:
+<ul>
+<li>name: referrer</li>
+<li>name: location</li>
+<li>name: title</li>
+<li>name: status_code</li>
+<li>name: document_type</li>
+<li>name: publishing_app</li>
+<li>name: rendering_app</li>
+<li>name: schema_name</li>
+<li>name: content_id</li>
+<li>name: browse_topic</li>
+<li>name: taxonomy_main</li>
+<li>name: taxonomy_all</li>
+<li>name: taxonomy_main_id</li>
+<li>name: taxonomy_all_ids</li>
+<li>name: taxonomy_level1</li>
+<li>name: language</li>
+<li>name: history</li>
+<li>name: withdrawn</li>
+<li>name: first_published_at</li>
+<li>name: updated_at</li>
+<li>name: public_updated_at</li>
+<li>name: publishing_government</li>
+<li>name: political_status</li>
+<li>name: primary_publishing_organisation</li>
+<li>name: organisations</li>
+<li>name: world_locations</li>
+<li>name: dynamic</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+
+
+            
+          </main>
+
+          <aside>
+              <ul class="contribution-banner">
+                <li><a href="https://github.com/alphagov/govuk-google-analytics/blob/main/docs/_events/page_view.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-google-analytics%2F_events%2Fpage_view.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
+              </ul>
+          </aside>
+
+          <footer class="govuk-footer app-footer" role="contentinfo">
+  <div class="govuk-footer__meta">
+    <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+
+        <ul class="govuk-footer__inline-list">
+            <li class="govuk-footer__inline-list-item">
+              <a class="govuk-footer__link" href="/accessibility.html">Accessibility</a>
+            </li>
+        </ul>
+
+      <svg
+        aria-hidden="true"
+        focusable="false"
+        class="govuk-footer__licence-logo"
+        xmlns="http://www.w3.org/2000/svg"
+        viewbox="0 0 483.2 195.7"
+        height="17"
+        width="41"
+      >
+        <path
+          fill="currentColor"
+          d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"
+        />
+      </svg>
+      <span class="govuk-footer__licence-description">
+        All content is available under the
+        <a
+          class="govuk-footer__link"
+          href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+          rel="license"
+        >Open Government Licence v3.0</a>, except where otherwise stated
+      </span>
+    </div>
+    <div class="govuk-footer__meta-item">
+      <a
+        class="govuk-footer__link govuk-footer__copyright-logo"
+        href="https://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/uk-government-licensing-framework/crown-copyright/"
+      >© Crown copyright</a>
+    </div>
+  </div>
+</footer>
+
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="/javascripts/application.js"></script>
+  </body>
+</html>
