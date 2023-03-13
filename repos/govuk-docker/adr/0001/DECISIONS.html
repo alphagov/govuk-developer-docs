@@ -201,15 +201,8 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/e72e03e4d2fe1425eb289955bfbd99fdc7f5dbfa">19 Sep 2019</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-docker/commit/6f51d30bb8b7c413bbc1cdec1d5415bd7828e495">1 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk-docker: Decisions</h1>
@@ -330,7 +323,7 @@ services:
 <h3 id="docker-context">docker-context</h3>
 <p>When building a docker image for a service, it is common to use the service directory as the build context, and to <code>COPY</code> or <code>ADD</code> the necessary files into the image. This can often increase the build time when the service directory contains large, unnecessary files, such as logs and tempfiles. Although docker <a href="https://docs.docker.com/engine/reference/builder/#dockerignore-file">supports excluding files from the context</a>, this would involve adding a <code>.dockerignore</code> file to each service. <a href="#docker-mount1">docker-mount1</a> removes the need to copy files in the first place, so in order to minimise the image build time, <strong>govuk-docker uses itself as the build context for all images</strong>.</p>
 <h3 id="docker-mount2">docker-mount2</h3>
-<p>When developing a change across multiple services, it is sometimes necessary to access the files in other service directories. Two examples of this are <a href="https://github.com/alphagov/govuk_schemas/blob/master/lib/govuk_schemas.rb#L10">govuk-content-schemas</a> and developing a local change to a gem, such as <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a>. When running service commands using docker/compose, the service does not have access to any files on the host unless they are mounted. In order to support access to files across different services, and using <a href="#docker-7">docker-7</a>, <strong>govuk-docker mounts all service directories to <code>/govuk</code> in the container</strong>.</p>
+<p>When developing a change across multiple services, it is sometimes necessary to access the files in other service directories. An example of this is developing a local change to a gem, such as <a href="https://github.com/alphagov/govuk_publishing_components">govuk_publishing_components</a>. When running service commands using docker/compose, the service does not have access to any files on the host unless they are mounted. In order to support access to files across different services, and using <a href="#docker-7">docker-7</a>, <strong>govuk-docker mounts all service directories to <code>/govuk</code> in the container</strong>.</p>
 <h3 id="docker-bindmount">docker-bindmount</h3>
 <p>Docker volumes are separate from 'bind-mounts', which mount part of the host file system in a running container. Bind mounts have <a href="https://docs.docker.com/docker-for-mac/osxfs-caching/">known performance issues on Macs</a> and even with the latest optimisations, still makes the container impractical. The problem is that read-heavy bind-mounts are not cached between docker commands and <a href="https://blog.docker.com/2017/05/user-guided-caching-in-docker-for-mac/#h.mtk84ij3vbkc">incur system call overheads</a> that are normally avoided by adding the files to the image as part of the build process.</p>
 <p>In order to support <a href="#docker-lockfiles">docker-lockfiles</a>, clarify <a href="#docker-bundle">docker-bundle</a> and achieve good performance, <strong>govuk-docker only uses docker volumes (and not bind-mounts)</strong> unless there is a specific reason not to. When there is a specific need to use bind-mounts, as in <a href="#docker-mount1">docker-mount1</a>, any writes are often to low-priority log and temporary files, where it's acceptable for the container and the host to diverge if resources are limited. In order to improve write performance, <strong>govuk-docker encourages the use of the <a href="https://docs.docker.com/docker-for-mac/osxfs-caching/#tuning-with-consistent-cached-and-delegated-configurations"><code>delegated</code></a> flag for all bind-mounts</strong>, which reduces the time for individual write operations.</p>
