@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/6f4d1ddb86293cd1e24aadb63ebd2c9009d31732">4 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/f64d293731b0a5959c9cc2b2597ed08b7a0c77db">3 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Component wrapper helper</h1>
@@ -264,18 +264,20 @@
 <li>
 <code>id</code> - accepts a string for the element ID attribute</li>
 <li>
-<code>data</code> - accepts a hash of data attributes</li>
+<code>data_attributes</code> - accepts a hash of data attributes</li>
 <li>
 <code>aria</code> - accepts a hash of aria attributes</li>
 <li>
 <code>classes</code> - accepts a space separated string of classes, these should not be used for styling and must be prefixed with <code>js-</code>
 </li>
+<li>
+<code>role</code> - accepts a space separated string of roles</li>
 </ul>
-<p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>.</p>
+<p>The helper checks that any passed <code>id</code> attribute is valid, specifically that it does not start with a number or contain whitespace or contain any characters other than letters, numbers, and <code>_</code> or <code>-</code>. It also checks that role attribute values are valid, along with some other checks detailed below.</p>
 <h3 id="data-and-aria">Data and aria</h3>
-<p>The <code>data</code> and <code>aria</code> options must be Ruby hashes of the form that would normally be passed to the <code>tag</code> method. For example:</p>
+<p>The <code>data_attributes</code> and <code>aria</code> options must be Ruby hashes of the form that would normally be passed to the <code>tag</code> method. For example:</p>
 <pre><code>&lt;%= render "govuk_publishing_components/components/example", {
-  data: {
+  data_attributes: {
     module: "example-module",
     other_data_attribute: "other",
   },
@@ -285,7 +287,7 @@
 } %&gt;
 </code></pre>
 <p>The helper checks that passed aria attributes are valid, based on a hard coded list.</p>
-<h3 id="class">Class</h3>
+<h3 id="classes">Classes</h3>
 <p>Classes can be passed to components. To prevent breaking <a href="/repos/govuk_publishing_components/component_principles.html">component isolation</a>, passed classes should only be used for JavaScript hooks and not styling. All component styling should be included only in the component itself.</p>
 <p>Any passed classes should be prefixed with <code>js-</code>. To allow for extending this option, classes prefixed with <code>gem-c-</code> or <code>govuk-</code> are also permitted, but should only be used within the component and not passed to it.</p>
 <pre><code>&lt;%= render "govuk_publishing_components/components/example", {
@@ -307,6 +309,9 @@
 <li>
 <code>add_aria_attribute()</code> - works the same as <code>add_data_attribute</code>
 </li>
+<li>
+<code>add_role()</code> - works the same as <code>add_class</code>
+</li>
 </ul>
 <p>This is an example component template using some of these methods.</p>
 <pre><code>&lt;%
@@ -322,7 +327,7 @@
 <p>This is an example call to this component.</p>
 <pre><code>&lt;%= render "govuk_publishing_components/components/example", {
   classes: "js-hook",
-  data: {
+  data_attributes: {
     module: "another-module",
     example: "example"
   }
