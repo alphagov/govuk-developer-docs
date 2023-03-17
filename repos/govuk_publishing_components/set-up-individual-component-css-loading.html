@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/1eef988a3f77ebb74a9e021510eef5a8cfe37510">3 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/439641d0fead3466610abd5213e8ce5ed222de90">14 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # Set up individual component CSS loading</h1>
@@ -263,18 +263,18 @@
 <ul>
 <li><code>add_gem_component_stylesheet</code></li>
 <li><code>add_app_component_stylesheet</code></li>
-<li><code>add_view</code></li>
 <li><code>add_view_stylesheet</code></li>
+<li><code>add_stylesheet_path</code></li>
 </ul>
 <p>The first three take the name of the Sass file relevant to the component or view:</p>
 <pre lang="ruby"><code>add_gem_component_stylesheet("accordion")
 </code></pre>
 <pre lang="ruby"><code>add_app_component_stylesheet("calendar")
 </code></pre>
-<pre lang="ruby"><code>add_view("homepage")
+<pre lang="ruby"><code>add_view_stylesheet("homepage")
 </code></pre>
 <p>There is also 1 generic method that takes a file path:</p>
-<pre lang="ruby"><code>add_view_stylesheet("views/dir-1/_partial.css")
+<pre lang="ruby"><code>add_stylesheet_path("views/dir-1/_partial.css")
 </code></pre>
 <h3 id="precompiling">Precompiling</h3>
 <p>The stylesheets need to be added to the rendering applications list of assets to precompile. The <code>get_component_css_paths</code> method is available from the AssetHelper module in GovukPublishingComponents.</p>
@@ -327,8 +327,8 @@ GovukPublishingComponents.configure do |c|
 end
 </code></pre>
 <p><strong>Add the app components and views</strong> to the array. This bit will likely take the most time - and really benefits from a comprehensive list of what pages use which templates (and template variations).</p>
-<p>Add the <code>add_view</code> and <code>add_app_component_stylesheet</code> to the top of each partial template that needs it:</p>
-<pre lang="rb"><code>add_view("homepage")
+<p>Add the <code>add_view_stylesheet</code> and <code>add_app_component_stylesheet</code> to the top of each partial template that needs it:</p>
+<pre lang="rb"><code>add_view_stylesheet("homepage")
 </code></pre>
 <pre lang="rb"><code>add_app_component_stylesheet("calendar")
 </code></pre>
