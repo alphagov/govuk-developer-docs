@@ -30,6 +30,10 @@ class Repo
     "Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml"
   end
 
+  def production_hosted_on_eks?
+    production_hosted_on == "eks"
+  end
+
   def production_hosted_on_aws?
     production_hosted_on == "aws"
   end
@@ -98,6 +102,14 @@ class Repo
       repo_data["sentry_url"]
     else
       "https://sentry.io/govuk/app-#{repo_name}"
+    end
+  end
+
+  def argo_cd_urls
+    return [] unless production_hosted_on_eks?
+
+    argo_cd_apps.each_with_object({}) do |app_name, hash|
+      hash[app_name] = "https://argo.eks.production.govuk.digital/applications/cluster-services/#{app_name}"
     end
   end
 
@@ -181,6 +193,10 @@ class Repo
   end
 
 private
+
+  def argo_cd_apps
+    repo_data["argo_cd_apps"] || [repo_name]
+  end
 
   def puppet_name
     repo_data["puppet_name"] || repo_name.underscore

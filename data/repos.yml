@@ -122,6 +122,9 @@
   team: "#navigation-and-presentation-govuk"
   component_guide_url: https://govuk-collections.herokuapp.com/component-guide
   production_hosted_on: eks
+  argo_cd_apps:
+    - collections
+    - draft-collections
 
 - repo_name: collections-publisher
   type: Publishing apps
@@ -161,6 +164,9 @@
   team: "#govuk-publishing-platform"
   production_hosted_on: eks
   production_url: https://www.gov.uk/api/content
+  argo_cd_apps:
+    - content-store
+    - draft-content-store
 
 - repo_name: content-tagger
   type: Publishing apps
@@ -278,6 +284,9 @@
   type: Frontend apps
   team: "#navigation-and-presentation-govuk"
   production_hosted_on: eks
+  argo_cd_apps:
+    - frontend
+    - draft-frontend
 
 - repo_name: gds-api-adapters
   team: "#govuk-publishing-platform"
@@ -309,6 +318,9 @@
   team: "#navigation-and-presentation-govuk"
   component_guide_url: https://government-frontend.herokuapp.com/component-guide
   production_hosted_on: eks
+  argo_cd_apps:
+    - government-frontend
+    - draft-government-frontend
 
 - repo_name: govspeak
   team: "#govuk-publishing-platform"
@@ -821,6 +833,8 @@
   puppet_name: licencefinder
   team: "#tech-interaction-and-personalisation"
   production_hosted_on: eks
+  argo_cd_apps:
+    - licencefinder
 
 - repo_name: licensify
   private_repo: true
@@ -1048,11 +1062,17 @@
   team: "#navigation-and-presentation-govuk"
   production_hosted_on: eks
   production_url: false
+  argo_cd_apps:
+    - router
+    - draft-router
 
 - repo_name: router-api
   type: APIs
   team: "#navigation-and-presentation-govuk"
   production_hosted_on: eks
+  argo_cd_apps:
+    - router-api
+    - draft-router-api
 
 - repo_name: rubocop-govuk
   team: "#govuk-platform-reliability-team"
@@ -1102,6 +1122,9 @@
   description: |
     service-manual-frontend was used to render service manual pages. Those were moved
     to government-frontend in February 2023.
+  argo_cd_apps:
+    - service-manual-frontend
+    - draft-service-manual-frontend
 
 - repo_name: service-manual-publisher
   type: Publishing apps
@@ -1144,6 +1167,8 @@
   team: "#user-experience-measurement-govuk"
   puppet_name: smartanswers
   production_hosted_on: eks
+  argo_cd_apps:
+    - smartanswers
 
 - repo_name: smokey
   team: "#govuk-platform-reliability-team"
@@ -1173,6 +1198,9 @@
   type: Frontend apps
   team: "#navigation-and-presentation-govuk"
   production_hosted_on: eks
+  argo_cd_apps:
+    - static
+    - draft-static
 
 - repo_name: stylelint-config-gds
   team: "#govuk-frontenders"
@@ -1220,6 +1248,9 @@
   type: Publishing apps
   production_url: https://whitehall-admin.publishing.service.gov.uk
   team: "#govuk-publishing-experience-tech"
+  argo_cd_apps:
+    - whitehall-admin
+    - whitehall-frontend
   production_hosted_on: eks
 
 - repo_name: whitehall-prototype-2023
