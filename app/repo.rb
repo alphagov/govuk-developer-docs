@@ -122,7 +122,7 @@ class Repo
   end
 
   def deploy_url
-    return if repo_data["deploy_url"] == false || [nil, "none", "heroku"].include?(production_hosted_on)
+    return if repo_data["deploy_url"] == false || [nil, "none", "heroku", "eks"].include?(production_hosted_on)
 
     if production_hosted_on == "paas"
       repo_data["deploy_url"]
