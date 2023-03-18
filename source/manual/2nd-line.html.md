@@ -64,11 +64,19 @@ If you do not work a 5-day week, please talk to your delivery manager to arrange
 
 ## Monitoring
 
-We have a [Technical 2nd Line dashboard][] showing a high level overview of the state of the GOV.UK environments. You can also [install our Chrome extension][] if you want a permanently visible overview. You will need to be connected to the [GDS VPN][gds-vpn] if accessing from home.
+We have various montioring and alerting systems for GOV.UK environments for both our old EC2 platform and our new EKS platform.
+
+### Alertmanager
+
+On our EKS platform, we use Alertmanager in each environment to notify us of issues. Each alert may have corresponding information in [GOV.UK developer docs][] outlining how to respond.
+
+If you encounter critical alerts that aren't easily resolved, start a thread in the #govuk-2ndline-tech Slack channel.
+
+Technical 2nd Line should investigate alerts if there is downtime, however you do not necessarily have to fix the issue. For example you might get help from a product team.
 
 ### Icinga
 
-We use Icinga to monitor our platform across our environments ([CI/Integration][], [Staging][], [Production][]) and alert us when things go wrong. Many alerts have corresponding documentation in our [GOV.UK developer docs][], detailing how to respond. [Read more about Icinga][].
+We use Icinga to monitor our environments in EC2 ([CI/Integration][], [Staging][], [Production][]) and alert us when things go wrong. Many alerts have corresponding documentation in our [GOV.UK developer docs][], detailing how to respond. [Read more about Icinga][].
 
 If you see critical alerts that aren't easily solved, start a thread in the #govuk-2ndline-tech Slack channel.
 
@@ -76,13 +84,33 @@ NB: Technical 2nd Line should investigate these alerts when there is downtime; y
 
 ### Grafana
 
-We use Grafana dashboards to monitor the health of our applications and service across our environments ([Integration](https://grafana.blue.integration.govuk.digital/?orgId=1), [Staging](https://grafana.blue.staging.govuk.digital/?orgId=1), [Production](https://grafana.blue.production.govuk.digital/). Some useful dashboards include:
+We use Grafana dashboards to monitor the health of our applications and service across our environments.
+
+For EKS our links to Grafana dashboards are:
+
+- [Integration](https://grafana.eks.integration.govuk.digital)
+- [Staging](https://grafana.eks.staging.govuk.digital)
+- [Production](https://grafana.eks.production.govuk.digital)
+
+For EC2 our links to Grafana dashboards are:
+
+- [Integration](https://grafana.blue.integration.govuk.digital/?orgId=1)
+- [Staging](https://grafana.blue.staging.govuk.digital/?orgId=1)
+- [Production](https://grafana.blue.production.govuk.digital/)
+
+Some useful dashboards include:
 
 - Second line, which includes data from our Origin health and Edge health dashboards
 - Sidekiq
 - Application deployment dashboards
 
 [Read more about Grafana](https://docs.publishing.service.gov.uk/manual/grafana.html).
+
+### 2ndline dashboard
+
+We have a [Technical 2nd Line dashboard][] showing a high level overview of the state of the GOV.UK EC2 environments. You can also [install our Chrome extension][] if you want a permanently visible overview. You will need to be connected to the [GDS VPN][gds-vpn] if accessing from home.
+
+> Note this hasn't been updated to show the status EKS environments.
 
 ### PagerDuty
 
