@@ -55,6 +55,14 @@ Make sure you can log into the following accounts:
 1. [Shared NPM account](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm)
 1. [Shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher)
 
+## Drill scaling up number of workers
+
+In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.
+
+Pick an application (e.g. `smartanswers`) and drill scaling up the number of workers, by following [scale unicorn workers](/manual/scale-unicorn-workers.html).
+
+Note that you'll need to edit the `integration.yaml` file, not the `production.yaml` file as described in the docs above. And instead of merging to `main`, just build your branch directly to Integration. When you're done drilling, re-deploy the previous release and delete your branch.
+
 ## Drill 2nd line incident processes
 
 ### Drill an end to end incident
@@ -67,14 +75,6 @@ Use common sense when following the steps (i.e. don't actually publish an incide
 
 Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
 See "[If Slack is unavailable](https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp)" for details.
-
-## Drill scaling up number of workers
-
-In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.
-
-Pick an application (e.g. `smartanswers`) and drill scaling up the number of workers, by following [scale unicorn workers](/manual/scale-unicorn-workers.html).
-
-Note that you'll need to edit the `integration.yaml` file, not the `production.yaml` file as described in the docs above. And instead of merging to `main`, just build your branch directly to Integration. When you're done drilling, re-deploy the previous release and delete your branch.
 
 ## Drill special deployment conditions
 
