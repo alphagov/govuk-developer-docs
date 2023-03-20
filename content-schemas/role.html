@@ -1325,9 +1325,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ambassador_role</code>, <code>board_member_role</code>, <code>chief_professional_officer_role</code>, <code>chief_scientific_advisor_role</code>, <code>chief_scientific_officer_role</code>, <code>deputy_head_of_mission_role</code>, <code>governor_role</code>, <code>high_commissioner_role</code>, <code>military_role</code>, <code>ministerial_role</code>, <code>special_representative_role</code>, <code>traffic_commissioner_role</code>, <code>worldwide_office_staff_role</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
 <tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
-<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>ministerial</strong><br/></td> <td>Link to the ministers index page, present if this is a ministerial role.<br/></td></tr>
-<tr><td><strong>ordered_parent_organisations</strong><br/></td> <td>Organisations that own this role.<br/></td></tr>
-<tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr></table></td></tr>
+<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr></table></td></tr>
 <tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
@@ -1395,6 +1393,8 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>lead_organisations</strong><br/></td> <td>DEPRECATED: A subset of organisations that should be emphasised in relation to this content item. All organisations specified here should also be part of the organisations array.<br/></td></tr>
 <tr><td><strong>mainstream_browse_pages</strong><br/></td> <td>Powers the /browse section of the site. These are known as sections in some legacy apps.<br/></td></tr>
 <tr><td><strong>meets_user_needs</strong><br/></td> <td>The user needs this piece of content meets.<br/></td></tr>
+<tr><td><strong>ministerial</strong><br/></td> <td>Link to the ministers index page, present if this is a ministerial role.<br/></td></tr>
+<tr><td><strong>ordered_parent_organisations</strong><br/></td> <td>Organisations that own this role.<br/></td></tr>
 <tr><td><strong>ordered_related_items</strong><br/></td> <td>Related items, can be any page on GOV.UK. Mostly used for mainstream content to power the sidebar. Ordering of the links is determined by the editor in Content Tagger.<br/></td></tr>
 <tr><td><strong>ordered_related_items_overrides</strong><br/></td> <td>Related items, can be any page on GOV.UK. Overrides &lsquo;more like this&rsquo; automatically generated links in the beta navigation.<br/></td></tr>
 <tr><td><strong>organisations</strong><br/></td> <td>All organisations linked to this content item. This should include lead organisations.<br/></td></tr>
@@ -1413,23 +1413,40 @@ a publishing application sends to the publishing-api in a
     </span><span class="nl">"lead_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"feb8cab4-bdc2-17e6-a7a8-c0fea6ef5174"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"aaa5b4b9-0cdf-15a4-ab3a-deae7bad5ed3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cd8e6cbd-31c3-1450-ae6d-da3ce6e5d3da"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"f01afd8d-d045-1efb-a2ef-9f0c41d942c3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"c7a3aaec-3f6a-154b-a4aa-d1d71e255db6"</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"8f788fcd-3d49-1c28-ac22-a92cfeaed226"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"c5a21eae-dea1-11fb-a73d-e1b3e6f10367"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"a4816aaa-975c-1681-a3f5-9a6a7b3dcdb4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"f55fb35e-fc31-1bec-aeab-9bf06ff1cbe9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"1fa7fb2e-45e8-1c0c-a07b-a47b7eeee2cf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"b5fe9d0a-6be2-1a4b-a91a-df5c7a88a5fe"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"original_primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"d7ebe9f9-ce25-1e8f-aebb-9397579923c6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dff34aa4-12fe-18fa-a0f5-b7a036b2feaf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"160e5ccd-35f1-122f-a6ee-24acceec0d92"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e3e00ebf-9059-1ff3-ac05-453e5d2bdac4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"5eb9615e-c309-1273-ac53-f7e17a36e428"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"6b4c5ab1-7bd6-1bee-ac0f-ce93f3f2f3be"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e1a6eb9a-98d9-1668-ad0f-59febaffb57d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"62fabc49-7bff-1f6d-a046-c01c698aecdd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"725fd5ad-895f-1ffe-af4e-34a9decb9a96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"298a6ec1-2e7f-199c-a8c0-172ac62188f7"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
 
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"suggested_ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"a8fcd3d4-9c28-1c22-aa92-cfeaed226c5a"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"21eaedea-11fb-173d-ae1b-3e6f10367a48"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"16aaa975-c681-13f5-a9a6-a7b3dcdb4f55"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fb35efc3-1bec-1eab-a9bf-06ff1cbe91fa"</span><span class="w">
+    </span><span class="nl">"taxons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
     </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"porttitor aliquet. molestie a malesuada turpis egestas. tempor volutpat interdum. Quisque ac at purus Nam sagittis morbi ac amet non dolor et tempor sit eu senectus consectetur"</span><span class="w">
+  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"risus massa in Aenean at elit. a vel mauris fames"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 

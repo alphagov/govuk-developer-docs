@@ -1773,21 +1773,7 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>document_type</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>organisation</code></td></tr>
 <tr><td><strong>first_published_at</strong><br/><code>string</code></td> <td>The date the content was first published.  Automatically determined by the publishing-api, unless overridden by the publishing application.<br/></td></tr>
 <tr><td><strong>last_edited_at</strong><br/><code>string</code></td> <td>Last time when the content received a major or minor update.<br/></td></tr>
-<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>ordered_board_members</strong><br/></td> <td>Board members primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_chief_professional_officers</strong><br/></td> <td>Chief professional officers primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_child_organisations</strong><br/></td> <td>Child organisations primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_contacts</strong><br/></td> <td>Contact details primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_featured_policies</strong><br/></td> <td>Featured policies primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_foi_contacts</strong><br/></td> <td>FoI contact details primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_high_profile_groups</strong><br/></td> <td>High profile groups primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_military_personnel</strong><br/></td> <td>Military personnel primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_ministers</strong><br/></td> <td>Ministers primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_parent_organisations</strong><br/></td> <td>Parent organisations primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_roles</strong><br/></td> <td>Organisational roles primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_special_representatives</strong><br/></td> <td>Special representatives primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_successor_organisations</strong><br/></td> <td>Successor organisations primarily for use with closed Whitehall organisations.<br/></td></tr>
-<tr><td><strong>ordered_traffic_commissioners</strong><br/></td> <td>Traffic commissioners primarily for use with Whitehall organisations.<br/></td></tr>
-<tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr></table></td></tr>
+<tr><td><strong>links</strong><br/><code>object</code></td> <td><table class='schema-table'><tr><td><strong>policy_areas</strong><br/></td> <td>A largely deprecated tag currently only used to power email alerts.<br/></td></tr></table></td></tr>
 <tr><td><strong>locale</strong><br/><code>string</code></td> <td><br/>Allowed values: <code>ar</code>, <code>az</code>, <code>be</code>, <code>bg</code>, <code>bn</code>, <code>cs</code>, <code>cy</code>, <code>da</code>, <code>de</code>, <code>dr</code>, <code>el</code>, <code>en</code>, <code>es</code>, <code>es-419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fr</code>, <code>gd</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>hy</code>, <code>id</code>, <code>is</code>, <code>it</code>, <code>ja</code>, <code>ka</code>, <code>kk</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ms</code>, <code>mt</code>, <code>ne</code>, <code>nl</code>, <code>no</code>, <code>pa</code>, <code>pa-pk</code>, <code>pl</code>, <code>ps</code>, <code>pt</code>, <code>ro</code>, <code>ru</code>, <code>si</code>, <code>sk</code>, <code>sl</code>, <code>so</code>, <code>sq</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>th</code>, <code>tk</code>, <code>tr</code>, <code>uk</code>, <code>ur</code>, <code>uz</code>, <code>vi</code>, <code>yi</code>, <code>zh</code>, <code>zh-hk</code>, <code>zh-tw</code></td></tr>
 <tr><td><strong>need_ids</strong><br/><code>array</code></td> <td><br/></td></tr>
 <tr><td><strong>phase</strong><br/><code>string</code></td> <td>The service design phase of this content item - https://www.gov.uk/service-manual/phases<br/>Allowed values: <code>alpha</code>, <code>beta</code>, <code>live</code></td></tr>
@@ -1927,84 +1913,46 @@ a publishing application sends to the publishing-api in a
   </span><span class="nl">"document_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"organisation"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"first_published_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-11-05T04:45:26+00:00"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"ordered_chief_professional_officers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"73ba70da-ab32-192d-ac23-381f329dc0ce"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"14596b61-c994-1eb7-a960-ef1cb1de0aa1"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"a7dba1e2-03ee-13ae-a490-a54ae4509c5d"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"4011eda9-2fbf-129b-a532-057bc42acda6"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"a2ddbd9b-9f6b-1aad-aa31-fb473b9a7179"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"be5ed2a2-c692-1d37-acbe-e14c2a28d4db"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"d9ac7f46-16f5-1dcc-af44-befcec08beec"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_child_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"302d7c09-84ef-1ef4-a34d-c6d89ebb85e5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"e7b06eb1-7f22-1bcd-aab9-486a317fba74"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"592f614e-ca35-177b-aa84-53c247ceae3e"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_foi_contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"894400d5-1ddc-1532-a2b0-f0ec5b265e2d"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"79a494fe-ad34-1e8b-afc6-0dae6ef4fcaa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"b0c2ecbc-c9d3-13db-afbe-b66ccb735ae0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cbae7add-882a-1eea-aa94-f41fd01dc800"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"df38a43d-c429-1b46-acd8-6bcfd24ff0dd"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"d0da8f9c-6e3d-1c35-abd3-43bec78b8f14"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"3bfc55e9-ea1c-1cfd-aab1-da99bb04ecd2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"0cf20e85-23e2-118a-ac2e-eaaadcaa4bac"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_military_personnel"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"e8e71bb9-b9d2-1f06-a24d-991fc82dbefa"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"9fbac05b-604a-1451-af7c-4eafd3c8e421"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"bff1ad4e-5bcc-1f5f-ab74-f6a6aa86bb61"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"a9e6a25c-20fd-1a5e-a7c3-ed1b8efbcec5"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"795f626e-48ce-1a2f-aa9c-5bdc4828c457"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"b6877df0-6d8d-1a73-a7c4-cbd87fabeb6a"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"9bc0fa1e-3a92-154c-ae8e-a2a2e8e28c78"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"ordered_traffic_commissioners"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"7ab20b20-9e2a-1bfb-ad81-8fdd8425a667"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fa76483e-112f-12df-a4b2-18ae34f0afc0"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"3d5b0df6-bc07-1fee-a4fd-791c3f05b3ad"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"80723d9b-88ae-1ca2-ad4e-44e8f7883072"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"cdc7d8da-1dfe-1a72-a326-5e0c49671137"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fde8884c-49be-1dfd-a330-bed0eb01ade9"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"e6a49ef5-34f0-1b2d-a1d4-c42845156bf2"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"2e4ddb89-cf65-1e67-a940-20e9216a71c1"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"policy_areas"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"efd7ecd0-a2da-1f08-a66e-f0eff2e53e1b"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"ae647daf-1e07-1ad4-ab8b-d4860d63f71d"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"af2c14a8-f0dd-195f-ac32-dcf57ba301d6"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"f8aaac3a-67fb-1f4e-aff3-26b42ba5a371"</span><span class="w">
-    </span><span class="p">]</span><span class="w">
   </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"need_ids"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="s2">"leo suscipit mauris eros. Duis at sed ultricies molestie ac in est. turpis ipsum vestibulum. Aenean sem sollicitudin Nam lectus amet Nam massa vel bibendum. netus sagittis Mauris ac dolor eu Pellentesque Ut imperdiet orci Quisque porttitor risus tristique dolor senectus consectetur lorem fames tristique a interdum. et molestie scelerisque. non habitant sit cursus eu tempor volutpat nisl non malesuada adipiscing risus interdum. nibh purus vel aliquet. libero."</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ac massa sed volutpat pellentesque aliquet. ac molestie adipiscing vel risus leo purus consectetur Ut et"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"sit cursus dolor ipsum Nam sed senectus et et bibendum. ac nibh. finibus hendrerit eros. tempor lorem Lorem massa leo turpis orci fames est. volutpat risus interdum. consectetur vestibulum. dolor malesuada purus"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Ut libero. interdum. non molestie tristique ipsum Ut eu tempor egestas. consectetur risus elit. fames cursus turpis orci Pellentesque a volutpat leo eros. et eu sed vel purus non adipiscing nibh. Sed aliquet. vel nibh in Lorem est. Nam finibus ultricies Nam risus netus sit malesuada nisl dolor senectus bibendum. sem Aenean molestie ac imperdiet tempor Quisque amet at ac vestibulum. habitant porttitor interdum. dolor lorem morbi hendrerit scelerisque. lectus Suspendisse ac suscipit"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"lorem a in egestas. leo porttitor est. consectetur eu ultricies sollicitudin vestibulum. purus Pellentesque nisl Sed massa Nam dolor elit. ac"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cursus adipiscing sit hendrerit senectus ac volutpat molestie Suspendisse Pellentesque turpis leo mauris non habitant eu risus sollicitudin bibendum. Ut ac est. sagittis Ut consectetur Lorem lectus at Mauris molestie vestibulum. imperdiet porttitor Sed eu Duis tristique dolor interdum. morbi aliquet. fames ac ultricies scelerisque. sed vel non netus eros. purus nibh tristique risus in malesuada Quisque lorem a suscipit elit. et dolor vel tempor ipsum Nam nibh. sem et egestas. Nam interdum. orci libero. ac massa pellentesque Aenean"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tristique fames volutpat Lorem tempor ipsum purus nibh. senectus a dolor non interdum. amet Duis vel Mauris vel eu molestie vestibulum. lectus egestas. nisl eros. interdum. tristique"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"finibus netus ipsum malesuada senectus molestie lorem massa amet tempor interdum. Nam et pellentesque Quisque lectus cursus morbi dolor elit. scelerisque. non suscipit Pellentesque porttitor interdum. vestibulum. turpis leo sollicitudin ac bibendum. volutpat mauris tristique aliquet. habitant sagittis libero. imperdiet dolor Mauris tempor non molestie sed nibh at a ultricies consectetur Ut et egestas. Aenean sit nisl"</span><span class="w">
+    </span><span class="s2">"non nibh. nibh Suspendisse non ultricies ac libero. Quisque aliquet. lectus turpis sollicitudin malesuada senectus risus netus cursus vel amet Lorem tristique eu dolor leo lorem Sed est. at risus orci ac sit hendrerit molestie purus morbi scelerisque. porttitor Mauris et sed imperdiet in Aenean elit."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"eu vel ultricies Nam sit netus morbi Lorem dolor Ut leo orci senectus cursus turpis bibendum. pellentesque suscipit lorem sed risus tempor ac porttitor et imperdiet fames purus sagittis tempor lectus Sed molestie adipiscing volutpat ac aliquet. non dolor mauris sem et Duis vestibulum. tristique massa sollicitudin Ut vel a habitant consectetur ac in libero. scelerisque. interdum. non elit. Mauris nisl at eros. risus Pellentesque ipsum Suspendisse nibh ac tristique nibh. eu Nam Aenean egestas. hendrerit Quisque malesuada finibus molestie est. interdum. amet"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"consectetur aliquet. molestie Quisque Nam lorem mauris egestas. scelerisque. amet libero. cursus in vel imperdiet ac fames adipiscing eu ipsum sed volutpat dolor leo risus tristique Aenean Pellentesque non ac Ut risus Suspendisse ac non tempor pellentesque tempor est. et turpis eros. orci interdum. lectus morbi Sed tristique sit dolor sollicitudin suscipit Ut at et a nibh. massa vel hendrerit ac nisl molestie habitant sem Mauris senectus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"malesuada pellentesque ac nibh habitant fames bibendum. cursus dolor Ut tempor finibus lorem risus est. risus senectus dolor at morbi Suspendisse libero. non egestas. mauris aliquet. turpis in Lorem molestie leo et interdum. interdum. ac adipiscing ac Pellentesque scelerisque. sagittis vestibulum. Nam eu Sed nisl vel sit Ut consectetur volutpat ac non porttitor et Mauris"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"netus libero. tempor lectus et Quisque elit. non Mauris mauris Nam interdum. eu Nam imperdiet hendrerit Suspendisse a sit nibh habitant vel est. Lorem fames porttitor finibus senectus bibendum. nisl tristique volutpat Ut eu leo Aenean sem adipiscing Pellentesque molestie lorem sagittis Ut molestie"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"risus ultricies ipsum Pellentesque mauris non nisl sed interdum. sollicitudin Suspendisse interdum. tristique vel finibus et bibendum. Nam dolor ac aliquet. leo suscipit hendrerit Mauris risus massa molestie a senectus vestibulum. molestie nibh imperdiet orci nibh. scelerisque. malesuada ac lectus adipiscing netus eu tristique Duis ac porttitor vel tempor Sed tempor purus elit. sagittis dolor fames et consectetur volutpat Ut eros. sit habitant morbi cursus ac amet at sem Nam Aenean Quisque lorem Lorem turpis libero. eu egestas. in pellentesque non"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orci sed porttitor Nam sem mauris Suspendisse Quisque sollicitudin Ut Ut ac interdum. morbi vel suscipit senectus dolor interdum. et molestie habitant non consectetur adipiscing egestas. Lorem leo nisl nibh. eu fames"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Ut consectetur Aenean lectus"</span><span class="w">
   </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non risus lorem at senectus nisl dolor imperdiet sit sagittis massa orci libero. Mauris lectus aliquet. consectetur Ut egestas. habitant eu in interdum. adipiscing cursus amet tempor scelerisque. tristique ipsum a est. sed finibus vel"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"public_updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-11-25T18:53:04+00:00"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maslow"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finder-frontend"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"beta"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"publishing_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"local-links-manager"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rendering_app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email-campaign-frontend"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"routes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finibus Aenean libero. hendrerit Ut Quisque tempor lorem scelerisque. habitant et nisl dolor bibendum. sit mauris leo nibh. interdum. dolor et Mauris suscipit eu at nibh pellentesque turpis Ut sagittis morbi sollicitudin tristique malesuada imperdiet a ac molestie risus Sed Duis Lorem risus volutpat elit. porttitor"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tristique ac senectus Ut dolor nibh. tempor Nam hendrerit Lorem adipiscing lorem bibendum. cursus lectus fames in a sagittis et pellentesque Sed morbi Suspendisse est. tristique imperdiet Duis risus sit finibus non scelerisque. mauris at dolor porttitor sed nibh Mauris interdum. ultricies Ut eu volutpat eu interdum. molestie elit. amet aliquet. Quisque consectetur tempor sollicitudin turpis nisl habitant leo ac molestie suscipit malesuada massa vestibulum. non vel libero. orci ac Aenean ac purus risus et netus Pellentesque eros. Nam ipsum sem egestas. vel"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nam finibus nisl ac Sed aliquet. eros. consectetur eu suscipit sit interdum. orci Aenean pellentesque Quisque dolor habitant adipiscing scelerisque. vel ipsum egestas. Mauris et nibh. mauris"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"elit. Quisque fames non molestie non tristique sollicitudin scelerisque. senectus massa leo eros. Duis est. sed lectus at finibus ac volutpat sagittis porttitor vel ultricies a morbi nibh. purus vel Mauris adipiscing netus vestibulum. bibendum. lorem in eu eu interdum. consectetur cursus amet risus Nam turpis tristique ac suscipit Pellentesque nibh libero. imperdiet molestie Ut mauris aliquet. hendrerit ipsum ac Aenean habitant orci"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hendrerit egestas. purus Aenean habitant Ut lorem senectus pellentesque sem in eu netus non imperdiet Quisque tempor finibus sollicitudin eros. eu lectus nibh ac Lorem libero. ac leo Pellentesque sagittis sit et morbi risus ac Duis Suspendisse adipiscing bibendum. Nam porttitor ac tristique risus vel suscipit est. amet Ut tristique fames ultricies dolor at massa cursus"</span><span class="p">,</span><span class="w">
       </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exact"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bibendum. finibus molestie eros. lorem imperdiet malesuada eu Duis nisl lectus molestie orci egestas. ac morbi est. Mauris sed Lorem Nam mauris suscipit aliquet. Aenean volutpat tristique eu risus interdum. at netus risus nibh ultricies in ac senectus Nam amet massa tempor leo Pellentesque a Ut vel sagittis ac sit dolor pellentesque turpis Ut Quisque fames vel non libero."</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"prefix"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="nl">"schema_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"organisation"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Quisque Nam molestie sit adipiscing scelerisque. eu interdum. vestibulum. hendrerit ac nibh. tristique malesuada libero. nibh dolor molestie elit. Sed Mauris Aenean pellentesque senectus Duis est. ac Suspendisse purus et Lorem finibus in Ut turpis tempor fames lorem porttitor sed egestas. risus amet eros. Ut non imperdiet dolor ac tempor aliquet. orci sagittis interdum. vel Nam nisl massa a netus habitant volutpat non eu ac morbi bibendum. mauris suscipit risus tristique et Pellentesque"</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"finibus Ut interdum."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"update_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"republish"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <hr>
@@ -2016,8 +1964,22 @@ a publishing application sends to the publishing-api in a
 <tr><td><strong>lead_organisations</strong><br/></td> <td>DEPRECATED: A subset of organisations that should be emphasised in relation to this content item. All organisations specified here should also be part of the organisations array.<br/></td></tr>
 <tr><td><strong>mainstream_browse_pages</strong><br/></td> <td>Powers the /browse section of the site. These are known as sections in some legacy apps.<br/></td></tr>
 <tr><td><strong>meets_user_needs</strong><br/></td> <td>The user needs this piece of content meets.<br/></td></tr>
+<tr><td><strong>ordered_board_members</strong><br/></td> <td>Board members primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_chief_professional_officers</strong><br/></td> <td>Chief professional officers primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_child_organisations</strong><br/></td> <td>Child organisations primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_contacts</strong><br/></td> <td>Contact details primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_featured_policies</strong><br/></td> <td>Featured policies primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_foi_contacts</strong><br/></td> <td>FoI contact details primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_high_profile_groups</strong><br/></td> <td>High profile groups primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_military_personnel</strong><br/></td> <td>Military personnel primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_ministers</strong><br/></td> <td>Ministers primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_parent_organisations</strong><br/></td> <td>Parent organisations primarily for use with Whitehall organisations.<br/></td></tr>
 <tr><td><strong>ordered_related_items</strong><br/></td> <td>Related items, can be any page on GOV.UK. Mostly used for mainstream content to power the sidebar. Ordering of the links is determined by the editor in Content Tagger.<br/></td></tr>
 <tr><td><strong>ordered_related_items_overrides</strong><br/></td> <td>Related items, can be any page on GOV.UK. Overrides &lsquo;more like this&rsquo; automatically generated links in the beta navigation.<br/></td></tr>
+<tr><td><strong>ordered_roles</strong><br/></td> <td>Organisational roles primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_special_representatives</strong><br/></td> <td>Special representatives primarily for use with Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_successor_organisations</strong><br/></td> <td>Successor organisations primarily for use with closed Whitehall organisations.<br/></td></tr>
+<tr><td><strong>ordered_traffic_commissioners</strong><br/></td> <td>Traffic commissioners primarily for use with Whitehall organisations.<br/></td></tr>
 <tr><td><strong>organisations</strong><br/></td> <td>All organisations linked to this content item. This should include lead organisations.<br/></td></tr>
 <tr><td><strong>original_primary_publishing_organisation</strong><br/></td> <td>The organisation that published the original version of the page. Corresponds to the first of the &lsquo;Lead organisations&rsquo; in Whitehall for the first edition, and is empty for all other publishing applications.<br/></td></tr>
 <tr><td><strong>parent</strong><br/></td> <td>The parent content item.<br/></td></tr>
@@ -2034,23 +1996,89 @@ a publishing application sends to the publishing-api in a
     </span><span class="nl">"lead_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"feb8cab4-bdc2-17e6-a7a8-c0fea6ef5174"</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nl">"organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="nl">"ordered_child_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="s2">"aaa5b4b9-0cdf-15a4-ab3a-deae7bad5ed3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"cd8e6cbd-31c3-1450-ae6d-da3ce6e5d3da"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"f01afd8d-d045-1efb-a2ef-9f0c41d942c3"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"c7a3aaec-3f6a-154b-a4aa-d1d71e255db6"</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ordered_featured_policies"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"8f788fcd-3d49-1c28-ac22-a92cfeaed226"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"c5a21eae-dea1-11fb-a73d-e1b3e6f10367"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"a4816aaa-975c-1681-a3f5-9a6a7b3dcdb4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"f55fb35e-fc31-1bec-aeab-9bf06ff1cbe9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"1fa7fb2e-45e8-1c0c-a07b-a47b7eeee2cf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"b5fe9d0a-6be2-1a4b-a91a-df5c7a88a5fe"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ordered_foi_contacts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"d7ebe9f9-ce25-1e8f-aebb-9397579923c6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"dff34aa4-12fe-18fa-a0f5-b7a036b2feaf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"160e5ccd-35f1-122f-a6ee-24acceec0d92"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e3e00ebf-9059-1ff3-ac05-453e5d2bdac4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"5eb9615e-c309-1273-ac53-f7e17a36e428"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"6b4c5ab1-7bd6-1bee-ac0f-ce93f3f2f3be"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e1a6eb9a-98d9-1668-ad0f-59febaffb57d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"62fabc49-7bff-1f6d-a046-c01c698aecdd"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"725fd5ad-895f-1ffe-af4e-34a9decb9a96"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"298a6ec1-2e7f-199c-a8c0-172ac62188f7"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ordered_high_profile_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"8d2c0112-a247-1bbc-af5f-8d99b01db9f0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"03f7da56-b0d7-10eb-aae0-273bbd3350ab"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"c1e52dd6-ee32-1cbc-ad3a-0589ea400e0e"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ed3109df-8c9d-1b45-a7df-976231fd1a43"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ordered_parent_organisations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"10ad170a-265e-1b47-ae0d-e0aa0095eeae"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"df7aec0b-62fd-1ebf-ad5c-3a9d81f3429c"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ca36e409-90aa-1d62-a763-f5dce8b2613a"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"18625dcc-2094-1a90-acec-76dadee7bd2c"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"4d8b6b69-6cb7-1d8d-aacd-7be5c6b256c8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"eee14a23-fe4c-166e-af8f-56778dd9c15d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ced49f6a-a154-1bcc-aa14-337d6ef9c1d9"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fc6742ea-a265-1baa-ac33-c86d61d2bb50"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"2b3efbf6-ee54-126b-a0eb-b4652abdaec5"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"f7e137bf-81e3-1023-a70e-ddb31bbf9afb"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"310bb9ff-c1ad-1ffb-a6ee-5bb70bfbc0a1"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"b7fc9a08-4eff-1efe-a4e6-64c577639fa6"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"93fde33e-e495-1b0c-aa00-1cd5eafdfce4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fb307bef-7cbd-1acb-a95f-9b6765dcaad1"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"ordered_special_representatives"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"3c369304-f2b8-1bfc-acbf-bf437cfe6ced"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"8cfe3620-cc1b-186e-a855-5bd52cc08cb8"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e54cd81c-f6ef-199d-a55a-b1bc6d2fee7c"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e0bfefbe-29a9-1c9a-ab4d-6d376e8ff0aa"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"85bfdac1-fa10-105d-a888-e9ead6bb00df"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"ee5ef712-4dc2-1cff-adbe-ffa15ff975cf"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"b0e17abb-fb0b-1e6d-a680-40dd6e7bf36c"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"original_primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"8299f4e4-f09a-11c0-a7cb-aab9caf4645f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"9ca1d941-77bd-10de-a5a4-fb7e40cb8cc7"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"f5dededd-d9fc-1cc6-abbc-3de33a0ebbd3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"0c4a6593-21df-1d26-a47e-a8cc0d06cf6d"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"675fcf48-5d92-176f-a2b4-b11d39a48920"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="nl">"parent"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-
+      </span><span class="s2">"0db912ad-772f-1529-abb6-d1fb52e57f2a"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"primary_publishing_organisation"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"50d9b35b-7c7e-1ac7-a971-ac7378ad5e5b"</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nl">"suggested_ordered_related_items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-      </span><span class="s2">"a8fcd3d4-9c28-1c22-aa92-cfeaed226c5a"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"21eaedea-11fb-173d-ae1b-3e6f10367a48"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"16aaa975-c681-13f5-a9a6-a7b3dcdb4f55"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"fb35efc3-1bec-1eab-a9bf-06ff1cbe91fa"</span><span class="w">
+      </span><span class="s2">"acbbbb7a-e72f-1e19-ad3f-fc1512cde700"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"6d43bcc8-af79-18c4-aabe-a10dc040be85"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"taxons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"86bbaab6-f5e4-1e06-aaed-9a2cb44cd248"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"e3f4f1cf-e2bd-1b06-aab0-cf8b83cb249f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"a4d81500-e8fe-122f-acb4-ded7c49b3c68"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fc9ffd33-f5e6-1ac3-a040-39c9a7a46ad3"</span><span class="w">
     </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"previous_version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"porttitor aliquet. molestie a malesuada turpis egestas. tempor volutpat interdum. Quisque ac at purus Nam sagittis morbi ac amet non dolor et tempor sit eu senectus consectetur"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 
