@@ -25,12 +25,6 @@ You'll need to choose a non-serious and clearly fake news headline. For example:
 - `LINK`: https://en.wikipedia.org/wiki/Henry_Fielding
 - `LINK_TEXT`: More information
 
-## Drill an end to end incident
-
-Decide on a hypothetical incident scenario, e.g. "GOV.UK is down".
-Walk through the [incident management guidance](/manual/incident-management-guidance.html).
-Use common sense when following the steps (i.e. don't actually publish an incident to Statuspage or email stakeholders).
-
 ## Deploy from AWS CodeCommit when Github is unavailable
 
 Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit) instructions.
@@ -65,7 +59,15 @@ Make sure you can log into the following accounts:
 1. [Shared NPM account](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm)
 1. [Shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher)
 
-## Drill how to communicate when Slack is down
+## Drill 2nd line incident processes
+
+### Drill an end to end incident
+
+Decide on a hypothetical incident scenario, e.g. "GOV.UK is down".
+Walk through the [incident management guidance](/manual/incident-management-guidance.html).
+Use common sense when following the steps (i.e. don't actually publish an incident to Statuspage or email stakeholders).
+
+### Drill how to communicate when Slack is down
 
 Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
 See "[If Slack is unavailable](https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp)" for details.
