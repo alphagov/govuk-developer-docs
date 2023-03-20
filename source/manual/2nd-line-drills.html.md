@@ -94,11 +94,6 @@ Follow the deployment pipeline in Jenkins. Confirm that no further environment d
 
 Remove the code freeze, then manually push the changes to all remaining environments so that they're in sync.
 
-## Drill getting a password out of govuk-secrets
-
-Most of our shared accounts are stored in this repo. Follow the steps to [get a password](https://github.com/alphagov/govuk-secrets/tree/main/pass#get-a-password), a useful one for 2nd line is the [Technical 2nd line Dashboard](https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&layout=2x1-responsive&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&url%5B%5D=) which shows a high level overview of the state of GOV.UK environments.
-Upon loading this dashboard it will ask for the `govuk-zendesk-display-screen` credentials.
-
 ## Drill making changes to user accounts
 
 ### Assign a user to their publisher in data.gov.uk
