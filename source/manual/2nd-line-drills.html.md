@@ -40,12 +40,6 @@ Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#d
 Follow the [Deploy Terraform](/manual/deploying-terraform.html) instructions, picking a project at random.
 You can run this in any environment, as you're only running `plan` - not `apply` - so shouldn't be making any changes.
 
-## Update homepage promotion slots
-
-Follow the [Update homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html) instructions, using an appropriate image and text.
-Open a draft PR, and [deploy your branch to integration](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/).
-Once deployed, [check your change](https://www-origin.integration.govuk.digital/) and redeploy the previous branch to integration.
-
 ## Use a restored database in an app
 
 On Integration or Staging, follow the [Restore an RDS instance via the AWS CLI](/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli) instructions for an app of your choice.
@@ -133,6 +127,14 @@ You can also try deleting the change note. Again, ensure you do this on Staging 
 On Integration or Staging, follow [Modify a change note in Publishing API](/manual/howto-modify-change-note.html#publishing-api) using [this document](https://www.staging.publishing.service.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
 Once you have successfully updated the change note you can drill [removing a change note in Publishing API](/manual/howto-remove-change-note.html#other-apps).
 
-## Drill updating homepage popular links
+## Drill making changes to the homepage
+
+### Drill updating homepage popular links
 
 Change the homepage popular links following [Update popular links](/manual/update_popular_links.html.md). Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.
+
+### Update homepage promotion slots
+
+Follow the [Update homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html) instructions, using an appropriate image and text.
+Open a draft PR, and [deploy your branch to integration](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/).
+Once deployed, [check your change](https://www-origin.integration.govuk.digital/) and redeploy the previous branch to integration.
