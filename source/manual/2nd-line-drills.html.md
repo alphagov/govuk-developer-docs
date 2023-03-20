@@ -25,10 +25,6 @@ You'll need to choose a non-serious and clearly fake news headline. For example:
 - `LINK`: https://en.wikipedia.org/wiki/Henry_Fielding
 - `LINK_TEXT`: More information
 
-## Deploy from AWS CodeCommit when Github is unavailable
-
-Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit) instructions.
-
 ## Run a Terraform `plan`
 
 Follow the [Deploy Terraform](/manual/deploying-terraform.html) instructions, picking a project at random.
@@ -80,7 +76,13 @@ Pick an application (e.g. `smartanswers`) and drill scaling up the number of wor
 
 Note that you'll need to edit the `integration.yaml` file, not the `production.yaml` file as described in the docs above. And instead of merging to `main`, just build your branch directly to Integration. When you're done drilling, re-deploy the previous release and delete your branch.
 
-## Drill enabling a code freeze
+## Drill special deployment conditions
+
+### Deploy from AWS CodeCommit when Github is unavailable
+
+Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit) instructions.
+
+### Drill enabling a code freeze
 
 Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.
 
