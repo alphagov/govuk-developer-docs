@@ -225,6 +225,21 @@
 
 <p>This repository contains the puppet modules and manifests for GOV.UK.</p>
 
+<h2 id="-puppet-configuration-is-only-for-ec2">⚠️ Puppet configuration is only for EC2</h2>
+
+<p>Most GOV.UK applications and services have now been migrated to new
+infrastructure (EKS) and no longer use puppet for configuration. Configuration
+for EKS is defined in the
+<a href="https://github.com/alphagov/govuk-infrastructure">govuk-infrastructure</a> and
+<a href="https://github.com/alphagov/govuk-helm-charts">govuk-helm-charts</a>
+repositories.</p>
+
+<p>Some services may not have been migrated yet and still run on EC2, in which
+case you may need to make change to the puppet configuration. We&rsquo;re in the
+process of retiring migrated services running on EC2, consquently there might
+duplicate configuration until this is finished. Make sure you know which
+infrastructure you need make changes to.</p>
+
 <h2 id="getting-started">Getting started</h2>
 
 <p>In order to run/test the Puppet manifests you will need Ruby 1.9.x and
