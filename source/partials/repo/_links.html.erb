@@ -12,6 +12,10 @@ links = [
   (link_to("Metrics dashboard", repo.metrics_dashboard_url, class: "govuk-link") if repo.metrics_dashboard_url),
 ]
 
+links += repo.argo_cd_urls.map do |argo_cd_app_name, argo_cd_url|
+  link_to("Argo CD (#{argo_cd_app_name})", argo_cd_url, class: "govuk-link")
+end
+
 if links.any?
 %>
 <ul class="govuk-list">
