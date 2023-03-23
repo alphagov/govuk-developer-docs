@@ -231,7 +231,7 @@
 </div>          <div class="govuk-summary-list__row">
 
             <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>search</strong> machine class</dd>
+            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
 
 
 
@@ -244,33 +244,18 @@
 
 </div>          <div class="govuk-summary-list__row">
 
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
             <dt class="govuk-summary-list__key">Links</dt>
             <dd class="govuk-summary-list__value"><ul class="govuk-list">
     <li><a href="https://www.gov.uk/api/search.json" class="govuk-link">www.gov.uk/api/search.json</a></li>
     <li><a href="https://sentry.io/govuk/app-search-api" class="govuk-link">Sentry (error tracking)</a></li>
     <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/search_api.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/search-api/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/search-api.json" class="govuk-link">Deployment dashboard</a></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=search-api" class="govuk-link">Deployment dashboard</a></li>
     <li></li>
     <li></li>
     <li></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/search-api" class="govuk-link">Argo CD (search-api)</a></li>
 </dd>
 
 

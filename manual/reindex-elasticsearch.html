@@ -250,9 +250,9 @@ index if there is a serious problem with the new one.</p>
 (unaliased) index using the <code>search:clean</code> rake task:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:clean SEARCH_INDEX=alias_of_index_to_clean_up" class="govuk-link">Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:clean SEARCH_INDEX=alias_of_index_to_clean_up" class="govuk-link">Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:clean SEARCH_INDEX=alias_of_index_to_clean_up" class="govuk-link">⚠️ Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Integration</a></li>
+<li><a href="" class="govuk-link">Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run search:clean SEARCH_INDEX=alias_of_index_to_clean_up on Production ⚠️</a></li>
 </ul>
 <p>Avoid leaving old indices around for more than a few days. If enough
 old indices hang around, we may hit space limitations and be unable to
@@ -273,9 +273,9 @@ age:</p>
 <li><p>Unlock the old index by running the <code>search:unlock</code> rake task:</p>
 
 <ul>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:unlock SEARCH_INDEX=alias_of_index_to_unlock" class="govuk-link">Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:unlock SEARCH_INDEX=alias_of_index_to_unlock" class="govuk-link">Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:unlock SEARCH_INDEX=alias_of_index_to_unlock" class="govuk-link">⚠️ Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Production ⚠️</a></li>
+<li><a href="" class="govuk-link">Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Integration</a></li>
+<li><a href="" class="govuk-link">Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run search:unlock SEARCH_INDEX=alias_of_index_to_unlock on Production ⚠️</a></li>
 </ul></li>
 </ol>
 <p>This doesn&rsquo;t actually stop the reindexing, because reindexing is an internal
@@ -300,9 +300,9 @@ bash -c 'curl -XPOST "$ELASTICSEARCH_URI/_tasks/&lt;task_id&gt;/_cancel"'
 index, run the <code>search:switch_to_named_index</code> rake task:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias" class="govuk-link">Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias" class="govuk-link">Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=search-api&MACHINE_CLASS=search&RAKE_TASK=search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias" class="govuk-link">⚠️ Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Integration</a></li>
+<li><a href="" class="govuk-link">Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run search:switch_to_named_index[full_index_name] SEARCH_INDEX=index_alias on Production ⚠️</a></li>
 </ul>
 <p>where <code>full_index_name</code> is the full name of the new index, including the date
 and UUID, e.g. <code>govuk-2018-01-29t17:08:21z-31f39bdb-c62b-4607-8081-19ea87fb1498</code>.</p>

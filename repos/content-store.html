@@ -205,7 +205,7 @@
 </div>          <div class="govuk-summary-list__row">
 
             <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>content_store</strong> machine class</dd>
+            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
 
 
 
@@ -218,33 +218,19 @@
 
 </div>          <div class="govuk-summary-list__row">
 
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-store&MACHINE_CLASS=content_store&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-store&MACHINE_CLASS=content_store&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-store&MACHINE_CLASS=content_store&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
             <dt class="govuk-summary-list__key">Links</dt>
             <dd class="govuk-summary-list__value"><ul class="govuk-list">
     <li><a href="https://www.gov.uk/api/content" class="govuk-link">www.gov.uk/api/content</a></li>
     <li><a href="https://sentry.io/govuk/app-content-store" class="govuk-link">Sentry (error tracking)</a></li>
     <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/content_store.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/content-store/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/content-store.json" class="govuk-link">Deployment dashboard</a></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=content-store&amp;var-app=draft-content-store" class="govuk-link">Deployment dashboard</a></li>
     <li></li>
     <li></li>
     <li></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/content-store" class="govuk-link">Argo CD (content-store)</a></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/draft-content-store" class="govuk-link">Argo CD (draft-content-store)</a></li>
 </dd>
 
 

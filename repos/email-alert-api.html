@@ -220,7 +220,7 @@
 </div>          <div class="govuk-summary-list__row">
 
             <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value"><strong>AWS</strong>, on the <strong>email_alert_api</strong> machine class</dd>
+            <dd class="govuk-summary-list__value"><strong>AWS (EKS)</strong></dd>
 
 
 
@@ -233,33 +233,18 @@
 
 </div>          <div class="govuk-summary-list__row">
 
-            <dt class="govuk-summary-list__key">Rake tasks</dt>
-            <dd class="govuk-summary-list__value"><span aria-hidden='true'>Run a Rake task on</span> <a
-      href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Integration">Integration</a>, <a
-      href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Staging">Staging</a> or <a
-      href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&MACHINE_CLASS=email_alert_api&RAKE_TASK="
-      class="govuk-link"
-      aria-label="Run a Rake task on Production">⚠️ Production ⚠️</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
             <dt class="govuk-summary-list__key">Links</dt>
             <dd class="govuk-summary-list__value"><ul class="govuk-list">
     <li></li>
     <li><a href="https://sentry.io/govuk/app-email-alert-api" class="govuk-link">Sentry (error tracking)</a></li>
     <li></li>
-    <li><a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk/manifests/apps/email_alert_api.pp" class="govuk-link">Puppet configuration</a></li>
-    <li><a href="https://github.com/alphagov/govuk-app-deployment/blob/master/email-alert-api/config/deploy.rb" class="govuk-link">Deploy scripts</a></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/email-alert-api.json" class="govuk-link">Deployment dashboard</a></li>
+    <li></li>
+    <li></li>
+    <li><a href="https://grafana.eks.production.govuk.digital/d/000000111?var-app=email-alert-api" class="govuk-link">Deployment dashboard</a></li>
     <li></li>
     <li></li>
     <li><a href="https://grafana.blue.production.govuk.digital/dashboard/file/email_alert_api.json?refresh=10s&amp;orgId=1" class="govuk-link">Metrics dashboard</a></li>
+    <li><a href="https://argo.eks.production.govuk.digital/applications/cluster-services/email-alert-api" class="govuk-link">Argo CD (email-alert-api)</a></li>
 </dd>
 
 

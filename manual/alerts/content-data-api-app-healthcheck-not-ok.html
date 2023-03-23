@@ -253,18 +253,18 @@ aggregations of the metrics failed.</p>
 <p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L10">following rake task</a>:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
 </ul>
 <h3 id='etl-no-searches-updated-from-yesterday'>ETL :: no <range> searches updated from yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the Etl process</a> that runs daily and refreshes the
 Materialized Views failed to update those views.</p>
 <p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L25">following rake task</a>:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_search" class="govuk-link">Run etl:repopulate_aggregations_search on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_search" class="govuk-link">Run etl:repopulate_aggregations_search on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_aggregations_search" class="govuk-link">⚠️ Run etl:repopulate_aggregations_search on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run etl:repopulate_aggregations_search on Integration</a></li>
+<li><a href="" class="govuk-link">Run etl:repopulate_aggregations_search on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_aggregations_search on Production ⚠️</a></li>
 </ul>
 <h3 id='etl-no-daily-metrics-for-yesterday'>ETL :: no daily metrics for yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily to retrieve
 metrics for content items has failed.</p>
@@ -277,9 +277,9 @@ from the <a href="https://github.com/alphagov/content-data-api/blob/master/app/d
 <p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32">following rake task</a>:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
 </ul>
 <h3 id='etl-no-upviews-for-yesterday'>ETL :: no upviews for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
 collect <code>unique pageview</code> metrics from Google Analytics. The issue may
@@ -287,9 +287,9 @@ originate from the <a href="https://github.com/alphagov/content-data-api/blob/ma
 <p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32">following rake task</a>:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
 </ul>
 <h3 id='etl-no-searches-for-yesterday'>ETL :: no searches for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
 collect <code>number of searches</code> metrics from Google Analytics. The issue may
@@ -297,9 +297,9 @@ originate from the <a href="https://github.com/alphagov/content-data-api/blob/ma
 <p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L45">following rake task</a>:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
 </ul>
 <h3 id='etl-no-feedex-for-yesterday'>ETL :: no feedex for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
 collect <code>feedex</code> metrics from <code>support-api</code>. The issue may originate from the
@@ -307,9 +307,9 @@ collect <code>feedex</code> metrics from <code>support-api</code>. The issue may
 <p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L71">following rake task</a>:</p>
 
 <ul>
-  <li><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-data-api&MACHINE_CLASS=backend&RAKE_TASK=etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD]" class="govuk-link">⚠️ Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
+  <li><a href="" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
+<li><a href="" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
+<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
 </ul>
 <h3 id='other-troubleshooting-tips'>Other troubleshooting tips</h3><p>For problems in the ETL process, you can check the output in <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">Jenkins</a>.</p>
 <p>You can also check for any errors in <a href="https://sentry.io/organizations/govuk/issues/?environment=production&amp;project=1461890">Sentry</a> or the <a href="https://kibana.logit.io/s/283f08f6-d117-48df-9667-c4aa492b81f9/app/kibana#/discover?_g=()&amp;_a=(columns:!(_source),index:'*-*',interval:auto,query:(query_string:(query:'application:%20content-data-api')),sort:!('@timestamp',desc))">logs in kibana</a></p>
