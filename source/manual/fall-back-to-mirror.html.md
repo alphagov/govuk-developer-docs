@@ -58,9 +58,18 @@ gds govuk connect -e production ssh mirrorer
 cd /mnt/crawler_worker/www.gov.uk
 ```
 
-## `Mirror GOV.UK content to S3` alert
+## Troubleshooting
 
 If the `govuk_sync_mirror` cronjob has not succeeded for 24 hours, it triggers the ‘Mirror GOV.UK content to S3’ alert. See the [Mirror GOV.UK content to S3 alert documentation](/manual/alerts/mirror-sync.html) for more information.
+
+- This alert **will not** be raised in the event that `govuk_seed_crawler` is broken but `govuk_sync_mirror` is still working.
+
+If the `govuk_seed_crawler` cronjob fails to run:
+
+- The ‘seed_crawler last run status‘ alert should be triggered.
+- Files will stop being mirrored to `/mnt/crawler_worker/www.gov.uk` on the `mirrorer` node (this can be checked with `ls -ltr /mnt/crawler_worker/www.gov.uk`).
+- The [RabbitMQ dashboard](https://grafana.blue.production.govuk.digital/dashboard/file/rabbitmq.json?refresh=10s&orgId=1) will show fewer jobs (or no jobs at all) being published to the `govuk_crawler_queue` queue.
+- [Monitoring for the `cache_public_web_acl` ACL](https://us-east-1.console.aws.amazon.com/wafv2/homev2/web-acl/cache_public_web_acl/d9033e40-69e8-4bbc-a61a-cd3c50254d04/overview?region=eu-west-1) on AWS WAF will show a reduced number of requests to the cache machines (`govuk-infra-cache-requests AllowedRequests`).
 
 ## Forcing failover to the GOV.UK mirrors
 
