@@ -1,6 +1,7 @@
 class Hosts
   HOSTERS = {
-    "aws" => "AWS",
+    "eks" => "AWS (EKS)",
+    "aws" => "AWS (EC2)",
     "paas" => "GOV.UK PaaS",
     "heroku" => "Heroku",
   }.freeze

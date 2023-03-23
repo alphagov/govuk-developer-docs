@@ -30,6 +30,10 @@ class Repo
     "Unknown - have you configured and merged your app in govuk-puppet/hieradata_aws/common.yaml"
   end
 
+  def production_hosted_on_eks?
+    production_hosted_on == "eks"
+  end
+
   def production_hosted_on_aws?
     production_hosted_on == "aws"
   end
@@ -101,6 +105,14 @@ class Repo
     end
   end
 
+  def argo_cd_urls
+    return [] unless production_hosted_on_eks?
+
+    argo_cd_apps.each_with_object({}) do |app_name, hash|
+      hash[app_name] = "https://argo.eks.production.govuk.digital/applications/cluster-services/#{app_name}"
+    end
+  end
+
   def puppet_url
     return unless production_hosted_on_aws?
 
@@ -110,7 +122,7 @@ class Repo
   end
 
   def deploy_url
-    return if repo_data["deploy_url"] == false || [nil, "none", "heroku"].include?(production_hosted_on)
+    return if repo_data["deploy_url"] == false || [nil, "none", "heroku", "eks"].include?(production_hosted_on)
 
     if production_hosted_on == "paas"
       repo_data["deploy_url"]
@@ -122,7 +134,13 @@ class Repo
   def dashboard_url
     return if repo_data["dashboard_url"] == false
 
-    repo_data["dashboard_url"] || "https://grafana.production.govuk.digital/dashboard/file/#{repo_name}.json"
+    default_url = if production_hosted_on_eks?
+                    query_string = argo_cd_apps.map { |app| "var-app=#{app}" }.join("&")
+                    "https://grafana.eks.production.govuk.digital/d/000000111?#{query_string}"
+                  else
+                    "https://grafana.production.govuk.digital/dashboard/file/#{repo_name}.json"
+                  end
+    repo_data["dashboard_url"] || default_url
   end
 
   def api_docs_url
@@ -181,6 +199,10 @@ class Repo
   end
 
 private
+
+  def argo_cd_apps
+    repo_data["argo_cd_apps"] || [repo_name]
+  end
 
   def puppet_name
     repo_data["puppet_name"] || repo_name.underscore
