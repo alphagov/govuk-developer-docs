@@ -25,26 +25,10 @@ You'll need to choose a non-serious and clearly fake news headline. For example:
 - `LINK`: https://en.wikipedia.org/wiki/Henry_Fielding
 - `LINK_TEXT`: More information
 
-## Drill an end to end incident
-
-Decide on a hypothetical incident scenario, e.g. "GOV.UK is down".
-Walk through the [incident management guidance](/manual/incident-management-guidance.html).
-Use common sense when following the steps (i.e. don't actually publish an incident to Statuspage or email stakeholders).
-
-## Deploy from AWS CodeCommit when Github is unavailable
-
-Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit) instructions.
-
 ## Run a Terraform `plan`
 
 Follow the [Deploy Terraform](/manual/deploying-terraform.html) instructions, picking a project at random.
 You can run this in any environment, as you're only running `plan` - not `apply` - so shouldn't be making any changes.
-
-## Update homepage promotion slots
-
-Follow the [Update homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html) instructions, using an appropriate image and text.
-Open a draft PR, and [deploy your branch to integration](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/).
-Once deployed, [check your change](https://www-origin.integration.govuk.digital/) and redeploy the previous branch to integration.
 
 ## Use a restored database in an app
 
@@ -71,11 +55,6 @@ Make sure you can log into the following accounts:
 1. [Shared NPM account](https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm)
 1. [Shared data.gov.uk publisher account](/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher)
 
-## Drill how to communicate when Slack is down
-
-Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
-See "[If Slack is unavailable](https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp)" for details.
-
 ## Drill scaling up number of workers
 
 In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.
@@ -84,7 +63,26 @@ Pick an application (e.g. `smartanswers`) and drill scaling up the number of wor
 
 Note that you'll need to edit the `integration.yaml` file, not the `production.yaml` file as described in the docs above. And instead of merging to `main`, just build your branch directly to Integration. When you're done drilling, re-deploy the previous release and delete your branch.
 
-## Drill enabling a code freeze
+## Drill 2nd line incident processes
+
+### Drill an end to end incident
+
+Decide on a hypothetical incident scenario, e.g. "GOV.UK is down".
+Walk through the [incident management guidance](/manual/incident-management-guidance.html).
+Use common sense when following the steps (i.e. don't actually publish an incident to Statuspage or email stakeholders).
+
+### Drill how to communicate when Slack is down
+
+Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
+See "[If Slack is unavailable](https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp)" for details.
+
+## Drill special deployment conditions
+
+### Deploy from AWS CodeCommit when Github is unavailable
+
+Follow the [Deploy when GitHub is unavailable](/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit) instructions.
+
+### Drill enabling a code freeze
 
 Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.
 
@@ -93,11 +91,6 @@ Either before merging the change, or part way through the continuous deployment 
 Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.
 
 Remove the code freeze, then manually push the changes to all remaining environments so that they're in sync.
-
-## Drill getting a password out of govuk-secrets
-
-Most of our shared accounts are stored in this repo. Follow the steps to [get a password](https://github.com/alphagov/govuk-secrets/tree/main/pass#get-a-password), a useful one for 2nd line is the [Technical 2nd line Dashboard](https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&layout=2x1-responsive&url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&url%5B%5D=) which shows a high level overview of the state of GOV.UK environments.
-Upon loading this dashboard it will ask for the `govuk-zendesk-display-screen` credentials.
 
 ## Drill making changes to user accounts
 
@@ -138,6 +131,14 @@ You can also try deleting the change note. Again, ensure you do this on Staging 
 On Integration or Staging, follow [Modify a change note in Publishing API](/manual/howto-modify-change-note.html#publishing-api) using [this document](https://www.staging.publishing.service.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements) or one of your choice.
 Once you have successfully updated the change note you can drill [removing a change note in Publishing API](/manual/howto-remove-change-note.html#other-apps).
 
-## Drill updating homepage popular links
+## Drill making changes to the homepage
+
+### Drill updating homepage popular links
 
 Change the homepage popular links following [Update popular links](/manual/update_popular_links.html.md). Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.
+
+### Update homepage promotion slots
+
+Follow the [Update homepage promotion slots](/repos/frontend/update-homepage-promotion-slots.html) instructions, using an appropriate image and text.
+Open a draft PR, and [deploy your branch to integration](https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/).
+Once deployed, [check your change](https://www-origin.integration.govuk.digital/) and redeploy the previous branch to integration.
