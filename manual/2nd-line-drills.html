@@ -135,16 +135,7 @@
         <a href="#drill-publishing-emergency-banner"><span>Drill publishing emergency banner</span></a>
       </li>
       <li>
-        <a href="#drill-an-end-to-end-incident"><span>Drill an end to end incident</span></a>
-      </li>
-      <li>
-        <a href="#deploy-from-aws-codecommit-when-github-is-unavailable"><span>Deploy from AWS CodeCommit when Github is unavailable</span></a>
-      </li>
-      <li>
         <a href="#run-a-terraform-plan"><span>Run a Terraform plan</span></a>
-      </li>
-      <li>
-        <a href="#update-homepage-promotion-slots"><span>Update homepage promotion slots</span></a>
       </li>
       <li>
         <a href="#use-a-restored-database-in-an-app"><span>Use a restored database in an app</span></a>
@@ -156,16 +147,29 @@
         <a href="#drill-logging-into-accounts"><span>Drill logging into accounts</span></a>
       </li>
       <li>
-        <a href="#drill-how-to-communicate-when-slack-is-down"><span>Drill how to communicate when Slack is down</span></a>
-      </li>
-      <li>
         <a href="#drill-scaling-up-number-of-workers"><span>Drill scaling up number of workers</span></a>
       </li>
       <li>
-        <a href="#drill-enabling-a-code-freeze"><span>Drill enabling a code freeze</span></a>
+        <a href="#drill-2nd-line-incident-processes"><span>Drill 2nd line incident processes</span></a>
+        <ul>
+          <li>
+            <a href="#drill-an-end-to-end-incident"><span>Drill an end to end incident</span></a>
+          </li>
+          <li>
+            <a href="#drill-how-to-communicate-when-slack-is-down"><span>Drill how to communicate when Slack is down</span></a>
+          </li>
+        </ul>
       </li>
       <li>
-        <a href="#drill-getting-a-password-out-of-govuk-secrets"><span>Drill getting a password out of govuk-secrets</span></a>
+        <a href="#drill-special-deployment-conditions"><span>Drill special deployment conditions</span></a>
+        <ul>
+          <li>
+            <a href="#deploy-from-aws-codecommit-when-github-is-unavailable"><span>Deploy from AWS CodeCommit when Github is unavailable</span></a>
+          </li>
+          <li>
+            <a href="#drill-enabling-a-code-freeze"><span>Drill enabling a code freeze</span></a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="#drill-making-changes-to-user-accounts"><span>Drill making changes to user accounts</span></a>
@@ -204,7 +208,15 @@
         </ul>
       </li>
       <li>
-        <a href="#drill-updating-homepage-popular-links"><span>Drill updating homepage popular links</span></a>
+        <a href="#drill-making-changes-to-the-homepage"><span>Drill making changes to the homepage</span></a>
+        <ul>
+          <li>
+            <a href="#drill-updating-homepage-popular-links"><span>Drill updating homepage popular links</span></a>
+          </li>
+          <li>
+            <a href="#update-homepage-promotion-slots"><span>Update homepage promotion slots</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </li>
@@ -256,7 +268,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/8442189d1f5e9b09d67ea46735882189822888fd">16 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0e1c35f2b216af032c66656038bf321742859ca6">20 Mar 2023</a>
 </div>
 
  <h1 id='header'>2nd line drills</h1> <p>There are a number of areas that are important to drill on 2nd line and include some tasks you may not necessarily encounter in your mission team. We want to ensure developers have the opportunity to practise these tasks ahead of the real thing and in preparation of going <a href="/manual/on-call.html">on call</a> if you are part of the out of hours rota.</p>
@@ -271,15 +283,8 @@
 <li><code>LINK</code>: https://en.wikipedia.org/wiki/Henry_Fielding</li>
 <li><code>LINK_TEXT</code>: More information</li>
 </ul>
-<h2 id='drill-an-end-to-end-incident'>Drill an end to end incident</h2><p>Decide on a hypothetical incident scenario, e.g. &ldquo;GOV.UK is down&rdquo;.
-Walk through the <a href="/manual/incident-management-guidance.html">incident management guidance</a>.
-Use common sense when following the steps (i.e. don&rsquo;t actually publish an incident to Statuspage or email stakeholders).</p>
-<h2 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h2><p>Follow the <a href="/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit">Deploy when GitHub is unavailable</a> instructions.</p>
 <h2 id='run-a-terraform-plan'>Run a Terraform <code>plan</code></h2><p>Follow the <a href="/manual/deploying-terraform.html">Deploy Terraform</a> instructions, picking a project at random.
 You can run this in any environment, as you&rsquo;re only running <code>plan</code> - not <code>apply</code> - so shouldn&rsquo;t be making any changes.</p>
-<h2 id='update-homepage-promotion-slots'>Update homepage promotion slots</h2><p>Follow the <a href="/repos/frontend/update-homepage-promotion-slots.html">Update homepage promotion slots</a> instructions, using an appropriate image and text.
-Open a draft PR, and <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">deploy your branch to integration</a>.
-Once deployed, <a href="https://www-origin.integration.govuk.digital/">check your change</a> and redeploy the previous branch to integration.</p>
 <h2 id='use-a-restored-database-in-an-app'>Use a restored database in an app</h2><p>On Integration or Staging, follow the <a href="/manual/howto-backup-and-restore-in-aws-rds.html#restore-an-rds-instance-via-the-aws-cli">Restore an RDS instance via the AWS CLI</a> instructions for an app of your choice.</p>
 <h2 id='force-failover-to-gov-uk-mirror-and-emergency-publishing-using-the-gov-uk-mirror'>Force failover to GOV.UK mirror and Emergency publishing using the GOV.UK mirror</h2>
 <ol>
@@ -301,17 +306,19 @@ Once deployed, <a href="https://www-origin.integration.govuk.digital/">check you
 <li><a href="https://github.com/alphagov/govuk-secrets/tree/main/pass/2ndline/npm">Shared NPM account</a></li>
 <li><a href="/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher">Shared data.gov.uk publisher account</a></li>
 </ol>
-<h2 id='drill-how-to-communicate-when-slack-is-down'>Drill how to communicate when Slack is down</h2><p>Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
-See &ldquo;<a href="https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp">If Slack is unavailable</a>&rdquo; for details.</p>
 <h2 id='drill-scaling-up-number-of-workers'>Drill scaling up number of workers</h2><p>In preparation for a spike in traffic, you can increase the number of unicorn workers for an app.</p>
 <p>Pick an application (e.g. <code>smartanswers</code>) and drill scaling up the number of workers, by following <a href="/manual/scale-unicorn-workers.html">scale unicorn workers</a>.</p>
 <p>Note that you&rsquo;ll need to edit the <code>integration.yaml</code> file, not the <code>production.yaml</code> file as described in the docs above. And instead of merging to <code>main</code>, just build your branch directly to Integration. When you&rsquo;re done drilling, re-deploy the previous release and delete your branch.</p>
-<h2 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h2><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.</p>
+<h2 id='drill-2nd-line-incident-processes'>Drill 2nd line incident processes</h2><h3 id='drill-an-end-to-end-incident'>Drill an end to end incident</h3><p>Decide on a hypothetical incident scenario, e.g. &ldquo;GOV.UK is down&rdquo;.
+Walk through the <a href="/manual/incident-management-guidance.html">incident management guidance</a>.
+Use common sense when following the steps (i.e. don&rsquo;t actually publish an incident to Statuspage or email stakeholders).</p>
+<h3 id='drill-how-to-communicate-when-slack-is-down'>Drill how to communicate when Slack is down</h3><p>Ensure you know how to communicate with your 2nd line colleagues if Slack is unavailable.
+See &ldquo;<a href="https://docs.google.com/document/d/144y8c2Ly-kG3JQkRitpBSIN3DrxLnPSmLDezEZRMGi4/edit#heading=h.15tbsnb0xhwp">If Slack is unavailable</a>&rdquo; for details.</p>
+<h2 id='drill-special-deployment-conditions'>Drill special deployment conditions</h2><h3 id='deploy-from-aws-codecommit-when-github-is-unavailable'>Deploy from AWS CodeCommit when Github is unavailable</h3><p>Follow the <a href="/manual/github-unavailable.html#drill-creating-and-deploying-a-branch-from-codecommit">Deploy when GitHub is unavailable</a> instructions.</p>
+<h3 id='drill-enabling-a-code-freeze'>Drill enabling a code freeze</h3><p>Choose a continuously-deployed app where you can make a meaningful change to the default branch, e.g. fixing a typo, or merging a Dependabot PR.</p>
 <p>Either before merging the change, or part way through the continuous deployment process, follow the instructions for <a href="/manual/development-pipeline.html#check-for-or-implement-a-deploy-freeze">implementing a deploy freeze</a> for that app.</p>
 <p>Follow the deployment pipeline in Jenkins. Confirm that no further environment deployments are triggered. For example, if you implemented the deploy freeze just after the app was deployed to Staging, confirm that the app was then not automatically deployed to Production.</p>
 <p>Remove the code freeze, then manually push the changes to all remaining environments so that they&rsquo;re in sync.</p>
-<h2 id='drill-getting-a-password-out-of-govuk-secrets'>Drill getting a password out of govuk-secrets</h2><p>Most of our shared accounts are stored in this repo. Follow the steps to <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass#get-a-password">get a password</a>, a useful one for 2nd line is the <a href="https://alphagov.github.io/frame-splits/index.html?title=2nd+Line+Dashboard&amp;layout=2x1-responsive&amp;url%5B%5D=https%3A%2F%2Fgovuk-secondline-blinken.herokuapp.com%2Fblinken.html&amp;url%5B%5D=https%3A%2F%2Fgrafana.production.govuk.digital%2Fdashboard%2Ffile%2F2ndline_health.json&amp;url%5B%5D=https%3A%2F%2Fgovuk-zendesk-display-screen.herokuapp.com&amp;url%5B%5D=">Technical 2nd line Dashboard</a> which shows a high level overview of the state of GOV.UK environments.
-Upon loading this dashboard it will ask for the <code>govuk-zendesk-display-screen</code> credentials.</p>
 <h2 id='drill-making-changes-to-user-accounts'>Drill making changes to user accounts</h2><h3 id='assign-a-user-to-their-publisher-in-data-gov-uk'>Assign a user to their publisher in data.gov.uk</h3><p><a href="/manual/data-gov-uk-2nd-line.html#logging-into-the-publisher">Log into our shared data.gov.uk publisher account</a>. Pick a <a href="https://ckan.publishing.service.gov.uk/organization">publisher</a> to do a hypothetical walk though of <a href="/manual/data-gov-uk-2nd-line.html#assign-users-to-publishers-setting-user-permissions">Assign users to publishers</a>.</p>
 <h3 id='change-a-user39s-permissions-in-signon'>Change a user&rsquo;s permissions in Signon</h3><p>Carry out a hypothetical walk through of <a href="/manual/manage-sign-on-accounts#unsuspending-a-user">unsuspending a user</a> and <a href="/manual/manage-sign-on-accounts#resetting-a-users-2fa">resetting a user&rsquo;s 2FA</a>.</p>
 <h2 id='drill-creating-and-changing-redirects'>Drill creating and changing redirects</h2><h3 id='redirect-a-route'>Redirect a route</h3><p>On Integration or Staging, follow the <a href="/manual/redirect-routes.html#removing-a-route-created-in-the-short-url-manager">Removing a route created in the Short URL Manager</a> and <a href="/manual/redirect-routes.html#removing-a-route-completely-so-it-can-be-replaced-with-another-route">Removing a route completely so it can be replaced with another route</a> instructions.</p>
@@ -323,7 +330,10 @@ Once you have successfully updated the change note you can drill <a href="/manua
 <p>You can also try deleting the change note. Again, ensure you do this on Staging or Integration.</p>
 <h3 id='modify-a-document39s-change-note-in-publishing-api'>Modify a document&rsquo;s change note in Publishing API</h3><p>On Integration or Staging, follow <a href="/manual/howto-modify-change-note.html#publishing-api">Modify a change note in Publishing API</a> using <a href="https://www.staging.publishing.service.gov.uk/guidance/deer-keepers-tagging-deer-and-reporting-their-movements">this document</a> or one of your choice.
 Once you have successfully updated the change note you can drill <a href="/manual/howto-remove-change-note.html#other-apps">removing a change note in Publishing API</a>.</p>
-<h2 id='drill-updating-homepage-popular-links'>Drill updating homepage popular links</h2><p>Change the homepage popular links following <a href="/manual/update_popular_links.html.md">Update popular links</a>. Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.</p>
+<h2 id='drill-making-changes-to-the-homepage'>Drill making changes to the homepage</h2><h3 id='drill-updating-homepage-popular-links'>Drill updating homepage popular links</h3><p>Change the homepage popular links following <a href="/manual/update_popular_links.html.md">Update popular links</a>. Open a draft PR, and deploy your branch to integration. Once deployed, check your change and redeploy the previous branch to integration.</p>
+<h3 id='update-homepage-promotion-slots'>Update homepage promotion slots</h3><p>Follow the <a href="/repos/frontend/update-homepage-promotion-slots.html">Update homepage promotion slots</a> instructions, using an appropriate image and text.
+Open a draft PR, and <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_App/">deploy your branch to integration</a>.
+Once deployed, <a href="https://www-origin.integration.govuk.digital/">check your change</a> and redeploy the previous branch to integration.</p>
 
 
   <div class='related-content'>
