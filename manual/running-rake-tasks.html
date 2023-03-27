@@ -189,7 +189,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/321704f9a343350e3f85510dd600012283d25f17">20 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0a836c80e1ca19cc2004257df37103a27d145a97">27 Mar 2023</a>
 </div>
 
  <h1 id='header'>Run a rake task</h1> <p>Rake is a task runner for Ruby. There are several different methods of running a rake task:</p>
@@ -213,26 +213,10 @@
 </code></pre></div><p>Finally, run the rake task, e.g.:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv publishing-api bundle exec \
 rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
-</code></pre></div><h2 id='run-a-rake-task-on-eks'>Run a rake task on EKS</h2><p>To run a rake task in Kubernetes, you execute the rake command inside the relevant application container.</p>
-
-<ol>
-<li><p>Find the name of a pod running the application with the rake task defined:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">APP_NAME</span><span class="o">=</span>government-frontend <span class="c"># Change to relevant application name</span>
-
-<span class="nv">POD_NAME</span><span class="o">=</span><span class="si">$(</span>kubectl <span class="nt">-n</span> apps get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span><span class="nv">$APP_NAME</span> <span class="nt">-o</span> go-template <span class="nt">--template</span> <span class="s1">'{{ (index .items 0).metadata.name }}'</span><span class="si">)</span>
-
-<span class="nb">echo</span> <span class="nv">$POD_NAME</span> <span class="c"># Check you've correctly set a pod name</span>
-</code></pre></div></li>
-<li><p>Execute the rake task in the application container:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> <span class="nt">-t</span> <span class="nv">$POD_NAME</span> <span class="nt">--</span> rake <span class="s1">'some_namespace:task_name[arg1,arg2,arg3]'</span>
-</code></pre></div></li>
-</ol>
-
-<blockquote>
-<p><strong>Note</strong></p>
-<p>You may need to escape certain characters in argument strings (including <code>,</code> and <code>&quot;</code>) with a
-backslash. For example <code>\,</code> or <code>\&quot;</code>.</p>
-</blockquote>
+</code></pre></div><h2 id='run-a-rake-task-on-eks'>Run a rake task on EKS</h2><p>To run a rake task in Kubernetes, execute the rake command inside the application container.</p>
+<p>For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/publishing-api <span class="nt">--</span> rake <span class="s1">'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'</span>
+</code></pre></div><p>The output of the command will be streamed to your terminal.</p>
 
 
   <div class='related-content'>
