@@ -49,25 +49,12 @@ rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:
 
 ## Run a rake task on EKS
 
-To run a rake task in Kubernetes, you execute the rake command inside the relevant application container.
+To run a rake task in Kubernetes, execute the rake command inside the application container.
 
-1. Find the name of a pod running the application with the rake task defined:
+For example:
 
-    ```bash
-    APP_NAME=government-frontend # Change to relevant application name
+```sh
+kubectl -n apps exec deploy/publishing-api -- rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
+```
 
-    POD_NAME=$(kubectl -n apps get pods -l=app=$APP_NAME -o go-template --template '{{ (index .items 0).metadata.name }}')
-
-    echo $POD_NAME # Check you've correctly set a pod name
-    ```
-
-1. Execute the rake task in the application container:
-
-    ```bash
-    kubectl -n apps exec -i -t $POD_NAME -- rake 'some_namespace:task_name[arg1,arg2,arg3]'
-    ```
-
-> **Note**
->
-> You may need to escape certain characters in argument strings (including `,` and `"`) with a
-> backslash. For example `\,` or `\"`.
+The output of the command will be streamed to your terminal.
