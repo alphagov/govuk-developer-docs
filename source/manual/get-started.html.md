@@ -83,9 +83,9 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 1. Set up a [GitHub] account. You can use your existing personal account.
 1. [Associate your GitHub account with your GDS email address][associate-email-github], this can be in addition to your personal email address.
-1. Ask your tech lead to add your GitHub username to the [user monitoring system][user-reviewer].
+1. Ask a developer on your team who has production access (e.g. your tech lead) to add your GitHub username to the [user monitoring system][user-reviewer].
 
-    If your tech lead is not available, ask in the [Technical 2nd Line Slack channel](https://gds.slack.com/archives/CADKZN519) for someone who has production access to add you.
+    If no other developers on your team are available, ask in the [Technical 2nd Line Slack channel](https://gds.slack.com/archives/CADKZN519) for someone to add you.
 1. Email <govuk-github-owners@digital.cabinet-office.gov.uk> to request to be added to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos and CI environment, add your tech lead a CC of the email. Please explain in the email which team you are working on and in what role; include a link to the pull request created in the previous step.
 
     Once this request has been actioned you'll receive an email from GitHub, select __Accept__ in the email.
@@ -171,7 +171,7 @@ If you are a frontend developer you do not need to complete this step as part of
 
 ### Get access
 
-Ask your tech lead or [GOV.UK Technical 2nd Line on Slack](https://gds.slack.com/archives/CADKZN519) to add your SSH username (`firstnamelastname`) to the [list of GOV.UK tech users](https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml) in the [user monitoring system][user-reviewer].
+Ask a developer with production access on your team (e.g. your tech lead) to add your SSH username (`firstnamelastname`) to the [list of GOV.UK tech users](https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml) in the [user monitoring system][user-reviewer].
 
 [user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
@@ -221,11 +221,9 @@ User accounts in our integration environments are managed in the [govuk-puppet][
 
 1. Add the name of your user manifest file (`<FIRSTNAMELASTNAME>.pp`) into the list of `users::usernames` in [`hieradata_aws/integration.yaml`][integration-aws-hiera].
 
-1. Create a pull request with these changes.
+1. Create a pull request with these changes and ask a developer in your team to review it.
 
     Once the pull request has been [reviewed][merging], you can merge it and the pull request will automatically deploy to the integration environment.
-
-    Your tech lead or any other developer with access can review this pull request.
 
 [govuk-puppet]: https://github.com/alphagov/govuk-puppet
 [integration-aws-hiera]: https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml
