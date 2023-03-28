@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Sequence Diagrams - GOV.UK Developer Documentation</title>
+    <title>whitehall: PlantUML Diagrams - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/sequence_diagrams/README.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/diagrams/README.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Sequence Diagrams - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/sequence_diagrams/README.html" />
+      <meta name="twitter:title" content="whitehall: PlantUML Diagrams - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/diagrams/README.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Sequence Diagrams" />
+      <meta property="og:title" content="whitehall: PlantUML Diagrams" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/sequence_diagrams/README.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/diagrams/README.html" />
 
     
   </head>
@@ -128,6 +128,7 @@
           <li><a href="/repos/whitehall/api.html" rel="noopener" class="govuk-link">Whitehall API</a></li>
           <li><a href="/repos/whitehall/browser_support.html" rel="noopener" class="govuk-link">Whitehall browser support</a></li>
           <li><a href="/repos/whitehall/css.html" rel="noopener" class="govuk-link">Whitehall CSS Styleguide</a></li>
+          <li><a href="/repos/whitehall/edition_model.html" rel="noopener" class="govuk-link">Edition Model</a></li>
           <li><a href="/repos/whitehall/edition_workflow.html" rel="noopener" class="govuk-link">Edition Workflow</a></li>
           <li><a href="/repos/whitehall/email_delivery.html" rel="noopener" class="govuk-link">Email delivery</a></li>
           <li><a href="/repos/whitehall/finders.html" rel="noopener" class="govuk-link">Finders</a></li>
@@ -144,13 +145,13 @@
           <ul class="subdir__menu">
               <li><a href="/repos/whitehall/adr/0001-add-view-components.html" rel="noopener" class="govuk-link">1. Add View Components</a></li>
           </ul>
+          <li class="subdir__heading">diagrams</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/whitehall/diagrams/README.html" rel="noopener" class="govuk-link">PlantUML Diagrams</a></li>
+          </ul>
           <li class="subdir__heading">misc</li>
           <ul class="subdir__menu">
               <li><a href="/repos/whitehall/misc/guidelines-for-translators.html" rel="noopener" class="govuk-link">guidelines-for-translators</a></li>
-          </ul>
-          <li class="subdir__heading">sequence_diagrams</li>
-          <ul class="subdir__menu">
-              <li><a href="/repos/whitehall/sequence_diagrams/README.html" rel="noopener" class="govuk-link">Sequence Diagrams</a></li>
           </ul>
       </ul>
     </li>
@@ -210,28 +211,20 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/7a678c41a438549ecb67392f06edf68ea6742bf6">4 Aug 2017</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/74404b89b0c1c27c0d2ff195b49b2dc3a36fe3d5">21 Mar 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Sequence Diagrams</h1>
+  <h1 class="page-title">whitehall: PlantUML Diagrams</h1>
 
   
 <p>These diagrams are generated with <a href="http://plantuml.com/">plantuml</a>.</p>
 <pre><code>brew update
 brew install plantuml
-cd docs/sequence_diagrams
-PLANTUML_LIMIT_SIZE=8192 plantuml
+cd docs/diagrams
+PLANTUML_LIMIT_SIZE=8192 plantuml *.puml
 </code></pre>
-<p>You can then edit the <code>.puml</code> files and the images will be live reloaded. This
-can take a few seconds.</p>
+<p>You can also use an IDE plugin, or run a server so you can edit the <code>.puml</code> files and the images will be live reloaded. See <a href="https://plantuml.com/running">the plantuml docs</a> for more.</p>
 
 
             
@@ -239,8 +232,8 @@ can take a few seconds.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/sequence_diagrams/README.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fsequence_diagrams%2FREADME.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/diagrams/README.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fdiagrams%2FREADME.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

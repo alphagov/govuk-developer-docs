@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>whitehall: Search setup guide - GOV.UK Developer Documentation</title>
+    <title>whitehall: Edition Model - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/search_setup_guide.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/whitehall/edition_model.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="whitehall: Search setup guide - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/search_setup_guide.html" />
+      <meta name="twitter:title" content="whitehall: Edition Model - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/edition_model.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="whitehall: Search setup guide" />
+      <meta property="og:title" content="whitehall: Edition Model" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/search_setup_guide.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/whitehall/edition_model.html" />
 
     
   </head>
@@ -211,80 +211,31 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/78bc2e0cc036e9c27eeb68c0655dbb4081de034e">25 Nov 2019</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/74404b89b0c1c27c0d2ff195b49b2dc3a36fe3d5">21 Mar 2023</a>
 </div>
 
-  <h1 class="page-title">whitehall: Search setup guide</h1>
+  <h1 class="page-title">whitehall: Edition Model</h1>
 
   
-<h2 id="setup-search-locally">Setup search locally</h2>
-<p>The Whitehall app relies on
-<a href="https://github.com/alphagov/rummager">Rummager</a> for document
-indexing, and the
-<a href="https://github.com/alphagov/frontend">GOV.UK frontend application</a> to
-serve results.</p>
-<h2 id="rebuilding-whitehall-search-index">Rebuilding Whitehall search index</h2>
-<p>The easiest way to get a search index is to replicate it from the Integration
-environment.  This will not contain local changes to your content, but will be
-enough for many tests. To fetch the replica, use the <code>replicate-elasticsearch.sh</code>
-script from <code>govuk-docker</code> (as documented in <a href="https://github.com/alphagov/govuk-docker#how-to-replicate-data-locally">its README</a>).
-If you need to have local changes in your dev environment copied into the
-search index, you will actually need to rebuild the search index.</p>
-<p>The whitehall search index is called 'government'. Rebuilding of the whitehall
-search index can now be done with a bulk data dump. This also supports
-construction of a new detached index and seamless switchover from the
-existing to the new index. There are two parts to this process, a
-<code>rummager_export.rb</code> script in whitehall which dumps the whitehall data to
-STDOUT, and a <code>bulk_load</code> script in rummager which accepts that data on STDIN
-and loads it into rummager.</p>
-<p>The <code>bulk_load</code> script also takes care of constructing the new offline index,
-locking the index for writes (so that index write workers queue up waiting for
-the new index to come online during indexing, avoiding data loss during
-reindex), and seamlessly switching to the new index on completion.</p>
-<p>Steps:</p>
-<ol>
-<li>
-<p>Make sure you have created the search indices by running the
-following task from the search-api repo:</p>
-<pre><code>SEARCH_INDEX=government bundle exec rake search:migrate_schema
-</code></pre>
-</li>
-<li>
-<p>Run the bulk export and load:</p>
-<pre><code>bundle exec ./script/rummager_export.rb &gt; government.dump
-bundle exec ./script/rummager_export.rb --detailed &gt; detailed.dump
-</code></pre>
-<p>then</p>
-<pre><code>(cd ../rummager &amp;&amp; bundle exec ./bin/bulk_load government) &lt; government.dump
-(cd ../rummager &amp;&amp; bundle exec ./bin/bulk_load detailed) &lt; detailed.dump
-</code></pre>
-</li>
-</ol>
-<h2 id="search-indexing-paths">Search indexing paths</h2>
-<p>There are currently two paths for whitehall searchable classes to be indexed.
-For a list of searchable classes, please refer to <code>Whitehall.edition_classes</code>
-(in <a href="https://github.com/alphagov/whitehall/blob/main/lib/whitehall.rb">lib/whitehall.rb</a>).</p>
-<p>Indexing for searchable classes that inherit from <code>Edition</code> is triggered via the
-<code>ServiceListeners::SearchIndexer</code> listening to the <code>force_publish</code> and <code>publish</code>
-events. Since <code>Edition</code> sets the <code>index_after</code> key in its searchable options hash to
-<code>[]</code>, classes inheriting from it don't trigger indexing when saved.</p>
-<p>To trigger indexing for an instance of these classes in unit/integration tests,
-create an instance in a valid publishing state ('submitted', 'rejected') and
-call <code>EditionService.new(your_instance).perform!</code>.</p>
-<p>Indexing for additional searchable classes is triggered by save. This behaviour
-is defined in <code>Searchable.searchable_options</code>, where the <code>index_after</code> is set to
-<code>:save</code> as a default.</p>
-<p>To trigger indexing for an instance of these classes in unit/integration tests,
-create an instance in a valid publishing state ('submitted', 'rejected') and
-call <code>save!</code> on it.</p>
+<p>This page documents only a subset of the full Document and Edition model world - it is a very complex area and any more detailed documentation risks being too complex to read, and it will rapidly become obsolete.  <em>The source code is the primary source of truth!</em></p>
+<p><img src="https://raw.githubusercontent.com/alphagov/whitehall/main/docs/diagrams/edition_model.png" alt="Edition Model diagram"></p>
+<p>Note, as a simplification, that concerns are not shown.  For instance <code>Attachment</code> is actually linked to an <code>Attachable</code> which is a concern mixed in by <code>Publicationesque</code></p>
+<h2 id="document">Document</h2>
+<p>A document represents all iterations of a publishable document in Whitehall.  It stores the main document type, the <code>content_id</code> which links it to the <a href="https://github.com/alphagov/publishing-api/blob/main/docs/model.md#content_id">Publishing API</a> and the slug, used to locate the document in web pages.</p>
+<p>Each document can have multiple editions - they track the various major revisions of the document.  One edition will be the <code>latest_edition</code> and one may be the <code>live_edition</code> if the document is currently published.</p>
+<h2 id="edition">Edition</h2>
+<p><code>Edition</code> is the parent of a whole forest of different classes that implement varying logic depending on the flavours of edition - the diagram only shows one, <code>Publication</code> for simplicity.</p>
+<p>Editions have a <code>state</code> - see <a href="/repos/whitehall/edition_workflow.html">Edition Workflow</a> for more on the state.</p>
+<h2 id="attachment">Attachment</h2>
+<p>Some editions, such as Publication and its siblings, have Attachments.  These are either html attachments (created using GovSpeak markup), or files, or external attachments.</p>
+<p>HTML Attachments are special, in that they have their own <code>slug</code> and <code>content_id</code> - they are handled separately by the Publishing API - see below.</p>
+<h2 id="relationship-to-publishing-api-model">Relationship to Publishing API model</h2>
+<p>Note that the Publishing API <a href="https://github.com/alphagov/publishing-api/blob/main/docs/model.md">has its own detailed model documentation</a></p>
+<p>Be aware that <strong>Documents and Editions in Whitehall do not always correspond directly with Documents and editions in the Publishing API</strong></p>
+<p>A <code>Document</code> in Whitehall has a <code>content_id</code> which corresponts to a <code>content_id</code> in a matching <code>Document</code> in the Publishing API.</p>
+<p>However Editions do not match 1:1 - Whitehall editions may go through many drafts and revisions which are never published, so will not be stored in the Publishing API.</p>
+<p>Also a <code>HtmlAttachment</code> is handled as a standalone <code>Document</code> - it has its own <code>slug</code> and <code>content_id</code>; when it is published, it becomes a new <code>Document</code> in the Publishing API, with its own editions and workflow.</p>
 
 
             
@@ -292,8 +243,8 @@ call <code>save!</code> on it.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/search_setup_guide.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fsearch_setup_guide.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/whitehall/blob/main/docs/edition_model.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fwhitehall%2Fedition_model.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

@@ -128,6 +128,7 @@
           <li><a href="/repos/whitehall/api.html" rel="noopener" class="govuk-link">Whitehall API</a></li>
           <li><a href="/repos/whitehall/browser_support.html" rel="noopener" class="govuk-link">Whitehall browser support</a></li>
           <li><a href="/repos/whitehall/css.html" rel="noopener" class="govuk-link">Whitehall CSS Styleguide</a></li>
+          <li><a href="/repos/whitehall/edition_model.html" rel="noopener" class="govuk-link">Edition Model</a></li>
           <li><a href="/repos/whitehall/edition_workflow.html" rel="noopener" class="govuk-link">Edition Workflow</a></li>
           <li><a href="/repos/whitehall/email_delivery.html" rel="noopener" class="govuk-link">Email delivery</a></li>
           <li><a href="/repos/whitehall/finders.html" rel="noopener" class="govuk-link">Finders</a></li>
@@ -144,13 +145,13 @@
           <ul class="subdir__menu">
               <li><a href="/repos/whitehall/adr/0001-add-view-components.html" rel="noopener" class="govuk-link">1. Add View Components</a></li>
           </ul>
+          <li class="subdir__heading">diagrams</li>
+          <ul class="subdir__menu">
+              <li><a href="/repos/whitehall/diagrams/README.html" rel="noopener" class="govuk-link">PlantUML Diagrams</a></li>
+          </ul>
           <li class="subdir__heading">misc</li>
           <ul class="subdir__menu">
               <li><a href="/repos/whitehall/misc/guidelines-for-translators.html" rel="noopener" class="govuk-link">guidelines-for-translators</a></li>
-          </ul>
-          <li class="subdir__heading">sequence_diagrams</li>
-          <ul class="subdir__menu">
-              <li><a href="/repos/whitehall/sequence_diagrams/README.html" rel="noopener" class="govuk-link">Sequence Diagrams</a></li>
           </ul>
       </ul>
     </li>
@@ -210,22 +211,17 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/whitehall/commit/4f02cea806918b1ae074b733deba8a09ab614912">16 Jan 2018</a>
+  Last updated: <a href="https://github.com/alphagov/whitehall/commit/74404b89b0c1c27c0d2ff195b49b2dc3a36fe3d5">21 Mar 2023</a>
 </div>
 
   <h1 class="page-title">whitehall: Edition Workflow</h1>
 
   
+<p>(See also <a href="/repos/whitehall/edition_model.html">Edition model</a> for more on the model objects involved)</p>
 <p>Editions will be in one of a number of states. The state machine for them is located in <a href="https://github.com/alphagov/whitehall/blob/main/app/models/edition/workflow.rb">workflow.rb</a>. This configures the possible transitions between states, resulting in this:</p>
-<p><img src="https://raw.githubusercontent.com/alphagov/whitehall/main/docs/misc/edition_transitions.png" alt="Transitions graph"></p>
+<p><img src="https://raw.githubusercontent.com/alphagov/whitehall/main/docs/diagrams/edition_state_transitions.png" alt="Transitions graph"></p>
+<p>Note that a <code>Document</code> has no state, there is just state inferred by the various <code>Edition</code>s.  This diagram doesn't show the effect of multiple editions - sometimes a state transition involves superseding an existing edition and replacing it with a new one, with its own state.</p>
 <h2 id="unpublishing-withdrawal">Unpublishing / Withdrawal</h2>
 <p>Some status is also controlled by the presence or otherwise of a related <code>Unpublishing</code> record. These are created during the <code>withdraw</code> and <code>unpublish</code> transitions. Editors trigger these in the <a href="https://github.com/alphagov/whitehall/blob/main/app/controllers/admin/edition_workflow_controller.rb"><code>EditionWorkflowController</code></a>. The three options for Unpublishing or Withdrawing correspond to an <a href="https://github.com/alphagov/whitehall/blob/main/app/models/unpublishing_reason.rb"><code>UnpublishingReason</code></a>, each of which control the behaviour of a document when visited by a user:</p>
 <table>
