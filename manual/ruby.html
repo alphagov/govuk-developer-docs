@@ -133,18 +133,9 @@
       </li>
       <li>
         <a href="#setting-up-rbenv"><span>Setting up rbenv</span></a>
-      </li>
-      <li>
-        <a href="#add-a-new-ruby-version-in-puppet"><span>Add a new Ruby version in puppet</span></a>
         <ul>
           <li>
-            <a href="#building-the-fpm-package-"><span>Building the fpm package.</span></a>
-          </li>
-          <li>
-            <a href="#add-to-puppet"><span>Add to Puppet</span></a>
-          </li>
-          <li>
-            <a href="#update-ruby-version-in-the-relevant-repos"><span>Update Ruby version in the relevant repos</span></a>
+            <a href="#updating-the-ruby-version-in-apps"><span>Updating the Ruby version in apps</span></a>
           </li>
         </ul>
       </li>
@@ -198,56 +189,37 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bd6c66401cedf3f0b230741c9a638a47148d2a0b">3 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/be37026065db8ce4688303c958d5fd99b7cc8c24">28 Mar 2023</a>
 </div>
 
  <h1 id='header'>Add a new Ruby version</h1> <p>The <a href="https://www.ruby-lang.org/en/">Ruby language</a> is a core part of GOV.UK - most of our applications are written in it.</p>
-<h2 id='managing-different-versions-of-ruby'>Managing different versions of Ruby</h2><p>Each app can use whatever version of Ruby it wants. We manage this with
-<a href="https://github.com/rbenv/rbenv">rbenv</a>.</p>
+<h2 id='managing-different-versions-of-ruby'>Managing different versions of Ruby</h2><p>Each app can use whatever version of Ruby it wants. For development purposes we manage this locally with
+<a href="https://github.com/rbenv/rbenv">rbenv</a>, and when apps are deployed they are built with a container that uses the requested version.</p>
 <h2 id='setting-up-rbenv'>Setting up rbenv</h2><p>We set up rbenv differently depending on what&rsquo;s going on:</p>
 
 <ul>
 <li>Interactive login shells: <code>/etc/profile.d/rbenv.sh</code> sets up rbenv</li>
 <li>Applications: <code>govuk_setenv</code> and a <code>.ruby-version</code> in the app directory set up rbenv</li>
-<li>Deployment: Capistrano uses a non -login shell so we <a href="https://github.com/alphagov/govuk-app-deployment/blob/master/recipes/ruby.rb#L4">set <code>default_environment</code></a>
-(<a href="https://github.com/alphagov/alphagov-deployment/commit/b6404e33c354ef63f01c13b202ce0cf2ed2975fc">commit</a>)</li>
-<li>Testing: Jenkins uses a non-login shell so we <a href="https://github.com/alphagov/govuk-secrets/blob/master/puppet/hieradata/integration_credentials.yaml">add <code>/usr/lib/rbenv/shims</code> to the <code>PATH</code></a></li>
-<li>Cronjobs: some cronjobs start with <code>/bin/bash -l -c</code> which runs a login shell</li>
 </ul>
-<h2 id='add-a-new-ruby-version-in-puppet'>Add a new Ruby version in puppet</h2><p>You will need to build a new <a href="/manual/debian-packaging.html#fpm">fpm</a> package with the new Ruby version.
-This package can then be copied to Aptly machine, and the new version added to puppet.</p>
-<h3 id='building-the-fpm-package-'>Building the fpm package.</h3>
-<ul>
-<li><p>Add a new recipe for the ruby version in <a href="https://github.com/alphagov/packager/tree/master/fpm/recipes">Packager</a>.
-The folder name will be the Ruby version, and contain a <code>recipe.rb</code> file. See previous entries for examples.
-The recipe will require the <a href="https://emn178.github.io/online-tools/sha256_checksum.html">SHA256</a> of the version&rsquo;s <code>tar.gz</code>, available at <a href="https://cache.ruby-lang.org/pub/ruby/">Ruby cache</a>.</p></li>
-<li><p>Once the Packager change is merged, <a href="https://ci.integration.publishing.service.gov.uk/job/build_fpm_package">build the package</a>.</p></li>
-<li><p>Then test and upload the package to Aptly. See <a href="https://docs.publishing.service.gov.uk/manual/debian-packaging.html#fpm">https://docs.publishing.service.gov.uk/manual/debian-packaging.html#fpm</a>.</p></li>
-</ul>
-<h3 id='add-to-puppet'>Add to Puppet</h3><p>Once it&rsquo;s available as a package in Aptly you can <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_rbenv/manifests/all.pp">install it everywhere using Puppet</a>.
-However, machines only run <code>apt-get update</code> periodically (<a href="https://docs.publishing.service.gov.uk/manual/alerts/security-updates.html">nightly</a>)
-so it might take time for the package to become available.</p>
-<p>You can speed things along by SSH&#39;ing into the relevant machine and running <code>sudo apt-get update</code>,
-then <code>govuk_puppet --test</code>. You should see a successful Ruby install as part of the Puppet run.</p>
-<p>You&rsquo;ll need to do that on <code>jenkins</code> (and, if impatient, each of the <code>ci_agent</code> machines) first to get the PR&rsquo;s tests passing,
-and then on the respective machine that your app will run on (e.g. <code>backend</code>).</p>
-<h3 id='update-ruby-version-in-the-relevant-repos'>Update Ruby version in the relevant repos</h3><p>We use <a href="https://github.com/alphagov/bulk-changer">bulk-changer</a> to automatically raise pull requests in GOV.UK repositories to update Ruby applications. Please note, we manage the <a href="/manual/publishing-a-ruby-gem.html#ruby-version-compatibility">Ruby version in gems</a> differently to applications.</p>
+<h3 id='updating-the-ruby-version-in-apps'>Updating the Ruby version in apps</h3><h4 id='automatically-raising-prs'>Automatically raising PRs</h4><p>We use <a href="https://github.com/alphagov/bulk-changer">bulk-changer</a> to automatically raise pull requests in GOV.UK repositories to update Ruby applications. Please note, we manage the <a href="/manual/publishing-a-ruby-gem.html#ruby-version-compatibility">Ruby version in gems</a> differently to applications.</p>
+<p>For applications, you will usually need to change the ruby version in two places - in .ruby-version (which is used by rbenv), and in Dockerfile (which is used during deployment)</p>
 <p>It&rsquo;s advised not to use your personal GitHub account to create the access token required by the script, as another developer will need to approve the PRs. You can use <a href="https://github.com/govuk-ci">govuk-ci GitHub account</a>. The login credentials for the account can be fetched from <a href="https://github.com/alphagov/govuk-secrets/tree/main/pass">govuk-secrets</a> with:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>PASSWORD_STORE_DIR=~/govuk/govuk-secrets/pass/2ndline pass github/govuk-ci
-</code></pre></div><p>Once the PRs are raised, you should test the changes before merge, as follows:</p>
+</code></pre></div><h4 id='manually-raising-a-pr'>Manually raising a PR</h4><p>You can also create your own branch, update the two files as above, and raise a PR.</p>
+<h4 id='updating-individual-applications'>Updating individual applications</h4><p>For each application a PR is raised for (either manually or via bulk-changer), you should test the changes before merge, as follows:</p>
 
 <ol>
 <li>Most apps will run a test suite through CI. You should check the output of this for any Ruby deprecation warnings. If there are any warnings, they should be fixed.</li>
-<li>Next, you should build the ruby upgrade branch of the app to Integration, and manually test its features to ensure that the new Ruby version hasn&rsquo;t broken the app.</li>
-<li>It&rsquo;s worth checking the logs for deprecation warnings at this point (and fixing them), in case there are warnings that weren&rsquo;t flagged by the test suite run.</li>
-<li>Next, check our monitoring tools, such as Grafana and Sentry.</li>
-<li>The PR should be safe to merge.</li>
-<li>Before the application will run with the new version, it will need to be restarted as well as deployed as normal. You can do this by running the <code>deploy:with_hard_restart</code> deploy task within the &lsquo;Deploy App&rsquo; job in Jenkins.</li>
-</ol>
+<li>Next, you should deploy the updated branch of the app to Integration, and manually test its features to ensure that the new Ruby version hasn&rsquo;t broken the app.</li>
+<li>It&rsquo;s worth <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/manage-app/get-app-info/#view-app-logs">checking the logs</a> for deprecation warnings at this point (and fixing them), in case there are warnings that weren&rsquo;t flagged by the test suite run.</li>
+<li>Next, check our monitoring tools
 
-<blockquote>
-<p><strong>NOTE</strong> If the application is deployed without being restarted (e.g via continuous deployment) you will need to manually restart. You can do this by running the <code>app:hard_restart</code> deploy task within the &lsquo;Deploy App&rsquo; job in Jenkins.</p>
-</blockquote>
+<ol>
+<li>Grafana: Visit <a href="https://grafana.eks.integration.govuk.digital/?orgId=1&amp;search=open&amp;q=app+request+rates">Grafana Integration</a>, Select <code>General/App: request rates, errors, durations</code>, then choose your app from the apps dropdown.</li>
+<li>Sentry: Visit <a href="https://govuk.sentry.io/projects/">Sentry Projects</a>, choose your app, then use the All Envs drop down to select Integration EKS</li>
+</ol></li>
+<li>The PR should be safe to merge.</li>
+</ol>
 
 
   <div class='related-content'>

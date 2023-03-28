@@ -250,42 +250,45 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
-<p><strong>This is a work in progress. This code does not represent production infrastructure yet. For the canonical source of GOV.UK&rsquo;s infrastructure, see <a href="https://github.com/alphagov/govuk-aws">alphagov/govuk-aws</a> and <a href="https://github.com/alphagov/govuk-puppet">alphagov/govuk-puppet</a> repos.</strong></p>
+<h2 id="whats-in-this-repo">What&rsquo;s in this repo</h2>
 
-<h3 id="whats-in-this-repo">What&rsquo;s in this repo</h3>
+<p>The govuk-infrastructure repo contains Terraform modules for turning up an EKS Kubernetes cluster for GOV.UK.</p>
 
-<p>The govuk-infrastructure repo contains Terraform modules for turning up an EKS cluster for GOV.UK.</p>
+<h3 id="whats-not-in-this-repo">What&rsquo;s not in this repo</h3>
 
-<p>Helm charts have moved to <a href="https://github.com/alphagov/govuk-helm-charts">alphagov/govuk-helm-charts</a>.</p>
+<p>Helm charts for GOV.UK applications are in <a href="https://github.com/alphagov/govuk-helm-charts">alphagov/govuk-helm-charts</a>.</p>
 
-<h3 id="usage">Usage</h3>
+<p>Base image definitions for GOV.UK Ruby apps are in <a href="https://github.com/alphagov/govuk-ruby-images/">alphagov/govuk-ruby-images</a>.</p>
 
-<p>To install the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/.terraform-version">currently used version of Terraform</a>:</p>
+<p>Some AWS services for GOV.UK are still configured using the legacy <a href="https://github.com/alphagov/govuk-aws/">alphagov/govuk-aws</a> (public) and <a href="https://github.com/alphagov/govuk-aws-data/">alphagov/govuk-aws-data</a> (private) repos.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>To install the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/.terraform-version">currently-used version of Terraform</a>:</p>
 
 <pre lang="shell"><code>brew install tfenv
 cd terraform/
 tfenv install
 </code></pre>
 
-<h3 id="working-on-this-repo">Working on this repo</h3>
+<h2 id="working-on-this-repo">Working on this repo</h2>
 
-<p>We have some recommended pre-commit scripts. If you&rsquo;re making changes to this
-repo, it&rsquo;s worth setting up the pre-commit hooks on your machine:</p>
-
-<p><a href="https://pre-commit.com/#install">https://pre-commit.com/#install</a></p>
+<p>We have some <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/.pre-commit-config.yaml">recommended pre-commit hooks</a>. If
+you&rsquo;re making changes to this repo, please <a href="https://pre-commit.com/#install">install the pre-commit
+hooks</a> on your machine.</p>
 
 <p>See <a href="https://github.com/alphagov/gds-pre-commit">alphagov/gds-pre-commit</a> for
 more recommendations on using pre-commit.</p>
 
-<h3 id="documentation">Documentation</h3>
+<h2 id="documentation">Documentation</h2>
 
-<p>Further documentation about how to perform various tasks can be found <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs">here</a></p>
+<p>See the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/docs/">docs/</a> directory.</p>
 
-<p>There are also docs in the <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/docs">terraform/docs</a> and directories.</p>
+<p>There are also docs in <a href="https://github.com/alphagov/govuk-infrastructure/blob/main/terraform/docs/">terraform/docs/</a> and inline READMEs in some directories.</p>
 
-<h3 id="who-we-are">Who we are</h3>
+<h2 id="team">Team</h2>
 
-<p>We&rsquo;re the GOV.UK Replatforming team, discovering the future of GOV.UK&rsquo;s infrastructure, one line of code at a time. You can find us in #govuk-replatforming on the GDS Slack, and our <a href="https://trello.com/b/u4FCzm53/">(internal) Trello board exists</a>.</p>
+<p>GOV.UK Replatforming team looks after this repo. If you&rsquo;re inside GDS, you can find us in <a href="https://gds.slack.com/archives/C013F737737">#govuk-replatforming</a> or view our <a href="https://trello.com/b/u4FCzm53/">kanban board</a>.</p>
 
 <h2 id="licence">Licence</h2>
 
