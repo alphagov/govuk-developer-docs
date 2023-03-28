@@ -268,7 +268,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cbea0eca36a572aa93ce40aa0ee27c97a1250cb9">8 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/41a643b9e2eba1ad51ccd482ffc5cfe1b744fae7">28 Mar 2023</a>
 </div>
 
  <h1 id='header'>Get started on GOV.UK</h1> <p><strong>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a>. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.</strong></p>
@@ -313,8 +313,8 @@
 <ol>
 <li>Set up a <a href="https://www.github.com/">GitHub</a> account. You can use your existing personal account.</li>
 <li><a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account">Associate your GitHub account with your GDS email address</a>, this can be in addition to your personal email address.</li>
-<li><p>Ask your tech lead to add your GitHub username to the <a href="https://github.com/alphagov/govuk-user-reviewer">user monitoring system</a>.</p>
-<p>If your tech lead is not available, ask in the <a href="https://gds.slack.com/archives/CADKZN519">Technical 2nd Line Slack channel</a> for someone who has production access to add you.</p></li>
+<li><p>Ask a developer on your team who has production access (e.g. your tech lead) to add your GitHub username to the <a href="https://github.com/alphagov/govuk-user-reviewer">user monitoring system</a>.</p>
+<p>If no other developers on your team are available, ask in the <a href="https://gds.slack.com/archives/CADKZN519">Technical 2nd Line Slack channel</a> for someone to add you.</p></li>
 <li><p>Email <a href="mailto:govuk-github-owners@digital.cabinet-office.gov.uk">govuk-github-owners@digital.cabinet-office.gov.uk</a> to request to be added to the <a href="https://github.com/alphagov">alphagov organisation</a> and the <a href="https://github.com/orgs/alphagov/teams/gov-uk/members">GOV.UK team</a> to get access to repos and CI environment, add your tech lead a CC of the email. Please explain in the email which team you are working on and in what role; include a link to the pull request created in the previous step.</p>
 <p>Once this request has been actioned you&rsquo;ll receive an email from GitHub, select <strong>Accept</strong> in the email.</p></li>
 <li><p><a href="https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account">Add the SSH key to your GitHub account</a>.</p></li>
@@ -357,7 +357,7 @@ brew <span class="nb">install</span> <span class="nt">--cask</span> aws-vault
 <p>To set up GOV.UK Docker, see the <a href="https://github.com/alphagov/govuk-docker/blob/master/README.md">installation instructions in the <code>govuk-docker</code> GitHub repo</a>.</p>
 <p>You can also try developing outside of Docker, using tools like <a href="https://github.com/rbenv/rbenv">rbenv</a> directly. <a href="https://docs.publishing.service.gov.uk/manual/local-frontend-development.html">This approach generally works for frontend apps</a> but not for other apps with databases, etc., and is not officially supported.</p>
 <h2 id='7-get-ssh-access-to-integration'>7. Get SSH access to integration</h2><p>If you are a frontend developer you do not need to complete this step as part of your initial setup.</p>
-<h3 id='get-access'>Get access</h3><p>Ask your tech lead or <a href="https://gds.slack.com/archives/CADKZN519">GOV.UK Technical 2nd Line on Slack</a> to add your SSH username (<code>firstnamelastname</code>) to the <a href="https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml">list of GOV.UK tech users</a> in the <a href="https://github.com/alphagov/govuk-user-reviewer">user monitoring system</a>.</p>
+<h3 id='get-access'>Get access</h3><p>Ask a developer with production access on your team (e.g. your tech lead) to add your SSH username (<code>firstnamelastname</code>) to the <a href="https://github.com/alphagov/govuk-user-reviewer/blob/master/config/govuk_tech.yml">list of GOV.UK tech users</a> in the <a href="https://github.com/alphagov/govuk-user-reviewer">user monitoring system</a>.</p>
 <h3 id='create-a-user-to-ssh-into-integration'>Create a user to SSH into integration</h3><p>User accounts in our integration environments are managed in the <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> repository.</p>
 
 <ol>
@@ -392,9 +392,8 @@ class users::&lt;johnsmith&gt; {
 }
 </code></pre></div></li>
 <li><p>Add the name of your user manifest file (<code>&lt;FIRSTNAMELASTNAME&gt;.pp</code>) into the list of <code>users::usernames</code> in <a href="https://github.com/alphagov/govuk-puppet/blob/master/hieradata_aws/integration.yaml"><code>hieradata_aws/integration.yaml</code></a>.</p></li>
-<li><p>Create a pull request with these changes.</p>
-<p>Once the pull request has been <a href="/manual/merge-pr.html">reviewed</a>, you can merge it and the pull request will automatically deploy to the integration environment.</p>
-<p>Your tech lead or any other developer with access can review this pull request.</p></li>
+<li><p>Create a pull request with these changes and ask a developer in your team to review it.</p>
+<p>Once the pull request has been <a href="/manual/merge-pr.html">reviewed</a>, you can merge it and the pull request will automatically deploy to the integration environment.</p></li>
 </ol>
 <h3 id='access-remote-environments-and-server'>Access remote environments and server</h3><p>Once your pull request with your user manifest file is merged and deployed, you should test your SSH access to remote environments and servers.</p>
 <p>If you are outside of the office or on GovWiFi, you must first <a href="#4-connect-to-the-gds-vpn">connect to the GDS VPN</a>.</p>

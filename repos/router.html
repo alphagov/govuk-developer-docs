@@ -232,11 +232,10 @@
 </div></dl>
     <div class="gem-c-summary__block"></div>
 </div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
+<h2 id='readme'>README</h2><p><div class="embedded-readme">
+    <p>-# router</p>
 <p>This is a HTTP reverse proxy router built on top of <a href="https://github.com/alphagov/router/tree/master/triemux"><code>triemux</code></a>. It
 loads a routing table into memory from a MongoDB database and acts as a:</p>
-
 <ul>
 <li>Reverse proxy, forwarding requests to and serving responses from multiple
 backend servers on a single domain.</li>
@@ -244,80 +243,53 @@ backend servers on a single domain.</li>
 <li>Gone responder, serving HTTP <code>410</code> responses for resources that used to
 but no longer exist.</li>
 </ul>
-
 <p>The sister project <a href="https://github.com/alphagov/router-api"><code>router-api</code></a> provides a read/write
 interface to the underlying database and route reloading.</p>
-
 <h2 id="technical-documentation">Technical documentation</h2>
-
 <p>Recommended reading: <a href="https://golang.org/doc/code.html">How to Write Go Code</a></p>
-
 <p>You can use the <a href="https://github.com/alphagov/govuk-docker">GOV.UK Docker environment</a> to run the application and its tests with all the necessary dependencies. Follow <a href="https://github.com/alphagov/govuk-docker#usage">the usage instructions</a> to get started.</p>
-
 <p><strong>Use GOV.UK Docker to run any commands that follow.</strong></p>
-
 <h3 id="running-the-test-suite">Running the test suite</h3>
-
 <p>You can run all tests by running:</p>
-
 <pre><code>make test
 </code></pre>
-
 <p>The <code>trie</code> and <code>triemux</code> sub-packages have unit tests and benchmarks written
 in Go&rsquo;s own testing framework. To run them individually:</p>
-
 <pre><code>go test -bench=. ./trie ./triemux
 </code></pre>
-
 <p>The <code>router</code> itself doesn&rsquo;t really benefit from having unit tests around
 individual functions. Instead it has a comprehensive set of integration
 tests to exercise it&rsquo;s HTTP handling, error reporting, and performance.</p>
-
 <pre><code>go test ./integration_tests
 </code></pre>
-
 <h3 id="updating-dependencies">Updating dependencies</h3>
-
 <p>This project uses <a href="https://github.com/golang/go/wiki/Modules">Go Modules</a> to vendor its dependencies. To update the dependencies:</p>
-
 <pre><code>go mod vendor
 </code></pre>
-
 <h3 id="updating-the-version-of-go">Updating the version of Go</h3>
-
-<p>Dependabot raises PR&rsquo;s to update the dependencies for Router. This includes raising a PR when a new version of Go is available. However to update the version of Go, it&rsquo;s necessary to do more than just merge this dependabot PR. Here are the steps:</p>
-
+<p>Dependabot raises PR&rsquo;s to update the dependencies for Router. This includes raising a PR when a new version of Go is available. However to update the version of Go, it&rsquo;s necessary to do more than just merge this dependabot PR. Here is an <a href="https://github.com/alphagov/router/pull/345/files">example PR</a> with all the below changes, and here are the steps:</p>
 <ol>
-<li>Install the new version of Go on the CI machines (See <a href="#why-do-we-install-go-on-ci-machines-rather-than-cache-machines">Why do we install Go on CI machines rather than Cache machines?</a>). You do this via puppet. See <a href="https://github.com/alphagov/govuk-puppet/pull/11457/files">here</a> for an example PR. Once this PR has been approved and merged wait for puppet to run, or trigger a puppet run yourself as per <a href="https://docs.publishing.service.gov.uk/manual/deploy-puppet.html#convergence">the developer docs</a>.</li>
-<li>Dependabot&rsquo;s PR will modify the Go version in the Dockerfile, but you also need to update the version number in the file <code>.go-version</code> See <a href="https://github.com/alphagov/router/pull/241/files">here</a> for an example PR.</li>
-<li>You will also have to update the Go version in <code>go.mod</code>. This will necessitate having Go installed on your local machine, changing the version number and running in terminal <code>go mod tidy</code> and <code>go mod vendor</code> in sequence to update correctly. See <a href="https://github.com/alphagov/router/pull/307/commits/c0e4d753a48c71e84a3e4734389191e36bae9611">example pr</a>. Also see <a href="#upgrading-go-modules">Upgrading Go Modules</a>.</li>
+<li>Dependabot&rsquo;s PR will modify the Go version in the Dockerfile (and thus what is build in the Kubernetes engine), but you also need to update the version number in the file <code>.go-version</code>.</li>
+<li>You will also have to update the Go version in <code>go.mod</code>. This will necessitate having Go installed on your local machine, changing the version number and running in terminal <code>go mod tidy</code> and <code>go mod vendor</code> in sequence to update correctly. This may have no changes at all, but see <a href="https://github.com/alphagov/router/pull/307/commits/c0e4d753a48c71e84a3e4734389191e36bae9611">example pr</a> for a larger update. Also see <a href="#upgrading-go-modules">Upgrading Go Modules</a>.</li>
+<li>Finally you need to update the go version in <code>ci.yml</code>.</li>
 <li>Before you merge this PR, put the branch onto staging and leave it there for a couple of weekdays. Check for anything unexpected in icinga and sentry.</li>
 <li>If you are confident that the version bump is safe for production, you can merge your PR and deploy it to production. It is best to do this at a quiet time of the day (such as 7am) to minimise any potential disruption.</li>
+<li>Make sure govuk-docker is updated to match the new version. See <a href="https://github.com/alphagov/govuk-docker/pull/643/files">here</a>.</li>
 </ol>
-
 <h4 id="upgrading-go-modules">Upgrading Go Modules</h4>
-
 <p>Sometimes modules will need to be manually upgraded after the above steps. This will satisfy dependencies that are old and do not use the <code>go.mod</code> file management system. Most likely you will see errors that require this when there is a failure to properly vendor <code>go.mod</code> due to an unsupported feature call in a dependency.</p>
-
 <p>To do this, you&rsquo;ll require GoLang installed on your machine.</p>
-
 <ol>
 <li>First, follow point 3 of the above <a href="#updating-the-version-of-go">guide for upgrating</a> the version of Go.</li>
 <li>If you determine through test failures that a module will need to be upgraded, in terminal at the root of <code>router</code> type in the following: <code>go get -u [repo-of-module]</code> - For example: <code>go get -u github.com/streadway/quantile</code>
 </li>
 <li>Run <code>go mod tidy</code> and <code>go mod vendor</code>. Check for any errors and commit.</li>
 </ol>
-
 <p>You may have to push your branch to see if this causes further errors on the Jenkins CI machines.</p>
-
 <h4 id="why-do-we-install-go-on-ci-machines-rather-than-cache-machines">Why do we install Go on CI machines rather than Cache machines?</h4>
-
 <p>Router is built on CI machines; the artefact is then <a href="https://github.com/alphagov/router/blob/main/Jenkinsfile#L68">uploaded to S3</a> for use in deployment. In  deployment, the artefact is <a href="https://github.com/alphagov/govuk-app-deployment/blob/master/router%2Fconfig%2Fdeploy.rb#L30">retrieved from S3</a> and uploaded to the cache machines prior to a restart.</p>
-
 <p>The updated version of golang is <a href="https://github.com/alphagov/govuk-puppet/search?q=golang">only uploaded to Jenkins and CI agents</a>.</p>
-
 <h3 id="further-documentation">Further documentation</h3>
-
 <ul>
 <li><a href="/repos/router/data-structure.html">Data structure</a></li>
 <li><a href="https://gdstechnology.blog.gov.uk/2013/12/05/building-a-new-router-for-gov-uk">Original thinking behind the router</a></li>
@@ -325,11 +297,9 @@ tests to exercise it&rsquo;s HTTP handling, error reporting, and performance.</p
 <a href="https://github.com/alphagov/router/commit/b443d3dd9cf776143eed270d01bd98d2233caea6">Example of adding a metric</a> using the <a href="https://godoc.org/github.com/dnesting/client_golang/prometheus">Go prometheus client library</a>
 </li>
 </ul>
-
 <h2 id="licence">Licence</h2>
-
 <p><a href="https://github.com/alphagov/router/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  </div></p>
 
 
             
