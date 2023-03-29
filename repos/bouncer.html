@@ -310,6 +310,47 @@ global: =301 https://www.gov.uk
 
 <p>You should see that it redirects to GOV.UK, as specified in the site file.</p>
 
+<h3 id="data-storage">Data storage</h3>
+
+<p>Lists of domain names, old URLs and URLs to redirect to are stored in a
+PostgreSQL database to which the application has read-only access.</p>
+
+<h2 id="example-application-urls">Example application URLs</h2>
+
+<p>Here are some examples using a few of the many domain names which is served by
+Bouncer:</p>
+
+<table>
+<thead>
+<tr>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="http://www.attorneygeneral.gov.uk/aboutus/pages/civilcriminalpanels.aspx">http://www.attorneygeneral.gov.uk/aboutus/pages/civilcriminalpanels.aspx</a></td>
+<td>Serves a redirect to a page on GOV.UK</td>
+</tr>
+<tr>
+<td><a href="http://www.bonavacantia.gov.uk/output/accessibility.aspx">http://www.bonavacantia.gov.uk/output/accessibility.aspx</a></td>
+<td>Serves a 410 archive page</td>
+</tr>
+<tr>
+<td><a href="http://rdpenetwork.defra.gov.uk/i-made-this-up">http://rdpenetwork.defra.gov.uk/i-made-this-up</a></td>
+<td>Serves a 404 not found page</td>
+</tr>
+<tr>
+<td><a href="http://www.attorneygeneral.gov.uk/sitemap.xml">http://www.attorneygeneral.gov.uk/sitemap.xml</a></td>
+<td>Serves a sitemap of all redirects for the domain</td>
+</tr>
+<tr>
+<td><a href="http://www.attorneygeneral.gov.uk/robots.txt">http://www.attorneygeneral.gov.uk/robots.txt</a></td>
+<td>Serves a minimal robots.txt</td>
+</tr>
+</tbody>
+</table>
+
 <h2 id="licence">Licence</h2>
 
 <p><a href="https://github.com/alphagov/bouncer/blob/main/LICENCE">MIT License</a></p>
