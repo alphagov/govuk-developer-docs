@@ -69,25 +69,28 @@ instead add an app specific workflow to release the gem
 
 Our policy is that our Ruby gems are compatible with all [currently supported
 minor versions of Ruby][supported-rubies]. For example, in November 2022, There
-are supported Ruby releases of 2.7, 3.0 and 3.1, thus we expect gems to be
+were supported Ruby releases of 2.7, 3.0 and 3.1, thus we expected gems to be
 compatible with each of those and be tested against them (there is
 [documentation][testing-gems] on the approach to test them).
 
 We specify the minimum Ruby version supported in the [gemspec file][gemspec-ruby-version]
 and expect the `.ruby-version` to match that version. For example, if Ruby 2.7
-is the oldest supported minor version we expect gems to require Ruby 2.7 or
+is the oldest supported minor version, we expect gems to require Ruby 2.7 or
 greater and the `.ruby-version` file to reference the most recent Ruby 2.7
-release (which in November 2022 is 2.7.6).
+release (which in November 2022 was 2.7.6).
 
 When new minor versions of Ruby are released (typically each Christmas) we
 update gems to test against the new version. For example, when Ruby 3.2
-is released our gem test matrices should be expanded to test against Ruby 3.2.
+was released, our gem test matrices were expanded to test against Ruby 3.2.
 
 When Ruby versions reach end-of-life (typically April) we update gems
 to drop support for that Ruby version and update the `.ruby-version` files to
-the next supported version. For example, when Ruby 2.7 reaches end of life, we drop 2.7
-from the test matrices and we update the `.ruby-version` file to be the most
-recent release of the 3.0 branch (which in November 2022 is 3.0.4).
+the next supported version. For example, when Ruby 2.7 reached end of life, we dropped 2.7
+from the test matrices and we updated the `.ruby-version` file to be the most
+recent release of the 3.0 branch, which in March 2023 was 3.0.5
+(see [example](https://github.com/alphagov/gds-api-adapters/pull/1191)).
+We then release the updated gem as a major version, due to this being a breaking change
+(see [example](https://github.com/alphagov/gds-api-adapters/pull/1192)).
 
 [supported-rubies]: https://www.ruby-lang.org/en/downloads/branches/
 [testing-gems]: /manual/test-and-build-a-project-with-github-actions.html#a-ruby-gem
