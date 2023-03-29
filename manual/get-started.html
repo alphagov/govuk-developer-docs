@@ -210,10 +210,13 @@
         </ul>
       </li>
       <li>
-        <a href="#10-get-a-signon-account-for-integration"><span>10. Get a Signon account for integration</span></a>
+        <a href="#10-set-up-tools-to-use-the-gov-uk-kubernetes-platform"><span>10. Set up tools to use the GOV.UK Kubernetes platform</span></a>
       </li>
       <li>
-        <a href="#11-get-access-to-the-release-app"><span>11. Get access to the Release app</span></a>
+        <a href="#11-get-a-signon-account-for-integration"><span>11. Get a Signon account for integration</span></a>
+      </li>
+      <li>
+        <a href="#12-get-access-to-the-release-app"><span>12. Get access to the Release app</span></a>
       </li>
       <li>
         <a href="#supporting-information"><span>Supporting information</span></a>
@@ -268,7 +271,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/41a643b9e2eba1ad51ccd482ffc5cfe1b744fae7">28 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/579e84d855319f9546fb52e118b9751eda367b9f">29 Mar 2023</a>
 </div>
 
  <h1 id='header'>Get started on GOV.UK</h1> <p><strong>This getting started guide is for new technical staff (for example developers, technical architects) working on GOV.UK in <a href="https://gds.blog.gov.uk/about/">GDS</a>. Please note this guidance is only for the GOV.UK programme of GDS, it is not for Digital Identity, Digital Services Platforms or any other part of GDS.</strong></p>
@@ -503,11 +506,12 @@ Enter token <span class="k">for </span>arn:aws:iam::123456789012:mfa/firstname.l
 <li>Delete the <code>aws-vault</code> keychain by running <code>rm ~/Library/Keychains/aws-vault.keychain-db</code> in the command line.</li>
 <li>Re-initialise the <code>gds-cli</code> by opening <code>~/.gds/config.yml</code> and changing <code>initialised: true</code> to <code>initialised: false</code>.</li>
 </ol>
-<h2 id='10-get-a-signon-account-for-integration'>10. Get a Signon account for integration</h2><p><a href="https://docs.publishing.service.gov.uk/repos/signon.html">Signon</a> is the application used to control access to the
+<h2 id='10-set-up-tools-to-use-the-gov-uk-kubernetes-platform'>10. Set up tools to use the GOV.UK Kubernetes platform</h2><p>Follow <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/">the instructions for setting up tools to use the GOV.UK Kubernetes platform</a>.</p>
+<h2 id='11-get-a-signon-account-for-integration'>11. Get a Signon account for integration</h2><p><a href="https://docs.publishing.service.gov.uk/repos/signon.html">Signon</a> is the application used to control access to the
 GOV.UK Publishing applications.</p>
 <p>Ask another developer to <a href="https://signon.integration.publishing.service.gov.uk/users/invitation/new">create an account for the integration Signon</a>,
 at &lsquo;Superadmin&rsquo; level with permission to access the applications that your team are likely to work on.</p>
-<h2 id='11-get-access-to-the-release-app'>11. Get access to the Release app</h2><p><a href="https://docs.publishing.service.gov.uk/repos/release.html">Release</a> is the application we use to track deployments,
+<h2 id='12-get-access-to-the-release-app'>12. Get access to the Release app</h2><p><a href="https://docs.publishing.service.gov.uk/repos/release.html">Release</a> is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.</p>
 <p>Ask someone with production access (e.g. your tech lead or buddy) to <a href="https://signon.publishing.service.gov.uk/users/invitation/new">create an account for the production
 Signon</a>, at &lsquo;Normal&rsquo; level with access to
