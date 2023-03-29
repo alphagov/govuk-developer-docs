@@ -414,7 +414,11 @@ If you forget your `aws-vault` password, you must reset that password.
 1. Delete the `aws-vault` keychain by running `rm ~/Library/Keychains/aws-vault.keychain-db` in the command line.
 1. Re-initialise the `gds-cli` by opening `~/.gds/config.yml` and changing `initialised: true` to `initialised: false`.
 
-## 10. Get a Signon account for integration
+## 10. Set up tools to use the GOV.UK Kubernetes platform
+
+Follow [the instructions for setting up tools to use the GOV.UK Kubernetes platform](https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/set-up-tools/).
+
+## 11. Get a Signon account for integration
 
 [Signon](https://docs.publishing.service.gov.uk/repos/signon.html) is the application used to control access to the
 GOV.UK Publishing applications.
@@ -422,7 +426,7 @@ GOV.UK Publishing applications.
 Ask another developer to [create an account for the integration Signon](https://signon.integration.publishing.service.gov.uk/users/invitation/new),
 at 'Superadmin' level with permission to access the applications that your team are likely to work on.
 
-## 11. Get access to the Release app
+## 12. Get access to the Release app
 
 [Release](https://docs.publishing.service.gov.uk/repos/release.html) is the application we use to track deployments,
 work out which branch/tag is deployed to each environment and link to Jenkins to deploy code.
