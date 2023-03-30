@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/9868217f094373150bd4e22fd582d116b118c099">14 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/67aabcd456f45bb028e701eb839c62e84c6ef497">30 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Real User Metrics</h1>
@@ -294,14 +294,14 @@
 <p>The <a href="https://github.com/alphagov/govuk-puppet/pull/11339">icinga alert was originally added in this PR</a>, for reference.</p>
 <h3 id="getting-the-new-code">Getting the new code</h3>
 <p>You will need to download the new script from <a href="https://github.com/SpeedCurve-Metrics/lux.js">the SpeedCurve github repo</a>. This is a private repo and you will need to request access. Matt Hobbs (head of frontend) is our point of contact for this. Once you have access it's worth turning on notifications for this repo in case the icinga alert fails.</p>
-<p>The script is written in TypeScript so you will first need to <code>npm install</code> and <code>npm build</code> to create a JavaScript version of the file (see repo README for details).</p>
+<p>The script is written in TypeScript so you will first need to <code>npm install</code> and <code>npm run build</code> to create a JavaScript version of the file (see repo README for details).</p>
 <h3 id="updating">Updating</h3>
-<p>Updating the reporter is a case of copying and pasting, reformatting, and updating to include the variables mentioned earlier. Try to format the file so that indenting differences don't make reviewing difficult.</p>
+<p>Update <code>lux-reporter.js</code> by copying <code>dist/lux.js</code> from the SpeedCurve github repo. This is a case of copying and pasting, reformatting, and updating to include the variables mentioned earlier. Try to format the file so that indenting differences don't make reviewing difficult.</p>
 <p>Instructions for how to update are in our copy of the file. In summary:</p>
 <ul>
 <li>
 <code>customerid</code> and <code>samplerate</code> are the things we need to set (copy them from the current version)</li>
-<li>the structure of the file sometimes changes so you might need to comb through to find them (<code>samplerate</code> is currently on line 157, but might change)</li>
+<li>the structure of the file sometimes changes so you might need to comb through to find them (<code>samplerate</code> is currently around line 443, but might change)</li>
 <li>
 <code>customerid</code> has to be at the end of the file</li>
 </ul>

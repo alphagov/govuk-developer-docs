@@ -6,23 +6,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>govuk-google-analytics: dynamic - GOV.UK Developer Documentation</title>
+    <title>govuk-google-analytics: attachment_links - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_attributes/dynamic.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_events/attachment_links.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="govuk-google-analytics: dynamic - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_attributes/dynamic.html" />
+      <meta name="twitter:title" content="govuk-google-analytics: attachment_links - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_events/attachment_links.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="govuk-google-analytics: dynamic" />
+      <meta property="og:title" content="govuk-google-analytics: attachment_links" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_attributes/dynamic.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-google-analytics/_events/attachment_links.html" />
 
     
   </head>
@@ -377,18 +377,42 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/211afc3aed1e75ff97a6759bec22aedb099f0fe6">2 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/7709bd78e512cb086c4e150fa1aaf899fe88c4be">24 Mar 2023</a>
 </div>
 
-  <h1 class="page-title">govuk-google-analytics: dynamic</h1>
+  <h1 class="page-title">govuk-google-analytics: attachment_links</h1>
 
   <hr>
-<h2 id="name-dynamicdescription-the-existence-of-a-referrer-parameter-indicates-that-the-page-has-been-dynamically-updated-via-an-ajax-request-and-therefore-we-can-use-it-to-set-the-dynamic-property-appropriately-this-value-is-used-by-analysts-to-differentiate-between-fresh-page-loads-and-dynamic-page-updates-value-truefalserequired-notype-stringredact-false">name: dynamic
-description: The existence of a referrer parameter indicates that the page has been dynamically updated via an AJAX request and therefore we can use it to set the dynamic property appropriately. This value is used by analysts to differentiate between fresh page loads and dynamic page updates.
-value: true/false
-required: no
-type: string
-redact: false</h2>
+<p>name: HTML attachments
+events:</p>
+<ul>
+<li>name: link clicks (not implemented yet)
+description: Triggered when a HTML attachment link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+example_url: <a href="https://www.gov.uk/government/publications/equality-act-guidance">https://www.gov.uk/government/publications/equality-act-guidance</a>
+tracker: link_tracker
+data:
+<ul>
+<li>name: event
+value: event_data</li>
+<li>name: event_data
+value:
+<ul>
+<li>name: event_name
+value: navigation</li>
+<li>name: external</li>
+<li>name: link_domain</li>
+<li>name: link_path_parts</li>
+<li>name: method</li>
+<li>name: text</li>
+<li>name: type
+value: html attachment</li>
+<li>name: url</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
 
 
             
@@ -396,8 +420,8 @@ redact: false</h2>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-google-analytics/blob/main/docs/_attributes/dynamic.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-google-analytics%2F_attributes%2Fdynamic.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-google-analytics/blob/main/docs/_events/attachment_links.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Frepos%2Fgovuk-google-analytics%2F_events%2Fattachment_links.html%29&amp;labels=bug&amp;title=Re%3A+%27%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>

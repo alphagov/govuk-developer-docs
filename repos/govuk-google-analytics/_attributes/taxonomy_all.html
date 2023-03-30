@@ -169,7 +169,10 @@
           <li class="subdir__heading">_events</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk-google-analytics/_events/accordion.html" rel="noopener" class="govuk-link">accordion</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/attachment_links.html" rel="noopener" class="govuk-link">attachment_links</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/breadcrumbs.html" rel="noopener" class="govuk-link">breadcrumbs</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/feedback.html" rel="noopener" class="govuk-link">feedback</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/footer.html" rel="noopener" class="govuk-link">footer</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/links.html" rel="noopener" class="govuk-link">links</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/page_view.html" rel="noopener" class="govuk-link">page_view</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/print_this_page.html" rel="noopener" class="govuk-link">print_this_page</a></li>
@@ -374,16 +377,22 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/211afc3aed1e75ff97a6759bec22aedb099f0fe6">2 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/8e46346733500e278b516e2cc3fc6d0b29206352">23 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk-google-analytics: taxonomy_all</h1>
 
   <hr>
-<h2 id="name-taxonomy_alldescriptionvalue-content-attribute-of-meta-tag-govuktaxon_slugsexample-courts-sentencing-tribunalslasting-power-attorneyrequired-notype-stringredact-false">name: taxonomy_all
-description:
+<h2 id="name-taxonomy_alldescription-an-object-containing-the-content-attribute-of-the-meta-tag-govuktaxon_slugs-in-100-character-parts-this-is-stored-like-this-to-get-around-the-100-character-limit-on-attribute-values-regardless-of-the-length-of-the-meta-tag-the-object-will-always-contain-5-keyvalue-pairs-if-the-values-are-less-than-500-characters-unused-keyvalue-pairs-will-be-undefined-if-the-values-are-longer-than-500-characters-the-extra-characters-will-be-lost-value-content-attribute-of-meta-tag-govuktaxon_slugsexample-1-finance-supportpremises-ratescompany-closure-administration-liquidation-and-insolvencycontract-wo2-rking-hoursdismissals-redundanciesfood-and-farming-industryproducing-distributing-food-food-label3-lingrecruiting-hiringrecruiting-hiringredundancies-dismissalssale-goods-services-datascientific4-research-and-developmentself-employed5-undefinedrequired-notype-stringredact-false">name: taxonomy_all
+description: An object containing the content attribute of the meta tag govuk:taxon_slugs in 100 character parts. This is stored like this to get around the 100 character limit on attribute values. Regardless of the length of the meta tag, the object will always contain 5 key/value pairs. If the values are less than 500 characters, unused key/value pairs will be undefined. If the values are longer than 500 characters, the extra characters will be lost.
 value: content attribute of meta tag govuk:taxon_slugs
-example: courts-sentencing-tribunals,lasting-power-attorney
+example: {
+"1": "finance-support,premises-rates,company-closure-administration-liquidation-and-insolvency,contract-wo",
+"2": "rking-hours,dismissals-redundancies,food-and-farming-industry,producing-distributing-food-food-label",
+"3": "ling,recruiting-hiring,recruiting-hiring,redundancies-dismissals,sale-goods-services-data,scientific",
+"4": "-research-and-development,self-employed",
+"5": undefined
+}
 required: no
 type: string
 redact: false</h2>

@@ -169,7 +169,10 @@
           <li class="subdir__heading">_events</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk-google-analytics/_events/accordion.html" rel="noopener" class="govuk-link">accordion</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/attachment_links.html" rel="noopener" class="govuk-link">attachment_links</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/breadcrumbs.html" rel="noopener" class="govuk-link">breadcrumbs</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/feedback.html" rel="noopener" class="govuk-link">feedback</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/footer.html" rel="noopener" class="govuk-link">footer</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/links.html" rel="noopener" class="govuk-link">links</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/page_view.html" rel="noopener" class="govuk-link">page_view</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/print_this_page.html" rel="noopener" class="govuk-link">print_this_page</a></li>
@@ -374,19 +377,19 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/04e9d80fb1bdfdb43f24e07fbd30dbcd58c95cff">3 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/88cb790c6487c2cfeba126cc7b7e8915dee9192d">24 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk-google-analytics: link_path_parts</h1>
 
   <hr>
-<h2 id="name-link_path_partsdescription-an-object-containing-a-url-in-100-character-parts-usually-the-href-attribute-of-a-link-this-is-stored-like-this-to-get-around-the-100-character-limit-on-attribute-values-many-urls-are-longer-than-this-regardless-of-the-length-of-the-url-the-object-will-always-contain-5-keyvalue-pairs-if-the-url-is-less-than-500-characters-unused-keyvalue-pairs-will-be-undefined-if-the-url-is-longer-than-500-characters-the-extra-characters-will-be-lost-valueexample-1-conditionsvaccinationsflu-influenza-vaccine-2-undefined-3-undefined-4-undefined-5-undefined-required-yestype-stringredact-false">name: link_path_parts
+<h2 id="name-link_path_partsdescription-an-object-containing-a-url-in-100-character-parts-usually-the-href-attribute-of-a-link-this-is-stored-like-this-to-get-around-the-100-character-limit-on-attribute-values-many-urls-are-longer-than-this-regardless-of-the-length-of-the-url-the-object-will-always-contain-5-keyvalue-pairs-if-the-url-is-less-than-500-characters-unused-keyvalue-pairs-will-be-undefined-if-the-url-is-longer-than-500-characters-the-extra-characters-will-be-lost-valueexample-1-conditionsvaccinationsflu-influenza-vaccine-2-undefined-3-undefined-4-undefined-5-undefined-required-yestype-stringredact-true">name: link_path_parts
 description: An object containing a URL in 100 character parts, usually the href attribute of a link. This is stored like this to get around the 100 character limit on attribute values - many URLs are longer than this. Regardless of the length of the URL, the object will always contain 5 key/value pairs. If the URL is less than 500 characters, unused key/value pairs will be undefined. If the URL is longer than 500 characters, the extra characters will be lost.
 value:
 example: { 1: "/conditions/vaccinations/flu-influenza-vaccine/", 2: undefined, 3: undefined, 4: undefined, 5: undefined }
 required: yes
 type: string
-redact: false</h2>
+redact: true</h2>
 
 
             

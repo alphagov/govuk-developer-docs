@@ -169,7 +169,10 @@
           <li class="subdir__heading">_events</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk-google-analytics/_events/accordion.html" rel="noopener" class="govuk-link">accordion</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/attachment_links.html" rel="noopener" class="govuk-link">attachment_links</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/breadcrumbs.html" rel="noopener" class="govuk-link">breadcrumbs</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/feedback.html" rel="noopener" class="govuk-link">feedback</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/footer.html" rel="noopener" class="govuk-link">footer</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/links.html" rel="noopener" class="govuk-link">links</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/page_view.html" rel="noopener" class="govuk-link">page_view</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/print_this_page.html" rel="noopener" class="govuk-link">print_this_page</a></li>
@@ -374,13 +377,21 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/211afc3aed1e75ff97a6759bec22aedb099f0fe6">2 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/06e88cf6c3cd06b3f08d705e2bfc870031bdd706">23 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk-google-analytics: GOV.UK Google Analytics 4 Implementation Record</h1>
 
   
 <p>This site contains a record of the data structure implemented for Google Analytics 4 by GOV.UK.</p>
+<h2 id="development">Development</h2>
+<p>To run the server locally:</p>
+<ol>
+<li>Run <code>bundle install</code> in this folder.</li>
+<li>Run <code>bundle exec jekyll serve</code> in this folder.</li>
+<li>Navigate to <code>http://127.0.0.1:4000/govuk-google-analytics/</code>
+</li>
+</ol>
 <h2 id="event-data-structure">Event data structure</h2>
 <p>Events should have a data file in <code>_events</code> of the following structure. This is used to construct the information on the event detail page.</p>
 <p>This structure can contain more than one event. For example accordions have one event for an accordion section, and a different one for the show/hide all control.</p>

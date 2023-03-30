@@ -169,7 +169,10 @@
           <li class="subdir__heading">_events</li>
           <ul class="subdir__menu">
               <li><a href="/repos/govuk-google-analytics/_events/accordion.html" rel="noopener" class="govuk-link">accordion</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/attachment_links.html" rel="noopener" class="govuk-link">attachment_links</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/breadcrumbs.html" rel="noopener" class="govuk-link">breadcrumbs</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/feedback.html" rel="noopener" class="govuk-link">feedback</a></li>
+              <li><a href="/repos/govuk-google-analytics/_events/footer.html" rel="noopener" class="govuk-link">footer</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/links.html" rel="noopener" class="govuk-link">links</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/page_view.html" rel="noopener" class="govuk-link">page_view</a></li>
               <li><a href="/repos/govuk-google-analytics/_events/print_this_page.html" rel="noopener" class="govuk-link">print_this_page</a></li>
@@ -374,7 +377,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/2cf987ffcef98edc4c5130eb6275f2c8cf9fb9d1">27 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-google-analytics/commit/757b068314fe060074a28aff321dcd59a55c3791">27 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk-google-analytics: step_by_step_navigation</h1>
@@ -426,6 +429,45 @@ value: 0</li>
 <li>name: text</li>
 <li>name: type
 value: "step by step"</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>name: link clicks
+description: Triggered when a link within a step by step is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+example_url: <a href="https://www.gov.uk/learn-to-drive-a-car">https://www.gov.uk/learn-to-drive-a-car</a>
+tracker: link_tracker
+data:
+<ul>
+<li>name: event
+value: event_data</li>
+<li>name: event_data
+value:
+<ul>
+<li>name: event_name
+value: navigation</li>
+<li>name: external</li>
+<li>name: index
+value:
+<ul>
+<li>name: index_section
+value: The section that this link is in. The section in this case refers to the step number.</li>
+<li>name: index_link
+value: The position of the link within this section.</li>
+<li>name: index_section_count
+value: The total amount of links within this section.</li>
+</ul>
+</li>
+<li>name: index_total</li>
+<li>name: link_domain</li>
+<li>name: link_path_parts</li>
+<li>name: method</li>
+<li>name: text</li>
+<li>name: type
+value: step by step</li>
+<li>name: url</li>
+<li>name: section
+value: The name of the step</li>
 </ul>
 </li>
 </ul>
