@@ -310,6 +310,15 @@ global: =301 https://www.gov.uk
 
 <p>You should see that it redirects to GOV.UK, as specified in the site file.</p>
 
+<h3 id="testing-on-staging-environment">Testing on staging environment</h3>
+
+<p>In contrast to other GOV.UK applications, Bouncer isn&rsquo;t available at x.staging.publishing.service.gov.uk</p>
+
+<p>This means that testing the application on our staging environment will require repointing the domains you wish to test by editing your computer’s host file to point them at Bouncer’s staging IP address. This should allow visiting the app in a web browser, for example. Alternatively, to make a request to our staging environment with curl:</p>
+
+<pre><code>curl -I -H"Host: www.attorneygeneral.gov.uk" http://0.0.0.0/aboutus/pages/civilcriminalpanels.aspx
+</code></pre>
+
 <h3 id="data-storage">Data storage</h3>
 
 <p>Lists of domain names, old URLs and URLs to redirect to are stored in a

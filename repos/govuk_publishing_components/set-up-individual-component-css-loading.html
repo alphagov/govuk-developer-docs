@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/439641d0fead3466610abd5213e8ce5ed222de90">14 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/0ee24666c0c73ed23409ee76972173178d4d61dc">28 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: # Set up individual component CSS loading</h1>
@@ -313,9 +313,7 @@ add_gem_component_stylesheet("radio")
 module Frontend
   class Application &lt; Rails::Application
     include GovukPublishingComponents::AppHelpers::AssetHelper
-
-   ...
-
+    ...
     config.assets.precompile &lt;&lt; get_component_css_paths
 </code></pre>
 <h4 id="using-the-publishing-components-gem-without-the-static-rendering-app">Using the publishing components gem without the <code>static</code> rendering app</h4>
@@ -335,20 +333,29 @@ end
 <p>Each stylesheet that is used individually will need an extra <code>@import</code> added to allow them to use GOV.UK Frontend variables and mixins:</p>
 <pre lang="scss"><code>@import "govuk_publishing_components/individual_component_support";
 </code></pre>
-<p><strong>Hoist the content of the body to the top of the base template in <code>app/views/layouts/application.html.erb</code></strong>. This ensures that all of the components are added to the array before the array is used in the <code>&lt;head&gt;</code> of the template.</p>
-<p>On line 1:</p>
+<p><strong>Hoist body content to the top of your layouts</strong></p>
+<p>This will ensure that all components and views are dicovered, before <code>render_component_stylesheets</code> is called, and their respective style sheets added inside the <code>&lt;head&gt;</code>. Otherwise, components and view partials added in body content are not rendered in time and associated style sheets are not included.</p>
 <pre lang="rb"><code>&lt;% content_for :body do %&gt;
-  &lt;!-- Everything that was between &lt;body&gt; and &lt;/body&gt; ---&gt;
+  &lt;main id="content"&gt;
+    &lt;%= yield %&gt;
+  &lt;/main&gt;
 &lt;% end %&gt;
+
+&lt;!DOCTYPE html&gt;
+...
 </code></pre>
-<p>And then between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code>:</p>
+<p>Use <code>yield</code> to add body content between <code>&lt;body&gt;</code> and <code>&lt;/body&gt;</code>:</p>
 <pre lang="rb"><code>&lt;%= yield :body %&gt;
 </code></pre>
 <p><strong>Add the stylesheets just before the closing <code>&lt;/head&gt;</code> tag of the base template</strong>:</p>
-<pre lang="rb"><code>&lt;%= stylesheet_link_tag "application.css", integrity: false %&gt;
-&lt;%=
-  render_component_stylesheets
-%&gt;
+<pre lang="rb"><code>  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;%= stylesheet_link_tag 'application', :media =&gt; "all", integrity: false %&gt;
+    ...
+    &lt;%=
+      render_component_stylesheets
+    %&gt;
+  &lt;/head&gt;
 </code></pre>
 <h2 id="why">Why</h2>
 <p>See <a href="https://github.com/alphagov/govuk-rfcs/pull/152">RFC #149</a> for more details about this approach.</p>
