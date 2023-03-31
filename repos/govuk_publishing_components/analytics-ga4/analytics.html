@@ -240,7 +240,7 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/b8943690532dcfead6efd40c9faee3f1c936599a">8 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk_publishing_components/commit/ceb9f24b722cdb0bbe892d2e5373539262bf6b25">30 Mar 2023</a>
 </div>
 
   <h1 class="page-title">govuk_publishing_components: Google Analytics 4 and Google Tag Manager</h1>
@@ -281,6 +281,7 @@ window.GOVUK.analyticsGa4.analyticsModules = window.GOVUK.analyticsGa4.analytics
 })(window.GOVUK.analyticsGa4.analyticsModules)
 </code></pre>
 <p>When cookie consent is given, <code>init-ga4.js</code> looks through the <code>analyticsModules</code> object for anything with an <code>init</code> function, and executes them if found. This means that analytics code will not be executed unless consent is given, and gives a standard way to add more analytics code without additional initialisation.</p>
+<p><code>init-ga4.js</code> also handles adding data attributes to certain HTML elements, such as attachment links defined in our <code>whitehall</code> repo. This approach is used when it is difficult to maintain data attributes directly on the tracked elements' HTML. In the case of the attachment links, it would require republishing thousands of documents each time the attachment link data attributes need changing. Therefore, it is more efficient to add the GA4 HTML attributes via JavaScript as it is easier to just redeploy <code>govuk_publishing_components</code> instead with changes. The code for adding these attributes sits in <code>init-ga4.js</code> as the attributes need to exist before <code>analyticsModules</code> are run. This is so that when trackers initialise, they can find the data attributes (i.e. <code>data-module='ga4-link-tracker'</code>), and will therefore know to add the right event listeners to the elements in question.</p>
 <h3 id="code-structure-for-modules">Code structure for Modules</h3>
 <p>Where analytics code is required as a <a href="/repos/govuk_publishing_components/javascript-modules.html">GOV.UK JavaScript Module</a>, the code structure for the <a href="/repos/govuk_publishing_components/javascript-modules.html">existing model for deferred loading</a> should be used.</p>
 <h2 id="link-and-event-tracking">Link and event tracking</h2>
