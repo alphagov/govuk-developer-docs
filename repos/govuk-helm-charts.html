@@ -231,44 +231,79 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
+<h2 id="getting-started">Getting started</h2>
+
+<p>See <a href="https://helm.sh/docs">Helm&rsquo;s documentation</a> to get started with Helm.</p>
+
+<p>See the <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/">GOV.UK Kubernetes Cluster User Docs</a> for an introduction to the
+cluster or ask <a href="https://gds.slack.com/channels/govuk-replatforming">#govuk-replatforming</a> in Slack.</p>
+
 <h2 id="local-development">Local development</h2>
 
+<p>Most of the charts in this repository are designed to be installed via <a href="https://argo-cd.readthedocs.io/en/stable/">Argo
+CD</a> rather than by <code>helm</code>. We hope to improve portability over time.</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
 <ol>
-<li>Clone the repository</li>
-<li>Configure git hooks: <code>git config core.hooksPath git-hooks</code>
+<li>
+<p>Install Helm and <a href="https://github.com/mikefarah/yq#yq">yq</a></p>
+<pre lang="sh"><code>brew install helm yq
+</code></pre>
+</li>
+<li>
+<p>Clone the repository</p>
+<pre lang="sh"><code>git clone git@github.com:alphagov/govuk-helm-charts.git
+</code></pre>
+</li>
+<li>
+<p>Configure git hooks</p>
+<pre lang="sh"><code>cd govuk-helm-charts &amp;&amp;
+git config core.hooksPath git-hooks
+</code></pre>
 </li>
 </ol>
 
-<h2 id="usage">Usage</h2>
+<h3 id="installing-an-application-chart-without-argo-cd">Installing an application chart without Argo CD</h3>
 
-<p><a href="https://helm.sh">Helm</a> must be installed to use the charts.  Please refer to
-Helm&rsquo;s <a href="https://helm.sh/docs">documentation</a> to get started.</p>
+<pre lang="sh"><code>cd charts/app-config
 
-<p>Refer to the <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk">GOV.UK Kubernetes Cluster User Docs</a> for an introduction to
-the cluster or ask for help from <a href="https://gds.slack.com/channels/govuk-replatforming">#govuk-replatforming</a> in Slack.</p>
-
-<p>Once Helm has been set up correctly, add the repo as follows:</p>
-
-<pre><code>helm repo add govuk-helm-charts https://alphagov.github.io/govuk-helm-charts/
+ENVIRONMENT=integration
+APP=content-publisher
+helm install $USER-${APP?} ../generic-govuk-app --values &lt;(
+  helm template . --values values-${ENVIRONMENT}.yaml |
+  yq e '.|select(.metadata.name=="'$APP'").spec.source.helm.values'
+) --set sentry.enabled=false --set rails.createKeyBaseSecret=false
 </code></pre>
 
-<p>If you had already added this repo earlier, run <code>helm repo update</code> to retrieve
-the latest versions of the packages.  You can then run <code>helm search repo &lt;alias&gt;</code> to see the charts.</p>
+<p>You can inspect the final template output by running <code>helm template</code> instead of
+<code>helm install</code>.</p>
 
-<p>To install the <!-- raw HTML omitted --> chart:</p>
+<h3 id="chart-repository">Chart repository</h3>
 
-<pre><code>helm install my-&lt;chart-name&gt; &lt;alias&gt;/&lt;chart-name&gt;
+<p>Some of the charts in this git repository are published via GitHub Actions to a
+chart repository hosted on GitHub Pages.</p>
+
+<p>To add the chart repo to Helm:</p>
+
+<pre lang="sh"><code>helm repo add govuk-helm-charts https://alphagov.github.io/govuk-helm-charts/
 </code></pre>
 
-<p>To uninstall the chart:</p>
-
-<pre><code>helm delete my-&lt;chart-name&gt;
-</code></pre>
+<p>You can then run <code>helm search repo &lt;alias&gt;</code> to see the charts.
+<code>helm repo update</code> retrieves the latest versions of the packages.</p>
 
 <h2 id="schemas">Schemas</h2>
 
-<p>Refer to <code>schemas/README.md</code> for guidance on the schema that the Kubernetes
-manifests are validated against.</p>
+<p><code>kubeconform</code> runs as a pre-merge check. The JSON schemas that it validates
+against are in the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/schemas"><code>schemas/</code></a> directory.</p>
+
+<h2 id="team">Team</h2>
+
+<p>GOV.UK Replatforming team looks after this repo. If you&rsquo;re inside GDS, you can find us in <a href="https://gds.slack.com/archives/C013F737737">#govuk-replatforming</a> or view our <a href="https://trello.com/b/u4FCzm53/">kanban board</a>.</p>
+
+<h2 id="licence">Licence</h2>
+
+<p><a href="https://github.com/alphagov/govuk-helm-charts/blob/main/LICENCE">MIT License</a></p>
 <p></div></p>
 
 
