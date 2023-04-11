@@ -218,12 +218,12 @@
 <p>Adds the basics of a GOV.UK application:</p>
 
 <ul>
-<li>Unicorn as a web server</li>
+<li>Puma as a web server</li>
 <li>Error reporting with Sentry</li>
-<li>Statsd client for reporting stats</li>
+<li>Prometheus monitoring for EKS</li>
+<li>Statsd client for reporting stats (deprecated; use Prometheus instead)</li>
 <li>Rails logging</li>
 <li>Content Security Policy generation for frontend apps</li>
-<li>Prometheus monitoring for EKS</li>
 </ul>
 
 <h2 id="installation">Installation</h2>
@@ -233,29 +233,21 @@
 <pre lang="ruby"><code>gem "govuk_app_config"
 </code></pre>
 
-<p>And then execute:</p>
+<p>Then run <code>bundle</code>.</p>
 
-<pre><code>$ bundle
-</code></pre>
-
-<h2 id="unicorn">Unicorn</h2>
+<h2 id="puma">Puma</h2>
 
 <h3 id="configuration">Configuration</h3>
 
-<p>Find or create a <code>config/unicorn.rb</code> in the app</p>
+<p>Create a file <code>config/puma.rb</code> in the app, containing:</p>
 
-<p>At the start of the file insert:</p>
-
-<pre lang="rb"><code>require "govuk_app_config/govuk_unicorn"
-GovukUnicorn.configure(self)
+<pre lang="rb"><code>require "govuk_app_config/govuk_puma"
+GovukPuma.configure_rails(self)
 </code></pre>
 
 <h3 id="usage">Usage</h3>
 
-<p>To serve an app with unicorn run:</p>
-
-<pre lang="sh"><code>$ bundle exec unicorn -c config/unicorn.rb
-</code></pre>
+<p>To run an app locally with Puma, run: <code>bundle exec puma</code> or <code>bundle exec rails s</code>.</p>
 
 <h2 id="error-reporting">Error reporting</h2>
 
@@ -271,8 +263,7 @@ GovukUnicorn.configure(self)
 <li>
 <code>SENTRY_CURRENT_ENV</code> - e.g. &ldquo;production&rdquo;. Make sure it is <a href="#active-sentry-environments">configured to be active</a>.</li>
 <li>
-<code>GOVUK_STATSD_PREFIX</code> - a Statsd prefix like <code>govuk.apps.application-name.hostname</code>
-</li>
+<code>GOVUK_STATSD_PREFIX</code> - a Statsd prefix like <code>govuk.apps.application-name.hostname</code> (deprecated; use Prometheus instead).</li>
 </ul>
 
 <h3 id="manual-error-reporting">Manual error reporting</h3>
@@ -336,7 +327,17 @@ end
 
 <p><code>GovukError.configure</code> has the same options as the Sentry client, Raven. See <a href="https://docs.sentry.io/clients/ruby/config">the Raven docs for all configuration options</a>.</p>
 
-<h2 id="statsd">Statsd</h2>
+<h2 id="prometheus-monitoring">Prometheus monitoring</h2>
+
+<p>Create a <code>/config/initializers/prometheus.rb</code> file in the app and add the following</p>
+
+<pre lang="ruby"><code>require "govuk_app_config/govuk_prometheus_exporter"
+GovukPrometheusExporter.configure
+</code></pre>
+
+<h2 id="statsd-deprecated">Statsd (deprecated)</h2>
+
+<p>⚠️ Statsd support is deprecated and will be removed in a future major release of govuk_app_config.</p>
 
 <p>Use <code>GovukStatsd</code> to send stats to graphite. It has the same interface as <a href="https://github.com/reinh/statsd">the Ruby Statsd client</a>.</p>
 
@@ -358,7 +359,7 @@ check docs</a> for more information on how to use it.</p>
 <h2 id="rails-logging">Rails logging</h2>
 
 <p>In Rails applications, the application will be configured to send JSON-formatted
-logs to <code>STDOUT</code> and unstructed logs to <code>STDERR</code>.</p>
+logs to <code>STDOUT</code> and unstructured logs to <code>STDERR</code>.</p>
 
 <h2 id="content-security-policy-generation">Content Security Policy generation</h2>
 
@@ -372,17 +373,9 @@ app with the following content:</p>
 <pre lang="ruby"><code>GovukContentSecurityPolicy.configure
 </code></pre>
 
-<h2 id="i18n-rules">i18n rules</h2>
+<h2 id="internationalisation-rules">Internationalisation rules</h2>
 
 <p>Some frontend apps support languages that are not defined in the i18n gem. This provides them with our own custom rules for these languages.</p>
-
-<h2 id="prometheus-monitoring-for-eks">Prometheus monitoring for EKS</h2>
-
-<p>Create a <code>/config/initializers/prometheus.rb</code> file in the app and add the following</p>
-
-<pre lang="ruby"><code>require "govuk_app_config/govuk_prometheus_exporter" 
-GovukPrometheusExporter.configure   
-</code></pre>
 
 <h2 id="license">License</h2>
 
