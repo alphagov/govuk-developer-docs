@@ -30,10 +30,8 @@ There are two interfaces for dry and real runs, to ensure the correct HtmlAttach
 ##### Dry run
 
 ```bash
-$ bundle exec 'publishing_api:redirect_html_attachments:by_content_id_dry_run[document_content_id,redirection_url]'
+$ bundle exec rake 'publishing_api:redirect_html_attachments:by_content_id_dry_run[document_content_id,redirection_url]'
 ```
-
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27publishing_api:redirect_html_attachments:by_content_id_dry_run[DOCUMENT_CONTENT_ID,REDIRECTION_URL]%27)
 
 > You need to find the `content_id` of the Document the attachment belongs to via Rails console if the Document has already been unpublished and redirected.
 > Remember to use the relative path for an internal URL. Example:
@@ -49,10 +47,8 @@ This attempts to locate the HtmlAttachments for the latest unpublished Edition o
 ##### Real run
 
 ```bash
-$ bundle exec 'publishing_api:redirect_html_attachments:by_content_id[document_content_id,redirection_url]'
+$ bundle exec rake 'publishing_api:redirect_html_attachments:by_content_id[document_content_id,redirection_url]'
 ```
-
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=%27publishing_api:redirect_html_attachments:by_content_id[DOCUMENT_CONTENT_ID,REDIRECTION_URL]%27)
 
 This will actually request that the PublishingApi redirects the selected HtmlAttachments.
 
