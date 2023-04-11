@@ -20,8 +20,6 @@ Whilst these invalid drafts are present users are unable to make any further edi
 A rake task exists in Publishing API that will clear the invalid drafts.
 
 ```bash
-$ bundle exec 'data_hygiene:remove_invalid_worldorg_drafts'
+$ bundle exec rake 'data_hygiene:remove_invalid_worldorg_drafts'
 ```
-
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=data_hygiene:remove_invalid_worldorg_drafts)
 

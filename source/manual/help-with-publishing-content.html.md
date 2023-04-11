@@ -43,9 +43,4 @@ necessary to help them to ensure it goes out as smoothly as possible.
   start here: [if documents aren't live after being published][live].
   If it looks as though the content was never published from
   Whitehall, there is a Rake task available which will publish overdue
-  documents. In Production, run [this Rake
-  task](https://deploy.blue.production.govuk.digital//job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing:overdue:publish).
-
-  ```bash
-  $ bundle exec rake publishing:overdue:publish
-  ```
+  documents. In Production on Whitehall run `publishing:overdue:publish`.

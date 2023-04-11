@@ -59,4 +59,4 @@ Then:
 >
 > It may take some time for the colour to update on the page in `integration`.
 > You might be able to speed up the process by running the
-> [`publishing_api:republish_organisation[slug]`](https://deploy.integration.publishing.service.gov.uk//job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_organisation[slug]) rake task in Whitehall.
+> `publishing_api:republish_organisation[slug]` rake task in Whitehall.

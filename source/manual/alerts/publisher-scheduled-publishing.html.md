@@ -12,8 +12,4 @@ the number currently in the Sidekiq queue.
 
 This can happen in Staging and Integration as a result of the data
 sync from Production. Run Publisher's `editions:requeue_scheduled_for_publishing`
-rake task to re-queue all scheduled editions:
-
-- [Run in Integration Jenkins](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=editions:requeue_scheduled_for_publishing)
-
-- [Run in Staging Jenkins](https://deploy.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=editions:requeue_scheduled_for_publishing)
+rake task to re-queue all scheduled editions in Integration and Staging.

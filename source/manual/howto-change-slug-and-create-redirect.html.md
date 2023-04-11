@@ -18,76 +18,27 @@ These Rake Tasks also reindex the entity with its new slug and republish it to
 Publishing API, which automatically handles the redirect. They all take the old
 slug and the new slug as arguments.
 
-- Change slug and create redirect for a `Person`:
-  - in [integration][person-integration]
-  - in [staging][person-staging]
-  - in [⚠️ production ⚠️][person-production]
+To change slug and create redirect for a `Person` use `reslug:person[OLD_SLUG,NEW_SLUG]`.
 
-[person-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:person[OLD_SLUG,NEW_SLUG]
-[person-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:person[OLD_SLUG,NEW_SLUG]
-[person-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:person[OLD_SLUG,NEW_SLUG]
+To change slug and create redirect for a `Role` use `reslug:role[OLD_SLUG,NEW_SLUG]`.
 
-- Change slug and create redirect for a `Role`:
-  - in [integration][role-integration]
-  - in [staging][role-staging]
-  - in [⚠️ production ⚠️][role-production]
+To change slug and create redirect for a `Document`:
 
-  [role-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:role[OLD_SLUG,NEW_SLUG]
-  [role-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:role[OLD_SLUG,NEW_SLUG]
-  [role-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:role[OLD_SLUG,NEW_SLUG]
-
-- Change slug and create redirect for a `Document`:
-
-To update a documents slug, visit the following URL, replacing `<edition_id>` with the ID of any of a documents editions:
+Visit the following URL, replacing `<edition_id>` with the ID of any of a documents editions:
 
 ```
 https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edition_id>/edit_slug
 ```
 
-- Change slug and create redirect for a `PolicyGroup`:
-  - in [integration][policy_group-integration]
-  - in [staging][policy_group-staging]
-  - in [⚠️ production ⚠️][policy_group-production]
+To change slug and create redirect for a `PolicyGroup` use `reslug:policy_group[OLD_SLUG,NEW_SLUG]`.
 
-  [policy_group-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:policy_group[OLD_SLUG,NEW_SLUG]
-  [policy_group-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:policy_group[OLD_SLUG,NEW_SLUG]
-  [policy_group-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:policy_group[OLD_SLUG,NEW_SLUG]
+To change slug and create redirect for a `WorldLocation` use `reslug:world_location[OLD_SLUG,NEW_SLUG]`.
 
-- Change slug and create redirect for a `WorldLocation`:
-  - in [integration][world_location-integration]
-  - in [staging][world_location-staging]
-  - in [⚠️ production ⚠️][world_location-production]
+To change slug and create redirect for a `Organisation` use `reslug:organisation[OLD_SLUG,NEW_SLUG]`.
 
-  [world_location-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:world_location[OLD_SLUG,NEW_SLUG]
-  [world_location-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:world_location[OLD_SLUG,NEW_SLUG]
-  [world_location-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:world_location[OLD_SLUG,NEW_SLUG]
+To change slug and create redirect for a `WorldwideOrganisation` use `reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]`.
 
-- Change slug and create redirect for a `Organisation`:
-  - in [integration][organisation-integration]
-  - in [staging][organisation-staging]
-  - in [⚠️ production ⚠️][organisation-production]
-
-  [organisation-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:organisation[OLD_SLUG,NEW_SLUG]
-  [organisation-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:organisation[OLD_SLUG,NEW_SLUG]
-  [organisation-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:organisation[OLD_SLUG,NEW_SLUG]
-
-- Change slug and create redirect for a `WorldwideOrganisation`:
-  - in [integration][worldwide_organisation-integration]
-  - in [staging][worldwide_organisation-staging]
-  - in [⚠️ production ⚠️][worldwide_organisation-production]
-
-  [worldwide_organisation-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]
-  [worldwide_organisation-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]
-  [worldwide_organisation-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:worldwide_organisation[OLD_SLUG,NEW_SLUG]
-
-- Change slug and create redirect for a `StatisticsAnnoucement`:
-  - in [integration][statistics_annoucement-integration]
-  - in [staging][statistics_annoucement-staging]
-  - in [⚠️ production ⚠️][statistics_annoucement-production]
-
-  [statistics_annoucement-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]
-  [statistics_annoucement-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]
-  [statistics_annoucement-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]
+To change slug and create redirect for a `StatisticsAnnoucement` use `reslug:statistics_annoucement[OLD_SLUG,NEW_SLUG]`.
 
 ### Issues
 
@@ -99,13 +50,6 @@ be a delay between the redirect being applied and the content being republished.
 
 This should resolve itself over time, but if you need to process the content
 change more quickly, run `represent_downstream:high_priority:content_id[CONTENT_ID]`
-to put it in the high priority queue:
-
-- in [integration][high-priority-queue-integration]
-- in [staging][high-priority-queue-staging]
-- in [⚠️ production ⚠️][high-priority-queue-production]
+to put it in the high priority queue,
 
 [grafana-queue-volumes]: https://grafana.production.govuk.digital/dashboard/file/sidekiq.json?refresh=1m&orgId=1&var-Application=publishing-api&var-Queues=All&from=now-30m&to=now
-[high-priority-queue-integration]: https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[CONTENT_ID]
-[high-priority-queue-staging]: https://deploy.blue.staging.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[CONTENT_ID]
-[high-priority-queue-production]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[CONTENT_ID]

@@ -72,11 +72,9 @@ Should we ever need to roll back any suggested related links, there are a number
 
 #### Links for individual pages
 
-To rollback suggested related links for an individual page (to show the original related links), use the [Run rake task job on Jenkins](https://deploy.publishing.service.gov.uk/job/run-rake-task/) with the following parameters set:
+To rollback suggested related links for an individual page (to show the original related links), use the following rake task for Publishing API:
 
-- `TARGET_APPLICATION: publishing-api`
-- `MACHINE_CLASS: publishing_api`
-- `RAKE_TASK: content:reset_related_links_for_pages['CONTENT_ID’]`, where `CONTENT_ID` is the content id of the page to remove suggested links from
+`content:reset_related_links_for_pages['CONTENT_ID’]`, where `CONTENT_ID` is the content id of the page to remove suggested links from.
 
 #### Links for certain document types
 
