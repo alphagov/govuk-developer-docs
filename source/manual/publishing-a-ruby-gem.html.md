@@ -88,14 +88,23 @@ to drop support for that Ruby version and update the `.ruby-version` files to
 the next supported version. For example, when Ruby 2.7 reached end of life, we dropped 2.7
 from the test matrices and we updated the `.ruby-version` file to be the most
 recent release of the 3.0 branch, which in March 2023 was 3.0.5
-(see [example](https://github.com/alphagov/gds-api-adapters/pull/1191)).
-We then release the updated gem as a major version, due to this being a breaking change
-(see [example](https://github.com/alphagov/gds-api-adapters/pull/1192)).
+(see [example][example-pr-dropping-ruby-support]).
 
-[supported-rubies]: https://www.ruby-lang.org/en/downloads/branches/
-[testing-gems]: /manual/test-and-build-a-project-with-github-actions.html#a-ruby-gem
+We should then release the updated gem as a *minor version*.
+In the past, [our policy was to release as a major version][old-policy-major-version],
+but this was superfluous given that the change is low risk (Dependabot shouldn’t
+even raise a PR unless the upstream app is on a supported Ruby version). It also
+limited our ability to benefit from the automated workflows agreed in RFC-156,
+which [apply only to patch and minor version upgrades][rfc-156-versions].
+Note that patch versions are generally reserved only for bug fixes.
+
+[example-pr-dropping-ruby-support]: https://github.com/alphagov/gds-api-adapters/pull/1191
 [gemspec-ruby-version]: https://guides.rubygems.org/specification-reference/#required_ruby_version
 [minimum-ruby-gem]: https://github.com/alphagov/govuk_sidekiq/blob/12183f8781f2755e185e6a14a722e6f3892bda4a/govuk_sidekiq.gemspec#L19
+[old-policy-major-version]: https://github.com/alphagov/govuk-developer-docs/pull/3932
+[rfc-156-versions]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-156-auto-merge-internal-prs.md#4-version-increase-is-patch-or-minor
+[supported-rubies]: https://www.ruby-lang.org/en/downloads/branches/
+[testing-gems]: /manual/test-and-build-a-project-with-github-actions.html#a-ruby-gem
 
 ### Manually publishing gems from the CLI
 
