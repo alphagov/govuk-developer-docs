@@ -45,39 +45,106 @@ The deployment process is complex, so it's much easier to [use the automation pr
 
 gds-cli provides a command which automates gathering the required credentials and triggering Jenkins. The command authenticates to Jenkins using GitHub, so it expects `GITHUB_USERNAME` / `GITHUB_TOKEN` environment variables to be set. It calls out to the `aws` and `gcloud` command line tools to fetch the other required credentials.
 
-You can get the relevant help for your version of gds-cli with:
+Follow these steps to deploy a change to the DNS for *.service.gov.uk:
 
-```
-$ gds govuk dns --help
-NAME:
-   gds govuk dns - deploy DNS via Jenkins
+1. Get a personal access token for GitHub by navigating to the [personal access token](https://github.com/settings/tokens) page then generate a new token with the default permissions. Set this as an environment variable, alongside your GitHub username:
 
-USAGE:
-   gds govuk dns [command options] [arguments...]
+    ```
+    export GITHUB_TOKEN=<token_from_github_ui>
+    export GITHUB_USERNAME=<your_github_username>
+    ```
 
-OPTIONS:
-...
-```
+1. Check you can access AWS (in production as a poweruser) using the following, if not, follow the steps in the [Get Started documentation](/manual/get-started.html#8-get-aws-access). If successful, you will see a list of S3 buckets.
 
-For example, to have Jenkins run a terraform plan of changes to service.gov.uk against AWS, run:
+    ```
+    gds aws govuk-production-poweruser aws s3 ls
+    ```
 
-```
-$ gds govuk dns --provider aws --zone service.gov.uk --action plan --role govuk-production-poweruser
-```
+1. Run a plan in AWS (a plan is a dry run, where you can see what changes will be made without saving them):
 
-This will trigger a build in Jenkins. Check the build output to see what terraform has done / would do.
+    ```
+    gds govuk dns --provider aws --zone service.gov.uk --action plan --role govuk-production-poweruser
+    ```
 
-### Deploying a change
+1. Navigate to [the production Jenkins](https://deploy.blue.production.govuk.digital/job/Deploy_DNS/) and check the output of the job. A typical change where you replace nameservers with new ones will look like the following (check the name is the correct subdomain for your change and that the old and new nameservers are correct):
 
-Deploying is a multi-step process
+    ```
+    ~ resource "aws_route53_record" "NS_passport" {
+          id                               = "Z2QHB5HOZRWMYP_passport_NS"
+          name                             = "passport"
+        ~ records                          = [
+            - "ns1.p08.dynect.net.",
+            - "ns2.p08.dynect.net.",
+            - "ns3.p08.dynect.net.",
+            - "ns4.p08.dynect.net.",
+            + "ns-1435.awsdns-51.org.",
+            + "ns-144.awsdns-18.com.",
+            + "ns-1559.awsdns-02.co.uk.",
+            + "ns-535.awsdns-02.net.",
+          ]
+          # (6 unchanged attributes hidden)
+      }
+    ```
 
-1. Run a `plan` of the deployment, against the `aws` provider.
-1. Check that the output is what you expect.
-1. Now run a `plan` of the deployment against the `gcp` provider.
-1. Check that the output is what you expect.
-  - It's normal to see changes in TXT records relating to escaping of quotes. You can safely ignore these if they don't change any of the content of the record. This is a bug in the way we handle splitting long TXT records between AWS and GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
-1. Finally, run an `apply` deployment for both `aws` AND `gcp`. (The order doesn't matter).
-  - Sometimes, the GCP deployment requires multiple runs. This is because, in order to change a DNS record, the Google provider deletes and re-adds that record. This can cause a [race condition](https://github.com/alphagov/govuk-dns/issues/67) where Google tries to create the new one before it has successfully deleted the old one. In this case, the build will fail, and you just need to re-run the GCP `apply` job.
+    > It's normal to see changes in TXT records relating to escaping of quotes. You can safely ignore these if they don't change any of the content of the record. This is a bug in the way we handle splitting long TXT records between AWS and GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
+
+1. Install gcloud:
+
+    ```
+    brew install --cask google-cloud-sdk
+    source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+    ```
+
+1. Login to the gcloud CLI by running the following, then logging into your GDS Google account in the browser window that will open:
+
+    ```
+    gcloud auth login
+    ```
+
+1. Run a plan in GCP (a plan is a dry run, where you can see what changes will be made without saving them):
+
+    ```
+    gds govuk dns --provider gcp --zone service.gov.uk --action plan --role govuk-production-poweruser
+    ```
+
+1. Navigate to [the production Jenkins](https://deploy.blue.production.govuk.digital/job/Deploy_DNS/) and check the output of the job. A typical change where you replace nameservers with new ones will look like the following (check the name is the correct subdomain for your change and that the old and new nameservers are correct):
+
+    ```
+    # google_dns_record_set.NS_passport will be updated in-place
+    ~ resource "google_dns_record_set" "NS_passport" {
+          id           = "10"
+          name         = "passport.service.gov.uk."
+        ~ rrdatas      = [
+            - "ns1.p08.dynect.net.",
+            - "ns2.p08.dynect.net.",
+            - "ns3.p08.dynect.net.",
+            - "ns4.p08.dynect.net.",
+            + "ns-144.awsdns-18.com.",
+            + "ns-1559.awsdns-02.co.uk.",
+            + "ns-1435.awsdns-51.org.",
+            + "ns-535.awsdns-02.net.",
+          ]
+          # (4 unchanged attributes hidden)
+      }
+    ```
+
+    > It's normal to see changes in TXT records relating to escaping of quotes. You can safely ignore these if they don't change any of the content of the record. This is a bug in the way we handle splitting long TXT records between AWS and GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
+
+1. Apply the change in AWS (i.e. save the changes):
+
+    ```
+    gds govuk dns --provider aws --zone service.gov.uk --action apply --role govuk-production-poweruser
+    ```
+
+1. Apply the change in GCP (i.e. save the changes):
+
+    ```
+    gds govuk dns --provider gcp --zone service.gov.uk --action apply --role govuk-production-poweruser
+    ```
+
+    > Sometimes, the GCP deployment requires multiple runs. This is because, in order to change a DNS record, the Google provider deletes and re-adds that record. This can cause a [race condition](https://github.com/alphagov/govuk-dns/issues/67) where Google tries to create the new one before it has successfully deleted the old one. In this case, the build will fail, and you just need to re-run the GCP `apply` job.
+
+1. Revoke the GitHub personal access token by navigating to the [personal access token](https://github.com/settings/tokens) page and clicking 'Delete'.
 
 ### Running govuk-dns manually using Jenkins
 
