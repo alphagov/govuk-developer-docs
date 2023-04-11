@@ -239,10 +239,13 @@
 <p>Presents anonymous feedback about pages on GOV.UK in a &ldquo;feedback explorer&rdquo;. Anonymous feedback is collected via the <a href="https://github.com/alphagov/feedback">Feedback app</a> and retrieved from the <a href="https://github.com/alphagov/support-api">Support API</a>.</p>
 </li>
 <li>
-<p>Exposes <a href="https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api/support.rb">internal APIs</a> to create Zendesk tickets e.g. <a href="https://github.com/alphagov/feedback/blob/7e6893c0e80d9c98f6cea27d1bd089621054b177/app/models/contact_ticket.rb#L35">via the Feedback app</a>. Tickets are created using the <a href="https://github.com/alphagov/gds_zendesk">gds_zendesk gem</a>.</p>
+<p>Exposes <a href="https://github.com/alphagov/gds-api-adapters/blob/main/lib/gds_api/support.rb">internal APIs</a> to create Zendesk tickets e.g. <a href="https://github.com/alphagov/feedback/blob/7e6893c/app/models/contact_ticket.rb#L35">via the Feedback app</a>. Tickets are created using the <a href="https://github.com/alphagov/gds_zendesk">gds_zendesk gem</a>.</p>
 </li>
 <li>
-<p>Hosts internal forms for publishers to create Zendesk tickets, as well as emergency contact info. Emergency contacts are secret and retrieved from an <a href="https://github.com/alphagov/govuk-puppet/blob/941373ab48ae50a9d1929caee73a52390004bf81/modules/govuk/manifests/apps/support.pp#L129">environment variable</a> at runtime.</p>
+<p>Hosts internal forms for publishers to create Zendesk tickets.</p>
+</li>
+<li>
+<p>Hosts emergency contact information. This is read from an <a href="https://github.com/alphagov/govuk-helm-charts/blob/fb1920b/charts/app-config/values-production.yaml#L2420">environment variable</a> which ultimately comes from a secret in AWS Secrets Manager.</p>
 </li>
 </ul>
 
@@ -279,7 +282,7 @@ via a form that will require you to identify yourself.</li>
 
 <p>To start the background worker:</p>
 
-<pre><code>bundle exec rake jobs:work
+<pre><code>bundle exec sidekiq
 </code></pre>
 
 <h2 id="licence">Licence</h2>
