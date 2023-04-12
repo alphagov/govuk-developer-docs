@@ -45,61 +45,7 @@ The GOV.UK on-call escalations contact will supply you with:
 
 The banner is deployed by running a rake task in Static. This task stores the
 banner information in Redis, which modifies the page template used by frontend
-apps. Choose one of the following methods:
-
-#### EC2: Running a Jenkins Job
-
-A Jenkins job can be used to run the rake task.
-
-1. Go to the Jenkins task:
-   - [Deploy the emergency banner on Integration](https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/)
-   - [Deploy the emergency banner on Staging](https://deploy.blue.staging.govuk.digital/job/deploy-emergency-banner/)
-   - [⚠️ Deploy the emergency banner on Production ⚠️](https://deploy.blue.production.govuk.digital/job/deploy-emergency-banner/)
-
-1. Click `Build with Parameters`.
-
-1. Fill in the appropriate variables using the form presented by Jenkins.
-
-1. Click `Build`.
-
-![Jenkins Deploy Emergency Banner](images/emergency_publishing/deploy_emergency_banner_job.png)
-
-#### EC2: Manually running the rake task
-
-1. SSH into a `frontend` machine in the environment you are deploying the banner on:
-
-    ```bash
-    gds govuk connect -e staging ssh frontend
-    ```
-
-1. Change into the directory for `static`:
-
-    ```bash
-    cd /var/apps/static
-    ```
-
-1. Set banner content as environment variables:
-
-    ```bash
-    CAMPAIGN_CLASS="notable-death|national-emergency|local-emergency"
-    HEADING="replace with heading"
-    SHORT_DESCRIPTION="replace with desciption"
-    LINK="replace with link"
-    LINK_TEXT="replace with link text"
-    ```
-
-    > **Note**
-    >
-    > You may need to escape certain characters (including `,` and `"`) with a
-    > backslash. For example `\,` or `\"`.
-
-1. Run the rake task
-
-    ```bash
-    sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]
-    ```
-
-#### EKS: Run the rake task
+apps.
 
 1. Set banner content as environment variables
 
@@ -167,43 +113,6 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 ## Removing an emergency banner
 
-### 1. Remove the banner
-
-Choose one of the following methods:
-
-#### EC2: Running a Jenkins Job
-
-1. Navigate to the appropriate deploy Jenkins environment (integration, staging or production):
-   - [Remove the emergency banner from Integration](https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/)
-   - [Remove the emergency banner from Staging](https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/)
-   - [⚠️ Remove the emergency banner from Production ⚠️](https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/)
-
-1. Click `Build now` in the left hand menu.
-
-![Jenkins Remove Emergency Banner](images/emergency_publishing/remove_emergency_banner_job.png)
-
-#### EC2: Manually running the rake task
-
-1. SSH into a frontend machine:
-
-    ```bash
-    gds govuk connect -e staging ssh frontend
-    ```
-
-1. Change into the directory for `static`:
-
-    ```bash
-    cd /var/apps/static
-    ```
-
-1. Run the rake task:
-
-    ```bash
-    sudo -u deploy govuk_setenv static bundle exec rake emergency_banner:remove
-    ```
-
-#### EKS: Run the rake task
-
 1. Find the name of a pod running Static
 
     ```bash
@@ -214,7 +123,6 @@ Choose one of the following methods:
 
     ```bash
     kubectl -n apps exec -i -t $POD_NAME -- rake emergency_banner:remove
-    ```
 
 ---
 
@@ -245,11 +153,7 @@ at various points in our stack as well as locally in your browser. Things to try
 - You can also try manually purging the Varnish and CDN caches:
   1. Wait for 2 minutes after the Deploy Emergency Banner job has completed.
     This will allow the frontend application caches to [clear automatically after 60s][slimmer-cache].
-  2. Run the "Clear varnish cache" Jenkins job (Only required if serving traffic from EC2)
-     - [Clear varnish on Integration](https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/)
-     - [Clear varnish on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/)
-     - [⚠️ Clear varnish on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/)
-  3. Run the "Clear CDN cache" Jenkins job
+  2. Run the "Clear CDN cache" Jenkins job
      - [Clear CDN on Integration](https://deploy.blue.integration.govuk.digital/job/clear-cdn-cache/)
      - [Clear CDN on  Staging](https://deploy.blue.staging.govuk.digital/job/clear-cdn-cache/)
      - [⚠️ Clear CDN on Production ⚠️](https://deploy.blue.production.govuk.digital/job/clear-cdn-cache/)
@@ -261,14 +165,6 @@ at various points in our stack as well as locally in your browser. Things to try
 You can manually check whether the data has been stored in Redis.
 
 1. Start a Rails console for Static
-
-    For EC2 use:
-
-    ```bash
-    gds govuk connect -e staging app-console frontend/static
-    ```
-
-    or for EKS
 
     ```bash
     POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
