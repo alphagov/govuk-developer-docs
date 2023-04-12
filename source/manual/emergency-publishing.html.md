@@ -62,16 +62,10 @@ apps.
     > You may need to escape certain characters (including `,` and `"`) with a
     > backslash. For example `\,` or `\"`.
 
-1. Find the name of a pod running Static
-
-    ```bash
-    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
-    ```
-
 1. Run the rake task in the app container
 
     ```bash
-    kubectl -n apps exec -i -t $POD_NAME -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
+    kubectl -n apps exec -i deploy/static -- rake "emergency_banner:deploy[$CAMPAIGN_CLASS,$HEADING,$SHORT_DESCRIPTION,$LINK,$LINK_TEXT]"
     ```
 
 ### 3. Test with cache bust strings
@@ -113,16 +107,11 @@ Once all caches have had time to clear, check that the emergency banner is visib
 
 ## Removing an emergency banner
 
-1. Find the name of a pod running Static
+Run the rake task in the app container:
 
-    ```bash
-    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
-    ```
-
-1. Run the rake task in the app container
-
-    ```bash
-    kubectl -n apps exec -i -t $POD_NAME -- rake emergency_banner:remove
+```bash
+kubectl -n apps exec -i deploy/static -- rake emergency_banner:remove
+```
 
 ---
 
@@ -167,9 +156,7 @@ You can manually check whether the data has been stored in Redis.
 1. Start a Rails console for Static
 
     ```bash
-    POD_NAME=$(kubectl -n apps get pods -l=app=static -o go-template --template '{{ (index .items 0).metadata.name }}')
-
-    kubectl -n apps exec -i -t $POD_NAME -- rails console
+    kubectl -n apps exec -i deploy/static -- rails console
     ```
 
 1. Check the Redis key exists:
