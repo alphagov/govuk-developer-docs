@@ -144,11 +144,6 @@
       </li>
       <li>
         <a href="#removing-an-emergency-banner"><span>Removing an emergency banner</span></a>
-        <ul>
-          <li>
-            <a href="#1-remove-the-banner"><span>1. Remove the banner</span></a>
-          </li>
-        </ul>
       </li>
       <li>
         <a href="#troubleshooting"><span>Troubleshooting</span></a>
@@ -228,7 +223,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7cb4d1ab8caa87c0b010935fe6d34f8c140c39ef">20 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/a1754b04a876b03f40dc9251ed41a33d36f78996">12 Apr 2023</a>
 </div>
 
  <h1 id='header'>Deploy an emergency banner</h1> <p>There are three types of events that would lead GOV.UK to add an emergency
@@ -264,47 +259,8 @@ Head of GOV.UK.</p>
 </ul>
 <h3 id='2-deploy-the-banner'>2. Deploy the banner</h3><p>The banner is deployed by running a rake task in Static. This task stores the
 banner information in Redis, which modifies the page template used by frontend
-apps. Choose one of the following methods:</p>
-<h4 id='ec2-running-a-jenkins-job'>EC2: Running a Jenkins Job</h4><p>A Jenkins job can be used to run the rake task.</p>
+apps.</p>
 
-<ol>
-<li><p>Go to the Jenkins task:</p>
-
-<ul>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/deploy-emergency-banner/">Deploy the emergency banner on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/deploy-emergency-banner/">Deploy the emergency banner on Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/deploy-emergency-banner/">⚠️ Deploy the emergency banner on Production ⚠️</a></li>
-</ul></li>
-<li><p>Click <code>Build with Parameters</code>.</p></li>
-<li><p>Fill in the appropriate variables using the form presented by Jenkins.</p></li>
-<li><p>Click <code>Build</code>.</p></li>
-</ol>
-<p><a href="images/emergency_publishing/deploy_emergency_banner_job.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/deploy_emergency_banner_job.png" alt="Jenkins Deploy Emergency Banner" /></a></p>
-<h4 id='ec2-manually-running-the-rake-task'>EC2: Manually running the rake task</h4>
-<ol>
-<li><p>SSH into a <code>frontend</code> machine in the environment you are deploying the banner on:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">-e</span> staging ssh frontend
-</code></pre></div></li>
-<li><p>Change into the directory for <code>static</code>:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /var/apps/static
-</code></pre></div></li>
-<li><p>Set banner content as environment variables:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">CAMPAIGN_CLASS</span><span class="o">=</span><span class="s2">"notable-death|national-emergency|local-emergency"</span>
-<span class="nv">HEADING</span><span class="o">=</span><span class="s2">"replace with heading"</span>
-<span class="nv">SHORT_DESCRIPTION</span><span class="o">=</span><span class="s2">"replace with desciption"</span>
-<span class="nv">LINK</span><span class="o">=</span><span class="s2">"replace with link"</span>
-<span class="nv">LINK_TEXT</span><span class="o">=</span><span class="s2">"replace with link text"</span>
-</code></pre></div>
-<blockquote>
-<p><strong>Note</strong></p>
-<p>You may need to escape certain characters (including <code>,</code> and <code>&quot;</code>) with a
-backslash. For example <code>\,</code> or <code>\&quot;</code>.</p>
-</blockquote></li>
-<li><p>Run the rake task</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv static bundle <span class="nb">exec </span>rake emergency_banner:deploy[<span class="nv">$CAMPAIGN_CLASS</span>,<span class="nv">$HEADING</span>,<span class="nv">$SHORT_DESCRIPTION</span>,<span class="nv">$LINK</span>,<span class="nv">$LINK_TEXT</span><span class="o">]</span>
-</code></pre></div></li>
-</ol>
-<h4 id='eks-run-the-rake-task'>EKS: Run the rake task</h4>
 <ol>
 <li><p>Set banner content as environment variables</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">CAMPAIGN_CLASS</span><span class="o">=</span><span class="s2">"notable-death|national-emergency|local-emergency"</span>
@@ -318,11 +274,8 @@ backslash. For example <code>\,</code> or <code>\&quot;</code>.</p>
 <p>You may need to escape certain characters (including <code>,</code> and <code>&quot;</code>) with a
 backslash. For example <code>\,</code> or <code>\&quot;</code>.</p>
 </blockquote></li>
-<li><p>Find the name of a pod running Static</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">POD_NAME</span><span class="o">=</span><span class="si">$(</span>kubectl <span class="nt">-n</span> apps get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>static <span class="nt">-o</span> go-template <span class="nt">--template</span> <span class="s1">'{{ (index .items 0).metadata.name }}'</span><span class="si">)</span>
-</code></pre></div></li>
 <li><p>Run the rake task in the app container</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> <span class="nt">-t</span> <span class="nv">$POD_NAME</span> <span class="nt">--</span> rake <span class="s2">"emergency_banner:deploy[</span><span class="nv">$CAMPAIGN_CLASS</span><span class="s2">,</span><span class="nv">$HEADING</span><span class="s2">,</span><span class="nv">$SHORT_DESCRIPTION</span><span class="s2">,</span><span class="nv">$LINK</span><span class="s2">,</span><span class="nv">$LINK_TEXT</span><span class="s2">]"</span>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> deploy/static <span class="nt">--</span> rake <span class="s2">"emergency_banner:deploy[</span><span class="nv">$CAMPAIGN_CLASS</span><span class="s2">,</span><span class="nv">$HEADING</span><span class="s2">,</span><span class="nv">$SHORT_DESCRIPTION</span><span class="s2">,</span><span class="nv">$LINK</span><span class="s2">,</span><span class="nv">$LINK_TEXT</span><span class="s2">]"</span>
 </code></pre></div></li>
 </ol>
 <h3 id='3-test-with-cache-bust-strings'>3. Test with cache bust strings</h3><p>Most GOV.UK pages have a cache TTL of 5 minutes. After deploying the emergency
@@ -358,41 +311,9 @@ succeeded.</p>
 </ul>
 
 <hr>
-<h2 id='removing-an-emergency-banner'>Removing an emergency banner</h2><h3 id='1-remove-the-banner'>1. Remove the banner</h3><p>Choose one of the following methods:</p>
-<h4 id='ec2-running-a-jenkins-job'>EC2: Running a Jenkins Job</h4>
-<ol>
-<li><p>Navigate to the appropriate deploy Jenkins environment (integration, staging or production):</p>
-
-<ul>
-<li><a href="https://deploy.integration.publishing.service.gov.uk/job/remove-emergency-banner/">Remove the emergency banner from Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/remove-emergency-banner/">Remove the emergency banner from Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/remove-emergency-banner/">⚠️ Remove the emergency banner from Production ⚠️</a></li>
-</ul></li>
-<li><p>Click <code>Build now</code> in the left hand menu.</p></li>
-</ol>
-<p><a href="images/emergency_publishing/remove_emergency_banner_job.png" rel="noopener noreferrer"><img src="/manual/images/emergency_publishing/remove_emergency_banner_job.png" alt="Jenkins Remove Emergency Banner" /></a></p>
-<h4 id='ec2-manually-running-the-rake-task'>EC2: Manually running the rake task</h4>
-<ol>
-<li><p>SSH into a frontend machine:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">-e</span> staging ssh frontend
-</code></pre></div></li>
-<li><p>Change into the directory for <code>static</code>:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">cd</span> /var/apps/static
-</code></pre></div></li>
-<li><p>Run the rake task:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nb">sudo</span> <span class="nt">-u</span> deploy govuk_setenv static bundle <span class="nb">exec </span>rake emergency_banner:remove
-</code></pre></div></li>
-</ol>
-<h4 id='eks-run-the-rake-task'>EKS: Run the rake task</h4>
-<ol>
-<li><p>Find the name of a pod running Static</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">POD_NAME</span><span class="o">=</span><span class="si">$(</span>kubectl <span class="nt">-n</span> apps get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>static <span class="nt">-o</span> go-template <span class="nt">--template</span> <span class="s1">'{{ (index .items 0).metadata.name }}'</span><span class="si">)</span>
-</code></pre></div></li>
-<li><p>Run the rake task in the app container</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> <span class="nt">-t</span> <span class="nv">$POD_NAME</span> <span class="nt">--</span> rake emergency_banner:remove
-</code></pre></div></li>
-</ol>
-
+<h2 id='removing-an-emergency-banner'>Removing an emergency banner</h2><p>Run the rake task in the app container:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> deploy/static <span class="nt">--</span> rake emergency_banner:remove
+</code></pre></div>
 <hr>
 <h2 id='troubleshooting'>Troubleshooting</h2><h3 id='background'>Background</h3><p>The information for the emergency banner is stored in Redis. <a href="https://github.com/alphagov/static">Static</a> is responsible for displaying the data and we run <a href="https://github.com/alphagov/static/blob/main/lib/tasks/emergency_banner.rake">rake task in static</a> to set or delete the appropriate hash in Redis.</p>
 <h3 id='the-banner-is-not-showing-not-clearing'>The banner is not showing / not clearing</h3><p>Usually this is because a cache has not expired or cleared properly. This can be
@@ -420,13 +341,6 @@ to narrow down the problem:
 <ol>
 <li>Wait for 2 minutes after the Deploy Emergency Banner job has completed.
 This will allow the frontend application caches to <a href="https://github.com/alphagov/slimmer/blob/5b8428704f143547bdae2c7cb9a585ab77d3181b/lib/slimmer.rb#L10">clear automatically after 60s</a>.</li>
-<li>Run the &ldquo;Clear varnish cache&rdquo; Jenkins job (Only required if serving traffic from EC2)
-
-<ul>
-<li><a href="https://deploy.blue.integration.govuk.digital/job/clear-varnish-cache/">Clear varnish on Integration</a></li>
-<li><a href="https://deploy.blue.staging.govuk.digital/job/clear-varnish-cache/">Clear varnish on  Staging</a></li>
-<li><a href="https://deploy.blue.production.govuk.digital/job/clear-varnish-cache/">⚠️ Clear varnish on Production ⚠️</a></li>
-</ul></li>
 <li>Run the &ldquo;Clear CDN cache&rdquo; Jenkins job
 
 <ul>
@@ -440,12 +354,7 @@ This will allow the frontend application caches to <a href="https://github.com/a
 
 <ol>
 <li><p>Start a Rails console for Static</p>
-<p>For EC2 use:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds govuk connect <span class="nt">-e</span> staging app-console frontend/static
-</code></pre></div><p>or for EKS</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">POD_NAME</span><span class="o">=</span><span class="si">$(</span>kubectl <span class="nt">-n</span> apps get pods <span class="nt">-l</span><span class="o">=</span><span class="nv">app</span><span class="o">=</span>static <span class="nt">-o</span> go-template <span class="nt">--template</span> <span class="s1">'{{ (index .items 0).metadata.name }}'</span><span class="si">)</span>
-
-kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> <span class="nt">-t</span> <span class="nv">$POD_NAME</span> <span class="nt">--</span> rails console
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec</span> <span class="nt">-i</span> deploy/static <span class="nt">--</span> rails console
 </code></pre></div></li>
 <li><p>Check the Redis key exists:</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Redis</span><span class="p">.</span><span class="nf">new</span><span class="p">.</span><span class="nf">hgetall</span><span class="p">(</span><span class="s2">"emergency_banner"</span><span class="p">)</span>
