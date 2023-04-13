@@ -184,7 +184,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0dec6d7fafdf5f9e2a83813e11666669985b91b1">13 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0f8ec128c20bb51c91ff2ab3dfc962b358b5f537">13 Apr 2023</a>
 </div>
 
  <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
@@ -193,7 +193,7 @@
 <p>For applications without continuous deployment enabled, they will need to be manually deployed to staging and production.</p>
 <p>The <a href="https://release.publishing.service.gov.uk/applications">Release app</a> shows the currently deployed versions of each app and whether an app requires manual deployment to later environments.</p>
 <h2 id='manual-deployments'>Manual deployments</h2><p>You can manually deploy an application by triggering the &ldquo;Deploy&rdquo; GitHub Action workflow for that application’s repository.</p>
-<p>This can be done in GitHub’s web interface:</p>
+<p>This can be done in <a href="https://docs.github.com/en/actions/managing-workflow-runs/manually-running-a-workflow">GitHub’s web interface</a>:</p>
 
 <ol>
 <li>Go to the &ldquo;Actions&rdquo; page in the application repository</li>
@@ -202,34 +202,34 @@
 <li>Input the git reference and environment (ignore the &ldquo;Use workflow from&rdquo; option)</li>
 <li>Click &ldquo;Run workflow&rdquo;</li>
 </ol>
-<p>Or using GitHub’s CLI:</p>
+<p>Or using <a href="https://cli.github.com/manual/gh_workflow_run">GitHub’s CLI</a>:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>gh workflow run <span class="nt">-R</span> <span class="s2">"alphagov/</span><span class="k">${</span><span class="nv">REPO</span><span class="k">}</span><span class="s2">"</span> deploy.yml <span class="nt">-F</span> <span class="nv">environment</span><span class="o">=</span><span class="k">${</span><span class="nv">ENVIRONMENT</span><span class="k">}</span> <span class="nt">-F</span> <span class="nv">gitRef</span><span class="o">=</span><span class="k">${</span><span class="nv">GIT_REF</span><span class="k">}</span>
 </code></pre></div><h2 id='overview-of-the-deployment-process'>Overview of the deployment process</h2><p>This is an example deploying an application to integration:</p>
 
 <ol>
-<li>Developer merges a PR into main branch and it passes CI</li>
-<li>Triggers the &ldquo;Deploy&rdquo; workflow in GitHub Actions
+<li>Developer merges a PR into main branch and it passes <a href="https://github.com/alphagov/whitehall/actions/workflows/ci.yml">CI</a></li>
+<li>Triggers the <a href="https://github.com/alphagov/whitehall/actions/workflows/deploy.yml">&ldquo;Deploy&rdquo; workflow</a> in GitHub Actions
 
 <ol>
-<li>Builds and pushes an image to AWS Elastic Container Registery (ECR) in production</li>
-<li>Sends a webhook to Argo Workflows in production</li>
+<li>Builds and pushes an image to <a href="https://aws.amazon.com/ecr/">AWS Elastic Container Registery (ECR)</a> in production</li>
+<li>Sends a webhook to <a href="https://argo-workflows.eks.production.govuk.digital/workflows/apps">Argo Workflows in production</a></li>
 </ol></li>
-<li>Triggers the &ldquo;deploy-image&rdquo; workflow in Argo Workflows in production
+<li>Triggers the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/deploy-image/workflow.yaml">&ldquo;deploy-image&rdquo; workflow</a> in <a href="https://argo-workflows.eks.production.govuk.digital/workflows/apps">Argo Workflows in production</a>
 
 <ol>
-<li>Updates the image tag reference for integration in govuk-helm-charts with a new commit</li>
+<li>Updates the image tag reference for integration in <a href="https://github.com/alphagov/govuk-helm-charts/tree/main/charts/app-config/image-tags">govuk-helm-charts</a> with a new commit</li>
 <li>Adds a &ldquo;deployed-to-<environment>&rdquo; tag on the image in ECR</li>
 <li>Notifies the Release application of the deployment</li>
 </ol></li>
-<li>Argo CD in integration polls govuk-helm-charts and detects updated image tag reference
+<li><a href="https://argo.eks.integration.govuk.digital/applications">Argo CD in integration</a> polls <a href="https://github.com/alphagov/govuk-helm-charts">govuk-helm-charts</a> and detects updated image tag reference
 
 <ol>
-<li>Triggers sync of the <code>app-config</code> (<a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern">app-of-apps</a>) application in Argo CD</li>
-<li>Updates the Helm values for the deployed app&rsquo;s Argo CD application resource</li>
+<li>Triggers sync of the <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/app-config"><code>app-config</code></a> (<a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern">app-of-apps</a>) application in Argo CD</li>
+<li>Updates the Helm values for the deployed <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/whitehall-admin">app&rsquo;s Argo CD application resource</a></li>
 <li>Updates the Kubernetes deployment resource with the new image tag</li>
 </ol></li>
-<li>Kubernetes does a rolling update of the pods</li>
-<li>Argo CD triggers the &ldquo;post-sync&rdquo; workflow in Argo Workflows (in integration)
+<li>Kubernetes does a <a href="https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/">rolling update of the pods</a></li>
+<li>Argo CD triggers the <a href="https://github.com/alphagov/govuk-helm-charts/blob/main/charts/argo-services/templates/workflows/post-sync/workflow.yaml">&ldquo;post-sync&rdquo; workflow</a> in <a href="https://argo-workflows.eks.integration.govuk.digital/workflows/apps">Argo Workflows in integration</a>
 
 <ol>
 <li>Runs smoke tests for the app</li>
