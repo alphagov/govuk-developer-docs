@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Deploy Terraform - GOV.UK Developer Documentation</title>
+    <title>Deployments - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/deploying-terraform.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/deployments.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Deploy Terraform - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/deploying-terraform.html" />
+      <meta name="twitter:title" content="Deployments - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/deployments.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Deploy Terraform" />
+      <meta property="og:title" content="Deployments" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/deploying-terraform.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/deployments.html" />
 
     
   </head>
@@ -126,26 +126,13 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Deploy Terraform</span></a>
+    <a href="#header"><span>Deployments</span></a>
     <ul>
       <li>
-        <a href="#one-time-setup"><span>One-time setup</span></a>
-        <ul>
-          <li>
-            <a href="#1-check-that-you-have-sufficient-access"><span>1. Check that you have sufficient access</span></a>
-          </li>
-          <li>
-            <a href="#2-install-gds-cli"><span>2. Install gds-cli</span></a>
-          </li>
-        </ul>
+        <a href="#manual-deployments"><span>Manual deployments</span></a>
       </li>
       <li>
-        <a href="#deploy-terraform-via-jenkins"><span>Deploy Terraform via Jenkins</span></a>
-        <ul>
-          <li>
-            <a href="#other-ways-of-invoking-jenkins"><span>Other ways of invoking Jenkins</span></a>
-          </li>
-        </ul>
+        <a href="#overview-of-the-deployment-process"><span>Overview of the deployment process</span></a>
       </li>
     </ul>
   </li>
@@ -196,61 +183,60 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f843180b4a478bcf93b0c6a4d3f6a22c555b9497">18 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0dec6d7fafdf5f9e2a83813e11666669985b91b1">13 Apr 2023</a>
 </div>
 
- <h1 id='header'>Deploy Terraform</h1> <p>We use <a href="https://terraform.io">Terraform</a> for configuring GOV.UK infrastructure in AWS.</p>
-<h2 id='one-time-setup'>One-time setup</h2><h3 id='1-check-that-you-have-sufficient-access'>1. Check that you have sufficient access</h3><p>Which changes you can deploy depends on the role you have assumed
-in our AWS environments.</p>
+ <h1 id='header'>Deployments</h1> <p>On GOV.UK, all applications are set up for continuous deployment to integration, with the majority also having continuous deployment configured for staging and production.  Additionally, you can manually deploy a git reference (tag, branch, or commit SHA) of an application to any environment.</p>
+<p>Continuous integration (CI) is run on new commits on the main branch, usually from merging a pull request. If the commits pass CI, they are automatically deployed to integration. After deployment, a set of smoke tests run in integration to verify that the application still works as expected.</p>
+<p>If the smoke tests pass and the application has continuous deployment enabled, the deployment is promoted to staging. In staging another set of smoke tests run, and if they pass, the deployment will be promoted to production.</p>
+<p>For applications without continuous deployment enabled, they will need to be manually deployed to staging and production.</p>
+<p>The <a href="https://release.publishing.service.gov.uk/applications">Release app</a> shows the currently deployed versions of each app and whether an app requires manual deployment to later environments.</p>
+<h2 id='manual-deployments'>Manual deployments</h2><p>You can manually deploy an application by triggering the &ldquo;Deploy&rdquo; GitHub Action workflow for that application’s repository.</p>
+<p>This can be done in GitHub’s web interface:</p>
 
-<ul>
-<li><code>govuk-users</code> can only assume readonly roles, so cannot apply terraform</li>
-<li>people with production access can assume <code>poweruser</code> roles, which can deploy anything except IAM</li>
-<li>people with production access can assume <code>administrator</code> roles, which can deploy anything</li>
-</ul>
-<p>You should always use the least privileged role that will let you accomplish
-your task.</p>
-<p>Unless your terraform plan needs to make changes to IAM resources, use a
-poweruser role.</p>
-<h3 id='2-install-gds-cli'>2. Install <code>gds-cli</code></h3><p><a href="https://github.com/alphagov/gds-cli"><code>gds-cli</code></a> is the <a href="/manual/get-started.html">preferred way</a> of obtaining AWS credentials.</p>
-<h2 id='deploy-terraform-via-jenkins'>Deploy Terraform via Jenkins</h2><p><strong>Always <code>plan</code> first, check that the output is what you expect, then <code>apply</code>.</strong></p>
-<p>Before you begin, run the following command using <code>gds-cli</code>:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gds aws govuk-integration-admin <span class="nt">-e</span>
-</code></pre></div><p>This will allow you to retrieve several AWS access keys that the Jenkins job requires to run.</p>
-<p>In the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS">&lsquo;Deploy_Terraform_GOVUK_AWS&rsquo; Jenkins job</a>, click &ldquo;Build with Parameters&rdquo; and enter the following for each field:</p>
+<ol>
+<li>Go to the &ldquo;Actions&rdquo; page in the application repository</li>
+<li>Select the &ldquo;Deploy&rdquo; workflow from the list of workflows on the left hand side</li>
+<li>Click &ldquo;Run workflow&rdquo;</li>
+<li>Input the git reference and environment (ignore the &ldquo;Use workflow from&rdquo; option)</li>
+<li>Click &ldquo;Run workflow&rdquo;</li>
+</ol>
+<p>Or using GitHub’s CLI:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>gh workflow run <span class="nt">-R</span> <span class="s2">"alphagov/</span><span class="k">${</span><span class="nv">REPO</span><span class="k">}</span><span class="s2">"</span> deploy.yml <span class="nt">-F</span> <span class="nv">environment</span><span class="o">=</span><span class="k">${</span><span class="nv">ENVIRONMENT</span><span class="k">}</span> <span class="nt">-F</span> <span class="nv">gitRef</span><span class="o">=</span><span class="k">${</span><span class="nv">GIT_REF</span><span class="k">}</span>
+</code></pre></div><h2 id='overview-of-the-deployment-process'>Overview of the deployment process</h2><p>This is an example deploying an application to integration:</p>
 
-<ul>
-<li>AWS_ACCESS_KEY_ID: can be retrieved from the above command</li>
-<li>AWS_SECRET_ACCESS_KEY: can be retrieved from the above command</li>
-<li>AWS_SESSION_TOKEN: can be retrieved from the above command</li>
-<li>COMMAND: the terraform action you want to perform. E.g. <code>plan</code>, <code>apply</code></li>
-<li>ENVIRONMENT: the govuk environment you want to deploy to. E.g. <code>integration</code>,<code>staging</code></li>
-<li>STACKNAME: the govuk stack you want to deploy to. E.g. <code>blue</code> (which is usually for <code>app-</code> projects), <code>govuk</code> (which is usually for <code>infra-</code> projects)</li>
-<li>PROJECT: the terraform project that you want to deploy. E.g. <code>app-gatling</code>, <code>infra-security</code></li>
-</ul>
-<p>All other fields can be left as they are.</p>
-<p>Click &ldquo;build&rdquo; and terraform should deploy as expected. Remember to deploy to staging and/or production as required.</p>
-<h3 id='other-ways-of-invoking-jenkins'>Other ways of invoking Jenkins</h3><p>As of version <code>v2.15.0</code> of <code>gds-cli</code>, you can use it to deploy terraform via Jenkins.
-Note that you should use at least <a href="https://github.com/alphagov/gds-cli/releases/tag/v5.25.0">v5.25.0</a> of <code>gds-cli</code>, otherwise you will need to manually specify the branches of <code>govuk-aws</code> and <code>govuk-aws-data</code> (see below).</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">GITHUB_USERNAME</span><span class="o">=</span>&lt;your GitHub username&gt; <span class="se">\</span>
-  <span class="nv">GITHUB_TOKEN</span><span class="o">=</span>&lt;your GitHub personal access token&gt; <span class="se">\</span>
-  gds govuk terraform <span class="nt">-r</span> &lt;your role e.g. govuk-integration-admin&gt; <span class="se">\</span>
-  <span class="nt">-e</span> &lt;environment, eg integration&gt; <span class="se">\</span>
-  <span class="nt">-p</span> &lt;project to deploy&gt; <span class="se">\</span>
-  <span class="nt">-s</span> &lt;stack to deploy to, eg blue <span class="k">for </span>projects, govuk <span class="k">for </span>infrastructure&gt; <span class="se">\</span>
-  <span class="nt">-a</span> &lt;action, eg plan or apply&gt;
-  <span class="nt">-b</span> &lt;<span class="o">(</span>optional<span class="o">)</span> branch of govuk-aws&gt;
-  <span class="nt">-d</span> &lt;<span class="o">(</span>optional<span class="o">)</span> branch of govuk-aws-data&gt;
-</code></pre></div><p>This command takes care of requesting temporary AWS credentials with an assumed role and queue the deployment Jenkins job, and is a little less awkward than copying and pasting your credentials into Jenkins repeatedly. You&rsquo;ll still need to view the job progress in Jenkins.</p>
-<p>For more details, run <code>gds govuk terraform --help</code>.</p>
+<ol>
+<li>Developer merges a PR into main branch and it passes CI</li>
+<li>Triggers the &ldquo;Deploy&rdquo; workflow in GitHub Actions
+
+<ol>
+<li>Builds and pushes an image to AWS Elastic Container Registery (ECR) in production</li>
+<li>Sends a webhook to Argo Workflows in production</li>
+</ol></li>
+<li>Triggers the &ldquo;deploy-image&rdquo; workflow in Argo Workflows in production
+
+<ol>
+<li>Updates the image tag reference for integration in govuk-helm-charts with a new commit</li>
+<li>Adds a &ldquo;deployed-to-<environment>&rdquo; tag on the image in ECR</li>
+<li>Notifies the Release application of the deployment</li>
+</ol></li>
+<li>Argo CD in integration polls govuk-helm-charts and detects updated image tag reference
+
+<ol>
+<li>Triggers sync of the <code>app-config</code> (<a href="https://argo-cd.readthedocs.io/en/stable/operator-manual/cluster-bootstrapping/#app-of-apps-pattern">app-of-apps</a>) application in Argo CD</li>
+<li>Updates the Helm values for the deployed app&rsquo;s Argo CD application resource</li>
+<li>Updates the Kubernetes deployment resource with the new image tag</li>
+</ol></li>
+<li>Kubernetes does a rolling update of the pods</li>
+<li>Argo CD triggers the &ldquo;post-sync&rdquo; workflow in Argo Workflows (in integration)
+
+<ol>
+<li>Runs smoke tests for the app</li>
+<li>Checks if deployment should be promoted</li>
+<li>If so, sends a webhook to Argo Workflows (in production) to trigger deploy-image for the next environment</li>
+</ol></li>
+</ol>
 
 
   <div class='related-content'>
@@ -272,9 +258,9 @@ Note that you should use at least <a href="https://github.com/alphagov/gds-cli/r
           <ul class="govuk-list">
             <li><a href="/manual/deploy-puppet.html">Deploy Puppet</a></li>
             <li><a href="/manual/deploy-static.html">Deploy Static</a></li>
+            <li><a href="/manual/deploying-terraform.html">Deploy Terraform</a></li>
             <li><a href="/manual/github-unavailable.html">Deploy when GitHub is unavailable</a></li>
             <li><a href="/manual/deployment-dashboards.html">Deployment dashboards</a></li>
-            <li><a href="/manual/deployments.html">Deployments</a></li>
             <li><a href="/manual/fall-back-to-aws-cloudfront.html">Fall back to AWS CloudFront</a></li>
             <li><a href="/manual/fall-back-to-mirror.html">GOV.UK CDN static mirrors</a></li>
             <li><a href="/manual/encrypted-hiera-data.html">Handle encrypted hieradata</a></li>
@@ -295,8 +281,8 @@ Note that you should use at least <a href="https://github.com/alphagov/gds-cli/r
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/deploying-terraform.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Deploy+Terraform%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdeploying-terraform.html%29&amp;labels=bug&amp;title=Re%3A+%27Deploy+Terraform%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/deployments.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Deployments%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fdeployments.html%29&amp;labels=bug&amp;title=Re%3A+%27Deployments%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
