@@ -54,19 +54,15 @@ https://whitehall-admin.publishing.service.gov.uk/government/admin/editions/<edi
 Dry run:
 
 ```bash
-$ bundle exec 'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'
+$ bundle exec rake 'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'
 ```
-
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
 
 This attempts to locate the selected change note for the content, and if found, report to the user the change note object that would have been removed.
 
 Real run:
 
 ```bash
-$ bundle exec 'data_hygiene:remove_change_note:real[content_id,locale,change note text]'
+$ bundle exec rake 'data_hygiene:remove_change_note:real[content_id,locale,change note text]'
 ```
-
-[Jenkins - integration](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27)
 
 This will actually *delete* the selected change note and re-represent to the content store, also updating the edition history.

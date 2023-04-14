@@ -12,9 +12,7 @@ this is a problem [by monitoring Publishing API sidekiq queue][sidekiq-queue]
 and seeing if the `downstream_low` queue is high.
 
 To get things processed faster you can run the following Rake task on the
-Publishing API in Jenkins,
-[`represent_downstream:high_priority:content_id['some-content-id some-other-content-id']`][jenkins-task],
+Publishing API `represent_downstream:high_priority:content_id['some-content-id some-other-content-id']`,
 which will re-represent them downstream via the high priority queue.
 
 [sidekiq-queue]: https://docs.publishing.service.gov.uk/manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring
-[jenkins-task]: https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[%27some-content-id%20some-other-content-id%27]
