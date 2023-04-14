@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: puppet-rbenv - GOV.UK Developer Documentation</title>
+    <title>Repository: puppet-rbenv (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: puppet-rbenv - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: puppet-rbenv (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/puppet-rbenv.html" />
 
       <meta property="og:description" content="Everything about puppet-rbenv (Puppet module for managing a single system installation of rbenv and Rubies)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: puppet-rbenv" />
+      <meta property="og:title" content="Repository: puppet-rbenv (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/puppet-rbenv.html" />
 
@@ -174,100 +174,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: puppet-rbenv</h1>
+  <h1 class="page-title">Repository: puppet-rbenv (retired)</h1>
 
-  <p>Puppet module for managing a single system installation of rbenv and Rubies</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/puppet-rbenv">puppet-rbenv</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#govuk-platform-reliability-team</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Utilities</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-puppet-rbenv" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/puppet-rbenv.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<p>Manage a single system installation of rbenv and Rubies.</p>
-
-<p>This differs from existing <code>puppet-rbenv</code> modules in that it uses system
-packages for <em>everything</em>.  It will never call <code>git clone</code> or <code>rbenv install</code> (normally provided by <a href="https://github.com/sstephenson/ruby-build">ruby-build</a>).</p>
-
-<p>This ensures that every install is consistent on every server. This is
-particularly important for Ruby, which will link to whatever libraries and
-headers are available on the system which it is compiled.</p>
-
-<p>Examples of these packages can be seen at:</p>
-
-<ul>
-<li><a href="https://github.com/alphagov/packager">https://github.com/alphagov/packager</a></li>
-<li><a href="https://launchpad.net/~gds/+archive/govuk/+packages?field.name_filter=rbenv">https://launchpad.net/~gds/+archive/govuk/+packages?field.name_filter=rbenv</a></li>
-</ul>
-
-<h2 id="example-usage">Example usage</h2>
-
-<p>Include:</p>
-
-<pre><code>include rbenv
-</code></pre>
-
-<p>Setup a version of Ruby:</p>
-
-<pre><code>rbenv::version { '1.9.3-p392':
-  bundler_version =&gt; '1.3.5'
-}
-rbenv::alias { '1.9.3':
-  to_version =&gt; '1.9.3-p392',
-}
-</code></pre>
-
-<h2 id="license">License</h2>
-
-<p>See <a href="https://github.com/alphagov/puppet-rbenv/blob/main/LICENSE">LICENSE</a> file.</p>
-<p></div></p>
+  <p>This application is retired.</p>
+<p><p>Puppet module for managing a single system installation of rbenv and Rubies</p></p>
+<p><a href="https://github.com/alphagov/puppet-rbenv">GitHub repository</a></p>
 
 
             
