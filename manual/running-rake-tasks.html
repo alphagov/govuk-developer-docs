@@ -129,15 +129,15 @@
     <a href="#header"><span>Run a rake task</span></a>
     <ul>
       <li>
+        <a href="#run-a-rake-task-on-eks"><span>Run a rake task on EKS</span></a>
+      </li>
+      <li>
         <a href="#run-a-rake-task-on-ec2"><span>Run a rake task on EC2</span></a>
         <ul>
           <li>
             <a href="#run-rake-tasks-from-the-command-line"><span>Run rake tasks from the command line</span></a>
           </li>
         </ul>
-      </li>
-      <li>
-        <a href="#run-a-rake-task-on-eks"><span>Run a rake task on EKS</span></a>
       </li>
     </ul>
   </li>
@@ -189,10 +189,14 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/0a836c80e1ca19cc2004257df37103a27d145a97">27 Mar 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/61189142a03c6b69b3f9244fe2c8704068dd88fc">13 Apr 2023</a>
 </div>
 
  <h1 id='header'>Run a rake task</h1> <p>Rake is a task runner for Ruby. There are several different methods of running a rake task:</p>
+<h2 id='run-a-rake-task-on-eks'>Run a rake task on EKS</h2><p>To run a rake task in Kubernetes, execute the rake command inside the application container.</p>
+<p>For example:</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/publishing-api <span class="nt">--</span> rake <span class="s1">'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'</span>
+</code></pre></div><p>The output of the command will be streamed to your terminal.</p>
 <h2 id='run-a-rake-task-on-ec2'>Run a rake task on EC2</h2><p>There is a Jenkins job that can be used to run any rake task:</p>
 
 <ul>
@@ -213,11 +217,7 @@
 </code></pre></div><p>Finally, run the rake task, e.g.:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>govuk_setenv publishing-api bundle exec \
 rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
-</code></pre></div><h2 id='run-a-rake-task-on-eks'>Run a rake task on EKS</h2><p>To run a rake task in Kubernetes, execute the rake command inside the application container.</p>
-<p>For example:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/publishing-api <span class="nt">--</span> rake <span class="s1">'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'</span>
-</code></pre></div><p>The output of the command will be streamed to your terminal.</p>
-
+</code></pre></div>
 
   <div class='related-content'>
 

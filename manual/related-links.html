@@ -194,15 +194,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bfda62b303339526a7c741afc3ffe0f81abde40f">18 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
 </div>
 
  <h1 id='header'>Related links</h1> <h2 id='manual'>Manual</h2><p>Related links can be added or removed manually through <a href="https://content-tagger.publishing.service.gov.uk">Content Tagger</a>.
@@ -238,13 +231,8 @@ links using Content Tagger.</p>
 <p>Links are retrieved from the environment-specific S3 bucket mentioned previously and then fed (in batches) to the Publishing API. There is a 20 minute delay between batches. Exclusions are applied during this stage from a <code>related_link_exclusions.json</code> file which is available in S3; for these links, we obtain the respective content ids and use them to remove any suggested links that may exist for the current batch of links being ingested.</p>
 <p>This job runs once every two weeks via a <code>time</code> resource attached to the production <code>run-generation-production</code> step, and specifically runs a few days after the generation of new related links takes place.</p>
 <h3 id='rolling-back-links'>Rolling back Links</h3><p>Should we ever need to roll back any suggested related links, there are a number of ways we can do this, which are described below. If the request to roll back links is coming from a content designer, the process at the top of this document should be applied unless the request is to roll back links for more than a few pages.</p>
-<h4 id='links-for-individual-pages'>Links for individual pages</h4><p>To rollback suggested related links for an individual page (to show the original related links), use the <a href="https://deploy.publishing.service.gov.uk/job/run-rake-task/">Run rake task job on Jenkins</a> with the following parameters set:</p>
-
-<ul>
-<li><code>TARGET_APPLICATION: publishing-api</code></li>
-<li><code>MACHINE_CLASS: publishing_api</code></li>
-<li><code>RAKE_TASK: content:reset_related_links_for_pages[&#39;CONTENT_ID’]</code>, where <code>CONTENT_ID</code> is the content id of the page to remove suggested links from</li>
-</ul>
+<h4 id='links-for-individual-pages'>Links for individual pages</h4><p>To rollback suggested related links for an individual page (to show the original related links), use the following rake task for Publishing API:</p>
+<p><code>content:reset_related_links_for_pages[&#39;CONTENT_ID’]</code>, where <code>CONTENT_ID</code> is the content id of the page to remove suggested links from.</p>
 <h4 id='links-for-certain-document-types'>Links for certain document types</h4><p>To exclude a document type or page from having links generated <em>to</em> it, <em>from</em> it, or both, <a href="https://github.com/alphagov/govuk-related-links-recommender/tree/master/src/config">update the exclusions in the GitHub repository</a>. Note: this will take effect from the <em>next</em> time the related links generation process is run, and will not affect current links.</p>
 <h4 id='suspending-all-suggested-related-links'>Suspending all suggested related links</h4><p>To immediately and temporarily stop showing all suggested related links (for example, if a problem has led to bad links being generated for a large percentage of content / high traffic content), you will need to update the CDN to set the <code>Govuk-Use-Recommended-Related-Links</code> header to <code>False</code> and then <a href="https://deploy.blue.production.govuk.digital/job/Deploy_CDN/">deploy the CDN</a> for <code>vhost: www</code>.</p>
 <p>The root cause of the problem should be investigated and a new set of related links generated and ingested through the pipeline, if possible. Should the fix not be immediate, we might consider re-ingesting an older batch of related links from S3.</p>

@@ -148,15 +148,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
 </div>
 
  <h1 id='header'>More items scheduled for publication than in queue for publisher</h1> <p>This alert means that the number of editions in the publisher database
@@ -164,12 +157,7 @@ which are scheduled to be published in the future is different from
 the number currently in the Sidekiq queue.</p>
 <p>This can happen in Staging and Integration as a result of the data
 sync from Production. Run Publisher&rsquo;s <code>editions:requeue_scheduled_for_publishing</code>
-rake task to re-queue all scheduled editions:</p>
-
-<ul>
-<li><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=editions:requeue_scheduled_for_publishing">Run in Integration Jenkins</a></p></li>
-<li><p><a href="https://deploy.staging.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=editions:requeue_scheduled_for_publishing">Run in Staging Jenkins</a></p></li>
-</ul>
+rake task to re-queue all scheduled editions in Integration and Staging.</p>
 
 
   <div class='related-content'>

@@ -203,7 +203,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/ea375597fa40411853b17a22c9246debf5b4a3ef">23 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
 </div>
 
  <h1 id='header'>Rename a country</h1> <blockquote>
@@ -234,9 +234,9 @@
 <li><p>Run Rake tasks</p>
 
 <ul>
-<li>Run <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=country:rename[&lt;old_country_slug&gt;,&lt;new_country_slug&gt;]">country:rename[old_country_slug,new_country_slug]</a> to update the <code>TravelAdviceEdition</code>s.</li>
-<li>Run <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=publishing_api:republish_edition[&lt;new_country_slug&gt;]">publishing_api:republish_edition[new_country_slug]</a> to update the PublishingApi.</li>
-<li>Run <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=publishing_api:republish_email_signups:country_edition[&lt;country-slug&gt;]">publishing_api:republish_email_signups:country_edition[country-slug]</a> to update email subscriptions at <code>/foreign-travel-advice/&lt;country_slug&gt;/email-signup</code></li>
+<li>Run <code>country:rename[old_country_slug,new_country_slug]</code> to update the <code>TravelAdviceEdition</code>s.</li>
+<li>Run <code>publishing_api:republish_edition[new_country_slug]</code> to update the Publishing API.</li>
+<li>Run <code>publishing_api:republish_email_signups:country_edition[country-slug]</code> to update email subscriptions at <code>/foreign-travel-advice/&lt;country_slug&gt;/email-signup</code></li>
 </ul></li>
 <li><p>Update the search metadata</p>
 
@@ -273,11 +273,8 @@
 
 <ol>
 <li><p>Create a <a href="https://github.com/alphagov/whitehall/pull/4643/files">data migration</a> to update the <code>slug</code> and <code>name</code> fields of the <code>WorldLocation</code> table.</p></li>
-<li><p>Deploy the pull request</p>
-
-<ul>
-<li>After deploying, run the <a href="https://deploy.integration.publishing.service.gov.uk/job/Run_Whitehall_Data_Migrations/">Whitehall data migrations</a> job</li>
-</ul></li>
+<li><p>Deploy the changes</p></li>
+<li><p>Run the <code>db:data:migrate</code> rake task in Whitehall</p></li>
 <li><p>Update World Location News</p>
 
 <ul>
@@ -316,9 +313,9 @@
 <p><strong>WARNING: the slug is used as an ID for the last few pages of the signup journey (e.g. <a href="https://github.com/alphagov/email-alert-frontend/blob/784009bfff734003e028e1c0ab36b61d1775a45f/app/controllers/content_item_signups_controller.rb#L33">here</a>). When you change the slug, any users currently trying to sign up on the pages will receive a 404.</strong></p>
 
 <ol>
-<li>Run the rake task <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&amp;MACHINE_CLASS=email_alert_api&amp;RAKE_TASK=data_migration:find_subscriber_list_by_title[country_name]">data_migration:find_subscriber_list_by_title[title]</a>
+<li>Run the rake task <code>data_migration:find_subscriber_list_by_title[title]</code>
 with the country name to see which subscription lists need to be updated</li>
-<li>Run the rake task <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&amp;MACHINE_CLASS=email_alert_api&amp;RAKE_TASK=data_migration:update_subscriber_list_slug[country_slug,new_country_slug]">data_migration:update_subscriber_list_slug[slug,new_slug]</a>
+<li>Run the rake task <code>data_migration:update_subscriber_list_slug[slug,new_slug]</code>
 to update the subscription lists</li>
 </ol>
 <h3 id='6-remove-duplicate-search-results'>6. Remove duplicate search results</h3><p>In <a href="https://github.com/alphagov/whitehall">Whitehall</a> run <code>SearchIndexDeleteWorker.perform_async(instance.search_index[&#39;slug&#39;], instance.rummager_index)</code></p>
@@ -326,13 +323,13 @@ to update the subscription lists</li>
 <h3 id='7-update-specialist-publisher'>7. Update Specialist Publisher</h3>
 <ol>
 <li><p>Create and deploy pull requests for schemas in publishing api  (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1014">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1722/commits/79c10d173f8294fef25b07678a7e74213e78e424">example</a>) to support both countries temporarily (during the data migration). Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.</p></li>
-<li><p>Run the rake task <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=publishing_api:publish_finder[finder]">publishing_api:publish_finder[finder]</a> to republish the updated finders:</p>
+<li><p>Run the rake task <code>publishing_api:publish_finder[finder]</code> to republish the updated finders:</p>
 
 <ul>
 <li><code>export_health_certificates</code></li>
 <li><code>international_development_funds</code></li>
 </ul></li>
-<li><p>Run the rake task <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=specialist-publisher&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=rename_country:all[country_slug,new_country_slug]">rename_country:all[country_slug,new_country_slug]</a> to republish all the relevant documents.</p></li>
+<li><p>Run the rake task <code>rename_country:all[country_slug,new_country_slug]</code> to republish all the relevant documents.</p></li>
 <li><p>Check the country filter options have updated and documents appear with the new country filter set. This could take a few minutes due to the time it takes to republish the finder and all its associated documents.</p>
 
 <ul>
@@ -341,7 +338,7 @@ to update the subscription lists</li>
 </ul></li>
 <li><p>Create and deploy another pull request for content schemas in publishing api (<a href="https://github.com/alphagov/govuk-content-schemas/pull/1015">example</a>) and Specialist Publisher (<a href="https://github.com/alphagov/specialist-publisher/pull/1724">example</a>) to remove support for the old country. Note that the schema example PR given here is for the archived govuk-content-schemas repo - please update with a publishing api PR when this is available.</p></li>
 <li><p>Re-publish the finders again, as above.</p></li>
-<li><p>Run the rake task <a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=email-alert-api&amp;MACHINE_CLASS=email_alert_api&amp;RAKE_TASK=data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]]">data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]</a> to update the matching criteria for any subscriber lists in Email Alert API with keys of:</p>
+<li><p>Run the rake task <code>data_migration:update_subscriber_list_tag[field,country_slug,new_country_slug]</code> to update the matching criteria for any subscriber lists in Email Alert API with keys of:</p>
 
 <ul>
 <li><code>location</code></li>

@@ -175,15 +175,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/d0887d0c6875c1b14a55616cb7e9d7497b8a370c">20 Jun 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
 </div>
 
  <h1 id='header'>Debug published documents with incorrect links</h1> <p>This can happen when the Publishing API is still working through all of the
@@ -191,8 +184,7 @@ pages that may have changed due to dependency resolution. You can find out if
 this is a problem <a href="https://docs.publishing.service.gov.uk/manual/sidekiq.html#sidekiq-web-aka-sidekiq-monitoring">by monitoring Publishing API sidekiq queue</a>
 and seeing if the <code>downstream_low</code> queue is high.</p>
 <p>To get things processed faster you can run the following Rake task on the
-Publishing API in Jenkins,
-<a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&amp;MACHINE_CLASS=publishing_api&amp;RAKE_TASK=represent_downstream:high_priority:content_id[%27some-content-id%20some-other-content-id%27]"><code>represent_downstream:high_priority:content_id[&#39;some-content-id some-other-content-id&#39;]</code></a>,
+Publishing API <code>represent_downstream:high_priority:content_id[&#39;some-content-id some-other-content-id&#39;]</code>,
 which will re-represent them downstream via the high priority queue.</p>
 
 

@@ -198,7 +198,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e0d49cdd02f03d2378e43c941d58fdd591605698">8 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
 </div>
 
  <h1 id='header'>Remove a change note</h1> <p>Follow the <a href="#whitehall">instructions for Whitehall</a> if removing a change note from Whitehall, otherwise follow the <a href="#other-apps">instructions for other apps</a>.</p>
@@ -228,13 +228,11 @@ and check that it is no longer displayed.</li>
 specific publishing application. Use this Publishing API task only if no alternatives exist.</p>
 </blockquote>
 <p>Dry run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'</span>
-</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=publishing-api&amp;MACHINE_CLASS=publishing_api&amp;RAKE_TASK=%27data_hygiene:remove_change_note:dry[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
-<p>This attempts to locate the selected change note for the content, and if found, report to the user the change note object that would have been removed.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake <span class="s1">'data_hygiene:remove_change_note:dry[content_id,locale,change note text]'</span>
+</code></pre></div><p>This attempts to locate the selected change note for the content, and if found, report to the user the change note object that would have been removed.</p>
 <p>Real run:</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_change_note:real[content_id,locale,change note text]'</span>
-</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=publishing-api&amp;MACHINE_CLASS=publishing_api&amp;RAKE_TASK=%27data_hygiene:remove_change_note:real[CONTENT_ID,en,CHOSEN%20CHANGE%20NOTE%20TEXT]%27">Jenkins - integration</a></p>
-<p>This will actually <em>delete</em> the selected change note and re-represent to the content store, also updating the edition history.</p>
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake <span class="s1">'data_hygiene:remove_change_note:real[content_id,locale,change note text]'</span>
+</code></pre></div><p>This will actually <em>delete</em> the selected change note and re-represent to the content store, also updating the edition history.</p>
 
 
   <div class='related-content'>

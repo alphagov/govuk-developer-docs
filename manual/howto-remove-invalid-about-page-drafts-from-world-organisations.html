@@ -175,15 +175,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
 </div>
 
  <h1 id='header'>Remove invalid WorldwideOrganisation draft CorporateInformationPages</h1> <p>A CorporateInformationPage is a Whitehall document that is attached to Organisation and WorldwideOrganisation models. For Organisations, it is accessed as the organisations <code>/about</code> page.</p>
@@ -193,9 +186,8 @@ As there is not a distinct page to visit directly, Whitehall can send a Corporat
 <p><code>GdsApi::HTTPUnprocessableEntity (Admin::WorldwideOfficesController)</code></p>
 <p>Whilst these invalid drafts are present users are unable to make any further edits.</p>
 <p>A rake task exists in Publishing API that will clear the invalid drafts.</p>
-<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec</span> <span class="s1">'data_hygiene:remove_invalid_worldorg_drafts'</span>
-</code></pre></div><p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?delay=0sec&amp;TARGET_APPLICATION=publishing-api&amp;MACHINE_CLASS=publishing_api&amp;RAKE_TASK=data_hygiene:remove_invalid_worldorg_drafts">Jenkins - integration</a></p>
-
+<div class="highlight"><pre class="highlight shell" tabindex="0"><code><span class="nv">$ </span>bundle <span class="nb">exec </span>rake <span class="s1">'data_hygiene:remove_invalid_worldorg_drafts'</span>
+</code></pre></div>
 
   <div class='related-content'>
 

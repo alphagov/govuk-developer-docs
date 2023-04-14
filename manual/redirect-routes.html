@@ -218,7 +218,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/83088571b45943b47f1c215cfad7fe91de97a60e">24 Feb 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/f2368ea7e211f2f0f0391a76fa1e836990fa2477">11 Apr 2023</a>
 </div>
 
  <h1 id='header'>Redirect a route</h1> <p>There are a number of different ways of applying redirects on GOV.UK.
@@ -394,8 +394,8 @@ English version to a translation, for example:</p>
 </code></pre></div><p>&hellip;can be deleted with</p>
 <div class="highlight"><pre class="highlight ruby" tabindex="0"><code><span class="no">Route</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="s1">'579a109cd068b406250014e4'</span><span class="p">).</span><span class="nf">destroy</span>
 </code></pre></div><p>The deleted routes will take effect after a short delay (for Router instances to poll and apply updates).</p>
-<h2 id='redirects-for-hmrc-manuals'>Redirects for HMRC manuals</h2><p>There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be <a href="https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks">found in the hmrc-manuals-api repo</a>. These can be run via the <code>Run rake task</code> jenkins job.</p>
-<p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=hmrc-manuals-api&amp;MACHINE_CLASS=backend&amp;RAKE_TASK=redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug]">See example of redirecting a HMRC manual section to another section</a></p>
+<h2 id='redirects-for-hmrc-manuals'>Redirects for HMRC manuals</h2><p>There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be <a href="https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks">found in the hmrc-manuals-api repo</a>.</p>
+<p>An example of redirecting a HMRC manual section to another section would be to run <code>redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug]</code></p>
 <h2 id='redirects-from-campaign-sites'>Redirects from campaign sites</h2><p>The campaigns platform is a WordPress site managed by dxw. Redirects from a
 <code>*.campaign.gov.uk</code> site require a support ticket. Currently, Inderjeet Singh or
 Kelvin Gan can raise a ticket.</p>
