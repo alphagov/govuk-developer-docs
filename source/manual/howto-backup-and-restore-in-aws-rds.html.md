@@ -93,7 +93,7 @@ Using the stored variables from the previous steps:
 gds-cli aws govuk-<environment>-admin aws rds restore-db-instance-from-db-snapshot --db-subnet-group-name ${db_subnet_group_name} --db-instance-identifier restored-${db_instance_identifier} --db-snapshot-identifier ${snapshot_arn}
 ```
 
-To see the newly created database instance, log into AWS Console > Route 53  > Hosted Zone > view the public and private.
+To see the newly created database instance, log into AWS Console > RDS > Databases > filter for your database name. You should see the original and newly created one.
 
 ### 5. Test the database has been fully restored
 
