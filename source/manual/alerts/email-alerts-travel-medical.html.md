@@ -69,11 +69,13 @@ investigate was the email sent. Some avenues to explore are:
 
 ## Resending travel advice emails
 
-If you need to force the sending of a travel advice email alert, there
-is a rake task in Travel Advice Publisher, which you can run using
-[this Jenkins job][resend travel advice job] where the edition ID of the
-travel advice content item can be found in the URL of the country's edit
-page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
+If you need to force the sending of a travel advice email alert, run the
+`email_alerts:trigger[PUT_EDITION_ID_HERE]` rake task in Travel Advice
+Publisher.
+
+The edition ID of the travel advice content item can be found in the
+URL of the country's edit page in Travel Advice Publisher and looks like
+`fedc13e231ccd7d63e1abf65`.
 
 [medical safety alerts]: https://www.gov.uk/drug-device-alerts
 [travel advice updates]: https://www.gov.uk/foreign-travel-advice
@@ -92,4 +94,3 @@ page in Travel Advice Publisher and looks like `fedc13e231ccd7d63e1abf65`.
 [view_emails task]: https://github.com/alphagov/email-alert-api/blob/main/docs/support-tasks.md#view-subscribers-recent-emails
 [Kibana logs]: https://kibana.logit.io/s/2dd89c13-a0ed-4743-9440-825e2e52329e/goto/43fc79ee47ac49f248e0f29a174be240
 [Sentry]: https://sentry.io/organizations/govuk/issues/?project=202220&statsPeriod=12h
-[resend travel advice job]: https://deploy.staging.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=email_alerts:trigger%5BPUT_EDITION_ID_HERE%5D

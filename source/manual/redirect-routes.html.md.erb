@@ -312,9 +312,9 @@ The deleted routes will take effect after a short delay (for Router instances to
 ## Redirects for HMRC manuals
 [hmrc-manuals-section]: #redirects-for-hmrc-manuals
 
-There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be [found in the hmrc-manuals-api repo](https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks). These can be run via the `Run rake task` jenkins job.
+There are rake tasks for redirecting HMRC manuals and HMRC manual sections, which can be [found in the hmrc-manuals-api repo](https://github.com/alphagov/hmrc-manuals-api/tree/main/lib/tasks).
 
-[See example of redirecting a HMRC manual section to another section](https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=hmrc-manuals-api&MACHINE_CLASS=backend&RAKE_TASK=redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug])
+An example of redirecting a HMRC manual section to another section would be to run `redirect_hmrc_section[original-parent-manual-slug,original-section-slug,new-parent-manual-slug,new-section-slug]`
 
 ## Redirects from campaign sites
 [campaign-sites-section]: #redirects-from-campaign-sites

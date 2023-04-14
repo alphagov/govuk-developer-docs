@@ -18,8 +18,6 @@ Publishing API that will check where the content is currently available.
 $ bundle exec rake data_hygiene:document_status_check[content_id,locale]
 ```
 
-[Run this job in production Jenkins ⚠️](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=data_hygiene:document_status_check[content_id,locale])
-
 ## If documents aren't in the Publishing API
 
 This likely means that the publishing app itself failed to send the document
@@ -33,23 +31,17 @@ interface. If that doesn't work, there are some other things you can try:
 $ bundle exec rake publishing_api:republish_document[slug]
 ```
 
-[Run this job in production Jenkins ⚠️](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=whitehall&MACHINE_CLASS=whitehall_backend&RAKE_TASK=publishing_api:republish_document[slug])
-
 ### Publisher
 
 ```bash
 $ bundle exec rake publishing_api:republish_edition[slug]
 ```
 
-[Run this job in production Jenkins ⚠️](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[slug])
-
 ### Travel Advice Publisher
 
 ```bash
 $ bundle exec rake publishing_api:republish_edition[country_slug]
 ```
-
-[Run this job in production Jenkins ⚠️](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=travel-advice-publisher&MACHINE_CLASS=backend&RAKE_TASK=publishing_api:republish_edition[country_slug])
 
 ### Specialist Publisher
 
@@ -66,8 +58,6 @@ content item to the Content Store.
 $ bundle exec rake represent_downstream:high_priority:content_id[content_id]
 ```
 
-[Run this job in production Jenkins ⚠️](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=publishing-api&MACHINE_CLASS=publishing_api&RAKE_TASK=represent_downstream:high_priority:content_id[content_id])
-
 > WARNING: this task might publish draft content to the live content store. Use with caution.
 > See [this 'ongoing issues' card for more details](https://trello.com/c/bfAEuv4S/1576-consider-improving-documentation-on-the-consequences-of-running-representdownstream-rake-task-on-publishing-api).
 
@@ -82,8 +72,6 @@ routes for a Content Item directly.
 ```bash
 $ bundle exec rake routes:register[base_path]
 ```
-
-[Run this job in production Jenkins ⚠️](https://deploy.blue.production.govuk.digital/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-store&MACHINE_CLASS=content_store&RAKE_TASK=routes:register[base_path])
 
 ## If the document isn't live after all this
 
