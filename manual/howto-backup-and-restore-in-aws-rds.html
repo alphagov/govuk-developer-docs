@@ -229,15 +229,8 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/10f2231d8eddcb065e77d1cbc90f2193d0081dd2">7 Oct 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/060a6c67413aa68009d65335df1d33363d6862b5">14 Apr 2023</a>
 </div>
 
  <h1 id='header'>Backup and restore databases in AWS RDS</h1> <p>Backups of <a href="https://aws.amazon.com/rds/">RDS</a> instances are <a href="https://github.com/alphagov/govuk-aws/tree/master/terraform/modules/aws/rds_instance">taken
@@ -284,7 +277,7 @@ db_parameter_group_name=&lt;replace_with_previous_output&gt;
 db_subnet_group_name=&lt;replace_with_previous_output&gt;
 </code></pre></div><h3 id='4-restore-the-database-instance-from-a-snapshot'>4. Restore the database instance from a snapshot</h3><p>Using the stored variables from the previous steps:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds restore-db-instance-from-db-snapshot --db-subnet-group-name ${db_subnet_group_name} --db-instance-identifier restored-${db_instance_identifier} --db-snapshot-identifier ${snapshot_arn}
-</code></pre></div><p>To see the newly created database instance, log into AWS Console &gt; Route 53  &gt; Hosted Zone &gt; view the public and private.</p>
+</code></pre></div><p>To see the newly created database instance, log into AWS Console &gt; RDS &gt; Databases &gt; filter for your database name. You should see the original and newly created one.</p>
 <h3 id='5-test-the-database-has-been-fully-restored'>5. Test the database has been fully restored</h3><p>Before moving on to the next step we need to ensure that the database has been fully restored and ready to be used by:</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds-cli aws govuk-&lt;environment&gt;-admin aws rds wait db-instance-available --db-instance-identifier restored-${db_instance_identifier}
 </code></pre></div><p>This command will wait until the database is ready, and then exit without any output.</p>
