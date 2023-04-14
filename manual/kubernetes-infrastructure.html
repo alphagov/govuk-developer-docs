@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Upgrade Terraform - GOV.UK Developer Documentation</title>
+    <title>EKS/Kubernetes infrastructure - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/upgrade-terraform.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/kubernetes-infrastructure.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Upgrade Terraform - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/upgrade-terraform.html" />
+      <meta name="twitter:title" content="EKS/Kubernetes infrastructure - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/kubernetes-infrastructure.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Upgrade Terraform" />
+      <meta property="og:title" content="EKS/Kubernetes infrastructure" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/upgrade-terraform.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/kubernetes-infrastructure.html" />
 
     
   </head>
@@ -126,23 +126,39 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Upgrade Terraform</span></a>
+    <a href="#header"><span>EKS/Kubernetes infrastructure</span></a>
     <ul>
       <li>
+        <a href="#deployments"><span>Deployments</span></a>
+      </li>
+      <li>
+        <a href="#deploy-a-branch-to-integration"><span>Deploy a branch to integration</span></a>
+      </li>
+      <li>
+        <a href="#smokey-results"><span>Smokey results</span></a>
+      </li>
+      <li>
+        <a href="#interacting-with-apps"><span>Interacting with apps</span></a>
+      </li>
+      <li>
+        <a href="#run-a-rake-task"><span>Run a rake task</span></a>
         <ul>
           <li>
-            <a href="#build-a-new-terraform-package"><span>Build a new Terraform package</span></a>
-          </li>
-          <li>
-            <a href="#update-the-terraform-package-in-the-ci-machines"><span>Update the Terraform package in the CI machines</span></a>
-          </li>
-          <li>
-            <a href="#update-the-terraform-version-in-govuk-aws"><span>Update the Terraform version in govuk-aws</span></a>
-          </li>
-          <li>
-            <a href="#upgrade-the-terraform-aws-provider"><span>Upgrade the Terraform AWS provider</span></a>
+            <a href="#other-tasks"><span>Other tasks</span></a>
           </li>
         </ul>
+      </li>
+      <li>
+        <a href="#dashboards-and-alerting"><span>Dashboards and alerting</span></a>
+      </li>
+      <li>
+        <a href="#testing-eks-access"><span>Testing EKS access</span></a>
+      </li>
+      <li>
+        <a href="#kubernetes-cheat-sheet"><span>Kubernetes cheat sheet</span></a>
+      </li>
+      <li>
+        <a href="#whats-staying-and-going"><span>What’s staying and going?</span></a>
       </li>
     </ul>
   </li>
@@ -193,73 +209,93 @@
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/cd289536bc50da3133c426ca8b02c570b30f663b">5 Apr 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e3fae9b1cead4b39ddb41f3fc324cb8b6cf57341">14 Apr 2023</a>
 </div>
 
- <h1 id='header'>Upgrade Terraform</h1> <p>Terraform should be regularly upgraded. New releases happen very often, with bug fixes and improvements.
-Also, being too far behind the latest versions can make future upgrades and support for new provider services much harder to perform.</p>
-<p>In our platform we need to update the version of Terraform and AWS provider enforced in the <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a> code repo,
-and update the Terraform package that runs the <a href="https://deploy.integration.publishing.service.gov.uk/job/Deploy_Terraform_GOVUK_AWS">Deploy_Terraform_GOVUK_AWS</a>
-Jenkins job in the CI machines.</p>
-<p>The Terraform version of a client that updated a state file is represented in the state. Once a client with a new
-version of Terraform updates a remote state file, the rest of clients will be forced to use that same version of Terraform. It is
-important to update both the package in CI and the version required in the code more or less at the same time to avoid errors in the clients/jobs.</p>
-<p>Currently we are also enforcing the version of the <a href="https://github.com/terraform-providers/terraform-provider-aws">Terraform AWS provider</a> in our code.
-We should also keep an eye on new versions and update regularly in a similar way.</p>
-<p>Before/during the upgrade:</p>
+ <h1 id='header'>EKS/Kubernetes infrastructure</h1> <blockquote>
+<p><strong>Note</strong> The contents of this page was originally in a <a href="https://trello.com/c/hGxUILgr/1871-were-now-on-kubernetes">Trello card</a> and notes by Leena.</p>
+</blockquote>
+<p>All front-end traffic and back-end publisher traffic is now on Kubernetes (EKS) instead of EC2 (see <a href="https://docs.google.com/document/d/1BzPqMT57zXg6wL5D7vYTmKu85T4ZuDcaw5twOGPP1p0/edit" title="‌">status update doc</a> and <a href="https://docs.google.com/spreadsheets/d/1TusO_GJ5Ustte6RnZ6LIwZ8N4ZILidQ77taTClbaPB8/edit" title="‌">runbook</a>). 🎉 Also useful to bookmark this document describing <a href="https://docs.google.com/document/d/1R8C3BtvhqTXEga4C3_KxTopjWuYVbiEgKiikTyRXXiA/edit" title="‌">what stays/goes/changes with Replatforming</a>, and the <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/" title="‌">GOV.UK Kubernetes docs</a>.</p>
+<p>Things we used to do on EC2 now need to be done differently on EKS.</p>
+<h2 id='deployments'>Deployments</h2>
+<ul>
+<li>You can still use the <a href="https://release.publishing.service.gov.uk/applications" title="‌">Release</a> app to see what is deployed where. NB, release tags are going away, but will still be created for as long as we auto-deploy to both EKS and EC2.</li>
+<li>Continuously deployed apps will continue to be deployed post-merge, using <a href="https://argo.eks.integration.govuk.digital/applications" title="‌">ArgoCD</a>. You can see the progress of a workflow in <a href="https://argo-workflows.eks.integration.govuk.digital/workflows/apps?limit=50" title="‌">Argo Workflows</a></li>
+<li>Non-continuously deployed apps can be manually deployed by:
 
 <ul>
-<li>Read the Terraform <a href="https://github.com/terraform-providers/terraform-provider-aws/blob/master/CHANGELOG.md">CHANGELOG</a> carefully, make sure there aren&rsquo;t backwards incompatible changes, or the code is updated if required.</li>
-<li>If you are planning a Terraform AWS provider upgrade, also read the CHANGELOG carefully. This provider is updated very often.</li>
-<li>Test the new versions in a local branch first. Probably a <code>terraform plan</code> of the <code>infra-*</code> and a few <code>app-*</code> projects can provide enough test coverage.</li>
-<li>Check for DEPRECATION messages and try to fix them.</li>
-<li>Inform people of the upgrade so they can install the new binary in their laptops for code development.</li>
+<li>Go to the app’s repo in GitHub, then choose Actions, then Deploy (from the left-hand column).</li>
+<li>Click “Run workflow” and enter the default branch name (usually <code>main</code>) under &ldquo;Commit, tag or branch name to deploy&rdquo;. (Always leave the &ldquo;Use workflow from&rdquo; option set as <code>main</code>, unless you’re actually trying to change the workflow itself.)</li>
+</ul></li>
+<li>To deploy a branch, follow the manual deploy steps above, providing the branch name in &ldquo;Commit, tag or branch name to deploy&rdquo;.</li>
+<li>DNS rollouts are still via Jenkins for now (so no change, e.g. <code>gds govuk dns -r govuk-production-admin -z service.gov.uk -a plan -p aws</code>)</li>
+<li>Fastly CDN config rollouts are also still via Jenkins for now.</li>
 </ul>
-<h3 id='build-a-new-terraform-package'>Build a new Terraform package</h3><p>The Terraform package is built with a recipe in the <a href="https://github.com/alphagov/packager">packager</a> repository.
-Follow the general instructions in <a href="https://docs.publishing.service.gov.uk/manual/debian-packaging.html">Debian packaging</a>
-to create a new package and upload it to our Apt repository.</p>
-<p>For instance, this pull request creates a recipe for <a href="https://github.com/alphagov/packager/pull/172">Terraform 0.11.14</a>
-After merging to master, execute the <a href="https://ci.integration.publishing.service.gov.uk/job/build_fpm_package/">build_fpm_package</a>
-job to build a new Terraform package. The new package will appear in the job artefacts section. Download it to your machine
-and upload it to <code>apt-1.management</code> in Production.</p>
-<p>Run the following commands to add it to the Terraform repo:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>sudo -i aptly repo add terraform /home/your_user_name/terraform_0.11.14_amd64.deb
-sudo aptly snapshot create terraform-$(date +%Y%m%d) from repo terraform
-sudo -i aptly publish switch trusty terraform terraform-$(date +%Y%m%d)
-</code></pre></div><p>The <code>aptly publish</code> command requires the apt passphrase that can be found in the <a href="https://github.com/alphagov/govuk-secrets/tree/master/pass">password store</a></p>
-<h3 id='update-the-terraform-package-in-the-ci-machines'>Update the Terraform package in the CI machines</h3><p>The version of the Terraform package that is installed in CI is managed in Puppet. Update the <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/packages/terraform.pp">govuk_jenkins::packages::terraform::version</a> parameter with the new version, after the package is available in Aptly.</p>
-<h3 id='update-the-terraform-version-in-govuk-aws'>Update the Terraform version in govuk-aws</h3><p>In <a href="https://github.com/alphagov/govuk-aws">govuk-aws</a>:</p>
+<h2 id='deploy-a-branch-to-integration'>Deploy a branch to integration</h2>
+<ol>
+<li>Go here: <a href="https://github.com/alphagov/frontend/actions/workflows/deploy.yml">https://github.com/alphagov/frontend/actions/workflows/deploy.yml</a></li>
+<li>Click “Run workflow”</li>
+<li>Leave, “use workflow” as “main”, then enter the branch name and environment details</li>
+</ol>
+<h2 id='smokey-results'>Smokey results</h2><p>Smokey results persist for longer only if they have failed.</p>
+<h2 id='interacting-with-apps'>Interacting with apps</h2><p>The following commands assume you have <code>alias k=kubectl</code> as per the <a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/" title="smartCard-inline">https://kubernetes.io/docs/reference/kubectl/cheatsheet/</a> .</p>
+<h2 id='run-a-rake-task'>Run a rake task</h2><p><a href="https://docs.publishing.service.gov.uk/manual/running-rake-tasks.html#run-a-rake-task-on-eks" title="‌">Run a Rake task on EKS</a></p>
+<h3 id='other-tasks'>Other tasks</h3>
+<ul>
+<li>To open a rails console:
 
 <ul>
-<li>Replace the version requirement in the <code>.tf</code> files to match the new version:</li>
-</ul>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>terraform {
-  backend          "s3"             {}
-  required_version = "= 0.11.7"
-}
-</code></pre></div><p>For instance, to upgrade from 0.11.7 to 0.11.14 you can run:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>find . -name *.tf | xargs sed -i '' -e "s/0.11.7/0.11.14/g"
-</code></pre></div>
-<ul>
-<li>Update the version managed by tfenv in the <code>.terraform-version</code> file</li>
-<li>Update any other reference in the docs</li>
-</ul>
-<h3 id='upgrade-the-terraform-aws-provider'>Upgrade the Terraform AWS provider</h3><p>Currently we set the version of the <a href="https://github.com/terraform-providers/terraform-provider-aws">Terraform AWS provider</a> in our code, for instance:</p>
-<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>provider "aws" {
-  region  = "${var.aws_region}"
-  version = "1.60.0"
-}
+<li><code>k -n apps exec -it deploy/router-api -- rails c</code></li>
+</ul></li>
+<li>To open a shell:
 
-</code></pre></div><p>Upgrading the provider only requires a change of this version parameter in the <code>.tf</code> files. This version is downloaded to the client
-when the <code>terraform init</code> command runs, which happens automatically when we deploy Terraform with the Jenkins job or the <code>tools/build-terraform-project.sh</code> script.</p>
+<ul>
+<li><code>k -n apps exec -it deploy/government-frontend -- bash</code>
+&gt;&gt; <code>curl</code> # (for example)</li>
+</ul></li>
+<li>To open a shell on Router:
+
+<ul>
+<li><code>k -n apps exec -it deploy/router -c nginx</code></li>
+</ul></li>
+</ul>
+<p>Note that you can omit the <code>-n apps</code> bit of the above commands if you specify a default namespace (recommended), by:</p>
+
+<ul>
+<li><code>k config set-context --current --namespace=apps</code></li>
+</ul>
+<h4 id='testing-changes-to-a-rake-task-'>Testing changes to a rake task.</h4><p>For special router publisher as an example:</p>
+
+<ol>
+<li>Deploy your branch (see above)</li>
+<li>Run the following command(s):</li>
+</ol>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>BASE_PATH=whatever
+
+kubectl run -n apps --image 172025368201.dkr.ecr.eu-west-1.amazonaws.com/special-route-publisher special-route-publisher -- rake "publish_one_special_route[${BASE_PATH?}]"
+
+kubectl logs -fnapps special-route-publisher
+
+kubectl -napps delete po/special-route-publisher
+
+</code></pre></div><p>There’s also a <a href="https://github.com/alphagov/special-route-publisher/pull/257">command in the PR</a> that might work.</p>
+<h2 id='dashboards-and-alerting'>Dashboards and alerting</h2>
+<ul>
+<li>The detailed Sidekiq dashboard is not yet available for EKS (the <a href="https://sidekiq-monitoring.integration.govuk.digital/publishing-api/queues" title="‌">old one</a> still looks at EC2) but you can see queue lengths and age-of-oldest-job on the <a href="https://grafana.eks.production.govuk.digital/d/2Yy8PzmVk" title="‌">Sidekiq Grafana dashboard</a>.</li>
+<li>Dashboards are on <a href="https://grafana.eks.production.govuk.digital/?orgId=1" title="‌">https://grafana.eks.production.govuk.digital/</a> and no longer require VPN. Don’t get confused by the <a href="https://grafana.production.govuk.digital/" title="‌">old Grafana</a>, which will show mostly empty graphs about the old EC2 setup.</li>
+<li>Most Icinga alerts are irrelevant now, except for:
+
+<ul>
+<li>“scheduled publications in Whitehall not queued” / “overdue publications in Whitehall”</li>
+<li>“Travel Advice email alert check” / “Medical Safety Email alert check”</li>
+<li>Anything to do with crawler/mirrors</li>
+<li>Anything to do with Licensify</li>
+</ul></li>
+</ul>
+<h2 id='testing-eks-access'>Testing EKS access</h2><p>See <a href="https://govuk-k8s-user-docs.publishing.service.gov.uk/get-started/access-eks-cluster/#test-your-access">testing your eks cluster access in the GOV.UK Kubernetes platform user documentation</a></p>
+<h2 id='kubernetes-cheat-sheet'>Kubernetes cheat sheet</h2><p><a href="https://kubernetes.io/docs/reference/kubectl/cheatsheet/">Official k8s cheat sheet</a></p>
+<h2 id='whats-staying-and-going'>What’s staying and going?</h2><p><a href="https://docs.google.com/document/d/1R8C3BtvhqTXEga4C3_KxTopjWuYVbiEgKiikTyRXXiA/edit#">Document outlining what changes are happening to GOV.UK infrastructure</a></p>
 
 
   <div class='related-content'>
@@ -272,13 +308,13 @@ when the <code>terraform init</code> command runs, which happens automatically w
 
           <ul class="govuk-list">
             <li><a href="/manual/dns.html">Domain Name System (DNS) records</a></li>
-            <li><a href="/manual/kubernetes-infrastructure.html">EKS/Kubernetes infrastructure</a></li>
             <li><a href="/manual/vpn.html">GOV.UK and Virtual Private Networks (VPNs)</a></li>
             <li><a href="/manual/environments.html">GOV.UK's environments (integration, staging, production)</a></li>
             <li><a href="/manual/load-testing.html">Load Testing</a></li>
             <li><a href="/manual/new-instances-fail-to-provision.html">New instances fail to provision</a></li>
             <li><a href="/manual/rate-limiting.html">Rate Limiting</a></li>
             <li><a href="/manual/rollback-puppet-if-jenkins-is-broken.html">Rollback Puppet if Jenkins is broken</a></li>
+            <li><a href="/manual/upgrade-terraform.html">Upgrade Terraform</a></li>
           </ul>
         </div>
 
@@ -313,8 +349,8 @@ when the <code>terraform init</code> command runs, which happens automatically w
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/upgrade-terraform.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Upgrade+Terraform%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fupgrade-terraform.html%29&amp;labels=bug&amp;title=Re%3A+%27Upgrade+Terraform%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/kubernetes-infrastructure.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27EKS%2FKubernetes+infrastructure%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fkubernetes-infrastructure.html%29&amp;labels=bug&amp;title=Re%3A+%27EKS%2FKubernetes+infrastructure%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
