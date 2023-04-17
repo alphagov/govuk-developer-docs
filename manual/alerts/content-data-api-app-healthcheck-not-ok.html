@@ -147,10 +147,7 @@
             <a href="#etl-no-daily-metrics-for-yesterday"><span>ETL :: no daily metrics for yesterday</span></a>
           </li>
           <li>
-            <a href="#etl-no-pviews-for-yesterday"><span>ETL :: no pviews for yesterday</span></a>
-          </li>
-          <li>
-            <a href="#etl-no-upviews-for-yesterday"><span>ETL :: no upviews for yesterday</span></a>
+            <a href="#etl-no-pviewsupviews-for-yesterday"><span>ETL :: no pviews/upviews for yesterday</span></a>
           </li>
           <li>
             <a href="#etl-no-searches-for-yesterday"><span>ETL :: no searches for yesterday</span></a>
@@ -185,15 +182,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/28ce61565afa55d9067b4e5cf4b18788174e968c">23 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e65bf248fdfdb77e7bf8b6d5e2f89b507b8746a9">13 Apr 2023</a>
 </div>
 
  <h1 id='header'>content-data-api app healthcheck not ok</h1> <p>See also: <a href="/manual/alerts/app-healthcheck-not-ok.html">how healthcheck alerts work on GOV.UK</a></p>
@@ -203,117 +193,71 @@ on the alert to find out more details about what’s wrong.</p>
 here:</p>
 
 <ul>
-<li>https://content-data-api.publishing.service.gov.uk/healthcheck/metrics</li>
-<li>https://content-data-api.publishing.service.gov.uk/healthcheck/search</li>
-<li>https://content-data-api.publishing.service.gov.uk/healthcheck/live</li>
-<li>https://content-data-api.publishing.service.gov.uk/healthcheck/ready</li>
+<li><a href="https://content-data-api.publishing.service.gov.uk/healthcheck/metrics"><code>healthcheck/metrics</code></a></li>
+<li><a href="https://content-data-api.publishing.service.gov.uk/healthcheck/search"><code>healthcheck/search</code></a></li>
+<li><a href="https://content-data-api.publishing.service.gov.uk/healthcheck/ready"><code>healthcheck/ready</code></a></li>
 </ul>
 <h2 id='what-is-the-etl-process'>What is the ETL process</h2><p>ETL stands for <a href="https://en.wikipedia.org/wiki/Extract,_transform,_load">Extract, Transform, Load</a>.
 Every day, data is copied from multiple sources (the <a href="https://github.com/alphagov/publishing-api">publishing platform</a>,
 [user feedback], and Google Analytics) into the Content Data API warehouse.</p>
-<p>A rake task called <a href="https://github.com/alphagov/content-data-api/commit/bcfeed7b207770498c88d955d02227f444666853"><code>etl:master</code></a> calls the <code>Etl::Master::MasterProcessor</code>
-which <a href="https://github.com/alphagov/content-data-api/blob/26e316cab5c4b5e5663c50dbf120e291405f6177/app/domain/etl/master/master_processor.rb#L16-L43">processes all the data</a>. This rake task is run daily
-(see <a href="#when-does-etl-run">&ldquo;When does ETL run&rdquo;</a> section below) so that the
-<a href="/repos/content-data-admin.html">Content Data</a> app has up to date figures.</p>
-<p>The Jenkins job that calls this rake task is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api.pp">content_data_api</a>
-(<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/content_data_api.yaml.erb">configured here</a>).</p>
-<p>There is also a special &lsquo;re-run&rsquo; task called <a href="https://github.com/alphagov/content-data-api/commit/f80f3f3b669f441651dbaa52665771dae9cd0c3e"><code>etl:rerun_master</code></a>,
-which takes an inclusive range of dates as arguments, and runs the same task
-as above but overriding the previously held data. We can run this if we have
-reason to believe the historical data is no longer accurate.</p>
-<p>The Jenkins job for this rake task is <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api_re_run.pp">content_data_api_re_run</a>
-(<a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/templates/jobs/content_data_api_re_run.yaml.erb">configured here</a>).</p>
-<h2 id='when-does-etl-run'>When does ETL run</h2><p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api.pp">content_data_api job</a> runs at:</p>
+<p>A Rake task called <a href="https://github.com/alphagov/content-data-api/blob/main/lib/tasks/etl.rake"><code>etl:main</code></a> calls <code>Etl::Main::MainProcessor</code>
+which <a href="https://github.com/alphagov/content-data-api/blob/main/app/domain/etl/main/main_processor.rb">processes all the data</a>. This runs daily via a Kubernetes CronJob <a href="https://argo.eks.production.govuk.digital/applications/cluster-services/content-data-api?node=batch%2FCronJob%2Fapps%2Fcontent-data-api-etl-cron-task"><code>content-data-api-etl-cron-task</code></a>, configured <a href="https://github.com/alphagov/govuk-helm-charts/commit/31dd14e">via Helm values</a>.</p>
+<p>There is also a special &lsquo;re-run&rsquo; Rake task called <a href="https://github.com/alphagov/content-data-api/search?q=rerun_main+-path%3Aspec"><code>etl:rerun_main</code></a>,
+which takes an inclusive range of dates as arguments and runs the same task
+as above but overwrites the previously held data for that date range. We can
+run this if we have reason to believe the historical data is missing or
+inaccurate.</p>
+<h2 id='when-does-etl-run'>When does ETL run</h2><p>The content_data_api cronjob <a href="https://github.com/alphagov/govuk-helm-charts/pull/1068/files">runs at</a> approximately:</p>
 
 <ul>
-<li><a href="https://github.com/alphagov/govuk-puppet/blob/18ec81c917c16bb10e759039bda9c3afdd5f0815/hieradata_aws/production.yaml#L237">7am in production</a></li>
-<li><a href="https://github.com/alphagov/govuk-puppet/blob/888ecfb2e5ab846461219377309d17b9a31eb50c/hieradata_aws/staging.yaml#L199">11am in staging</a></li>
-<li><a href="https://github.com/alphagov/govuk-puppet/blob/f421952cbc95cff6a79776a3a3beaec8befcca81/hieradata_aws/integration.yaml#L82">1pm in integration</a></li>
+<li>7 am in production</li>
+<li>11 am in staging</li>
+<li>1 pm in integration</li>
 </ul>
 <p>These jobs are spread out for rate limiting reasons, and production is run
 outside of normal hours so as not to impact database performance during the day.</p>
-<p>The <a href="https://github.com/alphagov/govuk-puppet/blob/master/modules/govuk_jenkins/manifests/jobs/content_data_api_re_run.pp">content_data_api_re_run job</a>
-<a href="https://github.com/alphagov/govuk-puppet/commit/f0539d9c113c4a530c9a33494f2e1d683f1032e6">runs at 3AM</a> in every environment. This job was added
-because of a <a href="https://support.google.com/analytics/answer/1070983?hl=en#:~:text=Data%20processing%20latency,for%20up%20to%20two%20days">delay in results showing up in Google Analytics</a>,
-meaning results can take between 24-48 hours to appear in GA. The production
-ETL running at 7am allowed only 7 hours for the data to appear in GA. The
-re-run job collects the data after 2 days, leaving time for the data to appear
-correctly in GA.</p>
-<h2 id='troubleshooting'>Troubleshooting</h2><p>Below are the possible problems you may see. Note that the rake tasks should
-be run on the <code>content-data-api</code> TARGET_APPLICATION and the <code>backend</code> MACHINE_CLASS.</p>
+<p>There used to be a nightly content_data_api_re_run job that reprocessed
+data from the previous 48-72 hours. This job was added because there used to be
+a <a href="https://support.google.com/analytics/answer/1070983?hl=en#:~:text=Data%20processing%20latency,for%20up%20to%20two%20days">delay of up to 48 hours in results showing up in Google
+Analytics</a>. This is <a href="https://support.google.com/analytics/answer/11198161?hl=en">no longer the
+case with GA4</a>.</p>
+<h2 id='troubleshooting'>Troubleshooting</h2><p>Look for errors in the logs of the latest <code>content-data-api-etl-cron-task</code> Job <a href="https://argo.eks.production.govuk.digital/applications/cluster-services/content-data-api">in Argo CD</a>.</p>
+<p>You can also look for errors in <a href="https://sentry.io/organizations/govuk/issues/?environment=production&amp;project=1461890">Sentry</a> or by searching <a href="https://reliability-engineering.cloudapps.digital/logging.html#get-started-with-logit">logs in LogIt</a>.</p>
+<p>From the logs and the alert(s) that are firing, determine which data is missing/bad and for what date range. You can use the Rake tasks below to reprocess specific outputs for specific date ranges, or you can just re-run the whole job.</p>
 
 <blockquote>
 <p><strong>All dates for the rake tasks below are inclusive.</strong>
 In other words, if you only need to reprocess data for a specific day, you’ll need
 to use the same the date for both the &lsquo;from&rsquo; and &lsquo;to&rsquo; parameters
-(for example: <code>etl:repopulate_aggregations_month[&quot;2019-12-15&quot;,&quot;2019-12-15&quot;]</code>).</p>
+(for example: <code>etl:repopulate_aggregations_month\[&quot;2019-12-15&quot;,&quot;2019-12-15&quot;]</code>).</p>
 </blockquote>
-<h3 id='etl-no-monthly-aggregations-of-metrics-for-yesterday'>ETL :: no monthly aggregations of metrics for yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily that creates
-aggregations of the metrics failed.</p>
-<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L10">following rake task</a>:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="" class="govuk-link">Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_aggregations_month[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
-</ul>
-<h3 id='etl-no-searches-updated-from-yesterday'>ETL :: no <range> searches updated from yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the Etl process</a> that runs daily and refreshes the
-Materialized Views failed to update those views.</p>
-<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L25">following rake task</a>:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run etl:repopulate_aggregations_search on Integration</a></li>
-<li><a href="" class="govuk-link">Run etl:repopulate_aggregations_search on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_aggregations_search on Production ⚠️</a></li>
-</ul>
-<h3 id='etl-no-daily-metrics-for-yesterday'>ETL :: no daily metrics for yesterday</h3><p>This means that <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily to retrieve
-metrics for content items has failed.</p>
-<p>To fix this problem <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">re-run the master process again</a></p>
-<p><strong>Note</strong> This will first delete any metrics that had been successfully
+<h3 id='etl-no-monthly-aggregations-of-metrics-for-yesterday'>ETL :: no monthly aggregations of metrics for yesterday</h3><p>The daily ETL cronjob failed to create the monthly aggregations.</p>
+<p>Run the following Rake task to reprocess the data:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>k exec deploy/content-data-api -- etl:repopulate_aggregations_month\[YYYY-MM-DD,YYYY-MM-DD]
+</code></pre></div><h3 id='etl-no-searches-updated-from-yesterday'>ETL :: no <range> searches updated from yesterday</h3><p>The daily ETL cronjob failed to refresh the materialized views.</p>
+<p>Run the following Rake task to reprocess the data:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>k exec deploy/content-data-api -- etl:repopulate_aggregations_search
+</code></pre></div><h3 id='etl-no-daily-metrics-for-yesterday'>ETL :: no daily metrics for yesterday</h3><p>The daily ETL cronjob failed to retrieve metrics for content items.</p>
+<p>To fix this problem, re-run the main process:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>k exec deploy/content-data-api -- etl:main
+</code></pre></div><p><strong>Note</strong> This will first delete any metrics that had been successfully
 retrieved before re-running the task to regather all metrics.</p>
-<h3 id='etl-no-pviews-for-yesterday'>ETL :: no pviews for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
-collect <code>pageview</code> metrics from Google Analytics. The issue may originate
-from the <a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/views_and_navigation_processor.rb">ETL processor responsible for collecting core metrics</a>.</p>
-<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32">following rake task</a>:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
-</ul>
-<h3 id='etl-no-upviews-for-yesterday'>ETL :: no upviews for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
-collect <code>unique pageview</code> metrics from Google Analytics. The issue may
-originate from the <a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/views_and_navigation_processor.rb">ETL processor responsible for collecting core metrics</a>.</p>
-<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L32">following rake task</a>:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="" class="govuk-link">Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run etl:repopulateviews[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
-</ul>
-<h3 id='etl-no-searches-for-yesterday'>ETL :: no searches for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
+<h3 id='etl-no-pviewsupviews-for-yesterday'>ETL :: no pviews/upviews for yesterday</h3><p>The daily ETL cronjob has failed to
+collect <code>pageview</code> or <code>unique pageview</code> metrics from Google Analytics. The issue may originate
+from the <a href="https://github.com/alphagov/content-data-api/blob/main/app/domain/etl/ga/views_and_navigation_processor.rb">ETL processor responsible for collecting core metrics</a>.</p>
+<p>Run the following Rake task to reprocess the data:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>k exec deploy/content-data-api -- etl:repopulateviews\[YYYY-MM-DD,YYYY-MM-DD]
+</code></pre></div><h3 id='etl-no-searches-for-yesterday'>ETL :: no searches for yesterday</h3><p>The daily ETL cronjob has failed to
 collect <code>number of searches</code> metrics from Google Analytics. The issue may
-originate from the <a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/ga/internal_search_processor.rb">ETL processor responsible for collecting Internal Searches</a>.</p>
-<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L45">following rake task</a>:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="" class="govuk-link">Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_searches[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
-</ul>
-<h3 id='etl-no-feedex-for-yesterday'>ETL :: no feedex for yesterday</h3><p>This means the <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">the ETL master process</a> that runs daily has failed to
-collect <code>feedex</code> metrics from <code>support-api</code>. The issue may originate from the
-<a href="https://github.com/alphagov/content-data-api/blob/master/app/domain/etl/feedex/processor.rb">ETL processor responsible for collecting Feedex comments</a>.</p>
-<p>To fix this problem run the <a href="https://github.com/alphagov/content-data-api/blob/master/lib/tasks/etl.rake#L71">following rake task</a>:</p>
-
-<ul>
-  <li><a href="" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Integration</a></li>
-<li><a href="" class="govuk-link">Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Staging</a></li>
-<li><a href="" class="govuk-link">⚠️ Run etl:repopulate_feedex[YYYY-MM-DD,YYYY-MM-DD] on Production ⚠️</a></li>
-</ul>
-<h3 id='other-troubleshooting-tips'>Other troubleshooting tips</h3><p>For problems in the ETL process, you can check the output in <a href="https://deploy.blue.production.govuk.digital/job/content_data_api_import_etl_master_process/">Jenkins</a>.</p>
-<p>You can also check for any errors in <a href="https://sentry.io/organizations/govuk/issues/?environment=production&amp;project=1461890">Sentry</a> or the <a href="https://kibana.logit.io/s/283f08f6-d117-48df-9667-c4aa492b81f9/app/kibana#/discover?_g=()&amp;_a=(columns:!(_source),index:'*-*',interval:auto,query:(query_string:(query:'application:%20content-data-api')),sort:!('@timestamp',desc))">logs in kibana</a></p>
-<h4 id='sidekiq_retry_size-is-above-the-warning-threshold'>sidekiq_retry_size is above the warning threshold</h4><p>We have an ongoing issue where occasionally a Whitehall document is not successfully
+originate from the <a href="https://github.com/alphagov/content-data-api/blob/main/app/domain/etl/ga/internal_search_processor.rb">ETL processor responsible for collecting Internal Searches</a>.</p>
+<p>Run the following Rake task to reprocess the data:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>k exec deploy/content-data-api -- etl:repopulate_searches\[YYYY-MM-DD,YYYY-MM-DD]
+</code></pre></div><h3 id='etl-no-feedex-for-yesterday'>ETL :: no feedex for yesterday</h3><p>The daily ETL cronjob has failed to
+collect Feedback Explorer metrics from <code>support-api</code>. The issue may originate from the
+<a href="https://github.com/alphagov/content-data-api/blob/main/app/domain/etl/feedex/processor.rb">ETL processor responsible for collecting Feedex comments</a>.</p>
+<p>Run the following Rake task to reprocess the data:</p>
+<div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>k exec deploy/content-data-api -- etl:repopulate_feedex\[YYYY-MM-DD,YYYY-MM-DD]
+</code></pre></div><h3 id='other-troubleshooting-tips'>Other troubleshooting tips</h3><h4 id='sidekiq_retry_size-is-above-the-warning-threshold'>sidekiq_retry_size is above the warning threshold</h4><p>We have an ongoing issue where occasionally a Whitehall document is not successfully
 updated in the database, returning with a database conflict error.
 In the <code>content-data-api</code> you may find the first content item is (incorrectly)
 still considered <code>live: true</code>, and that the second content item doesn&rsquo;t exist.</p>
