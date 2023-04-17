@@ -233,24 +233,17 @@
   </ol>
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/content-data-api/commit/fadb289570092ddc62447470015389eb56ae4d67">8 Mar 2021</a>
+  Last updated: <a href="https://github.com/alphagov/content-data-api/commit/d0f36b0fa682c660a435869e547406cfbff1ea55">13 Apr 2023</a>
 </div>
 
   <h1 class="page-title">content-data-api: Collecting user metrics</h1>
 
   
-<p>This is a general overview of how we collect and store user metrics.
-Metrics are collected on a daily basis from a variety of data sources.
+<p>This is a general overview of how we collect and store user metrics.</p>
+<p>Metrics are collected on a daily basis from a variety of data sources.
 Monthly aggregations of the daily score are then pre-calculated and stored in a separate table.</p>
-<p>These processes run as Rake task daily in the early morning from Jenkins. They are referred to as ETL processors in the codebase as they follow a Extract, Transform and Load (ETL) design pattern.</p>
+<p>These processes are implemented as a Rake task which runs daily via a Kubernetes CronJob. They are referred to as ETL processors in the codebase as they follow a Extract, Transform and Load (ETL) design pattern.</p>
 <p>The process begins with the MainProcessor which co-ordinates:</p>
 <ul>
 <li>setting up the Facts metric table</li>
