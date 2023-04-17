@@ -187,23 +187,23 @@
 </div>
   <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/smokey/commit/0f59e3e36640ad3de95e6bfab5dc5b01912f54f2">9 Jan 2023</a>
+  Last updated: <a href="https://github.com/alphagov/smokey/commit/5934f3471c9f26784c4aba0cff56ba67e6055368">14 Apr 2023</a>
 </div>
 
   <h1 class="page-title">smokey: Deployment</h1>
 
   
-<h2 id="before-you-merge">Before you merge</h2>
 <p>This app only has minimal CI set up, running a single check to ensure that Smokey is able to make requests. It would be misleading to run all of the tests on CI because their behaviour changes depending on the environment they are run in. You should manually test in applicable environments, until you are confident your change is not a breaking one.</p>
 <p>Example steps to test in Integration:</p>
 <ul>
-<li>Click "Configure" for the <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a>
-</li>
-<li>Change the "Branch specifier" to the name of your branch</li>
-<li>Run a new build of the Smokey project and check the results</li>
+<li>Navigate to the <a href="https://github.com/alphagov/smokey/actions/workflows/deploy.yml">Deploy GitHub Action</a> tab on the repo</li>
+<li>Click “Run workflow” and enter the name of the branch under "Commit, tag or branch name to deploy". (NB: leave the "Use workflow from" option set as main)</li>
+<li>Wait for the <a href="https://argo.eks.integration.govuk.digital/applications/cluster-services/smokey">"sync status" in Argo CD</a> to update (it will take several minutes)</li>
+<li>Wait for a Smokey run to be triggered (happens every 10 minutes), or trigger one through GitHub Actions.</li>
+<li>Check the results from the logs</li>
 </ul>
-<h2 id="after-you-merge">After you merge</h2>
-<p>The manual <a href="https://deploy.integration.publishing.service.gov.uk/job/Smokey/">Smokey job</a> (in every Jenkins environment) will pick up changes on <code>main</code> automatically.</p>
+<p>If the build passes, you can merge, and Argo CD will automatically update itself back to <code>main</code>.</p>
+<p>If the build fails, then there may be a problem with the PR. You'll have to revert the branch deploy by following the "Run workflow" instructions above, but using "main" instead of the branch name.</p>
 
 
             
