@@ -58,4 +58,3 @@ Finally, run the rake task, e.g.:
 govuk_setenv publishing-api bundle exec \
 rake 'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'
 ```
-
