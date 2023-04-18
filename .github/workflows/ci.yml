@@ -2,7 +2,15 @@ name: CI
 
 on:
   push:
+    branches:
+      - main
   pull_request:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: The branch, tag or SHA to checkout
+        default: main
+        type: string
   schedule:
     # Deploy hourly between 9am and 7pm on weekdays
     - cron: "0 9-19 * * 1-5"
@@ -12,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref || github.ref }}
       - name: Clone publishing api
         uses: actions/checkout@v3
         with:
