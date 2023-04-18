@@ -69,4 +69,3 @@ govuk-puppet means that it can be easily kept in sync between
 environments.
 
 [grafana-aws]: https://grafana.production.govuk.digital/
-
