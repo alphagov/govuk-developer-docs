@@ -82,4 +82,3 @@ cache](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1715812).
 
 As of February 2022 we're discussing how to work around these issues, but in the
 meantime this document covers how to manually fix the issues.
-

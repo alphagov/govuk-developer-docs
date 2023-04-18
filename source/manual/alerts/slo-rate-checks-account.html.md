@@ -41,4 +41,3 @@ This warning automatically triggers a message to the `#find-and-view-tech`
 slack channel.
 
 No further action is required from GOV.UK 2ndline or any other team.
-

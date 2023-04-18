@@ -22,4 +22,3 @@ A rake task exists in Publishing API that will clear the invalid drafts.
 ```bash
 $ bundle exec rake 'data_hygiene:remove_invalid_worldorg_drafts'
 ```
-
