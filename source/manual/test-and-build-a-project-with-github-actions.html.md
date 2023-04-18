@@ -27,21 +27,64 @@ You should name the file used for configuring the CI workflow `ci.yml`.
 
 ### When the CI workflow should run
 
-The workflow should be configured to run on [`push`][push-event] and
-[`pull_request`][pull-request-event] events. The `push` event occurs for every
-push to the repository and this will generate a build against the branch
-that was pushed. The `pull_request` event occurs whenever a pull request
-is opened and it is triggered again any time the pull request changes (such
-as extra commits or rebasing), these differ to the `push` event by merging in
-the main branch before running operations. Pull requests from forks of a
-repo will only trigger the `pull_request` event.
+The workflow should be configured to run when there is a [`push`][push-event]
+to the default branch (typically "main") and when a
+[`pull_request`][pull-request-event] opened. This means CI runs when a branch
+is merged (the `push` to main) and it runs against any changes introduced
+in a pull request. We prefer to run against a `pull_request` event to all
+`push` events, as this allows external contributors to have pull requests
+tested and because `pull_request` runs against a version of the codebase
+[that is merged with the repository default branch][merge-comment].
 
-For example:
+Example configuration:
 
 ```yml
 # ./github/workflows/ci.yml
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
 ```
+
+To run CI on-demand, outside a pull request, for example before opening a PR,
+you may configure a repository to have a `workflow_dispatch` event so you can
+run it from the GitHub Actions user interface. If you do this you will need
+to configure the checkout action to reference the appropriate commit.
+
+Example configuration:
+
+```yml
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: 'The branch, tag or SHA to checkout'
+        default: main
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+```
+
+We previously recommended CI jobs to run on `[push, pull_request]` as per
+[RFC-123][] however this caused duplicate runs of the CI jobs
+of a pull request (one for the `push` another for the `pull_request`)
+which were both superfluous for our testing, a point of confusion and were
+depleting our allowance quotas.
+
+[merge-comment]: https://github.com/alphagov/govuk-developer-docs/pull/3961#discussion_r1171071337
+[RFC-123]: https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md#findings-from-some-initial-explorations-into-using-github-actions
 
 ### Avoid superfluous naming of workflows, jobs and steps
 
