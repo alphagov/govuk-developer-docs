@@ -74,4 +74,3 @@ Examples of low-priority errors:
 - **IP spoof errors (HTTP 400)**. Rails reports `ActionDispatch::RemoteIp::IpSpoofAttackError`.
 
 - **Environmental errors** e.g. errors due to data sync.
-
