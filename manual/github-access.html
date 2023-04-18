@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Configure a GitHub repo - GOV.UK Developer Documentation</title>
+    <title>GitHub access - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/github-access.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Configure a GitHub repo - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html" />
+      <meta name="twitter:title" content="GitHub access - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/github-access.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Configure a GitHub repo" />
+      <meta property="og:title" content="GitHub access" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/configure-github-repo.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/github-access.html" />
 
     
   </head>
@@ -126,16 +126,16 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Configure a GitHub repo</span></a>
+    <a href="#header"><span>GitHub access</span></a>
     <ul>
       <li>
-        <a href="#when-you-create-a-new-repo"><span>When you create a new repo</span></a>
+        <a href="#do-you-need-github-access"><span>Do you need GitHub access?</span></a>
       </li>
       <li>
-        <a href="#auto-configuration"><span>Auto configuration</span></a>
+        <a href="#granting-github-access"><span>Granting GitHub access</span></a>
       </li>
       <li>
-        <a href="#rules"><span>Rules</span></a>
+        <a href="#teams-in-alphagov"><span>Teams in alphagov</span></a>
       </li>
     </ul>
   </li>
@@ -167,8 +167,8 @@
       "@type": "ListItem",
       "position": 2,
       "item": {
-        "name": "GitHub",
-        "@id": "http://www.dev.gov.uk/manual.html#github"
+        "name": "Accounts",
+        "@id": "http://www.dev.gov.uk/manual.html#accounts"
       }
     }
   ]
@@ -181,64 +181,62 @@
           <a data-track-category="homeLinkClicked" data-track-action="homeBreadcrumb" data-track-label="" data-track-options="{}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumbs&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;1&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/">Home</a>
         </li>
         <li class="govuk-breadcrumbs__list-item">
-          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#github" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;GitHub&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumbs&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#github">GitHub</a>
+          <a data-track-category="breadcrumbClicked" data-track-action="2" data-track-label="/manual.html#accounts" data-track-options="{&quot;dimension28&quot;:&quot;2&quot;,&quot;dimension29&quot;:&quot;Accounts&quot;}" data-ga4-link="{&quot;event_name&quot;:&quot;navigation&quot;,&quot;type&quot;:&quot;breadcrumbs&quot;,&quot;index&quot;:{&quot;index_link&quot;:&quot;2&quot;},&quot;index_total&quot;:&quot;2&quot;}" class="govuk-breadcrumbs__link" href="/manual.html#accounts">Accounts</a>
         </li>
   </ol>
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/7ed5d188ab8312e78ff7b9407bb9c03abde83d04">14 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/c3c447467d63613727fef2171df1e6f36ba565cc">14 Apr 2023</a>
 </div>
 
- <h1 id='header'>Configure a GitHub repo</h1> <h2 id='when-you-create-a-new-repo'>When you create a new repo</h2>
-<ul>
-<li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>, <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>, and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a> teams <code>Admin</code> access</li>
-<li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a> <code>Write</code> access</li>
-<li>Tag it with the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
-</ul>
-<p>If your repo will be continuously deployed, restrict merge access to users with production deploy access with <a href="https://github.com/alphagov/govuk-saas-config/blob/master/github/repo_overrides.yml">the <code>repo_overrides.yml</code> file</a>.</p>
-<h2 id='auto-configuration'>Auto configuration</h2><p>When your repo is tagged with <code>govuk</code>, it will be auto-configured by <a href="https://github.com/alphagov/govuk-saas-config">govuk-saas-config</a>, applying many of the rules below.</p>
-<p>The govuk-saas-config job runs overnight, but you can kick off a build of the <a href="https://deploy.blue.production.govuk.digital/job/configure-github-repos">Jenkins job</a> to trigger it sooner.</p>
-<h2 id='rules'>Rules</h2><p>Repositories in GOV.UK must:</p>
+ <h1 id='header'>GitHub access</h1> <h2 id='do-you-need-github-access'>Do you need GitHub access?</h2><p>Not everyone on GOV.UK requires GitHub access, as much of what we do is in the open. However, if your role requires it, you can be added to the alphagov org.</p>
+<p>If you&rsquo;re a content designer, your request should go through Zendesk (see <a href="https://govuk.zendesk.com/agent/tickets/5297731/events">example ticket</a>).</p>
+<p>If you&rsquo;re an engineer or contractor, ask a developer on your team who has production access (such as your tech lead) to follow the steps below. If no developers on your team are available, ask in the <a href="https://gds.slack.com/archives/CADKZN519">Technical 2nd Line Slack channel</a> for someone to add you.</p>
+<h2 id='granting-github-access'>Granting GitHub access</h2><p>These steps should only be completed by a developer with production access:</p>
+
+<ol>
+<li>Add the person to the relevant file in <a href="https://github.com/alphagov/govuk-user-reviewer">govuk-user-reviewer</a>.</li>
+<li>Email <a href="mailto:govuk-github-owners@digital.cabinet-office.gov.uk">govuk-github-owners@digital.cabinet-office.gov.uk</a>, asking for the person to be added to the org. You should include:
+
+<ol>
+<li>A link to the pull request created in the previous step.</li>
+<li>The GitHub username to be added.</li>
+<li>The name of the team they should be added to (see <a href="#teams-in-alphagov">Teams in alphagov</a>). This is usually &ldquo;GOV.UK&rdquo; for engineers and contractors, and &ldquo;GOV.UK Content Designers&rdquo; for content designers.</li>
+<li>An explanation of which team the person is working in, and in what role.</li>
+</ol></li>
+<li>An alphagov admin will process the request. The person will receive an invite from GitHub in their inbox, which they will have to accept.</li>
+</ol>
+<h2 id='teams-in-alphagov'>Teams in alphagov</h2><p>There are several core &lsquo;teams&rsquo; set up in GitHub, under the <a href="https://github.com/orgs/alphagov">alphagov org</a>.</p>
 
 <ul>
-<li>Have the <a href="https://github.com/orgs/alphagov/teams/gov-uk-ci-bots">GOV.UK CI Bots</a>, <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>, and <a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a> teams as <code>Admin</code></li>
-<li>Give the <a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK team</a> <code>Write</code> access</li>
-<li>Have a good description</li>
-<li>Link to relevant documentation</li>
-<li>Have the <a href="https://github.com/search?q=topic:govuk"><code>govuk</code></a> topic</li>
-<li>Have a <a href="/manual/readmes.html">good README</a></li>
-<li>Have an entry in <a href="https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml">the list of repos</a></li>
-</ul>
-<p>Almost all repos should:</p>
-
-<ul>
-<li>Have <a href="https://help.github.com/articles/about-protected-branches">branch protection</a> on <code>main</code></li>
-<li>Have <a href="/manual/test-and-build-a-project-with-github-actions.html">GitHub Actions CI</a> configured</li>
-<li>Have <a href="/manual/github-trello-poster.html">GitHub Trello Poster</a> enabled</li>
+<li><p><a href="https://github.com/orgs/alphagov/teams/gov-uk-content-designers/members">GOV.UK Content Designers</a>.
+This team allows the user to create a branch in a GOV.UK repository and open a pull request, but only a developer can merge the request.
+Only content designers should be added to this team.</p></li>
+<li><p><a href="https://github.com/orgs/alphagov/teams/gov-uk">GOV.UK</a>.
+This team gives write access to private repos (see <a href="/manual/configure-github-repo.html">Configure a GitHub repo</a>), as well as integration admin access to the CI environment.</p></li>
+<li><p><a href="https://github.com/orgs/alphagov/teams/gov-uk-production-deploy">GOV.UK Production Deploy</a>.
+Grants <a href="/manual/rules-for-getting-production-access.html#production-deploy-access">deploy access to staging and production</a>.</p></li>
+<li><p><a href="https://github.com/orgs/alphagov/teams/gov-uk-production-admin">GOV.UK Production Admin</a>.
+Grants <a href="/manual/rules-for-getting-production-access.html#production-admin-access">admin access to staging and production</a>.</p></li>
 </ul>
 
 
   <div class='related-content'>
 
-    <h3>More in the GitHub section</h3>
+    <h3>More in the Accounts section</h3>
 
     <div class='govuk-grid-row'>
-        <div class='govuk-grid-column-one-half'>
-          <h4>Learn</h4>
-
-          <ul class="govuk-list">
-            <li><a href="/manual/github.html">How we use GitHub</a></li>
-          </ul>
-        </div>
 
         <div class='govuk-grid-column-one-half'>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
-            <li><a href="/manual/howto-switch-default-branch.html">How to switch a Git default branch from master to main</a></li>
-            <li><a href="/manual/make-github-repo-private.html">Make a GitHub repo private</a></li>
-            <li><a href="/manual/merge-pr.html">Merge a Pull Request</a></li>
+            <li><a href="/manual/heroku.html">Access apps on the shared Heroku account</a></li>
+            <li><a href="/manual/create-a-gpg-key.html">Create a GPG key</a></li>
+            <li><a href="/manual/access-jenkins.html">Get access to Jenkins</a></li>
+            <li><a href="/manual/manage-sign-on-accounts.html">Manage Signon user/API accounts and access tokens</a></li>
+            <li><a href="/manual/removing-a-user-from-puppet.html">Remove a user from Puppet</a></li>
           </ul>
         </div>
 
@@ -251,8 +249,8 @@
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/configure-github-repo.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Configure+a+GitHub+repo%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fconfigure-github-repo.html%29&amp;labels=bug&amp;title=Re%3A+%27Configure+a+GitHub+repo%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/github-access.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27GitHub+access%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fgithub-access.html%29&amp;labels=bug&amp;title=Re%3A+%27GitHub+access%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
