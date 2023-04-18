@@ -81,15 +81,10 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
 
 ## 3. Set up your GitHub account
 
-1. Set up a [GitHub] account. You can use your existing personal account.
-1. [Associate your GitHub account with your GDS email address][associate-email-github], this can be in addition to your personal email address.
-1. Ask a developer on your team who has production access (e.g. your tech lead) to add your GitHub username to the [user monitoring system][user-reviewer].
-
-    If no other developers on your team are available, ask in the [Technical 2nd Line Slack channel](https://gds.slack.com/archives/CADKZN519) for someone to add you.
-1. Email <govuk-github-owners@digital.cabinet-office.gov.uk> to request to be added to the [alphagov organisation][alphagov] and the [GOV.UK team][govuk-team] to get access to repos and CI environment, add your tech lead a CC of the email. Please explain in the email which team you are working on and in what role; include a link to the pull request created in the previous step.
-
-    Once this request has been actioned you'll receive an email from GitHub, select __Accept__ in the email.
-
+1. Set up a [GitHub] account (or use your existing personal account).
+1. [Associate your GitHub account with your GDS email address][associate-email-github], which can be in addition to your personal email address.
+1. [Get added to the alphagov org and the "GOV.UK" team](https://docs.publishing.service.gov.uk/manual/github-access.html).
+   Your `ssh_username` should be added to the user reviewer as part of this step (see [7. Get SSH access to integration](#7-get-ssh-access-to-integration))
 1. [Add the SSH key to your GitHub account][add-ssh-key].
 1. Test that the SSH key works by running `ssh -T git@github.com`.
 1. Add your name and email to your git commits. For example:
@@ -99,13 +94,9 @@ If you have a YubiKey, you will use `gpg-agent` in place of `ssh-agent`, which r
     $ git config --global user.name "Friendly Giraffe"
     ```
 
-[alphagov]: https://github.com/alphagov
 [GitHub]: https://www.github.com/
 [associate-email-github]: https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-email-preferences/adding-an-email-address-to-your-github-account
-[govuk-team]: https://github.com/orgs/alphagov/teams/gov-uk/members
-[register-ssh-key]: https://help.github.com/articles/connecting-to-github-with-ssh/
 [add-ssh-key]: https://docs.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account
-[user-reviewer]: https://github.com/alphagov/govuk-user-reviewer
 
 ## 4. Install GDS command line tools
 
