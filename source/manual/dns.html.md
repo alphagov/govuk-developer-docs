@@ -34,135 +34,12 @@ Note that we __do not__ manage any other DNS records: if you get a request conce
 
 When you've verified the authenticity of the request as per the SRE docs above, you should:
 
-1. Make the changes in [govuk-dns-config][] (see [example](https://github.com/alphagov/govuk-dns-config/pull/851))
-1. Use the gds-cli to deploy the changes via the [Deploy_DNS Jenkins job][]
-
-Before you start make sure your machine is set up so you can access AWS and [Google Cloud Platform (GCP)][] using command line tools.
-
-The deployment process is complex, so it's much easier to [use the automation provided by the GDS CLI](#running-govuk-dns-using-gds-cli), although it [can be done manually](#running-govuk-dns-manually-using-jenkins).
-
-### Running govuk-dns using gds-cli
-
-gds-cli provides a command which automates gathering the required credentials and triggering Jenkins. The command authenticates to Jenkins using GitHub, so it expects `GITHUB_USERNAME` / `GITHUB_TOKEN` environment variables to be set. It calls out to the `aws` and `gcloud` command line tools to fetch the other required credentials.
-
-Follow these steps to deploy a change to the DNS for *.service.gov.uk:
-
-1. Get a personal access token for GitHub by navigating to the [personal access token](https://github.com/settings/tokens) page then generate a new token with the default permissions. Set this as an environment variable, alongside your GitHub username:
-
-    ```
-    export GITHUB_TOKEN=<token_from_github_ui>
-    export GITHUB_USERNAME=<your_github_username>
-    ```
-
-1. Check you can access AWS (in production as a poweruser) using the following, if not, follow the steps in the [Get Started documentation](/manual/get-started.html#8-get-aws-access). If successful, you will see a list of S3 buckets.
-
-    ```
-    gds aws govuk-production-poweruser aws s3 ls
-    ```
-
-1. Run a plan in AWS (a plan is a dry run, where you can see what changes will be made without saving them):
-
-    ```
-    gds govuk dns --provider aws --zone service.gov.uk --action plan --role govuk-production-poweruser
-    ```
-
-1. Navigate to [the production Jenkins](https://deploy.blue.production.govuk.digital/job/Deploy_DNS/) and check the output of the job. A typical change where you replace nameservers with new ones will look like the following (check the name is the correct subdomain for your change and that the old and new nameservers are correct):
-
-    ```
-    ~ resource "aws_route53_record" "NS_passport" {
-          id                               = "Z2QHB5HOZRWMYP_passport_NS"
-          name                             = "passport"
-        ~ records                          = [
-            - "ns1.p08.dynect.net.",
-            - "ns2.p08.dynect.net.",
-            - "ns3.p08.dynect.net.",
-            - "ns4.p08.dynect.net.",
-            + "ns-1435.awsdns-51.org.",
-            + "ns-144.awsdns-18.com.",
-            + "ns-1559.awsdns-02.co.uk.",
-            + "ns-535.awsdns-02.net.",
-          ]
-          # (6 unchanged attributes hidden)
-      }
-    ```
-
-    > It's normal to see changes in TXT records relating to escaping of quotes. You can safely ignore these if they don't change any of the content of the record. This is a bug in the way we handle splitting long TXT records between AWS and GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
-
-1. Install gcloud:
-
-    ```
-    brew install --cask google-cloud-sdk
-    source "$HOMEBREW_PREFIX/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-    ```
-
-1. Login to the gcloud CLI by running the following, then logging into your GDS Google account in the browser window that will open:
-
-    ```
-    gcloud auth login
-    ```
-
-1. Run a plan in GCP (a plan is a dry run, where you can see what changes will be made without saving them):
-
-    ```
-    gds govuk dns --provider gcp --zone service.gov.uk --action plan --role govuk-production-poweruser
-    ```
-
-1. Navigate to [the production Jenkins](https://deploy.blue.production.govuk.digital/job/Deploy_DNS/) and check the output of the job. A typical change where you replace nameservers with new ones will look like the following (check the name is the correct subdomain for your change and that the old and new nameservers are correct):
-
-    ```
-    # google_dns_record_set.NS_passport will be updated in-place
-    ~ resource "google_dns_record_set" "NS_passport" {
-          id           = "10"
-          name         = "passport.service.gov.uk."
-        ~ rrdatas      = [
-            - "ns1.p08.dynect.net.",
-            - "ns2.p08.dynect.net.",
-            - "ns3.p08.dynect.net.",
-            - "ns4.p08.dynect.net.",
-            + "ns-144.awsdns-18.com.",
-            + "ns-1559.awsdns-02.co.uk.",
-            + "ns-1435.awsdns-51.org.",
-            + "ns-535.awsdns-02.net.",
-          ]
-          # (4 unchanged attributes hidden)
-      }
-    ```
-
-    > It's normal to see changes in TXT records relating to escaping of quotes. You can safely ignore these if they don't change any of the content of the record. This is a bug in the way we handle splitting long TXT records between AWS and GCP in our [YAML -> Ruby -> Terraform process](https://github.com/alphagov/govuk-dns).
-
-1. Apply the change in AWS (i.e. save the changes):
-
-    ```
-    gds govuk dns --provider aws --zone service.gov.uk --action apply --role govuk-production-poweruser
-    ```
-
-1. Apply the change in GCP (i.e. save the changes):
-
-    ```
-    gds govuk dns --provider gcp --zone service.gov.uk --action apply --role govuk-production-poweruser
-    ```
-
-    > Sometimes, the GCP deployment requires multiple runs. This is because, in order to change a DNS record, the Google provider deletes and re-adds that record. This can cause a [race condition](https://github.com/alphagov/govuk-dns/issues/67) where Google tries to create the new one before it has successfully deleted the old one. In this case, the build will fail, and you just need to re-run the GCP `apply` job.
-
-1. Revoke the GitHub personal access token by navigating to the [personal access token](https://github.com/settings/tokens) page and clicking 'Delete'.
-
-### Running govuk-dns manually using Jenkins
-
-If you run into issues using the `gds govuk dns` command, you can trigger a build of the [Deploy_DNS Jenkins job][] directly.
-
-You will need AWS credentials whichever provider you're targetting. You can get these by running:
-
-```
-gds aws govuk-production-poweruser -e
-```
-
-To plan or apply using the `gcp` provider, you will also need a Google OAuth access token. Once you [have gcloud set up][Google Cloud Platform (GCP)] you can get these by running:
-
-```
-gcloud config set project govuk-production && gcloud auth login --brief && gcloud auth print-access-token
-```
-
-You'll be prompted to login to your Google account to allow Google Cloud SDK access your Google Account.
+1. Ensure you have [Terraform Cloud access](#getting-terraform-cloud-access)
+1. Commit your changes in [govuk-dns-tf][] (see [example](https://github.com/alphagov/govuk-dns-tf/pull/14))
+1. Push your changes to GitHub and open a pull request
+1. Terraform Cloud will automatically perform a plan
+1. If you are happy with the results of the plan, merge your PR
+1. Terraform Cloud will automatically apply your changes when they are merged to `main`
 
 ## DNS for `govuk.digital` and `govuk-internal.digital`
 
@@ -177,11 +54,9 @@ making your changes.
 ## DNS for the `publishing.service.gov.uk` domain
 
 To make a change to this zone, begin by adding the records to the yaml file for
-the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-config).
+the zone held in the [DNS config repo](https://github.com/alphagov/govuk-dns-tf).
 
-We use a Jenkins job that publishes changes to `publishing.service.gov.uk`. The
-job uses [Terraform](https://www.terraform.io/) and pushes changes to the
-selected provider.
+The deployment process is the same as for [`service.gov.uk`](#dns-for-service-gov-uk-domains)
 
 ## DNS for the `gov.uk` top level domain
 
@@ -221,7 +96,7 @@ These include (but are not limited to):
 - `public-inquiry.uk`
 - `royal-commission.uk`
 
-Some of these are not managed by Terraform. If you can't find a configuration file for the zone in [govuk-dns-config][], then you'll need to update it manually in the AWS console.
+Some of these are not managed by Terraform. If you can't find a configuration file for the zone in [govuk-dns-tf][], then you'll need to update it manually in the AWS console.
 
 1. Login to the **production** AWS console.
 
@@ -248,6 +123,9 @@ Some of these are not managed by Terraform. If you can't find a configuration fi
 4. Update the DNS records as required.
 5. **For bonus points:** If the zone description wasn't clear, but you're certain it's safe to be updated manually, then consider changing the description field so it's clearer for the next person.
 
-[Deploy_DNS Jenkins job]: https://deploy.blue.production.govuk.digital/job/Deploy_DNS/
-[Google Cloud Platform (GCP)]: /manual/google-cloud-platform-gcp.html
-[govuk-dns-config]: https://github.com/alphagov/govuk-dns-config
+## Getting Terraform Cloud access
+
+Any member of the GOV.UK Platform Engineering team can invite you to the GOV.UK Terraform Cloud organisation.
+Ask in their [slack channel](https://gds.slack.com/archives/C013F737737).
+
+[govuk-dns-tf]: https://github.com/alphagov/govuk-dns-tf
