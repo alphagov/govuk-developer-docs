@@ -21,8 +21,8 @@ Things we used to do on EC2 now need to be done differently on EKS.
     - Go to the app’s repo in GitHub, then choose Actions, then Deploy (from the left-hand column).
     - Click “Run workflow” and enter the default branch name (usually `main`) under "Commit, tag or branch name to deploy". (Always leave the "Use workflow from" option set as `main`, unless you’re actually trying to change the workflow itself.)
 - To deploy a branch, follow the manual deploy steps above, providing the branch name in "Commit, tag or branch name to deploy".
-- DNS rollouts are still via Jenkins for now (so no change, e.g. `gds govuk dns -r govuk-production-admin -z service.gov.uk -a plan -p aws`)
-- Fastly CDN config rollouts are also still via Jenkins for now.
+- DNS rollouts are [via Terraform Cloud](/manual/dns.html)
+- Fastly CDN config rollouts are still via Jenkins for now.
 
 ## Deploy a branch to integration
 
