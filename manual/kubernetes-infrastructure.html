@@ -210,7 +210,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/e3fae9b1cead4b39ddb41f3fc324cb8b6cf57341">14 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fa8c8c236925d53bea9e3658cf9a01547914ea19">20 Apr 2023</a>
 </div>
 
  <h1 id='header'>EKS/Kubernetes infrastructure</h1> <blockquote>
@@ -229,8 +229,8 @@
 <li>Click “Run workflow” and enter the default branch name (usually <code>main</code>) under &ldquo;Commit, tag or branch name to deploy&rdquo;. (Always leave the &ldquo;Use workflow from&rdquo; option set as <code>main</code>, unless you’re actually trying to change the workflow itself.)</li>
 </ul></li>
 <li>To deploy a branch, follow the manual deploy steps above, providing the branch name in &ldquo;Commit, tag or branch name to deploy&rdquo;.</li>
-<li>DNS rollouts are still via Jenkins for now (so no change, e.g. <code>gds govuk dns -r govuk-production-admin -z service.gov.uk -a plan -p aws</code>)</li>
-<li>Fastly CDN config rollouts are also still via Jenkins for now.</li>
+<li>DNS rollouts are <a href="/manual/dns.html">via Terraform Cloud</a></li>
+<li>Fastly CDN config rollouts are still via Jenkins for now.</li>
 </ul>
 <h2 id='deploy-a-branch-to-integration'>Deploy a branch to integration</h2>
 <ol>
