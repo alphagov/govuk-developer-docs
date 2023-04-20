@@ -253,17 +253,16 @@ GovukPuma.configure_rails(self)
 
 <h3 id="automatic-error-reporting">Automatic error reporting</h3>
 
-<p>If you include <code>govuk_app_config</code> in your <code>Gemfile</code>, Rails&rsquo; autoloading mechanism will make sure that your application is configured to send errors to Sentry.</p>
-
-<p>Your app will have to have the following environment variables set:</p>
+<p>If you include <code>govuk_app_config</code> in your <code>Gemfile</code> and set the following environment variables, your application will automatically log errors to Sentry.</p>
 
 <ul>
 <li>
 <code>SENTRY_DSN</code> - the <a href="https://docs.sentry.io/quickstart/#about-the-dsn">Data Source Name (DSN)</a> for Sentry</li>
 <li>
-<code>SENTRY_CURRENT_ENV</code> - e.g. &ldquo;production&rdquo;. Make sure it is <a href="#active-sentry-environments">configured to be active</a>.</li>
+<code>SENTRY_CURRENT_ENV</code> - the <code>environment</code> tag to pass to Sentry, for example <code>production</code>
+</li>
 <li>
-<code>GOVUK_STATSD_PREFIX</code> - a Statsd prefix like <code>govuk.apps.application-name.hostname</code> (deprecated; use Prometheus instead).</li>
+<code>GOVUK_STATSD_PREFIX</code> - a Statsd prefix like <code>govuk.apps.application-name.hostname</code> (deprecated; statsd functionality will be removed in a future release)</li>
 </ul>
 
 <h3 id="manual-error-reporting">Manual error reporting</h3>
@@ -284,17 +283,6 @@ GovukPuma.configure_rails(self)
   level: "debug", # debug, info, warning, error, fatal
   tags: { key: "value" } # Tags to index with this event. Must be a mapping of strings.
 )
-</code></pre>
-
-<h3 id="active-sentry-environments">Active Sentry environments</h3>
-
-<p>GovukError will only send errors to Sentry if your <code>SENTRY_CURRENT_ENV</code> matches one of the &lsquo;active environments&rsquo; in the <a href="https://github.com/alphagov/govuk_app_config/blob/master/lib/govuk_app_config/govuk_error/configure.rb">default configuration</a>. This is to prevent temporary test environments from flooding our Sentry account with errors.</p>
-
-<p>You can add your environment to the list of active Sentry environments like so:</p>
-
-<pre lang="ruby"><code>GovukError.configure do |config|
-  config.enabled_environments &lt;&lt; "my-test-environment"
-end
 </code></pre>
 
 <h3 id="error-configuration">Error configuration</h3>
