@@ -60,7 +60,8 @@ Some things haven't yet been replatformed, and some things will remain unchanged
 
 ## Smokey
 
-Smokey results persist for longer only if they have failed.
+Smokey runs in Argo Workflows persist for longer only if they have failed (because of limitations of Argo Workflows that we can't easily get around).
+The Smokey cronjob keeps the last 3 successes and the last 3 failures.
 
 ## Dashboards, alerting and Icinga
 
@@ -94,6 +95,16 @@ asset-manager-7bd745d655-tzlgz                                    2/2     Runnin
 ```
 
 As you can see above, each pod either runs the application (we can see two pods running Account API, for example) or runs a worker or cron job for the application (we can see one pod running the Account API application worker).
+
+You can also fetch just a subset list of pods by passing the `lapp` argument:
+
+```
+$ k get pods -lapp=account-api
+
+NAME                           READY   STATUS    RESTARTS   AGE
+account-api-75f95899f6-gjdmg   2/2     Running   0          21h
+account-api-75f95899f6-nn56t   2/2     Running   0          21h
+```
 
 You can fetch the logs for all running containers in a pod. Take one of the pods from the output above:
 
