@@ -215,7 +215,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/417526c01dfa53aaf62fb27b64fe33bd860027e4">21 Dec 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/4d8e6da4f32fba5b1114cf0d59e9265f03a29ee7">18 Apr 2023</a>
 </div>
 
  <h1 id='header'>Test & build a project with GitHub Actions</h1> <p><a href="https://github.com/features/actions">GitHub Actions</a> is an automated workflow
@@ -230,18 +230,52 @@ before deploying it.</strong> This is to help GOV.UK establish consistent and
 effective secret management for GitHub Actions across the wider alphagov
 GitHub organisation.</p>
 <h2 id='gov-uk-conventions-for-github-actions'>GOV.UK Conventions for GitHub Actions</h2><h3 id='name-of-ci-workflow-file'>Name of CI workflow file</h3><p>You should name the file used for configuring the CI workflow <code>ci.yml</code>.</p>
-<h3 id='when-the-ci-workflow-should-run'>When the CI workflow should run</h3><p>The workflow should be configured to run on <a href="https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push"><code>push</code></a> and
-<a href="https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request"><code>pull_request</code></a> events. The <code>push</code> event occurs for every
-push to the repository and this will generate a build against the branch
-that was pushed. The <code>pull_request</code> event occurs whenever a pull request
-is opened and it is triggered again any time the pull request changes (such
-as extra commits or rebasing), these differ to the <code>push</code> event by merging in
-the main branch before running operations. Pull requests from forks of a
-repo will only trigger the <code>pull_request</code> event.</p>
-<p>For example:</p>
+<h3 id='when-the-ci-workflow-should-run'>When the CI workflow should run</h3><p>The workflow should be configured to run when there is a <a href="https://help.github.com/en/actions/reference/events-that-trigger-workflows#push-event-push"><code>push</code></a>
+to the default branch (typically &ldquo;main&rdquo;) and when a
+<a href="https://help.github.com/en/actions/reference/events-that-trigger-workflows#pull-request-event-pull_request"><code>pull_request</code></a> opened. This means CI runs when a branch
+is merged (the <code>push</code> to main) and it runs against any changes introduced
+in a pull request. We prefer to run against a <code>pull_request</code> event to all
+<code>push</code> events, as this allows external contributors to have pull requests
+tested and because <code>pull_request</code> runs against a version of the codebase
+<a href="https://github.com/alphagov/govuk-developer-docs/pull/3961#discussion_r1171071337">that is merged with the repository default branch</a>.</p>
+<p>Example configuration:</p>
 <div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="c1"># ./github/workflows/ci.yml</span>
-<span class="na">on</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">push</span><span class="pi">,</span> <span class="nv">pull_request</span><span class="pi">]</span>
-</code></pre></div><h3 id='avoid-superfluous-naming-of-workflows-jobs-and-steps'>Avoid superfluous naming of workflows, jobs and steps</h3><p>In workflow files you have the option to specify a
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">main</span>
+  <span class="na">pull_request</span><span class="pi">:</span>
+
+</code></pre></div><p>To run CI on-demand, outside a pull request, for example before opening a PR,
+you may configure a repository to have a <code>workflow_dispatch</code> event so you can
+run it from the GitHub Actions user interface. If you do this you will need
+to configure the checkout action to reference the appropriate commit.</p>
+<p>Example configuration:</p>
+<div class="highlight"><pre class="highlight yaml" tabindex="0"><code><span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">main</span>
+  <span class="na">pull_request</span><span class="pi">:</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">ref</span><span class="pi">:</span>
+        <span class="na">description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">The</span><span class="nv"> </span><span class="s">branch,</span><span class="nv"> </span><span class="s">tag</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">SHA</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">checkout'</span>
+        <span class="na">default</span><span class="pi">:</span> <span class="s">main</span>
+        <span class="na">type</span><span class="pi">:</span> <span class="s">string</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">test</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v3</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">ref</span><span class="pi">:</span> <span class="s">${{ inputs.ref || github.ref }}</span>
+</code></pre></div><p>We previously recommended CI jobs to run on <code>[push, pull_request]</code> as per
+<a href="https://github.com/alphagov/govuk-rfcs/blob/main/rfc-123-github-actions-ci.md#findings-from-some-initial-explorations-into-using-github-actions">RFC-123</a> however this caused duplicate runs of the CI jobs
+of a pull request (one for the <code>push</code> another for the <code>pull_request</code>)
+which were both superfluous for our testing, a point of confusion and were
+depleting our allowance quotas.</p>
+<h3 id='avoid-superfluous-naming-of-workflows-jobs-and-steps'>Avoid superfluous naming of workflows, jobs and steps</h3><p>In workflow files you have the option to specify a
 <a href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#name">name attribute</a> for the workflow itself, the jobs and
 each individual step.</p>
 <p>The workflow and any jobs should not be given a name as the workflow filename
