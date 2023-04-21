@@ -10,23 +10,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Add authentication to an application - GOV.UK Developer Documentation</title>
+    <title>Retire a repo - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
-    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/add-authentication-to-an-application.html">
+    <link rel="canonical" href="https://docs.publishing.service.gov.uk/manual/retiring-a-repo.html">
 
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Add authentication to an application - GOV.UK Developer Documentation" />
-      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/add-authentication-to-an-application.html" />
+      <meta name="twitter:title" content="Retire a repo - GOV.UK Developer Documentation" />
+      <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/manual/retiring-a-repo.html" />
 
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Add authentication to an application" />
+      <meta property="og:title" content="Retire a repo" />
       <meta property="og:type" content="object" />
-      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/add-authentication-to-an-application.html" />
+      <meta property="og:url" content="https://docs.publishing.service.gov.uk/manual/retiring-a-repo.html" />
 
     
   </head>
@@ -126,16 +126,19 @@
                   <a href='/manual.html' class="toc__back-link govuk-link">&lsaquo; Manual</a>
   <ul>
   <li>
-    <a href="#header"><span>Add authentication to an application</span></a>
+    <a href="#header"><span>Retire a repo</span></a>
     <ul>
       <li>
-        <a href="#setting-up-authentication-for-your-ruby-application"><span>Setting up authentication for your Ruby application</span></a>
+        <a href="#1-update-readme"><span>1. Update README</span></a>
       </li>
       <li>
-        <a href="#before-an-application-can-be-deployed-with-authentication"><span>Before an application can be deployed with authentication</span></a>
+        <a href="#2-update-the-developer-docs"><span>2. Update the Developer Docs</span></a>
       </li>
       <li>
-        <a href="#deploying"><span>Deploying</span></a>
+        <a href="#3-remove-other-references"><span>3. Remove other references</span></a>
+      </li>
+      <li>
+        <a href="#4-archive-the-repo"><span>4. Archive the repo</span></a>
       </li>
     </ul>
   </li>
@@ -187,96 +190,13 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/bc37450ead29ae4ca162c1c12cf44e0adfca9955">2 Nov 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/3e3538a945aff9907fb49ec175bdd70a919dee38">21 Apr 2023</a>
 </div>
 
- <h1 id='header'>Add authentication to an application</h1> <p>The process outlined here relies on the <a href="https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html">data sync</a> to synchronise
-credentials between production and staging which will mean that you will have
-to wait overnight from starting this to completing.</p>
-<h2 id='setting-up-authentication-for-your-ruby-application'>Setting up authentication for your Ruby application</h2><p>Prior to merging authentication into an existing application there are a
-<a href="#before-an-application-can-be-deployed-with-authentication">number of steps</a>
-that need to be performed so that users and applications can access the app
-immediately.</p>
-<p>To set up an application:</p>
-
-<ol>
-<li>Install <a href="https://github.com/alphagov/gds-sso">GDS-SSO gem</a> as per the gem instructions.</li>
-<li>Determine whether the whole application or just particular routes need
-authentication.</li>
-<li>Configure the application to require authentication. If you&rsquo;re using a
-non-Rails app, check <a href="https://github.com/omniauth/omniauth">OmniAuth</a> documentation (GDS-SSO uses OmniAuth).</li>
-<li>Update the application tests so that there is a user created or mocked for
-tests. <a href="https://github.com/alphagov/content-store/pull/498/commits/f405ca84940efe9705ee48fc21f373dacc05da63">Example commit</a>.</li>
-</ol>
-<h2 id='before-an-application-can-be-deployed-with-authentication'>Before an application can be deployed with authentication</h2>
-<ol>
-<li>Your application will need to be registered as an application in
-<a href="/repos/signon.html">signon</a> in <a href="http://signon.publishing.service.gov.uk">production</a> and
-<a href="http://signon.integration.publishing.service.gov.uk">integration</a>. Staging is not required as it will be
-synced with production as part of the <a href="https://docs.publishing.service.gov.uk/manual/alerts/data-sync.html">data sync</a>.
-
-<ul>
-<li>Create the application in signon with a <a href="https://github.com/alphagov/signon/blob/main/docs/usage.md#setup-rake-tasks">rake task</a></li>
-<li>Make a note of the <code>oauth_id</code> and <code>oauth_secret</code> for each environment</li>
-</ul></li>
-<li><em>API application only:</em> Create bearer tokens for all the applications that will
-need authenticated access to your application.
-
-<ul>
-<li>Identify each of the applications that communicate with your application,
-the <a href="https://docs.publishing.service.gov.uk/manual/architecture.html">Architectural overview of GOV.UK applications</a> may
-help, and determine whether they need authenticated access.</li>
-<li>For each of these:
-
-<ul>
-<li>Find or create an API user for the application in
-<a href="https://signon.publishing.service.gov.uk/api_users">Production</a> and
-<a href="https://signon.integration.publishing.service.gov.uk/api_users">Integration</a>;</li>
-<li>Run the &ldquo;Add application token&rdquo; action to create a token for the
-application added in step 1;</li>
-<li>Make a note of the created token;</li>
-<li>Add any necessary app permissions to the application access.</li>
-</ul></li>
-</ul></li>
-<li>Add the tokens and OAuth credentials you have created to <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>.
-This is so they can be used in Puppet hieradata. The production tokens should
-also be added to the staging secrets. <a href="https://github.com/alphagov/govuk-secrets/pull/517">Example PR</a>.</li>
-<li>Create environment variables in <a href="https://github.com/alphagov/govuk-puppet">govuk-puppet</a> for the tokens you have
-created. <a href="https://github.com/alphagov/govuk-puppet/pull/8426">Example PR</a>.
-
-<ul>
-<li>If your application runs on the draft stack you&rsquo;ll also need to ensure
-it can communicate with signon. <a href="https://github.com/alphagov/govuk-puppet/pull/8439">Example PR</a>.</li>
-</ul></li>
-<li><em>API application only:</em> Use the bearer tokens in applications that need to
-authenticate with your application.
-
-<ul>
-<li>Applications differ in how they configure bearer token.</li>
-<li>The ideal approach is for the bearer token to be set automatically in
-<a href="https://github.com/alphagov/gds-api-adapters/pull/852">GDS API Adapters</a>.</li>
-<li>You may need to update <a href="https://github.com/alphagov/publisher/blob/008b79a902795aa25d102913e2f4f2fde1ac834b/app/lib/services.rb">lib/services.rb</a> or find
-where GdsApi classes are <a href="https://github.com/alphagov/whitehall/blob/7b5c5a086b89cb62ffba62b152a0a8dcfc10c8e6/config/initializers/rummager.rb">initiailised</a>.</li>
-</ul></li>
-<li>Once all these changes are merged and deployed you should see the
-environment variables set up in the appropriate environments.</li>
-</ol>
-<h2 id='deploying'>Deploying</h2><p>If you are adding authentication to an existing application, the deployment
-process should be approached with caution as a mistake in copying the
-tokens could break the app in any of the environments.</p>
-<p>Once you have completed all the steps above, you should start by deploying the
-branch of your application to integration and check that:</p>
-
-<ul>
-<li>Authentication is enabled - this can be achieved by doing a cURL request on
-the box against a known authenticated route of the application;</li>
-<li>Check the logs to ensure the application is successfully processing requests.</li>
-</ul>
-<p>Once this is verified the branch can be merged.</p>
-<p>Prior to deploying to staging and production, you should inform Technical 2nd Line so they
-are prepared for any problems. For each environment you deploy to you should
-repeat the same checks that authentication is enabled and that the application
-is still successfully processing requests.</p>
+ <h1 id='header'>Retire a repo</h1> <h2 id='1-update-readme'>1. Update README</h2><p>Add a note to the top of the README explaining that the repo has been retired and, if applicable, what it has been replaced by.</p>
+<h2 id='2-update-the-developer-docs'>2. Update the Developer Docs</h2><p>Mark the application as <code>retired</code> in <a href="https://github.com/alphagov/govuk-developer-docs">govuk-developer-docs</a>.</p>
+<h2 id='3-remove-other-references'>3. Remove other references</h2><p>Do a <a href="https://github.com/search?q=org%3Aalphagov+panopticon&amp;type=Code">search on GitHub</a> to find any references to the repository and update or remove them.</p>
+<h2 id='4-archive-the-repo'>4. Archive the repo</h2><p>Go into the repository settings in GitHub, and <a href="https://github.com/blog/2460-archiving-repositories">archive the repo</a>.</p>
 
 
   <div class='related-content'>
@@ -301,11 +221,11 @@ is still successfully processing requests.</p>
           <h4>How to...</h4>
 
           <ul class="govuk-list">
+            <li><a href="/manual/add-authentication-to-an-application.html">Add authentication to an application</a></li>
             <li><a href="/manual/ownership-meaning.html">Application ownership</a></li>
             <li><a href="/manual/create-a-local-transaction.html">Create a Local Transaction</a></li>
             <li><a href="/manual/naming.html">Name a new application or gem</a></li>
             <li><a href="/manual/retiring-a-gem.html">Retire a gem</a></li>
-            <li><a href="/manual/retiring-a-repo.html">Retire a repo</a></li>
             <li><a href="/manual/retiring-an-application.html">Retire an application</a></li>
             <li><a href="/manual/setting-up-new-rails-app.html">Set up a new Rails application</a></li>
           </ul>
@@ -320,8 +240,8 @@ is still successfully processing requests.</p>
 
           <aside>
               <ul class="contribution-banner">
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/add-authentication-to-an-application.html.md">View source</a></li>
-                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Add+authentication+to+an+application%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fadd-authentication-to-an-application.html%29&amp;labels=bug&amp;title=Re%3A+%27Add+authentication+to+an+application%27">Report problem</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/blob/master/source/manual/retiring-a-repo.html.md">View source</a></li>
+                <li><a href="https://github.com/alphagov/govuk-developer-docs/issues/new?body=Problem+with+%27Retire+a+repo%27+%28https%3A%2F%2Fdocs.publishing.service.gov.uk%2Fmanual%2Fretiring-a-repo.html%29&amp;labels=bug&amp;title=Re%3A+%27Retire+a+repo%27">Report problem</a></li>
                 <li><a href="https://github.com/alphagov/govuk-developer-docs">GitHub Repo</a></li>
               </ul>
           </aside>
