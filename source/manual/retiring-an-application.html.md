@@ -73,48 +73,34 @@ Requests.
 
 [dns-changes]: https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain
 
-## 9. Update docs
-
-Mark the application as `retired` in [govuk-developer-docs][dev-docs].
-
-[dev-docs]: https://github.com/alphagov/govuk-developer-docs
-
-## 10. Remove credentials
+## 9. Remove credentials
 
 Remove any hieradata credential entries for the app in [govuk-secrets][]
 (private repo).
 
 [govuk-secrets]: https://github.com/alphagov/govuk-secrets
 
-## 11. Drop database
+## 10. Drop database
 
 If Puppet hasn't done it (eg for MongoDB databases), drop the database.
 
-## 12. Remove jobs in CI
+## 11. Remove jobs in CI
 
 If tests were set up, go to [CI][ci] and choose "Delete Repository" for your
 project.
 
 [ci]: https://ci.integration.publishing.service.gov.uk/
 
-## 13. Remove other references
-
-Do a [code search on GitHub][search] to find any references to the application
-and update or remove them.
-
-[search]: https://github.com/search?q=org%3Aalphagov+panopticon&type=Code
-
-## 14. Unpublish routes
+## 12. Unpublish routes
 
 Some applications are responsible for publishing certain routes. If you're
 retiring a publishing application, make sure you check if any of its content
 items need to be unpublished and do it via the Publishing API.
 
-## 15. Remove from Sentry
+## 13. Remove from Sentry
 
 Since the application has been retired, it shouldn't be tracked in Sentry.
 
-## 16. Archive the repo
+## 14. Archive the repo
 
-Go into the repository settings in GitHub, and
-[archive the repo](https://github.com/blog/2460-archiving-repositories).
+Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
