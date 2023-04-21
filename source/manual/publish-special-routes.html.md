@@ -10,4 +10,4 @@ old_paths:
 
 [Special Route Publisher](https://github.com/alphagov/special-route-publisher) is a tool for loading a set of routes (a map of URL path to a rendering app and content ID) from a YAML file into Publishing API.
 
-See https://github.com/alphagov/special-route-publisher#publishing-routes-on-eks for usage.
+See [Publishing routes on EKS](https://github.com/alphagov/special-route-publisher#publishing-routes-on-eks) for usage.
