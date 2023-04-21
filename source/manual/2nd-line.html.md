@@ -130,10 +130,10 @@ This will help inform developers, Technical 2nd Line tech lead(s), and the GOV.U
 
 Follow these Slack channels while working on Technical 2nd Line:
 
-- `#govuk-2ndline-tech` - the main channel for people on Technical 2nd Line
-- `#govuk-deploy` - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing
-- `#govuk-developers` - this is a general channel for developers and can be a good place to ask questions if you are struggling
-- `#govuk-platform-engineering` - this is the channel for the Platform Engineering team, where the SREs are currently working. However, you should use #govuk-2ndline-tech to contact the RE interruptible person about urgent GOV.UK infrastructure issues.
+- [#govuk-2ndline-tech] - the main channel for people on Technical 2nd Line
+- [#govuk-deploy] - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing
+- [#govuk-developers] - this is a general channel for developers and can be a good place to ask questions if you are struggling
+- [#govuk-platform-engineering] - Platform Engineering team looks after the GOV.UK Kubernetes clusters and base images
 
 [Technical 2nd Line dashboard]: https://govuk-2ndline-dashboard.herokuapp.com/
 [GOV.UK Technical 2nd Line Trello board]: https://trello.com/b/M7UzqXpk/govuk-2nd-line
@@ -150,3 +150,7 @@ Follow these Slack channels while working on Technical 2nd Line:
 [Ongoing issues, useful Info & unexplained events]: https://trello.com/c/TwquoCfW/316-readme
 [Missing documentation]: https://trello.com/c/owAK2OjY/1009-please-use-this-column-to-record-any-missing-documentation-you-notice-and-were-not-able-to-add-during-your-shift
 [gds-vpn]: https://docs.google.com/document/d/1O1LmLByDLlKU4F1-3chwS8qddd2WjYQgMaaEgTfK5To/edit
+[#govuk-2ndline-tech]: https://gds.slack.com/channels/govuk-2ndline-tech
+[#govuk-deploy]: https://gds.slack.com/channels/govuk-deploy
+[#govuk-developers]: https://gds.slack.com/channels/govuk-developers
+[#govuk-platform-engineering]: https://gds.slack.com/channels/govuk-platform-engineering

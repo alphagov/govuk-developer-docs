@@ -11,7 +11,6 @@ The GOV.UK Technical 2nd Line team (#govuk-2ndline-tech):
 - monitors the GOV.UK hosting platform and applications, and works to fix any issues
 - calls on experienced members of other teams to assist in incidents
 - deploys changes on behalf of teams that don’t have sufficient access
-- supports the software and processes that deploy code
 - triages technical issues and recommends when to escalate to a site reliability engineer
 
 The GOV.UK developer community (#govuk-developers):
@@ -22,25 +21,24 @@ The GOV.UK developer community (#govuk-developers):
 
 The GOV.UK Platform Security and Reliability team (#govuk-platform-security-reliability-team):
 
-- works on long term fixes to the platform
-- owns the infrastructure, although doesn't necessarily have the expertise to fix issues
+- works on long-term improvements to the reliability and security of GOV.UK
+- manages some access control automation such as govuk-user-reviewer
+- manages some AWS infrastructure that supports multiple teams (together with Platform Engineering team)
 
 The GOV.UK Platform Engineering team (#govuk-platform-engineering):
 
-- supports the infrastructure used to run and make changes to GOV.UK
-- handles updates to `*.gov.uk` DNS (excluding `*.publishing.service.gov.uk`)
-- obtains and renews TLS certificates
+- manages the Kubernetes clusters and base images on which GOV.UK applications run
+- works on long-term improvements to the efficiency and reliability of GOV.UK
+- supports CI/CD (build, rollout, release) automation
+- can offer advice on monitoring and alerting
+- can offer design reviews and advice to help build your application for
+  reliability, robustness and low maintenance (especially at the early stages of
+  the software lifecycle)
+- can offer advice and assistance with changes such as migrating from one
+  database to another as safely and efficiently as possible
 
-The GDS Reliability Engineering team (#reliability-eng):
+If you and your colleagues can’t resolve a technical issue, problem or question, you should try talking with (in this order):
 
-- maintains centrally-provided services such as Logit and Concourse
-
-If you and your colleagues can’t resolve a technical issue, problem or question, you should escalate it through, in order:
-
-1. The Technical Lead on the team
-2. The Lead Developer on the programme
-3. The Lead Architect
-
-If Technical 2nd Line instructs you to escalate something to GOV.UK Platform Engineering, raise a ticket on Zendesk and assign it to the `3rd Line--GDS Reliability Engineering` queue. You should also raise a ticket if the issue is related to an ongoing incident for tracking purposes, but you can speak to the team directly to get it more immediate attention.
-
-If you speak to GOV.UK Platform Engineering about a process only they know about, they will work with you to document the process for all of GOV.UK.
+1. Your tech lead (TL)
+1. [#govuk-tech-leads](https://gds.slack.com/channels/govuk-tech-leads)
+1. The [senior tech team](https://groups.google.com/a/digital.cabinet-office.gov.uk/g/govuk-senior-tech-members/members)
