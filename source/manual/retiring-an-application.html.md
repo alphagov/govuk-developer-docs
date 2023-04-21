@@ -101,6 +101,10 @@ items need to be unpublished and do it via the Publishing API.
 
 Since the application has been retired, it shouldn't be tracked in Sentry.
 
-## 14. Archive the repo
+## 14. Remove from Heroku
+
+If relevant (e.g. if Heroku was used for previews).
+
+## 15. Archive the repo
 
 Follow the steps at [Retire a repo](/manual/retiring-a-repo.html).
