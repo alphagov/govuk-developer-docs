@@ -155,22 +155,3 @@ k exec deploy/email-alert-api -- rake 'support:view_emails[your.email@digital.ca
 
 Note that we haven't specified the `-it` flags in the command above because we don't need to interact with the task.
 To find out what they do, run `k exec --help`.
-
-### Testing changes to a rake task
-
-For special router publisher as an example:
-
-1. Deploy your branch (see above)
-2. Run the following command(s):
-
-```sh
-BASE_PATH=whatever
-
-kubectl run -n apps --image 172025368201.dkr.ecr.eu-west-1.amazonaws.com/special-route-publisher special-route-publisher -- rake "publish_one_special_route[${BASE_PATH?}]"
-
-kubectl logs -fnapps special-route-publisher
-
-kubectl -napps delete po/special-route-publisher
-```
-
-There’s also a [command in the PR](https://github.com/alphagov/special-route-publisher/pull/257) that might work.
