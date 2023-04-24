@@ -1,0 +1,17 @@
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.trackers.name %>
+</h1>
+
+<p class="govuk-body">
+  <%= data.analytics.navigation.trackers.desc %>
+</p>
+
+<ul class="govuk-list">
+  <% data.analytics.trackers.each do |tracker| %>
+    <li>
+      <a href="tracker_<%= urlize(tracker.name) %>.html" class="govuk-link">
+        <%= tracker.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
