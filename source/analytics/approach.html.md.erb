@@ -1,0 +1,13 @@
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.approach.name %>
+</h1>
+
+<p class="govuk-body">This is our high level approach to implementing tracking across our applications.</p>
+
+<p class="govuk-body">For elements that are consistent from page to page (such as the header, footer and breadcrumbs) tracking within these elements should be enabled by default.</p>
+
+<p class="govuk-body">For elements within the content of a page, tracking should be controllable. We want the flexibility to disable tracking in the unforeseen event of some kind of tracking collision/duplication. Tracking should be disabled on <a href="https://components.publishing.service.gov.uk/component-guide" class="govuk-link">components</a> by default and enabled with a 'ga4_tracking: true' option.</p>
+
+<p class="govuk-body">For elements that are inside content coming from a publishing interface, such as <a href="https://components.publishing.service.gov.uk/component-guide/govspeak" class="govuk-link">govspeak</a> elements, we will decide on a case by case basis. The most likely approach is that tracking would be enabled by default (otherwise publishers would need an option to enable tracking on their content, and the conversation would get much more complex).</p>
+
+<p class="govuk-body">Tracking should be handled internally by components unless external data is required i.e. if something unique must be passed from the application to the component to track it correctly because we want to make enabling tracking as simple as possible.</p>
