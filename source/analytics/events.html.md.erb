@@ -1,0 +1,17 @@
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.events.name %>
+</h1>
+
+<p class="govuk-body">
+  <%= data.analytics.navigation.events.desc %>
+</p>
+
+<ul class="govuk-list">
+  <% data.analytics.events.each do |event| %>
+    <li>
+      <a href="event_<%= urlize(event['name']) %>.html" class="govuk-link">
+        <%= event.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
