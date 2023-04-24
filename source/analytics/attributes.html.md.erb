@@ -1,0 +1,17 @@
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.attributes.name %>
+</h1>
+
+<p class="govuk-body">
+  <%= data.analytics.navigation.attributes.desc %>
+</p>
+
+<ul class="govuk-list">
+  <% data.analytics.attributes.each do |attribute| %>
+    <li>
+      <a href="attribute_<%= urlize(attribute['name']) %>.html" class="govuk-link">
+        <%= attribute.name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
