@@ -231,19 +231,15 @@
 </div>
 <h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
 
+<p><strong>⚠️ Repository retired</strong>: This repository has been retired in favor of functionality in <a href="https://github.com/alphagov/govuk-infrastructure">govuk-infrastructure</a>. CodeCommit repositories are now <a href="https://github.com/alphagov/govuk-infrastructure/blob/3a245e80b2ba8ba9f24a326e39532c9443cbc5a6/terraform/deployments/github/mirror.tf#L10">managed using Terraform</a> and the synchronization is done by the <a href="https://github.com/alphagov/govuk-infrastructure/blob/3a245e80b2ba8ba9f24a326e39532c9443cbc5a6/.github/workflows/mirror-repos.yml#L1"><code>mirror-repo</code> GitHub Action</a>.</p>
+<p><hr>
 <p>Ensures all repositories tagged with <code>govuk</code> in the alphagov organisation in GitHub.com are mirrored to AWS CodeCommit.</p>
-
 <p>We use AWS CodeCommit so we can still <a href="https://docs.publishing.service.gov.uk/manual/github-unavailable.html">deploy in the event that GitHub.com is down</a>
 . We also use the private repositories on AWS CodeCommit in order to fix any <a href="https://docs.publishing.service.gov.uk/manual/deploy-fixes-for-a-security-vulnerability.html">security vulnerabilities without disclosing them</a>.</p>
-
 <p>This script will ensure every non-archived repository tagged with <code>govuk</code> on Github is mirrored to AWS CodeCommit. It will then synchronise all branches and the most recent tags, including removing branches that have been deleted in GitHub. In runs periodically in <a href="https://deploy.integration.publishing.service.gov.uk/job/Mirror_Github_Repositories/">Jenkins</a>.</p>
-
 <p><strong>Warning:</strong> If you need to work on a branch in private on AWS CodeCommit, this script must be prevented from running. If it runs and the branch you&rsquo;re working on does not exist in GitHub, it will be removed from AWS CodeCommit. The easiest way to prevent this is to untag the repository in GitHub.</p>
-
 <h2 id="usage">Usage</h2>
-
 <p>Required environment variables:</p>
-
 <table>
 <thead>
 <tr>
@@ -272,15 +268,12 @@
 </tr>
 </tbody>
 </table>
-
 <pre lang="shell"><code>$ bundle install
 $ ./mirror_repos
 </code></pre>
-
 <h2 id="licence">Licence</h2>
-
 <p><a href="https://github.com/alphagov/govuk-repo-mirror/blob/main/LICENCE">MIT License</a></p>
-<p></div></p>
+  </div></p>
 
 
             
