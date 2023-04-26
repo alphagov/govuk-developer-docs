@@ -47,7 +47,7 @@ See our documentation on [how to escalate to AWS support][].
 
 Usually, Technical 2nd Line should be able to investigate issues related to AWS.
 
-During working hours, one of the Site Reliability Engineers on the replatforming
+During working hours, one of the Site Reliability Engineers on the Platform Engineering
 team may be able to provide advice or expert knowledge. Outside of working hours,
 you should escalate to AWS support if the engineers on call can't resolve an
 issue themselves.

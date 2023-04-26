@@ -10,7 +10,7 @@ parent: "/manual.html"
 
 The TLS certificate for www.gov.uk is managed by Fastly. Fastly will open a support
 ticket when the certificate is due for renewal. This ticket will be picked up by
-GOV.UK Replatforming, who will co-ordinate with Fastly to renew the
+GOV.UK Platform Engineering, who will co-ordinate with Fastly to renew the
 certificate.
 
 Note that the www.gov.uk certificate is not visible anywhere in the Fastly user
