@@ -133,16 +133,6 @@ This [applies to `excluded_exceptions`][global-chain-inspection] and
 [global-chain-inspection]: https://github.com/getsentry/sentry-ruby/blob/82e1ffe711af287ddc23e8517bdb8275beff94d5/sentry-raven/lib/raven/configuration.rb#L449-L455
 [datasync-chain-inspection]: https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configuration.rb#L43
 
-### Ignoring environments
-
-There is a hardcoded list of environments in which Sentry is
-considered to be active. If the `SENTRY_CURRENT_ENV` environment variable
-available to your app is not on the
-[`active_sentry_environments`][active_sentry_environments] list, then none of
-its errors will be logged to Sentry.
-
-[active_sentry_environments]: https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configure.rb#L14-L18
-
 ### Advanced Sentry customisation
 
 For all of the above, you can easily
