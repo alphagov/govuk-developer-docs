@@ -159,15 +159,8 @@
 
     
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
-    <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-      <strong class="govuk-warning-text__text">
-        <span class="govuk-warning-text__assistive">Warning</span>
-        This document has not been updated for a while now. It may be out of date.
-      </strong>
-    </div>
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/52a5bffc083882c646704aaf0c57ce894e92465c">23 May 2022</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
 </div>
 
  <h1 id='header'>High Nginx 5xx rate</h1> <p>You can view the 5xx logs across all machines on this dashboard:</p>
@@ -179,7 +172,7 @@
 <h2 id='spikes'>Spikes</h2><p>The alert should link to a graphite graph - often certain applications
 such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let a team that is working on the app
-know (or alert Platform Reliability).</p>
+know (or alert Platform Security and Reliability).</p>
 <h2 id='multiple-applications-reporting-errors'>Multiple applications reporting errors</h2><p>If multiple applications are reporting 5xx errors, there is likely to be a common
 cause. The first thing to check is whether <a href="https://grafana.production.govuk.digital/dashboard/file/content-store.json?refresh=5s&amp;orgId=1&amp;from=now-6h&amp;to=now">content store is erroring</a>.
 If content-store is not reporting any errors, but the dependent frontend apps are

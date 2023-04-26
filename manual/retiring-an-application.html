@@ -223,7 +223,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/387c72bb4755ead1ebd986c3e8fa97ef22f5a55b">21 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
 </div>
 
  <h1 id='header'>Retire an application</h1> <h2 id='1-remove-app-from-puppet'>1. Remove app from puppet</h2><p>Configure Puppet to remove the app from all servers. Change the app resource,
@@ -255,7 +255,7 @@ in <a href="https://github.com/alphagov/govuk-docker/blob/master/docker-compose.
 <h2 id='8-update-dns'>8. Update DNS</h2><p>Request any public DNS entries be removed. If the app had an admin UI, it will
 have had public DNS entries in the <code>publishing.service.gov.uk</code> domain.</p>
 <p>Follow the <a href="https://docs.publishing.service.gov.uk/manual/dns.html#dns-for-the-publishingservicegovuk-domain">instructions for DNS changes</a> in order to remove
-these, and ask the GOV.UK Replatforming team to approve any necessary Pull
+these, and ask the GOV.UK Platform Engineering team to approve any necessary Pull
 Requests.</p>
 <h2 id='9-remove-credentials'>9. Remove credentials</h2><p>Remove any hieradata credential entries for the app in <a href="https://github.com/alphagov/govuk-secrets">govuk-secrets</a>
 (private repo).</p>

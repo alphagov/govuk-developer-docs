@@ -199,7 +199,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/fa8c8c236925d53bea9e3658cf9a01547914ea19">20 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
 </div>
 
  <h1 id='header'>Domain Name System (DNS) records</h1> <p>GOV.UK is responsible for managing several DNS zones.</p>
@@ -230,7 +230,7 @@ Note that we <strong>do not</strong> manage any other DNS records: if you get a 
 <p>These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
 made in the <a href="https://github.com/alphagov/govuk-aws/">govuk-aws</a> and
 <a href="https://github.com/alphagov/govuk-aws-data/">govuk-aws-data</a> repositories.
-While GOV.UK migrates to AWS speak with GOV.UK Replatforming for support
+While GOV.UK migrates to AWS speak with GOV.UK Platform Engineering for support
 making your changes.</p>
 <h2 id='dns-for-the-publishing-service-gov-uk-domain'>DNS for the <code>publishing.service.gov.uk</code> domain</h2><p>To make a change to this zone, begin by adding the records to the yaml file for
 the zone held in the <a href="https://github.com/alphagov/govuk-dns-tf">DNS config repo</a>.</p>
@@ -240,7 +240,7 @@ UK education and government. They control the <code>gov.uk.</code> top-level dom
 <p>Requests to modify the DNS records for <code>gov.uk.</code> should be sent by
 email to <code>naming@ja.net</code> from someone on Jisc&rsquo;s approved contacts
 list. Speak to a member of the senior tech team or someone in
-GOV.UK Replatforming if you need to make a change and don&rsquo;t have
+GOV.UK Platform Engineering if you need to make a change and don&rsquo;t have
 access.</p>
 <p>You should also make sure that the following groups of people are aware before
 requesting any changes:</p>
