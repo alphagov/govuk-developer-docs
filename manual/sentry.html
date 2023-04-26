@@ -147,9 +147,6 @@
             <a href="#ignoring-exception-types"><span>Ignoring exception types</span></a>
           </li>
           <li>
-            <a href="#ignoring-environments"><span>Ignoring environments</span></a>
-          </li>
-          <li>
             <a href="#advanced-sentry-customisation"><span>Advanced Sentry customisation</span></a>
           </li>
         </ul>
@@ -247,7 +244,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/1478429ebabc8711d7a3d3821611d3d5db268be7">26 Apr 2023</a>
 </div>
 
  <h1 id='header'>Sentry</h1> <p><a href="https://sentry.io/govuk/">Sentry</a> is a service that collates errors that happen on GOV.UK in one
@@ -333,11 +330,6 @@ inspected. This means if an exception isn&rsquo;t on the ignore list, but its
 underlying cause is an exception on the ignore list, then it will be ignored.
 This <a href="https://github.com/getsentry/sentry-ruby/blob/82e1ffe711af287ddc23e8517bdb8275beff94d5/sentry-raven/lib/raven/configuration.rb#L449-L455">applies to <code>excluded_exceptions</code></a> and
 <a href="https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configuration.rb#L43">to <code>data_sync_excluded_exceptions</code></a>.</p>
-<h3 id='ignoring-environments'>Ignoring environments</h3><p>There is a hardcoded list of environments in which Sentry is
-considered to be active. If the <code>SENTRY_CURRENT_ENV</code> environment variable
-available to your app is not on the
-<a href="https://github.com/alphagov/govuk_app_config/blob/b911c5bbef9bd1df6a92cf31eb5a8e0d3a91d851/lib/govuk_app_config/govuk_error/configure.rb#L14-L18"><code>active_sentry_environments</code></a> list, then none of
-its errors will be logged to Sentry.</p>
 <h3 id='advanced-sentry-customisation'>Advanced Sentry customisation</h3><p>For all of the above, you can easily
 <a href="https://github.com/alphagov/govuk_app_config/blob/master/README.md#error-reporting">configure any of these properties by appending to them</a>.</p>
 <p>You can also run arbitrary code to decide whether or not an error should be
