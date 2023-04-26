@@ -17,7 +17,7 @@ Change the hostname to view different apps.
 The alert should link to a graphite graph - often certain applications
 such as Whitehall can have spikes - if you can determine this is a spike
 it is best to acknowledge the alert and let a team that is working on the app
-know (or alert Platform Reliability).
+know (or alert Platform Security and Reliability).
 
 ## Multiple applications reporting errors
 

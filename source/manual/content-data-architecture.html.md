@@ -1,5 +1,5 @@
 ---
-owner_slack: "#govuk-platform-reliability-team"
+owner_slack: "#govuk-platform-security-reliability-team"
 title: Content Data architecture
 section: Content Data
 type: learn

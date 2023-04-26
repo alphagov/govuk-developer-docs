@@ -133,7 +133,7 @@ Follow these Slack channels while working on Technical 2nd Line:
 - `#govuk-2ndline-tech` - the main channel for people on Technical 2nd Line
 - `#govuk-deploy` - every time a Staging/Production deploy is done, this is automatically posted to - people also manually post when putting branches on Integration for testing
 - `#govuk-developers` - this is a general channel for developers and can be a good place to ask questions if you are struggling
-- `#govuk-replatforming` - this is the channel for the Replatforming team, where the SREs are currently working. However, you should use #govuk-2ndline-tech to contact the RE interruptible person about urgent GOV.UK infrastructure issues.
+- `#govuk-platform-engineering` - this is the channel for the Platform Engineering team, where the SREs are currently working. However, you should use #govuk-2ndline-tech to contact the RE interruptible person about urgent GOV.UK infrastructure issues.
 
 [Technical 2nd Line dashboard]: https://govuk-2ndline-dashboard.herokuapp.com/
 [GOV.UK Technical 2nd Line Trello board]: https://trello.com/b/M7UzqXpk/govuk-2nd-line
