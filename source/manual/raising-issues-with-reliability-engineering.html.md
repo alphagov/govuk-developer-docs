@@ -6,13 +6,13 @@ layout: manual_layout
 section: 2nd line
 ---
 
-When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they mostly work as part of the Replatforming team. It is best to use RE GOV.UK channels for communication.
+When on Technical 2nd Line you may experience an issue with GOV.UK that requires asking the Site Reliability Engineers (SREs) who work on GOV.UK infrastructure for assistance. The SREs previously worked in the RE GOV.UK team in Reliability Engineering, but currently they mostly work as part of the Platform Engineering team. It is best to use RE GOV.UK channels for communication.
 
 There are [Reliability Engineering docs](https://reliability-engineering.cloudapps.digital/) for users of their systems. There are also [other Reliability Engineering docs](https://re-team-manual.cloudapps.digital/) for use by the team, these may contain more technical details.
 
 ## If you require assistance
 
-Ask in `#govuk-platform-reliability` or in `#govuk-replatforming`.
+Ask in `#govuk-platform-reliability` or in `#govuk-platform-engineering`.
 
 ## If a problem is not urgent
 

@@ -48,7 +48,7 @@ Currently these zones are only used in environments running on AWS.
 These DNS zones are hosted in Route53 and managed by Terraform. Changes can be
 made in the [govuk-aws](https://github.com/alphagov/govuk-aws/) and
 [govuk-aws-data](https://github.com/alphagov/govuk-aws-data/) repositories.
-While GOV.UK migrates to AWS speak with GOV.UK Replatforming for support
+While GOV.UK migrates to AWS speak with GOV.UK Platform Engineering for support
 making your changes.
 
 ## DNS for the `publishing.service.gov.uk` domain
@@ -66,7 +66,7 @@ UK education and government. They control the `gov.uk.` top-level domain.
 Requests to modify the DNS records for `gov.uk.` should be sent by
 email to `naming@ja.net` from someone on Jisc's approved contacts
 list. Speak to a member of the senior tech team or someone in
-GOV.UK Replatforming if you need to make a change and don't have
+GOV.UK Platform Engineering if you need to make a change and don't have
 access.
 
 You should also make sure that the following groups of people are aware before
