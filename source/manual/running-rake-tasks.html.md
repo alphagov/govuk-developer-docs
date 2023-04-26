@@ -7,7 +7,7 @@ parent: "/manual.html"
 important: true
 ---
 
-Rake is a task runner for Ruby. There are several different methods of running a rake task:
+Rake is a task runner for Ruby. Here are the methods for running a rake task:
 
 ## Run a rake task on EKS
 
@@ -21,24 +21,9 @@ kubectl -n apps exec deploy/publishing-api -- rake 'represent_downstream:publish
 
 The output of the command will be streamed to your terminal.
 
-## Run a rake task on EC2
+## Run rake tasks from the command line
 
-There is a Jenkins job that can be used to run any rake task:
-
-- Integration:
-  <https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/>
-- Staging:
-  <https://deploy.blue.staging.govuk.digital/job/run-rake-task/>
-- Production:
-  <https://deploy.blue.production.govuk.digital/job/run-rake-task/>
-
-Jenkins jobs are also linkable. For example:
-
-<https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE_CLASS=backend-1.backend&RAKE_TASK=routes>
-
-### Run rake tasks from the command line
-
-It is possible to bypass Jenkins and run the rake tasks directly on the relevant app machines.
+It is also possible to run the rake tasks directly on the relevant app machines.
 
 First, SSH into the right machine class (e.g. `publishing_api`):
 
