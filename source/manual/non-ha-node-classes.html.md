@@ -22,4 +22,4 @@ Installation of a critical software component on a non-redundant node class has 
 - licensing_backend
 - db-admin or any of the \*-db-admin machines
 
-If in doubt, please discuss your requirements with GOV.UK Platform Reliability (#govuk-platform-reliability-team on Slack).
+If in doubt, please discuss your requirements with GOV.UK Platform Security and Reliability (#govuk-platform-security-reliability-team on Slack).

@@ -39,7 +39,7 @@ Read more about each command further on in the document.
 
 All front-end traffic and back-end publisher traffic is now on Kubernetes (EKS) instead of EC2.
 
-Some things haven't yet been replatformed, and some things will remain unchanged - see [what stays/goes/changes with Replatforming](https://docs.google.com/document/d/1R8C3BtvhqTXEga4C3_KxTopjWuYVbiEgKiikTyRXXiA/edit).
+Some things haven't yet been replatformed, and some things will remain unchanged - see [what stays/goes/changes with Platform Engineering](https://docs.google.com/document/d/1R8C3BtvhqTXEga4C3_KxTopjWuYVbiEgKiikTyRXXiA/edit).
 
 ## App deployments
 
