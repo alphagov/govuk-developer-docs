@@ -132,12 +132,7 @@
         <a href="#run-a-rake-task-on-eks"><span>Run a rake task on EKS</span></a>
       </li>
       <li>
-        <a href="#run-a-rake-task-on-ec2"><span>Run a rake task on EC2</span></a>
-        <ul>
-          <li>
-            <a href="#run-rake-tasks-from-the-command-line"><span>Run rake tasks from the command line</span></a>
-          </li>
-        </ul>
+        <a href="#run-rake-tasks-from-the-command-line"><span>Run rake tasks from the command line</span></a>
       </li>
     </ul>
   </li>
@@ -189,27 +184,15 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/92b94b976ca805a91d10125e123380f53958ca3a">18 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/17fc9cc39beea14450019f4b51d69ec8873acb32">26 Apr 2023</a>
 </div>
 
- <h1 id='header'>Run a rake task</h1> <p>Rake is a task runner for Ruby. There are several different methods of running a rake task:</p>
+ <h1 id='header'>Run a rake task</h1> <p>Rake is a task runner for Ruby. Here are the methods for running a rake task:</p>
 <h2 id='run-a-rake-task-on-eks'>Run a rake task on EKS</h2><p>To run a rake task in Kubernetes, execute the rake command inside the application container.</p>
 <p>For example:</p>
 <div class="highlight"><pre class="highlight shell" tabindex="0"><code>kubectl <span class="nt">-n</span> apps <span class="nb">exec </span>deploy/publishing-api <span class="nt">--</span> rake <span class="s1">'represent_downstream:published_between[2018-12-17T01:02:30, 2018-12-18T10:20:30]'</span>
 </code></pre></div><p>The output of the command will be streamed to your terminal.</p>
-<h2 id='run-a-rake-task-on-ec2'>Run a rake task on EC2</h2><p>There is a Jenkins job that can be used to run any rake task:</p>
-
-<ul>
-<li>Integration:
-<a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/">https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/</a></li>
-<li>Staging:
-<a href="https://deploy.blue.staging.govuk.digital/job/run-rake-task/">https://deploy.blue.staging.govuk.digital/job/run-rake-task/</a></li>
-<li>Production:
-<a href="https://deploy.blue.production.govuk.digital/job/run-rake-task/">https://deploy.blue.production.govuk.digital/job/run-rake-task/</a></li>
-</ul>
-<p>Jenkins jobs are also linkable. For example:</p>
-<p><a href="https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&MACHINE_CLASS=backend-1.backend&RAKE_TASK=routes">https://deploy.integration.publishing.service.gov.uk/job/run-rake-task/parambuild/?TARGET_APPLICATION=content-tagger&amp;MACHINE_CLASS=backend-1.backend&amp;RAKE_TASK=routes</a></p>
-<h3 id='run-rake-tasks-from-the-command-line'>Run rake tasks from the command line</h3><p>It is possible to bypass Jenkins and run the rake tasks directly on the relevant app machines.</p>
+<h2 id='run-rake-tasks-from-the-command-line'>Run rake tasks from the command line</h2><p>It is also possible to run the rake tasks directly on the relevant app machines.</p>
 <p>First, SSH into the right machine class (e.g. <code>publishing_api</code>):</p>
 <div class="highlight"><pre class="highlight plaintext" tabindex="0"><code>gds govuk connect ssh -e production publishing_api
 </code></pre></div><p>Secondly, change directory so that the rake task is available:</p>
