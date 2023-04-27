@@ -6,7 +6,7 @@
 
 <p class="govuk-body">Specifically, this is the data that GOV.UK pushes to the dataLayer when events occur, triggered by JavaScript event listeners. These pages do not currently contain information about what happens to the data next, as it is collected by Google Tag Manager and sent to Google Analytics.</p>
 
-<ul class="govuk-list">
+<ul class="govuk-list govuk-list--bullet">
   <% data.analytics.navigation.data.subsections.each do |item| %>
     <li>
       <a href="<%= item.link %>" class="govuk-link"><%= item.name %></a>
