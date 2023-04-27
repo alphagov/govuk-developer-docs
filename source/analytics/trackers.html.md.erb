@@ -6,7 +6,7 @@
   <%= data.analytics.navigation.trackers.desc %>
 </p>
 
-<ul class="govuk-list">
+<ul class="govuk-list govuk-list--bullet">
   <% data.analytics.trackers.each do |tracker| %>
     <li>
       <a href="tracker_<%= urlize(tracker.name) %>.html" class="govuk-link">
