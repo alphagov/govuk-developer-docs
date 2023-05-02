@@ -45,7 +45,7 @@
           <a href="/analytics/analytics.html" class="govuk-header__link govuk-header__service-name">
             Implementation record
           </a>
-        </div>        
+        </div>
       </div>
     </div>
   </header>
@@ -56,7 +56,7 @@
         <div class="govuk-grid-column-one-third">
           <ul class="govuk-list">
             <li>
-              <%= link_to "Implementation record", "/analytics/analytics.html" %>
+              <%= link_to "Implementation record", "/analytics/analytics.html", class: "govuk-link" %>
             </li>
           </ul>
 
@@ -64,12 +64,12 @@
 
           <ul class="govuk-list">
             <li>
-              <%= link_to data.analytics.navigation.data.name, data.analytics.navigation.data.link %>
+              <%= link_to data.analytics.navigation.data.name, data.analytics.navigation.data.link, class: "govuk-link" %>
             </li>
             <ul class="govuk-list govuk-list--bullet">
               <% data.analytics.navigation.data.subsections.each do |subsection| %>
                 <li>
-                  <%= link_to subsection.name, subsection.link %>
+                  <%= link_to subsection.name, subsection.link, class: "govuk-link" %>
                 </li>
               <% end %>
             </ul>
@@ -79,12 +79,12 @@
 
           <ul class="govuk-list">
             <li>
-              <%= link_to data.analytics.navigation.docs.name, data.analytics.navigation.docs.link %>
+              <%= link_to data.analytics.navigation.docs.name, data.analytics.navigation.docs.link, class: "govuk-link" %>
             </li>
             <ul class="govuk-list govuk-list--bullet">
               <% data.analytics.navigation.docs.subsections.each do |subsection| %>
                 <li>
-                  <%= link_to subsection.name, subsection.link %>
+                  <%= link_to subsection.name, subsection.link, class: "govuk-link" %>
                 </li>
               <% end %>
             </ul>
