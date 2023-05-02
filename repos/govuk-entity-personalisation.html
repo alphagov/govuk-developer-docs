@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <title>Repository: govuk-entity-personalisation - GOV.UK Developer Documentation</title>
+    <title>Repository: govuk-entity-personalisation (retired) - GOV.UK Developer Documentation</title>
 
     <link href="/stylesheets/manifest.css" rel="stylesheet" />
 
@@ -16,13 +16,13 @@
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:domain" content="docs.publishing.service.gov.uk" />
       <meta name="twitter:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
-      <meta name="twitter:title" content="Repository: govuk-entity-personalisation - GOV.UK Developer Documentation" />
+      <meta name="twitter:title" content="Repository: govuk-entity-personalisation (retired) - GOV.UK Developer Documentation" />
       <meta name="twitter:url" content="https://docs.publishing.service.gov.uk/repos/govuk-entity-personalisation.html" />
 
       <meta property="og:description" content="Everything about govuk-entity-personalisation (Using entities from NER on GOV.UK content to power personalisation.)" />
       <meta property="og:image" content="https://docs.publishing.service.gov.uk/images/govuk-large.png" />
       <meta property="og:site_name" content="GOV.UK Developer Documentation" />
-      <meta property="og:title" content="Repository: govuk-entity-personalisation" />
+      <meta property="og:title" content="Repository: govuk-entity-personalisation (retired)" />
       <meta property="og:type" content="object" />
       <meta property="og:url" content="https://docs.publishing.service.gov.uk/repos/govuk-entity-personalisation.html" />
 
@@ -187,228 +187,11 @@
   </ol>
 </div>
   
-  <h1 class="page-title">Repository: govuk-entity-personalisation</h1>
-
-  <p>Using entities from NER on GOV.UK content to power personalisation.</p>
-
-<div class="gem-c-summary-list  ">
-
-      <dl class="govuk-summary-list">
-          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">GitHub</dt>
-            <dd class="govuk-summary-list__value"><a href="https://github.com/alphagov/govuk-entity-personalisation">govuk-entity-personalisation</a></dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Ownership</dt>
-            <dd class="govuk-summary-list__value">#data-products</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Hosting</dt>
-            <dd class="govuk-summary-list__value">N/A</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Category</dt>
-            <dd class="govuk-summary-list__value">Data science</dd>
-
-
-
-</div>          <div class="govuk-summary-list__row">
-
-            <dt class="govuk-summary-list__key">Links</dt>
-            <dd class="govuk-summary-list__value"><ul class="govuk-list">
-    <li></li>
-    <li><a href="https://sentry.io/govuk/app-govuk-entity-personalisation" class="govuk-link">Sentry (error tracking)</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li><a href="https://grafana.production.govuk.digital/dashboard/file/govuk-entity-personalisation.json" class="govuk-link">Deployment dashboard</a></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</dd>
-
-
-
-</div></dl>
-    <div class="gem-c-summary__block"></div>
-</div>
-<h2 id='readme'>README</h2><p><div class="embedded-readme"></p>
-
-<h2 id="overview">Overview</h2>
-
-<p>Using entities on GOV.UK content to power personalisation</p>
-
-<h2 id="requirements">Requirements</h2>
-
-<p>To run the code in this GitHub repository, please make sure your system meets the following requirements:</p>
-
-<ul>
-<li>Unix-like operating system (macOS, Linux, …);</li>
-<li>
-<a href="https://direnv.net/"><code>direnv</code></a> installed, including shell hooks;</li>
-<li>
-<a href="https://github.com/alphagov/govuk-entity-personalisation/blob/main/.envrc"><code>.envrc</code></a> allowed/trusted by <code>direnv</code> to use the environment variables - see
-<a href="#allowingtrusting-envrc">below</a>;</li>
-<li>Python 3.5 or above; and</li>
-<li>Python packages installed from the <code>requirements.txt</code> file.</li>
-</ul>
-
-<p>Note there may be some Python IDE-specific requirements around loading environment variables, which are not considered
-here.</p>
-
-<h3 id="allowingtrusting-envrc">Allowing/trusting <code>.envrc</code>
-</h3>
-
-<p>To allow/trust the <a href="https://github.com/alphagov/govuk-entity-personalisation/blob/main/.envrc"><code>.envrc</code></a> run the <code>allow</code> command using <code>direnv</code> at the top level of this repository.</p>
-
-<pre lang="shell"><code>direnv allow
-</code></pre>
-
-<blockquote>
-<p><strong>Note:</strong> If you&rsquo;re using PyCharm, then you will need to apply a few more steps before running <code>direnv allow</code> in your shell:</p>
-<ul>
-<li>In your shell, run <code>pip install python-dotenv</code>.</li>
-<li>On PyCharm, click <code>PyCharm</code> -&gt; <code>Preferences</code> -&gt; <code>Plugins</code> and download the <code>EnvFile</code> plugin.</li>
-<li>On PyCharm, edit your configuration to <code>Enable EnvFile</code> by ticking the checkbox.</li>
-<li>On PyCharm, click <code>PyCharm</code> -&gt; <code>Preferences</code> -&gt; <code>Build, Execution, Deployment</code> -&gt; <code>Console</code> -&gt; <code>Python Console</code> and in the <code>Starting script</code> section, add the following Python code:
-<ul>
-<li><code>from dotenv import load_dotenv</code></li>
-<li><code>load_dotenv()</code></li>
-</ul>
-</li>
-</ul>
-</blockquote>
-
-<h3 id="installing-python-packages">Installing Python packages</h3>
-
-<p>To install required Python packages via <code>pip</code>, first <a href="#creating-a-python-virtual-environment">set up a Python virtual
-environment</a>; this ensures you do not install the packages globally.</p>
-
-<p>Then run the following <code>make</code> command at the top level of this repository:</p>
-
-<pre lang="shell"><code>make requirements
-</code></pre>
-
-<p>Once you have installed the packages, remember to <a href="#installing-pre-commit-hooks">set up pre-commit hooks</a>.</p>
-
-<h3 id="creating-a-python-virtual-environment">Creating a Python virtual environment</h3>
-
-<p>Creating a Python virtual environment depends on whether you are using <a href="#base-python-interpreter">base Python</a> or
-<a href="#anaconda-interpreter">Anaconda</a> as your interpreter.</p>
-
-<h4 id="base-python-interpreter">Base Python interpreter</h4>
-
-<p>If you are using base Python, there are multiple ways to create virtual environments in Python using <code>pip</code>, including
-(but not limited to):</p>
-
-<ul>
-<li>
-<a href="https://docs.python.org/3/tutorial/venv.html"><code>venv</code></a>;</li>
-<li>
-<a href="https://virtualenv.pypa.io/en/stable/"><code>virtualenv</code></a>;</li>
-<li>
-<a href="https://github.com/pypa/pipenv"><code>pipenv</code></a>; and</li>
-<li>
-<a href="https://github.com/pyenv/pyenv"><code>pyenv</code></a> with its <code>virtualenv</code> <a href="https://github.com/pyenv/pyenv-virtualenv">plugin</a>.</li>
-</ul>
-
-<p>Follow the documentation of your chosen method to create a Python virtual environment.</p>
-
-<h4 id="anaconda-interpreter">Anaconda interpreter</h4>
-
-<p>If you are using <a href="https://www.anaconda.com/">Anaconda or <code>conda</code></a>, following their
-<a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">documentation</a> to set up a
-conda environment.</p>
-
-<h2 id="folder-structure">Folder structure</h2>
-
-<p>An overview of the folder structure, and the top-level files can be found <a href="https://github.com/alphagov/govuk-entity-personalisation/blob/main/docs/structure/README.md">here</a>.</p>
-
-<h2 id="installing-pre-commit-hooks">Installing pre-commit hooks</h2>
-
-<p>This repo uses the Python package <a href="https://pre-commit.com"><code>pre-commit</code></a> to manage pre-commit hooks. Pre-commit hooks
-are actions which are run automatically, typically on each commit, to perform some common set of tasks. For example, a
-pre-commit hook might be used to run any code linting automatically, providing any warnings before code is committed,
-ensuring that all of our code adheres to a certain quality standard.</p>
-
-<p>For this repo, we are using <code>pre-commit</code> for a number of purposes:</p>
-
-<ul>
-<li>Checking for any secrets being committed accidentally;</li>
-<li>Checking for any large files (over 5MB) being committed; and</li>
-<li>Cleaning Jupyter notebooks, which means removing all outputs and execution counts.</li>
-</ul>
-
-<p>We have configured <code>pre-commit</code> to run automatically on <em>every commit</em>. By running on each commit, we ensure
-that <code>pre-commit</code> will be able to detect all contraventions and keep our repo in a healthy state.</p>
-
-<p>In order for <code>pre-commit</code> to run, action is needed to configure it on your system.</p>
-
-<ul>
-<li>
-<a href="#installing-python-packages">Install</a> the <code>pre-commit</code> package into your Python environment; and</li>
-<li>Run <code>pre-commit install</code> to set-up <code>pre-commit</code> to run when code is <em>committed</em>.</li>
-</ul>
-
-<h3 id="setting-up-a-baseline-for-the-detect-secrets-hook-if-one-doesnt-already-exist">Setting up a baseline for the <code>detect-secrets</code> hook (if one doesn&rsquo;t already exist)</h3>
-
-<p>The <code>detect-secrets</code> hook requires that you generate a baseline file if one is not already present within the root
-directory. This is done via running the following at the root of the repo:</p>
-
-<pre lang="shell"><code>detect-secrets scan &gt; .secrets.baseline
-</code></pre>
-
-<p>Next, audit the baseline that has been generated by running:</p>
-
-<pre lang="shell"><code>detect-secrets audit .secrets.baseline
-</code></pre>
-
-<p>When you run this command, you&rsquo;ll enter an interactive console and be presented with a list of high-entropy string /
-anything which <em>could</em> be a secret, and asked to verify whether or not this is the case. By doing this, the hook will
-be in a position to know if you&rsquo;re later committing any <em>new</em> secrets to the repo and it will be able to alert you
-accordingly.</p>
-
-<h3 id="if-pre-commit-detects-secrets-during-commit">If <code>pre-commit</code> detects secrets during commit:</h3>
-
-<p>If <code>pre-commit</code> detects any secrets when you try to create a commit, it will detail what it found and where to go to
-check the secret.</p>
-
-<p>If the detected secret is a false-positive, you should update the secrets baseline through the following steps:</p>
-
-<ul>
-<li>Run <code>detect-secrets scan --update .secrets.baseline</code> to index the false-positive(s);</li>
-<li>Next, audit all indexed secrets via <code>detect-secrets audit .secrets.baseline</code> (the same as during initial set-up, if a
-secrets baseline doesn&rsquo;t exist); and</li>
-<li>Finally, ensure that you commit the updated secrets baseline in the same commit as the false-positive(s) it has been
-updated for.</li>
-</ul>
-
-<p>If the detected secret is actually a secret (or other sensitive information), remove the secret and re-commit. There is
-no need to update the secrets baseline in this case.</p>
-
-<p>If your commit contains a mixture of false-positives and actual secrets, remove the actual secrets first before
-updating and auditing the secrets baseline.</p>
-
-<h3 id="note-on-jupyter-notebook-cleaning">Note on Jupyter notebook cleaning</h3>
-
-<p>It may be necessary or useful to keep certain output cells of a Jupyter notebook, for example charts or graphs
-visualising some set of data. To do this, add the following comment at the top of the input block:</p>
-
-<pre lang="shell"><code># [keep_output]
-</code></pre>
-
-<p>This will tell <code>pre-commit</code> not to strip the resulting output of this cell, allowing it to be committed.</p>
-<p></div></p>
+  <h1 class="page-title">Repository: govuk-entity-personalisation (retired)</h1>
+
+  <p>This application is retired.</p>
+<p><p>Using entities from NER on GOV.UK content to power personalisation.</p></p>
+<p><a href="https://github.com/alphagov/govuk-entity-personalisation">GitHub repository</a></p>
 
 
             
