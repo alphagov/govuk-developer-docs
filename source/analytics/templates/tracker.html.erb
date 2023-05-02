@@ -1,0 +1,35 @@
+<h1 class="govuk-heading-l">
+  <span class="govuk-caption-l">Tracker</span>
+  <%= tracker.name %>
+</h1>
+
+<% if tracker.description %>
+  <p class="govuk-body"><%= tracker.description %></p>
+<% end %>
+
+<dl class="govuk-summary-list">
+  <div class="govuk-summary-list__row">
+    <% if tracker.url %>
+      <dt class="govuk-summary-list__key">
+        Technical documentation
+      </dt>
+      <dd class="govuk-summary-list__value">
+        <%= link_to tracker.technical_name, "tracker_#{tracker.url}.html" %>
+      </dd>
+    <% end %>
+  </div>
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+      Used by
+    </dt>
+    <dd class="govuk-summary-list__value">
+      <% data.analytics.events.each do |event| %>
+        <% event.events.each do |events| %>
+          <% if events.tracker == tracker.technical_name %>
+            <%= link_to event.name, "event_#{urlize(event.name)}.html" %> (<%= events.name %>)<br/>
+          <% end %>
+        <% end %>
+      <% end %>
+    </dd>
+  </div>
+</dl>

@@ -1,0 +1,291 @@
+- name: action
+  description: Shows the kind of thing the user has done.
+  value:
+  example:
+  required: no
+  type: string
+  redact: false
+
+- name: browse_topic
+  description: Used in the page_view object to record the content section
+  value: content attribute of meta tag govuk:section
+  example: working at sea
+  required: no
+  type: string
+  redact: false
+
+- name: content_id
+  description:
+  value: content attribute of meta tag govuk:content-id
+  example: a6bb0fc8-753f-4732-aabc-ff727dcf1262
+  required: no
+  type: string
+  redact: false
+
+- name: document_type
+  description:
+  value: content attribute of meta tag govuk:format
+  example: detailed_guide
+  required: no
+  type: string
+  redact: false
+
+- name: dynamic
+  description: The existence of a referrer parameter indicates that the page has been dynamically updated via an AJAX request and therefore we can use it to set the dynamic property appropriately. This value is used by analysts to differentiate between fresh page loads and dynamic page updates.
+  value: true/false
+  required: no
+  type: string
+  redact: false
+
+- name: event
+  description: Needed by Google to contain a specific thing to cause a trigger to happen.
+  example: page_view, event_data
+  required: no
+  type: string
+  redact: false
+
+- name: event_name
+  description: Suggested by Google to contain a value that conforms to a schema they have proposed. This gives further information about the data being sent.
+  value: select_content
+  example:
+  required: yes
+  type: string
+  redact: false
+
+- name: external
+  description: Used for link tracking. True means the link points to a URL not on the current site.
+  example:
+  required: yes
+  type: string (true or false)
+  redact: false
+
+- name: first_published_at
+  description: date and time the page was first published
+  value: date part only of content attribute of meta tag govuk:first-published-at
+  example: "2012-09-05"
+  required: no
+  type: string
+  redact: false
+
+- name: history
+  description:
+  value: content attribute of meta tag govuk:content-has-history
+  example: true or false (defaults to false)
+  required: no
+  type: string
+  redact: false
+
+- name: index
+  description: Contains the index of a thing being clicked on, for example the nth accordion section, or the nth link in a list.
+  example:
+  required: no
+  type: string (1-indexed number)
+  redact: false
+
+- name: index_link
+  description: The index of the clicked link within the section
+  value:
+  example: 1
+  required: no
+  type: number
+  redact: false
+
+- name: index_section
+  description: The index of the section that was interacted with, for example the index of the section the clicked link is in
+  value:
+  example: 1
+  required: no
+  type: number
+  redact: false
+
+- name: index_section_count
+  description: The total number of sections in the thing being tracked, such as the header or sidebar
+  value:
+  example: 1
+  required: no
+  type: number
+  redact: false
+
+- name: index_total
+  description: Relates to index by showing the total number of things e.g. tabs or accordion sections.
+  example:
+  required: yes
+  type: string (number)
+  redact: false
+
+- name: language
+  description: the language the page is rendered in
+  value: lang attribute of the '#content' element
+  example: en
+  required: no
+  type: string
+  redact: false
+
+- name: link_domain
+  description: The protocol and domain of a link href attribute.
+  value:
+  example: https://www.nhs.uk
+  required: yes
+  type: string
+  redact: false
+
+- name: link_path_parts
+  description: An object containing a URL in 100 character parts, usually the href attribute of a link. This is stored like this to get around the 100 character limit on attribute values - many URLs are longer than this. Regardless of the length of the URL, the object will always contain 5 key/value pairs. If the URL is less than 500 characters, unused key/value pairs will be undefined. If the URL is longer than 500 characters, the extra characters will be lost.
+  value:
+  example: |
+    {1=>"/conditions/vaccinations/flu-influenza-vaccine/", 2=>"undefined", 3=>"undefined", 4=>"undefined", 5=>"undefined"}
+  required: yes
+  type: string
+  redact: true
+
+- name: location
+  description:
+  value: document.location
+  example: "https://www.gov.uk/find-a-job"
+  required: no
+  type: string
+  redact: true
+
+- name: method
+  description: How a link was clicked.
+  value:
+  example: primary click, secondary click, middle click, ctrl click, command/win click, shift click
+  required: yes
+  type: string
+  redact: false
+
+- name: publishing_app
+  description: application that published the content
+  value: content attribute of meta tag govuk:publishing-app
+  example: collections-publisher
+  required: no
+  type: string
+  redact: false
+
+- name: referrer
+  description: The page the user was on before coming to this page.
+  value: document.referrer
+  example: "https://www.gov.uk/"
+  required: no
+  type: string
+  redact: true
+
+- name: rendering_app
+  description: application that renders the page
+  value: content attribute of meta tag govuk:rendering-app
+  example: government-frontend
+  required: no
+  type: string
+  redact: false
+
+- name: schema_name
+  description:
+  value: content attribute of meta tag govuk:schema-name
+  example: detailed_guide
+  required: no
+  type: string
+  redact: false
+
+- name: section
+  alias: section_event_data
+  description: Used within the event_data object to identify where on the page an event occurred. Could be the area (header, footer) or a specific heading.
+  value:
+  example:
+  required: no
+  type: string
+  redact: false
+
+- name: status_code
+  description:
+  value: HTTP response status code
+  example: 200, 404
+  required: no
+  type: string
+  redact: false
+
+- name: taxonomy_all
+  description: An object containing the content attribute of the meta tag govuk:taxon_slugs in 100 character parts. This is stored like this to get around the 100 character limit on attribute values. Regardless of the length of the meta tag, the object will always contain 5 key/value pairs. If the values are less than 500 characters, unused key/value pairs will be undefined. If the values are longer than 500 characters, the extra characters will be lost.
+  value: content attribute of meta tag govuk:taxon_slugs
+  example: |
+    {"1"=>"finance-support,premises-rates,company-closure-administration-liquidation-and-insolvency,contract-wo", "2"=>"rking-hours,dismissals-redundancies,food-and-farming-industry,producing-distributing-food-food-label", "3"=>"ling,recruiting-hiring,recruiting-hiring,redundancies-dismissals,sale-goods-services-data,scientific", "4"=>"-research-and-development,self-employed", "5"=>"undefined"}
+  required: no
+  type: string
+  redact: false
+
+- name: taxonomy_all_ids
+  description: An object containing the content attribute of the meta tag govuk:taxon_ids in 100 character parts. This is stored like this to get around the 100 character limit on attribute values. Regardless of the length of the meta tag, the object will always contain 5 key/value pairs. If the values are less than 500 characters, unused key/value pairs will be undefined. If the values are longer than 500 characters, the extra characters will be lost.
+  value: content attribute of meta tag govuk:taxon_ids
+  example: |
+    {"1"=>"ccfc50f5-e193-4dac-9d78-50b3a8bb24c5,68cc0b3c-7f80-4869-9dc7-b2ceef5f4f08,864fe969-7d5a-4251-b8b5-a5", "2"=>"0d57be943f,23a712ff-23b3-4f5a-83f1-44ac679fe615,a1c6c263-e4ef-4b96-b82f-e070ff157367,e2559668-cf36-4", "3"=>"7fc-8a77-2e760e12a812", "4"=>"undefined", "5"=>"undefined"}
+  required: no
+  type: string
+  redact: false
+
+- name: taxonomy_level1
+  description:
+  value: content attribute of meta tag govuk:themes
+  example: crime-justice-and-law, life-circumstances
+  required: no
+  type: string
+  redact: false
+
+- name: taxonomy_main
+  description:
+  value: content attribute of meta tag govuk:taxon_slug
+  example: courts-sentencing-tribunals
+  required: no
+  type: string
+  redact: false
+
+- name: taxonomy_main_id
+  description:
+  value: content attribute of meta tag govuk:taxon_id
+  example: 357110bb-cbc5-4708-9711-1b26e6c63e86
+  required: no
+  type: string
+  redact: false
+
+- name: text
+  description: The text of the thing being tracked, for example the text of a link, button or tab. This can either be read directly from the element, passed from a data attribute, or generated automatically for elements where the text changes, for example the 'Show all sections' link in an accordion, which can also read 'Hide all sections'.
+  value: text of the element
+  required: no
+  type: string
+  redact: false
+
+- name: title
+  description:
+  value: document.title
+  example:
+  required: no
+  type: string
+  redact: true
+
+- name: type
+  description: Relates to the top level attribute of event_name but contains a value that we have defined.
+  example:
+  required: no
+  type: string
+  redact: false
+
+- name: updated_at
+  description: date the content was last updated
+  value: date part only of content attribute of meta tag govuk:updated-at
+  example: "2012-09-05"
+  required: no
+  type: string
+  redact: false
+
+- name: url
+  description: Used to communicate relevant location information, such as the URL of a tab that has been clicked or the href of the link where the user is going. Note that this can differ from the top level location attribute.
+  example:
+  required: no
+  type: string
+  redact: true
+
+- name: withdrawn
+  description:
+  value: content attribute of meta tag govuk:withdrawn
+  example: true or false (defaults to false)
+  required: no
+  type: string
+  redact: false

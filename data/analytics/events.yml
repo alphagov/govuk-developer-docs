@@ -1,0 +1,535 @@
+- name: accordion
+  events:
+    - name: Accordion section
+      description: When a section of the accordion is opened or closed.
+      example_url: https://www.gov.uk/coronavirus
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: accordion
+        - name: text
+          value: text of selected accordion
+        - name: index
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
+        - name: index_total
+          value: number of sections in accordion (not including 'show all')
+        - name: action
+          value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
+    - name: Show all sections
+      description: When the 'Show all sections' control is used.
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: select_content
+        - name: type
+          value: accordion
+        - name: text
+          value: text of show all link when clicked e.g. "Show all sections"
+        - name: index
+          value: 0
+        - name: index_total
+          value: number of sections in the accordion (not including 'show all')
+        - name: action
+          value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
+
+- name: HTML attachments
+  events:
+    - name: link clicks (not implemented yet)
+      description: Triggered when a HTML attachment link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      example_url: https://www.gov.uk/government/publications/equality-act-guidance
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: html attachment
+        - name: url
+
+- name: breadcrumbs
+  events:
+    - name: link clicks
+      description: Triggered when a breadcrumb link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      example_url: https://www.gov.uk/learn-to-drive-a-car
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: 'false'
+        - name: index
+          value:
+          - name: index_link
+            value: The position of the link within the breadcrumbs from left to right.
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: breadcrumbs
+        - name: url
+
+- name: feedback
+  events:
+    - name: Is this page useful? Yes
+      description:
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_submit
+        - name: section
+          value: Is this page useful?
+        - name: text
+          value: "Yes"
+        - name: type
+          value: feedback
+    - name: Is this page useful? No
+      description:
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_submit
+        - name: section
+          value: Is this page useful?
+        - name: text
+          value: "No"
+        - name: type
+          value: feedback
+    - name: Report a problem with this page
+      description:
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_submit
+        - name: section
+          value: Is this page useful?
+        - name: text
+          value: Report a problem with this page
+        - name: type
+          value: feedback
+    - name: Send me the survey
+      description:
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_submit
+        - name: section
+          value: Help us improve GOV.UK
+        - name: text
+          value: Send me the survey
+        - name: type
+          value: feedback
+    - name: Send
+      description:
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: form_submit
+        - name: section
+          value: Help us improve GOV.UK
+        - name: text
+          value: Send
+        - name: type
+          value: feedback
+
+- name: footer
+  events:
+    - name: link clicks
+      description: Triggered when a footer link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      example_url: https://www.gov.uk/
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: index
+          value:
+          - name: index_section
+            value: The section that this link is in. "Topics" are 1, "Government activity" are 2, "Meta links" (Help, Privacy etc.) are 3, The Open Government Licence link is 4, and the Crown Copyright link is 5.
+          - name: index_link
+            value: The position of the link within its section.
+          - name: index_section_count
+            value: 5
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: footer
+        - name: url
+        - name: section
+          value: One of "Topics", "Government Activity", "Support Links", "Licence", or "Copyright"
+
+- name: links
+  events:
+    - name: External links
+      description: When a link is followed to a page outside of www.gov.uk.
+      tracker: specialist_link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: true
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: generic link
+        - name: url
+    - name: Download links
+      description: When a link is followed to an asset such as a PDF.
+      tracker: specialist_link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: file_download
+        - name: external
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: generic download
+        - name: url
+
+- name: page view
+  events:
+    - name: Page view
+      description: When a page loads.
+      tracker: page_view_tracker
+      data:
+      - name: event
+        value: page_view
+      - name: page_view
+        value:
+        - name: referrer
+        - name: location
+        - name: title
+        - name: status_code
+        - name: document_type
+        - name: publishing_app
+        - name: rendering_app
+        - name: schema_name
+        - name: content_id
+        - name: browse_topic
+        - name: taxonomy_main
+        - name: taxonomy_all
+        - name: taxonomy_main_id
+        - name: taxonomy_all_ids
+        - name: taxonomy_level1
+        - name: language
+        - name: history
+        - name: withdrawn
+        - name: first_published_at
+        - name: updated_at
+        - name: public_updated_at
+        - name: publishing_government
+        - name: political_status
+        - name: primary_publishing_organisation
+        - name: organisations
+        - name: world_locations
+        - name: dynamic
+
+- name: print page
+  events:
+    - name: print page
+      description: When a 'print this page' button is used
+      example_url: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: print_page
+        - name: index
+        - name: index_total
+        - name: section
+        - name: type
+          value: print page
+
+- name: related navigation
+  description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
+  events:
+    - name: Related Navigation
+      description: Clicks in the related navigation component
+      example_url: https://www.gov.uk/government/statistics/national-curriculum-assessments-key-stage-2-2016-provisional
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: type
+          value: related content
+        - name: index
+          value: 1.1
+        - name: section
+          value: Heading of section e.g. Related content, Collection
+        - name: text
+        - name: url
+          value: href attribute of link
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: external
+
+- name: share this page
+  events:
+    - name: follow us
+      description: Triggered when a 'follow us' social media link is used.
+      example_url: https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+          value: true
+        - name: index
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: follow us
+        - name: url
+    - name: share this page
+      description: Triggered when a 'share on' social media link is used.
+      example_url: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: share
+        - name: external
+          value: true
+        - name: index
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: share this page
+        - name: url
+
+- name: step by step navigation
+  events:
+    - name: Open/close step
+      description:
+      example_url: https://www.gov.uk/learn-to-drive-a-car
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: opened/closed
+        - name: event_name
+        - name: index
+        - name: index_total
+        - name: text
+        - name: type
+          value: "step by step"
+    - name: Show/hide all steps
+      description:
+      example_url: https://www.gov.uk/learn-to-drive-a-car
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: opened/closed
+        - name: event_name
+        - name: index
+          value: 0
+        - name: index_total
+        - name: text
+        - name: type
+          value: "step by step"
+    - name: link clicks
+      description: Triggered when a link within a step by step is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      example_url: https://www.gov.uk/learn-to-drive-a-car
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: index
+          value:
+          - name: index_section
+            value: The section that this link is in. The section in this case refers to the step number.
+          - name: index_link
+            value: The position of the link within this section.
+          - name: index_section_count
+            value: The total amount of links within this section.
+        - name: index_total
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: step by step
+        - name: url
+        - name: section
+          value: The name of the step
+
+- name: super navigation header
+  events:
+    - name: Header menu bar buttons
+      description: When the Menu or Search button is expanded or collapsed.
+      example_url: https://www.gov.uk/
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: action
+          value: opened/closed
+        - name: event_name
+          value: select_content
+        - name: index
+          value:
+          - name: index_section
+          - name: index_link
+          - name: index_section_count
+        - name: index_total
+          value: 2
+        - name: section
+          value: Menu/Search
+        - name: type
+          value: header menu bar
+        - name: text
+          value: Menu/Search
+    - name: link clicks
+      description: Triggered when the GOVUK logo, a header "menu" section link, or a link under the search component is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
+      example_url: https://www.gov.uk/
+      tracker: link_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+          value: navigation
+        - name: external
+        - name: index
+          value:
+          - name: index_section
+            value: The section that this link is in (Menu is 1, Search is 2)
+          - name: index_link
+            value: The position of the link within its section. GOVUK Logo has an index of 0.
+          - name: index_section_count
+            value: 2 (Menu and Search)
+        - name: index_total
+          value: Total links across all sections (currently 28)
+        - name: link_domain
+        - name: link_path_parts
+        - name: method
+        - name: text
+        - name: type
+          value: header menu bar
+        - name: url
+        - name: section
+          value: The heading of the section the link is under, e.g. "Topics", "Government Activity"
+
+- name: tabs
+  events:
+    - name: Tab interaction
+      description: When a tab is selected.
+      example_url: https://www.gov.uk/renew-driving-licence
+      tracker: event_tracker
+      data:
+      - name: event
+        value: event_data
+      - name: event_data
+        value:
+        - name: event_name
+        - name: type
+          value: tabs
+        - name: url
+          value: tab identifier/url hash e.g. "#scotland"
+        - name: text
+          value: text of the selected tab
+        - name: index
+          value: index of the selected tab
+        - name: index_total
+          value: number of tabs in total

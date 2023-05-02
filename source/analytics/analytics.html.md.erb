@@ -1,0 +1,45 @@
+<h1 class="govuk-heading-l">
+  <%= data.analytics.navigation.analytics.name %>
+</h1>
+
+<p class="govuk-body">
+  <%= data.analytics.navigation.analytics.desc %>
+</p>
+
+<div class="govuk-grid-row govuk-!-margin-bottom-7">
+  <div class="govuk-grid-column-one-half">
+    <h2 class="govuk-heading-m">
+      <%= data.analytics.navigation.data.name %>
+    </h2>
+
+    <p class="govuk-body">
+      <%= data.analytics.navigation.data.desc %>
+    </p>
+
+    <p class="govuk-body">
+      <a href="<%= data.analytics.navigation.data.link %>" class="govuk-link">
+        <%= data.analytics.navigation.data.link_title %>
+      </a>
+    </p>
+  </div>
+
+  <div class="govuk-grid-column-one-half">
+    <h2 class="govuk-heading-m">
+      <%= data.analytics.navigation.docs.name %>
+    </h2>
+
+    <p class="govuk-body">
+      <%= data.analytics.navigation.docs.desc %>
+    </p>
+
+    <p class="govuk-body">
+      <a href="<%= data.analytics.navigation.docs.link %>" class="govuk-link">
+        <%= data.analytics.navigation.docs.link_title %>
+      </a>
+    </p>
+  </div>
+</div>
+
+<p class="govuk-body">
+  This documentation is part of the <a href="/" class="govuk-link">GOV.UK Developer docs</a>.
+</p>
