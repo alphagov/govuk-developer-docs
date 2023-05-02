@@ -1,0 +1,43 @@
+<h1 class="govuk-heading-l">
+  <span class="govuk-caption-l">Event</span>
+  <%= event.name %>
+</h1>
+
+<% if event.description %>
+  <p class="govuk-body"><%= event.description %></p>
+<% end %>
+
+<% event.events.each do |page_event| %>
+  <div class="event">
+    <h2 class="govuk-heading-m">
+      <%= page_event.name %>
+    </h2>
+    <% if page_event.description %>
+      <p class="govuk-body">
+        <%= page_event.description %>
+      </p>
+    <% end %>
+    <ul class="govuk-list govuk-list--bullet">
+      <% if page_event.example_url %>
+        <li>
+          Example of <%= link_to page_event.name, page_event.example_url %>
+        </li>
+      <% end %>
+      <% if page_event.tracker %>
+        <% data.analytics.trackers.each do |tracker| %>
+          <% if tracker.technical_name == page_event.tracker %>
+            <li>
+              Tracked by <%= link_to page_event.tracker, "tracker_#{page_event.tracker}.html" %>
+            </li>
+          <% end %>
+        <% end %>
+      <% end %>
+    </ul>
+    <h3 class="govuk-heading-s">Data sent to the dataLayer</h3>
+
+    <% event_hash = build_event(page_event.data, data.analytics.attributes) %>
+    <div class="govuk-inset-text">
+      <%= to_html(event_hash) %>
+    </div>
+  </div>
+<% end %>
