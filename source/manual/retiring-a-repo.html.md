@@ -10,14 +10,18 @@ parent: "/manual.html"
 
 Add a note to the top of the README explaining that the repo has been retired and, if applicable, what it has been replaced by.
 
-## 2. Update the Developer Docs
+## 2. Close open issues and pull requests
 
-Mark the application as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs).
+Once a repository is archived all of its issues and pull requests become read-only and the authors will not be able to close them. We want to avoid giving the impression that these will eventually be acted upon. Leaving them open will also affect metrics we collect such as Dependabot statistics.
 
-## 3. Remove other references
-
-Do a [search on GitHub](https://github.com/search?q=org%3Aalphagov+panopticon&type=Code) to find any references to the repository and update or remove them.
-
-## 4. Archive the repo
+## 3. Archive the repo
 
 Go into the repository settings in GitHub, and [archive the repo](https://github.com/blog/2460-archiving-repositories).
+
+## 4. Update the Developer Docs
+
+Mark the application as `retired` in [govuk-developer-docs](https://github.com/alphagov/govuk-developer-docs/blob/main/data/repos.yml).
+
+## 5. Remove other references
+
+Do a [search on GitHub](https://github.com/search?q=org%3Aalphagov+panopticon&type=Code) to find any references to the repository and update or remove them.
