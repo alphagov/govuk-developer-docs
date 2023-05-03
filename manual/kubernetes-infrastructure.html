@@ -208,7 +208,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dabfc048b09fa963b1613d2800fe916422a5b721">3 May 2023</a>
 </div>
 
  <h1 id='header'>EKS/Kubernetes infrastructure</h1> <p>This is a temporary page to tide us over as we get used to the new EKS platform.
@@ -270,7 +270,7 @@ The Smokey cronjob keeps the last 3 successes and the last 3 failures.</p>
 <h2 id='dashboards-alerting-and-icinga'>Dashboards, alerting and Icinga</h2>
 <ul>
 <li>The Technical 2nd Line Dashboard will be kept up to date as we improve our dashboards. It&rsquo;s worth bookmarking <a href="https://govuk-2ndline-dashboard.herokuapp.com/">https://govuk-2ndline-dashboard.herokuapp.com/</a></li>
-<li>The detailed Sidekiq dashboard is not yet available for EKS (the <a href="https://sidekiq-monitoring.integration.govuk.digital/publishing-api/queues">old one</a> still looks at EC2) but you can see queue lengths and age-of-oldest-job on the <a href="https://grafana.eks.production.govuk.digital/d/2Yy8PzmVk">Sidekiq Grafana dashboard</a>.</li>
+<li>The detailed Sidekiq dashboard is not yet available for EKS (the <a href="https://sidekiq-monitoring.integration.govuk.digital/publishing-api/queues">old one</a> still looks at EC2) but you can see queue lengths and age-of-oldest-job on the <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues">Sidekiq Grafana dashboard</a>.</li>
 <li>Dashboards are on <a href="https://grafana.eks.production.govuk.digital/">https://grafana.eks.production.govuk.digital/</a> and no longer require VPN. Don’t get confused by the <a href="https://grafana.production.govuk.digital/">old Grafana</a>, which will show mostly empty graphs about the old EC2 setup.</li>
 <li>Most Icinga alerts are irrelevant now, <strong>except for</strong>:
 

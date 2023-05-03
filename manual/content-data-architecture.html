@@ -197,7 +197,7 @@
 </div>
    <div class="govuk-!-font-size-16 govuk-!-margin-top-6">
 
-  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/36265a6e8eb199bea292a87395184470aa5c43d1">26 Apr 2023</a>
+  Last updated: <a href="https://github.com/alphagov/govuk-developer-docs/commit/dabfc048b09fa963b1613d2800fe916422a5b721">3 May 2023</a>
 </div>
 
  <h1 id='header'>Content Data architecture</h1> <p>[Content Data][] is a service that allows organisations to view performance and content metrics about GOV.UK pages they maintain, so that they can manage their content effectively over time. The data helps them decide what content to improve and prioritise.</p>
@@ -218,7 +218,7 @@
 <li><a href="#csv-exporter">Export data to CSV</a></li>
 </ul>
 <p>This can be accessed at <a href="https://content-data.publishing.service.gov.uk/content/">https://content-data.publishing.service.gov.uk/content/</a>.</p>
-<h3 id='csv-exporter'>CSV Exporter</h3><p>This is a feature that allows users to export search results and associated metrics to CSV. It uses a <a href="https://grafana.eks.production.govuk.digital/d/2Yy8PzmVk/sidekiq-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=content-data-admin-worker&amp;from=1681272545106&amp;to=1681294145106">Sidekiq worker</a> to generate the CSV in the background and stores it in an <a href="https://s3.console.aws.amazon.com/s3/buckets/govuk-production-content-data-csvs?region=eu-west-1&amp;tab=objects">AWS S3 bucket</a>. An email is then sent to the user which contains the downloadable link that is valid for 7 days. The expiry time is configured in the S3 bucket settings under <a href="https://s3.console.aws.amazon.com/s3/management/govuk-production-content-data-csvs/lifecycle/view?region=eu-west-1&amp;id=all">Lifecycle configuration</a>.</p>
+<h3 id='csv-exporter'>CSV Exporter</h3><p>This is a feature that allows users to export search results and associated metrics to CSV. It uses a <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=content-data-admin-worker&amp;from=1681272545106&amp;to=1681294145106">Sidekiq worker</a> to generate the CSV in the background and stores it in an <a href="https://s3.console.aws.amazon.com/s3/buckets/govuk-production-content-data-csvs?region=eu-west-1&amp;tab=objects">AWS S3 bucket</a>. An email is then sent to the user which contains the downloadable link that is valid for 7 days. The expiry time is configured in the S3 bucket settings under <a href="https://s3.console.aws.amazon.com/s3/management/govuk-production-content-data-csvs/lifecycle/view?region=eu-west-1&amp;id=all">Lifecycle configuration</a>.</p>
 <p><a href="/images/content-data-architecture-csv-exporter.png" rel="noopener noreferrer"><img src="/images/content-data-architecture-csv-exporter.png" alt="Overview of the CSV Exporter process" /></a></p>
 <h2 id='content-data-api'>Content Data API</h2><p>This is the data warehouse used by Content Data Admin where all the metrics are stored. The data is collected from various sources:</p>
 
@@ -270,7 +270,7 @@
 <ul>
 <li>Publishing API publishes messages about content changes to the <a href="https://grafana.blue.production.govuk.digital/dashboard/file/aws-amazonmq.json?refresh=10s&amp;orgId=1">AmazonMQ content-data-api queue</a></li>
 <li>Content Data API subscribes to this queue using a <a href="https://github.com/alphagov/content-data-api/blob/main/lib/tasks/publishing_api_consumer.rake#L3-L7">consumer process</a></li>
-<li>The consumer process then creates <a href="https://grafana.eks.production.govuk.digital/d/2Yy8PzmVk/sidekiq-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=content-data-api-worker">Sidekiq jobs</a> (using Redis as a job management store) to ingest these messages via a rake task</li>
+<li>The consumer process then creates <a href="https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq-queue-length-max-delay?orgId=1&amp;var-namespace=apps&amp;var-app=content-data-api-worker">Sidekiq jobs</a> (using Redis as a job management store) to ingest these messages via a rake task</li>
 </ul>
 <p><a href="/images/content-data-architecture-streams-processor.png" rel="noopener noreferrer"><img src="/images/content-data-architecture-streams-processor.png" alt="Overview of the Streams Processor" /></a></p>
 
