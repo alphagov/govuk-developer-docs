@@ -118,8 +118,8 @@ An overview of the process is as follows:
 [gds-sso]: https://github.com/alphagov/gds-sso
 [Kubernetes CronJob]: https://github.com/alphagov/govuk-helm-charts/blob/main/charts/app-config/values-production.yaml#L541-L543
 [Lifecycle configuration]: https://s3.console.aws.amazon.com/s3/management/govuk-production-content-data-csvs/lifecycle/view?region=eu-west-1&id=all
-[Sidekiq worker]: https://grafana.eks.production.govuk.digital/d/2Yy8PzmVk/sidekiq-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=content-data-admin-worker&from=1681272545106&to=1681294145106
-[Sidekiq jobs]: https://grafana.eks.production.govuk.digital/d/2Yy8PzmVk/sidekiq-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=content-data-api-worker
+[Sidekiq worker]: https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=content-data-admin-worker&from=1681272545106&to=1681294145106
+[Sidekiq jobs]: https://grafana.eks.production.govuk.digital/d/sidekiq-queues/sidekiq-queue-length-max-delay?orgId=1&var-namespace=apps&var-app=content-data-api-worker
 [Signon]: https://signon.publishing.service.gov.uk
 [Support API]: https://github.com/alphagov/support-api
 [Support app]: https://github.com/alphagov/support
