@@ -8,7 +8,7 @@ section: Pagerduty alerts
 
 You can find the router request error rates on this dashboard:
 
-- [5xx Router Requests][router-5x https://grafana.eks.production.govuk.digital/d/uBEWkijnz/router-request-rates-errors-durations?orgId=1 x-request-rates-grafana]
+- [5xx Router Requests][router-5x https://grafana.eks.production.govuk.digital/d/router-requests/router-request-rates-errors-durations?orgId=1 x-request-rates-grafana]
 
 You can also view the 500+503 error rates across all applications on this dashboard:
 
@@ -29,7 +29,7 @@ Use [this][app-5xx-error-rates-grafana] dashboard to check which applications ha
 - If an application has been recently updated and is returning errors it may require a rollback using the app's deploy github action https://github.com/alphagov/<appname>/actions/workflows/deploy.yml
 - If your application is currently dealing with a sudden increase in load it could be that you need to scale your application. You can check the following [documentation][scale-app] in order to do this.
 
-[router-5xx-request-rates-grafana]: https://grafana.eks.integration.govuk.digital/d/uBEWkijnz/router-request-rates-errors-durations?orgId=1&var-namespace=apps&var-backend_app=All&var-quantile=0.99&var-error_status=500&var-error_status=503&var-error_status=504
-[app-5xx-error-rates-grafana]: https://grafana.eks.prodution.govuk.digital/d/000000111/app-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=apps&var-app=All&var-quantile=All&var-error_status=500&var-error_status=503
+[router-5xx-request-rates-grafana]: https://grafana.eks.integration.govuk.digital/d/router-requests/router-request-rates-errors-durations?orgId=1&var-namespace=apps&var-backend_app=All&var-quantile=0.99&var-error_status=500&var-error_status=503&var-error_status=504
+[app-5xx-error-rates-grafana]: https://grafana.eks.prodution.govuk.digital/d/app-requests/app-request-rates-errors-durations?orgId=1&refresh=1m&var-namespace=apps&var-app=All&var-quantile=All&var-error_status=500&var-error_status=503
 [prod-kibana]: https://kibana.logit.io/s/13d1a0b1-f54f-407b-a4e5-f53ba653fac3/app/discover
 [scale-app]: https://govuk-k8s-user-docs.publishing.service.gov.uk/manage-app/scale-app/#scaling-your-app
