@@ -1,6 +1,8 @@
 - name: accordion
   events:
     - name: Accordion section
+      implemented: true
+      priority: high
       description: When a section of the accordion is opened or closed.
       example_url: https://www.gov.uk/coronavirus
       tracker: event_tracker
@@ -25,6 +27,8 @@
         - name: action
           value: '"opened" when clicked to expand, or "closed" when clicked to collapse'
     - name: Show all sections
+      implemented: true
+      priority: high
       description: When the 'Show all sections' control is used.
       tracker: event_tracker
       data:
@@ -48,6 +52,8 @@
 - name: HTML attachments
   events:
     - name: link clicks (not implemented yet)
+      implemented: true
+      priority: high
       description: Triggered when a HTML attachment link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       example_url: https://www.gov.uk/government/publications/equality-act-guidance
       tracker: link_tracker
@@ -70,6 +76,8 @@
 - name: breadcrumbs
   events:
     - name: link clicks
+      implemented: true
+      priority: high
       description: Triggered when a breadcrumb link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       example_url: https://www.gov.uk/learn-to-drive-a-car
       tracker: link_tracker
@@ -98,6 +106,8 @@
 - name: feedback
   events:
     - name: Is this page useful? Yes
+      implemented: true
+      priority: high
       description:
       tracker: event_tracker
       data:
@@ -114,6 +124,8 @@
         - name: type
           value: feedback
     - name: Is this page useful? No
+      implemented: true
+      priority: high
       description:
       tracker: event_tracker
       data:
@@ -130,6 +142,8 @@
         - name: type
           value: feedback
     - name: Report a problem with this page
+      implemented: true
+      priority: high
       description:
       tracker: event_tracker
       data:
@@ -146,6 +160,8 @@
         - name: type
           value: feedback
     - name: Send me the survey
+      implemented: true
+      priority: high
       description:
       tracker: event_tracker
       data:
@@ -162,6 +178,8 @@
         - name: type
           value: feedback
     - name: Send
+      implemented: true
+      priority: high
       description:
       tracker: event_tracker
       data:
@@ -181,6 +199,8 @@
 - name: footer
   events:
     - name: link clicks
+      implemented: true
+      priority: high
       description: Triggered when a footer link is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       example_url: https://www.gov.uk/
       tracker: link_tracker
@@ -214,6 +234,8 @@
 - name: links
   events:
     - name: External links
+      implemented: true
+      priority: high
       description: When a link is followed to a page outside of www.gov.uk.
       tracker: specialist_link_tracker
       data:
@@ -233,6 +255,8 @@
           value: generic link
         - name: url
     - name: Download links
+      implemented: true
+      priority: high
       description: When a link is followed to an asset such as a PDF.
       tracker: specialist_link_tracker
       data:
@@ -254,6 +278,8 @@
 - name: page view
   events:
     - name: Page view
+      implemented: true
+      priority: high
       description: When a page loads.
       tracker: page_view_tracker
       data:
@@ -292,6 +318,8 @@
 - name: print page
   events:
     - name: print page
+      implemented: true
+      priority: high
       description: When a 'print this page' button is used
       example_url: https://www.gov.uk/guidance/register-a-trust-as-a-trustee
       tracker: event_tracker
@@ -312,6 +340,8 @@
   description: Events gathered in the contextual sidebar, contextual footer and related navigation components.
   events:
     - name: Related Navigation
+      implemented: true
+      priority: high
       description: Clicks in the related navigation component
       example_url: https://www.gov.uk/government/statistics/national-curriculum-assessments-key-stage-2-2016-provisional
       tracker: link_tracker
@@ -339,6 +369,8 @@
 - name: share this page
   events:
     - name: follow us
+      implemented: true
+      priority: high
       description: Triggered when a 'follow us' social media link is used.
       example_url: https://www.gov.uk/government/organisations/department-for-digital-culture-media-sport
       tracker: link_tracker
@@ -361,6 +393,8 @@
           value: follow us
         - name: url
     - name: share this page
+      implemented: true
+      priority: high
       description: Triggered when a 'share on' social media link is used.
       example_url: https://www.gov.uk/government/news/new-protections-for-children-and-free-speech-added-to-internet-laws
       tracker: link_tracker
@@ -386,6 +420,8 @@
 - name: step by step navigation
   events:
     - name: Open/close step
+      implemented: true
+      priority: high
       description:
       example_url: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
@@ -403,6 +439,8 @@
         - name: type
           value: "step by step"
     - name: Show/hide all steps
+      implemented: true
+      priority: high
       description:
       example_url: https://www.gov.uk/learn-to-drive-a-car
       tracker: event_tracker
@@ -421,6 +459,8 @@
         - name: type
           value: "step by step"
     - name: link clicks
+      implemented: true
+      priority: high
       description: Triggered when a link within a step by step is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       example_url: https://www.gov.uk/learn-to-drive-a-car
       tracker: link_tracker
@@ -454,6 +494,8 @@
 - name: super navigation header
   events:
     - name: Header menu bar buttons
+      implemented: true
+      priority: high
       description: When the Menu or Search button is expanded or collapsed.
       example_url: https://www.gov.uk/
       tracker: event_tracker
@@ -480,6 +522,8 @@
         - name: text
           value: Menu/Search
     - name: link clicks
+      implemented: true
+      priority: high
       description: Triggered when the GOVUK logo, a header "menu" section link, or a link under the search component is clicked, right clicked, shift clicked, control clicked, or windows key/command key clicked.
       example_url: https://www.gov.uk/
       tracker: link_tracker
@@ -514,6 +558,8 @@
 - name: tabs
   events:
     - name: Tab interaction
+      implemented: true
+      priority: high
       description: When a tab is selected.
       example_url: https://www.gov.uk/renew-driving-licence
       tracker: event_tracker
